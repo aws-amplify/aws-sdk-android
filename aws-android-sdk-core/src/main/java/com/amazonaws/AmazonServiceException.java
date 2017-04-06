@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -83,7 +83,7 @@ public class AmazonServiceException extends AmazonClientException {
     /**
      * The error message as returned by the service.
      */
-    private final String errorMessage;
+    private String errorMessage;
 
     /** The HTTP status code that was returned with this error */
     private int statusCode;
@@ -231,5 +231,9 @@ public class AmazonServiceException extends AmazonClientException {
                 + "; Status Code: " + getStatusCode()
                 + "; Error Code: " + getErrorCode()
                 + "; Request ID: " + getRequestId() + ")";
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }

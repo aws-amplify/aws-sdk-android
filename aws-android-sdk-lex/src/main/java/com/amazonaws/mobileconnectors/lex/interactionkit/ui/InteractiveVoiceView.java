@@ -16,11 +16,12 @@
 package com.amazonaws.mobileconnectors.lex.interactionkit.ui;
 
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -52,6 +53,18 @@ public class InteractiveVoiceView extends View {
     private static final int NORMAL = 0;
     private static final int LISTENING = 1;
     private static final int AWAITING_RESPONSE = 2;
+    /**
+     * Transitioning from TALKING TO LISTENING.
+     */
+    private static final int TRANSITION_TO_LISTENING = 3;
+    /**
+     * Transitioning from LISTENING to TALKING.
+     */
+    private static final int TRANSITION_TO_TALKING = 4;
+    /**
+     * Lex is talking.
+     */
+    private static final int TALKING = 5;
 
     // Default boundary sizes of the.
     private static final int BIB_INT_DP = 32;
@@ -65,17 +78,19 @@ public class InteractiveVoiceView extends View {
     private static final float GOLDEN_RATIO = 1.809f;
 
     // Default colors.
-    private static final String DEFAULT_COLOR_BUTTON_BACKGROUND = "#FFFFFF";
-    private static final String DEFAULT_COLOR_BUTTON_BOUNDARY = "#8D9496";
-    private static final String DEFAULT_COLOR_TINT_NORMAL = "#329AD6";
-    private static final String DEFAULT_COLOR_TINT_LISTENING = "#2A5C91";
-    private static final String DEFAULT_COLOR_TINT_WAITING = "#8D9496";
-    private static final String DEFAULT_COLOR_ANIMATED_CIRCLE = "#4EA9DC";
-    private static final String DEFAULT_COLOR_ANIMATED_RING = "#2A5C91";
+    private static final int DEFAULT_COLOR_BUTTON_BACKGROUND = Color.parseColor("#FFFFFF");
+    private static final int DEFAULT_COLOR_BUTTON_BOUNDARY = Color.parseColor("#8D9496");
+    private static final int DEFAULT_COLOR_TINT_NORMAL = Color.parseColor("#329AD6");
+    private static final int DEFAULT_COLOR_TINT_LISTENING = Color.parseColor("#2A5C91");
+    private static final int DEFAULT_COLOR_TINT_TALKING = Color.parseColor("#4383c4");
+    private static final int DEFAULT_COLOR_TINT_WAITING = Color.parseColor("#8D9496");
+    private static final int DEFAULT_COLOR_ANIMATED_CIRCLE = Color.parseColor("#4EA9DC");
+    private static final int DEFAULT_COLOR_ANIMATED_RING = Color.parseColor("#2A5C91");
 
     // Animation colors.
     private int mIconColorNormal;
     private int mIconColorListening;
+    private int mIconColorTalking;
     private int mIconColorWaiting;
     private int mButtonBoundaryColor;
 
@@ -83,8 +98,8 @@ public class InteractiveVoiceView extends View {
     private final Context context;
 
     // Bitmaps to store button icons.
-    private Bitmap mIconBmp;
-    BitmapDrawable bitmapDrawableIcon;
+    BitmapDrawable bitmapDrawableMicrophoneIcon;
+    BitmapDrawable bitmapDrawableLexIcon;
 
     // Boundary for animated wait arc.
     private RectF oval;
@@ -104,6 +119,10 @@ public class InteractiveVoiceView extends View {
 
     // Animators for wait.
     private ValueAnimator mValueAnimator;
+
+    // Animator for switching image between Lex and Microphone.
+    private PushTransitionAnimator pushTransitionAnimator;
+    private boolean animateOnImageSwitching;
 
     // Current widget state.
     private int state = NORMAL;
@@ -134,30 +153,39 @@ public class InteractiveVoiceView extends View {
     private void init() {
         mAnimatorSet = new AnimatorSet();
 
-        mIconColorNormal = Color.parseColor(DEFAULT_COLOR_TINT_NORMAL);
-        mIconColorWaiting = Color.parseColor(DEFAULT_COLOR_TINT_WAITING);
-        mIconColorListening = Color.parseColor(DEFAULT_COLOR_TINT_LISTENING);
-        mButtonBoundaryColor = Color.parseColor(DEFAULT_COLOR_BUTTON_BOUNDARY);
+        mIconColorNormal = DEFAULT_COLOR_TINT_NORMAL;
+        mIconColorWaiting = DEFAULT_COLOR_TINT_WAITING;
+        mIconColorListening = DEFAULT_COLOR_TINT_LISTENING;
+        mIconColorTalking = DEFAULT_COLOR_TINT_TALKING;
+        mButtonBoundaryColor = DEFAULT_COLOR_BUTTON_BOUNDARY;
 
         // Set image bitmaps for normal and listening states.
-        mIconBmp = BitmapFactory.decodeResource(getResources(), R.drawable.mic);
-        bitmapDrawableIcon = new BitmapDrawable(getResources(), mIconBmp);
+
+        // Create microphone
+        bitmapDrawableMicrophoneIcon = new BitmapDrawable(
+                getResources(),
+                BitmapFactory.decodeResource(getResources(), R.drawable.mic)
+        );
+        bitmapDrawableLexIcon = new BitmapDrawable(
+                getResources(),
+                BitmapFactory.decodeResource(getResources(), R.drawable.lex_speak)
+        );
 
         // Color and style for animated components.
         mPaintAnimationListening = new Paint();
         mPaintAnimationListening.setAntiAlias(true);
-        mPaintAnimationListening.setColor(Color.parseColor(DEFAULT_COLOR_ANIMATED_CIRCLE));
+        mPaintAnimationListening.setColor(DEFAULT_COLOR_ANIMATED_CIRCLE);
 
         mPaintAnimationWaiting = new Paint();
         mPaintAnimationWaiting.setAntiAlias(true);
-        mPaintAnimationWaiting.setColor(Color.parseColor(DEFAULT_COLOR_ANIMATED_RING));
+        mPaintAnimationWaiting.setColor(DEFAULT_COLOR_ANIMATED_RING);
         mCurrentStrokePix = 20.0f;
         mPaintAnimationWaiting.setStrokeWidth(mCurrentStrokePix);
 
         mPaintButtonBackground = new Paint();
         mPaintButtonBackground.setAntiAlias(true);
         mPaintButtonBackground.setStrokeWidth(5);
-        mPaintButtonBackground.setColor(Color.parseColor(DEFAULT_COLOR_BUTTON_BACKGROUND));
+        mPaintButtonBackground.setColor(DEFAULT_COLOR_BUTTON_BACKGROUND);
 
         mPaintButtonBoundary = new Paint();
         mPaintButtonBoundary.setAntiAlias(true);
@@ -196,49 +224,76 @@ public class InteractiveVoiceView extends View {
         canvasWidth = canvas.getWidth();
         canvasHeight = canvas.getHeight();
         final Rect bounds = canvas.getClipBounds();
+        Rect calculatedBounds = calculateButtonBounds(bounds);
 
         int buttonColor = mIconColorNormal;
+        BitmapDrawable bitmapDrawableIcon = bitmapDrawableMicrophoneIcon;
 
         switch (state) {
+            case TRANSITION_TO_LISTENING:
             case LISTENING:
-                if (mCurrentRadiusPix > mButtonRadiusPix) {
-                    // Draw circle to animate voice.
-                    canvas.drawCircle(canvasWidth / 2, canvasHeight / 2, mCurrentRadiusPix, mPaintAnimationListening);
+                if (state != TRANSITION_TO_LISTENING) {
+                    if (mCurrentRadiusPix > mButtonRadiusPix) {
+                        // Draw circle to animate voice.
+                        canvas.drawCircle(canvasWidth / 2, canvasHeight / 2, mCurrentRadiusPix, mPaintAnimationListening);
+                    }
                 }
 
-                // Draw the button boundary and background.
-                oval.set(calculateButtonBounds(bounds));
-                canvas.drawArc(oval, 0, 360, false, mPaintButtonBackground);
-                canvas.drawArc(oval, 0, 360, false, mPaintButtonBoundary);
+                drawButtonShape(calculatedBounds, canvas);
                 buttonColor = mIconColorListening;
                 break;
+            case TALKING:
+                buttonColor = mIconColorTalking;
+                bitmapDrawableIcon = bitmapDrawableLexIcon;
+                drawButtonShape(calculatedBounds, canvas);
+                break;
+            case TRANSITION_TO_TALKING:
+                buttonColor = mIconColorWaiting;
             case NORMAL:
-                // Draw the button boundary and background.
-                oval.set(calculateButtonBounds(bounds));
-                canvas.drawArc(oval, 0, 360, false, mPaintButtonBackground);
-                canvas.drawArc(oval, 0, 360, false, mPaintButtonBoundary);
-
+                drawButtonShape(calculatedBounds, canvas);
                 break;
             case AWAITING_RESPONSE:
                 // Animate circular wait indicator.
-                canvas.drawColor(0, PorterDuff.Mode.CLEAR);
-                oval.set(calculateButtonBounds(bounds));
-                canvas.drawArc(oval, 0, 360, false, mPaintButtonBackground);
+                drawButtonShape(calculatedBounds, canvas);
                 canvas.drawArc(oval, mCurrentArcPosition, ARC_LEN_ANGLE, false, mPaintAnimationWaiting);
-
-                // Draw the button boundary.
-                canvas.drawArc(oval, 0, 360, false, mPaintButtonBoundary);
                 buttonColor = mIconColorWaiting;
                 break;
         }
 
+        // Clip so that the image does not get rendered beyond the boundary.
+        canvas.clipRect(calculatedBounds);
+
+        if (pushTransitionAnimator != null) {
+            float offsetY = pushTransitionAnimator.animatedFraction * calculatedBounds.height();
+            calculatedBounds.top += offsetY;
+            calculatedBounds.bottom += offsetY;
+        }
+
         // Draw the button icon.
-        bitmapDrawableIcon.setBounds(calculateButtonBounds(bounds));
+        bitmapDrawableIcon.setBounds(calculatedBounds);
         mDrawable = bitmapDrawableIcon.mutate();
         mDrawable.setColorFilter(buttonColor, PorterDuff.Mode.SRC_ATOP);
         mDrawable.draw(canvas);
     }
 
+    void animateListening() {
+        animateImageSwitch(new ActionHandler() {
+            @Override
+            public void handle() {
+                state = TRANSITION_TO_LISTENING;
+            }
+        });
+    }
+
+    void animateAudioPlayback() {
+        state = TRANSITION_TO_TALKING;
+        animateImageSwitch(new ActionHandler() {
+            @Override
+            public void handle() {
+                state = TALKING;
+            }
+        });
+    }
 
     /**
      * Animates sound by modulating radius of a displayed circle. This animation just performs one
@@ -246,14 +301,17 @@ public class InteractiveVoiceView extends View {
      * @param soundLevel
      */
     public void animateSoundLevel(float soundLevel) {
-        reset();
-        state = LISTENING;
-        final float radius = soundlevel2radius(soundLevel);
-        mAnimatorSet.playSequentially(
-                ObjectAnimator.ofFloat(this, "CurrentRadius", getCurrentRadius(), radius).setDuration(20),
-                ObjectAnimator.ofFloat(this, "CurrentRadius", radius, mButtonRadiusPix).setDuration(400)
-        );
-        mAnimatorSet.start();
+        // Ignore if push transition animation is running.
+        if (pushTransitionAnimator == null || !pushTransitionAnimator.isRunning()) {
+            reset();
+            state = LISTENING;
+            final float radius = soundlevel2radius(soundLevel);
+            mAnimatorSet.playSequentially(
+                    ObjectAnimator.ofFloat(this, "CurrentRadius", getCurrentRadius(), radius).setDuration(20),
+                    ObjectAnimator.ofFloat(this, "CurrentRadius", radius, mButtonRadiusPix).setDuration(400)
+            );
+            mAnimatorSet.start();
+        }
     }
 
     /**
@@ -277,6 +335,22 @@ public class InteractiveVoiceView extends View {
         });
         mValueAnimator.start();
         invalidate();
+    }
+
+    /**
+     * Start slide-out-up and in-up animation for image switching between Lex and microphone.
+     */
+    private void animateImageSwitch(final ActionHandler handler) {
+        reset();
+        if (animateOnImageSwitching) {
+            pushTransitionAnimator = new PushTransitionAnimator(handler);
+            pushTransitionAnimator.start();
+        } else {
+            handler.handle();
+            // invalidate() gets called during the animation inside the animator class.
+            // Since the animation is disabled, we would need to call to repaint here.
+            invalidate();
+        }
     }
 
     /**
@@ -319,6 +393,10 @@ public class InteractiveVoiceView extends View {
      * Stops current animation and prepares the widget for a new drawing.
      */
     private void reset() {
+        if (pushTransitionAnimator != null) {
+            pushTransitionAnimator.reset();
+        }
+
         if (mAnimatorSet != null && mAnimatorSet.isRunning()) {
             mAnimatorSet.cancel();
         }
@@ -352,6 +430,17 @@ public class InteractiveVoiceView extends View {
                 bounds.top + mAnimationGapPix,
                 bounds.right - mAnimationGapPix,
                 bounds.bottom - mAnimationGapPix);
+    }
+
+    /**
+     * Draw the button boundary and background.
+     * @param bounds the complete drawable area.
+     * @param canvas bounds for the button boundary.
+     */
+    private void drawButtonShape(Rect bounds, Canvas canvas) {
+        oval.set(bounds);
+        canvas.drawArc(oval, 0, 360, false, mPaintButtonBackground);
+        canvas.drawArc(oval, 0, 360, false, mPaintButtonBoundary);
     }
 
     /**
@@ -431,6 +520,14 @@ public class InteractiveVoiceView extends View {
     }
 
     /**
+     * Sets the color of the button icon when Lex is talking.
+     * @param color The hex-decimal color code as a string, e.g. "#FFFFFF".
+     */
+    public void setColorIconTalking(String color) {
+        mIconColorTalking = getColor(color);
+    }
+
+    /**
      * Sets the color of the button icon when the client is waiting for response
      * from Amazon Lex bot.
      *
@@ -440,6 +537,14 @@ public class InteractiveVoiceView extends View {
         mIconColorWaiting = getColor(color);
     }
 
+    /**
+     * Set the animation flag for switching image between microphone and bot.
+     * By default, the flag is false.
+     * @param animate true to activate animation otherwise false.
+     */
+    public void setAnimateOnImageSwitching(boolean animate) {
+        animateOnImageSwitching = animate;
+    }
     /**
      * Returns the int value of the hex-decimal color.
      * @param color The hex-decimal color code as a string, e.g. "#FFFFFF".
@@ -483,4 +588,97 @@ public class InteractiveVoiceView extends View {
          */
         void onError(String responseText, Exception e);
     }
+
+    /**
+     * Animator for image switching between microphone and bot.
+     */
+    private class PushTransitionAnimator {
+
+        /**
+         * Constant for animatedFraction property.
+         */
+        static final String ANIMATED_FRACTION_PROPERTY_NAME = "animatedFraction";
+
+        /**
+         * Constant for initial value that is used by animatedFraction for both slideIn and slideOut push transition.
+         */
+        static final float ANIMATED_FRACTION_INITIAL_PROPERTY_VALUE = 0.0f;
+
+        /**
+         * The duration for whole animation.
+         * We want to use approximately 0.25 second to provide a better visual indication
+         * so that user does not speak too early.
+         */
+        static final long ANIMATION_DURATION = 250 / 2;
+        ObjectAnimator slideOutAnimator;
+        ObjectAnimator slideInAnimator;
+        ActionHandler handler;
+        /**
+         * The elapsed fraction of the push animation,
+         * range from 0.0 to 1.0 for slideIn and -1.0 to 0.0 for slideOut animation.
+         */
+        float animatedFraction;
+        boolean isRunning;
+
+        PushTransitionAnimator(ActionHandler handler) {
+            this.handler = handler;
+        }
+
+        void start() {
+            isRunning = true;
+            // Move image out toward top.
+            slideOutAnimator = ObjectAnimator.
+                    ofFloat(this, ANIMATED_FRACTION_PROPERTY_NAME, -1.0f).
+                    setDuration(ANIMATION_DURATION);
+            slideOutAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    handler.handle();
+                    // Move image from bottom.
+                    slideInAnimator = ObjectAnimator
+                            .ofFloat(PushTransitionAnimator.this, ANIMATED_FRACTION_PROPERTY_NAME, 1.0f, 0.0f)
+                            .setDuration(ANIMATION_DURATION);
+                    slideInAnimator.start();
+                    slideInAnimator.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            isRunning = false;
+                        }
+                    });
+                }
+            });
+            slideOutAnimator.start();
+        }
+
+        void setAnimatedFraction(float y) {
+            animatedFraction = y;
+            InteractiveVoiceView.this.invalidate();
+        }
+
+        void reset() {
+            if (slideOutAnimator != null && slideOutAnimator.isRunning()) {
+                slideOutAnimator.cancel();
+            }
+            if (slideInAnimator != null && slideInAnimator.isRunning()) {
+                slideInAnimator.cancel();
+            }
+            animatedFraction = ANIMATED_FRACTION_INITIAL_PROPERTY_VALUE;
+            isRunning = false;
+        }
+
+        boolean isRunning() {
+            return isRunning;
+        }
+
+    }
+
+    /**
+     * Naive action handler.
+     */
+    private interface ActionHandler {
+        void handle();
+    }
+
 }

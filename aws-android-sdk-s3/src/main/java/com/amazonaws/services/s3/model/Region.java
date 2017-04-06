@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,8 +30,13 @@ import java.util.regex.Pattern;
  * to optimize latency, minimize costs, or address regulatory requirements.
  * </p>
  * <p>
- * Objects stored in a Amazon S3 Region never leave that region unless
- * explicitly transferred to another region.
+ * Objects stored in a Amazon S3 Region never leave that region unless explicitly
+ * transferred to another region.
+ * </p>
+ * <p>
+ * In Amazon S3, all the regions provides
+ * read-after-write consistency for PUTS of new objects in Amazon
+ * S3 buckets and eventual consistency for overwrite PUTS and DELETES.
  * </p>
  */
 public enum Region {
@@ -285,7 +290,7 @@ public enum Region {
      */
     public static Region fromValue(final String s3RegionId) throws IllegalArgumentException
     {
-        if (s3RegionId == null || s3RegionId.equals("US")) {
+        if (s3RegionId == null || s3RegionId.equals("US") || s3RegionId.equals("us-east-1")) {
             return Region.US_Standard;
         }
         for (final Region region : Region.values()) {

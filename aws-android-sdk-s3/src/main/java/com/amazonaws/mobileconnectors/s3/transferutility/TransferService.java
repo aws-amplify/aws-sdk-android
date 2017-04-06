@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -116,7 +116,6 @@ public class TransferService extends Service {
         super.onCreate();
 
         Log.d(TAG, "Starting Transfer Service");
-
         dbUtil = new TransferDBUtil(getApplicationContext());
         updater = new TransferStatusUpdater(dbUtil);
 
@@ -171,6 +170,7 @@ public class TransferService extends Service {
         handlerThread.quit();
         TransferThreadPool.closeThreadPool();
         S3ClientReference.clear();
+        dbUtil.closeDB();
         super.onDestroy();
     }
 
@@ -334,9 +334,10 @@ public class TransferService extends Service {
      */
     void loadTransfersFromDB() {
         Log.d(TAG, "Loading transfers from database");
-        final Cursor c = dbUtil.queryAllTransfersWithType(TransferType.ANY);
+        Cursor c = null;
         int count = 0;
         try {
+            c = dbUtil.queryAllTransfersWithType(TransferType.ANY);
             while (c.moveToNext()) {
                 final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
                 final TransferState state = TransferState.getState(c.getString(c
@@ -412,3 +413,4 @@ public class TransferService extends Service {
         writer.flush();
     }
 }
+

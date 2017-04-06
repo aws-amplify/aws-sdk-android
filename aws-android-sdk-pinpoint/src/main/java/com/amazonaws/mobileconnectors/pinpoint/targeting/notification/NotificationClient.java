@@ -1,5 +1,5 @@
 /**
- * Copyright 2016-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -100,7 +100,7 @@ public class NotificationClient {
     private static final String GCM_TOKEN_PREF_KEY = "AWSPINPOINT.GCMTOKEN";
 
     //Pinpoint
-    private static final String PINPOINT_PUSH_KEY_PREFIX = "pinpoint.";
+    protected static final String PINPOINT_PUSH_KEY_PREFIX = "pinpoint.";
 
     //Notification
     private static final String GCM_NOTIFICATION_PUSH_KEY_PREFIX = PINPOINT_PUSH_KEY_PREFIX + "notification.";
@@ -473,13 +473,13 @@ public class NotificationClient {
                 message,
                 imageUrl,
                 iconImageUrl,
-                this.createOpenAppPendingIntent(pushBundle,targetClass,campaignId,requestID,intentAction));
+                this.createOpenAppPendingIntent(pushBundle, targetClass, campaignId, requestID, intentAction));
 
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
         notification.defaults |= Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE;
 
         if (android.os.Build.VERSION.SDK_INT >= 21) {
-            log.info("SDK grater than 21 detected: " + android.os.Build.VERSION.SDK_INT);
+            log.info("SDK greater than 21 detected: " + android.os.Build.VERSION.SDK_INT);
 
             final String colorString = pushBundle.getString(NOTIFICATION_COLOR_PUSH_KEY);
             if (colorString != null) {
@@ -534,10 +534,13 @@ public class NotificationClient {
         } else {
             validatedUrl = "http://" + url;
         }
+
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(validatedUrl));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        pinpointContext.getApplicationContext().startActivity(intent);
+        if (intent.resolveActivity(pinpointContext.getApplicationContext().getPackageManager()) != null) {
+            pinpointContext.getApplicationContext().startActivity(intent);
+        }
     }
 
     /**

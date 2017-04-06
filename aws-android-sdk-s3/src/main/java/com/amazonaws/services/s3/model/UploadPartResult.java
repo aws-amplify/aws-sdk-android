@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,19 +15,26 @@
 
 package com.amazonaws.services.s3.model;
 
+import com.amazonaws.services.s3.internal.S3RequesterChargedResult;
 import com.amazonaws.services.s3.internal.SSEResultBase;
 
 /**
  * Contains the details returned from Amazon S3 after calling the UploadPart
  * operation.
  */
-public class UploadPartResult extends SSEResultBase {
+public class UploadPartResult extends SSEResultBase implements S3RequesterChargedResult {
 
     /** The part number of the newly uploaded part */
     private int partNumber;
 
     /** The entity tag generated from the content of the upload part */
     private String eTag;
+
+    /**
+     * Indicate if the requester is charged for conducting this operation from
+     * Requester Pays Buckets.
+     */
+    private boolean isRequesterCharged;
 
     /**
      * Returns the part number of the newly uploaded part.
@@ -76,5 +83,15 @@ public class UploadPartResult extends SSEResultBase {
      */
     public PartETag getPartETag() {
         return new PartETag(partNumber, eTag);
+    }
+
+    @Override
+    public boolean isRequesterCharged() {
+        return isRequesterCharged;
+    }
+
+    @Override
+    public void setRequesterCharged(boolean isRequesterCharged) {
+        this.isRequesterCharged = isRequesterCharged;
     }
 }

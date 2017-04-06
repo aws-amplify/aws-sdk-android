@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -17,13 +17,16 @@ package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.AmazonS3;
 
+import java.io.Serializable;
+
 /**
  * Request object for the parameters to get a bucket's replication
  * configuration.
  *
  * @see AmazonS3#getBucketReplicationConfiguration(GetBucketReplicationConfiguration)
  */
-public class GetBucketReplicationConfigurationRequest extends GenericBucketRequest {
+public class GetBucketReplicationConfigurationRequest extends
+        GenericBucketRequest implements Serializable {
 
     /**
      * Creates a new request object, ready to be executed to fetch the

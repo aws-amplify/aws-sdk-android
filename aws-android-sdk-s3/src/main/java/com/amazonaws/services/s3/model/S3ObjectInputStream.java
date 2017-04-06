@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2012-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,6 +39,8 @@ public class S3ObjectInputStream extends SdkFilterInputStream {
 
     private final HttpRequestBase httpRequest;
 
+    private boolean eof;
+
     public S3ObjectInputStream(InputStream in) {
         this(in, null);
     }
@@ -67,9 +69,11 @@ public class S3ObjectInputStream extends SdkFilterInputStream {
      */
     private static boolean wrapWithByteCounting(InputStream in) {
         if (!AwsSdkMetrics.isMetricsEnabled())
+         {
             return false; // metrics is disabled
+        }
         if (in instanceof MetricAware) {
-            MetricAware aware = (MetricAware) in;
+            final MetricAware aware = (MetricAware) in;
             // wrap only if not already wrapped in one of it's inner chain of
             // input stream
             return !aware.isMetricActivated();
@@ -95,9 +99,17 @@ public class S3ObjectInputStream extends SdkFilterInputStream {
      */
     @Override
     public void abort() {
+        doAbort();
+    }
+
+    /**
+     * To allow customers to override abort to just close. We can think about exposing this method
+     * as protected to allow customers to completely prevent the abort behavior if there is a need
+     */
+    private void doAbort() {
         try {
             close();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             // expected from some implementations because the stream is closed
             LogFactory.getLog(getClass()).debug("FYI", e);
         }
@@ -109,5 +121,62 @@ public class S3ObjectInputStream extends SdkFilterInputStream {
     @Deprecated
     public HttpRequestBase getHttpRequest() {
         return httpRequest;
+    }
+
+    /**
+     * Returns the value of super.available() if the result is nonzero, or 1
+     * otherwise.
+     * <p>
+     * This is necessary to work around a known bug in
+     * GZIPInputStream.available(), which returns zero in some edge cases,
+     * causing file truncation.
+     * <p>
+     * Ref: http://bugs.java.com/bugdatabase/view_bug.do?bug_id=7036144
+     */
+    @Override
+    public int available() throws IOException {
+        final int estimate = super.available();
+        return estimate == 0 ? 1 : estimate;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int read() throws IOException {
+        final int value = super.read();
+        if (value == -1) {
+            eof = true;
+        }
+        return value;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int read(byte[] b) throws IOException {
+        return read(b, 0, b.length);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int read(byte[] b, int off, int len) throws IOException {
+        final int value = super.read(b, off, len);
+        if (value == -1) {
+            eof = true;
+        }
+        return value;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void reset() throws IOException {
+        super.reset();
+        eof = false;
     }
 }

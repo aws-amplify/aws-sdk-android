@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,7 +24,8 @@ import com.amazonaws.ClientConfiguration;
 public class KinesisRecorderConfig {
 
     private long maxStorageSize = 1024 * 1024 * 5L;
-    private ClientConfiguration clientConfiguration;
+    private final ClientConfiguration clientConfiguration;
+    private String partitionKey;
 
     /**
      * Construct an instance of KinesisRecorderConfig which has default values
@@ -57,6 +58,18 @@ public class KinesisRecorderConfig {
     public KinesisRecorderConfig(KinesisRecorderConfig other) {
         this.maxStorageSize = other.getMaxStorageSize();
         this.clientConfiguration = new ClientConfiguration(other.getClientConfiguration());
+        this.partitionKey = other.partitionKey;
+    }
+
+    /**
+     * Optionally set partition key.
+     *
+     * @param partitionKey
+     * @return This class for chaining
+     */
+    public KinesisRecorderConfig withPartitionKey(String partitionKey) {
+        this.partitionKey = partitionKey;
+        return this;
     }
 
     /**
@@ -87,5 +100,14 @@ public class KinesisRecorderConfig {
      */
     public ClientConfiguration getClientConfiguration() {
         return clientConfiguration;
+    }
+
+    /**
+     * Returns the partition key.
+     * 
+     * @return the partition key.
+     */
+    public String getPartitionKey() {
+        return partitionKey;
     }
 }

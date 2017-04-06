@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the key identifier pointed to by the alias.
+     * String that contains the key identifier referred to by the alias.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -167,14 +167,14 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the key identifier pointed to by the alias.
+     * String that contains the key identifier referred to by the alias.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         String that contains the key identifier pointed to by the alias.
+     *         String that contains the key identifier referred to by the alias.
      *         </p>
      */
     public String getTargetKeyId() {
@@ -183,14 +183,14 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the key identifier pointed to by the alias.
+     * String that contains the key identifier referred to by the alias.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @param targetKeyId <p>
-     *            String that contains the key identifier pointed to by the
+     *            String that contains the key identifier referred to by the
      *            alias.
      *            </p>
      */
@@ -200,7 +200,7 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the key identifier pointed to by the alias.
+     * String that contains the key identifier referred to by the alias.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -210,7 +210,7 @@ public class AliasListEntry implements Serializable {
      * <b>Length: </b>1 - 256<br/>
      *
      * @param targetKeyId <p>
-     *            String that contains the key identifier pointed to by the
+     *            String that contains the key identifier referred to by the
      *            alias.
      *            </p>
      * @return A reference to this updated object so that method calls can be

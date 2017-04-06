@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2017 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,10 @@
 
 package com.amazonaws.services.s3.model;
 
+import com.amazonaws.services.s3.model.lifecycle.LifecycleFilter;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +26,7 @@ import java.util.List;
 /**
  * Container for bucket lifecycle configuration operations.
  */
-public class BucketLifecycleConfiguration {
+public class BucketLifecycleConfiguration implements Serializable {
 
     /**
      * Constant for an enabled rule.
@@ -86,11 +90,12 @@ public class BucketLifecycleConfiguration {
         super();
     }
 
-    public static class Rule {
+    public static class Rule implements Serializable {
 
         private String id;
         private String prefix;
         private String status;
+        private LifecycleFilter filter;
 
         /**
          * The time, in days, between when the object is uploaded to the bucket
@@ -98,6 +103,8 @@ public class BucketLifecycleConfiguration {
          * one lifecycle rule.
          */
         private int expirationInDays = -1;
+
+        private boolean expiredObjectDeleteMarker = false;
 
         /**
          * The time, in days, between when a new version of the object is
@@ -111,8 +118,22 @@ public class BucketLifecycleConfiguration {
          */
         private Date expirationDate;
 
-        private Transition transition;
-        private NoncurrentVersionTransition noncurrentVersionTransition;
+        /**
+         * Transition rules for the objects in the bucket.
+         */
+        private List<Transition> transitions;
+
+        /**
+         * Transition rules for the non current objects in the bucket.
+         */
+        private List<NoncurrentVersionTransition> noncurrentVersionTransitions;
+
+        /**
+         * Specifies the days since the initiation of an Incomplete Multipart
+         * Upload that Lifecycle will wait before permanently removing all parts
+         * of the upload.
+         */
+        private AbortIncompleteMultipartUpload abortIncompleteMultipartUpload;
 
         /**
          * Sets the ID of this rule. Rules must be less than 255 alphanumeric
@@ -125,7 +146,10 @@ public class BucketLifecycleConfiguration {
 
         /**
          * Sets the key prefix for which this rule will apply.
+         *
+         * @deprecated Use {@link LifecycleFilter} instead.
          */
+        @Deprecated
         public void setPrefix(String prefix) {
             this.prefix = prefix;
         }
@@ -165,8 +189,15 @@ public class BucketLifecycleConfiguration {
         }
 
         /**
-         * Returns the key prefix for which this rule will apply.
+         * Returns the key prefix for which this rule will apply. This method
+         * should be used only if prefix was set using
+         * {@link #setPrefix(String)}.
+         *
+         * @deprecated The method returns prefix only if was was set using
+         *             {@link #setPrefix(String)}. Otherwise, Use
+         *             {@link LifecycleFilter}.
          */
+        @Deprecated
         public String getPrefix() {
             return prefix;
         }
@@ -176,7 +207,9 @@ public class BucketLifecycleConfiguration {
          * object for method chaining.
          *
          * @see Rule#setPrefix(String)
+         * @deprecated Use {@link LifecycleFilter} instead.
          */
+        @Deprecated
         public Rule withPrefix(String prefix) {
             this.prefix = prefix;
             return this;
@@ -278,56 +311,268 @@ public class BucketLifecycleConfiguration {
 
         /**
          * Sets the transition describing how this object will move between
-         * different storage classes in Amazon S3.
+         * different storage classes in Amazon S3. Bucket Life cycle
+         * configuration can now accept multiple transitions in a rule. Note :
+         * This method overwrites all the existing transitions with given
+         * transition. @Deprecated in favor of {@link #setTransitions(List)}
          */
+        @Deprecated
         public void setTransition(Transition transition) {
-            this.transition = transition;
+            setTransitions(Arrays.asList(transition));
         }
 
         /**
-         * Returns the transition attribute of the rule.
+         * Returns the transition associated with the rule. If there are more
+         * than one transition associated with a given rule, this method returns
+         * the last transition rule.
+         *
+         * @Deprecated in favor of {@link #getTransitions()}
          */
+        @Deprecated
         public Transition getTransition() {
-            return this.transition;
+            final List<Transition> transitions = getTransitions();
+            return (transitions != null && !transitions.isEmpty())
+                    ? transitions.get(transitions.size() - 1)
+                    : null;
         }
 
         /**
          * Sets the transition describing how this object will move between
-         * different storage classes in Amazon S3 and returns a reference to
-         * this object(Rule) for method chaining.
+         * different storage classes in Amazon S3. Bucket Life cycle
+         * configuration can now accept multiple transitions in a rule.
+         *
+         * @Deprecated in favor of {@link #withTransitions(List)} Returns an
+         *             updated reference of this object.
          */
+        @Deprecated
         public Rule withTransition(Transition transition) {
-            this.transition = transition;
+            setTransitions(Arrays.asList(transition));
             return this;
         }
 
         /**
          * Sets the transition describing how non-current versions of objects
-         * will move between different storage classes in Amazon S3.
+         * will move between different storage classes in Amazon S3. Bucket Life
+         * cycle configuration can now accept multiple non current transitions
+         * in a rule. Note: This method overwrites all the existing transitions
+         * with given transition. @Deprecated in favor of
+         * {@link #setNoncurrentVersionTransitions(List)}
          */
+        @Deprecated
         public void setNoncurrentVersionTransition(
-                NoncurrentVersionTransition value) {
+                NoncurrentVersionTransition nonCurrentVersionTransition) {
 
-            noncurrentVersionTransition = value;
+            setNoncurrentVersionTransitions(Arrays
+                    .asList(nonCurrentVersionTransition));
         }
 
         /**
-         * Returns the transition describing how non-current versions of objects
-         * will move between different storage classes in Amazon S3.
+         * Returns the non-current transition associated with the life cycle
+         * configuration rule. If there are more than one transitions associated
+         * with a rule, this method returns the last transition in the
+         * rule. @Deprecated in favor of
+         * {@link #getNoncurrentVersionTransitions()}
          */
+        @Deprecated
         public NoncurrentVersionTransition getNoncurrentVersionTransition() {
-            return noncurrentVersionTransition;
+            final List<NoncurrentVersionTransition> transitions = getNoncurrentVersionTransitions();
+            return (transitions != null && !transitions.isEmpty())
+                    ? transitions.get(transitions.size() - 1)
+                    : null;
         }
 
         /**
          * Sets the transition describing how non-current versions of objects
-         * will move between different storage classes in Amazon S3, and returns
-         * a reference to this object for method chaining.
+         * will move between different storage classes in Amazon S3. Bucket Life
+         * cycle configuration can now accept multiple non current transitions
+         * in a rule. @Deprecated in favor of
+         * {@link #withNoncurrentVersionTransitions(List)} Returns a updated
+         * reference of this object.
          */
+        @Deprecated
         public Rule withNoncurrentVersionTransition(
-                NoncurrentVersionTransition value) {
+                NoncurrentVersionTransition nonCurrentVersionTransition) {
 
-            setNoncurrentVersionTransition(value);
+            setNoncurrentVersionTransitions(Arrays
+                    .asList(nonCurrentVersionTransition));
+            return this;
+        }
+
+        /**
+         * Returns the Amazon S3 object transition rules associated with the
+         * given rule.
+         */
+        public List<Transition> getTransitions() {
+            return transitions;
+        }
+
+        /**
+         * Sets the Amazon S3 object transition rules for the given bucket.
+         */
+        public void setTransitions(List<Transition> transitions) {
+            if (transitions != null) {
+                this.transitions = new ArrayList<Transition>(transitions);
+            }
+        }
+
+        /**
+         * Sets the Amazon S3 object transition rules for the given bucket.
+         * Returns an updated version of this object.
+         */
+        public Rule withTransitions(List<Transition> transitions) {
+            setTransitions(transitions);
+            return this;
+        }
+
+        /**
+         * Adds a new transition to the rule.
+         */
+        public Rule addTransition(Transition transition) {
+            if (transition == null) {
+                throw new IllegalArgumentException("Transition cannot be null.");
+            }
+
+            if (transitions == null) {
+                transitions = new ArrayList<BucketLifecycleConfiguration.Transition>();
+            }
+            transitions.add(transition);
+            return this;
+        }
+
+        /**
+         * Returns the Amazon S3 non current object transition rules associated
+         * with the given rule.
+         */
+        public List<NoncurrentVersionTransition> getNoncurrentVersionTransitions() {
+            return noncurrentVersionTransitions;
+        }
+
+        /**
+         * Sets the Amazon S3 non current object transition rules for the given
+         * bucket.
+         */
+        public void setNoncurrentVersionTransitions(
+                List<NoncurrentVersionTransition> noncurrentVersionTransitions) {
+            this.noncurrentVersionTransitions = new ArrayList<NoncurrentVersionTransition>(
+                    noncurrentVersionTransitions);
+        }
+
+        /**
+         * Sets the Amazon S3 non current object transition rules for the given
+         * bucket. Returns an updated version of this object.
+         */
+        public Rule withNoncurrentVersionTransitions(
+                List<NoncurrentVersionTransition> noncurrentVersionTransitions) {
+            setNoncurrentVersionTransitions(noncurrentVersionTransitions);
+            return this;
+        }
+
+        /**
+         * Adds a new Non current transition to the rule.
+         */
+        public Rule addNoncurrentVersionTransition(
+                NoncurrentVersionTransition noncurrentVersionTransition) {
+            if (noncurrentVersionTransition == null) {
+                throw new IllegalArgumentException(
+                        "NoncurrentVersionTransition cannot be null.");
+            }
+
+            if (noncurrentVersionTransitions == null) {
+                noncurrentVersionTransitions = new ArrayList<BucketLifecycleConfiguration.NoncurrentVersionTransition>();
+            }
+            noncurrentVersionTransitions.add(noncurrentVersionTransition);
+            return this;
+        }
+
+        public AbortIncompleteMultipartUpload getAbortIncompleteMultipartUpload() {
+            return abortIncompleteMultipartUpload;
+        }
+
+        public void setAbortIncompleteMultipartUpload(
+                AbortIncompleteMultipartUpload abortIncompleteMultipartUpload) {
+            this.abortIncompleteMultipartUpload = abortIncompleteMultipartUpload;
+        }
+
+        public Rule withAbortIncompleteMultipartUpload(
+                AbortIncompleteMultipartUpload abortIncompleteMultipartUpload) {
+            setAbortIncompleteMultipartUpload(abortIncompleteMultipartUpload);
+            return this;
+        }
+
+        /**
+         * Returns whether the current expiration policy for the object is set
+         * to remove objects when only a delete marker is left
+         * <p>
+         * If set to true the lifecycle policy will delete the current version
+         * of an object if and only if the current version is a expired object
+         * delete marker. This option only makes sense to use for versioned
+         * buckets and cannot be used in conjunction with expirationInDays or
+         * expirationDate. Note that the current version can only be removed if
+         * all non-current versions have been removed (either through a
+         * non-current version expiration policy or being explicitly deleted)
+         * </p>
+         *
+         * @return True if this lifecycle's configuration is configured to
+         *         delete the current version of an object if it's the only
+         *         version left and it's a delete marker. False otherwise
+         */
+        public boolean isExpiredObjectDeleteMarker() {
+            return expiredObjectDeleteMarker;
+        }
+
+        /**
+         * Sets the value of the ExpiredObjectDeleteMarkers attribute.
+         *
+         * @param expiredObjectDeleteMarker True to allow the current expiration
+         *            policy to remove the current version of the object if it's
+         *            the only version left and it's a delete marker. False has
+         *            no effect on the current expiration policy
+         */
+        public void setExpiredObjectDeleteMarker(boolean expiredObjectDeleteMarker) {
+            this.expiredObjectDeleteMarker = expiredObjectDeleteMarker;
+        }
+
+        /**
+         * Fluent method for setting the value of the ExpiredObjectDeleteMarkers
+         * attributes. See {@link #setExpiredObjectDeleteMarker(boolean)}
+         *
+         * @param expiredObjectDeleteMarker
+         * @return This object for method chaining
+         */
+        public Rule withExpiredObjectDeleteMarker(boolean expiredObjectDeleteMarker) {
+            this.expiredObjectDeleteMarker = expiredObjectDeleteMarker;
+            return this;
+        }
+
+        /**
+         * Returns a {@link LifecycleFilter} that is used to identify objects
+         * that a Lifecycle Rule applies to.
+         */
+        public LifecycleFilter getFilter() {
+            return filter;
+        }
+
+        /**
+         * Sets the {@link LifecycleFilter} that is used to identify objects
+         * that a Lifecycle Rule applies to. A rule cannot have both
+         * {@link LifecycleFilter} and the deprecated {@link #prefix}.
+         *
+         * @param filter {@link LifecycleFilter}
+         */
+        public void setFilter(LifecycleFilter filter) {
+            this.filter = filter;
+        }
+
+        /**
+         * Fluent method to set the {@link LifecycleFilter} that is used to
+         * identify objects that a Lifecycle Rule applies to. A rule cannot have
+         * both {@link LifecycleFilter} and the deprecated {@link #prefix}.
+         *
+         * @param filter {@link LifecycleFilter}
+         * @return This object for method chaining.
+         */
+        public Rule withFilter(LifecycleFilter filter) {
+            setFilter(filter);
             return this;
         }
     }
@@ -336,7 +581,7 @@ public class BucketLifecycleConfiguration {
      * The transition attribute of the rule describing how this object will move
      * between different storage classes in Amazon S3.
      */
-    public static class Transition {
+    public static class Transition implements Serializable {
 
         /**
          * The time, in days, between when the object is uploaded to the bucket
@@ -351,7 +596,7 @@ public class BucketLifecycleConfiguration {
          */
         private Date date;
 
-        private StorageClass storageClass;
+        private String storageClass;
 
         /**
          * Sets the time, in days, between when an object is uploaded to the
@@ -384,22 +629,57 @@ public class BucketLifecycleConfiguration {
          * Sets the storage class of this object.
          */
         public void setStorageClass(StorageClass storageClass) {
+            if (storageClass == null) {
+                setStorageClass((String) null);
+            } else {
+                setStorageClass(storageClass.toString());
+            }
+        }
+
+        /**
+         * Sets the storage class of this object.
+         */
+        public void setStorageClass(String storageClass) {
             this.storageClass = storageClass;
         }
 
         /**
          * Returns the storage class of this object.
+         *
+         * @deprecated This method should not be used. Use
+         *             {@link #getStorageClassAsString()} instead.
          */
+        @Deprecated
         public StorageClass getStorageClass() {
+            try {
+                return StorageClass.fromValue(this.storageClass);
+            } catch (final IllegalArgumentException ignored) {
+                return null;
+            }
+        }
+
+        /**
+         * Returns the storage class of this object.
+         */
+        public String getStorageClassAsString() {
             return this.storageClass;
         }
 
         /**
          * Sets the storage class of this object and returns a reference to this
-         * object(Transition) for method chaining.
+         * object for method chaining.
          */
         public Transition withStorageClass(StorageClass storageClass) {
-            this.storageClass = storageClass;
+            setStorageClass(storageClass);
+            return this;
+        }
+
+        /**
+         * Sets the storage class of this object and returns a reference to this
+         * object for method chaining.
+         */
+        public Transition withStorageClass(String storageClass) {
+            setStorageClass(storageClass);
             return this;
         }
 
@@ -433,7 +713,7 @@ public class BucketLifecycleConfiguration {
      * non-current versions of objects will move between different storage
      * classes in Amazon S3.
      */
-    public static class NoncurrentVersionTransition {
+    public static class NoncurrentVersionTransition implements Serializable {
 
         /**
          * The time, in days, between when a new version of the object is
@@ -441,7 +721,7 @@ public class BucketLifecycleConfiguration {
          */
         private int days = -1;
 
-        private StorageClass storageClass;
+        private String storageClass;
 
         /**
          * Sets the time, in days, between when a new version of the object is
@@ -473,13 +753,39 @@ public class BucketLifecycleConfiguration {
          * Sets the storage class of this object.
          */
         public void setStorageClass(StorageClass storageClass) {
+            if (storageClass == null) {
+                setStorageClass((String) null);
+            } else {
+                setStorageClass(storageClass.toString());
+            }
+        }
+
+        /**
+         * Sets the storage class of this object.
+         */
+        public void setStorageClass(String storageClass) {
             this.storageClass = storageClass;
         }
 
         /**
          * Returns the storage class of this object.
+         *
+         * @deprecated This method should not be used. Use
+         *             {@link #getStorageClassAsString()} instead.
          */
+        @Deprecated
         public StorageClass getStorageClass() {
+            try {
+                return StorageClass.fromValue(this.storageClass);
+            } catch (final IllegalArgumentException ignored) {
+                return null;
+            }
+        }
+
+        /**
+         * Returns the storage class of this object.
+         */
+        public String getStorageClassAsString() {
             return this.storageClass;
         }
 
@@ -487,10 +793,17 @@ public class BucketLifecycleConfiguration {
          * Sets the storage class of this object and returns a reference to this
          * object for method chaining.
          */
-        public NoncurrentVersionTransition withStorageClass(
-                StorageClass storageClass) {
+        public NoncurrentVersionTransition withStorageClass(StorageClass storageClass) {
+            setStorageClass(storageClass);
+            return this;
+        }
 
-            this.storageClass = storageClass;
+        /**
+         * Sets the storage class of this object and returns a reference to this
+         * object for method chaining.
+         */
+        public NoncurrentVersionTransition withStorageClass(String storageClass) {
+            setStorageClass(storageClass);
             return this;
         }
     }

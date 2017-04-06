@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -79,6 +79,23 @@ class CipherLite {
         this.scheme = scheme;
         this.secreteKey = secreteKey;
         this.cipherMode = cipherMode;
+    }
+
+    /**
+     * Recreates a new instance of CipherLite from the current one.
+     */
+    CipherLite recreate() {
+        return scheme.createCipherLite(secreteKey, cipher.getIV(),
+                this.cipherMode, cipher.getProvider());
+    }
+
+    /**
+     * Creates a new instance of CipherLite from the current one, but using
+     * the given IV.
+     */
+    CipherLite createUsingIV(byte[] iv) {
+        return scheme.createCipherLite(secreteKey, iv, this.cipherMode,
+                cipher.getProvider());
     }
 
     /**

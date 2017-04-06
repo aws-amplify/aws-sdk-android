@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Portions copyright 2006-2009 James Murty. Please see LICENSE.txt
  * for applicable license terms and NOTICE.txt for applicable notices.
@@ -19,10 +19,17 @@
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.google.gson.Gson;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
 /**
  * <p>
@@ -53,9 +60,9 @@ import java.util.List;
  * @see AmazonS3#setBucketNotificationConfiguration(String,
  *      BucketNotificationConfiguration)
  */
-public class BucketNotificationConfiguration {
+public class BucketNotificationConfiguration implements Serializable {
 
-    private List<TopicConfiguration> topicConfigurations = null;
+    private Map<String, NotificationConfiguration> configurations = null;
 
     /**
      * <p>
@@ -71,7 +78,98 @@ public class BucketNotificationConfiguration {
      * @see BucketNotificationConfiguration#BucketNotificationConfiguration(Collection)
      */
     public BucketNotificationConfiguration() {
-        this.topicConfigurations = new ArrayList<TopicConfiguration>(1);
+        this.configurations = new HashMap<String, NotificationConfiguration>();
+    }
+
+    /**
+     * <p>
+     * Creates a new bucket notification configuration with the given
+     * configuration.
+     * </p>
+     *
+     * @param name the name for the configuration
+     * @param notificationConfiguration the notification configuration for the
+     *            Amazon S3 bucket.
+     */
+    public BucketNotificationConfiguration(String name,
+            NotificationConfiguration notificationConfiguration) {
+        this.configurations = new HashMap<String, NotificationConfiguration>();
+        addConfiguration(name, notificationConfiguration);
+    }
+
+    /**
+     * Sets the given notification configurations and returns this object.
+     *
+     * @param notificationConfiguration the notification configurations to set
+     * @return The updated {@link BucketNotificationConfiguration} object.
+     */
+    public BucketNotificationConfiguration withNotificationConfiguration(
+            Map<String, NotificationConfiguration> notificationConfiguration) {
+        configurations.clear();
+        configurations.putAll(notificationConfiguration);
+        return this;
+    }
+
+    /**
+     * Adds the given notification configuration to the
+     * {@link BucketNotificationConfiguration} object
+     *
+     * @param name the name of the configuration
+     * @param notificationConfiguration the notification configuration for the
+     *            Amazon S3 bucket.
+     * @return The updated {@link BucketNotificationConfiguration} object.
+     */
+    public BucketNotificationConfiguration addConfiguration(String name,
+            NotificationConfiguration notificationConfiguration) {
+        configurations.put(name, notificationConfiguration);
+        return this;
+    }
+
+    /**
+     * Returns all the notification configurations associated with the Amazon S3
+     * bucket.
+     */
+    public Map<String, NotificationConfiguration> getConfigurations() {
+        return configurations;
+    }
+
+    /**
+     * Sets the given notification configurations in this
+     * {@link BucketNotificationConfiguration} object.
+     *
+     * @param configurations the notification configurations to set
+     */
+    public void setConfigurations(
+            Map<String, NotificationConfiguration> configurations) {
+        this.configurations = configurations;
+    }
+
+    /**
+     * Returns the notification configuration for the given name.
+     *
+     * @param name the name of the notification configuration
+     * @return {@link NotificationConfiguration} associated with the given name.
+     */
+    public NotificationConfiguration getConfigurationByName(String name) {
+        return configurations.get(name);
+    }
+
+    /**
+     * <p>
+     * Removes the notification configuration for the given name in the
+     * {@link BucketNotificationConfiguration} object.
+     * </p>
+     * <p>
+     * Pass the updated {@link BucketNotificationConfiguration} to
+     * {@link AmazonS3#setBucketNotificationConfiguration(String,BucketNotificationConfiguration)}
+     * to update the configuration in Amazon S3 for the bucket.
+     * </p>
+     *
+     * @param name the name of the notification configuration
+     * @return {@link NotificationConfiguration} associated with the given name.
+     */
+    public NotificationConfiguration removeConfiguration(String name) {
+        return configurations.remove(name);
     }
 
     /**
@@ -86,11 +184,18 @@ public class BucketNotificationConfiguration {
      * existing configuration.
      * </p>
      *
-     * @see BucketNotificationConfiguration#BucketNotificationConfiguration()
+     * @deprecated
+     * @see BucketNotificationConfiguration#BucketNotificationConfiguration(String,
+     *      NotificationConfiguration)
      */
+    @Deprecated
     public BucketNotificationConfiguration(Collection<TopicConfiguration> topicConfigurations) {
-        this.topicConfigurations = new ArrayList<TopicConfiguration>(1);
-        this.topicConfigurations.addAll(topicConfigurations);
+        this.configurations = new HashMap<String, NotificationConfiguration>();
+        if (topicConfigurations != null) {
+            for (final TopicConfiguration config : topicConfigurations) {
+                addConfiguration(UUID.randomUUID().toString(), config);
+            }
+        }
     }
 
     /**
@@ -107,16 +212,13 @@ public class BucketNotificationConfiguration {
      * @param topicConfigurations A set of topic configurations.
      * @return The updated {@link BucketNotificationConfiguration} object,
      *         enabling additional method calls to be chained together.
-     * @see BucketNotificationConfiguration#setTopicConfigurations(Collection)
+     * @deprecated
+     * @see BucketNotificationConfiguration#withNotificationConfiguration(Map)
      */
+    @Deprecated
     public BucketNotificationConfiguration withTopicConfigurations(
             TopicConfiguration... topicConfigurations) {
-        this.topicConfigurations.clear();
-
-        for (int index = 0; index < topicConfigurations.length; index++) {
-            this.topicConfigurations.add(topicConfigurations[index]);
-        }
-
+        setTopicConfigurations(Arrays.asList(topicConfigurations));
         return this;
     }
 
@@ -130,11 +232,19 @@ public class BucketNotificationConfiguration {
      * </p>
      *
      * @param topicConfigurations A collection of topic configurations.
-     * @see BucketNotificationConfiguration#withTopicConfigurations(TopicConfiguration)
+     * @deprecated
+     * @see BucketNotificationConfiguration#setConfigurations(Map)
      */
+    @Deprecated
     public void setTopicConfigurations(Collection<TopicConfiguration> topicConfigurations) {
-        this.topicConfigurations.clear();
-        this.topicConfigurations.addAll(topicConfigurations);
+        this.configurations.clear();
+
+        if (topicConfigurations != null) {
+            for (final TopicConfiguration topicConfiguration : topicConfigurations) {
+                addConfiguration(UUID.randomUUID().toString(),
+                        topicConfiguration);
+            }
+        }
     }
 
     /**
@@ -144,21 +254,33 @@ public class BucketNotificationConfiguration {
      * contained in this object. This method may return an empty list if no
      * <code>TopicConfiguration</code> objects are present.
      * </p>
+     * <p>
+     * This method is deprecated and will not return all the notification
+     * configuration associated with the Amazon S3 bucket. To retrieve all the
+     * configuration use @see
+     * BucketNotificationConfiguration#getConfigurations()
+     * </p>
      *
+     * @deprecated
+     * @see BucketNotificationConfiguration#getConfigurations()
      * @return The list of <code>TopicConfiguration</code> objects contained in
      *         this object. May return an empty list.
      */
+    @Deprecated
     public List<TopicConfiguration> getTopicConfigurations() {
-        return this.topicConfigurations;
+        final List<TopicConfiguration> topicConfigs = new ArrayList<BucketNotificationConfiguration.TopicConfiguration>();
+        for (final Map.Entry<String, NotificationConfiguration> entry : configurations
+                .entrySet()) {
+            if (entry.getValue() instanceof TopicConfiguration) {
+                topicConfigs.add((TopicConfiguration) entry.getValue());
+            }
+        }
+        return topicConfigs;
     }
 
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer();
-        sb.append("{");
-        sb.append("TopicConfigurations: " + this.getTopicConfigurations());
-        sb.append("}");
-        return sb.toString();
+        return new Gson().toJson(this.getConfigurations());
     }
 
     /**
@@ -166,10 +288,14 @@ public class BucketNotificationConfiguration {
      * Represents the SNS topic to publish event notification to. Notifications
      * are published to the topic only if the specified event is triggered.
      * </p>
+     *
+     * @deprecated Use
+     *             {@link com.amazonaws.services.s3.model.TopicConfiguration}
+     *             instead
      */
-    public static class TopicConfiguration {
-        private final String topic;
-        private final String event;
+    @Deprecated
+    public static class TopicConfiguration
+            extends com.amazonaws.services.s3.model.TopicConfiguration {
 
         /**
          * <p>
@@ -183,8 +309,7 @@ public class BucketNotificationConfiguration {
          *            publication.
          */
         public TopicConfiguration(final String topic, final String event) {
-            this.topic = topic;
-            this.event = event;
+            super(topic, event);
         }
 
         /**
@@ -196,29 +321,28 @@ public class BucketNotificationConfiguration {
          * @return The topic ARN for the topic to publish events to.
          */
         public String getTopic() {
-            return this.topic;
+            return getTopicARN();
         }
 
         /**
          * <p>
-         * Gets the event that must occur for the notification to be published.
+         * Gets the first event that is configured in the list of events.
          * </p>
          *
-         * @return The event that must occur for the notification to be
-         *         published.
+         * @deprecated use
+         *             {@link com.amazonaws.services.s3.model.TopicConfiguration#getEvents()}
+         *             instead.
          */
+        @Deprecated
         public String getEvent() {
-            return this.event;
+            final Set<String> events = getEvents();
+            final String[] eventArray = events.toArray(new String[events.size()]);
+            return eventArray[0];
         }
 
         @Override
         public String toString() {
-            StringBuffer sb = new StringBuffer();
-            sb.append("{");
-            sb.append("Topic: " + this.getTopic() + ", ");
-            sb.append("Event: " + this.getEvent() + ", ");
-            sb.append("}");
-            return sb.toString();
+            return new Gson().toJson(this);
         }
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import org.apache.commons.logging.LogFactory;
 /**
  * Builds monetization events representing a Google Play purchase. This Builder
  * automatically sets the store attribute to "Google Play". This Builder will
- * return null if the ProductId, Formatted Localized Price, Quantity, or
+ * return null if the ProductId, Currency, Item Price, Quantity, or
  * TransactionId are not set.
  * <p>
  * The example below demonstrates how to create a monetization event after you
@@ -87,7 +87,11 @@ public class GooglePlayMonetizationEventBuilder extends MonetizationEventBuilder
      *
      * @param formattedItemPrice The localized formatted price of the item
      * @return this for chaining
+     *
+     * @deprecated  Will be removed. Please set Currency and Item Price. Replaced by
+     *    {@link #withCurrency(String)} and {@link #withItemPrice(Double)
      */
+    @Deprecated
     public GooglePlayMonetizationEventBuilder withFormattedItemPrice(String formattedItemPrice) {
         setFormattedItemPrice(formattedItemPrice);
         return this;
@@ -102,6 +106,29 @@ public class GooglePlayMonetizationEventBuilder extends MonetizationEventBuilder
      */
     public GooglePlayMonetizationEventBuilder withQuantity(Double quantity) {
         setQuantity(quantity);
+        return this;
+    }
+
+    /**
+     * Sets the item price of the item purchased.
+     *
+     * @param itemPrice The numerical price of the item
+     * @return this for chaining
+     */
+    public GooglePlayMonetizationEventBuilder withItemPrice(Double itemPrice) {
+        setItemPrice(itemPrice);
+        return this;
+    }
+
+    /**
+     * Sets the currency of the item purchased.
+     *
+     * @param currency The currency code of the currency used to purchase this
+     *            item (i.e. "USD" or "$")
+     * @return this for chaining
+     */
+    public GooglePlayMonetizationEventBuilder withCurrency(String currency) {
+        setCurrency(currency);
         return this;
     }
 
@@ -129,7 +156,7 @@ public class GooglePlayMonetizationEventBuilder extends MonetizationEventBuilder
     }
 
     /**
-     * Returns true only if the ProductId, Quantity, Formatted Item Price, and
+     * Returns true only if the ProductId, Quantity, Currency, Item Price, and
      * Transaction Id are set
      */
     @Override
@@ -146,8 +173,13 @@ public class GooglePlayMonetizationEventBuilder extends MonetizationEventBuilder
         }
 
         if (getFormattedItemPrice() == null) {
-            log.warn("Google Monetization event is not valid: it is missing the formatted localized price");
-            return false;
+            if (getCurrency() == null) {
+                log.warn("Google Monetization event is not valid: it is missing the localized currency");
+                return false;
+            } else if (getItemPrice() == null) {
+                log.warn("Google Monetization event is not valid: it is missing the localized item price");
+                return false;
+            }
         }
 
         if (getTransactionId() == null) {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.amazonaws.services.s3.model;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.services.s3.AmazonS3;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -25,11 +26,20 @@ import java.util.List;
 /**
  * Container for the parameters of the CompleteMultipartUpload operation.
  * <p>
+ * If you are performing a complete multipart upload for <a
+ * href="http://aws.amazon.com/kms/">KMS</a>-encrypted objects, you need to
+ * specify the correct region of the bucket on your client and configure AWS
+ * Signature Version 4 for added security. For more information on how to do
+ * this, see
+ * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#specify
+ * -signature-version
+ * </p>
+ * <p>
  * Required Parameters: BucketName, Key, UploadId, PartETags
  *
  * @see AmazonS3#completeMultipartUpload(CompleteMultipartUploadRequest)
  */
-public class CompleteMultipartUploadRequest extends AmazonWebServiceRequest {
+public class CompleteMultipartUploadRequest extends AmazonWebServiceRequest implements Serializable {
 
     /** The name of the bucket containing the multipart upload to complete */
     private String bucketName;
@@ -40,12 +50,16 @@ public class CompleteMultipartUploadRequest extends AmazonWebServiceRequest {
     /** The ID of the multipart upload to complete */
     private String uploadId;
 
-    /**
-     * The list of part numbers and ETags to use when completing the multipart
-     * upload
-     */
+    /** The list of part numbers and ETags to use when completing the multipart upload */
     private List<PartETag> partETags = new ArrayList<PartETag>();
 
+    /**
+     * If enabled, the requester is charged for conducting this operation from
+     * Requester Pays Buckets.
+     */
+    private boolean isRequesterPays;
+
+    public CompleteMultipartUploadRequest() {}
     /**
      * Constructs a new request to complete a multipart upload.
      *
@@ -210,7 +224,7 @@ public class CompleteMultipartUploadRequest extends AmazonWebServiceRequest {
      * @return This updated CompleteMultipartUploadRequest object.
      */
     public CompleteMultipartUploadRequest withPartETags(UploadPartResult... uploadPartResults) {
-        for (UploadPartResult result : uploadPartResults) {
+        for (final UploadPartResult result : uploadPartResults) {
             this.partETags.add(new PartETag(result.getPartNumber(), result.getETag()));
         }
         return this;
@@ -227,9 +241,74 @@ public class CompleteMultipartUploadRequest extends AmazonWebServiceRequest {
      */
     public CompleteMultipartUploadRequest withPartETags(
             Collection<UploadPartResult> uploadPartResultsCollection) {
-        for (UploadPartResult result : uploadPartResultsCollection) {
+        for (final UploadPartResult result : uploadPartResultsCollection) {
             this.partETags.add(new PartETag(result.getPartNumber(), result.getETag()));
         }
+        return this;
+    }
+
+    /**
+     * Returns true if the user has enabled Requester Pays option when
+     * conducting this operation from Requester Pays Bucket; else false.
+     *
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket
+     *
+     * @return true if the user has enabled Requester Pays option for
+     *         conducting this operation from Requester Pays Bucket.
+     */
+    public boolean isRequesterPays() {
+        return isRequesterPays;
+    }
+
+    /**
+     * Used for conducting this operation from a Requester Pays Bucket. If
+     * set the requester is charged for requests from the bucket.
+     *
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket.
+     *
+     * @param isRequesterPays
+     *            Enable Requester Pays option for the operation.
+     */
+    public void setRequesterPays(boolean isRequesterPays) {
+        this.isRequesterPays = isRequesterPays;
+    }
+
+    /**
+     * Used for conducting this operation from a Requester Pays Bucket. If
+     * set the requester is charged for requests from the bucket. It returns this
+     * updated CompleteMultipartUploadRequest object so that additional method calls can be
+     * chained together.
+     *
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket.
+     *
+     * @param isRequesterPays
+     *            Enable Requester Pays option for the operation.
+     *
+     * @return The updated CompleteMultipartUploadRequest object.
+     */
+    public CompleteMultipartUploadRequest withRequesterPays(boolean isRequesterPays) {
+        setRequesterPays(isRequesterPays);
         return this;
     }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ public class SDKGlobalConfiguration {
     /**
      * Path to an override file for the region metadata loaded by the SDK that
      * maps service/region pairs to endpoints and vice versa.
-     * 
+     *
      * @deprecated The SDK no longer supports a regions.xml override
      */
     @Deprecated
@@ -102,6 +102,7 @@ public class SDKGlobalConfiguration {
      * calculating a SHA-256 hash of the entire request body which can be
      * expensive for large upload requests.
      */
+    @Deprecated
     public static final String ENABLE_S3_SIGV4_SYSTEM_PROPERTY =
             "com.amazonaws.services.s3.enableV4";
 
@@ -113,6 +114,7 @@ public class SDKGlobalConfiguration {
      * will cause authentication failures in code that accesses buckets in
      * regions other than US Standard without explicitly configuring a region.
      */
+    @Deprecated
     public static final String ENFORCE_S3_SIGV4_SYSTEM_PROPERTY =
             "com.amazonaws.services.s3.enforceV4";
 

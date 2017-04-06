@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,8 +15,10 @@
 
 package com.amazonaws.services.s3.internal;
 
+import com.amazonaws.RequestClientOptions;
 import com.amazonaws.SDKGlobalConfiguration;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.SSEAlgorithm;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -27,15 +29,24 @@ import org.apache.commons.logging.LogFactory;
 public class Constants {
 
     /** Default hostname for the S3 service endpoint */
-    public static String S3_HOSTNAME = "s3.amazonaws.com";
+    public static final String S3_HOSTNAME = "s3.amazonaws.com";
+    /** Hostname for the s3-external-1 service endpoint */
+    public static final String S3_EXTERNAL_1_HOSTNAME = "s3-external-1.amazonaws.com";
     /** Service hostname for accessing accelerated S3 buckets */
     public static final String S3_ACCELERATE_HOSTNAME = "s3-accelerate.amazonaws.com";
+    public static final String S3_ACCELERATE_DUALSTACK_HOSTNAME = "s3-accelerate.dualstack.amazonaws.com";
 
-    /** Service name for Amazon S3 */
-    public static String S3_SERVICE_NAME = "Amazon S3";
+    /** Dualstack qualifier for S3 */
+    public static final String S3_DUALSTACK_QUALIFIER = "dualstack";
+
+    /** Service display name for Amazon S3 (not to be used in SigV4 signing) */
+    public static final String S3_SERVICE_DISPLAY_NAME = "Amazon S3";
 
     /** Default encoding used for text data */
-    public static String DEFAULT_ENCODING = "UTF-8";
+    public static final String DEFAULT_ENCODING = "UTF-8";
+
+    /** URL encoding for s3 object keys */
+    public static final String URL_ENCODING = "url";
 
     /** HMAC/SHA1 Algorithm per RFC 2104, used when signing S3 requests */
     public static final String HMAC_SHA1_ALGORITHM = "HmacSHA1";
@@ -69,28 +80,50 @@ public class Constants {
      * buffer of this size will be created and filled with the first bytes from
      * a stream being uploaded so that any transmit errors that occur in that
      * section of the data can be automatically retried without the caller's
-     * intervention.
+     * intervention. Add 1 to get around an implementation quirk when used
+     * against BufferedInputStream.
      */
-    public static final int DEFAULT_STREAM_BUFFER_SIZE = 128 * KB;
+    public static final int DEFAULT_STREAM_BUFFER_SIZE = RequestClientOptions.DEFAULT_STREAM_BUFFER_SIZE;
 
     /**
      * Returns the buffer size override if it is specified in the system
      * property, otherwise returns the default value.
      */
+    @Deprecated
     public static int getStreamBufferSize() {
         int streamBufferSize = DEFAULT_STREAM_BUFFER_SIZE;
-        String bufferSizeOverride =
+        final String bufferSizeOverride =
                 System.getProperty(SDKGlobalConfiguration
                         .DEFAULT_S3_STREAM_BUFFER_SIZE);
 
         if (bufferSizeOverride != null) {
             try {
                 streamBufferSize = Integer.parseInt(bufferSizeOverride);
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 log.warn("Unable to parse buffer size override from value: " + bufferSizeOverride);
             }
         }
         return streamBufferSize;
+    }
+
+    /**
+     * Returns the value of the system property
+     * {@link SDKGlobalConfiguration#DEFAULT_S3_STREAM_BUFFER_SIZE} as an
+     * Integer; or null if not set. This method exists for backward
+     * compatibility reasons.
+     */
+    public static Integer getS3StreamBufferSize() {
+        final String s =
+            System.getProperty(SDKGlobalConfiguration.DEFAULT_S3_STREAM_BUFFER_SIZE);
+        if (s == null) {
+            return null;
+        }
+        try {
+            return Integer.valueOf(s);
+        } catch (final Exception e) {
+            log.warn("Unable to parse buffer size override from value: " + s);
+        }
+        return null;
     }
 
     /** Shared logger for client events */
@@ -105,4 +138,7 @@ public class Constants {
     // Constant indicating the requester pays for data transfer cost for a
     // bucket.
     public static final String REQUESTER_PAYS = "requester";
+
+    public static final String SSE_AWS_KMS_ENCRYPTION_SCHEME =
+            SSEAlgorithm.KMS.getAlgorithm();
 }

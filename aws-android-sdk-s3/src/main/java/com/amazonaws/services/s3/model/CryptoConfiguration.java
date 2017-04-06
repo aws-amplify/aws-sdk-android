@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,8 +15,10 @@
 
 package com.amazonaws.services.s3.model;
 
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.internal.crypto.CryptoRuntime;
 
+import java.io.Serializable;
 import java.security.Provider;
 
 /**
@@ -26,11 +28,26 @@ import java.security.Provider;
  * encryption information. You can also specify your own crypto provider to be
  * used during encryption and decryption.
  */
-public class CryptoConfiguration {
+public class CryptoConfiguration implements Cloneable,Serializable {
+
+    private static final long serialVersionUID = -8646831898339939580L;
 
     private CryptoMode cryptoMode;
     private CryptoStorageMode storageMode;
     private Provider cryptoProvider;
+    /**
+     * True to ignore instruction file that cannot be found during a GET
+     * operation; false otherwise. Default is true. This property is ignored if
+     * the crypto mode is {@link CryptoMode#StrictAuthenticatedEncryption} where
+     * missing instruction file would always cause security exception.
+     */
+    private boolean ignoreMissingInstructionFile = true;
+    /**
+     * Used to specify the KMS region for the AWS KMS client when such client
+     * is internally instantiated instead of externally passed in by users; or
+     * null if no explicit KMS region is specified.
+     */
+    private transient com.amazonaws.regions.Region awskmsRegion;
 
     /**
      * Creates a new CryptoConfiguration object with default storage mode and
@@ -140,22 +157,60 @@ public class CryptoConfiguration {
      *             cannot be found or the necessary cryptographic operations are
      *             not supported for the specified crypto mode.
      */
-    public void setCryptoMode(CryptoMode cryptoMode) {
-        check(cryptoMode);
+    public void setCryptoMode(CryptoMode cryptoMode)
+            throws UnsupportedOperationException {
         this.cryptoMode = cryptoMode;
+        check(cryptoMode);
     }
 
     /**
      * Fluent API to set the crypto mode; applicable only to the S3 encryption
      * client.
      *
-     * @throws UnsupportedOperationException if the necessary security provider
-     *             cannot be found or the necessary cryptographic operations are
-     *             not supported for the specified crypto mode.
+     * @throws UnsupportedOperationException
+     *             if the necessary security provider cannot be found or the
+     *             necessary cryptographic operations are not supported for the
+     *             specified crypto mode.Note the crypto mode can and will still
+     *             (intentionally) be set in such case, and it's up to the
+     *             caller to decide what to do about it.
      */
-    public CryptoConfiguration withCryptoMode(CryptoMode cryptoMode) {
-        check(cryptoMode);
+    public CryptoConfiguration withCryptoMode(CryptoMode cryptoMode)
+            throws UnsupportedOperationException {
         this.cryptoMode = cryptoMode;
+        check(cryptoMode);
+        return this;
+    }
+
+    /**
+     * Returns true to ignore instruction file that cannot be found during a GET
+     * operation; false otherwise. Default is true. This property is ignored if
+     * the crypto mode is {@link CryptoMode#StrictAuthenticatedEncryption} where
+     * missing instruction file would always cause security exception.
+     */
+    public boolean isIgnoreMissingInstructionFile() {
+        return ignoreMissingInstructionFile;
+    }
+
+    /**
+     * @param ignoreMissingInstructionFile
+     *            true to ignore instruction file that cannot be found during a
+     *            GET operation; false otherwise. Default is true. This property
+     *            is ignored if the crypto mode is
+     *            {@link CryptoMode#StrictAuthenticatedEncryption} where missing
+     *            instruction file would always cause security exception.
+     */
+    public void setIgnoreMissingInstructionFile(
+            boolean ignoreMissingInstructionFile) {
+        this.ignoreMissingInstructionFile = ignoreMissingInstructionFile;
+    }
+
+    /**
+     * Fluent API to set the property to ignore instruction file that cannot be
+     * found during a GET operation.
+     */
+    public CryptoConfiguration withIgnoreMissingInstructionFile(
+            boolean ignoreMissingInstructionFile) {
+        this.ignoreMissingInstructionFile = ignoreMissingInstructionFile;
         return this;
     }
 
@@ -176,9 +231,172 @@ public class CryptoConfiguration {
                             "The Bouncy castle library jar is required on the classpath to enable authenticated encryption");
                 }
             }
-            if (!CryptoRuntime.isAesGcmAvailable())
+            if (!CryptoRuntime.isAesGcmAvailable()) {
                 throw new UnsupportedOperationException(
                         "More recent version of the Bouncy castle library is required to enable authenticated encryption");
+            }
         }
+    }
+
+    public boolean isReadOnly() { return false; }
+
+    /**
+     * Used to provide a read-only copy of the configuration.
+     */
+    private static final class ReadOnly extends CryptoConfiguration {
+        private ReadOnly() {}
+        @Override public boolean isReadOnly() { return true; }
+        @Override public void setStorageMode(CryptoStorageMode storageMode) {
+            throw new UnsupportedOperationException();
+        }
+        @Override public CryptoConfiguration withStorageMode(CryptoStorageMode storageMode) {
+            throw new UnsupportedOperationException();
+        }
+        @Override public void setCryptoProvider(Provider cryptoProvider) {
+            throw new UnsupportedOperationException();
+        }
+        @Override public CryptoConfiguration withCryptoProvider(Provider cryptoProvider) {
+            throw new UnsupportedOperationException();
+        }
+        @Override public void setCryptoMode(CryptoMode cryptoMode) {
+            throw new UnsupportedOperationException();
+        }
+        @Override public CryptoConfiguration withCryptoMode(CryptoMode cryptoMode) {
+            throw new UnsupportedOperationException();
+        }
+        @Override public void setIgnoreMissingInstructionFile(
+                boolean ignoreMissingInstructionFile) {
+            throw new UnsupportedOperationException();
+        }
+        @Override public CryptoConfiguration withIgnoreMissingInstructionFile(
+                boolean ignoreMissingInstructionFile) {
+            throw new UnsupportedOperationException();
+        }
+        @Override public void setKmsRegion(Regions kmsRegion) {
+            throw new UnsupportedOperationException();
+        }
+        @Override public CryptoConfiguration withKmsRegion(Regions kmsRegion) {
+            throw new UnsupportedOperationException();
+        }
+    }
+
+    /**
+     * Returns a read-only copy of this configuration.
+     */
+    public CryptoConfiguration readOnly() {
+        if (isReadOnly()) {
+            return this;
+        }
+        return copyTo(new CryptoConfiguration.ReadOnly());
+    }
+
+    @Override
+    public CryptoConfiguration clone() {
+        return copyTo(new CryptoConfiguration());
+    }
+
+    private CryptoConfiguration copyTo(CryptoConfiguration that) {
+        that.cryptoMode = this.cryptoMode;
+        that.storageMode = this.storageMode;
+        that.cryptoProvider = this.cryptoProvider;
+        that.ignoreMissingInstructionFile = this.ignoreMissingInstructionFile;
+        that.awskmsRegion = this.awskmsRegion;
+        return that;
+    }
+
+    /**
+     * Returns the the KMS region explicitly specified for the AWS KMS client
+     * when such client is internally instantiated; or null if no explicit KMS
+     * region is specified. This KMS region parameter is ignored when the AWS
+     * KMS client of the S3 encryption client is explicitly passed in by the
+     * users, instead of being implicitly created.
+     *
+     * @Deprecated This method is not forward compatible. Throws
+     * IllegalArguementException when a new region is encountered.
+     *
+     * @use {@link #getAwsKmsRegion()} instead
+     */
+    @Deprecated
+    public Regions getKmsRegion() {
+        if (awskmsRegion == null) {
+            return null;
+        }
+        return Regions.fromName(awskmsRegion.getName());
+    }
+
+    /**
+     * Sets the KMS region for the AWS KMS client when such client is internally
+     * instantiated instead of externally passed in by users; or null if no
+     * explicit KMS region is explicitly configured.This KMS region parameter is
+     * ignored when the AWS KMS client of the S3 encryption client is explicitly
+     * passed in by the users, instead of being implicitly created.
+     *
+     * @Deprecated This method is not forward compatible. Doesn't handle new
+     * regions.
+     *
+     * @use {@link #setAwsKmsRegion(com.amazonaws.regions.Region)} instead
+     */
+    @Deprecated
+    public void setKmsRegion(Regions kmsRegion) {
+        if (kmsRegion != null) {
+            setAwsKmsRegion(com.amazonaws.regions.Region.getRegion(kmsRegion));
+        } else {
+            setAwsKmsRegion(null);
+        }
+    }
+
+    /**
+     * Fluent API for setting the KMS region for the AWS KMS client when such
+     * client is internally instantiated instead of externally passed in by
+     * users; or null if no explicit KMS region is explicitly configured.This
+     * KMS region parameter is ignored when the AWS KMS client of the S3
+     * encryption client is explicitly passed in by the users, instead of being
+     * implicitly created.
+     *
+     * @Deprecated This method is not forward compatible. Doesn't handle new
+     * regions.
+     *
+     * @use {@link #withAwsKmsRegion(com.amazonaws.regions.Region)} AwsKmsRegion}
+     * instead
+     */
+    @Deprecated
+    public CryptoConfiguration withKmsRegion(Regions kmsRegion) {
+        setKmsRegion(kmsRegion);
+        return this;
+    }
+
+    /**
+     * Returns the the KMS region explicitly specified for the AWS KMS client
+     * when such client is internally instantiated; or null if no explicit KMS
+     * region is specified. This KMS region parameter is ignored when the AWS
+     * KMS client of the S3 encryption client is explicitly passed in by the
+     * users, instead of being implicitly created.
+     */
+    public com.amazonaws.regions.Region getAwsKmsRegion() {
+        return awskmsRegion;
+    }
+
+    /**
+     * Sets the KMS region for the AWS KMS client when such client is internally
+     * instantiated instead of externally passed in by users; or null if no
+     * explicit KMS region is explicitly configured.This KMS region parameter is
+     * ignored when the AWS KMS client of the S3 encryption client is explicitly
+     * passed in by the users, instead of being implicitly created.
+     */
+    public void setAwsKmsRegion(com.amazonaws.regions.Region awsKmsRegion) {
+        this.awskmsRegion = awsKmsRegion;
+    }
+
+    /**
+     * Fluent API for setting the KMS region for the AWS KMS client when such
+     * client is internally instantiated instead of externally passed in by
+     * users; or null if no explicit KMS region is explicitly configured.This
+     * KMS region parameter is ignored when the AWS KMS client of the S3
+     * encryption client is explicitly passed in by the users, instead of being
+     * implicitly created.
+     */
+    public CryptoConfiguration withAwsKmsRegion(com.amazonaws.regions.Region awsKmsRegion) {
+        this.awskmsRegion = awsKmsRegion;
+        return this;
     }
 }

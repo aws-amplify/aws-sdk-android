@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,13 +20,31 @@ import com.amazonaws.event.ProgressListener;
 
 import java.io.File;
 import java.io.InputStream;
+import java.io.Serializable;
 
 /**
  * Contains the parameters used for the UploadPart operation on Amazon S3.
  * <p>
+ * If you are uploading parts for <a
+ * href="http://aws.amazon.com/kms/">KMS</a>-encrypted objects, you need to
+ * specify the correct region of the bucket on your client and configure AWS
+ * Signature Version 4 for added security. For more information on how to do
+ * this, see
+ * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#specify
+ * -signature-version
+ * </p>
+ * <p>
  * Required Parameters: BucketName, Key, UploadId, PartNumber
  */
-public class UploadPartRequest extends AmazonWebServiceRequest {
+public class UploadPartRequest extends AmazonWebServiceRequest implements
+        SSECustomerKeyProvider, S3DataSource, Serializable {
+
+    private static final long serialVersionUID = 1L;
+    /**
+     * Additional information about the part being uploaded, such as
+     * referrer.
+     */
+    private ObjectMetadata objectMetadata;
 
     /**
      * The transfer id of this upload part
@@ -74,7 +92,7 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * The stream containing the data to upload for the new part. Exactly one
      * File or InputStream must be specified as the input to this operation.
      */
-    private InputStream inputStream;
+    private transient InputStream inputStream;
 
     /**
      * The file containing the data to upload. Exactly one File or InputStream
@@ -90,12 +108,6 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
     private long fileOffset;
 
     /**
-     * The optional progress listener for receiving updates about object
-     * download status.
-     */
-    private ProgressListener generalProgressListener;
-
-    /**
      * Allows the caller to indicate if this is the last part being uploaded in
      * a multipart upload.
      */
@@ -107,6 +119,11 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      */
     private SSECustomerKey sseCustomerKey;
 
+    /**
+     * If enabled, the requester is charged for conducting this operation from
+     * Requester Pays Buckets.
+     */
+    private boolean isRequesterPays;
     /**
      * @param id the transfer id of the upload part
      */
@@ -159,6 +176,7 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * @param inputStream the stream containing the data to upload for the new
      *            part.
      */
+    @Override
     public void setInputStream(InputStream inputStream) {
         this.inputStream = inputStream;
     }
@@ -168,6 +186,7 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      *
      * @return the stream containing the data to upload for the new part.
      */
+    @Override
     public InputStream getInputStream() {
         return inputStream;
     }
@@ -418,6 +437,7 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * @return The file containing the data to upload. Exactly one File or
      *         InputStream must be specified as the input to this operation.
      */
+    @Override
     public File getFile() {
         return file;
     }
@@ -429,6 +449,7 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      * @param file The file containing the data to upload. Exactly one File or
      *            InputStream must be specified as the input to this operation.
      */
+    @Override
     public void setFile(File file) {
         this.file = file;
     }
@@ -503,9 +524,8 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      *             instead.
      */
     @Deprecated
-    public void setProgressListener(
-            com.amazonaws.services.s3.model.ProgressListener progressListener) {
-        this.generalProgressListener = new LegacyS3ProgressListener(progressListener);
+    public void setProgressListener(com.amazonaws.services.s3.model.ProgressListener progressListener) {
+        setGeneralProgressListener(new LegacyS3ProgressListener(progressListener));
     }
 
     /**
@@ -518,6 +538,7 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
      */
     @Deprecated
     public com.amazonaws.services.s3.model.ProgressListener getProgressListener() {
+        final ProgressListener generalProgressListener = getGeneralProgressListener();
         if (generalProgressListener instanceof LegacyS3ProgressListener) {
             return ((LegacyS3ProgressListener) generalProgressListener).unwrap();
         } else {
@@ -579,13 +600,7 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
         return this;
     }
 
-    /**
-     * Returns the optional customer-provided server-side encryption key to use
-     * to encrypt the object part being uploaded.
-     *
-     * @return The optional customer-provided server-side encryption key to use
-     *         to encrypt the object part being uploaded.
-     */
+    @Override
     public SSECustomerKey getSSECustomerKey() {
         return sseCustomerKey;
     }
@@ -615,38 +630,90 @@ public class UploadPartRequest extends AmazonWebServiceRequest {
         setSSECustomerKey(sseKey);
         return this;
     }
-
     /**
-     * Sets the optional progress listener for receiving updates about object
-     * download status.
-     *
-     * @param generalProgressListener The new progress listener.
+     * Returns the additional information about the part being uploaded.
      */
-    public void setGeneralProgressListener(ProgressListener generalProgressListener) {
-        this.generalProgressListener = generalProgressListener;
+    public ObjectMetadata getObjectMetadata() {
+        return objectMetadata;
     }
 
     /**
-     * Returns the optional progress listener for receiving updates about object
-     * download status.
-     *
-     * @return the optional progress listener for receiving updates about object
-     *         download status.
+     * Sets the additional information about the part being uploaded.
      */
-    public ProgressListener getGeneralProgressListener() {
-        return generalProgressListener;
+    public void setObjectMetadata(ObjectMetadata objectMetadata) {
+        this.objectMetadata = objectMetadata;
     }
 
     /**
-     * Sets the optional progress listener for receiving updates about object
-     * upload status, and returns this updated object so that additional method
-     * calls can be chained together.
-     *
-     * @param generalProgressListener The new progress listener.
-     * @return This updated UploadPartRequest object.
+     * Fluent API for {@link #setObjectMetadata(ObjectMetadata)}.
      */
-    public UploadPartRequest withGeneralProgressListener(ProgressListener progressListener) {
-        setGeneralProgressListener(progressListener);
+    public UploadPartRequest withObjectMetadata(ObjectMetadata objectMetadata) {
+        setObjectMetadata(objectMetadata);
+        return this;
+    }
+
+    /**
+     * Returns true if the user has enabled Requester Pays option when
+     * conducting this operation from Requester Pays Bucket; else false.
+     *
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket
+     *
+     * @return true if the user has enabled Requester Pays option for
+     *         conducting this operation from Requester Pays Bucket.
+     */
+    public boolean isRequesterPays() {
+        return isRequesterPays;
+    }
+
+    /**
+     * Used for conducting this operation from a Requester Pays Bucket. If
+     * set the requester is charged for requests from the bucket.
+     *
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket.
+     *
+     * @param isRequesterPays
+     *            Enable Requester Pays option for the operation.
+     */
+    public void setRequesterPays(boolean isRequesterPays) {
+        this.isRequesterPays = isRequesterPays;
+    }
+
+    /**
+     * Used for conducting this operation from a Requester Pays Bucket. If
+     * set the requester is charged for requests from the bucket. It returns this
+     * updated UploadPartRequest object so that additional method calls can be
+     * chained together.
+     *
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket.
+     *
+     * @param isRequesterPays
+     *            Enable Requester Pays option for the operation.
+     *
+     * @return The updated UploadPartRequest object.
+     */
+    public UploadPartRequest withRequesterPays(boolean isRequesterPays) {
+        setRequesterPays(isRequesterPays);
         return this;
     }
 }

@@ -88,7 +88,7 @@ public class CognitoCachingCredentialsProvider
     private static final String ST_KEY = "sessionToken";
     private static final String EXP_KEY = "expirationDate";
 
-    boolean needIdentityRefresh = false;
+    volatile boolean needIdentityRefresh = false;
 
     private static final String TAG = "CognitoCachingCredentialsProvider";
 
@@ -426,19 +426,27 @@ public class CognitoCachingCredentialsProvider
     }
 
     @Override
-    synchronized public AWSSessionCredentials getCredentials() {
-        if (sessionCredentials == null) {
-            loadCachedCredentials();
-        }
-        // return only if the credentials are valid
-        if (!needsNewSession()) {
-            return sessionCredentials;
-        }
-
+    public AWSSessionCredentials getCredentials() {
+    	credentialsLock.writeLock().lock();
         try {
-            // super will validate loaded credentials
-            // and fetch if necessary
-            super.getCredentials();
+        	// return only if the credentials are valid
+        	if (sessionCredentials == null) {
+        		loadCachedCredentials();
+        	}
+
+        	if ((sessionCredentialsExpiration != null) && !needsNewSession()) {
+        		return sessionCredentials;
+        	}
+        	// super will validate loaded credentials
+        	// and fetch if necessary
+        	super.getCredentials();
+
+        	// null check before saving credentials
+        	if (sessionCredentialsExpiration != null) {
+        		saveCredentials(sessionCredentials, 
+        				sessionCredentialsExpiration.getTime());
+        	}
+        	return sessionCredentials;
         } catch (NotAuthorizedException e) {
             Log.e(TAG, "Failure to get credentials", e);
             if (getLogins() != null) {
@@ -446,32 +454,44 @@ public class CognitoCachingCredentialsProvider
                 // match the current id, so clear them
                 super.setIdentityId(null);
                 super.getCredentials();
+                return sessionCredentials;
             }
             else {
                 throw e;
             }
+        } finally {
+        	credentialsLock.writeLock().unlock();
         }
-
-        saveCredentials(sessionCredentials,
-                getSessionCredentitalsExpiration().getTime());
-
-        return sessionCredentials;
     }
     
     @Override
     public void refresh() {
-        super.refresh();
-        saveCredentials(sessionCredentials,
-                getSessionCredentitalsExpiration().getTime());
+    	credentialsLock.writeLock().lock();
+    	try {
+    		super.refresh();
+
+    		// null check before saving credentials
+    		if (sessionCredentialsExpiration != null) {
+    			saveCredentials(sessionCredentials,
+    					sessionCredentialsExpiration.getTime());
+    		}
+    	} finally {
+    		credentialsLock.writeLock().unlock();
+    	}
     }
 
     @Override
     public void setLogins(Map<String, String> logins) {
-        super.setLogins(logins);
-        // A new login has been added, so an identity refresh is necessary
-        needIdentityRefresh = true;
-        // clear cached credentials
-        clearCredentials();
+    	credentialsLock.writeLock().lock();
+    	try {
+    		super.setLogins(logins);
+    		// A new login has been added, so an identity refresh is necessary
+    		needIdentityRefresh = true;
+    		// clear cached credentials
+    		clearCredentials();
+    	} finally {
+    		credentialsLock.writeLock().unlock();
+    	}
     }
 
     /*
@@ -494,14 +514,19 @@ public class CognitoCachingCredentialsProvider
      */
     @Override
     public void clearCredentials() {
-        super.clearCredentials();
-        Log.d(TAG, "Clearing credentials from SharedPreferences");
-        prefs.edit()
-                .remove(namespace(AK_KEY))
-                .remove(namespace(SK_KEY))
-                .remove(namespace(ST_KEY))
-                .remove(namespace(EXP_KEY))
-                .apply();
+    	credentialsLock.writeLock().lock();
+    	try {
+	        super.clearCredentials();
+	        Log.d(TAG, "Clearing credentials from SharedPreferences");
+	        prefs.edit()
+	                .remove(namespace(AK_KEY))
+	                .remove(namespace(SK_KEY))
+	                .remove(namespace(ST_KEY))
+	                .remove(namespace(EXP_KEY))
+	                .apply();
+    	} finally {
+    		credentialsLock.writeLock().unlock();
+    	}
     }
 
     /**

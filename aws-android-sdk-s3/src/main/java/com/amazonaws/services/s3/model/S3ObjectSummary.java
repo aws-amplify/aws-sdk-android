@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -200,4 +200,16 @@ public class S3ObjectSummary {
         this.storageClass = storageClass;
     }
 
+    @Override
+    public String toString() {
+        return "S3ObjectSummary{" +
+                "bucketName='" + bucketName + '\'' +
+                ", key='" + key + '\'' +
+                ", eTag='" + eTag + '\'' +
+                ", size=" + size +
+                ", lastModified=" + lastModified +
+                ", storageClass='" + storageClass + '\'' +
+                ", owner=" + owner +
+                '}';
+    }
 }

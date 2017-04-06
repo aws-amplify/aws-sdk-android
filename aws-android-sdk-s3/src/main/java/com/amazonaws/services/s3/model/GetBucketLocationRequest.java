@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -17,6 +17,8 @@ package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+import java.io.Serializable;
+
 /**
  * Provides options for requesting an Amazon S3 bucket's location. You can
  * choose a bucket's location when creating it to ensure that the data stored in
@@ -25,7 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  *
  * @see CreateBucketRequest
  */
-public class GetBucketLocationRequest extends AmazonWebServiceRequest {
+public class GetBucketLocationRequest extends AmazonWebServiceRequest implements Serializable {
 
     /** The name of the bucket whose location is being requested. */
     private String bucketName;

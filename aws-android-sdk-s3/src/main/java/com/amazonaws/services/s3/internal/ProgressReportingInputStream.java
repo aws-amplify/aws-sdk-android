@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -89,21 +89,34 @@ public class ProgressReportingInputStream extends SdkFilterInputStream {
 
     @Override
     public int read() throws IOException {
-        int data = super.read();
-        if (data == -1)
+        final int data = super.read();
+        if (data == -1) {
             notifyCompleted();
-        if (data != -1)
+        }
+        if (data != -1) {
             notify(1);
+        }
         return data;
     }
 
     @Override
+    public void reset() throws IOException {
+        super.reset();
+        final ProgressEvent event = new ProgressEvent(unnotifiedByteCount);
+        event.setEventCode(ProgressEvent.RESET_EVENT_CODE);
+        listener.progressChanged(event);
+        unnotifiedByteCount = 0;
+    }
+
+    @Override
     public int read(byte[] b, int off, int len) throws IOException {
-        int bytesRead = super.read(b, off, len);
-        if (bytesRead == -1)
+        final int bytesRead = super.read(b, off, len);
+        if (bytesRead == -1) {
             notifyCompleted();
-        if (bytesRead != -1)
+        }
+        if (bytesRead != -1) {
             notify(bytesRead);
+        }
         return bytesRead;
     }
 
@@ -117,10 +130,11 @@ public class ProgressReportingInputStream extends SdkFilterInputStream {
     }
 
     private void notifyCompleted() {
-        if (fireCompletedEvent == false)
+        if (fireCompletedEvent == false) {
             return;
+        }
 
-        ProgressEvent event = new ProgressEvent(unnotifiedByteCount);
+        final ProgressEvent event = new ProgressEvent(unnotifiedByteCount);
         event.setEventCode(com.amazonaws.event.ProgressEvent.COMPLETED_EVENT_CODE);
         unnotifiedByteCount = 0;
         listener.progressChanged(event);

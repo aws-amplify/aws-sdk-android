@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.services.s3.Headers;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectId;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.StringUtils;
 
@@ -34,11 +35,18 @@ import java.util.Map;
  */
 class S3ObjectWrapper implements Closeable {
     private final S3Object s3obj;
+    private final S3ObjectId id;
 
-    S3ObjectWrapper(S3Object s3obj) {
-        if (s3obj == null)
+    S3ObjectWrapper(S3Object s3obj, S3ObjectId id) {
+        if (s3obj == null) {
             throw new IllegalArgumentException();
+        }
         this.s3obj = s3obj;
+        this.id = id;
+    }
+
+    public S3ObjectId getS3ObjectId() {
+        return id;
     }
 
     ObjectMetadata getObjectMetadata() {
@@ -94,8 +102,8 @@ class S3ObjectWrapper implements Closeable {
      * Returns true if this S3 object is an instruction file; false otherwise.
      */
     final boolean isInstructionFile() {
-        ObjectMetadata metadata = s3obj.getObjectMetadata();
-        Map<String, String> userMeta = metadata.getUserMetadata();
+        final ObjectMetadata metadata = s3obj.getObjectMetadata();
+        final Map<String, String> userMeta = metadata.getUserMetadata();
         return userMeta != null
                 && userMeta.containsKey(Headers.CRYPTO_INSTRUCTION_FILE);
     }
@@ -105,8 +113,8 @@ class S3ObjectWrapper implements Closeable {
      * user meta data; false otherwise.
      */
     final boolean hasEncryptionInfo() {
-        ObjectMetadata metadata = s3obj.getObjectMetadata();
-        Map<String, String> userMeta = metadata.getUserMetadata();
+        final ObjectMetadata metadata = s3obj.getObjectMetadata();
+        final Map<String, String> userMeta = metadata.getUserMetadata();
         return userMeta != null
                 && userMeta.containsKey(Headers.CRYPTO_IV)
                 && (userMeta.containsKey(Headers.CRYPTO_KEY_V2)
@@ -121,17 +129,18 @@ class S3ObjectWrapper implements Closeable {
     String toJsonString() {
         try {
             return from(s3obj.getObjectContent());
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new AmazonClientException("Error parsing JSON: " + e.getMessage());
         }
     }
 
     private static String from(InputStream is) throws IOException {
-        if (is == null)
+        if (is == null) {
             return "";
-        StringBuilder stringBuilder = new StringBuilder();
+        }
+        final StringBuilder stringBuilder = new StringBuilder();
         try {
-            BufferedReader reader = new BufferedReader(
+            final BufferedReader reader = new BufferedReader(
                     new InputStreamReader(is, StringUtils.UTF8));
             String line;
             while ((line = reader.readLine()) != null) {
@@ -162,12 +171,12 @@ class S3ObjectWrapper implements Closeable {
      */
     ContentCryptoScheme encryptionSchemeOf(Map<String, String> instructionFile) {
         if (instructionFile != null) {
-            String cekAlgo = instructionFile.get(Headers.CRYPTO_CEK_ALGORITHM);
+            final String cekAlgo = instructionFile.get(Headers.CRYPTO_CEK_ALGORITHM);
             return ContentCryptoScheme.fromCEKAlgo(cekAlgo);
         }
-        ObjectMetadata meta = s3obj.getObjectMetadata();
-        Map<String, String> userMeta = meta.getUserMetadata();
-        String cekAlgo = userMeta.get(Headers.CRYPTO_CEK_ALGORITHM);
+        final ObjectMetadata meta = s3obj.getObjectMetadata();
+        final Map<String, String> userMeta = meta.getUserMetadata();
+        final String cekAlgo = userMeta.get(Headers.CRYPTO_CEK_ALGORITHM);
         return ContentCryptoScheme.fromCEKAlgo(cekAlgo);
     }
 }

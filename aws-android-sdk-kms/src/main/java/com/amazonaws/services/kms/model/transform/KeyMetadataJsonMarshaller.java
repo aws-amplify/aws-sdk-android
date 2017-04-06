@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -69,6 +69,21 @@ class KeyMetadataJsonMarshaller {
             java.util.Date deletionDate = keyMetadata.getDeletionDate();
             jsonWriter.name("DeletionDate");
             jsonWriter.value(deletionDate);
+        }
+        if (keyMetadata.getValidTo() != null) {
+            java.util.Date validTo = keyMetadata.getValidTo();
+            jsonWriter.name("ValidTo");
+            jsonWriter.value(validTo);
+        }
+        if (keyMetadata.getOrigin() != null) {
+            String origin = keyMetadata.getOrigin();
+            jsonWriter.name("Origin");
+            jsonWriter.value(origin);
+        }
+        if (keyMetadata.getExpirationModel() != null) {
+            String expirationModel = keyMetadata.getExpirationModel();
+            jsonWriter.name("ExpirationModel");
+            jsonWriter.value(expirationModel);
         }
         jsonWriter.endObject();
     }

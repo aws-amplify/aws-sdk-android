@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -91,45 +91,45 @@ import java.util.UUID;
  * <pre class="brush: java">
  * &#064;DynamoDBTable(tableName = &quot;TestTable&quot;)
  * public class TestClass {
- * 
+ *
  *     private Long key;
  *     private double rangeKey;
  *     private Long version;
- * 
+ *
  *     private Set&lt;Integer&gt; integerSetAttribute;
- * 
+ *
  *     &#064;DynamoDBHashKey
  *     public Long getKey() {
  *         return key;
  *     }
- * 
+ *
  *     public void setKey(Long key) {
  *         this.key = key;
  *     }
- * 
+ *
  *     &#064;DynamoDBRangeKey
  *     public double getRangeKey() {
  *         return rangeKey;
  *     }
- * 
+ *
  *     public void setRangeKey(double rangeKey) {
  *         this.rangeKey = rangeKey;
  *     }
- * 
+ *
  *     &#064;DynamoDBAttribute(attributeName = &quot;integerSetAttribute&quot;)
  *     public Set&lt;Integer&gt; getIntegerAttribute() {
  *         return integerSetAttribute;
  *     }
- * 
+ *
  *     public void setIntegerAttribute(Set&lt;Integer&gt; integerAttribute) {
  *         this.integerSetAttribute = integerAttribute;
  *     }
- * 
+ *
  *     &#064;DynamoDBVersionAttribute
  *     public Long getVersion() {
  *         return version;
  *     }
- * 
+ *
  *     public void setVersion(Long version) {
  *         this.version = version;
  *     }
@@ -317,7 +317,7 @@ public class DynamoDBMapper {
         if (s3CredentialsProvider == null) {
             this.s3cc = null;
         } else {
-            this.s3cc = new S3ClientCache(s3CredentialsProvider.getCredentials());
+            this.s3cc = new S3ClientCache(s3CredentialsProvider);
         }
     }
 
@@ -374,29 +374,30 @@ public class DynamoDBMapper {
      */
     public <T extends Object> T load(T keyObject, DynamoDBMapperConfig config) {
         @SuppressWarnings("unchecked")
+        final
         Class<T> clazz = (Class<T>) keyObject.getClass();
 
         config = mergeConfig(config);
-        ItemConverter converter = getConverter(config);
+        final ItemConverter converter = getConverter(config);
 
-        String tableName = getTableName(clazz, keyObject, config);
+        final String tableName = getTableName(clazz, keyObject, config);
 
-        GetItemRequest rq = new GetItemRequest()
+        final GetItemRequest rq = new GetItemRequest()
                 .withRequestMetricCollector(config.getRequestMetricCollector());
 
-        Map<String, AttributeValue> key = getKey(converter, keyObject, clazz);
+        final Map<String, AttributeValue> key = getKey(converter, keyObject, clazz);
 
         rq.setKey(key);
         rq.setTableName(tableName);
         rq.setConsistentRead(config.getConsistentReads() == ConsistentReads.CONSISTENT);
 
-        GetItemResult item = db.getItem(applyUserAgent(rq));
-        Map<String, AttributeValue> itemAttributes = item.getItem();
+        final GetItemResult item = db.getItem(applyUserAgent(rq));
+        final Map<String, AttributeValue> itemAttributes = item.getItem();
         if (itemAttributes == null) {
             return null;
         }
 
-        T object = privateMarshallIntoObject(
+        final T object = privateMarshallIntoObject(
                 converter,
                 toParameters(itemAttributes, clazz, tableName, config));
 
@@ -422,12 +423,12 @@ public class DynamoDBMapper {
             T keyObject,
             Class<T> clazz) {
 
-        Map<String, AttributeValue> key = new HashMap<String, AttributeValue>();
-        for (Method keyGetter : reflector.getPrimaryKeyGetters(clazz)) {
-            Object getterResult =
+        final Map<String, AttributeValue> key = new HashMap<String, AttributeValue>();
+        for (final Method keyGetter : reflector.getPrimaryKeyGetters(clazz)) {
+            final Object getterResult =
                     ReflectionUtils.safeInvoke(keyGetter, keyObject);
 
-            AttributeValue keyAttributeValue =
+            final AttributeValue keyAttributeValue =
                     converter.convert(keyGetter, getterResult);
 
             if (keyAttributeValue == null) {
@@ -462,7 +463,7 @@ public class DynamoDBMapper {
     public <T extends Object> T load(Class<T> clazz, Object hashKey, Object rangeKey,
             DynamoDBMapperConfig config) {
         config = mergeConfig(config);
-        T keyObject = createKeyObject(clazz, hashKey, rangeKey);
+        final T keyObject = createKeyObject(clazz, hashKey, rangeKey);
         return load(keyObject, config);
     }
 
@@ -474,12 +475,12 @@ public class DynamoDBMapper {
         T keyObject = null;
         try {
             keyObject = clazz.newInstance();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new DynamoDBMappingException("Failed to instantiate class", e);
         }
         boolean seenHashKey = false;
         boolean seenRangeKey = false;
-        for (Method getter : reflector.getPrimaryKeyGetters(clazz)) {
+        for (final Method getter : reflector.getPrimaryKeyGetters(clazz)) {
             if (ReflectionUtils.getterOrFieldHasAnnotation(getter, DynamoDBHashKey.class)) {
                 if (seenHashKey) {
                     throw new DynamoDBMappingException(
@@ -529,18 +530,18 @@ public class DynamoDBMapper {
             ItemConverter converter,
             Object obj) {
 
-        Map<String, Condition> conditions = new HashMap<String, Condition>();
+        final Map<String, Condition> conditions = new HashMap<String, Condition>();
         if (obj == null) {
             return conditions;
         }
 
-        for (Method getter : reflector.getRelevantGetters(obj.getClass())) {
+        for (final Method getter : reflector.getRelevantGetters(obj.getClass())) {
             if (ReflectionUtils.getterOrFieldHasAnnotation(
                     getter, DynamoDBHashKey.class)
                     || ReflectionUtils.getterOrFieldHasAnnotation(
                             getter, DynamoDBIndexHashKey.class)) {
 
-                Object getterReturnResult =
+                final Object getterReturnResult =
                         ReflectionUtils.safeInvoke(getter, obj);
 
                 if (getterReturnResult != null) {
@@ -581,7 +582,7 @@ public class DynamoDBMapper {
             final DynamoDBMapperConfig config) {
 
         // Resolve by object, if possible and desired
-        DynamoDBMapperConfig.ObjectTableNameResolver objectResolver = config
+        final DynamoDBMapperConfig.ObjectTableNameResolver objectResolver = config
                 .getObjectTableNameResolver();
         if (object != null && objectResolver != null) {
             return objectResolver.getTableName(object, config);
@@ -614,9 +615,9 @@ public class DynamoDBMapper {
             Class<T> clazz,
             Map<String, AttributeValue> itemAttributes) {
 
-        ItemConverter converter = getConverter(config);
+        final ItemConverter converter = getConverter(config);
 
-        String tableName = getTableName(clazz, config);
+        final String tableName = getTableName(clazz, config);
 
         return privateMarshallIntoObject(
                 converter,
@@ -630,8 +631,8 @@ public class DynamoDBMapper {
             ItemConverter converter,
             AttributeTransformer.Parameters<T> parameters) {
 
-        Class<T> clazz = parameters.getModelClass();
-        Map<String, AttributeValue> values = untransformAttributes(parameters);
+        final Class<T> clazz = parameters.getModelClass();
+        final Map<String, AttributeValue> values = untransformAttributes(parameters);
 
         return converter.unconvert(clazz, values);
     }
@@ -646,8 +647,8 @@ public class DynamoDBMapper {
      */
     public <T> List<T> marshallIntoObjects(Class<T> clazz,
             List<Map<String, AttributeValue>> itemAttributes) {
-        List<T> result = new ArrayList<T>(itemAttributes.size());
-        for (Map<String, AttributeValue> item : itemAttributes) {
+        final List<T> result = new ArrayList<T>(itemAttributes.size());
+        for (final Map<String, AttributeValue> item : itemAttributes) {
             result.add(marshallIntoObject(clazz, item));
         }
         return result;
@@ -664,14 +665,14 @@ public class DynamoDBMapper {
     final <T> List<T> marshallIntoObjects(
             final List<AttributeTransformer.Parameters<T>> parameters
             ) {
-        List<T> result = new ArrayList<T>(parameters.size());
+        final List<T> result = new ArrayList<T>(parameters.size());
 
         ItemConverter converter = null;
         if (!parameters.isEmpty()) {
             converter = getConverter(parameters.get(0).getMapperConfig());
         }
 
-        for (AttributeTransformer.Parameters<T> entry : parameters) {
+        for (final AttributeTransformer.Parameters<T> entry : parameters) {
             result.add(privateMarshallIntoObject(converter, entry));
         }
 
@@ -700,15 +701,15 @@ public class DynamoDBMapper {
     }
 
     boolean needAutoGenerateAssignableKey(Class<?> clazz, Object object) {
-        Collection<Method> keyGetters = reflector.getPrimaryKeyGetters(clazz);
+        final Collection<Method> keyGetters = reflector.getPrimaryKeyGetters(clazz);
         boolean forcePut = false;
         /*
          * Determine if there are any auto-assigned keys to assign. If so, force
          * a put and assign the keys.
          */
         boolean hashKeyGetterFound = false;
-        for (Method method : keyGetters) {
-            Object getterResult = ReflectionUtils.safeInvoke(method, object);
+        for (final Method method : keyGetters) {
+            final Object getterResult = ReflectionUtils.safeInvoke(method, object);
             if (getterResult == null && reflector.isAssignableKey(method)) {
                 forcePut = true;
             }
@@ -768,15 +769,15 @@ public class DynamoDBMapper {
         final ItemConverter converter = getConverter(finalConfig);
 
         @SuppressWarnings("unchecked")
-        Class<? extends T> clazz = (Class<? extends T>) object.getClass();
-        String tableName = getTableName(clazz, object, finalConfig);
+        final Class<? extends T> clazz = (Class<? extends T>) object.getClass();
+        final String tableName = getTableName(clazz, object, finalConfig);
 
         /*
          * We force a putItem request instead of updateItem request either when
          * CLOBBER is configured, or part of the primary key of the object needs
          * to be auto-generated.
          */
-        boolean forcePut = (finalConfig.getSaveBehavior() == SaveBehavior.CLOBBER)
+        final boolean forcePut = (finalConfig.getSaveBehavior() == SaveBehavior.CLOBBER)
                 || needAutoGenerateAssignableKey(clazz, object);
 
         SaveObjectHandler saveObjectHandler;
@@ -870,7 +871,7 @@ public class DynamoDBMapper {
 
                 @Override
                 protected void executeLowLevelRequest() {
-                    UpdateItemResult updateItemResult = doUpdateItem();
+                    final UpdateItemResult updateItemResult = doUpdateItem();
 
                     // The UpdateItem request is specified to return ALL_NEW
                     // attributes of the affected item. So if the returned
@@ -886,7 +887,7 @@ public class DynamoDBMapper {
                         // the key attributes (prepared for the
                         // UpdateItemRequest) into the AttributeValueUpdates
                         // collection.
-                        for (String keyAttributeName : getKeyAttributeValues().keySet()) {
+                        for (final String keyAttributeName : getKeyAttributeValues().keySet()) {
                             getAttributeValueUpdates().put(
                                     keyAttributeName,
                                     new AttributeValueUpdate()
@@ -984,21 +985,21 @@ public class DynamoDBMapper {
          * The general workflow of a save operation.
          */
         public void execute() {
-            Collection<Method> keyGetters = reflector.getPrimaryKeyGetters(clazz);
+            final Collection<Method> keyGetters = reflector.getPrimaryKeyGetters(clazz);
 
             /*
              * First handle keys
              */
-            for (Method method : keyGetters) {
-                Object getterResult = ReflectionUtils.safeInvoke(method, object);
-                String attributeName = reflector.getAttributeName(method);
+            for (final Method method : keyGetters) {
+                final Object getterResult = ReflectionUtils.safeInvoke(method, object);
+                final String attributeName = reflector.getAttributeName(method);
 
                 if (getterResult == null && reflector.isAssignableKey(method)) {
                     onAutoGenerateAssignableKey(method, attributeName);
                 }
 
                 else {
-                    AttributeValue newAttributeValue = converter.convert(method, getterResult);
+                    final AttributeValue newAttributeValue = converter.convert(method, getterResult);
                     if (newAttributeValue == null) {
                         throw new DynamoDBMappingException(
                                 "Null or empty value for key: " + method);
@@ -1021,14 +1022,15 @@ public class DynamoDBMapper {
             /*
              * Next construct an update for every non-key property
              */
-            for (Method method : reflector.getRelevantGetters(clazz)) {
+            for (final Method method : reflector.getRelevantGetters(clazz)) {
 
                 // Skip any key methods, since they are handled separately
-                if (keyGetters.contains(method))
+                if (keyGetters.contains(method)) {
                     continue;
+                }
 
-                Object getterResult = ReflectionUtils.safeInvoke(method, object);
-                String attributeName = reflector.getAttributeName(method);
+                final Object getterResult = ReflectionUtils.safeInvoke(method, object);
+                final String attributeName = reflector.getAttributeName(method);
 
                 /*
                  * If this is a versioned field, update it
@@ -1041,7 +1043,7 @@ public class DynamoDBMapper {
                  * Otherwise apply the update value for this attribute.
                  */
                 else {
-                    AttributeValue currentValue = converter.convert(method, getterResult);
+                    final AttributeValue currentValue = converter.convert(method, getterResult);
                     if (currentValue != null) {
                         onNonKeyAttribute(attributeName, currentValue);
                     } else {
@@ -1061,7 +1063,7 @@ public class DynamoDBMapper {
              * currently takes into account of auto-generated keys and versioned
              * attributes.
              */
-            for (ValueUpdate update : inMemoryUpdates) {
+            for (final ValueUpdate update : inMemoryUpdates) {
                 update.apply();
             }
         }
@@ -1155,7 +1157,7 @@ public class DynamoDBMapper {
          * the returned attributes to detect silent failure on the server-side.
          */
         protected UpdateItemResult doUpdateItem() {
-            UpdateItemRequest req = new UpdateItemRequest()
+            final UpdateItemRequest req = new UpdateItemRequest()
                     .withTableName(getTableName())
                     .withKey(getKeyAttributeValues())
                     .withAttributeUpdates(
@@ -1192,7 +1194,7 @@ public class DynamoDBMapper {
                             this.clazz,
                             getTableName(),
                             saveConfig));
-            PutItemRequest req = new PutItemRequest()
+            final PutItemRequest req = new PutItemRequest()
                     .withTableName(getTableName())
                     .withItem(attributeValues)
                     .withExpected(mergeExpectedAttributeValueConditions())
@@ -1203,7 +1205,7 @@ public class DynamoDBMapper {
         }
 
         private void onAutoGenerateAssignableKey(Method method, String attributeName) {
-            AttributeValue newVersionValue = getAutoGeneratedKeyAttributeValue(converter, method);
+            final AttributeValue newVersionValue = getAutoGeneratedKeyAttributeValue(converter, method);
 
             updateValues.put(attributeName,
                     new AttributeValueUpdate().withAction("PUT").withValue(newVersionValue));
@@ -1213,7 +1215,7 @@ public class DynamoDBMapper {
                     && !internalExpectedValueAssertions.containsKey(attributeName)) {
                 // Add an expect clause to make sure that the item
                 // doesn't already exist, since it's supposed to be new
-                ExpectedAttributeValue expected = new ExpectedAttributeValue();
+                final ExpectedAttributeValue expected = new ExpectedAttributeValue();
                 expected.setExists(false);
                 internalExpectedValueAssertions.put(attributeName, expected);
             }
@@ -1225,11 +1227,11 @@ public class DynamoDBMapper {
                     && !internalExpectedValueAssertions.containsKey(attributeName)) {
                 // First establish the expected (current) value for the
                 // update call
-                ExpectedAttributeValue expected = new ExpectedAttributeValue();
+                final ExpectedAttributeValue expected = new ExpectedAttributeValue();
 
                 // For new objects, insist that the value doesn't exist.
                 // For existing ones, insist it has the old value.
-                AttributeValue currentValue = converter.convert(method, getterResult);
+                final AttributeValue currentValue = converter.convert(method, getterResult);
                 expected.setExists(currentValue != null);
                 if (currentValue != null) {
                     expected.setValue(currentValue);
@@ -1237,8 +1239,8 @@ public class DynamoDBMapper {
                 internalExpectedValueAssertions.put(attributeName, expected);
             }
 
-            Object newVersion = incrementor.increment(method, getterResult);
-            AttributeValue newVersionValue = converter.convert(method, newVersion);
+            final Object newVersion = incrementor.increment(method, getterResult);
+            final AttributeValue newVersionValue = converter.convert(method, newVersion);
             updateValues.put(attributeName, new AttributeValueUpdate()
                     .withAction("PUT")
                     .withValue(newVersionValue));
@@ -1285,33 +1287,34 @@ public class DynamoDBMapper {
     public <T> void delete(T object, DynamoDBDeleteExpression deleteExpression,
             DynamoDBMapperConfig config) {
         config = mergeConfig(config);
-        ItemConverter converter = getConverter(config);
+        final ItemConverter converter = getConverter(config);
 
         @SuppressWarnings("unchecked")
-        Class<T> clazz = (Class<T>) object.getClass();
+        final Class<T> clazz = (Class<T>) object.getClass();
 
-        String tableName = getTableName(clazz, object, config);
+        final String tableName = getTableName(clazz, object, config);
 
-        Map<String, AttributeValue> key = getKey(converter, object, clazz);
+        final Map<String, AttributeValue> key = getKey(converter, object, clazz);
 
         /*
          * If there is a version field, make sure we assert its value. If the
          * version field is null (only should happen in unusual circumstances),
          * pretend it doesn't have a version field after all.
          */
-        Map<String, ExpectedAttributeValue> internalAssertions = new HashMap<String, ExpectedAttributeValue>();
+        final Map<String, ExpectedAttributeValue> internalAssertions = new HashMap<String, ExpectedAttributeValue>();
         if (config.getSaveBehavior() != SaveBehavior.CLOBBER) {
-            for (Method method : reflector.getRelevantGetters(clazz)) {
+            for (final Method method : reflector.getRelevantGetters(clazz)) {
 
                 if (reflector.isVersionAttributeGetter(method)) {
-                    Object getterResult = ReflectionUtils.safeInvoke(method, object);
-                    String attributeName = reflector.getAttributeName(method);
+                    final Object getterResult = ReflectionUtils.safeInvoke(method, object);
+                    final String attributeName = reflector.getAttributeName(method);
 
-                    ExpectedAttributeValue expected = new ExpectedAttributeValue();
-                    AttributeValue currentValue = converter.convert(method, getterResult);
+                    final ExpectedAttributeValue expected = new ExpectedAttributeValue();
+                    final AttributeValue currentValue = converter.convert(method, getterResult);
                     expected.setExists(currentValue != null);
-                    if (currentValue != null)
+                    if (currentValue != null) {
                         expected.setValue(currentValue);
+                    }
                     internalAssertions.put(attributeName, expected);
                     break;
                 }
@@ -1323,7 +1326,7 @@ public class DynamoDBMapper {
                 .withRequestMetricCollector(config.getRequestMetricCollector());
 
         if (deleteExpression != null) {
-            String conditionalExpression = deleteExpression.getConditionExpression();
+            final String conditionalExpression = deleteExpression.getConditionExpression();
 
             if (conditionalExpression != null) {
                 if (internalAssertions != null && !internalAssertions.isEmpty()) {
@@ -1470,25 +1473,25 @@ public class DynamoDBMapper {
             List<? extends Object> objectsToDelete, DynamoDBMapperConfig config) {
         config = mergeConfig(config);
 
-        List<FailedBatch> totalFailedBatches = new LinkedList<FailedBatch>();
+        final List<FailedBatch> totalFailedBatches = new LinkedList<FailedBatch>();
 
-        HashMap<String, List<WriteRequest>> requestItems = new HashMap<String, List<WriteRequest>>();
+        final HashMap<String, List<WriteRequest>> requestItems = new HashMap<String, List<WriteRequest>>();
 
-        ItemConverter converter = getConverter(config);
+        final ItemConverter converter = getConverter(config);
 
-        List<ValueUpdate> inMemoryUpdates = new LinkedList<ValueUpdate>();
-        for (Object toWrite : objectsToWrite) {
-            Class<?> clazz = toWrite.getClass();
-            String tableName = getTableName(clazz, toWrite, config);
+        final List<ValueUpdate> inMemoryUpdates = new LinkedList<ValueUpdate>();
+        for (final Object toWrite : objectsToWrite) {
+            final Class<?> clazz = toWrite.getClass();
+            final String tableName = getTableName(clazz, toWrite, config);
 
-            Map<String, AttributeValue> attributeValues = new HashMap<String, AttributeValue>();
+            final Map<String, AttributeValue> attributeValues = new HashMap<String, AttributeValue>();
 
             // Look at every getter and construct a value object for it
-            for (Method method : reflector.getRelevantGetters(clazz)) {
-                Object getterResult =
+            for (final Method method : reflector.getRelevantGetters(clazz)) {
+                final Object getterResult =
                         ReflectionUtils.safeInvoke(method, toWrite);
 
-                String attributeName = reflector.getAttributeName(method);
+                final String attributeName = reflector.getAttributeName(method);
 
                 AttributeValue currentValue = null;
                 if (getterResult == null && reflector.isAssignableKey(method)) {
@@ -1507,7 +1510,7 @@ public class DynamoDBMapper {
                 requestItems.put(tableName, new LinkedList<WriteRequest>());
             }
 
-            AttributeTransformer.Parameters<?> parameters =
+            final AttributeTransformer.Parameters<?> parameters =
                     toParameters(attributeValues, clazz, tableName, config);
 
             requestItems.get(tableName).add(
@@ -1516,12 +1519,12 @@ public class DynamoDBMapper {
                                     transformAttributes(parameters))));
         }
 
-        for (Object toDelete : objectsToDelete) {
-            Class<?> clazz = toDelete.getClass();
+        for (final Object toDelete : objectsToDelete) {
+            final Class<?> clazz = toDelete.getClass();
 
-            String tableName = getTableName(clazz, toDelete, config);
+            final String tableName = getTableName(clazz, toDelete, config);
 
-            Map<String, AttributeValue> key = getKey(converter, toDelete);
+            final Map<String, AttributeValue> key = getKey(converter, toDelete);
 
             if (!requestItems.containsKey(tableName)) {
                 requestItems.put(tableName, new LinkedList<WriteRequest>());
@@ -1534,22 +1537,22 @@ public class DynamoDBMapper {
         // Break into chunks of 25 items and make service requests to DynamoDB
         while (!requestItems.isEmpty()) {
 
-            HashMap<String, List<WriteRequest>> batch =
+            final HashMap<String, List<WriteRequest>> batch =
                     new HashMap<String, List<WriteRequest>>();
 
             int i = 0;
 
-            Iterator<Entry<String, List<WriteRequest>>> tableIter = requestItems.entrySet()
+            final Iterator<Entry<String, List<WriteRequest>>> tableIter = requestItems.entrySet()
                     .iterator();
             while (tableIter.hasNext() && i < MAX_ITEMS_PER_BATCH) {
 
-                Entry<String, List<WriteRequest>> tableRequest = tableIter.next();
+                final Entry<String, List<WriteRequest>> tableRequest = tableIter.next();
 
                 batch.put(tableRequest.getKey(), new LinkedList<WriteRequest>());
-                Iterator<WriteRequest> writeRequestIter = tableRequest.getValue().iterator();
+                final Iterator<WriteRequest> writeRequestIter = tableRequest.getValue().iterator();
 
                 while (writeRequestIter.hasNext() && i++ < MAX_ITEMS_PER_BATCH) {
-                    WriteRequest writeRequest = writeRequestIter.next();
+                    final WriteRequest writeRequest = writeRequestIter.next();
                     batch.get(tableRequest.getKey()).add(writeRequest);
                     writeRequestIter.remove();
                 }
@@ -1561,7 +1564,7 @@ public class DynamoDBMapper {
                 }
             }
 
-            List<FailedBatch> failedBatches = writeOneBatch(batch);
+            final List<FailedBatch> failedBatches = writeOneBatch(batch);
             if (failedBatches != null) {
                 totalFailedBatches.addAll(failedBatches);
 
@@ -1569,7 +1572,7 @@ public class DynamoDBMapper {
                 if (containsThrottlingException(failedBatches)) {
                     try {
                         Thread.sleep(1000 * 2);
-                    } catch (InterruptedException e) {
+                    } catch (final InterruptedException e) {
                         Thread.currentThread().interrupt();
                         throw new AmazonClientException(e.getMessage(), e);
                     }
@@ -1578,7 +1581,7 @@ public class DynamoDBMapper {
         }
 
         // Once the entire batch is processed, update assigned keys in memory
-        for (ValueUpdate update : inMemoryUpdates) {
+        for (final ValueUpdate update : inMemoryUpdates) {
             update.apply();
         }
 
@@ -1592,10 +1595,10 @@ public class DynamoDBMapper {
      */
     List<FailedBatch> writeOneBatch(Map<String, List<WriteRequest>> batch) {
 
-        List<FailedBatch> failedBatches = new LinkedList<FailedBatch>();
-        Map<String, List<WriteRequest>> firstHalfBatch = new HashMap<String, List<WriteRequest>>();
-        Map<String, List<WriteRequest>> secondHalfBatch = new HashMap<String, List<WriteRequest>>();
-        FailedBatch failedBatch = callUntilCompletion(batch);
+        final List<FailedBatch> failedBatches = new LinkedList<FailedBatch>();
+        final Map<String, List<WriteRequest>> firstHalfBatch = new HashMap<String, List<WriteRequest>>();
+        final Map<String, List<WriteRequest>> secondHalfBatch = new HashMap<String, List<WriteRequest>>();
+        final FailedBatch failedBatch = callUntilCompletion(batch);
 
         if (failedBatch != null) {
             // If the exception is request entity too large, we divide the batch
@@ -1629,8 +1632,8 @@ public class DynamoDBMapper {
      * Check whether there are throttling exception in the failed batches.
      */
     boolean containsThrottlingException(List<FailedBatch> failedBatches) {
-        for (FailedBatch failedBatch : failedBatches) {
-            Exception e = failedBatch.getException();
+        for (final FailedBatch failedBatch : failedBatches) {
+            final Exception e = failedBatch.getException();
             if (e instanceof AmazonServiceException
                     && RetryUtils.isThrottlingException((AmazonServiceException) e)) {
                 return true;
@@ -1646,13 +1649,13 @@ public class DynamoDBMapper {
     private void divideBatch(Map<String, List<WriteRequest>> batch,
             Map<String, List<WriteRequest>> firstHalfBatch,
             Map<String, List<WriteRequest>> secondHalfBatch) {
-        for (String key : batch.keySet()) {
+        for (final String key : batch.keySet()) {
 
-            List<WriteRequest> requests = batch.get(key);
+            final List<WriteRequest> requests = batch.get(key);
 
-            List<WriteRequest> firstHalfRequests = requests.subList(0, requests.size() / 2);
+            final List<WriteRequest> firstHalfRequests = requests.subList(0, requests.size() / 2);
 
-            List<WriteRequest> secondHalfRequests = requests.subList(requests.size() / 2,
+            final List<WriteRequest> secondHalfRequests = requests.subList(requests.size() / 2,
                     requests.size());
 
             firstHalfBatch.put(key, firstHalfRequests);
@@ -1671,7 +1674,7 @@ public class DynamoDBMapper {
 
         int count = 0;
 
-        for (String tableName : failedBatch.getUnprocessedItems().keySet()) {
+        for (final String tableName : failedBatch.getUnprocessedItems().keySet()) {
             count += failedBatch.getUnprocessedItems().get(tableName).size();
         }
         return count;
@@ -1690,7 +1693,7 @@ public class DynamoDBMapper {
             try {
                 result = db.batchWriteItem(applyBatchOperationUserAgent(
                         new BatchWriteItemRequest().withRequestItems(batch)));
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 failedBatch = new FailedBatch();
                 failedBatch.setUnprocessedItems(batch);
                 failedBatch.setException(e);
@@ -1737,23 +1740,23 @@ public class DynamoDBMapper {
      */
     public Map<String, List<Object>> batchLoad(List<Object> itemsToGet, DynamoDBMapperConfig config) {
         config = mergeConfig(config);
-        boolean consistentReads = (config.getConsistentReads() == ConsistentReads.CONSISTENT);
+        final boolean consistentReads = (config.getConsistentReads() == ConsistentReads.CONSISTENT);
 
         if (itemsToGet == null || itemsToGet.isEmpty()) {
             return new HashMap<String, List<Object>>();
         }
 
-        Map<String, KeysAndAttributes> requestItems = new HashMap<String, KeysAndAttributes>();
-        Map<String, Class<?>> classesByTableName = new HashMap<String, Class<?>>();
-        Map<String, List<Object>> resultSet = new HashMap<String, List<Object>>();
+        final Map<String, KeysAndAttributes> requestItems = new HashMap<String, KeysAndAttributes>();
+        final Map<String, Class<?>> classesByTableName = new HashMap<String, Class<?>>();
+        final Map<String, List<Object>> resultSet = new HashMap<String, List<Object>>();
         int count = 0;
 
-        ItemConverter converter = getConverter(config);
+        final ItemConverter converter = getConverter(config);
 
-        for (Object keyObject : itemsToGet) {
-            Class<?> clazz = keyObject.getClass();
+        for (final Object keyObject : itemsToGet) {
+            final Class<?> clazz = keyObject.getClass();
 
-            String tableName = getTableName(clazz, keyObject, config);
+            final String tableName = getTableName(clazz, keyObject, config);
             classesByTableName.put(tableName, clazz);
 
             if (!requestItems.containsKey(tableName)) {
@@ -1821,11 +1824,11 @@ public class DynamoDBMapper {
     public Map<String, List<Object>> batchLoad(Map<Class<?>, List<KeyPair>> itemsToGet,
             DynamoDBMapperConfig config) {
 
-        List<Object> keys = new ArrayList<Object>();
+        final List<Object> keys = new ArrayList<Object>();
         if (itemsToGet != null) {
-            for (Class<?> clazz : itemsToGet.keySet()) {
+            for (final Class<?> clazz : itemsToGet.keySet()) {
                 if (itemsToGet.get(clazz) != null) {
-                    for (KeyPair keyPair : itemsToGet.get(clazz)) {
+                    for (final KeyPair keyPair : itemsToGet.get(clazz)) {
                         keys.add(createKeyObject(clazz, keyPair.getHashKey(), keyPair.getRangeKey()));
                     }
                 }
@@ -1846,7 +1849,7 @@ public class DynamoDBMapper {
             final ItemConverter converter) {
 
         BatchGetItemResult batchGetItemResult = null;
-        BatchGetItemRequest batchGetItemRequest = new BatchGetItemRequest()
+        final BatchGetItemRequest batchGetItemRequest = new BatchGetItemRequest()
                 .withRequestMetricCollector(config.getRequestMetricCollector());
         batchGetItemRequest.setRequestItems(requestItems);
 
@@ -1870,9 +1873,9 @@ public class DynamoDBMapper {
             batchGetItemResult = db.batchGetItem(
                     applyBatchOperationUserAgent(batchGetItemRequest));
 
-            Map<String, List<Map<String, AttributeValue>>> responses = batchGetItemResult
+            final Map<String, List<Map<String, AttributeValue>>> responses = batchGetItemResult
                     .getResponses();
-            for (String tableName : responses.keySet()) {
+            for (final String tableName : responses.keySet()) {
                 List<Object> objects = null;
                 if (resultSet.get(tableName) != null) {
                     objects = resultSet.get(tableName);
@@ -1880,10 +1883,10 @@ public class DynamoDBMapper {
                     objects = new LinkedList<Object>();
                 }
 
-                Class<?> clazz = classesByTableName.get(tableName);
+                final Class<?> clazz = classesByTableName.get(tableName);
 
-                for (Map<String, AttributeValue> item : responses.get(tableName)) {
-                    AttributeTransformer.Parameters<?> parameters =
+                for (final Map<String, AttributeValue> item : responses.get(tableName)) {
+                    final AttributeTransformer.Parameters<?> parameters =
                             toParameters(item, clazz, tableName, config);
                     objects.add(privateMarshallIntoObject(converter, parameters));
                 }
@@ -1916,8 +1919,8 @@ public class DynamoDBMapper {
         }
 
         public void apply() {
-            Method setter = reflector.getSetter(method);
-            Object pojo = converter.unconvert(method, setter, newValue);
+            final Method setter = reflector.getSetter(method);
+            final Object pojo = converter.unconvert(method, setter, newValue);
             ReflectionUtils.safeInvoke(setter, target, pojo);
         }
     }
@@ -1927,11 +1930,11 @@ public class DynamoDBMapper {
      * {@link AttributeValue} map.
      */
     private Map<String, AttributeValue> convertToItem(Map<String, AttributeValueUpdate> putValues) {
-        Map<String, AttributeValue> map = new HashMap<String, AttributeValue>();
-        for (Entry<String, AttributeValueUpdate> entry : putValues.entrySet()) {
-            String attributeName = entry.getKey();
-            AttributeValue attributeValue = entry.getValue().getValue();
-            String attributeAction = entry.getValue().getAction();
+        final Map<String, AttributeValue> map = new HashMap<String, AttributeValue>();
+        for (final Entry<String, AttributeValueUpdate> entry : putValues.entrySet()) {
+            final String attributeName = entry.getKey();
+            final AttributeValue attributeValue = entry.getValue().getValue();
+            final String attributeAction = entry.getValue().getAction();
 
             /*
              * AttributeValueUpdate allows nulls for its values, since they are
@@ -1949,7 +1952,7 @@ public class DynamoDBMapper {
             ItemConverter converter,
             Method getter) {
 
-        Class<?> returnType = getter.getReturnType();
+        final Class<?> returnType = getter.getReturnType();
         if (String.class.isAssignableFrom(returnType)) {
             return converter.convert(getter, UUID.randomUUID().toString());
         }
@@ -2002,9 +2005,9 @@ public class DynamoDBMapper {
             DynamoDBMapperConfig config) {
         config = mergeConfig(config);
 
-        ScanRequest scanRequest = createScanRequestFromExpression(clazz, scanExpression, config);
+        final ScanRequest scanRequest = createScanRequestFromExpression(clazz, scanExpression, config);
 
-        ScanResult scanResult = db.scan(applyUserAgent(scanRequest));
+        final ScanResult scanResult = db.scan(applyUserAgent(scanRequest));
         return new PaginatedScanList<T>(this, clazz, db, scanRequest, scanResult,
                 config.getPaginationLoadingStrategy(), config);
     }
@@ -2063,9 +2066,9 @@ public class DynamoDBMapper {
 
         // Create hard copies of the original scan request with difference
         // segment number.
-        List<ScanRequest> parallelScanRequests = createParallelScanRequestsFromExpression(clazz,
+        final List<ScanRequest> parallelScanRequests = createParallelScanRequestsFromExpression(clazz,
                 scanExpression, totalSegments, config);
-        ParallelScanTask parallelScanTask = new ParallelScanTask(this, db, parallelScanRequests);
+        final ParallelScanTask parallelScanTask = new ParallelScanTask(this, db, parallelScanRequests);
 
         return new PaginatedParallelScanList<T>(this, clazz, db, parallelScanTask,
                 config.getPaginationLoadingStrategy(), config);
@@ -2090,11 +2093,11 @@ public class DynamoDBMapper {
             DynamoDBMapperConfig config) {
         config = mergeConfig(config);
 
-        ScanRequest scanRequest = createScanRequestFromExpression(clazz, scanExpression, config);
+        final ScanRequest scanRequest = createScanRequestFromExpression(clazz, scanExpression, config);
 
-        ScanResult scanResult = db.scan(applyUserAgent(scanRequest));
-        ScanResultPage<T> result = new ScanResultPage<T>();
-        List<AttributeTransformer.Parameters<T>> parameters =
+        final ScanResult scanResult = db.scan(applyUserAgent(scanRequest));
+        final ScanResultPage<T> result = new ScanResultPage<T>();
+        final List<AttributeTransformer.Parameters<T>> parameters =
                 toParameters(scanResult.getItems(), clazz, scanRequest.getTableName(), config);
 
         result.setResults(marshallIntoObjects(parameters));
@@ -2163,9 +2166,9 @@ public class DynamoDBMapper {
             DynamoDBQueryExpression<T> queryExpression, DynamoDBMapperConfig config) {
         config = mergeConfig(config);
 
-        QueryRequest queryRequest = createQueryRequestFromExpression(clazz, queryExpression, config);
+        final QueryRequest queryRequest = createQueryRequestFromExpression(clazz, queryExpression, config);
 
-        QueryResult queryResult = db.query(applyUserAgent(queryRequest));
+        final QueryResult queryResult = db.query(applyUserAgent(queryRequest));
         return new PaginatedQueryList<T>(this, clazz, db, queryRequest, queryResult,
                 config.getPaginationLoadingStrategy(), config);
     }
@@ -2204,11 +2207,11 @@ public class DynamoDBMapper {
             DynamoDBQueryExpression<T> queryExpression, DynamoDBMapperConfig config) {
         config = mergeConfig(config);
 
-        QueryRequest queryRequest = createQueryRequestFromExpression(clazz, queryExpression, config);
+        final QueryRequest queryRequest = createQueryRequestFromExpression(clazz, queryExpression, config);
 
-        QueryResult scanResult = db.query(applyUserAgent(queryRequest));
-        QueryResultPage<T> result = new QueryResultPage<T>();
-        List<AttributeTransformer.Parameters<T>> parameters =
+        final QueryResult scanResult = db.query(applyUserAgent(queryRequest));
+        final QueryResultPage<T> result = new QueryResultPage<T>();
+        final List<AttributeTransformer.Parameters<T>> parameters =
                 toParameters(scanResult.getItems(), clazz, queryRequest.getTableName(), config);
 
         result.setResults(marshallIntoObjects(parameters));
@@ -2247,7 +2250,7 @@ public class DynamoDBMapper {
             DynamoDBMapperConfig config) {
         config = mergeConfig(config);
 
-        ScanRequest scanRequest = createScanRequestFromExpression(clazz, scanExpression, config);
+        final ScanRequest scanRequest = createScanRequestFromExpression(clazz, scanExpression, config);
         scanRequest.setSelect(Select.COUNT);
 
         // Count scans can also be truncated for large datasets
@@ -2289,7 +2292,7 @@ public class DynamoDBMapper {
             DynamoDBMapperConfig config) {
         config = mergeConfig(config);
 
-        QueryRequest queryRequest = createQueryRequestFromExpression(clazz, queryExpression, config);
+        final QueryRequest queryRequest = createQueryRequestFromExpression(clazz, queryExpression, config);
         queryRequest.setSelect(Select.COUNT);
 
         // Count queries can also be truncated for large datasets
@@ -2309,8 +2312,9 @@ public class DynamoDBMapper {
      * returns the result.
      */
     private DynamoDBMapperConfig mergeConfig(DynamoDBMapperConfig config) {
-        if (config != this.config)
+        if (config != this.config) {
             config = new DynamoDBMapperConfig(this.config, config);
+        }
         return config;
     }
 
@@ -2319,7 +2323,7 @@ public class DynamoDBMapper {
      */
     ScanRequest createScanRequestFromExpression(Class<?> clazz,
             DynamoDBScanExpression scanExpression, DynamoDBMapperConfig config) {
-        ScanRequest scanRequest = new ScanRequest();
+        final ScanRequest scanRequest = new ScanRequest();
         scanRequest.setTableName(getTableName(clazz, config));
         scanRequest.setScanFilter(scanExpression.getScanFilter());
         scanRequest.setLimit(scanExpression.getLimit());
@@ -2354,9 +2358,9 @@ public class DynamoDBMapper {
             log.info("The Segment and TotalSegments parameters specified in the DynamoDBScanExpression are ignored.");
         }
 
-        List<ScanRequest> parallelScanRequests = new LinkedList<ScanRequest>();
+        final List<ScanRequest> parallelScanRequests = new LinkedList<ScanRequest>();
         for (int segment = 0; segment < totalSegments; segment++) {
-            ScanRequest scanRequest = createScanRequestFromExpression(clazz, scanExpression, config);
+            final ScanRequest scanRequest = createScanRequestFromExpression(clazz, scanExpression, config);
             parallelScanRequests.add(scanRequest
                     .withSegment(segment).withTotalSegments(totalSegments)
                     .withExclusiveStartKey(null));
@@ -2366,19 +2370,19 @@ public class DynamoDBMapper {
 
     private <T> QueryRequest createQueryRequestFromExpression(Class<T> clazz,
             DynamoDBQueryExpression<T> queryExpression, DynamoDBMapperConfig config) {
-        QueryRequest queryRequest = new QueryRequest();
+        final QueryRequest queryRequest = new QueryRequest();
         queryRequest.setConsistentRead(queryExpression.isConsistentRead());
         queryRequest.setTableName(getTableName(clazz, queryExpression.getHashKeyValues(), config));
         queryRequest.setIndexName(queryExpression.getIndexName());
 
-        ItemConverter converter = getConverter(config);
+        final ItemConverter converter = getConverter(config);
 
         // Hash key (primary or index) conditions
-        Map<String, Condition> hashKeyConditions = getHashKeyEqualsConditions(
+        final Map<String, Condition> hashKeyConditions = getHashKeyEqualsConditions(
                 converter, queryExpression.getHashKeyValues());
 
         // Range key (primary or index) conditions
-        Map<String, Condition> rangeKeyConditions = queryExpression.getRangeKeyConditions();
+        final Map<String, Condition> rangeKeyConditions = queryExpression.getRangeKeyConditions();
         processKeyConditions(clazz, queryRequest, hashKeyConditions, rangeKeyConditions);
 
         queryRequest.setScanIndexForward(queryExpression.isScanIndexForward());
@@ -2450,7 +2454,7 @@ public class DynamoDBMapper {
         // Range key condition
         String rangeKeyNameForThisQuery = null;
         if (hasRangeKeyCondition) {
-            for (String rangeKeyName : rangeKeyConditions.keySet()) {
+            for (final String rangeKeyName : rangeKeyConditions.keySet()) {
                 rangeKeyNameForThisQuery = rangeKeyName;
 
                 if (reflector.hasPrimaryRangeKey(clazz)
@@ -2458,12 +2462,12 @@ public class DynamoDBMapper {
                     hasPrimaryRangeKeyCondition = true;
                 }
 
-                Collection<String> annotatedLSI = parsedIndexesInfo
+                final Collection<String> annotatedLSI = parsedIndexesInfo
                         .getLsiNamesByIndexRangeKey(rangeKeyName);
                 if (annotatedLSI != null) {
                     annotatedLSIsOnRangeKey.addAll(annotatedLSI);
                 }
-                Collection<String> annotatedGSI = parsedIndexesInfo
+                final Collection<String> annotatedGSI = parsedIndexesInfo
                         .getGsiNamesByIndexRangeKey(rangeKeyName);
                 if (annotatedGSI != null) {
                     annotatedGSIsOnRangeKey.addAll(annotatedGSI);
@@ -2505,12 +2509,12 @@ public class DynamoDBMapper {
         }
 
         // Hash key conditions
-        for (String hashKeyName : hashKeyConditions.keySet()) {
+        for (final String hashKeyName : hashKeyConditions.keySet()) {
             if (hashKeyName.equals(primaryHashKeyName)) {
                 hasPrimaryHashKeyCondition = true;
             }
 
-            Collection<String> annotatedGSINames = parsedIndexesInfo
+            final Collection<String> annotatedGSINames = parsedIndexesInfo
                     .getGsiNamesByIndexHashKey(hashKeyName);
             annotatedGSIsOnHashKeys.put(hashKeyName,
                     annotatedGSINames == null ? new HashSet<String>() : new HashSet<String>(
@@ -2547,7 +2551,7 @@ public class DynamoDBMapper {
         }
 
         // Collate all the key conditions
-        Map<String, Condition> keyConditions = new HashMap<String, Condition>();
+        final Map<String, Condition> keyConditions = new HashMap<String, Condition>();
 
         // With user-provided index name
         if (userProvidedIndexName != null) {
@@ -2584,7 +2588,7 @@ public class DynamoDBMapper {
                     // range key
                     // with the set of indexes applicable to each hash key
                     // condition.
-                    for (String hashKeyName : annotatedGSIsOnHashKeys.keySet()) {
+                    for (final String hashKeyName : annotatedGSIsOnHashKeys.keySet()) {
                         boolean foundValidQueryExpressionWithInferredIndex = false;
                         String indexNameInferredByThisHashKey = null;
                         if (hashKeyName.equals(primaryHashKeyName)) {
@@ -2597,7 +2601,7 @@ public class DynamoDBMapper {
                             }
                         }
 
-                        Set<String> annotatedGSIsOnHashKey = annotatedGSIsOnHashKeys
+                        final Set<String> annotatedGSIsOnHashKey = annotatedGSIsOnHashKeys
                                 .get(hashKeyName);
                         // We don't need the data in annotatedGSIsOnHashKeys
                         // afterwards,
@@ -2664,7 +2668,7 @@ public class DynamoDBMapper {
 
                 } else {
                     // Only one hash key condition
-                    String hashKeyName = annotatedGSIsOnHashKeys.keySet().iterator().next();
+                    final String hashKeyName = annotatedGSIsOnHashKeys.keySet().iterator().next();
                     if (!hasPrimaryHashKeyCondition) {
                         if (annotatedGSIsOnHashKeys.get(hashKeyName).size() == 1) {
                             // Set the index if the index hash key is only
@@ -2724,11 +2728,11 @@ public class DynamoDBMapper {
             final String tableName,
             final DynamoDBMapperConfig mapperConfig
             ) {
-        List<AttributeTransformer.Parameters<T>> rval =
+        final List<AttributeTransformer.Parameters<T>> rval =
                 new ArrayList<AttributeTransformer.Parameters<T>>(
                         attributeValues.size());
 
-        for (Map<String, AttributeValue> item : attributeValues) {
+        for (final Map<String, AttributeValue> item : attributeValues) {
             rval.add(toParameters(item, modelClass, tableName, mapperConfig));
         }
 
@@ -2796,7 +2800,7 @@ public class DynamoDBMapper {
         @Override
         public String getHashKeyName() {
             if (hashKeyName == null) {
-                Method hashKeyGetter = reflector.getPrimaryHashKeyGetter(modelClass);
+                final Method hashKeyGetter = reflector.getPrimaryHashKeyGetter(modelClass);
                 hashKeyName = reflector.getAttributeName(hashKeyGetter);
             }
             return hashKeyName;
@@ -2805,7 +2809,7 @@ public class DynamoDBMapper {
         @Override
         public String getRangeKeyName() {
             if (rangeKeyName == null) {
-                Method rangeKeyGetter =
+                final Method rangeKeyGetter =
                         reflector.getPrimaryRangeKeyGetter(modelClass);
                 if (rangeKeyGetter == null) {
                     rangeKeyName = NO_RANGE_KEY;
@@ -2849,18 +2853,18 @@ public class DynamoDBMapper {
             ) {
         Map<String, AttributeValue> item = convertToItem(updateValues);
 
-        HashSet<String> keysAdded = new HashSet<String>();
-        for (Map.Entry<String, AttributeValue> e : keys.entrySet()) {
+        final HashSet<String> keysAdded = new HashSet<String>();
+        for (final Map.Entry<String, AttributeValue> e : keys.entrySet()) {
             if (!item.containsKey(e.getKey())) {
                 keysAdded.add(e.getKey());
                 item.put(e.getKey(), e.getValue());
             }
         }
 
-        AttributeTransformer.Parameters<?> parameters =
+        final AttributeTransformer.Parameters<?> parameters =
                 toParameters(item, true, clazz, tableName, config);
 
-        String hashKey = parameters.getHashKeyName();
+        final String hashKey = parameters.getHashKeyName();
 
         if (!item.containsKey(hashKey)) {
             item.put(hashKey, keys.get(hashKey));
@@ -2868,14 +2872,14 @@ public class DynamoDBMapper {
 
         item = transformAttributes(parameters);
 
-        for (Map.Entry<String, AttributeValue> entry : item.entrySet()) {
+        for (final Map.Entry<String, AttributeValue> entry : item.entrySet()) {
             if (keysAdded.contains(entry.getKey())) {
                 // This was added in for context before calling
                 // transformAttributes, but isn't actually being changed.
                 continue;
             }
 
-            AttributeValueUpdate update = updateValues.get(entry.getKey());
+            final AttributeValueUpdate update = updateValues.get(entry.getKey());
             if (update != null) {
                 update.getValue()
                         .withB(entry.getValue().getB())
@@ -2895,9 +2899,9 @@ public class DynamoDBMapper {
     }
 
     ItemConverter getConverter(DynamoDBMapperConfig config) {
-        ConversionSchema schema = config.getConversionSchema();
+        final ConversionSchema schema = config.getConversionSchema();
 
-        ConversionSchema.Dependencies params = new ConversionSchema.Dependencies()
+        final ConversionSchema.Dependencies params = new ConversionSchema.Dependencies()
                 .with(DynamoDBReflector.class, reflector)
                 .with(S3ClientCache.class, s3cc);
 
@@ -2909,15 +2913,15 @@ public class DynamoDBMapper {
             return;
         }
 
-        Random random = new Random();
+        final Random random = new Random();
         long delay = 0;
-        long scaleFactor = 500 + random.nextInt(100);
+        final long scaleFactor = 500 + random.nextInt(100);
         delay = (long) (Math.pow(2, retries) * scaleFactor);
         delay = Math.min(delay, MAX_BACKOFF_IN_MILLISECONDS);
 
         try {
             Thread.sleep(delay);
-        } catch (InterruptedException e) {
+        } catch (final InterruptedException e) {
             Thread.currentThread().interrupt();
             throw new AmazonClientException(e.getMessage(), e);
         }
@@ -2948,12 +2952,12 @@ public class DynamoDBMapper {
         }
 
         // Start from a copy of the internal conditions
-        Map<String, ExpectedAttributeValue> mergedExpectedValues =
+        final Map<String, ExpectedAttributeValue> mergedExpectedValues =
                 new HashMap<String, ExpectedAttributeValue>(internalAssertions);
 
         // Remove internal conditions that are going to be overlaid by
         // user-provided ones.
-        for (String attrName : userProvidedConditions.keySet()) {
+        for (final String attrName : userProvidedConditions.keySet()) {
             mergedExpectedValues.remove(attrName);
         }
 
@@ -3058,7 +3062,7 @@ public class DynamoDBMapper {
      * the default projection type - KEY_ONLY.
      */
     public CreateTableRequest generateCreateTableRequest(Class<?> clazz) {
-        ItemConverter converter = getConverter(config);
+        final ItemConverter converter = getConverter(config);
         return schemaParser.parseTablePojoToCreateTableRequest(
                 clazz, config, reflector, converter);
     }

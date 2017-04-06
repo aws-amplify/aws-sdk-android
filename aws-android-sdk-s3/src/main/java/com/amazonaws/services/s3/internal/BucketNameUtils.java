@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
 
 package com.amazonaws.services.s3.internal;
 
+import java.util.regex.Pattern;
+
 /**
  * Utilities for working with Amazon S3 bucket names, such as validation and
  * checked to see if they are compatible with DNS addressing.
@@ -23,6 +25,8 @@ public enum BucketNameUtils {
     ;
     private static final int MIN_BUCKET_NAME_LENGTH = 3;
     private static final int MAX_BUCKET_NAME_LENGTH = 63;
+
+    private static final Pattern ipAddressPattern = Pattern.compile("(\\d+\\.){3}\\d+");
 
     /**
      * Validates that the specified bucket name is valid for Amazon S3 V2 naming
@@ -85,13 +89,20 @@ public enum BucketNameUtils {
 
             return exception(
                     throwOnError,
-                    "Bucket name should be between 3 and 63 characters long");
+                    "Bucket name should be between " + MIN_BUCKET_NAME_LENGTH + " and "
+                            + MAX_BUCKET_NAME_LENGTH + " characters long");
+        }
+
+        if (ipAddressPattern.matcher(bucketName).matches()) {
+            return exception(
+                    throwOnError,
+                    "Bucket name must not be formatted as an IP Address");
         }
 
         char previous = '\0';
 
         for (int i = 0; i < bucketName.length(); ++i) {
-            char next = bucketName.charAt(i);
+            final char next = bucketName.charAt(i);
 
             if (next >= 'A' && next <= 'Z') {
                 return exception(
@@ -106,6 +117,11 @@ public enum BucketNameUtils {
             }
 
             if (next == '.') {
+                if (previous == '\0') {
+                    return exception(
+                            throwOnError,
+                            "Bucket name should not begin with a period");
+                }
                 if (previous == '.') {
                     return exception(
                             throwOnError,
@@ -116,17 +132,16 @@ public enum BucketNameUtils {
                             throwOnError,
                             "Bucket name should not contain dashes next to periods");
                 }
-                /**
-                 * . in bucket name may cause host name verification failure
-                 * when using virtual host style addressing. return false to
-                 * fall back to path style addressing.
-                 */
-                return false;
             } else if (next == '-') {
                 if (previous == '.') {
                     return exception(
                             throwOnError,
                             "Bucket name should not contain dashes next to periods");
+                }
+                if (previous == '\0') {
+                    return exception(
+                            throwOnError,
+                            "Bucket name should not begin with a '-'");
                 }
             } else if ((next < '0')
                     || (next > '9' && next < 'a')
@@ -144,6 +159,12 @@ public enum BucketNameUtils {
             return exception(
                     throwOnError,
                     "Bucket name should not end with '-' or '.'");
+        }
+
+        // if it contains . then its not a valid dns name but its a valid bucket
+        // name
+        if (bucketName.contains(".")) {
+            return false;
         }
 
         return true;

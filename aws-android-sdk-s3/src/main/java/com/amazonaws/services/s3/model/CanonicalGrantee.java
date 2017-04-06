@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Portions copyright 2006-2009 James Murty. Please see LICENSE.txt
  * for applicable license terms and NOTICE.txt for applicable notices.
@@ -18,6 +18,8 @@
 
 package com.amazonaws.services.s3.model;
 
+import java.io.Serializable;
+
 /**
  * Represents a grantee identified by their canonical Amazon ID. The canonical
  * Amazon ID can be thought of as an Amazon-internal ID specific to a user. For
@@ -31,7 +33,7 @@ package com.amazonaws.services.s3.model;
  *
  * @see CanonicalGrantee#CanonicalGrantee(String)
  */
-public class CanonicalGrantee implements Grantee {
+public class CanonicalGrantee implements Grantee,Serializable {
     private String id = null;
     private String displayName = null;
 
@@ -105,7 +107,7 @@ public class CanonicalGrantee implements Grantee {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof CanonicalGrantee) {
-            CanonicalGrantee canonicalGrantee = (CanonicalGrantee) obj;
+            final CanonicalGrantee canonicalGrantee = (CanonicalGrantee) obj;
             return id.equals(canonicalGrantee.id);
         }
         return false;

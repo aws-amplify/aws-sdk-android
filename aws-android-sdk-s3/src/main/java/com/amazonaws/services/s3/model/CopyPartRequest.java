@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.internal.Constants;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,7 +40,8 @@ import java.util.List;
  * @see AmazonS3Client#uploadPart(UploadPartRequest)
  * @see CopyPartResult
  */
-public class CopyPartRequest extends AmazonWebServiceRequest implements S3AccelerateUnsupported {
+public class CopyPartRequest extends AmazonWebServiceRequest implements Serializable,
+                                                                        S3AccelerateUnsupported {
 
     /**
      * The upload id of the multipart upload into which to copy this part.
@@ -552,6 +554,14 @@ public class CopyPartRequest extends AmazonWebServiceRequest implements S3Accele
     }
 
     /**
+     * Fluent API for {@link #setMatchingETagConstraints(List)}.
+     */
+    public CopyPartRequest withMatchingETagConstraints(List<String> eTagList) {
+        setMatchingETagConstraints(eTagList);
+        return this;
+    }
+
+    /**
      * <p>
      * Adds a single ETag constraint to this request and returns this object,
      * enabling additional method calls to be chained together. Multiple ETag
@@ -615,6 +625,14 @@ public class CopyPartRequest extends AmazonWebServiceRequest implements S3Accele
     public void setNonmatchingETagConstraints(List<String> eTagList) {
         this.nonmatchingEtagConstraints.clear();
         this.nonmatchingEtagConstraints.addAll(eTagList);
+    }
+
+    /**
+     * Fluent API for {@link #setNonmatchingETagConstraints(List)}.
+     */
+    public CopyPartRequest withNonmatchingETagConstraints(List<String> eTagList) {
+        setNonmatchingETagConstraints(eTagList);
+        return this;
     }
 
     /**

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -17,15 +17,17 @@ package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.AmazonS3;
 
+import java.io.Serializable;
+
 /**
  * Represents the versioning configuration for a bucket.
  * <p>
  * A bucket's versioning configuration can be in one of three possible states:
- * <ul>
- * <li>{@link BucketVersioningConfiguration#OFF}
- * <li>{@link BucketVersioningConfiguration#ENABLED}
- * <li>{@link BucketVersioningConfiguration#SUSPENDED}
- * </ul>
+ *  <ul>
+ *      <li>{@link BucketVersioningConfiguration#OFF}</li>
+ *      <li>{@link BucketVersioningConfiguration#ENABLED}</li>
+ *      <li>{@link BucketVersioningConfiguration#SUSPENDED}</li>
+ *  </ul>
  * </p>
  * <p>
  * By default, new buckets are in the {@link BucketVersioningConfiguration#OFF
@@ -61,7 +63,7 @@ import com.amazonaws.services.s3.AmazonS3;
  * @see AmazonS3#getBucketVersioningConfiguration(String)
  * @see AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)
  */
-public class BucketVersioningConfiguration {
+public class BucketVersioningConfiguration implements Serializable {
 
     /**
      * S3 bucket versioning status indicating that versioning is off for a

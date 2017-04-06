@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -37,8 +37,8 @@ public class S3ObjectResponseHandler extends AbstractS3ResponseHandler<S3Object>
          * TODO: It'd be nice to set the bucket name and key here, but the
          * information isn't easy to pull out of the response/request currently.
          */
-        S3Object object = new S3Object();
-        AmazonWebServiceResponse<S3Object> awsResponse = parseResponseMetadata(response);
+        final S3Object object = new S3Object();
+        final AmazonWebServiceResponse<S3Object> awsResponse = parseResponseMetadata(response);
         if (response.getHeaders().get(Headers.REDIRECT_LOCATION) != null) {
             object.setRedirectLocation(response.getHeaders().get(Headers.REDIRECT_LOCATION));
         }
@@ -47,7 +47,12 @@ public class S3ObjectResponseHandler extends AbstractS3ResponseHandler<S3Object>
         if (response.getHeaders().get(Headers.REQUESTER_CHARGED_HEADER) != null) {
             object.setRequesterCharged(true);
         }
-        ObjectMetadata metadata = object.getObjectMetadata();
+
+        if (response.getHeaders().get(Headers.S3_TAGGING_COUNT) != null) {
+            object.setTaggingCount(Integer.parseInt(response.getHeaders().get(Headers.S3_TAGGING_COUNT)));
+        }
+
+        final ObjectMetadata metadata = object.getObjectMetadata();
         populateObjectMetadata(response, metadata);
 
         object.setObjectContent(new S3ObjectInputStream(response.getContent()));

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ public class DisableKeyRequest extends AmazonWebServiceRequest implements Serial
      * </li>
      * <li>
      * <p>
-     * ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-
+     * ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-
      * 56ef-1234567890ab
      * </p>
      * </li>
@@ -73,7 +73,7 @@ public class DisableKeyRequest extends AmazonWebServiceRequest implements Serial
      * </li>
      * <li>
      * <p>
-     * ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-
+     * ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-
      * 56ef-1234567890ab
      * </p>
      * </li>
@@ -97,7 +97,7 @@ public class DisableKeyRequest extends AmazonWebServiceRequest implements Serial
      *         </li>
      *         <li>
      *         <p>
-     *         ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-
+     *         ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-
      *         56ef-1234567890ab
      *         </p>
      *         </li>
@@ -123,7 +123,7 @@ public class DisableKeyRequest extends AmazonWebServiceRequest implements Serial
      * </li>
      * <li>
      * <p>
-     * ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-
+     * ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-
      * 56ef-1234567890ab
      * </p>
      * </li>
@@ -148,7 +148,7 @@ public class DisableKeyRequest extends AmazonWebServiceRequest implements Serial
      *            <li>
      *            <p>
      *            ARN:
-     *            arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-
+     *            arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-
      *            56ef-1234567890ab
      *            </p>
      *            </li>
@@ -174,7 +174,7 @@ public class DisableKeyRequest extends AmazonWebServiceRequest implements Serial
      * </li>
      * <li>
      * <p>
-     * ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-
+     * ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-
      * 56ef-1234567890ab
      * </p>
      * </li>
@@ -202,7 +202,7 @@ public class DisableKeyRequest extends AmazonWebServiceRequest implements Serial
      *            <li>
      *            <p>
      *            ARN:
-     *            arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-
+     *            arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-
      *            56ef-1234567890ab
      *            </p>
      *            </li>

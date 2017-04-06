@@ -20,7 +20,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.Request;
 import com.amazonaws.auth.AWS4Signer;
@@ -63,7 +62,7 @@ public class DefaultSigningMethodTest {
             EXTRACT_REGION_NAME = AWS4Signer.class
                     .getDeclaredMethod("extractRegionName", URI.class);
             EXTRACT_REGION_NAME.setAccessible(true);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             fail("Failed to set up the internal methods of AmazonS3Clinet" + e.getMessage());
         }
     }
@@ -81,7 +80,7 @@ public class DefaultSigningMethodTest {
      */
     @Test
     public void testBJSDefaultSigning() {
-        AmazonS3Client s3 = new AmazonS3Client();
+        final AmazonS3Client s3 = new AmazonS3Client();
         s3.setEndpoint("s3.cn-north-1.amazonaws.com.cn");
         assertSigV4WithRegion(s3, "cn-north-1");
 
@@ -93,52 +92,22 @@ public class DefaultSigningMethodTest {
     }
 
     /**
-     * Tests the behavior when using S3 standard endpoint without providing
-     * region override.
-     */
-    @Test
-    public void testStandardEndpointWithoutRegionOverride() {
-        AmazonS3Client s3 = new AmazonS3Client();
-        s3.setEndpoint("s3.amazonaws.com");
-        // SigV2 by default
-        assertSigV2(s3);
-
-        // EnforeceV4 is not allowed since no region is specified
-        System.setProperty("com.amazonaws.services.s3.enforceV4", "true");
-        try {
-            invokeCreateSigner(s3);
-            fail("AmazonClientException is expected since the region is not specified for the request to 's3.amazonaws.com'");
-        } catch (AmazonClientException expected) {
-        }
-
-        // EnableV4 should fall back to v2 signing
-        clearFlags();
-        System.setProperty("com.amazonaws.services.s3.enableV4", "true");
-        assertSigV2(s3);
-    }
-
-    /**
      * Tests the behavior when using S3 standard endpoint with explicit region.
      */
     @Test
     public void testStandardEndpointWithRegionOverride() {
-        AmazonS3Client s3 = new AmazonS3Client();
+        final AmazonS3Client s3 = new AmazonS3Client();
         // Explicitly setting a regionName, now it defaults to sigv2, but sigv4
         // is allowed to be turned on by enforceV4.
         s3.setEndpoint("s3.amazonaws.com", "s3", "us-west-1");
 
         // Default to SigV2
-        assertSigV2(s3);
+        assertSigV4WithRegion(s3, "us-west-1");
         // "Enforce" v4 signing should work.
         System.setProperty("com.amazonaws.services.s3.enforceV4", "true");
         assertSigV4WithRegion(s3, "us-west-1");
         s3.setEndpoint("s3.amazonaws.com", "s3", "eu-west-1");
         assertSigV4WithRegion(s3, "eu-west-1");
-
-        // "enableV4" should fall back to SigV2.
-        clearFlags();
-        System.setProperty("com.amazonaws.services.s3.enableV4", "true");
-        assertSigV2(s3);
     }
 
     /**
@@ -159,7 +128,7 @@ public class DefaultSigningMethodTest {
 
     private void testSigV4WithRegionDefaultSigning(String endpoint, String expectedRegionName) {
         clearFlags();
-        AmazonS3Client s3 = new AmazonS3Client();
+        final AmazonS3Client s3 = new AmazonS3Client();
         s3.setEndpoint(endpoint);
         assertSigV4WithRegion(s3, expectedRegionName);
 
@@ -183,32 +152,32 @@ public class DefaultSigningMethodTest {
      * Returns whether the created signer is in SigV4.
      */
     private static void assertSigV4WithRegion(AmazonS3Client s3, String expectedRegion) {
-        Signer signer = invokeCreateSigner(s3);
+        final Signer signer = invokeCreateSigner(s3);
         assertTrue(signer instanceof AWSS3V4Signer);
         assertEquals(expectedRegion, invokeExtractRegionName(s3, (AWSS3V4Signer) signer));
         testSignAnonymously(s3);
     }
 
     private static void assertSigV2(AmazonS3Client s3) {
-        Signer signer = invokeCreateSigner(s3);
+        final Signer signer = invokeCreateSigner(s3);
         assertFalse(signer instanceof AWSS3V4Signer);
     }
 
     private static Request<?> createFakeGetObjectRequest(AmazonS3Client s3) {
         try {
-            GetObjectRequest fakeRequest = new GetObjectRequest(FAKE_BUCKET, FAKE_KEY);
-            Request<?> fakeGetObjectRequest = (Request<?>) CREATE_REQUEST.invoke(s3, FAKE_BUCKET,
+            final GetObjectRequest fakeRequest = new GetObjectRequest(FAKE_BUCKET, FAKE_KEY);
+            final Request<?> fakeGetObjectRequest = (Request<?>) CREATE_REQUEST.invoke(s3, FAKE_BUCKET,
                     FAKE_KEY, fakeRequest, HttpMethodName.GET);
 
             return fakeGetObjectRequest;
-        } catch (Exception e) {
+        } catch (final Exception e) {
             fail("Exception when calling the private \"createRequest\" method. " + e.getMessage());
             return null;
         }
     }
 
     private static Signer invokeCreateSigner(AmazonS3Client s3) {
-        Request<?> fakeGetObjectRequest = createFakeGetObjectRequest(s3);
+        final Request<?> fakeGetObjectRequest = createFakeGetObjectRequest(s3);
 
         return s3.createSigner(fakeGetObjectRequest, FAKE_BUCKET, FAKE_KEY);
     }
@@ -217,7 +186,7 @@ public class DefaultSigningMethodTest {
         try {
             return (String) EXTRACT_REGION_NAME.invoke(signer, createFakeGetObjectRequest(s3)
                     .getEndpoint());
-        } catch (Exception e) {
+        } catch (final Exception e) {
             fail("Exception when calling the private \"extractRegionName\" method on AWS4Signer. "
                     + e.getMessage());
             return null;
@@ -225,8 +194,8 @@ public class DefaultSigningMethodTest {
     }
 
     private static void testSignAnonymously(AmazonS3Client s3) {
-        Request<?> fakeGetObjectRequest = createFakeGetObjectRequest(s3);
-        Signer signer = s3.createSigner(fakeGetObjectRequest, FAKE_BUCKET, FAKE_KEY);
+        final Request<?> fakeGetObjectRequest = createFakeGetObjectRequest(s3);
+        final Signer signer = s3.createSigner(fakeGetObjectRequest, FAKE_BUCKET, FAKE_KEY);
         signer.sign(fakeGetObjectRequest, new AnonymousAWSCredentials());
     }
 }

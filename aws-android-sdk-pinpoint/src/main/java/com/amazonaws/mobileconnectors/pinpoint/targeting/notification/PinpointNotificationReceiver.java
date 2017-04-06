@@ -1,5 +1,5 @@
 /**
- * Copyright 2016-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,10 +35,11 @@ public class PinpointNotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (weakNotificationClient != null) {
+            String prefix = NotificationClient.CAMPAIGN_PUSH_KEY_PREFIX;
             Map<String, String> campaignAttributes = new HashMap<String, String>();
-            campaignAttributes.put(NotificationClient.CAMPAIGN_ID_ATTRIBUTE_KEY, intent.getStringExtra(NotificationClient.CAMPAIGN_ID_ATTRIBUTE_KEY));
-            campaignAttributes.put(NotificationClient.CAMPAIGN_TREATMENT_ID_ATTRIBUTE_KEY, intent.getStringExtra(NotificationClient.CAMPAIGN_TREATMENT_ID_ATTRIBUTE_KEY));
-            campaignAttributes.put(NotificationClient.CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY, intent.getStringExtra(NotificationClient.CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY));
+            campaignAttributes.put(NotificationClient.CAMPAIGN_ID_ATTRIBUTE_KEY, intent.getStringExtra(prefix.concat(NotificationClient.CAMPAIGN_ID_ATTRIBUTE_KEY)));
+            campaignAttributes.put(NotificationClient.CAMPAIGN_TREATMENT_ID_ATTRIBUTE_KEY, intent.getStringExtra(prefix.concat(NotificationClient.CAMPAIGN_TREATMENT_ID_ATTRIBUTE_KEY)));
+            campaignAttributes.put(NotificationClient.CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY, intent.getStringExtra(prefix.concat(NotificationClient.CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY)));
             weakNotificationClient.get().handleNotificationOpen(campaignAttributes, intent.getExtras());
         } else {
             PackageManager pm = context.getPackageManager();

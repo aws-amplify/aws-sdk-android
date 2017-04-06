@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -17,6 +17,9 @@ package com.amazonaws.services.s3;
 
 import static com.amazonaws.util.LengthCheckInputStream.EXCLUDE_SKIPPED_BYTES;
 import static com.amazonaws.util.LengthCheckInputStream.INCLUDE_SKIPPED_BYTES;
+import static com.amazonaws.util.ValidationUtils.assertNotNull;
+import static com.amazonaws.util.ValidationUtils.assertParameterNotNull;
+import static com.amazonaws.util.ValidationUtils.assertStringNotEmpty;
 
 import com.amazonaws.AbortedException;
 import com.amazonaws.AmazonClientException;
@@ -30,7 +33,6 @@ import com.amazonaws.DefaultRequest;
 import com.amazonaws.HttpMethod;
 import com.amazonaws.Request;
 import com.amazonaws.Response;
-import com.amazonaws.SDKGlobalConfiguration;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
@@ -52,11 +54,16 @@ import com.amazonaws.internal.StaticCredentialsProvider;
 import com.amazonaws.metrics.AwsSdkMetrics;
 import com.amazonaws.metrics.RequestMetricCollector;
 import com.amazonaws.regions.RegionUtils;
+import com.amazonaws.retry.PredefinedRetryPolicies;
+import com.amazonaws.retry.RetryPolicy;
 import com.amazonaws.services.s3.internal.AWSS3V4Signer;
 import com.amazonaws.services.s3.internal.BucketNameUtils;
+import com.amazonaws.services.s3.internal.CompleteMultipartUploadRetryCondition;
 import com.amazonaws.services.s3.internal.Constants;
+import com.amazonaws.services.s3.internal.DeleteObjectTaggingHeaderHandler;
 import com.amazonaws.services.s3.internal.DeleteObjectsResponse;
 import com.amazonaws.services.s3.internal.DigestValidationInputStream;
+import com.amazonaws.services.s3.internal.GetObjectTaggingResponseHeaderHandler;
 import com.amazonaws.services.s3.internal.InputSubstream;
 import com.amazonaws.services.s3.internal.MD5DigestCalculatingInputStream;
 import com.amazonaws.services.s3.internal.ObjectExpirationHeaderHandler;
@@ -67,111 +74,27 @@ import com.amazonaws.services.s3.internal.S3ExecutionContext;
 import com.amazonaws.services.s3.internal.S3MetadataResponseHandler;
 import com.amazonaws.services.s3.internal.S3ObjectResponseHandler;
 import com.amazonaws.services.s3.internal.S3QueryStringSigner;
+import com.amazonaws.services.s3.internal.S3RequesterChargedHeaderHandler;
 import com.amazonaws.services.s3.internal.S3Signer;
 import com.amazonaws.services.s3.internal.S3StringResponseHandler;
 import com.amazonaws.services.s3.internal.S3VersionHeaderHandler;
 import com.amazonaws.services.s3.internal.S3XmlResponseHandler;
 import com.amazonaws.services.s3.internal.ServerSideEncryptionHeaderHandler;
 import com.amazonaws.services.s3.internal.ServiceUtils;
+import com.amazonaws.services.s3.internal.SetObjectTaggingResponseHeaderHandler;
 import com.amazonaws.services.s3.internal.XmlWriter;
 import com.amazonaws.services.s3.metrics.S3ServiceMetric;
-import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
-import com.amazonaws.services.s3.model.AccessControlList;
-import com.amazonaws.services.s3.model.AmazonS3Exception;
-import com.amazonaws.services.s3.model.Bucket;
-import com.amazonaws.services.s3.model.BucketAccelerateConfiguration;
-import com.amazonaws.services.s3.model.BucketCrossOriginConfiguration;
-import com.amazonaws.services.s3.model.BucketLifecycleConfiguration;
-import com.amazonaws.services.s3.model.BucketLoggingConfiguration;
-import com.amazonaws.services.s3.model.BucketNotificationConfiguration;
-import com.amazonaws.services.s3.model.BucketPolicy;
-import com.amazonaws.services.s3.model.BucketReplicationConfiguration;
-import com.amazonaws.services.s3.model.BucketTaggingConfiguration;
-import com.amazonaws.services.s3.model.BucketVersioningConfiguration;
-import com.amazonaws.services.s3.model.BucketWebsiteConfiguration;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
-import com.amazonaws.services.s3.model.CompleteMultipartUploadRequest;
-import com.amazonaws.services.s3.model.CompleteMultipartUploadResult;
-import com.amazonaws.services.s3.model.CopyObjectRequest;
-import com.amazonaws.services.s3.model.CopyObjectResult;
-import com.amazonaws.services.s3.model.CopyPartRequest;
-import com.amazonaws.services.s3.model.CopyPartResult;
-import com.amazonaws.services.s3.model.CreateBucketRequest;
-import com.amazonaws.services.s3.model.DeleteBucketCrossOriginConfigurationRequest;
-import com.amazonaws.services.s3.model.DeleteBucketLifecycleConfigurationRequest;
-import com.amazonaws.services.s3.model.DeleteBucketPolicyRequest;
-import com.amazonaws.services.s3.model.DeleteBucketReplicationConfigurationRequest;
-import com.amazonaws.services.s3.model.DeleteBucketRequest;
-import com.amazonaws.services.s3.model.DeleteBucketTaggingConfigurationRequest;
-import com.amazonaws.services.s3.model.DeleteBucketWebsiteConfigurationRequest;
-import com.amazonaws.services.s3.model.DeleteObjectRequest;
-import com.amazonaws.services.s3.model.DeleteObjectsRequest;
-import com.amazonaws.services.s3.model.DeleteObjectsResult;
-import com.amazonaws.services.s3.model.DeleteVersionRequest;
-import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
-import com.amazonaws.services.s3.model.GenericBucketRequest;
-import com.amazonaws.services.s3.model.GetBucketAccelerateConfigurationRequest;
-import com.amazonaws.services.s3.model.GetBucketAclRequest;
-import com.amazonaws.services.s3.model.GetBucketLocationRequest;
-import com.amazonaws.services.s3.model.GetBucketPolicyRequest;
-import com.amazonaws.services.s3.model.GetBucketReplicationConfigurationRequest;
-import com.amazonaws.services.s3.model.GetBucketWebsiteConfigurationRequest;
-import com.amazonaws.services.s3.model.GetObjectMetadataRequest;
-import com.amazonaws.services.s3.model.GetObjectRequest;
-import com.amazonaws.services.s3.model.GetRequestPaymentConfigurationRequest;
-import com.amazonaws.services.s3.model.Grant;
-import com.amazonaws.services.s3.model.Grantee;
-import com.amazonaws.services.s3.model.GroupGrantee;
-import com.amazonaws.services.s3.model.HeadBucketRequest;
-import com.amazonaws.services.s3.model.HeadBucketResult;
-import com.amazonaws.services.s3.model.InitiateMultipartUploadRequest;
-import com.amazonaws.services.s3.model.InitiateMultipartUploadResult;
-import com.amazonaws.services.s3.model.ListBucketsRequest;
-import com.amazonaws.services.s3.model.ListMultipartUploadsRequest;
-import com.amazonaws.services.s3.model.ListObjectsRequest;
-import com.amazonaws.services.s3.model.ListObjectsV2Request;
-import com.amazonaws.services.s3.model.ListObjectsV2Result;
-import com.amazonaws.services.s3.model.ListPartsRequest;
-import com.amazonaws.services.s3.model.ListVersionsRequest;
-import com.amazonaws.services.s3.model.MultiFactorAuthentication;
-import com.amazonaws.services.s3.model.MultiObjectDeleteException;
-import com.amazonaws.services.s3.model.MultipartUploadListing;
-import com.amazonaws.services.s3.model.ObjectListing;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.Owner;
-import com.amazonaws.services.s3.model.PartListing;
-import com.amazonaws.services.s3.model.Permission;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.PutObjectResult;
-import com.amazonaws.services.s3.model.Region;
-import com.amazonaws.services.s3.model.RequestPaymentConfiguration;
+import com.amazonaws.services.s3.model.*;
 import com.amazonaws.services.s3.model.RequestPaymentConfiguration.Payer;
-import com.amazonaws.services.s3.model.ResponseHeaderOverrides;
-import com.amazonaws.services.s3.model.RestoreObjectRequest;
-import com.amazonaws.services.s3.model.S3AccelerateUnsupported;
-import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.services.s3.model.S3ObjectInputStream;
-import com.amazonaws.services.s3.model.SSECustomerKey;
-import com.amazonaws.services.s3.model.SetBucketAccelerateConfigurationRequest;
-import com.amazonaws.services.s3.model.SetBucketAclRequest;
-import com.amazonaws.services.s3.model.SetBucketCrossOriginConfigurationRequest;
-import com.amazonaws.services.s3.model.SetBucketLifecycleConfigurationRequest;
-import com.amazonaws.services.s3.model.SetBucketLoggingConfigurationRequest;
-import com.amazonaws.services.s3.model.SetBucketNotificationConfigurationRequest;
-import com.amazonaws.services.s3.model.SetBucketPolicyRequest;
-import com.amazonaws.services.s3.model.SetBucketReplicationConfigurationRequest;
-import com.amazonaws.services.s3.model.SetBucketTaggingConfigurationRequest;
-import com.amazonaws.services.s3.model.SetBucketVersioningConfigurationRequest;
-import com.amazonaws.services.s3.model.SetBucketWebsiteConfigurationRequest;
-import com.amazonaws.services.s3.model.SetRequestPaymentConfigurationRequest;
-import com.amazonaws.services.s3.model.StorageClass;
-import com.amazonaws.services.s3.model.UploadPartRequest;
-import com.amazonaws.services.s3.model.UploadPartResult;
-import com.amazonaws.services.s3.model.VersionListing;
+import com.amazonaws.services.s3.model.analytics.AnalyticsConfiguration;
+import com.amazonaws.services.s3.model.inventory.InventoryConfiguration;
+import com.amazonaws.services.s3.model.metrics.MetricsConfiguration;
 import com.amazonaws.services.s3.model.transform.AclXmlFactory;
 import com.amazonaws.services.s3.model.transform.BucketConfigurationXmlFactory;
+import com.amazonaws.services.s3.model.transform.BucketNotificationConfigurationStaxUnmarshaller;
 import com.amazonaws.services.s3.model.transform.HeadBucketResultHandler;
 import com.amazonaws.services.s3.model.transform.MultiObjectDeleteXmlFactory;
+import com.amazonaws.services.s3.model.transform.ObjectTaggingXmlFactory;
 import com.amazonaws.services.s3.model.transform.RequestPaymentConfigurationXmlFactory;
 import com.amazonaws.services.s3.model.transform.RequestXmlFactory;
 import com.amazonaws.services.s3.model.transform.Unmarshallers;
@@ -186,8 +109,10 @@ import com.amazonaws.util.Base64;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.HttpUtils;
+import com.amazonaws.util.IOUtils;
 import com.amazonaws.util.LengthCheckInputStream;
 import com.amazonaws.util.Md5Utils;
+import com.amazonaws.util.RuntimeHttpUtils;
 import com.amazonaws.util.ServiceClientHolderInputStream;
 import com.amazonaws.util.StringUtils;
 
@@ -206,8 +131,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -236,6 +163,7 @@ import java.util.regex.Matcher;
  * href="http://aws.amazon.com/s3"> http://aws.amazon.com/s3</a>
  * </p>
  */
+@SuppressWarnings("deprecation")
 public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
     public static final String S3_SERVICE_NAME = "s3";
@@ -284,6 +212,24 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * requests sent by this client.
      */
     volatile String clientRegion;
+
+    private static final int BUCKET_REGION_CACHE_SIZE = 300;
+
+    private static final Map<String, String> bucketRegionCache = Collections.synchronizedMap(
+            new LinkedHashMap<String, String>(BUCKET_REGION_CACHE_SIZE, 1.1f, true) {
+                private static final long serialVersionUID = 23453L;
+
+                @Override
+                protected boolean removeEldestEntry(Map.Entry<String, String> eldest) {
+                    return size() > BUCKET_REGION_CACHE_SIZE;
+                }
+            });
+
+    static Map<String, String> getBucketRegionCache() {
+        return bucketRegionCache;
+    }
+
+    private final CompleteMultipartUploadRetryCondition completeMultipartUploadRetryCondition = new CompleteMultipartUploadRetryCondition();
 
     /**
      * Constructs a new client to invoke service methods on Amazon S3. A
@@ -478,7 +424,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         // calling this.setEndpoint(...) will also modify the signer accordingly
         setEndpoint(Constants.S3_HOSTNAME);
 
-        HandlerChainFactory chainFactory = new HandlerChainFactory();
+        final HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(
                 "/com/amazonaws/services/s3/request.handlers"));
         requestHandler2s.addAll(chainFactory.newRequestHandler2Chain(
@@ -536,12 +482,23 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     @Override
     public VersionListing listNextBatchOfVersions(VersionListing previousVersionListing)
             throws AmazonClientException, AmazonServiceException {
+        return listNextBatchOfVersions(new ListNextBatchOfVersionsRequest(previousVersionListing));
+    }
+
+    @Override
+    public VersionListing listNextBatchOfVersions(
+            ListNextBatchOfVersionsRequest listNextBatchOfVersionsRequest)
+            throws AmazonClientException, AmazonServiceException {
+
         assertParameterNotNull(
-                previousVersionListing,
-                "The previous version listing parameter must be specified when listing the next batch of versions in a bucket");
+                listNextBatchOfVersionsRequest,
+                "The request object parameter must be specified when listing the next batch of versions in a bucket");
+
+        final VersionListing previousVersionListing = listNextBatchOfVersionsRequest
+                .getPreviousVersionListing();
 
         if (!previousVersionListing.isTruncated()) {
-            VersionListing emptyListing = new VersionListing();
+            final VersionListing emptyListing = new VersionListing();
             emptyListing.setBucketName(previousVersionListing.getBucketName());
             emptyListing.setDelimiter(previousVersionListing.getDelimiter());
             emptyListing.setKeyMarker(previousVersionListing.getNextKeyMarker());
@@ -554,14 +511,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             return emptyListing;
         }
 
-        return listVersions(new ListVersionsRequest(
-                previousVersionListing.getBucketName(),
-                previousVersionListing.getPrefix(),
-                previousVersionListing.getNextKeyMarker(),
-                previousVersionListing.getNextVersionIdMarker(),
-                previousVersionListing.getDelimiter(),
-                new Integer(previousVersionListing.getMaxKeys()))
-                .withEncodingType(previousVersionListing.getEncodingType()));
+        return listVersions(listNextBatchOfVersionsRequest.toListVersionsRequest());
     }
 
     /*
@@ -586,7 +536,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             String versionIdMarker, String delimiter, Integer maxKeys)
             throws AmazonClientException, AmazonServiceException {
 
-        ListVersionsRequest request = new ListVersionsRequest()
+        final ListVersionsRequest request = new ListVersionsRequest()
                 .withBucketName(bucketName)
                 .withPrefix(prefix)
                 .withDelimiter(delimiter)
@@ -608,25 +558,36 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(listVersionsRequest.getBucketName(),
                 "The bucket name parameter must be specified when listing versions in a bucket");
 
-        Request<ListVersionsRequest> request = createRequest(listVersionsRequest.getBucketName(),
-                null, listVersionsRequest, HttpMethodName.GET);
+        /**
+         * This flag shows whether we need to url decode S3 key names. This flag
+         * is enabled only when the customers don't explicitly call
+         * {@link listVersionsRequest#setEncodingType(String)}, otherwise, it
+         * will be disabled for maintaining backwards compatibility.
+         */
+        final boolean shouldSDKDecodeResponse = listVersionsRequest.getEncodingType() == null;
+
+        final Request<ListVersionsRequest> request = createRequest(
+                listVersionsRequest.getBucketName(), null, listVersionsRequest, HttpMethodName.GET);
         request.addParameter("versions", null);
 
-        if (listVersionsRequest.getPrefix() != null)
-            request.addParameter("prefix", listVersionsRequest.getPrefix());
-        if (listVersionsRequest.getKeyMarker() != null)
-            request.addParameter("key-marker", listVersionsRequest.getKeyMarker());
-        if (listVersionsRequest.getVersionIdMarker() != null)
-            request.addParameter("version-id-marker", listVersionsRequest.getVersionIdMarker());
-        if (listVersionsRequest.getDelimiter() != null)
-            request.addParameter("delimiter", listVersionsRequest.getDelimiter());
-        if (listVersionsRequest.getMaxResults() != null
-                && listVersionsRequest.getMaxResults().intValue() >= 0)
-            request.addParameter("max-keys", listVersionsRequest.getMaxResults().toString());
-        if (listVersionsRequest.getEncodingType() != null)
-            request.addParameter("encoding-type", listVersionsRequest.getEncodingType());
+        addParameterIfNotNull(request, "prefix",
+                shouldSDKDecodeResponse ? HttpUtils.urlEncode(listVersionsRequest.getPrefix(), true)
+                        : listVersionsRequest.getPrefix());
+        addParameterIfNotNull(request, "key-marker", listVersionsRequest.getKeyMarker());
+        addParameterIfNotNull(request, "version-id-marker",
+                listVersionsRequest.getVersionIdMarker());
+        addParameterIfNotNull(request, "delimiter",
+                shouldSDKDecodeResponse
+                        ? HttpUtils.urlEncode(listVersionsRequest.getDelimiter(), true)
+                        : listVersionsRequest.getDelimiter());
 
-        return invoke(request, new Unmarshallers.VersionListUnmarshaller(),
+        if (listVersionsRequest.getMaxResults() != null
+                && listVersionsRequest.getMaxResults().intValue() >= 0) {
+            request.addParameter("max-keys", listVersionsRequest.getMaxResults().toString());
+        }
+        addParameterIfNotNull(request, "encoding-type", listVersionsRequest.getEncodingType());
+
+        return invoke(request, new Unmarshallers.VersionListUnmarshaller(shouldSDKDecodeResponse),
                 listVersionsRequest.getBucketName(), null);
     }
 
@@ -663,21 +624,33 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(listObjectsRequest.getBucketName(),
                 "The bucket name parameter must be specified when listing objects in a bucket");
 
-        Request<ListObjectsRequest> request = createRequest(listObjectsRequest.getBucketName(),
-                null, listObjectsRequest, HttpMethodName.GET);
-        if (listObjectsRequest.getPrefix() != null)
-            request.addParameter("prefix", listObjectsRequest.getPrefix());
-        if (listObjectsRequest.getMarker() != null)
-            request.addParameter("marker", listObjectsRequest.getMarker());
-        if (listObjectsRequest.getDelimiter() != null)
-            request.addParameter("delimiter", listObjectsRequest.getDelimiter());
-        if (listObjectsRequest.getMaxKeys() != null
-                && listObjectsRequest.getMaxKeys().intValue() >= 0)
-            request.addParameter("max-keys", listObjectsRequest.getMaxKeys().toString());
-        if (listObjectsRequest.getEncodingType() != null)
-            request.addParameter("encoding-type", listObjectsRequest.getEncodingType());
+        /**
+         * This flag shows whether we need to url decode S3 key names. This flag
+         * is enabled only when the customers don't explicitly call
+         * {@link ListObjectsRequest#setEncodingType(String)}, otherwise, it
+         * will be disabled for maintaining backwards compatibility.
+         */
+        final boolean shouldSDKDecodeResponse = listObjectsRequest.getEncodingType() == null;
 
-        return invoke(request, new Unmarshallers.ListObjectsUnmarshaller(),
+        // if the url is encoded, the prefix also has to be encoded.
+        final Request<ListObjectsRequest> request = createRequest(
+                listObjectsRequest.getBucketName(), null, listObjectsRequest, HttpMethodName.GET);
+
+        addParameterIfNotNull(request, "prefix", shouldSDKDecodeResponse
+                ? HttpUtils.urlEncode(listObjectsRequest.getPrefix(), true)
+                : listObjectsRequest.getPrefix());
+        addParameterIfNotNull(request, "marker", listObjectsRequest.getMarker());
+        addParameterIfNotNull(request, "delimiter",
+                shouldSDKDecodeResponse
+                        ? HttpUtils.urlEncode(listObjectsRequest.getDelimiter(), true)
+                        : listObjectsRequest.getDelimiter());
+        addParameterIfNotNull(request, "encoding-type", listObjectsRequest.getEncodingType());
+
+        if (listObjectsRequest.getMaxKeys() != null
+                && listObjectsRequest.getMaxKeys().intValue() >= 0) {
+            request.addParameter("max-keys", listObjectsRequest.getMaxKeys().toString());
+        }
+        return invoke(request, new Unmarshallers.ListObjectsUnmarshaller(shouldSDKDecodeResponse),
                 listObjectsRequest.getBucketName(), null);
     }
 
@@ -699,33 +672,31 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             throws AmazonClientException, AmazonServiceException {
         assertParameterNotNull(listObjectsV2Request.getBucketName(),
                 "The bucket name parameter must be specified when listing objects in a bucket");
-        Request<ListObjectsV2Request> request = createRequest(listObjectsV2Request.getBucketName(),
-                null, listObjectsV2Request, HttpMethodName.GET);
-
+        final Request<ListObjectsV2Request> request = createRequest(
+                listObjectsV2Request.getBucketName(), null, listObjectsV2Request,
+                HttpMethodName.GET);
         /**
          * List type '2' is required to opt-in to listObjectsV2.
          */
         request.addParameter("list-type", "2");
 
-        if (listObjectsV2Request.getStartAfter() != null)
-            request.addParameter("start-after", listObjectsV2Request.getStartAfter());
-        if (listObjectsV2Request.getContinuationToken() != null)
-        request.addParameter("continuation-token",
+        addParameterIfNotNull(request, "start-after", listObjectsV2Request.getStartAfter());
+        addParameterIfNotNull(request, "continuation-token",
                 listObjectsV2Request.getContinuationToken());
-        if (listObjectsV2Request.getDelimiter() != null)
-            request.addParameter("delimiter", listObjectsV2Request.getDelimiter());
-        if (listObjectsV2Request.getMaxKeys() != null
-                && listObjectsV2Request.getMaxKeys().intValue() >= 0)
-            request.addParameter("max-keys", listObjectsV2Request.getMaxKeys().toString());
-        if (listObjectsV2Request.getPrefix() != null)
-            request.addParameter("prefix", listObjectsV2Request.getPrefix());
-        if (listObjectsV2Request.getEncodingType() != null)
-            request.addParameter("encoding-type", listObjectsV2Request.getEncodingType());
-        if (listObjectsV2Request.isFetchOwner())
-            request.addParameter("fetch-owner",
-                    Boolean.toString(listObjectsV2Request.isFetchOwner()));
+        addParameterIfNotNull(request, "delimiter", listObjectsV2Request.getDelimiter());
+        addParameterIfNotNull(request, "max-keys", listObjectsV2Request.getMaxKeys());
+        addParameterIfNotNull(request, "prefix", listObjectsV2Request.getPrefix());
+        addParameterIfNotNull(request, "encoding-type", listObjectsV2Request.getEncodingType());
+        request.addParameter("fetch-owner", Boolean.toString(listObjectsV2Request.isFetchOwner()));
 
-        return invoke(request, new Unmarshallers.ListObjectsV2Unmarshaller(),
+        /**
+         * If URL encoding has been requested from S3 we'll automatically decode
+         * the response.
+         */
+        final boolean shouldSDKDecodeResponse = listObjectsV2Request
+                .getEncodingType() == Constants.URL_ENCODING;
+
+        return invoke(request, new Unmarshallers.ListObjectsV2Unmarshaller(shouldSDKDecodeResponse),
                 listObjectsV2Request.getBucketName(), null);
     }
 
@@ -742,8 +713,20 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 previousObjectListing,
                 "The previous object listing parameter must be specified when listing the next batch of objects in a bucket");
 
+        return listNextBatchOfObjects(new ListNextBatchOfObjectsRequest(previousObjectListing));
+
+    }
+
+
+    @Override
+    public ObjectListing listNextBatchOfObjects(
+            ListNextBatchOfObjectsRequest listNextBatchOfObjectsRequest)
+            throws AmazonClientException, AmazonServiceException {
+
+        final ObjectListing previousObjectListing = listNextBatchOfObjectsRequest.getPreviousObjectListing();
+
         if (!previousObjectListing.isTruncated()) {
-            ObjectListing emptyListing = new ObjectListing();
+            final ObjectListing emptyListing = new ObjectListing();
             emptyListing.setBucketName(previousObjectListing.getBucketName());
             emptyListing.setDelimiter(previousObjectListing.getDelimiter());
             emptyListing.setMarker(previousObjectListing.getNextMarker());
@@ -754,15 +737,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
             return emptyListing;
         }
-
-        return listObjects(new ListObjectsRequest(
-                previousObjectListing.getBucketName(),
-                previousObjectListing.getPrefix(),
-                previousObjectListing.getNextMarker(),
-                previousObjectListing.getDelimiter(),
-                new Integer(previousObjectListing.getMaxKeys()))
-                .withEncodingType(previousObjectListing.getEncodingType()));
+        return listObjects(listNextBatchOfObjectsRequest.toListObjectsRequest());
     }
+
 
     /*
      * (non-Javadoc)
@@ -771,7 +748,19 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     @Override
     public Owner getS3AccountOwner()
             throws AmazonClientException, AmazonServiceException {
-        Request<ListBucketsRequest> request = createRequest(null, null, new ListBucketsRequest(),
+
+        return getS3AccountOwner(new GetS3AccountOwnerRequest());
+
+    }
+
+
+    @Override
+    public Owner getS3AccountOwner(GetS3AccountOwnerRequest getS3AccountOwnerRequest)
+            throws AmazonClientException, AmazonServiceException {
+        assertParameterNotNull(getS3AccountOwnerRequest,
+                "The request object parameter getS3AccountOwnerRequest must be specified.");
+        final Request<ListBucketsRequest> request = createRequest(null, null,
+                new ListBucketsRequest(),
                 HttpMethodName.GET);
         return invoke(request, new Unmarshallers.ListBucketsOwnerUnmarshaller(), null, null);
     }
@@ -783,7 +772,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     @Override
     public List<Bucket> listBuckets(ListBucketsRequest listBucketsRequest)
             throws AmazonClientException, AmazonServiceException {
-        Request<ListBucketsRequest> request = createRequest(null, null, listBucketsRequest,
+        final Request<ListBucketsRequest> request = createRequest(null, null, listBucketsRequest,
                 HttpMethodName.GET);
         return invoke(request, new Unmarshallers.ListBucketsUnmarshaller(), null, null);
     }
@@ -809,11 +798,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             throws AmazonClientException, AmazonServiceException {
         assertParameterNotNull(getBucketLocationRequest,
                 "The request parameter must be specified when requesting a bucket's location");
-        String bucketName = getBucketLocationRequest.getBucketName();
+        final String bucketName = getBucketLocationRequest.getBucketName();
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when requesting a bucket's location");
 
-        Request<GetBucketLocationRequest> request = createRequest(bucketName, null,
+        final Request<GetBucketLocationRequest> request = createRequest(bucketName, null,
                 getBucketLocationRequest, HttpMethodName.GET);
         request.addParameter("location", null);
 
@@ -880,11 +869,12 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when creating a bucket");
 
-        if (bucketName != null)
+        if (bucketName != null) {
             bucketName = bucketName.trim();
+        }
         BucketNameUtils.validateBucketName(bucketName);
 
-        Request<CreateBucketRequest> request = createRequest(bucketName, null, createBucketRequest,
+        final Request<CreateBucketRequest> request = createRequest(bucketName, null, createBucketRequest,
                 HttpMethodName.PUT);
 
         if (createBucketRequest.getAccessControlList() != null) {
@@ -905,7 +895,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 region = RegionUtils
                         .getRegionByEndpoint(this.endpoint.getHost())
                         .getName();
-            } catch (IllegalArgumentException exception) {
+            } catch (final IllegalArgumentException exception) {
                 // Endpoint does not correspond to a known region; send the
                 // request with no location constraint and hope for the best.
             }
@@ -917,12 +907,12 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
          * creating a bucket in the US region.
          */
         if (region != null && !StringUtils.upperCase(region).equals(Region.US_Standard.toString())) {
-            XmlWriter xml = new XmlWriter();
+            final XmlWriter xml = new XmlWriter();
             xml.start("CreateBucketConfiguration", "xmlns", Constants.XML_NAMESPACE);
             xml.start("LocationConstraint").value(region).end();
             xml.end();
 
-            byte[] bytes = xml.getBytes();
+            final byte[] bytes = xml.getBytes();
             request.addHeader(Headers.CONTENT_LENGTH, String.valueOf(bytes.length));
             request.setContent(new ByteArrayInputStream(bytes));
         }
@@ -940,7 +930,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     @Override
     public AccessControlList getObjectAcl(String bucketName, String key)
             throws AmazonClientException, AmazonServiceException {
-        return getObjectAcl(bucketName, key, null);
+        return getObjectAcl(new GetObjectAclRequest(bucketName, key));
     }
 
     /*
@@ -951,12 +941,22 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     @Override
     public AccessControlList getObjectAcl(String bucketName, String key, String versionId)
             throws AmazonClientException, AmazonServiceException {
-        assertParameterNotNull(bucketName,
+        return getObjectAcl(new GetObjectAclRequest(bucketName, key, versionId));
+    }
+
+    @Override
+    public AccessControlList getObjectAcl(GetObjectAclRequest getObjectAclRequest)
+            throws AmazonClientException, AmazonServiceException {
+        assertParameterNotNull(getObjectAclRequest,
+                "The request parameter must be specified when requesting an object's ACL");
+        assertParameterNotNull(getObjectAclRequest.getBucketName(),
                 "The bucket name parameter must be specified when requesting an object's ACL");
-        assertParameterNotNull(key,
+        assertParameterNotNull(getObjectAclRequest.getKey(),
                 "The key parameter must be specified when requesting an object's ACL");
 
-        return getAcl(bucketName, key, versionId, null);
+        return getAcl(getObjectAclRequest.getBucketName(), getObjectAclRequest.getKey(),
+                getObjectAclRequest.getVersionId(), getObjectAclRequest.isRequesterPays(),
+                getObjectAclRequest);
     }
 
     @Override
@@ -974,7 +974,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     @Override
     public void setObjectAcl(String bucketName, String key, String versionId, AccessControlList acl)
             throws AmazonClientException, AmazonServiceException {
-        setObjectAcl0(bucketName, key, versionId, acl, null);
+        setObjectAcl(new SetObjectAclRequest(bucketName, key, versionId, acl));
     }
 
     /**
@@ -984,29 +984,15 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     public void setObjectAcl(String bucketName, String key, String versionId,
             AccessControlList acl, RequestMetricCollector requestMetricCollector)
             throws AmazonClientException, AmazonServiceException {
-        setObjectAcl0(bucketName, key, versionId, acl, requestMetricCollector);
-    }
-
-    private void setObjectAcl0(String bucketName, String key, String versionId,
-            AccessControlList acl, RequestMetricCollector requestMetricCollector)
-            throws AmazonClientException, AmazonServiceException {
-        assertParameterNotNull(bucketName,
-                "The bucket name parameter must be specified when setting an object's ACL");
-        assertParameterNotNull(key,
-                "The key parameter must be specified when setting an object's ACL");
-        assertParameterNotNull(acl,
-                "The ACL parameter must be specified when setting an object's ACL");
-
-        setAcl(bucketName, key, versionId, acl,
-                new GenericBucketRequest(bucketName)
-                        .withRequestMetricCollector(requestMetricCollector));
+        setObjectAcl(new SetObjectAclRequest(bucketName, key, versionId, acl)
+                .<SetObjectAclRequest> withRequestMetricCollector(requestMetricCollector));
     }
 
     @Override
     public void setObjectAcl(String bucketName, String key, String versionId,
             CannedAccessControlList acl)
             throws AmazonClientException, AmazonServiceException {
-        setObjectAcl0(bucketName, key, versionId, acl, null);
+        setObjectAcl(new SetObjectAclRequest(bucketName, key, versionId, acl));
     }
 
     /**
@@ -1017,22 +1003,46 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     public void setObjectAcl(String bucketName, String key, String versionId,
             CannedAccessControlList acl,
             RequestMetricCollector requestMetricCollector) {
-        setObjectAcl0(bucketName, key, versionId, acl, requestMetricCollector);
+        setObjectAcl(new SetObjectAclRequest(bucketName, key, versionId, acl)
+                .<SetObjectAclRequest> withRequestMetricCollector(requestMetricCollector));
     }
 
-    private void setObjectAcl0(String bucketName, String key, String versionId,
-            CannedAccessControlList acl, RequestMetricCollector requestMetricCollector)
+    @Override
+    public void setObjectAcl(SetObjectAclRequest setObjectAclRequest)
             throws AmazonClientException, AmazonServiceException {
-        assertParameterNotNull(bucketName,
-                "The bucket name parameter must be specified when setting an object's ACL");
-        assertParameterNotNull(key,
-                "The key parameter must be specified when setting an object's ACL");
-        assertParameterNotNull(acl,
-                "The ACL parameter must be specified when setting an object's ACL");
 
-        setAcl(bucketName, key, versionId, acl,
-                new GenericBucketRequest(bucketName)
-                        .withRequestMetricCollector(requestMetricCollector));
+        assertParameterNotNull(setObjectAclRequest,
+                "The request must not be null.");
+        assertParameterNotNull(setObjectAclRequest.getBucketName(),
+                "The bucket name parameter must be specified when setting an object's ACL");
+        assertParameterNotNull(setObjectAclRequest.getKey(),
+                "The key parameter must be specified when setting an object's ACL");
+
+        if (setObjectAclRequest.getAcl() != null && setObjectAclRequest.getCannedAcl() != null) {
+            throw new IllegalArgumentException(
+                    "Only one of the ACL and CannedACL parameters can be specified, not both.");
+        }
+
+        if (setObjectAclRequest.getAcl() != null) {
+            setAcl(setObjectAclRequest.getBucketName(),
+                    setObjectAclRequest.getKey(),
+                    setObjectAclRequest.getVersionId(),
+                    setObjectAclRequest.getAcl(),
+                    setObjectAclRequest.isRequesterPays(),
+                    setObjectAclRequest);
+
+        } else if (setObjectAclRequest.getCannedAcl() != null) {
+            setAcl(setObjectAclRequest.getBucketName(),
+                    setObjectAclRequest.getKey(),
+                    setObjectAclRequest.getVersionId(),
+                    setObjectAclRequest.getCannedAcl(),
+                    setObjectAclRequest.isRequesterPays(),
+                    setObjectAclRequest);
+
+        } else {
+            throw new IllegalArgumentException(
+                    "At least one of the ACL and CannedACL parameters should be specified");
+        }
     }
 
     /*
@@ -1045,7 +1055,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when requesting a bucket's ACL");
 
-        return getAcl(bucketName, null, null, null);
+        return getAcl(bucketName, null, null, false, null);
     }
 
     /*
@@ -1057,11 +1067,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     @Override
     public AccessControlList getBucketAcl(GetBucketAclRequest getBucketAclRequest)
             throws AmazonClientException, AmazonServiceException {
-        String bucketName = getBucketAclRequest.getBucketName();
+        final String bucketName = getBucketAclRequest.getBucketName();
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when requesting a bucket's ACL");
 
-        return getAcl(bucketName, null, null, getBucketAclRequest);
+        return getAcl(bucketName, null, null, false, getBucketAclRequest);
     }
 
     @Override
@@ -1086,7 +1096,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(acl,
                 "The ACL parameter must be specified when setting a bucket's ACL");
 
-        setAcl(bucketName, null, null, acl,
+        setAcl(bucketName, null, null, acl, false,
                 new GenericBucketRequest(bucketName)
                         .withRequestMetricCollector(requestMetricCollector));
     }
@@ -1094,16 +1104,16 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     @Override
     public void setBucketAcl(SetBucketAclRequest setBucketAclRequest)
             throws AmazonClientException, AmazonServiceException {
-        String bucketName = setBucketAclRequest.getBucketName();
-        AccessControlList acl = setBucketAclRequest.getAcl();
-        CannedAccessControlList cannedAcl = setBucketAclRequest.getCannedAcl();
+        final String bucketName = setBucketAclRequest.getBucketName();
+        final AccessControlList acl = setBucketAclRequest.getAcl();
+        final CannedAccessControlList cannedAcl = setBucketAclRequest.getCannedAcl();
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when setting a bucket's ACL");
 
         if (acl != null) {
-            setAcl(bucketName, null, null, acl, setBucketAclRequest);
+            setAcl(bucketName, null, null, acl, false, setBucketAclRequest);
         } else if (cannedAcl != null) {
-            setAcl(bucketName, null, null, cannedAcl, setBucketAclRequest);
+            setAcl(bucketName, null, null, cannedAcl, false, setBucketAclRequest);
         } else {
             assertParameterNotNull(null,
                     "The ACL parameter must be specified when setting a bucket's ACL");
@@ -1134,7 +1144,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(acl,
                 "The ACL parameter must be specified when setting a bucket's ACL");
 
-        setAcl(bucketName, null, null, acl,
+        setAcl(bucketName, null, null, acl, false,
                 new GenericBucketRequest(bucketName)
                         .withRequestMetricCollector(col));
     }
@@ -1163,21 +1173,25 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(getObjectMetadataRequest,
                 "The GetObjectMetadataRequest parameter must be specified when requesting an object's metadata");
 
-        String bucketName = getObjectMetadataRequest.getBucketName();
-        String key = getObjectMetadataRequest.getKey();
-        String versionId = getObjectMetadataRequest.getVersionId();
+        final String bucketName = getObjectMetadataRequest.getBucketName();
+        final String key = getObjectMetadataRequest.getKey();
+        final String versionId = getObjectMetadataRequest.getVersionId();
 
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when requesting an object's metadata");
         assertParameterNotNull(key,
                 "The key parameter must be specified when requesting an object's metadata");
 
-        Request<GetObjectMetadataRequest> request = createRequest(bucketName, key,
+        final Request<GetObjectMetadataRequest> request = createRequest(bucketName, key,
                 getObjectMetadataRequest, HttpMethodName.HEAD);
-        if (versionId != null)
+        if (versionId != null) {
             request.addParameter("versionId", versionId);
+        }
 
-        populateSseCpkRequestParameters(request, getObjectMetadataRequest.getSSECustomerKey());
+        populateRequesterPaysHeader(request, getObjectMetadataRequest.isRequesterPays());
+        addPartNumberIfNotNull(request, getObjectMetadataRequest.getPartNumber());
+
+        populateSSE_C(request, getObjectMetadataRequest.getSSECustomerKey());
 
         return invoke(request, new S3MetadataResponseHandler(), bucketName, key);
     }
@@ -1204,7 +1218,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         try {
             headBucket(new HeadBucketRequest(bucketName));
             return true;
-        } catch (AmazonServiceException ase) {
+        } catch (final AmazonServiceException ase) {
             // A redirect error or a forbidden error means the bucket exists. So
             // returning true.
             if ((ase.getStatusCode() == Constants.BUCKET_REDIRECT_STATUS_CODE)
@@ -1225,7 +1239,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         try {
             getObjectMetadata(bucketName, objectName);
             return true;
-        } catch (AmazonS3Exception e) {
+        } catch (final AmazonS3Exception e) {
             if (e.getStatusCode() == 404) {
                 return false;
             }
@@ -1237,12 +1251,12 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     public HeadBucketResult headBucket(HeadBucketRequest headBucketRequest)
             throws AmazonClientException, AmazonServiceException {
 
-        String bucketName = headBucketRequest.getBucketName();
+        final String bucketName = headBucketRequest.getBucketName();
 
         assertParameterNotNull(bucketName,
                 "The bucketName parameter must be specified.");
 
-        Request<HeadBucketRequest> request = createRequest(bucketName, null,
+        final Request<HeadBucketRequest> request = createRequest(bucketName, null,
                 headBucketRequest, HttpMethodName.HEAD);
         return invoke(request, new HeadBucketResultHandler(), bucketName, null);
     }
@@ -1303,7 +1317,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(getObjectRequest.getKey(),
                 "The key parameter must be specified when requesting an object");
 
-        Request<GetObjectRequest> request = createRequest(getObjectRequest.getBucketName(),
+        final Request<GetObjectRequest> request = createRequest(getObjectRequest.getBucketName(),
                 getObjectRequest.getKey(), getObjectRequest, HttpMethodName.GET);
 
         if (getObjectRequest.getVersionId() != null) {
@@ -1311,7 +1325,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         }
 
         // Range
-        long[] range = getObjectRequest.getRange();
+        final long[] range = getObjectRequest.getRange();
         if (range != null) {
             String rangeHeader = "bytes=" + Long.toString(range[0]) + "-";
             if (range[1] >= 0) {
@@ -1325,10 +1339,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             request.addHeader(Headers.RANGE, rangeHeader);
         }
 
-        if (getObjectRequest.isRequesterPays()) {
-            request.addHeader(Headers.REQUESTER_PAYS_HEADER,
-                    Constants.REQUESTER_PAYS);
-        }
+        populateRequesterPaysHeader(request, getObjectRequest.isRequesterPays());
 
         addResponseHeaderParameters(request, getObjectRequest.getResponseHeaders());
 
@@ -1342,19 +1353,19 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 getObjectRequest.getNonmatchingETagConstraints());
 
         // Populate the SSE-CPK parameters to the request header
-        populateSseCpkRequestParameters(request, getObjectRequest.getSSECustomerKey());
+        populateSSE_C(request, getObjectRequest.getSSECustomerKey());
 
         /*
          * This is compatible with progress listener set by either the legacy
          * method GetObjectRequest#setProgressListener or the new method
          * GetObjectRequest#setGeneralProgressListener.
          */
-        ProgressListener progressListener = getObjectRequest.getGeneralProgressListener();
-        ProgressListenerCallbackExecutor progressListenerCallbackExecutor = ProgressListenerCallbackExecutor
+        final ProgressListener progressListener = getObjectRequest.getGeneralProgressListener();
+        final ProgressListenerCallbackExecutor progressListenerCallbackExecutor = ProgressListenerCallbackExecutor
                 .wrapListener(progressListener);
 
         try {
-            S3Object s3Object = invoke(request, new S3ObjectResponseHandler(),
+            final S3Object s3Object = invoke(request, new S3ObjectResponseHandler(),
                     getObjectRequest.getBucketName(), getObjectRequest.getKey());
 
             /*
@@ -1376,6 +1387,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             // stream in a filter that will trigger progress reports.
             if (progressListenerCallbackExecutor != null) {
                 @SuppressWarnings("resource")
+                final
                 ProgressReportingInputStream progressReportingInputStream = new ProgressReportingInputStream(
                         input, progressListenerCallbackExecutor);
                 progressReportingInputStream.setFireCompletedEvent(true);
@@ -1391,16 +1403,16 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             if (!ServiceUtils.skipMd5CheckPerRequest(getObjectRequest)
                     && !ServiceUtils.skipMd5CheckPerResponse(s3Object.getObjectMetadata())) {
                 byte[] serverSideHash = null;
-                String etag = s3Object.getObjectMetadata().getETag();
+                final String etag = s3Object.getObjectMetadata().getETag();
                 if (etag != null && ServiceUtils.isMultipartUploadETag(etag) == false) {
                     serverSideHash = BinaryUtils.fromHex(s3Object.getObjectMetadata().getETag());
                     try {
                         // No content length check is performed when the
                         // MD5 check is enabled, since a correct MD5 check would
                         // imply a correct content length.
-                        MessageDigest digest = MessageDigest.getInstance("MD5");
+                        final MessageDigest digest = MessageDigest.getInstance("MD5");
                         input = new DigestValidationInputStream(input, digest, serverSideHash);
-                    } catch (NoSuchAlgorithmException e) {
+                    } catch (final NoSuchAlgorithmException e) {
                         log.warn("No MD5 digest algorithm available.  Unable to calculate "
                                 + "checksum and verify data integrity.", e);
                     }
@@ -1421,7 +1433,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             s3Object.setObjectContent(new S3ObjectInputStream(input));
 
             return s3Object;
-        } catch (AmazonS3Exception ase) {
+        } catch (final AmazonS3Exception ase) {
             /*
              * If the request failed because one of the specified constraints
              * was not met (ex: matching ETag, modified since date, etc.), then
@@ -1456,7 +1468,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         if (getObjectRequest.getRange() != null && getObjectRequest.getRange()[0] > 0) {
             mode = ServiceUtils.APPEND_MODE;
         }
-        S3Object s3Object = ServiceUtils.retryableDownloadS3ObjectToFile(destinationFile,
+        final S3Object s3Object = ServiceUtils.retryableDownloadS3ObjectToFile(destinationFile,
                 new ServiceUtils.RetryableS3DownloadTask() {
 
                     @Override
@@ -1471,8 +1483,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
                 }, mode);
         // getObject can return null if constraints were specified but not met
-        if (s3Object == null)
+        if (s3Object == null) {
             return null;
+        }
 
         return s3Object.getObjectMetadata();
     }
@@ -1499,13 +1512,14 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(deleteBucketRequest,
                 "The DeleteBucketRequest parameter must be specified when deleting a bucket");
 
-        String bucketName = deleteBucketRequest.getBucketName();
+        final String bucketName = deleteBucketRequest.getBucketName();
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when deleting a bucket");
 
-        Request<DeleteBucketRequest> request = createRequest(bucketName, null, deleteBucketRequest,
+        final Request<DeleteBucketRequest> request = createRequest(bucketName, null, deleteBucketRequest,
                 HttpMethodName.DELETE);
         invoke(request, voidResponseHandler, bucketName, null);
+        bucketRegionCache.remove(bucketName);
     }
 
     /*
@@ -1545,8 +1559,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(putObjectRequest,
                 "The PutObjectRequest parameter must be specified when uploading an object");
 
-        String bucketName = putObjectRequest.getBucketName();
-        String key = putObjectRequest.getKey();
+        final String bucketName = putObjectRequest.getBucketName();
+        final String key = putObjectRequest.getKey();
         ObjectMetadata metadata = putObjectRequest.getMetadata();
         InputStream input = putObjectRequest.getInputStream();
 
@@ -1555,12 +1569,13 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
          * method PutObjectRequest#setProgressListener or the new method
          * PutObjectRequest#setGeneralProgressListener.
          */
-        ProgressListener progressListener = putObjectRequest.getGeneralProgressListener();
-        ProgressListenerCallbackExecutor progressListenerCallbackExecutor = ProgressListenerCallbackExecutor
+        final ProgressListener progressListener = putObjectRequest.getGeneralProgressListener();
+        final ProgressListenerCallbackExecutor progressListenerCallbackExecutor = ProgressListenerCallbackExecutor
                 .wrapListener(progressListener);
 
-        if (metadata == null)
+        if (metadata == null) {
             metadata = new ObjectMetadata();
+        }
 
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when uploading an object");
@@ -1572,7 +1587,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         // If a file is specified for upload, we need to pull some additional
         // information from it to auto-configure a few options
         if (putObjectRequest.getFile() != null) {
-            File file = putObjectRequest.getFile();
+            final File file = putObjectRequest.getFile();
             // Always set the content length, even if it's already set
             metadata.setContentLength(file.length());
 
@@ -1585,9 +1600,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
             if (calculateMD5 && !skipContentMd5Check) {
                 try {
-                    String contentMd5_b64 = Md5Utils.md5AsBase64(file);
+                    final String contentMd5_b64 = Md5Utils.md5AsBase64(file);
                     metadata.setContentMD5(contentMd5_b64);
-                } catch (Exception e) {
+                } catch (final Exception e) {
                     throw new AmazonClientException(
                             "Unable to calculate MD5 hash: " + e.getMessage(), e);
                 }
@@ -1595,12 +1610,12 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
             try {
                 input = new RepeatableFileInputStream(file);
-            } catch (FileNotFoundException fnfe) {
+            } catch (final FileNotFoundException fnfe) {
                 throw new AmazonClientException("Unable to find file to upload", fnfe);
             }
         }
 
-        Request<PutObjectRequest> request = createRequest(bucketName, key, putObjectRequest,
+        final Request<PutObjectRequest> request = createRequest(bucketName, key, putObjectRequest,
                 HttpMethodName.PUT);
 
         if (putObjectRequest.getAccessControlList() != null) {
@@ -1622,7 +1637,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         }
 
         // Populate the SSE-CPK parameters to the request header
-        populateSseCpkRequestParameters(request, putObjectRequest.getSSECustomerKey());
+        populateSSE_C(request, putObjectRequest.getSSECustomerKey());
 
         // Use internal interface to differentiate 0 from unset.
         final Long contentLength = (Long) metadata.getRawMetadataValue(Headers.CONTENT_LENGTH);
@@ -1638,11 +1653,12 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 log.warn("No content length specified for stream data.  " +
                         "Stream contents will be buffered in memory and could result in " +
                         "out of memory errors.");
-                ByteArrayInputStream bais = toByteArray(input);
+                final ByteArrayInputStream bais = toByteArray(input);
                 request.addHeader(Headers.CONTENT_LENGTH, String.valueOf(bais.available()));
+                request.setStreaming(true);
                 input = bais;
             } else {
-                long len = calculateContentLength(input);
+                final long len = calculateContentLength(input);
                 request.addHeader(Headers.CONTENT_LENGTH, String.valueOf(len));
             }
         } else {
@@ -1654,6 +1670,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 // plain-text data stream which in turn may have been wrapped
                 // with it's own length check input stream.)
                 @SuppressWarnings("resource")
+                final
                 LengthCheckInputStream lcis = new LengthCheckInputStream(
                         input,
                         expectedLength, // expected data length to be uploaded
@@ -1689,6 +1706,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         }
 
         populateRequestMetadata(request, metadata);
+        populateSSE_KMS(request, putObjectRequest.getSSEAwsKeyManagementParams());
+
         request.setContent(input);
         /*
          * Enable 100-continue support for PUT operations, since this is where
@@ -1697,19 +1716,22 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
          * do this for all operations since it will cause extra latency in the
          * network interaction.
          */
-        request.addHeader("Expect", "100-continue");
-
+        /*
+         * HttpUrlConnection seems to be buggy in terms of implementation of
+         * expect continue.
+         */
+        // request.addHeader("Expect", "100-continue");
         ObjectMetadata returnedMetadata = null;
         try {
             returnedMetadata = invoke(request, new S3MetadataResponseHandler(), bucketName, key);
-        } catch (AmazonClientException ace) {
+        } catch (final AmazonClientException ace) {
             fireProgressEvent(progressListenerCallbackExecutor, ProgressEvent.FAILED_EVENT_CODE);
             throw ace;
         } finally {
             try {
                 input.close();
-            } catch (AbortedException ignore) {
-            } catch (Exception e) {
+            } catch (final AbortedException ignore) {
+            } catch (final Exception e) {
                 log.debug("Unable to cleanly close input stream: " + e.getMessage(), e);
             }
         }
@@ -1720,8 +1742,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         }
 
         if (returnedMetadata != null && contentMd5 != null && !skipContentMd5Check) {
-            byte[] clientSideHash = BinaryUtils.fromBase64(contentMd5);
-            byte[] serverSideHash = BinaryUtils.fromHex(returnedMetadata.getETag());
+            final byte[] clientSideHash = BinaryUtils.fromBase64(contentMd5);
+            final byte[] serverSideHash = BinaryUtils.fromHex(returnedMetadata.getETag());
 
             if (!Arrays.equals(clientSideHash, serverSideHash)) {
                 fireProgressEvent(progressListenerCallbackExecutor, ProgressEvent.FAILED_EVENT_CODE);
@@ -1737,16 +1759,16 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
         fireProgressEvent(progressListenerCallbackExecutor, ProgressEvent.COMPLETED_EVENT_CODE);
 
-        PutObjectResult result = new PutObjectResult();
-        result.setETag(returnedMetadata.getETag());
+        final PutObjectResult result = new PutObjectResult();
         result.setVersionId(returnedMetadata.getVersionId());
         result.setSSEAlgorithm(returnedMetadata.getSSEAlgorithm());
-        result.setSSEKMSKeyId(returnedMetadata.getSSEKMSKeyId());
         result.setSSECustomerAlgorithm(returnedMetadata.getSSECustomerAlgorithm());
         result.setSSECustomerKeyMd5(returnedMetadata.getSSECustomerKeyMd5());
         result.setExpirationTime(returnedMetadata.getExpirationTime());
         result.setExpirationTimeRuleId(returnedMetadata.getExpirationTimeRuleId());
-        result.setContentMd5(contentMd5);
+        result.setETag(returnedMetadata.getETag());
+        result.setMetadata(returnedMetadata);
+        result.setRequesterCharged(returnedMetadata.isRequesterCharged());
 
         return result;
     }
@@ -1759,7 +1781,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     private long calculateContentLength(InputStream is) {
         long len = 0;
-        byte[] buf = new byte[8 * 1024];
+        final byte[] buf = new byte[8 * 1024];
         int read;
         is.mark(-1);
         try {
@@ -1767,7 +1789,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 len += read;
             }
             is.reset();
-        } catch (IOException ioe) {
+        } catch (final IOException ioe) {
             throw new AmazonClientException("Could not calculate content length.", ioe);
         }
         return len;
@@ -1778,24 +1800,25 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     private static void addAclHeaders(Request<? extends AmazonWebServiceRequest> request,
             AccessControlList acl) {
-        Set<Grant> grants = acl.getGrants();
-        Map<Permission, Collection<Grantee>> grantsByPermission = new HashMap<Permission, Collection<Grantee>>();
-        for (Grant grant : grants) {
+        final Set<Grant> grants = acl.getGrants();
+        final Map<Permission, Collection<Grantee>> grantsByPermission = new HashMap<Permission, Collection<Grantee>>();
+        for (final Grant grant : grants) {
             if (!grantsByPermission.containsKey(grant.getPermission())) {
                 grantsByPermission.put(grant.getPermission(), new LinkedList<Grantee>());
             }
             grantsByPermission.get(grant.getPermission()).add(grant.getGrantee());
         }
-        for (Permission permission : Permission.values()) {
+        for (final Permission permission : Permission.values()) {
             if (grantsByPermission.containsKey(permission)) {
-                Collection<Grantee> grantees = grantsByPermission.get(permission);
+                final Collection<Grantee> grantees = grantsByPermission.get(permission);
                 boolean seenOne = false;
-                StringBuilder granteeString = new StringBuilder();
-                for (Grantee grantee : grantees) {
-                    if (!seenOne)
+                final StringBuilder granteeString = new StringBuilder();
+                for (final Grantee grantee : grantees) {
+                    if (!seenOne) {
                         seenOne = true;
-                    else
+                    } else {
                         granteeString.append(", ");
+                    }
                     granteeString.append(grantee.getTypeIdentifier()).append("=").append("\"")
                             .append(grantee.getIdentifier()).append("\"");
                 }
@@ -1835,13 +1858,17 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(copyObjectRequest.getDestinationKey(),
                 "The destination object key must be specified when copying an object");
 
-        String destinationKey = copyObjectRequest.getDestinationKey();
-        String destinationBucketName = copyObjectRequest.getDestinationBucketName();
+        final String destinationKey = copyObjectRequest.getDestinationKey();
+        final String destinationBucketName = copyObjectRequest.getDestinationBucketName();
 
-        Request<CopyObjectRequest> request = createRequest(destinationBucketName, destinationKey,
+        final Request<CopyObjectRequest> request = createRequest(destinationBucketName, destinationKey,
                 copyObjectRequest, HttpMethodName.PUT);
 
         populateRequestWithCopyObjectParameters(request, copyObjectRequest);
+
+        // Populate the SSE AWS KMS parameters to the request header
+        populateSSE_KMS(request,
+                copyObjectRequest.getSSEAwsKeyManagementParams());
         /*
          * We can't send a non-zero length Content-Length header if the user
          * specified it, otherwise it messes up the HTTP connection when the
@@ -1851,16 +1878,17 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         CopyObjectResultHandler copyObjectResultHandler = null;
         try {
             @SuppressWarnings("unchecked")
+            final
             ResponseHeaderHandlerChain<CopyObjectResultHandler> handler = new ResponseHeaderHandlerChain<CopyObjectResultHandler>(
                     // xml payload unmarshaller
                     new Unmarshallers.CopyObjectUnmarshaller(),
                     // header handlers
                     new ServerSideEncryptionHeaderHandler<CopyObjectResultHandler>(),
-                    new S3VersionHeaderHandler(),
-                    new ObjectExpirationHeaderHandler<CopyObjectResultHandler>());
-            copyObjectResultHandler = invoke(request, handler, destinationBucketName,
-                    destinationKey);
-        } catch (AmazonS3Exception ase) {
+                    new S3VersionHeaderHandler<CopyObjectResultHandler>(),
+                    new ObjectExpirationHeaderHandler<CopyObjectResultHandler>(),
+                    new S3RequesterChargedHeaderHandler<CopyObjectResultHandler>());
+            copyObjectResultHandler = invoke(request, handler, destinationBucketName, destinationKey);
+        } catch (final AmazonS3Exception ase) {
             /*
              * If the request failed because one of the specified constraints
              * was not met (ex: matching ETag, modified since date, etc.), then
@@ -1886,12 +1914,12 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
          * it's probably overkill for this one special case.
          */
         if (copyObjectResultHandler.getErrorCode() != null) {
-            String errorCode = copyObjectResultHandler.getErrorCode();
-            String errorMessage = copyObjectResultHandler.getErrorMessage();
-            String requestId = copyObjectResultHandler.getErrorRequestId();
-            String hostId = copyObjectResultHandler.getErrorHostId();
+            final String errorCode = copyObjectResultHandler.getErrorCode();
+            final String errorMessage = copyObjectResultHandler.getErrorMessage();
+            final String requestId = copyObjectResultHandler.getErrorRequestId();
+            final String hostId = copyObjectResultHandler.getErrorHostId();
 
-            AmazonS3Exception ase = new AmazonS3Exception(errorMessage);
+            final AmazonS3Exception ase = new AmazonS3Exception(errorMessage);
             ase.setErrorCode(errorCode);
             ase.setErrorType(ErrorType.Service);
             ase.setRequestId(requestId);
@@ -1904,16 +1932,16 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
         // TODO: Might be nice to create this in our custom
         // S3VersionHeaderHandler
-        CopyObjectResult copyObjectResult = new CopyObjectResult();
+        final CopyObjectResult copyObjectResult = new CopyObjectResult();
         copyObjectResult.setETag(copyObjectResultHandler.getETag());
         copyObjectResult.setLastModifiedDate(copyObjectResultHandler.getLastModified());
         copyObjectResult.setVersionId(copyObjectResultHandler.getVersionId());
         copyObjectResult.setSSEAlgorithm(copyObjectResultHandler.getSSEAlgorithm());
-        copyObjectResult.setSSEKMSKeyId(copyObjectResultHandler.getSSEKMSKeyId());
         copyObjectResult.setSSECustomerAlgorithm(copyObjectResultHandler.getSSECustomerAlgorithm());
         copyObjectResult.setSSECustomerKeyMd5(copyObjectResultHandler.getSSECustomerKeyMd5());
         copyObjectResult.setExpirationTime(copyObjectResultHandler.getExpirationTime());
         copyObjectResult.setExpirationTimeRuleId(copyObjectResultHandler.getExpirationTimeRuleId());
+        copyObjectResult.setRequesterCharged(copyObjectResultHandler.isRequesterCharged());
 
         return copyObjectResult;
     }
@@ -1958,10 +1986,10 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(copyPartRequest.getPartNumber(),
                 "The part number must be specified when copying a part");
 
-        String destinationKey = copyPartRequest.getDestinationKey();
-        String destinationBucketName = copyPartRequest.getDestinationBucketName();
+        final String destinationKey = copyPartRequest.getDestinationKey();
+        final String destinationBucketName = copyPartRequest.getDestinationBucketName();
 
-        Request<CopyPartRequest> request = createRequest(destinationBucketName, destinationKey,
+        final Request<CopyPartRequest> request = createRequest(destinationBucketName, destinationKey,
                 copyPartRequest,
                 HttpMethodName.PUT);
 
@@ -1979,15 +2007,16 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         CopyObjectResultHandler copyObjectResultHandler = null;
         try {
             @SuppressWarnings("unchecked")
+            final
             ResponseHeaderHandlerChain<CopyObjectResultHandler> handler = new ResponseHeaderHandlerChain<CopyObjectResultHandler>(
                     // xml payload unmarshaller
                     new Unmarshallers.CopyObjectUnmarshaller(),
                     // header handlers
                     new ServerSideEncryptionHeaderHandler<CopyObjectResultHandler>(),
-                    new S3VersionHeaderHandler());
+                    new S3VersionHeaderHandler<CopyObjectResultHandler>());
             copyObjectResultHandler = invoke(request, handler, destinationBucketName,
                     destinationKey);
-        } catch (AmazonS3Exception ase) {
+        } catch (final AmazonS3Exception ase) {
             /*
              * If the request failed because one of the specified constraints
              * was not met (ex: matching ETag, modified since date, etc.), then
@@ -2013,12 +2042,12 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
          * it's probably overkill for this one special case.
          */
         if (copyObjectResultHandler.getErrorCode() != null) {
-            String errorCode = copyObjectResultHandler.getErrorCode();
-            String errorMessage = copyObjectResultHandler.getErrorMessage();
-            String requestId = copyObjectResultHandler.getErrorRequestId();
-            String hostId = copyObjectResultHandler.getErrorHostId();
+            final String errorCode = copyObjectResultHandler.getErrorCode();
+            final String errorMessage = copyObjectResultHandler.getErrorMessage();
+            final String requestId = copyObjectResultHandler.getErrorRequestId();
+            final String hostId = copyObjectResultHandler.getErrorHostId();
 
-            AmazonS3Exception ase = new AmazonS3Exception(errorMessage);
+            final AmazonS3Exception ase = new AmazonS3Exception(errorMessage);
             ase.setErrorCode(errorCode);
             ase.setErrorType(ErrorType.Service);
             ase.setRequestId(requestId);
@@ -2029,7 +2058,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             throw ase;
         }
 
-        CopyPartResult copyPartResult = new CopyPartResult();
+        final CopyPartResult copyPartResult = new CopyPartResult();
         copyPartResult.setETag(copyObjectResultHandler.getETag());
         copyPartResult.setPartNumber(copyPartRequest.getPartNumber());
         copyPartResult.setLastModifiedDate(copyObjectResultHandler.getLastModified());
@@ -2069,7 +2098,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(deleteObjectRequest.getKey(),
                 "The key must be specified when deleting an object");
 
-        Request<DeleteObjectRequest> request = createRequest(deleteObjectRequest.getBucketName(),
+        final Request<DeleteObjectRequest> request = createRequest(deleteObjectRequest.getBucketName(),
                 deleteObjectRequest.getKey(), deleteObjectRequest, HttpMethodName.DELETE);
         invoke(request, voidResponseHandler, deleteObjectRequest.getBucketName(),
                 deleteObjectRequest.getKey());
@@ -2083,7 +2112,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     @Override
     public DeleteObjectsResult deleteObjects(DeleteObjectsRequest deleteObjectsRequest) {
-        Request<DeleteObjectsRequest> request = createRequest(deleteObjectsRequest.getBucketName(),
+        final Request<DeleteObjectsRequest> request = createRequest(deleteObjectsRequest.getBucketName(),
                 null, deleteObjectsRequest, HttpMethodName.POST);
         request.addParameter("delete", null);
 
@@ -2091,31 +2120,49 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             populateRequestWithMfaDetails(request, deleteObjectsRequest.getMfa());
         }
 
-        byte[] content = new MultiObjectDeleteXmlFactory()
+        populateRequesterPaysHeader(request, deleteObjectsRequest.isRequesterPays());
+
+        final byte[] content = new MultiObjectDeleteXmlFactory()
                 .convertToXmlByteArray(deleteObjectsRequest);
         request.addHeader("Content-Length", String.valueOf(content.length));
         request.addHeader("Content-Type", "application/xml");
         request.setContent(new ByteArrayInputStream(content));
         try {
-            byte[] md5 = Md5Utils.computeMD5Hash(content);
-            String md5Base64 = BinaryUtils.toBase64(md5);
+            final byte[] md5 = Md5Utils.computeMD5Hash(content);
+            final String md5Base64 = BinaryUtils.toBase64(md5);
             request.addHeader("Content-MD5", md5Base64);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new AmazonClientException("Couldn't compute md5 sum", e);
         }
 
-        DeleteObjectsResponse response = invoke(request,
+        @SuppressWarnings("unchecked")
+        final
+        ResponseHeaderHandlerChain<DeleteObjectsResponse> responseHandler = new ResponseHeaderHandlerChain<DeleteObjectsResponse>(
                 new Unmarshallers.DeleteObjectsResultUnmarshaller(),
-                deleteObjectsRequest.getBucketName(), null);
+                new S3RequesterChargedHeaderHandler<DeleteObjectsResponse>());
+
+        final DeleteObjectsResponse response = invoke(request, responseHandler, deleteObjectsRequest.getBucketName(), null);
 
         /*
          * If the result was only partially successful, throw an exception
          */
-        if (!response.getErrors().isEmpty()) {
-            throw new MultiObjectDeleteException(response.getErrors(), response.getDeletedObjects());
-        }
+        if ( !response.getErrors().isEmpty() ) {
+            final Map<String, String> headers = responseHandler.getResponseHeaders();
 
-        return new DeleteObjectsResult(response.getDeletedObjects());
+            final MultiObjectDeleteException ex = new MultiObjectDeleteException(
+                    response.getErrors(),
+                    response.getDeletedObjects());
+
+            ex.setStatusCode(200);
+            ex.setRequestId(headers.get(Headers.REQUEST_ID));
+            ex.setExtendedRequestId(headers.get(Headers.EXTENDED_REQUEST_ID));
+            ex.setCloudFrontId(headers.get(Headers.CLOUD_FRONT_ID));
+
+            throw ex;
+        }
+        final DeleteObjectsResult result = new DeleteObjectsResult(response.getDeletedObjects(), response.isRequesterCharged());
+
+        return result;
     }
 
     /*
@@ -2142,9 +2189,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(deleteVersionRequest,
                 "The delete version request object must be specified when deleting a version");
 
-        String bucketName = deleteVersionRequest.getBucketName();
-        String key = deleteVersionRequest.getKey();
-        String versionId = deleteVersionRequest.getVersionId();
+        final String bucketName = deleteVersionRequest.getBucketName();
+        final String key = deleteVersionRequest.getKey();
+        final String versionId = deleteVersionRequest.getVersionId();
 
         assertParameterNotNull(bucketName,
                 "The bucket name must be specified when deleting a version");
@@ -2152,10 +2199,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(versionId,
                 "The version ID must be specified when deleting a version");
 
-        Request<DeleteVersionRequest> request = createRequest(bucketName, key,
+        final Request<DeleteVersionRequest> request = createRequest(bucketName, key,
                 deleteVersionRequest, HttpMethodName.DELETE);
-        if (versionId != null)
+        if (versionId != null) {
             request.addParameter("versionId", versionId);
+        }
 
         if (deleteVersionRequest.getMfa() != null) {
             populateRequestWithMfaDetails(request, deleteVersionRequest.getMfa());
@@ -2178,8 +2226,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 setBucketVersioningConfigurationRequest,
                 "The SetBucketVersioningConfigurationRequest object must be specified when setting versioning configuration");
 
-        String bucketName = setBucketVersioningConfigurationRequest.getBucketName();
-        BucketVersioningConfiguration versioningConfiguration = setBucketVersioningConfigurationRequest
+        final String bucketName = setBucketVersioningConfigurationRequest.getBucketName();
+        final BucketVersioningConfiguration versioningConfiguration = setBucketVersioningConfigurationRequest
                 .getVersioningConfiguration();
 
         assertParameterNotNull(bucketName,
@@ -2192,7 +2240,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                     "The MFA parameter must be specified when changing MFA Delete status in the versioning configuration");
         }
 
-        Request<SetBucketVersioningConfigurationRequest> request = createRequest(bucketName, null,
+        final Request<SetBucketVersioningConfigurationRequest> request = createRequest(bucketName, null,
                 setBucketVersioningConfigurationRequest, HttpMethodName.PUT);
         request.addParameter("versioning", null);
 
@@ -2203,7 +2251,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             }
         }
 
-        byte[] bytes = bucketConfigurationXmlFactory.convertToXmlByteArray(versioningConfiguration);
+        final byte[] bytes = bucketConfigurationXmlFactory.convertToXmlByteArray(versioningConfiguration);
         request.addHeader(Headers.CONTENT_LENGTH, String.valueOf(bytes.length));
         request.setContent(new ByteArrayInputStream(bytes));
 
@@ -2219,11 +2267,22 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     @Override
     public BucketVersioningConfiguration getBucketVersioningConfiguration(String bucketName)
             throws AmazonClientException, AmazonServiceException {
+        return getBucketVersioningConfiguration(
+                new GetBucketVersioningConfigurationRequest(bucketName));
+    }
+
+    @Override
+    public BucketVersioningConfiguration getBucketVersioningConfiguration(
+            GetBucketVersioningConfigurationRequest getBucketVersioningConfigurationRequest)
+            throws AmazonClientException, AmazonServiceException {
+        assertParameterNotNull(getBucketVersioningConfigurationRequest,
+                "The request object parameter getBucketVersioningConfigurationRequest must be specified.");
+        final String bucketName = getBucketVersioningConfigurationRequest.getBucketName();
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when querying versioning configuration");
 
-        Request<GenericBucketRequest> request = createRequest(bucketName, null,
-                new GenericBucketRequest(bucketName), HttpMethodName.GET);
+        final Request<GetBucketVersioningConfigurationRequest> request = createRequest(bucketName,
+                null, getBucketVersioningConfigurationRequest, HttpMethodName.GET);
         request.addParameter("versioning", null);
 
         return invoke(request, new Unmarshallers.BucketVersioningConfigurationUnmarshaller(),
@@ -2252,12 +2311,12 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     public BucketWebsiteConfiguration getBucketWebsiteConfiguration(
             GetBucketWebsiteConfigurationRequest getBucketWebsiteConfigurationRequest)
             throws AmazonClientException, AmazonServiceException {
-        String bucketName = getBucketWebsiteConfigurationRequest.getBucketName();
+        final String bucketName = getBucketWebsiteConfigurationRequest.getBucketName();
 
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when requesting a bucket's website configuration");
 
-        Request<GetBucketWebsiteConfigurationRequest> request = createRequest(bucketName, null,
+        final Request<GetBucketWebsiteConfigurationRequest> request = createRequest(bucketName, null,
                 getBucketWebsiteConfigurationRequest, HttpMethodName.GET);
         request.addParameter("website", null);
         request.addHeader("Content-Type", "application/xml");
@@ -2265,9 +2324,10 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         try {
             return invoke(request, new Unmarshallers.BucketWebsiteConfigurationUnmarshaller(),
                     bucketName, null);
-        } catch (AmazonServiceException ase) {
-            if (ase.getStatusCode() == 404)
+        } catch (final AmazonServiceException ase) {
+            if (ase.getStatusCode() == 404) {
                 return null;
+            }
             throw ase;
         }
     }
@@ -2280,14 +2340,27 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     @Override
     public BucketLifecycleConfiguration getBucketLifecycleConfiguration(String bucketName) {
-        Request<GenericBucketRequest> request = createRequest(bucketName, null,
-                new GenericBucketRequest(bucketName), HttpMethodName.GET);
+        return getBucketLifecycleConfiguration(
+                new GetBucketLifecycleConfigurationRequest(bucketName));
+    }
+
+    @Override
+    public BucketLifecycleConfiguration getBucketLifecycleConfiguration(
+            GetBucketLifecycleConfigurationRequest getBucketLifecycleConfigurationRequest) {
+        assertParameterNotNull(getBucketLifecycleConfigurationRequest,
+                "The request object pamameter getBucketLifecycleConfigurationRequest must be specified.");
+        final String bucketName = getBucketLifecycleConfigurationRequest.getBucketName();
+        assertParameterNotNull(bucketName,
+                "The bucket name must be specifed when retrieving the bucket lifecycle configuration.");
+
+        final Request<GetBucketLifecycleConfigurationRequest> request = createRequest(bucketName,
+                null, getBucketLifecycleConfigurationRequest, HttpMethodName.GET);
         request.addParameter("lifecycle", null);
 
         try {
             return invoke(request, new Unmarshallers.BucketLifecycleConfigurationUnmarshaller(),
                     bucketName, null);
-        } catch (AmazonServiceException ase) {
+        } catch (final AmazonServiceException ase) {
             switch (ase.getStatusCode()) {
                 case 404:
                     return null;
@@ -2323,8 +2396,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(setBucketLifecycleConfigurationRequest,
                 "The set bucket lifecycle configuration request object must be specified.");
 
-        String bucketName = setBucketLifecycleConfigurationRequest.getBucketName();
-        BucketLifecycleConfiguration bucketLifecycleConfiguration = setBucketLifecycleConfigurationRequest
+        final String bucketName = setBucketLifecycleConfigurationRequest.getBucketName();
+        final BucketLifecycleConfiguration bucketLifecycleConfiguration = setBucketLifecycleConfigurationRequest
                 .getLifecycleConfiguration();
 
         assertParameterNotNull(bucketName,
@@ -2333,20 +2406,20 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 bucketLifecycleConfiguration,
                 "The lifecycle configuration parameter must be specified when setting bucket lifecycle configuration.");
 
-        Request<SetBucketLifecycleConfigurationRequest> request = createRequest(bucketName, null,
+        final Request<SetBucketLifecycleConfigurationRequest> request = createRequest(bucketName, null,
                 setBucketLifecycleConfigurationRequest, HttpMethodName.PUT);
         request.addParameter("lifecycle", null);
 
-        byte[] content = new BucketConfigurationXmlFactory()
+        final byte[] content = new BucketConfigurationXmlFactory()
                 .convertToXmlByteArray(bucketLifecycleConfiguration);
         request.addHeader("Content-Length", String.valueOf(content.length));
         request.addHeader("Content-Type", "application/xml");
         request.setContent(new ByteArrayInputStream(content));
         try {
-            byte[] md5 = Md5Utils.computeMD5Hash(content);
-            String md5Base64 = BinaryUtils.toBase64(md5);
+            final byte[] md5 = Md5Utils.computeMD5Hash(content);
+            final String md5Base64 = BinaryUtils.toBase64(md5);
             request.addHeader("Content-MD5", md5Base64);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new AmazonClientException("Couldn't compute md5 sum", e);
         }
 
@@ -2377,11 +2450,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(deleteBucketLifecycleConfigurationRequest,
                 "The delete bucket lifecycle configuration request object must be specified.");
 
-        String bucketName = deleteBucketLifecycleConfigurationRequest.getBucketName();
+        final String bucketName = deleteBucketLifecycleConfigurationRequest.getBucketName();
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when deleting bucket lifecycle configuration.");
 
-        Request<DeleteBucketLifecycleConfigurationRequest> request = createRequest(bucketName,
+        final Request<DeleteBucketLifecycleConfigurationRequest> request = createRequest(bucketName,
                 null, deleteBucketLifecycleConfigurationRequest, HttpMethodName.DELETE);
         request.addParameter("lifecycle", null);
 
@@ -2396,14 +2469,27 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     @Override
     public BucketCrossOriginConfiguration getBucketCrossOriginConfiguration(String bucketName) {
-        Request<GenericBucketRequest> request = createRequest(bucketName, null,
-                new GenericBucketRequest(bucketName), HttpMethodName.GET);
+        return getBucketCrossOriginConfiguration(
+                new GetBucketCrossOriginConfigurationRequest(bucketName));
+    }
+
+    @Override
+    public BucketCrossOriginConfiguration getBucketCrossOriginConfiguration(
+            GetBucketCrossOriginConfigurationRequest getBucketCrossOriginConfigurationRequest) {
+        assertParameterNotNull(getBucketCrossOriginConfigurationRequest,
+                "The request object parameter getBucketCrossOriginConfigurationRequest must be specified.");
+        final String bucketName = getBucketCrossOriginConfigurationRequest.getBucketName();
+        assertParameterNotNull(bucketName,
+                "The bucket name must be specified when retrieving the bucket cross origin configuration.");
+
+        final Request<GetBucketCrossOriginConfigurationRequest> request = createRequest(bucketName,
+                null, getBucketCrossOriginConfigurationRequest, HttpMethodName.GET);
         request.addParameter("cors", null);
 
         try {
             return invoke(request, new Unmarshallers.BucketCrossOriginConfigurationUnmarshaller(),
                     bucketName, null);
-        } catch (AmazonServiceException ase) {
+        } catch (final AmazonServiceException ase) {
             switch (ase.getStatusCode()) {
                 case 404:
                     return null;
@@ -2412,6 +2498,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             }
         }
     }
+
 
     /*
      * (non-Javadoc)
@@ -2439,8 +2526,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(setBucketCrossOriginConfigurationRequest,
                 "The set bucket cross origin configuration request object must be specified.");
 
-        String bucketName = setBucketCrossOriginConfigurationRequest.getBucketName();
-        BucketCrossOriginConfiguration bucketCrossOriginConfiguration = setBucketCrossOriginConfigurationRequest
+        final String bucketName = setBucketCrossOriginConfigurationRequest.getBucketName();
+        final BucketCrossOriginConfiguration bucketCrossOriginConfiguration = setBucketCrossOriginConfigurationRequest
                 .getCrossOriginConfiguration();
 
         assertParameterNotNull(bucketName,
@@ -2449,20 +2536,20 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 bucketCrossOriginConfiguration,
                 "The cross origin configuration parameter must be specified when setting bucket cross origin configuration.");
 
-        Request<SetBucketCrossOriginConfigurationRequest> request = createRequest(bucketName, null,
+        final Request<SetBucketCrossOriginConfigurationRequest> request = createRequest(bucketName, null,
                 setBucketCrossOriginConfigurationRequest, HttpMethodName.PUT);
         request.addParameter("cors", null);
 
-        byte[] content = new BucketConfigurationXmlFactory()
+        final byte[] content = new BucketConfigurationXmlFactory()
                 .convertToXmlByteArray(bucketCrossOriginConfiguration);
         request.addHeader("Content-Length", String.valueOf(content.length));
         request.addHeader("Content-Type", "application/xml");
         request.setContent(new ByteArrayInputStream(content));
         try {
-            byte[] md5 = Md5Utils.computeMD5Hash(content);
-            String md5Base64 = BinaryUtils.toBase64(md5);
+            final byte[] md5 = Md5Utils.computeMD5Hash(content);
+            final String md5Base64 = BinaryUtils.toBase64(md5);
             request.addHeader("Content-MD5", md5Base64);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new AmazonClientException("Couldn't compute md5 sum", e);
         }
 
@@ -2494,11 +2581,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(deleteBucketCrossOriginConfigurationRequest,
                 "The delete bucket cross origin configuration request object must be specified.");
 
-        String bucketName = deleteBucketCrossOriginConfigurationRequest.getBucketName();
+        final String bucketName = deleteBucketCrossOriginConfigurationRequest.getBucketName();
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when deleting bucket cross origin configuration.");
 
-        Request<DeleteBucketCrossOriginConfigurationRequest> request = createRequest(bucketName,
+        final Request<DeleteBucketCrossOriginConfigurationRequest> request = createRequest(bucketName,
                 null, deleteBucketCrossOriginConfigurationRequest, HttpMethodName.DELETE);
         request.addParameter("cors", null);
         invoke(request, voidResponseHandler, bucketName, null);
@@ -2512,14 +2599,26 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     @Override
     public BucketTaggingConfiguration getBucketTaggingConfiguration(String bucketName) {
-        Request<GenericBucketRequest> request = createRequest(bucketName, null,
-                new GenericBucketRequest(bucketName), HttpMethodName.GET);
+        return getBucketTaggingConfiguration(new GetBucketTaggingConfigurationRequest(bucketName));
+    }
+
+    @Override
+    public BucketTaggingConfiguration getBucketTaggingConfiguration(
+            GetBucketTaggingConfigurationRequest getBucketTaggingConfigurationRequest) {
+        assertParameterNotNull(getBucketTaggingConfigurationRequest,
+                "The request object parameter getBucketTaggingConfigurationRequest must be specifed.");
+        final String bucketName = getBucketTaggingConfigurationRequest.getBucketName();
+        assertParameterNotNull(bucketName,
+                "The bucket name must be specified when retrieving the bucket tagging configuration.");
+
+        final Request<GetBucketTaggingConfigurationRequest> request = createRequest(bucketName,
+                null, getBucketTaggingConfigurationRequest, HttpMethodName.GET);
         request.addParameter("tagging", null);
 
         try {
             return invoke(request, new Unmarshallers.BucketTaggingConfigurationUnmarshaller(),
                     bucketName, null);
-        } catch (AmazonServiceException ase) {
+        } catch (final AmazonServiceException ase) {
             switch (ase.getStatusCode()) {
                 case 404:
                     return null;
@@ -2528,6 +2627,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             }
         }
     }
+
 
     /*
      * (non-Javadoc)
@@ -2555,8 +2655,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(setBucketTaggingConfigurationRequest,
                 "The set bucket tagging configuration request object must be specified.");
 
-        String bucketName = setBucketTaggingConfigurationRequest.getBucketName();
-        BucketTaggingConfiguration bucketTaggingConfiguration = setBucketTaggingConfigurationRequest
+        final String bucketName = setBucketTaggingConfigurationRequest.getBucketName();
+        final BucketTaggingConfiguration bucketTaggingConfiguration = setBucketTaggingConfigurationRequest
                 .getTaggingConfiguration();
 
         assertParameterNotNull(bucketName,
@@ -2564,20 +2664,20 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(bucketTaggingConfiguration,
                 "The tagging configuration parameter must be specified when setting bucket tagging configuration.");
 
-        Request<SetBucketTaggingConfigurationRequest> request = createRequest(bucketName, null,
+        final Request<SetBucketTaggingConfigurationRequest> request = createRequest(bucketName, null,
                 setBucketTaggingConfigurationRequest, HttpMethodName.PUT);
         request.addParameter("tagging", null);
 
-        byte[] content = new BucketConfigurationXmlFactory()
+        final byte[] content = new BucketConfigurationXmlFactory()
                 .convertToXmlByteArray(bucketTaggingConfiguration);
         request.addHeader("Content-Length", String.valueOf(content.length));
         request.addHeader("Content-Type", "application/xml");
         request.setContent(new ByteArrayInputStream(content));
         try {
-            byte[] md5 = Md5Utils.computeMD5Hash(content);
-            String md5Base64 = BinaryUtils.toBase64(md5);
+            final byte[] md5 = Md5Utils.computeMD5Hash(content);
+            final String md5Base64 = BinaryUtils.toBase64(md5);
             request.addHeader("Content-MD5", md5Base64);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new AmazonClientException("Couldn't compute md5 sum", e);
         }
 
@@ -2607,11 +2707,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(deleteBucketTaggingConfigurationRequest,
                 "The delete bucket tagging configuration request object must be specified.");
 
-        String bucketName = deleteBucketTaggingConfigurationRequest.getBucketName();
+        final String bucketName = deleteBucketTaggingConfigurationRequest.getBucketName();
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when deleting bucket tagging configuration.");
 
-        Request<DeleteBucketTaggingConfigurationRequest> request = createRequest(bucketName, null,
+        final Request<DeleteBucketTaggingConfigurationRequest> request = createRequest(bucketName, null,
                 deleteBucketTaggingConfigurationRequest, HttpMethodName.DELETE);
         request.addParameter("tagging", null);
 
@@ -2642,8 +2742,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     public void setBucketWebsiteConfiguration(
             SetBucketWebsiteConfigurationRequest setBucketWebsiteConfigurationRequest)
             throws AmazonClientException, AmazonServiceException {
-        String bucketName = setBucketWebsiteConfigurationRequest.getBucketName();
-        BucketWebsiteConfiguration configuration = setBucketWebsiteConfigurationRequest
+        final String bucketName = setBucketWebsiteConfigurationRequest.getBucketName();
+        final BucketWebsiteConfiguration configuration = setBucketWebsiteConfigurationRequest
                 .getConfiguration();
 
         assertParameterNotNull(bucketName,
@@ -2657,12 +2757,12 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                     "The bucket website configuration parameter must specify the index document suffix when setting a bucket's website configuration");
         }
 
-        Request<SetBucketWebsiteConfigurationRequest> request = createRequest(bucketName, null,
+        final Request<SetBucketWebsiteConfigurationRequest> request = createRequest(bucketName, null,
                 setBucketWebsiteConfigurationRequest, HttpMethodName.PUT);
         request.addParameter("website", null);
         request.addHeader("Content-Type", "application/xml");
 
-        byte[] bytes = bucketConfigurationXmlFactory.convertToXmlByteArray(configuration);
+        final byte[] bytes = bucketConfigurationXmlFactory.convertToXmlByteArray(configuration);
         request.addHeader(Headers.CONTENT_LENGTH, String.valueOf(bytes.length));
         request.setContent(new ByteArrayInputStream(bytes));
 
@@ -2691,12 +2791,12 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     public void deleteBucketWebsiteConfiguration(
             DeleteBucketWebsiteConfigurationRequest deleteBucketWebsiteConfigurationRequest)
             throws AmazonClientException, AmazonServiceException {
-        String bucketName = deleteBucketWebsiteConfigurationRequest.getBucketName();
+        final String bucketName = deleteBucketWebsiteConfigurationRequest.getBucketName();
 
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when deleting a bucket's website configuration");
 
-        Request<DeleteBucketWebsiteConfigurationRequest> request = createRequest(bucketName, null,
+        final Request<DeleteBucketWebsiteConfigurationRequest> request = createRequest(bucketName, null,
                 deleteBucketWebsiteConfigurationRequest, HttpMethodName.DELETE);
         request.addParameter("website", null);
         request.addHeader("Content-Type", "application/xml");
@@ -2734,8 +2834,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(setBucketNotificationConfigurationRequest,
                 "The set bucket notification configuration request object must be specified.");
 
-        String bucketName = setBucketNotificationConfigurationRequest.getBucketName();
-        BucketNotificationConfiguration bucketNotificationConfiguration = setBucketNotificationConfigurationRequest
+        final String bucketName = setBucketNotificationConfigurationRequest.getBucketName();
+        final BucketNotificationConfiguration bucketNotificationConfiguration = setBucketNotificationConfigurationRequest
                 .getNotificationConfiguration();
 
         assertParameterNotNull(bucketName,
@@ -2744,16 +2844,25 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 bucketNotificationConfiguration,
                 "The notification configuration parameter must be specified when setting bucket notification configuration.");
 
-        Request<SetBucketNotificationConfigurationRequest> request = createRequest(bucketName,
+        final Request<SetBucketNotificationConfigurationRequest> request = createRequest(bucketName,
                 null, setBucketNotificationConfigurationRequest, HttpMethodName.PUT);
         request.addParameter("notification", null);
 
-        byte[] bytes = bucketConfigurationXmlFactory
+        final byte[] bytes = bucketConfigurationXmlFactory
                 .convertToXmlByteArray(bucketNotificationConfiguration);
         request.addHeader(Headers.CONTENT_LENGTH, String.valueOf(bytes.length));
         request.setContent(new ByteArrayInputStream(bytes));
 
         invoke(request, voidResponseHandler, bucketName, null);
+    }
+
+    @Override
+    public BucketNotificationConfiguration getBucketNotificationConfiguration(String bucketName)
+            throws AmazonClientException, AmazonServiceException {
+        assertParameterNotNull(bucketName,
+                "The bucket name parameter must be specified when querying notification configuration");
+        return getBucketNotificationConfiguration(
+                new GetBucketNotificationConfigurationRequest(bucketName));
     }
 
     /*
@@ -2763,16 +2872,19 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * (java.lang.String)
      */
     @Override
-    public BucketNotificationConfiguration getBucketNotificationConfiguration(String bucketName)
+    public BucketNotificationConfiguration getBucketNotificationConfiguration(
+            GetBucketNotificationConfigurationRequest getBucketNotificationConfigurationRequest)
             throws AmazonClientException, AmazonServiceException {
-        assertParameterNotNull(bucketName,
-                "The bucket name parameter must be specified when querying notification configuration");
 
-        Request<GenericBucketRequest> request = createRequest(bucketName, null,
-                new GenericBucketRequest(bucketName), HttpMethodName.GET);
+        final String bucketName = getBucketNotificationConfigurationRequest.getBucketName();
+        assertParameterNotNull(bucketName,
+                "The bucket request must specify a bucket name when querying notification configuration");
+
+        final Request<GetBucketNotificationConfigurationRequest> request = createRequest(bucketName,
+                null, getBucketNotificationConfigurationRequest, HttpMethodName.GET);
         request.addParameter("notification", null);
 
-        return invoke(request, new Unmarshallers.BucketNotificationConfigurationUnmarshaller(),
+        return invoke(request, BucketNotificationConfigurationStaxUnmarshaller.getInstance(),
                 bucketName, null);
     }
 
@@ -2788,12 +2900,22 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when requesting a bucket's logging status");
 
-        Request<GenericBucketRequest> request = createRequest(bucketName, null,
-                new GenericBucketRequest(bucketName), HttpMethodName.GET);
-        request.addParameter("logging", null);
+        return getBucketLoggingConfiguration(new GetBucketLoggingConfigurationRequest(bucketName));
+    }
 
-        return invoke(request, new Unmarshallers.BucketLoggingConfigurationnmarshaller(),
-                bucketName, null);
+    @Override
+    public BucketLoggingConfiguration getBucketLoggingConfiguration(
+            GetBucketLoggingConfigurationRequest getBucketLoggingConfigurationRequest)
+            throws AmazonClientException, AmazonServiceException {
+        assertParameterNotNull(getBucketLoggingConfigurationRequest,
+                "The bucket logging configuration");
+        final String bucketName = getBucketLoggingConfigurationRequest.getBucketName();
+        final Request<GetBucketLoggingConfigurationRequest> request = createRequest(bucketName,
+                null, getBucketLoggingConfigurationRequest, HttpMethodName.GET);
+        request.addParameter("logging", null);
+        return invoke(request,
+                new Unmarshallers.BucketLoggingConfigurationnmarshaller(),
+                getBucketLoggingConfigurationRequest.getBucketName(), null);
     }
 
     /*
@@ -2810,8 +2932,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 setBucketLoggingConfigurationRequest,
                 "The set bucket logging configuration request object must be specified when enabling server access logging");
 
-        String bucketName = setBucketLoggingConfigurationRequest.getBucketName();
-        BucketLoggingConfiguration loggingConfiguration = setBucketLoggingConfigurationRequest
+        final String bucketName = setBucketLoggingConfigurationRequest.getBucketName();
+        final BucketLoggingConfiguration loggingConfiguration = setBucketLoggingConfigurationRequest
                 .getLoggingConfiguration();
 
         assertParameterNotNull(bucketName,
@@ -2819,11 +2941,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(loggingConfiguration,
                 "The logging configuration parameter must be specified when enabling server access logging");
 
-        Request<SetBucketLoggingConfigurationRequest> request = createRequest(bucketName, null,
+        final Request<SetBucketLoggingConfigurationRequest> request = createRequest(bucketName, null,
                 setBucketLoggingConfigurationRequest, HttpMethodName.PUT);
         request.addParameter("logging", null);
 
-        byte[] bytes = bucketConfigurationXmlFactory.convertToXmlByteArray(loggingConfiguration);
+        final byte[] bytes = bucketConfigurationXmlFactory.convertToXmlByteArray(loggingConfiguration);
         request.addHeader(Headers.CONTENT_LENGTH, String.valueOf(bytes.length));
         request.setContent(new ByteArrayInputStream(bytes));
 
@@ -2845,11 +2967,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
         assertParameterNotNull(getBucketAccelerateConfigurationRequest,
                 "getBucketAccelerateConfigurationRequest must be specified.");
-        String bucketName = getBucketAccelerateConfigurationRequest.getBucketName();
+        final String bucketName = getBucketAccelerateConfigurationRequest.getBucketName();
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when querying accelerate configuration");
 
-        Request<GetBucketAccelerateConfigurationRequest> request = createRequest(bucketName, null,
+        final Request<GetBucketAccelerateConfigurationRequest> request = createRequest(bucketName, null,
                 getBucketAccelerateConfigurationRequest, HttpMethodName.GET);
         request.addParameter("accelerate", null);
 
@@ -2873,8 +2995,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(setBucketAccelerateConfigurationRequest,
                 "setBucketAccelerateConfigurationRequest must be specified");
 
-        String bucketName = setBucketAccelerateConfigurationRequest.getBucketName();
-        BucketAccelerateConfiguration accelerateConfiguration = setBucketAccelerateConfigurationRequest
+        final String bucketName = setBucketAccelerateConfigurationRequest.getBucketName();
+        final BucketAccelerateConfiguration accelerateConfiguration = setBucketAccelerateConfigurationRequest
                 .getAccelerateConfiguration();
 
         assertParameterNotNull(bucketName,
@@ -2884,12 +3006,12 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(accelerateConfiguration.getStatus(),
                 "The status parameter must be specified when updating bucket accelerate configuration.");
 
-        Request<SetBucketAccelerateConfigurationRequest> request = createRequest(
+        final Request<SetBucketAccelerateConfigurationRequest> request = createRequest(
                 bucketName, null, setBucketAccelerateConfigurationRequest,
                 HttpMethodName.PUT);
         request.addParameter("accelerate", null);
 
-        byte[] bytes = bucketConfigurationXmlFactory.convertToXmlByteArray(accelerateConfiguration);
+        final byte[] bytes = bucketConfigurationXmlFactory.convertToXmlByteArray(accelerateConfiguration);
         request.addHeader(Headers.CONTENT_LENGTH, String.valueOf(bytes.length));
         request.setContent(new ByteArrayInputStream(bytes));
 
@@ -2919,10 +3041,10 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(policyText,
                 "The policy text must be specified when setting a bucket policy");
 
-        Request<GenericBucketRequest> request = createRequest(bucketName, null,
+        final Request<GenericBucketRequest> request = createRequest(bucketName, null,
                 new GenericBucketRequest(bucketName), HttpMethodName.PUT);
         request.addParameter("policy", null);
-        byte[] bytes = ServiceUtils.toByteArray(policyText);
+        final byte[] bytes = ServiceUtils.toByteArray(policyText);
         request.addHeader(Headers.CONTENT_LENGTH, String.valueOf(bytes.length));
         request.setContent(new ByteArrayInputStream(bytes));
 
@@ -2953,28 +3075,29 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(getBucketPolicyRequest,
                 "The request object must be specified when getting a bucket policy");
 
-        String bucketName = getBucketPolicyRequest.getBucketName();
+        final String bucketName = getBucketPolicyRequest.getBucketName();
         assertParameterNotNull(bucketName,
                 "The bucket name must be specified when getting a bucket policy");
 
-        Request<GetBucketPolicyRequest> request = createRequest(bucketName, null,
+        final Request<GetBucketPolicyRequest> request = createRequest(bucketName, null,
                 getBucketPolicyRequest, HttpMethodName.GET);
         request.addParameter("policy", null);
 
-        BucketPolicy result = new BucketPolicy();
+        final BucketPolicy result = new BucketPolicy();
         try {
-            String policyText = invoke(request, new S3StringResponseHandler(), bucketName, null);
+            final String policyText = invoke(request, new S3StringResponseHandler(), bucketName, null);
             result.setPolicyText(policyText);
             return result;
-        } catch (AmazonServiceException ase) {
+        } catch (final AmazonServiceException ase) {
             /*
              * If we receive an error response telling us that no policy has
              * been set for this bucket, then instead of forcing the user to
              * deal with the exception, we'll just return an empty result. Any
              * other exceptions will be rethrown for the user to handle.
              */
-            if (ase.getErrorCode().equals("NoSuchBucketPolicy"))
+            if (ase.getErrorCode().equals("NoSuchBucketPolicy")) {
                 return result;
+            }
             throw ase;
         }
     }
@@ -2991,18 +3114,18 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(setBucketPolicyRequest,
                 "The request object must be specified when setting a bucket policy");
 
-        String bucketName = setBucketPolicyRequest.getBucketName();
-        String policyText = setBucketPolicyRequest.getPolicyText();
+        final String bucketName = setBucketPolicyRequest.getBucketName();
+        final String policyText = setBucketPolicyRequest.getPolicyText();
 
         assertParameterNotNull(bucketName,
                 "The bucket name must be specified when setting a bucket policy");
         assertParameterNotNull(policyText,
                 "The policy text must be specified when setting a bucket policy");
 
-        Request<SetBucketPolicyRequest> request = createRequest(bucketName, null,
+        final Request<SetBucketPolicyRequest> request = createRequest(bucketName, null,
                 setBucketPolicyRequest, HttpMethodName.PUT);
         request.addParameter("policy", null);
-        byte[] bytes = ServiceUtils.toByteArray(policyText);
+        final byte[] bytes = ServiceUtils.toByteArray(policyText);
         request.addHeader(Headers.CONTENT_LENGTH, String.valueOf(bytes.length));
         request.setContent(new ByteArrayInputStream(bytes));
 
@@ -3022,11 +3145,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(deleteBucketPolicyRequest,
                 "The request object must be specified when deleting a bucket policy");
 
-        String bucketName = deleteBucketPolicyRequest.getBucketName();
+        final String bucketName = deleteBucketPolicyRequest.getBucketName();
         assertParameterNotNull(bucketName,
                 "The bucket name must be specified when deleting a bucket policy");
 
-        Request<DeleteBucketPolicyRequest> request = createRequest(bucketName, null,
+        final Request<DeleteBucketPolicyRequest> request = createRequest(bucketName, null,
                 deleteBucketPolicyRequest, HttpMethodName.DELETE);
         request.addParameter("policy", null);
 
@@ -3055,7 +3178,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     public URL generatePresignedUrl(String bucketName, String key, Date expiration,
             HttpMethod method)
             throws AmazonClientException {
-        GeneratePresignedUrlRequest request = new GeneratePresignedUrlRequest(bucketName, key,
+        final GeneratePresignedUrlRequest request = new GeneratePresignedUrlRequest(bucketName, key,
                 method);
         request.setExpiration(expiration);
 
@@ -3074,8 +3197,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(generatePresignedUrlRequest,
                 "The request parameter must be specified when generating a pre-signed URL");
 
-        String bucketName = generatePresignedUrlRequest.getBucketName();
-        String key = generatePresignedUrlRequest.getKey();
+        final String bucketName = generatePresignedUrlRequest.getBucketName();
+        final String key = generatePresignedUrlRequest.getKey();
 
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when generating a pre-signed URL");
@@ -3087,7 +3210,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                     new Date(System.currentTimeMillis() + 1000 * 60 * 15));
         }
 
-        HttpMethodName httpMethod = HttpMethodName.valueOf(generatePresignedUrlRequest.getMethod()
+        final HttpMethodName httpMethod = HttpMethodName.valueOf(generatePresignedUrlRequest.getMethod()
                 .toString());
 
         // If the key starts with a slash character itself, the following method
@@ -3095,10 +3218,13 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         // the HttpClient mistakenly treating the slash as a path delimiter.
         // For presigned request, we need to remember to remove this extra slash
         // before generating the URL.
-        Request<GeneratePresignedUrlRequest> request = createRequest(bucketName, key,
+        final Request<GeneratePresignedUrlRequest> request = createRequest(bucketName, key,
                 generatePresignedUrlRequest, httpMethod);
+        if (generatePresignedUrlRequest.isZeroByteContent()) {
+            request.setContent(new ByteArrayInputStream(new byte[0]));
+        }
 
-        for (Entry<String, String> entry : generatePresignedUrlRequest.getRequestParameters()
+        for (final Entry<String, String> entry : generatePresignedUrlRequest.getRequestParameters()
                 .entrySet()) {
             request.addParameter(entry.getKey(), entry.getValue());
         }
@@ -3111,11 +3237,19 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             request.addHeader(Headers.CONTENT_MD5, generatePresignedUrlRequest.getContentMd5());
         }
 
-        populateSseCpkRequestParameters(request, generatePresignedUrlRequest.getSSECustomerKey());
+          // SSE-C
+        populateSSE_C(request, generatePresignedUrlRequest.getSSECustomerKey());
+        // SSE
+        addHeaderIfNotNull(request, Headers.SERVER_SIDE_ENCRYPTION,
+                generatePresignedUrlRequest.getSSEAlgorithm());
+        // SSE-KMS
+        addHeaderIfNotNull(request,
+                Headers.SERVER_SIDE_ENCRYPTION_KMS_KEY_ID,
+                generatePresignedUrlRequest.getKmsCmkId());
 
         addResponseHeaderParameters(request, generatePresignedUrlRequest.getResponseHeaders());
 
-        Signer signer = createSigner(request, bucketName, key);
+        final Signer signer = createSigner(request, bucketName, key);
 
         if (signer instanceof Presigner) {
             // If we have a signer which knows how to presign requests,
@@ -3159,12 +3293,13 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(abortMultipartUploadRequest.getUploadId(),
                 "The upload ID parameter must be specified when aborting a multipart upload");
 
-        String bucketName = abortMultipartUploadRequest.getBucketName();
-        String key = abortMultipartUploadRequest.getKey();
+        final String bucketName = abortMultipartUploadRequest.getBucketName();
+        final String key = abortMultipartUploadRequest.getKey();
 
-        Request<AbortMultipartUploadRequest> request = createRequest(bucketName, key,
+        final Request<AbortMultipartUploadRequest> request = createRequest(bucketName, key,
                 abortMultipartUploadRequest, HttpMethodName.DELETE);
         request.addParameter("uploadId", abortMultipartUploadRequest.getUploadId());
+        populateRequesterPaysHeader(request, abortMultipartUploadRequest.isRequesterPays());
 
         invoke(request, voidResponseHandler, bucketName, key);
     }
@@ -3182,9 +3317,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(completeMultipartUploadRequest,
                 "The request parameter must be specified when completing a multipart upload");
 
-        String bucketName = completeMultipartUploadRequest.getBucketName();
-        String key = completeMultipartUploadRequest.getKey();
-        String uploadId = completeMultipartUploadRequest.getUploadId();
+        final String bucketName = completeMultipartUploadRequest.getBucketName();
+        final String key = completeMultipartUploadRequest.getKey();
+        final String uploadId = completeMultipartUploadRequest.getUploadId();
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when completing a multipart upload");
         assertParameterNotNull(key,
@@ -3194,34 +3329,57 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(completeMultipartUploadRequest.getPartETags(),
                 "The part ETags parameter must be specified when completing a multipart upload");
 
-        Request<CompleteMultipartUploadRequest> request = createRequest(bucketName, key,
-                completeMultipartUploadRequest, HttpMethodName.POST);
-        request.addParameter("uploadId", uploadId);
+        int retries = 0;
+        CompleteMultipartUploadHandler handler;
+        do {
+            final Request<CompleteMultipartUploadRequest> request = createRequest(bucketName, key, completeMultipartUploadRequest, HttpMethodName.POST);
+            request.addParameter("uploadId", uploadId);
 
-        byte[] xml = RequestXmlFactory.convertToXmlByteArray(completeMultipartUploadRequest
-                .getPartETags());
-        request.addHeader("Content-Type", "text/plain");
-        request.addHeader("Content-Length", String.valueOf(xml.length));
+            populateRequesterPaysHeader(request, completeMultipartUploadRequest.isRequesterPays());
+
+            final byte[] xml = RequestXmlFactory.convertToXmlByteArray(completeMultipartUploadRequest.getPartETags());
+            request.addHeader("Content-Type", "application/xml");
+            request.addHeader("Content-Length", String.valueOf(xml.length));
 
         request.setContent(new ByteArrayInputStream(xml));
 
-        @SuppressWarnings("unchecked")
-        ResponseHeaderHandlerChain<CompleteMultipartUploadHandler> responseHandler = new ResponseHeaderHandlerChain<CompleteMultipartUploadHandler>(
-                // xml payload unmarshaller
-                new Unmarshallers.CompleteMultipartUploadResultUnmarshaller(),
-                // header handlers
-                new ServerSideEncryptionHeaderHandler<CompleteMultipartUploadHandler>(),
-                new ObjectExpirationHeaderHandler<CompleteMultipartUploadHandler>());
-        CompleteMultipartUploadHandler handler = invoke(request, responseHandler, bucketName, key);
-        if (handler.getCompleteMultipartUploadResult() != null) {
-            String versionId = responseHandler.getResponseHeaders().get(Headers.S3_VERSION_ID);
-            handler.getCompleteMultipartUploadResult().setVersionId(versionId);
-            return handler.getCompleteMultipartUploadResult();
-        } else {
-            throw handler.getAmazonS3Exception();
-        }
+            @SuppressWarnings("unchecked")
+            final
+            ResponseHeaderHandlerChain<CompleteMultipartUploadHandler> responseHandler = new ResponseHeaderHandlerChain<CompleteMultipartUploadHandler>(
+                    // xml payload unmarshaller
+                    new Unmarshallers.CompleteMultipartUploadResultUnmarshaller(),
+                    // header handlers
+                    new ServerSideEncryptionHeaderHandler<CompleteMultipartUploadHandler>(),
+                    new ObjectExpirationHeaderHandler<CompleteMultipartUploadHandler>(),
+                    new S3VersionHeaderHandler<CompleteMultipartUploadHandler>(),
+                    new S3RequesterChargedHeaderHandler<CompleteMultipartUploadHandler>());
+            handler = invoke(request, responseHandler, bucketName, key);
+            if (handler.getCompleteMultipartUploadResult() != null) {
+                return handler.getCompleteMultipartUploadResult();
+            }
+        } while (shouldRetryCompleteMultipartUpload(completeMultipartUploadRequest,
+                handler.getAmazonS3Exception(), retries++));
+
+        throw handler.getAmazonS3Exception();
     }
 
+    private boolean shouldRetryCompleteMultipartUpload(AmazonWebServiceRequest originalRequest,
+                                                       AmazonS3Exception exception,
+                                                       int retriesAttempted) {
+
+        final RetryPolicy retryPolicy = clientConfiguration.getRetryPolicy();
+
+        if (retryPolicy == null || retryPolicy.getRetryCondition() == null) {
+            return false;
+        }
+
+        if (retryPolicy == PredefinedRetryPolicies.NO_RETRY_POLICY) {
+            return false;
+        }
+
+        return completeMultipartUploadRetryCondition.shouldRetry
+                (originalRequest, exception, retriesAttempted);
+    }
     /*
      * (non-Javadoc)
      * @see
@@ -3240,15 +3398,16 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(initiateMultipartUploadRequest.getKey(),
                 "The key parameter must be specified when initiating a multipart upload");
 
-        Request<InitiateMultipartUploadRequest> request = createRequest(
+        final Request<InitiateMultipartUploadRequest> request = createRequest(
                 initiateMultipartUploadRequest.getBucketName(),
                 initiateMultipartUploadRequest.getKey(), initiateMultipartUploadRequest,
                 HttpMethodName.POST);
         request.addParameter("uploads", null);
 
-        if (initiateMultipartUploadRequest.getStorageClass() != null)
+        if (initiateMultipartUploadRequest.getStorageClass() != null) {
             request.addHeader(Headers.STORAGE_CLASS, initiateMultipartUploadRequest
                     .getStorageClass().toString());
+        }
 
         if (initiateMultipartUploadRequest.getRedirectLocation() != null) {
             request.addHeader(Headers.REDIRECT_LOCATION,
@@ -3266,8 +3425,14 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             populateRequestMetadata(request, initiateMultipartUploadRequest.objectMetadata);
         }
 
-        // Populate the SSE-CPK parameters to the request header
-        populateSseCpkRequestParameters(request, initiateMultipartUploadRequest.getSSECustomerKey());
+        populateRequesterPaysHeader(request, initiateMultipartUploadRequest.isRequesterPays());
+
+        // Populate the SSE-C parameters to the request header
+        populateSSE_C(request, initiateMultipartUploadRequest.getSSECustomerKey());
+
+        // Populate the SSE AWS KMS parameters to the request header
+        populateSSE_KMS(request,
+                initiateMultipartUploadRequest.getSSEAwsKeyManagementParams());
 
         // Be careful that we don't send the object's total size as the content
         // length for the InitiateMultipartUpload request.
@@ -3279,6 +3444,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         request.setContent(new ByteArrayInputStream(new byte[0]));
 
         @SuppressWarnings("unchecked")
+        final
         ResponseHeaderHandlerChain<InitiateMultipartUploadResult> responseHandler = new ResponseHeaderHandlerChain<InitiateMultipartUploadResult>(
                 // xml payload unmarshaller
                 new Unmarshallers.InitiateMultipartUploadResultUnmarshaller(),
@@ -3305,25 +3471,31 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(listMultipartUploadsRequest.getBucketName(),
                 "The bucket name parameter must be specified when listing multipart uploads");
 
-        Request<ListMultipartUploadsRequest> request = createRequest(
+        final Request<ListMultipartUploadsRequest> request = createRequest(
                 listMultipartUploadsRequest.getBucketName(), null, listMultipartUploadsRequest,
                 HttpMethodName.GET);
         request.addParameter("uploads", null);
 
-        if (listMultipartUploadsRequest.getKeyMarker() != null)
+        if (listMultipartUploadsRequest.getKeyMarker() != null) {
             request.addParameter("key-marker", listMultipartUploadsRequest.getKeyMarker());
-        if (listMultipartUploadsRequest.getMaxUploads() != null)
+        }
+        if (listMultipartUploadsRequest.getMaxUploads() != null) {
             request.addParameter("max-uploads", listMultipartUploadsRequest.getMaxUploads()
                     .toString());
-        if (listMultipartUploadsRequest.getUploadIdMarker() != null)
+        }
+        if (listMultipartUploadsRequest.getUploadIdMarker() != null) {
             request.addParameter("upload-id-marker",
                     listMultipartUploadsRequest.getUploadIdMarker());
-        if (listMultipartUploadsRequest.getDelimiter() != null)
+        }
+        if (listMultipartUploadsRequest.getDelimiter() != null) {
             request.addParameter("delimiter", listMultipartUploadsRequest.getDelimiter());
-        if (listMultipartUploadsRequest.getPrefix() != null)
+        }
+        if (listMultipartUploadsRequest.getPrefix() != null) {
             request.addParameter("prefix", listMultipartUploadsRequest.getPrefix());
-        if (listMultipartUploadsRequest.getEncodingType() != null)
+        }
+        if (listMultipartUploadsRequest.getEncodingType() != null) {
             request.addParameter("encoding-type", listMultipartUploadsRequest.getEncodingType());
+        }
 
         return invoke(request, new Unmarshallers.ListMultipartUploadsResultUnmarshaller(),
                 listMultipartUploadsRequest.getBucketName(), null);
@@ -3348,18 +3520,23 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(listPartsRequest.getUploadId(),
                 "The upload ID parameter must be specified when listing parts");
 
-        Request<ListPartsRequest> request = createRequest(listPartsRequest.getBucketName(),
+        final Request<ListPartsRequest> request = createRequest(listPartsRequest.getBucketName(),
                 listPartsRequest.getKey(), listPartsRequest, HttpMethodName.GET);
         request.addParameter("uploadId", listPartsRequest.getUploadId());
 
-        if (listPartsRequest.getMaxParts() != null)
+        if (listPartsRequest.getMaxParts() != null) {
             request.addParameter("max-parts", listPartsRequest.getMaxParts().toString());
-        if (listPartsRequest.getPartNumberMarker() != null)
+        }
+        if (listPartsRequest.getPartNumberMarker() != null) {
             request.addParameter("part-number-marker", listPartsRequest.getPartNumberMarker()
                     .toString());
-        if (listPartsRequest.getEncodingType() != null)
+        }
+        if (listPartsRequest.getEncodingType() != null) {
             request.addParameter("encoding-type", listPartsRequest.getEncodingType());
+        }
 
+
+	 populateRequesterPaysHeader(request, listPartsRequest.isRequesterPays());
         return invoke(request, new Unmarshallers.ListPartsResultUnmarshaller(),
                 listPartsRequest.getBucketName(), listPartsRequest.getKey());
     }
@@ -3376,11 +3553,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(uploadPartRequest,
                 "The request parameter must be specified when uploading a part");
 
-        String bucketName = uploadPartRequest.getBucketName();
-        String key = uploadPartRequest.getKey();
-        String uploadId = uploadPartRequest.getUploadId();
-        int partNumber = uploadPartRequest.getPartNumber();
-        long partSize = uploadPartRequest.getPartSize();
+        final String bucketName = uploadPartRequest.getBucketName();
+        final String key = uploadPartRequest.getKey();
+        final String uploadId = uploadPartRequest.getUploadId();
+        final int partNumber = uploadPartRequest.getPartNumber();
+        final long partSize = uploadPartRequest.getPartSize();
 
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when uploading a part");
@@ -3393,17 +3570,26 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(partSize,
                 "The part size parameter must be specified when uploading a part");
 
-        Request<UploadPartRequest> request = createRequest(bucketName, key, uploadPartRequest,
+        final Request<UploadPartRequest> request = createRequest(bucketName, key, uploadPartRequest,
                 HttpMethodName.PUT);
         request.addParameter("uploadId", uploadId);
         request.addParameter("partNumber", Integer.toString(partNumber));
 
+        final ObjectMetadata objectMetadata = uploadPartRequest.getObjectMetadata();
+        if (objectMetadata != null) {
+            populateRequestMetadata(request, objectMetadata);
+        }
+
         addHeaderIfNotNull(request, Headers.CONTENT_MD5, uploadPartRequest.getMd5Digest());
         request.addHeader(Headers.CONTENT_LENGTH, Long.toString(partSize));
-        request.addHeader("Expect", "100-continue");
-
+        /*
+         * HttpUrlConnection seems to be buggy in terms of implementation of
+         * expect continue.
+         */
+        // request.addHeader("Expect", "100-continue");
+        populateRequesterPaysHeader(request, uploadPartRequest.isRequesterPays());
         // Populate the SSE-CPK parameters to the request header
-        populateSseCpkRequestParameters(request, uploadPartRequest.getSSECustomerKey());
+        populateSSE_C(request, uploadPartRequest.getSSECustomerKey());
 
         InputStream inputStream = null;
         if (uploadPartRequest.getInputStream() != null) {
@@ -3413,7 +3599,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 inputStream = new InputSubstream(new RepeatableFileInputStream(
                         uploadPartRequest.getFile()),
                         uploadPartRequest.getFileOffset(), partSize, true);
-            } catch (FileNotFoundException e) {
+            } catch (final FileNotFoundException e) {
                 throw new IllegalArgumentException("The specified file doesn't exist", e);
             }
         } else {
@@ -3438,8 +3624,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
          * method UploadPartRequest#setProgressListener or the new method
          * UploadPartRequest#setGeneralProgressListener.
          */
-        ProgressListener progressListener = uploadPartRequest.getGeneralProgressListener();
-        ProgressListenerCallbackExecutor progressListenerCallbackExecutor = ProgressListenerCallbackExecutor
+        final ProgressListener progressListener = uploadPartRequest.getGeneralProgressListener();
+        final ProgressListenerCallbackExecutor progressListenerCallbackExecutor = ProgressListenerCallbackExecutor
                 .wrapListener(progressListener);
 
         if (progressListenerCallbackExecutor != null) {
@@ -3451,13 +3637,13 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
         try {
             request.setContent(inputStream);
-            ObjectMetadata metadata = invoke(request, new S3MetadataResponseHandler(), bucketName,
+            final ObjectMetadata metadata = invoke(request, new S3MetadataResponseHandler(), bucketName,
                     key);
 
             if (metadata != null && md5DigestStream != null
                     && !ServiceUtils.skipMd5CheckPerResponse(metadata)) {
-                byte[] clientSideHash = md5DigestStream.getMd5Digest();
-                byte[] serverSideHash = BinaryUtils.fromHex(metadata.getETag());
+                final byte[] clientSideHash = md5DigestStream.getMd5Digest();
+                final byte[] serverSideHash = BinaryUtils.fromHex(metadata.getETag());
 
                 if (!Arrays.equals(clientSideHash, serverSideHash)) {
                     throw new AmazonClientException(
@@ -3472,15 +3658,15 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             fireProgressEvent(progressListenerCallbackExecutor,
                     ProgressEvent.PART_COMPLETED_EVENT_CODE);
 
-            UploadPartResult result = new UploadPartResult();
+            final UploadPartResult result = new UploadPartResult();
             result.setETag(metadata.getETag());
             result.setPartNumber(partNumber);
             result.setSSEAlgorithm(metadata.getSSEAlgorithm());
-            result.setSSEKMSKeyId(metadata.getSSEKMSKeyId());
             result.setSSECustomerAlgorithm(metadata.getSSECustomerAlgorithm());
             result.setSSECustomerKeyMd5(metadata.getSSECustomerKeyMd5());
+            result.setRequesterCharged(metadata.isRequesterCharged());
             return result;
-        } catch (AmazonClientException ace) {
+        } catch (final AmazonClientException ace) {
             fireProgressEvent(progressListenerCallbackExecutor,
                     ProgressEvent.PART_FAILED_EVENT_CODE);
 
@@ -3495,7 +3681,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             if (inputStream != null) {
                 try {
                     inputStream.close();
-                } catch (Exception e) {
+                } catch (final Exception e) {
                 }
             }
         }
@@ -3521,10 +3707,10 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     @Override
     public void restoreObject(RestoreObjectRequest restoreObjectRequest)
             throws AmazonServiceException {
-        String bucketName = restoreObjectRequest.getBucketName();
-        String key = restoreObjectRequest.getKey();
-        String versionId = restoreObjectRequest.getVersionId();
-        int expirationIndays = restoreObjectRequest.getExpirationInDays();
+        final String bucketName = restoreObjectRequest.getBucketName();
+        final String key = restoreObjectRequest.getKey();
+        final String versionId = restoreObjectRequest.getVersionId();
+        final int expirationIndays = restoreObjectRequest.getExpirationInDays();
 
         assertParameterNotNull(bucketName,
                 "The bucket name parameter must be specified when copying a glacier object");
@@ -3535,22 +3721,24 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                     "The expiration in days parameter must be specified when copying a glacier object");
         }
 
-        Request<RestoreObjectRequest> request = createRequest(bucketName, key,
+        final Request<RestoreObjectRequest> request = createRequest(bucketName, key,
                 restoreObjectRequest, HttpMethodName.POST);
         request.addParameter("restore", null);
         if (versionId != null) {
             request.addParameter("versionId", versionId);
         }
 
-        byte[] content = RequestXmlFactory.convertToXmlByteArray(restoreObjectRequest);
+        populateRequesterPaysHeader(request, restoreObjectRequest.isRequesterPays());
+
+        final byte[] content = RequestXmlFactory.convertToXmlByteArray(restoreObjectRequest);
         request.addHeader("Content-Length", String.valueOf(content.length));
         request.addHeader("Content-Type", "application/xml");
         request.setContent(new ByteArrayInputStream(content));
         try {
-            byte[] md5 = Md5Utils.computeMD5Hash(content);
-            String md5Base64 = BinaryUtils.toBase64(md5);
+            final byte[] md5 = Md5Utils.computeMD5Hash(content);
+            final String md5Base64 = BinaryUtils.toBase64(md5);
             request.addHeader("Content-MD5", md5Base64);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new AmazonClientException("Couldn't compute md5 sum", e);
         }
 
@@ -3575,22 +3763,6 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
 
     /**
-     * <p>
-     * Asserts that the specified parameter value is not <code>null</code> and
-     * if it is, throws an <code>IllegalArgumentException</code> with the
-     * specified error message.
-     * </p>
-     *
-     * @param parameterValue The parameter value being checked.
-     * @param errorMessage The error message to include in the
-     *            IllegalArgumentException if the specified parameter is null.
-     */
-    private void assertParameterNotNull(Object parameterValue, String errorMessage) {
-        if (parameterValue == null)
-            throw new IllegalArgumentException(errorMessage);
-    }
-
-    /**
      * Fires a progress event with the specified event type to the specified
      * listener.
      *
@@ -3600,9 +3772,10 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     private void fireProgressEvent(
             final ProgressListenerCallbackExecutor progressListenerCallbackExecutor,
             final int eventType) {
-        if (progressListenerCallbackExecutor == null)
+        if (progressListenerCallbackExecutor == null) {
             return;
-        ProgressEvent event = new ProgressEvent(0);
+        }
+        final ProgressEvent event = new ProgressEvent(0);
         event.setEventCode(eventType);
         progressListenerCallbackExecutor.progressChanged(event);
     }
@@ -3625,15 +3798,18 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * @return The S3 ACL for the specified resource.
      */
     private AccessControlList getAcl(String bucketName, String key, String versionId,
-            AmazonWebServiceRequest originalRequest) {
-        if (originalRequest == null)
+            boolean isRequesterPays, AmazonWebServiceRequest originalRequest) {
+        if (originalRequest == null) {
             originalRequest = new GenericBucketRequest(bucketName);
+        }
 
-        Request<AmazonWebServiceRequest> request = createRequest(bucketName, key, originalRequest,
+        final Request<AmazonWebServiceRequest> request = createRequest(bucketName, key, originalRequest,
                 HttpMethodName.GET);
         request.addParameter("acl", null);
-        if (versionId != null)
+        if (versionId != null) {
             request.addParameter("versionId", versionId);
+        }
+        populateRequesterPaysHeader(request, isRequesterPays);
 
         return invoke(request, new Unmarshallers.AccessControlListUnmarshaller(), bucketName, key);
     }
@@ -3654,16 +3830,20 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * @param originalRequest The original, user facing request object.
      */
     private void setAcl(String bucketName, String key, String versionId,
-            CannedAccessControlList cannedAcl, AmazonWebServiceRequest originalRequest) {
-        if (originalRequest == null)
+            CannedAccessControlList cannedAcl, boolean isRequesterPays,
+            AmazonWebServiceRequest originalRequest) {
+        if (originalRequest == null) {
             originalRequest = new GenericBucketRequest(bucketName);
+        }
 
-        Request<AmazonWebServiceRequest> request = createRequest(bucketName, key, originalRequest,
+        final Request<AmazonWebServiceRequest> request = createRequest(bucketName, key, originalRequest,
                 HttpMethodName.PUT);
         request.addParameter("acl", null);
         request.addHeader(Headers.S3_CANNED_ACL, cannedAcl.toString());
-        if (versionId != null)
+        if (versionId != null) {
             request.addParameter("versionId", versionId);
+        }
+        populateRequesterPaysHeader(request, isRequesterPays);
 
         invoke(request, voidResponseHandler, bucketName, key);
     }
@@ -3673,28 +3853,36 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * specified, the ACL will be applied to the bucket, otherwise if bucketName
      * and key are specified, the ACL will be applied to the object.
      *
-     * @param bucketName The name of the bucket containing the specified key, or
-     *            if no key is listed, the bucket whose ACL will be set.
-     * @param key The optional object key within the specified bucket whose ACL
+     * @param bucketName
+     *            The name of the bucket containing the specified key, or if no
+     *            key is listed, the bucket whose ACL will be set.
+     * @param key
+     *            The optional object key within the specified bucket whose ACL
      *            will be set. If not specified, the bucket ACL will be set.
-     * @param versionId The version ID of the object version whose ACL is being
-     *            set.
-     * @param acl The ACL to apply to the resource.
-     * @param originalRequest The original, user facing request object.
+     * @param versionId
+     *            The version ID of the object version whose ACL is being set.
+     * @param acl
+     *            The ACL to apply to the resource.
+     * @param originalRequest
+     *            The original, user facing request object.
      */
     private void setAcl(String bucketName, String key, String versionId, AccessControlList acl,
+            boolean isRequesterPays,
             AmazonWebServiceRequest originalRequest) {
-        if (originalRequest == null)
+        if (originalRequest == null) {
             originalRequest = new GenericBucketRequest(bucketName);
+        }
 
-        Request<AmazonWebServiceRequest> request = createRequest(bucketName, key, originalRequest,
+        final Request<AmazonWebServiceRequest> request = createRequest(bucketName, key, originalRequest,
                 HttpMethodName.PUT);
         request.addParameter("acl", null);
-        if (versionId != null)
+        if (versionId != null) {
             request.addParameter("versionId", versionId);
+        }
+        populateRequesterPaysHeader(request, isRequesterPays);
 
-        byte[] aclAsXml = new AclXmlFactory().convertToXmlByteArray(acl);
-        request.addHeader("Content-Type", "text/plain");
+        final byte[] aclAsXml = new AclXmlFactory().convertToXmlByteArray(acl);
+        request.addHeader("Content-Type", "application/xml");
         request.addHeader("Content-Length", String.valueOf(aclAsXml.length));
         request.setContent(new ByteArrayInputStream(aclAsXml));
 
@@ -3708,84 +3896,105 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     protected Signer createSigner(final Request<?> request,
             final String bucketName,
             final String key) {
+        // Instead of using request.getEndpoint() for this parameter, we use
+        // endpoint which is because
+        // in accelerate mode, the endpoint in request is regionless. We need
+        // the client-wide endpoint
+        // to fetch the region information and pick the correct signer.
+        final URI uri = clientOptions.isAccelerateModeEnabled() ? endpoint : request.getEndpoint();
+        final Signer signer = getSignerByURI(uri);
 
-        Signer signer = getSigner();
+        if (!isSignerOverridden()) {
+            if ((signer instanceof AWSS3V4Signer) && noExplicitRegionProvided(request)) {
 
-        if (upgradeToSigV4(request) && !(signer instanceof AWSS3V4Signer)) {
+                final String region = clientRegion == null ? bucketRegionCache.get(bucketName)
+                        : clientRegion;
+                if (region != null) {
+                     // If cache contains the region for the bucket, create an endpoint for the region and
+                     // update the request with that endpoint.
+                     resolveRequestEndpoint(request, bucketName, key, RuntimeHttpUtils.toUri(RegionUtils.getRegion(region).getServiceEndpoint(S3_SERVICE_NAME), clientConfiguration));
 
-            AWSS3V4Signer v4Signer = new AWSS3V4Signer();
-
-            // Always set the service name; if the user has overridden it via
-            // setEndpoint(String, String, String), this will return the right
-            // value. Otherwise it will return "s3", which is an appropriate
-            // default.
-            v4Signer.setServiceName(getServiceNameIntern());
-
-            // If the user has set an authentication region override, pass it
-            // to the signer. Otherwise leave it null - the signer will parse
-            // region from the request endpoint.
-
-            String regionOverride = getSignerRegionOverride();
-            if (regionOverride == null) {
-                regionOverride = clientRegion;
+                     final AWSS3V4Signer v4Signer = (AWSS3V4Signer) signer;
+                     v4Signer.setServiceName(getServiceNameIntern());
+                     v4Signer.setRegionName(region);
+                     return v4Signer;
+                } else if (request.getOriginalRequest() instanceof GeneratePresignedUrlRequest) {
+                    return createSigV2Signer(request, bucketName, key);
+                }
             }
-            if (regionOverride == null) {
-                throw new AmazonClientException(
-                        "Signature Version 4 requires knowing the region of "
-                                + "the bucket you're trying to access. You can "
-                                + "configure a region by calling AmazonS3Client."
-                                + "setRegion(Region) or AmazonS3Client.setEndpoint("
-                                + "String) with a region-specific endpoint such as "
-                                + "\"s3-us-west-2.amazonaws.com\".");
-            } else {
+            // use the signer override if provided, else see if you can get the
+            // signer from bucketreqion cache.
+            final String regionOverride = getSignerRegionOverride() == null
+                    ? (clientRegion == null ? bucketRegionCache.get(bucketName) : clientRegion)
+                    : getSignerRegionOverride();
+            if (regionOverride != null) {
+                final AWSS3V4Signer v4Signer = new AWSS3V4Signer();
+                v4Signer.setServiceName(getServiceNameIntern());
                 v4Signer.setRegionName(regionOverride);
+                return v4Signer;
             }
-
-            return v4Signer;
-
         }
 
         if (signer instanceof S3Signer) {
-
             // The old S3Signer needs a method and path passed to its
             // constructor; if that's what we should use, getSigner()
             // will return a dummy instance and we need to create a
             // new one with the appropriate values for this request.
-
-            String resourcePath =
-                    "/" +
-                            ((bucketName != null) ? bucketName + "/" : "") +
-                            ((key != null) ? key : "");
-
-            return new S3Signer(request.getHttpMethod().toString(),
-                    resourcePath);
+            return createSigV2Signer(request, bucketName, key);
         }
 
         return signer;
     }
 
-    private boolean upgradeToSigV4(Request<?> request) {
+    /**
+     * Has signer been explicitly overriden in the configuration?
+     */
+    private boolean isSignerOverridden() {
+        return clientConfiguration != null
+                && clientConfiguration.getSignerOverride() != null;
+    }
 
-        // User has said to always use SigV4 - this will fail if the user
-        // attempts to read from or write to a non-US-Standard bucket without
-        // explicitly setting the region.
+    /**
+     * <p>
+     * Returns true if the region required for signing could not be computed
+     * from the client or the request.
+     * </p>
+     * <p>
+     * This is the case when the standard endpoint is in use and neither an
+     * explicit region nor a signer override have been provided by the user.
+     * </p>
+     */
+    private boolean noExplicitRegionProvided(final Request<?> request) {
+        return isStandardEndpoint(request.getEndpoint()) &&
+                getSignerRegion() == null;
+    }
 
-        if (System.getProperty(SDKGlobalConfiguration
-                .ENFORCE_S3_SIGV4_SYSTEM_PROPERTY) != null) {
-
-            return true;
+    /**
+     * Return the region string that should be used for signing requests sent by
+     * this client. This method can only return null if both of the following
+     * are true:
+     * (a) the user has never specified a region via setRegion/configureRegion/setSignerRegionOverride
+     * (b) the user has specified a client endpoint that is known to be a global S3 endpoint
+     */
+    private String getSignerRegion() {
+        String region = getSignerRegionOverride();
+        if (region == null) {
+            region = clientRegion;
         }
+        return region;
+    }
 
-        // Upgrade to Sigv4 if using non-default region.
-        if (!endpoint.getHost().endsWith(Constants.S3_HOSTNAME)) {
-            return true;
+    private boolean isStandardEndpoint(URI endpoint) {
+        return endpoint.getHost().endsWith(Constants.S3_HOSTNAME);
+    }
 
-        }
-
-        // Go with the default (SigV4 only if we know we're talking to an
-        // endpoint that requires SigV4).
-
-        return false;
+    private S3Signer createSigV2Signer(final Request<?> request,
+            final String bucketName,
+            final String key) {
+        final String resourcePath = "/" +
+                ((bucketName != null) ? bucketName + "/" : "") +
+                ((key != null) ? key : "");
+        return new S3Signer(request.getHttpMethod().toString(), resourcePath);
     }
 
     /**
@@ -3823,7 +4032,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         resourcePath = resourcePath.replaceAll("(?<=/)/", "%2F");
 
         AWSCredentials credentials = awsCredentialsProvider.getCredentials();
-        AmazonWebServiceRequest originalRequest = request.getOriginalRequest();
+        final AmazonWebServiceRequest originalRequest = request.getOriginalRequest();
         if (originalRequest != null && originalRequest.getRequestCredentials() != null) {
             credentials = originalRequest.getRequestCredentials();
         }
@@ -3837,7 +4046,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         // travels along
         // with the pre-signed URL when it's sent back to Amazon S3.
         if (request.getHeaders().containsKey(Headers.SECURITY_TOKEN)) {
-            String value = request.getHeaders().get(Headers.SECURITY_TOKEN);
+            final String value = request.getHeaders().get(Headers.SECURITY_TOKEN);
             request.addParameter(Headers.SECURITY_TOKEN, value);
             request.getHeaders().remove(Headers.SECURITY_TOKEN);
         }
@@ -3845,7 +4054,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
     private <T> void beforeRequest(Request<T> request) {
         if (requestHandler2s != null) {
-            for (RequestHandler2 requestHandler2 : requestHandler2s) {
+            for (final RequestHandler2 requestHandler2 : requestHandler2s) {
                 requestHandler2.beforeRequest(request);
             }
         }
@@ -3861,11 +4070,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * @return A new URI, creating from the current service endpoint URI and the
      *         specified bucket.
      */
-    private URI convertToVirtualHostEndpoint(String bucketName) {
+    private URI convertToVirtualHostEndpoint(URI endpoint, String bucketName) {
         try {
             return new URI(endpoint.getScheme() + "://" + bucketName + "."
                     + endpoint.getAuthority());
-        } catch (URISyntaxException e) {
+        } catch (final URISyntaxException e) {
             throw new IllegalArgumentException("Invalid bucket name: " + bucketName, e);
         }
     }
@@ -3881,7 +4090,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      *            in the request.
      */
     protected static void populateRequestMetadata(Request<?> request, ObjectMetadata metadata) {
-        Map<String, Object> rawMetadata = metadata.getRawMetadata();
+        final Map<String, Object> rawMetadata = metadata.getRawMetadata();
 
         if (rawMetadata.get(Headers.SERVER_SIDE_ENCRYPTION_KMS_KEY_ID) != null
                 && !ObjectMetadata.KMS_SERVER_SIDE_ENCRYPTION.equals(rawMetadata
@@ -3891,25 +4100,27 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         }
 
         if (rawMetadata != null) {
-            for (Entry<String, Object> entry : rawMetadata.entrySet()) {
+            for (final Entry<String, Object> entry : rawMetadata.entrySet()) {
                 request.addHeader(entry.getKey(), entry.getValue().toString());
             }
         }
 
-        Date httpExpiresDate = metadata.getHttpExpiresDate();
+        final Date httpExpiresDate = metadata.getHttpExpiresDate();
         if (httpExpiresDate != null) {
             request.addHeader(Headers.EXPIRES, DateUtils.formatRFC822Date(httpExpiresDate));
         }
 
-        Map<String, String> userMetadata = metadata.getUserMetadata();
+        final Map<String, String> userMetadata = metadata.getUserMetadata();
         if (userMetadata != null) {
-            for (Entry<String, String> entry : userMetadata.entrySet()) {
+            for (final Entry<String, String> entry : userMetadata.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue();
-                if (key != null)
+                if (key != null) {
                     key = key.trim();
-                if (value != null)
+                }
+                if (value != null) {
                     value = value.trim();
+                }
                 request.addHeader(Headers.S3_USER_METADATA_PREFIX + key, value);
             }
         }
@@ -3928,12 +4139,13 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * @param mfa The Multi-Factor Authentication information.
      */
     private void populateRequestWithMfaDetails(Request<?> request, MultiFactorAuthentication mfa) {
-        if (mfa == null)
+        if (mfa == null) {
             return;
+        }
 
-        String endpoint = request.getEndpoint().toString();
+        final String endpoint = request.getEndpoint().toString();
         if (endpoint.startsWith("http://")) {
-            String httpsEndpoint = endpoint.replace("http://", "https://");
+            final String httpsEndpoint = endpoint.replace("http://", "https://");
             request.setEndpoint(URI.create(httpsEndpoint));
             log.info("Overriding current endpoint to use HTTPS " +
                     "as required by S3 for requests containing an MFA header");
@@ -3990,15 +4202,17 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             request.addHeader(Headers.REDIRECT_LOCATION, copyObjectRequest.getRedirectLocation());
         }
 
-        ObjectMetadata newObjectMetadata = copyObjectRequest.getNewObjectMetadata();
+        populateRequesterPaysHeader(request, copyObjectRequest.isRequesterPays());
+
+        final ObjectMetadata newObjectMetadata = copyObjectRequest.getNewObjectMetadata();
         if (newObjectMetadata != null) {
             request.addHeader(Headers.METADATA_DIRECTIVE, "REPLACE");
             populateRequestMetadata(request, newObjectMetadata);
         }
 
-        // Populate the SSE-CPK parameters for the destination object
-        populateSourceSseCpkRequestParameters(request, copyObjectRequest.getSourceSSECustomerKey());
-        populateSseCpkRequestParameters(request, copyObjectRequest.getDestinationSSECustomerKey());
+        // Populate the SSE-C parameters for the destination object
+        populateSourceSSE_C(request, copyObjectRequest.getSourceSSECustomerKey());
+        populateSSE_C(request, copyObjectRequest.getDestinationSSECustomerKey());
     }
 
     /**
@@ -4033,14 +4247,14 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 copyPartRequest.getNonmatchingETagConstraints());
 
         if (copyPartRequest.getFirstByte() != null && copyPartRequest.getLastByte() != null) {
-            String range = "bytes=" + copyPartRequest.getFirstByte() + "-"
+            final String range = "bytes=" + copyPartRequest.getFirstByte() + "-"
                     + copyPartRequest.getLastByte();
             request.addHeader(Headers.COPY_PART_RANGE, range);
         }
 
-        // Populate the SSE-CPK parameters for the destination object
-        populateSourceSseCpkRequestParameters(request, copyPartRequest.getSourceSSECustomerKey());
-        populateSseCpkRequestParameters(request, copyPartRequest.getDestinationSSECustomerKey());
+        // Populate the SSE-C parameters for the destination object
+        populateSourceSSE_C(request, copyPartRequest.getSourceSSECustomerKey());
+        populateSSE_C(request, copyPartRequest.getDestinationSSECustomerKey());
     }
 
     /**
@@ -4056,9 +4270,10 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * @param sseCpkRequest The request object for an S3 operation that allows
      *            server-side encryption using customer-provided keys.
      */
-    private static void populateSseCpkRequestParameters(Request<?> request, SSECustomerKey sseKey) {
-        if (sseKey == null)
+    private static void populateSSE_C(Request<?> request, SSECustomerKey sseKey) {
+        if (sseKey == null) {
             return;
+        }
 
         addHeaderIfNotNull(request, Headers.SERVER_SIDE_ENCRYPTION_CUSTOMER_ALGORITHM,
                 sseKey.getAlgorithm());
@@ -4070,17 +4285,17 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         // header, if the user didn't specify it in the metadata
         if (sseKey.getKey() != null
                 && sseKey.getMd5() == null) {
-            String encryptionKey_b64 = sseKey.getKey();
-            byte[] encryptionKey = Base64.decode(encryptionKey_b64);
+            final String encryptionKey_b64 = sseKey.getKey();
+            final byte[] encryptionKey = Base64.decode(encryptionKey_b64);
             request.addHeader(Headers.SERVER_SIDE_ENCRYPTION_CUSTOMER_KEY_MD5,
                     Md5Utils.md5AsBase64(encryptionKey));
         }
     }
 
-    private static void populateSourceSseCpkRequestParameters(Request<?> request,
-            SSECustomerKey sseKey) {
-        if (sseKey == null)
+    private static void populateSourceSSE_C(Request<?> request, SSECustomerKey sseKey) {
+        if (sseKey == null) {
             return;
+        }
 
         // Populate the SSE-CPK parameters for the source object
         addHeaderIfNotNull(request, Headers.COPY_SOURCE_SERVER_SIDE_ENCRYPTION_CUSTOMER_ALGORITHM,
@@ -4093,10 +4308,36 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         // header, if the user didn't specify it in the metadata
         if (sseKey.getKey() != null
                 && sseKey.getMd5() == null) {
-            String encryptionKey_b64 = sseKey.getKey();
-            byte[] encryptionKey = Base64.decode(encryptionKey_b64);
+            final String encryptionKey_b64 = sseKey.getKey();
+            final byte[] encryptionKey = Base64.decode(encryptionKey_b64);
             request.addHeader(Headers.COPY_SOURCE_SERVER_SIDE_ENCRYPTION_CUSTOMER_KEY_MD5,
                     Md5Utils.md5AsBase64(encryptionKey));
+        }
+    }
+
+    private static void populateSSE_KMS(Request<?> request,
+            SSEAwsKeyManagementParams sseParams) {
+
+        if (sseParams != null) {
+            addHeaderIfNotNull(request, Headers.SERVER_SIDE_ENCRYPTION,
+                    sseParams.getEncryption());
+            addHeaderIfNotNull(request,
+                    Headers.SERVER_SIDE_ENCRYPTION_KMS_KEY_ID,
+                    sseParams.getAwsKmsKeyId());
+        }
+    }
+
+    /**
+     * Adds the part number to the specified request, if partNumber is not null.
+     *
+     * @param request
+     *            The request to add the partNumber to.
+     * @param partNumber
+     *               The part number to be added.
+     */
+    private void addPartNumberIfNotNull(Request<?> request, Integer partNumber) {
+        if (partNumber != null) {
+            request.addParameter("partNumber", partNumber.toString());
         }
     }
 
@@ -4104,13 +4345,52 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * Adds the specified header to the specified request, if the header value
      * is not null.
      *
-     * @param request The request to add the header to.
-     * @param header The header name.
-     * @param value The header value.
+     * @param request
+     *            The request to add the header to.
+     * @param header
+     *            The header name.
+     * @param value
+     *            The header value.
      */
     private static void addHeaderIfNotNull(Request<?> request, String header, String value) {
         if (value != null) {
             request.addHeader(header, value);
+        }
+    }
+
+    /**
+     * Adds the specified parameter to the specified request, if the parameter
+     * value is not null.
+     *
+     * @param request
+     *            The request to add the parameter to.
+     * @param paramName
+     *            The parameter name.
+     * @param paramValue
+     *            The parameter value.
+     */
+    private static void addParameterIfNotNull(Request<?> request, String paramName,
+            Integer paramValue) {
+        if (paramValue != null) {
+            addParameterIfNotNull(request, paramName, paramValue.toString());
+        }
+    }
+
+    /**
+     * Adds the specified parameter to the specified request, if the parameter
+     * value is not null.
+     *
+     * @param request
+     *            The request to add the parameter to.
+     * @param paramName
+     *            The parameter name.
+     * @param paramValue
+     *            The parameter value.
+     */
+    private static void addParameterIfNotNull(Request<?> request, String paramName,
+            String paramValue) {
+        if (paramValue != null) {
+            request.addParameter(paramName, paramValue);
         }
     }
 
@@ -4195,7 +4475,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     public String getResourceUrl(String bucketName, String key) {
         try {
             return getUrl(bucketName, key).toString();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             return null;
         }
     }
@@ -4214,18 +4494,20 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * @return A unique URL for the object stored in the specified bucket and
      *         key.
      */
+    @Override
     public URL getUrl(String bucketName, String key) {
-        Request<?> request = new DefaultRequest<Object>(Constants.S3_SERVICE_NAME);
-        configRequest(request, bucketName, key);
+        final Request<?> request = new DefaultRequest<Object>(Constants.S3_SERVICE_DISPLAY_NAME);
+        resolveRequestEndpoint(request, bucketName, key);
         return ServiceUtils.convertRequestToUrl(request);
     }
 
+    @Override
     public Region getRegion() {
-        String authority = super.endpoint.getAuthority();
+        final String authority = super.endpoint.getAuthority();
         if (Constants.S3_HOSTNAME.equals(authority)) {
             return Region.US_Standard;
         }
-        Matcher m = Region.S3_REGIONAL_ENDPOINT_PATTERN.matcher(authority);
+        final Matcher m = Region.S3_REGIONAL_ENDPOINT_PATTERN.matcher(authority);
         if (m.matches()) {
             return Region.fromValue(m.group(1));
         } else {
@@ -4254,75 +4536,30 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     protected <X extends AmazonWebServiceRequest> Request<X> createRequest(String bucketName,
             String key, X originalRequest, HttpMethodName httpMethod) {
-        Request<X> request = new DefaultRequest<X>(originalRequest, Constants.S3_SERVICE_NAME);
-        request.setHttpMethod(httpMethod);
-        configRequest(request, bucketName, key);
-        return request;
+        return createRequest(bucketName, key, originalRequest, httpMethod, null);
     }
 
-    /**
-     * Configure the given request with the specified bucket name and key.
-     *
-     * @return the request configured
-     */
-    private void configRequest(
-            Request<?> request, String bucketName, String key) {
-        /*
-         * If the underlying AmazonS3Client has enabled accelerate mode and the
-         * original request operation is accelerate mode supported, then the
-         * request will use the s3-accelerate endpoint to perform the
-         * operations.
-         */
+    protected <X extends AmazonWebServiceRequest> Request<X> createRequest(String bucketName,
+            String key, X originalRequest, HttpMethodName httpMethod, URI endpoint) {
+        final Request<X> request = new DefaultRequest<X>(originalRequest,
+                Constants.S3_SERVICE_DISPLAY_NAME);
+        // If the underlying AmazonS3Client has enabled accelerate mode and the
+        // original request operation is accelerate mode supported, then the request
+        // will use the s3-accelerate endpoint to performs the operations.
         if (clientOptions.isAccelerateModeEnabled()
-                && !(request.getOriginalRequest() instanceof S3AccelerateUnsupported)
-                && BucketNameUtils.isDNSBucketName(bucketName)) {
-            request.setEndpoint(URI.create(clientConfiguration.getProtocol() + "://"
-                    + bucketName + "." + Constants.S3_ACCELERATE_HOSTNAME));
-            request.setResourcePath(key != null && key.startsWith("/") ? "/" + key : key);
-        } else if (!clientOptions.isPathStyleAccess()
-                && BucketNameUtils.isDNSBucketName(bucketName)
-                && !validIP(endpoint.getHost())) {
-            request.setEndpoint(convertToVirtualHostEndpoint(bucketName));
-            /*
-             * If the key name starts with a slash character, in order to
-             * prevent it being treated as a path delimiter, we need to add
-             * another slash before the key name. {@see
-             * com.amazonaws.http.HttpRequestFactory#createHttpRequest}
-             */
-            if (key != null && key.startsWith("/")) {
-                key = "/" + key;
+                && !(request.getOriginalRequest() instanceof S3AccelerateUnsupported)) {
+            if (clientOptions.isDualstackEnabled()) {
+                endpoint = RuntimeHttpUtils.toUri(Constants.S3_ACCELERATE_DUALSTACK_HOSTNAME,
+                        clientConfiguration);
+            } else {
+                endpoint = RuntimeHttpUtils.toUri(Constants.S3_ACCELERATE_HOSTNAME,
+                        clientConfiguration);
             }
-            request.setResourcePath(key);
-        } else {
-            request.setEndpoint(endpoint);
+        }
 
-            if (bucketName != null) {
-                request.setResourcePath(bucketName + "/" + (key != null ? key : ""));
-            }
-        }
-    }
-
-    private boolean validIP(String IP) {
-        if (IP == null) {
-            return false;
-        }
-        String[] tokens = IP.split("\\.");
-        if (tokens.length != 4) {
-            return false;
-        }
-        for (String token : tokens) {
-            int tokenInt;
-            try {
-                tokenInt = Integer.parseInt(token);
-            } catch (NumberFormatException ase) {
-                return false;
-            }
-            if (tokenInt < 0 || tokenInt > 255) {
-                return false;
-            }
-
-        }
-        return true;
+        request.setHttpMethod(httpMethod);
+        resolveRequestEndpoint(request, bucketName, key, endpoint);
+        return request;
     }
 
     private <X, Y extends AmazonWebServiceRequest> X invoke(Request<Y> request,
@@ -4334,16 +4571,16 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
     @Override
     protected final ExecutionContext createExecutionContext(AmazonWebServiceRequest req) {
-        boolean isMetricsEnabled = isRequestMetricsEnabled(req) || isProfilingEnabled();
+        final boolean isMetricsEnabled = isRequestMetricsEnabled(req) || isProfilingEnabled();
         return new S3ExecutionContext(requestHandler2s, isMetricsEnabled, this);
     }
 
     private <X, Y extends AmazonWebServiceRequest> X invoke(Request<Y> request,
             HttpResponseHandler<AmazonWebServiceResponse<X>> responseHandler,
             String bucket, String key) {
-        AmazonWebServiceRequest originalRequest = request.getOriginalRequest();
-        ExecutionContext executionContext = createExecutionContext(originalRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        final AmazonWebServiceRequest originalRequest = request.getOriginalRequest();
+        final ExecutionContext executionContext = createExecutionContext(originalRequest);
+        final AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
         // Binds the request metrics to the current request.
         request.setAWSRequestMetrics(awsRequestMetrics);
         // Having the ClientExecuteTime defined here is not ideal (for the
@@ -4364,8 +4601,17 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
              */
             if (!request.getHeaders().containsKey(Headers.CONTENT_TYPE)) {
                 request.addHeader(Headers.CONTENT_TYPE,
-                        "application/x-www-form-urlencoded; charset=utf-8");
+                    "application/octet-stream");
             }
+
+            // Update the bucketRegionCache if we can't find region for the
+            // request
+            if (bucket != null
+                    && !(request.getOriginalRequest() instanceof CreateBucketRequest)
+                    && noExplicitRegionProvided(request)) {
+                fetchRegionFromCache(bucket);
+            }
+
             AWSCredentials credentials = awsCredentialsProvider.getCredentials();
             if (originalRequest.getRequestCredentials() != null) {
                 credentials = originalRequest.getRequestCredentials();
@@ -4375,6 +4621,24 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             response = client.execute(request, responseHandler,
                     errorResponseHandler, executionContext);
             return response.getAwsResponse();
+        }catch(final AmazonS3Exception ase){
+            /**
+             * This is to handle the edge case: when the bucket is deleted and recreated in a different region,
+             * the cache still has the old region info.
+             * If region is not specified, the first request to this newly created bucket will fail because it used
+             * the outdated region present in cache. Here we update the cache with correct region. The subsequent
+             * requests will succeed.
+             * The recommended practice for any request is to provide region info always.
+             */
+            if (ase.getStatusCode() == 301) {
+                if (ase.getAdditionalDetails() != null) {
+                    final String region = ase.getAdditionalDetails().get(Headers.S3_BUCKET_REGION);
+                    bucketRegionCache.put(bucket, region);
+                    ase.setErrorMessage("The bucket is in this region: " + region +
+                            ". Please use this region to retry the request");
+                }
+            }
+            throw ase;
         } finally {
             endClientExecution(awsRequestMetrics, request, response);
         }
@@ -4387,7 +4651,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     @Override
     public void enableRequesterPays(String bucketName) {
-        RequestPaymentConfiguration configuration = new RequestPaymentConfiguration(
+        final RequestPaymentConfiguration configuration = new RequestPaymentConfiguration(
                 Payer.Requester);
 
         setBucketRequestPayment(new SetRequestPaymentConfigurationRequest(
@@ -4401,7 +4665,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     @Override
     public void disableRequesterPays(String bucketName) {
-        RequestPaymentConfiguration configuration = new RequestPaymentConfiguration(
+        final RequestPaymentConfiguration configuration = new RequestPaymentConfiguration(
                 Payer.BucketOwner);
 
         setBucketRequestPayment(new SetRequestPaymentConfigurationRequest(
@@ -4416,7 +4680,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     @Override
     public boolean isRequesterPaysEnabled(String bucketName) {
-        RequestPaymentConfiguration configuration = getBucketRequestPayment(new GetRequestPaymentConfigurationRequest(
+        final RequestPaymentConfiguration configuration = getBucketRequestPayment(new GetRequestPaymentConfigurationRequest(
                 bucketName));
         return (configuration.getPayer() == Payer.Requester);
     }
@@ -4433,9 +4697,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     private void setBucketRequestPayment(
             SetRequestPaymentConfigurationRequest setRequestPaymentConfigurationRequest) {
 
-        String bucketName = setRequestPaymentConfigurationRequest
+        final String bucketName = setRequestPaymentConfigurationRequest
                 .getBucketName();
-        RequestPaymentConfiguration configuration = setRequestPaymentConfigurationRequest
+        final RequestPaymentConfiguration configuration = setRequestPaymentConfigurationRequest
                 .getConfiguration();
 
         assertParameterNotNull(bucketName,
@@ -4445,13 +4709,13 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 configuration,
                 "The request payment configuration parameter must be specified when setting the Requester Pays.");
 
-        Request<SetRequestPaymentConfigurationRequest> request = createRequest(
+        final Request<SetRequestPaymentConfigurationRequest> request = createRequest(
                 bucketName, null, setRequestPaymentConfigurationRequest,
                 HttpMethodName.PUT);
         request.addParameter("requestPayment", null);
         request.addHeader("Content-Type", "application/xml");
 
-        byte[] bytes = requestPaymentConfigurationXmlFactory
+        final byte[] bytes = requestPaymentConfigurationXmlFactory
                 .convertToXmlByteArray(configuration);
         request.addHeader(Headers.CONTENT_LENGTH, String.valueOf(bytes.length));
         request.setContent(new ByteArrayInputStream(bytes));
@@ -4470,14 +4734,14 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     private RequestPaymentConfiguration getBucketRequestPayment(
             GetRequestPaymentConfigurationRequest getRequestPaymentConfigurationRequest) {
 
-        String bucketName = getRequestPaymentConfigurationRequest
+        final String bucketName = getRequestPaymentConfigurationRequest
                 .getBucketName();
 
         assertParameterNotNull(
                 bucketName,
                 "The bucket name parameter must be specified while getting the Request Payment Configuration.");
 
-        Request<GetRequestPaymentConfigurationRequest> request = createRequest(
+        final Request<GetRequestPaymentConfigurationRequest> request = createRequest(
                 bucketName, null, getRequestPaymentConfigurationRequest,
                 HttpMethodName.GET);
         request.addParameter("requestPayment", null);
@@ -4505,8 +4769,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     private ByteArrayInputStream toByteArray(InputStream is) {
         // 256k buffer
-        int size = 1024 * 256;
-        byte[] buf = new byte[size];
+        final int size = 1024 * 256;
+        final byte[] buf = new byte[size];
         int len = 0;
         try {
             int available = size;
@@ -4519,7 +4783,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 throw new AmazonClientException("Input stream exceeds 256k buffer.");
             }
             is.close();
-        } catch (IOException ioe) {
+        } catch (final IOException ioe) {
             throw new AmazonClientException("Failed to read from inputstream", ioe);
         }
         return new ByteArrayInputStream(buf, 0, len);
@@ -4553,7 +4817,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 bucketReplicationConfiguration,
                 "The replication configuration parameter must be specified when setting replication configuration.");
 
-        Request<SetBucketReplicationConfigurationRequest> request = createRequest(
+        final Request<SetBucketReplicationConfigurationRequest> request = createRequest(
                 bucketName, null, setBucketReplicationConfigurationRequest,
                 HttpMethodName.PUT);
         request.addParameter("replication", null);
@@ -4568,7 +4832,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         try {
             request.addHeader("Content-MD5",
                     BinaryUtils.toBase64(Md5Utils.computeMD5Hash(bytes)));
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new AmazonClientException(
                     "Not able to compute MD5 of the replication rule configuration. Exception Message : "
                             + e.getMessage(),
@@ -4593,12 +4857,12 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         assertParameterNotNull(
                 getBucketReplicationConfigurationRequest,
                 "The bucket request parameter must be specified when retrieving replication configuration");
-        String bucketName = getBucketReplicationConfigurationRequest.getBucketName();
+        final String bucketName = getBucketReplicationConfigurationRequest.getBucketName();
         assertParameterNotNull(
                 bucketName,
                 "The bucket request must specify a bucket name when retrieving replication configuration");
 
-        Request<GetBucketReplicationConfigurationRequest> request = createRequest(bucketName, null,
+        final Request<GetBucketReplicationConfigurationRequest> request = createRequest(bucketName, null,
                 getBucketReplicationConfigurationRequest, HttpMethodName.GET);
         request.addParameter("replication", null);
 
@@ -4624,11 +4888,576 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 bucketName,
                 "The bucket name parameter must be specified when deleting replication configuration");
 
-        Request<DeleteBucketReplicationConfigurationRequest> request = createRequest(bucketName,
+        final Request<DeleteBucketReplicationConfigurationRequest> request = createRequest(bucketName,
                 null,
                 deleteBucketReplicationConfigurationRequest, HttpMethodName.DELETE);
         request.addParameter("replication", null);
 
         invoke(request, voidResponseHandler, bucketName, null);
     }
+
+    @Override
+    public DeleteBucketMetricsConfigurationResult deleteBucketMetricsConfiguration(
+            String bucketName, String id) throws AmazonServiceException, AmazonClientException {
+        return deleteBucketMetricsConfiguration(new DeleteBucketMetricsConfigurationRequest(bucketName, id));
+    }
+
+    @Override
+    public DeleteBucketMetricsConfigurationResult deleteBucketMetricsConfiguration(
+            DeleteBucketMetricsConfigurationRequest deleteBucketMetricsConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+
+        assertParameterNotNull(deleteBucketMetricsConfigurationRequest,
+                "The request cannot be null");
+        final String bucketName = assertStringNotEmpty(deleteBucketMetricsConfigurationRequest.getBucketName(), "BucketName");
+        final String id = assertStringNotEmpty(deleteBucketMetricsConfigurationRequest.getId(), "Metrics Id");
+
+        final Request<DeleteBucketMetricsConfigurationRequest> request =
+                createRequest(bucketName, null, deleteBucketMetricsConfigurationRequest, HttpMethodName.DELETE);
+        request.addParameter("metrics", null);
+        request.addParameter("id", id);
+
+        return invoke(request, new Unmarshallers.DeleteBucketMetricsConfigurationUnmarshaller(), bucketName, null);
+    }
+
+    @Override
+    public GetBucketMetricsConfigurationResult getBucketMetricsConfiguration(
+            String bucketName, String id) throws AmazonServiceException, AmazonClientException {
+        return getBucketMetricsConfiguration(new GetBucketMetricsConfigurationRequest(bucketName, id));
+    }
+
+    @Override
+    public GetBucketMetricsConfigurationResult getBucketMetricsConfiguration(
+            GetBucketMetricsConfigurationRequest getBucketMetricsConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+
+        assertParameterNotNull(getBucketMetricsConfigurationRequest, "The request cannot be null");
+        final String bucketName = assertStringNotEmpty(getBucketMetricsConfigurationRequest.getBucketName(), "BucketName");
+        final String id = assertStringNotEmpty(getBucketMetricsConfigurationRequest.getId(), "Metrics Id");
+
+        final Request<GetBucketMetricsConfigurationRequest> request =
+                createRequest(bucketName, null, getBucketMetricsConfigurationRequest, HttpMethodName.GET);
+        request.addParameter("metrics", null);
+        request.addParameter("id", id);
+
+        return invoke(request, new Unmarshallers.GetBucketMetricsConfigurationUnmarshaller(), bucketName, null);
+    }
+
+    @Override
+    public SetBucketMetricsConfigurationResult setBucketMetricsConfiguration(
+            String bucketName, MetricsConfiguration metricsConfiguration)
+            throws AmazonServiceException, AmazonClientException {
+        return setBucketMetricsConfiguration(new SetBucketMetricsConfigurationRequest(bucketName, metricsConfiguration));
+    }
+
+    @Override
+    public SetBucketMetricsConfigurationResult setBucketMetricsConfiguration(
+            SetBucketMetricsConfigurationRequest setBucketMetricsConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+
+        new SetBucketMetricsConfigurationRequest();
+        assertParameterNotNull(setBucketMetricsConfigurationRequest, "The request cannot be null");
+        final String bucketName = assertStringNotEmpty(setBucketMetricsConfigurationRequest.getBucketName(), "BucketName");
+        final MetricsConfiguration metricsConfiguration = assertNotNull(
+                setBucketMetricsConfigurationRequest.getMetricsConfiguration(), "Metrics Configuration");
+        final String id = assertNotNull(metricsConfiguration.getId(), "Metrics Id");
+
+        final Request<SetBucketMetricsConfigurationRequest> request =
+                createRequest(bucketName, null, setBucketMetricsConfigurationRequest, HttpMethodName.PUT);
+        request.addParameter("metrics", null);
+        request.addParameter("id", id);
+
+        final byte[] bytes = bucketConfigurationXmlFactory.convertToXmlByteArray(metricsConfiguration);
+        request.addHeader("Content-Length", String.valueOf(bytes.length));
+        request.addHeader("Content-Type", "application/xml");
+        request.setContent(new ByteArrayInputStream(bytes));
+
+        return invoke(request, new Unmarshallers.SetBucketMetricsConfigurationUnmarshaller(), bucketName, null);
+    }
+
+    @Override
+    public ListBucketMetricsConfigurationsResult listBucketMetricsConfigurations(
+            ListBucketMetricsConfigurationsRequest listBucketMetricsConfigurationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+
+        assertParameterNotNull(listBucketMetricsConfigurationsRequest,
+                "The request cannot be null");
+        final String bucketName = assertStringNotEmpty(listBucketMetricsConfigurationsRequest.getBucketName(), "BucketName");
+
+        final Request<ListBucketMetricsConfigurationsRequest> request =
+                createRequest(bucketName, null, listBucketMetricsConfigurationsRequest, HttpMethodName.GET);
+        request.addParameter("metrics", null);
+        addParameterIfNotNull(request, "continuation-token", listBucketMetricsConfigurationsRequest.getContinuationToken());
+
+        return invoke(request, new Unmarshallers.ListBucketMetricsConfigurationsUnmarshaller(), bucketName, null);
+    }
+
+    @Override
+    public DeleteBucketAnalyticsConfigurationResult deleteBucketAnalyticsConfiguration(
+            String bucketName, String id) throws AmazonServiceException, AmazonClientException {
+        return deleteBucketAnalyticsConfiguration(new DeleteBucketAnalyticsConfigurationRequest(bucketName, id));
+    }
+
+    @Override
+    public DeleteBucketAnalyticsConfigurationResult deleteBucketAnalyticsConfiguration(
+            DeleteBucketAnalyticsConfigurationRequest deleteBucketAnalyticsConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+
+        assertParameterNotNull(deleteBucketAnalyticsConfigurationRequest,
+                "The request cannot be null");
+        final String bucketName = assertStringNotEmpty(
+                deleteBucketAnalyticsConfigurationRequest.getBucketName(), "BucketName");
+        final String id = assertStringNotEmpty(
+                deleteBucketAnalyticsConfigurationRequest.getId(), "Analytics Id");
+
+        final Request<DeleteBucketAnalyticsConfigurationRequest> request =
+                createRequest(bucketName, null, deleteBucketAnalyticsConfigurationRequest, HttpMethodName.DELETE);
+        request.addParameter("analytics", null);
+        request.addParameter("id", id);
+
+        return invoke(request, new Unmarshallers.DeleteBucketAnalyticsConfigurationUnmarshaller(), bucketName, null);
+    }
+
+    @Override
+    public GetBucketAnalyticsConfigurationResult getBucketAnalyticsConfiguration(
+            String bucketName, String id) throws AmazonServiceException, AmazonClientException {
+        return getBucketAnalyticsConfiguration(new GetBucketAnalyticsConfigurationRequest(bucketName, id));
+    }
+
+    @Override
+    public GetBucketAnalyticsConfigurationResult getBucketAnalyticsConfiguration(
+            GetBucketAnalyticsConfigurationRequest getBucketAnalyticsConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+
+        assertParameterNotNull(getBucketAnalyticsConfigurationRequest,
+                "The request cannot be null");
+        final String bucketName = assertStringNotEmpty(
+                getBucketAnalyticsConfigurationRequest.getBucketName(), "BucketName");
+        final String id = assertStringNotEmpty(
+                getBucketAnalyticsConfigurationRequest.getId(), "Analytics Id");
+
+        final Request<GetBucketAnalyticsConfigurationRequest> request =
+                createRequest(bucketName, null, getBucketAnalyticsConfigurationRequest, HttpMethodName.GET);
+        request.addParameter("analytics", null);
+        request.addParameter("id", id);
+
+        return invoke(request, new Unmarshallers.GetBucketAnalyticsConfigurationUnmarshaller(), bucketName, null);
+    }
+
+    @Override
+    public SetBucketAnalyticsConfigurationResult setBucketAnalyticsConfiguration(
+            String bucketName, AnalyticsConfiguration analyticsConfiguration)
+            throws AmazonServiceException, AmazonClientException {
+        return setBucketAnalyticsConfiguration(
+                new SetBucketAnalyticsConfigurationRequest(bucketName, analyticsConfiguration));
+    }
+
+    @Override
+    public SetBucketAnalyticsConfigurationResult setBucketAnalyticsConfiguration(
+            SetBucketAnalyticsConfigurationRequest setBucketAnalyticsConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+
+        assertParameterNotNull(setBucketAnalyticsConfigurationRequest,
+                "The request cannot be null");
+        final String bucketName = assertStringNotEmpty(
+                setBucketAnalyticsConfigurationRequest.getBucketName(), "BucketName");
+        final AnalyticsConfiguration analyticsConfiguration = assertNotNull(
+                setBucketAnalyticsConfigurationRequest.getAnalyticsConfiguration(), "Analytics Configuration");
+        final String id = assertNotNull(analyticsConfiguration.getId(), "Analytics Id");
+
+        final Request<SetBucketAnalyticsConfigurationRequest> request =
+                createRequest(bucketName, null, setBucketAnalyticsConfigurationRequest, HttpMethodName.PUT);
+        request.addParameter("analytics", null);
+        request.addParameter("id", id);
+
+        final byte[] bytes = bucketConfigurationXmlFactory.convertToXmlByteArray(analyticsConfiguration);
+        request.addHeader("Content-Length", String.valueOf(bytes.length));
+        request.addHeader("Content-Type", "application/xml");
+        request.setContent(new ByteArrayInputStream(bytes));
+
+        return invoke(request, new Unmarshallers.SetBucketAnalyticsConfigurationUnmarshaller(), bucketName, null);
+    }
+
+    @Override
+    public ListBucketAnalyticsConfigurationsResult listBucketAnalyticsConfigurations(
+            ListBucketAnalyticsConfigurationsRequest listBucketAnalyticsConfigurationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+
+        assertParameterNotNull(listBucketAnalyticsConfigurationsRequest,
+                "The request cannot be null");
+        final String bucketName = assertStringNotEmpty(
+                listBucketAnalyticsConfigurationsRequest.getBucketName(), "BucketName");
+
+        final Request<ListBucketAnalyticsConfigurationsRequest> request =
+                createRequest(bucketName, null, listBucketAnalyticsConfigurationsRequest, HttpMethodName.GET);
+        request.addParameter("analytics", null);
+        addParameterIfNotNull(request, "continuation-token", listBucketAnalyticsConfigurationsRequest.getContinuationToken());
+
+        return invoke(request, new Unmarshallers.ListBucketAnalyticsConfigurationUnmarshaller(), bucketName, null);
+    }
+
+    @Override
+    public DeleteBucketInventoryConfigurationResult deleteBucketInventoryConfiguration(
+            String bucketName, String id) throws AmazonServiceException, AmazonClientException {
+        return deleteBucketInventoryConfiguration(
+                new DeleteBucketInventoryConfigurationRequest(bucketName, id));
+    }
+
+    @Override
+    public DeleteBucketInventoryConfigurationResult deleteBucketInventoryConfiguration(
+            DeleteBucketInventoryConfigurationRequest deleteBucketInventoryConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        assertParameterNotNull(deleteBucketInventoryConfigurationRequest,
+                "The request cannot be null");
+        final String bucketName = assertStringNotEmpty(deleteBucketInventoryConfigurationRequest.getBucketName(), "BucketName");
+        final String id = assertStringNotEmpty(deleteBucketInventoryConfigurationRequest.getId(), "Inventory id");
+
+        final Request<DeleteBucketInventoryConfigurationRequest> request = createRequest(bucketName, null, deleteBucketInventoryConfigurationRequest, HttpMethodName.DELETE);
+        request.addParameter("inventory", null);
+        request.addParameter("id", id);
+
+        return invoke(request, new Unmarshallers.DeleteBucketInventoryConfigurationUnmarshaller(), bucketName, null);
+    }
+
+    @Override
+    public GetBucketInventoryConfigurationResult getBucketInventoryConfiguration(
+            String bucketName, String id) throws AmazonServiceException, AmazonClientException {
+        return getBucketInventoryConfiguration(
+                new GetBucketInventoryConfigurationRequest(bucketName, id));
+    }
+
+    @Override
+    public GetBucketInventoryConfigurationResult getBucketInventoryConfiguration(
+            GetBucketInventoryConfigurationRequest getBucketInventoryConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        assertParameterNotNull(getBucketInventoryConfigurationRequest,
+                "The request cannot be null");
+        final String bucketName = assertStringNotEmpty(getBucketInventoryConfigurationRequest.getBucketName(), "BucketName");
+        final String id = assertStringNotEmpty(getBucketInventoryConfigurationRequest.getId(), "Inventory id");
+
+        final Request<GetBucketInventoryConfigurationRequest> request = createRequest(bucketName, null, getBucketInventoryConfigurationRequest, HttpMethodName.GET);
+        request.addParameter("inventory", null);
+        request.addParameter("id", id);
+
+        return invoke(request, new Unmarshallers.GetBucketInventoryConfigurationUnmarshaller(), bucketName, null);
+    }
+
+    @Override
+    public SetBucketInventoryConfigurationResult setBucketInventoryConfiguration(
+            String bucketName, InventoryConfiguration inventoryConfiguration)
+            throws AmazonServiceException, AmazonClientException {
+        return setBucketInventoryConfiguration(
+                new SetBucketInventoryConfigurationRequest(bucketName, inventoryConfiguration));
+    }
+
+    @Override
+    public SetBucketInventoryConfigurationResult setBucketInventoryConfiguration(
+            SetBucketInventoryConfigurationRequest setBucketInventoryConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        assertParameterNotNull(setBucketInventoryConfigurationRequest,
+                "The request cannot be null");
+        final String bucketName = assertStringNotEmpty(setBucketInventoryConfigurationRequest.getBucketName(), "BucketName");
+        final InventoryConfiguration inventoryConfiguration = assertNotNull(setBucketInventoryConfigurationRequest.getInventoryConfiguration(),
+                "InventoryConfiguration");
+        final String id = assertNotNull(inventoryConfiguration.getId(), "Inventory id");
+
+        final Request<SetBucketInventoryConfigurationRequest> request = createRequest(bucketName, null, setBucketInventoryConfigurationRequest, HttpMethodName.PUT);
+        request.addParameter("inventory", null);
+        request.addParameter("id", id);
+
+        final byte[] bytes = bucketConfigurationXmlFactory.convertToXmlByteArray(inventoryConfiguration);
+        request.addHeader("Content-Length", String.valueOf(bytes.length));
+        request.addHeader("Content-Type", "application/xml");
+        request.setContent(new ByteArrayInputStream(bytes));
+
+        return invoke(request, new Unmarshallers.SetBucketInventoryConfigurationUnmarshaller(), bucketName, null);
+    }
+
+    @Override
+    public ListBucketInventoryConfigurationsResult listBucketInventoryConfigurations(ListBucketInventoryConfigurationsRequest listBucketInventoryConfigurationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        assertParameterNotNull(listBucketInventoryConfigurationsRequest,
+                "The request cannot be null");
+        final String bucketName = assertStringNotEmpty(listBucketInventoryConfigurationsRequest.getBucketName(), "BucketName");
+
+        final Request<ListBucketInventoryConfigurationsRequest> request = createRequest(bucketName, null, listBucketInventoryConfigurationsRequest, HttpMethodName.GET);
+        request.addParameter("inventory", null);
+        addParameterIfNotNull(request, "continuation-token", listBucketInventoryConfigurationsRequest.getContinuationToken());
+
+        return invoke(request, new Unmarshallers.ListBucketInventoryConfigurationsUnmarshaller(), bucketName, null);
+    }
+
+    private void setContent(Request<?> request, byte[] content, String contentType, boolean setMd5) {
+        request.setContent(new ByteArrayInputStream(content));
+        request.addHeader("Content-Length", Integer.toString(content.length));
+        request.addHeader("Content-Type", contentType);
+        if (setMd5) {
+            try {
+                final byte[] md5 = Md5Utils.computeMD5Hash(content);
+                final String md5Base64 = BinaryUtils.toBase64(md5);
+                request.addHeader("Content-MD5", md5Base64);
+            } catch ( final Exception e ) {
+                throw new AmazonClientException("Couldn't compute md5 sum", e);
+            }
+        }
+    }
+
+
+    /**
+     * <p>
+     * Populate the specified request with {@link Constants#REQUESTER_PAYS} to
+     * header {@link Headers#REQUESTER_PAYS_HEADER}, if isRequesterPays is true.
+     * </p>
+     *
+     * @param request The specified request to populate.
+     * @param isRequesterPays The flag whether to populate the header or not.
+     */
+    protected static void populateRequesterPaysHeader(Request<?> request, boolean isRequesterPays) {
+        if (isRequesterPays) {
+            request.addHeader(Headers.REQUESTER_PAYS_HEADER, Constants.REQUESTER_PAYS);
+        }
+    }
+
+    @Override
+    public String getObjectAsString(String bucketName, String key)
+            throws AmazonServiceException, AmazonClientException {
+        assertParameterNotNull(bucketName, "Bucket name must be provided");
+        assertParameterNotNull(key, "Object key must be provided");
+
+        final S3Object object = getObject(bucketName, key);
+        try {
+            return IOUtils.toString(object.getObjectContent());
+        } catch (final IOException e) {
+            throw new AmazonClientException("Error streaming content from S3 during download");
+        }
+    }
+
+    @Override
+    public GetObjectTaggingResult getObjectTagging(
+            GetObjectTaggingRequest getObjectTaggingRequest) {
+        assertParameterNotNull(getObjectTaggingRequest,
+                "The request parameter must be specified when getting the object tags");
+        final String bucketName = assertStringNotEmpty(getObjectTaggingRequest.getBucketName(),
+                "BucketName");
+        final String key = assertNotNull(getObjectTaggingRequest.getKey(), "Key");
+
+        final Request<GetObjectTaggingRequest> request = createRequest(bucketName, key,
+                getObjectTaggingRequest, HttpMethodName.GET);
+        request.addParameter("tagging", null);
+        addParameterIfNotNull(request, "versionId", getObjectTaggingRequest.getVersionId());
+
+        final ResponseHeaderHandlerChain<GetObjectTaggingResult> handlerChain = new ResponseHeaderHandlerChain<GetObjectTaggingResult>(
+                new Unmarshallers.GetObjectTaggingResponseUnmarshaller(),
+                new GetObjectTaggingResponseHeaderHandler());
+
+        return invoke(request, handlerChain, bucketName, key);
+    }
+
+    @Override
+    public SetObjectTaggingResult setObjectTagging(
+            SetObjectTaggingRequest setObjectTaggingRequest) {
+        assertParameterNotNull(setObjectTaggingRequest,
+                "The request parameter must be specified setting the object tags");
+        final String bucketName = assertStringNotEmpty(setObjectTaggingRequest.getBucketName(),
+                "BucketName");
+        final String key = assertNotNull(setObjectTaggingRequest.getKey(), "Key");
+        final ObjectTagging tagging = assertNotNull(setObjectTaggingRequest.getTagging(),
+                "ObjectTagging");
+
+        final Request<SetObjectTaggingRequest> request = createRequest(bucketName, key,
+                setObjectTaggingRequest, HttpMethodName.PUT);
+        request.addParameter("tagging", null);
+        addParameterIfNotNull(request, "versionId", setObjectTaggingRequest.getVersionId());
+        final byte[] content = new ObjectTaggingXmlFactory().convertToXmlByteArray(tagging);
+        setContent(request, content, "application/xml", true);
+
+        final ResponseHeaderHandlerChain<SetObjectTaggingResult> handlerChain = new ResponseHeaderHandlerChain<SetObjectTaggingResult>(
+                new Unmarshallers.SetObjectTaggingResponseUnmarshaller(),
+                new SetObjectTaggingResponseHeaderHandler());
+
+        return invoke(request, handlerChain, bucketName, key);
+    }
+
+    @Override
+    public DeleteObjectTaggingResult deleteObjectTagging(
+            DeleteObjectTaggingRequest deleteObjectTaggingRequest) {
+        assertParameterNotNull(deleteObjectTaggingRequest,
+                "The request parameter must be specified when delete the object tags");
+        final String bucketName = assertStringNotEmpty(deleteObjectTaggingRequest.getBucketName(),
+                "BucketName");
+        final String key = assertStringNotEmpty(deleteObjectTaggingRequest.getKey(), "Key");
+
+        final Request<DeleteObjectTaggingRequest> request = createRequest(bucketName, key,
+                deleteObjectTaggingRequest, HttpMethodName.DELETE);
+        request.addParameter("tagging", null);
+        addParameterIfNotNull(request, "versionId", deleteObjectTaggingRequest.getVersionId());
+
+        final ResponseHeaderHandlerChain<DeleteObjectTaggingResult> handlerChain = new ResponseHeaderHandlerChain<DeleteObjectTaggingResult>(
+                new Unmarshallers.DeleteObjectTaggingResponseUnmarshaller(),
+                new DeleteObjectTaggingHeaderHandler());
+
+        return invoke(request, handlerChain, bucketName, key);
+    }
+
+    @Override
+    public PutObjectResult putObject(String bucketName, String key, String content)
+            throws AmazonServiceException, AmazonClientException {
+        assertParameterNotNull(bucketName, "Bucket name must be provided");
+        assertParameterNotNull(key, "Object key must be provided");
+        assertParameterNotNull(content, "String content must be provided");
+
+        final byte[] contentBytes = content.getBytes(StringUtils.UTF8);
+
+        final InputStream is = new ByteArrayInputStream(contentBytes);
+        final ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentType("text/plain");
+        metadata.setContentLength(contentBytes.length);
+
+        return putObject(new PutObjectRequest(bucketName, key, is, metadata));
+    }
+
+
+
+    @Override
+    public String getRegionName() {
+        final String authority = super.endpoint.getAuthority();
+        if(Constants.S3_HOSTNAME.equals(authority)) {
+            return "us-east-1";
+        }
+        final Matcher m = Region.S3_REGIONAL_ENDPOINT_PATTERN.matcher(authority);
+        try {
+            m.matches();
+            return RegionUtils.getRegion(m.group(1)).getName();
+        } catch (final Exception e) {
+            throw new IllegalStateException("No valid region has been specified. Unable to return region name", e);
+        }
+    }
+
+    /**
+     * Fetches the region of the bucket from the cache maintained. If the cache
+     * doesn't have an entry, fetches the region from Amazon S3 and updates the
+     * cache.
+     */
+    private String fetchRegionFromCache(String bucketName) {
+        String bucketRegion = bucketRegionCache.get(bucketName);
+        if (bucketRegion == null) {
+            if (log.isDebugEnabled()) {
+                log.debug("Bucket region cache doesn't have an entry for " + bucketName
+                        + ". Trying to get bucket region from Amazon S3.");
+            }
+            bucketRegion = getBucketRegionViaHeadRequest(bucketName);
+            if (bucketRegion != null) {
+                bucketRegionCache.put(bucketName, bucketRegion);
+            }
+        }
+        if (log.isDebugEnabled()) {
+            log.debug("Region for " + bucketName + " is " + bucketRegion);
+        }
+        return bucketRegion;
+    }
+
+    /**
+     * Retrieves the region of the bucket by making a HeadBucket request to
+     * us-west-1 region. Currently S3 doesn't return region in a HEAD Bucket
+     * request if the bucket owner has enabled bucket to accept only SigV4
+     * requests via bucket policies.
+     */
+    private String getBucketRegionViaHeadRequest(String bucketName) {
+        String bucketRegion = null;
+
+        try {
+            final String endpoint = "https://s3-us-west-1.amazonaws.com";
+            final Request<HeadBucketRequest> request = createRequest(bucketName, null,
+                    new HeadBucketRequest(bucketName), HttpMethodName.HEAD, new URI(endpoint));
+
+            final HeadBucketResult result = invoke(request, new HeadBucketResultHandler(),
+                    bucketName, null);
+            bucketRegion = result.getBucketRegion();
+        } catch (final AmazonS3Exception exception) {
+            if (exception.getAdditionalDetails() != null) {
+                bucketRegion = exception.getAdditionalDetails().get(
+                        Headers.S3_BUCKET_REGION);
+            }
+        } catch (final URISyntaxException e) {
+            log.warn("Error while creating URI");
+        }
+
+        if (bucketRegion == null && log.isDebugEnabled()) {
+            log.debug("Not able to derive region of the " + bucketName
+                    + " from the HEAD Bucket requests.");
+        }
+
+        return bucketRegion;
+    }
+
+    /**
+     * Set the request's endpoint and resource path with the new region provided
+     *
+     * @param request Request to set endpoint for
+     * @param regionString New region to determine endpoint to hit
+     */
+    public void resolveRequestEndpoint(Request<?> request, String bucketName,
+            String key) {
+        resolveRequestEndpoint(request, bucketName, key, null);
+    }
+
+    public void resolveRequestEndpoint(Request<?> request, String bucketName,
+            String key, URI endpoint) {
+        final URI ep = endpoint == null ? this.endpoint : endpoint;
+        if (shouldUseVirtualAddressing(ep, bucketName)) {
+            request.setEndpoint(convertToVirtualHostEndpoint(ep, bucketName));
+            request.setResourcePath(HttpUtils.urlEncode(getHostStyleResourcePath(key), true));
+        } else {
+            request.setEndpoint(ep);
+            if (bucketName != null) {
+                request.setResourcePath(
+                        HttpUtils.urlEncode(getPathStyleResourcePath(bucketName, key), true));
+            }
+        }
+    }
+
+    private boolean shouldUseVirtualAddressing(final URI endpoint, final String bucketName) {
+        return !clientOptions.isPathStyleAccess() && BucketNameUtils.isDNSBucketName(bucketName)
+                && !isValidIpV4Address(endpoint.getHost());
+    }
+
+    private String getHostStyleResourcePath(String key) {
+        String resourcePath = key;
+        /*
+         * If the key name starts with a slash character, in order to prevent it
+         * being treated as a path delimiter, we need to add another slash
+         * before the key name. {@see
+         * com.amazonaws.http.HttpRequestFactory#createHttpRequest}
+         */
+        if (key != null && key.startsWith("/")) {
+            resourcePath = "/" + key;
+        }
+        return resourcePath;
+    }
+
+    private String getPathStyleResourcePath(String bucketName, String key) {
+        return bucketName + "/" + (key != null ? key : "");
+    }
+
+    static boolean isValidIpV4Address(String ipAddr) {
+        if (ipAddr == null) {
+            return false;
+        }
+        final String[] tokens = ipAddr.split("\\.");
+        if (tokens.length != 4) {
+            return false;
+        }
+        for (final String token : tokens) {
+            try {
+                final int tokenInt = Integer.parseInt(token);
+                if (tokenInt < 0 || tokenInt > 255) {
+                    return false;
+                }
+            } catch (final NumberFormatException ase) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -75,7 +75,7 @@ public class S3ServiceMetric extends SimpleMetricType implements ServiceMetricTy
 
     @Override
     public String getServiceName() {
-        return Constants.S3_SERVICE_NAME;
+        return Constants.S3_SERVICE_DISPLAY_NAME;
     }
 
     private static abstract class S3ThroughputMetric extends S3ServiceMetric
@@ -90,7 +90,7 @@ public class S3ServiceMetric extends SimpleMetricType implements ServiceMetricTy
     }
 
     public static S3ServiceMetric valueOf(String name) {
-        for (S3ServiceMetric e : values()) {
+        for (final S3ServiceMetric e : values()) {
             if (e.name().equals(name)) {
                 return e;
             }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.amazonaws.services.s3.model;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.services.s3.AmazonS3;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +58,12 @@ public class DeleteObjectsRequest extends AmazonWebServiceRequest {
      * List of keys to delete, with optional versions.
      */
     private final List<KeyVersion> keys = new ArrayList<KeyVersion>();
+
+    /**
+     * If enabled, the requester is charged for conducting this operation from
+     * Requester Pays Buckets.
+     */
+    private boolean isRequesterPays;
 
     /**
      * Constructs a new {@link DeleteObjectsRequest}, specifying the objects'
@@ -238,8 +245,8 @@ public class DeleteObjectsRequest extends AmazonWebServiceRequest {
      * @see DeleteObjectsRequest#withKeys(List)
      */
     public DeleteObjectsRequest withKeys(String... keys) {
-        List<KeyVersion> keyVersions = new ArrayList<KeyVersion>(keys.length);
-        for (String key : keys) {
+        final List<KeyVersion> keyVersions = new ArrayList<KeyVersion>(keys.length);
+        for (final String key : keys) {
             keyVersions.add(new KeyVersion(key));
         }
         setKeys(keyVersions);
@@ -247,9 +254,74 @@ public class DeleteObjectsRequest extends AmazonWebServiceRequest {
     }
 
     /**
+     * Returns true if the user has enabled Requester Pays option when
+     * conducting this operation from Requester Pays Bucket; else false.
+     *
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket
+     *
+     * @return true if the user has enabled Requester Pays option for
+     *         conducting this operation from Requester Pays Bucket.
+     */
+    public boolean isRequesterPays() {
+        return isRequesterPays;
+    }
+
+    /**
+     * Used for conducting this operation from a Requester Pays Bucket. If
+     * set the requester is charged for requests from the bucket.
+     *
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket.
+     *
+     * @param isRequesterPays
+     *            Enable Requester Pays option for the operation.
+     */
+    public void setRequesterPays(boolean isRequesterPays) {
+        this.isRequesterPays = isRequesterPays;
+    }
+
+    /**
+     * Used for conducting this operation from a Requester Pays Bucket. If
+     * set the requester is charged for requests from the bucket. It returns this
+     * updated DeleteObjectsRequest object so that additional method calls can be
+     * chained together.
+     *
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket.
+     *
+     * @param isRequesterPays
+     *            Enable Requester Pays option for the operation.
+     *
+     * @return The updated DeleteObjectsRequest object.
+     */
+    public DeleteObjectsRequest withRequesterPays(boolean isRequesterPays) {
+        setRequesterPays(isRequesterPays);
+        return this;
+    }
+
+    /**
      * A key to delete, with an optional version attribute.
      */
-    public static class KeyVersion {
+    public static class KeyVersion implements Serializable {
 
         private final String key;
         private final String version;

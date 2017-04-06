@@ -94,8 +94,6 @@ public class EndpointProfileTest extends MobileAnalyticsTestBase {
         assertNotNull(target.getEffectiveDate());
         assertNotNull(target.getLocation());
         assertEquals(target.getOptOut(), "ALL");
-        target.setOptOut("TEST");
-        assertEquals(target.getOptOut(), "TEST");
         assertNull(target.getAddress());
         assertEquals(target.getDemographic().getPlatform(), "ANDROID");
         assertEquals(target.getChannelType(), "GCM");

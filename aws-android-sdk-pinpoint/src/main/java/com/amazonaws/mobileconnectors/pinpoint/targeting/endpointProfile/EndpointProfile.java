@@ -1,5 +1,5 @@
 /**
- * Copyright 2016-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -73,7 +73,6 @@ public class EndpointProfile implements JSONSerializable {
 
         this.pinpointContext = pinpointContext;
         this.effectiveDate = DateUtil.getCorrectedDate().getTime();
-        this.optOut = (this.pinpointContext.getNotificationClient().areAppNotificationsEnabled())?"NONE":"ALL";
         this.demographic = new EndpointProfileDemographic(this.pinpointContext);
         this.location = new EndpointProfileLocation();
         this.user = new EndpointProfileUser();
@@ -175,16 +174,8 @@ public class EndpointProfile implements JSONSerializable {
      * @return String (ALL | NONE)
      */
     public String getOptOut() {
-        return this.optOut;
-    }
-
-    /**
-     * Set weather the endpoint is opted out of notification.
-     *
-     * @param optOut The optOut option. (ALL | NONE)
-     */
-    public void setOptOut(String optOut) {
-        this.optOut = optOut;
+        return (this.pinpointContext.getNotificationClient().areAppNotificationsEnabled() &&
+                               !StringUtil.isBlank(this.pinpointContext.getNotificationClient().getGCMDeviceToken())) ? "NONE" : "ALL";
     }
 
     private static String processAttributeMetricKey(String key) {

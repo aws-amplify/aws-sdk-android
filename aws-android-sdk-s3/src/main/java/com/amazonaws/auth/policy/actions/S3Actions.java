@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -123,6 +123,27 @@ public enum S3Actions implements Action {
     DeleteObjectVersion("s3:DeleteObjectVersion"),
 
     /**
+     * Action for listing parts that have been uploaded for a multipart upload.
+     *
+     * @see AmazonS3#listParts(com.amazonaws.services.s3.model.ListPartsRequest)
+     */
+    ListMultipartUploadParts("s3:ListMultipartUploadParts"),
+
+    /**
+     * Action for aborting a multipart upload.
+     *
+     * @see AmazonS3#abortMultipartUpload(com.amazonaws.services.s3.model.AbortMultipartUploadRequest)
+     */
+    AbortMultipartUpload("s3:AbortMultipartUpload"),
+
+    /**
+     * Action for restoring a temporary copy of an archived object.
+     *
+     * @see AmazonS3#restoreObject(com.amazonaws.services.s3.model.RestoreObjectRequest)
+     */
+    RestoreObject("s3:RestoreObject"),
+
+    /**
      * Action for creating a new Amazon S3 bucket.
      * <p>
      * Valid for use with {@link S3BucketResource} resources.
@@ -168,6 +189,16 @@ public enum S3Actions implements Action {
     ListBuckets("s3:ListAllMyBuckets"),
 
     /**
+     * Actions for listing the in-progress multipart uploads for an Amazon S3
+     * bucket.
+     * <p>
+     * Valid for use with {@link S3BucketResource} resources.
+     *
+     * @see AmazonS3#listMultipartUploads(com.amazonaws.services.s3.model.ListMultipartUploadsRequest)
+     */
+    ListBucketMultipartUploads("s3:ListBucketMultipartUploads"),
+
+    /**
      * Action for retrieving the ACL of an Amazon S3 bucket.
      * <p>
      * Valid for use with {@link S3BucketResource} resources.
@@ -187,6 +218,26 @@ public enum S3Actions implements Action {
      *      com.amazonaws.services.s3.model.CannedAccessControlList)
      */
     SetBucketAcl("s3:PutBucketAcl"),
+
+    /**
+     * Action for getting the Cross origin configuration configuration
+     * information set for the bucket.
+     * <p>
+     * Valid for use with {@link S3BucketResource} resources.
+     *
+     * @see AmazonS3#getBucketCrossOriginConfiguration(String)
+     */
+    GetBucketCrossOriginConfiguration("s3:GetBucketCORS"),
+
+    /**
+     * Action for setting the Cross origin configuration configuration
+     * information set for the bucket.
+     * <p>
+     * Valid for use with {@link S3BucketResource} resources.
+     *
+     * @see AmazonS3#setBucketCrossOriginConfiguration(com.amazonaws.services.s3.model.SetBucketCrossOriginConfigurationRequest)
+     */
+    SetBucketCrossOriginConfiguration("s3:PutBucketCORS"),
 
     /**
      * Action for retrieving the versioning configuration of an Amazon S3
@@ -212,14 +263,14 @@ public enum S3Actions implements Action {
      * <p>
      * Valid for use with {@link S3BucketResource} resources.
      */
-    GetBucketRequesterPays("s3:GetBucketRequesterPays"),
+    GetBucketRequesterPays("s3:GetBucketRequestPayment"),
 
     /**
      * Action for setting the requester pays status of an Amazon S3 bucket.
      * <p>
      * Valid for use with {@link S3BucketResource} resources.
      */
-    SetBucketRequesterPays("s3:PutBucketRequesterPays"),
+    SetBucketRequesterPays("s3:PutBucketRequestPayment"),
 
     /**
      * Action for retrieving the bucket location of an Amazon S3 bucket.
@@ -249,6 +300,15 @@ public enum S3Actions implements Action {
     SetBucketPolicy("s3:PutBucketPolicy"),
 
     /**
+     * Action for deleting the access control policy for an Amazon S3 Bucket.
+     * <p>
+     * Valid for use with {@link S3BucketResource} resources.
+     *
+     * @see AmazonS3#deleteBucketPolicy(com.amazonaws.services.s3.model.DeleteBucketPolicyRequest)
+     */
+    DeleteBucketPolicy("s3:DeleteBucketPolicy"),
+
+    /**
      * Action for retrieving the bucket notification configuration for an Amazon
      * S3 bucket.
      * <p>
@@ -267,7 +327,97 @@ public enum S3Actions implements Action {
      * @see AmazonS3#setBucketNotificationConfiguration(String,
      *      com.amazonaws.services.s3.model.BucketNotificationConfiguration)
      */
-    SetBucketNotificationConfiguration("s3:PutBucketNotification");
+    SetBucketNotificationConfiguration("s3:PutBucketNotification"),
+
+    /**
+     * Action for getting the bucket logging configuration for an Amazon S3
+     * bucket.
+     * <p>
+     * Valid for use with {@link S3BucketResource} resources.
+     *
+     * @see AmazonS3#getBucketLoggingConfiguration(String)
+     */
+    GetBucketLogging("s3:GetBucketLogging"),
+
+    /**
+     * Action for setting the bucket logging configuration for an Amazon S3
+     * bucket.
+     * <p>
+     * Valid for use with {@link S3BucketResource} resources.
+     *
+     * @see AmazonS3#setBucketLoggingConfiguration(com.amazonaws.services.s3.model.SetBucketLoggingConfigurationRequest)
+     */
+    SetBucketLogging("s3:PutBucketLogging"),
+
+    /**
+     * Action for getting the bucket tagging configuration for an Amazon S3
+     * bucket.
+     * <p>
+     * Valid for use with {@link S3BucketResource} resources.
+     *
+     * @see AmazonS3#getBucketTaggingConfiguration(String)
+     */
+    GetBucketTagging("s3:GetBucketTagging"),
+
+    /**
+     * Action for setting the bucket tagging configuration for an Amazon S3
+     * bucket.
+     * <p>
+     * Valid for use with {@link S3BucketResource} resources.
+     *
+     * @see AmazonS3#setBucketTaggingConfiguration(com.amazonaws.services.s3.model.SetBucketTaggingConfigurationRequest)
+     */
+    SetBucketTagging("s3:PutBucketTagging"),
+
+    /**
+     * Action for getting the bucket website configuration for an Amazon S3
+     * bucket.
+     * <p>
+     * Valid for use with {@link S3BucketResource} resources.
+     *
+     * @see AmazonS3#getBucketWebsiteConfiguration(com.amazonaws.services.s3.model.GetBucketWebsiteConfigurationRequest)
+     */
+    GetBucketWebsiteConfiguration("s3:GetBucketWebsite"),
+
+    /**
+     * Action for setting the bucket website configuration for an Amazon S3
+     * bucket.
+     * <p>
+     * Valid for use with {@link S3BucketResource} resources.
+     *
+     * @see AmazonS3#setBucketWebsiteConfiguration(com.amazonaws.services.s3.model.SetBucketWebsiteConfigurationRequest)
+     */
+    SetBucketWebsiteConfiguration("s3:PutBucketWebsite"),
+
+    /**
+     * Action for deleting the bucket website configuration for an Amazon S3
+     * bucket.
+     * <p>
+     * Valid for use with {@link S3BucketResource} resources.
+     *
+     * @see AmazonS3#deleteBucketWebsiteConfiguration(com.amazonaws.services.s3.model.DeleteBucketWebsiteConfigurationRequest)
+     */
+    DeleteBucketWebsiteConfiguration("s3:DeleteBucketWebsite"),
+
+    /**
+     * Action for getting the bucket lifecycle configuration for an Amazon S3
+     * bucket.
+     * <p>
+     * Valid for use with {@link S3BucketResource} resources.
+     *
+     * @see AmazonS3#getBucketLifecycleConfiguration(String)
+     */
+    GetBucketLifecycleConfiguration("s3:GetLifecycleConfiguration"),
+
+    /**
+     * Action for setting the bucket lifecycle configuration for an Amazon S3
+     * bucket.
+     * <p>
+     * Valid for use with {@link S3BucketResource} resources.
+     *
+     * @see AmazonS3#setBucketLifecycleConfiguration(com.amazonaws.services.s3.model.SetBucketLifecycleConfigurationRequest)
+     */
+    SetBucketLifecycleConfiguration("s3:PutLifecycleConfiguration");
 
     private final String action;
 
@@ -277,6 +427,7 @@ public enum S3Actions implements Action {
 
     /*
      * (non-Javadoc)
+     *
      * @see com.amazonaws.auth.policy.Action#getId()
      */
     @Override

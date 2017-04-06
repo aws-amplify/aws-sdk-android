@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,10 +23,10 @@ import com.amazonaws.AmazonServiceException;
  * valid for this request.
  * </p>
  * <p>
- * For more information about how key state affects the use of a customer master
- * key (CMK), see <a
- * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >How Key State Affects the Use of a Customer Master Key</a> in the <i>AWS Key
+ * For more information about how key state affects the use of a CMK, see <a
+ * href
+ * ="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">How
+ * Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.
  * </p>
  */

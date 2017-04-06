@@ -91,6 +91,7 @@ public class InteractiveVoiceViewAdapter
     @Override
     public void onAudioPlaybackStarted() {
         state = STATE_AUDIO_PLAYBACK;
+        micButton.animateAudioPlayback();
     }
 
     @Override
@@ -99,6 +100,7 @@ public class InteractiveVoiceViewAdapter
             if (this.continuation != null) {
                 state = STATE_LISTENING;
                 continuation.continueWithCurrentMode();
+                micButton.animateListening();
             } else {
                 // Cannot continue, must start new dialog.
                 state = STATE_READY;
@@ -112,6 +114,7 @@ public class InteractiveVoiceViewAdapter
         // Audio playback failed.
         Log.e(TAG, "InteractiveVoiceViewAdapter: Audio playback failed", e);
         state = STATE_READY;
+        micButton.animateNone();
     }
 
     @Override
@@ -128,13 +131,13 @@ public class InteractiveVoiceViewAdapter
     @Override
     public void promptUserToRespond(Response response,
                                     LexServiceContinuation continuation) {
-        micButton.animateNone();
         if (response == null) {
             Log.e(TAG, "InteractiveVoiceViewAdapter: Received null response from Amazon Lex bot");
         }
 
         if (DialogState.Fulfilled.toString().equals(response.getDialogState())) {
             // The request has been fulfilled, the bot is ready for a new dialog.
+            micButton.animateNone();
             state = STATE_READY;
             this.continuation = null;
         } else {
@@ -149,8 +152,8 @@ public class InteractiveVoiceViewAdapter
     @Override
     public void onInteractionError(Response response, Exception e) {
         Log.e(TAG, "InteractiveVoiceViewAdapter: Interaction error", e);
-        micButton.animateNone();
         if (state != STATE_AUDIO_PLAYBACK) {
+            micButton.animateNone();
             state = STATE_READY;
         }
         continuation = null;

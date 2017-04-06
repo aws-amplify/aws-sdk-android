@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,12 +17,13 @@ package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.internal.SSEResultBase;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Result of the copy part operation.
  */
-public class CopyPartResult extends SSEResultBase {
+public class CopyPartResult extends SSEResultBase implements Serializable {
 
     /** The ETag value of the new part */
     private String etag;

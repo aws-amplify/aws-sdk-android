@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -17,6 +17,9 @@ package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonServiceException;
 
+import java.io.Serializable;
+import java.util.Map;
+
 /**
  * Provides an extension of the AmazonServiceException for errors reported by
  * Amazon S3 while processing a request. In particular, this class provides
@@ -24,7 +27,7 @@ import com.amazonaws.AmazonServiceException;
  * information in the case the user needs to contact Amazon about an issue where
  * Amazon S3 is incorrectly handling a request.
  */
-public class AmazonS3Exception extends AmazonServiceException {
+public class AmazonS3Exception extends AmazonServiceException implements Serializable {
     private static final long serialVersionUID = 7573680383273658477L;
 
     /**
@@ -38,6 +41,17 @@ public class AmazonS3Exception extends AmazonServiceException {
     private String cloudFrontId;
 
     /**
+     * Additional information on the exception.
+     */
+    private Map<String, String> additionalDetails;
+
+    /**
+     * Returns the error XML received in the HTTP Response or null if the
+     * exception is constructed from the headers.
+     */
+    private final String errorResponseXml;
+
+    /**
      * Constructs a new {@link AmazonS3Exception} with the specified message.
      *
      * @param message The error message describing why this exception was
@@ -46,6 +60,7 @@ public class AmazonS3Exception extends AmazonServiceException {
      */
     public AmazonS3Exception(String message) {
         super(message);
+        this.errorResponseXml = null;
     }
 
     /**
@@ -59,6 +74,25 @@ public class AmazonS3Exception extends AmazonServiceException {
      */
     public AmazonS3Exception(String message, Exception cause) {
         super(message, cause);
+        this.errorResponseXml = null;
+    }
+
+    /**
+     * Constructs a new {@link AmazonS3Exception} with the specified message and
+     * error response xml from Amazon S3.
+     *
+     * @param message The error message describing why this exception was
+     *            thrown.
+     * @param errorResponseXml The original error response XML received from
+     *            Amazon S3
+     * @see AmazonS3Exception#AmazonS3Exception(String)
+     */
+    public AmazonS3Exception(String message, String errorResponseXml) {
+        super(message);
+        if (errorResponseXml == null) {
+            throw new IllegalArgumentException("Error Response XML cannot be null");
+        }
+        this.errorResponseXml = errorResponseXml;
     }
 
     /**
@@ -106,6 +140,20 @@ public class AmazonS3Exception extends AmazonServiceException {
     }
 
     /**
+     * Returns any additional information retrieved in the error response.
+     */
+    public Map<String, String> getAdditionalDetails() {
+        return additionalDetails;
+    }
+
+    /**
+     * Sets additional information about the error response.
+     */
+    public void setAdditionalDetails(Map<String, String> additionalDetails) {
+        this.additionalDetails = additionalDetails;
+    }
+
+    /**
      * Extends the implementation from AmazonServiceException to include
      * additional information on S3's extended request ID.
      */
@@ -115,4 +163,11 @@ public class AmazonS3Exception extends AmazonServiceException {
                 + "S3 Extended Request ID: " + getExtendedRequestId();
     }
 
+    /**
+     * Returns the error XML received in the HTTP Response or null if the
+     * exception is constructed from the headers.
+     */
+    public String getErrorResponseXml() {
+        return errorResponseXml;
+    }
 }

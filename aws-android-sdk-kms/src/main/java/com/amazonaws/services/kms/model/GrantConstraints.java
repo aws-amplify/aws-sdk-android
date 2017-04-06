@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import java.io.Serializable;
  * You can use this structure to allow the operations permitted by the grant
  * only when a specified encryption context is present. For more information
  * about encryption context, see <a href=
- * "http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html"
+ * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
  * >Encryption Context</a> in the <i>AWS Key Management Service Developer
  * Guide</i>.
  * </p>

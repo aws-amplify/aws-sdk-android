@@ -32,6 +32,7 @@ import com.amazonaws.services.securitytoken.model.AssumeRoleWithWebIdentityReque
 import com.amazonaws.services.securitytoken.model.AssumeRoleWithWebIdentityResult;
 import com.amazonaws.services.securitytoken.model.Credentials;
 
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -77,6 +78,8 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
     protected String customRoleArn;
 
     protected boolean useEnhancedFlow;
+    
+    protected ReentrantReadWriteLock credentialsLock;
 
     /**
      * Constructs a new {@link CognitoCredentialsProvider}, which will use the
@@ -212,7 +215,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
             this.identityProvider = new AWSBasicCognitoIdentityProvider(accountId, identityPoolId,
                     cibClient);
         }
-
+        this.credentialsLock = new ReentrantReadWriteLock(true);
     }
 
     /**
@@ -261,6 +264,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
         this.sessionDuration = DEFAULT_DURATION_SECONDS;
         this.refreshThreshold = DEFAULT_THRESHOLD_SECONDS;
         this.useEnhancedFlow = false;
+        this.credentialsLock = new ReentrantReadWriteLock(true);
     }
 
     /**
@@ -334,6 +338,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
         this.sessionDuration = DEFAULT_DURATION_SECONDS;
         this.refreshThreshold = DEFAULT_THRESHOLD_SECONDS;
         this.useEnhancedFlow = true;
+        this.credentialsLock = new ReentrantReadWriteLock(true);
     }
 
     public String getIdentityId() {
@@ -349,11 +354,21 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
     }
 
     public void setSessionCredentialsExpiration(Date expiration) {
-        sessionCredentialsExpiration = expiration;
+    	credentialsLock.writeLock().lock();
+    	try {
+    		sessionCredentialsExpiration = expiration;
+    	} finally {
+    		credentialsLock.writeLock().unlock();
+    	}
     }
 
     public Date getSessionCredentitalsExpiration() {
-        return sessionCredentialsExpiration;
+    	credentialsLock.readLock().lock();
+    	try {
+    		return sessionCredentialsExpiration;
+    	} finally {
+    		credentialsLock.readLock().unlock();
+    	}
     }
 
     public String getIdentityPoolId() {
@@ -367,10 +382,15 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      */
     @Override
     public AWSSessionCredentials getCredentials() {
-        if (needsNewSession()) {
-            startSession();
-        }
-        return sessionCredentials;
+    	credentialsLock.writeLock().lock();
+    	try {
+    		if (needsNewSession()) {
+    			startSession();
+    		}
+    		return sessionCredentials;
+    	} finally {
+    		credentialsLock.writeLock().unlock();
+    	}
     }
 
     /**
@@ -468,8 +488,13 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      *            communicate with Amazon Cognito
      */
     public void setLogins(Map<String, String> logins) {
-        identityProvider.setLogins(logins);
-        clearCredentials();
+    	credentialsLock.writeLock().lock();
+    	try {
+    		identityProvider.setLogins(logins);
+    		clearCredentials();
+    	} finally {
+    		credentialsLock.writeLock().unlock();
+    	}
     }
 
         
@@ -524,7 +549,12 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
 
     @Override
     public void refresh() {
-        startSession();
+    	credentialsLock.writeLock().lock();
+    	try {
+    		startSession();
+    	} finally {
+    		credentialsLock.writeLock().unlock();
+    	}
     }
 
     /**
@@ -533,9 +563,14 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * credentials.
      */
     public void clear() {
-        clearCredentials();
-        setIdentityId(null);
-        identityProvider.setLogins(new HashMap<String, String>());
+    	credentialsLock.writeLock().lock();
+    	try {
+    		clearCredentials();
+    		setIdentityId(null);
+    		identityProvider.setLogins(new HashMap<String, String>());
+    	} finally {
+    		credentialsLock.writeLock().unlock();
+    	}
     }
 
     /**
@@ -543,8 +578,13 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * not the identity Id.
      */
     public void clearCredentials() {
-        sessionCredentials = null;
-        sessionCredentialsExpiration = null;
+    	credentialsLock.writeLock().lock();
+    	try {
+    		sessionCredentials = null;
+    		sessionCredentialsExpiration = null;
+    	} finally {
+    		credentialsLock.writeLock().unlock();
+    	}
     }
 
     /**
@@ -667,7 +707,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
                 .getCredentials();
         sessionCredentials = new BasicSessionCredentials(credentials.getAccessKeyId(),
                 credentials.getSecretKey(), credentials.getSessionToken());
-        sessionCredentialsExpiration = credentials.getExpiration();
+        setSessionCredentialsExpiration(credentials.getExpiration());
 
         if (!result.getIdentityId().equals(getIdentityId())) {
             setIdentityId(result.getIdentityId());
@@ -699,7 +739,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
                 stsCredentials.getAccessKeyId(),
                 stsCredentials.getSecretAccessKey(),
                 stsCredentials.getSessionToken());
-        sessionCredentialsExpiration = stsCredentials.getExpiration();
+        setSessionCredentialsExpiration(stsCredentials.getExpiration());
 
     }
 
@@ -707,10 +747,12 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      * Returns true if a new STS session needs to be started. A new STS session
      * is needed when no session has been started yet, or if the last session is
      * within the configured refresh threshold.
-     *
+     * 
      * @return True if a new STS session needs to be started.
      */
     protected boolean needsNewSession() {
+    	// NOTE: Do not try to acquire a lock in this method. A thread calling this 
+        // method can already have a read or a write lock.
         if (sessionCredentials == null) {
             return true;
         }

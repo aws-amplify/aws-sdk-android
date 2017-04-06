@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -37,9 +37,21 @@ public class MD5DigestCalculatingInputStream extends SdkFilterInputStream {
 
     public MD5DigestCalculatingInputStream(InputStream in) {
         super(in);
+        digest = newMD5();
+    }
+
+    private MessageDigest newMD5() {
         try {
-            digest = MessageDigest.getInstance("MD5");
+            return MessageDigest.getInstance("MD5");
         } catch (NoSuchAlgorithmException e) { // should never occur
+            throw new IllegalStateException("unexpected", e);
+        }
+    }
+    
+    private MessageDigest cloneFrom(MessageDigest from) {
+        try {
+            return (MessageDigest)from.clone();
+        } catch (CloneNotSupportedException e) { // should never occur
             throw new IllegalStateException("unexpected", e);
         }
     }
@@ -50,13 +62,9 @@ public class MD5DigestCalculatingInputStream extends SdkFilterInputStream {
 
     @Override
     public void mark(int readlimit) {
-        super.mark(readlimit);
         if (markSupported()) {
-            try {
-                digestLastMarked = (MessageDigest) digest.clone();
-            } catch (CloneNotSupportedException e) { // should never occur
-                throw new IllegalStateException("unexpected", e);
-            }
+            super.mark(readlimit);
+            digestLastMarked = cloneFrom(digest);
         }
     }
 
@@ -65,13 +73,15 @@ public class MD5DigestCalculatingInputStream extends SdkFilterInputStream {
      */
     @Override
     public void reset() throws IOException {
-        super.reset();
-        if (digestLastMarked != null) {
-            try {
-                digest = (MessageDigest) digestLastMarked.clone();
-            } catch (CloneNotSupportedException e) { // should never occur
-                throw new IllegalStateException("unexpected", e);
-            }
+        if (markSupported()) {
+            super.reset();
+            digest = (digestLastMarked == null)
+                   // This is necessary so that should there be a reset without a
+                   // preceding mark, the MD5 would still be computed correctly.
+                   ? newMD5()
+                   : cloneFrom(digestLastMarked);
+        } else {
+            throw new IOException("mark/reset not supported");
         }
     }
 

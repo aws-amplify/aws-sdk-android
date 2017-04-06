@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,14 +21,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates the description of a key.
+ * Updates the description of a customer master key (CMK).
  * </p>
  */
 public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * A unique identifier for the customer master key. This value can be a
-     * globally unique identifier or the fully specified ARN to a key.
+     * A unique identifier for the CMK. This value can be a globally unique
+     * identifier or the fully specified ARN to a key.
      * </p>
      * <ul>
      * <li>
@@ -52,7 +52,7 @@ public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * New description for the key.
+     * New description for the CMK.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -62,8 +62,8 @@ public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A unique identifier for the customer master key. This value can be a
-     * globally unique identifier or the fully specified ARN to a key.
+     * A unique identifier for the CMK. This value can be a globally unique
+     * identifier or the fully specified ARN to a key.
      * </p>
      * <ul>
      * <li>
@@ -84,9 +84,8 @@ public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest impleme
      * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         A unique identifier for the customer master key. This value can
-     *         be a globally unique identifier or the fully specified ARN to a
-     *         key.
+     *         A unique identifier for the CMK. This value can be a globally
+     *         unique identifier or the fully specified ARN to a key.
      *         </p>
      *         <ul>
      *         <li>
@@ -110,8 +109,8 @@ public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A unique identifier for the customer master key. This value can be a
-     * globally unique identifier or the fully specified ARN to a key.
+     * A unique identifier for the CMK. This value can be a globally unique
+     * identifier or the fully specified ARN to a key.
      * </p>
      * <ul>
      * <li>
@@ -132,9 +131,8 @@ public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest impleme
      * <b>Length: </b>1 - 256<br/>
      *
      * @param keyId <p>
-     *            A unique identifier for the customer master key. This value
-     *            can be a globally unique identifier or the fully specified ARN
-     *            to a key.
+     *            A unique identifier for the CMK. This value can be a globally
+     *            unique identifier or the fully specified ARN to a key.
      *            </p>
      *            <ul>
      *            <li>
@@ -158,8 +156,8 @@ public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A unique identifier for the customer master key. This value can be a
-     * globally unique identifier or the fully specified ARN to a key.
+     * A unique identifier for the CMK. This value can be a globally unique
+     * identifier or the fully specified ARN to a key.
      * </p>
      * <ul>
      * <li>
@@ -183,9 +181,8 @@ public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest impleme
      * <b>Length: </b>1 - 256<br/>
      *
      * @param keyId <p>
-     *            A unique identifier for the customer master key. This value
-     *            can be a globally unique identifier or the fully specified ARN
-     *            to a key.
+     *            A unique identifier for the CMK. This value can be a globally
+     *            unique identifier or the fully specified ARN to a key.
      *            </p>
      *            <ul>
      *            <li>
@@ -212,14 +209,14 @@ public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * New description for the key.
+     * New description for the CMK.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 8192<br/>
      *
      * @return <p>
-     *         New description for the key.
+     *         New description for the CMK.
      *         </p>
      */
     public String getDescription() {
@@ -228,14 +225,14 @@ public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * New description for the key.
+     * New description for the CMK.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 8192<br/>
      *
      * @param description <p>
-     *            New description for the key.
+     *            New description for the CMK.
      *            </p>
      */
     public void setDescription(String description) {
@@ -244,7 +241,7 @@ public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * New description for the key.
+     * New description for the CMK.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -254,7 +251,7 @@ public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest impleme
      * <b>Length: </b>0 - 8192<br/>
      *
      * @param description <p>
-     *            New description for the key.
+     *            New description for the CMK.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

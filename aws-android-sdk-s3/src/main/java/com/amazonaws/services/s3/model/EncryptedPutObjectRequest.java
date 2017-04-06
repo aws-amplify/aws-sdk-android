@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package com.amazonaws.services.s3.model;
 
 import java.io.File;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,8 +35,7 @@ import java.util.Map;
  * </p>
  */
 public class EncryptedPutObjectRequest extends PutObjectRequest implements
-        MaterialsDescriptionProvider {
-
+        MaterialsDescriptionProvider, Serializable {
     /**
      * description of encryption materials to be used with this request.
      */
@@ -81,6 +81,22 @@ public class EncryptedPutObjectRequest extends PutObjectRequest implements
             Map<String, String> materialsDescription) {
         setMaterialsDescription(materialsDescription);
         return this;
+    }
+
+    /**
+     * Returns a clone (as deep as possible) of this request object.
+     */
+    @Override
+    public EncryptedPutObjectRequest clone() {
+        final EncryptedPutObjectRequest cloned =
+            new EncryptedPutObjectRequest(
+                getBucketName(), getKey(), getFile());
+        super.copyPutObjectBaseTo(cloned);
+        final Map<String, String> materialsDescription = getMaterialsDescription();
+        cloned.withMaterialsDescription(materialsDescription == null
+                ? null
+                : new HashMap<String, String>(materialsDescription));
+        return cloned;
     }
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -111,10 +111,14 @@ public class AnalyticsClient implements JSONSerializable {
             log.error("The event type is too long, the max event type length is " + MAX_EVENT_TYPE_LENGTH
                     + " characters");
             throw new IllegalArgumentException("The eventType passed into create event was too long");
-
         }
 
-        AnalyticsEvent event = createEvent(eventType, sessionStartTime, null, null);
+        return createEvent(eventType, sessionStartTime, null, null);
+    }
+
+    protected AnalyticsEvent createEvent(String eventType, long sessionStart, Long sessionEnd, Long sessionDuration) {
+        AnalyticsEvent event = AnalyticsEvent.newInstance(context, sessionId, sessionStart, sessionEnd,
+                                                       sessionDuration, System.currentTimeMillis(), eventType);
 
         for (final Entry<String, String> attr : globalAttributes.entrySet()) {
             event.addAttribute(attr.getKey(), attr.getValue());
@@ -122,7 +126,7 @@ public class AnalyticsClient implements JSONSerializable {
 
         if (eventTypeAttributes.containsKey(event.getEventType())) {
             for (final Entry<String, String> attr : eventTypeAttributes.get(
-                    event.getEventType()).entrySet()) {
+                event.getEventType()).entrySet()) {
                 event.addAttribute(attr.getKey(), attr.getValue());
             }
         }
@@ -133,17 +137,12 @@ public class AnalyticsClient implements JSONSerializable {
 
         if (eventTypeMetrics.containsKey(event.getEventType())) {
             for (final Entry<String, Double> metric : eventTypeMetrics.get(
-                    event.getEventType()).entrySet()) {
+                event.getEventType()).entrySet()) {
                 event.addMetric(metric.getKey(), metric.getValue());
             }
         }
 
         return event;
-    }
-
-    protected AnalyticsEvent createEvent(String eventType, long sessionStart, Long sessionEnd, Long sessionDuration) {
-        return AnalyticsEvent.newInstance(context, sessionId, sessionStart, sessionEnd,
-                sessionDuration, System.currentTimeMillis(), eventType);
     }
 
     /**
@@ -164,8 +163,8 @@ public class AnalyticsClient implements JSONSerializable {
     }
 
     /**
-     * Submit all recorded events. If a submission occurred in the last minute,
-     * this request is ignored. If the device is off line, this is a no-op. See
+     * Submit all recorded events.
+     * If the device is off line, this is a no-op. See
      * {@link PinpointConfiguration}
      * for customizing which Internet connection the SDK can submit on.
      */

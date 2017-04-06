@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -17,6 +17,8 @@ package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * Provides options for deleting a specified bucket. Amazon S3 buckets can only
@@ -27,8 +29,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * returns a success message, not an error message.
  * </p>
  */
-public class DeleteBucketRequest extends AmazonWebServiceRequest
-        implements S3AccelerateUnsupported {
+public class DeleteBucketRequest extends AmazonWebServiceRequest implements
+        Serializable, S3AccelerateUnsupported {
 
     /**
      * The name of the Amazon S3 bucket to delete.

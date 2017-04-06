@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 
 package com.amazonaws.services.s3.internal;
 
+import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonWebServiceResponse;
 import com.amazonaws.ResponseMetadata;
 import com.amazonaws.http.HttpResponse;
@@ -55,6 +56,8 @@ public abstract class AbstractS3ResponseHandler<T>
         ignoredHeaders.add(Headers.SERVER);
         ignoredHeaders.add(Headers.REQUEST_ID);
         ignoredHeaders.add(Headers.EXTENDED_REQUEST_ID);
+        ignoredHeaders.add(Headers.CLOUD_FRONT_ID);
+        ignoredHeaders.add(Headers.CONNECTION);
     }
 
     /**
@@ -80,13 +83,15 @@ public abstract class AbstractS3ResponseHandler<T>
      *         the result to be plugged in.
      */
     protected AmazonWebServiceResponse<T> parseResponseMetadata(HttpResponse response) {
-        AmazonWebServiceResponse<T> awsResponse = new AmazonWebServiceResponse<T>();
-        String awsRequestId = response.getHeaders().get(Headers.REQUEST_ID);
-        String hostId = response.getHeaders().get(Headers.EXTENDED_REQUEST_ID);
+        final AmazonWebServiceResponse<T> awsResponse = new AmazonWebServiceResponse<T>();
+        final String awsRequestId = response.getHeaders().get(Headers.REQUEST_ID);
+        final String hostId = response.getHeaders().get(Headers.EXTENDED_REQUEST_ID);
+	final String cloudFrontId = response.getHeaders().get(Headers.CLOUD_FRONT_ID);
 
-        Map<String, String> metadataMap = new HashMap<String, String>();
+        final Map<String, String> metadataMap = new HashMap<String, String>();
         metadataMap.put(ResponseMetadata.AWS_REQUEST_ID, awsRequestId);
         metadataMap.put(S3ResponseMetadata.HOST_ID, hostId);
+        metadataMap.put(S3ResponseMetadata.CLOUD_FRONT_ID, cloudFrontId);
         awsResponse.setResponseMetadata(new S3ResponseMetadata(metadataMap));
 
         return awsResponse;
@@ -102,37 +107,49 @@ public abstract class AbstractS3ResponseHandler<T>
      *            headers.
      */
     protected void populateObjectMetadata(HttpResponse response, ObjectMetadata metadata) {
-        for (Entry<String, String> header : response.getHeaders().entrySet()) {
+        for (final Entry<String, String> header : response.getHeaders().entrySet()) {
             String key = header.getKey();
             if (key.startsWith(Headers.S3_USER_METADATA_PREFIX)) {
                 key = key.substring(Headers.S3_USER_METADATA_PREFIX.length());
                 metadata.addUserMetadata(key, header.getValue());
             } else if (ignoredHeaders.contains(key)) {
                 // ignore...
-            } else if (key.equals(Headers.LAST_MODIFIED)) {
+            } else if (key.equalsIgnoreCase(Headers.LAST_MODIFIED)) {
                 try {
                     metadata.setHeader(key, ServiceUtils.parseRfc822Date(header.getValue()));
-                } catch (Exception pe) {
+                } catch (final Exception pe) {
                     log.warn("Unable to parse last modified date: " + header.getValue(), pe);
                 }
-            } else if (key.equals(Headers.CONTENT_LENGTH)) {
+            } else if (key.equalsIgnoreCase(Headers.CONTENT_LENGTH)) {
                 try {
                     metadata.setHeader(key, Long.parseLong(header.getValue()));
-                } catch (NumberFormatException nfe) {
+                } catch (final NumberFormatException nfe) {
                     log.warn("Unable to parse content length: " + header.getValue(), nfe);
                 }
-            } else if (key.equals(Headers.ETAG)) {
+            } else if (key.equalsIgnoreCase(Headers.ETAG)) {
                 metadata.setHeader(key, ServiceUtils.removeQuotes(header.getValue()));
-            } else if (key.equals(Headers.EXPIRES)) {
+            } else if (key.equalsIgnoreCase(Headers.EXPIRES)) {
                 try {
                     metadata.setHttpExpiresDate(DateUtils.parseRFC822Date(header.getValue()));
-                } catch (Exception pe) {
+                } catch (final Exception pe) {
                     log.warn("Unable to parse http expiration date: " + header.getValue(), pe);
                 }
-            } else if (key.equals(Headers.EXPIRATION)) {
+            } else if (key.equalsIgnoreCase(Headers.EXPIRATION)) {
                 new ObjectExpirationHeaderHandler<ObjectMetadata>().handle(metadata, response);
-            } else if (key.equals(Headers.RESTORE)) {
+            } else if (key.equalsIgnoreCase(Headers.RESTORE)) {
                 new ObjectRestoreHeaderHandler<ObjectRestoreResult>().handle(metadata, response);
+            } else if (key.equalsIgnoreCase(Headers.REQUESTER_CHARGED_HEADER)) {
+                new S3RequesterChargedHeaderHandler<S3RequesterChargedResult>().handle(metadata,
+                        response);
+            } else if (key.equalsIgnoreCase(Headers.S3_PARTS_COUNT)) {
+                try {
+                    metadata.setHeader(key, Integer.parseInt(header.getValue()));
+                } catch (final NumberFormatException nfe) {
+                    throw new AmazonClientException(
+                            "Unable to parse part count. Header x-amz-mp-parts-count has corrupted data"
+                                    + nfe.getMessage(),
+                            nfe);
+                }
             } else {
                 metadata.setHeader(key, header.getValue());
             }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import com.amazonaws.event.ProgressListener;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.internal.Constants;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,34 +30,34 @@ import java.util.List;
  * Provides options for downloading an Amazon S3 object.
  * </p>
  * <p>
- * All <code>GetObjectRequests</code> must specify a bucket name and key. Beyond
- * that, requests can also specify:
- * <ul>
- * <li>The range of bytes within the object to download,
- * <li>Constraints controlling if the object will be downloaded or not.
- * </ul>
+ * All <code>GetObjectRequests</code> must specify a bucket name and key.
+ * Beyond that, requests can also specify:
+ *
+ *  <ul>
+ *      <li>The range of bytes within the object to download,
+ *      <li>Constraints controlling if the object will be downloaded or not.
+ *  </ul>
+ * </p>
+ * <p>
+ * If you are uploading or accessing <a
+ * href="http://aws.amazon.com/kms/">KMS</a>-encrypted objects, you need to
+ * specify the correct region of the bucket on your client and configure AWS
+ * Signature Version 4 for added security. For more information on how to do
+ * this, see
+ * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#specify
+ * -signature-version
  * </p>
  *
  * @see GetObjectRequest#GetObjectRequest(String, String)
  * @see GetObjectRequest#GetObjectRequest(String, String, String)
  * @see GetObjectMetadataRequest
  */
-public class GetObjectRequest extends AmazonWebServiceRequest {
-
-    /** The name of the bucket containing the object to retrieve */
-    private String bucketName;
-
-    /** The key under which the desired object is stored */
-    private String key;
-
+public class GetObjectRequest extends AmazonWebServiceRequest implements
+        SSECustomerKeyProvider, Serializable {
     /**
-     * Optional version ID specifying which version of the object to download.
-     * If not specified, the most recent version will be downloaded.
-     * <p>
-     * For more information about enabling versioning for a bucket, see
-     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}.
+     * Builder of an S3 object identifier.  This member field is never null.
      */
-    private String versionId;
+    private S3ObjectIdBuilder s3ObjectIdBuilder = new S3ObjectIdBuilder();
 
     /** Optional member indicating the byte range of data to retrieve */
     private long[] range;
@@ -110,12 +111,19 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
     private SSECustomerKey sseCustomerKey;
 
     /**
-     * Constructs a new {@link GetObjectRequest} with all the required
-     * parameters.
+     * The part number of the requested part in a multipart object.
+     */
+    private Integer partNumber;
+
+    /**
+     * Constructs a new {@link GetObjectRequest} with all the required parameters.
      *
-     * @param bucketName The name of the bucket containing the desired object.
-     * @param key The key in the specified bucket under which the object is
+     * @param bucketName
+     *            The name of the bucket containing the desired object.
+     * @param key
+     *            The key in the specified bucket under which the object is
      *            stored.
+     *
      * @see GetObjectRequest#GetObjectRequest(String, String, String)
      * @see GetObjectRequest#GetObjectRequest(String, String, boolean)
      */
@@ -124,14 +132,17 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Constructs a new {@link GetObjectRequest} with all the required
-     * parameters.
+     * Constructs a new {@link GetObjectRequest} with all the required parameters.
      *
-     * @param bucketName The name of the bucket containing the desired object.
-     * @param key The key in the specified bucket under which the object is
+     * @param bucketName
+     *            The name of the bucket containing the desired object.
+     * @param key
+     *            The key in the specified bucket under which the object is
      *            stored.
-     * @param versionId The Amazon S3 version ID specifying a specific version
-     *            of the object to download.
+     * @param versionId
+     *            The Amazon S3 version ID specifying a specific version of the
+     *            object to download.
+     *
      * @see GetObjectRequest#GetObjectRequest(String, String)
      * @see GetObjectRequest#GetObjectRequest(String, String, boolean)
      */
@@ -139,25 +150,34 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
         setBucketName(bucketName);
         setKey(key);
         setVersionId(versionId);
-        setRequesterPays(false);
+    }
+
+    public GetObjectRequest(S3ObjectId s3ObjectId) {
+        this.s3ObjectIdBuilder = new S3ObjectIdBuilder(s3ObjectId);
     }
 
     /**
      * Constructs a new {@link GetObjectRequest} with all the required
      * parameters.
      *
-     * @param bucketName The name of the bucket containing the desired object.
-     * @param key The key in the specified bucket under which the object is
+     * @param bucketName
+     *            The name of the bucket containing the desired object.
+     * @param key
+     *            The key in the specified bucket under which the object is
      *            stored.
-     * @param isRequesterPays If enabled, the requester is charged for
-     *            downloading the data from Requester Pays Buckets.
+     * @param isRequesterPays
+     *            If enabled, the requester is charged for downloading the data
+     *            from Requester Pays Buckets.
+     *
      * @see GetObjectRequest#GetObjectRequest(String, String)
      * @see GetObjectRequest#GetObjectRequest(String, String, String)
      */
     public GetObjectRequest(String bucketName, String key,
             boolean isRequesterPays) {
-        this.bucketName = bucketName;
-        this.key = key;
+        this.s3ObjectIdBuilder
+            .withBucket(bucketName)
+            .withKey(key)
+            ;
         this.isRequesterPays = isRequesterPays;
     }
 
@@ -165,34 +185,38 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
      * Gets the name of the bucket containing the object to be downloaded.
      *
      * @return The name of the bucket containing the object to be downloaded.
+     *
      * @see GetObjectRequest#setBucketName(String)
      * @see GetObjectRequest#withBucketName(String)
      */
     public String getBucketName() {
-        return bucketName;
+        return s3ObjectIdBuilder.getBucket();
     }
 
     /**
      * Sets the name of the bucket containing the object to be downloaded.
      *
-     * @param bucketName The name of the bucket containing the object to be
-     *            downloaded.
+     * @param bucketName
+     *            The name of the bucket containing the object to be downloaded.
+     *
      * @see GetObjectRequest#getBucketName()
      * @see GetObjectRequest#withBucketName(String)
      */
     public void setBucketName(String bucketName) {
-        this.bucketName = bucketName;
+        s3ObjectIdBuilder.setBucket(bucketName);
     }
 
     /**
      * Sets the name of the bucket containing the object to be downloaded.
-     * Returns this {@link GetObjectRequest}, enabling additional method calls
-     * to be chained together.
+     * Returns this {@link GetObjectRequest}, enabling additional method
+     * calls to be chained together.
      *
-     * @param bucketName The name of the bucket containing the object to be
-     *            downloaded.
-     * @return This {@link GetObjectRequest}, enabling additional method calls to
-     *         be chained together.
+     * @param bucketName
+     *            The name of the bucket containing the object to be downloaded.
+     *
+     * @return This {@link GetObjectRequest}, enabling additional method
+     *         calls to be chained together.
+     *
      * @see GetObjectRequest#getBucketName()
      * @see GetObjectRequest#setBucketName(String)
      */
@@ -205,32 +229,38 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
      * Gets the key under which the object to be downloaded is stored.
      *
      * @return The key under which the object to be downloaded is stored.
+     *
      * @see GetObjectRequest#setKey(String)
      * @see GetObjectRequest#withKey(String)
      */
     public String getKey() {
-        return key;
+        return s3ObjectIdBuilder.getKey();
     }
 
     /**
      * Sets the key under which the object to be downloaded is stored.
      *
-     * @param key The key under which the object to be downloaded is stored.
+     * @param key
+     *            The key under which the object to be downloaded is stored.
+     *
      * @see GetObjectRequest#getKey()
      * @see GetObjectRequest#withKey(String)
      */
     public void setKey(String key) {
-        this.key = key;
+        s3ObjectIdBuilder.setKey(key);
     }
 
     /**
-     * Sets the key under which the object to be downloaded is stored. Returns
-     * this {@link GetObjectRequest}, enabling additional method calls to be
-     * chained together.
+     * Sets the key under which the object to be downloaded is stored.
+     * Returns this {@link GetObjectRequest}, enabling additional method
+     * calls to be chained together.
      *
-     * @param key The key under which the object to be downloaded is stored.
-     * @return This {@link GetObjectRequest}, enabling additional method calls to
-     *         be chained together.
+     * @param key
+     *            The key under which the object to be downloaded is stored.
+     *
+     * @return This {@link GetObjectRequest}, enabling additional method
+     *         calls to be chained together.
+     *
      * @see GetObjectRequest#getKey()
      * @see GetObjectRequest#setKey(String)
      */
@@ -247,24 +277,24 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
      * <p>
      * Objects created before versioning was enabled or when versioning is
      * suspended are given the default <code>null</code> version ID (see
-     * {@link Constants#NULL_VERSION_ID}). Note that the <code>null</code>
-     * version ID is a valid version ID and is not the same as not having a
-     * version ID.
+     * {@link Constants#NULL_VERSION_ID}). Note that the
+     * <code>null</code> version ID is a valid version ID and is not the
+     * same as not having a version ID.
      * </p>
      * <p>
      * For more information about enabling versioning for a bucket, see
-     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}
-     * .
+     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}.
      * </p>
      *
      * @return The optional version ID specifying which version of the object to
      *         download. If not specified, the most recent version will be
      *         downloaded.
+     *
      * @see GetObjectRequest#setVersionId(String)
      * @see GetObjectRequest#withVersionId(String)
      */
     public String getVersionId() {
-        return versionId;
+        return s3ObjectIdBuilder.getVersionId();
     }
 
     /**
@@ -273,23 +303,24 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
      * <p>
      * Objects created before versioning was enabled or when versioning is
      * suspended will be given the default <code>null</code> version ID (see
-     * {@link Constants#NULL_VERSION_ID}). Note that the <code>null</code>
-     * version ID is a valid version ID and is not the same as not having a
-     * version ID.
+     * {@link Constants#NULL_VERSION_ID}). Note that the
+     * <code>null</code> version ID is a valid version ID and is not the
+     * same as not having a version ID.
      * </p>
      * <p>
      * For more information about enabling versioning for a bucket, see
-     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}
-     * .
+     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}.
      * </p>
      *
-     * @param versionId The optional version ID specifying which version of the
-     *            object to download.
+     * @param versionId
+     *            The optional version ID specifying which version of the object
+     *            to download.
+     *
      * @see GetObjectRequest#getVersionId()
      * @see GetObjectRequest#withVersionId(String)
      */
     public void setVersionId(String versionId) {
-        this.versionId = versionId;
+        s3ObjectIdBuilder.setVersionId(versionId);
     }
 
     /**
@@ -302,20 +333,22 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
      * <p>
      * Objects created before versioning was enabled or when versioning is
      * suspended will be given the default or <code>null</code> version ID (see
-     * {@link Constants#NULL_VERSION_ID}). Note that the <code>null</code>
-     * version ID is a valid version ID and is not the same as not having a
-     * version ID.
+     * {@link Constants#NULL_VERSION_ID}). Note that the
+     * <code>null</code> version ID is a valid version ID and is not the
+     * same as not having a version ID.
      * </p>
      * <p>
      * For more information about enabling versioning for a bucket, see
-     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}
-     * .
+     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}.
      * </p>
      *
-     * @param versionId The optional version ID specifying which version of the
-     *            object to download.
+     * @param versionId
+     *            The optional version ID specifying which version of the object
+     *            to download.
+     *
      * @return The updated request object, enabling additional method calls to be
-     *         chained together.
+     * chained together.
+     *
      * @see GetObjectRequest#getVersionId()
      * @see GetObjectRequest#setVersionId(String)
      */
@@ -324,27 +357,30 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
         return this;
     }
 
+
     /*
      * Optional Request Parameters
      */
 
     /**
      * <p>
-     * Gets the optional inclusive byte range within the desired object that
-     * will be downloaded by this request.
+     * Gets the optional inclusive byte range within the desired object
+     * that will be downloaded by this request.
      * </p>
      * <p>
-     * The range is returned as a two element array, containing the start and
-     * end index of the byte range. If no byte range has been specified, the
-     * entire object is downloaded and this method returns <code>null</code>.
+     * The range is returned as
+     * a two element array, containing the start and end index of the byte range.
+     * If no byte range has been specified, the entire object is downloaded and
+     * this method returns <code>null</code>.
      * </p>
+     * @return A two element array indicating the inclusive start index and end index
+     *         within the object being downloaded by this request.
+     *         Returns <code>null</code> if no range has been specified,
+     *         and the whole object is
+     *         to be downloaded.
      *
-     * @return A two element array indicating the inclusive start index and end
-     *         index within the object being downloaded by this request. Returns
-     *         <code>null</code> if no range has been specified, and the whole
-     *         object is to be downloaded.
-     * @see GetObjectMetadataRequest#setRange(long, long)
-     * @see GetObjectRequest#withRange(long, long)
+     * @see #setRange(long, long)
+     * @see #withRange(long, long)
      */
     public long[] getRange() {
         return range == null ? null : range.clone();
@@ -356,48 +392,77 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
      * will be downloaded by this request.
      * </p>
      * <p>
-     * The first byte in an object has position 0; as an example, the first ten
-     * bytes of an object can be downloaded by specifying a range of 0 to 9.
+     * The first byte in an object has
+     * position 0; as an example, the first ten bytes of an object can be
+     * downloaded by specifying a range of 0 to 9.
      * </p>
      * <p>
-     * If end is negative, that's equivalent to downloading the object from
-     * start of range to the end of the object, i.e. Range:bytes=start- .
-     * </p>
-     * <p>
-     * If no byte range is specified, this request downloads the entire object
-     * from Amazon S3.
+     * If no byte range is specified, this request downloads the entire
+     * object from Amazon S3.
      * </p>
      *
-     * @param start The start of the inclusive byte range to download.
-     * @param end The end of the inclusive byte range to download.
-     * @see GetObjectMetadataRequest#getRange()
-     * @see GetObjectRequest#withRange(long, long)
+     * @param start
+     *            The start of the inclusive byte range to download.
+     * @param end
+     *            The end of the inclusive byte range to download.
+     *
+     * @see #getRange()
+     * @see #withRange(long, long)
      */
     public void setRange(long start, long end) {
-        range = new long[] {
-                start, end
-        };
+        range = new long[] {start, end};
+    }
+
+    /**
+     * <p>
+     * Sets the optional inclusive start range within the desired object that the
+     * rest of which will be downloaded by this request.
+     * </p>
+     * <p>
+     * The first byte in an object has
+     * position 0; as an example, the object is of 10 bytes in length, the last
+     * 4 bytes can be downloaded by specifying the start range as 6.
+     * </p>
+     * <p>
+     * If no byte range is specified, this request downloads the entire
+     * object from Amazon S3.
+     * </p>
+     *
+     * @param start
+     *            The start of the inclusive byte range to download.
+     *
+     * @see #setRange(long, long)
+     * @see #withRange(long)
+     */
+    public void setRange(long start) {
+        setRange(start, Long.MAX_VALUE - 1);
     }
 
     /**
      * <p>
      * Sets the optional inclusive byte range within the desired object that
-     * will be downloaded by this request. Returns this {@link GetObjectRequest}
-     * , enabling additional method calls to be chained together.
+     * will be downloaded by this request.
+     * Returns this {@link GetObjectRequest}, enabling additional method
+     * calls to be chained together.
      * </p>
      * <p>
-     * The first byte in an object has position 0; as an example, the first ten
-     * bytes of an object can be downloaded by specifying a range of 0 to 9.
+     * The first byte in an object has
+     * position 0; as an example, the first ten bytes of an object can be
+     * downloaded by specifying a range of 0 to 9.
      * </p>
      * <p>
-     * If no byte range is specified, this request downloads the entire object
-     * from Amazon S3.
+     * If no byte range is specified, this request downloads the entire
+     * object from Amazon S3.
      * </p>
      *
-     * @param start The start of the inclusive byte range to download.
-     * @param end The end of the inclusive byte range to download.
-     * @return This {@link GetObjectRequest}, enabling additional method calls to
-     *         be chained together.
+     * @param start
+     *            The start of the inclusive byte range to download.
+     * @param end
+     *            The end of the inclusive byte range to download.
+     *
+     * @return This {@link GetObjectRequest}, enabling additional method
+     *         calls to be chained together.
+     *
      * @see GetObjectRequest#getRange()
      * @see GetObjectRequest#setRange(long, long)
      */
@@ -407,14 +472,46 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Gets the optional list of ETag constraints that, when present,
-     * <b>must</b> include a match for the object's current ETag in order for
-     * this request to be executed. Only one ETag in the list needs to match for
-     * this request to be executed by Amazon S3.
+     * <p>
+     * Sets the optional inclusive start range within the desired object that the
+     * rest of which will be downloaded by this request.
+     * </p>
+     * Returns this {@link GetObjectRequest}, enabling additional method
+     * calls to be chained together.
+     * <p>
+     * The first byte in an object has
+     * position 0; as an example, the object is of 10 bytes in length, the last
+     * 4 bytes can be downloaded by specifying the start range as 6.
+     * </p>
+     * <p>
+     * If no byte range is specified, this request downloads the entire
+     * object from Amazon S3.
+     * </p>
      *
-     * @return The optional list of ETag constraints that when present
-     *         <b>must</b> include a match for the object's current ETag in
-     *         order for this request to be executed.
+     * @param start
+     *            The start of the inclusive byte range to download.
+     *
+     * @return This {@link GetObjectRequest}, enabling additional method
+     *         calls to be chained together.
+     *
+     * @see #withRange(long, long)
+     * @see #setRange(long)
+     */
+    public GetObjectRequest withRange(long start) {
+        setRange(start);
+        return this;
+    }
+
+    /**
+     * Gets the optional list of ETag constraints that, when present, <b>must</b>
+     * include a match for the object's current ETag in order for this
+     * request to be executed. Only one ETag in the list needs to match for this
+     * request to be executed by Amazon S3.
+     *
+     * @return The optional list of ETag constraints that when present <b>must</b>
+     *         include a match for the object's current ETag in order for this
+     *         request to be executed.
+     *
      * @see GetObjectRequest#setMatchingETagConstraints(List)
      * @see GetObjectRequest#withMatchingETagConstraint(String)
      */
@@ -424,14 +521,16 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
 
     /**
      * Sets the optional list of ETag constraints that when present <b>must</b>
-     * include a match for the object's current ETag in order for this request
-     * to be executed. If none of the specified ETags match the object's current
-     * ETag, this request will not be executed. Only one ETag in the list needs
-     * to match for the request to be executed by Amazon S3.
+     * include a match for the object's current ETag in order for this
+     * request to be executed. If none of the specified ETags match the object's
+     * current ETag, this request will not be executed. Only one ETag in the
+     * list needs to match for the request to be executed by Amazon S3.
      *
-     * @param eTagList The optional list of ETag constraints that <b>must</b>
-     *            include a match for the object's current ETag in order for
-     *            this request to be executed.
+     * @param eTagList
+     *            The optional list of ETag constraints that <b>must</b> include a
+     *            match for the object's current ETag in order for this request
+     *            to be executed.
+     *
      * @see GetObjectRequest#getMatchingETagConstraints()
      * @see GetObjectRequest#withMatchingETagConstraint(String)
      */
@@ -440,19 +539,22 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets a single ETag constraint to this request. Returns this
-     * {@link GetObjectRequest}, enabling additional method calls to be chained
-     * together.
+     * Sets a single ETag constraint to this request.
+     * Returns this {@link GetObjectRequest}, enabling additional method
+     * calls to be chained together.
      * <p>
-     * Multiple ETag constraints can be added to a request, but one must match
-     * the object's current ETag in order for this request to be executed. If
-     * none of the ETag constraints added to this request match the object's
-     * current ETag, this request will not be executed by Amazon S3.
+     * Multiple ETag constraints can be added to a request, but one must match the object's
+     * current ETag in order for this request to be executed. If none of the
+     * ETag constraints added to this request match the object's current ETag,
+     * this request will not be executed by Amazon S3.
      * </p>
      *
-     * @param eTag The matching ETag constraint to add to this request.
-     * @return This {@link GetObjectRequest}, enabling additional method calls to
-     *         be chained together.
+     * @param eTag
+     *            The matching ETag constraint to add to this request.
+     *
+     * @return This {@link GetObjectRequest}, enabling additional method
+     *         calls to be chained together.
+     *
      * @see GetObjectRequest#getMatchingETagConstraints()
      * @see GetObjectRequest#setMatchingETagConstraints(List)
      */
@@ -468,9 +570,10 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
      * list matches the object's current ETag, this request <b>will not</b> be
      * executed by Amazon S3.
      *
-     * @return The optional list of ETag constraints that when present,
-     *         <b>must</b> not include a match for the object's current ETag in
-     *         order for this request to be executed.
+     * @return The optional list of ETag constraints that when present, <b>must</b>
+     *         not include a match for the object's current ETag in order
+     *         for this request to be executed.
+     *
      * @see GetObjectRequest#setNonmatchingETagConstraints(List)
      * @see GetObjectRequest#withNonmatchingETagConstraint(String)
      */
@@ -485,9 +588,11 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
      * list matches the object's current ETag, this request <b>will not</b> be
      * executed by Amazon S3.
      *
-     * @param eTagList The list of ETag constraints that, when present, <b>must
-     *            not</b> include a match for the object's current ETag in order
-     *            for this request to be executed.
+     * @param eTagList
+     *            The list of ETag constraints that, when present, <b>must not</b>
+     *            include a match for the object's current ETag in order for
+     *            this request to be executed.
+     *
      * @see GetObjectRequest#getNonmatchingETagConstraints()
      * @see GetObjectRequest#withNonmatchingETagConstraint(String)
      */
@@ -496,20 +601,24 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets a single ETag constraint to this request. Returns this
-     * {@link GetObjectRequest}, enabling additional method calls to be chained
-     * together.
+     * Sets a single ETag constraint to this request.
+     * Returns this {@link GetObjectRequest}, enabling additional method
+     * calls to be chained together.
      * <p>
-     * Multiple ETag constraints can be added to a request, but all ETag
-     * constraints <b>must not</b> match the object's current ETag in order for
-     * this request to be executed. If any entry in the non-matching ETag
-     * constraint list matches the object's current ETag, this request <b>will
-     * not</b> be executed by Amazon S3.
+     * Multiple ETag
+     * constraints can be added to a request, but all ETag constraints <b>must
+     * not</b> match the object's current ETag in order for this request to be
+     * executed. If any entry in the non-matching ETag constraint list matches
+     * the object's current ETag, this request <b>will not</b> be executed by
+     * Amazon S3.
      * </p>
      *
-     * @param eTag The non-matching ETag constraint to add to this request.
-     * @return This {@link GetObjectRequest}, enabling additional method calls to
-     *         be chained together.
+     * @param eTag
+     *            The non-matching ETag constraint to add to this request.
+     *
+     * @return This {@link GetObjectRequest}, enabling additional method
+     *         calls to be chained together.
+     *
      * @see GetObjectRequest#getNonmatchingETagConstraints()
      * @see GetObjectRequest#setNonmatchingETagConstraints(List)
      */
@@ -519,13 +628,14 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Gets the optional unmodified constraint that restricts this request to
-     * executing only if the object has <b>not</b> been modified after the
-     * specified date.
+     * Gets the optional unmodified constraint that restricts this
+     * request to executing only if the object has <b>not</b> been
+     * modified after the specified date.
      *
-     * @return The optional unmodified constraint that restricts this request to
-     *         executing only if the object has <b>not</b> been modified after
-     *         the specified date.
+     * @return The optional unmodified constraint that restricts this
+     *         request to executing only if the object has <b>not</b>
+     *         been modified after the specified date.
+     *
      * @see GetObjectRequest#setUnmodifiedSinceConstraint(Date)
      * @see GetObjectRequest#withUnmodifiedSinceConstraint(Date)
      */
@@ -534,15 +644,17 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the optional unmodified constraint that restricts this request to
-     * executing only if the object has <b>not</b> been modified after the
-     * specified date.
+     * Sets the optional unmodified constraint that restricts this request
+     * to executing only if the object has <b>not</b> been modified after
+     * the specified date.
      * <p>
      * Note that Amazon S3 will ignore any dates occurring in the future.
      *
-     * @param date The unmodified constraint that restricts this request to
-     *            executing only if the object has <b>not</b> been modified
-     *            after this date.
+     * @param date
+     *            The unmodified constraint that restricts this request to
+     *            executing only if the object has <b>not</b> been
+     *            modified after this date.
+     *
      * @see GetObjectRequest#getUnmodifiedSinceConstraint()
      * @see GetObjectRequest#withUnmodifiedSinceConstraint(Date)
      */
@@ -551,18 +663,22 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the optional unmodified constraint that restricts this request to
-     * executing only if the object has <b>not</b> been modified after the
-     * specified date. Returns this {@link GetObjectRequest}, enabling
-     * additional method calls to be chained together.
+     * Sets the optional unmodified constraint that restricts this request
+     * to executing only if the object has <b>not</b> been modified after
+     * the specified date.
+     * Returns this {@link GetObjectRequest}, enabling additional method
+     * calls to be chained together.
      * <p>
      * Note that Amazon S3 will ignore any dates occurring in the future.
      *
-     * @param date The unmodified constraint that restricts this request to
-     *            executing only if the object has <b>not</b> been modified
-     *            after this date.
-     * @return This {@link GetObjectRequest}, enabling additional method calls to
-     *         be chained together.
+     * @param date
+     *            The unmodified constraint that restricts this request to
+     *            executing only if the object has <b>not</b> been
+     *            modified after this date.
+     *
+     * @return This {@link GetObjectRequest}, enabling additional method
+     *         calls to be chained together.
+     *
      * @see GetObjectRequest#getUnmodifiedSinceConstraint()
      * @see GetObjectRequest#setUnmodifiedSinceConstraint(Date)
      */
@@ -572,13 +688,14 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Gets the optional modified constraint that restricts this request to
-     * executing only if the object <b>has</b> been modified after the specified
-     * date.
+     * Gets the optional modified constraint that restricts this
+     * request to executing only if the object <b>has</b> been
+     * modified after the specified date.
      *
-     * @return The optional modified constraint that restricts this request to
-     *         executing only if the object <b>has</b> been modified after the
-     *         specified date.
+     * @return The optional modified constraint that restricts this
+     *         request to executing only if the object <b>has</b>
+     *         been modified after the specified date.
+     *
      * @see GetObjectRequest#setModifiedSinceConstraint(Date)
      * @see GetObjectRequest#withModifiedSinceConstraint(Date)
      */
@@ -587,16 +704,18 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the optional modified constraint that restricts this request to
-     * executing only if the object <b>has</b> been modified after the specified
-     * date.
+     * Sets the optional modified constraint that restricts this request
+     * to executing only if the object <b>has</b> been modified after the
+     * specified date.
      * <p>
      * Note that Amazon S3 will ignore any dates occurring in the future.
      * </p>
      *
-     * @param date The modified constraint that restricts this request to
-     *            executing only if the object <b>has</b> been modified after
-     *            the specified date.
+     * @param date
+     *            The modified constraint that restricts this request to
+     *            executing only if the object <b>has</b> been modified
+     *            after the specified date.
+     *
      * @see GetObjectRequest#getModifiedSinceConstraint()
      * @see GetObjectRequest#withModifiedSinceConstraint(Date)
      */
@@ -605,18 +724,22 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Sets the optional modified constraint that restricts this request to
-     * executing only if the object <b>has</b> been modified after the specified
-     * date. Returns this {@link GetObjectRequest}, enabling additional method
+     * Sets the optional modified constraint that restricts this request
+     * to executing only if the object <b>has</b> been modified after the
+     * specified date.
+     * Returns this {@link GetObjectRequest}, enabling additional method
      * calls to be chained together.
      * <p>
      * Note that Amazon S3 will ignore any dates occurring in the future.
      *
-     * @param date The modified constraint that restricts this request to
-     *            executing only if the object <b>has</b> been modified after
-     *            the specified date.
-     * @return This {@link GetObjectRequest}, enabling additional method calls to
-     *         be chained together.
+     * @param date
+     *            The modified constraint that restricts this request to
+     *            executing only if the object <b>has</b> been modified
+     *            after the specified date.
+     *
+     * @return This {@link GetObjectRequest}, enabling additional method
+     *         calls to be chained together.
+     *
      * @see GetObjectRequest#getModifiedSinceConstraint()
      * @see GetObjectRequest#setModifiedSinceConstraint(Date)
      */
@@ -637,8 +760,8 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
     /**
      * Sets the headers to be overridden in the service response.
      *
-     * @param responseHeaders The headers to be overridden in the service
-     *            response.
+     * @param responseHeaders
+     *            The headers to be overridden in the service response.
      */
     public void setResponseHeaders(ResponseHeaderOverrides responseHeaders) {
         this.responseHeaders = responseHeaders;
@@ -648,8 +771,9 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
      * Sets the headers to be overridden in the service response and returns
      * this object, for method chaining.
      *
-     * @param responseHeaders The headers to be overridden in the service
-     *            response.
+     * @param responseHeaders
+     *            The headers to be overridden in the service response.
+     *
      * @return This {@link GetObjectRequest} for method chaining.
      */
     public GetObjectRequest withResponseHeaders(ResponseHeaderOverrides responseHeaders) {
@@ -661,15 +785,15 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
      * Sets the optional progress listener for receiving updates about object
      * download status.
      *
-     * @param progressListener The legacy progress listener that is used
-     *            exclusively for Amazon S3 client.
+     * @param progressListener
+     *            The legacy progress listener that is used exclusively for Amazon S3 client.
+     *
      * @deprecated use {@link #setGeneralProgressListener(ProgressListener)}
      *             instead.
      */
     @Deprecated
-    public void setProgressListener(
-            com.amazonaws.services.s3.model.ProgressListener progressListener) {
-        this.generalProgressListener = new LegacyS3ProgressListener(progressListener);
+    public void setProgressListener(com.amazonaws.services.s3.model.ProgressListener progressListener) {
+        setGeneralProgressListener(new LegacyS3ProgressListener(progressListener));
     }
 
     /**
@@ -677,7 +801,8 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
      * download status.
      *
      * @return the optional progress listener for receiving updates about object
-     *         download status.
+     *          download status.
+     *
      * @deprecated use {@link #getGeneralProgressListener()} instead.
      */
     @Deprecated
@@ -691,12 +816,14 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
 
     /**
      * Sets the optional progress listener for receiving updates about object
-     * download status, and returns this updated object so that additional
-     * method calls can be chained together.
+     * download status, and returns this updated object so that additional method
+     * calls can be chained together.
      *
-     * @param progressListener The legacy progress listener that is used
-     *            exclusively for Amazon S3 client.
+     * @param progressListener
+     *            The legacy progress listener that is used exclusively for Amazon S3 client.
+     *
      * @return This updated GetObjectRequest object.
+     *
      * @deprecated use {@link #withGeneralProgressListener(ProgressListener)}
      *             instead.
      */
@@ -744,10 +871,12 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
     /**
      * Returns true if the user has enabled Requester Pays option when
      * downloading an object from Requester Pays Bucket; else false.
+     *
      * <p>
      * If a bucket is enabled for Requester Pays, then any attempt to read an
      * object from it without Requester Pays enabled will result in a 403 error
      * and the bucket owner will be charged for the request.
+     *
      * <p>
      * Enabling Requester Pays disables the ability to have anonymous access to
      * this bucket
@@ -762,27 +891,49 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
     /**
      * Used for downloading an Amazon S3 Object from a Requester Pays Bucket. If
      * set the requester is charged for downloading the data from the bucket.
+     *
      * <p>
      * If a bucket is enabled for Requester Pays, then any attempt to read an
      * object from it without Requester Pays enabled will result in a 403 error
      * and the bucket owner will be charged for the request.
+     *
      * <p>
      * Enabling Requester Pays disables the ability to have anonymous access to
      * this bucket
      *
-     * @param isRequesterPays Enable Requester Pays option for the operation.
+     * @param isRequesterPays
+     *            Enable Requester Pays option for the operation.
      */
     public void setRequesterPays(boolean isRequesterPays) {
         this.isRequesterPays = isRequesterPays;
     }
 
     /**
-     * Returns the optional customer-provided server-side encryption key to use
-     * to decrypt this object.
+     * Used for conducting this operation from a Requester Pays Bucket. If
+     * set the requester is charged for requests from the bucket. It returns this
+     * updated GetObjectRequest object so that additional method calls can be
+     * chained together.
      *
-     * @return The optional customer-provided server-side encryption key to use
-     *         to decrypt this object.
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket.
+     *
+     * @param isRequesterPays
+     *            Enable Requester Pays option for the operation.
+     *
+     * @return The updated GetObjectRequest object.
      */
+    public GetObjectRequest withRequesterPays(boolean isRequesterPays) {
+        setRequesterPays(isRequesterPays);
+        return this;
+    }
+
+    @Override
     public SSECustomerKey getSSECustomerKey() {
         return sseCustomerKey;
     }
@@ -791,8 +942,9 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
      * Sets the optional customer-provided server-side encryption key to use to
      * decrypt this object.
      *
-     * @param sseKey The optional customer-provided server-side encryption key
-     *            to use to decrypt this object.
+     * @param sseKey
+     *            The optional customer-provided server-side encryption key to
+     *            use to decrypt this object.
      */
     public void setSSECustomerKey(SSECustomerKey sseKey) {
         this.sseCustomerKey = sseKey;
@@ -803,13 +955,98 @@ public class GetObjectRequest extends AmazonWebServiceRequest {
      * decrypt this object, and returns the updated GetObjectRequest so that
      * additional method calls may be chained together.
      *
-     * @param sseKey The optional customer-provided server-side encryption key
-     *            to use to decrypt this object.
+     * @param sseKey
+     *            The optional customer-provided server-side encryption key to
+     *            use to decrypt this object.
+     *
      * @return The optional customer-provided server-side encryption key to use
      *         to decrypt this object.
      */
     public GetObjectRequest withSSECustomerKey(SSECustomerKey sseKey) {
         setSSECustomerKey(sseKey);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Returns the optional part number that indicates the part to be downloaded in a multipart object.
+     * </p>
+     *
+     * @return The part number representing a part in a multipart object.
+     *
+     * @see GetObjectRequest#setPartNumber(Integer)
+     * @see GetObjectRequest#withPartNumber(Integer)
+     */
+    public Integer getPartNumber() {
+        return partNumber;
+    }
+
+    /**
+     * <p>
+     * Sets the optional part number that indicates the part to be downloaded in a multipart object.
+     * </p>
+     * <p>
+     * The valid range for part number is 1 - 10000 inclusive.
+     * Part numbers are 1 based. If an object has 1 part, partNumber=1 would be the correct not 0.
+     * For partNumber < 1, an AmazonS3Exception is thrown with response code 400 bad request.
+     * For partNumber larger than actual part count,  an AmazonS3Exception is thrown with response code 416 Request Range Not Satisfiable.
+     * </p>
+     *
+     * @param partNumber
+     *            The part number representing a part in a multipart object.
+     *
+     * @see GetObjectRequest#getPartNumber()
+     * @see GetObjectRequest#withPartNumber(Integer)
+     */
+    public void setPartNumber(Integer partNumber) {
+        this.partNumber = partNumber;
+    }
+
+    /**
+     * <p>
+     * Sets the optional part number that indicates the part to be downloaded in a multipart object.
+     * </p>
+     * <p>
+     * The valid range for part number is 1 - 10000 inclusive.
+     * Part numbers are 1 based. If an object has 1 part, partNumber=1 would be the correct not 0.
+     * For partNumber < 1, an AmazonS3Exception is thrown with response code 400 bad request.
+     * For partNumber larger than actual part count,  an AmazonS3Exception is thrown with response code 416 Request Range Not Satisfiable.
+     * </p>
+     *
+     * @param partNumber
+     *            The part number representing a part in a multipart object.
+     *
+     * @return This {@link GetObjectRequest}, enabling additional method
+     *         calls to be chained together.
+     *
+     * @see GetObjectRequest#getPartNumber()
+     * @see GetObjectRequest#setPartNumber(Integer)
+     */
+    public GetObjectRequest withPartNumber(Integer partNumber) {
+        setPartNumber(partNumber);
+        return this;
+    }
+
+
+    /**
+     * Returns an immutable S3 object id.
+     */
+    public S3ObjectId getS3ObjectId() {
+        return s3ObjectIdBuilder.build();
+    }
+
+    /**
+     * Sets the S3 object id for this request.
+     */
+    public void setS3ObjectId(S3ObjectId s3ObjectId) {
+        this.s3ObjectIdBuilder = new S3ObjectIdBuilder(s3ObjectId);
+    }
+
+    /**
+     * Fluent API to set the S3 object id for this request.
+     */
+    public GetObjectRequest withS3ObjectId(S3ObjectId s3ObjectId) {
+        setS3ObjectId(s3ObjectId);
         return this;
     }
 }

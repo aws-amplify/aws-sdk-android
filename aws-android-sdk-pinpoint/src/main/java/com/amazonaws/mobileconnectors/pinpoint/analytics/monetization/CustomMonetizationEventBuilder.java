@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,8 +21,7 @@ import org.apache.commons.logging.LogFactory;
 /**
  * Builds monetization events representing a purchase from an IAP framework not
  * defined by a specific builder. The store attribute must be set by the user.
- * This Builder will return null if the Store, ProductId, Quantity, and either
- * the Formatted Localized Price or Price and Currency are not set.
+ * This Builder will return null if the Store, ProductId, Quantity, Price and Currency are not set.
  * <p>
  * The example below demonstrates how to create a monetization event after you
  * receive a purchase confirmation from the IAP framework you are using. You are
@@ -111,20 +110,22 @@ public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
     }
 
     /**
-     * Sets the formatted localized price of the item being purchased (Required
-     * if numerical price and currency are not specified)
+     * Sets the formatted localized price of the item being purchased
      *
      * @param formattedItemPrice The formatted localized price of the item
      * @return this for chaining
+     *
+     * @deprecated  Will be removed. Please set Currency and Item Price. Replaced by
+     *    {@link #withCurrency(String)} and {@link #withItemPrice(double)
      */
+    @Deprecated
     public CustomMonetizationEventBuilder withFormattedItemPrice(String formattedItemPrice) {
         setFormattedItemPrice(formattedItemPrice);
         return this;
     }
 
     /**
-     * Sets the numerical price of the item being purchased (Required if
-     * formatted localized price is not specified)
+     * Sets the numerical price of the item being purchased (Required)
      *
      * @param itemPrice The numerical price of the item
      * @return this for chaining
@@ -135,8 +136,7 @@ public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
     }
 
     /**
-     * Sets the currency of the item being purchased (Required if formatted
-     * localized price is not specified)
+     * Sets the currency of the item being purchased (Required)
      *
      * @param currency The currency code of the currency used to purchase this
      *            item (i.e. "USD")
@@ -169,8 +169,7 @@ public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
 
     @Override
     protected boolean isValid() {
-        // we must always have the store, product id, quantity, either formatted
-        // localized price or item price and currency
+        // we must always have the store, product id, quantity, item price and currency
         if (getStore() == null) {
             log.warn("Custom Monetization event is not valid: it is missing the store");
             return false;
@@ -187,11 +186,9 @@ public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
         }
 
         if (getCurrency() == null || getItemPrice() == null) {
-            if (getFormattedItemPrice() == null) {
-                log.warn("Custom Monetization event is not valid: it requires the formatted " +
-                        "localized price or the currency and price");
-                return false;
-            }
+            log.warn("Custom Monetization event is not valid: it requires the formatted " +
+                    "localized price or the currency and price");
+            return false;
         }
 
         return true;

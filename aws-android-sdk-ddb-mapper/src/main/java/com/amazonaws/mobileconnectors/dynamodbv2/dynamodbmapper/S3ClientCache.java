@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManager;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
@@ -37,7 +38,10 @@ public class S3ClientCache {
     private final Map<Region, TransferManager> transferManagersByRegion = new EnumMap<Region, TransferManager>(
             Region.class);
 
-    private final AWSCredentials credentials;
+    @Deprecated
+    private AWSCredentials credentials;
+
+    private AWSCredentialsProvider credentialProvider;
 
     /**
      * Create a client cache with a set of credentials. If
@@ -48,8 +52,14 @@ public class S3ClientCache {
      * @param credentials The credentials to use when creating new
      *            {@link AmazonS3Client}.
      */
+    @Deprecated
     S3ClientCache(AWSCredentials credentials) {
         this.credentials = credentials;
+    }
+
+
+    S3ClientCache(AWSCredentialsProvider credentialsProvider) {
+        this.credentialProvider = credentialsProvider;
     }
 
     /**
@@ -65,10 +75,10 @@ public class S3ClientCache {
      *            will be detected automatically.
      */
     public void useClient(AmazonS3Client client) {
-        Region s3region = client.getRegion();
+        final Region s3region = client.getRegion();
 
         synchronized (transferManagersByRegion) {
-            TransferManager tm = transferManagersByRegion.remove(s3region);
+            final TransferManager tm = transferManagersByRegion.remove(s3region);
             if (tm != null) {
                 tm.shutdownNow();
             }
@@ -99,12 +109,13 @@ public class S3ClientCache {
         if (client != null) {
             return client;
         }
-        if (credentials == null) {
-            throw new IllegalArgumentException("No client provided for S3 region: " + s3region);
+        if (credentialProvider == null) {
+            client = new AmazonS3Client(credentialProvider);
+        } else {
+            client = new AmazonS3Client(credentials);
         }
-        client = new AmazonS3Client(credentials);
         client.setRegion(s3region.toAWSRegion());
-        AmazonS3Client prev = clientsByRegion.putIfAbsent(s3region, client);
+        final AmazonS3Client prev = clientsByRegion.putIfAbsent(s3region, client);
         return prev == null ? client : prev;
     }
 

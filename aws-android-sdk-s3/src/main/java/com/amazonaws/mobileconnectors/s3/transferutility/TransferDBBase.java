@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,16 +40,18 @@ class TransferDBBase {
     private final Uri contentUri;
     private final UriMatcher uriMatcher;
     private final TransferDatabaseHelper databaseHelper;
+    private SQLiteDatabase database;
 
     /**
-     * Constructs TransferDBBase with the given Context.
+     * Constructs TransferdatabaseBase with the given Context.
      *
      * @param context A Context instance.
      */
     public TransferDBBase(Context context) {
         this.context = context;
-        String mAuthority = context.getApplicationContext().getPackageName();
+        final String mAuthority = context.getApplicationContext().getPackageName();
         databaseHelper = new TransferDatabaseHelper(this.context);
+        database = databaseHelper.getWritableDatabase();
         contentUri = Uri.parse("content://" + mAuthority + "/" + BASE_PATH);
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
@@ -72,6 +74,11 @@ class TransferDBBase {
          * The Uri of TRANSFER_STATE is for records with a specific state.
          */
         uriMatcher.addURI(mAuthority, BASE_PATH + "/state/*", TRANSFER_STATE);
+    }
+
+
+    /* package private */ TransferDatabaseHelper getDatabaseHelper() {
+        return databaseHelper;
     }
 
     /**
@@ -98,12 +105,13 @@ class TransferDBBase {
      * @return The Uri of the inserted record.
      */
     public Uri insert(Uri uri, ContentValues values) {
-        int uriType = uriMatcher.match(uri);
-        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        final int uriType = uriMatcher.match(uri);
         long id = 0;
+        ensureDatabaseOpen();
+
         switch (uriType) {
             case TRANSFERS:
-                id = db.insert(TransferTable.TABLE_TRANSFER, null, values);
+                id = database.insertOrThrow(TransferTable.TABLE_TRANSFER, null, values);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
@@ -122,14 +130,15 @@ class TransferDBBase {
      * @param type Type of transfers to query.
      * @return A Cursor pointing to records.
      */
-    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
+    public Cursor query(Uri uri, String[] projection, String selection,
+            String[] selectionArgs,
             String sortOrder) {
-        SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
+        final SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
         // TODO: currently all methods calling this pass null to projection.
         // In the future we want to update projection to be more specific for
         // performance and must handle that here.
         queryBuilder.setTables(TransferTable.TABLE_TRANSFER);
-        int uriType = uriMatcher.match(uri);
+        final int uriType = uriMatcher.match(uri);
         switch (uriType) {
             case TRANSFERS:
                 queryBuilder.appendWhere(TransferTable.COLUMN_PART_NUM + "=" + 0);
@@ -148,8 +157,9 @@ class TransferDBBase {
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
-        SQLiteDatabase db = databaseHelper.getWritableDatabase();
-        Cursor cursor = queryBuilder.query(db, projection, selection, selectionArgs, null, null,
+        ensureDatabaseOpen();
+        final Cursor cursor = queryBuilder.query(database, projection, selection, selectionArgs,
+                null, null,
                 sortOrder);
         return cursor;
     }
@@ -165,21 +175,21 @@ class TransferDBBase {
      */
     public synchronized int update(Uri uri, ContentValues values, String whereClause,
             String[] whereArgs) {
-        int uriType = uriMatcher.match(uri);
-        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        final int uriType = uriMatcher.match(uri);
         int rowsUpdated = 0;
+        ensureDatabaseOpen();
         switch (uriType) {
             case TRANSFERS:
-                rowsUpdated = db.update(TransferTable.TABLE_TRANSFER, values, whereClause,
+                rowsUpdated = database.update(TransferTable.TABLE_TRANSFER, values, whereClause,
                         whereArgs);
                 break;
             case TRANSFER_ID:
-                String id = uri.getLastPathSegment();
+                final String id = uri.getLastPathSegment();
                 if (TextUtils.isEmpty(whereClause)) {
-                    rowsUpdated = db.update(TransferTable.TABLE_TRANSFER, values,
+                    rowsUpdated = database.update(TransferTable.TABLE_TRANSFER, values,
                             TransferTable.COLUMN_ID + "=" + id, null);
                 } else {
-                    rowsUpdated = db
+                    rowsUpdated = database
                             .update(TransferTable.TABLE_TRANSFER, values, TransferTable.COLUMN_ID
                                     + "=" + id + " and " + whereClause, whereArgs);
                 }
@@ -199,20 +209,21 @@ class TransferDBBase {
      * @return Number of rows deleted.
      */
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        int uriType = uriMatcher.match(uri);
-        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        final int uriType = uriMatcher.match(uri);
         int rowsDeleted = 0;
+        ensureDatabaseOpen();
         switch (uriType) {
             case TRANSFERS:
-                rowsDeleted = db.delete(TransferTable.TABLE_TRANSFER, selection, selectionArgs);
+                rowsDeleted = database.delete(TransferTable.TABLE_TRANSFER, selection,
+                        selectionArgs);
                 break;
             case TRANSFER_ID:
-                String id = uri.getLastPathSegment();
+                final String id = uri.getLastPathSegment();
                 if (TextUtils.isEmpty(selection)) {
-                    rowsDeleted = db.delete(TransferTable.TABLE_TRANSFER,
+                    rowsDeleted = database.delete(TransferTable.TABLE_TRANSFER,
                             TransferTable.COLUMN_ID + "=" + id, null);
                 } else {
-                    rowsDeleted = db
+                    rowsDeleted = database
                             .delete(TransferTable.TABLE_TRANSFER, TransferTable.COLUMN_ID + "="
                                     + id + " and " + selection, selectionArgs);
                 }
@@ -229,25 +240,25 @@ class TransferDBBase {
      * @return Number of rows inserted.
      */
     public int bulkInsert(Uri uri, ContentValues[] valuesArray) {
-        int uriType = uriMatcher.match(uri);
-        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        final int uriType = uriMatcher.match(uri);
         int mainUploadId = 0;
+        ensureDatabaseOpen();
         switch (uriType) {
             case TRANSFERS:
                 try {
-                    db.beginTransaction();
-                    mainUploadId = (int) db.insertOrThrow(TransferTable.TABLE_TRANSFER, null,
+                    database.beginTransaction();
+                    mainUploadId = (int) database.insertOrThrow(TransferTable.TABLE_TRANSFER, null,
                             valuesArray[0]);
                     for (int i = 1; i < valuesArray.length; i++) {
                         valuesArray[i].put(TransferTable.COLUMN_MAIN_UPLOAD_ID, mainUploadId);
-                        db.insertOrThrow(TransferTable.TABLE_TRANSFER, null, valuesArray[i]);
+                        database.insertOrThrow(TransferTable.TABLE_TRANSFER, null, valuesArray[i]);
                     }
-                    db.setTransactionSuccessful();
-                } catch (Exception e) {
+                    database.setTransactionSuccessful();
+                } catch (final Exception e) {
                     Log.e(TransferDBBase.class.getSimpleName(),
                             "bulkInsert error : " + e.getMessage());
                 } finally {
-                    db.endTransaction();
+                    database.endTransaction();
                 }
                 break;
             default:
@@ -255,4 +266,18 @@ class TransferDBBase {
         }
         return mainUploadId;
     }
+
+    private void ensureDatabaseOpen() {
+        // close and reopen database.
+        if (!database.isOpen()) {
+            database = databaseHelper.getWritableDatabase();
+        }
+    }
+
+    SQLiteDatabase getDatabase() {
+        return database;
+    }
+
 }
+
+

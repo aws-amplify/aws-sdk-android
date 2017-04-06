@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,8 +18,11 @@ package com.amazonaws.services.s3.model;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.internal.ObjectExpirationResult;
+import com.amazonaws.services.s3.internal.S3RequesterChargedResult;
+import com.amazonaws.services.s3.internal.S3VersionResult;
 import com.amazonaws.services.s3.internal.SSEResultBase;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -33,7 +36,8 @@ import java.util.Date;
  * @see AmazonS3Client#copyObject(String, String, String, String)
  * @see AmazonS3Client#copyObject(com.amazonaws.services.s3.model.CopyObjectRequest)
  */
-public class CopyObjectResult extends SSEResultBase implements ObjectExpirationResult {
+public class CopyObjectResult extends SSEResultBase
+        implements ObjectExpirationResult, S3RequesterChargedResult, S3VersionResult, Serializable {
 
     /** The ETag value of the new object */
     private String etag;
@@ -53,6 +57,12 @@ public class CopyObjectResult extends SSEResultBase implements ObjectExpirationR
 
     /** The expiration rule for this object */
     private String expirationTimeRuleId;
+
+    /**
+     * Indicate if the requester is charged for conducting this operation from
+     * Requester Pays Buckets.
+     */
+    private boolean isRequesterCharged;
 
     /**
      * Gets the ETag value for the new object that was created in the associated
@@ -105,6 +115,7 @@ public class CopyObjectResult extends SSEResultBase implements ObjectExpirationR
      * @return The version ID of the newly copied object.
      * @see CopyObjectResult#setVersionId(String)
      */
+    @Override
     public String getVersionId() {
         return versionId;
     }
@@ -115,6 +126,7 @@ public class CopyObjectResult extends SSEResultBase implements ObjectExpirationR
      * @param versionId The version ID of the newly copied object.
      * @see CopyObjectResult#getVersionId()
      */
+    @Override
     public void setVersionId(String versionId) {
         this.versionId = versionId;
     }
@@ -156,5 +168,15 @@ public class CopyObjectResult extends SSEResultBase implements ObjectExpirationR
     @Override
     public void setExpirationTimeRuleId(String expirationTimeRuleId) {
         this.expirationTimeRuleId = expirationTimeRuleId;
+    }
+
+    @Override
+    public boolean isRequesterCharged() {
+        return isRequesterCharged;
+    }
+
+    @Override
+    public void setRequesterCharged(boolean isRequesterCharged) {
+        this.isRequesterCharged = isRequesterCharged;
     }
 }

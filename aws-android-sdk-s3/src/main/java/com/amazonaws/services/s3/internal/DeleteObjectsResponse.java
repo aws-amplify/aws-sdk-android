@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,10 +33,16 @@ import java.util.List;
  * @see MultiObjectDeleteException
  * @see AmazonS3Client#deleteObjects(com.amazonaws.services.s3.model.DeleteObjectsRequest)
  */
-public class DeleteObjectsResponse {
+public class DeleteObjectsResponse implements S3RequesterChargedResult {
 
     private List<DeletedObject> deletedObjects;
     private List<DeleteError> errors;
+
+    /**
+     * Indicate if the requester is charged for conducting this operation from
+     * Requester Pays Buckets.
+     */
+    private boolean isRequesterCharged;
 
     public DeleteObjectsResponse() {
         this(new ArrayList<DeletedObject>(), new ArrayList<DeleteError>());
@@ -61,5 +67,15 @@ public class DeleteObjectsResponse {
 
     public void setErrors(List<DeleteError> errors) {
         this.errors = errors;
+    }
+
+    @Override
+    public boolean isRequesterCharged() {
+        return isRequesterCharged;
+    }
+
+    @Override
+    public void setRequesterCharged(boolean isRequesterCharged) {
+        this.isRequesterCharged = isRequesterCharged;
     }
 }

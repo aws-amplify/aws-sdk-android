@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -126,7 +126,6 @@ public class TransferUtility {
         this.dbUtil = new TransferDBUtil(appContext);
         this.transferConfiguration = transferConfiguration;
     }
-
     /**
      * Starts downloading the S3 object specified by the bucket and the key to
      * the given file. The file must be a valid file. Directory isn't supported.
@@ -138,6 +137,22 @@ public class TransferUtility {
      * @return A TransferObserver used to track download progress and state
      */
     public TransferObserver download(String bucket, String key, File file) {
+        return download(bucket, key, file, null);
+    }
+
+    /**
+     * Starts downloading the S3 object specified by the bucket and the key to
+     * the given file. The file must be a valid file. Directory isn't supported.
+     * Note that if the given file exists, it'll be overwritten.
+     *
+     * @param bucket The name of the bucket containing the object to download.
+     * @param key The key under which the object to download is stored.
+     * @param file The file to download the object's data to.
+     * @param listener a listener to attach to transfer observer.
+     * @return A TransferObserver used to track download progress and state
+     */
+    public TransferObserver download(String bucket, String key, File file,
+            TransferListener listener) {
         if (file == null || file.isDirectory()) {
             throw new IllegalArgumentException("Invalid file: " + file);
         }
@@ -215,6 +230,24 @@ public class TransferUtility {
      */
     public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata,
             CannedAccessControlList cannedAcl) {
+        return upload(bucket, key, file, metadata, cannedAcl, null);
+    }
+
+    /**
+     * Starts uploading the file to the given bucket, using the given key. The
+     * file must be a valid file. Directory isn't supported.
+     *
+     * @param bucket The name of the bucket to upload the new object to.
+     * @param key The key in the specified bucket by which to store the new
+     *            object.
+     * @param file The file to upload.
+     * @param metadata The S3 metadata to associate with this object
+     * @param cannedAcl The canned ACL to associate with this object
+     * @param listener a listener to attach to transfer observer.
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata,
+            CannedAccessControlList cannedAcl, TransferListener listener) {
         if (file == null || file.isDirectory() || !file.exists()) {
             throw new IllegalArgumentException("Invalid file: " + file);
         }
@@ -232,6 +265,7 @@ public class TransferUtility {
         return new TransferObserver(recordId, dbUtil, bucket, key, file);
     }
 
+
     /**
      * Gets a TransferObserver instance to track the record with the given id.
      *
@@ -239,16 +273,21 @@ public class TransferUtility {
      * @return The TransferObserver instance which is observing the record.
      */
     public TransferObserver getTransferById(int id) {
-        final Cursor c = dbUtil.queryTransferById(id);
+        Cursor c = null;
         try {
-            if (c.moveToFirst()) {
-                return new TransferObserver(id, dbUtil, c);
-            } else {
-                return null;
+            c = dbUtil.queryTransferById(id);
+            if (c.moveToNext()) {
+                final TransferObserver to = new TransferObserver(id, dbUtil);
+                to.updateFromDB(c);
+                return to;
             }
         } finally {
-            c.close();
+            if (c != null) {
+                c.close();
+            }
         }
+
+        return null;
     }
 
     /**
@@ -260,14 +299,19 @@ public class TransferUtility {
      */
     public List<TransferObserver> getTransfersWithType(TransferType type) {
         final List<TransferObserver> transferObservers = new ArrayList<TransferObserver>();
-        final Cursor c = dbUtil.queryAllTransfersWithType(type);
+        Cursor c = null;
         try {
+            c = dbUtil.queryAllTransfersWithType(type);
             while (c.moveToNext()) {
                 final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
-                transferObservers.add(new TransferObserver(id, dbUtil, c));
+                final TransferObserver to = new TransferObserver(id, dbUtil);
+                to.updateFromDB(c);
+                transferObservers.add(to);
             }
         } finally {
-            c.close();
+            if (c != null) {
+                c.close();
+            }
         }
         return transferObservers;
     }
@@ -284,8 +328,9 @@ public class TransferUtility {
     public List<TransferObserver> getTransfersWithTypeAndState(TransferType type,
             TransferState state) {
         final List<TransferObserver> transferObservers = new ArrayList<TransferObserver>();
-        final Cursor c = dbUtil.queryTransfersWithTypeAndState(type, state);
+        Cursor c = null;
         try {
+            c = dbUtil.queryTransfersWithTypeAndState(type, state);
             while (c.moveToNext()) {
                 final int partNum = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM));
                 if (partNum != 0) {
@@ -293,10 +338,14 @@ public class TransferUtility {
                     continue;
                 }
                 final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
-                transferObservers.add(new TransferObserver(id, dbUtil, c));
+                final TransferObserver to = new TransferObserver(id, dbUtil);
+                to.updateFromDB(c);
+                transferObservers.add(to);
             }
         } finally {
-            c.close();
+            if (c != null) {
+                c.close();
+            }
         }
         return transferObservers;
     }
@@ -359,14 +408,17 @@ public class TransferUtility {
      * @param type The type of transfers
      */
     public void pauseAllWithType(TransferType type) {
-        final Cursor c = dbUtil.queryAllTransfersWithType(type);
+        Cursor c = null;
         try {
+            c = dbUtil.queryAllTransfersWithType(type);
             while (c.moveToNext()) {
                 final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
                 pause(id);
             }
         } finally {
-            c.close();
+            if (c != null) {
+                c.close();
+            }
         }
     }
 
@@ -406,14 +458,17 @@ public class TransferUtility {
      * @param type The type of transfers
      */
     public void cancelAllWithType(TransferType type) {
-        final Cursor c = dbUtil.queryAllTransfersWithType(type);
+        Cursor c = null;
         try {
+            c = dbUtil.queryAllTransfersWithType(type);
             while (c.moveToNext()) {
                 final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
                 cancel(id);
             }
         } finally {
-            c.close();
+            if(c!=null) {
+                c.close();
+            }
         }
     }
 
@@ -481,5 +536,5 @@ public class TransferUtility {
                 + VersionInfoUtils.getVersion());
         return request;
     }
-
 }
+

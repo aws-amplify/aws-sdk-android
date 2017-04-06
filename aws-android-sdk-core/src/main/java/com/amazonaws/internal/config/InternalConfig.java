@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -135,6 +135,11 @@ public class InternalConfig {
         final Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
         ret.put("s3/eu-central-1", new SignerConfig("AWSS3V4SignerType"));
         ret.put("s3/cn-north-1", new SignerConfig("AWSS3V4SignerType"));
+        ret.put("s3/us-east-2", new SignerConfig("AWSS3V4SignerType"));
+        ret.put("s3/ca-central-1", new SignerConfig("AWSS3V4SignerType"));
+        ret.put("s3/ap-south-1", new SignerConfig("AWSS3V4SignerType"));
+        ret.put("s3/ap-northeast-2", new SignerConfig("AWSS3V4SignerType"));
+        ret.put("s3/eu-west-2", new SignerConfig("AWSS3V4SignerType"));
         return ret;
     }
 

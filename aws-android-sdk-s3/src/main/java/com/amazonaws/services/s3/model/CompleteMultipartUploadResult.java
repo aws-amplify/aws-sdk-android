@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -16,15 +16,18 @@
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.internal.ObjectExpirationResult;
+import com.amazonaws.services.s3.internal.S3RequesterChargedResult;
 import com.amazonaws.services.s3.internal.SSEResultBase;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * The CompleteMultipartUploadResult contains all the information about the
  * CompleteMultipartUpload method.
  */
-public class CompleteMultipartUploadResult extends SSEResultBase implements ObjectExpirationResult {
+public class CompleteMultipartUploadResult extends SSEResultBase
+        implements ObjectExpirationResult, S3RequesterChargedResult, Serializable {
 
     /** The name of the bucket containing the completed multipart upload. */
     private String bucketName;
@@ -52,6 +55,12 @@ public class CompleteMultipartUploadResult extends SSEResultBase implements Obje
 
     /** The expiration rule for this object */
     private String expirationTimeRuleId;
+
+    /**
+     * Indicate if the requester is charged for conducting this operation from
+     * Requester Pays Buckets.
+     */
+    private boolean isRequesterCharged;
 
     /**
      * Returns the URL identifying the new multipart object.
@@ -184,5 +193,15 @@ public class CompleteMultipartUploadResult extends SSEResultBase implements Obje
     @Override
     public void setExpirationTimeRuleId(String expirationTimeRuleId) {
         this.expirationTimeRuleId = expirationTimeRuleId;
+    }
+
+    @Override
+    public boolean isRequesterCharged() {
+        return isRequesterCharged;
+    }
+
+    @Override
+    public void setRequesterCharged(boolean isRequesterCharged) {
+        this.isRequesterCharged = isRequesterCharged;
     }
 }

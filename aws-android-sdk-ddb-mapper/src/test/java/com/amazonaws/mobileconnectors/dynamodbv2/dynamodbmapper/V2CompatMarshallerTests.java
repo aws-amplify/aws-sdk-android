@@ -17,6 +17,7 @@ package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import static org.junit.Assert.assertEquals;
 
+import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.util.StringUtils;
 
@@ -64,7 +65,7 @@ public class V2CompatMarshallerTests {
         assertEquals("1970-01-01T00:00:00.000Z",
                 convert("getDate", new Date(0)).getS());
 
-        Calendar c = Calendar.getInstance();
+        final Calendar c = Calendar.getInstance();
         c.setTimeInMillis(0);
 
         assertEquals("1970-01-01T00:00:00.000Z",
@@ -112,7 +113,7 @@ public class V2CompatMarshallerTests {
 
     @Test
     public void testBinary() {
-        ByteBuffer value = ByteBuffer.wrap("value".getBytes(StringUtils.UTF8));
+        final ByteBuffer value = ByteBuffer.wrap("value".getBytes(StringUtils.UTF8));
         assertEquals(value.slice(), convert("getByteArray", "value".getBytes(StringUtils.UTF8))
                 .getB());
         assertEquals(value.slice(), convert("getByteBuffer", value.slice()).getB());
@@ -158,7 +159,7 @@ public class V2CompatMarshallerTests {
                 convert("getDateSet", Collections.singleton(new Date(0)))
                         .getSS());
 
-        Calendar c = Calendar.getInstance();
+        final Calendar c = Calendar.getInstance();
         c.setTimeInMillis(0);
 
         assertEquals(Collections.singletonList("1970-01-01T00:00:00.000Z"),
@@ -222,7 +223,7 @@ public class V2CompatMarshallerTests {
 
     @Test
     public void testObjectSet() {
-        Object o = new Object() {
+        final Object o = new Object() {
             @Override
             public String toString() {
                 return "hello";
@@ -323,7 +324,7 @@ public class V2CompatMarshallerTests {
                     new UnannotatedSubClass());
 
             Assert.fail("Expected DynamoDBMappingException");
-        } catch (DynamoDBMappingException e) {
+        } catch (final DynamoDBMappingException e) {
         }
     }
 
@@ -334,7 +335,7 @@ public class V2CompatMarshallerTests {
                 + "\"key\":\"key\","
                 + "\"region\":null}}",
                 convert("getS3Link",
-                        new S3Link(new S3ClientCache(null), "bucket", "key"))
+                        new S3Link(new S3ClientCache((AWSCredentials) null), "bucket", "key"))
                         .getS());
     }
 
@@ -343,9 +344,9 @@ public class V2CompatMarshallerTests {
 
             return CONVERTER.convert(TestClass.class.getMethod(method), value);
 
-        } catch (RuntimeException e) {
+        } catch (final RuntimeException e) {
             throw e;
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new RuntimeException(e);
         }
     }

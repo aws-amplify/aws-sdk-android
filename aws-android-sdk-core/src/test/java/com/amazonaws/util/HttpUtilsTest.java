@@ -47,7 +47,7 @@ public class HttpUtilsTest {
     @Test
     public void testNoEncoding() {
         // The un-reserved characters according to RFC 3986
-        String test =
+        final String test =
                 "abcdefghijklmnopqrstuvwxyz"
                         + "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         + "0123456789"
@@ -64,7 +64,7 @@ public class HttpUtilsTest {
         // The un-reserved characters according to RFC 3986, with the addition
         // of '/' - in path mode, we allow this through unencoded.
 
-        String test =
+        final String test =
                 "abcdefghijklmnopqrstuvwxyz"
                         + "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         + "0123456789"
@@ -79,7 +79,7 @@ public class HttpUtilsTest {
     @Test
     public void testEncoding() {
         // The other ASCII printable characters, which should be encoded.
-        String test =
+        final String test =
                 "\t\n\r "
                         + "!\"#$"
                         + "%&'("
@@ -89,7 +89,7 @@ public class HttpUtilsTest {
                         + "[\\]^"
                         + "`{|}";
 
-        String expected =
+        final String expected =
                 "%09%0A%0D%20" // \t \n \r <space>
                         + "%21%22%23%24" // ! " # $
                         + "%25%26%27%28" // % & ' (
@@ -103,15 +103,20 @@ public class HttpUtilsTest {
                 + "unexpected",
                 expected,
                 HttpUtils.urlEncode(test, false));
+
+        Assert.assertEquals("urlDecode(\"" + expected + "\") returned something "
+                + "unexpected",
+                test,
+                HttpUtils.urlDecode(expected));
     }
 
     @Test
     public void testEncodeParameters() {
 
-        Request<?> request = new DefaultRequest<String>("TestRequest");
+        final Request<?> request = new DefaultRequest<String>("TestRequest");
         request.addParameter("FirstKey", "FirstValue");
         request.addParameter("LastKey", "LastValue");
-        String encoded = HttpUtils.encodeParameters(request);
+        final String encoded = HttpUtils.encodeParameters(request);
         assertEquals(encoded, "FirstKey=FirstValue&LastKey=LastValue");
 
     }
@@ -119,8 +124,8 @@ public class HttpUtilsTest {
     @Test
     public void testEncodeParametersReturnsNullOnEmptyParameters() {
 
-        Request<?> request = new DefaultRequest<String>("TestRequest");
-        String encoded = HttpUtils.encodeParameters(request);
+        final Request<?> request = new DefaultRequest<String>("TestRequest");
+        final String encoded = HttpUtils.encodeParameters(request);
         assertNull(encoded);
 
     }
@@ -128,33 +133,34 @@ public class HttpUtilsTest {
     @Test
     public void testGetUserAgent() {
         assertEquals(HttpUtils.getUserAgent(null), ClientConfiguration.DEFAULT_USER_AGENT);
-        ClientConfiguration conf = new ClientConfiguration();
+        final ClientConfiguration conf = new ClientConfiguration();
         assertEquals(HttpUtils.getUserAgent(conf), ClientConfiguration.DEFAULT_USER_AGENT);
         conf.setUserAgent("New");
-        assertEquals(HttpUtils.getUserAgent(conf), "New, " + ClientConfiguration.DEFAULT_USER_AGENT);
+        assertEquals(HttpUtils.getUserAgent(conf),
+                "New, " + ClientConfiguration.DEFAULT_USER_AGENT);
     }
 
     @Test
     public void testAppendUriHandlesMergingSlashes() {
-        String baseURI = "/my/uri/";
-        String path = "/path/to/add/";
-        String appended = HttpUtils.appendUri(baseURI, path);
+        final String baseURI = "/my/uri/";
+        final String path = "/path/to/add/";
+        final String appended = HttpUtils.appendUri(baseURI, path);
         assertEquals(appended, "/my/uri/path/to/add/");
     }
 
     @Test
     public void testAppendUriHandlesMergingWithoutSlashes() {
-        String baseURI = "/my/uri";
-        String path = "path/to/add/";
-        String appended = HttpUtils.appendUri(baseURI, path);
+        final String baseURI = "/my/uri";
+        final String path = "path/to/add/";
+        final String appended = HttpUtils.appendUri(baseURI, path);
         assertEquals(appended, "/my/uri/path/to/add/");
     }
 
     @Test
     public void testIsUsingNonDefaultPort() throws URISyntaxException {
-        URI http = new URI("http://www.http.com:80");
+        final URI http = new URI("http://www.http.com:80");
         assertFalse(HttpUtils.isUsingNonDefaultPort(http));
-        URI https = new URI("https://www.https.com:443");
+        final URI https = new URI("https://www.https.com:443");
         assertFalse(HttpUtils.isUsingNonDefaultPort(https));
     }
 
@@ -162,7 +168,7 @@ public class HttpUtilsTest {
     public void testGetConnectionTimeout() {
         assertEquals(HttpUtils.getConnectionTimeout(null),
                 ClientConfiguration.DEFAULT_CONNECTION_TIMEOUT);
-        ClientConfiguration conf = new ClientConfiguration();
+        final ClientConfiguration conf = new ClientConfiguration();
         conf.setConnectionTimeout(10);
         assertEquals(HttpUtils.getConnectionTimeout(conf), 10);
     }
@@ -170,8 +176,52 @@ public class HttpUtilsTest {
     @Test
     public void testGetSocketTimeout() {
         assertEquals(HttpUtils.getSocketTimeout(null), ClientConfiguration.DEFAULT_SOCKET_TIMEOUT);
-        ClientConfiguration conf = new ClientConfiguration();
+        final ClientConfiguration conf = new ClientConfiguration();
         conf.setSocketTimeout(10);
         assertEquals(HttpUtils.getSocketTimeout(conf), 10);
+    }
+
+    @Test
+    public void testAppendUriNoPath() {
+        final String host = "foo.com/";
+        final String resourcePath = "";
+        Assert.assertEquals(HttpUtils.appendUri(host, resourcePath, true), "foo.com/");
+    }
+
+    @Test
+    public void testAppendUriNoPathTrailingSlashAdded() {
+        final String host = "foo.com";
+        final String resourcePath = "";
+        Assert.assertEquals(HttpUtils.appendUri(host, resourcePath, true), "foo.com/");
+    }
+
+    @Test
+    public void testAppendUriTrimExtraHostTrailingSlash() {
+        final String host = "foo.com/";
+        final String resourcePath = "bar";
+        Assert.assertEquals(HttpUtils.appendUri(host, resourcePath, true), "foo.com/bar");
+    }
+
+    @Test
+    public void testAppendUriEscapeDoubleSlash() {
+        final String host = "foo.com";
+        final String resourcePath = "aws//android/sdk";
+        Assert.assertEquals(HttpUtils.appendUri(host, resourcePath, true),
+                "foo.com/aws/%2Fandroid/sdk");
+    }
+
+    public void testEncodeDecode() {
+        final String host = "foo.com";
+        final String resourcePath = "aws//android/sdk";
+        Assert.assertEquals(HttpUtils.appendUri(host, resourcePath, true),
+                "foo.com/aws/%2Fandroid/sdk");
+    }
+
+    @Test
+    public void testAppendUriNoEscapeDoubleSlash() {
+        final String host = "foo.com";
+        final String resourcePath = "aws//android/sdk";
+        Assert.assertEquals(HttpUtils.appendUri(host, resourcePath, false),
+                "foo.com/aws//android/sdk");
     }
 }
