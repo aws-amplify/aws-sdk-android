@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -50,10 +50,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </note>
  * <p>
- * <code><![CDATA[&amp;Attribute.1=this]]></code>
+ * <code>&amp;amp;Attribute.1=this</code>
  * </p>
  * <p>
- * <code><![CDATA[&amp;Attribute.2=that]]></code>
+ * <code>&amp;amp;Attribute.2=that</code>
  * </p>
  */
 public class AddPermissionRequest extends AmazonWebServiceRequest implements Serializable {

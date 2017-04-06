@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,11 +34,8 @@ public class ServerSideEncryptionHeaderHandler<T extends ServerSideEncryptionRes
     @Override
     public void handle(T result, HttpResponse response) {
         result.setSSEAlgorithm(response.getHeaders().get(Headers.SERVER_SIDE_ENCRYPTION));
-        result.setSSECustomerAlgorithm(response.getHeaders().get(
-                Headers.SERVER_SIDE_ENCRYPTION_CUSTOMER_ALGORITHM));
-        result.setSSECustomerKeyMd5(response.getHeaders().get(
-                Headers.SERVER_SIDE_ENCRYPTION_CUSTOMER_KEY_MD5));
-        result.setSSEKMSKeyId(response.getHeaders().get(Headers.SERVER_SIDE_ENCRYPTION_KMS_KEY_ID));
+        result.setSSECustomerAlgorithm(response.getHeaders().get(Headers.SERVER_SIDE_ENCRYPTION_CUSTOMER_ALGORITHM));
+        result.setSSECustomerKeyMd5(response.getHeaders().get(Headers.SERVER_SIDE_ENCRYPTION_CUSTOMER_KEY_MD5));
     }
 
 }

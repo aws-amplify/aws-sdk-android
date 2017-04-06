@@ -47,27 +47,26 @@ public class HttpRequestFactoryTest {
 
     @Test
     public void testContextUserAgent() {
-        String contextUserAgent = "context_user_agent";
+        final String contextUserAgent = "context_user_agent";
         context.setContextUserAgent(contextUserAgent);
-        HttpRequest httpRequest = factory.createHttpRequest(request, clientConfiguration, context);
-        String userAgent = httpRequest.getHeaders().get(HttpHeader.USER_AGENT);
+        final HttpRequest httpRequest = factory.createHttpRequest(request, clientConfiguration, context);
+        final String userAgent = httpRequest.getHeaders().get(HttpHeader.USER_AGENT);
         assertTrue("context user agent", userAgent.endsWith(contextUserAgent));
     }
 
     @Test
     public void testHeaders() {
-        HttpRequest httpRequest = factory.createHttpRequest(request, clientConfiguration, context);
-        Map<String, String> headers = httpRequest.getHeaders();
+        final HttpRequest httpRequest = factory.createHttpRequest(request, clientConfiguration, context);
+        final Map<String, String> headers = httpRequest.getHeaders();
         // assert basic headers
         assertNotNull(headers.get(HttpHeader.HOST));
-        assertNotNull(headers.get(HttpHeader.CONTENT_LENGTH));
         assertNotNull(headers.get(HttpHeader.CONTENT_TYPE));
     }
 
     @Test
     public void testEnableCompression() {
-        HttpRequest httpRequest = factory.createHttpRequest(request, clientConfiguration, context);
-        Map<String, String> headers = httpRequest.getHeaders();
+        final HttpRequest httpRequest = factory.createHttpRequest(request, clientConfiguration, context);
+        final Map<String, String> headers = httpRequest.getHeaders();
         assertEquals("accept encoding is gzip", "gzip", headers.get("Accept-Encoding"));
     }
 }

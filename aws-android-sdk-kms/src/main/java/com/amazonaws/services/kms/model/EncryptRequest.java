@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -104,11 +104,11 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Name/value pair that specifies the encryption context to be used for
+     * Name-value pair that specifies the encryption context to be used for
      * authenticated encryption. If used here, the same value must be supplied
      * to the <code>Decrypt</code> API or decryption will fail. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html"
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
      * >Encryption Context</a>.
      * </p>
      */
@@ -401,20 +401,20 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Name/value pair that specifies the encryption context to be used for
+     * Name-value pair that specifies the encryption context to be used for
      * authenticated encryption. If used here, the same value must be supplied
      * to the <code>Decrypt</code> API or decryption will fail. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html"
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
      * >Encryption Context</a>.
      * </p>
      *
      * @return <p>
-     *         Name/value pair that specifies the encryption context to be used
+     *         Name-value pair that specifies the encryption context to be used
      *         for authenticated encryption. If used here, the same value must
      *         be supplied to the <code>Decrypt</code> API or decryption will
      *         fail. For more information, see <a href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html"
+     *         "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
      *         >Encryption Context</a>.
      *         </p>
      */
@@ -424,20 +424,20 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Name/value pair that specifies the encryption context to be used for
+     * Name-value pair that specifies the encryption context to be used for
      * authenticated encryption. If used here, the same value must be supplied
      * to the <code>Decrypt</code> API or decryption will fail. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html"
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
      * >Encryption Context</a>.
      * </p>
      *
      * @param encryptionContext <p>
-     *            Name/value pair that specifies the encryption context to be
+     *            Name-value pair that specifies the encryption context to be
      *            used for authenticated encryption. If used here, the same
      *            value must be supplied to the <code>Decrypt</code> API or
      *            decryption will fail. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html"
+     *            "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
      *            >Encryption Context</a>.
      *            </p>
      */
@@ -447,11 +447,11 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Name/value pair that specifies the encryption context to be used for
+     * Name-value pair that specifies the encryption context to be used for
      * authenticated encryption. If used here, the same value must be supplied
      * to the <code>Decrypt</code> API or decryption will fail. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html"
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
      * >Encryption Context</a>.
      * </p>
      * <p>
@@ -459,11 +459,11 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * together.
      *
      * @param encryptionContext <p>
-     *            Name/value pair that specifies the encryption context to be
+     *            Name-value pair that specifies the encryption context to be
      *            used for authenticated encryption. If used here, the same
      *            value must be supplied to the <code>Decrypt</code> API or
      *            decryption will fail. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html"
+     *            "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
      *            >Encryption Context</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -476,11 +476,11 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Name/value pair that specifies the encryption context to be used for
+     * Name-value pair that specifies the encryption context to be used for
      * authenticated encryption. If used here, the same value must be supplied
      * to the <code>Decrypt</code> API or decryption will fail. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html"
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
      * >Encryption Context</a>.
      * </p>
      * <p>

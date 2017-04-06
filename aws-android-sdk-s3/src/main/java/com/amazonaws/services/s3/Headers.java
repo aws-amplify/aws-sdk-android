@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,10 +31,12 @@ public interface Headers {
     public static final String CONTENT_RANGE = "Content-Range";
     public static final String CONTENT_MD5 = "Content-MD5";
     public static final String CONTENT_TYPE = "Content-Type";
+    public static final String CONTENT_LANGUAGE = "Content-Language";
     public static final String DATE = "Date";
     public static final String ETAG = "ETag";
     public static final String LAST_MODIFIED = "Last-Modified";
     public static final String SERVER = "Server";
+    public static final String CONNECTION = "Connection";
 
     /*
      * Amazon HTTP Headers
@@ -224,9 +226,30 @@ public interface Headers {
      */
     public static final String REQUESTER_CHARGED_HEADER = "x-amz-request-charged";
 
-    /**
-     * Region where the bucket is located. This header is returned only in HEAD
-     * bucket and ListObjects response.
-     */
+
+    /** Header for the replication status of an Amazon S3 Object.*/
+    public static final String OBJECT_REPLICATION_STATUS = "x-amz-replication-status";
+
+    /** Region where the request is being served */
+    public static final String S3_SERVING_REGION = "x-amz-region";
+
+    /** Region where the bucket is located. This header is returned only in HEAD bucket and ListObjects response. */
     public static final String S3_BUCKET_REGION = "x-amz-bucket-region";
+
+    /** Date when multipart upload will become eligible for abort operation by lifecycle. */
+    public static final String ABORT_DATE = "x-amz-abort-date";
+
+    /** Id of the lifecycle rule that makes a multipart upload eligible for abort operation. */
+    public static final String ABORT_RULE_ID = "x-amz-abort-rule-id";
+
+    /** S3 response header for a multipart object containing the number of parts in the object. */
+    public static final String S3_PARTS_COUNT = "x-amz-mp-parts-count";
+
+    /** S3 request header for PUT object with a tag set */
+    public static final String S3_TAGGING = "x-amz-tagging";
+
+    /** S3 response header the number of tags on an object */
+    public static final String S3_TAGGING_COUNT = "x-amz-tagging-count";
+
+    public static final String TAGGING_DIRECTIVE = "x-amz-tagging-directive";
 }

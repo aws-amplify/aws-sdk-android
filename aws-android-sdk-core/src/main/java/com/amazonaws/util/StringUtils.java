@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -118,9 +118,10 @@ public class StringUtils {
      * @return The base64 encoded contents of the specified byte buffer.
      */
     public static String fromByteBuffer(ByteBuffer byteBuffer) {
-        if (byteBuffer.hasArray())
+        if (byteBuffer.hasArray()) {
             return Base64.encodeAsString(byteBuffer.array());
-        byte[] binaryData = new byte[byteBuffer.limit()];
+        }
+        final byte[] binaryData = new byte[byteBuffer.limit()];
         byteBuffer.get(binaryData);
         return Base64.encodeAsString(binaryData);
     }
@@ -145,7 +146,7 @@ public class StringUtils {
      * @param parts the parts to join
      */
     public static String join(String joiner, String... parts) {
-        StringBuilder builder = new StringBuilder();
+        final StringBuilder builder = new StringBuilder();
         for (int i = 0; i < parts.length; i++) {
             builder.append(parts[i]);
             if (i < parts.length - 1) {
@@ -185,5 +186,24 @@ public class StringUtils {
         } else {
             return str.toUpperCase(Locale.ENGLISH);
         }
+    }
+
+    /**
+     * Checks if a CharSequence is whitespace, empty ("") or null.
+     *
+     * @param cs the CharSequence to check, may be null
+     * @return if the CharSequence is null, empty or whitespace
+     */
+    public static boolean isBlank(final CharSequence cs) {
+        int strLen;
+        if (cs == null || (strLen = cs.length()) == 0) {
+            return true;
+        }
+        for (int i = 0; i < strLen; i++) {
+            if (!Character.isWhitespace(cs.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 }

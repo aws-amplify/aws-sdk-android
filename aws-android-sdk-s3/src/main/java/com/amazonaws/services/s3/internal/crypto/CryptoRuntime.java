@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,11 +28,14 @@ public class CryptoRuntime {
     static final String BOUNCY_CASTLE_PROVIDER = "BC";
     private static final String BC_PROVIDER_FQCN = "org.bouncycastle.jce.provider.BouncyCastleProvider";
 
-    public static boolean isBouncyCastleAvailable() {
+    public static synchronized boolean isBouncyCastleAvailable() {
         return Security.getProvider(BOUNCY_CASTLE_PROVIDER) != null;
     }
 
-    public static void enableBouncyCastle() {
+    public static synchronized void enableBouncyCastle() {
+        if (isBouncyCastleAvailable()) {
+            return;
+        }
         try {
             @SuppressWarnings("unchecked")
             Class<Provider> c = (Class<Provider>) Class.forName(BC_PROVIDER_FQCN);

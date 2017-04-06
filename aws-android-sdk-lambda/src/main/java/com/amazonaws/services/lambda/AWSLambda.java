@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -95,7 +95,9 @@ public interface AWSLambda {
 
     /**
      * <p>
-     * Invokes a specific Lambda function.
+     * Invokes a specific Lambda function. For an example, see <a href=
+     * "http://docs.aws.amazon.com/lambda/latest/dg/with-dynamodb-create-function.html#with-dbb-invoke-manually"
+     * >Create the Lambda Function and Test It Manually</a>.
      * </p>
      * <p>
      * If you are using the versioning feature, you can invoke the specific
@@ -103,7 +105,9 @@ public interface AWSLambda {
      * pointing to the function version using the <code>Qualifier</code>
      * parameter in the request. If you don't provide the <code>Qualifier</code>
      * parameter, the <code>$LATEST</code> version of the Lambda function is
-     * invoked. For information about the versioning feature, see <a href=
+     * invoked. Invocations occur at least once in response to an event and
+     * functions must be idempotent to handle this. For information about the
+     * versioning feature, see <a href=
      * "http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">AWS
      * Lambda Function Versioning and Aliases</a>.
      * </p>
@@ -112,7 +116,7 @@ public interface AWSLambda {
      * <code>lambda:InvokeFunction</code> action.
      * </p>
      * 
-     * @param invokeRequest
+     * @param invokeRequest <p/>
      * @return invokeResult The response from the Invoke service method, as
      *         returned by AWS Lambda.
      * @throws ServiceException
@@ -129,6 +133,11 @@ public interface AWSLambda {
      * @throws EC2AccessDeniedException
      * @throws InvalidSubnetIDException
      * @throws InvalidSecurityGroupIDException
+     * @throws InvalidZipFileException
+     * @throws KMSDisabledException
+     * @throws KMSInvalidStateException
+     * @throws KMSAccessDeniedException
+     * @throws KMSNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

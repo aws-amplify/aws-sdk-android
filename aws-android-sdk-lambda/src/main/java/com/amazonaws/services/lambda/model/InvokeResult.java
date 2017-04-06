@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ public class InvokeResult implements Serializable {
     /**
      * <p>
      * It is the JSON representation of the object returned by the Lambda
-     * function. In This is present only if the invocation type is
+     * function. This is present only if the invocation type is
      * <code>RequestResponse</code>.
      * </p>
      * <p>
@@ -306,7 +306,7 @@ public class InvokeResult implements Serializable {
     /**
      * <p>
      * It is the JSON representation of the object returned by the Lambda
-     * function. In This is present only if the invocation type is
+     * function. This is present only if the invocation type is
      * <code>RequestResponse</code>.
      * </p>
      * <p>
@@ -318,8 +318,8 @@ public class InvokeResult implements Serializable {
      *
      * @return <p>
      *         It is the JSON representation of the object returned by the
-     *         Lambda function. In This is present only if the invocation type
-     *         is <code>RequestResponse</code>.
+     *         Lambda function. This is present only if the invocation type is
+     *         <code>RequestResponse</code>.
      *         </p>
      *         <p>
      *         In the event of a function error this field contains a message
@@ -335,7 +335,7 @@ public class InvokeResult implements Serializable {
     /**
      * <p>
      * It is the JSON representation of the object returned by the Lambda
-     * function. In This is present only if the invocation type is
+     * function. This is present only if the invocation type is
      * <code>RequestResponse</code>.
      * </p>
      * <p>
@@ -347,8 +347,8 @@ public class InvokeResult implements Serializable {
      *
      * @param payload <p>
      *            It is the JSON representation of the object returned by the
-     *            Lambda function. In This is present only if the invocation
-     *            type is <code>RequestResponse</code>.
+     *            Lambda function. This is present only if the invocation type
+     *            is <code>RequestResponse</code>.
      *            </p>
      *            <p>
      *            In the event of a function error this field contains a message
@@ -364,7 +364,7 @@ public class InvokeResult implements Serializable {
     /**
      * <p>
      * It is the JSON representation of the object returned by the Lambda
-     * function. In This is present only if the invocation type is
+     * function. This is present only if the invocation type is
      * <code>RequestResponse</code>.
      * </p>
      * <p>
@@ -379,8 +379,8 @@ public class InvokeResult implements Serializable {
      *
      * @param payload <p>
      *            It is the JSON representation of the object returned by the
-     *            Lambda function. In This is present only if the invocation
-     *            type is <code>RequestResponse</code>.
+     *            Lambda function. This is present only if the invocation type
+     *            is <code>RequestResponse</code>.
      *            </p>
      *            <p>
      *            In the event of a function error this field contains a message

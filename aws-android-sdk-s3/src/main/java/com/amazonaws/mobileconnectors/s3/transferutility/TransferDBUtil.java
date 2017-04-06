@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -76,7 +76,7 @@ class TransferDBUtil {
      */
     public Uri insertMultipartUploadRecord(String bucket, String key, File file,
             long fileOffset, int partNumber, String uploadId, long bytesTotal, int isLastPart) {
-        ContentValues values = generateContentValuesForMultiPartUpload(bucket, key, file,
+        final ContentValues values = generateContentValuesForMultiPartUpload(bucket, key, file,
                 fileOffset, partNumber, uploadId, bytesTotal, isLastPart, new ObjectMetadata(),
                 null);
         return transferDBBase.insert(transferDBBase.getContentUri(), values);
@@ -112,7 +112,7 @@ class TransferDBUtil {
      */
     public Uri insertSingleTransferRecord(TransferType type, String bucket, String key, File file,
             ObjectMetadata metadata, CannedAccessControlList cannedAcl) {
-        ContentValues values = generateContentValuesForSinglePartTransfer(type, bucket, key, file,
+        final ContentValues values = generateContentValuesForSinglePartTransfer(type, bucket, key, file,
                 metadata, cannedAcl);
         return transferDBBase.insert(transferDBBase.getContentUri(), values);
     }
@@ -150,7 +150,7 @@ class TransferDBUtil {
      * @return Number of rows updated.
      */
     public int updateTransferRecord(TransferRecord transfer) {
-        ContentValues cv = new ContentValues();
+        final ContentValues cv = new ContentValues();
         cv.put(TransferTable.COLUMN_ID, transfer.id);
         cv.put(TransferTable.COLUMN_STATE, transfer.state.toString());
         cv.put(TransferTable.COLUMN_BYTES_TOTAL, transfer.bytesTotal);
@@ -166,7 +166,7 @@ class TransferDBUtil {
      * @return Number of rows updated.
      */
     public int updateBytesTransferred(int id, long bytes) {
-        ContentValues values = new ContentValues();
+        final ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_BYTES_CURRENT, bytes);
         return transferDBBase.update(getRecordUri(id), values, null, null);
     }
@@ -179,7 +179,7 @@ class TransferDBUtil {
      * @return Number of rows updated.
      */
     public int updateBytesTotalForDownload(int id, long bytes) {
-        ContentValues values = new ContentValues();
+        final ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_BYTES_TOTAL, bytes);
         return transferDBBase.update(getRecordUri(id), values, null, null);
     }
@@ -197,7 +197,7 @@ class TransferDBUtil {
      * @return Number of rows updated.
      */
     public int updateState(int id, TransferState state) {
-        ContentValues values = new ContentValues();
+        final ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_STATE, state.toString());
         if (TransferState.FAILED.equals(state)) {
             return transferDBBase.update(getRecordUri(id), values, TransferTable.COLUMN_STATE
@@ -224,7 +224,7 @@ class TransferDBUtil {
      * @return Number of rows updated.
      */
     public int updateStateAndNotifyUpdate(int id, TransferState state) {
-        ContentValues values = new ContentValues();
+        final ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_STATE, state.toString());
         return transferDBBase.update(transferDBBase.getContentUri(), values,
                 TransferTable.COLUMN_ID + "=" + id, null);
@@ -238,7 +238,7 @@ class TransferDBUtil {
      * @return Number of rows updated.
      */
     public int updateMultipartId(int id, String multipartId) {
-        ContentValues values = new ContentValues();
+        final ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_MULTIPART_ID, multipartId);
         return transferDBBase.update(getRecordUri(id), values, null, null);
     }
@@ -251,7 +251,7 @@ class TransferDBUtil {
      * @return Number of rows updated.
      */
     public int updateETag(int id, String etag) {
-        ContentValues values = new ContentValues();
+        final ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_ETAG, etag);
         return transferDBBase.update(getRecordUri(id), values, null, null);
     }
@@ -263,7 +263,7 @@ class TransferDBUtil {
      * @return Number of rows updated.
      */
     public int updateNetworkDisconnected() {
-        ContentValues values = new ContentValues();
+        final ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_STATE,
                 TransferState.PENDING_NETWORK_DISCONNECT.toString());
         return transferDBBase.update(transferDBBase.getContentUri(), values,
@@ -282,7 +282,7 @@ class TransferDBUtil {
      * @return Number of rows updated.
      */
     public int updateNetworkConnected() {
-        ContentValues values = new ContentValues();
+        final ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_STATE, TransferState.RESUMED_WAITING.toString());
         return transferDBBase.update(transferDBBase.getContentUri(), values,
                 TransferTable.COLUMN_STATE
@@ -299,7 +299,7 @@ class TransferDBUtil {
      * @return Number of rows updated.
      */
     public int setAllRunningRecordsToPausedBeforeShutdownService() {
-        ContentValues values = new ContentValues();
+        final ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_STATE, TransferState.PAUSED.toString());
         return transferDBBase.update(
                 transferDBBase.getContentUri(),
@@ -322,7 +322,7 @@ class TransferDBUtil {
      * @return Number of rows updated.
      */
     public int pauseAllWithType(TransferType type) {
-        ContentValues values = new ContentValues();
+        final ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_STATE, TransferState.PENDING_PAUSE.toString());
         String selection = null;
         String[] selectionArgs = null;
@@ -355,7 +355,7 @@ class TransferDBUtil {
      * @return Number of rows updated.
      */
     public int cancelAllWithType(TransferType type) {
-        ContentValues values = new ContentValues();
+        final ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_STATE, TransferState.PENDING_CANCEL.toString());
         String selection = null;
         String[] selectionArgs = null;
@@ -438,18 +438,21 @@ class TransferDBUtil {
      * @return The bytes already uploaded for this multipart upload task
      */
     public long queryBytesTransferredByMainUploadId(int mainUploadId) {
-        Cursor c = transferDBBase.query(getPartUri(mainUploadId), null, null, null, null);
+        Cursor c = null;
         long bytesTotal = 0;
         try {
+            c = transferDBBase.query(getPartUri(mainUploadId), null, null, null, null);
             while (c.moveToNext()) {
-                String state = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_STATE));
+                final String state = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_STATE));
                 if (TransferState.PART_COMPLETED.equals(TransferState.getState(state))) {
                     bytesTotal += c.getLong(c
                             .getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_TOTAL));
                 }
             }
         } finally {
-            c.close();
+            if (c != null) {
+                c.close();
+            }
         }
         return bytesTotal;
     }
@@ -474,18 +477,21 @@ class TransferDBUtil {
      * @return A list of PartEtag of completed parts
      */
     public List<PartETag> queryPartETagsOfUpload(int mainUploadId) {
-        List<PartETag> partETags = new ArrayList<PartETag>();
-        Cursor c = transferDBBase.query(getPartUri(mainUploadId), null, null, null, null);
+        final List<PartETag> partETags = new ArrayList<PartETag>();
+        Cursor c = null;
         int partNum = 0;
         String eTag = null;
         try {
+            c = transferDBBase.query(getPartUri(mainUploadId), null, null, null, null);
             while (c.moveToNext()) {
                 partNum = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM));
                 eTag = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_ETAG));
                 partETags.add(new PartETag(partNum, eTag));
             }
         } finally {
-            c.close();
+            if (c != null) {
+                c.close();
+            }
         }
         return partETags;
     }
@@ -501,15 +507,16 @@ class TransferDBUtil {
      */
     public List<UploadPartRequest> getNonCompletedPartRequestsFromDB(int mainUploadId,
             String multipartId) {
-        ArrayList<UploadPartRequest> list = new ArrayList<UploadPartRequest>();
-        Cursor c = transferDBBase.query(getPartUri(mainUploadId), null, null, null, null);
+        final ArrayList<UploadPartRequest> list = new ArrayList<UploadPartRequest>();
+        Cursor c = null;
         try {
+            c = transferDBBase.query(getPartUri(mainUploadId), null, null, null, null);
             while (c.moveToNext()) {
                 if (TransferState.PART_COMPLETED.equals(TransferState.getState(c.getString(c
                         .getColumnIndexOrThrow(TransferTable.COLUMN_STATE))))) {
                     continue;
                 }
-                UploadPartRequest putPartRequest = new UploadPartRequest()
+                final UploadPartRequest putPartRequest = new UploadPartRequest()
                         .withId(c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID)))
                         .withMainUploadId(
                                 c.getInt(c
@@ -532,7 +539,9 @@ class TransferDBUtil {
                 list.add(putPartRequest);
             }
         } finally {
-            c.close();
+            if (c != null) {
+                c.close();
+            }
         }
         return list;
     }
@@ -558,7 +567,7 @@ class TransferDBUtil {
             String key, File file, long fileOffset, int partNumber, String uploadId,
             long bytesTotal, int isLastPart, ObjectMetadata metadata,
             CannedAccessControlList cannedAcl) {
-        ContentValues values = new ContentValues();
+        final ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_TYPE, TransferType.UPLOAD.toString());
         values.put(TransferTable.COLUMN_STATE, TransferState.WAITING.toString());
         values.put(TransferTable.COLUMN_BUCKET_NAME, bucket);
@@ -588,7 +597,7 @@ class TransferDBUtil {
      * @return the ContentValues
      */
     private ContentValues generateContentValuesForObjectMetadata(ObjectMetadata metadata) {
-        ContentValues values = new ContentValues();
+        final ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_USER_METADATA,
                 JsonUtils.mapToString(metadata.getUserMetadata()));
         values.put(TransferTable.COLUMN_HEADER_CONTENT_TYPE, metadata.getContentType());
@@ -598,7 +607,7 @@ class TransferDBUtil {
         values.put(TransferTable.COLUMN_HEADER_CONTENT_DISPOSITION,
                 metadata.getContentDisposition());
         values.put(TransferTable.COLUMN_SSE_ALGORITHM, metadata.getSSEAlgorithm());
-        values.put(TransferTable.COLUMN_SSE_KMS_KEY, metadata.getSSEKMSKeyId());
+        values.put(TransferTable.COLUMN_SSE_KMS_KEY, metadata.getSSEAwsKmsKeyId());
         values.put(TransferTable.COLUMN_EXPIRATION_TIME_RULE_ID, metadata.getExpirationTimeRuleId());
         if (metadata.getHttpExpiresDate() != null) {
             values.put(TransferTable.COLUMN_HTTP_EXPIRES_DATE,
@@ -624,15 +633,16 @@ class TransferDBUtil {
     private ContentValues generateContentValuesForSinglePartTransfer(TransferType type,
             String bucket, String key, File file, ObjectMetadata metadata,
             CannedAccessControlList cannedAcl) {
-        ContentValues values = new ContentValues();
+        final ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_TYPE, type.toString());
         values.put(TransferTable.COLUMN_STATE, TransferState.WAITING.toString());
         values.put(TransferTable.COLUMN_BUCKET_NAME, bucket);
         values.put(TransferTable.COLUMN_KEY, key);
         values.put(TransferTable.COLUMN_FILE, file.getAbsolutePath());
         values.put(TransferTable.COLUMN_BYTES_CURRENT, 0l);
-        if (type.equals(TransferType.UPLOAD))
+        if (type.equals(TransferType.UPLOAD)) {
             values.put(TransferTable.COLUMN_BYTES_TOTAL, file == null ? 0l : file.length());
+        }
         values.put(TransferTable.COLUMN_IS_MULTIPART, 0);
         values.put(TransferTable.COLUMN_PART_NUM, 0);
         values.put(TransferTable.COLUMN_IS_ENCRYPTED, 0);
@@ -692,15 +702,23 @@ class TransferDBUtil {
      */
     TransferRecord getTransferById(int id) {
         TransferRecord transfer = null;
-        Cursor c = queryTransferById(id);
+        Cursor c = null;
         try {
+            c = queryTransferById(id);
             if (c.moveToFirst()) {
                 transfer = new TransferRecord(0);
                 transfer.updateFromDB(c);
             }
         } finally {
-            c.close();
+            if (c != null) {
+                c.close();
+            }
         }
         return transfer;
     }
+
+    static TransferDBBase getTransferDBBase() {
+        return transferDBBase;
+    }
 }
+

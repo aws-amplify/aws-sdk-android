@@ -17,9 +17,11 @@
 
 package com.amazonaws.mobileconnectors.cognitoidentityprovider;
 
+import com.amazonaws.SDKGlobalConfiguration;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.tokens.CognitoAccessToken;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.tokens.CognitoIdToken;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.tokens.CognitoRefreshToken;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoIdentityProviderClientConfig;
 
 import java.util.Date;
 
@@ -94,6 +96,21 @@ public class CognitoUserSession {
             return (currentTimeStamp.before(idToken.getExpiration())
                     & currentTimeStamp.before(accessToken.getExpiration()));
         } catch(Exception e) {
+            return false;
+        }
+    }
+    
+    /**
+     * Returns true if this session for the threshold set in {@link CognitoIdentityProviderClientConfig#refreshThreshold}.
+     *
+     * @return boolean to indicate if the session is valid for atleast {@link CognitoIdentityProviderClientConfig#refreshThreshold} seconds.
+     */
+    public boolean isValidForThreshold() {
+        try {
+            long currentTime = System.currentTimeMillis() - SDKGlobalConfiguration.getGlobalTimeOffset() * 1000;
+            long expiresInMilliSeconds = idToken.getExpiration().getTime() - currentTime;
+            return (expiresInMilliSeconds > CognitoIdentityProviderClientConfig.getRefreshThreshold());
+        } catch (Exception e) {
             return false;
         }
     }

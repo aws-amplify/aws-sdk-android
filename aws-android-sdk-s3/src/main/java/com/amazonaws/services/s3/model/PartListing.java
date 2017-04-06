@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,14 +15,17 @@
 
 package com.amazonaws.services.s3.model;
 
+import com.amazonaws.services.s3.internal.S3RequesterChargedResult;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
  * The ListPartsResponse contains all the information about the ListParts
  * method.
  */
-public class PartListing {
+public class PartListing implements S3RequesterChargedResult {
 
     /**
      * The name of the bucket containing the listed parts, as specified in the
@@ -86,6 +89,18 @@ public class PartListing {
 
     /** The list of parts described in this part listing. */
     private List<PartSummary> parts;
+
+    /** Date when multipart upload will become eligible for abort operation by lifecycle. */
+    private Date abortDate;
+
+    /** Id of the lifecycle rule that makes a multipart upload eligible for abort operation. */
+    private String abortRuleId;
+
+    /**
+     * Indicate if the requester is charged for conducting this operation from
+     * Requester Pays Buckets.
+     */
+    private boolean isRequesterCharged;
 
     /**
      * Returns the name of the bucket containing the listed parts, as specified
@@ -334,8 +349,9 @@ public class PartListing {
      * @return The list of parts described in this part listing.
      */
     public List<PartSummary> getParts() {
-        if (parts == null)
+        if (parts == null) {
             parts = new ArrayList<PartSummary>();
+        }
         return parts;
     }
 
@@ -346,6 +362,53 @@ public class PartListing {
      */
     public void setParts(List<PartSummary> parts) {
         this.parts = parts;
+    }
+
+    /**
+     * Date when multipart upload will become eligible for abort operation by lifecycle.
+     *
+     * @return The date when the upload will be eligible for abort.
+     */
+    public Date getAbortDate() {
+        return abortDate;
+    }
+
+    /**
+     * Date when multipart upload will become eligible for abort operation by lifecycle.
+     *
+     * @param abortDate
+     *         The date when the upload will be eligible for abort.
+     */
+    public void setAbortDate(Date abortDate) {
+        this.abortDate = abortDate;
+    }
+
+    /**
+     * Id of the lifecycle rule that makes a multipart upload eligible for abort operation.
+     *
+     * @return Rule ID
+     */
+    public String getAbortRuleId() {
+        return abortRuleId;
+    }
+
+    /**
+     * Id of the lifecycle rule that makes a multipart upload eligible for abort operation.
+     *
+     * @param abortRuleId Rule ID
+     */
+    public void setAbortRuleId(String abortRuleId) {
+        this.abortRuleId = abortRuleId;
+    }
+
+    @Override
+    public boolean isRequesterCharged() {
+        return isRequesterCharged;
+    }
+
+    @Override
+    public void setRequesterCharged(boolean isRequesterCharged) {
+        this.isRequesterCharged = isRequesterCharged;
     }
 
 }

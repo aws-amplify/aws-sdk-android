@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -93,19 +93,51 @@ public class UserImportJobType implements Serializable {
      * The status of the user import job. One of the following:
      * </p>
      * <ul>
-     * <li>Created - The job was created but not started.</li>
-     * <li>Pending - A transition state. You have started the job, but it has
-     * not begun importing users yet.</li>
-     * <li>InProgress - The job has started, and users are being imported.</li>
-     * <li>Stopping - You have stopped the job, but the job has not stopped
-     * importing users yet.</li>
-     * <li>Stopped - You have stopped the job, and the job has stopped importing
-     * users.</li>
-     * <li>Succeeded - The job has completed successfully.</li>
-     * <li>Failed - The job has stopped due to an error.</li>
-     * <li>Expired - You created a job, but did not start the job within 24-48
+     * <li>
+     * <p>
+     * Created - The job was created but not started.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Pending - A transition state. You have started the job, but it has not
+     * begun importing users yet.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * InProgress - The job has started, and users are being imported.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Stopping - You have stopped the job, but the job has not stopped
+     * importing users yet.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Stopped - You have stopped the job, and the job has stopped importing
+     * users.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Succeeded - The job has completed successfully.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Failed - The job has stopped due to an error.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Expired - You created a job, but did not start the job within 24-48
      * hours. All data associated with the job was deleted, and the job cannot
-     * be started.</li>
+     * be started.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -532,19 +564,51 @@ public class UserImportJobType implements Serializable {
      * The status of the user import job. One of the following:
      * </p>
      * <ul>
-     * <li>Created - The job was created but not started.</li>
-     * <li>Pending - A transition state. You have started the job, but it has
-     * not begun importing users yet.</li>
-     * <li>InProgress - The job has started, and users are being imported.</li>
-     * <li>Stopping - You have stopped the job, but the job has not stopped
-     * importing users yet.</li>
-     * <li>Stopped - You have stopped the job, and the job has stopped importing
-     * users.</li>
-     * <li>Succeeded - The job has completed successfully.</li>
-     * <li>Failed - The job has stopped due to an error.</li>
-     * <li>Expired - You created a job, but did not start the job within 24-48
+     * <li>
+     * <p>
+     * Created - The job was created but not started.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Pending - A transition state. You have started the job, but it has not
+     * begun importing users yet.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * InProgress - The job has started, and users are being imported.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Stopping - You have stopped the job, but the job has not stopped
+     * importing users yet.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Stopped - You have stopped the job, and the job has stopped importing
+     * users.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Succeeded - The job has completed successfully.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Failed - The job has stopped due to an error.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Expired - You created a job, but did not start the job within 24-48
      * hours. All data associated with the job was deleted, and the job cannot
-     * be started.</li>
+     * be started.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -555,20 +619,51 @@ public class UserImportJobType implements Serializable {
      *         The status of the user import job. One of the following:
      *         </p>
      *         <ul>
-     *         <li>Created - The job was created but not started.</li>
-     *         <li>Pending - A transition state. You have started the job, but
-     *         it has not begun importing users yet.</li>
-     *         <li>InProgress - The job has started, and users are being
-     *         imported.</li>
-     *         <li>Stopping - You have stopped the job, but the job has not
-     *         stopped importing users yet.</li>
-     *         <li>Stopped - You have stopped the job, and the job has stopped
-     *         importing users.</li>
-     *         <li>Succeeded - The job has completed successfully.</li>
-     *         <li>Failed - The job has stopped due to an error.</li>
-     *         <li>Expired - You created a job, but did not start the job within
+     *         <li>
+     *         <p>
+     *         Created - The job was created but not started.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Pending - A transition state. You have started the job, but it
+     *         has not begun importing users yet.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         InProgress - The job has started, and users are being imported.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Stopping - You have stopped the job, but the job has not stopped
+     *         importing users yet.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Stopped - You have stopped the job, and the job has stopped
+     *         importing users.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Succeeded - The job has completed successfully.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Failed - The job has stopped due to an error.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Expired - You created a job, but did not start the job within
      *         24-48 hours. All data associated with the job was deleted, and
-     *         the job cannot be started.</li>
+     *         the job cannot be started.
+     *         </p>
+     *         </li>
      *         </ul>
      * @see UserImportJobStatusType
      */
@@ -581,19 +676,51 @@ public class UserImportJobType implements Serializable {
      * The status of the user import job. One of the following:
      * </p>
      * <ul>
-     * <li>Created - The job was created but not started.</li>
-     * <li>Pending - A transition state. You have started the job, but it has
-     * not begun importing users yet.</li>
-     * <li>InProgress - The job has started, and users are being imported.</li>
-     * <li>Stopping - You have stopped the job, but the job has not stopped
-     * importing users yet.</li>
-     * <li>Stopped - You have stopped the job, and the job has stopped importing
-     * users.</li>
-     * <li>Succeeded - The job has completed successfully.</li>
-     * <li>Failed - The job has stopped due to an error.</li>
-     * <li>Expired - You created a job, but did not start the job within 24-48
+     * <li>
+     * <p>
+     * Created - The job was created but not started.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Pending - A transition state. You have started the job, but it has not
+     * begun importing users yet.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * InProgress - The job has started, and users are being imported.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Stopping - You have stopped the job, but the job has not stopped
+     * importing users yet.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Stopped - You have stopped the job, and the job has stopped importing
+     * users.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Succeeded - The job has completed successfully.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Failed - The job has stopped due to an error.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Expired - You created a job, but did not start the job within 24-48
      * hours. All data associated with the job was deleted, and the job cannot
-     * be started.</li>
+     * be started.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -604,20 +731,52 @@ public class UserImportJobType implements Serializable {
      *            The status of the user import job. One of the following:
      *            </p>
      *            <ul>
-     *            <li>Created - The job was created but not started.</li>
-     *            <li>Pending - A transition state. You have started the job,
-     *            but it has not begun importing users yet.</li>
-     *            <li>InProgress - The job has started, and users are being
-     *            imported.</li>
-     *            <li>Stopping - You have stopped the job, but the job has not
-     *            stopped importing users yet.</li>
-     *            <li>Stopped - You have stopped the job, and the job has
-     *            stopped importing users.</li>
-     *            <li>Succeeded - The job has completed successfully.</li>
-     *            <li>Failed - The job has stopped due to an error.</li>
-     *            <li>Expired - You created a job, but did not start the job
-     *            within 24-48 hours. All data associated with the job was
-     *            deleted, and the job cannot be started.</li>
+     *            <li>
+     *            <p>
+     *            Created - The job was created but not started.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Pending - A transition state. You have started the job, but it
+     *            has not begun importing users yet.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            InProgress - The job has started, and users are being
+     *            imported.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Stopping - You have stopped the job, but the job has not
+     *            stopped importing users yet.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Stopped - You have stopped the job, and the job has stopped
+     *            importing users.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Succeeded - The job has completed successfully.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Failed - The job has stopped due to an error.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Expired - You created a job, but did not start the job within
+     *            24-48 hours. All data associated with the job was deleted, and
+     *            the job cannot be started.
+     *            </p>
+     *            </li>
      *            </ul>
      * @see UserImportJobStatusType
      */
@@ -630,19 +789,51 @@ public class UserImportJobType implements Serializable {
      * The status of the user import job. One of the following:
      * </p>
      * <ul>
-     * <li>Created - The job was created but not started.</li>
-     * <li>Pending - A transition state. You have started the job, but it has
-     * not begun importing users yet.</li>
-     * <li>InProgress - The job has started, and users are being imported.</li>
-     * <li>Stopping - You have stopped the job, but the job has not stopped
-     * importing users yet.</li>
-     * <li>Stopped - You have stopped the job, and the job has stopped importing
-     * users.</li>
-     * <li>Succeeded - The job has completed successfully.</li>
-     * <li>Failed - The job has stopped due to an error.</li>
-     * <li>Expired - You created a job, but did not start the job within 24-48
+     * <li>
+     * <p>
+     * Created - The job was created but not started.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Pending - A transition state. You have started the job, but it has not
+     * begun importing users yet.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * InProgress - The job has started, and users are being imported.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Stopping - You have stopped the job, but the job has not stopped
+     * importing users yet.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Stopped - You have stopped the job, and the job has stopped importing
+     * users.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Succeeded - The job has completed successfully.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Failed - The job has stopped due to an error.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Expired - You created a job, but did not start the job within 24-48
      * hours. All data associated with the job was deleted, and the job cannot
-     * be started.</li>
+     * be started.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -656,20 +847,52 @@ public class UserImportJobType implements Serializable {
      *            The status of the user import job. One of the following:
      *            </p>
      *            <ul>
-     *            <li>Created - The job was created but not started.</li>
-     *            <li>Pending - A transition state. You have started the job,
-     *            but it has not begun importing users yet.</li>
-     *            <li>InProgress - The job has started, and users are being
-     *            imported.</li>
-     *            <li>Stopping - You have stopped the job, but the job has not
-     *            stopped importing users yet.</li>
-     *            <li>Stopped - You have stopped the job, and the job has
-     *            stopped importing users.</li>
-     *            <li>Succeeded - The job has completed successfully.</li>
-     *            <li>Failed - The job has stopped due to an error.</li>
-     *            <li>Expired - You created a job, but did not start the job
-     *            within 24-48 hours. All data associated with the job was
-     *            deleted, and the job cannot be started.</li>
+     *            <li>
+     *            <p>
+     *            Created - The job was created but not started.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Pending - A transition state. You have started the job, but it
+     *            has not begun importing users yet.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            InProgress - The job has started, and users are being
+     *            imported.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Stopping - You have stopped the job, but the job has not
+     *            stopped importing users yet.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Stopped - You have stopped the job, and the job has stopped
+     *            importing users.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Succeeded - The job has completed successfully.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Failed - The job has stopped due to an error.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Expired - You created a job, but did not start the job within
+     *            24-48 hours. All data associated with the job was deleted, and
+     *            the job cannot be started.
+     *            </p>
+     *            </li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -685,19 +908,51 @@ public class UserImportJobType implements Serializable {
      * The status of the user import job. One of the following:
      * </p>
      * <ul>
-     * <li>Created - The job was created but not started.</li>
-     * <li>Pending - A transition state. You have started the job, but it has
-     * not begun importing users yet.</li>
-     * <li>InProgress - The job has started, and users are being imported.</li>
-     * <li>Stopping - You have stopped the job, but the job has not stopped
-     * importing users yet.</li>
-     * <li>Stopped - You have stopped the job, and the job has stopped importing
-     * users.</li>
-     * <li>Succeeded - The job has completed successfully.</li>
-     * <li>Failed - The job has stopped due to an error.</li>
-     * <li>Expired - You created a job, but did not start the job within 24-48
+     * <li>
+     * <p>
+     * Created - The job was created but not started.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Pending - A transition state. You have started the job, but it has not
+     * begun importing users yet.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * InProgress - The job has started, and users are being imported.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Stopping - You have stopped the job, but the job has not stopped
+     * importing users yet.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Stopped - You have stopped the job, and the job has stopped importing
+     * users.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Succeeded - The job has completed successfully.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Failed - The job has stopped due to an error.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Expired - You created a job, but did not start the job within 24-48
      * hours. All data associated with the job was deleted, and the job cannot
-     * be started.</li>
+     * be started.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -708,20 +963,52 @@ public class UserImportJobType implements Serializable {
      *            The status of the user import job. One of the following:
      *            </p>
      *            <ul>
-     *            <li>Created - The job was created but not started.</li>
-     *            <li>Pending - A transition state. You have started the job,
-     *            but it has not begun importing users yet.</li>
-     *            <li>InProgress - The job has started, and users are being
-     *            imported.</li>
-     *            <li>Stopping - You have stopped the job, but the job has not
-     *            stopped importing users yet.</li>
-     *            <li>Stopped - You have stopped the job, and the job has
-     *            stopped importing users.</li>
-     *            <li>Succeeded - The job has completed successfully.</li>
-     *            <li>Failed - The job has stopped due to an error.</li>
-     *            <li>Expired - You created a job, but did not start the job
-     *            within 24-48 hours. All data associated with the job was
-     *            deleted, and the job cannot be started.</li>
+     *            <li>
+     *            <p>
+     *            Created - The job was created but not started.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Pending - A transition state. You have started the job, but it
+     *            has not begun importing users yet.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            InProgress - The job has started, and users are being
+     *            imported.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Stopping - You have stopped the job, but the job has not
+     *            stopped importing users yet.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Stopped - You have stopped the job, and the job has stopped
+     *            importing users.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Succeeded - The job has completed successfully.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Failed - The job has stopped due to an error.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Expired - You created a job, but did not start the job within
+     *            24-48 hours. All data associated with the job was deleted, and
+     *            the job cannot be started.
+     *            </p>
+     *            </li>
      *            </ul>
      * @see UserImportJobStatusType
      */
@@ -734,19 +1021,51 @@ public class UserImportJobType implements Serializable {
      * The status of the user import job. One of the following:
      * </p>
      * <ul>
-     * <li>Created - The job was created but not started.</li>
-     * <li>Pending - A transition state. You have started the job, but it has
-     * not begun importing users yet.</li>
-     * <li>InProgress - The job has started, and users are being imported.</li>
-     * <li>Stopping - You have stopped the job, but the job has not stopped
-     * importing users yet.</li>
-     * <li>Stopped - You have stopped the job, and the job has stopped importing
-     * users.</li>
-     * <li>Succeeded - The job has completed successfully.</li>
-     * <li>Failed - The job has stopped due to an error.</li>
-     * <li>Expired - You created a job, but did not start the job within 24-48
+     * <li>
+     * <p>
+     * Created - The job was created but not started.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Pending - A transition state. You have started the job, but it has not
+     * begun importing users yet.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * InProgress - The job has started, and users are being imported.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Stopping - You have stopped the job, but the job has not stopped
+     * importing users yet.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Stopped - You have stopped the job, and the job has stopped importing
+     * users.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Succeeded - The job has completed successfully.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Failed - The job has stopped due to an error.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Expired - You created a job, but did not start the job within 24-48
      * hours. All data associated with the job was deleted, and the job cannot
-     * be started.</li>
+     * be started.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -760,20 +1079,52 @@ public class UserImportJobType implements Serializable {
      *            The status of the user import job. One of the following:
      *            </p>
      *            <ul>
-     *            <li>Created - The job was created but not started.</li>
-     *            <li>Pending - A transition state. You have started the job,
-     *            but it has not begun importing users yet.</li>
-     *            <li>InProgress - The job has started, and users are being
-     *            imported.</li>
-     *            <li>Stopping - You have stopped the job, but the job has not
-     *            stopped importing users yet.</li>
-     *            <li>Stopped - You have stopped the job, and the job has
-     *            stopped importing users.</li>
-     *            <li>Succeeded - The job has completed successfully.</li>
-     *            <li>Failed - The job has stopped due to an error.</li>
-     *            <li>Expired - You created a job, but did not start the job
-     *            within 24-48 hours. All data associated with the job was
-     *            deleted, and the job cannot be started.</li>
+     *            <li>
+     *            <p>
+     *            Created - The job was created but not started.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Pending - A transition state. You have started the job, but it
+     *            has not begun importing users yet.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            InProgress - The job has started, and users are being
+     *            imported.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Stopping - You have stopped the job, but the job has not
+     *            stopped importing users yet.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Stopped - You have stopped the job, and the job has stopped
+     *            importing users.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Succeeded - The job has completed successfully.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Failed - The job has stopped due to an error.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Expired - You created a job, but did not start the job within
+     *            24-48 hours. All data associated with the job was deleted, and
+     *            the job cannot be started.
+     *            </p>
+     *            </li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

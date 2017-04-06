@@ -33,6 +33,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URI;
@@ -41,6 +42,7 @@ import java.net.URL;
 import java.security.cert.Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -50,28 +52,109 @@ import javax.net.ssl.SSLPeerUnverifiedException;
 public class UrlHttpClientTest {
 
     private ClientConfiguration conf;
-    private UrlHttpClient client;
+    private MockUrlHttpClient client;
 
     @Before
     public void setup() {
         conf = new ClientConfiguration();
-        client = new UrlHttpClient(conf);
+        client = new MockUrlHttpClient(conf);
+    }
 
+    // @Test
+    public void testBasicCurlBuilder() throws URISyntaxException, IOException {
+        conf.setCurlLogging(true);
+        final HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"));
+        client.execute(request);
+
+        assertEquals(1, client.getLogList().size());
+        assertEquals("curl -X POST https://www.test.com", client.getLogList().get(0));
+    }
+
+    // @Test
+    public void testCurlBuilderWithHeaders() throws URISyntaxException, IOException {
+        conf.setCurlLogging(true);
+        final Map<String, String> headers = new HashMap<String, String>();
+        headers.put("key1", "value1");
+        headers.put("key2", "value2");
+
+        final HashSet<String> expectedCurlHeaders = new HashSet<String>();
+        for (final Map.Entry<String, String> entry : headers.entrySet()) {
+            expectedCurlHeaders.add("\"" + entry.getKey() + ":" + entry.getValue() + "\"");
+        }
+
+        final HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"),
+                headers,
+                null /* stream */);
+        client.execute(request);
+
+        assertEquals(client.getLogList().size(), 1);
+
+        final String[] parts = client.getLogList().get(0).split(" ");
+        assertEquals(8, parts.length);
+        assertEquals("curl", parts[0]);
+        assertEquals("-X", parts[1]);
+        assertEquals("POST", parts[2]);
+        assertEquals("-H", parts[3]);
+        assertTrue(expectedCurlHeaders.contains(parts[4]));
+        expectedCurlHeaders.remove(parts[4]);
+        assertEquals("-H", parts[5]);
+        assertTrue(expectedCurlHeaders.contains(parts[6]));
+        expectedCurlHeaders.remove(parts[6]);
+        assertTrue(expectedCurlHeaders.isEmpty());
+        assertEquals("https://www.test.com", parts[7]);
+    }
+
+    // @Test
+    public void testCurlBuilderWithData() throws URISyntaxException, IOException {
+        conf.setCurlLogging(true);
+        final String dataString = "content";
+        final byte[] data = dataString.getBytes("UTF-8");
+
+        final Map<String, String> headers = new HashMap<String, String>();
+        headers.put(HttpHeader.CONTENT_LENGTH, String.valueOf(data.length));
+
+        final InputStream stream = new ByteArrayInputStream(data);
+        final HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"),
+                headers, stream);
+        client.execute(request);
+
+        assertEquals(1, client.getLogList().size());
+        assertEquals(
+                "curl -X POST -H \"Content-Length:" + String.valueOf(data.length) + "\" -d '"
+                        + dataString + "' https://www.test.com",
+                client.getLogList().get(0));
+    }
+
+    // @Test
+    public void testOverflowInCurl() throws URISyntaxException, IOException {
+        conf.setCurlLogging(true);
+        final long tooManyBytes = Integer.MAX_VALUE + 1L;
+        final InputStream stream = new ByteArrayInputStream("content".getBytes("UTF-8"));
+        final Map<String, String> headers = new HashMap<String, String>();
+        headers.put(HttpHeader.CONTENT_LENGTH, String.valueOf(tooManyBytes));
+        final HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"),
+                headers, stream);
+        request.setStreaming(true);
+        client.execute(request);
+
+        assertEquals(1,client.getLogList().size());
+        assertEquals(
+                "Failed to create curl, content too long", client.getLogList().get(0));
     }
 
     @Test
     public void testApplyHeaders() throws ProtocolException, MalformedURLException,
             URISyntaxException {
 
-        Map<String, String> headers = new HashMap<String, String>();
+        final Map<String, String> headers = new HashMap<String, String>();
         headers.put("testKey", "testValue");
         headers.put(HttpHeader.CONTENT_LENGTH, "I should not be added");
         headers.put(HttpHeader.HOST, "I should not be added");
 
-        HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"), headers,
+        final HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"), headers,
                 null);
 
-        HttpsURLConnection conn = (HttpsURLConnection) client.applyHeadersAndMethod(request,
+        final HttpsURLConnection conn = (HttpsURLConnection) client.applyHeadersAndMethod(request,
                 new MockHttpURLConnection(new URL("https://www.test.com")));
         assertEquals(conn.getRequestProperty("testKey"), "testValue");
         assertNull(conn.getRequestProperty(HttpHeader.CONTENT_LENGTH));
@@ -80,9 +163,13 @@ public class UrlHttpClientTest {
     }
 
     @Test
-    public void testConfigureConnection() throws MalformedURLException {
-        HttpsURLConnection conn = new MockHttpURLConnection(new URL("https://www.test.com"));
-        client.configureConnection(conn);
+    public void testConfigureConnection() throws MalformedURLException, URISyntaxException {
+        final Map<String, String> headers = new HashMap<String, String>();
+        final HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"),
+                headers,
+                null);
+        final HttpsURLConnection conn = new MockHttpURLConnection(new URL("https://www.test.com"));
+        client.configureConnection(request, conn);
 
         assertEquals(conn.getConnectTimeout(), conf.getConnectionTimeout());
         assertEquals(conn.getReadTimeout(), conf.getSocketTimeout());
@@ -93,10 +180,15 @@ public class UrlHttpClientTest {
 
     //commenting as we donot support this. See https://support.google.com/faqs/answer/6346016
     //@Test
-    public void testConfigureConnectionWithCertCheckingDisabled() throws MalformedURLException {
-        HttpsURLConnection conn = new MockHttpURLConnection(new URL("https://www.test.com"));
+    public void testConfigureConnectionWithCertCheckingDisabled()
+            throws MalformedURLException, URISyntaxException {
+        final Map<String, String> headers = new HashMap<String, String>();
+        final HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"),
+                headers,
+                null);
+        final HttpsURLConnection conn = new MockHttpURLConnection(new URL("https://www.test.com"));
         System.setProperty(SDKGlobalConfiguration.DISABLE_CERT_CHECKING_SYSTEM_PROPERTY, "true");
-        client.configureConnection(conn);
+        client.configureConnection(request, conn);
 
         assertEquals(conn.getConnectTimeout(), conf.getConnectionTimeout());
         assertEquals(conn.getReadTimeout(), conf.getSocketTimeout());
@@ -110,30 +202,30 @@ public class UrlHttpClientTest {
 
     @Test
     public void testCreateResponse() throws URISyntaxException, IOException {
-        HttpRequest request = new HttpRequest("PUT", new URI("https://www.test.com"));
-        MockHttpURLConnection conn = new MockHttpURLConnection(new URL("https://www.test.com"));
+        final HttpRequest request = new HttpRequest("PUT", new URI("https://www.test.com"));
+        final MockHttpURLConnection conn = new MockHttpURLConnection(new URL("https://www.test.com"));
 
-        Map<String, List<String>> headerFields = new HashMap<String, List<String>>();
-        List<String> header1 = new ArrayList<String>();
+        final Map<String, List<String>> headerFields = new HashMap<String, List<String>>();
+        final List<String> header1 = new ArrayList<String>();
         header1.add("value1");
         header1.add("ExtraValue");
         headerFields.put("key1", header1);
 
-        List<String> header2 = new ArrayList<String>();
+        final List<String> header2 = new ArrayList<String>();
         header2.add("value2");
         headerFields.put("key2", header2);
 
-        List<String> nullHeader = new ArrayList<String>();
+        final List<String> nullHeader = new ArrayList<String>();
         headerFields.put(null, nullHeader);
 
         conn.setHeaderFields(headerFields);
         conn.setResponseCode(200);
         conn.setErrorStream(null);
-        ByteArrayInputStream bais = new ByteArrayInputStream("test".getBytes(StringUtils.UTF8));
+        final ByteArrayInputStream bais = new ByteArrayInputStream("test".getBytes(StringUtils.UTF8));
         conn.setInputStream(bais);
         conn.setResponseMessage("TestMessage");
 
-        HttpResponse response = client.createHttpResponse(request, conn);
+        final HttpResponse response = client.createHttpResponse(request, conn);
         assertEquals(response.getHeaders().get("key1"), "value1");
         assertEquals(response.getHeaders().get("key2"), "value2");
         assertEquals(response.getHeaders().size(), 2);
@@ -144,21 +236,21 @@ public class UrlHttpClientTest {
 
     @Test
     public void testWriteContentToConnection() throws URISyntaxException, IOException {
-        ByteArrayInputStream bais = new ByteArrayInputStream("Content".getBytes(StringUtils.UTF8));
-        Map<String, String> headers = new HashMap<String, String>();
+        final ByteArrayInputStream bais = new ByteArrayInputStream("Content".getBytes(StringUtils.UTF8));
+        final Map<String, String> headers = new HashMap<String, String>();
         headers.put(HttpHeader.CONTENT_LENGTH,
                 String.valueOf("Content".getBytes(StringUtils.UTF8).length));
-        HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"), headers,
+        final HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"), headers,
                 bais);
 
-        MockHttpURLConnection connection = new MockHttpURLConnection(
+        final MockHttpURLConnection connection = new MockHttpURLConnection(
                 new URL("https://www.test.com"));
 
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
         connection.setOutputStream(baos);
 
         client.writeContentToConnection(request, connection);
-        ByteArrayOutputStream connOs = (ByteArrayOutputStream) connection.getOutputStream();
+        final ByteArrayOutputStream connOs = (ByteArrayOutputStream) connection.getOutputStream();
         assertEquals(new String(connOs.toByteArray(), StringUtils.UTF8), "Content");
     }
 }
@@ -259,4 +351,29 @@ class MockHttpURLConnection extends HttpsURLConnection {
         return null;
     }
 
+}
+
+class MockUrlHttpClient extends UrlHttpClient {
+
+    private final ArrayList<String> mLogList = new ArrayList<String>();
+
+    public MockUrlHttpClient(ClientConfiguration config) {
+        super(config);
+    }
+
+    public ArrayList<String> getLogList() {
+        return mLogList;
+    }
+
+    @Override
+    protected void printToLog(String message) {
+        mLogList.add(message);
+    }
+
+    @Override
+    protected HttpURLConnection getUrlConnection(URL url) throws IOException {
+        final MockHttpURLConnection connection = new MockHttpURLConnection(url);
+        connection.setOutputStream(new ByteArrayOutputStream());
+        return connection;
+    }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -64,6 +64,11 @@ class SendMessageBatchResultEntryStaxUnmarshaller implements
                 }
                 if (context.testExpression("MD5OfMessageAttributes", targetDepth)) {
                     sendMessageBatchResultEntry.setMD5OfMessageAttributes(StringStaxUnmarshaller
+                            .getInstance().unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("SequenceNumber", targetDepth)) {
+                    sendMessageBatchResultEntry.setSequenceNumber(StringStaxUnmarshaller
                             .getInstance().unmarshall(context));
                     continue;
                 }

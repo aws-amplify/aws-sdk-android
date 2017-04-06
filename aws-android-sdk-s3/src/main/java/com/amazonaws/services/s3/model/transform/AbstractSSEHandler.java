@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,40 +30,27 @@ abstract class AbstractSSEHandler extends AbstractHandler implements ServerSideE
 
     @Override
     public final String getSSEAlgorithm() {
-        ServerSideEncryptionResult result = sseResult();
+        final ServerSideEncryptionResult result = sseResult();
         return result == null ? null : result.getSSEAlgorithm();
     }
 
     @Override
     public final void setSSEAlgorithm(String serverSideEncryption) {
-        ServerSideEncryptionResult result = sseResult();
-        if (result != null)
+        final ServerSideEncryptionResult result = sseResult();
+        if (result != null) {
             result.setSSEAlgorithm(serverSideEncryption);
-    }
-
-    @Override
-    public void setSSEKMSKeyId(String kmsKeyId) {
-        ServerSideEncryptionResult result = sseResult();
-        if (result != null)
-            result.setSSEKMSKeyId(kmsKeyId);
-
-    }
-
-    @Override
-    public String getSSEKMSKeyId() {
-        ServerSideEncryptionResult result = sseResult();
-        return result == null ? null : result.getSSEKMSKeyId();
+        }
     }
 
     @Override
     public final String getSSECustomerAlgorithm() {
-        ServerSideEncryptionResult result = sseResult();
+        final ServerSideEncryptionResult result = sseResult();
         return result == null ? null : result.getSSECustomerAlgorithm();
     }
 
     @Override
     public final void setSSECustomerAlgorithm(String algorithm) {
-        ServerSideEncryptionResult result = sseResult();
+        final ServerSideEncryptionResult result = sseResult();
         if (result != null) {
             result.setSSECustomerAlgorithm(algorithm);
         }
@@ -71,13 +58,13 @@ abstract class AbstractSSEHandler extends AbstractHandler implements ServerSideE
 
     @Override
     public final String getSSECustomerKeyMd5() {
-        ServerSideEncryptionResult result = sseResult();
+        final ServerSideEncryptionResult result = sseResult();
         return result == null ? null : result.getSSECustomerKeyMd5();
     }
 
     @Override
     public final void setSSECustomerKeyMd5(String md5Digest) {
-        ServerSideEncryptionResult result = sseResult();
+        final ServerSideEncryptionResult result = sseResult();
         if (result != null) {
             result.setSSECustomerKeyMd5(md5Digest);
         }

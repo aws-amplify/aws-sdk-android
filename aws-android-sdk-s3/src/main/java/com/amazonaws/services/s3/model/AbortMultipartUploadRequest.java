@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,6 +18,8 @@ package com.amazonaws.services.s3.model;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.services.s3.AmazonS3;
 
+import java.io.Serializable;
+
 /**
  * The AbortMultipartUploadRequest contains the parameters used for the
  * AbortMultipartUpload method.
@@ -26,7 +28,7 @@ import com.amazonaws.services.s3.AmazonS3;
  *
  * @see AmazonS3#abortMultipartUpload(AbortMultipartUploadRequest)
  */
-public class AbortMultipartUploadRequest extends AmazonWebServiceRequest {
+public class AbortMultipartUploadRequest extends AmazonWebServiceRequest implements Serializable {
 
     /** The name of the bucket containing the multipart upload to abort */
     private String bucketName;
@@ -36,6 +38,12 @@ public class AbortMultipartUploadRequest extends AmazonWebServiceRequest {
 
     /** The ID of the multipart upload to abort */
     private String uploadId;
+
+    /**
+     * If enabled, the requester is charged for conducting this operation from
+     * Requester Pays Buckets.
+     */
+    private boolean isRequesterPays;
 
     /**
      * Constructs a new request to abort a multipart upload.
@@ -138,6 +146,71 @@ public class AbortMultipartUploadRequest extends AmazonWebServiceRequest {
      */
     public AbortMultipartUploadRequest withUploadId(String uploadId) {
         this.uploadId = uploadId;
+        return this;
+    }
+
+    /**
+     * Returns true if the user has enabled Requester Pays option when
+     * conducting this operation from Requester Pays Bucket; else false.
+     *
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket
+     *
+     * @return true if the user has enabled Requester Pays option for
+     *         conducting this operation from Requester Pays Bucket.
+     */
+    public boolean isRequesterPays() {
+        return isRequesterPays;
+    }
+
+    /**
+     * Used for conducting this operation from a Requester Pays Bucket. If
+     * set the requester is charged for requests from the bucket.
+     *
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket.
+     *
+     * @param isRequesterPays
+     *            Enable Requester Pays option for the operation.
+     */
+    public void setRequesterPays(boolean isRequesterPays) {
+        this.isRequesterPays = isRequesterPays;
+    }
+
+    /**
+     * Used for conducting this operation from a Requester Pays Bucket. If
+     * set the requester is charged for requests from the bucket. It returns this
+     * updated AbortMultipartUploadRequest object so that additional method calls can be
+     * chained together.
+     *
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket.
+     *
+     * @param isRequesterPays
+     *            Enable Requester Pays option for the operation.
+     *
+     * @return The updated AbortMultipartUploadRequest object.
+     */
+    public AbortMultipartUploadRequest withRequesterPays(boolean isRequesterPays) {
+        setRequesterPays(isRequesterPays);
         return this;
     }
 

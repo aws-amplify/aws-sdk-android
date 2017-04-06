@@ -22,6 +22,7 @@ import android.os.Handler;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoServiceConstants;
 import com.amazonaws.services.cognitoidentityprovider.model.RespondToAuthChallengeRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.RespondToAuthChallengeResult;
 
@@ -41,21 +42,27 @@ public class ChallengeContinuation implements CognitoIdentityProviderContinuatio
     private final RespondToAuthChallengeResult challengeResult;
     private final Context context;
     private final String clientId;
+    private final String secretHash;
     private final CognitoUser user;
+    private final String username;
     private final AuthenticationHandler callback;
-    private Map<String, String> challengeResponses;
+    protected Map<String, String> challengeResponses;
     private boolean runInBackground;
 
     public ChallengeContinuation(CognitoUser user,
                                  Context context,
+                                 String username,
                                  String clientId,
+                                 String secretHash,
                                  RespondToAuthChallengeResult challengeResult,
                                  boolean runInBackground,
                                  AuthenticationHandler callback) {
         this.challengeResult = challengeResult;
         this.context = context;
         this.clientId = clientId;
+        this.secretHash = secretHash;
         this.user = user;
+        this.username = username;
         this.callback = callback;
         this.runInBackground = runInBackground;
         challengeResponses = new HashMap<String, String>();
@@ -72,6 +79,16 @@ public class ChallengeContinuation implements CognitoIdentityProviderContinuatio
      */
     public Map<String, String> getParameters() {
         return challengeResult.getChallengeParameters();
+    }
+
+    /**
+     * Returns the name of the challenge. Use the challenge name and the challenge parameters to
+     * identity the challenge and correctly present to the user.
+     *
+     * @return the challenge name as a {@link String}.
+     */
+    public String getChallengeName() {
+        return challengeResult.getChallengeName();
     }
 
     /**
@@ -97,9 +114,12 @@ public class ChallengeContinuation implements CognitoIdentityProviderContinuatio
      */
     public void continueTask() {
         final RespondToAuthChallengeRequest respondToAuthChallengeRequest = new RespondToAuthChallengeRequest();
+        challengeResponses.put(CognitoServiceConstants.CHLG_RESP_USERNAME, username);
+        challengeResponses.put(CognitoServiceConstants.CHLG_RESP_SECRET_HASH, secretHash);
         respondToAuthChallengeRequest.setChallengeName(challengeResult.getChallengeName());
         respondToAuthChallengeRequest.setSession(challengeResult.getSession());
-        respondToAuthChallengeRequest.setClientId(null);
+        respondToAuthChallengeRequest.setClientId(clientId);
+        respondToAuthChallengeRequest.setChallengeResponses(challengeResponses);
         if (runInBackground) {
             new Thread(new Runnable() {
                 @Override

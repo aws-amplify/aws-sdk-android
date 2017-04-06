@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,15 +21,18 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Invokes a specific Lambda function.
+ * Invokes a specific Lambda function. For an example, see <a href=
+ * "http://docs.aws.amazon.com/lambda/latest/dg/with-dynamodb-create-function.html#with-dbb-invoke-manually"
+ * >Create the Lambda Function and Test It Manually</a>.
  * </p>
  * <p>
  * If you are using the versioning feature, you can invoke the specific function
  * version by providing function version or alias name that is pointing to the
  * function version using the <code>Qualifier</code> parameter in the request.
  * If you don't provide the <code>Qualifier</code> parameter, the
- * <code>$LATEST</code> version of the Lambda function is invoked. For
- * information about the versioning feature, see <a
+ * <code>$LATEST</code> version of the Lambda function is invoked. Invocations
+ * occur at least once in response to an event and functions must be idempotent
+ * to handle this. For information about the versioning feature, see <a
  * href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html"
  * >AWS Lambda Function Versioning and Aliases</a>.
  * </p>
@@ -85,7 +88,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * only if you specify the <code>InvocationType</code> parameter with value
      * <code>RequestResponse</code>. In this case, AWS Lambda returns the
      * base64-encoded last 4 KB of log data produced by your Lambda function in
-     * the <code>x-amz-log-results</code> header.
+     * the <code>x-amz-log-result</code> header.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -450,7 +453,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * only if you specify the <code>InvocationType</code> parameter with value
      * <code>RequestResponse</code>. In this case, AWS Lambda returns the
      * base64-encoded last 4 KB of log data produced by your Lambda function in
-     * the <code>x-amz-log-results</code> header.
+     * the <code>x-amz-log-result</code> header.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -462,7 +465,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *         parameter with value <code>RequestResponse</code>. In this case,
      *         AWS Lambda returns the base64-encoded last 4 KB of log data
      *         produced by your Lambda function in the
-     *         <code>x-amz-log-results</code> header.
+     *         <code>x-amz-log-result</code> header.
      *         </p>
      * @see LogType
      */
@@ -476,7 +479,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * only if you specify the <code>InvocationType</code> parameter with value
      * <code>RequestResponse</code>. In this case, AWS Lambda returns the
      * base64-encoded last 4 KB of log data produced by your Lambda function in
-     * the <code>x-amz-log-results</code> header.
+     * the <code>x-amz-log-result</code> header.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -488,7 +491,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <code>InvocationType</code> parameter with value
      *            <code>RequestResponse</code>. In this case, AWS Lambda returns
      *            the base64-encoded last 4 KB of log data produced by your
-     *            Lambda function in the <code>x-amz-log-results</code> header.
+     *            Lambda function in the <code>x-amz-log-result</code> header.
      *            </p>
      * @see LogType
      */
@@ -502,7 +505,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * only if you specify the <code>InvocationType</code> parameter with value
      * <code>RequestResponse</code>. In this case, AWS Lambda returns the
      * base64-encoded last 4 KB of log data produced by your Lambda function in
-     * the <code>x-amz-log-results</code> header.
+     * the <code>x-amz-log-result</code> header.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -517,7 +520,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <code>InvocationType</code> parameter with value
      *            <code>RequestResponse</code>. In this case, AWS Lambda returns
      *            the base64-encoded last 4 KB of log data produced by your
-     *            Lambda function in the <code>x-amz-log-results</code> header.
+     *            Lambda function in the <code>x-amz-log-result</code> header.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -534,7 +537,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * only if you specify the <code>InvocationType</code> parameter with value
      * <code>RequestResponse</code>. In this case, AWS Lambda returns the
      * base64-encoded last 4 KB of log data produced by your Lambda function in
-     * the <code>x-amz-log-results</code> header.
+     * the <code>x-amz-log-result</code> header.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -546,7 +549,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <code>InvocationType</code> parameter with value
      *            <code>RequestResponse</code>. In this case, AWS Lambda returns
      *            the base64-encoded last 4 KB of log data produced by your
-     *            Lambda function in the <code>x-amz-log-results</code> header.
+     *            Lambda function in the <code>x-amz-log-result</code> header.
      *            </p>
      * @see LogType
      */
@@ -560,7 +563,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * only if you specify the <code>InvocationType</code> parameter with value
      * <code>RequestResponse</code>. In this case, AWS Lambda returns the
      * base64-encoded last 4 KB of log data produced by your Lambda function in
-     * the <code>x-amz-log-results</code> header.
+     * the <code>x-amz-log-result</code> header.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -575,7 +578,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <code>InvocationType</code> parameter with value
      *            <code>RequestResponse</code>. In this case, AWS Lambda returns
      *            the base64-encoded last 4 KB of log data produced by your
-     *            Lambda function in the <code>x-amz-log-results</code> header.
+     *            Lambda function in the <code>x-amz-log-result</code> header.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

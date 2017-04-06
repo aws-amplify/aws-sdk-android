@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -60,10 +60,10 @@ public class SendMessageRequestMarshaller implements
             java.util.Map<String, MessageAttributeValue> messageAttributes = sendMessageRequest
                     .getMessageAttributes();
             int messageAttributesIndex = 1;
-            String messageAttributesPrefix = prefix;
+            String messageAttributesPrefix = prefix + ".";
             for (java.util.Map.Entry<String, MessageAttributeValue> messageAttributesEntry : messageAttributes
                     .entrySet()) {
-                prefix = messageAttributesPrefix + ".entry." + messageAttributesIndex;
+                prefix = messageAttributesPrefix + messageAttributesIndex;
                 if (messageAttributesEntry.getKey() != null) {
                     request.addParameter(prefix + ".Name",
                             StringUtils.fromString(messageAttributesEntry.getKey()));
@@ -78,6 +78,16 @@ public class SendMessageRequestMarshaller implements
                 messageAttributesIndex++;
             }
             prefix = messageAttributesPrefix;
+        }
+        if (sendMessageRequest.getMessageDeduplicationId() != null) {
+            prefix = "MessageDeduplicationId";
+            String messageDeduplicationId = sendMessageRequest.getMessageDeduplicationId();
+            request.addParameter(prefix, StringUtils.fromString(messageDeduplicationId));
+        }
+        if (sendMessageRequest.getMessageGroupId() != null) {
+            prefix = "MessageGroupId";
+            String messageGroupId = sendMessageRequest.getMessageGroupId();
+            request.addParameter(prefix, StringUtils.fromString(messageGroupId));
         }
 
         return request;

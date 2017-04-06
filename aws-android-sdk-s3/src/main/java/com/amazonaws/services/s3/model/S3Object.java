@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,10 +19,12 @@
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.internal.S3RequesterChargedResult;
 
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 
 /**
  * Represents an object stored in Amazon S3. This object contains the data
@@ -31,7 +33,7 @@ import java.io.InputStream;
  *
  * @see ObjectMetadata
  */
-public class S3Object implements Closeable {
+public class S3Object implements Closeable, Serializable, S3RequesterChargedResult {
     /** The key under which this object is stored */
     private String key = null;
 
@@ -42,10 +44,12 @@ public class S3Object implements Closeable {
     private ObjectMetadata metadata = new ObjectMetadata();
 
     /** The stream containing the contents of this object from S3 */
-    private S3ObjectInputStream objectContent;
+    private transient S3ObjectInputStream objectContent;
 
     /** The redirect location for this object */
     private String redirectLocation;
+
+    private Integer taggingCount;
 
     /**
      * Indicates if the requester is charged for downloading the data from
@@ -82,11 +86,18 @@ public class S3Object implements Closeable {
     }
 
     /**
-     * Gets an input stream containing the contents of this object. Callers
-     * should close this input stream as soon as possible, because the object
-     * contents aren't buffered in memory and stream directly from Amazon S3.
+     * Gets the input stream containing the contents of this object.
+     *
+     * <p>
+     * <b>Note</b>: The method is a simple getter and does not actually create a
+     * stream. If you retrieve an S3Object, you should close this input stream
+     * as soon as possible, because the object contents aren't buffered in
+     * memory and stream directly from Amazon S3. Further, failure to close this
+     * stream can cause the request pool to become blocked.
+     * </p>
      *
      * @return An input stream containing the contents of this object.
+     *
      * @see S3Object#getObjectMetadata()
      * @see S3Object#setObjectContent(InputStream)
      */
@@ -97,7 +108,9 @@ public class S3Object implements Closeable {
     /**
      * Sets the input stream containing this object's contents.
      *
-     * @param objectContent The input stream containing this object's contents.
+     * @param objectContent
+     *            The input stream containing this object's contents.
+     *
      * @see S3Object#getObjectContent()
      */
     public void setObjectContent(S3ObjectInputStream objectContent) {
@@ -107,8 +120,9 @@ public class S3Object implements Closeable {
     /**
      * Sets the input stream containing this object's contents.
      *
-     * @param objectContent The input stream containing this object's contents.
-     *            Will get wrapped in an S3ObjectInputStream.
+     * @param objectContent
+     *            The input stream containing this object's contents. Will get
+     *            wrapped in an S3ObjectInputStream.
      * @see S3Object#getObjectContent()
      */
     public void setObjectContent(InputStream objectContent) {
@@ -120,6 +134,7 @@ public class S3Object implements Closeable {
      * Gets the name of the bucket in which this object is contained.
      *
      * @return The name of the bucket in which this object is contained.
+     *
      * @see S3Object#setBucketName(String)
      */
     public String getBucketName() {
@@ -129,7 +144,9 @@ public class S3Object implements Closeable {
     /**
      * Sets the name of the bucket in which this object is contained.
      *
-     * @param bucketName The name of the bucket containing this object.
+     * @param bucketName
+     *            The name of the bucket containing this object.
+     *
      * @see S3Object#getBucketName()
      */
     public void setBucketName(String bucketName) {
@@ -140,6 +157,7 @@ public class S3Object implements Closeable {
      * Gets the key under which this object is stored.
      *
      * @return The key under which this object is stored.
+     *
      * @see S3Object#setKey(String)
      */
     public String getKey() {
@@ -149,7 +167,9 @@ public class S3Object implements Closeable {
     /**
      * Sets the key under which this object is stored.
      *
-     * @param key The key under which this object is stored.
+     * @param key
+     *            The key under which this object is stored.
+     *
      * @see S3Object#getKey()
      */
     public void setKey(String key) {
@@ -158,6 +178,7 @@ public class S3Object implements Closeable {
 
     /**
      * Gets the redirect location for this object.
+     *
      */
     public String getRedirectLocation() {
         return this.redirectLocation;
@@ -166,16 +187,24 @@ public class S3Object implements Closeable {
     /**
      * Sets the redirect location for this object.
      *
-     * @param redirectLocation the redirect location for that object.
+     * @param redirectLocation
+     *            the redirect location for that object.
      */
     public void setRedirectLocation(String redirectLocation) {
         this.redirectLocation = redirectLocation;
     }
 
+    public Integer getTaggingCount() {
+        return taggingCount;
+    }
+
+    public void setTaggingCount(Integer taggingCount) {
+        this.taggingCount = taggingCount;
+    }
+
     /**
      * @see java.lang.Object#toString()
      */
-    @Override
     public String toString() {
         return "S3Object [key=" + getKey()
                 + ",bucket=" + (bucketName == null ? "<Unknown>" : bucketName)
@@ -195,32 +224,12 @@ public class S3Object implements Closeable {
         }
     }
 
-    /**
-     * Returns true if the user is charged for downloading the object from an
-     * Requester Pays Bucket; else false.
-     * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to read an
-     * object from it without Requester Pays enabled will result in a 403 error
-     * and the bucket owner will be charged for the request.
-     *
-     * @return true if the user has been charged for the download operation from
-     *         Requester Pays Bucket.
-     */
+    @Override
     public boolean isRequesterCharged() {
         return isRequesterCharged;
     }
 
-    /**
-     * Used for downloading an Amazon S3 Object from a Requester Pays Bucket. If
-     * set the requester is charged for downloading the data from the bucket.
-     * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to read an
-     * object from it without Requester Pays enabled will result in a 403 error
-     * and the bucket owner will be charged for the request.
-     *
-     * @param isRequesterCharged Indicates requester is charged for this
-     *            operation.
-     */
+    @Override
     public void setRequesterCharged(boolean isRequesterCharged) {
         this.isRequesterCharged = isRequesterCharged;
     }

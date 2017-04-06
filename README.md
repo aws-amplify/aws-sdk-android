@@ -1,4 +1,9 @@
-# AWS SDK for Android [![Build Status](https://travis-ci.org/aws/aws-sdk-android.png?branch=master)](https://travis-ci.org/aws/aws-sdk-android)
+# AWS SDK for Android 
+
+[![Build Status](https://travis-ci.org/aws/aws-sdk-android.png?branch=master)](https://travis-ci.org/aws/aws-sdk-android)
+[![GitHub release](https://img.shields.io/github/release/aws/aws-sdk-android.svg)]()
+[![Maven Central](https://img.shields.io/maven-central/v/com.amazonaws/aws-android-sdk-pom.svg)]()
+[![Twitter Follow](https://img.shields.io/twitter/follow/awsformobile.svg?style=social&label=Follow)]()
 
 The [AWS SDK for Android](http://aws.amazon.com/sdkforandroid) provides a library and documentation for developers to build connected mobile applications using AWS.
 
@@ -24,24 +29,27 @@ This section explains how to understand and work with the various components of 
 
 The AWS SDK for Android supports the following AWS services:
 
-* [Amazon CloudWatch](http://aws.amazon.com/cloudwatch/)
-* [Amazon Cognito](http://aws.amazon.com/cognito/)
-* [Amazon DynamoDB](http://aws.amazon.com/dynamodb/)
-* [Amazon Elastic Compute Cloud (EC2)](http://aws.amazon.com/ec2/)
-* [Amazon Kinesis Firehose](http://aws.amazon.com/kinesis/firehose/)
-* [Amazon Kinesis Streams](http://aws.amazon.com/kinesis/streams/)
-* [Amazon Machine Learning](http://aws.amazon.com/machine-learning/)
-* [Amazon Mobile Analytics](http://aws.amazon.com/mobileanalytics/)
-* [Amazon S3](http://aws.amazon.com/s3/)
-* [Amazon Security Token Service (STS)](http://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html)
-* [Amazon Simple Email Service (SES)](http://aws.amazon.com/ses/)
-* [Amazon Simple Notification Service (SNS)](http://aws.amazon.com/sns/)
-* [Amazon Simple Queue Service (SQS)](http://aws.amazon.com/sqs/)
-* [Amazon SimpleDB](http://aws.amazon.com/simpledb/)
+* [Amazon CloudWatch](https://aws.amazon.com/cloudwatch/)
+* [Amazon Cognito](https://aws.amazon.com/cognito/)
+* [Amazon DynamoDB](https://aws.amazon.com/dynamodb/)
+* [Amazon Elastic Compute Cloud (EC2)](https://aws.amazon.com/ec2/)
+* [Amazon Kinesis Firehose](https://aws.amazon.com/kinesis/firehose/)
+* [Amazon Kinesis Streams](https://aws.amazon.com/kinesis/streams/)
+* [Amazon Lex](https://aws.amazon.com/lex)
+* [Amazon Machine Learning](https://aws.amazon.com/machine-learning/)
+* [Amazon Mobile Analytics](https://aws.amazon.com/mobileanalytics/)
+* [Amazon Polly](https://aws.amazon.com/polly/)
+* [Amazon Pinpoint](https://aws.amazon.com/pinpoint/)
+* [Amazon S3](https://aws.amazon.com/s3/)
+* [Amazon Security Token Service (STS)](https://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html)
+* [Amazon Simple Email Service (SES)](https://aws.amazon.com/ses/)
+* [Amazon Simple Notification Service (SNS)](https://aws.amazon.com/sns/)
+* [Amazon Simple Queue Service (SQS)](https://aws.amazon.com/sqs/)
+* [Amazon SimpleDB](https://aws.amazon.com/simpledb/)
 * [Auto Scaling](https://aws.amazon.com/autoscaling/)
 * [AWS Key Management Service (KMS)](https://aws.amazon.com/kms/)
-* [AWS Lambda](http://aws.amazon.com/lambda/)
-* [Elastic Load Balancing](http://aws.amazon.com/elasticloadbalancing/)
+* [AWS Lambda](https://aws.amazon.com/lambda/)
+* [Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/)
 
 
 
@@ -199,14 +207,15 @@ Note: Cognito Identity authentication abilities are included in the aws-android-
 * cloudwatch (Amazon CloudWatch),
 * autoscaling (Auto Scaling),
 * ec2 (Amazon EC2),
-* sdb (Amazon Simple DB)
+* sdb (Amazon Simple DB),
+* polly (Amazon Polly)
 
 #### Using Maven 
 
 The AWS Mobile SDK for Android (since version 2.1.3) supports Apache Maven. A Maven project contains a pom.xml file where you can specify the Amazon Web Services that you want to use in your app. Maven then includes the services in your project, so that you don't have to download the entire AWS Mobile SDK and manually include JAR files. If you're new to Maven and you'd like to learn more about it, see the [Maven documentation](http://maven.apache.org/what-is-maven.html).
 
 
-Here's an example pom.xm showing how you can add Amazon Cognito Identity, Amazon S3, and Amazon Mobile Analytics to your project:
+Here's an example pom.xm showing how you can add Amazon Cognito Identity, Amazon S3, and Amazon Pinpoint to your project:
 
 
 ```
@@ -223,7 +232,7 @@ Here's an example pom.xm showing how you can add Amazon Cognito Identity, Amazon
     </dependency>
     <dependency>
         <groupid>com.amazonaws</groupid>
-        <artifactid>aws-android-sdk-mobileanalytics</artifactid>
+        <artifactid>aws-android-sdk-pinpoint</artifactid>
         <version>[2.2,3.0)</version>
     </dependency>
 </dependencies>

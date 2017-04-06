@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@ public class HttpRequest {
     private URI uri;
     private final Map<String, String> headers;
     private final InputStream content;
+    private boolean isStreaming;
 
     /**
      * Constructs a HttpRequest with given method and uri. It uses no header and
@@ -118,10 +119,18 @@ public class HttpRequest {
         if (headers == null) {
             return 0;
         }
-        String len = headers.get(HttpHeader.CONTENT_LENGTH);
+        final String len = headers.get(HttpHeader.CONTENT_LENGTH);
         if (len == null || len.isEmpty()) {
             return 0;
         }
         return Long.valueOf(len);
+    }
+
+    public boolean isStreaming() {
+        return isStreaming;
+    }
+
+    public void setStreaming(boolean isStreaming) {
+        this.isStreaming = isStreaming;
     }
 }

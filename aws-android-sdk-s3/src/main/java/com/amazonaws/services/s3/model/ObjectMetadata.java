@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,23 +15,29 @@
 
 package com.amazonaws.services.s3.model;
 
+import static com.amazonaws.util.DateUtils.cloneDate;
+
+import com.amazonaws.AmazonClientException;
 import com.amazonaws.services.s3.Headers;
+import com.amazonaws.services.s3.internal.Constants;
 import com.amazonaws.services.s3.internal.ObjectExpirationResult;
 import com.amazonaws.services.s3.internal.ObjectRestoreResult;
+import com.amazonaws.services.s3.internal.S3RequesterChargedResult;
 import com.amazonaws.services.s3.internal.ServerSideEncryptionResult;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Represents the object metadata that is stored with Amazon S3. This includes
  * custom user-supplied metadata, as well as the standard HTTP headers that
  * Amazon S3 sends and receives (Content-Length, ETag, Content-MD5, etc.).
  */
-public class ObjectMetadata implements ServerSideEncryptionResult,
-        ObjectExpirationResult, ObjectRestoreResult, Cloneable
+public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterChargedResult,
+        ObjectExpirationResult, ObjectRestoreResult, Cloneable, Serializable
 {
     /*
      * TODO: Might be nice to get as many of the internal use only methods out
@@ -44,17 +50,18 @@ public class ObjectMetadata implements ServerSideEncryptionResult,
      * Custom user metadata, represented in responses with the x-amz-meta-
      * header prefix
      */
-    private Map<String, String> userMetadata;
+    private Map<String, String> userMetadata = new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
 
     /**
      * All other (non user custom) headers such as Content-Length, Content-Type,
      * etc.
      */
-    private Map<String, Object> metadata;
+    private Map<String, Object> metadata = new TreeMap<String, Object>(String.CASE_INSENSITIVE_ORDER);
 
-    public static final String AES_256_SERVER_SIDE_ENCRYPTION = "AES256";
+    public static final String AES_256_SERVER_SIDE_ENCRYPTION =
+            SSEAlgorithm.AES256.getAlgorithm();
 
-    public static final String KMS_SERVER_SIDE_ENCRYPTION = "aws:kms";
+    public static final String KMS_SERVER_SIDE_ENCRYPTION = SSEAlgorithm.KMS.getAlgorithm();
 
     /**
      * The date when the object is no longer cacheable.
@@ -87,6 +94,22 @@ public class ObjectMetadata implements ServerSideEncryptionResult,
      * accessed. Null if this object has not been restored from Glacier.
      */
     private Date restoreExpirationTime;
+    public ObjectMetadata() {}
+
+    private ObjectMetadata(ObjectMetadata from) {
+        this.userMetadata = from.userMetadata == null
+            ? null
+            : new TreeMap<String,String>(from.userMetadata);
+        // shallow clone the metadata data
+        this.metadata = from.metadata == null
+            ? null
+            : new TreeMap<String, Object>(from.metadata);
+        this.expirationTime = cloneDate(from.expirationTime);
+        this.expirationTimeRuleId = from.expirationTimeRuleId;
+        this.httpExpiresDate = cloneDate(from.httpExpiresDate);
+        this.ongoingRestore = from.ongoingRestore;
+        this.restoreExpirationTime = cloneDate(from.restoreExpirationTime);
+    }
 
     /**
      * <p>
@@ -113,6 +136,7 @@ public class ObjectMetadata implements ServerSideEncryptionResult,
      * </p>
      *
      * @return The custom user metadata for the associated object.
+     *
      * @see ObjectMetadata#setUserMetadata(Map)
      * @see ObjectMetadata#addUserMetadata(String, String)
      */
@@ -203,7 +227,9 @@ public class ObjectMetadata implements ServerSideEncryptionResult,
      * @return A map of the raw metadata/headers for the associated object.
      */
     public Map<String, Object> getRawMetadata() {
-        return Collections.unmodifiableMap(new HashMap<String, Object>(metadata));
+        final Map<String,Object> copy = new TreeMap<String,Object>(String.CASE_INSENSITIVE_ORDER);
+        copy.putAll(metadata);
+        return Collections.unmodifiableMap(copy);
     }
 
     /**
@@ -223,7 +249,7 @@ public class ObjectMetadata implements ServerSideEncryptionResult,
      *         Last-Modified header hasn't been set.
      */
     public Date getLastModified() {
-        return (Date) metadata.get(Headers.LAST_MODIFIED);
+        return cloneDate((Date) metadata.get(Headers.LAST_MODIFIED));
     }
 
     /**
@@ -262,10 +288,11 @@ public class ObjectMetadata implements ServerSideEncryptionResult,
      * @see ObjectMetadata#setContentLength(long)
      */
     public long getContentLength() {
-        Long contentLength = (Long) metadata.get(Headers.CONTENT_LENGTH);
+        final Long contentLength = (Long) metadata.get(Headers.CONTENT_LENGTH);
 
-        if (contentLength == null)
+        if (contentLength == null) {
             return 0;
+        }
         return contentLength.longValue();
     }
 
@@ -276,11 +303,12 @@ public class ObjectMetadata implements ServerSideEncryptionResult,
     public long getInstanceLength() {
         // See Content-Range in
         // http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html
-        String contentRange = (String) metadata.get(Headers.CONTENT_RANGE);
+        final String contentRange = (String) metadata.get(Headers.CONTENT_RANGE);
         if (contentRange != null) {
-            int pos = contentRange.lastIndexOf("/");
-            if (pos >= 0)
+            final int pos = contentRange.lastIndexOf("/");
+            if (pos >= 0) {
                 return Long.parseLong(contentRange.substring(pos + 1));
+            }
         }
         return getContentLength();
     }
@@ -366,6 +394,48 @@ public class ObjectMetadata implements ServerSideEncryptionResult,
      */
     public void setContentType(String contentType) {
         metadata.put(Headers.CONTENT_TYPE, contentType);
+    }
+
+    /**
+     * <p>
+     * Gets the Content-Language HTTP header, which describes the natural language(s) of the
+     * intended audience for the enclosed entity.
+     * </p>
+     * <p>
+     * For more information on the Content-Type header, see <a
+     * href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">
+     * http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17</a>
+     * </p>
+     *
+     * @return The HTTP Content-Language header, which describes the natural language(s) of the
+     * intended audience for the enclosed entity. Returns <code>null</code>
+     *         if it hasn't been set.
+     *
+     * @see ObjectMetadata#setContentLanguage(String)
+     */
+    public String getContentLanguage() {
+        return (String)metadata.get(Headers.CONTENT_LANGUAGE);
+    }
+
+    /**
+     * <p>
+     * Sets the Content-Language HTTP header which describes the natural language(s) of the
+     * intended audience for the enclosed entity.
+     * </p>
+     * <p>
+     * For more information on the Content-Type header, see <a
+     * href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">
+     * http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17</a>
+     * </p>
+     *
+     * @param contentLanguage
+     *            The HTTP Content-Language header which describes the natural language(s) of the
+     * intended audience for the enclosed entity.
+     *
+     * @see ObjectMetadata#getContentLanguage()
+     */
+    public void setContentLanguage(String contentLanguage) {
+        metadata.put(Headers.CONTENT_LANGUAGE, contentLanguage);
     }
 
     /**
@@ -597,14 +667,6 @@ public class ObjectMetadata implements ServerSideEncryptionResult,
     }
 
     /**
-     * Returns the KMS Key Id used for server-side encryption if set, or null
-     * otherwise.
-     */
-    public String getSSEKMSKeyId() {
-        return (String) metadata.get(Headers.SERVER_SIDE_ENCRYPTION_KMS_KEY_ID);
-    }
-
-    /**
      * @deprecated Replaced by {@link #getSSEAlgorithm()}
      */
     @Deprecated
@@ -622,16 +684,6 @@ public class ObjectMetadata implements ServerSideEncryptionResult,
     @Override
     public void setSSEAlgorithm(String algorithm) {
         metadata.put(Headers.SERVER_SIDE_ENCRYPTION, algorithm);
-    }
-
-    /**
-     * Optionally set the Id of the KMS key to use when encrypting data server
-     * side using KMS. You must call also
-     * setSSEAlgorithm(ObjectMetadata.KMS_SERVER_SIDE_ENCRYPTION) when using
-     * this method
-     */
-    public void setSSEKMSKeyId(String kmsKeyId) {
-        metadata.put(Headers.SERVER_SIDE_ENCRYPTION_KMS_KEY_ID, kmsKeyId);
     }
 
     /**
@@ -684,7 +736,7 @@ public class ObjectMetadata implements ServerSideEncryptionResult,
      */
     @Override
     public Date getExpirationTime() {
-        return expirationTime;
+        return cloneDate(expirationTime);
     }
 
     /**
@@ -727,7 +779,7 @@ public class ObjectMetadata implements ServerSideEncryptionResult,
      */
     @Override
     public Date getRestoreExpirationTime() {
-        return restoreExpirationTime;
+        return cloneDate(restoreExpirationTime);
     }
 
     /**
@@ -773,7 +825,19 @@ public class ObjectMetadata implements ServerSideEncryptionResult,
      * Returns the date when the object is no longer cacheable.
      */
     public Date getHttpExpiresDate() {
-        return httpExpiresDate;
+        return cloneDate(httpExpiresDate);
+    }
+
+    /**
+     * @return The storage class of the object. Returns null if the object is in STANDARD storage.
+     *         See {@link StorageClass} for possible values
+     */
+    public String getStorageClass() {
+        final Object storageClass = metadata.get(Headers.STORAGE_CLASS);
+        if (storageClass == null) {
+            return null;
+        }
+        return storageClass.toString();
     }
 
     /**
@@ -783,25 +847,89 @@ public class ObjectMetadata implements ServerSideEncryptionResult,
         return userMetadata == null ? null : userMetadata.get(key);
     }
 
-    public ObjectMetadata() {
-        userMetadata = new HashMap<String, String>();
-        metadata = new HashMap<String, Object>();
-    }
-
-    private ObjectMetadata(ObjectMetadata from) {
-        // shallow clone the internal hash maps
-        userMetadata = from.userMetadata == null ? null : new HashMap<String, String>(
-                from.userMetadata);
-        metadata = from.metadata == null ? null : new HashMap<String, Object>(from.metadata);
-        this.expirationTime = from.expirationTime;
-        this.expirationTimeRuleId = from.expirationTimeRuleId;
-        this.httpExpiresDate = from.httpExpiresDate;
-        this.ongoingRestore = from.ongoingRestore;
-        this.restoreExpirationTime = from.restoreExpirationTime;
-    }
-
+    /**
+     * Returns a clone of this <code>ObjectMetadata</code>. Note the clone of
+     * the internal {@link #metadata} is limited to a shallow copy due to the
+     * unlimited type of value in the map. Other fields can be regarded as deep
+     * clone.
+     */
     @Override
     public ObjectMetadata clone() {
         return new ObjectMetadata(this);
+    }
+
+    /**
+     * Returns the AWS Key Management System key id used for Server Side
+     * Encryption of the Amazon S3 object.
+     */
+    public String getSSEAwsKmsKeyId() {
+        return (String) metadata
+                .get(Headers.SERVER_SIDE_ENCRYPTION_KMS_KEY_ID);
+    }
+
+    @Override
+    public boolean isRequesterCharged() {
+        return metadata.get(Headers.REQUESTER_CHARGED_HEADER) != null;
+    }
+
+    @Override
+    public void setRequesterCharged(boolean isRequesterCharged) {
+        if (isRequesterCharged) {
+            metadata.put(Headers.REQUESTER_CHARGED_HEADER, Constants.REQUESTER_PAYS);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns the value of x-amz-mp-parts-count header.
+     * </p>
+     * <p>
+     * The x-amz-mp-parts-count header is returned in the response only when
+     * a valid partNumber is specified in the request and the object has more than 1 part.
+     * </p>
+     * <p>
+     * To find the part count of an object, set the partNumber to 1 in GetObjectRequest.
+     * If the object has more than 1 part then part count will be returned,
+     * otherwise null is returned.
+     * </p>
+     */
+    public Integer getPartCount() {
+        return (Integer) metadata.get(Headers.S3_PARTS_COUNT);
+    }
+
+    /**
+     * <p>
+     * Returns the content range of the object if response contains the Content-Range header.
+     * </p>
+     * <p>
+     * If the request specifies a range or part number, then response returns the Content-Range range header.
+     * Otherwise, the response does not return Content-Range header.
+     * </p>
+     * @return
+     * 		Returns content range if the object is requested with specific range or part number,
+     * 		null otherwise.
+     */
+    public Long[] getContentRange() {
+        final String contentRange = (String) metadata.get(Headers.CONTENT_RANGE);
+        Long[] range = null;
+        if (contentRange != null) {
+            final String[] tokens = contentRange.split("[ -/]+");
+            try {
+                range = new Long[] { Long.parseLong(tokens[1]), Long.parseLong(tokens[2]) };
+            } catch (final NumberFormatException nfe) {
+                throw new AmazonClientException(
+                        "Unable to parse content range. Header 'Content-Range' has corrupted data" + nfe.getMessage(),
+                        nfe);
+            }
+        }
+        return range;
+    }
+
+    /**
+     * @return The replication status of the object if it is from a bucket that
+     * is the source or destination in a cross-region replication.
+     */
+    public String getReplicationStatus() {
+        return (String) metadata.get(Headers.OBJECT_REPLICATION_STATUS);
     }
 }

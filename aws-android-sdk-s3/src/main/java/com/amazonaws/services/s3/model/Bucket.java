@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Portions copyright 2006-2009 James Murty. Please see LICENSE.txt
  * for applicable license terms and NOTICE.txt for applicable notices.
@@ -18,6 +18,7 @@
 
 package com.amazonaws.services.s3.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -55,7 +56,7 @@ import java.util.Date;
  * objects within a single bucket or organize them across several buckets.
  * </p>
  */
-public class Bucket {
+public class Bucket implements Serializable {
     private static final long serialVersionUID = -8646831898339939580L;
 
     /** The name of this S3 bucket */

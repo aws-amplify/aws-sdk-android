@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ package com.amazonaws.services.machinelearning.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.machinelearning.model.PredictorNotMountedException;
 
 public class PredictorNotMountedExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class PredictorNotMountedExceptionUnmarshaller extends JsonErrorUnmarshal
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         PredictorNotMountedException e = (PredictorNotMountedException) super.unmarshall(error);
         e.setErrorCode("PredictorNotMountedException");
 

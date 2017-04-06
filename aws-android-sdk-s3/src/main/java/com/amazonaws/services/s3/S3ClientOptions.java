@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -12,7 +12,6 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-
 package com.amazonaws.services.s3;
 
 /**
@@ -22,12 +21,21 @@ public class S3ClientOptions {
 
     /** The default setting for use of path-style access */
     public static final boolean DEFAULT_PATH_STYLE_ACCESS = false;
+    /** The default setting for use of chunked encoding */
+    public static final boolean DEFAULT_CHUNKED_ENCODING_DISABLED = false;
+    /** The default setting for use of payload signing */
+    public static final boolean DEFAULT_PAYLOAD_SIGNING_ENABLED = false;
     /** S3 accelerate is by default not enabled */
     public static final boolean DEFAULT_ACCELERATE_MODE_ENABLED = false;
+    /** S3 dualstack endpoint is by default not enabled */
+    public static final boolean DEFAULT_DUALSTACK_ENABLED = false;
 
     /** Flag for use of path-style access */
     private boolean pathStyleAccess;
-    private boolean accelerateModeEnabled;
+    private final boolean chunkedEncodingDisabled;
+    private final boolean accelerateModeEnabled;
+    private final boolean payloadSigningEnabled;
+    private final boolean dualstackEnabled;
 
     /**
      * @return a new S3ClientOptions builder.
@@ -38,13 +46,21 @@ public class S3ClientOptions {
 
     public static class Builder {
         private boolean pathStyleAccess = DEFAULT_PATH_STYLE_ACCESS;
+        /** Flag for user of chunked encoding */
+        private boolean chunkedEncodingDisabled = DEFAULT_CHUNKED_ENCODING_DISABLED;
         private boolean accelerateModeEnabled = DEFAULT_ACCELERATE_MODE_ENABLED;
+        private boolean payloadSigningEnabled = DEFAULT_PAYLOAD_SIGNING_ENABLED;
+        private boolean dualstackEnabled = DEFAULT_DUALSTACK_ENABLED;
 
         private Builder() {
         }
 
         public S3ClientOptions build() {
-            return new S3ClientOptions(pathStyleAccess, accelerateModeEnabled);
+            return new S3ClientOptions(pathStyleAccess,
+                    chunkedEncodingDisabled,
+                    accelerateModeEnabled,
+                    payloadSigningEnabled,
+                    dualstackEnabled);
         }
 
         /**
@@ -88,6 +104,66 @@ public class S3ClientOptions {
             this.accelerateModeEnabled = accelerateModeEnabled;
             return this;
         }
+
+        /**
+         * <p>
+         * Configures the client to sign payloads in all situations.
+         * </p>
+         * <p>
+         * Payload signing is optional when chunked encoding is not used and requests are made
+         * against an HTTPS endpoint.  Under these conditions the client will by default
+         * opt to not sign payloads to optimize performance.  If this flag is set to true the
+         * client will instead always sign payloads.
+         * </p>
+         * <p>
+         * <b>Note:</b> Payload signing can be expensive, particularly if transferring
+         * large payloads in a single chunk.  Enabling this option will result in a performance
+         * penalty.
+         * </p>
+         *
+         * @param payloadSigningEnabled
+         *            True to explicitly enable payload signing in all situations
+         */
+        public Builder setPayloadSigningEnabled(boolean payloadSigningEnabled) {
+            this.payloadSigningEnabled = payloadSigningEnabled;
+            return this;
+        }
+
+        /**
+         * <p>
+         * Configures the client to disable chunked encoding for all requests.
+         * </p>
+         * <p>
+         * The default behavior is to enable chunked encoding automatically for PutObjectRequest and
+         * UploadPartRequest. Setting this flag will result in disabling chunked encoding for all
+         * requests.
+         * </p>
+         * <p>
+         * <b>Note:</b> Enabling this option has performance implications since the checksum for the
+         * payload will have to be pre-calculated before sending the data. If your payload is large this
+         * will affect the overall time required to upload an object. Using this option is recommended
+         * only if your endpoint does not implement chunked uploading.
+         * </p>
+         *
+         * @return this Builder instance that can be used for method chaining
+         */
+        public Builder disableChunkedEncoding() {
+            this.chunkedEncodingDisabled = true;
+            return this;
+        }
+
+        /**
+         * <p>
+         * Configures the client to use the dualstack endpoint for a region
+         * <p>
+         * S3 supports dualstack endpoints which return both IPv6 and IPv4 values.
+         * Use of these endpoints is optional.
+         * </p>
+         */
+        public Builder enableDualstack() {
+            this.dualstackEnabled = true;
+            return this;
+        }
     }
 
     /**
@@ -96,6 +172,11 @@ public class S3ClientOptions {
      */
     @Deprecated
     public S3ClientOptions() {
+        this.pathStyleAccess = DEFAULT_PATH_STYLE_ACCESS;
+        this.chunkedEncodingDisabled = DEFAULT_CHUNKED_ENCODING_DISABLED;
+        this.accelerateModeEnabled = DEFAULT_ACCELERATE_MODE_ENABLED;
+        this.payloadSigningEnabled = DEFAULT_PAYLOAD_SIGNING_ENABLED;
+        this.dualstackEnabled = DEFAULT_DUALSTACK_ENABLED;
     }
 
     /**
@@ -105,12 +186,22 @@ public class S3ClientOptions {
     @Deprecated
     public S3ClientOptions(S3ClientOptions other) {
         this.pathStyleAccess = other.pathStyleAccess;
+        this.chunkedEncodingDisabled = other.chunkedEncodingDisabled;
         this.accelerateModeEnabled = other.accelerateModeEnabled;
+        this.payloadSigningEnabled = other.payloadSigningEnabled;
+        this.dualstackEnabled = other.dualstackEnabled;
     }
 
-    private S3ClientOptions(boolean pathStyleAccess, boolean accelerateModeEnabled) {
+    private S3ClientOptions(boolean pathStyleAccess,
+            boolean chunkedEncodingDisabled,
+            boolean accelerateModeEnabled,
+            boolean payloadSigningEnabled,
+            boolean dualstackEnabled) {
         this.pathStyleAccess = pathStyleAccess;
+        this.chunkedEncodingDisabled = chunkedEncodingDisabled;
         this.accelerateModeEnabled = accelerateModeEnabled;
+        this.payloadSigningEnabled = payloadSigningEnabled;
+        this.dualstackEnabled = dualstackEnabled;
     }
 
     /**
@@ -137,6 +228,28 @@ public class S3ClientOptions {
 
     /**
      * <p>
+     * Returns whether the client has chunked encoding disabled for all requests.
+     * </p>
+     * <p>
+     * The default behavior is to enable chunked encoding automatically for PutObjectRequest and
+     * UploadPartRequest. Setting this flag will result in disabling chunked encoding for all
+     * requests.
+     * </p>
+     * <p>
+     * <b>Note:</b> Enabling this option has performance implications since the checksum for the
+     * payload will have to be pre-calculated before sending the data. If your payload is large this
+     * will affect the overall time required to upload an object. Using this option is recommended
+     * only if your endpoint does not implement chunked uploading.
+     * </p>
+     *
+     * @return True if chunked encoding is explicitly disabled for all requests
+     */
+    public boolean isChunkedEncodingDisabled() {
+        return chunkedEncodingDisabled;
+    }
+
+    /**
+     * <p>
      * Returns whether the client has enabled accelerate mode for getting and
      * putting objects.
      * </p>
@@ -152,6 +265,31 @@ public class S3ClientOptions {
     public boolean isAccelerateModeEnabled() {
         return accelerateModeEnabled;
     }
+
+
+
+    /**
+     * <p>
+     * Returns whether the client is configured to sign payloads in all situations.
+     * </p>
+     * <p>
+     * Payload signing is optional when chunked encoding is not used and requests are made
+     * against an HTTPS endpoint.  Under these conditions the client will by default
+     * opt to not sign payloads to optimize performance.  If this flag is set to true the
+     * client will instead always sign payloads.
+     * </p>
+     * <p>
+     * <b>Note:</b> Payload signing can be expensive, particularly if transferring
+     * large payloads in a single chunk.  Enabling this option will result in a performance
+     * penalty.
+     * </p>
+     *
+     * @return True if body signing is explicitly enabled for all requests
+     */
+    public boolean isPayloadSigningEnabled() {
+        return payloadSigningEnabled;
+    }
+
 
     /**
      * <p>
@@ -175,6 +313,19 @@ public class S3ClientOptions {
     public void setPathStyleAccess(boolean pathStyleAccess) {
         this.pathStyleAccess = pathStyleAccess;
     }
+
+    /**
+     * <p>
+     * Returns whether the client is configured to use dualstack mode for
+     * accessing S3.
+     * </p>
+     *
+     * @return True if the client will use the dualstack mode
+     */
+    public boolean isDualstackEnabled() {
+        return dualstackEnabled;
+    }
+
 
     /**
      * <p>

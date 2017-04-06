@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,7 +28,8 @@ public enum ChallengeNameType {
     CUSTOM_CHALLENGE("CUSTOM_CHALLENGE"),
     DEVICE_SRP_AUTH("DEVICE_SRP_AUTH"),
     DEVICE_PASSWORD_VERIFIER("DEVICE_PASSWORD_VERIFIER"),
-    ADMIN_NO_SRP_AUTH("ADMIN_NO_SRP_AUTH");
+    ADMIN_NO_SRP_AUTH("ADMIN_NO_SRP_AUTH"),
+    NEW_PASSWORD_REQUIRED("NEW_PASSWORD_REQUIRED");
 
     private String value;
 
@@ -50,6 +51,7 @@ public enum ChallengeNameType {
         enumMap.put("DEVICE_SRP_AUTH", DEVICE_SRP_AUTH);
         enumMap.put("DEVICE_PASSWORD_VERIFIER", DEVICE_PASSWORD_VERIFIER);
         enumMap.put("ADMIN_NO_SRP_AUTH", ADMIN_NO_SRP_AUTH);
+        enumMap.put("NEW_PASSWORD_REQUIRED", NEW_PASSWORD_REQUIRED);
     }
 
     /**

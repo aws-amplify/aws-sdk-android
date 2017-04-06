@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,7 +30,8 @@ public class RespondToAuthChallengeResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
+     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
+     * NEW_PASSWORD_REQUIRED
      */
     private String challengeName;
 
@@ -65,7 +66,8 @@ public class RespondToAuthChallengeResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
+     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
+     * NEW_PASSWORD_REQUIRED
      *
      * @return <p>
      *         The challenge name.
@@ -83,7 +85,8 @@ public class RespondToAuthChallengeResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
+     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
+     * NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
      *            The challenge name.
@@ -104,7 +107,8 @@ public class RespondToAuthChallengeResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
+     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
+     * NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
      *            The challenge name.
@@ -125,7 +129,8 @@ public class RespondToAuthChallengeResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
+     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
+     * NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
      *            The challenge name.
@@ -146,7 +151,8 @@ public class RespondToAuthChallengeResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH
+     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
+     * NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
      *            The challenge name.

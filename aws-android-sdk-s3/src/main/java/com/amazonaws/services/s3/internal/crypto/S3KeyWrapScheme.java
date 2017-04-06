@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,6 +18,10 @@ package com.amazonaws.services.s3.internal.crypto;
 import java.security.Key;
 
 class S3KeyWrapScheme {
+    /**
+     * Used for backward compatibility where the encryption only mode has no
+     * explicit key wrapping scheme.
+     */
     static final S3KeyWrapScheme NONE = new S3KeyWrapScheme() {
         @Override
         String getKeyWrapAlgorithm(Key key) {
@@ -32,6 +36,11 @@ class S3KeyWrapScheme {
     public static final String AESWrap = "AESWrap";
     public static final String RSA_ECB_OAEPWithSHA256AndMGF1Padding = "RSA/ECB/OAEPWithSHA-256AndMGF1Padding";
 
+    /**
+     * @param key
+     *            the key encrypting key, which is either an AES key or a public
+     *            key
+     */
     String getKeyWrapAlgorithm(Key key) {
         String algorithm = key.getAlgorithm();
         if (S3CryptoScheme.AES.equals(algorithm)) {
@@ -43,4 +52,6 @@ class S3KeyWrapScheme {
         }
         return null;
     }
+
+    @Override public String toString() { return "S3KeyWrapScheme"; }
 }

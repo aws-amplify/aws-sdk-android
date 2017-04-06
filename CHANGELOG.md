@@ -1,4 +1,102 @@
 # Change Log - AWS SDK for Android
+## [Release 2.4.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.0) (03/21/2017)
+
+### Improvements:
+- **Amazon Lex**:`LexVoiceButton` will now show an image of a bot when audio response from lex is being played.
+
+### Bug Fixes:
+
+- **Amazon API Gateway**: Allow marshalling alternative date formats in API Gateway.
+- **Amazon Cognito Identity Provider**: Bug fix for missing required attribute Exception
+- **Amazon IoT**: fix typo's with variable names in `AWSIoTMQTTManager`. See [issue #220](https://github.com/aws/aws-sdk-android/pull/220).
+- **Amazon Lex**: Fix a bug which caused `readyToFulfill` to not file in `InteractionListener`.
+- **Amazon Pinpoint**:Fix cursor leakage in Pinpoint.
+- **Amazon Pinpoint**:Bug fixes for campaign open rate.
+- **Amazon Pinpoint**:`PinpointEndpointClient` to retain instance of endpoint.
+- **Amazon Pinpoint**:corrected the implemented for `optout` for profile.
+- **Amazon Pinpoint**:Deprecated formatted price in `MonetizationEventBuilder`.
+- **Amazon S3**: Bug Fixes with encryption client.
+- **Amazon S3**: SigV4 signing is now default for S3. See [issue 234](https://github.com/aws/aws-sdk-android/issues/234) & [issue #108](https://github.com/awslabs/aws-sdk-android-samples/issues/108).
+- **Amazon S3**: Added feature to specify listener in `TransferUtility.upload()`. See [issue #210](https://github.com/aws/aws-sdk-android/issues/210).
+- **Amazon S3**: Fixed a bug where when using `setAccelerateModeEnabled` caused uploads to fail. See [issue #264](https://github.com/aws/aws-sdk-android/issues/264).
+- **General** : Fixed a bug which caused incompatibility between maven releases and releases on [marketing page](https://aws.amazon.com/mobile/sdk).
+
+## [Release 2.3.9](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.9) (02/02/2017)
+
+### Improvements:
+
+- **Amazon Kinesis Firehose & Amazon Kinesis Streams**: Allow setting a static partition key in the KinesisRecorderConfig. See [issue #228](https://github.com/aws/aws-sdk-android/pull/228).
+- **AWS KMS**: Updated service to latest spec.
+
+### Bug Fixes:
+
+- **Amazon Cognito Identity**: Fixed a bug that could cause a NullPointerException if credential refresh occured while another thread signed in with a provider. See [issue #247](https://github.com/aws/aws-sdk-android/pull/247).
+- **Amazon Cognito Identity Provider**: Fixed bugs in SRP and exception handling.
+- **Amazon Kinesis Firehose & Amazon Kinesis Streams**: Prevent KinesisRecorder.submitAllRecords() from potentially losing data if the service is killed by waiting until the data is transferred before removing it from the cache. See [issue #225](https://github.com/aws/aws-sdk-android/pull/225).
+- **Amazon Pinpoint**: Fixed a bug that caused a crash when opening a deep link. See [issue #246](https://github.com/aws/aws-sdk-android/pull/246).
+- **Amazon Lex**: Fix incorrect comparison for dialog states. See [issue #245](https://github.com/aws/aws-sdk-android/pull/245).
+
+## [Release 2.3.8](https://github.com/aws/aws-sdk-android/release/tag/release_v2.3.8) (12/20/2016)
+
+### Bug Fixes:
+
+- **Amazon Pinpoint**: Fixed incorrect signer config in Pinpoint Analytics.
+- **Amazon S3**: Fixed a bug that caused TransferObserver.getBytesTransferred() to always return 0. See [issue #217](https://github.com/aws/aws-sdk-android/pull/217).
+- **Amazon S3**: Fixed a race condition in TransferService. See [issue #197](https://github.com/aws/aws-sdk-android/pull/197).
+
+## [Release 2.3.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.7) (12/13/2016)
+
+### New Features
+- **Support for Amazon Rekognition**: Rekognition is a deep-learning based service to search, verify and organize images. With Rekognition, you can detect objects, scenes, and faces in images. You can also search and compare faces.
+- **AWS Core Runtime**: Added Support for `eu-west-2`/LHR region in the SDK.
+
+### Improvements
+- **AWS Core Runtime**: Added support for enabling curl logging in the SDK. See [issue](https://github.com/aws/aws-sdk-android/pull/200)
+- **AWS Lambda**: Update to Latest Models.
+
+### Bug Fixes:
+- **Amazon Pinpoint**: Fixed a bug that caused setting wrong endpoint for pinpoint client.
+- **Amazon S3**: Fixed a bug that could cause NPE in Transfer Service. See [issue](https://github.com/aws/aws-sdk-android/issues/223).
+- **Amazon Cognito Identity Provider**: Fix incorrect exception being thrown in `CognitoDevice`. See [issue](https://github.com/aws/aws-sdk-android/pull/224).
+- **Amazon Cognito Identity Provider**: Fix a bug where `NewPasswordContinuation` throws `CognitoParameterInvalidException: Missing required attribute` even when the required user attributes have been set. See [issue](https://github.com/aws/aws-sdk-android/pull/216).
+
+
+## [Release 2.3.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.6) (12/07/2016)
+
+### Improvements
+- **AWS Core Runtime**: Added Support for `ca-central-1`/YUL region in the SDK.
+
+### Bug Fixes
+- **Amazon SQS**: Fixed a bug that caused SQS send message to fail. See [issue](https://github.com/aws/aws-sdk-android/issues/218).
+- **Amazon Lex Runtime**: Fixed a bug where requests were not getting signed correctly.
+- **Amazon Pinpoint**: Fix serialization of endpoint profile bug.
+- **Amazon Mobile Analytics**: Ensure session file directories exist before saving
+
+
+## [Release 2.3.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.5) (12/01/2016)
+
+### New Features
+- **Support for Amazon Pinpoint**: Amazon Pinpoint makes it easy to run targeted campaigns to improve user engagement. Pinpoint helps you understand your users behavior, define who to target, what messages to send, when to deliver them, and tracks the results of the campaigns.
+
+
+## [Release 2.3.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.4) (11/30/2016)
+
+### New Features
+- **Support for Amazon Lex - Beta**: Amazon Lex is a service for building conversational interactions into any application using voice and text. With Lex, the same conversational engine that powers Amazon Alexa is now available to any developer, enabling you to build sophisticated, natural language, conversational bots (chatbots) into your new and existing applications. Amazon Lex provides the deep functionality and flexibility of automatic speech recognition (ASR) for converting speech to text and natural language understanding (NLU) to understand the intent of the text. This allows you to build highly engaging user experiences with lifelike, conversational interactions.
+
+- **Support for Amazon Polly**: Amazon Polly is a service that turns text into lifelike speech, making it easy to develop applications that use high-quality speech to increase engagement and accessibility. With Amazon Polly the developers can build speech-enabled apps that work in multiple geographies.
+
+## [Release 2.3.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.3) (10/11/2016)
+
+### Improvements
+- **AWS Core Runtime Library**: Support for `us-east-2/CMH` region in SDK.
+
+## [Release 2.3.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.2) (10/06/2016)
+
+### Improvements
+- **Amazon Cognito Identity Provider**: 
+- Support for Admin Create User feature.
+- Allow SDK to refresh tokens which are about to expire within a pre-set threshold.
 
 ## [Release 2.3.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.3.1) (09/08/2016)
 

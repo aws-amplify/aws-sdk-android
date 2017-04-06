@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,8 +30,13 @@ import java.util.regex.Pattern;
  * to optimize latency, minimize costs, or address regulatory requirements.
  * </p>
  * <p>
- * Objects stored in a Amazon S3 Region never leave that region unless
- * explicitly transferred to another region.
+ * Objects stored in a Amazon S3 Region never leave that region unless explicitly
+ * transferred to another region.
+ * </p>
+ * <p>
+ * In Amazon S3, all the regions provides
+ * read-after-write consistency for PUTS of new objects in Amazon
+ * S3 buckets and eventual consistency for overwrite PUTS and DELETES.
  * </p>
  */
 public enum Region {
@@ -49,6 +54,18 @@ public enum Region {
      * </p>
      */
     US_Standard((String[]) null),
+
+    /**
+     * The US-East (Ohio) Amazon S3 Region. This region uses Amazon S3 servers
+     * located in Ohio.
+     * <p>
+     * When using buckets in this region, set the client endpoint to
+     * <code>s3-us-east-2.amazonaws.com</code> on all requests to these buckets
+     * to reduce any latency experienced after the first hour of creating a
+     * bucket in this region.
+     * </p>
+     */
+    US_East_2("us-east-2"),
 
     /**
      * The US-West (Northern California) Amazon S3 Region. This region uses
@@ -95,6 +112,18 @@ public enum Region {
      * </p>
      */
     EU_Ireland("eu-west-1", "EU"),
+
+    /**
+     * The EU (London) Amazon S3 Region. This region uses Amazon S3 servers
+     * located in London.
+     * <p>
+     * When using buckets in this region, set the client endpoint to
+     * <code>s3.eu-west-2.amazonaws.com</code> on all requests to these buckets
+     * to reduce any latency experienced after the first hour of creating a
+     * bucket in this region.
+     * </p>
+     */
+    EU_London("eu-west-2"),
 
     /**
      * The EU (Frankfurt) Amazon S3 Region. This region uses Amazon S3 servers
@@ -182,6 +211,18 @@ public enum Region {
     SA_SaoPaulo("sa-east-1"),
 
     /**
+     * The Canada Central (Montreal) Region. This region uses Amazon S3 servers
+     * located in Montreal.
+     * <p>
+     * When using buckets in this region, set the client endpoint to
+     * <code>s3.ca-central-1.amazonaws.com</code> on all requests to these
+     * buckets to reduce any latency experienced after the first hour of
+     * creating a bucket in this region.
+     * </p>
+     */
+    CA_Montreal("ca-central-1"),
+
+    /**
      * The China (Beijing) Region. This region uses Amazon S3 servers located in
      * Beijing.
      * <p>
@@ -193,7 +234,7 @@ public enum Region {
     /**
      * Used to extract the S3 regional id from an S3 end point. Note this
      * pattern will not match the S3 US standard endpoint by intent.
-     * 
+     *
      * <pre>
      * s3-eu-west-1.amazonaws.com
      * s3.cn-north-1.amazonaws.com.cn
@@ -249,12 +290,14 @@ public enum Region {
      */
     public static Region fromValue(final String s3RegionId) throws IllegalArgumentException
     {
-        if (s3RegionId == null || s3RegionId.equals("US"))
+        if (s3RegionId == null || s3RegionId.equals("US") || s3RegionId.equals("us-east-1")) {
             return Region.US_Standard;
-        for (Region region : Region.values()) {
-            List<String> regionIds = region.regionIds;
-            if (regionIds != null && regionIds.contains(s3RegionId))
+        }
+        for (final Region region : Region.values()) {
+            final List<String> regionIds = region.regionIds;
+            if (regionIds != null && regionIds.contains(s3RegionId)) {
                 return region;
+            }
         }
 
         throw new IllegalArgumentException(
@@ -265,7 +308,7 @@ public enum Region {
      * Returns the respective AWS region.
      */
     public com.amazonaws.regions.Region toAWSRegion() {
-        String s3regionId = getFirstRegionId();
+        final String s3regionId = getFirstRegionId();
         if (s3regionId == null) { // US Standard
             return RegionUtils.getRegionByEndpoint(Constants.S3_HOSTNAME);
         } else {

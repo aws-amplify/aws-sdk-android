@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The user pool ID>
+     * The user pool ID&gt;
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -70,7 +70,7 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The user pool ID>
+     * The user pool ID&gt;
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -78,7 +78,7 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
      * @return <p>
-     *         The user pool ID>
+     *         The user pool ID&gt;
      *         </p>
      */
     public String getUserPoolId() {
@@ -87,7 +87,7 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The user pool ID>
+     * The user pool ID&gt;
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -95,7 +95,7 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
      * @param userPoolId <p>
-     *            The user pool ID>
+     *            The user pool ID&gt;
      *            </p>
      */
     public void setUserPoolId(String userPoolId) {
@@ -104,7 +104,7 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The user pool ID>
+     * The user pool ID&gt;
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -115,7 +115,7 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
      * @param userPoolId <p>
-     *            The user pool ID>
+     *            The user pool ID&gt;
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

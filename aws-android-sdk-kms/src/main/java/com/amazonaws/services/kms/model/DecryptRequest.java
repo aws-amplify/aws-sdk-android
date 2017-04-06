@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * The encryption context. If this was specified in the <a>Encrypt</a>
      * function, it must be specified here or the decryption operation will
      * fail. For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html"
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
      * >Encryption Context</a>.
      * </p>
      */
@@ -147,7 +147,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * The encryption context. If this was specified in the <a>Encrypt</a>
      * function, it must be specified here or the decryption operation will
      * fail. For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html"
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
      * >Encryption Context</a>.
      * </p>
      *
@@ -156,7 +156,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      *         <a>Encrypt</a> function, it must be specified here or the
      *         decryption operation will fail. For more information, see <a
      *         href=
-     *         "http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html"
+     *         "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
      *         >Encryption Context</a>.
      *         </p>
      */
@@ -169,7 +169,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * The encryption context. If this was specified in the <a>Encrypt</a>
      * function, it must be specified here or the decryption operation will
      * fail. For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html"
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
      * >Encryption Context</a>.
      * </p>
      *
@@ -178,7 +178,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      *            <a>Encrypt</a> function, it must be specified here or the
      *            decryption operation will fail. For more information, see <a
      *            href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html"
+     *            "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
      *            >Encryption Context</a>.
      *            </p>
      */
@@ -191,7 +191,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * The encryption context. If this was specified in the <a>Encrypt</a>
      * function, it must be specified here or the decryption operation will
      * fail. For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html"
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
      * >Encryption Context</a>.
      * </p>
      * <p>
@@ -203,7 +203,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      *            <a>Encrypt</a> function, it must be specified here or the
      *            decryption operation will fail. For more information, see <a
      *            href=
-     *            "http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html"
+     *            "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
      *            >Encryption Context</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -219,7 +219,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * The encryption context. If this was specified in the <a>Encrypt</a>
      * function, it must be specified here or the decryption operation will
      * fail. For more information, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html"
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
      * >Encryption Context</a>.
      * </p>
      * <p>

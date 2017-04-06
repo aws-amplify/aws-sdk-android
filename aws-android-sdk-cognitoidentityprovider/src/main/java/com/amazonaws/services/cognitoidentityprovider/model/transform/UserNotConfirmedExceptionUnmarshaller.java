@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ package com.amazonaws.services.cognitoidentityprovider.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-
 import com.amazonaws.services.cognitoidentityprovider.model.UserNotConfirmedException;
 
 public class UserNotConfirmedExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -34,6 +33,7 @@ public class UserNotConfirmedExceptionUnmarshaller extends JsonErrorUnmarshaller
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
+
         UserNotConfirmedException e = (UserNotConfirmedException) super.unmarshall(error);
         e.setErrorCode("UserNotConfirmedException");
 

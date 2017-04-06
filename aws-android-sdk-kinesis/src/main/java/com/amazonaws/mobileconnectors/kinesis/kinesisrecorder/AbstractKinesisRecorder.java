@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -129,15 +129,22 @@ public abstract class AbstractKinesisRecorder {
                 }
 
                 try {
-                    iterator.removeReadRecords();
-                } catch (IOException e) {
-                    throw new AmazonClientException("Failed to removed records.", e);
-                }
-
-                try {
+                	
                     List<byte[]> failures = sender.sendBatch(streamName, data);
                     int successCount = data.size() - failures.size();
                     count += successCount;
+                    
+                    /**
+                     * We hold off on removing records until we are sure that we have successfully made the request. We would prefer to send duplicates than to lose records.
+                     * This is still not a perfect solution as there is a chance for loss between removing the read records and re-saving the failed records.
+                     * https://github.com/aws/aws-sdk-android/issues/225
+                     * 
+                     * If this errors it will throw an IOException. We don't wrap it so it's handled separately from network errors
+                     * which will be wrapped by an AmazonClientException.
+                     */
+                    iterator.removeReadRecords();
+
+                    
                     if (successCount == 0) {
                         // no record went through, increase retry count.
                         retry++;
@@ -147,15 +154,18 @@ public abstract class AbstractKinesisRecorder {
                             saveRecord(bytes, streamName);
                         }
                     }
+                    
                 } catch (AmazonClientException ace) {
                     if (sender.isRecoverable(ace)) {
-                        for (byte[] bytes : data) {
-                            saveRecord(bytes, streamName);
-                        }
                         Log.e(TAG,
                                 "ServiceException in submit all, the values of the data inside the requests appears valid.  The request will be kept",
                                 ace);
                     } else {
+                        try {
+                            iterator.removeReadRecords();
+                        } catch (IOException e) {
+                            throw new AmazonClientException("Failed to drop bad records.", e);
+                        }
                         // We have reason to believe the values in the request
                         // is invalid and cannot be sent or recovered.
                         Log.e(TAG,
@@ -163,6 +173,8 @@ public abstract class AbstractKinesisRecorder {
                                 ace);
                     }
                     throw ace;
+                } catch(IOException e) {
+                	throw new AmazonClientException("Failed to remove read records", e);
                 }
             }
         } finally {

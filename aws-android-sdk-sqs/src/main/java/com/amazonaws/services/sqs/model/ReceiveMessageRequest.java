@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -48,9 +48,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * MD5 digest of the message body. For information about MD5, go to <a
- * href="http://www.faqs.org/rfcs/rfc1321.html"
- * >http://www.faqs.org/rfcs/rfc1321.html</a>.
+ * MD5 digest of the message body. For information about MD5, see <a
+ * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
  * </p>
  * </li>
  * <li>
@@ -83,11 +82,17 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * You can provide the <code>VisibilityTimeout</code> parameter in your request,
  * which will be applied to the messages that Amazon SQS returns in the
- * response. If you do not include the parameter, the overall visibility timeout
+ * response. If you don't include the parameter, the overall visibility timeout
  * for the queue is used for the returned messages. For more information, see <a
  * href=
  * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"
  * >Visibility Timeout</a> in the <i>Amazon SQS Developer Guide</i>.
+ * </p>
+ * <p>
+ * A message that is not deleted or a message whose visibility is not extended
+ * before the visibility timeout expires counts as a failed receive. Depending
+ * on the configuration of the queue, the message might be sent to the dead
+ * letter queue.
  * </p>
  * <note>
  * <p>
@@ -116,46 +121,146 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      * <ul>
      * <li>
      * <p>
-     * <code>All</code> - returns all values.
+     * <code>All</code> - Returns all values.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateFirstReceiveTimestamp</code> - returns the time when the
+     * <code>ApproximateFirstReceiveTimestamp</code> - Returns the time the
      * message was first received from the queue (epoch time in milliseconds).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateReceiveCount</code> - returns the number of times a
+     * <code>ApproximateReceiveCount</code> - Returns the number of times a
      * message has been received from the queue but not deleted.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SenderId</code> - returns the AWS account number (or the IP
-     * address, if anonymous access is allowed) of the sender.
+     * <code>SenderId</code>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For an IAM user, returns the IAM user ID, for example
+     * <code>ABCDEFGHI1JKLMNOPQ23R</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SentTimestamp</code> - returns the time when the message was sent
-     * to the queue (epoch time in milliseconds).
+     * For an IAM role, returns the IAM role ID, for example
+     * <code>ABCDE1F2GH3I4JK5LMNOP:i-a123b456</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SentTimestamp</code> - Returns the time the message was sent to the
+     * queue (epoch time in milliseconds).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageDeduplicationId</code> - Returns the value provided by the
+     * sender that calls the <code> <a>SendMessage</a> </code> action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageGroupId</code> - Returns the value provided by the sender
+     * that calls the <code> <a>SendMessage</a> </code> action. Messages with
+     * the same <code>MessageGroupId</code> are returned in sequence.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SequenceNumber</code> - Returns the value provided by Amazon SQS.
      * </p>
      * </li>
      * </ul>
      * <p>
-     * Any other valid special request parameters that are specified (such as
-     * <code>ApproximateNumberOfMessages</code>,
-     * <code>ApproximateNumberOfMessagesDelayed</code>,
-     * <code>ApproximateNumberOfMessagesNotVisible</code>,
-     * <code>CreatedTimestamp</code>, <code>DelaySeconds</code>,
-     * <code>LastModifiedTimestamp</code>, <code>MaximumMessageSize</code>,
-     * <code>MessageRetentionPeriod</code>, <code>Policy</code>,
-     * <code>QueueArn</code>, <code>ReceiveMessageWaitTimeSeconds</code>,
-     * <code>RedrivePolicy</code>, and <code>VisibilityTimeout</code>) will be
-     * ignored.
+     * Any other valid special request parameters (such as the following) that
+     * are specified are ignored:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ApproximateNumberOfMessages</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ApproximateNumberOfMessagesDelayed</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ApproximateNumberOfMessagesNotVisible</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>CreatedTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ContentBasedDeduplication</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DelaySeconds</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>LastModifiedTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MaximumMessageSize</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageRetentionPeriod</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Policy</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>QueueArn</code>,
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ReceiveMessageWaitTimeSeconds</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>RedrivePolicy</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FifoQueue</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>VisibilityTimeout</code>
+     * </p>
+     * </li>
+     * </ul>
      */
     private java.util.List<String> attributeNames = new java.util.ArrayList<String>();
 
@@ -166,7 +271,7 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      * 0-9, underscore (_), hyphen (-), and period (.). The name must not start
      * or end with a period, and it should not have successive periods. The name
      * is case sensitive and must be unique among all attribute names for the
-     * message. The name can be up to 256 characters long. The name cannot start
+     * message. The name can be up to 256 characters long. The name can't start
      * with "AWS." or "Amazon." (or any variations in casing), because these
      * prefixes are reserved for use by Amazon Web Services.
      * </p>
@@ -182,7 +287,7 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The maximum number of messages to return. Amazon SQS never returns more
-     * messages than this value but may return fewer. Values can be from 1 to
+     * messages than this value but might return fewer. Values can be from 1 to
      * 10. Default is 1.
      * </p>
      * <p>
@@ -208,6 +313,105 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      * </p>
      */
     private Integer waitTimeSeconds;
+
+    /**
+     * <p>
+     * This parameter applies only to FIFO (first-in-first-out) queues.
+     * </p>
+     * <p>
+     * The token used for deduplication of <code>ReceiveMessage</code> calls. If
+     * a networking issue occurs after a <code>ReceiveMessage</code> action, and
+     * instead of a response you receive a generic error, you can retry the same
+     * action with an identical <code>ReceiveRequestAttemptId</code> to retrieve
+     * the same set of messages, even if their visibility timeout has not yet
+     * expired.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * You can use <code>ReceiveRequestAttemptId</code> only for 5 minutes after
+     * a <code>ReceiveMessage</code> action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * When you set <code>FifoQueue</code>, a caller of the
+     * <code>ReceiveMessage</code> action can provide a
+     * <code>ReceiveRequestAttemptId</code> explicitly.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If a caller of the <code>ReceiveMessage</code> action doesn't provide a
+     * <code>ReceiveRequestAttemptId</code>, Amazon SQS generates a
+     * <code>ReceiveRequestAttemptId</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can retry the <code>ReceiveMessage</code> action with the same
+     * <code>ReceiveRequestAttemptId</code> if none of the messages have been
+     * modified (deleted or had their visibility changes).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * During a visibility timeout, subsequent calls with the same
+     * <code>ReceiveRequestAttemptId</code> return the same messages and receipt
+     * handles. If a retry occurs within the deduplication interval, it resets
+     * the visibility timeout. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"
+     * >Visibility Timeout</a> in the <i>Amazon Simple Queue Service Developer
+     * Guide</i>.
+     * </p>
+     * <important>
+     * <p>
+     * If a caller of the <code>ReceiveMessage</code> action is still processing
+     * messages when the visibility timeout expires and messages become visible,
+     * another worker reading from the same queue can receive the same messages
+     * and therefore process duplicates. Also, if a reader whose message
+     * processing time is longer than the visibility timeout tries to delete the
+     * processed messages, the action fails with an error.
+     * </p>
+     * <p>
+     * To mitigate this effect, ensure that your application observes a safe
+     * threshold before the visibility timeout expires and extend the visibility
+     * timeout as necessary.
+     * </p>
+     * </important></li>
+     * <li>
+     * <p>
+     * While messages with a particular <code>MessageGroupId</code> are
+     * invisible, no more messages belonging to the same
+     * <code>MessageGroupId</code> are returned until the visibility timeout
+     * expires. You can still receive messages with another
+     * <code>MessageGroupId</code> as long as it is also visible.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If a caller of <code>ReceiveMessage</code> can't track the
+     * <code>ReceiveRequestAttemptId</code>, no retries will work until the
+     * original visibility timeout expires. As a result, delays might occur but
+     * the messages in the queue will remain in a strict order.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The length of <code>ReceiveRequestAttemptId</code> is 128 characters.
+     * <code>ReceiveRequestAttemptId</code> can contain alphanumeric characters
+     * (<code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and punctuation (
+     * <code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).
+     * </p>
+     * <p>
+     * For best practices of using <code>ReceiveRequestAttemptId</code>, see <a
+     * href=
+     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-receiverequestattemptid-request-parameter"
+     * >Using the ReceiveRequestAttemptId Request Parameter</a> in the <i>Amazon
+     * Simple Queue Service Developer Guide</i>.
+     * </p>
+     */
+    private String receiveRequestAttemptId;
 
     /**
      * Default constructor for ReceiveMessageRequest object. Callers should use
@@ -304,46 +508,146 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      * <ul>
      * <li>
      * <p>
-     * <code>All</code> - returns all values.
+     * <code>All</code> - Returns all values.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateFirstReceiveTimestamp</code> - returns the time when the
+     * <code>ApproximateFirstReceiveTimestamp</code> - Returns the time the
      * message was first received from the queue (epoch time in milliseconds).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateReceiveCount</code> - returns the number of times a
+     * <code>ApproximateReceiveCount</code> - Returns the number of times a
      * message has been received from the queue but not deleted.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SenderId</code> - returns the AWS account number (or the IP
-     * address, if anonymous access is allowed) of the sender.
+     * <code>SenderId</code>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For an IAM user, returns the IAM user ID, for example
+     * <code>ABCDEFGHI1JKLMNOPQ23R</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SentTimestamp</code> - returns the time when the message was sent
-     * to the queue (epoch time in milliseconds).
+     * For an IAM role, returns the IAM role ID, for example
+     * <code>ABCDE1F2GH3I4JK5LMNOP:i-a123b456</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SentTimestamp</code> - Returns the time the message was sent to the
+     * queue (epoch time in milliseconds).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageDeduplicationId</code> - Returns the value provided by the
+     * sender that calls the <code> <a>SendMessage</a> </code> action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageGroupId</code> - Returns the value provided by the sender
+     * that calls the <code> <a>SendMessage</a> </code> action. Messages with
+     * the same <code>MessageGroupId</code> are returned in sequence.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SequenceNumber</code> - Returns the value provided by Amazon SQS.
      * </p>
      * </li>
      * </ul>
      * <p>
-     * Any other valid special request parameters that are specified (such as
-     * <code>ApproximateNumberOfMessages</code>,
-     * <code>ApproximateNumberOfMessagesDelayed</code>,
-     * <code>ApproximateNumberOfMessagesNotVisible</code>,
-     * <code>CreatedTimestamp</code>, <code>DelaySeconds</code>,
-     * <code>LastModifiedTimestamp</code>, <code>MaximumMessageSize</code>,
-     * <code>MessageRetentionPeriod</code>, <code>Policy</code>,
-     * <code>QueueArn</code>, <code>ReceiveMessageWaitTimeSeconds</code>,
-     * <code>RedrivePolicy</code>, and <code>VisibilityTimeout</code>) will be
-     * ignored.
+     * Any other valid special request parameters (such as the following) that
+     * are specified are ignored:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ApproximateNumberOfMessages</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ApproximateNumberOfMessagesDelayed</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ApproximateNumberOfMessagesNotVisible</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>CreatedTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ContentBasedDeduplication</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DelaySeconds</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>LastModifiedTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MaximumMessageSize</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageRetentionPeriod</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Policy</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>QueueArn</code>,
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ReceiveMessageWaitTimeSeconds</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>RedrivePolicy</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FifoQueue</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>VisibilityTimeout</code>
+     * </p>
+     * </li>
+     * </ul>
      *
      * @return <p>
      *         A list of attributes that need to be returned along with each
@@ -352,47 +656,150 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>All</code> - returns all values.
+     *         <code>All</code> - Returns all values.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>ApproximateFirstReceiveTimestamp</code> - returns the time
-     *         when the message was first received from the queue (epoch time in
+     *         <code>ApproximateFirstReceiveTimestamp</code> - Returns the time
+     *         the message was first received from the queue (epoch time in
      *         milliseconds).
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>ApproximateReceiveCount</code> - returns the number of
+     *         <code>ApproximateReceiveCount</code> - Returns the number of
      *         times a message has been received from the queue but not deleted.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>SenderId</code> - returns the AWS account number (or the IP
-     *         address, if anonymous access is allowed) of the sender.
+     *         <code>SenderId</code>
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         For an IAM user, returns the IAM user ID, for example
+     *         <code>ABCDEFGHI1JKLMNOPQ23R</code>.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>SentTimestamp</code> - returns the time when the message
-     *         was sent to the queue (epoch time in milliseconds).
+     *         For an IAM role, returns the IAM role ID, for example
+     *         <code>ABCDE1F2GH3I4JK5LMNOP:i-a123b456</code>.
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>SentTimestamp</code> - Returns the time the message was
+     *         sent to the queue (epoch time in milliseconds).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>MessageDeduplicationId</code> - Returns the value provided
+     *         by the sender that calls the <code> <a>SendMessage</a> </code>
+     *         action.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>MessageGroupId</code> - Returns the value provided by the
+     *         sender that calls the <code> <a>SendMessage</a> </code> action.
+     *         Messages with the same <code>MessageGroupId</code> are returned
+     *         in sequence.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>SequenceNumber</code> - Returns the value provided by
+     *         Amazon SQS.
      *         </p>
      *         </li>
      *         </ul>
      *         <p>
-     *         Any other valid special request parameters that are specified
-     *         (such as <code>ApproximateNumberOfMessages</code>,
-     *         <code>ApproximateNumberOfMessagesDelayed</code>,
-     *         <code>ApproximateNumberOfMessagesNotVisible</code>,
-     *         <code>CreatedTimestamp</code>, <code>DelaySeconds</code>,
-     *         <code>LastModifiedTimestamp</code>,
-     *         <code>MaximumMessageSize</code>,
-     *         <code>MessageRetentionPeriod</code>, <code>Policy</code>,
-     *         <code>QueueArn</code>, <code>ReceiveMessageWaitTimeSeconds</code>, <code>RedrivePolicy</code>, and <code>VisibilityTimeout</code>)
-     *         will be ignored.
+     *         Any other valid special request parameters (such as the
+     *         following) that are specified are ignored:
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>ApproximateNumberOfMessages</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>ApproximateNumberOfMessagesDelayed</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>ApproximateNumberOfMessagesNotVisible</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>CreatedTimestamp</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>ContentBasedDeduplication</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>DelaySeconds</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>LastModifiedTimestamp</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>MaximumMessageSize</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>MessageRetentionPeriod</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>Policy</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>QueueArn</code>,
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>ReceiveMessageWaitTimeSeconds</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>RedrivePolicy</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>FifoQueue</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>VisibilityTimeout</code>
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public java.util.List<String> getAttributeNames() {
         return attributeNames;
@@ -406,46 +813,146 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      * <ul>
      * <li>
      * <p>
-     * <code>All</code> - returns all values.
+     * <code>All</code> - Returns all values.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateFirstReceiveTimestamp</code> - returns the time when the
+     * <code>ApproximateFirstReceiveTimestamp</code> - Returns the time the
      * message was first received from the queue (epoch time in milliseconds).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateReceiveCount</code> - returns the number of times a
+     * <code>ApproximateReceiveCount</code> - Returns the number of times a
      * message has been received from the queue but not deleted.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SenderId</code> - returns the AWS account number (or the IP
-     * address, if anonymous access is allowed) of the sender.
+     * <code>SenderId</code>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For an IAM user, returns the IAM user ID, for example
+     * <code>ABCDEFGHI1JKLMNOPQ23R</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SentTimestamp</code> - returns the time when the message was sent
-     * to the queue (epoch time in milliseconds).
+     * For an IAM role, returns the IAM role ID, for example
+     * <code>ABCDE1F2GH3I4JK5LMNOP:i-a123b456</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SentTimestamp</code> - Returns the time the message was sent to the
+     * queue (epoch time in milliseconds).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageDeduplicationId</code> - Returns the value provided by the
+     * sender that calls the <code> <a>SendMessage</a> </code> action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageGroupId</code> - Returns the value provided by the sender
+     * that calls the <code> <a>SendMessage</a> </code> action. Messages with
+     * the same <code>MessageGroupId</code> are returned in sequence.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SequenceNumber</code> - Returns the value provided by Amazon SQS.
      * </p>
      * </li>
      * </ul>
      * <p>
-     * Any other valid special request parameters that are specified (such as
-     * <code>ApproximateNumberOfMessages</code>,
-     * <code>ApproximateNumberOfMessagesDelayed</code>,
-     * <code>ApproximateNumberOfMessagesNotVisible</code>,
-     * <code>CreatedTimestamp</code>, <code>DelaySeconds</code>,
-     * <code>LastModifiedTimestamp</code>, <code>MaximumMessageSize</code>,
-     * <code>MessageRetentionPeriod</code>, <code>Policy</code>,
-     * <code>QueueArn</code>, <code>ReceiveMessageWaitTimeSeconds</code>,
-     * <code>RedrivePolicy</code>, and <code>VisibilityTimeout</code>) will be
-     * ignored.
+     * Any other valid special request parameters (such as the following) that
+     * are specified are ignored:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ApproximateNumberOfMessages</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ApproximateNumberOfMessagesDelayed</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ApproximateNumberOfMessagesNotVisible</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>CreatedTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ContentBasedDeduplication</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DelaySeconds</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>LastModifiedTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MaximumMessageSize</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageRetentionPeriod</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Policy</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>QueueArn</code>,
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ReceiveMessageWaitTimeSeconds</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>RedrivePolicy</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FifoQueue</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>VisibilityTimeout</code>
+     * </p>
+     * </li>
+     * </ul>
      *
      * @param attributeNames <p>
      *            A list of attributes that need to be returned along with each
@@ -454,50 +961,151 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>All</code> - returns all values.
+     *            <code>All</code> - Returns all values.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ApproximateFirstReceiveTimestamp</code> - returns the
-     *            time when the message was first received from the queue (epoch
-     *            time in milliseconds).
+     *            <code>ApproximateFirstReceiveTimestamp</code> - Returns the
+     *            time the message was first received from the queue (epoch time
+     *            in milliseconds).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ApproximateReceiveCount</code> - returns the number of
+     *            <code>ApproximateReceiveCount</code> - Returns the number of
      *            times a message has been received from the queue but not
      *            deleted.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>SenderId</code> - returns the AWS account number (or the
-     *            IP address, if anonymous access is allowed) of the sender.
+     *            <code>SenderId</code>
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            For an IAM user, returns the IAM user ID, for example
+     *            <code>ABCDEFGHI1JKLMNOPQ23R</code>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>SentTimestamp</code> - returns the time when the message
-     *            was sent to the queue (epoch time in milliseconds).
+     *            For an IAM role, returns the IAM role ID, for example
+     *            <code>ABCDE1F2GH3I4JK5LMNOP:i-a123b456</code>.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SentTimestamp</code> - Returns the time the message was
+     *            sent to the queue (epoch time in milliseconds).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MessageDeduplicationId</code> - Returns the value
+     *            provided by the sender that calls the
+     *            <code> <a>SendMessage</a> </code> action.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MessageGroupId</code> - Returns the value provided by
+     *            the sender that calls the <code> <a>SendMessage</a> </code>
+     *            action. Messages with the same <code>MessageGroupId</code> are
+     *            returned in sequence.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SequenceNumber</code> - Returns the value provided by
+     *            Amazon SQS.
      *            </p>
      *            </li>
      *            </ul>
      *            <p>
-     *            Any other valid special request parameters that are specified
-     *            (such as <code>ApproximateNumberOfMessages</code>,
-     *            <code>ApproximateNumberOfMessagesDelayed</code>,
-     *            <code>ApproximateNumberOfMessagesNotVisible</code>,
-     *            <code>CreatedTimestamp</code>, <code>DelaySeconds</code>,
-     *            <code>LastModifiedTimestamp</code>,
-     *            <code>MaximumMessageSize</code>,
-     *            <code>MessageRetentionPeriod</code>, <code>Policy</code>,
-     *            <code>QueueArn</code>,
-     *            <code>ReceiveMessageWaitTimeSeconds</code>,
-     *            <code>RedrivePolicy</code>, and <code>VisibilityTimeout</code>
-     *            ) will be ignored.
+     *            Any other valid special request parameters (such as the
+     *            following) that are specified are ignored:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>ApproximateNumberOfMessages</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ApproximateNumberOfMessagesDelayed</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ApproximateNumberOfMessagesNotVisible</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>CreatedTimestamp</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ContentBasedDeduplication</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DelaySeconds</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>LastModifiedTimestamp</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MaximumMessageSize</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MessageRetentionPeriod</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Policy</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>QueueArn</code>,
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ReceiveMessageWaitTimeSeconds</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>RedrivePolicy</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FifoQueue</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>VisibilityTimeout</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setAttributeNames(java.util.Collection<String> attributeNames) {
         if (attributeNames == null) {
@@ -516,46 +1124,146 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      * <ul>
      * <li>
      * <p>
-     * <code>All</code> - returns all values.
+     * <code>All</code> - Returns all values.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateFirstReceiveTimestamp</code> - returns the time when the
+     * <code>ApproximateFirstReceiveTimestamp</code> - Returns the time the
      * message was first received from the queue (epoch time in milliseconds).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateReceiveCount</code> - returns the number of times a
+     * <code>ApproximateReceiveCount</code> - Returns the number of times a
      * message has been received from the queue but not deleted.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SenderId</code> - returns the AWS account number (or the IP
-     * address, if anonymous access is allowed) of the sender.
+     * <code>SenderId</code>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For an IAM user, returns the IAM user ID, for example
+     * <code>ABCDEFGHI1JKLMNOPQ23R</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SentTimestamp</code> - returns the time when the message was sent
-     * to the queue (epoch time in milliseconds).
+     * For an IAM role, returns the IAM role ID, for example
+     * <code>ABCDE1F2GH3I4JK5LMNOP:i-a123b456</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SentTimestamp</code> - Returns the time the message was sent to the
+     * queue (epoch time in milliseconds).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageDeduplicationId</code> - Returns the value provided by the
+     * sender that calls the <code> <a>SendMessage</a> </code> action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageGroupId</code> - Returns the value provided by the sender
+     * that calls the <code> <a>SendMessage</a> </code> action. Messages with
+     * the same <code>MessageGroupId</code> are returned in sequence.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SequenceNumber</code> - Returns the value provided by Amazon SQS.
      * </p>
      * </li>
      * </ul>
      * <p>
-     * Any other valid special request parameters that are specified (such as
-     * <code>ApproximateNumberOfMessages</code>,
-     * <code>ApproximateNumberOfMessagesDelayed</code>,
-     * <code>ApproximateNumberOfMessagesNotVisible</code>,
-     * <code>CreatedTimestamp</code>, <code>DelaySeconds</code>,
-     * <code>LastModifiedTimestamp</code>, <code>MaximumMessageSize</code>,
-     * <code>MessageRetentionPeriod</code>, <code>Policy</code>,
-     * <code>QueueArn</code>, <code>ReceiveMessageWaitTimeSeconds</code>,
-     * <code>RedrivePolicy</code>, and <code>VisibilityTimeout</code>) will be
-     * ignored.
+     * Any other valid special request parameters (such as the following) that
+     * are specified are ignored:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ApproximateNumberOfMessages</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ApproximateNumberOfMessagesDelayed</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ApproximateNumberOfMessagesNotVisible</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>CreatedTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ContentBasedDeduplication</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DelaySeconds</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>LastModifiedTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MaximumMessageSize</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageRetentionPeriod</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Policy</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>QueueArn</code>,
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ReceiveMessageWaitTimeSeconds</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>RedrivePolicy</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FifoQueue</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>VisibilityTimeout</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -567,50 +1275,151 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>All</code> - returns all values.
+     *            <code>All</code> - Returns all values.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ApproximateFirstReceiveTimestamp</code> - returns the
-     *            time when the message was first received from the queue (epoch
-     *            time in milliseconds).
+     *            <code>ApproximateFirstReceiveTimestamp</code> - Returns the
+     *            time the message was first received from the queue (epoch time
+     *            in milliseconds).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ApproximateReceiveCount</code> - returns the number of
+     *            <code>ApproximateReceiveCount</code> - Returns the number of
      *            times a message has been received from the queue but not
      *            deleted.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>SenderId</code> - returns the AWS account number (or the
-     *            IP address, if anonymous access is allowed) of the sender.
+     *            <code>SenderId</code>
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            For an IAM user, returns the IAM user ID, for example
+     *            <code>ABCDEFGHI1JKLMNOPQ23R</code>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>SentTimestamp</code> - returns the time when the message
-     *            was sent to the queue (epoch time in milliseconds).
+     *            For an IAM role, returns the IAM role ID, for example
+     *            <code>ABCDE1F2GH3I4JK5LMNOP:i-a123b456</code>.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SentTimestamp</code> - Returns the time the message was
+     *            sent to the queue (epoch time in milliseconds).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MessageDeduplicationId</code> - Returns the value
+     *            provided by the sender that calls the
+     *            <code> <a>SendMessage</a> </code> action.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MessageGroupId</code> - Returns the value provided by
+     *            the sender that calls the <code> <a>SendMessage</a> </code>
+     *            action. Messages with the same <code>MessageGroupId</code> are
+     *            returned in sequence.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SequenceNumber</code> - Returns the value provided by
+     *            Amazon SQS.
      *            </p>
      *            </li>
      *            </ul>
      *            <p>
-     *            Any other valid special request parameters that are specified
-     *            (such as <code>ApproximateNumberOfMessages</code>,
-     *            <code>ApproximateNumberOfMessagesDelayed</code>,
-     *            <code>ApproximateNumberOfMessagesNotVisible</code>,
-     *            <code>CreatedTimestamp</code>, <code>DelaySeconds</code>,
-     *            <code>LastModifiedTimestamp</code>,
-     *            <code>MaximumMessageSize</code>,
-     *            <code>MessageRetentionPeriod</code>, <code>Policy</code>,
-     *            <code>QueueArn</code>,
-     *            <code>ReceiveMessageWaitTimeSeconds</code>,
-     *            <code>RedrivePolicy</code>, and <code>VisibilityTimeout</code>
-     *            ) will be ignored.
+     *            Any other valid special request parameters (such as the
+     *            following) that are specified are ignored:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>ApproximateNumberOfMessages</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ApproximateNumberOfMessagesDelayed</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ApproximateNumberOfMessagesNotVisible</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>CreatedTimestamp</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ContentBasedDeduplication</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DelaySeconds</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>LastModifiedTimestamp</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MaximumMessageSize</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MessageRetentionPeriod</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Policy</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>QueueArn</code>,
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ReceiveMessageWaitTimeSeconds</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>RedrivePolicy</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FifoQueue</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>VisibilityTimeout</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -632,46 +1441,146 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      * <ul>
      * <li>
      * <p>
-     * <code>All</code> - returns all values.
+     * <code>All</code> - Returns all values.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateFirstReceiveTimestamp</code> - returns the time when the
+     * <code>ApproximateFirstReceiveTimestamp</code> - Returns the time the
      * message was first received from the queue (epoch time in milliseconds).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateReceiveCount</code> - returns the number of times a
+     * <code>ApproximateReceiveCount</code> - Returns the number of times a
      * message has been received from the queue but not deleted.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SenderId</code> - returns the AWS account number (or the IP
-     * address, if anonymous access is allowed) of the sender.
+     * <code>SenderId</code>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For an IAM user, returns the IAM user ID, for example
+     * <code>ABCDEFGHI1JKLMNOPQ23R</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SentTimestamp</code> - returns the time when the message was sent
-     * to the queue (epoch time in milliseconds).
+     * For an IAM role, returns the IAM role ID, for example
+     * <code>ABCDE1F2GH3I4JK5LMNOP:i-a123b456</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SentTimestamp</code> - Returns the time the message was sent to the
+     * queue (epoch time in milliseconds).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageDeduplicationId</code> - Returns the value provided by the
+     * sender that calls the <code> <a>SendMessage</a> </code> action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageGroupId</code> - Returns the value provided by the sender
+     * that calls the <code> <a>SendMessage</a> </code> action. Messages with
+     * the same <code>MessageGroupId</code> are returned in sequence.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SequenceNumber</code> - Returns the value provided by Amazon SQS.
      * </p>
      * </li>
      * </ul>
      * <p>
-     * Any other valid special request parameters that are specified (such as
-     * <code>ApproximateNumberOfMessages</code>,
-     * <code>ApproximateNumberOfMessagesDelayed</code>,
-     * <code>ApproximateNumberOfMessagesNotVisible</code>,
-     * <code>CreatedTimestamp</code>, <code>DelaySeconds</code>,
-     * <code>LastModifiedTimestamp</code>, <code>MaximumMessageSize</code>,
-     * <code>MessageRetentionPeriod</code>, <code>Policy</code>,
-     * <code>QueueArn</code>, <code>ReceiveMessageWaitTimeSeconds</code>,
-     * <code>RedrivePolicy</code>, and <code>VisibilityTimeout</code>) will be
-     * ignored.
+     * Any other valid special request parameters (such as the following) that
+     * are specified are ignored:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ApproximateNumberOfMessages</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ApproximateNumberOfMessagesDelayed</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ApproximateNumberOfMessagesNotVisible</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>CreatedTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ContentBasedDeduplication</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DelaySeconds</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>LastModifiedTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MaximumMessageSize</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageRetentionPeriod</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Policy</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>QueueArn</code>,
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ReceiveMessageWaitTimeSeconds</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>RedrivePolicy</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FifoQueue</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>VisibilityTimeout</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -683,50 +1592,151 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>All</code> - returns all values.
+     *            <code>All</code> - Returns all values.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ApproximateFirstReceiveTimestamp</code> - returns the
-     *            time when the message was first received from the queue (epoch
-     *            time in milliseconds).
+     *            <code>ApproximateFirstReceiveTimestamp</code> - Returns the
+     *            time the message was first received from the queue (epoch time
+     *            in milliseconds).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ApproximateReceiveCount</code> - returns the number of
+     *            <code>ApproximateReceiveCount</code> - Returns the number of
      *            times a message has been received from the queue but not
      *            deleted.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>SenderId</code> - returns the AWS account number (or the
-     *            IP address, if anonymous access is allowed) of the sender.
+     *            <code>SenderId</code>
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            For an IAM user, returns the IAM user ID, for example
+     *            <code>ABCDEFGHI1JKLMNOPQ23R</code>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>SentTimestamp</code> - returns the time when the message
-     *            was sent to the queue (epoch time in milliseconds).
+     *            For an IAM role, returns the IAM role ID, for example
+     *            <code>ABCDE1F2GH3I4JK5LMNOP:i-a123b456</code>.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SentTimestamp</code> - Returns the time the message was
+     *            sent to the queue (epoch time in milliseconds).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MessageDeduplicationId</code> - Returns the value
+     *            provided by the sender that calls the
+     *            <code> <a>SendMessage</a> </code> action.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MessageGroupId</code> - Returns the value provided by
+     *            the sender that calls the <code> <a>SendMessage</a> </code>
+     *            action. Messages with the same <code>MessageGroupId</code> are
+     *            returned in sequence.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SequenceNumber</code> - Returns the value provided by
+     *            Amazon SQS.
      *            </p>
      *            </li>
      *            </ul>
      *            <p>
-     *            Any other valid special request parameters that are specified
-     *            (such as <code>ApproximateNumberOfMessages</code>,
-     *            <code>ApproximateNumberOfMessagesDelayed</code>,
-     *            <code>ApproximateNumberOfMessagesNotVisible</code>,
-     *            <code>CreatedTimestamp</code>, <code>DelaySeconds</code>,
-     *            <code>LastModifiedTimestamp</code>,
-     *            <code>MaximumMessageSize</code>,
-     *            <code>MessageRetentionPeriod</code>, <code>Policy</code>,
-     *            <code>QueueArn</code>,
-     *            <code>ReceiveMessageWaitTimeSeconds</code>,
-     *            <code>RedrivePolicy</code>, and <code>VisibilityTimeout</code>
-     *            ) will be ignored.
+     *            Any other valid special request parameters (such as the
+     *            following) that are specified are ignored:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>ApproximateNumberOfMessages</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ApproximateNumberOfMessagesDelayed</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ApproximateNumberOfMessagesNotVisible</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>CreatedTimestamp</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ContentBasedDeduplication</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DelaySeconds</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>LastModifiedTimestamp</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MaximumMessageSize</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MessageRetentionPeriod</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Policy</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>QueueArn</code>,
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ReceiveMessageWaitTimeSeconds</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>RedrivePolicy</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FifoQueue</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>VisibilityTimeout</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -742,7 +1752,7 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      * 0-9, underscore (_), hyphen (-), and period (.). The name must not start
      * or end with a period, and it should not have successive periods. The name
      * is case sensitive and must be unique among all attribute names for the
-     * message. The name can be up to 256 characters long. The name cannot start
+     * message. The name can be up to 256 characters long. The name can't start
      * with "AWS." or "Amazon." (or any variations in casing), because these
      * prefixes are reserved for use by Amazon Web Services.
      * </p>
@@ -760,7 +1770,7 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      *         name must not start or end with a period, and it should not have
      *         successive periods. The name is case sensitive and must be unique
      *         among all attribute names for the message. The name can be up to
-     *         256 characters long. The name cannot start with "AWS." or
+     *         256 characters long. The name can't start with "AWS." or
      *         "Amazon." (or any variations in casing), because these prefixes
      *         are reserved for use by Amazon Web Services.
      *         </p>
@@ -783,7 +1793,7 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      * 0-9, underscore (_), hyphen (-), and period (.). The name must not start
      * or end with a period, and it should not have successive periods. The name
      * is case sensitive and must be unique among all attribute names for the
-     * message. The name can be up to 256 characters long. The name cannot start
+     * message. The name can be up to 256 characters long. The name can't start
      * with "AWS." or "Amazon." (or any variations in casing), because these
      * prefixes are reserved for use by Amazon Web Services.
      * </p>
@@ -802,7 +1812,7 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      *            it should not have successive periods. The name is case
      *            sensitive and must be unique among all attribute names for the
      *            message. The name can be up to 256 characters long. The name
-     *            cannot start with "AWS." or "Amazon." (or any variations in
+     *            can't start with "AWS." or "Amazon." (or any variations in
      *            casing), because these prefixes are reserved for use by Amazon
      *            Web Services.
      *            </p>
@@ -830,7 +1840,7 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      * 0-9, underscore (_), hyphen (-), and period (.). The name must not start
      * or end with a period, and it should not have successive periods. The name
      * is case sensitive and must be unique among all attribute names for the
-     * message. The name can be up to 256 characters long. The name cannot start
+     * message. The name can be up to 256 characters long. The name can't start
      * with "AWS." or "Amazon." (or any variations in casing), because these
      * prefixes are reserved for use by Amazon Web Services.
      * </p>
@@ -852,7 +1862,7 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      *            it should not have successive periods. The name is case
      *            sensitive and must be unique among all attribute names for the
      *            message. The name can be up to 256 characters long. The name
-     *            cannot start with "AWS." or "Amazon." (or any variations in
+     *            can't start with "AWS." or "Amazon." (or any variations in
      *            casing), because these prefixes are reserved for use by Amazon
      *            Web Services.
      *            </p>
@@ -884,7 +1894,7 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      * 0-9, underscore (_), hyphen (-), and period (.). The name must not start
      * or end with a period, and it should not have successive periods. The name
      * is case sensitive and must be unique among all attribute names for the
-     * message. The name can be up to 256 characters long. The name cannot start
+     * message. The name can be up to 256 characters long. The name can't start
      * with "AWS." or "Amazon." (or any variations in casing), because these
      * prefixes are reserved for use by Amazon Web Services.
      * </p>
@@ -906,7 +1916,7 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      *            it should not have successive periods. The name is case
      *            sensitive and must be unique among all attribute names for the
      *            message. The name can be up to 256 characters long. The name
-     *            cannot start with "AWS." or "Amazon." (or any variations in
+     *            can't start with "AWS." or "Amazon." (or any variations in
      *            casing), because these prefixes are reserved for use by Amazon
      *            Web Services.
      *            </p>
@@ -929,7 +1939,7 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The maximum number of messages to return. Amazon SQS never returns more
-     * messages than this value but may return fewer. Values can be from 1 to
+     * messages than this value but might return fewer. Values can be from 1 to
      * 10. Default is 1.
      * </p>
      * <p>
@@ -938,7 +1948,7 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      *
      * @return <p>
      *         The maximum number of messages to return. Amazon SQS never
-     *         returns more messages than this value but may return fewer.
+     *         returns more messages than this value but might return fewer.
      *         Values can be from 1 to 10. Default is 1.
      *         </p>
      *         <p>
@@ -952,7 +1962,7 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The maximum number of messages to return. Amazon SQS never returns more
-     * messages than this value but may return fewer. Values can be from 1 to
+     * messages than this value but might return fewer. Values can be from 1 to
      * 10. Default is 1.
      * </p>
      * <p>
@@ -961,7 +1971,7 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      *
      * @param maxNumberOfMessages <p>
      *            The maximum number of messages to return. Amazon SQS never
-     *            returns more messages than this value but may return fewer.
+     *            returns more messages than this value but might return fewer.
      *            Values can be from 1 to 10. Default is 1.
      *            </p>
      *            <p>
@@ -975,7 +1985,7 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The maximum number of messages to return. Amazon SQS never returns more
-     * messages than this value but may return fewer. Values can be from 1 to
+     * messages than this value but might return fewer. Values can be from 1 to
      * 10. Default is 1.
      * </p>
      * <p>
@@ -987,7 +1997,7 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
      *
      * @param maxNumberOfMessages <p>
      *            The maximum number of messages to return. Amazon SQS never
-     *            returns more messages than this value but may return fewer.
+     *            returns more messages than this value but might return fewer.
      *            Values can be from 1 to 10. Default is 1.
      *            </p>
      *            <p>
@@ -1118,6 +2128,624 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p>
+     * This parameter applies only to FIFO (first-in-first-out) queues.
+     * </p>
+     * <p>
+     * The token used for deduplication of <code>ReceiveMessage</code> calls. If
+     * a networking issue occurs after a <code>ReceiveMessage</code> action, and
+     * instead of a response you receive a generic error, you can retry the same
+     * action with an identical <code>ReceiveRequestAttemptId</code> to retrieve
+     * the same set of messages, even if their visibility timeout has not yet
+     * expired.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * You can use <code>ReceiveRequestAttemptId</code> only for 5 minutes after
+     * a <code>ReceiveMessage</code> action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * When you set <code>FifoQueue</code>, a caller of the
+     * <code>ReceiveMessage</code> action can provide a
+     * <code>ReceiveRequestAttemptId</code> explicitly.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If a caller of the <code>ReceiveMessage</code> action doesn't provide a
+     * <code>ReceiveRequestAttemptId</code>, Amazon SQS generates a
+     * <code>ReceiveRequestAttemptId</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can retry the <code>ReceiveMessage</code> action with the same
+     * <code>ReceiveRequestAttemptId</code> if none of the messages have been
+     * modified (deleted or had their visibility changes).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * During a visibility timeout, subsequent calls with the same
+     * <code>ReceiveRequestAttemptId</code> return the same messages and receipt
+     * handles. If a retry occurs within the deduplication interval, it resets
+     * the visibility timeout. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"
+     * >Visibility Timeout</a> in the <i>Amazon Simple Queue Service Developer
+     * Guide</i>.
+     * </p>
+     * <important>
+     * <p>
+     * If a caller of the <code>ReceiveMessage</code> action is still processing
+     * messages when the visibility timeout expires and messages become visible,
+     * another worker reading from the same queue can receive the same messages
+     * and therefore process duplicates. Also, if a reader whose message
+     * processing time is longer than the visibility timeout tries to delete the
+     * processed messages, the action fails with an error.
+     * </p>
+     * <p>
+     * To mitigate this effect, ensure that your application observes a safe
+     * threshold before the visibility timeout expires and extend the visibility
+     * timeout as necessary.
+     * </p>
+     * </important></li>
+     * <li>
+     * <p>
+     * While messages with a particular <code>MessageGroupId</code> are
+     * invisible, no more messages belonging to the same
+     * <code>MessageGroupId</code> are returned until the visibility timeout
+     * expires. You can still receive messages with another
+     * <code>MessageGroupId</code> as long as it is also visible.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If a caller of <code>ReceiveMessage</code> can't track the
+     * <code>ReceiveRequestAttemptId</code>, no retries will work until the
+     * original visibility timeout expires. As a result, delays might occur but
+     * the messages in the queue will remain in a strict order.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The length of <code>ReceiveRequestAttemptId</code> is 128 characters.
+     * <code>ReceiveRequestAttemptId</code> can contain alphanumeric characters
+     * (<code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and punctuation (
+     * <code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).
+     * </p>
+     * <p>
+     * For best practices of using <code>ReceiveRequestAttemptId</code>, see <a
+     * href=
+     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-receiverequestattemptid-request-parameter"
+     * >Using the ReceiveRequestAttemptId Request Parameter</a> in the <i>Amazon
+     * Simple Queue Service Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         This parameter applies only to FIFO (first-in-first-out) queues.
+     *         </p>
+     *         <p>
+     *         The token used for deduplication of <code>ReceiveMessage</code>
+     *         calls. If a networking issue occurs after a
+     *         <code>ReceiveMessage</code> action, and instead of a response you
+     *         receive a generic error, you can retry the same action with an
+     *         identical <code>ReceiveRequestAttemptId</code> to retrieve the
+     *         same set of messages, even if their visibility timeout has not
+     *         yet expired.
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         You can use <code>ReceiveRequestAttemptId</code> only for 5
+     *         minutes after a <code>ReceiveMessage</code> action.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         When you set <code>FifoQueue</code>, a caller of the
+     *         <code>ReceiveMessage</code> action can provide a
+     *         <code>ReceiveRequestAttemptId</code> explicitly.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         If a caller of the <code>ReceiveMessage</code> action doesn't
+     *         provide a <code>ReceiveRequestAttemptId</code>, Amazon SQS
+     *         generates a <code>ReceiveRequestAttemptId</code>.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         You can retry the <code>ReceiveMessage</code> action with the
+     *         same <code>ReceiveRequestAttemptId</code> if none of the messages
+     *         have been modified (deleted or had their visibility changes).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         During a visibility timeout, subsequent calls with the same
+     *         <code>ReceiveRequestAttemptId</code> return the same messages and
+     *         receipt handles. If a retry occurs within the deduplication
+     *         interval, it resets the visibility timeout. For more information,
+     *         see <a href=
+     *         "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"
+     *         >Visibility Timeout</a> in the <i>Amazon Simple Queue Service
+     *         Developer Guide</i>.
+     *         </p>
+     *         <important>
+     *         <p>
+     *         If a caller of the <code>ReceiveMessage</code> action is still
+     *         processing messages when the visibility timeout expires and
+     *         messages become visible, another worker reading from the same
+     *         queue can receive the same messages and therefore process
+     *         duplicates. Also, if a reader whose message processing time is
+     *         longer than the visibility timeout tries to delete the processed
+     *         messages, the action fails with an error.
+     *         </p>
+     *         <p>
+     *         To mitigate this effect, ensure that your application observes a
+     *         safe threshold before the visibility timeout expires and extend
+     *         the visibility timeout as necessary.
+     *         </p>
+     *         </important></li>
+     *         <li>
+     *         <p>
+     *         While messages with a particular <code>MessageGroupId</code> are
+     *         invisible, no more messages belonging to the same
+     *         <code>MessageGroupId</code> are returned until the visibility
+     *         timeout expires. You can still receive messages with another
+     *         <code>MessageGroupId</code> as long as it is also visible.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         If a caller of <code>ReceiveMessage</code> can't track the
+     *         <code>ReceiveRequestAttemptId</code>, no retries will work until
+     *         the original visibility timeout expires. As a result, delays
+     *         might occur but the messages in the queue will remain in a strict
+     *         order.
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         The length of <code>ReceiveRequestAttemptId</code> is 128
+     *         characters. <code>ReceiveRequestAttemptId</code> can contain
+     *         alphanumeric characters (<code>a-z</code>, <code>A-Z</code>,
+     *         <code>0-9</code>) and punctuation (
+     *         <code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).
+     *         </p>
+     *         <p>
+     *         For best practices of using <code>ReceiveRequestAttemptId</code>,
+     *         see <a href=
+     *         "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-receiverequestattemptid-request-parameter"
+     *         >Using the ReceiveRequestAttemptId Request Parameter</a> in the
+     *         <i>Amazon Simple Queue Service Developer Guide</i>.
+     *         </p>
+     */
+    public String getReceiveRequestAttemptId() {
+        return receiveRequestAttemptId;
+    }
+
+    /**
+     * <p>
+     * This parameter applies only to FIFO (first-in-first-out) queues.
+     * </p>
+     * <p>
+     * The token used for deduplication of <code>ReceiveMessage</code> calls. If
+     * a networking issue occurs after a <code>ReceiveMessage</code> action, and
+     * instead of a response you receive a generic error, you can retry the same
+     * action with an identical <code>ReceiveRequestAttemptId</code> to retrieve
+     * the same set of messages, even if their visibility timeout has not yet
+     * expired.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * You can use <code>ReceiveRequestAttemptId</code> only for 5 minutes after
+     * a <code>ReceiveMessage</code> action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * When you set <code>FifoQueue</code>, a caller of the
+     * <code>ReceiveMessage</code> action can provide a
+     * <code>ReceiveRequestAttemptId</code> explicitly.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If a caller of the <code>ReceiveMessage</code> action doesn't provide a
+     * <code>ReceiveRequestAttemptId</code>, Amazon SQS generates a
+     * <code>ReceiveRequestAttemptId</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can retry the <code>ReceiveMessage</code> action with the same
+     * <code>ReceiveRequestAttemptId</code> if none of the messages have been
+     * modified (deleted or had their visibility changes).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * During a visibility timeout, subsequent calls with the same
+     * <code>ReceiveRequestAttemptId</code> return the same messages and receipt
+     * handles. If a retry occurs within the deduplication interval, it resets
+     * the visibility timeout. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"
+     * >Visibility Timeout</a> in the <i>Amazon Simple Queue Service Developer
+     * Guide</i>.
+     * </p>
+     * <important>
+     * <p>
+     * If a caller of the <code>ReceiveMessage</code> action is still processing
+     * messages when the visibility timeout expires and messages become visible,
+     * another worker reading from the same queue can receive the same messages
+     * and therefore process duplicates. Also, if a reader whose message
+     * processing time is longer than the visibility timeout tries to delete the
+     * processed messages, the action fails with an error.
+     * </p>
+     * <p>
+     * To mitigate this effect, ensure that your application observes a safe
+     * threshold before the visibility timeout expires and extend the visibility
+     * timeout as necessary.
+     * </p>
+     * </important></li>
+     * <li>
+     * <p>
+     * While messages with a particular <code>MessageGroupId</code> are
+     * invisible, no more messages belonging to the same
+     * <code>MessageGroupId</code> are returned until the visibility timeout
+     * expires. You can still receive messages with another
+     * <code>MessageGroupId</code> as long as it is also visible.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If a caller of <code>ReceiveMessage</code> can't track the
+     * <code>ReceiveRequestAttemptId</code>, no retries will work until the
+     * original visibility timeout expires. As a result, delays might occur but
+     * the messages in the queue will remain in a strict order.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The length of <code>ReceiveRequestAttemptId</code> is 128 characters.
+     * <code>ReceiveRequestAttemptId</code> can contain alphanumeric characters
+     * (<code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and punctuation (
+     * <code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).
+     * </p>
+     * <p>
+     * For best practices of using <code>ReceiveRequestAttemptId</code>, see <a
+     * href=
+     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-receiverequestattemptid-request-parameter"
+     * >Using the ReceiveRequestAttemptId Request Parameter</a> in the <i>Amazon
+     * Simple Queue Service Developer Guide</i>.
+     * </p>
+     *
+     * @param receiveRequestAttemptId <p>
+     *            This parameter applies only to FIFO (first-in-first-out)
+     *            queues.
+     *            </p>
+     *            <p>
+     *            The token used for deduplication of
+     *            <code>ReceiveMessage</code> calls. If a networking issue
+     *            occurs after a <code>ReceiveMessage</code> action, and instead
+     *            of a response you receive a generic error, you can retry the
+     *            same action with an identical
+     *            <code>ReceiveRequestAttemptId</code> to retrieve the same set
+     *            of messages, even if their visibility timeout has not yet
+     *            expired.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            You can use <code>ReceiveRequestAttemptId</code> only for 5
+     *            minutes after a <code>ReceiveMessage</code> action.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            When you set <code>FifoQueue</code>, a caller of the
+     *            <code>ReceiveMessage</code> action can provide a
+     *            <code>ReceiveRequestAttemptId</code> explicitly.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            If a caller of the <code>ReceiveMessage</code> action doesn't
+     *            provide a <code>ReceiveRequestAttemptId</code>, Amazon SQS
+     *            generates a <code>ReceiveRequestAttemptId</code>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            You can retry the <code>ReceiveMessage</code> action with the
+     *            same <code>ReceiveRequestAttemptId</code> if none of the
+     *            messages have been modified (deleted or had their visibility
+     *            changes).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            During a visibility timeout, subsequent calls with the same
+     *            <code>ReceiveRequestAttemptId</code> return the same messages
+     *            and receipt handles. If a retry occurs within the
+     *            deduplication interval, it resets the visibility timeout. For
+     *            more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"
+     *            >Visibility Timeout</a> in the <i>Amazon Simple Queue Service
+     *            Developer Guide</i>.
+     *            </p>
+     *            <important>
+     *            <p>
+     *            If a caller of the <code>ReceiveMessage</code> action is still
+     *            processing messages when the visibility timeout expires and
+     *            messages become visible, another worker reading from the same
+     *            queue can receive the same messages and therefore process
+     *            duplicates. Also, if a reader whose message processing time is
+     *            longer than the visibility timeout tries to delete the
+     *            processed messages, the action fails with an error.
+     *            </p>
+     *            <p>
+     *            To mitigate this effect, ensure that your application observes
+     *            a safe threshold before the visibility timeout expires and
+     *            extend the visibility timeout as necessary.
+     *            </p>
+     *            </important></li>
+     *            <li>
+     *            <p>
+     *            While messages with a particular <code>MessageGroupId</code>
+     *            are invisible, no more messages belonging to the same
+     *            <code>MessageGroupId</code> are returned until the visibility
+     *            timeout expires. You can still receive messages with another
+     *            <code>MessageGroupId</code> as long as it is also visible.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            If a caller of <code>ReceiveMessage</code> can't track the
+     *            <code>ReceiveRequestAttemptId</code>, no retries will work
+     *            until the original visibility timeout expires. As a result,
+     *            delays might occur but the messages in the queue will remain
+     *            in a strict order.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The length of <code>ReceiveRequestAttemptId</code> is 128
+     *            characters. <code>ReceiveRequestAttemptId</code> can contain
+     *            alphanumeric characters (<code>a-z</code>, <code>A-Z</code>,
+     *            <code>0-9</code>) and punctuation (
+     *            <code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).
+     *            </p>
+     *            <p>
+     *            For best practices of using
+     *            <code>ReceiveRequestAttemptId</code>, see <a href=
+     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-receiverequestattemptid-request-parameter"
+     *            >Using the ReceiveRequestAttemptId Request Parameter</a> in
+     *            the <i>Amazon Simple Queue Service Developer Guide</i>.
+     *            </p>
+     */
+    public void setReceiveRequestAttemptId(String receiveRequestAttemptId) {
+        this.receiveRequestAttemptId = receiveRequestAttemptId;
+    }
+
+    /**
+     * <p>
+     * This parameter applies only to FIFO (first-in-first-out) queues.
+     * </p>
+     * <p>
+     * The token used for deduplication of <code>ReceiveMessage</code> calls. If
+     * a networking issue occurs after a <code>ReceiveMessage</code> action, and
+     * instead of a response you receive a generic error, you can retry the same
+     * action with an identical <code>ReceiveRequestAttemptId</code> to retrieve
+     * the same set of messages, even if their visibility timeout has not yet
+     * expired.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * You can use <code>ReceiveRequestAttemptId</code> only for 5 minutes after
+     * a <code>ReceiveMessage</code> action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * When you set <code>FifoQueue</code>, a caller of the
+     * <code>ReceiveMessage</code> action can provide a
+     * <code>ReceiveRequestAttemptId</code> explicitly.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If a caller of the <code>ReceiveMessage</code> action doesn't provide a
+     * <code>ReceiveRequestAttemptId</code>, Amazon SQS generates a
+     * <code>ReceiveRequestAttemptId</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can retry the <code>ReceiveMessage</code> action with the same
+     * <code>ReceiveRequestAttemptId</code> if none of the messages have been
+     * modified (deleted or had their visibility changes).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * During a visibility timeout, subsequent calls with the same
+     * <code>ReceiveRequestAttemptId</code> return the same messages and receipt
+     * handles. If a retry occurs within the deduplication interval, it resets
+     * the visibility timeout. For more information, see <a href=
+     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"
+     * >Visibility Timeout</a> in the <i>Amazon Simple Queue Service Developer
+     * Guide</i>.
+     * </p>
+     * <important>
+     * <p>
+     * If a caller of the <code>ReceiveMessage</code> action is still processing
+     * messages when the visibility timeout expires and messages become visible,
+     * another worker reading from the same queue can receive the same messages
+     * and therefore process duplicates. Also, if a reader whose message
+     * processing time is longer than the visibility timeout tries to delete the
+     * processed messages, the action fails with an error.
+     * </p>
+     * <p>
+     * To mitigate this effect, ensure that your application observes a safe
+     * threshold before the visibility timeout expires and extend the visibility
+     * timeout as necessary.
+     * </p>
+     * </important></li>
+     * <li>
+     * <p>
+     * While messages with a particular <code>MessageGroupId</code> are
+     * invisible, no more messages belonging to the same
+     * <code>MessageGroupId</code> are returned until the visibility timeout
+     * expires. You can still receive messages with another
+     * <code>MessageGroupId</code> as long as it is also visible.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If a caller of <code>ReceiveMessage</code> can't track the
+     * <code>ReceiveRequestAttemptId</code>, no retries will work until the
+     * original visibility timeout expires. As a result, delays might occur but
+     * the messages in the queue will remain in a strict order.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The length of <code>ReceiveRequestAttemptId</code> is 128 characters.
+     * <code>ReceiveRequestAttemptId</code> can contain alphanumeric characters
+     * (<code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and punctuation (
+     * <code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).
+     * </p>
+     * <p>
+     * For best practices of using <code>ReceiveRequestAttemptId</code>, see <a
+     * href=
+     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-receiverequestattemptid-request-parameter"
+     * >Using the ReceiveRequestAttemptId Request Parameter</a> in the <i>Amazon
+     * Simple Queue Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param receiveRequestAttemptId <p>
+     *            This parameter applies only to FIFO (first-in-first-out)
+     *            queues.
+     *            </p>
+     *            <p>
+     *            The token used for deduplication of
+     *            <code>ReceiveMessage</code> calls. If a networking issue
+     *            occurs after a <code>ReceiveMessage</code> action, and instead
+     *            of a response you receive a generic error, you can retry the
+     *            same action with an identical
+     *            <code>ReceiveRequestAttemptId</code> to retrieve the same set
+     *            of messages, even if their visibility timeout has not yet
+     *            expired.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            You can use <code>ReceiveRequestAttemptId</code> only for 5
+     *            minutes after a <code>ReceiveMessage</code> action.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            When you set <code>FifoQueue</code>, a caller of the
+     *            <code>ReceiveMessage</code> action can provide a
+     *            <code>ReceiveRequestAttemptId</code> explicitly.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            If a caller of the <code>ReceiveMessage</code> action doesn't
+     *            provide a <code>ReceiveRequestAttemptId</code>, Amazon SQS
+     *            generates a <code>ReceiveRequestAttemptId</code>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            You can retry the <code>ReceiveMessage</code> action with the
+     *            same <code>ReceiveRequestAttemptId</code> if none of the
+     *            messages have been modified (deleted or had their visibility
+     *            changes).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            During a visibility timeout, subsequent calls with the same
+     *            <code>ReceiveRequestAttemptId</code> return the same messages
+     *            and receipt handles. If a retry occurs within the
+     *            deduplication interval, it resets the visibility timeout. For
+     *            more information, see <a href=
+     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"
+     *            >Visibility Timeout</a> in the <i>Amazon Simple Queue Service
+     *            Developer Guide</i>.
+     *            </p>
+     *            <important>
+     *            <p>
+     *            If a caller of the <code>ReceiveMessage</code> action is still
+     *            processing messages when the visibility timeout expires and
+     *            messages become visible, another worker reading from the same
+     *            queue can receive the same messages and therefore process
+     *            duplicates. Also, if a reader whose message processing time is
+     *            longer than the visibility timeout tries to delete the
+     *            processed messages, the action fails with an error.
+     *            </p>
+     *            <p>
+     *            To mitigate this effect, ensure that your application observes
+     *            a safe threshold before the visibility timeout expires and
+     *            extend the visibility timeout as necessary.
+     *            </p>
+     *            </important></li>
+     *            <li>
+     *            <p>
+     *            While messages with a particular <code>MessageGroupId</code>
+     *            are invisible, no more messages belonging to the same
+     *            <code>MessageGroupId</code> are returned until the visibility
+     *            timeout expires. You can still receive messages with another
+     *            <code>MessageGroupId</code> as long as it is also visible.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            If a caller of <code>ReceiveMessage</code> can't track the
+     *            <code>ReceiveRequestAttemptId</code>, no retries will work
+     *            until the original visibility timeout expires. As a result,
+     *            delays might occur but the messages in the queue will remain
+     *            in a strict order.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The length of <code>ReceiveRequestAttemptId</code> is 128
+     *            characters. <code>ReceiveRequestAttemptId</code> can contain
+     *            alphanumeric characters (<code>a-z</code>, <code>A-Z</code>,
+     *            <code>0-9</code>) and punctuation (
+     *            <code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).
+     *            </p>
+     *            <p>
+     *            For best practices of using
+     *            <code>ReceiveRequestAttemptId</code>, see <a href=
+     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-receiverequestattemptid-request-parameter"
+     *            >Using the ReceiveRequestAttemptId Request Parameter</a> in
+     *            the <i>Amazon Simple Queue Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ReceiveMessageRequest withReceiveRequestAttemptId(String receiveRequestAttemptId) {
+        this.receiveRequestAttemptId = receiveRequestAttemptId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1139,7 +2767,9 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
         if (getVisibilityTimeout() != null)
             sb.append("VisibilityTimeout: " + getVisibilityTimeout() + ",");
         if (getWaitTimeSeconds() != null)
-            sb.append("WaitTimeSeconds: " + getWaitTimeSeconds());
+            sb.append("WaitTimeSeconds: " + getWaitTimeSeconds() + ",");
+        if (getReceiveRequestAttemptId() != null)
+            sb.append("ReceiveRequestAttemptId: " + getReceiveRequestAttemptId());
         sb.append("}");
         return sb.toString();
     }
@@ -1161,6 +2791,10 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
                 + ((getVisibilityTimeout() == null) ? 0 : getVisibilityTimeout().hashCode());
         hashCode = prime * hashCode
                 + ((getWaitTimeSeconds() == null) ? 0 : getWaitTimeSeconds().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getReceiveRequestAttemptId() == null) ? 0 : getReceiveRequestAttemptId()
+                        .hashCode());
         return hashCode;
     }
 
@@ -1203,6 +2837,11 @@ public class ReceiveMessageRequest extends AmazonWebServiceRequest implements Se
             return false;
         if (other.getWaitTimeSeconds() != null
                 && other.getWaitTimeSeconds().equals(this.getWaitTimeSeconds()) == false)
+            return false;
+        if (other.getReceiveRequestAttemptId() == null ^ this.getReceiveRequestAttemptId() == null)
+            return false;
+        if (other.getReceiveRequestAttemptId() != null
+                && other.getReceiveRequestAttemptId().equals(this.getReceiveRequestAttemptId()) == false)
             return false;
         return true;
     }

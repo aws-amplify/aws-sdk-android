@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,86 +21,11 @@ import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.HttpMethod;
 import com.amazonaws.services.s3.internal.Constants;
-import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
-import com.amazonaws.services.s3.model.AccessControlList;
-import com.amazonaws.services.s3.model.Bucket;
-import com.amazonaws.services.s3.model.BucketAccelerateConfiguration;
-import com.amazonaws.services.s3.model.BucketCrossOriginConfiguration;
-import com.amazonaws.services.s3.model.BucketLifecycleConfiguration;
-import com.amazonaws.services.s3.model.BucketLoggingConfiguration;
-import com.amazonaws.services.s3.model.BucketNotificationConfiguration;
-import com.amazonaws.services.s3.model.BucketPolicy;
-import com.amazonaws.services.s3.model.BucketReplicationConfiguration;
-import com.amazonaws.services.s3.model.BucketTaggingConfiguration;
-import com.amazonaws.services.s3.model.BucketVersioningConfiguration;
-import com.amazonaws.services.s3.model.BucketWebsiteConfiguration;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
-import com.amazonaws.services.s3.model.CompleteMultipartUploadRequest;
-import com.amazonaws.services.s3.model.CompleteMultipartUploadResult;
-import com.amazonaws.services.s3.model.CopyObjectRequest;
-import com.amazonaws.services.s3.model.CopyObjectResult;
-import com.amazonaws.services.s3.model.CopyPartRequest;
-import com.amazonaws.services.s3.model.CopyPartResult;
-import com.amazonaws.services.s3.model.CreateBucketRequest;
-import com.amazonaws.services.s3.model.DeleteBucketCrossOriginConfigurationRequest;
-import com.amazonaws.services.s3.model.DeleteBucketLifecycleConfigurationRequest;
-import com.amazonaws.services.s3.model.DeleteBucketPolicyRequest;
-import com.amazonaws.services.s3.model.DeleteBucketReplicationConfigurationRequest;
-import com.amazonaws.services.s3.model.DeleteBucketRequest;
-import com.amazonaws.services.s3.model.DeleteBucketTaggingConfigurationRequest;
-import com.amazonaws.services.s3.model.DeleteBucketWebsiteConfigurationRequest;
-import com.amazonaws.services.s3.model.DeleteObjectRequest;
-import com.amazonaws.services.s3.model.DeleteObjectsRequest;
-import com.amazonaws.services.s3.model.DeleteObjectsResult;
-import com.amazonaws.services.s3.model.DeleteVersionRequest;
-import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
-import com.amazonaws.services.s3.model.GetBucketAccelerateConfigurationRequest;
-import com.amazonaws.services.s3.model.GetBucketAclRequest;
-import com.amazonaws.services.s3.model.GetBucketLocationRequest;
-import com.amazonaws.services.s3.model.GetBucketPolicyRequest;
-import com.amazonaws.services.s3.model.GetBucketReplicationConfigurationRequest;
-import com.amazonaws.services.s3.model.GetBucketWebsiteConfigurationRequest;
-import com.amazonaws.services.s3.model.GetObjectMetadataRequest;
-import com.amazonaws.services.s3.model.GetObjectRequest;
-import com.amazonaws.services.s3.model.GroupGrantee;
-import com.amazonaws.services.s3.model.HeadBucketRequest;
-import com.amazonaws.services.s3.model.HeadBucketResult;
-import com.amazonaws.services.s3.model.InitiateMultipartUploadRequest;
-import com.amazonaws.services.s3.model.InitiateMultipartUploadResult;
-import com.amazonaws.services.s3.model.ListBucketsRequest;
-import com.amazonaws.services.s3.model.ListMultipartUploadsRequest;
-import com.amazonaws.services.s3.model.ListObjectsRequest;
-import com.amazonaws.services.s3.model.ListObjectsV2Request;
-import com.amazonaws.services.s3.model.ListObjectsV2Result;
-import com.amazonaws.services.s3.model.ListPartsRequest;
-import com.amazonaws.services.s3.model.ListVersionsRequest;
-import com.amazonaws.services.s3.model.MultiObjectDeleteException;
-import com.amazonaws.services.s3.model.MultipartUploadListing;
-import com.amazonaws.services.s3.model.ObjectListing;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.Owner;
-import com.amazonaws.services.s3.model.PartListing;
-import com.amazonaws.services.s3.model.Permission;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.PutObjectResult;
-import com.amazonaws.services.s3.model.Region;
-import com.amazonaws.services.s3.model.RestoreObjectRequest;
-import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.services.s3.model.SetBucketAccelerateConfigurationRequest;
-import com.amazonaws.services.s3.model.SetBucketAclRequest;
-import com.amazonaws.services.s3.model.SetBucketCrossOriginConfigurationRequest;
-import com.amazonaws.services.s3.model.SetBucketLifecycleConfigurationRequest;
-import com.amazonaws.services.s3.model.SetBucketLoggingConfigurationRequest;
-import com.amazonaws.services.s3.model.SetBucketNotificationConfigurationRequest;
-import com.amazonaws.services.s3.model.SetBucketPolicyRequest;
-import com.amazonaws.services.s3.model.SetBucketReplicationConfigurationRequest;
-import com.amazonaws.services.s3.model.SetBucketTaggingConfigurationRequest;
-import com.amazonaws.services.s3.model.SetBucketVersioningConfigurationRequest;
-import com.amazonaws.services.s3.model.SetBucketWebsiteConfigurationRequest;
-import com.amazonaws.services.s3.model.StorageClass;
-import com.amazonaws.services.s3.model.UploadPartRequest;
-import com.amazonaws.services.s3.model.UploadPartResult;
-import com.amazonaws.services.s3.model.VersionListing;
+import com.amazonaws.services.s3.internal.S3DirectSpi;
+import com.amazonaws.services.s3.model.*;
+import com.amazonaws.services.s3.model.analytics.AnalyticsConfiguration;
+import com.amazonaws.services.s3.model.inventory.InventoryConfiguration;
+import com.amazonaws.services.s3.model.metrics.MetricsConfiguration;
 
 import java.io.File;
 import java.io.InputStream;
@@ -129,7 +54,7 @@ import java.util.List;
  * href="http://aws.amazon.com/s3"> http://aws.amazon.com/s3</a>
  * </p>
  */
-public interface AmazonS3 {
+public interface AmazonS3 extends S3DirectSpi {
 
     /**
      * <p>
@@ -427,6 +352,44 @@ public interface AmazonS3 {
 
     /**
      * <p>
+     * Provides an easy way to continue a truncated object listing and retrieve
+     * the next page of results.
+     * </p>
+     * <p>
+     * To continue the object listing and retrieve the next page of results,
+     * call the initial {@link ObjectListing} from one of the
+     * <code>listObjects</code> methods. If truncated (indicated when
+     * {@link ObjectListing#isTruncated()} returns <code>true</code>), pass the
+     * <code>ObjectListing</code> back into this method in order to retrieve the
+     * next page of results. Continue using this method to retrieve more results
+     * until the returned <code>ObjectListing</code> indicates that it is not
+     * truncated.
+     * </p>
+     *
+     * @param listNextBatchOfObjectsRequest The request object for listing next
+     *            batch of objects using the previous truncated
+     *            <code>ObjectListing</code>. If a non-truncated
+     *            <code>ObjectListing</code> is passed in by the request object,
+     *            an empty <code>ObjectListing</code> is returned without ever
+     *            contacting Amazon S3.
+     * @return The next set of <code>ObjectListing</code> results, beginning
+     *         immediately after the last result in the specified previous
+     *         <code>ObjectListing</code>.
+     * @throws AmazonClientException If any errors are encountered in the client
+     *             while making the request or handling the response.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @see AmazonS3Client#listObjects(String)
+     * @see AmazonS3Client#listObjects(String, String)
+     * @see AmazonS3Client#listObjects(ListObjectsRequest)
+     * @see AmazonS3Client#listNextBatchOfObjects(ObjectListing)
+     */
+    public ObjectListing listNextBatchOfObjects(
+            ListNextBatchOfObjectsRequest listNextBatchOfObjectsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Returns a list of summary information about the versions in the specified
      * bucket.
      * </p>
@@ -509,6 +472,49 @@ public interface AmazonS3 {
      *      Integer)
      */
     public VersionListing listNextBatchOfVersions(VersionListing previousVersionListing)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Provides an easy way to continue a truncated {@link VersionListing} and
+     * retrieve the next page of results.
+     * </p>
+     * <p>
+     * Obtain the initial <code>VersionListing</code> from one of the
+     * <code>listVersions</code> methods. If the result is truncated (indicated
+     * when {@link VersionListing#isTruncated()} returns <code>true</code>),
+     * pass the <code>VersionListing</code> back into this method in order to
+     * retrieve the next page of results. From there, continue using this method
+     * to retrieve more results until the returned <code>VersionListing</code>
+     * indicates that it is not truncated.
+     * </p>
+     * <p>
+     * For more information about enabling versioning for a bucket, see
+     * {@link #setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}
+     * .
+     * </p>
+     *
+     * @param listNextBatchOfVersionsRequest The request object for listing next
+     *            batch of versions using the previous truncated
+     *            <code>VersionListing</code>. If a non-truncated
+     *            <code>VersionListing</code> is passed in by the request
+     *            object, an empty <code>VersionListing</code> is returned
+     *            without ever contacting Amazon S3.
+     * @return The next set of <code>VersionListing</code> results, beginning
+     *         immediately after the last result in the specified previous
+     *         <code>VersionListing</code>.
+     * @throws AmazonClientException If any errors are encountered in the client
+     *             while making the request or handling the response.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @see AmazonS3Client#listVersions(String, String)
+     * @see AmazonS3Client#listVersions(ListVersionsRequest)
+     * @see AmazonS3Client#listVersions(String, String, String, String, String,
+     *      Integer)
+     * @see AmazonS3Client#listNextBatchOfVersions(VersionListing)
+     */
+    public VersionListing listNextBatchOfVersions(
+            ListNextBatchOfVersionsRequest listNextBatchOfVersionsRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -733,6 +739,28 @@ public interface AmazonS3 {
      */
     public Owner getS3AccountOwner() throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets the current owner of the AWS account that the authenticated sender
+     * of the request is using.
+     * </p>
+     * <p>
+     * The caller <i>must</i> authenticate with a valid AWS Access Key ID that
+     * is registered with AWS.
+     * </p>
+     *
+     * @param getS3AccountOwnerRequest The request object for retrieving the S3
+     *            account owner.
+     * @return The account of the authenticated sender
+     * @throws AmazonClientException If any errors are encountered in the client
+     *             while making the request or handling the response.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @see AmazonS3#getS3AccountOwner()
+     */
+    public Owner getS3AccountOwner(GetS3AccountOwnerRequest getS3AccountOwnerRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * Checks if the specified bucket exists. Amazon S3 buckets are named in a
@@ -1202,6 +1230,33 @@ public interface AmazonS3 {
 
     /**
      * <p>
+     * Gets the {@link AccessControlList} (ACL) for the specified object in
+     * Amazon S3.
+     * </p>
+     * <p>
+     * Each bucket and object in Amazon S3 has an ACL that defines its access
+     * control policy. When a request is made, Amazon S3 authenticates the
+     * request using its standard authentication procedure and then checks the
+     * ACL to verify the sender was granted access to the bucket or object. If
+     * the sender is approved, the request proceeds. Otherwise, Amazon S3
+     * returns an error.
+     * </p>
+     *
+     * @param getObjectAclRequest the request object containing all the
+     *            information needed for retrieving the object ACL.
+     * @return The <code>AccessControlList</code> for the specified Amazon S3
+     *         object.
+     * @throws AmazonClientException If any errors are encountered in the client
+     *             while making the request or handling the response.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @see AmazonS3#getObjectAcl(String, String, String)
+     */
+    public AccessControlList getObjectAcl(GetObjectAclRequest getObjectAclRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Sets the {@link AccessControlList} for the specified object in Amazon S3.
      * </p>
      * <p>
@@ -1361,9 +1416,34 @@ public interface AmazonS3 {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * Sets the {@link AccessControlList} for the specified Amazon S3 object
+     * with an optional version ID.
      * <p>
-     * Gets the {@link AccessControlList} (ACL) for the specified Amazon S3
-     * bucket.
+     * Each bucket and object in Amazon S3 has an ACL that defines its access
+     * control policy. When a request is made, Amazon S3 authenticates the
+     * request using its standard authentication procedure and then checks the
+     * ACL to verify the sender was granted access to the bucket or object. If
+     * the sender is approved, the request proceeds. Otherwise, Amazon S3
+     * returns an error.
+     * <p>
+     * When constructing a custom <code>AccessControlList</code>, callers
+     * typically retrieve the existing <code>AccessControlList</code> for a
+     * bucket ({@link AmazonS3Client#getObjectAcl(String, String)}), modify it
+     * as necessary, and then use this method to upload the new ACL.
+     *
+     * @param setObjectAclRequest The request object containing the S3 object to
+     *            modify and the ACL to set.
+     * @throws AmazonClientException If any errors are encountered in the client
+     *             while making the request or handling the response.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     */
+    public void setObjectAcl(SetObjectAclRequest setObjectAclRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets the {@link AccessControlList} (ACL) for the specified Amazon S3 bucket.
      * </p>
      * <p>
      * Each bucket and object in Amazon S3 has an ACL that defines its access
@@ -1574,6 +1654,14 @@ public interface AmazonS3 {
      * object's content, or placing constraints on when the object should be
      * downloaded) callers can use {@link #getObject(GetObjectRequest)}.
      * </p>
+     * <p>
+     * If you are accessing <a href="http://aws.amazon.com/kms/">AWS
+     * KMS</a>-encrypted objects, you need to specify the correct region of the
+     * bucket on your client and configure AWS Signature Version 4 for added
+     * security. For more information on how to do this, see
+     * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#
+     * specify-signature-version
+     * </p>
      *
      * @param bucketName The name of the bucket containing the desired object.
      * @param key The key under which the desired object is stored.
@@ -1640,6 +1728,7 @@ public interface AmazonS3 {
      * @see AmazonS3#getObject(String, String)
      * @see AmazonS3#getObject(GetObjectRequest, File)
      */
+    @Override
     public S3Object getObject(GetObjectRequest getObjectRequest)
             throws AmazonClientException, AmazonServiceException;
 
@@ -1668,6 +1757,20 @@ public interface AmazonS3 {
      * prepared to handle this method returning <code>null</code> if the
      * provided constraints aren't met when Amazon S3 receives the request.
      * </p>
+     * <p>
+     * If you are accessing <a href="http://aws.amazon.com/kms/">AWS
+     * KMS</a>-encrypted objects, you need to specify the correct region of the
+     * bucket on your client and configure AWS Signature Version 4 for added
+     * security. For more information on how to do this, see
+     * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#
+     * specify-signature-version
+     * </p>
+     * @param getObjectRequest
+     *            The request object containing all the options on how to
+     *            download the Amazon S3 object content.
+     * @param destinationFile
+     *            Indicates the file (which might already exist) where
+     *            to save the object content being downloading from Amazon S3.
      *
      * @param getObjectRequest The request object containing all the options on
      *            how to download the Amazon S3 object content.
@@ -1684,14 +1787,60 @@ public interface AmazonS3 {
      * @see AmazonS3#getObject(String, String)
      * @see AmazonS3#getObject(GetObjectRequest)
      */
+    @Override
     public ObjectMetadata getObject(GetObjectRequest getObjectRequest, File destinationFile)
             throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
-     * Deletes the specified bucket. All objects (and all object versions, if
-     * versioning was ever enabled) in the bucket must be deleted before the
-     * bucket itself can be deleted.
+     * Retrieves and decodes the contents of an S3 object to a String.
+     * </p>
+     *
+     * @param bucketName
+     *            The name of the bucket containing the object to retrieve.
+     * @param key
+     *            The key of the object to retrieve.
+     * @return contents of the object as a String
+     */
+    String getObjectAsString(String bucketName, String key)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Returns the tags for the specified object.
+     *
+     * @param getObjectTaggingRequest
+     *            The request object containing all the options on how to
+     *            retrieve the Amazon S3 object tags.
+     * @return The tags for the specified object.
+     */
+    public GetObjectTaggingResult getObjectTagging(GetObjectTaggingRequest getObjectTaggingRequest);
+
+    /**
+     * Set the tags for the specified object.
+     *
+     * @param setObjectTaggingRequest
+     *            The request object containing all the options for setting the
+     *            tags for the specified object.
+     */
+    public SetObjectTaggingResult setObjectTagging(SetObjectTaggingRequest setObjectTaggingRequest);
+
+    /**
+     * Remove the tags for the specified object.
+     *
+     * @param deleteObjectTaggingRequest
+     *            The request object containing all the options for deleting
+     *            the tags for the specified object.
+     *
+     * @return a {@link DeleteObjectTaggingResult} object containing the
+     * information returned by S3 for the the tag deletion.
+     */
+    public DeleteObjectTaggingResult deleteObjectTagging(DeleteObjectTaggingRequest deleteObjectTaggingRequest);
+
+    /**
+     * <p>
+     * Deletes the specified bucket. All objects (and all object versions, if versioning
+     * was ever enabled) in the bucket must be deleted before the bucket itself
+     * can be deleted.
      * </p>
      * <p>
      * Only the owner of a bucket can delete it, regardless of the bucket's
@@ -1740,6 +1889,15 @@ public interface AmazonS3 {
      * <p>
      * Amazon S3 never stores partial objects; if during this call an exception
      * wasn't thrown, the entire object was stored.
+     * </p>
+     * <p>
+     * If you are uploading or accessing <a
+     * href="http://aws.amazon.com/kms/">AWS KMS</a>-encrypted objects, you need to
+     * specify the correct region of the bucket on your client and configure AWS
+     * Signature Version 4 for added security. For more information on how to do
+     * this, see
+     * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#
+     * specify-signature-version
      * </p>
      * <p>
      * Depending on whether a file or input stream is being uploaded, this
@@ -1804,6 +1962,7 @@ public interface AmazonS3 {
      * @see AmazonS3#putObject(String, String, File)
      * @see AmazonS3#putObject(String, String, InputStream, ObjectMetadata)
      */
+    @Override
     public PutObjectResult putObject(PutObjectRequest putObjectRequest)
             throws AmazonClientException, AmazonServiceException;
 
@@ -1817,8 +1976,13 @@ public interface AmazonS3 {
      * wasn't thrown, the entire object was stored.
      * </p>
      * <p>
-     * The client automatically computes a checksum of the file. Amazon S3 uses
-     * checksums to validate the data in each file.
+     * If you are uploading or accessing <a
+     * href="http://aws.amazon.com/kms/">AWS KMS</a>-encrypted objects, you need to
+     * specify the correct region of the bucket on your client and configure AWS
+     * Signature Version 4 for added security. For more information on how to do
+     * this, see
+     * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#
+     * specify-signature-version
      * </p>
      * <p>
      * Using the file extension, Amazon S3 attempts to determine the correct
@@ -1876,10 +2040,13 @@ public interface AmazonS3 {
      * wasn't thrown, the entire object was stored.
      * </p>
      * <p>
-     * The client automatically computes a checksum of the file. This checksum
-     * is verified against another checksum that is calculated once the data
-     * reaches Amazon S3, ensuring the data has not corrupted in transit over
-     * the network.
+     * If you are uploading or accessing <a
+     * href="http://aws.amazon.com/kms/">AWS KMS</a>-encrypted objects, you need to
+     * specify the correct region of the bucket on your client and configure AWS
+     * Signature Version 4 for added security. For more information on how to do
+     * this, see
+     * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#
+     * specify-signature-version
      * </p>
      * <p>
      * Using the file extension, Amazon S3 attempts to determine the correct
@@ -1941,17 +2108,42 @@ public interface AmazonS3 {
 
     /**
      * <p>
+     * Encodes a String into the contents of an S3 object.
+     * </p>
+     * <p>
+     * String will be encoded to bytes with UTF-8 encoding.
+     * </p>
+     *
+     * @param bucketName
+     *            The name of the bucket to place the new object in.
+     * @param key
+     *            The key of the object to create.
+     * @param content
+     *            The String to encode
+     */
+    public PutObjectResult putObject(String bucketName, String key, String content)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Copies a source object to a new destination in Amazon S3.
      * </p>
      * <p>
-     * By default, all object metadata for the source object are copied to the
-     * new destination object. The Amazon S3 <code>AcccessControlList</code>
-     * (ACL) is <b>not</b> copied to the new object; the new object will have
-     * the default Amazon S3 ACL, {@link CannedAccessControlList#Private}.
+     * By default, all object metadata for the source object except
+     * <b>server-side-encryption</b>, <b>storage-class</b> and
+     * <b>website-redirect-location</b> are copied to the new destination
+     * object, unless new object metadata in the specified
+     * {@link CopyObjectRequest} is provided.
      * </p>
      * <p>
-     * To copy an object, the caller's account must have read access to the
-     * source object and write access to the destination bucket
+     * The Amazon S3 Acccess Control List (ACL) is <b>not</b> copied to the new
+     * object. The new object will have the default Amazon S3 ACL,
+     * {@link CannedAccessControlList#Private}, unless one is explicitly
+     * provided in the specified {@link CopyObjectRequest}.
+     * </p>
+     * <p>
+     * To copy an object, the caller's account must have read access to the source object and
+     * write access to the destination bucket
      * </p>
      * <p>
      * This method only exposes the basic options for copying an Amazon S3
@@ -1959,6 +2151,15 @@ public interface AmazonS3 {
      * {@link AmazonS3Client#copyObject(CopyObjectRequest)} method, including
      * conditional constraints for copying objects, setting ACLs, overwriting
      * object metadata, etc.
+     * </p>
+     * <p>
+     * If you are copying <a
+     * href="http://aws.amazon.com/kms/">AWS KMS</a>-encrypted objects, you need to
+     * specify the correct region of the bucket on your client and configure AWS
+     * Signature Version 4 for added security. For more information on how to do
+     * this, see
+     * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#
+     * specify-signature-version
      * </p>
      *
      * @param sourceBucketName The name of the bucket containing the source
@@ -1987,8 +2188,10 @@ public interface AmazonS3 {
      * Copies a source object to a new destination in Amazon S3.
      * </p>
      * <p>
-     * By default, all object metadata for the source object are copied to the
-     * new destination object, unless new object metadata in the specified
+     * By default, all object metadata for the source object except
+     * <b>server-side-encryption</b>, <b>storage-class</b> and
+     * <b>website-redirect-location</b> are copied to the new destination
+     * object, unless new object metadata in the specified
      * {@link CopyObjectRequest} is provided.
      * </p>
      * <p>
@@ -2012,6 +2215,15 @@ public interface AmazonS3 {
      * This method exposes all the advanced options for copying an Amazon S3
      * object. For simple needs, use the
      * {@link AmazonS3Client#copyObject(String, String, String, String)} method.
+     * </p>
+     * <p>
+     * If you are copying <a
+     * href="http://aws.amazon.com/kms/">AWS KMS</a>-encrypted objects, you need to
+     * specify the correct region of the bucket on your client and configure AWS
+     * Signature Version 4 for added security. For more information on how to do
+     * this, see
+     * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#
+     * specify-signature-version
      * </p>
      *
      * @param copyObjectRequest The request object containing all the options
@@ -2040,6 +2252,15 @@ public interface AmazonS3 {
      * <code>null</code>. This method returns a non-null result under all other
      * circumstances.
      * </p>
+     * <p>
+     * If you are copying <a
+     * href="http://aws.amazon.com/kms/">AWS KMS</a>-encrypted objects, you need to
+     * specify the correct region of the bucket on your client and configure AWS
+     * Signature Version 4 for added security. For more information on how to do
+     * this, see
+     * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#
+     * specify-signature-version
+     * </p>
      *
      * @param copyPartRequest The request object containing all the options for
      *            copying an Amazon S3 object.
@@ -2054,6 +2275,7 @@ public interface AmazonS3 {
      * @see AmazonS3Client#copyObject(CopyObjectRequest)
      * @see AmazonS3Client#initiateMultipartUpload(InitiateMultipartUploadRequest)
      */
+    @Override
     public CopyPartResult copyPart(CopyPartRequest copyPartRequest) throws AmazonClientException,
             AmazonServiceException;
 
@@ -2197,6 +2419,27 @@ public interface AmazonS3 {
      * <p>
      * Gets the logging configuration for the specified bucket. The bucket
      * logging configuration object indicates if server access logging is
+     * enabled for the specified bucket, the destination bucket where server
+     * access logs are delivered, and the optional log file prefix.
+     * </p>
+     *
+     * @param bucketName The name of the bucket whose bucket logging
+     *            configuration is being retrieved.
+     * @return The bucket logging configuration for the specified bucket.
+     * @throws AmazonClientException If any errors are encountered in the client
+     *             while making the request or handling the response.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @see AmazonS3#setBucketLoggingConfiguration(SetBucketLoggingConfigurationRequest)
+     * @see AmazonS3#getBucketLoggingConfiguration(GetBucketLoggingConfigurationRequest)
+     */
+    public BucketLoggingConfiguration getBucketLoggingConfiguration(String bucketName)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets the logging configuration for the specified bucket. The bucket
+     * logging configuration object indicates if server access logging is
      * enabled the specified bucket, the destination bucket where server access
      * logs are delivered, and the optional log file prefix.
      * </p>
@@ -2209,8 +2452,10 @@ public interface AmazonS3 {
      * @throws AmazonServiceException If any errors occurred in Amazon S3 while
      *             processing the request.
      * @see AmazonS3#setBucketLoggingConfiguration(SetBucketLoggingConfigurationRequest)
+     * @see AmazonS3#getBucketLoggingConfiguration(String)
      */
-    public BucketLoggingConfiguration getBucketLoggingConfiguration(String bucketName)
+    public BucketLoggingConfiguration getBucketLoggingConfiguration(
+            GetBucketLoggingConfigurationRequest getBucketLoggingConfigurationRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2260,6 +2505,59 @@ public interface AmazonS3 {
      * A bucket's versioning configuration can be in one of three possible
      * states:
      * <ul>
+     * <li>{@link BucketVersioningConfiguration#OFF}</li>
+     * <li>{@link BucketVersioningConfiguration#ENABLED}</li>
+     * <li>{@link BucketVersioningConfiguration#SUSPENDED}</li>
+     * </ul>
+     * </p>
+     * <p>
+     * By default, new buckets are in the
+     * {@link BucketVersioningConfiguration#OFF off} state. Once versioning is
+     * enabled for a bucket the status can never be reverted to
+     * {@link BucketVersioningConfiguration#OFF off}.
+     * </p>
+     * <p>
+     * The versioning configuration of a bucket has different implications for
+     * each operation performed on that bucket or for objects within that
+     * bucket. For example, when versioning is enabled a <code>PutObject</code>
+     * operation creates a unique object version-id for the object being
+     * uploaded. The The <code>PutObject</code> API guarantees that, if
+     * versioning is enabled for a bucket at the time of the request, the new
+     * object can only be permanently deleted using a <code>DeleteVersion</code>
+     * operation. It can never be overwritten. Additionally, the
+     * <code>PutObject</code> API guarantees that, if versioning is enabled for
+     * a bucket the request, no other object will be overwritten by that
+     * request. Refer to the <a href=
+     * "http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETversioningStatus.html">
+     * documentation</a> sections for each API for information on how versioning
+     * status affects the semantics of that particular API.
+     * </p>
+     * <p>
+     * Amazon S3 is eventually consistent. It can take time for the versioning
+     * status of a bucket to be propagated throughout the system.
+     * </p>
+     *
+     * @param bucketName The bucket whose versioning configuration will be
+     *            retrieved.
+     * @return The bucket versioning configuration for the specified bucket.
+     * @throws AmazonClientException If any errors are encountered in the client
+     *             while making the request or handling the response.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     * @see AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)
+     * @see AmazonS3#getBucketVersioningConfiguration(GetBucketVersioningConfigurationRequest)
+     */
+    public BucketVersioningConfiguration getBucketVersioningConfiguration(String bucketName)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Returns the versioning configuration for the specified bucket.
+     * </p>
+     * <p>
+     * A bucket's versioning configuration can be in one of three possible
+     * states:
+     * <ul>
      * <li>{@link BucketVersioningConfiguration#OFF}
      * <li>{@link BucketVersioningConfiguration#ENABLED}
      * <li>{@link BucketVersioningConfiguration#SUSPENDED}
@@ -2282,24 +2580,27 @@ public interface AmazonS3 {
      * operation. It can never be overwritten. Additionally, the
      * <code>PutObject</code> API guarantees that, if versioning is enabled for
      * a bucket the request, no other object will be overwritten by that
-     * request. Refer to the documentation sections for each API for information
-     * on how versioning status affects the semantics of that particular API.
+     * request. Refer to the <a href=
+     * "http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETversioningStatus.html">
+     * documentation</a> sections for each API for information on how versioning
+     * status affects the semantics of that particular API.
      * </p>
      * <p>
      * Amazon S3 is eventually consistent. It can take time for the versioning
      * status of a bucket to be propagated throughout the system.
      * </p>
      *
-     * @param bucketName The bucket whose versioning configuration will be
-     *            retrieved.
+     * @param getBucketVersioningConfigurationRequest The request object for
+     *            retrieving the bucket versioning configuration.
      * @return The bucket versioning configuration for the specified bucket.
      * @throws AmazonClientException If any errors are encountered in the client
      *             while making the request or handling the response.
      * @throws AmazonServiceException If any errors occurred in Amazon S3 while
      *             processing the request.
      * @see AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)
+     * @see AmazonS3#getBucketVersioningConfiguration(String)
      */
-    public BucketVersioningConfiguration getBucketVersioningConfiguration(String bucketName)
+    public BucketVersioningConfiguration getBucketVersioningConfiguration(GetBucketVersioningConfigurationRequest getBucketVersioningConfigurationRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2361,81 +2662,114 @@ public interface AmazonS3 {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * Gets the lifecycle configuration for the specified bucket, or null if no
+     * Gets the lifecycle configuration for the specified bucket, or null if
+     * the specified bucket does not exists, or an empty list if no
      * configuration has been established.
      *
      * @param bucketName The name of the bucket for which to retrieve lifecycle
      *            configuration.
+     *
+     * @see AmazonS3#getBucketLifecycleConfiguration(GetBucketLifecycleConfigurationRequest)
      */
     public BucketLifecycleConfiguration getBucketLifecycleConfiguration(String bucketName);
 
     /**
-     * Sets the lifecycle configuration for the specified bucket.
+     * Gets the lifecycle configuration for the specified bucket, or null if
+     * the specified bucket does not exists, or an empty list if no
+     * configuration has been established.
      *
-     * @param bucketName The name of the bucket for which to set the lifecycle
+     * @param getBucketLifecycleConfigurationRequest
+     *            The request object for retrieving the bucket lifecycle
      *            configuration.
-     * @param bucketLifecycleConfiguration The new lifecycle configuration for
-     *            this bucket, which completely replaces any existing
-     *            configuration.
+     *
+     * @see AmazonS3#getBucketLifecycleConfiguration(String)
      */
-    public void setBucketLifecycleConfiguration(String bucketName,
-            BucketLifecycleConfiguration bucketLifecycleConfiguration);
+    public BucketLifecycleConfiguration getBucketLifecycleConfiguration(
+            GetBucketLifecycleConfigurationRequest getBucketLifecycleConfigurationRequest);
 
     /**
      * Sets the lifecycle configuration for the specified bucket.
      *
-     * @param setBucketLifecycleConfigurationRequest The request object
-     *            containing all options for setting the bucket lifecycle
+     * @param bucketName
+     *            The name of the bucket for which to set the lifecycle
      *            configuration.
+     * @param bucketLifecycleConfiguration
+     *            The new lifecycle configuration for this bucket, which
+     *            completely replaces any existing configuration.
      */
-    public void setBucketLifecycleConfiguration(
-            SetBucketLifecycleConfigurationRequest setBucketLifecycleConfigurationRequest);
+    public void setBucketLifecycleConfiguration(String bucketName, BucketLifecycleConfiguration bucketLifecycleConfiguration);
+
+    /**
+     * Sets the lifecycle configuration for the specified bucket.
+     *
+     * @param setBucketLifecycleConfigurationRequest
+     *            The request object containing all options for setting the
+     *            bucket lifecycle configuration.
+     */
+    public void setBucketLifecycleConfiguration(SetBucketLifecycleConfigurationRequest setBucketLifecycleConfigurationRequest);
 
     /**
      * Removes the lifecycle configuration for the bucket specified.
      *
-     * @param bucketName The name of the bucket for which to remove the
-     *            lifecycle configuration.
+     * @param bucketName
+     *            The name of the bucket for which to remove the lifecycle
+     *            configuration.
      */
     public void deleteBucketLifecycleConfiguration(String bucketName);
 
     /**
      * Removes the lifecycle configuration for the bucket specified.
      *
-     * @param deleteBucketLifecycleConfigurationRequest The request object
-     *            containing all options for removing the bucket lifecycle
-     *            configuration.
+     * @param deleteBucketLifecycleConfigurationRequest
+     *            The request object containing all options for removing the
+     *            bucket lifecycle configuration.
      */
-    public void deleteBucketLifecycleConfiguration(
-            DeleteBucketLifecycleConfigurationRequest deleteBucketLifecycleConfigurationRequest);
+    public void deleteBucketLifecycleConfiguration(DeleteBucketLifecycleConfigurationRequest deleteBucketLifecycleConfigurationRequest);
+
+    /**
+     * Gets the cross origin configuration for the specified bucket, or null if
+     * the specified bucket does not exists, or an empty list if no
+     * configuration has been established.
+     *
+     * @param bucketName
+     *            The name of the bucket for which to retrieve cross origin
+     *            configuration.
+     *
+     * @see AmazonS3#getBucketCrossOriginConfiguration(GetBucketCrossOriginConfigurationRequest)
+     */
+    public BucketCrossOriginConfiguration getBucketCrossOriginConfiguration(String bucketName);
 
     /**
      * Gets the cross origin configuration for the specified bucket, or null if
      * no configuration has been established.
      *
-     * @param bucketName The name of the bucket for which to retrieve cross
-     *            origin configuration.
+     * @param getBucketCrossOriginConfigurationRequest
+     *            The request object for retrieving the bucket cross origin
+     *            configuration.
+     *
+     * @see AmazonS3#getBucketCrossOriginConfiguration(String)
      */
-    public BucketCrossOriginConfiguration getBucketCrossOriginConfiguration(String bucketName);
+    public BucketCrossOriginConfiguration getBucketCrossOriginConfiguration(
+            GetBucketCrossOriginConfigurationRequest getBucketCrossOriginConfigurationRequest);
 
     /**
      * Sets the cross origin configuration for the specified bucket.
      *
-     * @param bucketName The name of the bucket for which to retrieve cross
-     *            origin configuration.
-     * @param bucketCrossOriginConfiguration The new cross origin configuration
-     *            for this bucket, which completely replaces any existing
+     * @param bucketName
+     *            The name of the bucket for which to retrieve cross origin
      *            configuration.
+     * @param bucketCrossOriginConfiguration
+     * 			  The new cross origin configuration for this bucket, which
+     *            completely replaces any existing configuration.
      */
-    public void setBucketCrossOriginConfiguration(String bucketName,
-            BucketCrossOriginConfiguration bucketCrossOriginConfiguration);
+    public void setBucketCrossOriginConfiguration(String bucketName, BucketCrossOriginConfiguration bucketCrossOriginConfiguration);
 
     /**
      * Sets the cross origin configuration for the specified bucket.
      *
-     * @param setBucketCrossOriginConfigurationRequest The request object
-     *            containing all options for setting the bucket cross origin
-     *            configuration.
+     * @param setBucketCrossOriginConfigurationRequest
+     *            The request object containing all options for setting the
+     *            bucket cross origin configuration.
      */
     public void setBucketCrossOriginConfiguration(
             SetBucketCrossOriginConfigurationRequest setBucketCrossOriginConfigurationRequest);
@@ -2459,13 +2793,30 @@ public interface AmazonS3 {
             DeleteBucketCrossOriginConfigurationRequest deleteBucketCrossOriginConfigurationRequest);
 
     /**
-     * Gets the tagging configuration for the specified bucket, or null if no
+     * Gets the tagging configuration for the specified bucket, or null if
+     * the specified bucket does not exists, or an empty list if no
      * configuration has been established.
      *
      * @param bucketName The name of the bucket for which to retrieve tagging
      *            configuration.
+     *
+     * @see AmazonS3#getBucketTaggingConfiguration(GetBucketTaggingConfigurationRequest)
      */
     public BucketTaggingConfiguration getBucketTaggingConfiguration(String bucketName);
+
+    /**
+     * Gets the tagging configuration for the specified bucket, or null if
+     * the specified bucket does not exists, or an empty list if no
+     * configuration has been established.
+     *
+     * @param getBucketTaggingConfigurationRequest
+     *            The request object for retrieving the bucket tagging
+     *            configuration.
+     *
+     * @see AmazonS3#getBucketTaggingConfiguration(String)
+     */
+    public BucketTaggingConfiguration getBucketTaggingConfiguration(
+            GetBucketTaggingConfigurationRequest getBucketTaggingConfigurationRequest);
 
     /**
      * Sets the tagging configuration for the specified bucket.
@@ -2530,8 +2881,38 @@ public interface AmazonS3 {
      *             while making the request or handling the response.
      * @throws AmazonServiceException If any errors occurred in Amazon S3 while
      *             processing the request.
+     * @see AmazonS3#getBucketNotificationConfiguration(GetBucketNotificationConfigurationRequest)
      */
     public BucketNotificationConfiguration getBucketNotificationConfiguration(String bucketName)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * Gets the notification configuration for the specified bucket.
+     * <p>
+     * By default, new buckets have no notification configuration.
+     * <p>
+     * The notification configuration of a bucket provides near realtime
+     * notifications of events the user is interested in, using SNS as the
+     * delivery service. Notification is turned on by enabling configuration on
+     * a bucket, specifying the events and the SNS topic. This configuration can
+     * only be turned on by the bucket owner. If a notification configuration
+     * already exists for the specified bucket, the new notification
+     * configuration will replace the existing notification configuration. To
+     * remove the notification configuration pass in an empty request.
+     * Currently, buckets may only have a single event and topic configuration.
+     * <p>
+     * S3 is eventually consistent. It may take time for the notification status
+     * of a bucket to be propagated throughout the system.
+     *
+     * @param getBucketNotificationConfigurationRequest The bucket notification configuration request.
+     * @return The bucket notification configuration for the specified bucket.
+     * @throws AmazonClientException If any errors are encountered on the client
+     *             while making the request or handling the response.
+     * @throws AmazonServiceException If any errors occurred in Amazon S3 while
+     *             processing the request.
+     */
+    public BucketNotificationConfiguration getBucketNotificationConfiguration(
+            GetBucketNotificationConfigurationRequest getBucketNotificationConfigurationRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2983,11 +3364,20 @@ public interface AmazonS3 {
      * </p>
      * <p>
      * For example, an application may need remote users to upload files to the
-     * application owner's Amazon S3 bucket, but doesn't need to ship the AWS
-     * security credentials with the application. A pre-signed URL to PUT an
-     * object into the owner's bucket can be generated from a remote location
-     * with the owner's AWS security credentials, then the pre-signed URL can be
-     * passed to the end user's application to use.
+     * application owner's Amazon S3 bucket, but doesn't need to ship the
+     * AWS security credentials with the application. A pre-signed URL
+     * to PUT an object into the owner's bucket can be generated from a remote
+     * location with the owner's AWS security credentials, then the pre-signed
+     * URL can be passed to the end user's application to use.
+     * </p>
+     * <p>
+     * If you are generating presigned url for <a
+     * href="http://aws.amazon.com/kms/">AWS KMS</a>-encrypted objects, you need to
+     * specify the correct region of the bucket on your client and configure AWS
+     * Signature Version 4 for added security. For more information on how to do
+     * this, see
+     * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#
+     * specify-signature-version
      * </p>
      *
      * @param bucketName The name of the bucket containing the desired object.
@@ -3023,11 +3413,20 @@ public interface AmazonS3 {
      * </p>
      * <p>
      * For example, an application may need remote users to upload files to the
-     * application owner's Amazon S3 bucket, but doesn't need to ship the AWS
-     * security credentials with the application. A pre-signed URL to PUT an
-     * object into the owner's bucket can be generated from a remote location
-     * with the owner's AWS security credentials, then the pre-signed URL can be
-     * passed to the end user's application to use.
+     * application owner's Amazon S3 bucket, but doesn't need to ship the
+     * AWS security credentials with the application. A pre-signed URL
+     * to PUT an object into the owner's bucket can be generated from a remote
+     * location with the owner's AWS security credentials, then the pre-signed
+     * URL can be passed to the end user's application to use.
+     * </p>
+     * <p>
+     * If you are generating presigned url for <a
+     * href="http://aws.amazon.com/kms/">AWS KMS</a>-encrypted objects, you need to
+     * specify the correct region of the bucket on your client and configure AWS
+     * Signature Version 4 for added security. For more information on how to do
+     * this, see
+     * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#
+     * specify-signature-version
      * </p>
      *
      * @param bucketName The name of the bucket containing the desired object.
@@ -3078,6 +3477,15 @@ public interface AmazonS3 {
      * >this blog post</a>. That method is only suitable for POSTs from HTML
      * forms by browsers.
      * </p>
+     * <p>
+     * If you are generating presigned url for <a
+     * href="http://aws.amazon.com/kms/">AWS KMS</a>-encrypted objects, you need to
+     * specify the correct region of the bucket on your client and configure AWS
+     * Signature Version 4 for added security. For more information on how to do
+     * this, see
+     * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#
+     * specify-signature-version
+     * </p>
      *
      * @param generatePresignedUrlRequest The request object containing all the
      *            options for generating a pre-signed URL (bucket name, key,
@@ -3106,6 +3514,16 @@ public interface AmazonS3 {
      * stop getting charged for storage of the uploaded parts. Once you complete
      * or abort the multipart upload Amazon S3 will release the stored parts and
      * stop charging you for their storage.
+     * </p>
+     * <p>
+     * If you are initiating a multipart upload for <a
+     * href="http://aws.amazon.com/kms/">AWS KMS</a>-encrypted objects, you need
+     * to specify the correct region of the bucket on your client and configure
+     * AWS Signature Version 4 for added security. For more information on how
+     * to do this, see
+     * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#
+     * specify-signature-version
+     * </p>
      *
      * @param request The InitiateMultipartUploadRequest object that specifies
      *            all the parameters of this operation.
@@ -3115,6 +3533,7 @@ public interface AmazonS3 {
      * @throws AmazonServiceException If any errors occurred in Amazon S3 while
      *             processing the request.
      */
+    @Override
     public InitiateMultipartUploadResult initiateMultipartUpload(
             InitiateMultipartUploadRequest request)
             throws AmazonClientException, AmazonServiceException;
@@ -3149,6 +3568,16 @@ public interface AmazonS3 {
      * stop getting charged for storage of the uploaded parts. Once you complete
      * or abort the multipart upload Amazon S3 will release the stored parts and
      * stop charging you for their storage.
+     * </p>
+     * <p>
+     * If you are performing upload part for
+     * <a href="http://aws.amazon.com/kms/">AWS KMS</a>-encrypted objects, you
+     * need to specify the correct region of the bucket on your client and
+     * configure AWS Signature Version 4 for added security. For more
+     * information on how to do this, see
+     * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#
+     * specify-signature-version
+     * </p>
      *
      * @param request The UploadPartRequest object that specifies all the
      *            parameters of this operation.
@@ -3159,6 +3588,7 @@ public interface AmazonS3 {
      * @throws AmazonServiceException If any errors occurred in Amazon S3 while
      *             processing the request.
      */
+    @Override
     public UploadPartResult uploadPart(UploadPartRequest request)
             throws AmazonClientException, AmazonServiceException;
 
@@ -3203,6 +3633,7 @@ public interface AmazonS3 {
      * @throws AmazonServiceException If any errors occurred in Amazon S3 while
      *             processing the request.
      */
+    @Override
     public void abortMultipartUpload(AbortMultipartUploadRequest request)
             throws AmazonClientException, AmazonServiceException;
 
@@ -3220,6 +3651,16 @@ public interface AmazonS3 {
      * <p>
      * Processing of a CompleteMultipartUpload request may take several minutes
      * to complete.
+     * </p>
+     * <p>
+     * If you are perfoming a complete multipart upload for <a
+     * href="http://aws.amazon.com/kms/">AWS KMS</a>-encrypted objects, you need
+     * to specify the correct region of the bucket on your client and configure
+     * AWS Signature Version 4 for added security. For more information on how
+     * to do this, see
+     * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#
+     * specify-signature-version
+     * </p>
      *
      * @param request The CompleteMultipartUploadRequest object that specifies
      *            all the parameters of this operation.
@@ -3230,6 +3671,7 @@ public interface AmazonS3 {
      * @throws AmazonServiceException If any errors occurred in Amazon S3 while
      *             processing the request.
      */
+    @Override
     public CompleteMultipartUploadResult completeMultipartUpload(
             CompleteMultipartUploadRequest request)
             throws AmazonClientException, AmazonServiceException;
@@ -3565,4 +4007,281 @@ public interface AmazonS3 {
     public void setBucketAccelerateConfiguration(
             SetBucketAccelerateConfigurationRequest setBucketAccelerateConfigurationRequest)
             throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Deletes a metrics configuration (specified by the metrics configuration ID) from the bucket.
+     *
+     * @param bucketName
+     *              The name of the bucket from which the metrics configuration is to be deleted
+     * @param id
+     *              The ID of the metrics configuration to delete.
+     */
+    public DeleteBucketMetricsConfigurationResult deleteBucketMetricsConfiguration(
+            String bucketName, String id) throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Deletes a metrics configuration (specified by the metrics configuration ID) from the bucket.
+     *
+     * @param deleteBucketMetricsConfigurationRequest
+     *              The request object to delete the metrics configuration.
+     */
+    public DeleteBucketMetricsConfigurationResult deleteBucketMetricsConfiguration(
+            DeleteBucketMetricsConfigurationRequest deleteBucketMetricsConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Gets a metrics configuration (specified by the metrics configuration ID) from the bucket.
+     *
+     * @param bucketName
+     *              The name of the bucket to get the metrics configuration from.
+     * @param id
+     *              The ID of the metrics configuration to get.
+     * @return
+     *              The result containing the requested metrics configuration.
+     */
+    public GetBucketMetricsConfigurationResult getBucketMetricsConfiguration(
+            String bucketName, String id) throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Gets a metrics configuration (specified by the metrics configuration ID) from the bucket.
+     *
+     * @param getBucketMetricsConfigurationRequest
+     *              The request object to retrieve the metrics configuration.
+     * @return
+     *              The result containing the requested metrics configuration.
+     */
+    public GetBucketMetricsConfigurationResult getBucketMetricsConfiguration(
+            GetBucketMetricsConfigurationRequest getBucketMetricsConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Sets a metrics configuration (specified by the metrics configuration ID) for the bucket.
+     *
+     * @param bucketName
+     *              The name of the bucket to set the metrics configuration.
+     * @param metricsConfiguration
+     *              The metrics configuration to set.
+     */
+    public SetBucketMetricsConfigurationResult setBucketMetricsConfiguration(
+            String bucketName, MetricsConfiguration metricsConfiguration)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Sets a metrics configuration (specified by the metrics configuration ID) for the bucket.
+     *
+     * @param setBucketMetricsConfigurationRequest
+     *              The request object to set the metrics configuration.
+     */
+    public SetBucketMetricsConfigurationResult setBucketMetricsConfiguration(
+            SetBucketMetricsConfigurationRequest setBucketMetricsConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Lists the metrics configurations for the bucket.
+     *
+     * @param listBucketMetricsConfigurationsRequest
+     *              The request object to list all the metrics configurations for a bucket.
+     * @return
+     *              The result containing the list of all the metrics configurations for the bucket.
+     */
+    public ListBucketMetricsConfigurationsResult listBucketMetricsConfigurations(
+            ListBucketMetricsConfigurationsRequest listBucketMetricsConfigurationsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Deletes an analytics configuration for the bucket (specified by the analytics configuration ID).
+     *
+     * @param bucketName
+     *              The name of the bucket from which the analytics configuration is to be deleted
+     * @param id
+     *              The ID of the analytics configuration to delete.
+     */
+    public DeleteBucketAnalyticsConfigurationResult deleteBucketAnalyticsConfiguration(
+            String bucketName, String id) throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Deletes an analytics configuration for the bucket (specified by the analytics configuration ID).
+     *
+     * @param deleteBucketAnalyticsConfigurationRequest
+     *              The request object to delete the analytics configuration.
+     */
+    public DeleteBucketAnalyticsConfigurationResult deleteBucketAnalyticsConfiguration(
+            DeleteBucketAnalyticsConfigurationRequest deleteBucketAnalyticsConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Gets an analytics configuration for the bucket (specified by the analytics configuration ID).
+     *
+     * @param bucketName
+     *               The name of the bucket to get the analytics configuration from.
+     * @param id
+     *              The ID of the analytics configuration to get.
+     * @return
+     *              The result containing the requested analytics configuration.
+     */
+    public GetBucketAnalyticsConfigurationResult getBucketAnalyticsConfiguration(
+            String bucketName, String id) throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Gets an analytics configuration for the bucket (specified by the analytics configuration ID).
+     *
+     * @param getBucketAnalyticsConfigurationRequest
+     *              The request object to retrieve the analytics configuration.
+     * @return
+     *              The result containing the requested analytics configuration.
+     */
+    public GetBucketAnalyticsConfigurationResult getBucketAnalyticsConfiguration(
+            GetBucketAnalyticsConfigurationRequest getBucketAnalyticsConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Sets an analytics configuration for the bucket (specified by the analytics configuration ID).
+     *
+     * @param bucketName
+     *              The name of the bucket to set the analytics configuration.
+     * @param analyticsConfiguration
+     *              The analytics configuration to set.
+     */
+    public SetBucketAnalyticsConfigurationResult setBucketAnalyticsConfiguration(
+            String bucketName, AnalyticsConfiguration analyticsConfiguration)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Sets an analytics configuration for the bucket (specified by the analytics configuration ID).
+     *
+     * @param setBucketAnalyticsConfigurationRequest
+     *              The request object to set the analytics configuration.
+     */
+    public SetBucketAnalyticsConfigurationResult setBucketAnalyticsConfiguration(
+            SetBucketAnalyticsConfigurationRequest setBucketAnalyticsConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Lists the analytics configurations for the bucket.
+     *
+     * @param listBucketAnalyticsConfigurationsRequest
+     *              The request object to list all the analytics configurations for a bucket.
+     *
+     * @return All the analytics configurations for the bucket.
+     */
+    public ListBucketAnalyticsConfigurationsResult listBucketAnalyticsConfigurations(
+            ListBucketAnalyticsConfigurationsRequest listBucketAnalyticsConfigurationsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+
+    /**
+     * Deletes an inventory configuration (identified by the inventory ID) from the bucket.
+     *
+     * @param bucketName
+     *              The name of the bucket from which the inventory configuration is to be deleted.
+     * @param id
+     *              The ID of the inventory configuration to delete.
+     */
+    public DeleteBucketInventoryConfigurationResult deleteBucketInventoryConfiguration(
+            String bucketName, String id) throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Deletes an inventory configuration (identified by the inventory ID) from the bucket.
+     *
+     * @param deleteBucketInventoryConfigurationRequest
+     *              The request object for deleting an inventory configuration.
+     */
+    public DeleteBucketInventoryConfigurationResult deleteBucketInventoryConfiguration(
+            DeleteBucketInventoryConfigurationRequest deleteBucketInventoryConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Returns an inventory configuration (identified by the inventory ID) from the bucket.
+     *
+     * @param bucketName
+     *              The name of the bucket to get the inventory configuration from.
+     * @param id
+     *              The ID of the inventory configuration to delete.
+     * @return
+     *              An {@link GetBucketInventoryConfigurationResult} object containing the inventory configuration.
+     */
+    public GetBucketInventoryConfigurationResult getBucketInventoryConfiguration(
+            String bucketName, String id) throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Returns an inventory configuration (identified by the inventory ID) from the bucket.
+     *
+     * @param getBucketInventoryConfigurationRequest
+     *              The request object to retreive an inventory configuration.
+     * @return
+     *              An {@link GetBucketInventoryConfigurationResult} object containing the inventory configuration.
+     */
+    public GetBucketInventoryConfigurationResult getBucketInventoryConfiguration(
+            GetBucketInventoryConfigurationRequest getBucketInventoryConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Sets an inventory configuration (identified by the inventory ID) to the bucket.
+     *
+     * @param bucketName
+     *              The name of the bucket to set the inventory configuration to.
+     * @param inventoryConfiguration
+     *              The inventory configuration to set.
+     */
+    public SetBucketInventoryConfigurationResult setBucketInventoryConfiguration(
+            String bucketName, InventoryConfiguration inventoryConfiguration)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Sets an inventory configuration (identified by the inventory ID) to the bucket.
+     *
+     * @param setBucketInventoryConfigurationRequest
+     *              The request object for setting an inventory configuration.
+     */
+    public SetBucketInventoryConfigurationResult setBucketInventoryConfiguration(
+            SetBucketInventoryConfigurationRequest setBucketInventoryConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Returns the list of inventory configurations for the bucket.
+     *
+     * @param listBucketInventoryConfigurationsRequest
+     *              The request object to list the inventory configurations in a bucket.
+     * @return
+     *              An {@link ListBucketInventoryConfigurationsResult} object containing the list of {@link InventoryConfiguration}s.
+     */
+    public ListBucketInventoryConfigurationsResult listBucketInventoryConfigurations(
+            ListBucketInventoryConfigurationsRequest listBucketInventoryConfigurationsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * Returns the region with which the client is configured.
+     *
+     * @return The region this client will communicate with.
+     */
+    Region getRegion();
+
+    /**
+     * Returns a string representation of the region with which this
+     * client is configured
+     *
+     * @return String value representing the region this client will
+     * communicate with
+     */
+    String getRegionName();
+
+    /**
+     * Returns an URL for the object stored in the specified bucket and
+     * key.
+     * <p>
+     * If the object identified by the given bucket and key has public read
+     * permissions (ex: {@link CannedAccessControlList#PublicRead}), then this
+     * URL can be directly accessed to retrieve the object's data.
+     *
+     * @param bucketName
+     *            The name of the bucket containing the object whose URL is
+     *            being requested.
+     * @param key
+     *            The key under which the object whose URL is being requested is
+     *            stored.
+     *
+     * @return A unique URL for the object stored in the specified bucket and
+     *         key.
+     */
+    URL getUrl(String bucketName, String key);
 }

@@ -17,6 +17,7 @@ package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import static org.junit.Assert.assertEquals;
 
+import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapperFieldModel.DynamoDBAttributeType;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.util.StringUtils;
@@ -67,7 +68,7 @@ public class V2MarshallerTests {
         assertEquals("1970-01-01T00:00:00.000Z",
                 convert("getDate", new Date(0)).getS());
 
-        Calendar c = Calendar.getInstance();
+        final Calendar c = Calendar.getInstance();
         c.setTimeInMillis(0);
 
         assertEquals("1970-01-01T00:00:00.000Z",
@@ -115,7 +116,7 @@ public class V2MarshallerTests {
 
     @Test
     public void testBinary() {
-        ByteBuffer value = ByteBuffer.wrap("value".getBytes(StringUtils.UTF8));
+        final ByteBuffer value = ByteBuffer.wrap("value".getBytes(StringUtils.UTF8));
         assertEquals(value.slice(), convert("getByteArray", "value".getBytes(StringUtils.UTF8))
                 .getB());
         assertEquals(value.slice(), convert("getByteBuffer", value.slice()).getB());
@@ -128,7 +129,7 @@ public class V2MarshallerTests {
         try {
             convert("getBooleanSet", Collections.singleton(true));
             Assert.fail("Expected DynamoDBMappingException");
-        } catch (DynamoDBMappingException e) {
+        } catch (final DynamoDBMappingException e) {
         }
     }
 
@@ -155,7 +156,7 @@ public class V2MarshallerTests {
                 convert("getDateSet", Collections.singleton(new Date(0)))
                         .getSS());
 
-        Calendar c = Calendar.getInstance();
+        final Calendar c = Calendar.getInstance();
         c.setTimeInMillis(0);
 
         assertEquals(Collections.singletonList("1970-01-01T00:00:00.000Z"),
@@ -224,7 +225,7 @@ public class V2MarshallerTests {
         try {
             convert("getObjectSet", Collections.singleton(new Object()));
             Assert.fail("Expected DynamoDBMappingException");
-        } catch (DynamoDBMappingException e) {
+        } catch (final DynamoDBMappingException e) {
         }
     }
 
@@ -247,7 +248,7 @@ public class V2MarshallerTests {
                 convert("getSetList", Arrays.asList(
                         Collections.<String> singleton("a"))).getL());
 
-        List<Set<String>> list = new ArrayList<Set<String>>();
+        final List<Set<String>> list = new ArrayList<Set<String>>();
         list.add(null);
 
         assertEquals(
@@ -321,7 +322,7 @@ public class V2MarshallerTests {
                     new UnannotatedSubClass());
 
             Assert.fail("Expected DynamoDBMappingException");
-        } catch (DynamoDBMappingException e) {
+        } catch (final DynamoDBMappingException e) {
         }
     }
 
@@ -332,97 +333,97 @@ public class V2MarshallerTests {
                 + "\"key\":\"key\","
                 + "\"region\":null}}",
                 convert("getS3Link",
-                        new S3Link(new S3ClientCache(null), "bucket", "key"))
+                        new S3Link(new S3ClientCache((AWSCredentials) null), "bucket", "key"))
                         .getS());
     }
 
     @Test
     public void getFieldModelString() throws NoSuchMethodException, SecurityException {
-        MockClass mock = new MockClass();
+        final MockClass mock = new MockClass();
 
-        DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
+        final DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
                 "getString"));
-        DynamoDBAttributeType type = model.getDynamoDBAttributeType();
+        final DynamoDBAttributeType type = model.getDynamoDBAttributeType();
         assertEquals(type, DynamoDBAttributeType.S);
     }
 
     @Test
     public void getFieldModelStringSet() throws NoSuchMethodException, SecurityException {
-        MockClass mock = new MockClass();
+        final MockClass mock = new MockClass();
 
-        DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
+        final DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
                 "getStringSet"));
-        DynamoDBAttributeType type = model.getDynamoDBAttributeType();
+        final DynamoDBAttributeType type = model.getDynamoDBAttributeType();
         assertEquals(type, DynamoDBAttributeType.SS);
     }
 
     @Test
     public void getFieldModelNumber() throws NoSuchMethodException, SecurityException {
-        MockClass mock = new MockClass();
+        final MockClass mock = new MockClass();
 
-        DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
+        final DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
                 "getNumber"));
-        DynamoDBAttributeType type = model.getDynamoDBAttributeType();
+        final DynamoDBAttributeType type = model.getDynamoDBAttributeType();
         assertEquals(type, DynamoDBAttributeType.N);
     }
 
     @Test
     public void getFieldModelNumberSet() throws NoSuchMethodException, SecurityException {
-        MockClass mock = new MockClass();
+        final MockClass mock = new MockClass();
 
-        DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
+        final DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
                 "getNumberSet"));
-        DynamoDBAttributeType type = model.getDynamoDBAttributeType();
+        final DynamoDBAttributeType type = model.getDynamoDBAttributeType();
         assertEquals(type, DynamoDBAttributeType.NS);
     }
 
     @Test
     public void getFieldModelBinary() throws NoSuchMethodException, SecurityException {
-        MockClass mock = new MockClass();
+        final MockClass mock = new MockClass();
 
-        DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
+        final DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
                 "getBinary"));
-        DynamoDBAttributeType type = model.getDynamoDBAttributeType();
+        final DynamoDBAttributeType type = model.getDynamoDBAttributeType();
         assertEquals(type, DynamoDBAttributeType.B);
     }
 
     @Test
     public void getFieldModelBinarySet() throws NoSuchMethodException, SecurityException {
-        MockClass mock = new MockClass();
+        final MockClass mock = new MockClass();
 
-        DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
+        final DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
                 "getBinarySet"));
-        DynamoDBAttributeType type = model.getDynamoDBAttributeType();
+        final DynamoDBAttributeType type = model.getDynamoDBAttributeType();
         assertEquals(type, DynamoDBAttributeType.BS);
     }
 
     @Test
     public void getFieldModelBoolean() throws NoSuchMethodException, SecurityException {
-        MockClass mock = new MockClass();
+        final MockClass mock = new MockClass();
 
-        DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
+        final DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
                 "getBool"));
-        DynamoDBAttributeType type = model.getDynamoDBAttributeType();
+        final DynamoDBAttributeType type = model.getDynamoDBAttributeType();
         assertEquals(type, DynamoDBAttributeType.BOOL);
     }
 
     @Test
     public void getFieldModelList() throws NoSuchMethodException, SecurityException {
-        MockClass mock = new MockClass();
+        final MockClass mock = new MockClass();
 
-        DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
+        final DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
                 "getList"));
-        DynamoDBAttributeType type = model.getDynamoDBAttributeType();
+        final DynamoDBAttributeType type = model.getDynamoDBAttributeType();
         assertEquals(type, DynamoDBAttributeType.L);
     }
 
     @Test
     public void getFieldModelMap() throws NoSuchMethodException, SecurityException {
-        MockClass mock = new MockClass();
+        final MockClass mock = new MockClass();
 
-        DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
+        final DynamoDBMapperFieldModel model = CONVERTER.getFieldModel(mock.getClass().getMethod(
                 "getMap"));
-        DynamoDBAttributeType type = model.getDynamoDBAttributeType();
+        final DynamoDBAttributeType type = model.getDynamoDBAttributeType();
         assertEquals(type, DynamoDBAttributeType.M);
     }
 
@@ -516,9 +517,9 @@ public class V2MarshallerTests {
 
             return CONVERTER.convert(TestClass.class.getMethod(method), value);
 
-        } catch (RuntimeException e) {
+        } catch (final RuntimeException e) {
             throw e;
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new RuntimeException(e);
         }
     }

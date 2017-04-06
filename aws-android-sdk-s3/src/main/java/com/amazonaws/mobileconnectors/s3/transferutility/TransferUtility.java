@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -96,6 +96,7 @@ public class TransferUtility {
     private final Context appContext;
     private final TransferDBUtil dbUtil;
     public static Function<Context, AmazonS3> clientRetrieve;
+    private final TransferConfiguration transferConfiguration;
 
     /**
      * Constructs a new TransferUtility specifying the client to use and
@@ -105,12 +106,12 @@ public class TransferUtility {
      * @param clientRetrieve The client callback to retrieve instance
      * @param context The current context
      */
-    public TransferUtility(Function<Context, AmazonS3> clientRetrieve, Context context) {
+    public TransferUtility(final Function<Context, AmazonS3> clientRetrieve, final Context context, final TransferConfiguration transferConfiguration) {
         this.appContext = context.getApplicationContext();
         this.dbUtil = new TransferDBUtil(appContext);
+        this.transferConfiguration = transferConfiguration;
         TransferUtility.clientRetrieve = clientRetrieve;
     }
-
     /**
      * Starts downloading the S3 object specified by the bucket and the key to
      * the given file. The file must be a valid file. Directory isn't supported.
@@ -125,7 +126,6 @@ public class TransferUtility {
         return download(bucket, key, file, null);
     }
 
-
     /**
      * Starts downloading the S3 object specified by the bucket and the key to
      * the given file. The file must be a valid file. Directory isn't supported.
@@ -134,41 +134,25 @@ public class TransferUtility {
      * @param bucket The name of the bucket containing the object to download.
      * @param key The key under which the object to download is stored.
      * @param file The file to download the object's data to.
-     * @param connectionCheckType Type of connection check. Default is {@link NetworkInfoReceiver.Type#WIFI_ONLY}
+     * @param listener a listener to attach to transfer observer.
      * @return A TransferObserver used to track download progress and state
      */
     public TransferObserver download(String bucket, String key, File file,
-                                     NetworkInfoReceiver.Type connectionCheckType) {
+            TransferListener listener) {
         if (file == null || file.isDirectory()) {
             throw new IllegalArgumentException("Invalid file: " + file);
         }
-        Uri uri = dbUtil.insertSingleTransferRecord(TransferType.DOWNLOAD,
+        final Uri uri = dbUtil.insertSingleTransferRecord(TransferType.DOWNLOAD,
                 bucket, key, file);
-        int recordId = Integer.parseInt(uri.getLastPathSegment());
+        final int recordId = Integer.parseInt(uri.getLastPathSegment());
         if (file.isFile()) {
             Log.w(TAG, "Overwrite existing file: " + file);
             file.delete();
         }
 
-        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId, connectionCheckType);
+        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId,
+                transferConfiguration.getConnectionCheckType());
         return new TransferObserver(recordId, dbUtil, bucket, key, file);
-    }
-
-    /**
-     * Starts uploading the file to the given bucket, using the given key. The
-     * file must be a valid file. Directory isn't supported.
-     *
-     * @param bucket The name of the bucket to upload the new object to.
-     * @param key The key in the specified bucket by which to store the new
-     *            object.
-     * @param file The file to upload.
-     * @param connectionCheckType Type of connection check
-     * @return A TransferObserver used to track upload progress and state
-     */
-    public TransferObserver upload(String bucket, String key, File file,
-                                   NetworkInfoReceiver.Type connectionCheckType) {
-
-        return upload(bucket, key, file, new ObjectMetadata(), connectionCheckType);
     }
 
     /**
@@ -183,25 +167,7 @@ public class TransferUtility {
      */
     public TransferObserver upload(String bucket, String key, File file) {
 
-        return upload(bucket, key, file, new ObjectMetadata(), null);
-    }
-
-    /**
-     * Starts uploading the file to the given bucket, using the given key. The
-     * file must be a valid file. Directory isn't supported.
-     *
-     * @param bucket The name of the bucket to upload the new object to.
-     * @param key The key in the specified bucket by which to store the new
-     *            object.
-     * @param file The file to upload.
-     * @param cannedAcl The canned ACL to associate with this object
-     * @param connectionCheckType Type of connection check
-     * @return A TransferObserver used to track upload progress and state
-     */
-    public TransferObserver upload(String bucket, String key, File file,
-                                   CannedAccessControlList cannedAcl, NetworkInfoReceiver.Type connectionCheckType) {
-
-        return upload(bucket, key, file, new ObjectMetadata(), cannedAcl, connectionCheckType);
+        return upload(bucket, key, file, new ObjectMetadata());
     }
 
     /**
@@ -218,24 +184,7 @@ public class TransferUtility {
     public TransferObserver upload(String bucket, String key, File file,
                                    CannedAccessControlList cannedAcl) {
 
-        return upload(bucket, key, file, new ObjectMetadata(), cannedAcl, null);
-    }
-
-    /**
-     * Starts uploading the file to the given bucket, using the given key. The
-     * file must be a valid file. Directory isn't supported.
-     *
-     * @param bucket The name of the bucket to upload the new object to.
-     * @param key The key in the specified bucket by which to store the new
-     *            object.
-     * @param file The file to upload.
-     * @param metadata The S3 metadata to associate with this object
-     * @param connectionCheckType Type of connection check
-     * @return A TransferObserver used to track upload progress and state
-     */
-    public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata,
-                                   NetworkInfoReceiver.Type connectionCheckType) {
-        return upload(bucket, key, file, metadata, null, connectionCheckType);
+        return upload(bucket, key, file, new ObjectMetadata(), cannedAcl);
     }
 
     /**
@@ -250,7 +199,7 @@ public class TransferUtility {
      * @return A TransferObserver used to track upload progress and state
      */
     public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata) {
-        return upload(bucket, key, file, metadata, null, null);
+        return upload(bucket, key, file, metadata, null);
     }
 
     /**
@@ -263,12 +212,29 @@ public class TransferUtility {
      * @param file The file to upload.
      * @param metadata The S3 metadata to associate with this object
      * @param cannedAcl The canned ACL to associate with this object
-     * @param connectionCheckType Type of connection check. Default is {@link NetworkInfoReceiver.Type#WIFI_ONLY}
      * @return A TransferObserver used to track upload progress and state
      */
     public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata,
-                                   CannedAccessControlList cannedAcl, NetworkInfoReceiver.Type connectionCheckType) {
-        if (file == null || file.isDirectory()) {
+            CannedAccessControlList cannedAcl) {
+        return upload(bucket, key, file, metadata, cannedAcl, null);
+    }
+
+    /**
+     * Starts uploading the file to the given bucket, using the given key. The
+     * file must be a valid file. Directory isn't supported.
+     *
+     * @param bucket The name of the bucket to upload the new object to.
+     * @param key The key in the specified bucket by which to store the new
+     *            object.
+     * @param file The file to upload.
+     * @param metadata The S3 metadata to associate with this object
+     * @param cannedAcl The canned ACL to associate with this object
+     * @param listener a listener to attach to transfer observer.
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata,
+            CannedAccessControlList cannedAcl, TransferListener listener) {
+        if (file == null || file.isDirectory() || !file.exists()) {
             throw new IllegalArgumentException("Invalid file: " + file);
         }
         int recordId = 0;
@@ -276,14 +242,15 @@ public class TransferUtility {
             recordId = createMultipartUploadRecords(bucket, key, file, metadata, cannedAcl);
         } else {
 
-            Uri uri = dbUtil.insertSingleTransferRecord(TransferType.UPLOAD,
+            final Uri uri = dbUtil.insertSingleTransferRecord(TransferType.UPLOAD,
                     bucket, key, file, metadata, cannedAcl);
             recordId = Integer.parseInt(uri.getLastPathSegment());
         }
 
-        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId, connectionCheckType);
+        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId, transferConfiguration.getConnectionCheckType());
         return new TransferObserver(recordId, dbUtil, bucket, key, file);
     }
+
 
     /**
      * Gets a TransferObserver instance to track the record with the given id.
@@ -292,16 +259,21 @@ public class TransferUtility {
      * @return The TransferObserver instance which is observing the record.
      */
     public TransferObserver getTransferById(int id) {
-        Cursor c = dbUtil.queryTransferById(id);
+        Cursor c = null;
         try {
-            if (c.moveToFirst()) {
-                return new TransferObserver(id, dbUtil, c);
-            } else {
-                return null;
+            c = dbUtil.queryTransferById(id);
+            if (c.moveToNext()) {
+                final TransferObserver to = new TransferObserver(id, dbUtil);
+                to.updateFromDB(c);
+                return to;
             }
         } finally {
-            c.close();
+            if (c != null) {
+                c.close();
+            }
         }
+
+        return null;
     }
 
     /**
@@ -312,15 +284,20 @@ public class TransferUtility {
      * @return A list of TransferObserver instances.
      */
     public List<TransferObserver> getTransfersWithType(TransferType type) {
-        List<TransferObserver> transferObservers = new ArrayList<TransferObserver>();
-        Cursor c = dbUtil.queryAllTransfersWithType(type);
+        final List<TransferObserver> transferObservers = new ArrayList<TransferObserver>();
+        Cursor c = null;
         try {
+            c = dbUtil.queryAllTransfersWithType(type);
             while (c.moveToNext()) {
-                int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
-                transferObservers.add(new TransferObserver(id, dbUtil, c));
+                final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
+                final TransferObserver to = new TransferObserver(id, dbUtil);
+                to.updateFromDB(c);
+                transferObservers.add(to);
             }
         } finally {
-            c.close();
+            if (c != null) {
+                c.close();
+            }
         }
         return transferObservers;
     }
@@ -336,20 +313,25 @@ public class TransferUtility {
      */
     public List<TransferObserver> getTransfersWithTypeAndState(TransferType type,
             TransferState state) {
-        List<TransferObserver> transferObservers = new ArrayList<TransferObserver>();
-        Cursor c = dbUtil.queryTransfersWithTypeAndState(type, state);
+        final List<TransferObserver> transferObservers = new ArrayList<TransferObserver>();
+        Cursor c = null;
         try {
+            c = dbUtil.queryTransfersWithTypeAndState(type, state);
             while (c.moveToNext()) {
-                int partNum = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM));
+                final int partNum = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM));
                 if (partNum != 0) {
                     // skip parts of a multipart upload
                     continue;
                 }
-                int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
-                transferObservers.add(new TransferObserver(id, dbUtil, c));
+                final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
+                final TransferObserver to = new TransferObserver(id, dbUtil);
+                to.updateFromDB(c);
+                transferObservers.add(to);
             }
         } finally {
-            c.close();
+            if (c != null) {
+                c.close();
+            }
         }
         return transferObservers;
     }
@@ -368,22 +350,22 @@ public class TransferUtility {
         long remainingLenth = file.length();
         double partSize = (double) remainingLenth / (double) MAXIMUM_UPLOAD_PARTS;
         partSize = Math.ceil(partSize);
-        long optimalPartSize = (long) Math.max(partSize, MINIMUM_UPLOAD_PART_SIZE);
+        final long optimalPartSize = (long) Math.max(partSize, MINIMUM_UPLOAD_PART_SIZE);
         long fileOffset = 0;
         int partNumber = 1;
 
         // the number of parts
-        int partCount = (int) Math.ceil((double) remainingLenth / (double) optimalPartSize);
+        final int partCount = (int) Math.ceil((double) remainingLenth / (double) optimalPartSize);
 
         /*
          * the size of valuesArray is partCount + 1, one for a multipart upload
          * summary, others are actual parts to be uploaded
          */
-        ContentValues[] valuesArray = new ContentValues[partCount + 1];
+        final ContentValues[] valuesArray = new ContentValues[partCount + 1];
         valuesArray[0] = dbUtil.generateContentValuesForMultiPartUpload(bucket, key,
                 file, fileOffset, 0, "", file.length(), 0, metadata, cannedAcl);
         for (int i = 1; i < partCount + 1; i++) {
-            long bytesForPart = Math.min(optimalPartSize, remainingLenth);
+            final long bytesForPart = Math.min(optimalPartSize, remainingLenth);
             valuesArray[i] = dbUtil.generateContentValuesForMultiPartUpload(bucket, key,
                     file, fileOffset, partNumber, "", bytesForPart, remainingLenth
                             - optimalPartSize <= 0 ? 1 : 0,
@@ -412,14 +394,17 @@ public class TransferUtility {
      * @param type The type of transfers
      */
     public void pauseAllWithType(TransferType type) {
-        Cursor c = dbUtil.queryAllTransfersWithType(type);
+        Cursor c = null;
         try {
+            c = dbUtil.queryAllTransfersWithType(type);
             while (c.moveToNext()) {
-                int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
+                final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
                 pause(id);
             }
         } finally {
-            c.close();
+            if (c != null) {
+                c.close();
+            }
         }
     }
 
@@ -459,14 +444,17 @@ public class TransferUtility {
      * @param type The type of transfers
      */
     public void cancelAllWithType(TransferType type) {
-        Cursor c = dbUtil.queryAllTransfersWithType(type);
+        Cursor c = null;
         try {
+            c = dbUtil.queryAllTransfersWithType(type);
             while (c.moveToNext()) {
-                int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
+                final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
                 cancel(id);
             }
         } finally {
-            c.close();
+            if(c!=null) {
+                c.close();
+            }
         }
     }
 
@@ -490,10 +478,10 @@ public class TransferUtility {
      * @param id id of the transfer
      */
     private void sendIntent(String action, int id) {
-        sendIntent(action, id, NetworkInfoReceiver.DEFAULT_CONNECTION_CHECK_TYPE);
+        sendIntent(action, id, transferConfiguration.getConnectionCheckType());
     }
 
-    private void sendIntent(String action, int id, NetworkInfoReceiver.Type networkCheckType) {
+    private void sendIntent(final String action, final int id, final NetworkInfoReceiver.Type networkCheckType) {
         final Intent intent = new Intent(appContext, TransferService.class);
         intent.setAction(action);
         intent.putExtra(TransferService.INTENT_BUNDLE_TRANSFER_ID, id);
@@ -511,17 +499,18 @@ public class TransferUtility {
         }
     }
 
-    static <X extends AmazonWebServiceRequest> X appendTransferServiceUserAgentString(X request) {
+    static <X extends AmazonWebServiceRequest> X appendTransferServiceUserAgentString(
+            final X request) {
         request.getRequestClientOptions().appendUserAgent("TransferService/"
                 + VersionInfoUtils.getVersion());
         return request;
     }
 
     static <X extends AmazonWebServiceRequest> X appendMultipartTransferServiceUserAgentString(
-            X request) {
+            final X request) {
         request.getRequestClientOptions().appendUserAgent("TransferService_multipart/"
                 + VersionInfoUtils.getVersion());
         return request;
     }
-
 }
+

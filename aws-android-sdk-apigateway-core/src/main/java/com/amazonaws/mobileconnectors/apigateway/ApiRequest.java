@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,9 +35,19 @@ public class ApiRequest {
 
     /**
      * Constructor.
+     *
+     * @param serviceName The name of the service to which this request is being
+     *            sent.
      */
     public ApiRequest(String serviceName) {
         request = new DefaultRequest<ApiResponse>(serviceName);
+    }
+
+    /**
+     * Constructor.
+     */
+    public ApiRequest() {
+        request = new DefaultRequest<ApiResponse>("");
     }
 
     /**

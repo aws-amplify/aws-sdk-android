@@ -6,7 +6,7 @@
   <artifactId>aws-android-sdk-pom</artifactId>
   <packaging>pom</packaging>
   <name>AWS SDK for Android</name>
-  <version>2.3.1</version>
+  <version>2.4.0</version>
   <description>The Amazon Web Services SDK for Android provides Android APIs for building software on AWS’ cost-effective, scalable, and reliable infrastructure products. The AWS SDK for Android allows developers to code against APIs for all of Amazon's infrastructure web services (Amazon S3, Amazon EC2, Amazon SQS, Auto Scaling, etc).</description>
   <url>http://aws.amazon.com/sdkforandroid</url>
 
@@ -46,8 +46,12 @@
     <module>aws-android-sdk-kinesis</module>
     <module>aws-android-sdk-kms</module>
     <module>aws-android-sdk-lambda</module>
+    <module>aws-android-sdk-lex</module>
     <module>aws-android-sdk-machinelearning</module>
     <module>aws-android-sdk-mobileanalytics</module>
+    <module>aws-android-sdk-polly</module>
+    <module>aws-android-sdk-pinpoint</module>
+    <module>aws-android-sdk-rekognition</module>
     <module>aws-android-sdk-s3</module>
     <module>aws-android-sdk-sdb</module>
     <module>aws-android-sdk-ses</module>
@@ -100,6 +104,18 @@
             <additionalparam>-Xdoclint:none</additionalparam>
           </configuration>
         </plugin>
+        <plugin>
+		<groupId>org.codehaus.mojo</groupId>
+		<artifactId>cobertura-maven-plugin</artifactId>
+		<version>2.7</version>
+		<configuration>
+			<formats>
+				<format>html</format>
+				<format>xml</format>
+			</formats>
+			<check />
+		</configuration>
+         </plugin>
       </plugins>
     </pluginManagement>
   </build>

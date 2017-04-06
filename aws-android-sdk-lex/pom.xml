@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-android-sdk-lex</artifactId>
+    <packaging>aar</packaging>
+    <name>AWS SDK for Android - Amazon Lex</name>
+    <description>The AWS Android SDK for Amazon Lex</description>
+    <url>http://aws.amazon.com/mobile/sdk</url>
+    
+    <parent>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-android-sdk-pom</artifactId>
+        <version>2.4.0</version>
+    </parent>
+
+   <!-- Component includes software under each of these licenses; this is not a choice of license -->
+   <licenses>
+      <license>
+        <name>AWS Customer Agreement</name>
+        <url>https://aws.amazon.com/agreement/</url>
+      </license>
+      <license>
+        <name>Apache License, Version 2.0</name>
+        <url>http://aws.amazon.com/apache2.0</url>
+        <distribution>repo</distribution>
+      </license>
+    </licenses>
+    
+    <dependencies>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-android-sdk-core</artifactId>
+            <optional>false</optional>
+            <version>2.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <version>4.1.1.4</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <optional>false</optional>
+            <version>20.0</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.easymock</groupId>
+            <artifactId>easymock</artifactId>
+            <version>3.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.simpligility.maven.plugins</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <version>4.4.3</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <sdk>
+                        <platform>11</platform>
+                    </sdk>
+                    <nativeLibrariesDirectory>${project.basedir}/src/main/jni</nativeLibrariesDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+        </plugins>  
+    </build>
+</project>

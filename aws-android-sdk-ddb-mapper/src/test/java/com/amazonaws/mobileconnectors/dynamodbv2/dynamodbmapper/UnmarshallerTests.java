@@ -17,6 +17,7 @@ package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import static org.junit.Assert.assertEquals;
 
+import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.s3.model.Region;
 import com.amazonaws.util.StringUtils;
@@ -39,7 +40,7 @@ import java.util.TreeSet;
 
 public class UnmarshallerTests {
 
-    private static final S3ClientCache S3CC = new S3ClientCache(null);
+    private static final S3ClientCache S3CC = new S3ClientCache((AWSCredentials) null);
 
     private static final ItemConverter CONVERTER = ConversionSchemas.V1
             .getConverter(new ConversionSchema.Dependencies()
@@ -86,7 +87,7 @@ public class UnmarshallerTests {
         assertEquals(new Date(0), unconvert("getDate", "setDate",
                 new AttributeValue("1970-01-01T00:00:00.000Z")));
 
-        Calendar c = Calendar.getInstance();
+        final Calendar c = Calendar.getInstance();
         c.setTimeInMillis(0);
 
         assertEquals(c, unconvert("getCalendar", "setCalendar",
@@ -134,7 +135,7 @@ public class UnmarshallerTests {
 
     @Test
     public void testBinary() {
-        ByteBuffer test = ByteBuffer.wrap("test".getBytes(StringUtils.UTF8));
+        final ByteBuffer test = ByteBuffer.wrap("test".getBytes(StringUtils.UTF8));
         Assert.assertTrue(Arrays.equals("test".getBytes(StringUtils.UTF8), (byte[]) unconvert(
                 "getByteArray", "setByteArray",
                 new AttributeValue().withB(test.slice()))));
@@ -192,7 +193,7 @@ public class UnmarshallerTests {
                 unconvert("getDateSet", "setDateSet", new AttributeValue()
                         .withSS("1970-01-01T00:00:00.000Z")));
 
-        Calendar c = Calendar.getInstance();
+        final Calendar c = Calendar.getInstance();
         c.setTimeInMillis(0);
 
         assertEquals(Collections.singleton(c),
@@ -292,9 +293,9 @@ public class UnmarshallerTests {
         Assert.assertNull(unconvert("getByteBufferSet", "setByteBufferSet",
                 new AttributeValue().withNULL(true)));
 
-        ByteBuffer test = ByteBuffer.wrap("test".getBytes(StringUtils.UTF8));
+        final ByteBuffer test = ByteBuffer.wrap("test".getBytes(StringUtils.UTF8));
 
-        Set<byte[]> result = (Set<byte[]>) unconvert(
+        final Set<byte[]> result = (Set<byte[]>) unconvert(
                 "getByteArraySet", "setByteArraySet",
                 new AttributeValue().withBS(test.slice()));
 
@@ -418,20 +419,20 @@ public class UnmarshallerTests {
 
     @Test
     public void testUnannotatedObject() throws Exception {
-        Method getter = UnannotatedSubClass.class.getMethod("getChild");
-        Method setter = UnannotatedSubClass.class
+        final Method getter = UnannotatedSubClass.class.getMethod("getChild");
+        final Method setter = UnannotatedSubClass.class
                 .getMethod("setChild", UnannotatedSubClass.class);
 
         try {
             CONVERTER.unconvert(getter, setter, new AttributeValue().withS(""));
             Assert.fail("Expected DynamoDBMappingException");
-        } catch (DynamoDBMappingException e) {
+        } catch (final DynamoDBMappingException e) {
         }
     }
 
     @Test
     public void testS3Link() {
-        S3Link link = (S3Link) unconvert("getS3Link", "setS3Link",
+        final S3Link link = (S3Link) unconvert("getS3Link", "setS3Link",
                 new AttributeValue("{\"s3\":{"
                         + "\"bucket\":\"bucket\","
                         + "\"key\":\"key\","
@@ -445,13 +446,13 @@ public class UnmarshallerTests {
     public Object unconvert(String getter, String setter, AttributeValue value) {
         try {
 
-            Method gm = TestClass.class.getMethod(getter);
-            Method sm = TestClass.class.getMethod(setter, gm.getReturnType());
+            final Method gm = TestClass.class.getMethod(getter);
+            final Method sm = TestClass.class.getMethod(setter, gm.getReturnType());
             return CONVERTER.unconvert(gm, sm, value);
 
-        } catch (RuntimeException e) {
+        } catch (final RuntimeException e) {
             throw e;
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new RuntimeException("BOOM", e);
         }
     }

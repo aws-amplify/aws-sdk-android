@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import java.io.Serializable;
  * <p>
  * For each message in the batch, the response contains a
  * <a>DeleteMessageBatchResultEntry</a> tag if the message is deleted or a
- * <a>BatchResultErrorEntry</a> tag if the message cannot be deleted.
+ * <a>BatchResultErrorEntry</a> tag if the message can't be deleted.
  * </p>
  */
 public class DeleteMessageBatchResult implements Serializable {

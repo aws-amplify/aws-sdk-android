@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>QueueOwnerAWSAccountId</code> parameter to specify the account ID of
  * the queue's owner. The queue's owner must grant you permission to access the
  * queue. For more information about shared queue access, see
- * <a>AddPermission</a> or go to <a href=
+ * <a>AddPermission</a> or see <a href=
  * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/acp-overview.html"
  * >Shared Queues</a> in the <i>Amazon SQS Developer Guide</i>.
  * </p>

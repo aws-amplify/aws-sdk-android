@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,6 +38,17 @@ public class MultiObjectDeleteException extends AmazonS3Exception {
         super("One or more objects could not be deleted");
         this.deletedObjects.addAll(deletedObjects);
         this.errors.addAll(errors);
+    }
+
+    /**
+     * Always returns {@code null} since this exception represents a
+     * "successful" response from the service with no top-level error code. Use
+     * {@link #getErrors()} to retrieve a list of objects whose deletion failed,
+     * along with the error code and message for each individual failure.
+     */
+    @Override
+    public String getErrorCode() {
+        return super.getErrorCode();
     }
 
     /**

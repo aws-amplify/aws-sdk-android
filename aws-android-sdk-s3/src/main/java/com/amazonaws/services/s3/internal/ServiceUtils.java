@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Portions copyright 2006-2009 James Murty. Please see LICENSE.txt
  * for applicable license terms and NOTICE.txt for applicable notices.
@@ -28,6 +28,7 @@ import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.SSEAlgorithm;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.DateUtils;
@@ -115,14 +116,17 @@ public class ServiceUtils {
      *         surrounding quotes.
      */
     public static String removeQuotes(String s) {
-        if (s == null)
+        if (s == null) {
             return null;
+        }
 
         s = s.trim();
-        if (s.startsWith("\""))
+        if (s.startsWith("\"")) {
             s = s.substring(1);
-        if (s.endsWith("\""))
+        }
+        if (s.endsWith("\"")) {
             s = s.substring(0, s.length() - 1);
+        }
 
         return s;
     }
@@ -175,7 +179,7 @@ public class ServiceUtils {
         String urlString = request.getEndpoint() + urlPath;
 
         boolean firstParam = true;
-        for (String param : request.getParameters().keySet()) {
+        for (final String param : request.getParameters().keySet()) {
             if (firstParam) {
                 urlString += "?";
                 firstParam = false;
@@ -183,13 +187,13 @@ public class ServiceUtils {
                 urlString += "&";
             }
 
-            String value = request.getParameters().get(param);
+            final String value = request.getParameters().get(param);
             urlString += param + "=" + HttpUtils.urlEncode(value, false);
         }
 
         try {
             return new URL(urlString);
-        } catch (MalformedURLException e) {
+        } catch (final MalformedURLException e) {
             throw new AmazonClientException(
                     "Unable to convert request to well formed URL: " + e.getMessage(), e);
         }
@@ -208,9 +212,10 @@ public class ServiceUtils {
         String result = "";
 
         boolean first = true;
-        for (String s : strings) {
-            if (!first)
+        for (final String s : strings) {
+            if (!first) {
                 result += ", ";
+            }
 
             result += s;
             first = false;
@@ -236,7 +241,7 @@ public class ServiceUtils {
             boolean appendData) {
 
         // attempt to create the parent if it doesn't exist
-        File parentDirectory = destinationFile.getParentFile();
+        final File parentDirectory = destinationFile.getParentFile();
         if (parentDirectory != null && !parentDirectory.exists()) {
             parentDirectory.mkdirs();
         }
@@ -245,23 +250,23 @@ public class ServiceUtils {
         try {
             outputStream = new BufferedOutputStream(new FileOutputStream(
                     destinationFile, appendData));
-            byte[] buffer = new byte[1024 * 10];
+            final byte[] buffer = new byte[1024 * 10];
             int bytesRead;
             while ((bytesRead = s3Object.getObjectContent().read(buffer)) > -1) {
                 outputStream.write(buffer, 0, bytesRead);
             }
-        } catch (IOException e) {
+        } catch (final IOException e) {
             s3Object.getObjectContent().abort();
             throw new AmazonClientException(
                     "Unable to store object contents to disk: " + e.getMessage(), e);
         } finally {
             try {
                 outputStream.close();
-            } catch (Exception e) {
+            } catch (final Exception e) {
             }
             try {
                 s3Object.getObjectContent().close();
-            } catch (Exception e) {
+            } catch (final Exception e) {
             }
         }
 
@@ -274,7 +279,7 @@ public class ServiceUtils {
                 clientSideHash = Md5Utils.computeMD5Hash(new FileInputStream(destinationFile));
                 serverSideHash = BinaryUtils.fromHex(s3Object.getObjectMetadata().getETag());
             }
-        } catch (Exception e) {
+        } catch (final Exception e) {
             log.warn("Unable to calculate MD5 hash to validate download: " + e.getMessage(), e);
         }
 
@@ -332,16 +337,18 @@ public class ServiceUtils {
         do {
             needRetry = false;
             s3Object = retryableS3DownloadTask.getS3ObjectStream();
-            if (s3Object == null)
+            if (s3Object == null) {
                 return null;
+            }
 
             try {
                 ServiceUtils.downloadObjectToFile(s3Object, file,
                         retryableS3DownloadTask.needIntegrityCheck(),
                         appendData);
-            } catch (AmazonClientException ace) {
-                if (!ace.isRetryable())
+            } catch (final AmazonClientException ace) {
+                if (!ace.isRetryable()) {
                     throw ace;
+                }
                 // Determine whether an immediate retry is needed according to
                 // the captured AmazonClientException.
                 // (There are three cases when downloadObjectToFile() throws
@@ -357,9 +364,9 @@ public class ServiceUtils {
                     throw ace;
                 } else {
                     needRetry = true;
-                    if (hasRetried)
+                    if (hasRetried) {
                         throw ace;
-                    else {
+                    } else {
                         log.info("Retry the download of object " + s3Object.getKey() + " (bucket "
                                 + s3Object.getBucketName() + ")", ace);
                         hasRetried = true;
@@ -384,9 +391,10 @@ public class ServiceUtils {
      * the plaintext.
      */
     public static boolean skipMd5CheckPerResponse(ObjectMetadata metadata) {
-        if (metadata == null)
+        if (metadata == null) {
             return false;
-        boolean sseKMS = (ObjectMetadata.KMS_SERVER_SIDE_ENCRYPTION.equals(metadata
+        }
+        final boolean sseKMS = (SSEAlgorithm.KMS.toString().equals(metadata
                 .getSSEAlgorithm()));
         return (metadata.getSSECustomerAlgorithm() != null)
                 || sseKMS;
@@ -397,25 +405,28 @@ public class ServiceUtils {
      * requested object content.
      */
     public static boolean skipMd5CheckPerRequest(AmazonWebServiceRequest request) {
-        if (System.getProperty("com.amazonaws.services.s3.disableGetObjectMD5Validation") != null)
+        if (System.getProperty("com.amazonaws.services.s3.disableGetObjectMD5Validation") != null) {
             return true;
+        }
 
         if (request instanceof GetObjectRequest) {
-            GetObjectRequest getObjectRequest = (GetObjectRequest) request;
+            final GetObjectRequest getObjectRequest = (GetObjectRequest) request;
             // Skip MD5 check for range get
-            if (getObjectRequest.getRange() != null)
+            if (getObjectRequest.getRange() != null) {
                 return true;
-            if (getObjectRequest.getSSECustomerKey() != null)
+            }
+            if (getObjectRequest.getSSECustomerKey() != null) {
                 return true;
+            }
         } else if (request instanceof PutObjectRequest) {
-            PutObjectRequest putObjectRequest = (PutObjectRequest) request;
-            ObjectMetadata om = putObjectRequest.getMetadata();
+            final PutObjectRequest putObjectRequest = (PutObjectRequest) request;
+            final ObjectMetadata om = putObjectRequest.getMetadata();
             if (om != null && om.getSSEAlgorithm() != null) {
                 return true;
             }
             return putObjectRequest.getSSECustomerKey() != null;
         } else if (request instanceof UploadPartRequest) {
-            UploadPartRequest uploadPartRequest = (UploadPartRequest) request;
+            final UploadPartRequest uploadPartRequest = (UploadPartRequest) request;
             return uploadPartRequest.getSSECustomerKey() != null;
         }
 

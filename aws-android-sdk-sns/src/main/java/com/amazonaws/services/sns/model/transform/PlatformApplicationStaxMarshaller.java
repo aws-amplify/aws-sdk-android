@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,9 +36,9 @@ class PlatformApplicationStaxMarshaller {
             prefix = _prefix + "Attributes";
             java.util.Map<String, String> attributes = _platformApplication.getAttributes();
             int attributesIndex = 1;
-            String attributesPrefix = prefix;
+            String attributesPrefix = prefix + ".entry.";
             for (java.util.Map.Entry<String, String> attributesEntry : attributes.entrySet()) {
-                prefix = attributesPrefix + ".entry." + attributesIndex;
+                prefix = attributesPrefix + attributesIndex;
                 if (attributesEntry.getKey() != null) {
                     request.addParameter(prefix + ".key",
                             StringUtils.fromString(attributesEntry.getKey()));

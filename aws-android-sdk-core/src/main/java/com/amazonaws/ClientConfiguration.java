@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -174,6 +174,11 @@ public class ClientConfiguration {
      */
     private TrustManager trustManager = null;
 
+    /**
+     * Enable/disable logging.
+     */
+    private boolean curlLogging = false;
+
     public ClientConfiguration() {
     }
 
@@ -198,6 +203,7 @@ public class ClientConfiguration {
         this.socketSendBufferSizeHint = other.socketSendBufferSizeHint;
         this.signerOverride = other.signerOverride;
         this.trustManager = other.trustManager;
+        this.curlLogging = other.curlLogging;
     }
 
     /**
@@ -1026,6 +1032,40 @@ public class ClientConfiguration {
      */
     public ClientConfiguration withTrustManager(TrustManager trustManager) {
         setTrustManager(trustManager);
+        return this;
+    }
+
+    /**
+     * Tells whether or not the client should be logging anything. Currently,
+     * logging will print curl commands to replay http requests.
+     *
+     * @return Whether or not the client will be logging.
+     */
+    public boolean isCurlLogging() {
+        return curlLogging;
+    }
+
+    /**
+     * Sets whether or not the client should be logging any information. This
+     * should be used for debug builds only. Defaults to false.
+     *
+     * @param logging Whether or not the client should be logging operations.
+     */
+    public void setCurlLogging(boolean curlLogging) {
+        this.curlLogging = curlLogging;
+    }
+
+    /**
+     * Sets whether or not the client should be logging any information. This
+     * should be used for debug builds only, and returns the updated
+     * ClientConfiguration object so that additional calls may be chained
+     * together. Defaults to false.
+     *
+     * @param logging Whether or not the client should be logging operations.
+     * @return The updated ClientConfiguration object.
+     */
+    public ClientConfiguration withCurlLogging(boolean curlLogging) {
+        this.curlLogging = curlLogging;
         return this;
     }
 

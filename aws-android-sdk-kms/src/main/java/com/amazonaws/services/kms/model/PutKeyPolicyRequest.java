@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * <li>
      * <p>
-     * ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-
+     * ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-
      * 56ef-1234567890ab
      * </p>
      * </li>
@@ -76,7 +76,8 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * The key policy to attach to the CMK.
      * </p>
      * <p>
-     * The key policy must meet the following criteria:
+     * If you do not set <code>BypassPolicyLockoutSafetyCheck</code> to true,
+     * the policy must meet the following criteria:
      * </p>
      * <ul>
      * <li>
@@ -156,7 +157,7 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * <li>
      * <p>
-     * ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-
+     * ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-
      * 56ef-1234567890ab
      * </p>
      * </li>
@@ -180,7 +181,7 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      *         </li>
      *         <li>
      *         <p>
-     *         ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-
+     *         ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-
      *         56ef-1234567890ab
      *         </p>
      *         </li>
@@ -206,7 +207,7 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * <li>
      * <p>
-     * ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-
+     * ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-
      * 56ef-1234567890ab
      * </p>
      * </li>
@@ -231,7 +232,7 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      *            <li>
      *            <p>
      *            ARN:
-     *            arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-
+     *            arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-
      *            56ef-1234567890ab
      *            </p>
      *            </li>
@@ -257,7 +258,7 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * <li>
      * <p>
-     * ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-
+     * ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-
      * 56ef-1234567890ab
      * </p>
      * </li>
@@ -285,7 +286,7 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      *            <li>
      *            <p>
      *            ARN:
-     *            arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-
+     *            arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-
      *            56ef-1234567890ab
      *            </p>
      *            </li>
@@ -378,7 +379,8 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * The key policy to attach to the CMK.
      * </p>
      * <p>
-     * The key policy must meet the following criteria:
+     * If you do not set <code>BypassPolicyLockoutSafetyCheck</code> to true,
+     * the policy must meet the following criteria:
      * </p>
      * <ul>
      * <li>
@@ -417,7 +419,8 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      *         The key policy to attach to the CMK.
      *         </p>
      *         <p>
-     *         The key policy must meet the following criteria:
+     *         If you do not set <code>BypassPolicyLockoutSafetyCheck</code> to
+     *         true, the policy must meet the following criteria:
      *         </p>
      *         <ul>
      *         <li>
@@ -459,7 +462,8 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * The key policy to attach to the CMK.
      * </p>
      * <p>
-     * The key policy must meet the following criteria:
+     * If you do not set <code>BypassPolicyLockoutSafetyCheck</code> to true,
+     * the policy must meet the following criteria:
      * </p>
      * <ul>
      * <li>
@@ -498,7 +502,8 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      *            The key policy to attach to the CMK.
      *            </p>
      *            <p>
-     *            The key policy must meet the following criteria:
+     *            If you do not set <code>BypassPolicyLockoutSafetyCheck</code>
+     *            to true, the policy must meet the following criteria:
      *            </p>
      *            <ul>
      *            <li>
@@ -540,7 +545,8 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * The key policy to attach to the CMK.
      * </p>
      * <p>
-     * The key policy must meet the following criteria:
+     * If you do not set <code>BypassPolicyLockoutSafetyCheck</code> to true,
+     * the policy must meet the following criteria:
      * </p>
      * <ul>
      * <li>
@@ -582,7 +588,8 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      *            The key policy to attach to the CMK.
      *            </p>
      *            <p>
-     *            The key policy must meet the following criteria:
+     *            If you do not set <code>BypassPolicyLockoutSafetyCheck</code>
+     *            to true, the policy must meet the following criteria:
      *            </p>
      *            <ul>
      *            <li>

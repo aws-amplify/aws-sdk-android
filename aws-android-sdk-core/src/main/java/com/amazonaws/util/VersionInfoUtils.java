@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class VersionInfoUtils {
     /** SDK version info */
-    private static volatile String version = "2.3.1";
+    private static volatile String version = "2.4.0";
                                                                 // changed build
                                                                 // logic
 

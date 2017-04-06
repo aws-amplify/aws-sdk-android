@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,7 +27,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * For more information about using dead letter queues, see <a href=
  * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html"
- * >Using Amazon SQS Dead Letter Queues</a>.
+ * >Using Amazon SQS Dead Letter Queues</a> in the <i>Amazon SQS Developer
+ * Guide</i>.
  * </p>
  */
 public class ListDeadLetterSourceQueuesRequest extends AmazonWebServiceRequest implements

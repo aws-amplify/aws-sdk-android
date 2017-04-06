@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import com.amazonaws.services.kinesis.AmazonKinesis;
 import com.amazonaws.services.kinesis.model.PutRecordsRequest;
 import com.amazonaws.services.kinesis.model.PutRecordsRequestEntry;
 import com.amazonaws.services.kinesis.model.PutRecordsResult;
+import com.amazonaws.util.StringUtils;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -34,18 +35,32 @@ import java.util.UUID;
  */
 class KinesisStreamRecordSender implements RecordSender {
 
-    private AmazonKinesis client;
-    private String userAgent;
+    private final AmazonKinesis client;
+    private final String userAgent;
+    private final String partitionKey;
 
     /**
      * Constructs a {@link KinesisStreamRecordSender}.
-     * 
+     *
      * @param client an {@link AmazonKinesis} client
      * @param userAgent user agent string to be set in each request
      */
     public KinesisStreamRecordSender(AmazonKinesis client, String userAgent) {
+        this(client, userAgent, null);
+    }
+
+    /**
+     * Constructs a {@link KinesisStreamRecordSender}.
+     *
+     * @param client an {@link AmazonKinesis} client
+     * @param userAgent user agent string to be set in each request
+     * @param config the Kinesis recorder config.
+     */
+    public KinesisStreamRecordSender(AmazonKinesis client, String userAgent,
+            String partitionKey) {
         this.client = client;
         this.userAgent = userAgent;
+        this.partitionKey = partitionKey;
     }
 
     @Override
@@ -55,12 +70,13 @@ class KinesisStreamRecordSender implements RecordSender {
             return Collections.emptyList();
         }
 
-        PutRecordsRequest request = new PutRecordsRequest();
+        final PutRecordsRequest request = new PutRecordsRequest();
         request.setStreamName(streamName);
-        List<PutRecordsRequestEntry> records = new ArrayList<PutRecordsRequestEntry>(data.size());
-        String partitionKey = UUID.randomUUID().toString();
-        for (byte[] d : data) {
-            PutRecordsRequestEntry r = new PutRecordsRequestEntry();
+        final List<PutRecordsRequestEntry> records = new ArrayList<PutRecordsRequestEntry>(data.size());
+        final String partitionKey = StringUtils.isBlank(this.partitionKey)
+                ? UUID.randomUUID().toString() : this.partitionKey;
+        for (final byte[] d : data) {
+            final PutRecordsRequestEntry r = new PutRecordsRequestEntry();
             r.setData(ByteBuffer.wrap(d));
             r.setPartitionKey(partitionKey);
             records.add(r);
@@ -68,10 +84,10 @@ class KinesisStreamRecordSender implements RecordSender {
         request.setRecords(records);
         request.getRequestClientOptions().appendUserAgent(userAgent);
 
-        PutRecordsResult result = client.putRecords(request);
+        final PutRecordsResult result = client.putRecords(request);
 
-        int size = result.getRecords().size();
-        List<byte[]> failures = new ArrayList<byte[]>(result.getFailedRecordCount());
+        final int size = result.getRecords().size();
+        final List<byte[]> failures = new ArrayList<byte[]>(result.getFailedRecordCount());
         for (int i = 0; i < size; i++) {
             if (result.getRecords().get(i).getErrorCode() != null) {
                 // always retry failed record
@@ -84,7 +100,7 @@ class KinesisStreamRecordSender implements RecordSender {
     @Override
     public boolean isRecoverable(AmazonClientException ace) {
         if (ace instanceof AmazonServiceException) {
-            String errorCode = ((AmazonServiceException) ace).getErrorCode();
+            final String errorCode = ((AmazonServiceException) ace).getErrorCode();
             return "InternalFailure".equals(errorCode)
                     || "ServiceUnavailable".equals(errorCode)
                     || "Throttling".equals(errorCode)

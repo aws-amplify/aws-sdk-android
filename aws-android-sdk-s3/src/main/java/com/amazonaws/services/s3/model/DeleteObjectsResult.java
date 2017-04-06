@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,9 @@
 package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.internal.S3RequesterChargedResult;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,12 +29,23 @@ import java.util.List;
  *
  * @see AmazonS3#deleteObjects(DeleteObjectsRequest)
  */
-public class DeleteObjectsResult {
+public class DeleteObjectsResult implements Serializable, S3RequesterChargedResult  {
 
     private final List<DeletedObject> deletedObjects = new ArrayList<DeleteObjectsResult.DeletedObject>();
 
+    /**
+     * Indicate if the requester is charged for conducting this operation from
+     * Requester Pays Buckets.
+     */
+    private boolean isRequesterCharged;
+
     public DeleteObjectsResult(List<DeletedObject> deletedObjects) {
+        this(deletedObjects, false);
+    }
+
+    public DeleteObjectsResult(List<DeletedObject> deletedObjects, boolean isRequesterCharged) {
         this.deletedObjects.addAll(deletedObjects);
+        this.setRequesterCharged(isRequesterCharged);
     }
 
     /**
@@ -44,10 +57,20 @@ public class DeleteObjectsResult {
         return deletedObjects;
     }
 
+    @Override
+    public boolean isRequesterCharged() {
+        return isRequesterCharged;
+    }
+
+    @Override
+    public void setRequesterCharged(boolean isRequesterCharged) {
+        this.isRequesterCharged = isRequesterCharged;
+    }
+
     /**
      * A successfully deleted object.
      */
-    static public class DeletedObject {
+    static public class DeletedObject implements Serializable {
 
         private String key;
         private String versionId;

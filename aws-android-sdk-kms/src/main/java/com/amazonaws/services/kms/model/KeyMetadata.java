@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,14 +29,14 @@ import java.io.Serializable;
 public class KeyMetadata implements Serializable {
     /**
      * <p>
-     * The twelve-digit account ID of the AWS account that owns the key.
+     * The twelve-digit account ID of the AWS account that owns the CMK.
      * </p>
      */
     private String aWSAccountId;
 
     /**
      * <p>
-     * The globally unique identifier for the key.
+     * The globally unique identifier for the CMK.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -46,7 +46,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the key. For examples, see <a href=
+     * The Amazon Resource Name (ARN) of the CMK. For examples, see <a href=
      * "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
      * >AWS Key Management Service (AWS KMS)</a> in the Example ARNs section of
      * the <i>AWS General Reference</i>.
@@ -59,14 +59,14 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The date and time when the key was created.
+     * The date and time when the CMK was created.
      * </p>
      */
     private java.util.Date creationDate;
 
     /**
      * <p>
-     * Specifies whether the key is enabled. When <code>KeyState</code> is
+     * Specifies whether the CMK is enabled. When <code>KeyState</code> is
      * <code>Enabled</code> this value is true, otherwise it is false.
      * </p>
      */
@@ -74,7 +74,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The friendly description of the key.
+     * The description of the CMK.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -84,9 +84,9 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The cryptographic operations for which you can use the key. Currently the
+     * The cryptographic operations for which you can use the CMK. Currently the
      * only allowed value is <code>ENCRYPT_DECRYPT</code>, which means you can
-     * use the key for the <a>Encrypt</a> and <a>Decrypt</a> operations.
+     * use the CMK for the <a>Encrypt</a> and <a>Decrypt</a> operations.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -96,7 +96,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The state of the customer master key (CMK).
+     * The state of the CMK.
      * </p>
      * <p>
      * For more information about how key state affects the use of a CMK, see <a
@@ -107,26 +107,62 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Enabled, Disabled, PendingDeletion
+     * <b>Allowed Values: </b>Enabled, Disabled, PendingDeletion, PendingImport
      */
     private String keyState;
 
     /**
      * <p>
-     * The date and time after which AWS KMS deletes the customer master key
-     * (CMK). This value is present only when <code>KeyState</code> is
-     * <code>PendingDeletion</code>, otherwise this value is null.
+     * The date and time after which AWS KMS deletes the CMK. This value is
+     * present only when <code>KeyState</code> is <code>PendingDeletion</code>,
+     * otherwise this value is omitted.
      * </p>
      */
     private java.util.Date deletionDate;
 
     /**
      * <p>
-     * The twelve-digit account ID of the AWS account that owns the key.
+     * The time at which the imported key material expires. When the key
+     * material expires, AWS KMS deletes the key material and the CMK becomes
+     * unusable. This value is present only for CMKs whose <code>Origin</code>
+     * is <code>EXTERNAL</code> and whose <code>ExpirationModel</code> is
+     * <code>KEY_MATERIAL_EXPIRES</code>, otherwise this value is omitted.
+     * </p>
+     */
+    private java.util.Date validTo;
+
+    /**
+     * <p>
+     * The source of the CMK's key material. When this value is
+     * <code>AWS_KMS</code>, AWS KMS created the key material. When this value
+     * is <code>EXTERNAL</code>, the key material was imported from your
+     * existing key management infrastructure or the CMK lacks key material.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AWS_KMS, EXTERNAL
+     */
+    private String origin;
+
+    /**
+     * <p>
+     * Specifies whether the CMK's key material expires. This value is present
+     * only when <code>Origin</code> is <code>EXTERNAL</code>, otherwise this
+     * value is omitted.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>KEY_MATERIAL_EXPIRES, KEY_MATERIAL_DOES_NOT_EXPIRE
+     */
+    private String expirationModel;
+
+    /**
+     * <p>
+     * The twelve-digit account ID of the AWS account that owns the CMK.
      * </p>
      *
      * @return <p>
-     *         The twelve-digit account ID of the AWS account that owns the key.
+     *         The twelve-digit account ID of the AWS account that owns the CMK.
      *         </p>
      */
     public String getAWSAccountId() {
@@ -135,12 +171,12 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The twelve-digit account ID of the AWS account that owns the key.
+     * The twelve-digit account ID of the AWS account that owns the CMK.
      * </p>
      *
      * @param aWSAccountId <p>
      *            The twelve-digit account ID of the AWS account that owns the
-     *            key.
+     *            CMK.
      *            </p>
      */
     public void setAWSAccountId(String aWSAccountId) {
@@ -149,7 +185,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The twelve-digit account ID of the AWS account that owns the key.
+     * The twelve-digit account ID of the AWS account that owns the CMK.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -157,7 +193,7 @@ public class KeyMetadata implements Serializable {
      *
      * @param aWSAccountId <p>
      *            The twelve-digit account ID of the AWS account that owns the
-     *            key.
+     *            CMK.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -169,14 +205,14 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The globally unique identifier for the key.
+     * The globally unique identifier for the CMK.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         The globally unique identifier for the key.
+     *         The globally unique identifier for the CMK.
      *         </p>
      */
     public String getKeyId() {
@@ -185,14 +221,14 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The globally unique identifier for the key.
+     * The globally unique identifier for the CMK.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @param keyId <p>
-     *            The globally unique identifier for the key.
+     *            The globally unique identifier for the CMK.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -201,7 +237,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The globally unique identifier for the key.
+     * The globally unique identifier for the CMK.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -211,7 +247,7 @@ public class KeyMetadata implements Serializable {
      * <b>Length: </b>1 - 256<br/>
      *
      * @param keyId <p>
-     *            The globally unique identifier for the key.
+     *            The globally unique identifier for the CMK.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -223,7 +259,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the key. For examples, see <a href=
+     * The Amazon Resource Name (ARN) of the CMK. For examples, see <a href=
      * "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
      * >AWS Key Management Service (AWS KMS)</a> in the Example ARNs section of
      * the <i>AWS General Reference</i>.
@@ -233,7 +269,7 @@ public class KeyMetadata implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the key. For examples, see <a
+     *         The Amazon Resource Name (ARN) of the CMK. For examples, see <a
      *         href=
      *         "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
      *         >AWS Key Management Service (AWS KMS)</a> in the Example ARNs
@@ -246,7 +282,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the key. For examples, see <a href=
+     * The Amazon Resource Name (ARN) of the CMK. For examples, see <a href=
      * "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
      * >AWS Key Management Service (AWS KMS)</a> in the Example ARNs section of
      * the <i>AWS General Reference</i>.
@@ -256,7 +292,7 @@ public class KeyMetadata implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param arn <p>
-     *            The Amazon Resource Name (ARN) of the key. For examples, see
+     *            The Amazon Resource Name (ARN) of the CMK. For examples, see
      *            <a href=
      *            "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
      *            >AWS Key Management Service (AWS KMS)</a> in the Example ARNs
@@ -269,7 +305,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the key. For examples, see <a href=
+     * The Amazon Resource Name (ARN) of the CMK. For examples, see <a href=
      * "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
      * >AWS Key Management Service (AWS KMS)</a> in the Example ARNs section of
      * the <i>AWS General Reference</i>.
@@ -282,7 +318,7 @@ public class KeyMetadata implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param arn <p>
-     *            The Amazon Resource Name (ARN) of the key. For examples, see
+     *            The Amazon Resource Name (ARN) of the CMK. For examples, see
      *            <a href=
      *            "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
      *            >AWS Key Management Service (AWS KMS)</a> in the Example ARNs
@@ -298,11 +334,11 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The date and time when the key was created.
+     * The date and time when the CMK was created.
      * </p>
      *
      * @return <p>
-     *         The date and time when the key was created.
+     *         The date and time when the CMK was created.
      *         </p>
      */
     public java.util.Date getCreationDate() {
@@ -311,11 +347,11 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The date and time when the key was created.
+     * The date and time when the CMK was created.
      * </p>
      *
      * @param creationDate <p>
-     *            The date and time when the key was created.
+     *            The date and time when the CMK was created.
      *            </p>
      */
     public void setCreationDate(java.util.Date creationDate) {
@@ -324,14 +360,14 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The date and time when the key was created.
+     * The date and time when the CMK was created.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param creationDate <p>
-     *            The date and time when the key was created.
+     *            The date and time when the CMK was created.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -343,12 +379,12 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * Specifies whether the key is enabled. When <code>KeyState</code> is
+     * Specifies whether the CMK is enabled. When <code>KeyState</code> is
      * <code>Enabled</code> this value is true, otherwise it is false.
      * </p>
      *
      * @return <p>
-     *         Specifies whether the key is enabled. When <code>KeyState</code>
+     *         Specifies whether the CMK is enabled. When <code>KeyState</code>
      *         is <code>Enabled</code> this value is true, otherwise it is
      *         false.
      *         </p>
@@ -359,12 +395,12 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * Specifies whether the key is enabled. When <code>KeyState</code> is
+     * Specifies whether the CMK is enabled. When <code>KeyState</code> is
      * <code>Enabled</code> this value is true, otherwise it is false.
      * </p>
      *
      * @return <p>
-     *         Specifies whether the key is enabled. When <code>KeyState</code>
+     *         Specifies whether the CMK is enabled. When <code>KeyState</code>
      *         is <code>Enabled</code> this value is true, otherwise it is
      *         false.
      *         </p>
@@ -375,12 +411,12 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * Specifies whether the key is enabled. When <code>KeyState</code> is
+     * Specifies whether the CMK is enabled. When <code>KeyState</code> is
      * <code>Enabled</code> this value is true, otherwise it is false.
      * </p>
      *
      * @param enabled <p>
-     *            Specifies whether the key is enabled. When
+     *            Specifies whether the CMK is enabled. When
      *            <code>KeyState</code> is <code>Enabled</code> this value is
      *            true, otherwise it is false.
      *            </p>
@@ -391,7 +427,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * Specifies whether the key is enabled. When <code>KeyState</code> is
+     * Specifies whether the CMK is enabled. When <code>KeyState</code> is
      * <code>Enabled</code> this value is true, otherwise it is false.
      * </p>
      * <p>
@@ -399,7 +435,7 @@ public class KeyMetadata implements Serializable {
      * together.
      *
      * @param enabled <p>
-     *            Specifies whether the key is enabled. When
+     *            Specifies whether the CMK is enabled. When
      *            <code>KeyState</code> is <code>Enabled</code> this value is
      *            true, otherwise it is false.
      *            </p>
@@ -413,14 +449,14 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The friendly description of the key.
+     * The description of the CMK.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 8192<br/>
      *
      * @return <p>
-     *         The friendly description of the key.
+     *         The description of the CMK.
      *         </p>
      */
     public String getDescription() {
@@ -429,14 +465,14 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The friendly description of the key.
+     * The description of the CMK.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 8192<br/>
      *
      * @param description <p>
-     *            The friendly description of the key.
+     *            The description of the CMK.
      *            </p>
      */
     public void setDescription(String description) {
@@ -445,7 +481,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The friendly description of the key.
+     * The description of the CMK.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -455,7 +491,7 @@ public class KeyMetadata implements Serializable {
      * <b>Length: </b>0 - 8192<br/>
      *
      * @param description <p>
-     *            The friendly description of the key.
+     *            The description of the CMK.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -467,18 +503,18 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The cryptographic operations for which you can use the key. Currently the
+     * The cryptographic operations for which you can use the CMK. Currently the
      * only allowed value is <code>ENCRYPT_DECRYPT</code>, which means you can
-     * use the key for the <a>Encrypt</a> and <a>Decrypt</a> operations.
+     * use the CMK for the <a>Encrypt</a> and <a>Decrypt</a> operations.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ENCRYPT_DECRYPT
      *
      * @return <p>
-     *         The cryptographic operations for which you can use the key.
+     *         The cryptographic operations for which you can use the CMK.
      *         Currently the only allowed value is <code>ENCRYPT_DECRYPT</code>,
-     *         which means you can use the key for the <a>Encrypt</a> and
+     *         which means you can use the CMK for the <a>Encrypt</a> and
      *         <a>Decrypt</a> operations.
      *         </p>
      * @see KeyUsageType
@@ -489,18 +525,18 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The cryptographic operations for which you can use the key. Currently the
+     * The cryptographic operations for which you can use the CMK. Currently the
      * only allowed value is <code>ENCRYPT_DECRYPT</code>, which means you can
-     * use the key for the <a>Encrypt</a> and <a>Decrypt</a> operations.
+     * use the CMK for the <a>Encrypt</a> and <a>Decrypt</a> operations.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            The cryptographic operations for which you can use the key.
+     *            The cryptographic operations for which you can use the CMK.
      *            Currently the only allowed value is
-     *            <code>ENCRYPT_DECRYPT</code>, which means you can use the key
+     *            <code>ENCRYPT_DECRYPT</code>, which means you can use the CMK
      *            for the <a>Encrypt</a> and <a>Decrypt</a> operations.
      *            </p>
      * @see KeyUsageType
@@ -511,9 +547,9 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The cryptographic operations for which you can use the key. Currently the
+     * The cryptographic operations for which you can use the CMK. Currently the
      * only allowed value is <code>ENCRYPT_DECRYPT</code>, which means you can
-     * use the key for the <a>Encrypt</a> and <a>Decrypt</a> operations.
+     * use the CMK for the <a>Encrypt</a> and <a>Decrypt</a> operations.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -523,9 +559,9 @@ public class KeyMetadata implements Serializable {
      * <b>Allowed Values: </b>ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            The cryptographic operations for which you can use the key.
+     *            The cryptographic operations for which you can use the CMK.
      *            Currently the only allowed value is
-     *            <code>ENCRYPT_DECRYPT</code>, which means you can use the key
+     *            <code>ENCRYPT_DECRYPT</code>, which means you can use the CMK
      *            for the <a>Encrypt</a> and <a>Decrypt</a> operations.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -539,18 +575,18 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The cryptographic operations for which you can use the key. Currently the
+     * The cryptographic operations for which you can use the CMK. Currently the
      * only allowed value is <code>ENCRYPT_DECRYPT</code>, which means you can
-     * use the key for the <a>Encrypt</a> and <a>Decrypt</a> operations.
+     * use the CMK for the <a>Encrypt</a> and <a>Decrypt</a> operations.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            The cryptographic operations for which you can use the key.
+     *            The cryptographic operations for which you can use the CMK.
      *            Currently the only allowed value is
-     *            <code>ENCRYPT_DECRYPT</code>, which means you can use the key
+     *            <code>ENCRYPT_DECRYPT</code>, which means you can use the CMK
      *            for the <a>Encrypt</a> and <a>Decrypt</a> operations.
      *            </p>
      * @see KeyUsageType
@@ -561,9 +597,9 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The cryptographic operations for which you can use the key. Currently the
+     * The cryptographic operations for which you can use the CMK. Currently the
      * only allowed value is <code>ENCRYPT_DECRYPT</code>, which means you can
-     * use the key for the <a>Encrypt</a> and <a>Decrypt</a> operations.
+     * use the CMK for the <a>Encrypt</a> and <a>Decrypt</a> operations.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -573,9 +609,9 @@ public class KeyMetadata implements Serializable {
      * <b>Allowed Values: </b>ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            The cryptographic operations for which you can use the key.
+     *            The cryptographic operations for which you can use the CMK.
      *            Currently the only allowed value is
-     *            <code>ENCRYPT_DECRYPT</code>, which means you can use the key
+     *            <code>ENCRYPT_DECRYPT</code>, which means you can use the CMK
      *            for the <a>Encrypt</a> and <a>Decrypt</a> operations.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -589,7 +625,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The state of the customer master key (CMK).
+     * The state of the CMK.
      * </p>
      * <p>
      * For more information about how key state affects the use of a CMK, see <a
@@ -600,10 +636,10 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Enabled, Disabled, PendingDeletion
+     * <b>Allowed Values: </b>Enabled, Disabled, PendingDeletion, PendingImport
      *
      * @return <p>
-     *         The state of the customer master key (CMK).
+     *         The state of the CMK.
      *         </p>
      *         <p>
      *         For more information about how key state affects the use of a
@@ -620,7 +656,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The state of the customer master key (CMK).
+     * The state of the CMK.
      * </p>
      * <p>
      * For more information about how key state affects the use of a CMK, see <a
@@ -631,10 +667,10 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Enabled, Disabled, PendingDeletion
+     * <b>Allowed Values: </b>Enabled, Disabled, PendingDeletion, PendingImport
      *
      * @param keyState <p>
-     *            The state of the customer master key (CMK).
+     *            The state of the CMK.
      *            </p>
      *            <p>
      *            For more information about how key state affects the use of a
@@ -651,7 +687,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The state of the customer master key (CMK).
+     * The state of the CMK.
      * </p>
      * <p>
      * For more information about how key state affects the use of a CMK, see <a
@@ -665,10 +701,10 @@ public class KeyMetadata implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Enabled, Disabled, PendingDeletion
+     * <b>Allowed Values: </b>Enabled, Disabled, PendingDeletion, PendingImport
      *
      * @param keyState <p>
-     *            The state of the customer master key (CMK).
+     *            The state of the CMK.
      *            </p>
      *            <p>
      *            For more information about how key state affects the use of a
@@ -688,7 +724,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The state of the customer master key (CMK).
+     * The state of the CMK.
      * </p>
      * <p>
      * For more information about how key state affects the use of a CMK, see <a
@@ -699,10 +735,10 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Enabled, Disabled, PendingDeletion
+     * <b>Allowed Values: </b>Enabled, Disabled, PendingDeletion, PendingImport
      *
      * @param keyState <p>
-     *            The state of the customer master key (CMK).
+     *            The state of the CMK.
      *            </p>
      *            <p>
      *            For more information about how key state affects the use of a
@@ -719,7 +755,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The state of the customer master key (CMK).
+     * The state of the CMK.
      * </p>
      * <p>
      * For more information about how key state affects the use of a CMK, see <a
@@ -733,10 +769,10 @@ public class KeyMetadata implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Enabled, Disabled, PendingDeletion
+     * <b>Allowed Values: </b>Enabled, Disabled, PendingDeletion, PendingImport
      *
      * @param keyState <p>
-     *            The state of the customer master key (CMK).
+     *            The state of the CMK.
      *            </p>
      *            <p>
      *            For more information about how key state affects the use of a
@@ -756,15 +792,15 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The date and time after which AWS KMS deletes the customer master key
-     * (CMK). This value is present only when <code>KeyState</code> is
-     * <code>PendingDeletion</code>, otherwise this value is null.
+     * The date and time after which AWS KMS deletes the CMK. This value is
+     * present only when <code>KeyState</code> is <code>PendingDeletion</code>,
+     * otherwise this value is omitted.
      * </p>
      *
      * @return <p>
-     *         The date and time after which AWS KMS deletes the customer master
-     *         key (CMK). This value is present only when <code>KeyState</code>
-     *         is <code>PendingDeletion</code>, otherwise this value is null.
+     *         The date and time after which AWS KMS deletes the CMK. This value
+     *         is present only when <code>KeyState</code> is
+     *         <code>PendingDeletion</code>, otherwise this value is omitted.
      *         </p>
      */
     public java.util.Date getDeletionDate() {
@@ -773,16 +809,15 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The date and time after which AWS KMS deletes the customer master key
-     * (CMK). This value is present only when <code>KeyState</code> is
-     * <code>PendingDeletion</code>, otherwise this value is null.
+     * The date and time after which AWS KMS deletes the CMK. This value is
+     * present only when <code>KeyState</code> is <code>PendingDeletion</code>,
+     * otherwise this value is omitted.
      * </p>
      *
      * @param deletionDate <p>
-     *            The date and time after which AWS KMS deletes the customer
-     *            master key (CMK). This value is present only when
-     *            <code>KeyState</code> is <code>PendingDeletion</code>,
-     *            otherwise this value is null.
+     *            The date and time after which AWS KMS deletes the CMK. This
+     *            value is present only when <code>KeyState</code> is
+     *            <code>PendingDeletion</code>, otherwise this value is omitted.
      *            </p>
      */
     public void setDeletionDate(java.util.Date deletionDate) {
@@ -791,25 +826,347 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The date and time after which AWS KMS deletes the customer master key
-     * (CMK). This value is present only when <code>KeyState</code> is
-     * <code>PendingDeletion</code>, otherwise this value is null.
+     * The date and time after which AWS KMS deletes the CMK. This value is
+     * present only when <code>KeyState</code> is <code>PendingDeletion</code>,
+     * otherwise this value is omitted.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param deletionDate <p>
-     *            The date and time after which AWS KMS deletes the customer
-     *            master key (CMK). This value is present only when
-     *            <code>KeyState</code> is <code>PendingDeletion</code>,
-     *            otherwise this value is null.
+     *            The date and time after which AWS KMS deletes the CMK. This
+     *            value is present only when <code>KeyState</code> is
+     *            <code>PendingDeletion</code>, otherwise this value is omitted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public KeyMetadata withDeletionDate(java.util.Date deletionDate) {
         this.deletionDate = deletionDate;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The time at which the imported key material expires. When the key
+     * material expires, AWS KMS deletes the key material and the CMK becomes
+     * unusable. This value is present only for CMKs whose <code>Origin</code>
+     * is <code>EXTERNAL</code> and whose <code>ExpirationModel</code> is
+     * <code>KEY_MATERIAL_EXPIRES</code>, otherwise this value is omitted.
+     * </p>
+     *
+     * @return <p>
+     *         The time at which the imported key material expires. When the key
+     *         material expires, AWS KMS deletes the key material and the CMK
+     *         becomes unusable. This value is present only for CMKs whose
+     *         <code>Origin</code> is <code>EXTERNAL</code> and whose
+     *         <code>ExpirationModel</code> is <code>KEY_MATERIAL_EXPIRES</code>
+     *         , otherwise this value is omitted.
+     *         </p>
+     */
+    public java.util.Date getValidTo() {
+        return validTo;
+    }
+
+    /**
+     * <p>
+     * The time at which the imported key material expires. When the key
+     * material expires, AWS KMS deletes the key material and the CMK becomes
+     * unusable. This value is present only for CMKs whose <code>Origin</code>
+     * is <code>EXTERNAL</code> and whose <code>ExpirationModel</code> is
+     * <code>KEY_MATERIAL_EXPIRES</code>, otherwise this value is omitted.
+     * </p>
+     *
+     * @param validTo <p>
+     *            The time at which the imported key material expires. When the
+     *            key material expires, AWS KMS deletes the key material and the
+     *            CMK becomes unusable. This value is present only for CMKs
+     *            whose <code>Origin</code> is <code>EXTERNAL</code> and whose
+     *            <code>ExpirationModel</code> is
+     *            <code>KEY_MATERIAL_EXPIRES</code>, otherwise this value is
+     *            omitted.
+     *            </p>
+     */
+    public void setValidTo(java.util.Date validTo) {
+        this.validTo = validTo;
+    }
+
+    /**
+     * <p>
+     * The time at which the imported key material expires. When the key
+     * material expires, AWS KMS deletes the key material and the CMK becomes
+     * unusable. This value is present only for CMKs whose <code>Origin</code>
+     * is <code>EXTERNAL</code> and whose <code>ExpirationModel</code> is
+     * <code>KEY_MATERIAL_EXPIRES</code>, otherwise this value is omitted.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param validTo <p>
+     *            The time at which the imported key material expires. When the
+     *            key material expires, AWS KMS deletes the key material and the
+     *            CMK becomes unusable. This value is present only for CMKs
+     *            whose <code>Origin</code> is <code>EXTERNAL</code> and whose
+     *            <code>ExpirationModel</code> is
+     *            <code>KEY_MATERIAL_EXPIRES</code>, otherwise this value is
+     *            omitted.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public KeyMetadata withValidTo(java.util.Date validTo) {
+        this.validTo = validTo;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The source of the CMK's key material. When this value is
+     * <code>AWS_KMS</code>, AWS KMS created the key material. When this value
+     * is <code>EXTERNAL</code>, the key material was imported from your
+     * existing key management infrastructure or the CMK lacks key material.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AWS_KMS, EXTERNAL
+     *
+     * @return <p>
+     *         The source of the CMK's key material. When this value is
+     *         <code>AWS_KMS</code>, AWS KMS created the key material. When this
+     *         value is <code>EXTERNAL</code>, the key material was imported
+     *         from your existing key management infrastructure or the CMK lacks
+     *         key material.
+     *         </p>
+     * @see OriginType
+     */
+    public String getOrigin() {
+        return origin;
+    }
+
+    /**
+     * <p>
+     * The source of the CMK's key material. When this value is
+     * <code>AWS_KMS</code>, AWS KMS created the key material. When this value
+     * is <code>EXTERNAL</code>, the key material was imported from your
+     * existing key management infrastructure or the CMK lacks key material.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AWS_KMS, EXTERNAL
+     *
+     * @param origin <p>
+     *            The source of the CMK's key material. When this value is
+     *            <code>AWS_KMS</code>, AWS KMS created the key material. When
+     *            this value is <code>EXTERNAL</code>, the key material was
+     *            imported from your existing key management infrastructure or
+     *            the CMK lacks key material.
+     *            </p>
+     * @see OriginType
+     */
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
+    /**
+     * <p>
+     * The source of the CMK's key material. When this value is
+     * <code>AWS_KMS</code>, AWS KMS created the key material. When this value
+     * is <code>EXTERNAL</code>, the key material was imported from your
+     * existing key management infrastructure or the CMK lacks key material.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AWS_KMS, EXTERNAL
+     *
+     * @param origin <p>
+     *            The source of the CMK's key material. When this value is
+     *            <code>AWS_KMS</code>, AWS KMS created the key material. When
+     *            this value is <code>EXTERNAL</code>, the key material was
+     *            imported from your existing key management infrastructure or
+     *            the CMK lacks key material.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see OriginType
+     */
+    public KeyMetadata withOrigin(String origin) {
+        this.origin = origin;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The source of the CMK's key material. When this value is
+     * <code>AWS_KMS</code>, AWS KMS created the key material. When this value
+     * is <code>EXTERNAL</code>, the key material was imported from your
+     * existing key management infrastructure or the CMK lacks key material.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AWS_KMS, EXTERNAL
+     *
+     * @param origin <p>
+     *            The source of the CMK's key material. When this value is
+     *            <code>AWS_KMS</code>, AWS KMS created the key material. When
+     *            this value is <code>EXTERNAL</code>, the key material was
+     *            imported from your existing key management infrastructure or
+     *            the CMK lacks key material.
+     *            </p>
+     * @see OriginType
+     */
+    public void setOrigin(OriginType origin) {
+        this.origin = origin.toString();
+    }
+
+    /**
+     * <p>
+     * The source of the CMK's key material. When this value is
+     * <code>AWS_KMS</code>, AWS KMS created the key material. When this value
+     * is <code>EXTERNAL</code>, the key material was imported from your
+     * existing key management infrastructure or the CMK lacks key material.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AWS_KMS, EXTERNAL
+     *
+     * @param origin <p>
+     *            The source of the CMK's key material. When this value is
+     *            <code>AWS_KMS</code>, AWS KMS created the key material. When
+     *            this value is <code>EXTERNAL</code>, the key material was
+     *            imported from your existing key management infrastructure or
+     *            the CMK lacks key material.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see OriginType
+     */
+    public KeyMetadata withOrigin(OriginType origin) {
+        this.origin = origin.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the CMK's key material expires. This value is present
+     * only when <code>Origin</code> is <code>EXTERNAL</code>, otherwise this
+     * value is omitted.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>KEY_MATERIAL_EXPIRES, KEY_MATERIAL_DOES_NOT_EXPIRE
+     *
+     * @return <p>
+     *         Specifies whether the CMK's key material expires. This value is
+     *         present only when <code>Origin</code> is <code>EXTERNAL</code>,
+     *         otherwise this value is omitted.
+     *         </p>
+     * @see ExpirationModelType
+     */
+    public String getExpirationModel() {
+        return expirationModel;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the CMK's key material expires. This value is present
+     * only when <code>Origin</code> is <code>EXTERNAL</code>, otherwise this
+     * value is omitted.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>KEY_MATERIAL_EXPIRES, KEY_MATERIAL_DOES_NOT_EXPIRE
+     *
+     * @param expirationModel <p>
+     *            Specifies whether the CMK's key material expires. This value
+     *            is present only when <code>Origin</code> is
+     *            <code>EXTERNAL</code>, otherwise this value is omitted.
+     *            </p>
+     * @see ExpirationModelType
+     */
+    public void setExpirationModel(String expirationModel) {
+        this.expirationModel = expirationModel;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the CMK's key material expires. This value is present
+     * only when <code>Origin</code> is <code>EXTERNAL</code>, otherwise this
+     * value is omitted.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>KEY_MATERIAL_EXPIRES, KEY_MATERIAL_DOES_NOT_EXPIRE
+     *
+     * @param expirationModel <p>
+     *            Specifies whether the CMK's key material expires. This value
+     *            is present only when <code>Origin</code> is
+     *            <code>EXTERNAL</code>, otherwise this value is omitted.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ExpirationModelType
+     */
+    public KeyMetadata withExpirationModel(String expirationModel) {
+        this.expirationModel = expirationModel;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the CMK's key material expires. This value is present
+     * only when <code>Origin</code> is <code>EXTERNAL</code>, otherwise this
+     * value is omitted.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>KEY_MATERIAL_EXPIRES, KEY_MATERIAL_DOES_NOT_EXPIRE
+     *
+     * @param expirationModel <p>
+     *            Specifies whether the CMK's key material expires. This value
+     *            is present only when <code>Origin</code> is
+     *            <code>EXTERNAL</code>, otherwise this value is omitted.
+     *            </p>
+     * @see ExpirationModelType
+     */
+    public void setExpirationModel(ExpirationModelType expirationModel) {
+        this.expirationModel = expirationModel.toString();
+    }
+
+    /**
+     * <p>
+     * Specifies whether the CMK's key material expires. This value is present
+     * only when <code>Origin</code> is <code>EXTERNAL</code>, otherwise this
+     * value is omitted.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>KEY_MATERIAL_EXPIRES, KEY_MATERIAL_DOES_NOT_EXPIRE
+     *
+     * @param expirationModel <p>
+     *            Specifies whether the CMK's key material expires. This value
+     *            is present only when <code>Origin</code> is
+     *            <code>EXTERNAL</code>, otherwise this value is omitted.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ExpirationModelType
+     */
+    public KeyMetadata withExpirationModel(ExpirationModelType expirationModel) {
+        this.expirationModel = expirationModel.toString();
         return this;
     }
 
@@ -841,7 +1198,13 @@ public class KeyMetadata implements Serializable {
         if (getKeyState() != null)
             sb.append("KeyState: " + getKeyState() + ",");
         if (getDeletionDate() != null)
-            sb.append("DeletionDate: " + getDeletionDate());
+            sb.append("DeletionDate: " + getDeletionDate() + ",");
+        if (getValidTo() != null)
+            sb.append("ValidTo: " + getValidTo() + ",");
+        if (getOrigin() != null)
+            sb.append("Origin: " + getOrigin() + ",");
+        if (getExpirationModel() != null)
+            sb.append("ExpirationModel: " + getExpirationModel());
         sb.append("}");
         return sb.toString();
     }
@@ -864,6 +1227,10 @@ public class KeyMetadata implements Serializable {
         hashCode = prime * hashCode + ((getKeyState() == null) ? 0 : getKeyState().hashCode());
         hashCode = prime * hashCode
                 + ((getDeletionDate() == null) ? 0 : getDeletionDate().hashCode());
+        hashCode = prime * hashCode + ((getValidTo() == null) ? 0 : getValidTo().hashCode());
+        hashCode = prime * hashCode + ((getOrigin() == null) ? 0 : getOrigin().hashCode());
+        hashCode = prime * hashCode
+                + ((getExpirationModel() == null) ? 0 : getExpirationModel().hashCode());
         return hashCode;
     }
 
@@ -917,6 +1284,19 @@ public class KeyMetadata implements Serializable {
             return false;
         if (other.getDeletionDate() != null
                 && other.getDeletionDate().equals(this.getDeletionDate()) == false)
+            return false;
+        if (other.getValidTo() == null ^ this.getValidTo() == null)
+            return false;
+        if (other.getValidTo() != null && other.getValidTo().equals(this.getValidTo()) == false)
+            return false;
+        if (other.getOrigin() == null ^ this.getOrigin() == null)
+            return false;
+        if (other.getOrigin() != null && other.getOrigin().equals(this.getOrigin()) == false)
+            return false;
+        if (other.getExpirationModel() == null ^ this.getExpirationModel() == null)
+            return false;
+        if (other.getExpirationModel() != null
+                && other.getExpirationModel().equals(this.getExpirationModel()) == false)
             return false;
         return true;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -97,19 +97,19 @@ public class AWS4Signer extends AbstractAWSSigner
             return;
         }
 
-        AWSCredentials sanitizedCredentials = sanitizeCredentials(credentials);
+        final AWSCredentials sanitizedCredentials = sanitizeCredentials(credentials);
         if (sanitizedCredentials instanceof AWSSessionCredentials) {
             addSessionCredentials(request, (AWSSessionCredentials) sanitizedCredentials);
         }
 
         addHostHeader(request);
 
-        long dateMilli = getDateFromRequest(request);
+        final long dateMilli = getDateFromRequest(request);
 
         final String dateStamp = getDateStamp(dateMilli);
-        String scope = getScope(request, dateStamp);
+        final String scope = getScope(request, dateStamp);
 
-        String contentSha256 = calculateContentHash(request);
+        final String contentSha256 = calculateContentHash(request);
 
         final String timeStamp = getTimeStamp(dateMilli);
         request.addHeader("X-Amz-Date", timeStamp);
@@ -119,9 +119,9 @@ public class AWS4Signer extends AbstractAWSSigner
             request.addHeader("x-amz-content-sha256", contentSha256);
         }
 
-        String signingCredentials = sanitizedCredentials.getAWSAccessKeyId() + "/" + scope;
+        final String signingCredentials = sanitizedCredentials.getAWSAccessKeyId() + "/" + scope;
 
-        HeaderSigningResult headerSigningResult = computeSignature(
+        final HeaderSigningResult headerSigningResult = computeSignature(
                 request,
                 dateStamp,
                 timeStamp,
@@ -129,14 +129,14 @@ public class AWS4Signer extends AbstractAWSSigner
                 contentSha256,
                 sanitizedCredentials);
 
-        String credentialsAuthorizationHeader =
+        final String credentialsAuthorizationHeader =
                 "Credential=" + signingCredentials;
-        String signedHeadersAuthorizationHeader =
+        final String signedHeadersAuthorizationHeader =
                 "SignedHeaders=" + getSignedHeadersString(request);
-        String signatureAuthorizationHeader =
+        final String signatureAuthorizationHeader =
                 "Signature=" + BinaryUtils.toHex(headerSigningResult.getSignature());
 
-        String authorizationHeader = ALGORITHM + " "
+        final String authorizationHeader = ALGORITHM + " "
                 + credentialsAuthorizationHeader + ", "
                 + signedHeadersAuthorizationHeader + ", "
                 + signatureAuthorizationHeader;
@@ -180,16 +180,18 @@ public class AWS4Signer extends AbstractAWSSigner
     }
 
     protected String extractRegionName(URI endpoint) {
-        if (regionName != null)
+        if (regionName != null) {
             return regionName;
+        }
 
         return AwsHostNameUtils.parseRegionName(endpoint.getHost(),
                 serviceName);
     }
 
     protected String extractServiceName(URI endpoint) {
-        if (serviceName != null)
+        if (serviceName != null) {
             return serviceName;
+        }
 
         // This should never actually be called, as we should always be setting
         // a service name on the signer; retain it for now in case anyone is
@@ -204,15 +206,15 @@ public class AWS4Signer extends AbstractAWSSigner
     }
 
     protected String getCanonicalizedHeaderString(Request<?> request) {
-        List<String> sortedHeaders = new ArrayList<String>();
+        final List<String> sortedHeaders = new ArrayList<String>();
         sortedHeaders.addAll(request.getHeaders().keySet());
         Collections.sort(sortedHeaders, String.CASE_INSENSITIVE_ORDER);
 
-        StringBuilder buffer = new StringBuilder();
-        for (String header : sortedHeaders) {
+        final StringBuilder buffer = new StringBuilder();
+        for (final String header : sortedHeaders) {
             if (needsSign(header)) {
-                String key = StringUtils.lowerCase(header).replaceAll("\\s+", " ");
-                String value = request.getHeaders().get(header);
+                final String key = StringUtils.lowerCase(header).replaceAll("\\s+", " ");
+                final String value = request.getHeaders().get(header);
 
                 buffer.append(key).append(":");
                 if (value != null) {
@@ -227,15 +229,16 @@ public class AWS4Signer extends AbstractAWSSigner
     }
 
     protected String getSignedHeadersString(Request<?> request) {
-        List<String> sortedHeaders = new ArrayList<String>();
+        final List<String> sortedHeaders = new ArrayList<String>();
         sortedHeaders.addAll(request.getHeaders().keySet());
         Collections.sort(sortedHeaders, String.CASE_INSENSITIVE_ORDER);
 
-        StringBuilder buffer = new StringBuilder();
-        for (String header : sortedHeaders) {
+        final StringBuilder buffer = new StringBuilder();
+        for (final String header : sortedHeaders) {
             if (needsSign(header)) {
-                if (buffer.length() > 0)
+                if (buffer.length() > 0) {
                     buffer.append(";");
+                }
                 buffer.append(StringUtils.lowerCase(header));
             }
         }
@@ -245,10 +248,10 @@ public class AWS4Signer extends AbstractAWSSigner
 
     protected String getCanonicalRequest(Request<?> request, String contentSha256) {
         /* This would url-encode the resource path for the first time */
-        String path = HttpUtils.appendUri(request.getEndpoint().getPath(),
+        final String path = HttpUtils.appendUri(request.getEndpoint().getPath(),
                 request.getResourcePath());
 
-        String canonicalRequest =
+        final String canonicalRequest =
                 request.getHttpMethod().toString() + "\n" +
                         /*
                          * This would optionally double url-encode the resource
@@ -265,7 +268,7 @@ public class AWS4Signer extends AbstractAWSSigner
 
     protected String getStringToSign(String algorithm, String dateTime, String scope,
             String canonicalRequest) {
-        String stringToSign =
+        final String stringToSign =
                 algorithm + "\n" +
                         dateTime + "\n" +
                         scope + "\n" +
@@ -282,23 +285,23 @@ public class AWS4Signer extends AbstractAWSSigner
             String contentSha256,
             AWSCredentials sanitizedCredentials)
     {
-        String regionName = extractRegionName(request.getEndpoint());
-        String serviceName = extractServiceName(request.getEndpoint());
-        String scope = dateStamp + "/" + regionName + "/" + serviceName + "/" + TERMINATOR;
+        final String regionName = extractRegionName(request.getEndpoint());
+        final String serviceName = extractServiceName(request.getEndpoint());
+        final String scope = dateStamp + "/" + regionName + "/" + serviceName + "/" + TERMINATOR;
 
-        String stringToSign = getStringToSign(algorithm, timeStamp, scope,
+        final String stringToSign = getStringToSign(algorithm, timeStamp, scope,
                 getCanonicalRequest(request, contentSha256));
 
         // AWS4 uses a series of derived keys, formed by hashing different
         // pieces of data
-        byte[] kSecret = ("AWS4" + sanitizedCredentials.getAWSSecretKey())
+        final byte[] kSecret = ("AWS4" + sanitizedCredentials.getAWSSecretKey())
                 .getBytes(StringUtils.UTF8);
-        byte[] kDate = sign(dateStamp, kSecret, SigningAlgorithm.HmacSHA256);
-        byte[] kRegion = sign(regionName, kDate, SigningAlgorithm.HmacSHA256);
-        byte[] kService = sign(serviceName, kRegion, SigningAlgorithm.HmacSHA256);
-        byte[] kSigning = sign(TERMINATOR, kService, SigningAlgorithm.HmacSHA256);
+        final byte[] kDate = sign(dateStamp, kSecret, SigningAlgorithm.HmacSHA256);
+        final byte[] kRegion = sign(regionName, kDate, SigningAlgorithm.HmacSHA256);
+        final byte[] kService = sign(serviceName, kRegion, SigningAlgorithm.HmacSHA256);
+        final byte[] kSigning = sign(TERMINATOR, kService, SigningAlgorithm.HmacSHA256);
 
-        byte[] signature = sign(stringToSign.getBytes(StringUtils.UTF8), kSigning,
+        final byte[] signature = sign(stringToSign.getBytes(StringUtils.UTF8), kSigning,
                 SigningAlgorithm.HmacSHA256);
         return new HeaderSigningResult(timeStamp, scope, kSigning, signature);
     }
@@ -312,10 +315,11 @@ public class AWS4Signer extends AbstractAWSSigner
     }
 
     protected final long getDateFromRequest(Request<?> request) {
-        int timeOffset = getTimeOffset(request);
+        final int timeOffset = getTimeOffset(request);
         Date date = getSignatureDate(timeOffset);
-        if (overriddenDate != null)
+        if (overriddenDate != null) {
             date = overriddenDate;
+        }
         return date.getTime();
     }
 
@@ -330,9 +334,9 @@ public class AWS4Signer extends AbstractAWSSigner
     }
 
     protected String getScope(Request<?> request, String dateStamp) {
-        String regionName = extractRegionName(request.getEndpoint());
-        String serviceName = extractServiceName(request.getEndpoint());
-        String scope = dateStamp + "/" + regionName + "/" + serviceName + "/" + TERMINATOR;
+        final String regionName = extractRegionName(request.getEndpoint());
+        final String serviceName = extractServiceName(request.getEndpoint());
+        final String scope = dateStamp + "/" + regionName + "/" + serviceName + "/" + TERMINATOR;
         return scope;
     }
 
@@ -344,12 +348,12 @@ public class AWS4Signer extends AbstractAWSSigner
      * relating to content-encoding and content-length.)
      */
     protected String calculateContentHash(Request<?> request) {
-        InputStream payloadStream = getBinaryRequestPayloadStream(request);
+        final InputStream payloadStream = getBinaryRequestPayloadStream(request);
         payloadStream.mark(-1);
-        String contentSha256 = BinaryUtils.toHex(hash(payloadStream));
+        final String contentSha256 = BinaryUtils.toHex(hash(payloadStream));
         try {
             payloadStream.reset();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new AmazonClientException(
                     "Unable to reset stream after calculating AWS4 signature", e);
         }
@@ -389,13 +393,13 @@ public class AWS4Signer extends AbstractAWSSigner
         }
 
         public byte[] getKSigning() {
-            byte[] kSigningCopy = new byte[kSigning.length];
+            final byte[] kSigningCopy = new byte[kSigning.length];
             System.arraycopy(kSigning, 0, kSigningCopy, 0, kSigning.length);
             return kSigningCopy;
         }
 
         public byte[] getSignature() {
-            byte[] signatureCopy = new byte[signature.length];
+            final byte[] signatureCopy = new byte[signature.length];
             System.arraycopy(signature, 0, signatureCopy, 0, signature.length);
             return signatureCopy;
         }
@@ -412,9 +416,10 @@ public class AWS4Signer extends AbstractAWSSigner
 
         long expirationInSeconds = MAX_EXPIRATION_TIME_IN_SECONDS;
 
-        if (expiration != null)
+        if (expiration != null) {
             expirationInSeconds = (expiration.getTime() - System
                     .currentTimeMillis()) / 1000L;
+        }
 
         if (expirationInSeconds > MAX_EXPIRATION_TIME_IN_SECONDS) {
             throw new AmazonClientException(
@@ -426,7 +431,7 @@ public class AWS4Signer extends AbstractAWSSigner
 
         addHostHeader(request);
 
-        AWSCredentials sanitizedCredentials = sanitizeCredentials(credentials);
+        final AWSCredentials sanitizedCredentials = sanitizeCredentials(credentials);
 
         if (sanitizedCredentials instanceof AWSSessionCredentials) {
             // For SigV4 pre-signing URL, we need to add "x-amz-security-token"
@@ -437,16 +442,16 @@ public class AWS4Signer extends AbstractAWSSigner
                             .getSessionToken());
         }
 
-        long dateMilli = getDateFromRequest(request);
+        final long dateMilli = getDateFromRequest(request);
         final String dateStamp = getDateStamp(dateMilli);
 
-        String scope = getScope(request, dateStamp);
+        final String scope = getScope(request, dateStamp);
 
-        String signingCredentials = sanitizedCredentials.getAWSAccessKeyId()
+        final String signingCredentials = sanitizedCredentials.getAWSAccessKeyId()
                 + "/" + scope;
 
         // Add the important parameters for v4 signing
-        long now = System.currentTimeMillis();
+        final long now = System.currentTimeMillis();
         final String timeStamp = getTimeStamp(now);
         request.addParameter("X-Amz-Algorithm", ALGORITHM);
         request.addParameter("X-Amz-Date", timeStamp);
@@ -456,9 +461,9 @@ public class AWS4Signer extends AbstractAWSSigner
                 Long.toString(expirationInSeconds));
         request.addParameter("X-Amz-Credential", signingCredentials);
 
-        String contentSha256 = calculateContentHashPresign(request);
+        final String contentSha256 = calculateContentHashPresign(request);
 
-        HeaderSigningResult headerSigningResult = computeSignature(request,
+        final HeaderSigningResult headerSigningResult = computeSignature(request,
                 dateStamp, timeStamp, ALGORITHM, contentSha256,
                 sanitizedCredentials);
         request.addParameter("X-Amz-Signature",

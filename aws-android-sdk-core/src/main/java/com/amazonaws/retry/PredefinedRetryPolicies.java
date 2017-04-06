@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,6 +32,14 @@ import java.util.Random;
  */
 public class PredefinedRetryPolicies {
 
+    /** No retry policy **/
+    public static final RetryPolicy NO_RETRY_POLICY = new RetryPolicy(
+            RetryPolicy.RetryCondition.NO_RETRY_CONDITION,
+            RetryPolicy.BackoffStrategy.NO_DELAY,
+            0,      // maxErrorRetry
+            false); // honorMaxErrorRetryInClientConfig
+
+    
     /* SDK default */
     /** Base sleep time (milliseconds) for throttling exceptions. **/
     private static final int BASE_DELAY_IN_MILLISECONDS = 100;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -435,6 +435,43 @@ public interface AWSKMS {
 
     /**
      * <p>
+     * Deletes key material that you previously imported and makes the specified
+     * customer master key (CMK) unusable. For more information about importing
+     * key material into AWS KMS, see <a href=
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
+     * >Importing Key Material</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * When the specified CMK is in the <code>PendingDeletion</code> state, this
+     * operation does not change the CMK's state. Otherwise, it changes the
+     * CMK's state to <code>PendingImport</code>.
+     * </p>
+     * <p>
+     * After you delete key material, you can use <a>ImportKeyMaterial</a> to
+     * reimport the same key material into the CMK.
+     * </p>
+     * 
+     * @param deleteImportedKeyMaterialRequest
+     * @throws InvalidArnException
+     * @throws UnsupportedOperationException
+     * @throws DependencyTimeoutException
+     * @throws NotFoundException
+     * @throws KMSInternalException
+     * @throws KMSInvalidStateException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Key Management Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    void deleteImportedKeyMaterial(DeleteImportedKeyMaterialRequest deleteImportedKeyMaterialRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Provides detailed information about the specified customer master key.
      * </p>
      * 
@@ -495,6 +532,7 @@ public interface AWSKMS {
      * @throws DependencyTimeoutException
      * @throws KMSInternalException
      * @throws KMSInvalidStateException
+     * @throws UnsupportedOperationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -541,6 +579,7 @@ public interface AWSKMS {
      * @throws DependencyTimeoutException
      * @throws KMSInternalException
      * @throws KMSInvalidStateException
+     * @throws UnsupportedOperationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -613,48 +652,81 @@ public interface AWSKMS {
 
     /**
      * <p>
-     * Generates a data key that you can use in your application to locally
-     * encrypt data. This call returns a plaintext version of the key in the
-     * <code>Plaintext</code> field of the response object and an encrypted copy
-     * of the key in the <code>CiphertextBlob</code> field. The key is encrypted
-     * by using the master key specified by the <code>KeyId</code> field. To
-     * decrypt the encrypted key, pass it to the <code>Decrypt</code> API.
+     * Returns a data encryption key that you can use in your application to
+     * encrypt data locally.
      * </p>
      * <p>
-     * We recommend that you use the following pattern to locally encrypt data:
-     * call the <code>GenerateDataKey</code> API, use the key returned in the
-     * <code>Plaintext</code> response field to locally encrypt data, and then
-     * erase the plaintext data key from memory. Store the encrypted data key
-     * (contained in the <code>CiphertextBlob</code> field) alongside of the
-     * locally encrypted data.
-     * </p>
-     * <note>
-     * <p>
-     * You should not call the <code>Encrypt</code> function to re-encrypt your
-     * data keys within a region. <code>GenerateDataKey</code> always returns
-     * the data key encrypted and tied to the customer master key that will be
-     * used to decrypt it. There is no need to decrypt it twice.
-     * </p>
-     * </note>
-     * <p>
-     * If you decide to use the optional <code>EncryptionContext</code>
-     * parameter, you must also store the context in full or at least store
-     * enough information along with the encrypted data to be able to
-     * reconstruct the context when submitting the ciphertext to the
-     * <code>Decrypt</code> API. It is a good practice to choose a context that
-     * you can reconstruct on the fly to better secure the ciphertext. For more
-     * information about how this parameter is used, see <a href=
-     * "http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html"
-     * >Encryption Context</a>.
+     * You must specify the customer master key (CMK) under which to generate
+     * the data key. You must also specify the length of the data key using
+     * either the <code>KeySpec</code> or <code>NumberOfBytes</code> field. You
+     * must specify one field or the other, but not both. For common key lengths
+     * (128-bit and 256-bit symmetric keys), we recommend that you use
+     * <code>KeySpec</code>.
      * </p>
      * <p>
-     * To decrypt data, pass the encrypted data key to the <code>Decrypt</code>
-     * API. <code>Decrypt</code> uses the associated master key to decrypt the
-     * encrypted data key and returns it as plaintext. Use the plaintext data
-     * key to locally decrypt your data and then erase the key from memory. You
-     * must specify the encryption context, if any, that you specified when you
-     * generated the key. The encryption context is logged by CloudTrail, and
-     * you can use this log to help track the use of particular data.
+     * This operation returns a plaintext copy of the data key in the
+     * <code>Plaintext</code> field of the response, and an encrypted copy of
+     * the data key in the <code>CiphertextBlob</code> field. The data key is
+     * encrypted under the CMK specified in the <code>KeyId</code> field of the
+     * request.
+     * </p>
+     * <p>
+     * We recommend that you use the following pattern to encrypt data locally
+     * in your application:
+     * </p>
+     * <ol>
+     * <li>
+     * <p>
+     * Use this operation (<code>GenerateDataKey</code>) to retrieve a data
+     * encryption key.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Use the plaintext data encryption key (returned in the
+     * <code>Plaintext</code> field of the response) to encrypt data locally,
+     * then erase the plaintext data key from memory.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Store the encrypted data key (returned in the <code>CiphertextBlob</code>
+     * field of the response) alongside the locally encrypted data.
+     * </p>
+     * </li>
+     * </ol>
+     * <p>
+     * To decrypt data locally:
+     * </p>
+     * <ol>
+     * <li>
+     * <p>
+     * Use the <a>Decrypt</a> operation to decrypt the encrypted data key into a
+     * plaintext copy of the data key.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Use the plaintext data key to decrypt data locally, then erase the
+     * plaintext data key from memory.
+     * </p>
+     * </li>
+     * </ol>
+     * <p>
+     * To return only an encrypted copy of the data key, use
+     * <a>GenerateDataKeyWithoutPlaintext</a>. To return an arbitrary
+     * unpredictable byte string, use <a>GenerateRandom</a>.
+     * </p>
+     * <p>
+     * If you use the optional <code>EncryptionContext</code> field, you must
+     * store at least enough information to be able to reconstruct the full
+     * encryption context when you later send the ciphertext to the
+     * <a>Decrypt</a> operation. It is a good practice to choose an encryption
+     * context that you can reconstruct on the fly to better secure the
+     * ciphertext. For more information, see <a href=
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html"
+     * >Encryption Context</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
      * </p>
      * 
      * @param generateDataKeyRequest
@@ -681,11 +753,24 @@ public interface AWSKMS {
 
     /**
      * <p>
-     * Returns a data key encrypted by a customer master key without the
-     * plaintext copy of that key. Otherwise, this API functions exactly like
-     * <a>GenerateDataKey</a>. You can use this API to, for example, satisfy an
-     * audit requirement that an encrypted key be made available without
-     * exposing the plaintext copy of that key.
+     * Returns a data encryption key encrypted under a customer master key
+     * (CMK). This operation is identical to <a>GenerateDataKey</a> but returns
+     * only the encrypted copy of the data key.
+     * </p>
+     * <p>
+     * This operation is useful in a system that has multiple components with
+     * different degrees of trust. For example, consider a system that stores
+     * encrypted data in containers. Each container stores the encrypted data
+     * and an encrypted copy of the data key. One component of the system,
+     * called the <i>control plane</i>, creates new containers. When it creates
+     * a new container, it uses this operation (
+     * <code>GenerateDataKeyWithoutPlaintext</code>) to get an encrypted data
+     * key and then stores it in the container. Later, a different component of
+     * the system, called the <i>data plane</i>, puts encrypted data into the
+     * containers. To do this, it passes the encrypted data key to the
+     * <a>Decrypt</a> operation, then uses the returned plaintext data key to
+     * encrypt data, and finally stores the encrypted data in the container. In
+     * this system, the control plane never sees the plaintext data key.
      * </p>
      * 
      * @param generateDataKeyWithoutPlaintextRequest
@@ -772,6 +857,7 @@ public interface AWSKMS {
      * @throws DependencyTimeoutException
      * @throws KMSInternalException
      * @throws KMSInvalidStateException
+     * @throws UnsupportedOperationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -783,6 +869,110 @@ public interface AWSKMS {
     GetKeyRotationStatusResult getKeyRotationStatus(
             GetKeyRotationStatusRequest getKeyRotationStatusRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Returns the items you need in order to import key material into AWS KMS
+     * from your existing key management infrastructure. For more information
+     * about importing key material into AWS KMS, see <a href=
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
+     * >Importing Key Material</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * You must specify the key ID of the customer master key (CMK) into which
+     * you will import key material. This CMK's <code>Origin</code> must be
+     * <code>EXTERNAL</code>. You must also specify the wrapping algorithm and
+     * type of wrapping key (public key) that you will use to encrypt the key
+     * material.
+     * </p>
+     * <p>
+     * This operation returns a public key and an import token. Use the public
+     * key to encrypt the key material. Store the import token to send with a
+     * subsequent <a>ImportKeyMaterial</a> request. The public key and import
+     * token from the same response must be used together. These items are valid
+     * for 24 hours, after which they cannot be used for a subsequent
+     * <a>ImportKeyMaterial</a> request. To retrieve new ones, send another
+     * <code>GetParametersForImport</code> request.
+     * </p>
+     * 
+     * @param getParametersForImportRequest
+     * @return getParametersForImportResult The response from the
+     *         GetParametersForImport service method, as returned by AWS Key
+     *         Management Service.
+     * @throws InvalidArnException
+     * @throws UnsupportedOperationException
+     * @throws DependencyTimeoutException
+     * @throws NotFoundException
+     * @throws KMSInternalException
+     * @throws KMSInvalidStateException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Key Management Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    GetParametersForImportResult getParametersForImport(
+            GetParametersForImportRequest getParametersForImportRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Imports key material into an AWS KMS customer master key (CMK) from your
+     * existing key management infrastructure. For more information about
+     * importing key material into AWS KMS, see <a href=
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
+     * >Importing Key Material</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * You must specify the key ID of the CMK to import the key material into.
+     * This CMK's <code>Origin</code> must be <code>EXTERNAL</code>. You must
+     * also send an import token and the encrypted key material. Send the import
+     * token that you received in the same <a>GetParametersForImport</a>
+     * response that contained the public key that you used to encrypt the key
+     * material. You must also specify whether the key material expires and if
+     * so, when. When the key material expires, AWS KMS deletes the key material
+     * and the CMK becomes unusable. To use the CMK again, you can reimport the
+     * same key material. If you set an expiration date, you can change it only
+     * by reimporting the same key material and specifying a new expiration
+     * date.
+     * </p>
+     * <p>
+     * When this operation is successful, the specified CMK's key state changes
+     * to <code>Enabled</code>, and you can use the CMK.
+     * </p>
+     * <p>
+     * After you successfully import key material into a CMK, you can reimport
+     * the same key material into that CMK, but you cannot import different key
+     * material.
+     * </p>
+     * 
+     * @param importKeyMaterialRequest
+     * @return importKeyMaterialResult The response from the ImportKeyMaterial
+     *         service method, as returned by AWS Key Management Service.
+     * @throws InvalidArnException
+     * @throws UnsupportedOperationException
+     * @throws DependencyTimeoutException
+     * @throws NotFoundException
+     * @throws KMSInternalException
+     * @throws KMSInvalidStateException
+     * @throws InvalidCiphertextException
+     * @throws IncorrectKeyMaterialException
+     * @throws ExpiredImportTokenException
+     * @throws InvalidImportTokenException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Key Management Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    ImportKeyMaterialResult importKeyMaterial(ImportKeyMaterialRequest importKeyMaterialRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -865,6 +1055,7 @@ public interface AWSKMS {
      *         returned by AWS Key Management Service.
      * @throws DependencyTimeoutException
      * @throws KMSInternalException
+     * @throws InvalidMarkerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -940,20 +1131,22 @@ public interface AWSKMS {
 
     /**
      * <p>
-     * Encrypts data on the server side with a new customer master key without
-     * exposing the plaintext of the data on the client side. The data is first
-     * decrypted and then encrypted. This operation can also be used to change
-     * the encryption context of a ciphertext.
+     * Encrypts data on the server side with a new customer master key (CMK)
+     * without exposing the plaintext of the data on the client side. The data
+     * is first decrypted and then reencrypted. You can also use this operation
+     * to change the encryption context of a ciphertext.
      * </p>
      * <p>
-     * Unlike other actions, <code>ReEncrypt</code> is authorized twice - once
-     * as <code>ReEncryptFrom</code> on the source key and once as
-     * <code>ReEncryptTo</code> on the destination key. We therefore recommend
-     * that you include the <code>"action":"kms:ReEncrypt*"</code> statement in
-     * your key policies to permit re-encryption from or to the key. The
-     * statement is included automatically when you authorize use of the key
-     * through the console but must be included manually when you set a policy
-     * by using the <a>PutKeyPolicy</a> function.
+     * Unlike other operations, <code>ReEncrypt</code> is authorized twice, once
+     * as <code>ReEncryptFrom</code> on the source CMK and once as
+     * <code>ReEncryptTo</code> on the destination CMK. We recommend that you
+     * include the <code>"kms:ReEncrypt*"</code> permission in your <a href=
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html"
+     * >key policies</a> to permit reencryption from or to the CMK. This
+     * permission is automatically included in the key policy when you create a
+     * CMK through the console, but you must include it manually when you create
+     * a CMK programmatically or when you set a key policy with the
+     * <a>PutKeyPolicy</a> operation.
      * </p>
      * 
      * @param reEncryptRequest
@@ -981,35 +1174,35 @@ public interface AWSKMS {
 
     /**
      * <p>
-     * Retires a grant. You can retire a grant when you're done using it to
-     * clean up. You should revoke a grant when you intend to actively deny
+     * Retires a grant. To clean up, you can retire a grant when you're done
+     * using it. You should revoke a grant when you intend to actively deny
      * operations that depend on it. The following are permitted to call this
      * API:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * The account that created the grant
+     * The AWS account (root user) under which the grant was created
      * </p>
      * </li>
      * <li>
      * <p>
-     * The <code>RetiringPrincipal</code>, if present
+     * The <code>RetiringPrincipal</code>, if present in the grant
      * </p>
      * </li>
      * <li>
      * <p>
-     * The <code>GranteePrincipal</code>, if <code>RetireGrant</code> is a
-     * grantee operation
+     * The <code>GranteePrincipal</code>, if <code>RetireGrant</code> is an
+     * operation specified in the grant
      * </p>
      * </li>
      * </ul>
      * <p>
-     * The grant to retire must be identified by its grant token or by a
-     * combination of the key ARN and the grant ID. A grant token is a unique
-     * variable-length base64-encoded string. A grant ID is a 64 character
-     * unique identifier of a grant. Both are returned by the
-     * <code>CreateGrant</code> function.
+     * You must identify the grant to retire by its grant token or by a
+     * combination of the grant ID and the Amazon Resource Name (ARN) of the
+     * customer master key (CMK). A grant token is a unique variable-length
+     * base64-encoded string. A grant ID is a 64 character unique identifier of
+     * a grant. The <a>CreateGrant</a> operation returns both.
      * </p>
      * 
      * @param retireGrantRequest
@@ -1063,7 +1256,7 @@ public interface AWSKMS {
      * <code>PendingDeletion</code>. Before the waiting period ends, you can use
      * <a>CancelKeyDeletion</a> to cancel the deletion of the CMK. After the
      * waiting period ends, AWS KMS deletes the CMK and all AWS KMS data
-     * associated with it, including all aliases that point to it.
+     * associated with it, including all aliases that refer to it.
      * </p>
      * <important>
      * <p>
@@ -1140,7 +1333,7 @@ public interface AWSKMS {
 
     /**
      * <p>
-     * Updates the description of a key.
+     * Updates the description of a customer master key (CMK).
      * </p>
      * 
      * @param updateKeyDescriptionRequest
@@ -1213,6 +1406,7 @@ public interface AWSKMS {
      *         returned by AWS Key Management Service.
      * @throws DependencyTimeoutException
      * @throws KMSInternalException
+     * @throws InvalidMarkerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1245,35 +1439,35 @@ public interface AWSKMS {
 
     /**
      * <p>
-     * Retires a grant. You can retire a grant when you're done using it to
-     * clean up. You should revoke a grant when you intend to actively deny
+     * Retires a grant. To clean up, you can retire a grant when you're done
+     * using it. You should revoke a grant when you intend to actively deny
      * operations that depend on it. The following are permitted to call this
      * API:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * The account that created the grant
+     * The AWS account (root user) under which the grant was created
      * </p>
      * </li>
      * <li>
      * <p>
-     * The <code>RetiringPrincipal</code>, if present
+     * The <code>RetiringPrincipal</code>, if present in the grant
      * </p>
      * </li>
      * <li>
      * <p>
-     * The <code>GranteePrincipal</code>, if <code>RetireGrant</code> is a
-     * grantee operation
+     * The <code>GranteePrincipal</code>, if <code>RetireGrant</code> is an
+     * operation specified in the grant
      * </p>
      * </li>
      * </ul>
      * <p>
-     * The grant to retire must be identified by its grant token or by a
-     * combination of the key ARN and the grant ID. A grant token is a unique
-     * variable-length base64-encoded string. A grant ID is a 64 character
-     * unique identifier of a grant. Both are returned by the
-     * <code>CreateGrant</code> function.
+     * You must identify the grant to retire by its grant token or by a
+     * combination of the grant ID and the Amazon Resource Name (ARN) of the
+     * customer master key (CMK). A grant token is a unique variable-length
+     * base64-encoded string. A grant ID is a 64 character unique identifier of
+     * a grant. The <a>CreateGrant</a> operation returns both.
      * </p>
      * 
      * @throws InvalidGrantTokenException

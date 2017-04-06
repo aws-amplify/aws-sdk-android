@@ -1,0 +1,6 @@
+<RestoreRequest>
+    <Days>1</Days>
+    <GlacierJobParameters>
+        <Tier>Bulk</Tier>
+    </GlacierJobParameters>
+</RestoreRequest>

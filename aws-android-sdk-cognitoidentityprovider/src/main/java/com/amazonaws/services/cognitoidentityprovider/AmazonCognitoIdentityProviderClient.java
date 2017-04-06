@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,17 +36,16 @@ import com.amazonaws.services.cognitoidentityprovider.model.transform.*;
  * completes.
  * <p>
  * <p>
- * You can create a user pool in Amazon Cognito Identity to manage directories
- * and users. You can authenticate a user to obtain tokens related to user
- * identity and access policies.
+ * Using the Amazon Cognito Your User Pools API, you can create a user pool to
+ * manage directories and users. You can authenticate a user to obtain tokens
+ * related to user identity and access policies.
  * </p>
  * <p>
  * This API reference provides information about user pools in Amazon Cognito
- * Identity.
+ * Your User Pools.
  * </p>
  * <p>
- * For more information, see <a href="https://aws.amazon.com/cognito/">Amazon
- * Cognito</a>.
+ * For more information, see the Amazon Cognito Documentation.
  * </p>
  */
 public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient implements
@@ -294,6 +293,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
         jsonErrorUnmarshallers.add(new TooManyFailedAttemptsExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TooManyRequestsExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UnexpectedLambdaExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new UnsupportedUserStateExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UserImportInProgressExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UserLambdaValidationExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UserNotConfirmedExceptionUnmarshaller());
@@ -422,6 +422,76 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
             }
             Unmarshaller<AdminConfirmSignUpResult, JsonUnmarshallerContext> unmarshaller = new AdminConfirmSignUpResultJsonUnmarshaller();
             JsonResponseHandler<AdminConfirmSignUpResult> responseHandler = new JsonResponseHandler<AdminConfirmSignUpResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a new user in the specified user pool and sends a welcome message
+     * via email or phone (SMS). This message is based on a template that you
+     * configured in your call to CreateUserPool or UpdateUserPool. This
+     * template includes your custom sign-up instructions and placeholders for
+     * user name and temporary password.
+     * </p>
+     * <p>
+     * Requires developer credentials.
+     * </p>
+     * 
+     * @param adminCreateUserRequest <p>
+     *            Represents the request to create a user in the specified user
+     *            pool.
+     *            </p>
+     * @return adminCreateUserResult The response from the AdminCreateUser
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws UserNotFoundException
+     * @throws UsernameExistsException
+     * @throws InvalidPasswordException
+     * @throws CodeDeliveryFailureException
+     * @throws UnexpectedLambdaException
+     * @throws UserLambdaValidationException
+     * @throws InvalidLambdaResponseException
+     * @throws PreconditionNotMetException
+     * @throws InvalidSmsRoleAccessPolicyException
+     * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws TooManyRequestsException
+     * @throws NotAuthorizedException
+     * @throws UnsupportedUserStateException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public AdminCreateUserResult adminCreateUser(AdminCreateUserRequest adminCreateUserRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(adminCreateUserRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AdminCreateUserRequest> request = null;
+        Response<AdminCreateUserResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AdminCreateUserRequestMarshaller().marshall(adminCreateUserRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AdminCreateUserResult, JsonUnmarshallerContext> unmarshaller = new AdminCreateUserResultJsonUnmarshaller();
+            JsonResponseHandler<AdminCreateUserResult> responseHandler = new JsonResponseHandler<AdminCreateUserResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -664,6 +734,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws CodeMismatchException
      * @throws ExpiredCodeException
      * @throws UnexpectedLambdaException
+     * @throws InvalidPasswordException
      * @throws UserLambdaValidationException
      * @throws InvalidLambdaResponseException
      * @throws TooManyRequestsException
@@ -1887,6 +1958,8 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws InvalidParameterException
      * @throws NotAuthorizedException
      * @throws TooManyRequestsException
+     * @throws PasswordResetRequiredException
+     * @throws UserNotConfirmedException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2277,6 +2350,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws ExpiredCodeException
      * @throws UnexpectedLambdaException
      * @throws UserLambdaValidationException
+     * @throws InvalidPasswordException
      * @throws InvalidLambdaResponseException
      * @throws TooManyRequestsException
      * @throws InvalidUserPoolConfigurationException

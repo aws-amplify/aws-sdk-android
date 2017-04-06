@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ import android.util.Log;
 
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.AnalyticsContext;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system.FileManager;
-import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.delivery.EventStoreException;
 import com.amazonaws.util.StringUtils;
 
 import java.io.BufferedReader;
@@ -82,6 +81,7 @@ public class FileSessionStore implements SessionStore {
                 }
             } catch (IOException e) {
                 Log.e(TAG, "Failed to persist the session", e);
+                throw new SessionStoreException("Failed to persist the session", e);
             } finally {
                 this.tryCloseWriter(writer);
             }
@@ -91,18 +91,18 @@ public class FileSessionStore implements SessionStore {
     }
 
     private Writer tryInitializeWriter() throws SessionStoreException {
-        Writer writer = null;
         try {
+            createFileDirectories(sessionFile);
             OutputStream stream = context.getSystem().getFileManager()
                     .newOutputStream(sessionFile, false);
-            writer = new OutputStreamWriter(stream, StringUtils.UTF8);
+            return new OutputStreamWriter(stream, StringUtils.UTF8);
         } catch (FileNotFoundException e) {
-            Log.e(TAG, "Session file not found to persist session to", e);
-            throw new EventStoreException("Unable to open session file writer", e);
+            Log.e(TAG, "Unable to save session file", e);
+            throw new SessionStoreException("Unable to save session file", e);
         } catch (Exception e) {
             Log.e(TAG, "Unexpected exception", e);
+            throw new SessionStoreException("Unable to save session file", e);
         }
-        return writer;
     }
 
     private void tryCloseWriter(final Writer writer) throws SessionStoreException {
@@ -184,4 +184,11 @@ public class FileSessionStore implements SessionStore {
         return Session.getSessionFromSerializedSession(serializedSession);
     }
 
+    private void createFileDirectories(File file) {
+        if(!file.getParentFile().mkdirs() && !file.getParentFile().exists()){ //Ensure all directories are in place before saving session file
+            String msg = String.format("Could not create directories for file - %s", file.getAbsolutePath());
+            Log.e(TAG, msg);
+            throw new SessionStoreException(msg);
+        }
+    }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ import org.w3c.dom.Document;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -61,9 +62,10 @@ public class S3ErrorResponseHandler
         String content = "";
         try {
             content = IOUtils.toString(is);
-        } catch (IOException ex) {
-            if (log.isDebugEnabled())
+        } catch (final IOException ex) {
+            if (log.isDebugEnabled()) {
                 log.debug("Failed in reading the error response", ex);
+            }
             return newAmazonS3Exception(errorResponse.getStatusText(), errorResponse);
         }
         try { // try to parse the error response as XML
@@ -81,9 +83,10 @@ public class S3ErrorResponseHandler
             ase.setExtendedRequestId(extendedRequestId);
             ase.setCloudFrontId(errorResponse.getHeaders().get(Headers.CLOUD_FRONT_ID));
             return ase;
-        } catch (Exception ex) {
-            if (log.isDebugEnabled())
+        } catch (final Exception ex) {
+            if (log.isDebugEnabled()) {
                 log.debug("Failed in parsing the response as XML: " + content, ex);
+            }
             return newAmazonS3Exception(content, errorResponse);
         }
     }
@@ -98,10 +101,14 @@ public class S3ErrorResponseHandler
         ase.setErrorCode(statusCode + " " + httpResponse.getStatusText());
         ase.setStatusCode(statusCode);
         ase.setErrorType(errorTypeOf(statusCode));
-        Map<String, String> headers = httpResponse.getHeaders();
+        final Map<String, String> headers = httpResponse.getHeaders();
         ase.setRequestId(headers.get(Headers.REQUEST_ID));
         ase.setExtendedRequestId(headers.get(Headers.EXTENDED_REQUEST_ID));
         ase.setCloudFrontId(headers.get(Headers.CLOUD_FRONT_ID));
+        final Map<String, String> additionalDetails = new HashMap<String, String>();
+        additionalDetails.put(Headers.S3_BUCKET_REGION,
+                headers.get(Headers.S3_BUCKET_REGION));
+        ase.setAdditionalDetails(additionalDetails);
         return ase;
     }
 

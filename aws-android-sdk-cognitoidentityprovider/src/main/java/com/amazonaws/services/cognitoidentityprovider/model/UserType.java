@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -67,18 +67,45 @@ public class UserType implements Serializable {
      * The user status. Can be one of the following:
      * </p>
      * <ul>
-     * <li>UNCONFIRMED - User has been created but not confirmed.</li>
-     * <li>CONFIRMED - User has been confirmed.</li>
-     * <li>ARCHIVED - User is no longer active.</li>
-     * <li>COMPROMISED - User is disabled due to a potential security threat.</li>
-     * <li>UNKNOWN - User status is not known.</li>
+     * <li>
+     * <p>
+     * UNCONFIRMED - User has been created but not confirmed.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * CONFIRMED - User has been confirmed.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ARCHIVED - User is no longer active.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * COMPROMISED - User is disabled due to a potential security threat.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * UNKNOWN - User status is not known.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN, RESET_REQUIRED
+     * UNKNOWN, RESET_REQUIRED, FORCE_CHANGE_PASSWORD
      */
     private String userStatus;
+
+    /**
+     * <p>
+     * The MFA options for the user.
+     * </p>
+     */
+    private java.util.List<MFAOptionType> mFAOptions;
 
     /**
      * <p>
@@ -364,27 +391,67 @@ public class UserType implements Serializable {
      * The user status. Can be one of the following:
      * </p>
      * <ul>
-     * <li>UNCONFIRMED - User has been created but not confirmed.</li>
-     * <li>CONFIRMED - User has been confirmed.</li>
-     * <li>ARCHIVED - User is no longer active.</li>
-     * <li>COMPROMISED - User is disabled due to a potential security threat.</li>
-     * <li>UNKNOWN - User status is not known.</li>
+     * <li>
+     * <p>
+     * UNCONFIRMED - User has been created but not confirmed.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * CONFIRMED - User has been confirmed.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ARCHIVED - User is no longer active.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * COMPROMISED - User is disabled due to a potential security threat.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * UNKNOWN - User status is not known.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN, RESET_REQUIRED
+     * UNKNOWN, RESET_REQUIRED, FORCE_CHANGE_PASSWORD
      *
      * @return <p>
      *         The user status. Can be one of the following:
      *         </p>
      *         <ul>
-     *         <li>UNCONFIRMED - User has been created but not confirmed.</li>
-     *         <li>CONFIRMED - User has been confirmed.</li>
-     *         <li>ARCHIVED - User is no longer active.</li>
-     *         <li>COMPROMISED - User is disabled due to a potential security
-     *         threat.</li>
-     *         <li>UNKNOWN - User status is not known.</li>
+     *         <li>
+     *         <p>
+     *         UNCONFIRMED - User has been created but not confirmed.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         CONFIRMED - User has been confirmed.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         ARCHIVED - User is no longer active.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         COMPROMISED - User is disabled due to a potential security
+     *         threat.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         UNKNOWN - User status is not known.
+     *         </p>
+     *         </li>
      *         </ul>
      * @see UserStatusType
      */
@@ -397,27 +464,67 @@ public class UserType implements Serializable {
      * The user status. Can be one of the following:
      * </p>
      * <ul>
-     * <li>UNCONFIRMED - User has been created but not confirmed.</li>
-     * <li>CONFIRMED - User has been confirmed.</li>
-     * <li>ARCHIVED - User is no longer active.</li>
-     * <li>COMPROMISED - User is disabled due to a potential security threat.</li>
-     * <li>UNKNOWN - User status is not known.</li>
+     * <li>
+     * <p>
+     * UNCONFIRMED - User has been created but not confirmed.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * CONFIRMED - User has been confirmed.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ARCHIVED - User is no longer active.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * COMPROMISED - User is disabled due to a potential security threat.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * UNKNOWN - User status is not known.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN, RESET_REQUIRED
+     * UNKNOWN, RESET_REQUIRED, FORCE_CHANGE_PASSWORD
      *
      * @param userStatus <p>
      *            The user status. Can be one of the following:
      *            </p>
      *            <ul>
-     *            <li>UNCONFIRMED - User has been created but not confirmed.</li>
-     *            <li>CONFIRMED - User has been confirmed.</li>
-     *            <li>ARCHIVED - User is no longer active.</li>
-     *            <li>COMPROMISED - User is disabled due to a potential security
-     *            threat.</li>
-     *            <li>UNKNOWN - User status is not known.</li>
+     *            <li>
+     *            <p>
+     *            UNCONFIRMED - User has been created but not confirmed.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            CONFIRMED - User has been confirmed.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            ARCHIVED - User is no longer active.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            COMPROMISED - User is disabled due to a potential security
+     *            threat.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            UNKNOWN - User status is not known.
+     *            </p>
+     *            </li>
      *            </ul>
      * @see UserStatusType
      */
@@ -430,11 +537,31 @@ public class UserType implements Serializable {
      * The user status. Can be one of the following:
      * </p>
      * <ul>
-     * <li>UNCONFIRMED - User has been created but not confirmed.</li>
-     * <li>CONFIRMED - User has been confirmed.</li>
-     * <li>ARCHIVED - User is no longer active.</li>
-     * <li>COMPROMISED - User is disabled due to a potential security threat.</li>
-     * <li>UNKNOWN - User status is not known.</li>
+     * <li>
+     * <p>
+     * UNCONFIRMED - User has been created but not confirmed.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * CONFIRMED - User has been confirmed.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ARCHIVED - User is no longer active.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * COMPROMISED - User is disabled due to a potential security threat.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * UNKNOWN - User status is not known.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -442,18 +569,38 @@ public class UserType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN, RESET_REQUIRED
+     * UNKNOWN, RESET_REQUIRED, FORCE_CHANGE_PASSWORD
      *
      * @param userStatus <p>
      *            The user status. Can be one of the following:
      *            </p>
      *            <ul>
-     *            <li>UNCONFIRMED - User has been created but not confirmed.</li>
-     *            <li>CONFIRMED - User has been confirmed.</li>
-     *            <li>ARCHIVED - User is no longer active.</li>
-     *            <li>COMPROMISED - User is disabled due to a potential security
-     *            threat.</li>
-     *            <li>UNKNOWN - User status is not known.</li>
+     *            <li>
+     *            <p>
+     *            UNCONFIRMED - User has been created but not confirmed.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            CONFIRMED - User has been confirmed.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            ARCHIVED - User is no longer active.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            COMPROMISED - User is disabled due to a potential security
+     *            threat.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            UNKNOWN - User status is not known.
+     *            </p>
+     *            </li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -469,27 +616,67 @@ public class UserType implements Serializable {
      * The user status. Can be one of the following:
      * </p>
      * <ul>
-     * <li>UNCONFIRMED - User has been created but not confirmed.</li>
-     * <li>CONFIRMED - User has been confirmed.</li>
-     * <li>ARCHIVED - User is no longer active.</li>
-     * <li>COMPROMISED - User is disabled due to a potential security threat.</li>
-     * <li>UNKNOWN - User status is not known.</li>
+     * <li>
+     * <p>
+     * UNCONFIRMED - User has been created but not confirmed.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * CONFIRMED - User has been confirmed.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ARCHIVED - User is no longer active.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * COMPROMISED - User is disabled due to a potential security threat.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * UNKNOWN - User status is not known.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN, RESET_REQUIRED
+     * UNKNOWN, RESET_REQUIRED, FORCE_CHANGE_PASSWORD
      *
      * @param userStatus <p>
      *            The user status. Can be one of the following:
      *            </p>
      *            <ul>
-     *            <li>UNCONFIRMED - User has been created but not confirmed.</li>
-     *            <li>CONFIRMED - User has been confirmed.</li>
-     *            <li>ARCHIVED - User is no longer active.</li>
-     *            <li>COMPROMISED - User is disabled due to a potential security
-     *            threat.</li>
-     *            <li>UNKNOWN - User status is not known.</li>
+     *            <li>
+     *            <p>
+     *            UNCONFIRMED - User has been created but not confirmed.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            CONFIRMED - User has been confirmed.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            ARCHIVED - User is no longer active.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            COMPROMISED - User is disabled due to a potential security
+     *            threat.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            UNKNOWN - User status is not known.
+     *            </p>
+     *            </li>
      *            </ul>
      * @see UserStatusType
      */
@@ -502,11 +689,31 @@ public class UserType implements Serializable {
      * The user status. Can be one of the following:
      * </p>
      * <ul>
-     * <li>UNCONFIRMED - User has been created but not confirmed.</li>
-     * <li>CONFIRMED - User has been confirmed.</li>
-     * <li>ARCHIVED - User is no longer active.</li>
-     * <li>COMPROMISED - User is disabled due to a potential security threat.</li>
-     * <li>UNKNOWN - User status is not known.</li>
+     * <li>
+     * <p>
+     * UNCONFIRMED - User has been created but not confirmed.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * CONFIRMED - User has been confirmed.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ARCHIVED - User is no longer active.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * COMPROMISED - User is disabled due to a potential security threat.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * UNKNOWN - User status is not known.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -514,18 +721,38 @@ public class UserType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>UNCONFIRMED, CONFIRMED, ARCHIVED, COMPROMISED,
-     * UNKNOWN, RESET_REQUIRED
+     * UNKNOWN, RESET_REQUIRED, FORCE_CHANGE_PASSWORD
      *
      * @param userStatus <p>
      *            The user status. Can be one of the following:
      *            </p>
      *            <ul>
-     *            <li>UNCONFIRMED - User has been created but not confirmed.</li>
-     *            <li>CONFIRMED - User has been confirmed.</li>
-     *            <li>ARCHIVED - User is no longer active.</li>
-     *            <li>COMPROMISED - User is disabled due to a potential security
-     *            threat.</li>
-     *            <li>UNKNOWN - User status is not known.</li>
+     *            <li>
+     *            <p>
+     *            UNCONFIRMED - User has been created but not confirmed.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            CONFIRMED - User has been confirmed.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            ARCHIVED - User is no longer active.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            COMPROMISED - User is disabled due to a potential security
+     *            threat.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            UNKNOWN - User status is not known.
+     *            </p>
+     *            </li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -533,6 +760,80 @@ public class UserType implements Serializable {
      */
     public UserType withUserStatus(UserStatusType userStatus) {
         this.userStatus = userStatus.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The MFA options for the user.
+     * </p>
+     *
+     * @return <p>
+     *         The MFA options for the user.
+     *         </p>
+     */
+    public java.util.List<MFAOptionType> getMFAOptions() {
+        return mFAOptions;
+    }
+
+    /**
+     * <p>
+     * The MFA options for the user.
+     * </p>
+     *
+     * @param mFAOptions <p>
+     *            The MFA options for the user.
+     *            </p>
+     */
+    public void setMFAOptions(java.util.Collection<MFAOptionType> mFAOptions) {
+        if (mFAOptions == null) {
+            this.mFAOptions = null;
+            return;
+        }
+
+        this.mFAOptions = new java.util.ArrayList<MFAOptionType>(mFAOptions);
+    }
+
+    /**
+     * <p>
+     * The MFA options for the user.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param mFAOptions <p>
+     *            The MFA options for the user.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UserType withMFAOptions(MFAOptionType... mFAOptions) {
+        if (getMFAOptions() == null) {
+            this.mFAOptions = new java.util.ArrayList<MFAOptionType>(mFAOptions.length);
+        }
+        for (MFAOptionType value : mFAOptions) {
+            this.mFAOptions.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The MFA options for the user.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param mFAOptions <p>
+     *            The MFA options for the user.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UserType withMFAOptions(java.util.Collection<MFAOptionType> mFAOptions) {
+        setMFAOptions(mFAOptions);
         return this;
     }
 
@@ -558,7 +859,9 @@ public class UserType implements Serializable {
         if (getEnabled() != null)
             sb.append("Enabled: " + getEnabled() + ",");
         if (getUserStatus() != null)
-            sb.append("UserStatus: " + getUserStatus());
+            sb.append("UserStatus: " + getUserStatus() + ",");
+        if (getMFAOptions() != null)
+            sb.append("MFAOptions: " + getMFAOptions());
         sb.append("}");
         return sb.toString();
     }
@@ -576,6 +879,7 @@ public class UserType implements Serializable {
                 + ((getUserLastModifiedDate() == null) ? 0 : getUserLastModifiedDate().hashCode());
         hashCode = prime * hashCode + ((getEnabled() == null) ? 0 : getEnabled().hashCode());
         hashCode = prime * hashCode + ((getUserStatus() == null) ? 0 : getUserStatus().hashCode());
+        hashCode = prime * hashCode + ((getMFAOptions() == null) ? 0 : getMFAOptions().hashCode());
         return hashCode;
     }
 
@@ -617,6 +921,11 @@ public class UserType implements Serializable {
             return false;
         if (other.getUserStatus() != null
                 && other.getUserStatus().equals(this.getUserStatus()) == false)
+            return false;
+        if (other.getMFAOptions() == null ^ this.getMFAOptions() == null)
+            return false;
+        if (other.getMFAOptions() != null
+                && other.getMFAOptions().equals(this.getMFAOptions()) == false)
             return false;
         return true;
     }

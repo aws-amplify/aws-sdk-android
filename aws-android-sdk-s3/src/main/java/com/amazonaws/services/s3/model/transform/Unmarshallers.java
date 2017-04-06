@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,18 +22,32 @@ import com.amazonaws.services.s3.model.BucketAccelerateConfiguration;
 import com.amazonaws.services.s3.model.BucketCrossOriginConfiguration;
 import com.amazonaws.services.s3.model.BucketLifecycleConfiguration;
 import com.amazonaws.services.s3.model.BucketLoggingConfiguration;
-import com.amazonaws.services.s3.model.BucketNotificationConfiguration;
 import com.amazonaws.services.s3.model.BucketReplicationConfiguration;
 import com.amazonaws.services.s3.model.BucketTaggingConfiguration;
 import com.amazonaws.services.s3.model.BucketVersioningConfiguration;
 import com.amazonaws.services.s3.model.BucketWebsiteConfiguration;
+import com.amazonaws.services.s3.model.DeleteBucketAnalyticsConfigurationResult;
+import com.amazonaws.services.s3.model.DeleteBucketInventoryConfigurationResult;
+import com.amazonaws.services.s3.model.DeleteBucketMetricsConfigurationResult;
+import com.amazonaws.services.s3.model.DeleteObjectTaggingResult;
+import com.amazonaws.services.s3.model.GetBucketAnalyticsConfigurationResult;
+import com.amazonaws.services.s3.model.GetBucketInventoryConfigurationResult;
+import com.amazonaws.services.s3.model.GetBucketMetricsConfigurationResult;
+import com.amazonaws.services.s3.model.GetObjectTaggingResult;
 import com.amazonaws.services.s3.model.InitiateMultipartUploadResult;
+import com.amazonaws.services.s3.model.ListBucketAnalyticsConfigurationsResult;
+import com.amazonaws.services.s3.model.ListBucketInventoryConfigurationsResult;
+import com.amazonaws.services.s3.model.ListBucketMetricsConfigurationsResult;
 import com.amazonaws.services.s3.model.ListObjectsV2Result;
 import com.amazonaws.services.s3.model.MultipartUploadListing;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.Owner;
 import com.amazonaws.services.s3.model.PartListing;
 import com.amazonaws.services.s3.model.RequestPaymentConfiguration;
+import com.amazonaws.services.s3.model.SetBucketAnalyticsConfigurationResult;
+import com.amazonaws.services.s3.model.SetBucketInventoryConfigurationResult;
+import com.amazonaws.services.s3.model.SetBucketMetricsConfigurationResult;
+import com.amazonaws.services.s3.model.SetObjectTaggingResult;
 import com.amazonaws.services.s3.model.VersionListing;
 import com.amazonaws.services.s3.model.transform.XmlResponsesSaxParser.CompleteMultipartUploadHandler;
 import com.amazonaws.services.s3.model.transform.XmlResponsesSaxParser.CopyObjectResultHandler;
@@ -77,10 +91,19 @@ public class Unmarshallers {
      */
     public static final class ListObjectsUnmarshaller implements
             Unmarshaller<ObjectListing, InputStream> {
+
+        private final boolean shouldSDKDecodeResponse;
+
+        public ListObjectsUnmarshaller(final boolean shouldSDKDecodeResponse) {
+            this.shouldSDKDecodeResponse = shouldSDKDecodeResponse;
+        }
+
         @Override
         public ObjectListing unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser()
-                    .parseListBucketObjectsResponse(in).getObjectListing();
+                    .parseListBucketObjectsResponse(in,
+                            shouldSDKDecodeResponse)
+                    .getObjectListing();
         }
     }
 
@@ -90,10 +113,16 @@ public class Unmarshallers {
     public static final class ListObjectsV2Unmarshaller implements
             Unmarshaller<ListObjectsV2Result, InputStream> {
 
+        private final boolean shouldSDKDecodeResponse;
+
+        public ListObjectsV2Unmarshaller(final boolean shouldSDKDecodeResponse) {
+            this.shouldSDKDecodeResponse = shouldSDKDecodeResponse;
+        }
+
         @Override
         public ListObjectsV2Result unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser()
-                    .parseListObjectsV2Response(in).getResult();
+                    .parseListObjectsV2Response(in, shouldSDKDecodeResponse).getResult();
         }
     }
 
@@ -102,10 +131,17 @@ public class Unmarshallers {
      */
     public static final class VersionListUnmarshaller implements
             Unmarshaller<VersionListing, InputStream> {
+
+        private final boolean shouldSDKDecodeResponse;
+
+        public VersionListUnmarshaller(final boolean shouldSDKDecodeResponse) {
+            this.shouldSDKDecodeResponse = shouldSDKDecodeResponse;
+        }
+
         @Override
         public VersionListing unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser()
-                    .parseListVersionsResponse(in).getListing();
+                    .parseListVersionsResponse(in, shouldSDKDecodeResponse).getListing();
         }
     }
 
@@ -147,8 +183,9 @@ public class Unmarshallers {
              * S3 treats the US location differently, and assumes that if the
              * reported location is null, then it's a US bucket.
              */
-            if (location == null)
+            if (location == null) {
                 location = "US";
+            }
 
             return location;
         }
@@ -187,18 +224,6 @@ public class Unmarshallers {
         public BucketReplicationConfiguration unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser()
                     .parseReplicationConfigurationResponse(in).getConfiguration();
-        }
-    }
-
-    /**
-     * Unmarshaller for the BucketNotificationConfiguration XML response.
-     */
-    public static final class BucketNotificationConfigurationUnmarshaller implements
-            Unmarshaller<BucketNotificationConfiguration, InputStream> {
-        @Override
-        public BucketNotificationConfiguration unmarshall(InputStream in) throws Exception {
-            return new XmlResponsesSaxParser()
-                    .parseNotificationConfigurationResponse(in).getConfiguration();
         }
     }
 
@@ -322,6 +347,177 @@ public class Unmarshallers {
         public RequestPaymentConfiguration unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser()
                     .parseRequestPaymentConfigurationResponse(in).getConfiguration();
+        }
+    }
+
+    public static final class GetObjectTaggingResponseUnmarshaller
+            implements Unmarshaller<GetObjectTaggingResult, InputStream> {
+
+        @Override
+        public GetObjectTaggingResult unmarshall(InputStream in) throws Exception {
+            return new XmlResponsesSaxParser().parseObjectTaggingResponse(in).getResult();
+        }
+    }
+
+    public static final class SetObjectTaggingResponseUnmarshaller
+            implements Unmarshaller<SetObjectTaggingResult, InputStream> {
+
+        @Override
+        public SetObjectTaggingResult unmarshall(InputStream in) throws Exception {
+            return new SetObjectTaggingResult();
+        }
+    }
+
+    public static final class DeleteObjectTaggingResponseUnmarshaller
+            implements Unmarshaller<DeleteObjectTaggingResult, InputStream> {
+
+        @Override
+        public DeleteObjectTaggingResult unmarshall(InputStream in) throws Exception {
+            return new DeleteObjectTaggingResult();
+        }
+    }
+
+    /**
+     * Unmarshaller for the GetBucketAnalyticsConfiguration XML response.
+     */
+    public static final class GetBucketAnalyticsConfigurationUnmarshaller implements
+            Unmarshaller<GetBucketAnalyticsConfigurationResult, InputStream> {
+        @Override
+        public GetBucketAnalyticsConfigurationResult unmarshall(InputStream in) throws Exception {
+            return new XmlResponsesSaxParser().parseGetBucketAnalyticsConfigurationResponse(in)
+                    .getResult();
+        }
+    }
+
+    /**
+     * Unmarshaller for the ListBucketAnalyticsConfigurations XML response.
+     */
+    public static final class ListBucketAnalyticsConfigurationUnmarshaller implements
+            Unmarshaller<ListBucketAnalyticsConfigurationsResult, InputStream> {
+        @Override
+        public ListBucketAnalyticsConfigurationsResult unmarshall(InputStream in) throws Exception {
+            return new XmlResponsesSaxParser().parseListBucketAnalyticsConfigurationResponse(in)
+                    .getResult();
+        }
+    }
+
+    /**
+     * Unmarshaller for the DeleteBucketAnalyticsConfiguration XML response.
+     */
+    public static final class DeleteBucketAnalyticsConfigurationUnmarshaller implements
+            Unmarshaller<DeleteBucketAnalyticsConfigurationResult, InputStream> {
+        @Override
+        public DeleteBucketAnalyticsConfigurationResult unmarshall(InputStream in)
+                throws Exception {
+            return new DeleteBucketAnalyticsConfigurationResult();
+        }
+    }
+
+    /**
+     * Unmarshaller for the SetBucketAnalyticsConfiguration XML response.
+     */
+    public static final class SetBucketAnalyticsConfigurationUnmarshaller implements
+            Unmarshaller<SetBucketAnalyticsConfigurationResult, InputStream> {
+        @Override
+        public SetBucketAnalyticsConfigurationResult unmarshall(InputStream in) throws Exception {
+            return new SetBucketAnalyticsConfigurationResult();
+        }
+    }
+
+    /**
+     * Unmarshaller for the GetBucketMetricsConfiguration XML response.
+     */
+    public static final class GetBucketMetricsConfigurationUnmarshaller implements
+            Unmarshaller<GetBucketMetricsConfigurationResult, InputStream> {
+        @Override
+        public GetBucketMetricsConfigurationResult unmarshall(InputStream in) throws Exception {
+            return new XmlResponsesSaxParser().parseGetBucketMetricsConfigurationResponse(in)
+                    .getResult();
+        }
+    }
+
+    /**
+     * Unmarshaller for the ListBucketMetricsConfigurations XML response.
+     */
+    public static final class ListBucketMetricsConfigurationsUnmarshaller implements
+            Unmarshaller<ListBucketMetricsConfigurationsResult, InputStream> {
+        @Override
+        public ListBucketMetricsConfigurationsResult unmarshall(InputStream in) throws Exception {
+            return new XmlResponsesSaxParser().parseListBucketMetricsConfigurationsResponse(in)
+                    .getResult();
+        }
+    }
+
+    /**
+     * Unmarshaller for the DeleteBucketMetricsConfiguration XML response.
+     */
+    public static final class DeleteBucketMetricsConfigurationUnmarshaller implements
+            Unmarshaller<DeleteBucketMetricsConfigurationResult, InputStream> {
+        @Override
+        public DeleteBucketMetricsConfigurationResult unmarshall(InputStream in) throws Exception {
+            return new DeleteBucketMetricsConfigurationResult();
+        }
+    }
+
+    /**
+     * Unmarshaller for the SetBucketMetricsConfiguration XML response.
+     */
+    public static final class SetBucketMetricsConfigurationUnmarshaller implements
+            Unmarshaller<SetBucketMetricsConfigurationResult, InputStream> {
+        @Override
+        public SetBucketMetricsConfigurationResult unmarshall(InputStream in) throws Exception {
+            return new SetBucketMetricsConfigurationResult();
+        }
+    }
+
+    /**
+     * Unmarshaller for the GetBucketInventoryConfiguration XML response.
+     */
+    public static final class GetBucketInventoryConfigurationUnmarshaller implements
+            Unmarshaller<GetBucketInventoryConfigurationResult, InputStream> {
+
+        @Override
+        public GetBucketInventoryConfigurationResult unmarshall(InputStream in) throws Exception {
+            return new XmlResponsesSaxParser().parseGetBucketInventoryConfigurationResponse(in)
+                    .getResult();
+        }
+    }
+
+    /**
+     * Unmarshaller for the ListBucketInventoryConfigurations XML response.
+     */
+    public static final class ListBucketInventoryConfigurationsUnmarshaller implements
+            Unmarshaller<ListBucketInventoryConfigurationsResult, InputStream> {
+
+        @Override
+        public ListBucketInventoryConfigurationsResult unmarshall(InputStream in) throws Exception {
+            return new XmlResponsesSaxParser().parseBucketListInventoryConfigurationsResponse(in)
+                    .getResult();
+        }
+    }
+
+    /**
+     * Unmarshaller for the DeleteBucketInventoryConfiguration XML response.
+     */
+    public static final class DeleteBucketInventoryConfigurationUnmarshaller implements
+            Unmarshaller<DeleteBucketInventoryConfigurationResult, InputStream> {
+
+        @Override
+        public DeleteBucketInventoryConfigurationResult unmarshall(InputStream in)
+                throws Exception {
+            return new DeleteBucketInventoryConfigurationResult();
+        }
+    }
+
+    /**
+     * Unmarshaller for the SetBucketInventoryConfiguration XML response.
+     */
+    public static final class SetBucketInventoryConfigurationUnmarshaller implements
+            Unmarshaller<SetBucketInventoryConfigurationResult, InputStream> {
+
+        @Override
+        public SetBucketInventoryConfigurationResult unmarshall(InputStream in) throws Exception {
+            return new SetBucketInventoryConfigurationResult();
         }
     }
 }

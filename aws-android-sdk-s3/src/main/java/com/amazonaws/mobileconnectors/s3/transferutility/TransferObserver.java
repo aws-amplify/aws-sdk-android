@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -87,12 +87,28 @@ public class TransferObserver {
      *
      * @param id The transfer id of the transfer to be observed.
      * @param dbUtil an instance of database utility
+     * @param bucket bucket of the S3 object
+     * @param key key of the S3 object
+     * @param file a file associated with this transfer
+     * @param listener the listener for the transfer
+     */
+    TransferObserver(int id, TransferDBUtil dbUtil, String bucket, String key, File file,
+            TransferListener listener) {
+        this(id, dbUtil, bucket, key, file);
+        this.setTransferListener(listener);
+    }
+
+    /**
+     * Constructs a TransferObserver and initializes fields with the given
+     * arguments.
+     *
+     * @param id The transfer id of the transfer to be observed.
+     * @param dbUtil an instance of database utility
      * @param c a cursor to read the state of the transfer from
      */
-    TransferObserver(int id, TransferDBUtil dbUtil, Cursor c) {
+    TransferObserver(int id, TransferDBUtil dbUtil) {
         this.id = id;
         this.dbUtil = dbUtil;
-        updateFromDB(c);
     }
 
     /**
@@ -100,13 +116,16 @@ public class TransferObserver {
      * TransferListener is set, then there's no need to call this method.
      */
     public void refresh() {
-        Cursor c = dbUtil.queryTransferById(id);
+        Cursor c = null;
         try {
+            c = dbUtil.queryTransferById(id);
             if (c.moveToFirst()) {
                 updateFromDB(c);
             }
         } finally {
-            c.close();
+            if (c != null) {
+                c.close();
+            }
         }
     }
 
@@ -115,7 +134,7 @@ public class TransferObserver {
      *
      * @param c a cursor to read the state of the transfer from
      */
-    private void updateFromDB(Cursor c) {
+    protected void updateFromDB(Cursor c) {
         bucket = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_BUCKET_NAME));
         key = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_KEY));
         bytesTotal = c.getLong(c.getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_TOTAL));
@@ -136,16 +155,18 @@ public class TransferObserver {
      * @param listener A TransferListener used to receive notification.
      */
     public void setTransferListener(TransferListener listener) {
-        synchronized (this) {
-            // Remove previous listener.
-            cleanTransferListener();
+        if (listener != null) {
+            synchronized (this) {
+                // Remove previous listener.
+                cleanTransferListener();
 
-            // One additional listener is attached so that the basic transfer
-            // info gets updated along side.
-            statusListener = new TransferStatusListener();
-            TransferStatusUpdater.registerListener(id, statusListener);
-            transferListener = listener;
-            TransferStatusUpdater.registerListener(id, transferListener);
+                // One additional listener is attached so that the basic transfer
+                // info gets updated along side.
+                statusListener = new TransferStatusListener();
+                TransferStatusUpdater.registerListener(id, statusListener);
+                transferListener = listener;
+                TransferStatusUpdater.registerListener(id, transferListener);
+            }
         }
     }
 
@@ -239,7 +260,7 @@ public class TransferObserver {
 
         @Override
         public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
-            bytesTransferred = bytesCurrent;
+            TransferObserver.this.bytesTransferred = bytesCurrent;
             TransferObserver.this.bytesTotal = bytesTotal;
         }
 
@@ -249,3 +270,5 @@ public class TransferObserver {
         }
     }
 }
+
+

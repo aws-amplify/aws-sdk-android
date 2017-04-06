@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,7 +27,8 @@ public enum UserStatusType {
     CONFIRMED("CONFIRMED"),
     ARCHIVED("ARCHIVED"),
     COMPROMISED("COMPROMISED"),
-    RESET_REQUIRED("RESET_REQUIRED");
+    RESET_REQUIRED("RESET_REQUIRED"),
+    FORCE_CHANGE_PASSWORD("FORCE_CHANGE_PASSWORD");
 
     private String value;
 
@@ -48,6 +49,7 @@ public enum UserStatusType {
         enumMap.put("ARCHIVED", ARCHIVED);
         enumMap.put("COMPROMISED", COMPROMISED);
         enumMap.put("RESET_REQUIRED", RESET_REQUIRED);
+        enumMap.put("FORCE_CHANGE_PASSWORD", FORCE_CHANGE_PASSWORD);
     }
 
     /**

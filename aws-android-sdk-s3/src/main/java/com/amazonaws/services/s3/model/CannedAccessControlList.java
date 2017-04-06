@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -98,7 +98,14 @@ public enum CannedAccessControlList {
      * not give full access to all users.
      * </p>
      */
-    BucketOwnerFullControl("bucket-owner-full-control");
+    BucketOwnerFullControl("bucket-owner-full-control"),
+
+    /**
+     * Specifies the owner is granted {@link Permission#FullControl}. Amazon EC2
+     * is granted {@link Permission#Read} access to GET an Amazon Machine Image
+     * (AMI) bundle from Amazon S3.
+     */
+    AwsExecRead("aws-exec-read");
 
     /** The Amazon S3 x-amz-acl header value representing the canned acl */
     private final String cannedAclHeader;

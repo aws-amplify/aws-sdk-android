@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.internal.Constants;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,7 +44,10 @@ import java.util.List;
  * @see AmazonS3Client#copyObject(com.amazonaws.services.s3.model.CopyObjectRequest)
  * @see CopyObjectResult
  */
-public class CopyObjectRequest extends AmazonWebServiceRequest implements S3AccelerateUnsupported {
+public class CopyObjectRequest extends AmazonWebServiceRequest implements
+                                                               SSEAwsKeyManagementParamsProvider,
+                                                               Serializable,
+                                                               S3AccelerateUnsupported {
 
     /** The name of the bucket containing the object to be copied */
     private String sourceBucketName;
@@ -135,6 +139,20 @@ public class CopyObjectRequest extends AmazonWebServiceRequest implements S3Acce
      * encrypt the destination object being copied.
      */
     private SSECustomerKey destinationSSECustomerKey;
+
+    /**
+     * The optional AWS Key Management system parameters to be used to encrypt
+     * the the object on the server side.
+     */
+    private SSEAwsKeyManagementParams sseAwsKeyManagementParams;
+
+    /**
+     * If enabled, the requester is charged for conducting this operation from
+     * Requester Pays Buckets.
+     */
+    private boolean isRequesterPays;
+
+    private ObjectTagging newObjectTagging;
 
     /**
      * <p>
@@ -1013,6 +1031,131 @@ public class CopyObjectRequest extends AmazonWebServiceRequest implements S3Acce
      */
     public CopyObjectRequest withDestinationSSECustomerKey(SSECustomerKey sseKey) {
         setDestinationSSECustomerKey(sseKey);
+        return this;
+    }
+
+    /**
+     * Returns the AWS Key Management System parameters used to encrypt the
+     * object on server side.
+     */
+    @Override
+    public SSEAwsKeyManagementParams getSSEAwsKeyManagementParams() {
+        return sseAwsKeyManagementParams;
+    }
+
+    /**
+     * Sets the AWS Key Management System parameters used to encrypt the object
+     * on server side.
+     */
+    public void setSSEAwsKeyManagementParams(SSEAwsKeyManagementParams params) {
+        if (params != null && this.destinationSSECustomerKey != null) {
+            throw new IllegalArgumentException(
+                "Either SSECustomerKey or SSEAwsKeyManagementParams must not be set at the same time.");
+        }
+        this.sseAwsKeyManagementParams = params;
+    }
+
+    /**
+     * Sets the AWS Key Management System parameters used to encrypt the object
+     * on server side.
+     *
+     * @return returns the update CopyObjectRequest
+     */
+    public CopyObjectRequest withSSEAwsKeyManagementParams(
+            SSEAwsKeyManagementParams sseAwsKeyManagementParams) {
+        setSSEAwsKeyManagementParams(sseAwsKeyManagementParams);
+        return this;
+    }
+    /**
+     * Returns true if the user has enabled Requester Pays option when
+     * conducting this operation from Requester Pays Bucket; else false.
+     *
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket
+     *
+     * @return true if the user has enabled Requester Pays option for
+     *         conducting this operation from Requester Pays Bucket.
+     */
+    public boolean isRequesterPays() {
+        return isRequesterPays;
+    }
+
+    /**
+     * Used for conducting this operation from a Requester Pays Bucket. If
+     * set the requester is charged for requests from the bucket.
+     *
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket.
+     *
+     * @param isRequesterPays
+     *            Enable Requester Pays option for the operation.
+     */
+    public void setRequesterPays(boolean isRequesterPays) {
+        this.isRequesterPays = isRequesterPays;
+    }
+
+    /**
+     * Used for conducting this operation from a Requester Pays Bucket. If
+     * set the requester is charged for requests from the bucket. It returns this
+     * updated CopyObjectRequest object so that additional method calls can be
+     * chained together.
+     *
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket.
+     *
+     * @param isRequesterPays
+     *            Enable Requester Pays option for the operation.
+     *
+     * @return The updated CopyObjectRequest object.
+     */
+    public CopyObjectRequest withRequesterPays(boolean isRequesterPays) {
+        setRequesterPays(isRequesterPays);
+        return this;
+    }
+
+    /**
+     * @return the tagging for the new object.
+     */
+    public ObjectTagging getNewObjectTagging() {
+        return newObjectTagging;
+    }
+
+    /**
+     * set the tagging for the new object.
+     *
+     * @param newObjectTagging the tagging for the new object.
+     */
+    public void setNewObjectTagging(ObjectTagging newObjectTagging) {
+        this.newObjectTagging = newObjectTagging;
+    }
+
+    /**
+     * set the tagging for the new object.
+     *
+     * @param newObjectTagging the tagging for the new object.
+     *
+     * @return This object for chaining.
+     */
+    public CopyObjectRequest withNewObjectTagging(ObjectTagging newObjectTagging) {
+        setNewObjectTagging(newObjectTagging);
         return this;
     }
 }

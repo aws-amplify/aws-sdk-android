@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 
 package com.amazonaws.http;
 
-import com.amazonaws.AmazonClientException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.Request;
 import com.amazonaws.util.HttpUtils;
@@ -47,7 +46,7 @@ public class HttpRequestFactory {
      */
     public HttpRequest createHttpRequest(Request<?> request,
             ClientConfiguration clientConfiguration, ExecutionContext context) {
-        URI endpoint = request.getEndpoint();
+        final URI endpoint = request.getEndpoint();
 
         /*
          * HttpClient cannot handle url in pattern of "http://host//path", so we
@@ -55,7 +54,7 @@ public class HttpRequestFactory {
          * into "/%2F"
          */
         String uri = HttpUtils.appendUri(endpoint.toString(), request.getResourcePath(), true);
-        String encodedParams = HttpUtils.encodeParameters(request);
+        final String encodedParams = HttpUtils.encodeParameters(request);
         HttpMethodName method = request.getHttpMethod();
 
         /*
@@ -63,16 +62,16 @@ public class HttpRequestFactory {
          * payload, we put the encoded params directly in the URI, otherwise,
          * we'll put them in the POST request's payload.
          */
-        boolean requestHasNoPayload = request.getContent() != null;
-        boolean requestIsPost = method == HttpMethodName.POST;
-        boolean putParamsInUri = !requestIsPost || requestHasNoPayload;
+        final boolean requestHasNoPayload = request.getContent() != null;
+        final boolean requestIsPost = method == HttpMethodName.POST;
+        final boolean putParamsInUri = !requestIsPost || requestHasNoPayload;
         if (encodedParams != null && putParamsInUri) {
             uri += "?" + encodedParams;
         }
 
         // Configure headers from request. Additional headers will be added
         // later if necessary.
-        Map<String, String> headers = new HashMap<String, String>();
+        final Map<String, String> headers = new HashMap<String, String>();
         configureHeaders(headers, request, context, clientConfiguration);
 
         InputStream is = request.getContent();
@@ -93,22 +92,18 @@ public class HttpRequestFactory {
              * POST requests, but we can't do that for S3.
              */
             if (request.getContent() == null && encodedParams != null) {
-                byte[] contentBytes = encodedParams.getBytes(StringUtils.UTF8);
+                final byte[] contentBytes = encodedParams.getBytes(StringUtils.UTF8);
                 is = new ByteArrayInputStream(contentBytes);
                 headers.put("Content-Length", String.valueOf(contentBytes.length));
             }
         }
-
-        if (method == HttpMethodName.POST || method == HttpMethodName.PUT) {
-            String len = headers.get("Content-Length");
-            if (len == null || len.isEmpty()) {
-                if (is != null) {
-                    throw new AmazonClientException("Unknown content-length");
-                } else {
-                    headers.put("Content-Length", "0");
-                }
-            }
-        }
+        /*
+         * if (method == HttpMethodName.POST || method == HttpMethodName.PUT) {
+         * final String len = headers.get("Content-Length"); if (len == null ||
+         * len.isEmpty()) { // streaming mode if (is != null) { throw new
+         * AmazonClientException( "Unknown content-length"); } else {
+         * headers.put("Content-Length", "0"); } } }
+         */
 
         // Enables gzip compression. Also signals the implementation of
         // HttpClient to disable transparent gzip.
@@ -116,7 +111,11 @@ public class HttpRequestFactory {
             headers.put("Accept-Encoding", "gzip");
         }
 
-        return new HttpRequest(method.toString(), URI.create(uri), headers, is);
+        final HttpRequest httpRequest = new HttpRequest(method.toString(), URI.create(uri), headers,
+                is);
+        httpRequest.setStreaming(request.isStreaming());
+
+        return httpRequest;
     }
 
     /** Configures the headers in the specified Apache HTTP request. */
@@ -130,7 +129,7 @@ public class HttpRequestFactory {
          * and started honoring our explicit host with endpoint), we follow this
          * same behavior here and in the QueryString signer.
          */
-        URI endpoint = request.getEndpoint();
+        final URI endpoint = request.getEndpoint();
         String hostHeader = endpoint.getHost();
         if (HttpUtils.isUsingNonDefaultPort(endpoint)) {
             hostHeader += ":" + endpoint.getPort();
@@ -138,7 +137,7 @@ public class HttpRequestFactory {
         headers.put("Host", hostHeader);
 
         // Copy over any other headers already in our request
-        for (Entry<String, String> entry : request.getHeaders().entrySet()) {
+        for (final Entry<String, String> entry : request.getHeaders().entrySet()) {
             headers.put(entry.getKey(), entry.getValue());
         }
 

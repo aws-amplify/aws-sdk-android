@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,16 +18,27 @@ package com.amazonaws.services.s3.model;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.services.s3.AmazonS3;
 
+import java.io.Serializable;
+
 /**
  * The InitiateMultipartUploadRequest contains the parameters used for the
  * InitiateMultipartUpload method.
+ * <p>
+ * If you are initiating multipart upload for <a
+ * href="http://aws.amazon.com/kms/">KMS</a>-encrypted objects, you need to
+ * specify the correct region of the bucket on your client and configure AWS
+ * Signature Version 4 for added security. For more information on how to do
+ * this, see
+ * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#specify
+ * -signature-version
+ * </p>
  * <p>
  * Required Parameters: BucketName, Key
  *
  * @see AmazonS3#initiateMultipartUpload(InitiateMultipartUploadRequest)
  */
-public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
-
+public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest
+        implements SSECustomerKeyProvider, SSEAwsKeyManagementParamsProvider, Serializable {
     /**
      * The name of the bucket in which to create the new multipart upload, and
      * hence, the eventual object created from the multipart upload.
@@ -74,6 +85,18 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      * encrypt the upload being started.
      */
     private SSECustomerKey sseCustomerKey;
+
+    /**
+     * The optional AWS Key Management system parameters to be used to encrypt
+     * the the object on the server side.
+     */
+    private SSEAwsKeyManagementParams sseAwsKeyManagementParams;
+
+    /**
+     * If enabled, the requester is charged for conducting this operation from
+     * Requester Pays Buckets.
+     */
+    private boolean isRequesterPays;
 
     /**
      * Constructs a request to initiate a new multipart upload in the specified
@@ -310,6 +333,15 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
         return this;
     }
 
+    public InitiateMultipartUploadRequest withStorageClass(String storageClass) {
+        if (storageClass != null) {
+            this.storageClass = StorageClass.fromValue(storageClass);
+        } else {
+            this.storageClass = null;
+        }
+        return this;
+    }
+
     /**
      * Returns the additional information about the new object being created,
      * such as content type, content encoding, user metadata, etc.
@@ -378,13 +410,7 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
         return this;
     }
 
-    /**
-     * Returns the optional customer-provided server-side encryption key to use
-     * to encrypt the upload being started.
-     *
-     * @return The optional customer-provided server-side encryption key to use
-     *         to encrypt the upload being started.
-     */
+    @Override
     public SSECustomerKey getSSECustomerKey() {
         return sseCustomerKey;
     }
@@ -397,6 +423,10 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      *            to use to encrypt the upload being started.
      */
     public void setSSECustomerKey(SSECustomerKey sseKey) {
+        if (sseKey != null && this.sseAwsKeyManagementParams != null) {
+            throw new IllegalArgumentException(
+                "Either SSECustomerKey or SSEAwsKeyManagementParams must not be set at the same time.");
+        }
         this.sseCustomerKey = sseKey;
     }
 
@@ -413,6 +443,104 @@ public class InitiateMultipartUploadRequest extends AmazonWebServiceRequest {
      */
     public InitiateMultipartUploadRequest withSSECustomerKey(SSECustomerKey sseKey) {
         setSSECustomerKey(sseKey);
+        return this;
+    }
+
+    /**
+     * Returns the AWS Key Management System parameters used to encrypt the
+     * object on server side.
+     */
+    @Override
+    public SSEAwsKeyManagementParams getSSEAwsKeyManagementParams() {
+        return sseAwsKeyManagementParams;
+    }
+
+    /**
+     * Sets the AWS Key Management System parameters used to encrypt the object
+     * on server side.
+     */
+    public void setSSEAwsKeyManagementParams(SSEAwsKeyManagementParams params) {
+        if (params != null && this.sseCustomerKey != null) {
+            throw new IllegalArgumentException(
+                "Either SSECustomerKey or SSEAwsKeyManagementParams must not be set at the same time.");
+        }
+        this.sseAwsKeyManagementParams = params;
+    }
+
+    /**
+     * Sets the AWS Key Management System parameters used to encrypt the object
+     * on server side.
+     *
+     * @return returns the update InitiateMultipartUploadRequest
+     */
+    public InitiateMultipartUploadRequest withSSEAwsKeyManagementParams(
+            SSEAwsKeyManagementParams sseAwsKeyManagementParams) {
+        setSSEAwsKeyManagementParams(sseAwsKeyManagementParams);
+        return this;
+    }
+
+    /**
+     * Returns true if the user has enabled Requester Pays option when
+     * conducting this operation from Requester Pays Bucket; else false.
+     *
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket
+     *
+     * @return true if the user has enabled Requester Pays option for
+     *         conducting this operation from Requester Pays Bucket.
+     */
+    public boolean isRequesterPays() {
+        return isRequesterPays;
+    }
+
+    /**
+     * Used for conducting this operation from a Requester Pays Bucket. If
+     * set the requester is charged for requests from the bucket.
+     *
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket.
+     *
+     * @param isRequesterPays
+     *            Enable Requester Pays option for the operation.
+     */
+    public void setRequesterPays(boolean isRequesterPays) {
+        this.isRequesterPays = isRequesterPays;
+    }
+
+    /**
+     * Used for conducting this operation from a Requester Pays Bucket. If
+     * set the requester is charged for requests from the bucket. It returns this
+     * updated InitiateMultipartUploadRequest object so that additional method calls can be
+     * chained together.
+     *
+     * <p>
+     * If a bucket is enabled for Requester Pays, then any attempt to upload or
+     * download an object from it without Requester Pays enabled will result in
+     * a 403 error and the bucket owner will be charged for the request.
+     *
+     * <p>
+     * Enabling Requester Pays disables the ability to have anonymous access to
+     * this bucket.
+     *
+     * @param isRequesterPays
+     *            Enable Requester Pays option for the operation.
+     *
+     * @return The updated InitiateMultipartUploadRequest object.
+     */
+    public InitiateMultipartUploadRequest withRequesterPays(boolean isRequesterPays) {
+        setRequesterPays(isRequesterPays);
         return this;
     }
 }

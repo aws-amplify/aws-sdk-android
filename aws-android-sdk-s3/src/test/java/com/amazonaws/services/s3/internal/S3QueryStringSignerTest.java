@@ -33,10 +33,10 @@ public class S3QueryStringSignerTest {
 
     @Test
     public void testSign() throws URISyntaxException {
-        S3QueryStringSigner signer = new S3QueryStringSigner("GET",
+        final S3QueryStringSigner signer = new S3QueryStringSigner("GET",
                 "/test-bucket123456/TestFile.txt", new Date(1431377237312L));
-        GetObjectRequest gr = new GetObjectRequest("test-bucket123456", "TestFile.txt");
-        Request<?> req = new DefaultRequest(gr, Constants.S3_SERVICE_NAME);
+        final GetObjectRequest gr = new GetObjectRequest("test-bucket123456", "TestFile.txt");
+        final Request<?> req = new DefaultRequest(gr, Constants.S3_SERVICE_DISPLAY_NAME);
         req.setHttpMethod(HttpMethodName.GET);
         req.setResourcePath("TestFile.txt");
         req.setEndpoint(new URI("https://test-bucket123456.s3-us-west-2.amazonaws.com"));

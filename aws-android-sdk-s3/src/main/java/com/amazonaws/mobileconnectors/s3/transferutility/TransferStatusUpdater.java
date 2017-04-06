@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -149,7 +149,7 @@ class TransferStatusUpdater {
      */
     void updateState(final int id, final TransferState newState) {
         boolean shouldNotNotify = STATES_NOT_TO_NOTIFY.contains(newState);
-        TransferRecord transfer = transfers.get(id);
+        final TransferRecord transfer = transfers.get(id);
         if (transfer == null) {
             // still wants to save state
             if (dbUtil.updateState(id, newState) == 0) {
@@ -178,7 +178,7 @@ class TransferStatusUpdater {
         eventHandler.post(new Runnable() {
             @Override
             public void run() {
-                for (TransferListener l : list) {
+                for (final TransferListener l : list) {
                     l.onStateChanged(id, newState);
                 }
                 // remove all listeners when the transfer is in a final state so
@@ -202,11 +202,19 @@ class TransferStatusUpdater {
      * @param bytesTotal total bytes
      */
     void updateProgress(final int id, final long bytesCurrent, final long bytesTotal) {
-        TransferRecord transfer = transfers.get(id);
+        final TransferRecord transfer = transfers.get(id);
         if (transfer != null) {
             transfer.bytesCurrent = bytesCurrent;
             transfer.bytesTotal = bytesTotal;
         }
+
+        // Don't fire off the update too frequently, but still fire when it
+        // comes to the last byte.
+        final long timeInMillis = System.currentTimeMillis();
+
+        // update bytes transfered so that the transfer observer may pick it
+        // up.
+        dbUtil.updateBytesTransferred(id, bytesCurrent);
 
         // invoke listeners
         final List<TransferListener> list = listeners.get(id);
@@ -214,9 +222,7 @@ class TransferStatusUpdater {
             return;
         }
 
-        // Don't fire off the update too frequently, but still fire when it
-        // comes to the last byte.
-        long timeInMillis = System.currentTimeMillis();
+
         if (!lastUpdateTime.containsKey(id)
                 || timeInMillis - lastUpdateTime.get(id) > UPDATE_THRESHOLD_MS
                 || bytesCurrent == bytesTotal) {
@@ -226,7 +232,7 @@ class TransferStatusUpdater {
             eventHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    for (TransferListener l : list) {
+                    for (final TransferListener l : list) {
                         l.onProgressChanged(id, bytesCurrent, bytesTotal);
                     }
                 }
@@ -251,7 +257,7 @@ class TransferStatusUpdater {
         eventHandler.post(new Runnable() {
             @Override
             public void run() {
-                for (TransferListener l : list) {
+                for (final TransferListener l : list) {
                     l.onError(id, e);
                 }
             }
@@ -302,7 +308,7 @@ class TransferStatusUpdater {
         if (listener == null) {
             throw new IllegalArgumentException("Listener can't be null");
         }
-        List<TransferListener> list = listeners.get(id);
+        final List<TransferListener> list = listeners.get(id);
         if (list == null || list.isEmpty()) {
             return;
         }
@@ -349,7 +355,7 @@ class TransferStatusUpdater {
      * @return a progress listener
      */
     ProgressListener newProgressListener(int id) {
-        TransferRecord transfer = getTransfer(id);
+        final TransferRecord transfer = getTransfer(id);
         if (transfer == null) {
             throw new IllegalArgumentException("transfer " + id + " doesn't exist");
         }

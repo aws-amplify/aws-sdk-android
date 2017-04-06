@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,8 +15,18 @@
 
 package com.amazonaws.services.s3.internal.crypto;
 
-final class MultipartUploadCryptoContext extends MultipartUploadContext {
+import com.amazonaws.AmazonClientException;
+
+class MultipartUploadCryptoContext extends MultipartUploadContext {
     private final ContentCryptoMaterial cekMaterial;
+    /**
+     * Can be used to enforce serial uploads.
+     */
+    private int partNumber;
+    /**
+     * True if a multi-part upload is currently in progress; false otherwise.
+     */
+    private volatile boolean partUploadInProgress;
 
     MultipartUploadCryptoContext(String bucketName, String key,
             ContentCryptoMaterial cekMaterial) {
@@ -38,5 +48,50 @@ final class MultipartUploadCryptoContext extends MultipartUploadContext {
      */
     ContentCryptoMaterial getContentCryptoMaterial() {
         return cekMaterial;
+    }
+
+    /**
+     * Can be used to check the next part number must either be the same (if it
+     * was an retry) or increment by exactly 1 during a serial part uploads.
+     * <p>
+     * As a side effect, the {@link #partUploadInProgress} will be set to true
+     * upon successful completion of this method. Caller of this method is
+     * responsible to call {@link #endPartUpload()} in a finally block once the
+     * respective part-upload is completed (either normally or abruptly).
+     *
+     * @see #endPartUpload()
+     * @throws AmazonClientException if parallel part upload is detected
+     */
+    void beginPartUpload(final int nextPartNumber)
+            throws AmazonClientException {
+        if (nextPartNumber < 1) {
+            throw new IllegalArgumentException("part number must be at least 1");
+        }
+        if (partUploadInProgress) {
+            throw new AmazonClientException(
+                    "Parts are required to be uploaded in series");
+        }
+        synchronized (this) {
+            if (nextPartNumber - partNumber <= 1) {
+                partNumber = nextPartNumber;
+                partUploadInProgress = true;
+            } else {
+                throw new AmazonClientException(
+                        "Parts are required to be uploaded in series (partNumber="
+                                + partNumber + ", nextPartNumber="
+                                + nextPartNumber + ")");
+            }
+        }
+    }
+
+    /**
+     * Used to mark the completion of a part upload before the next. Should be
+     * invoked in a finally block, and must be preceded previously by a call to
+     * {@link #beginPartUpload(int)}.
+     *
+     * @see #beginPartUpload(int)
+     */
+    void endPartUpload() {
+        partUploadInProgress = false;
     }
 }

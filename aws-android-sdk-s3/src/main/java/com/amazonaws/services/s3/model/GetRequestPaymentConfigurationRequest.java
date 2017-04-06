@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -17,12 +17,14 @@ package com.amazonaws.services.s3.model;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+import java.io.Serializable;
+
 /**
  * Request object for fetching the request payment configuration associated with
  * an Amazon S3 bucket.
  */
 public class GetRequestPaymentConfigurationRequest extends
-        AmazonWebServiceRequest {
+        AmazonWebServiceRequest implements Serializable {
 
     /** The name of the Amazon S3 bucket. */
     private String bucketName;

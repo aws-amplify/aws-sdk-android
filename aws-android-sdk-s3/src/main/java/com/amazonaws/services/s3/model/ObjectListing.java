@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -17,9 +17,9 @@ package com.amazonaws.services.s3.model;
 
 import com.amazonaws.services.s3.AmazonS3;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Contains the results of listing the objects in an Amazon S3 bucket. This
  * includes a list of {@link S3ObjectSummary} objects describing the objects
@@ -31,11 +31,9 @@ import java.util.List;
  * @see AmazonS3#listObjects(ListObjectsRequest)
  * @see AmazonS3#listNextBatchOfObjects(ObjectListing)
  */
-public class ObjectListing {
-
-    /**
-     * A list of summary information describing the objects stored in the bucket
-     */
+public class ObjectListing implements Serializable {
+    
+    /** A list of summary information describing the objects stored in the bucket */
     private List<S3ObjectSummary> objectSummaries = new ArrayList<S3ObjectSummary>();
 
     /**

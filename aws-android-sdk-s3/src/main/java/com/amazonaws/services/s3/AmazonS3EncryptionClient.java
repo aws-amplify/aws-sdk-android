@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,10 +20,15 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.auth.AnonymousAWSCredentials;
 import com.amazonaws.internal.StaticCredentialsProvider;
+import com.amazonaws.metrics.RequestMetricCollector;
+import com.amazonaws.regions.Region;
+import com.amazonaws.services.kms.AWSKMSClient;
+import com.amazonaws.services.s3.internal.MultiFileOutputStream;
+import com.amazonaws.services.s3.internal.PartCreationEvent;
 import com.amazonaws.services.s3.internal.S3Direct;
 import com.amazonaws.services.s3.internal.crypto.CryptoModuleDispatcher;
-import com.amazonaws.services.s3.internal.crypto.EncryptionUtils;
 import com.amazonaws.services.s3.internal.crypto.S3CryptoModule;
 import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
 import com.amazonaws.services.s3.model.CompleteMultipartUploadRequest;
@@ -40,30 +45,51 @@ import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.GroupGrantee;
 import com.amazonaws.services.s3.model.InitiateMultipartUploadRequest;
 import com.amazonaws.services.s3.model.InitiateMultipartUploadResult;
+import com.amazonaws.services.s3.model.InstructionFileId;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PartETag;
 import com.amazonaws.services.s3.model.Permission;
+import com.amazonaws.services.s3.model.PutInstructionFileRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectId;
 import com.amazonaws.services.s3.model.StaticEncryptionMaterialsProvider;
+import com.amazonaws.services.s3.model.UploadObjectRequest;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.model.UploadPartResult;
 import com.amazonaws.util.VersionInfoUtils;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Used to perform client-side encryption for storing data securely in S3. Data
- * encryption is done using a one-time randomly generated content encryption key
- * (CEK) per S3 object.
+ * encryption is done using a one-time randomly generated content encryption
+ * key (CEK) per S3 object. 
  * <p>
- * The encryption materials specified in the constructor will be used to protect
- * the CEK which is then stored along side with the S3 object.
+ * The encryption materials specified in the constructor will be used to
+ * protect the CEK which is then stored along side with the S3 object.
  */
-public class AmazonS3EncryptionClient extends AmazonS3Client {
+public class AmazonS3EncryptionClient extends AmazonS3Client implements
+        AmazonS3Encryption {
     public static final String USER_AGENT = AmazonS3EncryptionClient.class.getName()
             + "/" + VersionInfoUtils.getVersion();
     private final S3CryptoModule<?> crypto;
+    private final AWSKMSClient kms;
+    /**
+     * True if the a default KMS client is constructed, which will be shut down
+     * when this instance of S3 encryption client is shutdown.  False otherwise,
+     * which means the users who provided the KMS client would be responsible
+     * to shut down the KMS client. 
+     */
+    private final boolean isKMSClientInternal;
 
     // ///////////////////// Constructors ////////////////
     /**
@@ -380,20 +406,65 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
             EncryptionMaterialsProvider kekMaterialsProvider,
             ClientConfiguration clientConfig,
             CryptoConfiguration cryptoConfig) {
-        super(credentialsProvider, clientConfig);
+        this(credentialsProvider, kekMaterialsProvider, clientConfig,
+                cryptoConfig,
+                null    // request metric collector
+        );
+    }
+    public AmazonS3EncryptionClient(
+            AWSCredentialsProvider credentialsProvider,
+            EncryptionMaterialsProvider kekMaterialsProvider,
+            ClientConfiguration clientConfig,
+            CryptoConfiguration cryptoConfig,
+            RequestMetricCollector requestMetricCollector) {
+        this(null, // KMS client
+            credentialsProvider, kekMaterialsProvider, clientConfig,
+            cryptoConfig, requestMetricCollector);
+    }
+
+    public AmazonS3EncryptionClient(AWSKMSClient kms,
+            AWSCredentialsProvider credentialsProvider,
+            EncryptionMaterialsProvider kekMaterialsProvider,
+            ClientConfiguration clientConfig,
+            CryptoConfiguration cryptoConfig,
+            RequestMetricCollector requestMetricCollector) {
+        super(credentialsProvider, clientConfig, requestMetricCollector);
         assertParameterNotNull(kekMaterialsProvider,
                 "EncryptionMaterialsProvider parameter must not be null.");
         assertParameterNotNull(cryptoConfig,
                 "CryptoConfiguration parameter must not be null.");
-        this.crypto = new CryptoModuleDispatcher(new S3DirectImpl(),
-                credentialsProvider, kekMaterialsProvider,
-                clientConfig, cryptoConfig);
+        this.isKMSClientInternal = kms == null;
+        this.kms = isKMSClientInternal 
+            ? newAWSKMSClient(credentialsProvider, clientConfig, cryptoConfig, 
+                    requestMetricCollector)
+            : kms;
+        this.crypto = new CryptoModuleDispatcher(this.kms, new S3DirectImpl(),
+                credentialsProvider, kekMaterialsProvider, cryptoConfig);
+    }
+    
+    /**
+     * Creates and returns a new instance of AWS KMS client in the case when
+     * an explicit AWS KMS client is not specified.
+     */
+    private AWSKMSClient newAWSKMSClient(
+            AWSCredentialsProvider credentialsProvider,
+            ClientConfiguration clientConfig,
+            CryptoConfiguration cryptoConfig,
+            RequestMetricCollector requestMetricCollector
+    ) {
+        final AWSKMSClient kmsClient = new AWSKMSClient(
+            credentialsProvider, clientConfig, requestMetricCollector);
+        final Region kmsRegion = cryptoConfig.getAwsKmsRegion();
+        if (kmsRegion != null)
+            kmsClient.setRegion(kmsRegion);
+        return kmsClient;
     }
 
     private void assertParameterNotNull(Object parameterValue,
             String errorMessage) {
-        if (parameterValue == null)
+        if (parameterValue == null) {
             throw new IllegalArgumentException(errorMessage);
+        }
     }
 
     /**
@@ -409,7 +480,7 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
      */
     @Override
     public PutObjectResult putObject(PutObjectRequest req) {
-        return crypto.putObjectSecurely(req);
+        return crypto.putObjectSecurely(req.clone());
     }
 
     @Override
@@ -428,8 +499,10 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
         // Delete the object
         super.deleteObject(req);
         // If it exists, delete the instruction file.
-        DeleteObjectRequest instructionDeleteRequest = EncryptionUtils
-                .createInstructionDeleteObjectRequest(req);
+        InstructionFileId ifid = new S3ObjectId(req.getBucketName(), req.getKey()).instructionFileId();
+
+        DeleteObjectRequest instructionDeleteRequest = (DeleteObjectRequest) req.clone();
+        instructionDeleteRequest.withBucketName(ifid.getBucket()).withKey(ifid.getKey());
         super.deleteObject(instructionDeleteRequest);
     }
 
@@ -453,7 +526,16 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
     @Override
     public InitiateMultipartUploadResult initiateMultipartUpload(
             InitiateMultipartUploadRequest req) {
-        return crypto.initiateMultipartUploadSecurely(req);
+        boolean isCreateEncryptionMaterial = true;
+        if (req instanceof EncryptedInitiateMultipartUploadRequest) {
+            EncryptedInitiateMultipartUploadRequest cryptoReq = 
+                    (EncryptedInitiateMultipartUploadRequest) req;
+            isCreateEncryptionMaterial = cryptoReq.isCreateEncryptionMaterial();
+        }
+        return isCreateEncryptionMaterial
+             ? crypto.initiateMultipartUploadSecurely(req)
+             : super.initiateMultipartUpload(req)
+             ;
     }
 
     /**
@@ -479,6 +561,36 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
     @Override
     public void abortMultipartUpload(AbortMultipartUploadRequest req) {
         crypto.abortMultipartUploadSecurely(req);
+    }
+
+    /**
+     * Creates a new crypto instruction file by re-encrypting the CEK of an
+     * existing encrypted S3 object with a new encryption material identifiable
+     * via a new set of material description.
+     *<p> 
+     * User of this method is responsible for explicitly deleting/updating the
+     * instruction file so created should the corresponding S3 object is
+     * deleted/created.
+     * 
+     * @return the result of the put (instruction file) operation.
+     */
+    public PutObjectResult putInstructionFile(PutInstructionFileRequest req) {
+        return crypto.putInstructionFileSecurely(req);
+    }
+
+    /**
+     * {@inheritDoc}
+     * <p>
+     * If the a default internal KMS client has been constructed, it will also be
+     * shut down by calling this method.
+     * Otherwise, users who provided the KMS client would be responsible to
+     * shut down the KMS client extrinsic to this method.
+     */
+    @Override
+    public void shutdown() {
+        super.shutdown();
+        if (isKMSClientInternal)
+            kms.shutdown();
     }
 
     // /////////////////// Access to the methods in the super class //////////
@@ -530,5 +642,121 @@ public class AmazonS3EncryptionClient extends AmazonS3Client {
         public void abortMultipartUpload(AbortMultipartUploadRequest req) {
             AmazonS3EncryptionClient.super.abortMultipartUpload(req);
         }
+    }
+
+    /**
+     * Used to encrypt data first to disk with pipelined concurrent multi-part
+     * uploads to S3. This method enables significant speed-up of encrypting and
+     * uploading large payloads to Amazon S3 via pipelining and parallel uploads
+     * by consuming temporary disk space.
+     * <p>
+     * There are many ways you can customize the behavior of this method,
+     * including
+     * <ul>
+     * <li>the configuration of your own custom thread pool</li>
+     * <li>the part size of each multi-part upload request; By default, a
+     * temporary ciphertext file is generated per part and gets uploaded
+     * immediately to S3</li>
+     * <li>the maximum temporary disk space that must not be exceeded by
+     * execution of this request; By default, the encryption will block upon
+     * hitting the limit and will only resume when the in-flight uploads catch
+     * up by releasing the temporary disk space upon successful uploads of the
+     * completed parts</li>
+     * <li>the configuration of your own {@link MultiFileOutputStream} for
+     * custom pipeline behavior</li>
+     * <li>the configuration of your own {@link UploadObjectObserver} for custom
+     * multi-part upload behavior</li>
+     * </ul>
+     * <p>
+     * A request is handled with the following life cycle, calling the necessary
+     * Service Provider Interface:
+     * <ol>
+     * <li>A thread pool is constructed (or retrieved from the request) for the
+     * execution of concurrent upload tasks to be submitted by the
+     * <code>UploadObjectObserver</code></li>
+     * <li>An {@link UploadObjectObserver} is constructed (or retrieved from the
+     * request) for execution of concurrent uploads to S3</li>
+     * <li>Initialize the <code>UploadObjectObserver</code></li>
+     * <li>Initialize a multi-part upload request to S3 by calling
+     * {@link UploadObjectObserver#onUploadInitiation(UploadObjectRequest)}</li>
+     * <li>A {@link MultiFileOutputStream} is constructed (or retrieved from the
+     * request) which serves as the pipeline for incremental (but serial)
+     * encryption to disk with concurrent multipart uploads to S3 whenever the
+     * parts on the disk are ready</li>
+     * <li>Initialize the <code>MultiFileOutputStream</code></li>
+     * <li>Kicks off the pipeline for incremental encryption to disk with
+     * pipelined concurrent multi-part uploads to S3</li>
+     * <li>For every part encrypted into a temporary file on disk, it is
+     * uploaded by calling
+     * {@link UploadObjectObserver#onPartCreate(PartCreationEvent)}</li>
+     * <li>Finally, clean up and complete the multi-part upload by calling
+     * {@link UploadObjectObserver#onCompletion(List)}.</li>
+     * </ol>
+     * 
+     * @return the result of the completed muti-part uploads
+     * 
+     * @throws IOException
+     *             if the encryption to disk failed
+     * @throws InterruptedException
+     *             if the current thread was interrupted while waiting
+     * @throws ExecutionException
+     *             if the concurrent uploads threw an exception
+     */
+    public CompleteMultipartUploadResult uploadObject(final UploadObjectRequest req)
+            throws IOException, InterruptedException, ExecutionException {
+        // Set up the pipeline for concurrent encrypt and upload
+        // Set up a thread pool for this pipeline
+        ExecutorService es = req.getExecutorService();
+        final boolean defaultExecutorService = es == null;
+        if (es == null)
+            es = Executors.newFixedThreadPool(clientConfiguration.getMaxConnections());
+        UploadObjectObserver observer = req.getUploadObjectObserver();
+        if (observer == null)
+            observer = new UploadObjectObserver();
+        // initialize the observer
+        observer.init(req, new S3DirectImpl(), this, es);
+        // Initiate upload
+        final String uploadId = observer.onUploadInitiation(req);
+        final List<PartETag> partETags = new ArrayList<PartETag>();
+        MultiFileOutputStream mfos = req.getMultiFileOutputStream();
+        if (mfos == null)
+            mfos = new MultiFileOutputStream();
+        try {
+            // initialize the multi-file output stream
+            mfos.init(observer, req.getPartSize(), req.getDiskLimit());
+            // Kicks off the encryption-upload pipeline;
+            // Note mfos is automatically closed upon method completion.
+            crypto.putLocalObjectSecurely(req, uploadId, mfos);
+            // block till all part have been uploaded
+            for (Future<UploadPartResult> future: observer.getFutures()) {
+                UploadPartResult partResult = future.get();
+                partETags.add(new PartETag(partResult.getPartNumber(), partResult.getETag()));
+            }
+        } catch(IOException ex) {
+            throw onAbort(observer, ex);
+        } catch(InterruptedException ex) {
+            throw onAbort(observer, ex);
+        } catch(ExecutionException ex) {
+            throw onAbort(observer, ex);
+        } catch(RuntimeException ex) {
+            throw onAbort(observer, ex);
+        } catch(Error ex) {
+            throw onAbort(observer, ex);
+        } finally {
+            if (defaultExecutorService)
+                es.shutdownNow();   // shut down the locally created thread pool
+            mfos.cleanup();       // delete left-over temp files
+        }
+        // Complete upload
+        return observer.onCompletion(partETags);
+    }
+
+    /**
+     * Convenient method to notifies the observer to abort the multi-part
+     * upload, and returns the original exception.
+     */
+    private <T extends Throwable> T onAbort(UploadObjectObserver observer, T t) {
+        observer.onAbort();
+        return t;
     }
 }

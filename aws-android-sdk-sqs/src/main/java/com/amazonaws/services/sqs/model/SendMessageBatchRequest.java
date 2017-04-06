@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,37 +22,41 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Delivers up to ten messages to the specified queue. This is a batch version
- * of <a>SendMessage</a>. The result of the send action on each message is
- * reported individually in the response. The maximum allowed individual message
- * size is 256 KB (262,144 bytes).
+ * of <code> <a>SendMessage</a> </code>. For a FIFO queue, multiple messages
+ * within a single batch are enqueued in the order they are sent.
  * </p>
  * <p>
- * The maximum total payload size (i.e., the sum of all a batch's individual
- * message lengths) is also 256 KB (262,144 bytes).
- * </p>
- * <p>
- * If the <code>DelaySeconds</code> parameter is not specified for an entry, the
- * default for the queue is used.
- * </p>
- * <important>
- * <p>
- * The following list shows the characters (in Unicode) that are allowed in your
- * message, according to the W3C XML specification. For more information, go to
- * <a href="http://www.faqs.org/rfcs/rfc1321.html">http://www.faqs.org/rfcs/
- * rfc1321.html</a>. If you send any characters that are not included in the
- * list, your request will be rejected.
- * </p>
- * <p>
- * #x9 | #xA | #xD | [#x20 to #xD7FF] | [#xE000 to #xFFFD] | [#x10000 to
- * #x10FFFF]
- * </p>
- * </important> <important>
- * <p>
+ * The result of sending each message is reported individually in the response.
  * Because the batch request can result in a combination of successful and
  * unsuccessful actions, you should check for batch errors even when the call
  * returns an HTTP status code of 200.
  * </p>
- * </important> <note>
+ * <p>
+ * The maximum allowed individual message size and the maximum total payload
+ * size (the sum of the individual lengths of all of the batched messages) are
+ * both 256 KB (262,144 bytes).
+ * </p>
+ * <important>
+ * <p>
+ * The following list shows the characters (in Unicode) that are allowed in your
+ * message, according to the W3C XML specification:
+ * </p>
+ * <p>
+ * <code>#x9</code> | <code>#xA</code> | <code>#xD</code> | [<code>#x20</code>
+ * to <code>#xD7FF</code>] | [<code>#xE000</code> to <code>#xFFFD</code>] | [
+ * <code>#x10000</code> to <code>#x10FFFF</code>]
+ * </p>
+ * <p>
+ * For more information, see <a
+ * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>. If you send any
+ * characters that aren't included in this list, your request will be rejected.
+ * </p>
+ * </important>
+ * <p>
+ * If you don't specify the <code>DelaySeconds</code> parameter for an entry,
+ * Amazon SQS uses the default for the queue.
+ * </p>
+ * <note>
  * <p>
  * Some API actions take lists of parameters. These lists are specified using
  * the <code>param.n</code> notation. Values of <code>n</code> are integers
@@ -61,10 +65,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </note>
  * <p>
- * <code><![CDATA[&amp;Attribute.1=this]]></code>
+ * <code>&amp;amp;Attribute.1=this</code>
  * </p>
  * <p>
- * <code><![CDATA[&amp;Attribute.2=that]]></code>
+ * <code>&amp;amp;Attribute.2=that</code>
  * </p>
  */
 public class SendMessageBatchRequest extends AmazonWebServiceRequest implements Serializable {
