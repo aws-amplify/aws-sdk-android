@@ -1,23 +1,21 @@
-/*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+/**
+ * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at:
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
  *
- *    http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
- * OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and
- * limitations under the License.
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.mobileconnectors.pinpoint.internal.core;
 
-import android.app.Activity;
-import android.content.Context;
-
+import java.util.Locale;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AnonymousAWSCredentials;
@@ -37,45 +35,50 @@ import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.Notificati
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.pinpoint.AmazonPinpointClient;
 import com.amazonaws.services.pinpointanalytics.AmazonPinpointAnalyticsClient;
-
-import java.util.Locale;
+import android.app.Activity;
+import android.content.Context;
 
 public class MockPinpointContext extends PinpointContext {
 
     private final AndroidPreferencesConfiguration configuration;
     private final PinpointConfiguration pinpointConfiguration;
-    private String uniqueId;
     private final SDKInfo sdkInfo;
     private final MockSystem system;
     private final AmazonPinpointAnalyticsClient analyticsServiceClient;
     private final AmazonPinpointClient pinpointServiceClient;
     private final Context applicationContext;
+    private final String networkType;
+    private String uniqueId;
     private AnalyticsClient analyticsClient;
     private TargetingClient targetingClient;
     private SessionClient sessionClient;
     private NotificationClient notificationClient;
-
-    private final String networkType;
 
     public MockPinpointContext(final SDKInfo sdkInfo, final String id) {
         this(sdkInfo, id, true, null, true, true, true, "TestNetwork");
     }
 
     public MockPinpointContext(final SDKInfo sdkInfo, final String id,
-                               RequestHandler2 additionalHandler) {
-        this(sdkInfo, id, true, additionalHandler, true, true, true, "TestNetwork");
+                                      RequestHandler2 additionalHandler) {
+        this(sdkInfo, id, true, additionalHandler, true, true, true,
+                    "TestNetwork");
     }
 
-    public MockPinpointContext(final SDKInfo sdkInfo, final String id, boolean allowWANDelivery) {
-        this(sdkInfo, id, allowWANDelivery, null, true, true, true, "TestNetwork");
+    public MockPinpointContext(final SDKInfo sdkInfo, final String id,
+                                      boolean allowWANDelivery) {
+        this(sdkInfo, id, allowWANDelivery, null, true, true, true,
+                    "TestNetwork");
     }
 
-    public MockPinpointContext(final SDKInfo sdkInfo, final String id, boolean allowWANDelivery,
-                               RequestHandler2 additionalHandler, boolean initConnectivity, boolean initWifi,
-                               boolean initWAN, String networkType) {
+    public MockPinpointContext(final SDKInfo sdkInfo, final String id,
+                                      boolean allowWANDelivery,
+                                      RequestHandler2 additionalHandler,
+                                      boolean initConnectivity,
+                                      boolean initWifi,
+                                      boolean initWAN, String networkType) {
 
         final SharedPrefsUniqueIdService uniqueIdService = new SharedPrefsUniqueIdService(id,
-                new Activity());
+                                                                                                 new Activity());
         this.uniqueId = uniqueIdService.getUniqueId(this);
 
         this.sdkInfo = sdkInfo;
@@ -95,7 +98,11 @@ public class MockPinpointContext extends PinpointContext {
             }
         };
 
-        this.pinpointConfiguration = new PinpointConfiguration(new ContextWithPermissions(new Activity().getApplicationContext()), getUniqueId(), Regions.US_EAST_1, provider);
+        this.pinpointConfiguration = new PinpointConfiguration(new ContextWithPermissions(new Activity()
+                                                                                                  .getApplicationContext()),
+                                                                      getUniqueId(),
+                                                                      Regions.US_EAST_1,
+                                                                      provider);
         this.system = new MockSystem(id);
         this.system.getPreferences().putString("UniqueId", id);
         this.setConnectivity(initConnectivity);
@@ -112,7 +119,6 @@ public class MockPinpointContext extends PinpointContext {
         this.pinpointServiceClient = targetingClient;
 
         this.configuration = AndroidPreferencesConfiguration.newInstance(this);
-
 
         this.notificationClient = new NotificationClient(this);
     }

@@ -35,7 +35,7 @@ import java.util.List;
  * This class is instantiated instead of {@link AWSRequestMetricsFullSupport}
  * when request metric collection is not required during a particular service
  * request/response cycle.
- * 
+ *
  * @deprecated metrics is deprecated
  */
 @Deprecated
@@ -46,23 +46,38 @@ public class AWSRequestMetrics {
      * specific packages.
      */
     public static enum Field implements RequestMetricType {
+
+        /** AWSErrorCode. */
         AWSErrorCode,
+
+        /** AWSRequestID. */
         AWSRequestID,
+
+        /** BytesProcessed. */
         BytesProcessed,
+
         /**
          * Total number of milliseconds taken for a request/response including
          * the time taken to execute the request handlers, round trip to AWS,
          * and the time taken to execute the response handlers.
          */
         ClientExecuteTime,
+
+        /** CredentialsRequestTime. */
         CredentialsRequestTime,
+
+        /** Exception. */
         Exception,
         /**
          * Number of milliseconds taken for a request/response round trip to
          * AWS.
          */
         HttpRequestTime,
+
+        /** RedirectLocation. */
         RedirectLocation,
+
+        /** RequestMarshallTime. */
         RequestMarshallTime,
         /**
          * Number of milliseconds taken to sign a request.
@@ -123,15 +138,21 @@ public class AWSRequestMetrics {
          * /apidocs/org/apache/http/pool/PoolStats.html
          */
         HttpClientPoolPendingCount,
+
+        /** RetryPauseTime. */
         RetryPauseTime,
         // S3DownloadThroughput, // migrated to S3RequestMetric in the S3 clint
         // library
         // S3UploadThroughput, // migrated to S3RequestMetric in the S3 clint
         // library
+        /** ServiceEndpoint. */
         ServiceEndpoint,
+
+        /** ServiceName. */
         ServiceName,
-        StatusCode, // The http status code
-        ;
+
+        /** StatusCode. */
+        StatusCode; // The http status code
     }
 
     protected final TimingInfo timingInfo;
@@ -156,50 +177,95 @@ public class AWSRequestMetrics {
     }
 
     /**
-     * Returns true if this metrics is enabled; false otherwise. Returns false
+     * @return true if this metrics is enabled; false otherwise. Returns false
      * by default.
      */
     public boolean isEnabled() {
         return false;
     }
 
+    /**
+     * @param eventName the event name to start.
+     */
     public void startEvent(String eventName) {
     }
 
+    /**
+     * @param f the metric type.
+     */
     public void startEvent(MetricType f) {
     }
 
+    /**
+     * @param eventName the event name.
+     */
     public void endEvent(String eventName) {
     }
 
+    /**
+     * @param f the metric type.
+     */
     public void endEvent(MetricType f) {
     }
 
+    /**
+     * @param event the event.
+     */
     public void incrementCounter(String event) {
     }
 
+    /**
+     * @param f the metric type.
+     */
     public void incrementCounter(MetricType f) {
     }
 
+    /**
+     * @param counterName the counter name.
+     * @param count the count.
+     */
     public void setCounter(String counterName, long count) {
     }
 
+    /**
+     * @param f the metric type.
+     * @param count the count.
+     */
     public void setCounter(MetricType f, long count) {
     }
 
+    /**
+     * @param propertyName the property name.
+     * @param value the value.
+     */
     public void addProperty(String propertyName, Object value) {
     }
 
+    /**
+     * @param f the metric type.
+     * @param value the value.
+     */
     public void addProperty(MetricType f, Object value) {
     }
 
+    /**
+     * log.
+     */
     public void log() {
     }
 
+    /**
+     * @param propertyName the property name.
+     * @return list of property objects.
+     */
     public List<Object> getProperty(String propertyName) {
         return Collections.emptyList();
     }
 
+    /**
+     * @param f the metric type.
+     * @return the list of property objects.
+     */
     public List<Object> getProperty(MetricType f) {
         return Collections.emptyList();
     }

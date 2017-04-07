@@ -30,7 +30,7 @@ public abstract class RequestMetricCollector {
      */
     public static interface Factory {
         /**
-         * Returns an instance of the collector; or null if if failed to create
+         * @return an instance of the collector; or null if if failed to create
          * one.
          */
         public RequestMetricCollector getRequestMetricCollector();
@@ -38,11 +38,15 @@ public abstract class RequestMetricCollector {
 
     /**
      * Used to collect the metric at the end of a request/response cycle.
-     *
+     * @param request the request.
+     * @param response the response.
      * @see Request#getAWSRequestMetrics()
      */
     public abstract void collectMetrics(Request<?> request, Response<?> response);
 
+    /**
+     * @return true if this is enabled.
+     */
     public boolean isEnabled() {
         return true;
     }

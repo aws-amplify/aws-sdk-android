@@ -22,7 +22,11 @@ package com.amazonaws.mobileconnectors.cognitoidentityprovider.tokens;
  */
 public class CognitoRefreshToken extends CognitoUserToken {
 
-    // Constructs a Cognito refresh token.
+    /**
+     * Constructor.
+     *
+     * @param token the refresh token.
+     */
     public CognitoRefreshToken(String token) {
         super(token);
     }
@@ -32,7 +36,8 @@ public class CognitoRefreshToken extends CognitoUserToken {
      *
      * @return refresh token as a string.
      */
-    public String getToken(){
+    @Override
+    public String getToken() {
         return super.getToken();
     }
 }

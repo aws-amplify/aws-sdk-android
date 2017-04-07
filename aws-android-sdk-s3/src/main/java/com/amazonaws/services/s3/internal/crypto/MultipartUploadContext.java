@@ -45,6 +45,10 @@ public abstract class MultipartUploadContext {
         return key;
     }
 
+    /**
+     * Returns true if the final part has been seen.
+     * @return true if the final part has been seen.
+     */
     public final boolean hasFinalPartBeenSeen() {
         return hasFinalPartBeenSeen;
     }

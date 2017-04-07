@@ -22,6 +22,7 @@ final class MultipartUploadCbcContext extends MultipartUploadCryptoContext {
         super(bucketName, key, cekMaterial);
     }
 
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setNextInitializationVector(byte[] nextIV) {
         this.nextIV = nextIV;
     }

@@ -24,10 +24,21 @@ public class ApiClientException extends AmazonServiceException {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Constructor.
+     *
+     * @param errorMessage the error message.
+     */
     public ApiClientException(String errorMessage) {
         super(errorMessage);
     }
 
+    /**
+     * Constructor.
+     *
+     * @param errorMessage the error message.
+     * @param cause the root cause.
+     */
     public ApiClientException(String errorMessage, Exception cause) {
         super(errorMessage, cause);
     }

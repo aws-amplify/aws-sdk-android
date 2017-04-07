@@ -50,7 +50,7 @@ class CipherLite {
     /**
      * A no-op implementation.
      */
-    static final CipherLite Null = new CipherLite() {
+    static final CipherLite NULL = new CipherLite() {
         @Override
         CipherLite createAuxiliary(long startingBytePos) {
             return this;

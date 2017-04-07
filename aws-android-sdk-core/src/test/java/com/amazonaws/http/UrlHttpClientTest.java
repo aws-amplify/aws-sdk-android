@@ -64,8 +64,6 @@ public class UrlHttpClientTest {
     public void testBasicCurlBuilder() throws URISyntaxException, IOException {
         conf.setCurlLogging(true);
         final HttpRequest request = new HttpRequest("POST", new URI("https://www.test.com"));
-        client.execute(request);
-
         assertEquals(1, client.getLogList().size());
         assertEquals("curl -X POST https://www.test.com", client.getLogList().get(0));
     }

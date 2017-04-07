@@ -25,11 +25,16 @@ import java.util.Calendar;
  * A marshaller that marshals Java {@code Calendar} objects into DynamoDB
  * Strings (in ISO 8601 format, ie "2014-01-01T00:00:00Z").
  */
-public class CalendarToStringMarshaller implements StringAttributeMarshaller {
+public final class CalendarToStringMarshaller implements StringAttributeMarshaller {
 
     private static final CalendarToStringMarshaller INSTANCE =
             new CalendarToStringMarshaller();
 
+    /**
+     * Return a singleton instance.
+     *
+     * @return instance of {@link CalendarToStringMarshaller}
+     */
     public static CalendarToStringMarshaller instance() {
         return INSTANCE;
     }

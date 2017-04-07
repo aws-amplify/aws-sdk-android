@@ -20,11 +20,16 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 /**
  * An unmarshaller that unmarshals DynamoDB Numbers into Java {@code Double}s.
  */
-public class DoubleUnmarshaller extends NUnmarshaller {
+public final class DoubleUnmarshaller extends NUnmarshaller {
 
     private static final DoubleUnmarshaller INSTANCE =
             new DoubleUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link DoubleUnmarshaller}
+     */
     public static DoubleUnmarshaller instance() {
         return INSTANCE;
     }

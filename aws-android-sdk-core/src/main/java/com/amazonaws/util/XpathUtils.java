@@ -47,6 +47,14 @@ public class XpathUtils {
 
     private static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
+    /**
+     * InputStream to Document.
+     * @param is the input stream.
+     * @return the Document.
+     * @throws SAXException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     */
     public static Document documentFrom(InputStream is)
             throws SAXException, IOException, ParserConfigurationException {
         is = new NamespaceRemovingInputStream(is);
@@ -56,11 +64,27 @@ public class XpathUtils {
         return doc;
     }
 
+    /**
+     * Xml string to Document.
+     * @param xml the xml string.
+     * @return the Document.
+     * @throws SAXException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     */
     public static Document documentFrom(String xml) throws SAXException,
             IOException, ParserConfigurationException {
         return documentFrom(new ByteArrayInputStream(xml.getBytes(StringUtils.UTF8)));
     }
 
+    /**
+     * URL to Document,
+     * @param url the URL.
+     * @return the Document.
+     * @throws SAXException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     */
     public static Document documentFrom(URL url) throws SAXException,
             IOException, ParserConfigurationException {
         return documentFrom(url.openStream());
@@ -257,7 +281,7 @@ public class XpathUtils {
         if (isEmpty(node))
             return null;
 
-        if (!expression.equals(".")) {
+        if (!".".equals(expression)) {
             /*
              * If the expression being evaluated doesn't select a node, we want
              * to return null to distinguish between cases where a node isn't
@@ -275,6 +299,12 @@ public class XpathUtils {
         return s.trim();
     }
 
+    /**
+     * @param nodeName the node name.
+     * @param node the node.
+     * @return the Node.
+     * @throws XPathExpressionException
+     */
     public static Node asNode(String nodeName, Node node)
             throws XPathExpressionException {
         if (node == null)
@@ -283,7 +313,7 @@ public class XpathUtils {
     }
 
     /**
-     * Returns true if the specified string is null or empty.
+     * @return true if the specified string is null or empty.
      *
      * @param s The string to test.
      * @return True if the specified string is null or empty.
@@ -291,14 +321,14 @@ public class XpathUtils {
     private static boolean isEmptyString(String s) {
         if (s == null)
             return true;
-        if (s.trim().equals(""))
+        if ("".equals(s.trim()))
             return true;
 
         return false;
     }
 
     /**
-     * Returns a new instance of XPath, which is not thread safe and not
+     * @return a new instance of XPath, which is not thread safe and not
      * reentrant.
      */
     public static XPath xpath() {

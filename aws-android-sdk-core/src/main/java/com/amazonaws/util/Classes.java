@@ -26,10 +26,11 @@ import java.util.jar.JarFile;
 /**
  * Classes related utilities.
  */
+@SuppressWarnings("checkstyle:nowhitespacebefore")
 public enum Classes {
     ;
     /**
-     * Returns the class of the immediate subclass of the given parent class for
+     * @return the class of the immediate subclass of the given parent class for
      * the given object instance; or null if such immediate subclass cannot be
      * uniquely identified for the given object instance.
      *
@@ -59,7 +60,8 @@ public enum Classes {
     }
 
     /**
-     * Returns the jar file from which the given class is loaded; or null if no
+     * @param klass class.
+     * @return the jar file from which the given class is loaded; or null if no
      * such jar file can be located.
      */
     public static JarFile jarFileOf(Class<?> klass) {

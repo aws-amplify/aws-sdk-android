@@ -5,7 +5,7 @@
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,12 +15,12 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.internal.core.system;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Settings;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 public class AndroidConnectivity {
     private static final Log log =
@@ -56,11 +56,13 @@ public class AndroidConnectivity {
     // and is properly guarded from running on older devices.
     private void determineAvailability() {
         ConnectivityManager cm = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
+                                                               .getSystemService(Context.CONNECTIVITY_SERVICE);
         inAirplaneMode = Settings.System.getInt(context.getContentResolver(),
-                Settings.System.AIRPLANE_MODE_ON, 0) != 0;
+                                                       Settings.System.AIRPLANE_MODE_ON,
+                                                       0) != 0;
         log.info("Airplane mode: " + inAirplaneMode);
-        final NetworkInfo networkInfo = cm != null ? cm.getActiveNetworkInfo() : null;
+        final NetworkInfo networkInfo =
+                cm != null ? cm.getActiveNetworkInfo() : null;
         int networkType = 0;
         // default state
         hasWifi = false;
@@ -73,12 +75,16 @@ public class AndroidConnectivity {
                 networkType = networkInfo.getType();
 
                 hasWifi = networkType == ConnectivityManager.TYPE_WIFI ||
-                        networkType == ConnectivityManager.TYPE_WIMAX;
+                                  networkType == ConnectivityManager.TYPE_WIMAX;
                 hasMobile = networkType == ConnectivityManager.TYPE_MOBILE ||
-                        networkType == ConnectivityManager.TYPE_MOBILE_DUN ||
-                        networkType == ConnectivityManager.TYPE_MOBILE_HIPRI ||
-                        networkType == ConnectivityManager.TYPE_MOBILE_MMS ||
-                        networkType == ConnectivityManager.TYPE_MOBILE_SUPL;
+                                    networkType ==
+                                            ConnectivityManager.TYPE_MOBILE_DUN ||
+                                    networkType ==
+                                            ConnectivityManager.TYPE_MOBILE_HIPRI ||
+                                    networkType ==
+                                            ConnectivityManager.TYPE_MOBILE_MMS ||
+                                    networkType ==
+                                            ConnectivityManager.TYPE_MOBILE_SUPL;
             } else {
                 // if neither connected or connecting then hasMobile defaults
                 // need to be changed to false
@@ -86,7 +92,9 @@ public class AndroidConnectivity {
             }
         }
         log.info(String.format("Device Connectivity (%s)", hasWifi ? "On Wifi"
-                : (hasMobile ? "On Mobile" : "No network connectivity")));
+                                                                   : (hasMobile
+                                                                              ? "On Mobile"
+                                                                              : "No network connectivity")));
     }
 
 }

@@ -28,6 +28,8 @@ import java.util.Date;
 
 public class CognitoAccessToken extends CognitoUserToken {
 
+    private static final int SECS = 1000;
+
     /**
      * Create a new access token.
      *
@@ -40,7 +42,7 @@ public class CognitoAccessToken extends CognitoUserToken {
     /**
      * Returns the access token formatted as JWT.
      *
-     * @return
+     * @return JWT as a {@link String}.
      */
     public String getJWTToken() {
         return super.getToken();
@@ -53,14 +55,14 @@ public class CognitoAccessToken extends CognitoUserToken {
      */
     public Date getExpiration() {
         try {
-            String claim = CognitoJWTParser.getClaim(super.getToken(), "exp");
+            final String claim = CognitoJWTParser.getClaim(super.getToken(), "exp");
             if (claim == null) {
                 return null;
             }
-            long epocTimeSec = Long.parseLong(claim);
-            long epocTimeMilliSec = epocTimeSec*1000;
+            final long epocTimeSec = Long.parseLong(claim);
+            final long epocTimeMilliSec = epocTimeSec * SECS;
             return new Date(epocTimeMilliSec);
-        } catch(Exception e) {
+        } catch (final Exception e) {
             throw new CognitoInternalErrorException(e.getMessage());
         }
     }

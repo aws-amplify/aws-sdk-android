@@ -241,6 +241,10 @@ class TransferTable {
         onUpgrade(database, 1, version);
     }
 
+    private static final int TABLE_VERSION_2 = 2;
+    private static final int TABLE_VERSION_3 = 3;
+    private static final int TABLE_VERSION_4 = 4;
+
     /**
      * Upgrades the database.
      *
@@ -251,13 +255,13 @@ class TransferTable {
     public static void onUpgrade(SQLiteDatabase database, int oldVersion,
             int newVersion) {
 
-        if (oldVersion < 2 && newVersion >= 2) {
+        if (oldVersion < TABLE_VERSION_2 && newVersion >= TABLE_VERSION_2) {
             addVersion2Columns(database);
         }
-        if (oldVersion < 3 && newVersion >= 3) {
+        if (oldVersion < TABLE_VERSION_3 && newVersion >= TABLE_VERSION_3) {
             addVersion3Columns(database);
         }
-        if (oldVersion < 4 && newVersion >= 4) {
+        if (oldVersion < TABLE_VERSION_4 && newVersion >= TABLE_VERSION_4) {
             addVersion4Columns(database);
         }
     }
@@ -266,15 +270,15 @@ class TransferTable {
      * Adds columns that were introduced in version 2 to the database
      */
     private static void addVersion2Columns(SQLiteDatabase database) {
-        String addUserMetadata = "ALTER TABLE " + TABLE_TRANSFER +
+        final String addUserMetadata = "ALTER TABLE " + TABLE_TRANSFER +
                 " ADD COLUMN " + COLUMN_USER_METADATA + " text;";
-        String addExpirationTimeRuleId = "ALTER TABLE " + TABLE_TRANSFER +
+        final String addExpirationTimeRuleId = "ALTER TABLE " + TABLE_TRANSFER +
                 " ADD COLUMN " + COLUMN_EXPIRATION_TIME_RULE_ID + " text;";
-        String addHttpExpires = "ALTER TABLE " + TABLE_TRANSFER +
+        final String addHttpExpires = "ALTER TABLE " + TABLE_TRANSFER +
                 " ADD COLUMN " + COLUMN_HTTP_EXPIRES_DATE + " text;";
-        String addSSEAlgorithm = "ALTER TABLE " + TABLE_TRANSFER +
+        final String addSSEAlgorithm = "ALTER TABLE " + TABLE_TRANSFER +
                 " ADD COLUMN " + COLUMN_SSE_ALGORITHM + " text;";
-        String addContentMD5 = "ALTER TABLE " + TABLE_TRANSFER +
+        final String addContentMD5 = "ALTER TABLE " + TABLE_TRANSFER +
                 " ADD COLUMN " + COLUMN_CONTENT_MD5 + " text;";
         database.execSQL(addUserMetadata);
         database.execSQL(addExpirationTimeRuleId);
@@ -287,7 +291,7 @@ class TransferTable {
      * Adds columns that were introduced in version 3 to the database
      */
     private static void addVersion3Columns(SQLiteDatabase database) {
-        String addKMSKey = "ALTER TABLE " + TABLE_TRANSFER +
+        final String addKMSKey = "ALTER TABLE " + TABLE_TRANSFER +
                 " ADD COLUMN " + COLUMN_SSE_KMS_KEY + " text;";
         database.execSQL(addKMSKey);
     }
@@ -296,7 +300,7 @@ class TransferTable {
      * Adds columns that were introduced in version 3 to the database
      */
     private static void addVersion4Columns(SQLiteDatabase database) {
-        String addCannedAcl = "ALTER TABLE " + TABLE_TRANSFER +
+        final String addCannedAcl = "ALTER TABLE " + TABLE_TRANSFER +
                 " ADD COLUMN " + COLUMN_CANNED_ACL + " text;";
         database.execSQL(addCannedAcl);
     }

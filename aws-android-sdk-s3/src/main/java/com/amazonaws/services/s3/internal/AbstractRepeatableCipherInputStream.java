@@ -41,6 +41,8 @@ import java.io.InputStream;
  * encryption state of a {@code CipherInputStream} to an arbitrary point. If you
  * call {@code mark} after calling {@code read} or {@code skip}, it will throw
  * an {@code UnsupportedOperationException}.
+ *
+ * @param <T> The input stream.
  */
 public abstract class AbstractRepeatableCipherInputStream<T>
         extends SdkFilterInputStream {
@@ -121,6 +123,7 @@ public abstract class AbstractRepeatableCipherInputStream<T>
         return super.skip(n);
     }
 
+    @SuppressWarnings("checkstyle:hiddenfield")
     protected abstract FilterInputStream createCipherInputStream(
             InputStream unencryptedDataStream, T cipherFactory);
 }

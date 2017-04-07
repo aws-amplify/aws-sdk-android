@@ -24,6 +24,10 @@ public final class MetricsTagPredicate extends MetricsFilterPredicate {
 
     private final Tag tag;
 
+    /**
+     * Constructor.
+     * @param tag the tag used to evaluate a metrics filter.
+     */
     public MetricsTagPredicate(Tag tag) {
         this.tag = tag;
     }

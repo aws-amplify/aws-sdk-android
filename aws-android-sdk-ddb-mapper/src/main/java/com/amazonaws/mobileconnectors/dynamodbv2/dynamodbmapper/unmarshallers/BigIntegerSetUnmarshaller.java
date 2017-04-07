@@ -25,11 +25,16 @@ import java.util.Set;
  * An unmarshaller that unmarshals DynamoDB NumberSets into sets of Java
  * {@code BigInteger}s.
  */
-public class BigIntegerSetUnmarshaller extends NSUnmarshaller {
+public final class BigIntegerSetUnmarshaller extends NSUnmarshaller {
 
     private static final BigIntegerSetUnmarshaller INSTANCE =
             new BigIntegerSetUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link BigIntegerSetUnmarshaller}
+     */
     public static BigIntegerSetUnmarshaller instance() {
         return INSTANCE;
     }
@@ -39,8 +44,8 @@ public class BigIntegerSetUnmarshaller extends NSUnmarshaller {
 
     @Override
     public Object unmarshall(AttributeValue value) {
-        Set<BigInteger> result = new HashSet<BigInteger>();
-        for (String s : value.getNS()) {
+        final Set<BigInteger> result = new HashSet<BigInteger>();
+        for (final String s : value.getNS()) {
             result.add(new BigInteger(s));
         }
         return result;

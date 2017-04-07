@@ -137,6 +137,7 @@ public class Policy {
      * @return The updated Policy object so that additional calls can be chained
      *         together.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public Policy withId(String id) {
         setId(id);
         return this;
@@ -192,6 +193,7 @@ public class Policy {
      * @return The updated policy object, so that additional method calls can be
      *         chained together.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public Policy withStatements(Statement... statements) {
         setStatements(Arrays.asList(statements));
         return this;
@@ -221,6 +223,7 @@ public class Policy {
         return new JsonPolicyReader().createPolicyFromJsonString(jsonString);
     }
 
+    @SuppressWarnings("checkstyle:emptystatement")
     private void assignUniqueStatementIds() {
         Set<String> usedStatementIds = new HashSet<String>();
         for (Statement statement : statements) {

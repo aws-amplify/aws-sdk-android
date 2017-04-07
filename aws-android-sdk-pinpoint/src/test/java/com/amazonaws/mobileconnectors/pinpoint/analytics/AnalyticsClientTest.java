@@ -1,34 +1,20 @@
-/*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+/**
+ * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at:
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
  *
- *    http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
- * OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and
- * limitations under the License.
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.mobileconnectors.pinpoint.analytics;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.*;
-
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.configuration.AndroidPreferencesConfiguration;
-import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
-
-import com.amazonaws.mobileconnectors.pinpoint.internal.event.EventRecorder;
-import com.amazonaws.mobileconnectors.pinpoint.internal.event.PinpointDBUtil;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,7 +28,22 @@ import org.mockito.MockitoAnnotations;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.configuration.AndroidPreferencesConfiguration;
+import com.amazonaws.mobileconnectors.pinpoint.internal.event.EventRecorder;
+import com.amazonaws.mobileconnectors.pinpoint.internal.event.PinpointDBUtil;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE)
@@ -53,30 +54,30 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
     private static final String UNIQUE_ID = "abc123";
     private static final String EVENT_TYPE = "my_event";
     private static final Long TIME_STAMP = 123l;
-
-    private AnalyticsClient target;
     EventRecorder eventRecorder;
-
     @Mock
     AndroidPreferencesConfiguration mockConfiguration;
-
     @Mock
     PinpointDBUtil dbUtil;
-
+    private AnalyticsClient target;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
 
-        when(mockConfiguration.optString("versionKey", "ver")).thenReturn("ver");
-        when(mockConfiguration.optBoolean("isAnalyticsEnabled", true)).thenReturn(true);
+        when(mockConfiguration.optString("versionKey", "ver"))
+                .thenReturn("ver");
+        when(mockConfiguration.optBoolean("isAnalyticsEnabled", true))
+                .thenReturn(true);
 
         PinpointContext mockContext = new AnalyticsContextBuilder()
-                .withSdkInfo(SDK_NAME, SDK_VERSION)
-                .withUniqueIdValue(UNIQUE_ID)
-                .withConfiguration(mockConfiguration)
-                .withContext(Robolectric.application.getApplicationContext())
-                .build();
+                                              .withSdkInfo(SDK_NAME,
+                                                                  SDK_VERSION)
+                                              .withUniqueIdValue(UNIQUE_ID)
+                                              .withConfiguration(mockConfiguration)
+                                              .withContext(Robolectric.application
+                                                                   .getApplicationContext())
+                                              .build();
 
         eventRecorder = EventRecorder.newInstance(mockContext, dbUtil);
         target = new AnalyticsClient(mockContext);
@@ -97,7 +98,8 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
 
         target.recordEvent(event);
 
-        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
+        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor
+                                                             .forClass(AnalyticsEvent.class);
         verify(dbUtil, times(1)).saveEvent(eventCaptor.capture());
 
         final AnalyticsEvent recievedEvent = eventCaptor.getAllValues().get(0);
@@ -122,7 +124,8 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         target.addGlobalMetric("globalMetric", 100.0);
         target.recordEvent(event);
 
-        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
+        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor
+                                                             .forClass(AnalyticsEvent.class);
         verify(dbUtil, times(1)).saveEvent(eventCaptor.capture());
 
         final AnalyticsEvent recievedEvent = eventCaptor.getAllValues().get(0);
@@ -163,73 +166,89 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         assertNotNull(globalAttributes);
         assertEquals(2, globalAttributes.length());
         assertTrue(globalAttributes.getJSONObject(0).has("attr1")
-                || globalAttributes.getJSONObject(0).has("attr2"));
+                           || globalAttributes.getJSONObject(0).has("attr2"));
         if (globalAttributes.getJSONObject(0).has("attr1")) {
-            assertEquals("1", globalAttributes.getJSONObject(0).optString("attr1", null));
+            assertEquals("1", globalAttributes.getJSONObject(0)
+                                      .optString("attr1", null));
         }
         if (globalAttributes.getJSONObject(0).has("attr2")) {
-            assertEquals("2", globalAttributes.getJSONObject(0).optString("attr2", null));
+            assertEquals("2", globalAttributes.getJSONObject(0)
+                                      .optString("attr2", null));
         }
 
         assertTrue(globalAttributes.getJSONObject(1).has("attr1")
-                || globalAttributes.getJSONObject(1).has("attr2"));
+                           || globalAttributes.getJSONObject(1).has("attr2"));
         if (globalAttributes.getJSONObject(1).has("attr1")) {
-            assertEquals("1", globalAttributes.getJSONObject(1).optString("attr1", null));
+            assertEquals("1", globalAttributes.getJSONObject(1)
+                                      .optString("attr1", null));
         }
         if (globalAttributes.getJSONObject(1).has("attr2")) {
-            assertEquals("2", globalAttributes.getJSONObject(1).optString("attr2", null));
+            assertEquals("2", globalAttributes.getJSONObject(1)
+                                      .optString("attr2", null));
         }
 
         JSONArray globalMetrics = obj.optJSONArray("globalMetrics");
         assertNotNull(globalMetrics);
         assertEquals(2, globalMetrics.length());
         assertTrue(globalMetrics.getJSONObject(0).has("metric1")
-                || globalMetrics.getJSONObject(0).has("metric2"));
+                           || globalMetrics.getJSONObject(0).has("metric2"));
         if (globalMetrics.getJSONObject(0).has("metric1")) {
-            assertEquals(1, globalMetrics.getJSONObject(0).optInt("metric1", 0));
+            assertEquals(1, globalMetrics.getJSONObject(0)
+                                    .optInt("metric1", 0));
         }
         if (globalMetrics.getJSONObject(0).has("metric2")) {
-            assertEquals(2, globalMetrics.getJSONObject(0).optInt("metric2", 0));
+            assertEquals(2, globalMetrics.getJSONObject(0)
+                                    .optInt("metric2", 0));
         }
 
         assertTrue(globalMetrics.getJSONObject(1).has("metric1")
-                || globalMetrics.getJSONObject(1).has("metric2"));
+                           || globalMetrics.getJSONObject(1).has("metric2"));
         if (globalMetrics.getJSONObject(1).has("metric1")) {
-            assertEquals(1, globalMetrics.getJSONObject(1).optInt("metric1", 0));
+            assertEquals(1, globalMetrics.getJSONObject(1)
+                                    .optInt("metric1", 0));
         }
         if (globalMetrics.getJSONObject(1).has("metric2")) {
-            assertEquals(2, globalMetrics.getJSONObject(1).optInt("metric2", 0));
+            assertEquals(2, globalMetrics.getJSONObject(1)
+                                    .optInt("metric2", 0));
         }
 
         JSONObject eventTypeAttributes = obj.optJSONObject("eventTypeAttributes");
         assertNotNull(eventTypeAttributes);
         assertEquals(2, eventTypeAttributes.length());
         assertTrue(eventTypeAttributes.has("event_type_1"));
-        JSONArray eventType1Object = eventTypeAttributes.optJSONArray("event_type_1");
+        JSONArray eventType1Object = eventTypeAttributes
+                                             .optJSONArray("event_type_1");
         assertEquals(1, eventType1Object.length());
         assertTrue(eventType1Object.getJSONObject(0).has("attr3"));
-        assertEquals("3", eventType1Object.getJSONObject(0).optString("attr3", null));
+        assertEquals("3", eventType1Object.getJSONObject(0)
+                                  .optString("attr3", null));
 
         assertTrue(eventTypeAttributes.has("event_type_2"));
-        JSONArray eventType2Object = eventTypeAttributes.optJSONArray("event_type_2");
+        JSONArray eventType2Object = eventTypeAttributes
+                                             .optJSONArray("event_type_2");
         assertEquals(1, eventType2Object.length());
         assertTrue(eventType2Object.getJSONObject(0).has("attr4"));
-        assertEquals("4", eventType2Object.getJSONObject(0).optString("attr4", null));
+        assertEquals("4", eventType2Object.getJSONObject(0)
+                                  .optString("attr4", null));
 
         JSONObject eventTypeMetrics = obj.optJSONObject("eventTypeMetrics");
         assertNotNull(eventTypeMetrics);
         assertEquals(2, eventTypeMetrics.length());
         assertTrue(eventTypeMetrics.has("event_type_1"));
-        JSONArray eventType1MetricObject = eventTypeMetrics.optJSONArray("event_type_1");
+        JSONArray eventType1MetricObject = eventTypeMetrics
+                                                   .optJSONArray("event_type_1");
         assertEquals(1, eventType1MetricObject.length());
         assertTrue(eventType1MetricObject.getJSONObject(0).has("metric3"));
-        assertEquals(3, eventType1MetricObject.getJSONObject(0).optInt("metric3", 0));
+        assertEquals(3, eventType1MetricObject.getJSONObject(0)
+                                .optInt("metric3", 0));
 
         assertTrue(eventTypeMetrics.has("event_type_2"));
-        JSONArray eventType2MetricObject = eventTypeMetrics.optJSONArray("event_type_2");
+        JSONArray eventType2MetricObject = eventTypeMetrics
+                                                   .optJSONArray("event_type_2");
         assertEquals(1, eventType2MetricObject.length());
         assertTrue(eventType2MetricObject.getJSONObject(0).has("metric4"));
-        assertEquals(4, eventType2MetricObject.getJSONObject(0).optInt("metric4", 0));
+        assertEquals(4, eventType2MetricObject.getJSONObject(0)
+                                .optInt("metric4", 0));
     }
 
     @Test
@@ -248,18 +267,21 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         target.addGlobalAttribute("globalAttr", "global1");
 
         final AnalyticsEvent event = target.createEvent(EVENT_TYPE)
-                .withAttribute("attr", "attr1")
-                .withMetric("metric", 1.0);
+                                             .withAttribute("attr", "attr1")
+                                             .withMetric("metric", 1.0);
 
         target.recordEvent(event);
 
         final AnalyticsEvent differentEvent = target.createEvent("differentEventType")
-                .withAttribute("diff_attr", "diff_attr_1")
-                .withMetric("diff_metric", 50.0);
+                                                      .withAttribute("diff_attr",
+                                                                            "diff_attr_1")
+                                                      .withMetric("diff_metric",
+                                                                         50.0);
 
         target.recordEvent(differentEvent);
 
-        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
+        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor
+                                                             .forClass(AnalyticsEvent.class);
         verify(dbUtil, times(2)).saveEvent(eventCaptor.capture());
 
         final AnalyticsEvent recievedEvent = eventCaptor.getAllValues().get(0);
@@ -278,16 +300,20 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         assertThat(recievedEvent.getAllMetrics().size(), is(1));
         assertThat(recievedEvent.getMetric("metric"), is(1.0));
 
-        final AnalyticsEvent differentReceivedEvent = eventCaptor.getAllValues().get(1);
-        assertThat(differentReceivedEvent.getEventType(), is("differentEventType"));
+        final AnalyticsEvent differentReceivedEvent = eventCaptor.getAllValues()
+                                                              .get(1);
+        assertThat(differentReceivedEvent.getEventType(),
+                          is("differentEventType"));
         assertThat(differentReceivedEvent.getSdkName(), is(SDK_NAME));
         assertThat(differentReceivedEvent.getSdkVersion(), is(SDK_VERSION));
         assertThat(differentReceivedEvent.getUniqueId(), is(UNIQUE_ID));
         assertTrue(differentReceivedEvent.getEventTimestamp() > 0);
         assertThat(differentReceivedEvent.getAllAttributes().size(), is(3));
-        assertThat(differentReceivedEvent.getAttribute("diff_attr"), is("diff_attr_1"));
+        assertThat(differentReceivedEvent.getAttribute("diff_attr"),
+                          is("diff_attr_1"));
         assertThat(differentReceivedEvent.getAttribute("c"), is("val0"));
-        assertThat(differentReceivedEvent.getAttribute("globalAttr"), is("global1"));
+        assertThat(differentReceivedEvent.getAttribute("globalAttr"),
+                          is("global1"));
         assertThat(differentReceivedEvent.getAllMetrics().size(), is(1));
         assertThat(differentReceivedEvent.getMetric("diff_metric"), is(50.0));
 
@@ -300,11 +326,12 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         target.addGlobalMetric(EVENT_TYPE, "metric", 3.0);
 
         final AnalyticsEvent event = target.createEvent(EVENT_TYPE)
-                .withAttribute("c", "val4")
-                .withMetric("metric", 1.0);
+                                             .withAttribute("c", "val4")
+                                             .withMetric("metric", 1.0);
         target.recordEvent(event);
 
-        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
+        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor
+                                                             .forClass(AnalyticsEvent.class);
         verify(dbUtil, times(1)).saveEvent(eventCaptor.capture());
 
         final AnalyticsEvent recievedEvent = eventCaptor.getAllValues().get(0);
@@ -319,11 +346,12 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         target.addGlobalMetric("metric", 3.0);
 
         final AnalyticsEvent event = target.createEvent(EVENT_TYPE)
-                .withAttribute("c", "val4")
-                .withMetric("metric", 1.0);
+                                             .withAttribute("c", "val4")
+                                             .withMetric("metric", 1.0);
         target.recordEvent(event);
 
-        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
+        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor
+                                                             .forClass(AnalyticsEvent.class);
         verify(dbUtil, times(1)).saveEvent(eventCaptor.capture());
 
         final AnalyticsEvent recievedEvent = eventCaptor.getAllValues().get(0);
@@ -352,7 +380,8 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
 
         target.recordEvent(differentEvent);
 
-        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
+        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor
+                                                             .forClass(AnalyticsEvent.class);
         verify(dbUtil, times(2)).saveEvent(eventCaptor.capture());
 
         final AnalyticsEvent recievedEvent = eventCaptor.getAllValues().get(0);
@@ -369,8 +398,10 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         assertThat(recievedEvent.getMetric("d"), is(4.0));
         assertThat(recievedEvent.getMetric("e"), is(6.0));
 
-        final AnalyticsEvent differentReceivedEvent = eventCaptor.getAllValues().get(1);
-        assertThat(differentReceivedEvent.getEventType(), is("differentEventType"));
+        final AnalyticsEvent differentReceivedEvent = eventCaptor.getAllValues()
+                                                              .get(1);
+        assertThat(differentReceivedEvent.getEventType(),
+                          is("differentEventType"));
         assertThat(differentReceivedEvent.getSdkName(), is(SDK_NAME));
         assertThat(differentReceivedEvent.getSdkVersion(), is(SDK_VERSION));
         assertThat(differentReceivedEvent.getUniqueId(), is(UNIQUE_ID));
@@ -396,7 +427,8 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         final AnalyticsEvent event = target.createEvent(EVENT_TYPE);
         target.recordEvent(event);
 
-        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
+        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor
+                                                             .forClass(AnalyticsEvent.class);
         verify(dbUtil, times(1)).saveEvent(eventCaptor.capture());
 
         final AnalyticsEvent recievedEvent = eventCaptor.getAllValues().get(0);
@@ -416,8 +448,8 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         target.addGlobalAttribute("attr3", null);
 
         AnalyticsEvent event = target.createEvent(EVENT_TYPE)
-                .withAttribute("local_attr", "attr1")
-                .withMetric("metric", 1.0);
+                                       .withAttribute("local_attr", "attr1")
+                                       .withMetric("metric", 1.0);
 
         target.recordEvent(event);
 
@@ -426,14 +458,16 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         target.removeGlobalAttribute(null);
 
         event = target.createEvent(EVENT_TYPE)
-                .withAttribute("local_attr", "attr1")
-                .withMetric("metric", 1.0);
+                        .withAttribute("local_attr", "attr1")
+                        .withMetric("metric", 1.0);
         target.recordEvent(event);
 
-        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
+        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor
+                                                             .forClass(AnalyticsEvent.class);
         verify(dbUtil, times(2)).saveEvent(eventCaptor.capture());
 
-        final AnalyticsEvent firstReceivedEvent = eventCaptor.getAllValues().get(0);
+        final AnalyticsEvent firstReceivedEvent = eventCaptor.getAllValues()
+                                                          .get(0);
 
         assertThat(firstReceivedEvent.getAllAttributes().size(), is(3));
         assertThat(firstReceivedEvent.getAttribute("local_attr"), is("attr1"));
@@ -442,11 +476,12 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         assertThat(firstReceivedEvent.getAllMetrics().size(), is(1));
         assertThat(firstReceivedEvent.getMetric("metric"), is(1.0));
 
-        final AnalyticsEvent secondReceivedEvent = eventCaptor.getAllValues().get(1);
+        final AnalyticsEvent secondReceivedEvent = eventCaptor.getAllValues()
+                                                           .get(1);
 
         assertThat(secondReceivedEvent.getAllAttributes().size(), is(2));
         assertThat(secondReceivedEvent.getAttribute("local_attr"), is("attr1"));
-        assertThat(secondReceivedEvent.getAttribute("attr"), is((String)null));
+        assertThat(secondReceivedEvent.getAttribute("attr"), is((String) null));
         assertThat(secondReceivedEvent.getAttribute("attr2"), is("val2"));
         assertThat(secondReceivedEvent.getAllMetrics().size(), is(1));
         assertThat(secondReceivedEvent.getMetric("metric"), is(1.0));
@@ -461,8 +496,8 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         target.addGlobalMetric("metric3", null);
 
         AnalyticsEvent event = target.createEvent(EVENT_TYPE)
-                .withAttribute("local_attr", "attr1")
-                .withMetric("local_metric", 1.0);
+                                       .withAttribute("local_attr", "attr1")
+                                       .withMetric("local_metric", 1.0);
 
         target.recordEvent(event);
 
@@ -471,29 +506,36 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         target.removeGlobalMetric(null);
 
         event = target.createEvent(EVENT_TYPE)
-                .withAttribute("local_attr", "attr1")
-                .withMetric("local_metric", 1.0);
+                        .withAttribute("local_attr", "attr1")
+                        .withMetric("local_metric", 1.0);
         target.recordEvent(event);
 
-        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
+        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor
+                                                             .forClass(AnalyticsEvent.class);
         verify(dbUtil, times(2)).saveEvent(eventCaptor.capture());
 
-        final AnalyticsEvent firstRecievedEvent = eventCaptor.getAllValues().get(0);
+        final AnalyticsEvent firstRecievedEvent = eventCaptor.getAllValues()
+                                                          .get(0);
 
         assertThat(firstRecievedEvent.getAllAttributes().size(), is(1));
         assertThat(firstRecievedEvent.getAttribute("local_attr"), is("attr1"));
         assertThat(firstRecievedEvent.getAllMetrics().size(), is(3));
-        assertThat(firstRecievedEvent.getMetric("local_metric").intValue(), is(1));
+        assertThat(firstRecievedEvent.getMetric("local_metric").intValue(),
+                          is(1));
         assertThat(firstRecievedEvent.getMetric("metric").longValue(), is(3L));
-        assertThat(firstRecievedEvent.getMetric("metric2").doubleValue(), is(121.12d));
+        assertThat(firstRecievedEvent.getMetric("metric2").doubleValue(),
+                          is(121.12d));
 
-        final AnalyticsEvent secondRecievedEvent = eventCaptor.getAllValues().get(1);
+        final AnalyticsEvent secondRecievedEvent = eventCaptor.getAllValues()
+                                                           .get(1);
 
         assertThat(secondRecievedEvent.getAllAttributes().size(), is(1));
         assertThat(secondRecievedEvent.getAttribute("local_attr"), is("attr1"));
         assertThat(secondRecievedEvent.getAllMetrics().size(), is(2));
-        assertThat(secondRecievedEvent.getMetric("local_metric").intValue(), is(1));
-        assertThat(secondRecievedEvent.getMetric("metric2").doubleValue(), is(121.12d));
+        assertThat(secondRecievedEvent.getMetric("local_metric").intValue(),
+                          is(1));
+        assertThat(secondRecievedEvent.getMetric("metric2").doubleValue(),
+                          is(121.12d));
     }
 
     @Test
@@ -506,8 +548,8 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         target.addGlobalAttribute(EVENT_TYPE, "attr3", null);
 
         AnalyticsEvent event = target.createEvent(EVENT_TYPE)
-                .withAttribute("local_attr", "attr1")
-                .withMetric("local_metric", 1.0);
+                                       .withAttribute("local_attr", "attr1")
+                                       .withMetric("local_metric", 1.0);
         target.recordEvent(event);
 
         // remove global attrs
@@ -516,15 +558,17 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         target.removeGlobalAttribute(EVENT_TYPE, null);
 
         event = target.createEvent(EVENT_TYPE)
-                .withAttribute("local_attr", "attr1")
-                .withMetric("local_metric", 1.0);
+                        .withAttribute("local_attr", "attr1")
+                        .withMetric("local_metric", 1.0);
 
         target.recordEvent(event);
 
-        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
+        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor
+                                                             .forClass(AnalyticsEvent.class);
         verify(dbUtil, times(2)).saveEvent(eventCaptor.capture());
 
-        final AnalyticsEvent firstRecievedEvent = eventCaptor.getAllValues().get(0);
+        final AnalyticsEvent firstRecievedEvent = eventCaptor.getAllValues()
+                                                          .get(0);
 
         for (String key : firstRecievedEvent.getAllAttributes().values()) {
             System.out.println("Key: " + key);
@@ -535,15 +579,18 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         assertThat(firstRecievedEvent.getAttribute("attr"), is("val"));
         assertThat(firstRecievedEvent.getAttribute("attr2"), is("val2"));
         assertThat(firstRecievedEvent.getAllMetrics().size(), is(1));
-        assertThat(firstRecievedEvent.getMetric("local_metric").intValue(), is(1));
+        assertThat(firstRecievedEvent.getMetric("local_metric").intValue(),
+                          is(1));
 
-        final AnalyticsEvent secondRecievedEvent = eventCaptor.getAllValues().get(1);
+        final AnalyticsEvent secondRecievedEvent = eventCaptor.getAllValues()
+                                                           .get(1);
 
         assertThat(secondRecievedEvent.getAllAttributes().size(), is(2));
         assertThat(secondRecievedEvent.getAttribute("local_attr"), is("attr1"));
         assertThat(secondRecievedEvent.getAttribute("attr2"), is("val2"));
         assertThat(secondRecievedEvent.getAllMetrics().size(), is(1));
-        assertThat(secondRecievedEvent.getMetric("local_metric").intValue(), is(1));
+        assertThat(secondRecievedEvent.getMetric("local_metric").intValue(),
+                          is(1));
     }
 
     @Test
@@ -554,8 +601,8 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         target.addGlobalMetric("metric3", null);
 
         AnalyticsEvent event = target.createEvent(EVENT_TYPE)
-                .withAttribute("local_attr", "attr1")
-                .withMetric("local_metric", 1.0);
+                                       .withAttribute("local_attr", "attr1")
+                                       .withMetric("local_metric", 1.0);
 
         target.recordEvent(event);
 
@@ -564,29 +611,36 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         target.removeGlobalMetric(null);
 
         event = target.createEvent(EVENT_TYPE)
-                .withAttribute("local_attr", "attr1")
-                .withMetric("local_metric", 1.0);
+                        .withAttribute("local_attr", "attr1")
+                        .withMetric("local_metric", 1.0);
         target.recordEvent(event);
 
-        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
+        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor
+                                                             .forClass(AnalyticsEvent.class);
         verify(dbUtil, times(2)).saveEvent(eventCaptor.capture());
 
-        final AnalyticsEvent firstRecievedEvent = eventCaptor.getAllValues().get(0);
+        final AnalyticsEvent firstRecievedEvent = eventCaptor.getAllValues()
+                                                          .get(0);
 
         assertThat(firstRecievedEvent.getAllAttributes().size(), is(1));
         assertThat(firstRecievedEvent.getAttribute("local_attr"), is("attr1"));
         assertThat(firstRecievedEvent.getAllMetrics().size(), is(3));
-        assertThat(firstRecievedEvent.getMetric("local_metric").intValue(), is(1));
+        assertThat(firstRecievedEvent.getMetric("local_metric").intValue(),
+                          is(1));
         assertThat(firstRecievedEvent.getMetric("metric").longValue(), is(3L));
-        assertThat(firstRecievedEvent.getMetric("metric2").doubleValue(), is(121.12d));
+        assertThat(firstRecievedEvent.getMetric("metric2").doubleValue(),
+                          is(121.12d));
 
-        final AnalyticsEvent secondRecievedEvent = eventCaptor.getAllValues().get(1);
+        final AnalyticsEvent secondRecievedEvent = eventCaptor.getAllValues()
+                                                           .get(1);
 
         assertThat(secondRecievedEvent.getAllAttributes().size(), is(1));
         assertThat(secondRecievedEvent.getAttribute("local_attr"), is("attr1"));
         assertThat(secondRecievedEvent.getAllMetrics().size(), is(2));
-        assertThat(secondRecievedEvent.getMetric("local_metric").intValue(), is(1));
-        assertThat(secondRecievedEvent.getMetric("metric2").doubleValue(), is(121.12d));
+        assertThat(secondRecievedEvent.getMetric("local_metric").intValue(),
+                          is(1));
+        assertThat(secondRecievedEvent.getMetric("metric2").doubleValue(),
+                          is(121.12d));
     }
 
     @Test
@@ -596,9 +650,9 @@ public class AnalyticsClientTest extends MobileAnalyticsTestBase {
         verify(target, times(1)).submitEvents();
     }
 
-    @Test(expected= IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void createEvent_eventTypeTooLong_typeNameIsTruncated() {
         AnalyticsEvent e = target
-                .createEvent("123456789012345678901234567890123456789012345678901234567890");
+                                   .createEvent("123456789012345678901234567890123456789012345678901234567890");
     }
 }

@@ -32,11 +32,23 @@ public class DateCondition extends Condition {
      * Enumeration of the supported ways a date comparison can be evaluated.
      */
     public static enum DateComparisonType {
+
+        /** Date equals. */
         DateEquals,
+
+        /** Date greater than. */
         DateGreaterThan,
+
+        /** Date greater than or equals. */
         DateGreaterThanEquals,
+
+        /** Date less than. */
         DateLessThan,
+
+        /** Date less than or equals. */
         DateLessThanEquals,
+
+        /** Date not equals. */
         DateNotEquals;
     };
 

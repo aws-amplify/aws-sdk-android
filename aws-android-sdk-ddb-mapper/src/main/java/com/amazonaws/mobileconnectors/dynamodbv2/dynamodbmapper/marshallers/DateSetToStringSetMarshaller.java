@@ -28,12 +28,17 @@ import java.util.Set;
  * A marshaller that marshals sets of Java {@code Date} objects into DynamoDB
  * StringSets (in ISO 8601 format, ie {"2014-01-01T00:00:00Z", ...}).
  */
-public class DateSetToStringSetMarshaller
+public final class DateSetToStringSetMarshaller
         implements StringSetAttributeMarshaller {
 
     private static final DateSetToStringSetMarshaller INSTANCE =
             new DateSetToStringSetMarshaller();
 
+    /**
+     * Return a singleton instance.
+     *
+     * @return instance of {@link DateSetToStringSetMarshaller}
+     */
     public static DateSetToStringSetMarshaller instance() {
         return INSTANCE;
     }
@@ -44,10 +49,10 @@ public class DateSetToStringSetMarshaller
     @Override
     public AttributeValue marshall(Object obj) {
         @SuppressWarnings("unchecked")
-        Set<Date> dates = (Set<Date>) obj;
+        final Set<Date> dates = (Set<Date>) obj;
 
-        List<String> timestamps = new ArrayList<String>(dates.size());
-        for (Date date : dates) {
+        final List<String> timestamps = new ArrayList<String>(dates.size());
+        for (final Date date : dates) {
             timestamps.add(DateUtils.formatISO8601Date(date));
         }
 

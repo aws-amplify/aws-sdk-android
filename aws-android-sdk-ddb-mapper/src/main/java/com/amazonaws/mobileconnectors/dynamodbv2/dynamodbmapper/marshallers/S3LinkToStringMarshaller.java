@@ -24,11 +24,16 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
  * a JSON encoding. For example: {"s3":{"region":"us-west-2",
  * "bucket":"my-bucket-name", "key": "foo/bar/baz.txt"}}.
  */
-public class S3LinkToStringMarshaller implements StringAttributeMarshaller {
+public final class S3LinkToStringMarshaller implements StringAttributeMarshaller {
 
     private static final S3LinkToStringMarshaller INSTANCE =
             new S3LinkToStringMarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link S3LinkToStringMarshaller}
+     */
     public static S3LinkToStringMarshaller instance() {
         return INSTANCE;
     }
@@ -38,7 +43,7 @@ public class S3LinkToStringMarshaller implements StringAttributeMarshaller {
 
     @Override
     public AttributeValue marshall(Object obj) {
-        S3Link s3link = (S3Link) obj;
+        final S3Link s3link = (S3Link) obj;
 
         if (s3link.getBucketName() == null || s3link.getKey() == null) {
             // insufficient S3 resource specification

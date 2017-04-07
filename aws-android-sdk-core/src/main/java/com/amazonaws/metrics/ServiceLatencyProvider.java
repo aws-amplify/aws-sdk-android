@@ -27,16 +27,25 @@ public class ServiceLatencyProvider {
     private long endNano = startNano;
     private final ServiceMetricType serviceMetricType;
 
+    /**
+     * Constructor.
+     * @param type the service metric type.
+     */
     public ServiceLatencyProvider(ServiceMetricType type) {
         this.serviceMetricType = type;
     }
 
+    /**
+     * Constructor.
+     * @return the service metric type.
+     */
     public ServiceMetricType getServiceMetricType() {
         return serviceMetricType;
     }
 
     /**
      * Ends the timing. Must not be called more than once.
+     * @return the service latency provider.
      */
     public ServiceLatencyProvider endTiming() {
         if (endNano != startNano) {
@@ -46,6 +55,9 @@ public class ServiceLatencyProvider {
         return this;
     }
 
+    /**
+     * @return the duration in milliseconds.
+     */
     public double getDurationMilli() {
         if (endNano == startNano) {
             LogFactory.getLog(getClass()).debug(
@@ -54,6 +66,9 @@ public class ServiceLatencyProvider {
         return TimingInfo.durationMilliOf(startNano, endNano);
     }
 
+    /**
+     * @return the provider id.
+     */
     public String getProviderId() {
         return super.toString();
     }

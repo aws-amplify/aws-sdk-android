@@ -23,13 +23,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.util.Log;
 
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.util.VersionInfoUtils;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -86,7 +88,7 @@ import java.util.UUID;
  */
 public class TransferUtility {
 
-    private static final String TAG = "TransferUtility";
+    private static final Log LOGGER = LogFactory.getLog(TransferUtility.class);
 
     /**
      * Default minimum part size for upload parts. Anything below this will use
@@ -105,7 +107,6 @@ public class TransferUtility {
      *
      * @param s3 The client to use when making requests to Amazon S3
      * @param context The current context
-     * @param configuration Configuration parameters for this TransferUtility
      */
     public TransferUtility(AmazonS3 s3, Context context) {
         this.s3 = s3;
@@ -146,7 +147,7 @@ public class TransferUtility {
                 bucket, key, file);
         final int recordId = Integer.parseInt(uri.getLastPathSegment());
         if (file.isFile()) {
-            Log.w(TAG, "Overwrite existing file: " + file);
+            LOGGER.warn("Overwrite existing file: " + file);
             file.delete();
         }
 
@@ -452,7 +453,7 @@ public class TransferUtility {
                 cancel(id);
             }
         } finally {
-            if(c!=null) {
+            if (c != null) {
                 c.close();
             }
         }
@@ -488,12 +489,9 @@ public class TransferUtility {
     }
 
     private boolean shouldUploadInMultipart(File file) {
-        if (file != null
-                && file.length() > MINIMUM_UPLOAD_PART_SIZE) {
-            return true;
-        } else {
-            return false;
-        }
+        return (file != null
+                && file.length() > MINIMUM_UPLOAD_PART_SIZE);
+
     }
 
     static <X extends AmazonWebServiceRequest> X appendTransferServiceUserAgentString(

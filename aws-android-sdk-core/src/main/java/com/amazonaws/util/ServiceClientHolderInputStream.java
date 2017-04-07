@@ -30,6 +30,11 @@ public class ServiceClientHolderInputStream extends SdkFilterInputStream {
     @SuppressWarnings("unused")
     private AmazonWebServiceClient client;
 
+    /**
+     * Constructor.
+     * @param in the input stream.
+     * @param client the AmazonWebServiceClient.
+     */
     public ServiceClientHolderInputStream(InputStream in,
             AmazonWebServiceClient client) {
         super(in);

@@ -57,11 +57,11 @@ class FileManager {
         return listFilesInDirectory(dir);
     }
 
-    public Set<File> listFilesInDirectory(final File directory) {
+    public Set<File> listFilesInDirectory(final File direc) {
         final Set<File> filesSet = new HashSet<File>();
-        if (directory.exists()) {
-            final File[] files = directory.listFiles();
-            for (File file : files) {
+        if (direc.exists()) {
+            final File[] files = direc.listFiles();
+            for (final File file : files) {
                 filesSet.add(file);
             }
         }

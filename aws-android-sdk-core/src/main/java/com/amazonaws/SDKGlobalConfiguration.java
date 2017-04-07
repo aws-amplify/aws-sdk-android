@@ -155,13 +155,13 @@ public class SDKGlobalConfiguration {
     public static final String AWS_SESSION_TOKEN_ENV_VAR = "AWS_SESSION_TOKEN";
 
     /**
-     * globalTimeOffset is a time offset that is used to globally adjust the
+     * GLOBAL_TIME_OFFSET is a time offset that is used to globally adjust the
      * client clock skew. Java SDK already provides timeOffset and accessor
      * methods in {@link Request} class but those are used per request, whereas
      * this variable will adjust clock skew globally. Java SDK detects clock
      * skew errors and adjusts global clock skew automatically.
      */
-    private static final AtomicInteger globalTimeOffset = new AtomicInteger(0);
+    private static final AtomicInteger GLOBAL_TIME_OFFSET = new AtomicInteger(0);
 
     /**
      * Sets the global time offset. If this value is set then all the subsequent
@@ -171,17 +171,17 @@ public class SDKGlobalConfiguration {
      * @param timeOffset the time difference between local client and server
      */
     public static void setGlobalTimeOffset(int timeOffset) {
-        globalTimeOffset.set(timeOffset);
+        GLOBAL_TIME_OFFSET.set(timeOffset);
     }
 
     /**
      * Gets the global time offset. See {@link Request#getTimeOffset()} if
      * global time offset is not set.
      *
-     * @return globalTimeOffset an AtomicInteger that holds the value of time
+     * @return GLOBAL_TIME_OFFSET an AtomicInteger that holds the value of time
      *         offset
      */
     public static int getGlobalTimeOffset() {
-        return globalTimeOffset.get();
+        return GLOBAL_TIME_OFFSET.get();
     }
 }

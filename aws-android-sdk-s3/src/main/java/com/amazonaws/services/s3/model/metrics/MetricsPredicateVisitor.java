@@ -25,18 +25,21 @@ public interface MetricsPredicateVisitor {
     /**
      * Implement this method to add behaviour performed when
      * {@link MetricsPrefixPredicate} is visited.
+     * @param metricsPrefixPredicate the MetricsPrefixPredicate.
      */
     public void visit(MetricsPrefixPredicate metricsPrefixPredicate);
 
     /**
      * Implement this method to add behaviour performed when
      * {@link MetricsTagPredicate} is visited.
+     * @param metricsTagPredicate the MetricsTagPredicate.
      */
     public void visit(MetricsTagPredicate metricsTagPredicate);
 
     /**
      * Implement this method to add behaviour performed when
      * {@link MetricsAndOperator} is visited.
+     * @param metricsAndOperator the MetricsAndOperator.
      */
     public void visit(MetricsAndOperator metricsAndOperator);
 }

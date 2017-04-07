@@ -22,11 +22,16 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
  * A marshaller that marshals Java {@code Boolean} objects to Dynamodb-native
  * {@code BOOL} attribute values.
  */
-public class BooleanToBooleanMarshaller implements BooleanAttributeMarshaller {
+public final class BooleanToBooleanMarshaller implements BooleanAttributeMarshaller {
 
     private static final BooleanToBooleanMarshaller INSTANCE =
             new BooleanToBooleanMarshaller();
 
+    /**
+     * Return a singleton instance.
+     *
+     * @return instance of {@link BooleanToBooleanMarshaller}
+     */
     public static BooleanToBooleanMarshaller instance() {
         return INSTANCE;
     }

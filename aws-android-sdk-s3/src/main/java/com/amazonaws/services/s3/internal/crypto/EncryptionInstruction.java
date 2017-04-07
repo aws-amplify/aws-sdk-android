@@ -50,6 +50,17 @@ public class EncryptionInstruction {
         this.symmetricCipherFactory = null;
     }
 
+    /**
+     * Construct a new EncryptionInstruction object with the provided fields.
+     * @param materialsDescription The description of the encryption materials
+     *            that were used to encrypt the envelope symmetric key.
+     * @param encryptedSymmetricKey A byte[] array representing an encrypted
+     *            envelope symmetric key.
+     * @param symmetricKey The symmetric key used to create the cipher that will
+     *            encrypt the object data.
+     * @param symmetricCipherFactory The symmetric cipher factory that will
+     *            encrypt the object data.
+     */
     public EncryptionInstruction(Map<String, String> materialsDescription,
             byte[] encryptedSymmetricKey, SecretKey symmetricKey,
             CipherFactory symmetricCipherFactory) {

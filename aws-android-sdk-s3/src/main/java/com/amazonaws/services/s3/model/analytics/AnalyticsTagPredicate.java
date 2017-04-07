@@ -24,6 +24,10 @@ public final class AnalyticsTagPredicate extends AnalyticsFilterPredicate {
 
     private final Tag tag;
 
+    /**
+     * Constructor.
+     * @param tag the tag used when evaluating an analytics filter.
+     */
     public AnalyticsTagPredicate(Tag tag) {
         this.tag = tag;
     }

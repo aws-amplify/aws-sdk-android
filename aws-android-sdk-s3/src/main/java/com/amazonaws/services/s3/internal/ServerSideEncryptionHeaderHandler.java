@@ -21,6 +21,7 @@ import com.amazonaws.services.s3.Headers;
 /**
  * Base request handler for responses that include a server-side encryption
  * header
+ * @param <T> class type.
  */
 public class ServerSideEncryptionHeaderHandler<T extends ServerSideEncryptionResult> implements
         HeaderHandler<T> {

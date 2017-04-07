@@ -22,11 +22,19 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A marshaller that marshalls java map to dynamodb map.
+ */
 public class MapToMapMarshaller implements MapAttributeMarshaller {
 
     private static final MapToMapMarshaller INSTANCE =
             new MapToMapMarshaller();
 
+    /**
+     * Return a singleton instance.
+     *
+     * @return instance of {@link MapToMapMarshaller}
+     */
     public static MapToMapMarshaller instance() {
         return INSTANCE;
     }
@@ -37,6 +45,11 @@ public class MapToMapMarshaller implements MapAttributeMarshaller {
         memberMarshaller = null;
     }
 
+    /**
+     * Constructor.
+     *
+     * @param memberMarshaller an instance of {@link ArgumentMarshaller}
+     */
     public MapToMapMarshaller(ArgumentMarshaller memberMarshaller) {
         if (memberMarshaller == null) {
             throw new NullPointerException("memberMarshaller");
@@ -52,11 +65,11 @@ public class MapToMapMarshaller implements MapAttributeMarshaller {
         }
 
         @SuppressWarnings("unchecked")
-        Map<String, ?> map = (Map<String, ?>) obj;
-        Map<String, AttributeValue> values =
+        final Map<String, ?> map = (Map<String, ?>) obj;
+        final Map<String, AttributeValue> values =
                 new HashMap<String, AttributeValue>();
 
-        for (Map.Entry<String, ?> entry : map.entrySet()) {
+        for (final Map.Entry<String, ?> entry : map.entrySet()) {
             AttributeValue value;
             if (entry.getValue() == null) {
                 value = new AttributeValue().withNULL(true);
@@ -67,7 +80,7 @@ public class MapToMapMarshaller implements MapAttributeMarshaller {
             values.put(entry.getKey(), value);
         }
 
-        AttributeValue result = new AttributeValue();
+        final AttributeValue result = new AttributeValue();
         result.setM(values);
         return result;
     }

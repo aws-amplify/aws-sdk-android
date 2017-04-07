@@ -48,7 +48,7 @@ import com.amazonaws.services.s3.model.UploadPartResult;
  * This observer is designed for extension so that custom behavior can be
  * provided. A customer observer can be configured via
  * {@link UploadObjectRequest#withUploadObjectObserver(UploadObjectObserver)}.
- * 
+ *
  * @see UploadObjectRequest
  */
 public class UploadObjectObserver {
@@ -77,6 +77,7 @@ public class UploadObjectObserver {
      *            the executor service to be used for concurrent uploads
      * @return this object
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public UploadObjectObserver init(UploadObjectRequest req,
             S3DirectSpi s3direct, AmazonS3 s3, ExecutorService es) {
         this.req = req;
@@ -86,6 +87,7 @@ public class UploadObjectObserver {
         return this;
     }
 
+    @SuppressWarnings("checkstyle:hiddenfield")
     protected InitiateMultipartUploadRequest newInitiateMultipartUploadRequest(
             UploadObjectRequest req) {
         return new EncryptedInitiateMultipartUploadRequest(
@@ -98,8 +100,7 @@ public class UploadObjectObserver {
             .withAccessControlList(req.getAccessControlList())
             .withCannedACL(req.getCannedAcl())
             .withGeneralProgressListener(req.getGeneralProgressListener())
-            .withRequestMetricCollector(req.getRequestMetricCollector())
-            ;
+            .withRequestMetricCollector(req.getRequestMetricCollector());
     }
 
     /**
@@ -111,10 +112,12 @@ public class UploadObjectObserver {
      *            the upload object request
      * @return the initiated multi-part uploadId
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public String onUploadInitiation(UploadObjectRequest req) {
-        InitiateMultipartUploadResult res =
+        final InitiateMultipartUploadResult res =
             s3.initiateMultipartUpload(newInitiateMultipartUploadRequest(req));
-        return this.uploadId = res.getUploadId();
+        this.uploadId = res.getUploadId();
+        return this.uploadId;
     }
 
     /**
@@ -132,7 +135,7 @@ public class UploadObjectObserver {
      * <p>
      * To enable parallel uploads, implementation of this method should never
      * block.
-     * 
+     *
      * @param event
      *            to represent the completion of a ciphertext file creation
      *            which is ready for multipart upload to S3.
@@ -150,7 +153,7 @@ public class UploadObjectObserver {
                 try {
                     return uploadPart(reqUploadPart);
                 } finally {
-                    // clean up part already uploaded 
+                    // clean up part already uploaded
                     if (!part.delete()) {
                         LogFactory.getLog(getClass()).debug(
                                 "Ignoring failure to delete file " + part
@@ -170,10 +173,10 @@ public class UploadObjectObserver {
      * all parts have been successfully uploaded to S3. This method is
      * responsible for finishing off the upload by making a complete multi-part
      * upload request to S3 with the given list of etags.
-     * 
+     *
      * @param partETags
      *            all the etags returned from S3 for the previous part uploads.
-     * 
+     *
      * @return the completed multi-part upload result
      */
     public CompleteMultipartUploadResult onCompletion(List<PartETag> partETags) {
@@ -205,7 +208,7 @@ public class UploadObjectObserver {
     /**
      * Creates and returns an upload-part request corresponding to a ciphertext
      * file upon a part-creation event.
-     * 
+     *
      * @param event
      *            the part-creation event of the ciphertxt file.
      * @param part
@@ -221,8 +224,7 @@ public class UploadObjectObserver {
             .withPartSize(part.length())
             .withLastPart(event.isLastPart())
             .withUploadId(uploadId)
-            .withObjectMetadata(req.getUploadPartMetadata())
-            ;
+            .withObjectMetadata(req.getUploadPartMetadata());
         return reqUploadPart;
     }
 

@@ -36,7 +36,7 @@ public interface VerificationHandler {
      * This is called when the request for verification code failed. Probe {@code exception} for the
      * cause.
      *
-     * @param exception
+     * @param exception REQUIRED: Failure details.
      */
     public void onFailure(Exception exception);
 }

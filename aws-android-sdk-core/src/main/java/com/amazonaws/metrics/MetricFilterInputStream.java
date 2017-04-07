@@ -30,13 +30,18 @@ import java.io.InputStream;
 public class MetricFilterInputStream extends SdkFilterInputStream {
     private final ByteThroughputHelper helper;
 
+    /**
+     * Constructor.
+     * @param type the throughput metric type.
+     * @param in the input stream.
+     */
     public MetricFilterInputStream(ThroughputMetricType type, InputStream in) {
         super(in);
         helper = new ByteThroughputHelper(type);
     }
 
     @Override
-    public int read(byte b[], int off, int len) throws IOException {
+    public int read(byte[] b, int off, int len) throws IOException {
         abortIfNeeded();
         long startNano = helper.startTiming();
         int bytesRead = in.read(b, off, len);

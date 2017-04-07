@@ -30,6 +30,7 @@ import javax.crypto.IllegalBlockSizeException;
 public class CipherLiteInputStream extends SdkFilterInputStream {
     private static final int MAX_RETRY = 1000;
     private static final int DEFAULT_IN_BUFFER_SIZE = 512;
+    private static final int BYTE_MASK = 0xFF;
     private CipherLite cipherLite;
     /**
      * True if this input stream is currently involved in a multipart uploads;
@@ -49,18 +50,37 @@ public class CipherLiteInputStream extends SdkFilterInputStream {
     private boolean eof = false;
     private final byte[] bufin;
     private byte[] bufout;
-    private int curr_pos = 0;
-    private int max_pos = 0;
+    private int currPos = 0;
+    private int maxPos = 0;
 
+    /**
+     * Constructor.
+     * @param is the input stream.
+     * @param cipherLite the CipherLite.
+     */
     public CipherLiteInputStream(InputStream is, CipherLite cipherLite) {
         this(is, cipherLite, DEFAULT_IN_BUFFER_SIZE, false, false);
     }
 
-    public CipherLiteInputStream(InputStream is, CipherLite c, int buffsize) {
-        this(is, c, buffsize, false, false);
+    /**
+     * Constructor.
+     * @param is the input stream.
+     * @param cipherLite the CipherLite.
+     * @param buffsize the buffer size.
+     */
+    public CipherLiteInputStream(InputStream is, CipherLite cipherLite, int buffsize) {
+        this(is, cipherLite, buffsize, false, false);
     }
 
-    public CipherLiteInputStream(InputStream is, CipherLite c, int buffsize,
+    /**
+     * Constructor.
+     * @param is the input stream.
+     * @param cipherLite the CipherLite.
+     * @param buffsize the buffer size.
+     * @param multipart indicator for multipart.
+     * @param lastMultiPart indicator for last multipart.
+     */
+    public CipherLiteInputStream(InputStream is, CipherLite cipherLite, int buffsize,
             boolean multipart, boolean lastMultiPart) {
         super(is);
         if (lastMultiPart && !multipart) {
@@ -69,7 +89,7 @@ public class CipherLiteInputStream extends SdkFilterInputStream {
         }
         this.multipart = multipart;
         this.lastMultiPart = lastMultiPart;
-        this.cipherLite = c;
+        this.cipherLite = cipherLite;
         if (buffsize <= 0 || (buffsize % DEFAULT_IN_BUFFER_SIZE) != 0) {
             throw new IllegalArgumentException("buffsize (" + buffsize
                     + ") must be a positive multiple of "
@@ -78,13 +98,17 @@ public class CipherLiteInputStream extends SdkFilterInputStream {
         this.bufin = new byte[buffsize];
     }
 
+    /**
+     * Constructor.
+     * @param is the input stream.
+     */
     protected CipherLiteInputStream(InputStream is) {
-        this(is, CipherLite.Null, DEFAULT_IN_BUFFER_SIZE, false, false);
+        this(is, CipherLite.NULL, DEFAULT_IN_BUFFER_SIZE, false, false);
     }
 
     @Override
     public int read() throws IOException {
-        if (curr_pos >= max_pos) {
+        if (currPos >= maxPos) {
             if (eof) {
                 return -1;
             }
@@ -103,17 +127,17 @@ public class CipherLiteInputStream extends SdkFilterInputStream {
                 return -1;
             }
         }
-        return (bufout[curr_pos++] & 0xFF);
+        return (bufout[currPos++] & BYTE_MASK);
     };
 
     @Override
-    public int read(byte b[]) throws IOException {
+    public int read(byte[] b) throws IOException {
         return read(b, 0, b.length);
     }
 
     @Override
-    public int read(byte buf[], int off, int target_len) throws IOException {
-        if (curr_pos >= max_pos) {
+    public int read(byte[] buf, int off, int targetLen) throws IOException {
+        if (currPos >= maxPos) {
             // all buffered data has been read, let's get some more
             if (eof) {
                 return -1;
@@ -133,39 +157,40 @@ public class CipherLiteInputStream extends SdkFilterInputStream {
                 return -1;
             }
         }
-        if (target_len <= 0) {
+        if (targetLen <= 0) {
             return 0;
         }
-        int len = max_pos - curr_pos;
-        if (target_len < len) {
-            len = target_len;
+        int len = maxPos - currPos;
+        if (targetLen < len) {
+            len = targetLen;
         }
         // if buf == null, will throw NPE as intended per javadoc
-        System.arraycopy(bufout, curr_pos, buf, off, len);
-        curr_pos += len;
+        System.arraycopy(bufout, currPos, buf, off, len);
+        currPos += len;
         return len;
     }
 
     @Override
     public long skip(long n) throws IOException {
         abortIfNeeded();
-        final int available = max_pos - curr_pos;
+        final int available = maxPos - currPos;
         if (n > available) {
             n = available;
         }
         if (n < 0) {
             return 0;
         }
-        curr_pos += n;
+        currPos += n;
         return n;
     }
 
     @Override
     public int available() {
         abortIfNeeded();
-        return max_pos - curr_pos;
+        return maxPos - currPos;
     }
 
+    @SuppressWarnings("checkstyle:emptyblock")
     @Override
     public void close() throws IOException {
         in.close();
@@ -182,7 +207,8 @@ public class CipherLiteInputStream extends SdkFilterInputStream {
                 }
             }
         }
-        curr_pos = max_pos = 0;
+        currPos = 0;
+        maxPos = 0;
         abortIfNeeded();
     }
 
@@ -209,7 +235,8 @@ public class CipherLiteInputStream extends SdkFilterInputStream {
 
     final void resetInternal() {
         if (markSupported()) {
-            curr_pos = max_pos = 0;
+            currPos = 0;
+            maxPos = 0;
             eof = false;
         }
     }
@@ -223,6 +250,7 @@ public class CipherLiteInputStream extends SdkFilterInputStream {
      *             stream
      * @throws SecurityException if there is authentication failure
      */
+    @SuppressWarnings("checkstyle:emptyblock")
     private int nextChunk() throws IOException {
         abortIfNeeded();
         if (eof) {
@@ -241,8 +269,9 @@ public class CipherLiteInputStream extends SdkFilterInputStream {
                         // javax.crypto.NullCipher
                         return -1;
                     }
-                    curr_pos = 0;
-                    return max_pos = bufout.length;
+                    currPos = 0;
+                    maxPos = bufout.length;
+                    return maxPos;
                 } catch (final IllegalBlockSizeException ignore) {
                     // like the RI
                 } catch (final BadPaddingException e) {
@@ -254,8 +283,9 @@ public class CipherLiteInputStream extends SdkFilterInputStream {
             return -1;
         }
         bufout = cipherLite.update(bufin, 0, len);
-        curr_pos = 0;
-        return max_pos = (bufout == null ? 0 : bufout.length);
+        currPos = 0;
+        maxPos = (bufout == null ? 0 : bufout.length);
+        return maxPos;
     }
 
     void renewCipherLite() {

@@ -28,6 +28,11 @@ public class StringInputStream extends ByteArrayInputStream {
 
     private final String string;
 
+    /**
+     * Constructor.
+     * @param s the string.
+     * @throws UnsupportedEncodingException
+     */
     public StringInputStream(String s) throws UnsupportedEncodingException {
         super(s.getBytes(UTF8));
         this.string = s;

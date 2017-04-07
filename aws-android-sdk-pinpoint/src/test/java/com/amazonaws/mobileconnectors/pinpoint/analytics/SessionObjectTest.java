@@ -1,28 +1,23 @@
-/*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+/**
+ * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at:
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
  *
- *    http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
- * OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and
- * limitations under the License.
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.mobileconnectors.pinpoint.analytics;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.when;
-
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.StringUtil;
-
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
+import java.util.regex.Pattern;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,10 +27,13 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.StringUtil;
 
-import java.text.SimpleDateFormat;
-import java.util.TimeZone;
-import java.util.regex.Pattern;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE)
@@ -57,19 +55,23 @@ public class SessionObjectTest extends MobileAnalyticsTestBase {
     }
 
     @Test(expected = NullPointerException.class)
-    public void constructor_NullInsightsContext_ThrowsNullPointer() {
+    public void constructor_NullPinpointContext_ThrowsNullPointer() {
         target = Session.newInstance(null);
     }
 
     @Test
     public void sessionID_isCorrectFormat() {
         String regex = "^"
-                + "[" + Session.SESSION_ID_PAD_CHAR + "a-zA-Z0-9]{"
-                + Session.SESSION_ID_UNIQID_LENGTH + "}" + Session.SESSION_ID_DELIMITER
-                + "[0-9]{" + Session.SESSION_ID_DATE_FORMAT.length() + "}"
-                + Session.SESSION_ID_DELIMITER
-                + "[0-9]{" + Session.SESSION_ID_TIME_FORMAT.length() + "}"
-                + "$";
+                               + "[" + Session.SESSION_ID_PAD_CHAR +
+                               "a-zA-Z0-9]{"
+                               + Session.SESSION_ID_UNIQID_LENGTH + "}" +
+                               Session.SESSION_ID_DELIMITER
+                               + "[0-9]{" +
+                               Session.SESSION_ID_DATE_FORMAT.length() + "}"
+                               + Session.SESSION_ID_DELIMITER
+                               + "[0-9]{" +
+                               Session.SESSION_ID_TIME_FORMAT.length() + "}"
+                               + "$";
         Pattern pattern = Pattern.compile(regex);
 
         System.out.println("Session id: " + target.getSessionID());
@@ -81,8 +83,9 @@ public class SessionObjectTest extends MobileAnalyticsTestBase {
         SimpleDateFormat formatter;
 
         // UniqueID
-        String regex = StringUtil.trimOrPadString(DEF_UNIQ_ID, Session.SESSION_ID_UNIQID_LENGTH,
-                Session.SESSION_ID_PAD_CHAR);
+        String regex = StringUtil.trimOrPadString(DEF_UNIQ_ID,
+                                                         Session.SESSION_ID_UNIQID_LENGTH,
+                                                         Session.SESSION_ID_PAD_CHAR);
         Pattern pattern = Pattern.compile(regex);
         assertTrue(pattern.matcher(target.getSessionID()).find());
 
@@ -104,8 +107,9 @@ public class SessionObjectTest extends MobileAnalyticsTestBase {
 
     @Test
     public void sessionID_padsUniqueID_ifNullorEmpty() {
-        String regex = ".*" + Session.SESSION_ID_PAD_CHAR + "{" + Session.SESSION_ID_UNIQID_LENGTH
-                + "}.*$";
+        String regex = ".*" + Session.SESSION_ID_PAD_CHAR + "{" +
+                               Session.SESSION_ID_UNIQID_LENGTH
+                               + "}.*$";
         Pattern pattern = Pattern.compile(regex);
         assertFalse(pattern.matcher(target.getSessionID()).find());
 

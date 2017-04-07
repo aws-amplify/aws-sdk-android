@@ -26,11 +26,17 @@ import java.util.List;
 /**
  * An XML response handler that can also process an arbitrary number of headers
  * in the response.
+ * @param <T> class type
  */
 public class ResponseHeaderHandlerChain<T> extends S3XmlResponseHandler<T> {
 
     private final List<HeaderHandler<T>> headerHandlers;
 
+    /**
+     * Constructor.
+     * @param responseUnmarshaller the response unmarshaller
+     * @param headerHandlers the header handlers
+     */
     public ResponseHeaderHandlerChain(Unmarshaller<T, InputStream> responseUnmarshaller,
             HeaderHandler<T>... headerHandlers) {
         super(responseUnmarshaller);

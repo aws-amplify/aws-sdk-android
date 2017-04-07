@@ -15,9 +15,16 @@
 
 package com.amazonaws.auth;
 
+/**
+ * Enum for the signature version.
+ */
 public enum SignatureVersion {
 
-    V1("1"), V2("2");
+    /** Version 1. */
+    V1("1"),
+
+    /** Version 2. */
+    V2("2");
 
     private String value;
 

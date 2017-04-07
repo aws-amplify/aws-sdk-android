@@ -74,7 +74,7 @@ public class CognitoUserPool {
      * Client secret generated for this {@code clientId}, this may be {@code null} if a secret is not
      * generated for the {@code clientId}.
      */
-    private String clientSecret;
+    private final String clientSecret;
 
     /**
      * Application context.
@@ -92,9 +92,11 @@ public class CognitoUserPool {
     private String secretHash;
 
     /**
+     * @deprecated use {@link CognitoUserPool#CognitoUserPool(Context, String, String, String, ClientConfiguration, Regions)}
+     * <p>
      * Constructs a user-pool with a developer specified {@link ClientConfiguration} and default AWS region {@link Regions}.
      * Region defaults to US-EAST-1.
-     *
+     * </p>
      * @param context               REQUIRED: Android application context
      * @param userPoolId            REQUIRED: User-pool-Id of the user-pool
      * @param clientId              REQUIRED: Client-Id generated for this app and user-pool at the
@@ -105,15 +107,18 @@ public class CognitoUserPool {
      *                              client connects to Cognito Identity Provider Service (e.g. proxy settings,
      *                              retry counts, etc.).
      */
+    @Deprecated()
     public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret,
                            ClientConfiguration clientConfiguration) {
         this(context, userPoolId, clientId, clientSecret, clientConfiguration, Regions.US_EAST_1);
     }
 
     /**
+     * @deprecated use {@link CognitoUserPool#CognitoUserPool(Context, String, String, String, ClientConfiguration, Regions)}
+     * <p>
      * Constructs a user-pool with default {@link ClientConfiguration} and default AWS region {@link Regions}.
      * Region defaults to US-EAST-1.
-     *
+     * </p>
      * @param context               REQUIRED: Android application context.
      * @param userPoolId            REQUIRED: User-pool-Id of the user-pool.
      * @param clientId              REQUIRED: Client-Id generated for this app and user-pool at the
@@ -121,6 +126,7 @@ public class CognitoUserPool {
      * @param clientSecret          REQUIRED: Client Secret generated for this app and user-pool at
      *                              the Cognito Identity Provider developer console.
      */
+    @Deprecated()
     public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret) {
         this(context, userPoolId, clientId, clientSecret, new ClientConfiguration(), Regions.US_EAST_1);
     }
@@ -188,7 +194,7 @@ public class CognitoUserPool {
      * @return Client ID.
      */
     public String getClientId() {
-    	return  clientId;
+        return clientId;
     }
 
     /**
@@ -216,20 +222,21 @@ public class CognitoUserPool {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Handler handler = new Handler(context.getMainLooper());
+                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
-                    final SignUpResult signUpResult =
-                            signUpInternal(userId, password, userAttributes, validationData);
+                    final SignUpResult signUpResult = signUpInternal(userId, password,
+                            userAttributes, validationData);
                     final CognitoUser user = getUser(userId);
                     returnCallback = new Runnable() {
                         @Override
                         public void run() {
                             callback.onSuccess(user, signUpResult.getUserConfirmed(),
-                                    new CognitoUserCodeDeliveryDetails(signUpResult.getCodeDeliveryDetails()));
+                                    new CognitoUserCodeDeliveryDetails(
+                                            signUpResult.getCodeDeliveryDetails()));
                         }
                     };
-                } catch(final Exception e) {
+                } catch (final Exception e) {
                     returnCallback = new Runnable() {
                         @Override
                         public void run() {
@@ -256,16 +263,16 @@ public class CognitoUserPool {
      * @param callback          REQUIRED: callback, must not be null
      */
     public void signUp(final String userId, final String password,
-                             final CognitoUserAttributes userAttributes,
-                             final Map<String, String> validationData,
-                             final SignUpHandler callback) {
+            final CognitoUserAttributes userAttributes,
+            final Map<String, String> validationData,
+            final SignUpHandler callback) {
         try {
-            SignUpResult signUpResult =
-                    signUpInternal(userId, password, userAttributes, validationData);
-            CognitoUser user = getUser(userId);
+            final SignUpResult signUpResult = signUpInternal(userId, password, userAttributes,
+                    validationData);
+            final CognitoUser user = getUser(userId);
             callback.onSuccess(user, signUpResult.getUserConfirmed(),
                     new CognitoUserCodeDeliveryDetails(signUpResult.getCodeDeliveryDetails()));
-        } catch(final Exception e) {
+        } catch (final Exception e) {
             callback.onFailure(e);
         }
     }
@@ -287,10 +294,10 @@ public class CognitoUserPool {
 
         // Create a list of {@link AttributeType} from {@code userAttributes}
         List<AttributeType> validationDataList = null;
-        if(validationData != null) {
+        if (validationData != null) {
             validationDataList = new ArrayList<AttributeType>();
-            for (Map.Entry<String, String> data : validationData.entrySet()) {
-                AttributeType validation = new AttributeType();
+            for (final Map.Entry<String, String> data : validationData.entrySet()) {
+                final AttributeType validation = new AttributeType();
                 validation.setName(data.getKey());
                 validation.setValue(data.getValue());
                 validationDataList.add(validation);
@@ -301,7 +308,7 @@ public class CognitoUserPool {
         secretHash = CognitoSecretHash.getSecretHash(userId, clientId, clientSecret);
 
         // Create User registration request
-        SignUpRequest signUpUserRequest = new SignUpRequest();
+        final SignUpRequest signUpUserRequest = new SignUpRequest();
         signUpUserRequest.setUsername(userId);
         signUpUserRequest.setPassword(password);
         signUpUserRequest.setClientId(clientId);
@@ -318,14 +325,14 @@ public class CognitoUserPool {
      * @return An instance of the {@link CognitoUser} for last authenticated, cached on this device
      */
     public CognitoUser getCurrentUser() {
-        SharedPreferences csiCachedTokens = context.getSharedPreferences("CognitoIdentityProviderCache", 0);
+        final SharedPreferences csiCachedTokens = context
+                .getSharedPreferences("CognitoIdentityProviderCache", 0);
 
-        String csiLastUserKey = "CognitoIdentityProvider." + clientId + ".LastAuthUser";
+        final String csiLastUserKey = "CognitoIdentityProvider." + clientId + ".LastAuthUser";
 
-        if(csiCachedTokens.contains(csiLastUserKey)){
+        if (csiCachedTokens.contains(csiLastUserKey)) {
             return getUser(csiCachedTokens.getString(csiLastUserKey, null));
-        }
-        else {
+        } else {
             return getUser();
         }
     }
@@ -355,7 +362,7 @@ public class CognitoUserPool {
             return getUser();
         }
 
-        if(userId.isEmpty()) {
+        if (userId.isEmpty()) {
             return getUser();
         }
 

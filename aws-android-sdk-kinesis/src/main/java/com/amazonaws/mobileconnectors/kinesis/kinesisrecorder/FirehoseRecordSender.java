@@ -34,12 +34,12 @@ import java.util.List;
  */
 class FirehoseRecordSender implements RecordSender {
 
-    private AmazonKinesisFirehose client;
-    private String userAgent;
+    private final AmazonKinesisFirehose client;
+    private final String userAgent;
 
     /**
      * Constructs a {@link FirehoseRecordSender}.
-     * 
+     *
      * @param client an {@link AmazonKinesisFirehose} client
      * @param userAgent user agent string to be set in each request
      */
@@ -49,27 +49,26 @@ class FirehoseRecordSender implements RecordSender {
     }
 
     @Override
-    public List<byte[]> sendBatch(String streamName, List<byte[]> data)
-            throws AmazonClientException {
+    public List<byte[]> sendBatch(String streamName, List<byte[]> data) {
         if (data == null || data.isEmpty()) {
             return Collections.emptyList();
         }
 
-        PutRecordBatchRequest request = new PutRecordBatchRequest();
+        final PutRecordBatchRequest request = new PutRecordBatchRequest();
         request.setDeliveryStreamName(streamName);
-        List<Record> records = new ArrayList<Record>(data.size());
-        for (byte[] d : data) {
-            Record r = new Record();
+        final List<Record> records = new ArrayList<Record>(data.size());
+        for (final byte[] d : data) {
+            final Record r = new Record();
             r.setData(ByteBuffer.wrap(d));
             records.add(r);
         }
         request.setRecords(records);
         request.getRequestClientOptions().appendUserAgent(userAgent);
 
-        PutRecordBatchResult result = client.putRecordBatch(request);
+        final PutRecordBatchResult result = client.putRecordBatch(request);
 
-        int size = result.getRequestResponses().size();
-        List<byte[]> failures = new ArrayList<byte[]>(result.getFailedPutCount());
+        final int size = result.getRequestResponses().size();
+        final List<byte[]> failures = new ArrayList<byte[]>(result.getFailedPutCount());
         for (int i = 0; i < size; i++) {
             // Error code is either ServiceUnavailable or InternalFailure
             if (result.getRequestResponses().get(i).getErrorCode() != null) {
@@ -82,7 +81,7 @@ class FirehoseRecordSender implements RecordSender {
     @Override
     public boolean isRecoverable(AmazonClientException ace) {
         if (ace instanceof AmazonServiceException) {
-            String errorCode = ((AmazonServiceException) ace).getErrorCode();
+            final String errorCode = ((AmazonServiceException) ace).getErrorCode();
             return "InternalFailure".equals(errorCode)
                     || "ServiceUnavailable".equals(errorCode)
                     || "Throttling".equals(errorCode)

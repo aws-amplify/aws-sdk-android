@@ -44,7 +44,10 @@ public class S3ClientOptions {
         return new Builder();
     }
 
-    public static class Builder {
+    /**
+     * Builder class for S3ClientOptions.
+     */
+    public static final class Builder {
         private boolean pathStyleAccess = DEFAULT_PATH_STYLE_ACCESS;
         /** Flag for user of chunked encoding */
         private boolean chunkedEncodingDisabled = DEFAULT_CHUNKED_ENCODING_DISABLED;
@@ -55,6 +58,10 @@ public class S3ClientOptions {
         private Builder() {
         }
 
+        /**
+         * Builder.
+         * @return S3ClientOptions instance.
+         */
         public S3ClientOptions build() {
             return new S3ClientOptions(pathStyleAccess,
                     chunkedEncodingDisabled,
@@ -83,6 +90,7 @@ public class S3ClientOptions {
          * @param pathStyleAccess True to always use path-style access.
          * @return this Builder instance that can be used for method chaining
          */
+        @SuppressWarnings("checkstyle:hiddenfield")
         public Builder setPathStyleAccess(boolean pathStyleAccess) {
             this.pathStyleAccess = pathStyleAccess;
             return this;
@@ -99,7 +107,10 @@ public class S3ClientOptions {
          * </p>
          *
          * @see {@link AmazonS3#setBucketAccelerateConfiguration(com.amazonaws.services.s3.model.SetBucketAccelerateConfigurationRequest)}
+         * @param accelerateModeEnabled boolean for accelerateModeEnabled.
+         * @return Builder for S3ClientOptions.
          */
+        @SuppressWarnings("checkstyle:hiddenfield")
         public Builder setAccelerateModeEnabled(boolean accelerateModeEnabled) {
             this.accelerateModeEnabled = accelerateModeEnabled;
             return this;
@@ -123,7 +134,9 @@ public class S3ClientOptions {
          *
          * @param payloadSigningEnabled
          *            True to explicitly enable payload signing in all situations
+         * @return Builder for S3ClientOptions.
          */
+        @SuppressWarnings("checkstyle:hiddenfield")
         public Builder setPayloadSigningEnabled(boolean payloadSigningEnabled) {
             this.payloadSigningEnabled = payloadSigningEnabled;
             return this;
@@ -159,6 +172,7 @@ public class S3ClientOptions {
          * S3 supports dualstack endpoints which return both IPv6 and IPv4 values.
          * Use of these endpoints is optional.
          * </p>
+         * @return Builder for S3ClientOptions.
          */
         public Builder enableDualstack() {
             this.dualstackEnabled = true;
@@ -182,6 +196,7 @@ public class S3ClientOptions {
     /**
      * @deprecated Will be removed once S3ClientOptions is made an immutable
      *             class.
+     * @param other S3ClientOptions instance.
      */
     @Deprecated
     public S3ClientOptions(S3ClientOptions other) {
@@ -348,6 +363,7 @@ public class S3ClientOptions {
      *         setting.
      */
     @Deprecated
+    @SuppressWarnings("checkstyle:hiddenfield")
     public S3ClientOptions withPathStyleAccess(boolean pathStyleAccess) {
         setPathStyleAccess(pathStyleAccess);
         return this;

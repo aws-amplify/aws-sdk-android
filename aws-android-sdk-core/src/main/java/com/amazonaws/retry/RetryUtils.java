@@ -21,6 +21,7 @@ import com.amazonaws.AmazonServiceException;
 import java.io.InterruptedIOException;
 import java.net.SocketTimeoutException;
 
+/** RetryUtils class. */
 public class RetryUtils {
 
     /**
@@ -74,7 +75,7 @@ public class RetryUtils {
 
     /**
      * Return true if the error is caused by interruption.
-     * 
+     *
      * @param error throwable
      * @return true if the exception is caused by interruption.
      */

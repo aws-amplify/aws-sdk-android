@@ -5,7 +5,7 @@
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,12 +15,14 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile;
 
+import java.util.Locale;
+import org.json.JSONObject;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.JSONBuilder;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.JSONSerializable;
-import org.json.JSONObject;
 
-import java.util.Locale;
-
+/**
+ * A Amazon Pinpoint endpoint profile location.
+ */
 public class EndpointProfileLocation implements JSONSerializable {
 
     private Double latitude = null;
@@ -33,6 +35,7 @@ public class EndpointProfileLocation implements JSONSerializable {
     public Double getLatitude() {
         return this.latitude;
     }
+
     public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
@@ -40,6 +43,7 @@ public class EndpointProfileLocation implements JSONSerializable {
     public Double getLongitude() {
         return this.longitude;
     }
+
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
@@ -47,6 +51,7 @@ public class EndpointProfileLocation implements JSONSerializable {
     public String getPostalCode() {
         return this.postalCode;
     }
+
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
@@ -54,6 +59,7 @@ public class EndpointProfileLocation implements JSONSerializable {
     public String getCity() {
         return this.city;
     }
+
     public void setCity(String city) {
         this.city = city;
     }
@@ -61,6 +67,7 @@ public class EndpointProfileLocation implements JSONSerializable {
     public String getRegion() {
         return this.region;
     }
+
     public void setRegion(String region) {
         this.region = region;
     }
@@ -68,13 +75,14 @@ public class EndpointProfileLocation implements JSONSerializable {
     public String getCountry() {
         return this.country;
     }
+
     public void setCountry(String country) {
         this.country = country;
     }
 
     @Override
     public JSONObject toJSONObject() {
-        JSONBuilder builder = new JSONBuilder(null);
+        final JSONBuilder builder = new JSONBuilder(null);
         builder.withAttribute("Latitude", getLatitude());
         builder.withAttribute("Longitude", getLongitude());
         builder.withAttribute("PostalCode", getPostalCode());

@@ -15,8 +15,25 @@
 
 package com.amazonaws.http;
 
+/** Enums for HTTP method. */
 public enum HttpMethodName {
 
-    GET, POST, PUT, DELETE, HEAD, PATCH;
+    /** Http method for GET. */
+    GET,
+
+    /** Http method for POST. */
+    POST,
+
+    /** Http method for PUT. */
+    PUT,
+
+    /** Http method for DELETE. */
+    DELETE,
+
+    /** Http method for HEAD. */
+    HEAD,
+
+    /** Http method for PATCH. */
+    PATCH;
 
 }

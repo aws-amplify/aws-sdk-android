@@ -34,6 +34,7 @@ public class Constants {
     public static final String S3_EXTERNAL_1_HOSTNAME = "s3-external-1.amazonaws.com";
     /** Service hostname for accessing accelerated S3 buckets */
     public static final String S3_ACCELERATE_HOSTNAME = "s3-accelerate.amazonaws.com";
+    /** Service hostname for accessing dualstack accelerated S3 buckets */
     public static final String S3_ACCELERATE_DUALSTACK_HOSTNAME = "s3-accelerate.dualstack.amazonaws.com";
 
     /** Dualstack qualifier for S3 */
@@ -88,6 +89,7 @@ public class Constants {
     /**
      * Returns the buffer size override if it is specified in the system
      * property, otherwise returns the default value.
+     * @return stream buffer size in int.
      */
     @Deprecated
     public static int getStreamBufferSize() {
@@ -111,6 +113,7 @@ public class Constants {
      * {@link SDKGlobalConfiguration#DEFAULT_S3_STREAM_BUFFER_SIZE} as an
      * Integer; or null if not set. This method exists for backward
      * compatibility reasons.
+     * @return S3 stream buffer size in Integer.
      */
     public static Integer getS3StreamBufferSize() {
         final String s =
@@ -129,16 +132,23 @@ public class Constants {
     /** Shared logger for client events */
     private static Log log = LogFactory.getLog(AmazonS3Client.class);
 
+    /** Status code for no such bucket */
     public static final int NO_SUCH_BUCKET_STATUS_CODE = 404;
 
+    /** Status code for access forbidden */
     public static final int BUCKET_ACCESS_FORBIDDEN_STATUS_CODE = 403;
 
+    /** Status code for redirect */
     public static final int BUCKET_REDIRECT_STATUS_CODE = 301;
 
-    // Constant indicating the requester pays for data transfer cost for a
-    // bucket.
+    /** Constant indicating the requester pays
+     * for data transfer cost for a bucket.
+     * */
     public static final String REQUESTER_PAYS = "requester";
 
+    /**
+     * KMS encryption scheme
+     */
     public static final String SSE_AWS_KMS_ENCRYPTION_SCHEME =
             SSEAlgorithm.KMS.getAlgorithm();
 }

@@ -29,8 +29,7 @@ final class RequestHandler2Adaptor extends RequestHandler2 {
     @SuppressWarnings("deprecation")
     private final RequestHandler old;
 
-    RequestHandler2Adaptor(@SuppressWarnings("deprecation")
-    RequestHandler old) {
+    RequestHandler2Adaptor(@SuppressWarnings("deprecation") RequestHandler old) {
         if (old == null)
             throw new IllegalArgumentException();
         this.old = old;

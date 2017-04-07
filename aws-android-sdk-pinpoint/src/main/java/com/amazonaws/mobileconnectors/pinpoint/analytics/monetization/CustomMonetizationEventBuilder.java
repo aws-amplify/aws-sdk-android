@@ -1,11 +1,11 @@
-/*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+/**
+ * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,25 +15,22 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.analytics.monetization;
 
-import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
 import org.apache.commons.logging.LogFactory;
+import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
 
 /**
  * Builds monetization events representing a purchase from an IAP framework not
  * defined by a specific builder. The store attribute must be set by the user.
  * This Builder will return null if the Store, ProductId, Quantity, Price and Currency are not set.
- * <p>
+ *
  * The example below demonstrates how to create a monetization event after you
  * receive a purchase confirmation from the IAP framework you are using. You are
  * responsible for storing and making sure that the bare minimum attributes
  * required to build a Custom Purchase Event are available for use at this time.
  * Note that the builder will maintain the values of its internal variables
  * between builds.
- * </p>
+ *
  * Example:
- *
- * <pre class="prettyprint">
- *
  * // create a builder that can record purchase events for the IAP Framework you
  * // are using
  * CustomMonetizationEventBuilder builder = CustomMonetizationEventBuilder.create(pinpointManager.getAnalyticsClient());
@@ -42,35 +39,44 @@ import org.apache.commons.logging.LogFactory;
  * // and price information
  * // The price information can be supplied in either of the following ways:
  * // - The price as a double (i.e. 1.99) and the currency as a currency code (i.e.
- * // &quot;USD&quot;). This method is preferred as it provides more accuracy in the
+ * // "USD"). This method is preferred as it provides more accuracy in the
  * // monetization reports
- * // - The formatted localized price of the item as a string (i.e. &quot;$1.99&quot;)
+ * // - The formatted localized price of the item as a string (i.e. "$1.99")
  * // You may also build with any additional available attributes that the IAP
  * // Framework provides such as Transaction ID
  *
  * // Price and currency
- * Event purchaseEvent = builder.withStore(&quot;Custom Store&quot;).withProductId(&quot;com.yourgame.sword&quot;)
- *         .withItemPrice(1.99).withCurrency(&quot;USD&quot;).withQuantity(1).build();
+ * Event purchaseEvent = builder.withStore("Custom Store").withProductId("com.yourgame.sword")
+ * .withItemPrice(1.99).withCurrency("USD").withQuantity(1).build();
  *
  * // Formatted Price
- * purchaseEvent = builder.withStore(&quot;Custom Store&quot;).withProductId(&quot;com.yourgame.sword&quot;)
- *         .withFormattedItemPrice(&quot;$1.99&quot;).withQuantity(1).build();
+ * purchaseEvent = builder.withStore("Custom Store").withProductId("com.yourgame.sword")
+ * .withFormattedItemPrice("$1.99").withQuantity(1).build();
  *
  * // record the monetization event
  * pinpointManager.getAnalyticsClient().recordEvent(purchaseEvent);
- * </pre>
  */
 public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
 
     private static final org.apache.commons.logging.Log log =
             LogFactory.getLog(CustomMonetizationEventBuilder.class);
+
+    /**
+     * Construct a CustomMonetizationEventBuilder with the specified EventClient
+     *
+     * @param analyticsClient The EventClient to use when building the event
+     */
+    protected CustomMonetizationEventBuilder(AnalyticsClient analyticsClient) {
+        super(analyticsClient);
+    }
+
     /**
      * Create a CustomMonetizationEventBuilder with the specified Event client
      *
      * @param analyticsClient The event client to use when creating monetization
-     *            events
+     *                        events
      * @return a CustomMonetizationEventBuilder to build monetization events
-     *         from a Non-Specific IAP Framework
+     * from a Non-Specific IAP Framework
      */
     public static CustomMonetizationEventBuilder create(AnalyticsClient analyticsClient) {
         return new CustomMonetizationEventBuilder(analyticsClient);
@@ -114,9 +120,8 @@ public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
      *
      * @param formattedItemPrice The formatted localized price of the item
      * @return this for chaining
-     *
-     * @deprecated  Will be removed. Please set Currency and Item Price. Replaced by
-     *    {@link #withCurrency(String)} and {@link #withItemPrice(double)
+     * @deprecated Will be removed. Please set Currency and Item Price. Replaced by
+     * {@link #withCurrency(String)} and {@link #withItemPrice(double)
      */
     @Deprecated
     public CustomMonetizationEventBuilder withFormattedItemPrice(String formattedItemPrice) {
@@ -139,7 +144,7 @@ public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
      * Sets the currency of the item being purchased (Required)
      *
      * @param currency The currency code of the currency used to purchase this
-     *            item (i.e. "USD")
+     *                 item (i.e. "USD")
      * @return this for chaining
      */
     public CustomMonetizationEventBuilder withCurrency(String currency) {
@@ -156,15 +161,6 @@ public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
     public CustomMonetizationEventBuilder withTransactionId(String transactionId) {
         setTransactionId(transactionId);
         return this;
-    }
-
-    /**
-     * Construct a CustomMonetizationEventBuilder with the specified EventClient
-     *
-     * @param analyticsClient The EventClient to use when building the event
-     */
-    protected CustomMonetizationEventBuilder(AnalyticsClient analyticsClient) {
-        super(analyticsClient);
     }
 
     @Override
@@ -187,7 +183,7 @@ public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
 
         if (getCurrency() == null || getItemPrice() == null) {
             log.warn("Custom Monetization event is not valid: it requires the formatted " +
-                    "localized price or the currency and price");
+                             "localized price or the currency and price");
             return false;
         }
 

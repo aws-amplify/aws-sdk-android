@@ -5,7 +5,7 @@
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -55,9 +55,11 @@ public final class StringUtil {
      * @return a string containing the content of the input stream
      * @throws IOException upon a failure reading the input stream
      */
-    public static String convertStreamToString(final InputStream is, final Charset charset)
+    public static String convertStreamToString(final InputStream is,
+                                                      final Charset charset)
             throws IOException {
-        final BufferedReader br = new BufferedReader(new InputStreamReader(is, charset));
+        final BufferedReader br = new BufferedReader(new InputStreamReader(is,
+                                                                                  charset));
         final StringBuilder sb = new StringBuilder();
         String line = null;
         while ((line = br.readLine()) != null) {
@@ -74,7 +76,8 @@ public final class StringUtil {
      * @return a string containing the content of the input stream
      * @throws IOException upon a failure reading the input stream
      */
-    public static String convertStreamToUTF8String(final InputStream is) throws IOException {
+    public static String convertStreamToUTF8String(final InputStream is)
+            throws IOException {
         return convertStreamToString(is, Charset.forName(UTF_8));
     }
 
@@ -87,11 +90,14 @@ public final class StringUtil {
      *            removed)
      * @return: the clipped string
      */
-    public static String clipString(String input, int numChars, boolean appendEllipses) {
+    public static String clipString(String input, int numChars,
+                                           boolean appendEllipses) {
         int end = Math.min(numChars, input.length());
         String output = input.substring(0, end);
         if (appendEllipses) {
-            output = (output.length() < input.length()) ? output + "..." : output;
+            output = (output.length() < input.length())
+                             ? output + "..."
+                             : output;
         }
         return output;
     }

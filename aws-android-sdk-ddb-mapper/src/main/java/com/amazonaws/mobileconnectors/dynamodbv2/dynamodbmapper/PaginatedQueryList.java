@@ -46,6 +46,17 @@ public class PaginatedQueryList<T> extends PaginatedList<T> {
     /** The current results for the last executed query operation */
     private QueryResult queryResult;
 
+    /**
+     * Constructor.
+     * 
+     * @param mapper an instance of {@link DynamoDBMapper}
+     * @param clazz the class that is being mapped to a dynamodb table
+     * @param dynamo an instance of {@link AmazonDynamoDB}
+     * @param queryRequest the {@link QueryRequest}
+     * @param queryResult the {@link QueryResult}
+     * @param paginationLoadingStrategy {@link PaginationLoadingStrategy}
+     * @param config the {@link DynamoDBMapperConfig}
+     */
     public PaginatedQueryList(
             DynamoDBMapper mapper,
             Class<T> clazz,

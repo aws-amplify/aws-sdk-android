@@ -46,6 +46,7 @@ import java.util.Map;
 public class S3ErrorResponseHandler
         implements HttpResponseHandler<AmazonServiceException> {
     private static final Log log = LogFactory.getLog(S3ErrorResponseHandler.class);
+    private static final int HTTP_INTERNAL_FAILURE_STATUS_CODE = 500;
 
     @Override
     public AmazonServiceException handle(HttpResponse errorResponse) throws IOException {
@@ -122,7 +123,7 @@ public class S3ErrorResponseHandler
      *            error type to set.
      */
     private ErrorType errorTypeOf(int statusCode) {
-        return statusCode >= 500 ? ErrorType.Service : ErrorType.Client;
+        return statusCode >= HTTP_INTERNAL_FAILURE_STATUS_CODE ? ErrorType.Service : ErrorType.Client;
     }
 
     /**

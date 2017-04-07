@@ -23,7 +23,16 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HttpRequestExecutor;
 
+/**
+ * SDK HTTP client class.
+ */
 public class SdkHttpClient extends DefaultHttpClient {
+
+    /**
+     * Constructor.
+     * @param conman the client connection manager.
+     * @param params the HTTP parameters.
+     */
     public SdkHttpClient(
             final ClientConnectionManager conman,
             final HttpParams params) {

@@ -31,7 +31,7 @@ import java.io.InputStream;
  * The AWS access key ID is expected to be in the <code>accessKey</code>
  * property and the AWS secret key is expected to be in the
  * <code>secretKey</code> property.
- * 
+ *
  * @deprecated This is unsafe in mobile applications and should not be used. Use
  *             temporary credentials provided by services such as Cognito
  *             Identity
@@ -42,7 +42,7 @@ import java.io.InputStream;
 public class ClasspathPropertiesFileCredentialsProvider implements AWSCredentialsProvider {
 
     /** The name of the properties file to check for credentials */
-    private static String DEFAULT_PROPERTIES_FILE = "AwsCredentials.properties";
+    private static String defaultPropertiesFile = "AwsCredentials.properties";
 
     private final String credentialsFilePath;
 
@@ -52,7 +52,7 @@ public class ClasspathPropertiesFileCredentialsProvider implements AWSCredential
      * classpath to read AWS security credentials.
      */
     public ClasspathPropertiesFileCredentialsProvider() {
-        this(DEFAULT_PROPERTIES_FILE);
+        this(defaultPropertiesFile);
     }
 
     /**

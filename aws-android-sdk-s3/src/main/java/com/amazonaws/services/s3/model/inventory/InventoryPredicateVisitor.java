@@ -26,6 +26,7 @@ public interface InventoryPredicateVisitor {
     /**
      * Implement this method to add behaviour performed when
      * {@link InventoryPrefixPredicate} is visited.
+     * @param inventoryPrefixPredicate the InventoryPrefixPredicate.
      */
     public void visit(InventoryPrefixPredicate inventoryPrefixPredicate);
 }

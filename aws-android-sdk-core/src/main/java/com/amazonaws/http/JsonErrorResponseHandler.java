@@ -29,6 +29,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+/**
+ * The JSON error response handler class.
+ */
 public class JsonErrorResponseHandler implements HttpResponseHandler<AmazonServiceException> {
 
     /**
@@ -36,6 +39,7 @@ public class JsonErrorResponseHandler implements HttpResponseHandler<AmazonServi
      * type information in the response headers, instead of the content.
      */
     private static final String X_AMZN_ERROR_TYPE = "x-amzn-ErrorType";
+    private static final int HTTP_STATUS_INTERNAL_SERVER_ERROR = 500;
 
     /**
      * The list of error response unmarshallers to try to apply to error
@@ -43,6 +47,10 @@ public class JsonErrorResponseHandler implements HttpResponseHandler<AmazonServi
      */
     private final List<? extends JsonErrorUnmarshaller> unmarshallerList;
 
+    /**
+     * Constructor.
+     * @param exceptionUnmarshallers the list of exception unmarshallers.
+     */
     public JsonErrorResponseHandler(List<? extends JsonErrorUnmarshaller> exceptionUnmarshallers) {
         this.unmarshallerList = exceptionUnmarshallers;
     }
@@ -61,7 +69,7 @@ public class JsonErrorResponseHandler implements HttpResponseHandler<AmazonServi
             return null;
 
         ase.setStatusCode(response.getStatusCode());
-        if (response.getStatusCode() < 500) {
+        if (response.getStatusCode() < HTTP_STATUS_INTERNAL_SERVER_ERROR) {
             ase.setErrorType(ErrorType.Client);
         } else {
             ase.setErrorType(ErrorType.Service);
@@ -69,7 +77,7 @@ public class JsonErrorResponseHandler implements HttpResponseHandler<AmazonServi
         ase.setErrorCode(error.getErrorCode());
 
         for (Entry<String, String> headerEntry : response.getHeaders().entrySet()) {
-            if (headerEntry.getKey().equalsIgnoreCase("X-Amzn-RequestId")) {
+            if ("X-Amzn-RequestId".equalsIgnoreCase(headerEntry.getKey())) {
                 ase.setRequestId(headerEntry.getValue());
             }
         }
@@ -102,7 +110,7 @@ public class JsonErrorResponseHandler implements HttpResponseHandler<AmazonServi
     /**
      * A class that represents the error object returned from JSON service.
      */
-    public static class JsonErrorResponse {
+    public static final class JsonErrorResponse {
 
         private final int statusCode;
         private final String message;
@@ -173,6 +181,11 @@ public class JsonErrorResponseHandler implements HttpResponseHandler<AmazonServi
             return value;
         }
 
+        /**
+         * @param response The HTTP response.
+         * @return the JSONErrorResponse object.
+         * @throws IOException
+         */
         public static JsonErrorResponse fromResponse(HttpResponse response) throws IOException {
             int statusCode = response.getStatusCode();
 

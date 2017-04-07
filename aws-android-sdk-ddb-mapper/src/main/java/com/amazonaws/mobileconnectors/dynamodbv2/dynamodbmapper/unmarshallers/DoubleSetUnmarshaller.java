@@ -24,11 +24,16 @@ import java.util.Set;
  * An unmarshaller that unmarshals DynamoDB NumberSets into sets of Java
  * {@code Double}s.
  */
-public class DoubleSetUnmarshaller extends NSUnmarshaller {
+public final class DoubleSetUnmarshaller extends NSUnmarshaller {
 
     private static final DoubleSetUnmarshaller INSTANCE =
             new DoubleSetUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link DoubleSetUnmarshaller}
+     */
     public static DoubleSetUnmarshaller instance() {
         return INSTANCE;
     }
@@ -38,8 +43,8 @@ public class DoubleSetUnmarshaller extends NSUnmarshaller {
 
     @Override
     public Object unmarshall(AttributeValue value) {
-        Set<Double> result = new HashSet<Double>();
-        for (String s : value.getNS()) {
+        final Set<Double> result = new HashSet<Double>();
+        for (final String s : value.getNS()) {
             result.add(Double.valueOf(s));
         }
         return result;

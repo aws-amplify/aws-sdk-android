@@ -21,7 +21,7 @@ import com.amazonaws.metrics.ServiceMetricType;
  * Predefined AWS SDK non-request specific metric types general across all AWS
  * clients. Client specific predefined metrics like S3 or DynamoDB are defined
  * in the client specific packages.
- * 
+ *
  * @deprecated Metrics is deprecated
  */
 @Deprecated
@@ -29,7 +29,7 @@ public enum AWSServiceMetrics implements ServiceMetricType {
     /**
      * Time taken to get a connection by the http client library.
      */
-    HttpClientGetConnectionTime("HttpClient"), ;
+    HttpClientGetConnectionTime("HttpClient");
 
     private final String serviceName;
 

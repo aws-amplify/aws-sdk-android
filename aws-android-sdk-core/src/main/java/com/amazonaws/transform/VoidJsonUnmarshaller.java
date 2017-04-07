@@ -18,6 +18,7 @@ package com.amazonaws.transform;
 /**
  * Simple unmarshaller that iterates through the JSON events but always returns
  * null.
+ * @param <T> the VoidJsonUnmarshaller type.
  */
 public class VoidJsonUnmarshaller<T> implements Unmarshaller<T, JsonUnmarshallerContext> {
     @Override

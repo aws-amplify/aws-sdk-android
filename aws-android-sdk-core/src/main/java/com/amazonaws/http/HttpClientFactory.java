@@ -15,9 +15,6 @@
 
 package com.amazonaws.http;
 
-import static com.amazonaws.SDKGlobalConfiguration.DISABLE_CERT_CHECKING_SYSTEM_PROPERTY;
-
-import com.amazonaws.AmazonClientException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.http.impl.client.HttpRequestNoRetryHandler;
 import com.amazonaws.http.impl.client.SdkHttpClient;
@@ -42,23 +39,11 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HttpContext;
 
-import java.io.IOException;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
 /** Responsible for creating and configuring instances of Apache HttpClient4. */
 class HttpClientFactory {
+
+    private static final int HTTP_PORT = 80;
+    private static final int HTTPS_PORT = 443;
 
     /**
      * Creates a new HttpClient object using the specified AWS
@@ -70,22 +55,22 @@ class HttpClientFactory {
      */
     public HttpClient createHttpClient(ClientConfiguration config) {
         /* Set HTTP client parameters */
-        HttpParams httpClientParams = new BasicHttpParams();
+        final HttpParams httpClientParams = new BasicHttpParams();
         HttpConnectionParams.setConnectionTimeout(httpClientParams, config.getConnectionTimeout());
         HttpConnectionParams.setSoTimeout(httpClientParams, config.getSocketTimeout());
         HttpConnectionParams.setStaleCheckingEnabled(httpClientParams, true);
         HttpConnectionParams.setTcpNoDelay(httpClientParams, true);
 
-        int socketSendBufferSizeHint = config.getSocketBufferSizeHints()[0];
-        int socketReceiveBufferSizeHint = config.getSocketBufferSizeHints()[1];
+        final int socketSendBufferSizeHint = config.getSocketBufferSizeHints()[0];
+        final int socketReceiveBufferSizeHint = config.getSocketBufferSizeHints()[1];
         if (socketSendBufferSizeHint > 0 || socketReceiveBufferSizeHint > 0) {
             HttpConnectionParams.setSocketBufferSize(httpClientParams,
                     Math.max(socketSendBufferSizeHint, socketReceiveBufferSizeHint));
         }
 
-        ThreadSafeClientConnManager connectionManager = ConnectionManagerFactory
+        final ThreadSafeClientConnManager connectionManager = ConnectionManagerFactory
                 .createThreadSafeClientConnManager(config, httpClientParams);
-        SdkHttpClient httpClient = new SdkHttpClient(connectionManager, httpClientParams);
+        final SdkHttpClient httpClient = new SdkHttpClient(connectionManager, httpClientParams);
         httpClient.setHttpRequestRetryHandler(HttpRequestNoRetryHandler.Singleton);
         httpClient.setRedirectHandler(new LocationHeaderNotRequiredRedirectHandler());
 
@@ -93,11 +78,11 @@ class HttpClientFactory {
             ConnRouteParams.setLocalAddress(httpClientParams, config.getLocalAddress());
         }
 
-        Scheme http = new Scheme("http", PlainSocketFactory.getSocketFactory(), 80);
-        SSLSocketFactory sslSocketFactory = SSLSocketFactory.getSocketFactory();
+        final Scheme http = new Scheme("http", PlainSocketFactory.getSocketFactory(), HTTP_PORT);
+        final SSLSocketFactory sslSocketFactory = SSLSocketFactory.getSocketFactory();
         sslSocketFactory.setHostnameVerifier(SSLSocketFactory.STRICT_HOSTNAME_VERIFIER);
-        Scheme https = new Scheme("https", sslSocketFactory, 443);
-        SchemeRegistry sr = connectionManager.getSchemeRegistry();
+        final Scheme https = new Scheme("https", sslSocketFactory, HTTPS_PORT);
+        final SchemeRegistry sr = connectionManager.getSchemeRegistry();
         sr.register(http);
         sr.register(https);
 
@@ -118,18 +103,18 @@ class HttpClientFactory {
         }
         */
         /* Set proxy if configured */
-        String proxyHost = config.getProxyHost();
-        int proxyPort = config.getProxyPort();
+        final String proxyHost = config.getProxyHost();
+        final int proxyPort = config.getProxyPort();
         if (proxyHost != null && proxyPort > 0) {
             AmazonHttpClient.log.info("Configuring Proxy. Proxy Host: " + proxyHost + " "
                     + "Proxy Port: " + proxyPort);
-            HttpHost proxyHttpHost = new HttpHost(proxyHost, proxyPort);
+            final HttpHost proxyHttpHost = new HttpHost(proxyHost, proxyPort);
             httpClient.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxyHttpHost);
 
-            String proxyUsername = config.getProxyUsername();
-            String proxyPassword = config.getProxyPassword();
-            String proxyDomain = config.getProxyDomain();
-            String proxyWorkstation = config.getProxyWorkstation();
+            final String proxyUsername = config.getProxyUsername();
+            final String proxyPassword = config.getProxyPassword();
+            final String proxyDomain = config.getProxyDomain();
+            final String proxyWorkstation = config.getProxyWorkstation();
 
             if (proxyUsername != null && proxyPassword != null) {
                 httpClient.getCredentialsProvider().setCredentials(
@@ -154,14 +139,15 @@ class HttpClientFactory {
 
         @Override
         public boolean isRedirectRequested(HttpResponse response, HttpContext context) {
-            int statusCode = response.getStatusLine().getStatusCode();
-            Header locationHeader = response.getFirstHeader("location");
+            final int statusCode = response.getStatusLine().getStatusCode();
+            final Header locationHeader = response.getFirstHeader("location");
 
             // Instead of throwing a ProtocolException in this case, just
             // return false to indicate that this is not redirected
             if (locationHeader == null &&
-                    statusCode == HttpStatus.SC_MOVED_PERMANENTLY)
+                    statusCode == HttpStatus.SC_MOVED_PERMANENTLY) {
                 return false;
+            }
 
             return super.isRedirectRequested(response, context);
         }

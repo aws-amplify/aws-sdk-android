@@ -46,6 +46,16 @@ public class PaginatedParallelScanList<T> extends PaginatedList<T> {
 
     private final DynamoDBMapperConfig config;
 
+    /**
+     * Constructor.
+     *
+     * @param mapper the {@link DynamoDBMapper}
+     * @param clazz the class that is being mapped to a dynamodb table
+     * @param dynamo an instance of {@link AmazonDynamoDB}
+     * @param parallelScanTask {@link ParallelScanTask}
+     * @param paginationLoadingStrategy {@link PaginationLoadingStrategy}
+     * @param config {@link DynamoDBMapperConfig}
+     */
     public PaginatedParallelScanList(
             DynamoDBMapper mapper,
             Class<T> clazz,
@@ -79,8 +89,8 @@ public class PaginatedParallelScanList<T> extends PaginatedList<T> {
     }
 
     private List<T> marshalParallelScanResultsIntoObjects(List<ScanResult> scanResults) {
-        List<T> allItems = new LinkedList<T>();
-        for (ScanResult scanResult : scanResults) {
+        final List<T> allItems = new LinkedList<T>();
+        for (final ScanResult scanResult : scanResults) {
             if (null != scanResult) {
                 allItems.addAll(mapper.marshallIntoObjects(
                         mapper.toParameters(

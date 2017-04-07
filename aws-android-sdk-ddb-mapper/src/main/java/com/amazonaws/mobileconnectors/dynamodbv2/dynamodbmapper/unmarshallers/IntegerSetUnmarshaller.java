@@ -24,11 +24,16 @@ import java.util.Set;
  * An unmarshaller that unmarshals DynamoDB NumberSets into sets of Java
  * {@code Integer}s.
  */
-public class IntegerSetUnmarshaller extends NSUnmarshaller {
+public final class IntegerSetUnmarshaller extends NSUnmarshaller {
 
     private static final IntegerSetUnmarshaller INSTANCE =
             new IntegerSetUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link IntegerUnmarshaller}
+     */
     public static IntegerSetUnmarshaller instance() {
         return INSTANCE;
     }
@@ -38,8 +43,8 @@ public class IntegerSetUnmarshaller extends NSUnmarshaller {
 
     @Override
     public Object unmarshall(AttributeValue value) {
-        Set<Integer> result = new HashSet<Integer>();
-        for (String s : value.getNS()) {
+        final Set<Integer> result = new HashSet<Integer>();
+        for (final String s : value.getNS()) {
             result.add(Integer.valueOf(s));
         }
         return result;

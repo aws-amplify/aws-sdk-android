@@ -15,11 +15,13 @@
 
 package com.amazonaws.mobileconnectors.kinesis.kinesisrecorder;
 
-import android.util.Log;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.mobileconnectors.kinesis.kinesisrecorder.FileRecordStore.RecordIterator;
 import com.amazonaws.util.StringUtils;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,7 +32,8 @@ import java.util.List;
  * that temporarily saves records and sends these records later.
  */
 public abstract class AbstractKinesisRecorder {
-    private static final String TAG = "AbstractKinesisRecorder";
+    private static final Log LOGGER = LogFactory.getLog(AbstractKinesisRecorder.class);
+    private static final int MAX_RETRY_COUNT = 3;
 
     /**
      * Maximum number of records per batch. Note that Kinesis Stream and Kinesis
@@ -52,14 +55,14 @@ public abstract class AbstractKinesisRecorder {
 
     /**
      * Gets the sender to send saved records.
-     * 
+     *
      * @return a {@link RecordSender}
      */
     protected abstract RecordSender getRecordSender();
 
     /**
      * Creates a {@link AbstractKinesisRecorder}.
-     * 
+     *
      * @param recordStore local file store that keeps Kinesis records
      * @param config configuration
      */
@@ -74,7 +77,7 @@ public abstract class AbstractKinesisRecorder {
     /**
      * Saves a string to local storage to be sent later. It's a convenient
      * method to save the UTF-8 encoded bytes of the string.
-     * 
+     *
      * @param data A string to submit to the stream
      * @param streamName The stream to submit the data to.
      */
@@ -95,7 +98,7 @@ public abstract class AbstractKinesisRecorder {
     public void saveRecord(byte[] data, String streamName) {
         try {
             recordStore.put(FileRecordParser.asString(streamName, data));
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new AmazonClientException("Error saving record", e);
         }
     }
@@ -115,73 +118,76 @@ public abstract class AbstractKinesisRecorder {
      *             to be valid, it will be kept.
      */
     public synchronized void submitAllRecords() {
-        RecordSender sender = getRecordSender();
-        RecordIterator iterator = recordStore.iterator();
-        List<byte[]> data = new ArrayList<byte[]>(MAX_RECORDS_PER_BATCH);
+        final RecordSender sender = getRecordSender();
+        final RecordIterator iterator = recordStore.iterator();
+        final List<byte[]> data = new ArrayList<byte[]>(MAX_RECORDS_PER_BATCH);
         int retry = 0;
         int count = 0;
         try {
-            while (iterator.hasNext() && retry < 3) {
-                String streamName = nextBatch(iterator, data, MAX_RECORDS_PER_BATCH,
+            while (iterator.hasNext() && retry < MAX_RETRY_COUNT) {
+                final String streamName = nextBatch(iterator, data, MAX_RECORDS_PER_BATCH,
                         MAX_BATCH_RECORDS_SIZE_BYTES);
                 if (streamName == null || data.isEmpty()) {
                     break;
                 }
 
                 try {
-                	
-                    List<byte[]> failures = sender.sendBatch(streamName, data);
-                    int successCount = data.size() - failures.size();
+
+                    final List<byte[]> failures = sender.sendBatch(streamName, data);
+                    final int successCount = data.size() - failures.size();
                     count += successCount;
-                    
+
                     /**
-                     * We hold off on removing records until we are sure that we have successfully made the request. We would prefer to send duplicates than to lose records.
-                     * This is still not a perfect solution as there is a chance for loss between removing the read records and re-saving the failed records.
-                     * https://github.com/aws/aws-sdk-android/issues/225
-                     * 
-                     * If this errors it will throw an IOException. We don't wrap it so it's handled separately from network errors
-                     * which will be wrapped by an AmazonClientException.
+                     * We hold off on removing records until we are sure that we
+                     * have successfully made the request. We would prefer to
+                     * send duplicates than to lose records. This is still not a
+                     * perfect solution as there is a chance for loss between
+                     * removing the read records and re-saving the failed
+                     * records.
+                     * https://github.com/aws/aws-sdk-android/issues/225 If this
+                     * errors it will throw an IOException. We don't wrap it so
+                     * it's handled separately from network errors which will be
+                     * wrapped by an AmazonClientException.
                      */
                     iterator.removeReadRecords();
 
-                    
                     if (successCount == 0) {
                         // no record went through, increase retry count.
                         retry++;
                     }
                     if (!failures.isEmpty()) {
-                        for (byte[] bytes : failures) {
+                        for (final byte[] bytes : failures) {
                             saveRecord(bytes, streamName);
                         }
                     }
-                    
-                } catch (AmazonClientException ace) {
+
+                } catch (final AmazonClientException ace) {
                     if (sender.isRecoverable(ace)) {
-                        Log.e(TAG,
+                        LOGGER.error(
                                 "ServiceException in submit all, the values of the data inside the requests appears valid.  The request will be kept",
                                 ace);
                     } else {
                         try {
                             iterator.removeReadRecords();
-                        } catch (IOException e) {
+                        } catch (final IOException e) {
                             throw new AmazonClientException("Failed to drop bad records.", e);
                         }
                         // We have reason to believe the values in the request
                         // is invalid and cannot be sent or recovered.
-                        Log.e(TAG,
+                        LOGGER.error(
                                 "ServiceException in submit all, the last request is presumed to be the cause and will be dropped",
                                 ace);
                     }
                     throw ace;
-                } catch(IOException e) {
-                	throw new AmazonClientException("Failed to remove read records", e);
+                } catch (final IOException e) {
+                    throw new AmazonClientException("Failed to remove read records", e);
                 }
             }
         } finally {
-            Log.d(TAG, String.format("submitAllRecords sent %d records", count));
+            LOGGER.debug(String.format("submitAllRecords sent %d records", count));
             try {
                 iterator.close();
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 throw new AmazonClientException("Failed to close record file", e);
             }
         }
@@ -190,7 +196,7 @@ public abstract class AbstractKinesisRecorder {
     /**
      * Reads a batch of records belong to the same stream into a list. If data
      * is read successfully, the stream name is returned.
-     * 
+     *
      * @param iterator record iterator
      * @param data a list to hold data.
      * @param maxCount maximum number of records in a batch
@@ -205,17 +211,17 @@ public abstract class AbstractKinesisRecorder {
         String lastStreamName = null;
         int size = 0;
         int count = 0;
-        FileRecordParser frp = new FileRecordParser();
+        final FileRecordParser frp = new FileRecordParser();
         while (iterator.hasNext() && count < maxCount && size < maxSize) {
-            String line = iterator.peek();
+            final String line = iterator.peek();
             if (line == null || line.isEmpty()) {
                 continue;
             }
             // parse a line. Skip in case of corrupted data
             try {
                 frp.parse(line);
-            } catch (Exception e) {
-                Log.w(TAG, "Failed to read line. Skip.", e);
+            } catch (final Exception e) {
+                LOGGER.warn("Failed to read line. Skip.", e);
                 continue;
             }
 
@@ -270,12 +276,12 @@ public abstract class AbstractKinesisRecorder {
 
     /**
      * Removes all requests saved to disk in the directory provided this
-     * KinesisRecorder
+     * KinesisRecorder.
      */
     public synchronized void deleteAllRecords() {
         try {
             recordStore.iterator().removeAllRecords();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new AmazonClientException("Error deleting events", e);
         }
     }

@@ -74,9 +74,9 @@ public class LegacyErrorUnmarshaller implements Unmarshaller<AmazonServiceExcept
 
         if (errorType == null) {
             ase.setErrorType(ErrorType.Unknown);
-        } else if (errorType.equalsIgnoreCase("server")) {
+        } else if ("server".equalsIgnoreCase(errorType)) {
             ase.setErrorType(ErrorType.Service);
-        } else if (errorType.equalsIgnoreCase("client")) {
+        } else if ("client".equalsIgnoreCase(errorType)) {
             ase.setErrorType(ErrorType.Client);
         }
 

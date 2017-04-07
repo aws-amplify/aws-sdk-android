@@ -25,6 +25,10 @@ import java.util.List;
  */
 public final class MetricsAndOperator extends MetricsNAryOperator {
 
+    /**
+     * Constructor.
+     * @param operands the list of MetricsFilterPredicate
+     */
     public MetricsAndOperator(List<MetricsFilterPredicate> operands) {
         super(operands);
     }

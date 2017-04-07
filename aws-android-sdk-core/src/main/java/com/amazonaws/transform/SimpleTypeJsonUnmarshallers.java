@@ -26,6 +26,9 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * SimpleTypeJsonUnmarshallers class.
+ */
 public class SimpleTypeJsonUnmarshallers {
     /**
      * Unmarshaller for String values.
@@ -39,6 +42,10 @@ public class SimpleTypeJsonUnmarshallers {
 
         private static StringJsonUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static StringJsonUnmarshaller getInstance() {
             if (instance == null)
                 instance = new StringJsonUnmarshaller();
@@ -59,6 +66,10 @@ public class SimpleTypeJsonUnmarshallers {
 
         private static DoubleJsonUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static DoubleJsonUnmarshaller getInstance() {
             if (instance == null)
                 instance = new DoubleJsonUnmarshaller();
@@ -79,6 +90,10 @@ public class SimpleTypeJsonUnmarshallers {
 
         private static IntegerJsonUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static IntegerJsonUnmarshaller getInstance() {
             if (instance == null)
                 instance = new IntegerJsonUnmarshaller();
@@ -86,6 +101,9 @@ public class SimpleTypeJsonUnmarshallers {
         }
     }
 
+    /**
+     * Unmarshaller for Big Integer values.
+     */
     public static class BigIntegerJsonUnmarshaller implements
             Unmarshaller<BigInteger, JsonUnmarshallerContext> {
         @Override
@@ -96,6 +114,10 @@ public class SimpleTypeJsonUnmarshallers {
 
         private static BigIntegerJsonUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static BigIntegerJsonUnmarshaller getInstance() {
             if (instance == null)
                 instance = new BigIntegerJsonUnmarshaller();
@@ -103,6 +125,9 @@ public class SimpleTypeJsonUnmarshallers {
         }
     }
 
+    /**
+     * Unmarshaller for Big Decimal values.
+     */
     public static class BigDecimalJsonUnmarshaller implements
             Unmarshaller<BigDecimal, JsonUnmarshallerContext> {
         @Override
@@ -113,6 +138,10 @@ public class SimpleTypeJsonUnmarshallers {
 
         private static BigDecimalJsonUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static BigDecimalJsonUnmarshaller getInstance() {
             if (instance == null)
                 instance = new BigDecimalJsonUnmarshaller();
@@ -133,6 +162,10 @@ public class SimpleTypeJsonUnmarshallers {
 
         private static BooleanJsonUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static BooleanJsonUnmarshaller getInstance() {
             if (instance == null)
                 instance = new BooleanJsonUnmarshaller();
@@ -153,6 +186,10 @@ public class SimpleTypeJsonUnmarshallers {
 
         private static FloatJsonUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static FloatJsonUnmarshaller getInstance() {
             if (instance == null)
                 instance = new FloatJsonUnmarshaller();
@@ -172,6 +209,10 @@ public class SimpleTypeJsonUnmarshallers {
 
         private static LongJsonUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static LongJsonUnmarshaller getInstance() {
             if (instance == null)
                 instance = new LongJsonUnmarshaller();
@@ -191,6 +232,10 @@ public class SimpleTypeJsonUnmarshallers {
 
         private static ByteJsonUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static ByteJsonUnmarshaller getInstance() {
             if (instance == null)
                 instance = new ByteJsonUnmarshaller();
@@ -202,6 +247,8 @@ public class SimpleTypeJsonUnmarshallers {
      * Unmarshaller for Date values - JSON dates come in as epoch seconds.
      */
     public static class DateJsonUnmarshaller implements Unmarshaller<Date, JsonUnmarshallerContext> {
+
+        private static final int DATE_MULTIPLIER = 1000;
         @Override
         public Date unmarshall(JsonUnmarshallerContext unmarshallerContext) throws Exception {
             String dateString = unmarshallerContext.getReader().nextString();
@@ -210,7 +257,7 @@ public class SimpleTypeJsonUnmarshallers {
 
             try {
                 Number number = NumberFormat.getInstance(new Locale("en")).parse(dateString);
-                return new Date(number.longValue() * 1000);
+                return new Date(number.longValue() * DATE_MULTIPLIER);
             } catch (ParseException e) {
                 String errorMessage = "Unable to parse date '" + dateString + "':  "
                         + e.getMessage();
@@ -220,6 +267,10 @@ public class SimpleTypeJsonUnmarshallers {
 
         private static DateJsonUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static DateJsonUnmarshaller getInstance() {
             if (instance == null)
                 instance = new DateJsonUnmarshaller();
@@ -242,6 +293,10 @@ public class SimpleTypeJsonUnmarshallers {
 
         private static ByteBufferJsonUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static ByteBufferJsonUnmarshaller getInstance() {
             if (instance == null)
                 instance = new ByteBufferJsonUnmarshaller();

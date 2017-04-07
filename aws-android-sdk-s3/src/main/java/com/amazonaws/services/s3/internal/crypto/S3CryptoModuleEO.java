@@ -91,14 +91,14 @@ class S3CryptoModuleEO extends S3CryptoModuleBase<MultipartUploadCbcContext> {
                 req.getBucketName(), req.getKey(), cekMaterial);
         byte[] iv = cekMaterial.getCipherLite().getIV();
         encryptedUploadContext.setNextInitializationVector(iv);
-        return encryptedUploadContext; 
+        return encryptedUploadContext;
     }
 
 
     @Override
     final void updateUploadContext(MultipartUploadCbcContext uploadContext,
             SdkFilterInputStream is) {
-        ByteRangeCapturingInputStream bis = (ByteRangeCapturingInputStream)is;
+        ByteRangeCapturingInputStream bis = (ByteRangeCapturingInputStream) is;
         uploadContext.setNextInitializationVector(bis.getBlock());
         return;
     }
@@ -107,11 +107,11 @@ class S3CryptoModuleEO extends S3CryptoModuleBase<MultipartUploadCbcContext> {
     final ByteRangeCapturingInputStream wrapForMultipart(
             CipherLiteInputStream is, long partSize) {
         int blockSize = contentCryptoScheme.getBlockSizeInBytes();
-        return new ByteRangeCapturingInputStream(is, 
+        return new ByteRangeCapturingInputStream(is,
                 partSize - blockSize,
                 partSize);
     }
-    
+
     @Override
     final long computeLastPartSize(UploadPartRequest request) {
         long plaintextLength;

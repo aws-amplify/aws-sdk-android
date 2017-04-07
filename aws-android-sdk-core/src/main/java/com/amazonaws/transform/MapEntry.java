@@ -50,11 +50,17 @@ public class MapEntry<K, V> implements Map.Entry<K, V> {
      * @see java.util.Map.Entry#setValue(java.lang.Object)
      */
     @Override
+    @SuppressWarnings("checkstyle:hiddenfield")
     public V setValue(V value) {
         this.value = value;
         return this.value;
     }
 
+    /**
+     * @param key the key.
+     * @return key object.
+     */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public K setKey(K key) {
         this.key = key;
         return this.key;

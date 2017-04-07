@@ -27,10 +27,17 @@ public class DataStorageException extends AmazonClientException {
 
     private static final long serialVersionUID = -6906342391685175623L;
 
+    /**
+     * @param detailMessage the exception message.
+     * @param throwable exception as throwable.
+     */
     public DataStorageException(String detailMessage, Throwable throwable) {
         super(detailMessage, throwable);
     }
 
+    /**
+     * @param detailMessage the exception message.
+     */
     public DataStorageException(String detailMessage) {
         super(detailMessage);
     }

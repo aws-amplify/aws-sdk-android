@@ -35,6 +35,10 @@ public class MD5DigestCalculatingInputStream extends SdkFilterInputStream {
      */
     private MessageDigest digestLastMarked;
 
+    /**
+     * Constructor.
+     * @param in input stream
+     */
     public MD5DigestCalculatingInputStream(InputStream in) {
         super(in);
         digest = newMD5();
@@ -47,10 +51,10 @@ public class MD5DigestCalculatingInputStream extends SdkFilterInputStream {
             throw new IllegalStateException("unexpected", e);
         }
     }
-    
+
     private MessageDigest cloneFrom(MessageDigest from) {
         try {
-            return (MessageDigest)from.clone();
+            return (MessageDigest) from.clone();
         } catch (CloneNotSupportedException e) { // should never occur
             throw new IllegalStateException("unexpected", e);
         }

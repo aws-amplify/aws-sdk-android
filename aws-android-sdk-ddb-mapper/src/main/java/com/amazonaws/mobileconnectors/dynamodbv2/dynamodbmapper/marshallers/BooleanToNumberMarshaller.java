@@ -24,11 +24,16 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
  * for backwards compatibility with older versions of the mapper which don't
  * know about the DynamoDB BOOL type.
  */
-public class BooleanToNumberMarshaller implements NumberAttributeMarshaller {
+public final class BooleanToNumberMarshaller implements NumberAttributeMarshaller {
 
     private static final BooleanToNumberMarshaller INSTANCE =
             new BooleanToNumberMarshaller();
 
+    /**
+     * Return a singleton instance.
+     *
+     * @return instance of {@link BooleanToNumberMarshaller}
+     */
     public static BooleanToNumberMarshaller instance() {
         return INSTANCE;
     }
@@ -38,8 +43,8 @@ public class BooleanToNumberMarshaller implements NumberAttributeMarshaller {
 
     @Override
     public AttributeValue marshall(Object obj) {
-        Boolean bool = (Boolean) obj;
-        if (bool == null || bool == false) {
+        final Boolean bool = (Boolean) obj;
+        if (!bool) {
             return new AttributeValue().withN("0");
         } else {
             return new AttributeValue().withN("1");

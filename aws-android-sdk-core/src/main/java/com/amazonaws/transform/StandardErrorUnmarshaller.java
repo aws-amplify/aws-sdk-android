@@ -65,9 +65,9 @@ public class StandardErrorUnmarshaller extends AbstractErrorUnmarshaller<Node> {
 
         if (errorType == null) {
             ase.setErrorType(ErrorType.Unknown);
-        } else if (errorType.equalsIgnoreCase("Receiver")) {
+        } else if ("Receiver".equalsIgnoreCase(errorType)) {
             ase.setErrorType(ErrorType.Service);
-        } else if (errorType.equalsIgnoreCase("Sender")) {
+        } else if ("Sender".equalsIgnoreCase(errorType)) {
             ase.setErrorType(ErrorType.Client);
         }
 

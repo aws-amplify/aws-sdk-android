@@ -5,7 +5,7 @@
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,11 +15,11 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.internal.event;
 
+import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
 
 import static com.amazonaws.mobileconnectors.pinpoint.internal.event.EventTable.COLUMN_ID;
 import static com.amazonaws.mobileconnectors.pinpoint.internal.event.EventTable.COLUMN_SIZE;
@@ -61,7 +61,8 @@ public class PinpointDBUtil {
      * @return An Uri of the record inserted.
      */
     public Uri saveEvent(AnalyticsEvent event) {
-        return pinpointDBBase.insert(pinpointDBBase.getContentUri(), generateContentValuesFromEvent(event));
+        return pinpointDBBase.insert(pinpointDBBase.getContentUri(),
+                                            generateContentValuesFromEvent(event));
     }
 
     private ContentValues generateContentValuesFromEvent(AnalyticsEvent event) {
@@ -78,7 +79,9 @@ public class PinpointDBUtil {
      * @return A Cursor pointing to records in the database.
      */
     public Cursor queryAllEvents() {
-        return pinpointDBBase.query(pinpointDBBase.getContentUri(), null, null, null, null, null);
+        return pinpointDBBase
+                       .query(pinpointDBBase.getContentUri(), null, null, null,
+                                     null, null);
     }
 
     /**
@@ -87,8 +90,12 @@ public class PinpointDBUtil {
      * @return A Cursor pointing to records in the database.
      */
     public Cursor queryOldestEvents(int limit) {
-        return pinpointDBBase.query(pinpointDBBase.getContentUri(), new String[]{COLUMN_ID, COLUMN_SIZE},
-                null, null, null, Integer.toString(limit));
+        return pinpointDBBase.query(pinpointDBBase.getContentUri(),
+                                           new String[] { COLUMN_ID,
+                                                                COLUMN_SIZE
+                                           },
+                                           null, null, null,
+                                           Integer.toString(limit));
     }
 
     /**
@@ -98,13 +105,14 @@ public class PinpointDBUtil {
      * @return The result Cursor of the query.
      */
     public Cursor queryEventById(int id) {
-        return pinpointDBBase.query(getEventUri(id), null, null, null, null, null);
+        return pinpointDBBase
+                       .query(getEventUri(id), null, null, null, null, null);
     }
 
     /**
      * Deletes the event with the given id.
      *
-     * @param id The id of the event to be deleted.
+     * @param id   The id of the event to be deleted.
      * @param size Known size of event.
      * @return Number of rows deleted.
      */

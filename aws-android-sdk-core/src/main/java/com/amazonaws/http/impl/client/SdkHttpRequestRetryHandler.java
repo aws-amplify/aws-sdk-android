@@ -23,7 +23,11 @@ import org.apache.http.protocol.HttpContext;
 
 import java.io.IOException;
 
-public class SdkHttpRequestRetryHandler extends DefaultHttpRequestRetryHandler {
+/** The SdkHttpRequestRetryHandler class. */
+public final class SdkHttpRequestRetryHandler extends DefaultHttpRequestRetryHandler {
+
+    /** Singleton. */
+    @SuppressWarnings("checkstyle:constantname")
     public static final SdkHttpRequestRetryHandler Singleton = new SdkHttpRequestRetryHandler();
 
     private SdkHttpRequestRetryHandler() {

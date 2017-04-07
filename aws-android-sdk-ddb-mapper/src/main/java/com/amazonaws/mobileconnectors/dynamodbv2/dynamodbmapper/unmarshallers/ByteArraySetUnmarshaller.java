@@ -25,11 +25,16 @@ import java.util.Set;
  * An unmarshaller that unmarshals BinarySet values as sets of Java
  * {@code byte[]}s.
  */
-public class ByteArraySetUnmarshaller extends BSUnmarshaller {
+public final class ByteArraySetUnmarshaller extends BSUnmarshaller {
 
     private static final ByteArraySetUnmarshaller INSTANCE =
             new ByteArraySetUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link ByteArraySetUnmarshaller}
+     */
     public static ByteArraySetUnmarshaller instance() {
         return INSTANCE;
     }
@@ -39,13 +44,13 @@ public class ByteArraySetUnmarshaller extends BSUnmarshaller {
 
     @Override
     public Object unmarshall(AttributeValue value) {
-        Set<byte[]> result = new HashSet<byte[]>();
+        final Set<byte[]> result = new HashSet<byte[]>();
 
-        for (ByteBuffer buffer : value.getBS()) {
+        for (final ByteBuffer buffer : value.getBS()) {
             if (buffer.hasArray()) {
                 result.add(buffer.array());
             } else {
-                byte[] array = new byte[buffer.remaining()];
+                final byte[] array = new byte[buffer.remaining()];
                 buffer.get(array);
                 result.add(array);
             }

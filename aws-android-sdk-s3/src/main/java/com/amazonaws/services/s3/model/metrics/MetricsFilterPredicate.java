@@ -28,6 +28,7 @@ public abstract class MetricsFilterPredicate implements Serializable {
     /**
      * Helper method that accepts an implemenation of {@link MetricsPredicateVisitor}
      * and invokes the most applicable visit method in the visitor.
+     * @param metricsPredicateVisitor the MetricsPredicateVisitor.
      */
     public abstract void accept(MetricsPredicateVisitor metricsPredicateVisitor);
 }

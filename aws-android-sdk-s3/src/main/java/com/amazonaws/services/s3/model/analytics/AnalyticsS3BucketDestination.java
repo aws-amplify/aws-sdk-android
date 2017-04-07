@@ -16,6 +16,9 @@ package com.amazonaws.services.s3.model.analytics;
 
 import java.io.Serializable;
 
+/**
+ * The AnalyticsS3BucketDestination class.
+ */
 public class AnalyticsS3BucketDestination implements Serializable {
     private String format;
     private String bucketAccountId;
@@ -24,6 +27,7 @@ public class AnalyticsS3BucketDestination implements Serializable {
 
     /**
      * Sets the file format used when exporting data to Amazon S3.
+     * @param format the AnalyticsS3ExportFileFormat.
      */
     public void setFormat(AnalyticsS3ExportFileFormat format) {
         if (format == null) {
@@ -36,21 +40,25 @@ public class AnalyticsS3BucketDestination implements Serializable {
     /**
      * Sets the file format used when exporting data to Amazon S3.
      * Returns this object for method chaining.
+     * @param format the AnalyticsS3ExportFileFormat.
+     * @return this object for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public AnalyticsS3BucketDestination withFormat(AnalyticsS3ExportFileFormat format) {
         setFormat(format);
         return this;
     }
 
     /**
-     * Returns the file format used when exporting data to Amazon S3.
+     * @return the file format used when exporting data to Amazon S3.
      */
     public String getFormat() {
         return format;
     }
 
     /**
-     * Sets the file format used when exporting data to Amazon S3.
+     * Sets the file format.
+     * @param format the format used when exporting data to Amazon S3.
      */
     public void setFormat(String format) {
         this.format = format;
@@ -59,14 +67,17 @@ public class AnalyticsS3BucketDestination implements Serializable {
     /**
      * Sets the file format used when exporting data to Amazon S3.
      * Returns this object for method chaining.
+     * @param format used when exporting data to Amazon S3.
+     * @return this object for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public AnalyticsS3BucketDestination withFormat(String format) {
         setFormat(format);
         return this;
     }
 
     /**
-     * Returns the account ID that owns the destination bucket.
+     * @return the account ID that owns the destination bucket.
      */
     public String getBucketAccountId() {
         return bucketAccountId;
@@ -75,6 +86,7 @@ public class AnalyticsS3BucketDestination implements Serializable {
     /**
      * Sets the account ID that owns the destination bucket.
      * If no account ID is provided, the owner will not be validated prior to exporting data.
+     * @param bucketAccountId the bucket account ID.
      */
     public void setBucketAccountId(String bucketAccountId) {
         this.bucketAccountId = bucketAccountId;
@@ -83,7 +95,10 @@ public class AnalyticsS3BucketDestination implements Serializable {
     /**
      * Sets the account ID that owns the destination bucket and returns this object for method chaining.
      * If no account ID is provided, the owner will not be validated prior to exporting data.
+     * @param bucketAccountId the bucket account ID.
+     * @return this object for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public AnalyticsS3BucketDestination withBucketAccountId(String bucketAccountId) {
         setBucketAccountId(bucketAccountId);
         return this;
@@ -91,6 +106,7 @@ public class AnalyticsS3BucketDestination implements Serializable {
 
     /**
      * Returns the Amazon resource name (ARN) of the bucket to which data is exported.
+     * @return the bucket arn.
      */
     public String getBucketArn() {
         return bucketArn;
@@ -98,6 +114,7 @@ public class AnalyticsS3BucketDestination implements Serializable {
 
     /**
      * Sets the Amazon resource name (ARN) of the bucket to which data is exported.
+     * @param bucketArn the bucket arn.
      */
     public void setBucketArn(String bucketArn) {
         this.bucketArn = bucketArn;
@@ -106,7 +123,10 @@ public class AnalyticsS3BucketDestination implements Serializable {
     /**
      * Sets the Amazon resource name (ARN) of the bucket to which data is exported
      * and returns this object for method chaining.
+     * @param bucketArn the bucket arn.
+     * @return this object for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public AnalyticsS3BucketDestination withBucketArn(String bucketArn) {
         setBucketArn(bucketArn);
         return this;
@@ -114,6 +134,7 @@ public class AnalyticsS3BucketDestination implements Serializable {
 
     /**
      * Returns the prefix to use when exporting data.
+     * @return the prefix.
      */
     public String getPrefix() {
         return prefix;
@@ -121,6 +142,7 @@ public class AnalyticsS3BucketDestination implements Serializable {
 
     /**
      * Sets the prefix to use when exporting data. The exported data begins with this prefix.
+     * @param prefix used when exporting data.
      */
     public void setPrefix(String prefix) {
         this.prefix = prefix;
@@ -129,7 +151,10 @@ public class AnalyticsS3BucketDestination implements Serializable {
     /**
      * Sets the prefix to use when exporting data. The exported data begins with this prefix.
      * The object is returned for method chaining.
+     * @param prefix used when exporting data.
+     * @return this object for method chaining..
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public AnalyticsS3BucketDestination withPrefix(String prefix) {
         setPrefix(prefix);
         return this;

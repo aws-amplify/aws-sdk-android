@@ -22,12 +22,16 @@ public final class MetricsPrefixPredicate extends MetricsFilterPredicate {
 
     private final String prefix;
 
+    /**
+     * Constructor.
+     * @param prefix the prefix used when evaluating a metrics filter.
+     */
     public MetricsPrefixPredicate(String prefix) {
         this.prefix = prefix;
     }
 
     /**
-     * Returns the prefix to use when evaluating a metrics filter.
+     * @return the prefix to use when evaluating a metrics filter.
      */
     public String getPrefix() {
         return prefix;

@@ -20,7 +20,13 @@ import org.apache.http.protocol.HttpContext;
 
 import java.io.IOException;
 
-public class HttpRequestNoRetryHandler extends DefaultHttpRequestRetryHandler {
+/**
+ * The HttpRequestNoRetryHandler class.
+ */
+public final class HttpRequestNoRetryHandler extends DefaultHttpRequestRetryHandler {
+
+    /** Singleton. */
+    @SuppressWarnings("checkstyle:constantname")
     public static final HttpRequestNoRetryHandler Singleton = new HttpRequestNoRetryHandler();
 
     private HttpRequestNoRetryHandler() {

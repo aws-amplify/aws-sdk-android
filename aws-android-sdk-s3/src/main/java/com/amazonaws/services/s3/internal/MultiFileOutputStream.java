@@ -34,7 +34,10 @@ import java.util.concurrent.Semaphore;
  * parallel uploads.
  */
 public class MultiFileOutputStream extends OutputStream implements OnFileDelete {
-    static final int DEFAULT_PART_SIZE = 5 << 20; // 5MB
+
+    private static final int SHIFT_VALUE = 20;
+    private static final int PART_BYTE = 5;
+    private static final int DEFAULT_PART_SIZE = PART_BYTE << SHIFT_VALUE; // 5MB
     private final File root;
     private final String namePrefix;
     private int filesCreated;
@@ -71,6 +74,8 @@ public class MultiFileOutputStream extends OutputStream implements OnFileDelete 
      * creations, and the specified prefix for temp file naming. The
      * {@link #init(UploadObjectObserver, long, long)} must be called before
      * this stream is considered fully initialized.
+     * @param namePrefix the prefix for file naming.
+     * @param root the file foot.
      */
     public MultiFileOutputStream(File root, String namePrefix) {
         if (root == null || !root.isDirectory() || !root.canWrite()) {
@@ -100,6 +105,7 @@ public class MultiFileOutputStream extends OutputStream implements OnFileDelete 
      *
      * @return this object
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public MultiFileOutputStream init(UploadObjectObserver observer,
             long partSize, long diskLimit) {
         if (observer == null) {
@@ -113,7 +119,7 @@ public class MultiFileOutputStream extends OutputStream implements OnFileDelete 
         }
         this.partSize = partSize;
         this.diskLimit = diskLimit;
-        final int max = (int)(diskLimit/partSize);
+        final int max = (int) (diskLimit / partSize);
         this.diskPermits = max < 0 ? null : new Semaphore(max);
         return this;
     }
@@ -243,8 +249,11 @@ public class MultiFileOutputStream extends OutputStream implements OnFileDelete 
         }
     }
 
+    /**
+     * Deletes files.
+     */
     public void cleanup() {
-        for (int i=0; i < getNumFilesWritten(); i++) {
+        for (int i = 0; i < getNumFilesWritten(); i++) {
             final File f = getFile(i);
             if (f.exists()) {
                 if (!f.delete()) {
@@ -263,6 +272,11 @@ public class MultiFileOutputStream extends OutputStream implements OnFileDelete 
         return filesCreated;
     }
 
+    /**
+     * Retrieves the file with the specified part number as the file extension.
+     * @param partNumber the file extension.
+     * @return File.
+     */
     public File getFile(int partNumber) {
         return new File(root, namePrefix + "." + partNumber);
     }
@@ -283,6 +297,7 @@ public class MultiFileOutputStream extends OutputStream implements OnFileDelete 
         return totalBytesWritten;
     }
 
+    @SuppressWarnings("checkstyle:methodname")
     static String yyMMdd_hhmmss() {
         return new SimpleDateFormat("yyMMdd-hhmmss").format(new Date());
     }

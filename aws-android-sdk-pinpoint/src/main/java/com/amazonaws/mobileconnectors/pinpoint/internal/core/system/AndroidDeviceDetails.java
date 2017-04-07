@@ -5,7 +5,7 @@
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,15 +15,14 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.internal.core.system;
 
-import android.os.Build;
-
 import java.util.Locale;
+import android.os.Build;
 
 public class AndroidDeviceDetails {
 
     private final String carrier;
 
-    public AndroidDeviceDetails () {
+    public AndroidDeviceDetails() {
         this.carrier = null;
     }
 

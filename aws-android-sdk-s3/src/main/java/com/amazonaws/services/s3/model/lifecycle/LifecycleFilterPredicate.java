@@ -29,6 +29,7 @@ public abstract class LifecycleFilterPredicate implements Serializable {
     /**
      * Helper method that accepts an implemenation of {@link LifecyclePredicateVisitor}
      * and invokes the most applicable visit method in the visitor.
+     * @param lifecyclePredicateVisitor the LifecyclePredicateVisitor.
      */
     public abstract void accept(LifecyclePredicateVisitor lifecyclePredicateVisitor);
 }

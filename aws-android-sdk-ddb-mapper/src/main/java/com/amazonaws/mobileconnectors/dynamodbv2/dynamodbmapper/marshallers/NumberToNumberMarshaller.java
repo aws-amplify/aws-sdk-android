@@ -21,11 +21,16 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 /**
  * A marshaller that marshals any Java {@code Number} to a DynamoDB number.
  */
-public class NumberToNumberMarshaller implements NumberAttributeMarshaller {
+public final class NumberToNumberMarshaller implements NumberAttributeMarshaller {
 
     private static final NumberToNumberMarshaller INSTANCE =
             new NumberToNumberMarshaller();
 
+    /**
+     * Return a singleton instance.
+     *
+     * @return instance of {@link NumberToNumberMarshaller}
+     */
     public static NumberToNumberMarshaller instance() {
         return INSTANCE;
     }
@@ -35,7 +40,7 @@ public class NumberToNumberMarshaller implements NumberAttributeMarshaller {
 
     @Override
     public AttributeValue marshall(Object obj) {
-        Number number = (Number) obj;
+        final Number number = (Number) obj;
         return new AttributeValue().withN(number.toString());
     }
 }

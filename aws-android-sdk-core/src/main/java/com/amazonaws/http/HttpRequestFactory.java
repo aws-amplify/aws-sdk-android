@@ -40,6 +40,7 @@ public class HttpRequestFactory {
      * request.
      *
      * @param request The request to convert to an HttpClient request object.
+     * @param clientConfiguration The client configuration.
      * @param context The execution context of the HTTP request to be executed
      * @return The converted HttpClient request object with any parameters,
      *         headers, etc. from the original request set.
@@ -107,8 +108,11 @@ public class HttpRequestFactory {
 
         // Enables gzip compression. Also signals the implementation of
         // HttpClient to disable transparent gzip.
-        if (headers.get("Accept-Encoding") == null) {
+        if (clientConfiguration.isEnableGzip()
+                && headers.get("Accept-Encoding") == null) {
             headers.put("Accept-Encoding", "gzip");
+        } else {
+            headers.put("Accept-Encoding", "identity");
         }
 
         final HttpRequest httpRequest = new HttpRequest(method.toString(), URI.create(uri), headers,

@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
 
 /**
  * Header handler to pull the EXPIRATION header out of the response.
+ * @param <T> class type.
  */
 public class ObjectExpirationHeaderHandler<T extends ObjectExpirationResult>
         implements HeaderHandler<T> {
@@ -35,9 +36,9 @@ public class ObjectExpirationHeaderHandler<T extends ObjectExpirationResult>
      * expiry-date="Sun, 11 Dec 2012 00:00:00 GMT", rule-id="baz rule"
      */
 
-    private static final Pattern datePattern =
+    private static final Pattern DATE_PATTERN =
             Pattern.compile("expiry-date=\"(.*?)\"");
-    private static final Pattern rulePattern =
+    private static final Pattern RULE_PATTERN =
             Pattern.compile("rule-id=\"(.*?)\"");
 
     private static final Log log =
@@ -61,7 +62,7 @@ public class ObjectExpirationHeaderHandler<T extends ObjectExpirationResult>
     }
 
     private String parseRuleId(String expirationHeader) {
-        Matcher matcher = rulePattern.matcher(expirationHeader);
+        Matcher matcher = RULE_PATTERN.matcher(expirationHeader);
         if (matcher.find()) {
             return matcher.group(1);
         }
@@ -69,7 +70,7 @@ public class ObjectExpirationHeaderHandler<T extends ObjectExpirationResult>
     }
 
     private Date parseDate(String expirationHeader) {
-        Matcher matcher = datePattern.matcher(expirationHeader);
+        Matcher matcher = DATE_PATTERN.matcher(expirationHeader);
         if (matcher.find()) {
             String date = matcher.group(1);
             try {

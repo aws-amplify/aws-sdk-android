@@ -40,7 +40,7 @@ public abstract class ByteThroughputProvider {
     }
 
     /**
-     * Returns a provider id that can be used to compute the number of active
+     * @return a provider id that can be used to compute the number of active
      * byte throughput provider of a specific metric type being active in a
      * given time interval.
      */

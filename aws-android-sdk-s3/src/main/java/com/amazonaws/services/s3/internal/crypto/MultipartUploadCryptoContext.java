@@ -62,8 +62,7 @@ class MultipartUploadCryptoContext extends MultipartUploadContext {
      * @see #endPartUpload()
      * @throws AmazonClientException if parallel part upload is detected
      */
-    void beginPartUpload(final int nextPartNumber)
-            throws AmazonClientException {
+    void beginPartUpload(final int nextPartNumber) {
         if (nextPartNumber < 1) {
             throw new IllegalArgumentException("part number must be at least 1");
         }

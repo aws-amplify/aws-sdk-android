@@ -20,14 +20,14 @@ package com.amazonaws.metrics;
  * adding new methods in the future we can do that safetly without breaking any
  * existing clients that implements this SPI.
  */
-public abstract class MetricCollector
-{
+public abstract class MetricCollector {
     /**
      * Can be used to serve as a factory for the request metric collector.
      */
     public static interface Factory {
+
         /**
-         * Returns an instance of the collector; or null if if failed to create
+         * @return an instance of the collector; or null if if failed to create
          * one.
          */
         public MetricCollector getInstance();
@@ -48,11 +48,13 @@ public abstract class MetricCollector
      */
     public abstract boolean stop();
 
-    /** Returns true if this collector is enabled; false otherwise. */
+    /** @return true if this collector is enabled; false otherwise. */
     public abstract boolean isEnabled();
 
+    /** @return the request metric collector. */
     public abstract RequestMetricCollector getRequestMetricCollector();
 
+    /** @return the service metric collector. */
     public abstract ServiceMetricCollector getServiceMetricCollector();
 
     /** A convenient instance of a no-op request metric collector. */

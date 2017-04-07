@@ -27,6 +27,8 @@ import java.util.Map;
  * logger in the AWS SDK for Java.
  */
 public class ResponseMetadata {
+
+    /** Constant for the AWS Request ID. */
     public static final String AWS_REQUEST_ID = "AWS_REQUEST_ID";
 
     protected final Map<String, String> metadata;

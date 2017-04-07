@@ -19,11 +19,11 @@ package com.amazonaws.services.s3.model.inventory;
  */
 public enum InventoryIncludedObjectVersions {
 
+    /** All. */
     All("All"),
 
-    Current("Current"),
-
-    ;
+    /** Current. */
+    Current("Current");
 
     private final String name;
 

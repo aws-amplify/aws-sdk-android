@@ -17,13 +17,27 @@
 
 package com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions;
 
+/**
+ * Exception indicating lambda response invalid.
+ */
 public class CognitoLambdaResponseInvalidException extends CognitoIdentityProviderException {
     private static final long serialVersionUID = -7555105550171515590L;
 
+    /**
+     * Constructor.
+     *
+     * @param message An error message describing why this exception was thrown.
+     * @param throwable The underlying cause of this exception.
+     */
     public CognitoLambdaResponseInvalidException(String message, Throwable throwable) {
         super(message, throwable);
     }
 
+    /**
+     * Constructor.
+     *
+     * @param message An error message describing why this exception was thrown.
+     */
     public CognitoLambdaResponseInvalidException(String message) {
         super(message);
     }

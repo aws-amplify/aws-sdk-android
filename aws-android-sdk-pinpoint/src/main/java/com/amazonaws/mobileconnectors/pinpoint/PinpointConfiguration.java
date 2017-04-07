@@ -5,7 +5,7 @@
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,15 +15,13 @@
 
 package com.amazonaws.mobileconnectors.pinpoint;
 
-import android.content.Context;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentialsProvider;
-import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.regions.Regions;
+import android.content.Context;
 
 /**
  * The PinpointConfiguration class allows developers to configure the Pinpoint SDK.
- *
  */
 public class PinpointConfiguration {
 
@@ -38,8 +36,15 @@ public class PinpointConfiguration {
 
     /**
      * Create an {@link PinpointConfiguration} object with the specified parameters.
+     *
+     * @param context             the android context object.
+     * @param appId               the Pinpoint Application Id.
+     * @param region              the AWS {@link Regions} for the Pinpoint service.
+     * @param credentialsProvider The {@link AWSCredentialsProvider} to be used for the service.
      */
-    public PinpointConfiguration(final Context context, final String appId, final Regions region, final AWSCredentialsProvider credentialsProvider){
+    public PinpointConfiguration(final Context context, final String appId,
+                                        final Regions region,
+                                        final AWSCredentialsProvider credentialsProvider) {
         this.clientConfiguration = new ClientConfiguration();
         this.context = context;
         this.appId = appId;
@@ -50,8 +55,10 @@ public class PinpointConfiguration {
     /**
      * Sets the client configuration this client will use when making request
      *
+     * @param clientConfig The {@link ClientConfiguration} of the service.
      * @return the current PinpointConfiguration instance
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public PinpointConfiguration withClientConfiguration(ClientConfiguration clientConfig) {
         this.clientConfiguration = new ClientConfiguration(clientConfig);
         return this;
@@ -62,7 +69,7 @@ public class PinpointConfiguration {
      * If none was supplied to the constructor this will return the default
      * client configuration.
      *
-     * @return The ClientConfiguration used for making requests
+     * @return The ClientConfiguration used for making requests.
      */
     public ClientConfiguration getClientConfiguration() {
         return this.clientConfiguration;
@@ -74,6 +81,7 @@ public class PinpointConfiguration {
      * @param allowEventCollection true if event collection should be allowed, otherwise false.
      * @return the current PinpointConfiguration instance
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public PinpointConfiguration withAllowsEventCollection(boolean allowEventCollection) {
         this.enableEvents = allowEventCollection;
         return this;
@@ -103,6 +111,7 @@ public class PinpointConfiguration {
      * @param enablePinpoint true if Pinpoint to be enabled. Defaults to false.
      * @return the current PinpointConfiguration instance
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public PinpointConfiguration withEnablePinpoint(boolean enablePinpoint) {
         this.enableTargeting = enablePinpoint;
         return this;
@@ -120,8 +129,10 @@ public class PinpointConfiguration {
     /**
      * Please provide a CognitoCredentialsProvider in order to authenticate.
      *
+     * @param credentialsProvider The {@link AWSCredentialsProvider} to be used for the service
      * @return the current PinpointConfiguration instance
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public PinpointConfiguration withCredentialsProvider(final AWSCredentialsProvider credentialsProvider) {
         this.credentialsProvider = credentialsProvider;
         return this;
@@ -142,8 +153,10 @@ public class PinpointConfiguration {
     /**
      * The Android Context. See https://developer.android.com/reference/android/content/Context.html
      *
+     * @param context The android context object
      * @return the current PinpointConfiguration instance
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public PinpointConfiguration withAppContext(final Context context) {
         this.context = context;
         return this;
@@ -161,8 +174,10 @@ public class PinpointConfiguration {
     /**
      * The Pinpoint AppId
      *
+     * @param appId The Pinpoint Application Id.
      * @return the current PinpointConfiguration instance
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public PinpointConfiguration withAppId(final String appId) {
         this.appId = appId;
         return this;
@@ -180,8 +195,10 @@ public class PinpointConfiguration {
     /**
      * The AWS Region for Pinpoint
      *
+     * @param region The AWS {@link Regions} for the Pinpoint service.
      * @return the current PinpointConfiguration instance
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public PinpointConfiguration withRegion(final Regions region) {
         this.region = region;
         return this;
@@ -199,8 +216,10 @@ public class PinpointConfiguration {
     /**
      * The callback to be called after initialization is complete
      *
+     * @param initCompletionCallback A callback that is called after initialization of the SDK.
      * @return the current PinpointConfiguration instance
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public PinpointConfiguration withInitCompletionCallback(final PinpointCallback<PinpointManager> initCompletionCallback) {
         this.initCompletionCallback = initCompletionCallback;
         return this;

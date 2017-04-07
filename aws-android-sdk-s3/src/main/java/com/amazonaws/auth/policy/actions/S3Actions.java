@@ -16,7 +16,6 @@
 package com.amazonaws.auth.policy.actions;
 
 import com.amazonaws.auth.policy.Action;
-import com.amazonaws.auth.policy.Statement;
 import com.amazonaws.auth.policy.resources.S3BucketResource;
 import com.amazonaws.auth.policy.resources.S3ObjectResource;
 import com.amazonaws.services.s3.AmazonS3;

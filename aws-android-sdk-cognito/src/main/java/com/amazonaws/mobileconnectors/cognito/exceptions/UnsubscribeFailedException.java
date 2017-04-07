@@ -26,10 +26,17 @@ public class UnsubscribeFailedException extends AmazonClientException {
 
     private static final long serialVersionUID = 5706724903415180392L;
 
+    /**
+     * @param message the exception message.
+     * @param throwable exception as throwable.
+     */
     public UnsubscribeFailedException(String message, Throwable throwable) {
         super(message, throwable);
     }
 
+    /**
+     * @param message the exception message.
+     */
     public UnsubscribeFailedException(String message) {
         super(message);
     }

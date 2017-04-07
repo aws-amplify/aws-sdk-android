@@ -23,18 +23,37 @@ public class DynamoDBMappingException extends RuntimeException {
 
     private static final long serialVersionUID = -4883173289978517967L;
 
+    /**
+     * Constructor.
+     */
     public DynamoDBMappingException() {
         super();
     }
 
+    /**
+     * Constructor.
+     * 
+     * @param message the message.
+     * @param cause the root cause.
+     */
     public DynamoDBMappingException(String message, Throwable cause) {
         super(message, cause);
     }
 
+    /**
+     * Constructor.
+     * 
+     * @param message the message.
+     */
     public DynamoDBMappingException(String message) {
         super(message);
     }
 
+    /**
+     * Constructor.
+     *
+     * @param cause the cause.
+     */
     public DynamoDBMappingException(Throwable cause) {
         super(cause);
     }

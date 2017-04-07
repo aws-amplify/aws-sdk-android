@@ -21,10 +21,18 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import java.lang.reflect.Method;
 import java.text.ParseException;
 
+/**
+ * An unmarshaller that unmarshals DynamoDB null type.
+ */
 public class NullableUnmarshaller implements ArgumentUnmarshaller {
 
     private final ArgumentUnmarshaller wrapped;
 
+    /**
+     * Constructor.
+     *
+     * @param wrapped an {@link ArgumentUnmarshaller}.
+     */
     public NullableUnmarshaller(ArgumentUnmarshaller wrapped) {
         if (wrapped == null) {
             throw new NullPointerException("wrapped");

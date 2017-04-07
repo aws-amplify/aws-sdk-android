@@ -22,15 +22,26 @@ import static com.amazonaws.util.CodecUtils.sanityCheckLastPos;
  *
  * @author Hanson Char
  */
+@SuppressWarnings({"checkstyle:constantname", "checkstyle:innerassignment"})
 class Base64Codec implements Codec {
-    private static final int OFFSET_OF_a = 'a' - 26;
-    private static final int OFFSET_OF_0 = '0' - 52;
-    private static final int OFFSET_OF_PLUS = '+' - 62;
-    private static final int OFFSET_OF_SLASH = '/' - 63;
+
+    private static final int OFFSET_a_VALUE = 26;
+    private static final int OFFSET_0_VALUE = 52;
+    private static final int OFFSET_PLUS_VALUE = 62;
+    private static final int OFFSET_SLASH_VALUE = 63;
+
+    private static final int OFFSET_OF_a = 'a' - OFFSET_a_VALUE;
+    private static final int OFFSET_OF_0 = '0' - OFFSET_0_VALUE;
+    private static final int OFFSET_OF_PLUS = '+' - OFFSET_PLUS_VALUE;
+    private static final int OFFSET_OF_SLASH = '/' - OFFSET_SLASH_VALUE;
+
+    private static final int BITS_3 = 3;
+    private static final int BITS_4 = 4;
+    private static final int BITS_6 = 6;
 
     private static final int MASK_2BITS = (1 << 2) - 1;
-    private static final int MASK_4BITS = (1 << 4) - 1;
-    private static final int MASK_6BITS = (1 << 6) - 1;
+    private static final int MASK_4BITS = (1 << BITS_4) - 1;
+    private static final int MASK_6BITS = (1 << BITS_6) - 1;
     // Alphabet as defined at http://www.ietf.org/rfc/rfc4648.txt
     private static final byte PAD = '=';
 
@@ -40,8 +51,7 @@ class Base64Codec implements Codec {
         private static byte[] decodeTable() {
             final byte[] dest = new byte['z' + 1];
 
-            for (int i = 0; i <= 'z'; i++)
-            {
+            for (int i = 0; i <= 'z'; i++) {
                 if (i >= 'A' && i <= 'Z')
                     dest[i] = (byte) (i - 'A');
                 else if (i >= '0' && i <= '9')
@@ -59,35 +69,34 @@ class Base64Codec implements Codec {
         }
     }
 
-    private final byte[] ALPAHBETS;
+    private final byte[] alpahbets;
 
     Base64Codec() {
-        ALPAHBETS = CodecUtils
+        alpahbets = CodecUtils
                 .toBytesDirect("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
     }
 
     protected Base64Codec(byte[] alphabets) {
-        ALPAHBETS = alphabets;
+        alpahbets = alphabets;
     }
 
     @Override
     public byte[] encode(byte[] src) {
-        final int num3bytes = src.length / 3;
-        final int remainder = src.length % 3;
+        final int num3bytes = src.length / BITS_3;
+        final int remainder = src.length % BITS_3;
 
-        if (remainder == 0)
-        {
-            byte[] dest = new byte[num3bytes * 4];
+        if (remainder == 0) {
+            byte[] dest = new byte[num3bytes * BITS_4];
 
-            for (int s = 0, d = 0; s < src.length; s += 3, d += 4)
+            for (int s = 0, d = 0; s < src.length; s += BITS_3, d += BITS_4)
                 encode3bytes(src, s, dest, d);
             return dest;
         }
 
-        byte[] dest = new byte[(num3bytes + 1) * 4];
+        byte[] dest = new byte[(num3bytes + 1) * BITS_4];
         int s = 0, d = 0;
 
-        for (; s < src.length - remainder; s += 3, d += 4)
+        for (; s < src.length - remainder; s += BITS_3, d += BITS_4)
             encode3bytes(src, s, dest, d);
 
         switch (remainder) {
@@ -97,6 +106,8 @@ class Base64Codec implements Codec {
             case 2:
                 encode2bytes(src, s, dest, d);
                 break;
+            default:
+                break;
         }
         return dest;
     }
@@ -104,22 +115,22 @@ class Base64Codec implements Codec {
     void encode3bytes(byte[] src, int s, byte[] dest, int d) {
         // operator precedence in descending order: >>> or <<, &, |
         byte p;
-        dest[d++] = ALPAHBETS[(p = src[s++]) >>> 2 & MASK_6BITS]; // 6
-        dest[d++] = ALPAHBETS[(p & MASK_2BITS) << 4 | (p = src[s++]) >>> 4 & MASK_4BITS]; // 2
+        dest[d++] = alpahbets[(p = src[s++]) >>> 2 & MASK_6BITS]; // 6
+        dest[d++] = alpahbets[(p & MASK_2BITS) << BITS_4 | (p = src[s++]) >>> BITS_4 & MASK_4BITS]; // 2
                                                                                           // 4
-        dest[d++] = ALPAHBETS[(p & MASK_4BITS) << 2 | (p = src[s]) >>> 6 & MASK_2BITS]; // 4
+        dest[d++] = alpahbets[(p & MASK_4BITS) << 2 | (p = src[s]) >>> BITS_6 & MASK_2BITS]; // 4
                                                                                         // 2
-        dest[d] = ALPAHBETS[p & MASK_6BITS]; // 6
+        dest[d] = alpahbets[p & MASK_6BITS]; // 6
         return;
     }
 
     void encode2bytes(byte[] src, int s, byte[] dest, int d) {
         // operator precedence in descending order: >>> or <<, &, |
         byte p;
-        dest[d++] = ALPAHBETS[(p = src[s++]) >>> 2 & MASK_6BITS]; // 6
-        dest[d++] = ALPAHBETS[(p & MASK_2BITS) << 4 | (p = src[s]) >>> 4 & MASK_4BITS]; // 2
+        dest[d++] = alpahbets[(p = src[s++]) >>> 2 & MASK_6BITS]; // 6
+        dest[d++] = alpahbets[(p & MASK_2BITS) << BITS_4 | (p = src[s]) >>> BITS_4 & MASK_4BITS]; // 2
                                                                                         // 4
-        dest[d++] = ALPAHBETS[(p & MASK_4BITS) << 2]; // 4
+        dest[d++] = alpahbets[(p & MASK_4BITS) << 2]; // 4
         dest[d] = PAD;
         return;
     }
@@ -127,8 +138,8 @@ class Base64Codec implements Codec {
     void encode1byte(byte[] src, int s, byte[] dest, int d) {
         // operator precedence in descending order: >>> or <<, &, |
         byte p;
-        dest[d++] = ALPAHBETS[(p = src[s]) >>> 2 & MASK_6BITS]; // 6
-        dest[d++] = ALPAHBETS[(p & MASK_2BITS) << 4]; // 2
+        dest[d++] = alpahbets[(p = src[s]) >>> 2 & MASK_6BITS]; // 6
+        dest[d++] = alpahbets[(p & MASK_2BITS) << BITS_4]; // 2
         dest[d++] = PAD;
         dest[d] = PAD;
         return;
@@ -140,16 +151,16 @@ class Base64Codec implements Codec {
         dest[d++] = (byte)
                 (
                 pos(src[s++]) << 2
-                | (p = pos(src[s++])) >>> 4 & MASK_2BITS
+                | (p = pos(src[s++])) >>> BITS_4 & MASK_2BITS
                 ); // 6 2
         dest[d++] = (byte)
                 (
-                (p & MASK_4BITS) << 4
+                (p & MASK_4BITS) << BITS_4
                 | (p = pos(src[s++])) >>> 2 & MASK_4BITS
                 ); // 4 4
         dest[d] = (byte)
                 (
-                (p & MASK_2BITS) << 6
+                (p & MASK_2BITS) << BITS_6
                 | pos(src[s])
                 ); // 2 6
         return;
@@ -165,7 +176,7 @@ class Base64Codec implements Codec {
         dest[d++] = (byte)
                 (
                 pos(src[s++]) << 2
-                | (p = pos(src[s++])) >>> 4 & MASK_2BITS
+                | (p = pos(src[s++])) >>> BITS_4 & MASK_2BITS
                 ); // 6 2
         if (n == 1) {
             sanityCheckLastPos(p, MASK_4BITS);
@@ -174,7 +185,7 @@ class Base64Codec implements Codec {
 
         dest[d++] = (byte)
                 (
-                (p & MASK_4BITS) << 4
+                (p & MASK_4BITS) << BITS_4
                 | (p = pos(src[s++])) >>> 2 & MASK_4BITS
                 ); // 4 4
         if (n == 2) {
@@ -184,16 +195,15 @@ class Base64Codec implements Codec {
 
         dest[d] = (byte)
                 (
-                (p & MASK_2BITS) << 6
+                (p & MASK_2BITS) << BITS_6
                 | pos(src[s])
                 ); // 2 6
         return;
     }
 
     @Override
-    public byte[] decode(byte[] src, final int length)
-    {
-        if (length % 4 != 0)
+    public byte[] decode(byte[] src, final int length) {
+        if (length % BITS_4 != 0)
             throw new IllegalArgumentException(
                     "Input is expected to be encoded in multiple of 4 bytes but found: " + length);
 
@@ -210,7 +220,7 @@ class Base64Codec implements Codec {
 
         switch (pads) {
             case 0:
-                fq = 3;
+                fq = BITS_3;
                 break; // final quantum of encoding input is an integral
                        // multiple of 24 bits
             case 1:
@@ -222,15 +232,17 @@ class Base64Codec implements Codec {
             default:
                 throw new Error("Impossible");
         }
-        final byte[] dest = new byte[length / 4 * 3 - (3 - fq)];
+        final byte[] dest = new byte[length / BITS_4 * BITS_3 - (BITS_3 - fq)];
         int s = 0, d = 0;
 
         // % has a higher precedence than - than <
-        for (; d < dest.length - fq % 3; s += 4, d += 3)
+        for (; d < dest.length - fq % BITS_3; s += BITS_4, d += BITS_3) {
             decode4bytes(src, s, dest, d);
+        }
 
-        if (fq < 3)
+        if (fq < BITS_3) {
             decode1to3bytes(fq, src, s, dest, d);
+        }
         return dest;
     }
 

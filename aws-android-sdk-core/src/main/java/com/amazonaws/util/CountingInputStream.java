@@ -22,13 +22,17 @@ import java.io.InputStream;
 
 /**
  * Simple input stream wrapper utility to count the bytes read from a stream.
- * 
+ *
  * @deprecated This class is no longer used and will be removed in the future
  */
 @Deprecated
 public class CountingInputStream extends SdkFilterInputStream {
     private long byteCount = 0;
 
+    /**
+     * Constructor.
+     * @param in the input stream.
+     */
     public CountingInputStream(InputStream in) {
         super(in);
     }

@@ -30,6 +30,7 @@ public interface ObjectExpirationResult {
     /**
      * Returns the expiration date of the object, or null if the object is not
      * configured to expire.
+     * @return Date the expiration time.
      */
     public Date getExpirationTime();
 
@@ -45,6 +46,7 @@ public interface ObjectExpirationResult {
      * this object.
      *
      * @see Rule#getId()
+     * @return String the expiration time rule ID.
      */
     public String getExpirationTimeRuleId();
 

@@ -21,6 +21,10 @@ import java.io.Serializable;
  * The version of the output schema to use when exporting data.
  */
 public enum StorageClassAnalysisSchemaVersion implements Serializable {
+
+    /**
+     * The V1 version.
+     */
     V_1("V_1");
 
     private final String version;

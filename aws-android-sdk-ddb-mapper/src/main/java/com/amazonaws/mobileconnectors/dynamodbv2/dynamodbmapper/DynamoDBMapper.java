@@ -169,6 +169,8 @@ import java.util.UUID;
  * @see DynamoDBMarshalling
  * @see DynamoDBMapperConfig
  */
+
+@SuppressWarnings("checkstyle:hiddenfield")
 public class DynamoDBMapper {
 
     private final S3ClientCache s3cc;
@@ -183,8 +185,12 @@ public class DynamoDBMapper {
     /** The max back off time for batch write */
     static final long MAX_BACKOFF_IN_MILLISECONDS = 1000 * 3;
 
+    private static final long THREAD_SLEEP_TWO_SECONDS = 1000 * 2;
+
     /** The max number of items allowed in a BatchWrite request */
     static final int MAX_ITEMS_PER_BATCH = 25;
+
+    private static final int MAX_BATCH_GET_COUNT = 100;
     /**
      * This retry count is applicable only when every batch get item request
      * results in no data retrieved from server and the un processed keys is
@@ -192,6 +198,8 @@ public class DynamoDBMapper {
      */
     static final int BATCH_GET_MAX_RETRY_COUNT_ALL_KEYS = 5;
 
+    private static final int EXPONENTIAL_BACKOFF_OFFSET = 500;
+    private static final int EXPONENTIAL_BACKOFF_RANDOMIZATION_OFFSET = 100;
     /**
      * User agent for requests made using the {@link DynamoDBMapper}.
      */
@@ -301,7 +309,7 @@ public class DynamoDBMapper {
      *            can be overridden on a per-operation basis.
      * @param transformer The custom attribute transformer to invoke when
      *            serializing or deserializing an object.
-     * @param s3CredentialProvider The credentials provider for accessing S3.
+     * @param s3CredentialsProvider The credentials provider for accessing S3.
      *            Relevant only if {@link S3Link} is involved.
      */
     public DynamoDBMapper(
@@ -325,8 +333,14 @@ public class DynamoDBMapper {
      * Loads an object with the hash key given and a configuration override.
      * This configuration overrides the default provided at object construction.
      *
+     * @param <T> the class type
+     * @param clazz the class
+     * @param hashKey the hashkey object
+     * @param config the {@link DynamoDBMapperConfig}
      * @see DynamoDBMapper#load(Class, Object, Object, DynamoDBMapperConfig)
+     * @return instance of clazz.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public <T extends Object> T load(Class<T> clazz, Object hashKey, DynamoDBMapperConfig config) {
         return load(clazz, hashKey, null, config);
     }
@@ -334,7 +348,11 @@ public class DynamoDBMapper {
     /**
      * Loads an object with the hash key given, using the default configuration.
      *
+     * @param <T> the class type
+     * @param clazz the class
+     * @param hashKey the hashkey object
      * @see DynamoDBMapper#load(Class, Object, Object, DynamoDBMapperConfig)
+     * @return instance of clazz.
      */
     public <T extends Object> T load(Class<T> clazz, Object hashKey) {
         return load(clazz, hashKey, null, config);
@@ -344,7 +362,12 @@ public class DynamoDBMapper {
      * Loads an object with a hash and range key, using the default
      * configuration.
      *
+     * @param clazz the class to type the obect to.
+     * @param hashKey the hash key
+     * @param rangeKey the range key
+     * @param <T> the type of the class.
      * @see DynamoDBMapper#load(Class, Object, Object, DynamoDBMapperConfig)
+     * @return an object of type T
      */
     public <T extends Object> T load(Class<T> clazz, Object hashKey, Object rangeKey) {
         return load(clazz, hashKey, rangeKey, config);
@@ -356,7 +379,9 @@ public class DynamoDBMapper {
      *
      * @param keyObject An object of the class to load with the keys values to
      *            match.
+     * @param <T> the type of class.
      * @see DynamoDBMapper#load(Object, DynamoDBMapperConfig)
+     * @return an object of type T
      */
     public <T extends Object> T load(T keyObject) {
         return load(keyObject, this.config);
@@ -371,11 +396,12 @@ public class DynamoDBMapper {
      * @param config Configuration for the service call to retrieve the object
      *            from DynamoDB. This configuration overrides the default given
      *            at construction.
+     * @param <T> the type of class.
+     * @return an object of type T
      */
     public <T extends Object> T load(T keyObject, DynamoDBMapperConfig config) {
         @SuppressWarnings("unchecked")
-        final
-        Class<T> clazz = (Class<T>) keyObject.getClass();
+        final Class<T> clazz = (Class<T>) keyObject.getClass();
 
         config = mergeConfig(config);
         final ItemConverter converter = getConverter(config);
@@ -409,6 +435,8 @@ public class DynamoDBMapper {
      *
      * @param keyObject The key object, corresponding to an item in a dynamo
      *            table.
+     * @param <T> the type of class.
+     * @return the key map for a key object given
      */
     @SuppressWarnings("unchecked")
     private <T> Map<String, AttributeValue> getKey(
@@ -459,6 +487,9 @@ public class DynamoDBMapper {
      * @param config Configuration for the service call to retrieve the object
      *            from DynamoDB. This configuration overrides the default given
      *            at construction.
+     * @param <T> the type of class.
+     * @return an object with the given hash key, or null if no such object
+     *         exists.
      */
     public <T extends Object> T load(Class<T> clazz, Object hashKey, Object rangeKey,
             DynamoDBMapperConfig config) {
@@ -470,6 +501,8 @@ public class DynamoDBMapper {
     /**
      * Creates a key prototype object for the class given with the single hash
      * and range key given.
+     *
+     * @param <T> the type of class.
      */
     <T> T createKeyObject(Class<T> clazz, Object hashKey, Object rangeKey) {
         T keyObject = null;
@@ -610,6 +643,8 @@ public class DynamoDBMapper {
      * @param clazz The class to instantiate and hydrate
      * @param itemAttributes The set of item attributes, keyed by attribute
      *            name.
+     * @param <T> the type of object.
+     * @return an object of type T
      */
     public <T> T marshallIntoObject(
             Class<T> clazz,
@@ -643,6 +678,10 @@ public class DynamoDBMapper {
      * This method is no longer called by load/scan/query methods. If you are
      * overriding this method, please switch to using an AttributeTransformer
      *
+     * @param clazz the class to marshall into.
+     * @param itemAttributes the item attributes.
+     * @param <T> the type of object.
+     * @return an list of objects of type T
      * @see DynamoDBMapper#marshallIntoObject(Class, Map)
      */
     public <T> List<T> marshallIntoObjects(Class<T> clazz,
@@ -663,8 +702,7 @@ public class DynamoDBMapper {
      * package, should ever override it.
      */
     final <T> List<T> marshallIntoObjects(
-            final List<AttributeTransformer.Parameters<T>> parameters
-            ) {
+            final List<AttributeTransformer.Parameters<T>> parameters) {
         final List<T> result = new ArrayList<T>(parameters.size());
 
         ItemConverter converter = null;
@@ -682,6 +720,8 @@ public class DynamoDBMapper {
     /**
      * Saves the object given into DynamoDB, using the default configuration.
      *
+     * @param <T> the type of object.
+     * @param object the object to save.
      * @see DynamoDBMapper#save(Object, DynamoDBSaveExpression,
      *      DynamoDBMapperConfig)
      */
@@ -693,6 +733,9 @@ public class DynamoDBMapper {
      * Saves the object given into DynamoDB, using the default configuration and
      * the specified saveExpression.
      *
+     * @param object the object to save.
+     * @param saveExpression the {@link DynamoDBSaveExpression}
+     * @param <T> the type of object.
      * @see DynamoDBMapper#save(Object, DynamoDBSaveExpression,
      *      DynamoDBMapperConfig)
      */
@@ -727,6 +770,9 @@ public class DynamoDBMapper {
     /**
      * Saves the object given into DynamoDB, using the specified configuration.
      *
+     * @param object the object to save.
+     * @param config the {@link DynamoDBMapperConfig}
+     * @param <T> the type of object.
      * @see DynamoDBMapper#save(Object, DynamoDBSaveExpression,
      *      DynamoDBMapperConfig)
      */
@@ -761,6 +807,7 @@ public class DynamoDBMapper {
      * @param saveExpression The options to apply to this save request
      * @param config The configuration to use, which overrides the default
      *            provided at object construction.
+     * @param <T> the type of object.
      * @see DynamoDBMapperConfig.SaveBehavior
      */
     public <T extends Object> void save(T object, DynamoDBSaveExpression saveExpression,
@@ -1252,6 +1299,8 @@ public class DynamoDBMapper {
     /**
      * Deletes the given object from its DynamoDB table using the default
      * configuration.
+     *
+     * @param object the object to delete.
      */
     public void delete(Object object) {
         delete(object, null, this.config);
@@ -1260,6 +1309,9 @@ public class DynamoDBMapper {
     /**
      * Deletes the given object from its DynamoDB table using the specified
      * deleteExpression and default configuration.
+     *
+     * @param object the object to delete.
+     * @param deleteExpression the {@link DynamoDBDeleteExpression}
      */
     public void delete(Object object, DynamoDBDeleteExpression deleteExpression) {
         delete(object, deleteExpression, this.config);
@@ -1268,6 +1320,9 @@ public class DynamoDBMapper {
     /**
      * Deletes the given object from its DynamoDB table using the specified
      * configuration.
+     *
+     * @param object the object to delete.
+     * @param config the {@link DynamoDBMapperConfig}
      */
     public void delete(Object object, DynamoDBMapperConfig config) {
         delete(object, null, config);
@@ -1283,6 +1338,8 @@ public class DynamoDBMapper {
      * @param config Config override object. If {@link SaveBehavior#CLOBBER} is
      *            supplied, version fields will not be considered when deleting
      *            the object.
+     * @param object the object to delete.
+     * @param <T> the type of the object.
      */
     public <T> void delete(T object, DynamoDBDeleteExpression deleteExpression,
             DynamoDBMapperConfig config) {
@@ -1358,7 +1415,9 @@ public class DynamoDBMapper {
      * {@link AmazonDynamoDB#batchWriteItem(BatchWriteItemRequest)} API. <b>No
      * version checks are performed</b>, as required by the API.
      *
+     * @param objectsToDelete the objects to delete.
      * @see DynamoDBMapper#batchWrite(List, List, DynamoDBMapperConfig)
+     * @return list of failed batches/
      */
     public List<FailedBatch> batchDelete(List<? extends Object> objectsToDelete) {
         return batchWrite(Collections.emptyList(), objectsToDelete, this.config);
@@ -1369,6 +1428,8 @@ public class DynamoDBMapper {
      * {@link AmazonDynamoDB#batchWriteItem(BatchWriteItemRequest)} API. <b>No
      * version checks are performed</b>, as required by the API.
      *
+     * @param objectsToDelete list of objects to delete.
+     * @return list of failed batches.
      * @see DynamoDBMapper#batchWrite(List, List, DynamoDBMapperConfig)
      */
     public List<FailedBatch> batchDelete(Object... objectsToDelete) {
@@ -1391,6 +1452,8 @@ public class DynamoDBMapper {
      * .com/amazondynamodb/latest/APIReference/API_BatchWriteItem.html
      * </p>
      *
+     * @param objectsToSave list of objects to save.
+     * @return list of objects that failed to save.
      * @see DynamoDBMapper#batchWrite(List, List, DynamoDBMapperConfig)
      */
     public List<FailedBatch> batchSave(List<? extends Object> objectsToSave) {
@@ -1413,6 +1476,8 @@ public class DynamoDBMapper {
      * .com/amazondynamodb/latest/APIReference/API_BatchWriteItem.html
      * </p>
      *
+     * @param objectsToSave list of objects to save.
+     * @return list of objects that failed to save.
      * @see DynamoDBMapper#batchWrite(List, List, DynamoDBMapperConfig)
      */
     public List<FailedBatch> batchSave(Object... objectsToSave) {
@@ -1435,6 +1500,9 @@ public class DynamoDBMapper {
      * .com/amazondynamodb/latest/APIReference/API_BatchWriteItem.html
      * </p>
      *
+     * @param objectsToWrite list of objects to write.
+     ** @param objectsToDelete list of objects to delete.
+     * @return list of objects that failed the opeartion.
      * @see DynamoDBMapper#batchWrite(List, List, DynamoDBMapperConfig)
      */
     public List<FailedBatch> batchWrite(List<? extends Object> objectsToWrite,
@@ -1571,7 +1639,7 @@ public class DynamoDBMapper {
                 // If contains throttling exception, we do a backoff
                 if (containsThrottlingException(failedBatches)) {
                     try {
-                        Thread.sleep(1000 * 2);
+                        Thread.sleep(THREAD_SLEEP_TWO_SECONDS);
                     } catch (final InterruptedException e) {
                         Thread.currentThread().interrupt();
                         throw new AmazonClientException(e.getMessage(), e);
@@ -1714,6 +1782,7 @@ public class DynamoDBMapper {
      * Retrieves multiple items from multiple tables using their primary keys.
      *
      * @see DynamoDBMapper#batchLoad(List, DynamoDBMapperConfig)
+     * @param itemsToGet list of items to get.
      * @return A map of the loaded objects. Each key in the map is the name of a
      *         DynamoDB table. Each value in the map is a list of objects that
      *         have been loaded from that table. All objects for each table can
@@ -1772,7 +1841,7 @@ public class DynamoDBMapper {
 
             // Reach the maximum number which can be handled in a single
             // batchGet
-            if (++count == 100) {
+            if (++count == MAX_BATCH_GET_COUNT) {
                 processBatchGetRequest(classesByTableName, requestItems, resultSet, config,
                         converter);
                 requestItems.clear();
@@ -1797,6 +1866,7 @@ public class DynamoDBMapper {
      *         have been loaded from that table. All objects for each table can
      *         be cast to the associated user defined type that is annotated as
      *         mapping that table.
+     * @param itemsToGet list of items to get.
      * @see #batchLoad(List, DynamoDBMapperConfig)
      * @see #batchLoad(Map, DynamoDBMapperConfig)
      */
@@ -1967,6 +2037,10 @@ public class DynamoDBMapper {
      * as an unmodifiable list of instantiated objects, using the default
      * configuration.
      *
+     * @param clazz the mapper class.
+     * @param scanExpression the {@link DynamoDBScanExpression}
+     * @param <T> the type of the mapper class.
+     * @return the {@link PaginatedScanList}
      * @see DynamoDBMapper#scan(Class, DynamoDBScanExpression,
      *      DynamoDBMapperConfig)
      */
@@ -2017,6 +2091,11 @@ public class DynamoDBMapper {
      * in parallel and returns the matching results in one unmodifiable list of
      * instantiated objects, using the default configuration.
      *
+     * @param clazz the mapper class.
+     * @param scanExpression the {@link DynamoDBScanExpression}
+     * @param <T> the type of the mapper class.
+     * @param totalSegments the total segments
+     * @return the {@link PaginatedParallelScanList}
      * @see DynamoDBMapper#parallelScan(Class, DynamoDBScanExpression,int,
      *      DynamoDBMapperConfig)
      */
@@ -2088,6 +2167,7 @@ public class DynamoDBMapper {
      *            filters to apply to limit results.
      * @param config The configuration to use for this scan, which overrides the
      *            default provided at object construction.
+     * @return a single page of matching results.
      */
     public <T> ScanResultPage<T> scanPage(Class<T> clazz, DynamoDBScanExpression scanExpression,
             DynamoDBMapperConfig config) {
@@ -2110,6 +2190,10 @@ public class DynamoDBMapper {
      * Scans through an Amazon DynamoDB table and returns a single page of
      * matching results.
      *
+     * @param clazz the mapper class.
+     * @param scanExpression the {@link DynamoDBScanExpression}
+     * @param <T> the type of the object.
+     * @return a single page of matching results.
      * @see DynamoDBMapper#scanPage(Class, DynamoDBScanExpression,
      *      DynamoDBMapperConfig)
      */
@@ -2122,6 +2206,11 @@ public class DynamoDBMapper {
      * unmodifiable list of instantiated objects, using the default
      * configuration.
      *
+     * @param clazz the mapper class.
+     * @param queryExpression the {@link DynamoDBQueryExpression}
+     * @param <T> the type of the object.
+     * @return the matching results as an unmodifiable list of instantiated
+     *         objects
      * @see DynamoDBMapper#query(Class, DynamoDBQueryExpression,
      *      DynamoDBMapperConfig)
      */
@@ -2180,6 +2269,13 @@ public class DynamoDBMapper {
      * Amazon DynamoDB, and the query expression parameter allows the caller to
      * filter results and control how the query is executed.
      *
+     * @param <T> The type of the objects being returned.
+     * @param clazz The class annotated with DynamoDB annotations describing how
+     *            to store the object data in Amazon DynamoDB.
+     * @param queryExpression Details on how to run the query, including any
+     *            conditions on the key values
+     * @return An unmodifiable list of the objects constructed from the results
+     *         of the query operation.
      * @see DynamoDBMapper#queryPage(Class, DynamoDBQueryExpression,
      *      DynamoDBMapperConfig)
      */
@@ -2202,6 +2298,7 @@ public class DynamoDBMapper {
      *            conditions on the key values
      * @param config The configuration to use for this query, which overrides
      *            the default provided at object construction.
+     * @return a single page of matching results
      */
     public <T> QueryResultPage<T> queryPage(Class<T> clazz,
             DynamoDBQueryExpression<T> queryExpression, DynamoDBMapperConfig config) {
@@ -2225,6 +2322,9 @@ public class DynamoDBMapper {
      * items, without returning any of the actual item data, using the default
      * configuration.
      *
+     * @return count of matching items.
+     * @param clazz the type of mapper class.
+     * @param scanExpression the {@link DynamoDBScanExpression}.
      * @see DynamoDBMapper#count(Class, DynamoDBScanExpression,
      *      DynamoDBMapperConfig)
      */
@@ -2270,6 +2370,10 @@ public class DynamoDBMapper {
      * matching items, without returning any of the actual item data, using the
      * default configuration.
      *
+     * @param clazz The class mapped to a DynamoDB table.
+     * @param queryExpression the {@link DynamoDBQueryExpression}
+     * @param <T> the type of mapper class
+     * @return returns the count of matching items
      * @see DynamoDBMapper#count(Class, DynamoDBQueryExpression,
      *      DynamoDBMapperConfig)
      */
@@ -2285,6 +2389,7 @@ public class DynamoDBMapper {
      * @param queryExpression The parameters for running the scan.
      * @param config The mapper configuration to use for the query, which
      *            overrides the default provided at object construction.
+     * @param <T> the type of the object.
      * @return The count of matching items, without returning any of the actual
      *         item data.
      */
@@ -2415,6 +2520,7 @@ public class DynamoDBMapper {
      * @param rangeKeyConditions The range conditions specified by the user. We
      *            currently only allow at most one range key condition.
      */
+    @SuppressWarnings("checkstyle:methodlength")
     private void processKeyConditions(Class<?> clazz,
             QueryRequest queryRequest,
             Map<String, Condition> hashKeyConditions,
@@ -2726,8 +2832,7 @@ public class DynamoDBMapper {
             final List<Map<String, AttributeValue>> attributeValues,
             final Class<T> modelClass,
             final String tableName,
-            final DynamoDBMapperConfig mapperConfig
-            ) {
+            final DynamoDBMapperConfig mapperConfig) {
         final List<AttributeTransformer.Parameters<T>> rval =
                 new ArrayList<AttributeTransformer.Parameters<T>>(
                         attributeValues.size());
@@ -2825,8 +2930,7 @@ public class DynamoDBMapper {
     }
 
     private Map<String, AttributeValue> untransformAttributes(
-            final AttributeTransformer.Parameters<?> parameters
-            ) {
+            final AttributeTransformer.Parameters<?> parameters) {
         if (transformer != null) {
             return transformer.untransform(parameters);
         } else {
@@ -2849,8 +2953,7 @@ public class DynamoDBMapper {
             final String tableName,
             final Map<String, AttributeValue> keys,
             final Map<String, AttributeValueUpdate> updateValues,
-            final DynamoDBMapperConfig config
-            ) {
+            final DynamoDBMapperConfig config) {
         Map<String, AttributeValue> item = convertToItem(updateValues);
 
         final HashSet<String> keysAdded = new HashSet<String>();
@@ -2915,7 +3018,8 @@ public class DynamoDBMapper {
 
         final Random random = new Random();
         long delay = 0;
-        final long scaleFactor = 500 + random.nextInt(100);
+        final long scaleFactor = EXPONENTIAL_BACKOFF_OFFSET
+                + random.nextInt(EXPONENTIAL_BACKOFF_RANDOMIZATION_OFFSET);
         delay = (long) (Math.pow(2, retries) * scaleFactor);
         delay = Math.min(delay, MAX_BACKOFF_IN_MILLISECONDS);
 
@@ -3021,6 +3125,8 @@ public class DynamoDBMapper {
 
     /**
      * Returns the underlying {@link S3ClientCache} for accessing S3.
+     *
+     * @return the underlying {@link S3ClientCache} for accessing S3.
      */
     public S3ClientCache getS3ClientCache() {
         return s3cc;
@@ -3031,6 +3137,9 @@ public class DynamoDBMapper {
      * default S3 region. This method requires the mapper to have been
      * initialized with the necessary credentials for accessing S3.
      *
+     * @param bucketName the bucket name.
+     * @param key the object key
+     * @return {@link S3Link} with specified bucket name and key.
      * @throws IllegalStateException if the mapper has not been constructed with
      *             the necessary S3 AWS credentials.
      */
@@ -3043,6 +3152,10 @@ public class DynamoDBMapper {
      * method requires the mapper to have been initialized with the necessary
      * credentials for accessing S3.
      *
+     * @param s3region the s3 region
+     * @param bucketName the bucket name.
+     * @param key the object key
+     * @return {@link S3Link} with specified bucket name and key.
      * @throws IllegalStateException if the mapper has not been constructed with
      *             the necessary S3 AWS credentials.
      */
@@ -3060,6 +3173,9 @@ public class DynamoDBMapper {
      * include the required ProvisionedThroughput parameters for the primary
      * table and the GSIs, and that all secondary indexes are initialized with
      * the default projection type - KEY_ONLY.
+     *
+     * @param clazz the mapper class.
+     * @return {@link CreateTableRequest}
      */
     public CreateTableRequest generateCreateTableRequest(Class<?> clazz) {
         final ItemConverter converter = getConverter(config);

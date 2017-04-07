@@ -5,7 +5,7 @@
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,20 +15,25 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile;
 
-import android.os.Build;
-
+import java.util.Locale;
+import java.util.TimeZone;
+import org.json.JSONObject;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.JSONBuilder;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.JSONSerializable;
-import org.json.JSONObject;
-
-import java.util.Locale;
-import java.util.TimeZone;
+import android.os.Build;
 
 import static com.amazonaws.mobileconnectors.pinpoint.internal.core.util.Preconditions.checkNotNull;
 
+/**
+ * Amazon Pinpoint endpoint demographic, represented by application and device
+ * characteristics
+ */
 public class EndpointProfileDemographic implements JSONSerializable {
 
+    /**
+     * Android platform.
+     */
     public static final String ENDPOINT_PLATFORM = "ANDROID";
 
     private String make = "";
@@ -39,6 +44,11 @@ public class EndpointProfileDemographic implements JSONSerializable {
     private String platform = ENDPOINT_PLATFORM;
     private String platformVersion = Build.VERSION.RELEASE;
 
+    /**
+     * Constructor.
+     *
+     * @param context the pinpoint context.
+     */
     public EndpointProfileDemographic(final PinpointContext context) {
         checkNotNull(context, "A valid pinpointContext must be provided");
         make = context.getSystem().getDeviceDetails().manufacturer();
@@ -48,6 +58,7 @@ public class EndpointProfileDemographic implements JSONSerializable {
     public String getMake() {
         return this.make;
     }
+
     public void setMake(String make) {
         this.make = make;
     }
@@ -55,6 +66,7 @@ public class EndpointProfileDemographic implements JSONSerializable {
     public String getModel() {
         return this.model;
     }
+
     public void setModel(String model) {
         this.model = model;
     }
@@ -62,6 +74,7 @@ public class EndpointProfileDemographic implements JSONSerializable {
     public String getTimezone() {
         return this.timezone;
     }
+
     public void setTimezone(String timezone) {
         this.timezone = timezone;
     }
@@ -69,6 +82,7 @@ public class EndpointProfileDemographic implements JSONSerializable {
     public Locale getLocale() {
         return this.locale;
     }
+
     public void setLocale(Locale locale) {
         this.locale = locale;
     }
@@ -76,6 +90,7 @@ public class EndpointProfileDemographic implements JSONSerializable {
     public String getAppVersion() {
         return this.appVersion;
     }
+
     public void setAppVersion(String appVersion) {
         this.appVersion = appVersion;
     }
@@ -83,6 +98,7 @@ public class EndpointProfileDemographic implements JSONSerializable {
     public String getPlatform() {
         return this.platform;
     }
+
     public void setPlatform(String platform) {
         this.platform = platform;
     }
@@ -90,13 +106,14 @@ public class EndpointProfileDemographic implements JSONSerializable {
     public String getPlatformVersion() {
         return this.platformVersion;
     }
+
     public void setPlatformVersion(String platformVersion) {
         this.platformVersion = platformVersion;
     }
 
     @Override
     public JSONObject toJSONObject() {
-        JSONBuilder builder = new JSONBuilder(null);
+        final JSONBuilder builder = new JSONBuilder(null);
         builder.withAttribute("Make", getMake());
         builder.withAttribute("Model", getModel());
         builder.withAttribute("Timezone", getTimezone());

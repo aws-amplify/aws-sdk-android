@@ -22,11 +22,19 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A marshaller that marshals java list to dynamodb list.
+ */
 public class ListToListMarshaller implements ListAttributeMarshaller {
 
     private static final ListToListMarshaller INSTANCE =
             new ListToListMarshaller();
 
+    /**
+     * Return a singleton instance.
+     *
+     * @return instance of {@link ListToListMarshaller}
+     */
     public static ListToListMarshaller instance() {
         return INSTANCE;
     }
@@ -37,6 +45,11 @@ public class ListToListMarshaller implements ListAttributeMarshaller {
         this(null);
     }
 
+    /**
+     * Constructor.
+     *
+     * @param memberMarshaller an instance of {@link ArgumentMarshaller}
+     */
     public ListToListMarshaller(ArgumentMarshaller memberMarshaller) {
         this.memberMarshaller = memberMarshaller;
     }
@@ -48,11 +61,11 @@ public class ListToListMarshaller implements ListAttributeMarshaller {
                     "No member marshaller configured!");
         }
 
-        List<?> objects = (List<?>) obj;
-        List<AttributeValue> values =
+        final List<?> objects = (List<?>) obj;
+        final List<AttributeValue> values =
                 new ArrayList<AttributeValue>(objects.size());
 
-        for (Object o : objects) {
+        for (final Object o : objects) {
             AttributeValue value;
             if (o == null) {
                 value = new AttributeValue().withNULL(true);
@@ -63,7 +76,7 @@ public class ListToListMarshaller implements ListAttributeMarshaller {
             values.add(value);
         }
 
-        AttributeValue result = new AttributeValue();
+        final AttributeValue result = new AttributeValue();
         result.setL(values);
         return result;
     }

@@ -46,6 +46,17 @@ public class PaginatedScanList<T> extends PaginatedList<T> {
     /** The current results for the last executed scan operation */
     private ScanResult scanResult;
 
+    /**
+     * Constructor.
+     *
+     * @param mapper an instance of {@link DynamoDBMapper}
+     * @param clazz the class that is being mapped to a dynamodb table
+     * @param dynamo an instance of {@link AmazonDynamoDB}
+     * @param scanRequest a {@link ScanRequest}
+     * @param scanResult a {@link ScanResult}
+     * @param paginationLoadingStrategy {@link PaginationLoadingStrategy}
+     * @param config the {@link DynamoDBMapperConfig}
+     */
     public PaginatedScanList(
             DynamoDBMapper mapper,
             Class<T> clazz,

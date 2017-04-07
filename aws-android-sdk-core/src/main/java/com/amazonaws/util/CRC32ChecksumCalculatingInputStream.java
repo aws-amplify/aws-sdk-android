@@ -30,6 +30,10 @@ public class CRC32ChecksumCalculatingInputStream extends SdkFilterInputStream {
     /** The CRC32 being calculated by this input stream */
     private CRC32 crc32;
 
+    /**
+     * Constructor.
+     * @param in the input stream.
+     */
     public CRC32ChecksumCalculatingInputStream(InputStream in) {
         super(in);
         crc32 = new CRC32();

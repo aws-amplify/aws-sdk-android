@@ -29,20 +29,22 @@ import java.util.Date;
  * This wraps all Cognito tokens for a user.
  */
 public class CognitoUserSession {
+    private static final int SECS_CONVERSION = 1000;
+
     /**
      * Cognito identity token.
      */
-    private CognitoIdToken idToken;
+    private final CognitoIdToken idToken;
 
     /**
      * Cognito access token.
      */
-    private CognitoAccessToken accessToken;
+    private final CognitoAccessToken accessToken;
 
     /**
      * Cognito refresh token.
      */
-    private CognitoRefreshToken refreshToken;
+    private final CognitoRefreshToken refreshToken;
 
     /**
      * Constructs a new Cognito session.
@@ -90,16 +92,16 @@ public class CognitoUserSession {
      * @return boolean to indicate if the access and id tokens have not expired.
      */
     public boolean isValid() {
-        Date currentTimeStamp = new Date();
-        
+        final Date currentTimeStamp = new Date();
+
         try {
             return (currentTimeStamp.before(idToken.getExpiration())
                     & currentTimeStamp.before(accessToken.getExpiration()));
-        } catch(Exception e) {
+        } catch (final Exception e) {
             return false;
         }
     }
-    
+
     /**
      * Returns true if this session for the threshold set in {@link CognitoIdentityProviderClientConfig#refreshThreshold}.
      *
@@ -107,11 +109,12 @@ public class CognitoUserSession {
      */
     public boolean isValidForThreshold() {
         try {
-            long currentTime = System.currentTimeMillis() - SDKGlobalConfiguration.getGlobalTimeOffset() * 1000;
-            long expiresInMilliSeconds = idToken.getExpiration().getTime() - currentTime;
+            final long currentTime = System.currentTimeMillis()
+                    - SDKGlobalConfiguration.getGlobalTimeOffset() * SECS_CONVERSION;
+            final long expiresInMilliSeconds = idToken.getExpiration().getTime() - currentTime;
             return (expiresInMilliSeconds > CognitoIdentityProviderClientConfig.getRefreshThreshold());
-        } catch (Exception e) {
+        } catch (final Exception e) {
             return false;
         }
     }
- }
+}

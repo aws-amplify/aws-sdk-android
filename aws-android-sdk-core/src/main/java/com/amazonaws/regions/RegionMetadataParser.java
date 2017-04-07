@@ -31,7 +31,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 /**
  * Parses a region metadata file to pull out information about the available
  * regions, names, IDs, and what service endpoints are available in each region.
- * 
+ *
  * @deprecated The SDK no longer supports a regions.xml override
  */
 @Deprecated
@@ -101,6 +101,7 @@ public class RegionMetadataParser {
         return internalParse(input, endpointVerification);
     }
 
+    @SuppressWarnings("checkstyle:emptyblock")
     private static List<Region> internalParse(
             final InputStream input,
             final boolean endpointVerification) throws IOException {

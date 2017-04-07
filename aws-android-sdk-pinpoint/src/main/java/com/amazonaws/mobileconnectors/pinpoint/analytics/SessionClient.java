@@ -1,11 +1,11 @@
-/*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+/**
+ * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,108 +15,144 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.analytics;
 
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
-import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
+import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
 
 import static com.amazonaws.mobileconnectors.pinpoint.internal.core.util.Preconditions.checkNotNull;
 
+/**
+ * Client for managing starting and stopping sessions which records session
+ * events automatically as the session is stopped or started.
+ *
+ * It is recommended to start the session when the application comes to the foreground
+ * and stop the session when it goes to the background.
+ *
+ * For reference, please refer to MobileHub's sample class AbstractApplicationLifeCycleHelper.
+ */
 public class SessionClient {
 
-    private static final org.apache.commons.logging.Log log =
-            LogFactory.getLog(SessionClient.class);
+    /**
+     * The eventType recorded for session start events
+     */
+    public static final String SESSION_START_EVENT_TYPE = "_session.start";
 
     // ~ Event Type Constants ---------------------------=
-    public static final String SESSION_START_EVENT_TYPE = "_session.start";
+    /**
+     * The eventType recorded for session stop events
+     */
     public static final String SESSION_STOP_EVENT_TYPE = "_session.stop";
+    /**
+     * The eventType recorded for session pause events
+     */
     public static final String SESSION_PAUSE_EVENT_TYPE = "_session.pause";
+    /**
+     * The eventType recorded for session resume events
+     */
     public static final String SESSION_RESUME_EVENT_TYPE = "_session.resume";
     // - Session Timer Constants ------------------------=
     protected static final long DEFAULT_RESUME_DELAY = (long) 5e3;
     protected static final long DEFAULT_RESTART_DELAY = (long) 30e3;
     protected static final String RESUME_DELAY_CONFIG_KEY = "sessionResumeDelay";
     protected static final String RESTART_DELAY_CONFIG_KEY = "sessionRestartDelay";
-
     protected static final String NO_SESSION_ID = "00000000-00000000";
     protected static final String SHARED_PREFS_SESSION_KEY = "AWSPinpoint.Session";
-
+    private static final Log log = LogFactory
+                                           .getLog(SessionClient.class);
     protected final PinpointContext pinpointContext;
-    protected Session session;
-
     private final long resumeDelay;
     private final long restartDelay;
+    protected Session session;
 
     /**
      * CONSTRUCTOR
      *
-     * @param pinpointContext
+     * @param pinpointContext The {@link PinpointContext}
      */
     public SessionClient(final PinpointContext pinpointContext) {
-        checkNotNull(pinpointContext, "A valid InsightsContext must be provided!");
-        checkNotNull(pinpointContext.getAnalyticsClient(), "A valid AnalyticsClient must be provided!");
+        checkNotNull(pinpointContext,
+                            "A valid PinpointContext must be provided!");
+        checkNotNull(pinpointContext.getAnalyticsClient(),
+                            "A valid AnalyticsClient must be provided!");
 
         this.pinpointContext = pinpointContext;
-        String sessionString = pinpointContext.getSystem().getPreferences().getString(SHARED_PREFS_SESSION_KEY, null);
+        final String sessionString = pinpointContext.getSystem()
+                                             .getPreferences()
+                                             .getString(SHARED_PREFS_SESSION_KEY,
+                                                               null);
         if (sessionString != null) {
             this.session = Session.getSessionFromSerializedSession(sessionString);
         }
 
         if (session != null) {
-            pinpointContext.getAnalyticsClient().setSessionId(session.getSessionID());
-            pinpointContext.getAnalyticsClient().setSessionStartTime(session.getStartTime());
+            pinpointContext.getAnalyticsClient()
+                    .setSessionId(session.getSessionID());
+            pinpointContext.getAnalyticsClient()
+                    .setSessionStartTime(session.getStartTime());
         } else {
-            if (pinpointContext.getPinpointConfiguration().getEnableTargeting()) {
-                pinpointContext.getAnalyticsClient().setSessionId(NO_SESSION_ID);
+            if (pinpointContext.getPinpointConfiguration()
+                        .getEnableTargeting()) {
+                pinpointContext.getAnalyticsClient()
+                        .setSessionId(NO_SESSION_ID);
                 pinpointContext.getAnalyticsClient().setSessionStartTime(0);
             }
         }
 
-        this.restartDelay = pinpointContext.getConfiguration().optLong(RESTART_DELAY_CONFIG_KEY,
-                DEFAULT_RESTART_DELAY);
-        this.resumeDelay = pinpointContext.getConfiguration().optLong(RESUME_DELAY_CONFIG_KEY,
-                DEFAULT_RESUME_DELAY);
+        this.restartDelay = pinpointContext.getConfiguration()
+                                    .optLong(RESTART_DELAY_CONFIG_KEY,
+                                                    DEFAULT_RESTART_DELAY);
+        this.resumeDelay = pinpointContext.getConfiguration()
+                                   .optLong(RESUME_DELAY_CONFIG_KEY,
+                                                   DEFAULT_RESUME_DELAY);
     }
 
     /**
-     * Starts an application session Used solely by Amazon Insights
+     * Start a session which records a _session.start event and saves that sessionId
+     * to the AnalyticsClient to be used for recording future events.
+     *
+     * This triggers an update of the endpointProfile.
+     *
+     * It is recommended to start the session when the application comes to the foreground.
+     *
+     * For reference, please refer to MobileHub's sample class AbstractApplicationLifeCycleHelper.
      */
-
     public synchronized void startSession() {
         executeStop();
         executeStart();
     }
 
     /**
-     * Stops an application session Used solely by Amazon Insights
+     * Stops a session which records a _session.stop event and flushes the events in localstorage
+     * for submission.
+     *
+     * It is recommended to stop the session when the application goes to the background.
+     *
+     * For reference, please refer to MobileHub's sample class AbstractApplicationLifeCycleHelper.
      */
-
     public synchronized void stopSession() {
         executeStop();
     }
 
     /**
      * Briefly pauses an application session. Should be called in an activity's
-     * onPause() method.
+     * onPause() method. This records a _session.pause event.
      */
-
     public synchronized void pauseSession() {
-        if(getSessionState().equals(SessionState.ACTIVE)) {
+        if (getSessionState().equals(SessionState.ACTIVE)) {
             executePause();
         }
     }
 
     /**
-     * Resumes an application session if the session has been paused within a
-     * defined time interval. Otherwise, stops the old session and starts a new
-     * one. Should be called in an activity's onResume() method.
+     * Resumes an application session. Should be called in an activity's onResume() method.
+     * This records a _session.resume event.
      */
-
     public synchronized void resumeSession() {
-        if(getSessionState().equals(SessionState.PAUSED)) {
+        if (getSessionState().equals(SessionState.PAUSED)) {
             executeResume();
-        } else{
-            AnalyticsEvent e = this.pinpointContext.getAnalyticsClient()
-                    .createEvent(SESSION_RESUME_EVENT_TYPE);
+        } else {
+            final AnalyticsEvent e = this.pinpointContext.getAnalyticsClient()
+                                             .createEvent(SESSION_RESUME_EVENT_TYPE);
             this.pinpointContext.getAnalyticsClient().recordEvent(e);
 
             // log failure
@@ -129,12 +165,16 @@ public class SessionClient {
      *
      * @return diagnostic string
      */
-
+    @Override
     public String toString() {
         return "[SessionClient]\n"
-                + "- session: "
-                + ((this.session == null) ? "<null>" : this.session.getSessionID())
-                + ((this.session != null && this.session.isPaused()) ? ": paused" : "");
+                       + "- session: "
+                       + ((this.session == null)
+                                  ? "<null>"
+                                  : this.session.getSessionID())
+                       + ((this.session != null && this.session.isPaused())
+                                  ? ": paused"
+                                  : "");
     }
 
     // - Implementations --------------------------------=
@@ -146,20 +186,22 @@ public class SessionClient {
         session = Session.newInstance(pinpointContext);
 
         // Enable event tagging
-        this.pinpointContext.getAnalyticsClient().setSessionId(session.getSessionID());
-        this.pinpointContext.getAnalyticsClient().setSessionStartTime(session.getStartTime());
+        this.pinpointContext.getAnalyticsClient()
+                .setSessionId(session.getSessionID());
+        this.pinpointContext.getAnalyticsClient()
+                .setSessionStartTime(session.getStartTime());
 
         // Fire Session Start Event
         log.info("Firing Session Event: " + SESSION_START_EVENT_TYPE);
 
-        AnalyticsEvent e = this.pinpointContext.getAnalyticsClient()
-                .createEvent(SESSION_START_EVENT_TYPE);
+        final AnalyticsEvent e = this.pinpointContext.getAnalyticsClient()
+                                         .createEvent(SESSION_START_EVENT_TYPE);
         this.pinpointContext.getAnalyticsClient().recordEvent(e);
     }
 
     protected void executeStop() {
-        //No session to stop
-        if(session == null){
+        // No session to stop
+        if (session == null) {
             log.info("Session Stop Failed: No session exists.");
             return;
         }
@@ -171,10 +213,14 @@ public class SessionClient {
         }
 
         log.info("Firing Session Event: " + SESSION_STOP_EVENT_TYPE);
-        Long stopTime = session.getStopTime() == null ? 0L : session.getStopTime();
-        AnalyticsEvent e = this.pinpointContext.getAnalyticsClient().createEvent(
-                SESSION_STOP_EVENT_TYPE, session.getStartTime(),
-                stopTime, session.getSessionDuration());
+        final Long stopTime =
+                session.getStopTime() == null ? 0L : session.getStopTime();
+        final AnalyticsEvent e = this.pinpointContext.getAnalyticsClient()
+                                         .createEvent(
+                                                             SESSION_STOP_EVENT_TYPE,
+                                                             session.getStartTime(),
+                                                             stopTime,
+                                                             session.getSessionDuration());
 
         this.pinpointContext.getAnalyticsClient().recordEvent(e);
 
@@ -190,8 +236,8 @@ public class SessionClient {
      * Session to the file system. (prepares for quiet death)
      */
     protected void executePause() {
-        //No session to pause
-        if(session == null){
+        // No session to pause
+        if (session == null) {
             log.info("Session Stop Failed: No session exists.");
             return;
         }
@@ -201,21 +247,26 @@ public class SessionClient {
 
         // - Fire Session Pause Event ----------------------------=
         log.info("Firing Session Event: " + SESSION_PAUSE_EVENT_TYPE);
-        AnalyticsEvent e = this.pinpointContext.getAnalyticsClient().createEvent(
-                SESSION_PAUSE_EVENT_TYPE, session.getStartTime(), null,
-                session.getSessionDuration());
+        final AnalyticsEvent e = this.pinpointContext.getAnalyticsClient()
+                                         .createEvent(
+                                                             SESSION_PAUSE_EVENT_TYPE,
+                                                             session.getStartTime(),
+                                                             null,
+                                                             session.getSessionDuration());
         this.pinpointContext.getAnalyticsClient().recordEvent(e);
 
         // Store session to file system
-        pinpointContext.getSystem().getPreferences().putString(SHARED_PREFS_SESSION_KEY, this.session.toString());
+        pinpointContext.getSystem().getPreferences()
+                .putString(SHARED_PREFS_SESSION_KEY,
+                                  this.session.toString());
     }
 
     /**
      * - Re-Activate the session - Fire Session Resume Event
      */
     protected void executeResume() {
-        //No session to resume
-        if(session == null){
+        // No session to resume
+        if (session == null) {
             return;
         }
         // set session active
@@ -223,8 +274,8 @@ public class SessionClient {
 
         // Fire Session Resume Event
         log.debug("Firing Session Event: " + SESSION_RESUME_EVENT_TYPE);
-        AnalyticsEvent e = this.pinpointContext.getAnalyticsClient()
-                .createEvent(SESSION_RESUME_EVENT_TYPE);
+        final AnalyticsEvent e = this.pinpointContext.getAnalyticsClient()
+                                         .createEvent(SESSION_RESUME_EVENT_TYPE);
         this.pinpointContext.getAnalyticsClient().recordEvent(e);
 
         // log success
@@ -247,21 +298,21 @@ public class SessionClient {
     }
 
     /**
-     * Internal Representation of Application Session's state
-     */
-    protected static enum SessionState {
-        INACTIVE,
-        ACTIVE,
-        PAUSED
-    }
-
-    /**
      * Returns the Application Session's state
      */
     protected SessionState getSessionState() {
         if (this.session != null) {
-            return (this.session.isPaused() ? SessionState.PAUSED : SessionState.ACTIVE);
+            return (this.session.isPaused()
+                            ? SessionState.PAUSED
+                            : SessionState.ACTIVE);
         }
         return SessionState.INACTIVE;
+    }
+
+    /**
+     * Internal Representation of Application Session's state
+     */
+    protected static enum SessionState {
+        INACTIVE, ACTIVE, PAUSED
     }
 }

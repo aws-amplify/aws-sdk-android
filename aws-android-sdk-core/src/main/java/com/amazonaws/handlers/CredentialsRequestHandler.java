@@ -19,7 +19,7 @@ import com.amazonaws.auth.AWSCredentials;
 
 /**
  * A special type of
- * <code>RequestHandler2<code> that takes in <code>AWSCredentials<code>.
+ * <code>RequestHandler2</code> that takes in <code>AWSCredentials</code>.
  */
 public abstract class CredentialsRequestHandler extends RequestHandler2 {
 
@@ -28,7 +28,9 @@ public abstract class CredentialsRequestHandler extends RequestHandler2 {
 
     /**
      * Sets the AWSCredentials.
+     * @param awsCredentials the AWS credentials.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setCredentials(AWSCredentials awsCredentials) {
         this.awsCredentials = awsCredentials;
     }

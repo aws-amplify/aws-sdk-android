@@ -19,9 +19,10 @@ package com.amazonaws.services.s3.model.inventory;
  */
 public enum InventoryFormat {
 
-    CSV("CSV"),
-
-    ;
+    /**
+     * The CSV format.
+     */
+    CSV("CSV");
 
     private final String format;
 

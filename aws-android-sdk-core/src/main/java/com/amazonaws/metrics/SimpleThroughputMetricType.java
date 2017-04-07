@@ -15,10 +15,19 @@
 
 package com.amazonaws.metrics;
 
+/**
+ * Simple throughput metric type.
+ */
 public class SimpleThroughputMetricType extends SimpleServiceMetricType implements
         ThroughputMetricType {
     private final ServiceMetricType byteCountMetricType;
 
+    /**
+     * Constructor.
+     * @param name the name of the simple throughput metric type.
+     * @param serviceName the service name.
+     * @param byteCountMetricName the byte count metric name.
+     */
     public SimpleThroughputMetricType(String name, String serviceName, String byteCountMetricName) {
         super(name, serviceName);
         this.byteCountMetricType = new SimpleServiceMetricType(byteCountMetricName, serviceName);

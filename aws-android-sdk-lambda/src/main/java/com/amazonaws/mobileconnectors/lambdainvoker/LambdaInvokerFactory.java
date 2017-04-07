@@ -100,6 +100,7 @@ public class LambdaInvokerFactory {
      * data binder.
      *
      * @param interfaceClass the class to be dynamically proxied by Lambda
+     * @param <T> the type for the class
      * @return a dynamic proxy object of the given class
      */
     public <T> T build(Class<T> interfaceClass) {
@@ -111,10 +112,11 @@ public class LambdaInvokerFactory {
      *
      * @param interfaceClass the class to be dynamically proxied by Lambda
      * @param binder a data binder to convert between POJO and byte stream.
+     * @param <T> the type of the interfaceclass.
      * @return a dynamic proxy object of the given class
      */
     public <T> T build(Class<T> interfaceClass, LambdaDataBinder binder) {
-        Object proxy = Proxy.newProxyInstance(interfaceClass.getClassLoader(),
+        final Object proxy = Proxy.newProxyInstance(interfaceClass.getClassLoader(),
                 new Class<?>[] {
                     interfaceClass
                 },

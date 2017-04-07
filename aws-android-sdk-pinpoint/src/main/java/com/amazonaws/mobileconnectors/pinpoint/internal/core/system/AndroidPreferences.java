@@ -5,7 +5,7 @@
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -22,12 +22,14 @@ public class AndroidPreferences {
 
     private final SharedPreferences preferences;
 
-    public AndroidPreferences () {
+    public AndroidPreferences() {
         preferences = null;
     }
 
-    public AndroidPreferences(final Context context, final String preferencesKey) {
-        preferences = context.getSharedPreferences(preferencesKey, Context.MODE_PRIVATE);
+    public AndroidPreferences(final Context context,
+                                     final String preferencesKey) {
+        preferences = context.getSharedPreferences(preferencesKey,
+                                                          Context.MODE_PRIVATE);
     }
 
     public boolean getBoolean(String key, boolean optValue) {

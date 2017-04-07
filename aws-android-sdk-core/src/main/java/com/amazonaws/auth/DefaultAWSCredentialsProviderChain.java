@@ -27,6 +27,10 @@ package com.amazonaws.auth;
  */
 @Deprecated
 public class DefaultAWSCredentialsProviderChain extends AWSCredentialsProviderChain {
+
+    /**
+     * Constructor.
+     */
     public DefaultAWSCredentialsProviderChain() {
         super(new SystemPropertiesCredentialsProvider(),
                 new ClasspathPropertiesFileCredentialsProvider());

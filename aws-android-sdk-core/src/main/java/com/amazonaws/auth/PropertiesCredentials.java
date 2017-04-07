@@ -46,8 +46,8 @@ public class PropertiesCredentials implements AWSCredentials {
      * @throws IllegalArgumentException If the specified properties file does
      *             not contain the required keys.
      */
-    public PropertiesCredentials(File file) throws FileNotFoundException, IOException,
-            IllegalArgumentException {
+    @SuppressWarnings("checkstyle:emptyblock")
+    public PropertiesCredentials(File file) throws IOException {
         if (!file.exists()) {
             throw new FileNotFoundException("File doesn't exist:  "
                     + file.getAbsolutePath());
@@ -88,6 +88,7 @@ public class PropertiesCredentials implements AWSCredentials {
      * @throws IOException If any problems occur while reading from the input
      *             stream.
      */
+    @SuppressWarnings("checkstyle:emptyblock")
     public PropertiesCredentials(InputStream inputStream) throws IOException {
         Properties accountProperties = new Properties();
         try {

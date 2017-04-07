@@ -18,9 +18,9 @@ package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 import com.google.gson.Gson;
 
 /**
- * Simple JSON marshaller that uses Gson mapper. It has all the limitations of
- * that library, the documentation of which is available here:
- * http://docs.codehaus.org/display/JACKSON/Home
+ * Simple JSON marshaller that uses Gson mapper.
+ *
+ * @param <T> the type of object to be marshalled to json.
  */
 public class JsonMarshaller<T extends Object> implements DynamoDBMarshaller<T> {
 
@@ -35,7 +35,7 @@ public class JsonMarshaller<T extends Object> implements DynamoDBMarshaller<T> {
     public T unmarshall(Class<T> clazz, String json) {
         try {
             return gson.fromJson(json, clazz);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new RuntimeException("Unable to unmarshall the string " + json
                     + "into " + clazz, e);
         }

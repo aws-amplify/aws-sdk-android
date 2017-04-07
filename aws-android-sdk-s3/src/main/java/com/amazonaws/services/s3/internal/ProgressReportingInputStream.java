@@ -130,7 +130,7 @@ public class ProgressReportingInputStream extends SdkFilterInputStream {
     }
 
     private void notifyCompleted() {
-        if (fireCompletedEvent == false) {
+        if (!fireCompletedEvent) {
             return;
         }
 

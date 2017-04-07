@@ -21,6 +21,7 @@ import com.amazonaws.services.s3.Headers;
  * Header handler to pull the {@link Headers#REQUESTER_CHARGED_HEADER} header
  * out of the response. This header is required for requests with
  * {@link Headers#REQUESTER_PAYS_HEADER} header.
+ * @param <T> class type.
  */
 public class S3RequesterChargedHeaderHandler<T extends S3RequesterChargedResult>
         implements HeaderHandler<T> {

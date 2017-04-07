@@ -17,13 +17,27 @@
 
 package com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions;
 
+/**
+ * Exception indicating lambda dependency failure
+ */
 public class CognitoLambdaException extends CognitoIdentityProviderException {
     private static final long serialVersionUID = -2401240885762953890L;
 
+    /**
+     * Constructor.
+     *
+     * @param message An error message describing why this exception was thrown.
+     * @param throwable The underlying cause of this exception.
+     */
     public CognitoLambdaException(String message, Throwable throwable) {
         super(message, throwable);
     }
 
+    /**
+     * Constructor.
+     *
+     * @param message An error message describing why this exception was thrown.
+     */
     public CognitoLambdaException(String message) {
         super(message);
     }

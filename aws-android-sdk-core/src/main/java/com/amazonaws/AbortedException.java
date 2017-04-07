@@ -19,26 +19,45 @@ package com.amazonaws;
  * SDK operation aborted exception.
  */
 public class AbortedException extends AmazonClientException {
+
+    /** Default serial version UID. */
     private static final long serialVersionUID = 1L;
 
-    public AbortedException(String message, Throwable t) {
+    /**
+     * Constructor.
+     * @param message the exception message.
+     * @param t the throwable.
+     */
+    public AbortedException(final String message, final Throwable t) {
         super(message, t);
     }
 
-    public AbortedException(Throwable t) {
+    /**
+     * Constructor.
+     * @param t the throwable.
+     */
+    public AbortedException(final Throwable t) {
         super("", t);
     }
 
-    public AbortedException(String message) {
+    /**
+     * Constructor.
+     * @param message the exception message.
+     */
+    public AbortedException(final String message) {
         super(message);
     }
 
+    /**
+     * Constructor.
+     */
     public AbortedException() {
         super("");
     }
 
     /**
      * {@inheritDoc} An aborted exception is not intended to be retried.
+     * @return true if it is retryable.
      */
     @Override
     public boolean isRetryable() {

@@ -20,9 +20,11 @@ import org.xmlpull.v1.XmlPullParser;
 /**
  * Simple StAX unmarshaller that iterates through the XML events but always
  * returns null.
+ * @param <T> the VoidStaxUnmarshaller type.
  */
 public class VoidStaxUnmarshaller<T> implements Unmarshaller<T, StaxUnmarshallerContext> {
     @Override
+    @SuppressWarnings("checkstyle:emptystatement")
     public T unmarshall(StaxUnmarshallerContext context) throws Exception {
         while (context.nextEvent() != XmlPullParser.END_DOCUMENT)
             ;

@@ -15,10 +15,12 @@
 
 package com.amazonaws.mobileconnectors.kinesis.kinesisrecorder;
 
-import android.util.Log;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.util.StringUtils;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -39,20 +41,20 @@ import java.util.concurrent.locks.ReentrantLock;
  * representing it's properties. One request per line.
  */
 class FileRecordStore {
-    private static final String TAG = "FileRecordStore";
+    private static final Log LOGGER = LogFactory.getLog(FileRecordStore.class);
     private final ReentrantLock accessLock = new ReentrantLock(true);
 
-    /** The file the requests are stored in **/
+    /** The file the requests are stored in. **/
     private File recordFile;
 
-    /** The FileManager used for interacting with the FS **/
+    /** The FileManager used for interacting with the FS. **/
     private final FileManager fileManager;
 
     private final String recordFileName;
     private final long maxStorageSize;
 
     /**
-     * Creates the FileRecordStore
+     * Creates the FileRecordStore.
      *
      * @param recorderDirectory The directory (which the FileRecordStore is only
      *            used for the KinesisRecorder) to use to store requests in
@@ -65,7 +67,7 @@ class FileRecordStore {
         this.maxStorageSize = maxStorageSize;
         try {
             tryCreateRecordsFile();
-        } catch (IOException ioe) {
+        } catch (final IOException ioe) {
             throw new AmazonClientException("Failed to create fire store", ioe);
         }
     }
@@ -106,7 +108,7 @@ class FileRecordStore {
                 return;
             }
 
-            File recordDir = fileManager.createDirectory(
+            final File recordDir = fileManager.createDirectory(
                     Constants.RECORDS_DIRECTORY);
             recordFile = fileManager.createFile(new File(
                     recordDir, recordFileName));
@@ -116,14 +118,14 @@ class FileRecordStore {
     private BufferedWriter tryInitializeWriter() throws IOException {
         BufferedWriter writer = null;
         tryCreateRecordsFile();
-        OutputStream stream = fileManager.newOutputStream(recordFile, true);
+        final OutputStream stream = fileManager.newOutputStream(recordFile, true);
         writer = new BufferedWriter(new OutputStreamWriter(stream, StringUtils.UTF8));
 
         return writer;
     }
 
     private File deleteAllRecords() throws IOException {
-        File recordsDir = fileManager.createDirectory(
+        final File recordsDir = fileManager.createDirectory(
                 Constants.RECORDS_DIRECTORY);
 
         recordFile.delete();
@@ -135,11 +137,11 @@ class FileRecordStore {
 
     private File deleteReadRecords(final int lineNumber) throws IOException {
         // Write all records after line number to a temporary file
-        File recordsDir = fileManager.createDirectory(
+        final File recordsDir = fileManager.createDirectory(
                 Constants.RECORDS_DIRECTORY);
 
         File tempRecordsFile = null;
-        File tempFile = new File(
+        final File tempFile = new File(
                 recordsDir, recordFileName + ".tmp");
         if (tempFile.exists()) {
             if (!tempFile.delete()) {
@@ -173,8 +175,8 @@ class FileRecordStore {
                 if (reader != null) {
                     try {
                         reader.close();
-                    } catch (IOException e) {
-
+                    } catch (final IOException e) {
+                        LOGGER.error("failed to close reader", e);
                     }
                 }
 
@@ -186,7 +188,7 @@ class FileRecordStore {
 
             if (tempFile.exists()) {
                 if (!tempFile.delete()) {
-                    Log.e(TAG, "Failed to delete temp file");
+                    LOGGER.error("Failed to delete temp file");
                 }
             }
         }
@@ -249,7 +251,7 @@ class FileRecordStore {
                         try {
                             nextBuffer = reader.readLine();
                             found = true;
-                        } catch (IOException e) {
+                        } catch (final IOException e) {
                             nextBuffer = null;
                             found = true;
                         }
@@ -266,9 +268,9 @@ class FileRecordStore {
                     }
                 }
                 return hasNext;
-            } catch (FileNotFoundException fnfe) {
+            } catch (final FileNotFoundException fnfe) {
                 throw new AmazonClientException("Cannot find records file", fnfe);
-            } catch (IOException ioe) {
+            } catch (final IOException ioe) {
                 throw new AmazonClientException("IO Error", ioe);
             } finally {
                 accessLock.unlock();
@@ -293,7 +295,7 @@ class FileRecordStore {
                         try {
                             next = reader.readLine();
                             found = true;
-                        } catch (IOException e) {
+                        } catch (final IOException e) {
                             next = null;
                             found = true;
                         }
@@ -306,9 +308,9 @@ class FileRecordStore {
                     }
                 }
                 return next;
-            } catch (FileNotFoundException e) {
+            } catch (final FileNotFoundException e) {
                 throw new AmazonClientException("Cannot find records file", e);
-            } catch (IOException ioe) {
+            } catch (final IOException ioe) {
                 throw new AmazonClientException("IO Error", ioe);
             } finally {
                 accessLock.unlock();

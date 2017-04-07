@@ -52,9 +52,9 @@ public final class AwsIotEndpointUtility {
     private static void validateIotEndpoint(String endpoint) {
         String[] splits = splitEndpoint(endpoint);
         if (splits.length != ENDPOINT_SPLIT_SIZE
-                || !splits[ENDPOINT_IOT_OFFSET].equalsIgnoreCase("iot")
-                || !splits[ENDPOINT_DOMAIN_OFFSET].equalsIgnoreCase("amazonaws")
-                || !splits[ENDPOINT_TLD_OFFSET].equalsIgnoreCase("com")) {
+                || !("iot").equalsIgnoreCase(splits[ENDPOINT_IOT_OFFSET])
+                || !("amazonaws").equalsIgnoreCase(splits[ENDPOINT_DOMAIN_OFFSET])
+                || !("com").equalsIgnoreCase(splits[ENDPOINT_TLD_OFFSET])) {
             throw new IllegalArgumentException(
                     "Bad endpoint format.  Expected XXXXXX.iot.[region].amazonaws.com.");
         }

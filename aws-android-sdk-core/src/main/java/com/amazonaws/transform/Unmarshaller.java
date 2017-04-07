@@ -15,8 +15,18 @@
 
 package com.amazonaws.transform;
 
+/**
+ * Interface for Unmarshaller.
+ * @param <T> the type.
+ * @param <R> the type.
+ */
 public interface Unmarshaller<T, R> {
 
+    /**
+     * @param in to unmarshall.
+     * @return unmarshalled result.
+     * @throws Exception
+     */
     public T unmarshall(R in) throws Exception;
 
 }

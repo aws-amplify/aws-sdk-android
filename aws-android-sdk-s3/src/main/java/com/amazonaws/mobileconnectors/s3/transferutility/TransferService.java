@@ -29,9 +29,11 @@ import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 
 import com.amazonaws.services.s3.AmazonS3;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -47,8 +49,8 @@ import java.util.Map;
  */
 public class TransferService extends Service {
 
-    private static final String TAG = "TransferService";
-
+    private static final Log LOGGER = LogFactory.getLog(TransferService.class);
+    private static final String TAG = TransferService.class.getSimpleName();
     /*
      * Constants of message sent to update handler.
      */
@@ -117,7 +119,7 @@ public class TransferService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        Log.d(TAG, "Starting Transfer Service");
+        LOGGER.debug("Starting Transfer Service");
         dbUtil = new TransferDBUtil(getApplicationContext());
         updater = new TransferStatusUpdater(dbUtil);
 
@@ -148,7 +150,7 @@ public class TransferService extends Service {
         public void onReceive(Context context, Intent intent) {
             if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
                 final boolean networkConnected = isNetworkConnected();
-                Log.d(TAG, "Network connected: " + networkConnected);
+                LOGGER.debug("Network connected: " + networkConnected);
                 handler.sendEmptyMessage(networkConnected ? MSG_CHECK : MSG_DISCONNECT);
             }
         }
@@ -165,6 +167,7 @@ public class TransferService extends Service {
     }
 
     @Override
+    @SuppressWarnings("checkstyle:hiddenfield")
     public int onStartCommand(Intent intent, int flags, int startId) {
         this.startId = startId;
 
@@ -175,7 +178,7 @@ public class TransferService extends Service {
         final String keyForS3Client = intent.getStringExtra(INTENT_BUNDLE_S3_REFERENCE_KEY);
         s3 = S3ClientReference.get(keyForS3Client);
         if (s3 == null) {
-            Log.w(TAG, "TransferService can't get s3 client, and it will stop.");
+            LOGGER.warn("TransferService can't get s3 client, and it will stop.");
             stopSelf(startId);
             return START_NOT_STICKY;
         }
@@ -201,6 +204,7 @@ public class TransferService extends Service {
              * Ignore on purpose, just in case the service stops before
              * onStartCommand where the receiver is registered.
              */
+            LOGGER.warn("exception trying to destroy the service", iae);
         }
         handlerThread.quit();
         TransferThreadPool.closeThreadPool();
@@ -225,7 +229,7 @@ public class TransferService extends Service {
             } else if (msg.what == MSG_DISCONNECT) {
                 pauseAllForNetwork();
             } else {
-                Log.e(TAG, "Unknown command: " + msg.what);
+                LOGGER.error("Unknown command: " + msg.what);
             }
         }
     }
@@ -251,7 +255,7 @@ public class TransferService extends Service {
             /*
              * Stop the service when it's been idled for more than a minute.
              */
-            Log.d(TAG, "Stop self");
+            LOGGER.debug("Stop self");
             stopSelf(startId);
         }
     }
@@ -269,13 +273,13 @@ public class TransferService extends Service {
         final int id = intent.getIntExtra(INTENT_BUNDLE_TRANSFER_ID, 0);
 
         if (id == 0) {
-            Log.e(TAG, "Invalid id: " + id);
+            LOGGER.error("Invalid id: " + id);
             return;
         }
 
         if (INTENT_ACTION_TRANSFER_ADD.equals(action)) {
             if (updater.getTransfer(id) != null) {
-                Log.w(TAG, "Transfer has already been added: " + id);
+                LOGGER.warn("Transfer has already been added: " + id);
             } else {
                 /*
                  * only add transfer when network is available or else relies on
@@ -286,7 +290,7 @@ public class TransferService extends Service {
                     updater.addTransfer(transfer);
                     transfer.start(s3, dbUtil, updater, networkInfoReceiver);
                 } else {
-                    Log.e(TAG, "Can't find transfer: " + id);
+                    LOGGER.error("Can't find transfer: " + id);
                 }
             }
         } else if (INTENT_ACTION_TRANSFER_PAUSE.equals(action)) {
@@ -304,7 +308,7 @@ public class TransferService extends Service {
                 if (transfer != null) {
                     updater.addTransfer(transfer);
                 } else {
-                    Log.e(TAG, "Can't find transfer: " + id);
+                    LOGGER.error("Can't find transfer: " + id);
                 }
             }
             transfer.start(s3, dbUtil, updater, networkInfoReceiver);
@@ -317,7 +321,7 @@ public class TransferService extends Service {
                 transfer.cancel(s3, updater);
             }
         } else {
-            Log.e(TAG, "Unknown action: " + action);
+            LOGGER.error("Unknown action: " + action);
         }
     }
 
@@ -366,7 +370,7 @@ public class TransferService extends Service {
      * transfers whose states indicate running but aren't.
      */
     void loadTransfersFromDB() {
-        Log.d(TAG, "Loading transfers from database");
+        LOGGER.debug("Loading transfers from database");
         Cursor c = null;
         int count = 0;
         try {
@@ -399,7 +403,7 @@ public class TransferService extends Service {
         } finally {
             c.close();
         }
-        Log.d(TAG, count + " transfers are loaded from database");
+        LOGGER.debug(count + " transfers are loaded from database");
     }
 
     /**

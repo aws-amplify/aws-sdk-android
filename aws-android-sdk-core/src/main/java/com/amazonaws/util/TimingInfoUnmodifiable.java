@@ -18,6 +18,7 @@ package com.amazonaws.util;
 /**
  * A {@link TimingInfo} that is unmodifiable.
  */
+@SuppressWarnings("checkstyle:parametername")
 final class TimingInfoUnmodifiable extends TimingInfo {
     /**
      * @see TimingInfo#unmodifiableTimingInfo(long, Long)

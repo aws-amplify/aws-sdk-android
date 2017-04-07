@@ -24,29 +24,30 @@ public class InventoryDestination implements Serializable {
     /**
      * Contains the S3 destination information of where inventory results are published.
      */
-    private InventoryS3BucketDestination S3BucketDestination;
+    private InventoryS3BucketDestination s3BucketDestination;
 
     /**
-     * Returns the {@link InventoryS3BucketDestination} which contains S3 bucket destination information
+     * @return the {@link InventoryS3BucketDestination} which contains S3 bucket destination information
      * of where inventory results are published.
      */
     public InventoryS3BucketDestination getS3BucketDestination() {
-        return S3BucketDestination;
+        return s3BucketDestination;
     }
 
     /**
-     * Sets the {@link InventoryS3BucketDestination} which contains S3 bucket destination information
+     * @param s3BucketDestination  the {@link InventoryS3BucketDestination} which contains S3 bucket destination information
      * of where inventory results are published.
      */
     public void setS3BucketDestination(InventoryS3BucketDestination s3BucketDestination) {
-        S3BucketDestination = s3BucketDestination;
+        this.s3BucketDestination = s3BucketDestination;
     }
 
     /**
-     * Sets the {@link InventoryS3BucketDestination} which contains S3 bucket destination information
+     * @param s3BucketDestination  the {@link InventoryS3BucketDestination} which contains S3 bucket destination information
      * of where inventory results are published.
-     * This {@link InventoryDestination} object is returned for method chaining.
+     * @return this {@link InventoryDestination} object is returned for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public InventoryDestination withS3BucketDestination(InventoryS3BucketDestination s3BucketDestination) {
         setS3BucketDestination(s3BucketDestination);
         return this;

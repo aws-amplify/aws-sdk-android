@@ -24,11 +24,16 @@ import java.util.Set;
  * An unmarshaller that unmarshals DynamoDB NumberSets into sets of Java
  * {@code Float}s.
  */
-public class FloatSetUnmarshaller extends NSUnmarshaller {
+public final class FloatSetUnmarshaller extends NSUnmarshaller {
 
     private static final FloatSetUnmarshaller INSTANCE =
             new FloatSetUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link FloatSetUnmarshaller}
+     */
     public static FloatSetUnmarshaller instance() {
         return INSTANCE;
     }
@@ -38,8 +43,8 @@ public class FloatSetUnmarshaller extends NSUnmarshaller {
 
     @Override
     public Object unmarshall(AttributeValue value) {
-        Set<Float> result = new HashSet<Float>();
-        for (String s : value.getNS()) {
+        final Set<Float> result = new HashSet<Float>();
+        for (final String s : value.getNS()) {
             result.add(Float.valueOf(s));
         }
         return result;

@@ -30,6 +30,7 @@ import java.io.InputStream;
  */
 public class S3StringResponseHandler extends AbstractS3ResponseHandler<String> {
 
+    private static final int DEFAULT_BYTE_SIZE = 1024;
     /*
      * (non-Javadoc)
      * @see
@@ -41,7 +42,7 @@ public class S3StringResponseHandler extends AbstractS3ResponseHandler<String> {
         AmazonWebServiceResponse<String> awsResponse = parseResponseMetadata(response);
 
         int bytesRead;
-        byte[] buffer = new byte[1024];
+        byte[] buffer = new byte[DEFAULT_BYTE_SIZE];
         StringBuilder builder = new StringBuilder();
         InputStream content = response.getContent();
         while ((bytesRead = content.read(buffer)) > 0) {

@@ -30,9 +30,15 @@ import java.io.OutputStream;
  * not even be involved in the call stack to minimize runtime overhead.
  */
 public class MetricInputStreamEntity extends InputStreamEntity {
-    private final static int BUFFER_SIZE = 2048;
+    private static final int BUFFER_SIZE = 2048;
     private final ByteThroughputHelper helper;
 
+    /**
+     * Constructor.
+     * @param metricType the throughput metric type.
+     * @param instream the input stream.
+     * @param length the length.
+     */
     public MetricInputStreamEntity(ThroughputMetricType metricType,
             InputStream instream, long length) {
         super(instream, length);

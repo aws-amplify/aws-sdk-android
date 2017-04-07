@@ -21,7 +21,7 @@ package com.amazonaws.auth;
 public interface AWSSessionCredentials extends AWSCredentials {
 
     /**
-     * Returns the session token for this session.
+     * @return the session token for this session.
      */
     public String getSessionToken();
 }

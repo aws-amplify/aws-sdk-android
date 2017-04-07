@@ -153,6 +153,7 @@ final class GsonFactory implements AwsJsonFactory {
     private static final class GsonWriter implements AwsJsonWriter {
 
         private final JsonWriter writer;
+        private static final int NEGATIVE_THREE = -3;
 
         public GsonWriter(Writer out) {
             writer = new JsonWriter(out);
@@ -221,7 +222,7 @@ final class GsonFactory implements AwsJsonFactory {
         @Override
         public AwsJsonWriter value(Date value) throws IOException {
             BigDecimal dateValue = BigDecimal.valueOf(value.getTime());
-            writer.value(dateValue.scaleByPowerOfTen(-3));
+            writer.value(dateValue.scaleByPowerOfTen(NEGATIVE_THREE));
             return this;
         }
 

@@ -26,7 +26,7 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
  * specific policy conditions such as
  * {@link #newCannedACLCondition(CannedAccessControlList)}.
  */
-public class S3ConditionFactory {
+public final class S3ConditionFactory {
 
     /**
      * Condition key for the canned ACL specified by a request.

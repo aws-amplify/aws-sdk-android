@@ -14,8 +14,6 @@
  */
 package com.amazonaws.services.s3.model.lifecycle;
 
-import com.amazonaws.services.s3.model.BucketLifecycleConfiguration;
-
 import java.io.Serializable;
 
 /**
@@ -25,17 +23,24 @@ import java.io.Serializable;
  * {@link LifecyclePrefixPredicate}, {@link LifecycleTagPredicate}, or
  * {@link LifecycleAndOperator}.
  */
-public class LifecycleFilter implements Serializable{
+public class LifecycleFilter implements Serializable {
     private LifecycleFilterPredicate predicate;
 
-    public LifecycleFilter() {}
+    /**
+     * Constructor.
+     */
+    public LifecycleFilter() { }
 
+    /**
+     * Constructor.
+     * @param predicate the LifecycleFilterPredicate.
+     */
     public LifecycleFilter(LifecycleFilterPredicate predicate) {
         this.predicate = predicate;
     }
 
     /**
-     * Returns the {@link LifecycleFilterPredicate} to be applied to {@link BucketLifecycleConfiguration.Rule}.
+     * @return the {@link LifecycleFilterPredicate} to be applied to {@link BucketLifecycleConfiguration.Rule}.
      *
      * The predicate is one of {@link LifecyclePrefixPredicate},
      * {@link LifecycleTagPredicate} or
@@ -70,6 +75,7 @@ public class LifecycleFilter implements Serializable{
      *
      * @return This object for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public LifecycleFilter withPredicate(LifecycleFilterPredicate predicate) {
         setPredicate(predicate);
         return this;

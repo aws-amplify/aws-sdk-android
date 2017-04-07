@@ -15,18 +15,20 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
-import android.util.Log;
 
 import com.amazonaws.retry.RetryUtils;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.model.UploadPartResult;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.util.concurrent.Callable;
 
 class UploadPartTask implements Callable<Boolean> {
+    private static final Log LOGGER = LogFactory.getLog(UploadPartTask.class);
 
-    private final static String TAG = "UploadPartTask";
 
     private final UploadPartRequest request;
     private final AmazonS3 s3;
@@ -44,17 +46,17 @@ class UploadPartTask implements Callable<Boolean> {
     @Override
     public Boolean call() throws Exception {
         try {
-            UploadPartResult putPartResult = s3.uploadPart(request);
+            final UploadPartResult putPartResult = s3.uploadPart(request);
             dbUtil.updateState(request.getId(), TransferState.PART_COMPLETED);
             dbUtil.updateETag(request.getId(), putPartResult.getETag());
             return true;
-        } catch (Exception e) {
+        } catch (final Exception e) {
             dbUtil.updateState(request.getId(), TransferState.FAILED);
             if (RetryUtils.isInterrupted(e)) {
                 // thread interrupted by user
                 return false;
             }
-            Log.e(TAG, "Encountered error uploading part " + e.getMessage());
+            LOGGER.error("Encountered error uploading part ", e);
             throw e;
         }
     }

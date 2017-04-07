@@ -15,6 +15,9 @@
 
 package com.amazonaws.metrics;
 
+/**
+ * The simple metric type class.
+ */
 public abstract class SimpleMetricType implements MetricType {
     @Override
     public abstract String name();

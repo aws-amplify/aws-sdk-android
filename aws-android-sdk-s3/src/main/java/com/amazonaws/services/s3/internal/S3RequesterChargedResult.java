@@ -14,6 +14,9 @@
  */
 package com.amazonaws.services.s3.internal;
 
+/**
+ * Interface for S3RequesterChargedResult.
+ */
 public interface S3RequesterChargedResult {
 
     /**

@@ -16,11 +16,12 @@
 package com.amazonaws.mobileconnectors.kinesis.kinesisrecorder;
 
 import android.util.Base64;
-import android.util.Log;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.services.kinesis.model.PutRecordRequest;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,35 +29,46 @@ import java.nio.ByteBuffer;
 
 @Deprecated
 class JSONRecordAdapter {
-    private static final String TAG = "JSONRecordAdapter";
+    private static final Log LOGGER = LogFactory.getLog(JSONRecordAdapter.class);
+
     static final String DATA_FIELD_KEY = "Data";
     static final String STREAM_NAME_FIELD = "StreamName";
     static final String PARTITION_KEY_FIELD = "PartitionKey";
     static final String EXPLICIT_HASH_FIELD = "ExplicitHash";
     static final String SEQUENCE_NUMBER_FIELD = "SequenceNumber";
 
-    /* returns data from json object which was made via translateFromRecord */
+    /**
+     * returns data from json object which was made via translateFromRecord.
+     *
+     * @param jsonObject the json.
+     * @throws JSONException
+     */
     public static ByteBuffer getData(JSONObject jsonObject)
             throws JSONException {
         return ByteBuffer.wrap(
                 Base64.decode(
                         jsonObject.getString(DATA_FIELD_KEY),
-                        Base64.DEFAULT)
-                );
+                        Base64.DEFAULT));
     }
 
-    /*
+    /**
      * returns partition key from json object which was made via
-     * translateFromRecord
+     * translateFromRecord.
+     *
+     * @param jsonObject the json.
+     * @throws JSONException
      */
     public static String getPartitionKey(JSONObject jsonObject)
             throws JSONException {
         return jsonObject.getString(PARTITION_KEY_FIELD);
     }
 
-    /*
+    /**
      * returns stream name from json object which was made via
-     * translateFromRecord
+     * translateFromRecord.
+     *
+     * @param jsonObject the json.
+     * @throws JSONException
      */
     public static String getStreamName(JSONObject jsonObject)
             throws JSONException {
@@ -69,7 +81,7 @@ class JSONRecordAdapter {
      */
     public JSONObject translateFromRecord(PutRecordRequest source) {
         if (null == source) {
-            Log.w(TAG, "The Record provided was null");
+            LOGGER.warn("The Record provided was null");
             return null;
         }
         if (source.getData() == null || source.getPartitionKey() == null
@@ -81,7 +93,7 @@ class JSONRecordAdapter {
         if (!source.getData().hasArray()) {
             throw new AmazonClientException("ByteBuffer must be based on array for proper storage");
         }
-        JSONObject recordJson = new JSONObject();
+        final JSONObject recordJson = new JSONObject();
         try {
             recordJson.put(DATA_FIELD_KEY,
                     Base64.encodeToString(source.getData().array(), Base64.DEFAULT));
@@ -89,7 +101,7 @@ class JSONRecordAdapter {
             recordJson.put(PARTITION_KEY_FIELD, source.getPartitionKey());
             recordJson.putOpt(EXPLICIT_HASH_FIELD, source.getExplicitHashKey());
             recordJson.putOpt(SEQUENCE_NUMBER_FIELD, source.getSequenceNumberForOrdering());
-        } catch (JSONException e) {
+        } catch (final JSONException e) {
             throw new AmazonClientException("Unable to convert KinesisRecord to JSON "
                     + e.getMessage());
         }

@@ -24,7 +24,7 @@ import javax.crypto.SecretKey;
  * Factory for creating Ciphers based on the crypto key and configuration
  * specified in the constructor. Each invocation of {@link #createCipher()} will
  * produce a new, identical Cipher object. Each returned Cipher will encrypt
- * data with <bold>exactly</bold> the same output as any other Cipher returned
+ * data with <b>exactly</b> the same output as any other Cipher returned
  * by this instance of CipherFactory.
  */
 public class CipherFactory {

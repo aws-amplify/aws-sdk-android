@@ -24,6 +24,7 @@ import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
  */
 public class JsonErrorUnmarshaller extends AbstractErrorUnmarshaller<JsonErrorResponse> {
 
+    /** Constructor. */
     public JsonErrorUnmarshaller() {
     }
 
@@ -63,6 +64,7 @@ public class JsonErrorUnmarshaller extends AbstractErrorUnmarshaller<JsonErrorRe
      * @param error The JSON content of the response. Subclass should check for
      *            the error type information from this JSONObject if
      *            errorTypeFromHeader is null.
+     * @return true.
      */
     public boolean match(JsonErrorResponse error) throws Exception {
         return true;

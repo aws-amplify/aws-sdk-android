@@ -19,19 +19,23 @@ package com.amazonaws.services.s3.model.inventory;
  */
 public enum InventoryOptionalField {
 
+    /** Size. */
     Size("Size"),
 
+    /** LastModifiedDate. */
     LastModifiedDate("LastModifiedDate"),
 
+    /** StorageClass. */
     StorageClass("StorageClass"),
 
+    /** ETag. */
     ETag("ETag"),
 
+    /** IsMultipartUploaded. */
     IsMultipartUploaded("IsMultipartUploaded"),
 
-    ReplicationStatus("ReplicationStatus"),
-
-    ;
+    /** ReplicationStatus. */
+    ReplicationStatus("ReplicationStatus");
 
     private final String field;
 

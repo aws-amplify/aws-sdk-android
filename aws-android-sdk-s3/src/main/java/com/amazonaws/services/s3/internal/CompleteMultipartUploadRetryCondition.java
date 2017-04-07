@@ -19,6 +19,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.retry.RetryPolicy;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
 
+/**
+ * Retry condition that determines if the multipart upload request should be retried.
+ */
 public class CompleteMultipartUploadRetryCondition implements RetryPolicy.RetryCondition {
 
     private static final int MAX_RETRY_ATTEMPTS = 3;
@@ -28,6 +31,9 @@ public class CompleteMultipartUploadRetryCondition implements RetryPolicy.RetryC
 
     private final int maxCompleteMultipartUploadRetries;
 
+    /**
+     * Constructor.
+     */
     public CompleteMultipartUploadRetryCondition() {
         this(MAX_RETRY_ATTEMPTS);
     }

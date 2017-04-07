@@ -26,12 +26,17 @@ import java.util.Set;
  * A marshaller that marshals sets of Java {@code String}s to DynamoDB
  * StringSets.
  */
-public class StringSetToStringSetMarshaller
+public final class StringSetToStringSetMarshaller
         implements StringSetAttributeMarshaller {
 
     private static final StringSetToStringSetMarshaller INSTANCE =
             new StringSetToStringSetMarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link StringSetToStringSetMarshaller}
+     */
     public static StringSetToStringSetMarshaller instance() {
         return INSTANCE;
     }
@@ -42,10 +47,10 @@ public class StringSetToStringSetMarshaller
     @Override
     public AttributeValue marshall(Object obj) {
         @SuppressWarnings("unchecked")
-        Set<String> set = (Set<String>) obj;
+        final Set<String> set = (Set<String>) obj;
 
-        List<String> strings = new ArrayList<String>(set.size());
-        for (String s : set) {
+        final List<String> strings = new ArrayList<String>(set.size());
+        for (final String s : set) {
             strings.add(s);
         }
 

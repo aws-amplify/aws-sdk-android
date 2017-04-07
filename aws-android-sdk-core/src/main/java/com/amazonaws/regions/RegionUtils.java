@@ -41,9 +41,9 @@ public class RegionUtils {
     private static final Log log = LogFactory.getLog("com.amazonaws.request");
 
     /**
-     * Returns a list of the available AWS regions.
+     * @return a list of the available AWS regions.
      */
-    public synchronized static List<Region> getRegions() {
+    public static synchronized List<Region> getRegions() {
         if (regions == null) {
             init();
         }
@@ -52,11 +52,13 @@ public class RegionUtils {
     }
 
     /**
-     * Returns a list of the regions that support the service given.
+     * @param serviceAbbreviation the service abbreviation.
+     * @return a list of the regions that support the service given.
      *
      * @see ServiceAbbreviations
      */
-    public synchronized static List<Region> getRegionsForService(String serviceAbbreviation) {
+    @SuppressWarnings("checkstyle:hiddenfield")
+    public static synchronized List<Region> getRegionsForService(String serviceAbbreviation) {
         List<Region> regions = new LinkedList<Region>();
         for (Region r : getRegions()) {
             if (r.isServiceSupported(serviceAbbreviation)) {
@@ -67,7 +69,8 @@ public class RegionUtils {
     }
 
     /**
-     * Returns the region with the id given, if it exists. Otherwise, returns
+     * @param regionName the region name.
+     * @return the region with the id given, if it exists. Otherwise, returns
      * null.
      */
     public static Region getRegion(String regionName) {

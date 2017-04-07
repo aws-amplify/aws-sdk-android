@@ -15,24 +15,53 @@
 
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
+/**
+ * A KeyPair of hash and range key.
+ */
 public class KeyPair {
     private Object hashKey;
     private Object rangeKey;
 
+    /**
+     * sets the hash key
+     *
+     * @param hashkey the hash key
+     * @return update {@link KeyPair}
+     */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public KeyPair withHashKey(Object hashkey) {
         this.hashKey = hashkey;
         return this;
     }
 
+    /**
+     * sets the range key
+     *
+     * @param rangeKey the range key
+     * @return updated {@link KeyPair}
+     */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public KeyPair withRangeKey(Object rangeKey) {
         this.rangeKey = rangeKey;
         return this;
     }
 
+    /**
+     * set the hash key.
+     *
+     * @param hashKey the hash key.
+     */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setHashKey(Object hashKey) {
         this.hashKey = hashKey;
     }
 
+    /**
+     * sets the range key.
+     *
+     * @param rangeKey the range key
+     */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setRangeKey(Object rangeKey) {
         this.rangeKey = rangeKey;
     }

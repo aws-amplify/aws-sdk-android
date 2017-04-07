@@ -21,10 +21,18 @@ import com.amazonaws.util.json.AwsJsonToken;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * MapUnmarshaller class.
+ * @param <V> value type.
+ */
 public class MapUnmarshaller<V> implements Unmarshaller<Map<String, V>, JsonUnmarshallerContext> {
 
     private final Unmarshaller<V, JsonUnmarshallerContext> valueUnmarshaller;
 
+    /**
+     * Constructor.
+     * @param valueUnmarshaller the value unmarshaller.
+     */
     public MapUnmarshaller(Unmarshaller<V, JsonUnmarshallerContext> valueUnmarshaller) {
         this.valueUnmarshaller = valueUnmarshaller;
     }

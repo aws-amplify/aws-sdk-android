@@ -25,10 +25,15 @@ import java.util.List;
 /**
  * An unmarshaller that unmarshals Lists into Java {@code Lists}.
  */
-public class ListUnmarshaller extends LUnmarshaller {
+public final class ListUnmarshaller extends LUnmarshaller {
 
     private static final ListUnmarshaller INSTANCE = new ListUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link ListUnmarshaller}
+     */
     public static ListUnmarshaller instance() {
         return INSTANCE;
     }
@@ -39,6 +44,11 @@ public class ListUnmarshaller extends LUnmarshaller {
         memberUnmarshaller = null;
     }
 
+    /**
+     * Constructor.
+     *
+     * @param memberUnmarshaller a {@link ArgumentUnmarshaller}.
+     */
     public ListUnmarshaller(ArgumentUnmarshaller memberUnmarshaller) {
         if (memberUnmarshaller == null) {
             throw new NullPointerException("memberUnmarshaller");
@@ -48,10 +58,10 @@ public class ListUnmarshaller extends LUnmarshaller {
 
     @Override
     public Object unmarshall(AttributeValue value) throws ParseException {
-        List<AttributeValue> values = value.getL();
-        List<Object> objects = new ArrayList<Object>(values.size());
+        final List<AttributeValue> values = value.getL();
+        final List<Object> objects = new ArrayList<Object>(values.size());
 
-        for (AttributeValue v : values) {
+        for (final AttributeValue v : values) {
             memberUnmarshaller.typeCheck(v, null);
             objects.add(memberUnmarshaller.unmarshall(v));
         }

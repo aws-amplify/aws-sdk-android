@@ -24,7 +24,7 @@ import com.amazonaws.auth.policy.conditions.StringCondition.StringComparisonType
  * conditions are common for AWS services and can be expected to work across any
  * service that supports AWS access control policies.
  */
-public class ConditionFactory {
+public final class ConditionFactory {
 
     /**
      * Condition key for the current time.

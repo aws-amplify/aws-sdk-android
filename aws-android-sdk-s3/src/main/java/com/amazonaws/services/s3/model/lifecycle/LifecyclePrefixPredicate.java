@@ -23,12 +23,16 @@ public final class LifecyclePrefixPredicate extends LifecycleFilterPredicate {
 
     private final String prefix;
 
+    /**
+     * Constructor.
+     * @param prefix the prefix used to identify one or more objects that apply.
+     */
     public LifecyclePrefixPredicate(String prefix) {
         this.prefix = prefix;
     }
 
     /**
-     * Returns the key prefix for which the
+     * @return the key prefix for which the
      * {@link com.amazonaws.services.s3.model.BucketLifecycleConfiguration.Rule} will apply.
      */
     public String getPrefix() {

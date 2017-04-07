@@ -22,12 +22,16 @@ public final class AnalyticsPrefixPredicate extends AnalyticsFilterPredicate {
 
     private final String prefix;
 
+    /**
+     * Constructor.
+     * @param prefix the string prefix.
+     */
     public AnalyticsPrefixPredicate(String prefix) {
         this.prefix = prefix;
     }
 
     /**
-     * Returns the prefix to use when evaluating an analytics filter.
+     * @return the prefix to use when evaluating an analytics filter.
      */
     public String getPrefix() {
         return prefix;

@@ -70,7 +70,7 @@ public class AttributeTransformerChain implements AttributeTransformer {
     public Map<String, AttributeValue> transform(
             final Parameters<?> parameters) {
 
-        ProxyParameters<?> proxy = new ProxyParameters(parameters);
+        final ProxyParameters<?> proxy = new ProxyParameters(parameters);
 
         for (int i = 0; i < transformers.size(); ++i) {
             proxy.setAttributeValues(transformers.get(i).transform(proxy));
@@ -83,7 +83,7 @@ public class AttributeTransformerChain implements AttributeTransformer {
     public Map<String, AttributeValue> untransform(
             final Parameters<?> parameters) {
 
-        ProxyParameters<?> proxy = new ProxyParameters(parameters);
+        final ProxyParameters<?> proxy = new ProxyParameters(parameters);
 
         for (int i = transformers.size() - 1; i >= 0; --i) {
             proxy.setAttributeValues(transformers.get(i).untransform(proxy));
@@ -126,6 +126,7 @@ public class AttributeTransformerChain implements AttributeTransformer {
          *
          * @param values the new values
          */
+        @SuppressWarnings("checkstyle:hiddenfield")
         public void setAttributeValues(
                 final Map<String, AttributeValue> values) {
             this.values = Collections.unmodifiableMap(values);

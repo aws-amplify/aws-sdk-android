@@ -39,7 +39,7 @@ public class PredefinedRetryPolicies {
             0,      // maxErrorRetry
             false); // honorMaxErrorRetryInClientConfig
 
-    
+
     /* SDK default */
     /** Base sleep time (milliseconds) for throttling exceptions. **/
     private static final int BASE_DELAY_IN_MILLISECONDS = 100;
@@ -90,7 +90,7 @@ public class PredefinedRetryPolicies {
     }
 
     /**
-     * Returns the SDK default retry policy. This policy will honor the
+     * @return the SDK default retry policy. This policy will honor the
      * maxErrorRetry set in ClientConfiguration.
      *
      * @see ClientConfiguration#setMaxErrorRetry(int)
@@ -103,7 +103,7 @@ public class PredefinedRetryPolicies {
     }
 
     /**
-     * Returns the default retry policy for DynamoDB client. This policy will
+     * @return the default retry policy for DynamoDB client. This policy will
      * honor the maxErrorRetry set in ClientConfiguration.
      *
      * @see ClientConfiguration#setMaxErrorRetry(int)
@@ -116,7 +116,8 @@ public class PredefinedRetryPolicies {
     }
 
     /**
-     * Returns the SDK default retry policy with the specified max retry count.
+     * @param maxErrorRetry the max error retry count.
+     * @return the SDK default retry policy with the specified max retry count.
      */
     public static RetryPolicy getDefaultRetryPolicyWithCustomMaxRetries(int maxErrorRetry) {
         return new RetryPolicy(DEFAULT_RETRY_CONDITION,
@@ -126,7 +127,8 @@ public class PredefinedRetryPolicies {
     }
 
     /**
-     * Returns the default retry policy for DynamoDB client with the specified
+     * @param maxErrorRetry the max error retry count.
+     * @return the default retry policy for DynamoDB client with the specified
      * max retry count.
      */
     public static RetryPolicy getDynamoDBDefaultRetryPolicyWithCustomMaxRetries(int maxErrorRetry) {
@@ -202,7 +204,7 @@ public class PredefinedRetryPolicies {
     }
 
     /** A private class that implements the default back-off strategy. **/
-    private static class SDKDefaultBackoffStrategy implements RetryPolicy.BackoffStrategy {
+    private static final class SDKDefaultBackoffStrategy implements RetryPolicy.BackoffStrategy {
 
         /** For generating a random scale factor **/
         private final Random random = new Random();

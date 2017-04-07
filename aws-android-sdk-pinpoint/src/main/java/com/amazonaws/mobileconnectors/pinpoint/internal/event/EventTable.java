@@ -5,7 +5,7 @@
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -29,31 +29,19 @@ public class EventTable {
     public static final String COLUMN_ID = "event_id";
     public static final String COLUMN_JSON = "event_json";
     public static final String COLUMN_SIZE = "event_size";
-
-
-    public static enum COLUMN_INDEX{
-        ID(0), SIZE(1), JSON(2);
-
-        private final int value;
-        private COLUMN_INDEX(int value) {
-            this.value = value;
-        }
-
-        public int getValue() {
-            return value;
-        }
-    }
-
     /*
      * Database creation SQL statement
      */
     private static final String DATABASE_CREATE = "create table if not exists "
-            + TABLE_EVENT
-            + "("
-            + COLUMN_ID + " integer primary key autoincrement, "
-            + COLUMN_SIZE + " INTEGER NOT NULL,"
-            + COLUMN_JSON + " TEXT NOT NULL"
-            + ");";
+                                                          + TABLE_EVENT
+                                                          + "("
+                                                          + COLUMN_ID +
+                                                          " integer primary key autoincrement, "
+                                                          + COLUMN_SIZE +
+                                                          " INTEGER NOT NULL,"
+                                                          + COLUMN_JSON +
+                                                          " TEXT NOT NULL"
+                                                          + ");";
 
     /**
      * Creates the database.
@@ -68,12 +56,27 @@ public class EventTable {
     /**
      * Upgrades the database.
      *
-     * @param database An SQLiteDatabase instance.
+     * @param database   An SQLiteDatabase instance.
      * @param oldVersion The old version of the database.
      * @param newVersion The new version of the database.
      */
-    public static void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
+    public static void onUpgrade(SQLiteDatabase database, int oldVersion,
+                                        int newVersion) {
 
+    }
+
+    public static enum COLUMN_INDEX {
+        ID(0), SIZE(1), JSON(2);
+
+        private final int value;
+
+        private COLUMN_INDEX(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
     }
 
 }

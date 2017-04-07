@@ -23,11 +23,16 @@ import java.util.HashSet;
  * An unmarshaller that unmarshals DynamoDB StringSets as sets of Java
  * {@code String} objects.
  */
-public class StringSetUnmarshaller extends SSUnmarshaller {
+public final class StringSetUnmarshaller extends SSUnmarshaller {
 
     private static final StringSetUnmarshaller INSTANCE =
             new StringSetUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link StringSetUnmarshaller}
+     */
     public static StringSetUnmarshaller instance() {
         return INSTANCE;
     }

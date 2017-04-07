@@ -56,6 +56,7 @@ public class DynamoDBSaveExpression {
      * @param expectedAttributes The map of attribute names to expected
      *            attribute value conditions to check on save
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setExpected(Map<String, ExpectedAttributeValue> expectedAttributes) {
         this.expectedAttributes = expectedAttributes;
     }
@@ -66,8 +67,10 @@ public class DynamoDBSaveExpression {
      * method-chaining.
      *
      * @param expectedAttributes The map of attribute names to expected
-     *            attribute value conditions to check on save
+     *            attribute value conditions to check on save.
+     * @return updated {@link DynamoDBSaveExpression}
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBSaveExpression withExpected(
             Map<String, ExpectedAttributeValue> expectedAttributes) {
         setExpected(expectedAttributes);
@@ -80,6 +83,7 @@ public class DynamoDBSaveExpression {
      *
      * @param attributeName The name of the attribute.
      * @param expected The expected attribute value.
+     * @return updated {@link DynamoDBSaveExpression}
      */
     public DynamoDBSaveExpression withExpectedEntry(String attributeName,
             ExpectedAttributeValue expected) {
@@ -93,6 +97,8 @@ public class DynamoDBSaveExpression {
     /**
      * Returns the logical operator on the expected value conditions of this
      * save operation.
+     *
+     * @return the conditional operator represented as string.
      */
     public String getConditionalOperator() {
         return conditionalOperator;
@@ -101,7 +107,10 @@ public class DynamoDBSaveExpression {
     /**
      * Sets the logical operator on the expected value conditions of this save
      * operation.
+     *
+     * @param conditionalOperator the conditional operator.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setConditionalOperator(String conditionalOperator) {
         this.conditionalOperator = conditionalOperator;
     }
@@ -109,7 +118,11 @@ public class DynamoDBSaveExpression {
     /**
      * Sets the logical operator on the expected value conditions of this save
      * operation and returns a pointer to this object for method-chaining.
+     *
+     * @param conditionalOperator the conditional operator.
+     * @return updated {@link DynamoDBSaveExpression}
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBSaveExpression withConditionalOperator(String conditionalOperator) {
         setConditionalOperator(conditionalOperator);
         return this;
@@ -118,7 +131,10 @@ public class DynamoDBSaveExpression {
     /**
      * Sets the logical operator on the expected value conditions of this save
      * operation.
+     *
+     * @param conditionalOperator the conditional operator.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setConditionalOperator(ConditionalOperator conditionalOperator) {
         setConditionalOperator(conditionalOperator.toString());
     }
@@ -126,7 +142,11 @@ public class DynamoDBSaveExpression {
     /**
      * Sets the logical operator on the expected value conditions of this save
      * operation and returns a pointer to this object for method-chaining.
+     *
+     * @param conditionalOperator the conditional operator.
+     * @return the updated {@link DynamoDBSaveExpression}
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBSaveExpression withConditionalOperator(ConditionalOperator conditionalOperator) {
         return withConditionalOperator(conditionalOperator.toString());
     }

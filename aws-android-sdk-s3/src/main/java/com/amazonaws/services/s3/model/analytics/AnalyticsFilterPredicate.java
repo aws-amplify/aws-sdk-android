@@ -24,5 +24,9 @@ import java.io.Serializable;
  * @see AnalyticsAndOperator
  */
 public abstract class AnalyticsFilterPredicate implements Serializable {
+
+    /**
+     * @param analyticsPredicateVisitor the AnalyticsPredicateVisitor to accept.
+     */
     public abstract void accept(AnalyticsPredicateVisitor analyticsPredicateVisitor);
 }

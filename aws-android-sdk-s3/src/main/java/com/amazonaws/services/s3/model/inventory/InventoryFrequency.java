@@ -19,11 +19,11 @@ package com.amazonaws.services.s3.model.inventory;
  */
 public enum InventoryFrequency {
 
+    /** Daily. */
     Daily("Daily"),
 
-    Weekly("Weekly"),
-
-    ;
+    /** Weekly. */
+    Weekly("Weekly");
 
     private final String frequency;
 

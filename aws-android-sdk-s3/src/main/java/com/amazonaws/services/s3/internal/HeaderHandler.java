@@ -20,6 +20,7 @@ import com.amazonaws.http.HttpResponse;
 /**
  * Assistant response handler that can pull an HTTP header out of the response
  * and apply it to a response object.
+ * @param <T> class type.
  */
 public interface HeaderHandler<T> {
 

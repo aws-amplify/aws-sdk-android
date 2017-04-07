@@ -16,6 +16,9 @@
 package com.amazonaws.services.s3.internal.crypto;
 
 class AesCtr extends ContentCryptoScheme {
+
+    private static final int DEFAULT_IV_LENGTH_IN_BYTES = 16;
+    private static final int SUPPORTED_IV_LENGTH = 12;
     @Override
     String getKeyGeneratorAlgorithm() {
         return AES_GCM.getKeyGeneratorAlgorithm();
@@ -38,7 +41,7 @@ class AesCtr extends ContentCryptoScheme {
 
     @Override
     int getIVLengthInBytes() {
-        return 16;
+        return DEFAULT_IV_LENGTH_IN_BYTES;
     }
 
     @Override
@@ -50,7 +53,7 @@ class AesCtr extends ContentCryptoScheme {
     byte[] adjustIV(byte[] iv, long byteOffset) {
         // currently only support iv of length 12 for AES/GCM.
         // Anything else is quite a bit complicated.
-        if (iv.length != 12)
+        if (iv.length != SUPPORTED_IV_LENGTH)
             throw new UnsupportedOperationException();
         final int blockSize = getBlockSizeInBytes();
         final long blockOffset = byteOffset / blockSize;
@@ -60,8 +63,8 @@ class AesCtr extends ContentCryptoScheme {
                             + blockOffset + ", blockSize=" + blockSize
                             + ", byteOffset=" + byteOffset);
         }
-        byte[] J0 = computeJ0(iv);
-        return incrementBlocks(J0, blockOffset);
+        byte[] j0 = computeJ0(iv);
+        return incrementBlocks(j0, blockOffset);
     }
 
     /**
@@ -76,9 +79,9 @@ class AesCtr extends ContentCryptoScheme {
      */
     private byte[] computeJ0(byte[] nonce) {
         final int blockSize = getBlockSizeInBytes();
-        byte[] J0 = new byte[blockSize];
-        System.arraycopy(nonce, 0, J0, 0, nonce.length);
-        J0[blockSize - 1] = 0x01;
-        return incrementBlocks(J0, 1);
+        byte[] j0 = new byte[blockSize];
+        System.arraycopy(nonce, 0, j0, 0, nonce.length);
+        j0[blockSize - 1] = 0x01;
+        return incrementBlocks(j0, 1);
     }
 }

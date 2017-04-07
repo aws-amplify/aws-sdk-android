@@ -5,7 +5,7 @@
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,21 +15,21 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.analytics;
 
-import static com.amazonaws.mobileconnectors.pinpoint.internal.core.util.Preconditions.checkNotNull;
-
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.JSONBuilder;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.JSONSerializable;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.StringUtil;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.TimeZone;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.json.JSONException;
+import org.json.JSONObject;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.JSONBuilder;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.JSONSerializable;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.StringUtil;
+
+import static com.amazonaws.mobileconnectors.pinpoint.internal.core.util.Preconditions.checkNotNull;
 
 /**
  * A Session Object Mostly immutable, with the exception of its stop time. This
@@ -39,6 +39,7 @@ import java.util.TimeZone;
  * serialized and restored for persistence.
  */
 public class Session implements JSONSerializable {
+
     // - Session ID configuration constants -------------------------=
     protected static final String SESSION_ID_DATE_FORMAT = "yyyyMMdd";
     protected static final String SESSION_ID_TIME_FORMAT = "HHmmssSSS";
@@ -46,10 +47,12 @@ public class Session implements JSONSerializable {
     protected static final char SESSION_ID_PAD_CHAR = '_';
     protected static final int SESSION_ID_APPKEY_LENGTH = 8;
     protected static final int SESSION_ID_UNIQID_LENGTH = 8;
+    private static final Log LOGGER = LogFactory.getLog(Session.class);
     // - JSON/Serialization constants -------------------------------=
     private static final String JSON_SESSION_ID_ATTR = "session_id";
     private static final String JSON_START_TIME_ATTR = "start_time";
     private static final String JSON_STOP_TIME_ATTR = "stop_time";
+    private static final int INDENTATION = 4;
     // - Field Declarations -----------------------------------------=
     private final DateFormat sessionIdTimeFormat;
     private final String sessionID;
@@ -57,9 +60,56 @@ public class Session implements JSONSerializable {
     private Long stopTime = null;
 
     /**
-     * STATIC FACTORY
+     * CONSTRUCTOR - ACTUAL Used by SessionClient
      *
      * @param context
+     */
+    protected Session(final PinpointContext context) {
+        checkNotNull(context, "A valid PinpointContext must be provided!");
+
+        this.sessionIdTimeFormat = new SimpleDateFormat(SESSION_ID_DATE_FORMAT
+                                                                +
+                                                                SESSION_ID_DELIMITER +
+                                                                SESSION_ID_TIME_FORMAT,
+                                                               Locale.US);
+        this.sessionIdTimeFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        this.startTime = System.currentTimeMillis();
+        this.stopTime = null;
+        this.sessionID = this.generateSessionID(context);
+    }
+
+    /**
+     * Used by deserealizer
+     *
+     * @param sessionID
+     * @param startTime
+     * @param stopTime
+     */
+    protected Session(final String sessionID, final String startTime,
+                             final String stopTime) {
+        this.sessionIdTimeFormat = new SimpleDateFormat(SESSION_ID_DATE_FORMAT
+                                                                +
+                                                                SESSION_ID_DELIMITER +
+                                                                SESSION_ID_TIME_FORMAT,
+                                                               Locale.US);
+        this.sessionIdTimeFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        Scanner s = new Scanner(startTime);
+        this.startTime = s.nextLong();
+        s = new Scanner(stopTime);
+        this.stopTime = s.nextLong();
+        this.sessionID = sessionID;
+
+        if (this.stopTime == Long.MIN_VALUE) {
+            this.stopTime = null;
+        }
+    }
+
+    /**
+     * STATIC FACTORY
+     *
+     * @param context The {@link PinpointContext}
      * @return new Session object
      */
     public static Session newInstance(final PinpointContext context) {
@@ -80,56 +130,17 @@ public class Session implements JSONSerializable {
         }
 
         try {
-            JSONObject json = new JSONObject(serializedSession);
-            String sessionID = json.getString(JSON_SESSION_ID_ATTR);
-            String startTime = json.getString(JSON_START_TIME_ATTR);
-            String stopTime = json.getString(JSON_STOP_TIME_ATTR);
+            final JSONObject json = new JSONObject(serializedSession);
+            final String sessionID = json.getString(JSON_SESSION_ID_ATTR);
+            final String startTime = json.getString(JSON_START_TIME_ATTR);
+            final String stopTime = json.getString(JSON_STOP_TIME_ATTR);
 
             s = new Session(sessionID, startTime, stopTime);
-        } catch (JSONException e) {
+        } catch (final JSONException e) {
             e.printStackTrace();
         }
 
         return s;
-    }
-
-    /**
-     * CONSTRUCTOR - ACTUAL Used by SessionClient
-     *
-     * @param context
-     */
-    protected Session(final PinpointContext context) {
-        checkNotNull(context, "A valid PinpointContext must be provided!");
-
-        this.sessionIdTimeFormat = new SimpleDateFormat(SESSION_ID_DATE_FORMAT
-                + SESSION_ID_DELIMITER + SESSION_ID_TIME_FORMAT, Locale.US);
-        this.sessionIdTimeFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-
-        this.startTime = System.currentTimeMillis();
-        this.stopTime = null;
-        this.sessionID = this.generateSessionID(context);
-    }
-
-    /**
-     * Used by deserealizer
-     * @param sessionID
-     * @param startTime
-     * @param stopTime
-     */
-    protected Session(final String sessionID, final String startTime, final String stopTime) {
-        this.sessionIdTimeFormat = new SimpleDateFormat(SESSION_ID_DATE_FORMAT
-                + SESSION_ID_DELIMITER + SESSION_ID_TIME_FORMAT, Locale.US);
-        this.sessionIdTimeFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-
-        Scanner s = new Scanner(startTime);
-        this.startTime = s.nextLong();
-        s = new Scanner(stopTime);
-        this.stopTime = s.nextLong();
-        this.sessionID = sessionID;
-
-        if (this.stopTime == Long.MIN_VALUE) {
-            this.stopTime = null;
-        }
     }
 
     /**
@@ -176,7 +187,8 @@ public class Session implements JSONSerializable {
         Long sessionLength = -1L;
         try {
             sessionLength = time - this.startTime;
-        } catch (NumberFormatException e) {
+        } catch (final NumberFormatException e) {
+            LOGGER.error("error parsing session duration", e);
         }
         return sessionLength;
     }
@@ -185,14 +197,16 @@ public class Session implements JSONSerializable {
      * Generates Session ID by concatenating present AppKey, UniqueID, and
      * <AppKey>-<UniqueID>-yyyyMMdd-HHmmssSSS
      *
+     * @param context The {@link PinpointContext}
      * @return [String] SessionID
      */
     public String generateSessionID(final PinpointContext context) {
-        String uniqID = context.getUniqueId();
-        String time = this.sessionIdTimeFormat.format(this.startTime);
-        return StringUtil.trimOrPadString(uniqID, SESSION_ID_UNIQID_LENGTH, SESSION_ID_PAD_CHAR)
-                + SESSION_ID_DELIMITER
-                + time;
+        final String uniqID = context.getUniqueId();
+        final String time = this.sessionIdTimeFormat.format(this.startTime);
+        return StringUtil.trimOrPadString(uniqID, SESSION_ID_UNIQID_LENGTH,
+                                                 SESSION_ID_PAD_CHAR)
+                       + SESSION_ID_DELIMITER
+                       + time;
     }
 
     @Override
@@ -202,7 +216,7 @@ public class Session implements JSONSerializable {
             stopT = Long.MIN_VALUE;
         }
 
-        JSONBuilder builder = new JSONBuilder(this);
+        final JSONBuilder builder = new JSONBuilder(this);
         builder.withAttribute(JSON_SESSION_ID_ATTR, getSessionID());
         builder.withAttribute(JSON_START_TIME_ATTR, getStartTime());
         builder.withAttribute(JSON_STOP_TIME_ATTR, stopT);
@@ -211,10 +225,10 @@ public class Session implements JSONSerializable {
 
     @Override
     public String toString() {
-        JSONObject json = toJSONObject();
+        final JSONObject json = toJSONObject();
         try {
-            return json.toString(4);
-        } catch (JSONException e) {
+            return json.toString(INDENTATION);
+        } catch (final JSONException e) {
             return json.toString();
         }
     }

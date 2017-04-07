@@ -27,10 +27,12 @@ import java.util.Date;
  */
 public class CognitoIdToken extends CognitoUserToken {
 
+    private static final int SECS = 1000;
+
     /**
      * Create a new id token.
      *
-     * @param jwtToken      REQUIRED: Valid JWT as a String.
+     * @param jwtToken REQUIRED: Valid JWT as a String.
      */
     public CognitoIdToken(String jwtToken) {
         super(jwtToken);
@@ -39,7 +41,7 @@ public class CognitoIdToken extends CognitoUserToken {
     /**
      * Returns the id token formatted as JWT.
      *
-     * @return
+     * @return JWT as a {@link String}.
      */
     public String getJWTToken() {
         return super.getToken();
@@ -52,14 +54,14 @@ public class CognitoIdToken extends CognitoUserToken {
      */
     public Date getExpiration() {
         try {
-            String claim = CognitoJWTParser.getClaim(super.getToken(), "exp");
+            final String claim = CognitoJWTParser.getClaim(super.getToken(), "exp");
             if (claim == null) {
                 return null;
             }
-            long epocTimeSec = Long.parseLong(claim);
-            long epocTimeMilliSec = epocTimeSec*1000;
+            final long epocTimeSec = Long.parseLong(claim);
+            final long epocTimeMilliSec = epocTimeSec * SECS;
             return new Date(epocTimeMilliSec);
-        } catch(Exception e) {
+        } catch (final Exception e) {
             throw new CognitoInternalErrorException(e.getMessage(), e);
         }
     }
@@ -70,15 +72,15 @@ public class CognitoIdToken extends CognitoUserToken {
      * @return not before claim as {@link java.util.Date} in UTC.
      */
     public Date getNotBefore() {
-        try{
-            String claim = CognitoJWTParser.getClaim(super.getToken(), "nbf");
+        try {
+            final String claim = CognitoJWTParser.getClaim(super.getToken(), "nbf");
             if (claim == null) {
                 return null;
             }
-            long epocTimeSec = Long.parseLong(claim);
-            long epocTimeMilliSec = epocTimeSec*1000;
+            final long epocTimeSec = Long.parseLong(claim);
+            final long epocTimeMilliSec = epocTimeSec * SECS;
             return new Date(epocTimeMilliSec);
-        } catch(Exception e) {
+        } catch (final Exception e) {
             throw new CognitoInternalErrorException(e.getMessage(), e);
         }
     }
@@ -89,15 +91,15 @@ public class CognitoIdToken extends CognitoUserToken {
      * @return issue at claim as {@link java.util.Date} in UTC.
      */
     public Date getIssuedAt() {
-        try{
-            String claim = CognitoJWTParser.getClaim(super.getToken(), "iat");
+        try {
+            final String claim = CognitoJWTParser.getClaim(super.getToken(), "iat");
             if (claim == null) {
                 return null;
             }
-            long epocTimeSec = Long.parseLong(claim);
-            long epocTimeMilliSec = epocTimeSec*1000;
+            final long epocTimeSec = Long.parseLong(claim);
+            final long epocTimeMilliSec = epocTimeSec * SECS;
             return new Date(epocTimeMilliSec);
-        } catch(Exception e) {
+        } catch (final Exception e) {
             throw new CognitoInternalErrorException(e.getMessage(), e);
         }
     }

@@ -28,6 +28,12 @@ public class CustomUnmarshaller extends SUnmarshaller {
     private final Class<?> targetClass;
     private final Class<? extends DynamoDBMarshaller<?>> unmarshallerClass;
 
+    /**
+     * Constructor.
+     *
+     * @param targetClass the target class.
+     * @param unmarshallerClass the custom unmarshaller
+     */
     public CustomUnmarshaller(
             Class<?> targetClass,
             Class<? extends DynamoDBMarshaller<?>> unmarshallerClass) {
@@ -37,35 +43,31 @@ public class CustomUnmarshaller extends SUnmarshaller {
     }
 
     @Override
-    @SuppressWarnings({
-            "rawtypes", "unchecked"
-    })
+    @SuppressWarnings({"rawtypes", "unchecked"})
     public Object unmarshall(AttributeValue value) {
 
         // TODO: Would be nice to cache this object, but not sure if we can
         // do that now without a breaking change; user's unmarshallers
         // might not all be thread-safe.
 
-        DynamoDBMarshaller unmarshaller =
+        final DynamoDBMarshaller unmarshaller =
                 createUnmarshaller(unmarshallerClass);
 
         return unmarshaller.unmarshall(targetClass, value.getS());
     }
 
-    @SuppressWarnings({
-            "rawtypes"
-    })
+    @SuppressWarnings({"rawtypes"})
     private static DynamoDBMarshaller createUnmarshaller(Class<?> clazz) {
         try {
 
             return (DynamoDBMarshaller) clazz.newInstance();
 
-        } catch (InstantiationException e) {
+        } catch (final InstantiationException e) {
             throw new DynamoDBMappingException(
                     "Failed to instantiate custom marshaler for class " + clazz,
                     e);
 
-        } catch (IllegalAccessException e) {
+        } catch (final IllegalAccessException e) {
             throw new DynamoDBMappingException(
                     "Failed to instantiate custom marshaler for class " + clazz,
                     e);

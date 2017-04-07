@@ -15,7 +15,6 @@
 
 package com.amazonaws.services.s3.internal;
 
-import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSSessionCredentials;
@@ -24,7 +23,12 @@ import com.amazonaws.auth.SigningAlgorithm;
 
 import java.util.Date;
 
+/**
+ * The AbstractAWSSigner.
+ */
 public class S3QueryStringSigner extends AbstractAWSSigner {
+
+    private static final Long TIME_TO_SECONDS = 1000L;
 
     /**
      * The HTTP verb (GET, PUT, HEAD, DELETE) the request to sign is using.
@@ -43,8 +47,17 @@ public class S3QueryStringSigner extends AbstractAWSSigner {
      */
     private final String resourcePath;
 
+    /**
+     * The expiration time that indicates when the request exires.
+     */
     private final Date expiration;
 
+    /**
+     * Constructor.
+     * @param httpVerb The HTTP verb the request to sign is using.
+     * @param resourcePath The canonical resource path portion of the S3 string to sign.
+     * @param expiration The expiration time that indicates when the request expires.
+     */
     public S3QueryStringSigner(String httpVerb, String resourcePath, Date expiration) {
         this.httpVerb = httpVerb;
         this.resourcePath = resourcePath;
@@ -55,14 +68,14 @@ public class S3QueryStringSigner extends AbstractAWSSigner {
     }
 
     @Override
-    public void sign(Request<?> request, AWSCredentials credentials) throws AmazonClientException {
+    public void sign(Request<?> request, AWSCredentials credentials) {
         AWSCredentials sanitizedCredentials = sanitizeCredentials(credentials);
 
         if (sanitizedCredentials instanceof AWSSessionCredentials) {
             addSessionCredentials(request, (AWSSessionCredentials) sanitizedCredentials);
         }
 
-        String expirationInSeconds = Long.toString(expiration.getTime() / 1000L);
+        String expirationInSeconds = Long.toString(expiration.getTime() / TIME_TO_SECONDS);
 
         String canonicalString = RestUtils.makeS3CanonicalString(
                 httpVerb, resourcePath, request, expirationInSeconds);

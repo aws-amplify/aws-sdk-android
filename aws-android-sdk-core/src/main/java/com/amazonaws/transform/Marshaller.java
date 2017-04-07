@@ -15,8 +15,18 @@
 
 package com.amazonaws.transform;
 
+/**
+ * Marshaller class.
+ * @param <T> type.
+ * @param <R> type.
+ */
 public interface Marshaller<T, R> {
 
+    /**
+     * @param in input to marshall.
+     * @return marshalled result.
+     * @throws Exception
+     */
     public T marshall(R in) throws Exception;
 
 }

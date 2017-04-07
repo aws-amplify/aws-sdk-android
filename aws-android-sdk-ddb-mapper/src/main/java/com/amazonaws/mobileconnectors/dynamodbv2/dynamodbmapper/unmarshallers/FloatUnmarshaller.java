@@ -20,11 +20,16 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 /**
  * An unmarshaller that unmarshals DynamoDB Numbers into Java {@code Float}s.
  */
-public class FloatUnmarshaller extends NUnmarshaller {
+public final class FloatUnmarshaller extends NUnmarshaller {
 
     private static final FloatUnmarshaller INSTANCE =
             new FloatUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link FloatUnmarshaller}
+     */
     public static FloatUnmarshaller instance() {
         return INSTANCE;
     }

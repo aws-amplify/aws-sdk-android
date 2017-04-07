@@ -27,11 +27,23 @@ public class NumericCondition extends Condition {
 
     /** Enumeration of the supported ways a numeric comparison can be evaluated */
     public static enum NumericComparisonType {
+
+        /** Numeric equals. */
         NumericEquals,
+
+        /** Numeric greater than. */
         NumericGreaterThan,
+
+        /** Numeric greater than or equals. */
         NumericGreaterThanEquals,
+
+        /** Numeric less than. */
         NumericLessThan,
+
+        /** Numeric less than or equals. */
         NumericLessThanEquals,
+
+        /** Numeric not equals. */
         NumericNotEquals;
     };
 

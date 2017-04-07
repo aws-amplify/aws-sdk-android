@@ -52,6 +52,7 @@ public interface Request<T> {
 
     /**
      * Sets all headers, clearing any existing ones.
+     * @param headers the headers.
      */
     public void setHeaders(Map<String, String> headers);
 
@@ -96,6 +97,7 @@ public interface Request<T> {
 
     /**
      * Sets all parameters, clearing any existing values.
+     * @param parameters the parameters.
      */
     public void setParameters(Map<String, String> parameters);
 
@@ -191,13 +193,14 @@ public interface Request<T> {
      * used by the signer to adjust for potential clock skew. Value is in
      * seconds, positive values imply the current clock is "fast", negative
      * values imply clock is slow.
+     * @param timeOffset the time offset for the request.
      *
      * @return The updated request object.
      */
     public Request<T> withTimeOffset(int timeOffset);
 
     /**
-     * Returns the request metrics.
+     * @return the request metrics.
      */
     public AWSRequestMetrics getAWSRequestMetrics();
 
@@ -205,6 +208,7 @@ public interface Request<T> {
      * Bind the request metrics to the request. Note metrics can be captured
      * before the request is created.
      *
+     * @param metrics the request metrics.
      * @throws IllegalStateException if the binding has already occurred
      */
     public void setAWSRequestMetrics(AWSRequestMetrics metrics);
@@ -212,14 +216,14 @@ public interface Request<T> {
     /**
      * Flag that indicates that request is streaming request
      *
-     * @return
+     * @return true if request is streaming request.
      */
     public boolean isStreaming();
 
     /**
      * Set streaming flag
-     * 
-     * @param streaming
+     *
+     * @param streaming the streaming flag.
      */
     public void setStreaming(boolean streaming);
 }

@@ -22,10 +22,14 @@ package com.amazonaws.mobileconnectors.cognitoidentityprovider.tokens;
  */
 public class CognitoUserToken {
     // A Cognito Token - can be an Access, Id or Refresh token
-    private String token;
+    private final String token;
 
-    // Construct a new Cognito token
-    public CognitoUserToken(String token){
+    /**
+     * Constructor.
+     *
+     * @param token the user token.
+     */
+    public CognitoUserToken(String token) {
         this.token = token;
     }
 

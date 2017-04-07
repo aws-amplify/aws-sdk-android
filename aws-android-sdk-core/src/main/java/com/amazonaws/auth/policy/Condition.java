@@ -148,9 +148,10 @@ public class Condition {
 
     /**
      * Fluent version of {@link Condition#setType(String)}
-     *
+     * @param type the type.
      * @return this
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public Condition withType(String type) {
         setType(type);
         return this;
@@ -158,7 +159,7 @@ public class Condition {
 
     /**
      * Fluent version of {@link Condition#setConditionKey(String)}
-     *
+     * @param key the key.
      * @return this
      */
     public Condition withConditionKey(String key) {
@@ -168,9 +169,10 @@ public class Condition {
 
     /**
      * Fluent version of {@link Condition#setValues(List)}
-     *
+     * @param values the values.
      * @return this
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public Condition withValues(String... values) {
         setValues(Arrays.asList(values));
         return this;
@@ -178,9 +180,10 @@ public class Condition {
 
     /**
      * Fluent version of {@link Condition#setValues(List)}
-     *
+     * @param values the values.
      * @return this
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public Condition withValues(List<String> values) {
         setValues(values);
         return this;

@@ -35,6 +35,15 @@ import javax.crypto.spec.IvParameterSpec;
  * @author Hanson Char
  */
 abstract class ContentCryptoScheme {
+
+    private static final int GCM_SHIFT_VALUE = 32;
+    private static final int CBC_SHIFT_VALUE = 48;
+    private static final long LONG_VALUE = 1L;
+    private static final int BYTE_SIZE = 4;
+    private static final int LONG_BYTE_SIZE = 8;
+    private static final int DEFAULT_BIT_COUNTER = 16;
+    private static final int DEFAULT_RIGHTMOST_BIT_START = 12;
+
     /**
      * The maximum number of 16-byte blocks that can be encrypted with a GCM
      * cipher. Note the maximum bit-length of the plaintext is (2^39 - 256),
@@ -45,16 +54,16 @@ abstract class ContentCryptoScheme {
      * "http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf"> NIST
      * Special Publication 800-38D.</a>.
      */
-    static final long MAX_GCM_BLOCKS = (1L << 32) - 2; // 2^32 - 2
+    static final long MAX_GCM_BLOCKS = (LONG_VALUE << GCM_SHIFT_VALUE) - 2; // 2^32 - 2
     /**
      * The maximum number of bytes that can be encrypted with a GCM cipher.
      */
-    static final long MAX_GCM_BYTES = MAX_GCM_BLOCKS << 4;
+    static final long MAX_GCM_BYTES = MAX_GCM_BLOCKS << BYTE_SIZE;
     /**
      * The maximum number of bytes that can be securely encrypted per a single
      * key using AES/CBC.
      */
-    static final long MAX_CBC_BYTES = (1L << 48) << 4; // 2^48 blocks, assuming
+    static final long MAX_CBC_BYTES = (LONG_VALUE << CBC_SHIFT_VALUE) << BYTE_SIZE; // 2^48 blocks, assuming
                                                        // an adversary advantage
                                                        // of at most 1/2^32 per
                                                        // Prof. Dan Boneh
@@ -133,16 +142,16 @@ abstract class ContentCryptoScheme {
     static byte[] incrementBlocks(byte[] counter, long blockDelta) {
         if (blockDelta == 0)
             return counter;
-        if (counter == null || counter.length != 16)
+        if (counter == null || counter.length != DEFAULT_BIT_COUNTER)
             throw new IllegalArgumentException();
         // Can optimize this later. KISS for now.
         if (blockDelta > MAX_GCM_BLOCKS)
             throw new IllegalStateException();
         // Allocate 8 bytes for a long
-        ByteBuffer bb = ByteBuffer.allocate(8);
+        ByteBuffer bb = ByteBuffer.allocate(LONG_BYTE_SIZE);
         // Copy the right-most 32 bits from the counter
-        for (int i = 12; i <= 15; i++)
-            bb.put(i - 8, counter[i]);
+        for (int i = DEFAULT_RIGHTMOST_BIT_START; i <= DEFAULT_BIT_COUNTER - 1; i++)
+            bb.put(i - LONG_BYTE_SIZE, counter[i]);
         long val = bb.getLong() + blockDelta; // increment by delta
         if (val > MAX_GCM_BLOCKS)
             throw new IllegalStateException(); // overflow 2^32-2
@@ -151,8 +160,8 @@ abstract class ContentCryptoScheme {
         byte[] result = bb.putLong(val).array();
         // Copy the rightmost 32 bits from the resultant array to the input
         // counter;
-        for (int i = 12; i <= 15; i++)
-            counter[i] = result[i - 8];
+        for (int i = DEFAULT_RIGHTMOST_BIT_START; i <= DEFAULT_BIT_COUNTER - 1; i++)
+            counter[i] = result[i - LONG_BYTE_SIZE];
         return counter;
     }
 

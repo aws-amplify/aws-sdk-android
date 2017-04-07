@@ -39,22 +39,26 @@ public class Principal {
      * identity of the requester, but instead on other identifying
      * characteristics such as the requester's IP address.
      */
+    @SuppressWarnings("checkstyle:constantname")
     public static final Principal AllUsers = new Principal("AWS", "*");
 
     /**
      * Principal instance that includes all AWS web services.
      */
+    @SuppressWarnings("checkstyle:constantname")
     public static final Principal AllServices = new Principal("Service", "*");
 
     /**
      * Principal instance that includes all the web identity providers.
      */
+    @SuppressWarnings("checkstyle:constantname")
     public static final Principal AllWebProviders = new Principal("Federated", "*");
 
     /**
      * Principal instance that includes all the AWS accounts, AWS web services
      * and web identity providers.
      */
+    @SuppressWarnings("checkstyle:constantname")
     public static final Principal All = new Principal("*", "*");
 
     private final String id;
@@ -77,10 +81,12 @@ public class Principal {
 
     /**
      * Constructs a new principal with the specified id and provider.
+     * @param provider the provider.
+     * @param id the id.
      */
     public Principal(String provider, String id) {
         this.provider = provider;
-        if (provider.equals("AWS")) {
+        if ("AWS".equals(provider)) {
             id = id.replaceAll("-", "");
         }
         this.id = id;
@@ -139,14 +145,26 @@ public class Principal {
      * The returned credentials consist of an Access Key ID, a Secret Access
      * Key, and a security token.
      */
-    static public enum Services {
+    public static enum Services {
 
+        /** AWS Data Pipeline. */
         AWSDataPipeline("datapipeline.amazonaws.com"),
+
+        /** Amazon Elastic Transcoder. */
         AmazonElasticTranscoder("elastictranscoder.amazonaws.com"),
+
+        /** Amazon EC2. */
         AmazonEC2("ec2.amazonaws.com"),
+
+        /** AWS Ops Works. */
         AWSOpsWorks("opsworks.amazonaws.com"),
+
+        /** AWS Cloud HSM. */
         AWSCloudHSM("cloudhsm.amazonaws.com"),
+
+        /** All services. */
         AllServices("*");
+
         private String serviceId;
 
         /**
@@ -163,6 +181,8 @@ public class Principal {
         /**
          * Construct the Services object from a string representing the service
          * id.
+         * @param serviceId the service ID.
+         * @return the Services object.
          */
         public static Services fromString(String serviceId) {
             if (serviceId != null) {
@@ -181,11 +201,18 @@ public class Principal {
     /**
      * Web identity providers, such as Login with Amazon, Facebook, or Google.
      */
-    static public enum WebIdentityProviders {
+    public static enum WebIdentityProviders {
 
+        /** Facebook. */
         Facebook("graph.facebook.com"),
+
+        /** Google. */
         Google("accounts.google.com"),
+
+        /** Amazon. */
         Amazon("www.amazon.com"),
+
+        /** All providers. */
         AllProviders("*");
 
         private String webIdentityProvider;
@@ -204,6 +231,8 @@ public class Principal {
         /**
          * Construct the Services object from a string representing web identity
          * provider.
+         * @param webIdentityProvider string representing web identity provider.
+         * @return WebIdentityProviders object.
          */
         public static WebIdentityProviders fromString(String webIdentityProvider) {
             if (webIdentityProvider != null) {
@@ -239,7 +268,7 @@ public class Principal {
             return false;
         }
 
-        if (principal instanceof Principal == false) {
+        if (!(principal instanceof Principal)) {
             return false;
         }
 

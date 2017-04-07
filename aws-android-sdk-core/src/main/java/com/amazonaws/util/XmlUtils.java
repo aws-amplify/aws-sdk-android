@@ -24,8 +24,19 @@ import org.xml.sax.helpers.XMLReaderFactory;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * XmlUtils class.
+ */
 public class XmlUtils {
 
+    /**
+     * Parse.
+     * @param in the input stream.
+     * @param handler the content handler.
+     * @return parsed XMLReader.
+     * @throws SAXException
+     * @throws IOException
+     */
     public static XMLReader parse(InputStream in, ContentHandler handler)
             throws SAXException, IOException {
 

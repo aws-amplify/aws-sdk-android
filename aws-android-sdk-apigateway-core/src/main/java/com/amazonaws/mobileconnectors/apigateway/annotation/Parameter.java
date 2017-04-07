@@ -20,21 +20,24 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * The request parameter.
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.PARAMETER)
 public @interface Parameter {
     /**
      * Name of the parameter.
-     *
-     * @return name of the parameter
+     * 
+     * @return
      */
     String name() default "";
 
     /**
      * Location of this parameter. Possible values are <tt>header</tt>,
      * <tt>path</tt> , and <tt>query</tt>.
-     *
-     * @return location of the parameter
+     * 
+     * @return
      */
     String location();
 }

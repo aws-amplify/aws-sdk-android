@@ -17,10 +17,12 @@ package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 
 import com.amazonaws.event.ProgressEvent;
 import com.amazonaws.event.ProgressListener;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -35,11 +37,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * references of {@link TransferListener}.
  */
 class TransferStatusUpdater {
-    private static final String TAG = "TransferStatusUpdater";
+    private static final Log LOGGER = LogFactory.getLog(TransferStatusUpdater.class);
     /**
      * Some temporary states that should not be notified.
      */
-    private static HashSet<TransferState> STATES_NOT_TO_NOTIFY = new HashSet<TransferState>(
+    private static final HashSet<TransferState> STATES_NOT_TO_NOTIFY = new HashSet<TransferState>(
             Arrays.asList(TransferState.PART_COMPLETED,
                     TransferState.PENDING_CANCEL, TransferState.PENDING_PAUSE,
                     TransferState.PENDING_NETWORK_DISCONNECT));
@@ -52,7 +54,7 @@ class TransferStatusUpdater {
     /**
      * A map of listeners.
      */
-    static final Map<Integer, List<TransferListener>> listeners = new HashMap<Integer, List<TransferListener>>();
+    static final Map<Integer, List<TransferListener>> LISTENERS = new HashMap<Integer, List<TransferListener>>();
 
     /**
      * A map of active transfers.
@@ -117,7 +119,7 @@ class TransferStatusUpdater {
      */
     void removeTransfer(int id) {
         transfers.remove(id);
-        listeners.remove(id);
+        LISTENERS.remove(id);
         lastUpdateTime.remove(id);
     }
 
@@ -127,11 +129,11 @@ class TransferStatusUpdater {
      * transfer, including current state, bytes transfer, bytes total, etc into
      * database. It then triggers
      * {@link TransferListener#onStateChanged(int, TransferState)} event of
-     * associated listeners if new state is different.
+     * associated LISTENERS if new state is different.
      * <p>
      * Note that when the newState is CANCELED, COMPLETED, or FAILED, associated
-     * listeners will be removed after being invoked. Make sure you call
-     * throwError before changing the state to one of these, or else listeners
+     * LISTENERS will be removed after being invoked. Make sure you call
+     * throwError before changing the state to one of these, or else LISTENERS
      * won't be invoked.
      *
      * @param id id of the transfer to update
@@ -143,14 +145,14 @@ class TransferStatusUpdater {
         if (transfer == null) {
             // still wants to save state
             if (dbUtil.updateState(id, newState) == 0) {
-                Log.w(TAG, "Failed to update the status of transfer " + id);
+                LOGGER.warn("Failed to update the status of transfer " + id);
             }
         } else {
             shouldNotNotify |= newState.equals(transfer.state);
             transfer.state = newState;
             // save to database
             if (dbUtil.updateTransferRecord(transfer) == 0) {
-                Log.w(TAG, "Failed to update the status of transfer " + id);
+                LOGGER.warn("Failed to update the status of transfer " + id);
             }
         }
 
@@ -158,8 +160,8 @@ class TransferStatusUpdater {
             return;
         }
 
-        // invoke listeners
-        final List<TransferListener> list = listeners.get(id);
+        // invoke LISTENERS
+        final List<TransferListener> list = LISTENERS.get(id);
         if (list == null || list.isEmpty()) {
             return;
         }
@@ -171,7 +173,7 @@ class TransferStatusUpdater {
                 for (final TransferListener l : list) {
                     l.onStateChanged(id, newState);
                 }
-                // remove all listeners when the transfer is in a final state so
+                // remove all LISTENERS when the transfer is in a final state so
                 // as to release resources asap.
                 if (TransferState.COMPLETED.equals(newState)
                         || TransferState.FAILED.equals(newState)
@@ -185,7 +187,7 @@ class TransferStatusUpdater {
     /**
      * Updates the transfer progress of a transfer. It will trigger
      * {@link TransferListener#onProgressChanged(int, long, long)} of associated
-     * listeners if the update exceeds either time threshold.
+     * LISTENERS if the update exceeds either time threshold.
      *
      * @param id id of the transfer
      * @param bytesCurrent current transferred bytes
@@ -206,8 +208,8 @@ class TransferStatusUpdater {
         // up.
         dbUtil.updateBytesTransferred(id, bytesCurrent);
 
-        // invoke listeners
-        final List<TransferListener> list = listeners.get(id);
+        // invoke LISTENERS
+        final List<TransferListener> list = LISTENERS.get(id);
         if (list == null || list.isEmpty()) {
             return;
         }
@@ -232,14 +234,14 @@ class TransferStatusUpdater {
 
     /**
      * Throws an error to transfer. It triggers
-     * {@link TransferListener#onError(int, Exception)} of associated listeners.
+     * {@link TransferListener#onError(int, Exception)} of associated LISTENERS.
      *
      * @param id id of the transfer
      * @param e an exception object
      */
     void throwError(final int id, final Exception e) {
-        // invoke listeners
-        final List<TransferListener> list = listeners.get(id);
+        // invoke LISTENERS
+        final List<TransferListener> list = LISTENERS.get(id);
         if (list == null || list.isEmpty()) {
             return;
         }
@@ -255,10 +257,10 @@ class TransferStatusUpdater {
     }
 
     /**
-     * Clears all transfers, listeners, etc.
+     * Clears all transfers, LISTENERS, etc.
      */
     void clear() {
-        listeners.clear();
+        LISTENERS.clear();
         transfers.clear();
         lastUpdateTime.clear();
     }
@@ -273,12 +275,12 @@ class TransferStatusUpdater {
         if (listener == null) {
             throw new IllegalArgumentException("Listener can't be null");
         }
-        synchronized (listeners) {
-            List<TransferListener> list = listeners.get(id);
+        synchronized (LISTENERS) {
+            List<TransferListener> list = LISTENERS.get(id);
             if (list == null) {
                 list = new CopyOnWriteArrayList<TransferListener>();
                 list.add(listener);
-                listeners.put(id, list);
+                LISTENERS.put(id, list);
             } else {
                 // don't add the same listener more than once
                 if (!list.contains(listener)) {
@@ -298,7 +300,7 @@ class TransferStatusUpdater {
         if (listener == null) {
             throw new IllegalArgumentException("Listener can't be null");
         }
-        final List<TransferListener> list = listeners.get(id);
+        final List<TransferListener> list = LISTENERS.get(id);
         if (list == null || list.isEmpty()) {
             return;
         }

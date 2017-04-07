@@ -71,6 +71,7 @@ public class DynamoDBDeleteExpression {
      * @param expectedAttributes The map of attribute names to expected
      *            attribute value conditions to check on delete
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setExpected(Map<String, ExpectedAttributeValue> expectedAttributes) {
         this.expectedAttributes = expectedAttributes;
     }
@@ -81,8 +82,10 @@ public class DynamoDBDeleteExpression {
      * method-chaining.
      *
      * @param expectedAttributes The map of attribute names to expected
-     *            attribute value conditions to check on delete
+     *            attribute value conditions to check on delete.
+     * @return the update {@link DynamoDBDeleteExpression}
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBDeleteExpression withExpected(
             Map<String, ExpectedAttributeValue> expectedAttributes) {
         setExpected(expectedAttributes);
@@ -95,6 +98,7 @@ public class DynamoDBDeleteExpression {
      *
      * @param attributeName The name of the attribute.
      * @param expected The expected attribute value.
+     * @return the update {@link DynamoDBDeleteExpression}
      */
     public DynamoDBDeleteExpression withExpectedEntry(String attributeName,
             ExpectedAttributeValue expected) {
@@ -108,6 +112,8 @@ public class DynamoDBDeleteExpression {
     /**
      * Returns the logical operator on the expected attribute conditions of this
      * delete operation.
+     *
+     * @return the operator.
      */
     public String getConditionalOperator() {
         return conditionalOperator;
@@ -116,7 +122,10 @@ public class DynamoDBDeleteExpression {
     /**
      * Sets the logical operator on the expected attribute conditions of this
      * delete operation.
+     *
+     * @param conditionalOperator the conditional operator.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setConditionalOperator(String conditionalOperator) {
         this.conditionalOperator = conditionalOperator;
     }
@@ -125,7 +134,11 @@ public class DynamoDBDeleteExpression {
      * Sets the logical operator on the expected attribute conditions of this
      * delete operation and returns a pointer to this object for
      * method-chaining.
+     *
+     * @param conditionalOperator the conditional operator.
+     * @return the updated {@link DynamoDBDeleteExpression}
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBDeleteExpression withConditionalOperator(String conditionalOperator) {
         setConditionalOperator(conditionalOperator);
         return this;
@@ -134,6 +147,8 @@ public class DynamoDBDeleteExpression {
     /**
      * Sets the logical operator on the expected attribute conditions of this
      * delete operation.
+     *
+     * @param conditionalOperator the conditional operator.
      */
     public void setConditionalOperator(ConditionalOperator conditionalOperator) {
         setConditionalOperator(conditionalOperator.toString());
@@ -143,7 +158,11 @@ public class DynamoDBDeleteExpression {
      * Sets the logical operator on the expected attribute conditions of this
      * delete operation and returns a pointer to this object for
      * method-chaining.
+     *
+     * @param conditionalOperator the conditional operator
+     * @return the updated {@link DynamoDBDeleteExpression}
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBDeleteExpression withConditionalOperator(ConditionalOperator conditionalOperator) {
         return withConditionalOperator(conditionalOperator.toString());
     }
@@ -153,6 +172,7 @@ public class DynamoDBDeleteExpression {
      * to succeed.
      *
      * @see DeleteItemRequest#getConditionExpression()
+     * @return the condition expression.
      */
     public String getConditionExpression() {
         return conditionExpression;
@@ -163,7 +183,9 @@ public class DynamoDBDeleteExpression {
      * to succeed.
      *
      * @see DeleteItemRequest#setConditionExpression()
+     * @param conditionExpression the condition expression.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setConditionExpression(String conditionExpression) {
         this.conditionExpression = conditionExpression;
     }
@@ -172,10 +194,12 @@ public class DynamoDBDeleteExpression {
      * A condition that must be satisfied in order for a conditional DeleteItem
      * to succeed.
      *
+     * @param conditionExpression the condition expression.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see DeleteItemRequest#withConditionExpression(String)
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBDeleteExpression withConditionExpression(
             String conditionExpression) {
         this.conditionExpression = conditionExpression;
@@ -190,7 +214,6 @@ public class DynamoDBDeleteExpression {
      * @see DeleteItemRequest#getExpressionAttributeNames()
      */
     public java.util.Map<String, String> getExpressionAttributeNames() {
-
         return expressionAttributeNames;
     }
 
@@ -201,6 +224,7 @@ public class DynamoDBDeleteExpression {
      *            simplifying complex expressions.
      * @see DeleteItemRequest#setExpressionAttributeNames(Map)
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setExpressionAttributeNames(
             java.util.Map<String, String> expressionAttributeNames) {
         this.expressionAttributeNames = expressionAttributeNames;
@@ -215,6 +239,7 @@ public class DynamoDBDeleteExpression {
      *         chained together.
      * @see DeleteItemRequest#withExpressionAttributeNames(Map)
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBDeleteExpression withExpressionAttributeNames(
             java.util.Map<String, String> expressionAttributeNames) {
         setExpressionAttributeNames(expressionAttributeNames);
@@ -232,15 +257,17 @@ public class DynamoDBDeleteExpression {
      * @param value The corresponding value of the entry to be added into
      *            ExpressionAttributeNames.
      * @see DeleteItemRequest#addExpressionAttributeNamesEntry(String, String)
+     * @return updated {@link DynamoDBDeleteExpression}
      */
     public DynamoDBDeleteExpression addExpressionAttributeNamesEntry(
             String key, String value) {
         if (null == this.expressionAttributeNames) {
             this.expressionAttributeNames = new java.util.HashMap<String, String>();
         }
-        if (this.expressionAttributeNames.containsKey(key))
+        if (this.expressionAttributeNames.containsKey(key)) {
             throw new IllegalArgumentException("Duplicated keys ("
                     + key.toString() + ") are provided.");
+        }
         this.expressionAttributeNames.put(key, value);
         return this;
     }
@@ -250,6 +277,8 @@ public class DynamoDBDeleteExpression {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     *
+     * @return the updated {@link DynamoDBDeleteExpression}.
      */
     public DynamoDBDeleteExpression clearExpressionAttributeNamesEntries() {
         this.expressionAttributeNames = null;
@@ -287,6 +316,7 @@ public class DynamoDBDeleteExpression {
      *         chained together.
      * @see DeleteItemRequest#withExpressionAttributeValues(Map)
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBDeleteExpression withExpressionAttributeValues(
             java.util.Map<String, AttributeValue> expressionAttributeValues) {
         setExpressionAttributeValues(expressionAttributeValues);
@@ -305,15 +335,17 @@ public class DynamoDBDeleteExpression {
      *            ExpressionAttributeValues.
      * @see DeleteItemRequest#addExpressionAttributeValuesEntry(String,
      *      AttributeValue)
+     * @return the updated {@link DynamoDBDeleteExpression}
      */
     public DynamoDBDeleteExpression addExpressionAttributeValuesEntry(
             String key, AttributeValue value) {
         if (null == this.expressionAttributeValues) {
             this.expressionAttributeValues = new java.util.HashMap<String, AttributeValue>();
         }
-        if (this.expressionAttributeValues.containsKey(key))
+        if (this.expressionAttributeValues.containsKey(key)) {
             throw new IllegalArgumentException("Duplicated keys ("
                     + key.toString() + ") are provided.");
+        }
         this.expressionAttributeValues.put(key, value);
         return this;
     }
@@ -323,6 +355,8 @@ public class DynamoDBDeleteExpression {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     *
+     * @return the updated {@link DynamoDBDeleteExpression}.
      */
     public DynamoDBDeleteExpression clearExpressionAttributeValuesEntries() {
         this.expressionAttributeValues = null;

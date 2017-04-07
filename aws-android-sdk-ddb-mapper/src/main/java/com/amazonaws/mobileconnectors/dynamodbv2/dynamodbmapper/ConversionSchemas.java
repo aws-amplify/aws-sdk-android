@@ -181,7 +181,7 @@ public final class ConversionSchemas {
                 reflector = new DynamoDBReflector();
             }
 
-            S3ClientCache s3cc = dependencies.get(S3ClientCache.class);
+            final S3ClientCache s3cc = dependencies.get(S3ClientCache.class);
 
             return new StandardItemConverter(
                     marshallers,
@@ -217,8 +217,8 @@ public final class ConversionSchemas {
 
         @Override
         public DynamoDBMapperFieldModel getFieldModel(Method getter) {
-            String attributeName = reflector.getAttributeName(getter);
-            ArgumentMarshaller marshaller = getMarshaller(getter);
+            final String attributeName = reflector.getAttributeName(getter);
+            final ArgumentMarshaller marshaller = getMarshaller(getter);
 
             DynamoDBAttributeType attributeType = null;
             if (marshaller instanceof StringAttributeMarshaller) {
@@ -254,7 +254,7 @@ public final class ConversionSchemas {
                 return null;
             }
 
-            ArgumentMarshaller marshaller = getMarshaller(getter);
+            final ArgumentMarshaller marshaller = getMarshaller(getter);
             return marshaller.marshall(object);
         }
 
@@ -264,18 +264,18 @@ public final class ConversionSchemas {
                 return null;
             }
 
-            Class<?> clazz = object.getClass();
-            Map<String, AttributeValue> result =
+            final Class<?> clazz = object.getClass();
+            final Map<String, AttributeValue> result =
                     new HashMap<String, AttributeValue>();
 
-            for (Method getter : reflector.getRelevantGetters(clazz)) {
-                Object getterResult =
+            for (final Method getter : reflector.getRelevantGetters(clazz)) {
+                final Object getterResult =
                         ReflectionUtils.safeInvoke(getter, object);
 
                 if (getterResult != null) {
-                    AttributeValue value = convert(getter, getterResult);
+                    final AttributeValue value = convert(getter, getterResult);
                     if (value != null) {
-                        String name = reflector.getAttributeName(getter);
+                        final String name = reflector.getAttributeName(getter);
                         result.put(name, value);
                     }
                 }
@@ -327,8 +327,8 @@ public final class ConversionSchemas {
                                 + "type " + type + ", which is not parameterized.");
             }
 
-            ParameterizedType ptype = (ParameterizedType) type;
-            Type[] args = ptype.getActualTypeArguments();
+            final ParameterizedType ptype = (ParameterizedType) type;
+            final Type[] args = ptype.getActualTypeArguments();
 
             if (args == null || args.length != 1) {
                 throw new DynamoDBMappingException(
@@ -337,7 +337,7 @@ public final class ConversionSchemas {
                                 + "arguments.");
             }
 
-            ArgumentMarshaller memberMarshaller =
+            final ArgumentMarshaller memberMarshaller =
                     getMemberMarshaller(args[0]);
 
             return new ListToListMarshaller(memberMarshaller);
@@ -350,8 +350,8 @@ public final class ConversionSchemas {
                                 + "type " + type + ", which is not parameterized.");
             }
 
-            ParameterizedType ptype = (ParameterizedType) type;
-            Type[] args = ptype.getActualTypeArguments();
+            final ParameterizedType ptype = (ParameterizedType) type;
+            final Type[] args = ptype.getActualTypeArguments();
 
             if (args == null || args.length != 2) {
                 throw new DynamoDBMappingException(
@@ -365,7 +365,7 @@ public final class ConversionSchemas {
                         "Only Map<String, ?> is supported.");
             }
 
-            ArgumentMarshaller memberMarshaller =
+            final ArgumentMarshaller memberMarshaller =
                     getMemberMarshaller(args[1]);
 
             return new MapToMapMarshaller(memberMarshaller);
@@ -382,7 +382,7 @@ public final class ConversionSchemas {
                         "Cannot convert " + type + " to a class");
             }
 
-            Class<?> clazz = (Class<?>) localType;
+            final Class<?> clazz = (Class<?>) localType;
             if (clazz.getAnnotation(DynamoDBDocument.class) == null) {
                 throw new DynamoDBMappingException(
                         "Cannot marshall type " + type
@@ -399,7 +399,7 @@ public final class ConversionSchemas {
                 Method setter,
                 AttributeValue value) {
 
-            ArgumentUnmarshaller unmarshaller = getUnmarshaller(getter, setter);
+            final ArgumentUnmarshaller unmarshaller = getUnmarshaller(getter, setter);
             return unmarshall(unmarshaller, setter, value);
         }
 
@@ -408,14 +408,14 @@ public final class ConversionSchemas {
                 Class<T> clazz,
                 Map<String, AttributeValue> value) {
 
-            T result = createObject(clazz);
+            final T result = createObject(clazz);
             if (value == null || value.isEmpty()) {
                 return result;
             }
 
-            for (Method m : reflector.getRelevantGetters(clazz)) {
-                String attributeName = reflector.getAttributeName(m);
-                AttributeValue av = value.get(attributeName);
+            for (final Method m : reflector.getRelevantGetters(clazz)) {
+                final String attributeName = reflector.getAttributeName(m);
+                final AttributeValue av = value.get(attributeName);
                 if (av != null) {
                     setValue(result, m, av);
                 }
@@ -429,11 +429,11 @@ public final class ConversionSchemas {
                 Method getter,
                 AttributeValue value) {
 
-            Method setter = reflector.getSetter(getter);
-            ArgumentUnmarshaller unmarshaller =
+            final Method setter = reflector.getSetter(getter);
+            final ArgumentUnmarshaller unmarshaller =
                     getUnmarshaller(getter, setter);
 
-            Object unmarshalled = unmarshall(unmarshaller, setter, value);
+            final Object unmarshalled = unmarshall(unmarshaller, setter, value);
             ReflectionUtils.safeInvoke(setter, target, unmarshalled);
         }
 
@@ -494,8 +494,8 @@ public final class ConversionSchemas {
                                 + "type " + type + ", which is not parameterized.");
             }
 
-            ParameterizedType ptype = (ParameterizedType) type;
-            Type[] args = ptype.getActualTypeArguments();
+            final ParameterizedType ptype = (ParameterizedType) type;
+            final Type[] args = ptype.getActualTypeArguments();
 
             if (args == null || args.length != 1) {
                 throw new DynamoDBMappingException(
@@ -504,7 +504,7 @@ public final class ConversionSchemas {
                                 + "arguments.");
             }
 
-            ArgumentUnmarshaller memberUnmarshaller =
+            final ArgumentUnmarshaller memberUnmarshaller =
                     getMemberUnmarshaller(args[0]);
 
             return new ListUnmarshaller(memberUnmarshaller);
@@ -517,8 +517,8 @@ public final class ConversionSchemas {
                                 + "type " + type + ", which is not parameterized.");
             }
 
-            ParameterizedType ptype = (ParameterizedType) type;
-            Type[] args = ptype.getActualTypeArguments();
+            final ParameterizedType ptype = (ParameterizedType) type;
+            final Type[] args = ptype.getActualTypeArguments();
 
             if (args == null || args.length != 2) {
                 throw new DynamoDBMappingException(
@@ -532,7 +532,7 @@ public final class ConversionSchemas {
                         "Only Map<String, ?> is supported.");
             }
 
-            ArgumentUnmarshaller memberUnmarshaller =
+            final ArgumentUnmarshaller memberUnmarshaller =
                     getMemberUnmarshaller(args[1]);
 
             return new MapUnmarshaller(memberUnmarshaller);
@@ -549,7 +549,7 @@ public final class ConversionSchemas {
                         "Cannot convert " + type + " to a class");
             }
 
-            Class<?> clazz = (Class<?>) localType;
+            final Class<?> clazz = (Class<?>) localType;
             if (clazz.getAnnotation(DynamoDBDocument.class) == null) {
                 throw new DynamoDBMappingException(
                         "Cannot unmarshall to type " + type
@@ -571,12 +571,12 @@ public final class ConversionSchemas {
 
                 return unmarshaller.unmarshall(value);
 
-            } catch (IllegalArgumentException e) {
+            } catch (final IllegalArgumentException e) {
                 throw new DynamoDBMappingException(
                         "Couldn't unmarshall value " + value + " for " + setter,
                         e);
 
-            } catch (ParseException e) {
+            } catch (final ParseException e) {
                 throw new DynamoDBMappingException(
                         "Error attempting to parse date string " + value + " for "
                                 + setter,
@@ -589,11 +589,11 @@ public final class ConversionSchemas {
 
                 return clazz.newInstance();
 
-            } catch (InstantiationException e) {
+            } catch (final InstantiationException e) {
                 throw new DynamoDBMappingException(
                         "Failed to instantiate new instance of class", e);
 
-            } catch (IllegalAccessException e) {
+            } catch (final IllegalAccessException e) {
                 throw new DynamoDBMappingException(
                         "Failed to instantiate new instance of class", e);
             }
@@ -620,7 +620,7 @@ public final class ConversionSchemas {
         }
 
         private static List<Pair<ArgumentMarshaller>> marshallers() {
-            List<Pair<ArgumentMarshaller>> list =
+            final List<Pair<ArgumentMarshaller>> list =
                     new ArrayList<Pair<ArgumentMarshaller>>();
 
             // Use the new V2 boolean marshallers.
@@ -642,7 +642,7 @@ public final class ConversionSchemas {
         }
 
         private static List<Pair<ArgumentMarshaller>> setMarshallers() {
-            List<Pair<ArgumentMarshaller>> list =
+            final List<Pair<ArgumentMarshaller>> list =
                     new ArrayList<Pair<ArgumentMarshaller>>();
 
             // No more Set<Boolean> -> NS or Set<Object> -> SS marshallers
@@ -663,7 +663,7 @@ public final class ConversionSchemas {
         }
 
         private static List<Pair<ArgumentMarshaller>> marshallers() {
-            List<Pair<ArgumentMarshaller>> list =
+            final List<Pair<ArgumentMarshaller>> list =
                     new ArrayList<Pair<ArgumentMarshaller>>();
 
             // Keep the old v1 boolean marshallers for compatibility.
@@ -685,7 +685,7 @@ public final class ConversionSchemas {
         }
 
         private static List<Pair<ArgumentMarshaller>> setMarshallers() {
-            List<Pair<ArgumentMarshaller>> list =
+            final List<Pair<ArgumentMarshaller>> list =
                     new ArrayList<Pair<ArgumentMarshaller>>();
 
             addStandardDateSetMarshallers(list);
@@ -710,7 +710,7 @@ public final class ConversionSchemas {
         }
 
         private static List<Pair<ArgumentMarshaller>> marshallers() {
-            List<Pair<ArgumentMarshaller>> list =
+            final List<Pair<ArgumentMarshaller>> list =
                     new ArrayList<Pair<ArgumentMarshaller>>();
 
             addStandardDateMarshallers(list);
@@ -724,7 +724,7 @@ public final class ConversionSchemas {
         }
 
         private static List<Pair<ArgumentMarshaller>> setMarshallers() {
-            List<Pair<ArgumentMarshaller>> list =
+            final List<Pair<ArgumentMarshaller>> list =
                     new ArrayList<Pair<ArgumentMarshaller>>();
 
             addStandardDateSetMarshallers(list);
@@ -879,10 +879,10 @@ public final class ConversionSchemas {
 
         @Override
         public ArgumentMarshaller getMarshaller(Method getter) {
-            Class<?> returnType = getter.getReturnType();
+            final Class<?> returnType = getter.getReturnType();
 
             if (Set.class.isAssignableFrom(returnType)) {
-                Class<?> memberType =
+                final Class<?> memberType =
                         unwrapGenericSetParam(getter.getGenericReturnType());
 
                 return getSet(getter, memberType);
@@ -893,9 +893,9 @@ public final class ConversionSchemas {
 
         @Override
         public ArgumentMarshaller getMemberMarshaller(Type memberType) {
-            Class<?> clazz = ReflectionUtils.resolveClass(memberType);
+            final Class<?> clazz = ReflectionUtils.resolveClass(memberType);
             if (Set.class.isAssignableFrom(clazz)) {
-                Class<?> setMemberType = unwrapGenericSetParam(memberType);
+                final Class<?> setMemberType = unwrapGenericSetParam(memberType);
                 return getSet(null, setMemberType);
             } else {
                 return getScalar(null, clazz);
@@ -903,7 +903,7 @@ public final class ConversionSchemas {
         }
 
         private ArgumentMarshaller getScalar(Method getter, Class<?> type) {
-            ArgumentMarshaller marshaller = find(type, marshallers);
+            final ArgumentMarshaller marshaller = find(type, marshallers);
             if (marshaller == null) {
 
                 String className = "?";
@@ -923,7 +923,7 @@ public final class ConversionSchemas {
         }
 
         private ArgumentMarshaller getSet(Method getter, Class<?> memberType) {
-            ArgumentMarshaller marshaller = find(memberType, setMarshallers);
+            final ArgumentMarshaller marshaller = find(memberType, setMarshallers);
             if (marshaller == null) {
 
                 String className = "?";
@@ -961,7 +961,7 @@ public final class ConversionSchemas {
         }
 
         private static List<Pair<ArgumentUnmarshaller>> unmarshallers() {
-            List<Pair<ArgumentUnmarshaller>> list =
+            final List<Pair<ArgumentUnmarshaller>> list =
                     new ArrayList<Pair<ArgumentUnmarshaller>>();
 
             list.add(Pair.of(double.class, DoubleUnmarshaller.instance()));
@@ -1011,7 +1011,7 @@ public final class ConversionSchemas {
         }
 
         private static List<Pair<ArgumentUnmarshaller>> setUnmarshallers() {
-            List<Pair<ArgumentUnmarshaller>> list =
+            final List<Pair<ArgumentUnmarshaller>> list =
                     new ArrayList<Pair<ArgumentUnmarshaller>>();
 
             list.add(Pair.of(double.class, DoubleSetUnmarshaller.instance()));
@@ -1079,9 +1079,9 @@ public final class ConversionSchemas {
 
         @Override
         public ArgumentUnmarshaller getMemberUnmarshaller(Type memberType) {
-            Class<?> clazz = ReflectionUtils.resolveClass(memberType);
+            final Class<?> clazz = ReflectionUtils.resolveClass(memberType);
             if (Set.class.isAssignableFrom(clazz)) {
-                Class<?> setMemberType = unwrapGenericSetParam(memberType);
+                final Class<?> setMemberType = unwrapGenericSetParam(memberType);
                 return getSet(null, setMemberType);
             } else {
                 return getScalar(null, clazz);
@@ -1089,7 +1089,7 @@ public final class ConversionSchemas {
         }
 
         private ArgumentUnmarshaller getSet(Method setter, Class<?> paramType) {
-            ArgumentUnmarshaller unmarshaller =
+            final ArgumentUnmarshaller unmarshaller =
                     find(paramType, setUnmarshallers);
 
             String className = "?";
@@ -1111,7 +1111,7 @@ public final class ConversionSchemas {
         }
 
         private ArgumentUnmarshaller getScalar(Method setter, Class<?> type) {
-            ArgumentUnmarshaller unmarshaller = find(type, unmarshallers);
+            final ArgumentUnmarshaller unmarshaller = find(type, unmarshallers);
 
             String className = "?";
             String methodName = "?";
@@ -1139,8 +1139,8 @@ public final class ConversionSchemas {
             return Object.class;
         }
 
-        ParameterizedType ptype = (ParameterizedType) setType;
-        Type[] arguments = ptype.getActualTypeArguments();
+        final ParameterizedType ptype = (ParameterizedType) setType;
+        final Type[] arguments = ptype.getActualTypeArguments();
 
         if (arguments.length != 1) {
             LOGGER.warn("Set type " + setType + " does not have exactly one "
@@ -1149,7 +1149,7 @@ public final class ConversionSchemas {
             return Object.class;
         }
 
-        if (arguments[0].toString().equals("byte[]")) {
+        if ("byte[]".equals(arguments[0].toString())) {
             return byte[].class;
         } else {
             return (Class<?>) arguments[0];
@@ -1157,7 +1157,7 @@ public final class ConversionSchemas {
     }
 
     private static <T> T find(Class<?> needle, List<Pair<T>> haystack) {
-        for (Pair<? extends T> pair : haystack) {
+        for (final Pair<? extends T> pair : haystack) {
             if (pair.key.isAssignableFrom(needle)) {
                 return pair.value;
             }
@@ -1165,7 +1165,7 @@ public final class ConversionSchemas {
         return null;
     }
 
-    private static class Pair<T> {
+    private static final class Pair<T> {
 
         public static Pair<ArgumentMarshaller> of(
                 Class<?> key,
@@ -1181,7 +1181,9 @@ public final class ConversionSchemas {
             return new Pair<ArgumentUnmarshaller>(key, value);
         }
 
+        @SuppressWarnings("checkstyle:visibilitymodifier")
         public final Class<?> key;
+        @SuppressWarnings("checkstyle:visibilitymodifier")
         public final T value;
 
         private Pair(Class<?> key, T value) {
@@ -1201,7 +1203,7 @@ public final class ConversionSchemas {
 
         @Override
         public ArgumentMarshaller getMarshaller(Method getter) {
-            DynamoDBMarshalling annotation =
+            final DynamoDBMarshalling annotation =
                     ReflectionUtils.getAnnotationFromGetterOrField(
                             getter, DynamoDBMarshalling.class);
 
@@ -1209,7 +1211,7 @@ public final class ConversionSchemas {
                 return new CustomMarshaller(annotation.marshallerClass());
             }
 
-            DynamoDBNativeBoolean boolAnnotation =
+            final DynamoDBNativeBoolean boolAnnotation =
                     ReflectionUtils.getAnnotationFromGetterOrField(
                             getter, DynamoDBNativeBoolean.class);
 
@@ -1240,7 +1242,7 @@ public final class ConversionSchemas {
                 Method getter,
                 Method setter) {
 
-            DynamoDBMarshalling annotation =
+            final DynamoDBMarshalling annotation =
                     ReflectionUtils.getAnnotationFromGetterOrField(
                             getter, DynamoDBMarshalling.class);
 

@@ -36,7 +36,7 @@ import java.util.Map.Entry;
  * This class is instantiated instead of {@link AWSRequestMetrics} when request
  * metric collection is required during a particular service request/response
  * cycle.
- * 
+ *
  * @deprecated metrics is deprecated
  */
 @Deprecated
@@ -47,7 +47,7 @@ public class AWSRequestMetricsFullSupport extends AWSRequestMetrics {
     /* A map to store events that are being profiled. */
     private final Map<String, TimingInfo> eventsBeingProfiled = new HashMap<String, TimingInfo>();
     /* Latency Logger */
-    private static final Log latencyLogger = LogFactory.getLog("com.amazonaws.latency");
+    private static final Log LATENCY_LOGGER = LogFactory.getLog("com.amazonaws.latency");
     private static final Object KEY_VALUE_SEPARATOR = "=";
     private static final Object COMMA_SEPARATOR = ", ";
 
@@ -79,8 +79,8 @@ public class AWSRequestMetricsFullSupport extends AWSRequestMetrics {
     @Override
     public void startEvent(String eventName) {
         /* This will overwrite past events */
-        eventsBeingProfiled.put // ignoring the wall clock time
-                (eventName, TimingInfo.startTimingFullSupport(System.nanoTime()));
+        // ignoring the wall clock time
+        eventsBeingProfiled.put(eventName, TimingInfo.startTimingFullSupport(System.nanoTime()));
     }
 
     @Override
@@ -100,8 +100,7 @@ public class AWSRequestMetricsFullSupport extends AWSRequestMetrics {
         TimingInfo event = eventsBeingProfiled.get(eventName);
         /* Somebody tried to end an event that was not started. */
         if (event == null) {
-            LogFactory.getLog(getClass()).warn
-                    ("Trying to end an event which was never started: " + eventName);
+            LogFactory.getLog(getClass()).warn("Trying to end an event which was never started: " + eventName);
             return;
         }
         event.endTiming();
@@ -175,7 +174,7 @@ public class AWSRequestMetricsFullSupport extends AWSRequestMetrics {
 
     @Override
     public void log() {
-        if (latencyLogger.isInfoEnabled()) {
+        if (LATENCY_LOGGER.isInfoEnabled()) {
             StringBuilder builder = new StringBuilder();
 
             for (Entry<String, List<Object>> entry : properties.entrySet()) {
@@ -190,7 +189,7 @@ public class AWSRequestMetricsFullSupport extends AWSRequestMetrics {
                     .getSubMeasurementsByName().entrySet()) {
                 keyValueFormat(entry.getKey(), entry.getValue(), builder);
             }
-            latencyLogger.info(builder.toString());
+            LATENCY_LOGGER.info(builder.toString());
         }
     }
 

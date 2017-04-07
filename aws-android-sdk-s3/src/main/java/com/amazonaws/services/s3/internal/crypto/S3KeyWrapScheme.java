@@ -33,8 +33,8 @@ class S3KeyWrapScheme {
             return "NONE";
         }
     };
-    public static final String AESWrap = "AESWrap";
-    public static final String RSA_ECB_OAEPWithSHA256AndMGF1Padding = "RSA/ECB/OAEPWithSHA-256AndMGF1Padding";
+    public static final String AES_WRAP = "AESWrap";
+    public static final String RSA_ECB_OAEP_WITH_SHA256_AND_MGF1_PADDING = "RSA/ECB/OAEPWithSHA-256AndMGF1Padding";
 
     /**
      * @param key
@@ -44,14 +44,16 @@ class S3KeyWrapScheme {
     String getKeyWrapAlgorithm(Key key) {
         String algorithm = key.getAlgorithm();
         if (S3CryptoScheme.AES.equals(algorithm)) {
-            return AESWrap;
+            return AES_WRAP;
         }
         if (S3CryptoScheme.RSA.equals(algorithm)) {
             if (CryptoRuntime.isRsaKeyWrapAvailable())
-                return RSA_ECB_OAEPWithSHA256AndMGF1Padding;
+                return RSA_ECB_OAEP_WITH_SHA256_AND_MGF1_PADDING;
         }
         return null;
     }
 
-    @Override public String toString() { return "S3KeyWrapScheme"; }
+    @Override public String toString() {
+        return "S3KeyWrapScheme";
+    }
 }

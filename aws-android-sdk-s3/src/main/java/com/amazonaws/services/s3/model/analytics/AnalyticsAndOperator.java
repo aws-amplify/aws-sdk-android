@@ -24,6 +24,10 @@ import java.util.List;
  */
 public class AnalyticsAndOperator extends AnalyticsNAryOperator {
 
+    /**
+     * Constructor.
+     * @param operands the list of AnalyticsFilterPredicate.
+     */
     public AnalyticsAndOperator(List<AnalyticsFilterPredicate> operands) {
         super(operands);
     }

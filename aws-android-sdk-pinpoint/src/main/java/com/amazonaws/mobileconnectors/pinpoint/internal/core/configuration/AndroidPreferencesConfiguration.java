@@ -5,7 +5,7 @@
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,22 +15,20 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.internal.core.configuration;
 
-import static com.amazonaws.mobileconnectors.pinpoint.internal.core.util.Preconditions.checkNotNull;
-
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidPreferences;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.json.JSONException;
+import org.json.JSONObject;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidPreferences;
 
-public class AndroidPreferencesConfiguration  {
+import static com.amazonaws.mobileconnectors.pinpoint.internal.core.util.Preconditions.checkNotNull;
+
+public class AndroidPreferencesConfiguration {
 
     private static final Log log =
             LogFactory.getLog(AndroidPreferencesConfiguration.class);
@@ -41,10 +39,6 @@ public class AndroidPreferencesConfiguration  {
 
     private Map<String, String> properties = new ConcurrentHashMap<String, String>();
 
-    public static AndroidPreferencesConfiguration newInstance(final PinpointContext context) {
-        return new AndroidPreferencesConfiguration(context);
-    }
-
     AndroidPreferencesConfiguration(final PinpointContext context) {
         checkNotNull(context);
 
@@ -53,11 +47,13 @@ public class AndroidPreferencesConfiguration  {
         // load the configuration
         JSONObject configJson = null;
 
-        final AndroidPreferences preferences = getContext().getSystem().getPreferences();
+        final AndroidPreferences preferences = getContext().getSystem()
+                                                       .getPreferences();
         if (preferences != null) {
 
             // load our serialized prefs
-            String configurationJsonString = preferences.getString(CONFIG_KEY, null);
+            String configurationJsonString = preferences.getString(CONFIG_KEY,
+                                                                          null);
             if (configurationJsonString != null) {
                 try {
                     configJson = new JSONObject(configurationJsonString);
@@ -71,6 +67,10 @@ public class AndroidPreferencesConfiguration  {
         updateMappings(configJson);
     }
 
+    public static AndroidPreferencesConfiguration newInstance(final PinpointContext context) {
+        return new AndroidPreferencesConfiguration(context);
+    }
+
     public Long getLong(String propertyName) {
         Long value = null;
         String valueString = properties.get(propertyName);
@@ -79,7 +79,8 @@ public class AndroidPreferencesConfiguration  {
             try {
                 value = Long.decode(valueString);
             } catch (Exception ex) {
-                log.error(String.format("Could not get Long for propertyName: %s", propertyName), ex);
+                log.error(String.format("Could not get Long for propertyName: %s",
+                                               propertyName), ex);
             }
         }
 
@@ -101,7 +102,8 @@ public class AndroidPreferencesConfiguration  {
             try {
                 value = Integer.decode(valueString);
             } catch (Exception ex) {
-                log.error(String.format("Could not get Integer for propertyName: %s", propertyName), ex);
+                log.error(String.format("Could not get Integer for propertyName: %s",
+                                               propertyName), ex);
             }
         }
 
@@ -116,7 +118,8 @@ public class AndroidPreferencesConfiguration  {
             try {
                 value = Double.parseDouble(valueString);
             } catch (Exception ex) {
-                log.error(String.format("Could not get Double for propertyName: %s", propertyName), ex);
+                log.error(String.format("Could not get Double for propertyName: %s",
+                                               propertyName), ex);
             }
         }
 
@@ -131,7 +134,8 @@ public class AndroidPreferencesConfiguration  {
             try {
                 value = Boolean.parseBoolean(valueString);
             } catch (Exception ex) {
-                log.error(String.format("Could not get Boolean for propertyName: %s", propertyName), ex);
+                log.error(String.format("Could not get Boolean for propertyName: %s",
+                                               propertyName), ex);
             }
         }
 
@@ -148,7 +152,8 @@ public class AndroidPreferencesConfiguration  {
                     value = Short.decode(valueString);
                 }
             } catch (Exception ex) {
-                log.error(String.format("Could not get Short for propertyName: %s", propertyName), ex);
+                log.error(String.format("Could not get Short for propertyName: %s",
+                                               propertyName), ex);
             }
         }
 
@@ -189,7 +194,7 @@ public class AndroidPreferencesConfiguration  {
      * Update the property map with the JSON key value pairs
      *
      * @param configJson The Json to add to the map. If null, the internal map
-     *            is empty
+     *                   is empty
      */
     private void updateMappings(JSONObject configJson) {
         HashMap<String, String> newProperties = new HashMap<String, String>();

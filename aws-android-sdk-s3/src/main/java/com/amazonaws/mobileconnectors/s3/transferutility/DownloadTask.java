@@ -15,7 +15,6 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
-import android.util.Log;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferService.NetworkInfoReceiver;
@@ -23,6 +22,9 @@ import com.amazonaws.retry.RetryUtils;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -38,7 +40,8 @@ import java.util.concurrent.Callable;
  */
 class DownloadTask implements Callable<Boolean> {
 
-    private static final String TAG = "DownloadTask";
+    private static final Log LOGGER = LogFactory.getLog(DownloadTask.class);
+    private static final int SIXTEEN_KB = 1024 * 16;
 
     private final AmazonS3 s3;
     private final TransferRecord download;
@@ -76,10 +79,10 @@ class DownloadTask implements Callable<Boolean> {
         final GetObjectRequest getObjectRequest = new GetObjectRequest(download.bucketName,
                 download.key);
         TransferUtility.appendTransferServiceUserAgentString(getObjectRequest);
-        File file = new File(download.file);
-        long bytesCurrent = file.length();
+        final File file = new File(download.file);
+        final long bytesCurrent = file.length();
         if (bytesCurrent > 0) {
-            Log.d(TAG, String.format("Resume transfer %d from %d bytes", download.id,
+            LOGGER.debug(String.format("Resume transfer %d from %d bytes", download.id,
                     bytesCurrent));
             /*
              * Setting the last byte position to －1 means downloading the object
@@ -90,7 +93,7 @@ class DownloadTask implements Callable<Boolean> {
         getObjectRequest.setGeneralProgressListener(updater.newProgressListener(download.id));
 
         try {
-            S3Object object = s3.getObject(getObjectRequest);
+            final S3Object object = s3.getObject(getObjectRequest);
             if (object == null) {
                 updater.throwError(download.id, new IllegalStateException(
                         "AmazonS3.getObject returns null"));
@@ -98,25 +101,25 @@ class DownloadTask implements Callable<Boolean> {
                 return false;
             }
 
-            long bytesTotal = object.getObjectMetadata().getInstanceLength();
+            final long bytesTotal = object.getObjectMetadata().getInstanceLength();
             updater.updateProgress(download.id, bytesCurrent, bytesTotal);
             saveToFile(object.getObjectContent(), file);
             updater.updateProgress(download.id, bytesTotal, bytesTotal);
             updater.updateState(download.id, TransferState.COMPLETED);
             return true;
-        } catch (Exception e) {
+        } catch (final Exception e) {
             if (RetryUtils.isInterrupted(e)) {
                 /*
                  * thread is interrupted by user. don't update the state as it's
                  * set by caller who interrupted
                  */
-                Log.d(TAG, "Transfer " + download.id + " is interrupted by user");
+                LOGGER.debug("Transfer " + download.id + " is interrupted by user");
             } else if (e.getCause() != null && e.getCause() instanceof IOException
                     && !networkInfo.isNetworkConnected()) {
-                Log.d(TAG, "Transfer " + download.id + " waits for network");
+                LOGGER.debug("Transfer " + download.id + " waits for network");
                 updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
             } else {
-                Log.e(TAG, "Failed to download: " + download.id + " due to " + e.getMessage());
+                LOGGER.debug("Failed to download: " + download.id + " due to " + e.getMessage());
                 updater.throwError(download.id, e);
                 updater.updateState(download.id, TransferState.FAILED);
             }
@@ -132,21 +135,21 @@ class DownloadTask implements Callable<Boolean> {
      */
     private void saveToFile(InputStream is, File file) {
         // attempt to create the parent if it doesn't exist
-        File parentDirectory = file.getParentFile();
+        final File parentDirectory = file.getParentFile();
         if (parentDirectory != null && !parentDirectory.exists()) {
             parentDirectory.mkdirs();
         }
 
-        boolean append = file.length() > 0;
+        final boolean append = file.length() > 0;
         OutputStream os = null;
         try {
             os = new BufferedOutputStream(new FileOutputStream(file, append));
-            byte[] buffer = new byte[1024 * 16];
+            final byte[] buffer = new byte[SIXTEEN_KB];
             int bytesRead;
             while ((bytesRead = is.read(buffer)) != -1) {
                 os.write(buffer, 0, bytesRead);
             }
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new AmazonClientException(
                     "Unable to store object contents to disk: " + e.getMessage(), e);
         } finally {
@@ -154,13 +157,13 @@ class DownloadTask implements Callable<Boolean> {
                 if (os != null) {
                     os.close();
                 }
-            } catch (IOException ioe) {
-                // ignore
+            } catch (final IOException ioe) {
+                LOGGER.warn("got exception", ioe);
             }
             try {
                 is.close();
-            } catch (IOException ioe) {
-                // ignore
+            } catch (final IOException ioe) {
+                LOGGER.warn("got exception", ioe);
             }
         }
     }

@@ -21,11 +21,16 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
  * An unmarshaller that unmarshals DynamoDB Strings as Java {@code String}
  * objects.
  */
-public class StringUnmarshaller extends SUnmarshaller {
+public final class StringUnmarshaller extends SUnmarshaller {
 
     private static final StringUnmarshaller INSTANCE =
             new StringUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link StringUnmarshaller}
+     */
     public static StringUnmarshaller instance() {
         return INSTANCE;
     }

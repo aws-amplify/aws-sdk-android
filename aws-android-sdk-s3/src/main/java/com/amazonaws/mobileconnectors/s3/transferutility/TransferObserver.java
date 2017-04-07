@@ -253,18 +253,22 @@ public class TransferObserver {
      * A listener that can update the {@link TransferObserver}.
      */
     private class TransferStatusListener implements TransferListener {
+
         @Override
+        @SuppressWarnings("checkstyle:hiddenfield")
         public void onStateChanged(int id, TransferState state) {
             transferState = state;
         }
 
         @Override
+        @SuppressWarnings("checkstyle:hiddenfield")
         public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
             TransferObserver.this.bytesTransferred = bytesCurrent;
             TransferObserver.this.bytesTotal = bytesTotal;
         }
 
         @Override
+        @SuppressWarnings("checkstyle:hiddenfield")
         public void onError(int id, Exception ex) {
             // do nothing
         }

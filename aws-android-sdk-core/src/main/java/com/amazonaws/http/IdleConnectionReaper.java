@@ -45,12 +45,13 @@ public final class IdleConnectionReaper extends Thread {
 
     /** The period between invocations of the idle connection reaper. */
     private static final int PERIOD_MILLISECONDS = 1000 * 60 * 1;
+    private static final int MINUTE_IN_SECONDS = 60;
 
     /**
      * The list of registered connection managers, whose connections will be
      * periodically checked and idle connections closed.
      */
-    private static final ArrayList<ClientConnectionManager> connectionManagers = new ArrayList<ClientConnectionManager>();
+    private static final ArrayList<ClientConnectionManager> CONNECTION_MANAGERS = new ArrayList<ClientConnectionManager>();
     /**
      * Set to true when shutting down the reaper; Once set to true, this flag is
      * never set back to false.
@@ -71,7 +72,7 @@ public final class IdleConnectionReaper extends Thread {
 
     /**
      * Registers the given connection manager with this reaper;
-     *
+     * @param connectionManager the connection manager.
      * @return true if the connection manager has been successfully registered;
      *         false otherwise.
      */
@@ -81,20 +82,20 @@ public final class IdleConnectionReaper extends Thread {
             instance = new IdleConnectionReaper();
             instance.start();
         }
-        return connectionManagers.add(connectionManager);
+        return CONNECTION_MANAGERS.add(connectionManager);
     }
 
     /**
      * Removes the given connection manager from this reaper, and shutting down
      * the reaper if there is zero connection manager left.
-     *
+     * @param connectionManager the connection manager.
      * @return true if the connection manager has been successfully removed;
      *         false otherwise.
      */
     public static synchronized boolean removeConnectionManager(
             ClientConnectionManager connectionManager) {
-        boolean b = connectionManagers.remove(connectionManager);
-        if (connectionManagers.isEmpty())
+        boolean b = CONNECTION_MANAGERS.remove(connectionManager);
+        if (CONNECTION_MANAGERS.isEmpty())
             shutdown();
         return b;
     }
@@ -103,7 +104,7 @@ public final class IdleConnectionReaper extends Thread {
         shuttingDown = true;
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "checkstyle:hiddenfield"})
     @Override
     public void run() {
         while (true) {
@@ -122,7 +123,7 @@ public final class IdleConnectionReaper extends Thread {
                 // than block/lock while this loop executes).
                 List<ClientConnectionManager> connectionManagers = null;
                 synchronized (IdleConnectionReaper.class) {
-                    connectionManagers = (List<ClientConnectionManager>) IdleConnectionReaper.connectionManagers
+                    connectionManagers = (List<ClientConnectionManager>) IdleConnectionReaper.CONNECTION_MANAGERS
                             .clone();
                 }
                 for (ClientConnectionManager connectionManager : connectionManagers) {
@@ -131,7 +132,7 @@ public final class IdleConnectionReaper extends Thread {
                     // open so they can be reused. We want to close out any idle
                     // connections so that they don't sit around in CLOSE_WAIT.
                     try {
-                        connectionManager.closeIdleConnections(60, TimeUnit.SECONDS);
+                        connectionManager.closeIdleConnections(MINUTE_IN_SECONDS, TimeUnit.SECONDS);
                     } catch (Exception t) {
                         log.warn("Unable to close idle connections", t);
                     }
@@ -157,7 +158,7 @@ public final class IdleConnectionReaper extends Thread {
         if (instance != null) {
             instance.markShuttingDown();
             instance.interrupt();
-            connectionManagers.clear();
+            CONNECTION_MANAGERS.clear();
             instance = null;
             return true;
         }
@@ -169,6 +170,6 @@ public final class IdleConnectionReaper extends Thread {
      * monitored by this reaper.
      */
     static synchronized int size() {
-        return connectionManagers.size();
+        return CONNECTION_MANAGERS.size();
     }
 }

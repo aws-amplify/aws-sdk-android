@@ -27,18 +27,21 @@ public interface LifecyclePredicateVisitor {
     /**
      * Implement this method to add behaviour performed when
      * {@link LifecyclePrefixPredicate} is visited.
+     * @param lifecyclePrefixPredicate the LifecyclePrefixPredicate.
      */
     public void visit(LifecyclePrefixPredicate lifecyclePrefixPredicate);
 
     /**
      * Implement this method to add behaviour performed when
      * {@link LifecycleTagPredicate} is visited.
+     * @param lifecycleTagPredicate the LifecycleTagPredicate.
      */
     public void visit(LifecycleTagPredicate lifecycleTagPredicate);
 
     /**
      * Implement this method to add behaviour performed when
      * {@link LifecycleAndOperator} is visited.
+     * @param lifecycleAndOperator the LifecycleAndOperator.
      */
     public void visit(LifecycleAndOperator lifecycleAndOperator);
 }

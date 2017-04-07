@@ -21,11 +21,19 @@ import com.amazonaws.util.json.AwsJsonToken;
 import java.util.ArrayList;
 import java.util.List;
 
+/***
+ * The ListUnmarshaller class.
+ * @param <T> the class type.
+ */
 public class ListUnmarshaller<T>
         implements Unmarshaller<List<T>, JsonUnmarshallerContext> {
 
     private final Unmarshaller<T, JsonUnmarshallerContext> itemUnmarshaller;
 
+    /**
+     * Constructor.
+     * @param itemUnmarshaller the item unmarshaller.
+     */
     public ListUnmarshaller(
             Unmarshaller<T, JsonUnmarshallerContext> itemUnmarshaller) {
         this.itemUnmarshaller = itemUnmarshaller;

@@ -18,9 +18,9 @@ package com.amazonaws.mobileconnectors.cognito;
 
 import android.os.Bundle;
 import android.content.Intent;
-import android.util.Log;
 
 import com.amazonaws.services.cognitosync.model.InvalidParameterException;
+
 
 /**
  * A class to keep handy the data that is given in a push sync message, for the
@@ -37,7 +37,7 @@ public class PushSyncUpdate {
     private final long syncCount;
 
     PushSyncUpdate(Intent intent) {
-        if(!isPushSyncUpdate(intent)) {
+        if (!isPushSyncUpdate(intent)) {
             throw new InvalidParameterException("Invalid bundle, only messages from Cognito for push sync are valid");
         }
         else {
@@ -52,6 +52,7 @@ public class PushSyncUpdate {
 
     /**
      * Gets the source of the notification, 'cognito-sync' from push sync
+     * @return source the sync source
      */
     public String getSource() {
         return source;
@@ -59,6 +60,7 @@ public class PushSyncUpdate {
 
     /**
      * Gets the identity id for which the change was made
+     * @return identityId the identity id associated with the dataset
      */
     public String getIdentityId() {
         return identityId;
@@ -66,13 +68,15 @@ public class PushSyncUpdate {
 
     /**
      * Gets the identity pool in which the user belongs
+     * @return identityPoolId identity pool id associated with the dataset
      */
     public String getIdentityPoolId() {
         return identityPoolId;
     }
 
     /**
-     * Gets the name of the changed datset
+     * Gets the name of the changed dataset
+     * @return datasetName the dataset name
      */
     public String getDatasetName() {
         return datasetName;
@@ -80,6 +84,7 @@ public class PushSyncUpdate {
 
     /**
      * Gets the sync count of the changed dataset
+     * @return syncCount the current sync count
      */
     public long getSyncCount() {
         return syncCount;
@@ -94,7 +99,7 @@ public class PushSyncUpdate {
      * @param intent the intent to check the validity of format of
      * @return true if it's a push sync update, false if not.
      */
-    public static boolean isPushSyncUpdate(Intent intent){
+    public static boolean isPushSyncUpdate(Intent intent) {
         return intent != null && (intent.hasExtra("source") && intent.hasExtra("identityPoolId") 
                 && intent.hasExtra("identityId") && intent.hasExtra("datasetName") && intent.hasExtra("syncCount"));
     }

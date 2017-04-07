@@ -19,16 +19,25 @@ package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
  * Marshaller interface for storing complex types in DynamoDB as Strings.
  * Implementors provide methods to transform instances of a class to and from
  * Strings.
+ *
+ * @param <T> the type of object to be marshalled.
  */
 public interface DynamoDBMarshaller<T extends Object> {
 
     /**
      * Turns an object of type T into its String representation.
+     *
+     * @param getterReturnResult the object of type T
+     * @return marshalled string from object.
      */
     public String marshall(T getterReturnResult);
 
     /**
      * Turns a String representation of an object of type T into an object.
+     *
+     * @param clazz the class of type T to unmarshall.
+     * @param obj the string to unmarshall from.
+     * @return an instance of type T.
      */
     public T unmarshall(Class<T> clazz, String obj);
 }

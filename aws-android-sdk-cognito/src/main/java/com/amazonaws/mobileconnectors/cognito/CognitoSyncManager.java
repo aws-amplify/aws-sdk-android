@@ -20,13 +20,11 @@ package com.amazonaws.mobileconnectors.cognito;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.auth.IdentityChangedListener;
-import com.amazonaws.mobileconnectors.cognito.exceptions.DataStorageException;
 import com.amazonaws.mobileconnectors.cognito.exceptions.RegistrationFailedException;
 import com.amazonaws.mobileconnectors.cognito.exceptions.UnsubscribeFailedException;
 import com.amazonaws.mobileconnectors.cognito.internal.storage.CognitoSyncStorage;
@@ -42,6 +40,9 @@ import com.amazonaws.util.VersionInfoUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * This saves {@link Dataset} in SQLite database. Here is a sample usage:
@@ -61,7 +62,7 @@ import java.util.List;
 
 public class CognitoSyncManager {
 
-    private static final String TAG = "CognitoSyncManager";
+    private static final Log LOGGER = LogFactory.getLog(CognitoSyncManager.class);
 
     /**
      * User agent string to append to all requests to the remote service
@@ -131,11 +132,11 @@ public class CognitoSyncManager {
             @Override
             public void identityChanged(String oldIdentityId, String newIdentityId) {
                 if (newIdentityId != null) {
-                    Log.i(TAG, "identity change detected");
+                    LOGGER.info("identity change detected");
                     local.changeIdentityId(
                             oldIdentityId == null ? DatasetUtils.UNKNOWN_IDENTITY_ID
                                     : oldIdentityId,
-                            newIdentityId);
+                                    newIdentityId);
                 }
             }
         });
@@ -200,10 +201,8 @@ public class CognitoSyncManager {
      * until you sync each dataset. Note: this is a network request, so calling
      * this method in the main thread will result in
      * NetworkOnMainThreadException.
-     *
-     * @throws DataStorageException thrown when fail to refresh dataset metadata
      */
-    public void refreshDatasetMetadata() throws DataStorageException {
+    public void refreshDatasetMetadata() {
         List<DatasetMetadata> datasets = remote.getDatasets();
         local.updateDatasetMetadata(getIdentityId(), datasets);
     }
@@ -217,7 +216,7 @@ public class CognitoSyncManager {
     public void wipeData() {
         provider.clear();
         local.wipeData();
-        Log.i(TAG, "All data has been wiped");
+        LOGGER.info("All data has been wiped");
     }
 
     String getIdentityId() {
@@ -238,16 +237,16 @@ public class CognitoSyncManager {
         SharedPreferences sp = getSharedPreferences();
 
         if (isDeviceRegistered()) {
-            Log.i(TAG, "Device is already registered");
+            LOGGER.info("Device is already registered");
             return;
         }
 
         String identityId = provider.getIdentityId();
         RegisterDeviceRequest request = new RegisterDeviceRequest()
-                .withIdentityPoolId(provider.getIdentityPoolId())
-                .withIdentityId(identityId)
-                .withPlatform(platform)
-                .withToken(token);
+            .withIdentityPoolId(provider.getIdentityPoolId())
+            .withIdentityId(identityId)
+            .withPlatform(platform)
+            .withToken(token);
 
         try {
             RegisterDeviceResult result = syncClient.registerDevice(request);
@@ -255,10 +254,10 @@ public class CognitoSyncManager {
             sp.edit().putString(namespaceId("platform"), platform).apply();
             String deviceId = result.getDeviceId();
             sp.edit().putString(namespaceIdPlatform("deviceId"), deviceId)
-                    .apply();
-            Log.i(TAG, "Device is registered successfully: " + deviceId);
+            .apply();
+            LOGGER.info("Device is registered successfully: " + deviceId);
         } catch (AmazonClientException ace) {
-            Log.e(TAG, "Failed to register device", ace);
+            LOGGER.error("Failed to register device", ace);
             throw new RegistrationFailedException("Failed to register device", ace);
         }
     }
@@ -271,7 +270,7 @@ public class CognitoSyncManager {
      * @return the device id of the current user's device
      */
     public String getDeviceId() {
-    	return getSharedPreferences().getString(namespaceIdPlatform("deviceId"), "");
+        return getSharedPreferences().getString(namespaceIdPlatform("deviceId"), "");
     }
 
     /**
@@ -301,8 +300,8 @@ public class CognitoSyncManager {
         if (provider.getCachedIdentityId() != null) {
             SharedPreferences sp = getSharedPreferences();
             sp.edit().remove(namespaceIdPlatform("deviceId"))
-                    .remove(namespaceId("platform"))
-                    .apply();
+            .remove(namespaceId("platform"))
+            .apply();
         }
     }
 
@@ -359,7 +358,7 @@ public class CognitoSyncManager {
                 dataset.unsubscribe();
             } catch (UnsubscribeFailedException ufe) {
                 if (ufe.getCause() instanceof ResourceNotFoundException) {
-                    Log.w(TAG, "Unable to unsubscribe to dataset " + datasetName +
+                    LOGGER.warn("Unable to unsubscribe to dataset " + datasetName +
                             ", dataset not a subscription");
                 }
                 else {
@@ -376,7 +375,7 @@ public class CognitoSyncManager {
      * return an empty object. PushSyncUpdate.isPushSyncUpdate(Intent intent)
      * can be used to confirm.
      *
-     * @param extras the bundle returned from the intent.getExtras() call
+     * @param intent for extra the bundle returned from the intent.getExtras() call
      * @return the PushSyncUpdate that bundle is converted to
      */
     public PushSyncUpdate getPushSyncUpdate(Intent intent) {

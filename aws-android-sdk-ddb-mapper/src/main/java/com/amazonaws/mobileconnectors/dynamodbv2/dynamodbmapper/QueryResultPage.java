@@ -22,6 +22,8 @@ import java.util.Map;
 
 /**
  * Container for a page of query results
+ *
+ * @param <T> the typed result.
  */
 public class QueryResultPage<T> {
 
@@ -30,6 +32,8 @@ public class QueryResultPage<T> {
 
     /**
      * Returns all matching items for this page of query results.
+     *
+     * @return the typed result.
      */
     public List<T> getResults() {
         return results;

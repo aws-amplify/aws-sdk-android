@@ -25,7 +25,7 @@ public interface OnFileDelete {
      * Called upon a file deletion event.
      * <p>
      * Implementation of this method should never block.
-     * 
+     *
      * @param event
      *            file deletion event
      */

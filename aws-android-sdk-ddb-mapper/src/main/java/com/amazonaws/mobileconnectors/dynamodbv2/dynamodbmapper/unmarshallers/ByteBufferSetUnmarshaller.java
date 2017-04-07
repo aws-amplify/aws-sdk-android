@@ -24,11 +24,16 @@ import java.util.HashSet;
  * An unmarshaller that unmarshals BinarySet values as sets of Java
  * {@code ByteBuffer}s.
  */
-public class ByteBufferSetUnmarshaller extends BSUnmarshaller {
+public final class ByteBufferSetUnmarshaller extends BSUnmarshaller {
 
     private static final ByteBufferSetUnmarshaller INSTANCE =
             new ByteBufferSetUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link ByteBufferSetUnmarshaller}
+     */
     public static ByteBufferSetUnmarshaller instance() {
         return INSTANCE;
     }

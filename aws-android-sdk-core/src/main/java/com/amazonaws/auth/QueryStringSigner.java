@@ -43,7 +43,7 @@ public class QueryStringSigner extends AbstractAWSSigner implements Signer {
      * @param credentials The credentials used to use to sign the request.
      */
     @Override
-    public void sign(Request<?> request, AWSCredentials credentials) throws AmazonClientException {
+    public void sign(Request<?> request, AWSCredentials credentials) {
         sign(request, SignatureVersion.V2, SigningAlgorithm.HmacSHA256, credentials);
     }
 
@@ -54,9 +54,10 @@ public class QueryStringSigner extends AbstractAWSSigner implements Signer {
      * @param request request to be signed.
      * @param version signature version. "2" is recommended.
      * @param algorithm signature algorithm. "HmacSHA256" is recommended.
+     * @param credentials AWS credentials.
      */
     public void sign(Request<?> request, SignatureVersion version, SigningAlgorithm algorithm,
-            AWSCredentials credentials) throws AmazonClientException {
+            AWSCredentials credentials) {
         // annonymous credentials, don't sign
         if (credentials instanceof AnonymousAWSCredentials) {
             return;
@@ -115,7 +116,7 @@ public class QueryStringSigner extends AbstractAWSSigner implements Signer {
      * @return String to sign
      * @throws AmazonClientException If the string to sign cannot be calculated.
      */
-    private String calculateStringToSignV2(Request<?> request) throws AmazonClientException {
+    private String calculateStringToSignV2(Request<?> request) {
         URI endpoint = request.getEndpoint();
         Map<String, String> parameters = request.getParameters();
 

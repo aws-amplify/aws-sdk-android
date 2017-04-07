@@ -130,6 +130,7 @@ public class HttpRequest {
         return isStreaming;
     }
 
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setStreaming(boolean isStreaming) {
         this.isStreaming = isStreaming;
     }

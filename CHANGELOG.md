@@ -1,4 +1,16 @@
 # Change Log - AWS SDK for Android
+## [Release 2.4.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.1)
+
+### New Features:
+- **Support for Amazon Cloudwatch Logs**: Amazon CloudWatch is a monitoring service for AWS cloud resources and the applications you run on AWS. You can use Amazon CloudWatch to collect and track metrics, collect and monitor log files, and set alarms.
+
+### Bug Fixes:
+- **Amazon IoT**: fix an issue which triggers `NetworkOnMainThreadException` when calling `reconnectToSession()`. See [issue #261](https://github.com/aws/aws-sdk-android/issues/261)
+- **Amazon S3**: fixed maven dependencies. See [issue #276](https://github.com/aws/aws-sdk-android/issues/276) & [issue #268](https://github.com/aws/aws-sdk-android/issues/268)
+- **Amazon S3**: fixed an issue which caused resource path to be incorrectly encoded.See [AWS Forum Post](https://forums.aws.amazon.com/thread.jspa?threadID=252898)
+- **General**: checkstyle fixes across the sdk.
+- **General**: move all sdk's to use commons logging instead of LogCat.
+
 ## [Release 2.4.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.0) (03/21/2017)
 
 ### Improvements:
@@ -36,7 +48,7 @@
 - **Amazon Pinpoint**: Fixed a bug that caused a crash when opening a deep link. See [issue #246](https://github.com/aws/aws-sdk-android/pull/246).
 - **Amazon Lex**: Fix incorrect comparison for dialog states. See [issue #245](https://github.com/aws/aws-sdk-android/pull/245).
 
-## [Release 2.3.8](https://github.com/aws/aws-sdk-android/release/tag/release_v2.3.8) (12/20/2016)
+## [Release 2.3.8] (https://github.com/aws/aws-sdk-android/release/tag/release_v2.3.8) (12/20/2016)
 
 ### Bug Fixes:
 

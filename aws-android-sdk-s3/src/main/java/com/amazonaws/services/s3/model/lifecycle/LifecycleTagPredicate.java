@@ -25,6 +25,10 @@ public final class LifecycleTagPredicate extends LifecycleFilterPredicate {
 
     private final Tag tag;
 
+    /**
+     * Constructor.
+     * @param tag the tag.
+     */
     public LifecycleTagPredicate(Tag tag) {
         this.tag = tag;
     }

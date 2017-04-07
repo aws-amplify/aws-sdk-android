@@ -63,9 +63,10 @@ public abstract class RequestHandler2 {
             Exception e);
 
     /**
-     * Returns an instance of request handler adapted to the
+     * @return an instance of request handler adapted to the
      * {@link RequestHandler2} interface from the given request handler
      * implementing the deprecated {@link RequestHandler} interface.
+     * @param old the request handler.
      */
     public static RequestHandler2 adapt(
             @SuppressWarnings("deprecation")

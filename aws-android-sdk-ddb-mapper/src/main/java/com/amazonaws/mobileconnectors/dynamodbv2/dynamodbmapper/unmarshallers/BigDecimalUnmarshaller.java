@@ -23,11 +23,16 @@ import java.math.BigDecimal;
  * An unmarshaller that unmarshals DynamoDB Numbers into Java {@code BigDecimal}
  * s.
  */
-public class BigDecimalUnmarshaller extends NUnmarshaller {
+public final class BigDecimalUnmarshaller extends NUnmarshaller {
 
     private static final BigDecimalUnmarshaller INSTANCE =
             new BigDecimalUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link BigDecimalUnmarshaller}
+     */
     public static BigDecimalUnmarshaller instance() {
         return INSTANCE;
     }

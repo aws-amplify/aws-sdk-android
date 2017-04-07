@@ -25,11 +25,16 @@ import java.util.Date;
  * A marshaller that marshals Java {@code Date} objects into DynamoDB Strings
  * (in ISO 8601 format, ie "2014-01-01T00:00:00Z").
  */
-public class DateToStringMarshaller implements StringAttributeMarshaller {
+public final class DateToStringMarshaller implements StringAttributeMarshaller {
 
     private static final DateToStringMarshaller INSTANCE =
             new DateToStringMarshaller();
 
+    /**
+     * Return a singleton instance.
+     *
+     * @return instance of {@link DateToStringMarshaller}
+     */
     public static DateToStringMarshaller instance() {
         return INSTANCE;
     }

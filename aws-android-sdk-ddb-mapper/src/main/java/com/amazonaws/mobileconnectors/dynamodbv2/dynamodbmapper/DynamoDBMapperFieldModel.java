@@ -15,19 +15,70 @@
 
 package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
+/**
+ * A class that converts the variable to DynamoDB field.
+ */
 public class DynamoDBMapperFieldModel {
 
+    /**
+     * The DynamoDB Attribute types.
+     *
+     * @author saligram
+     */
     public enum DynamoDBAttributeType {
-        S, N, B,
-        SS, NS, BS,
-        BOOL, NULL,
-        L, M
+        /**
+         * DynamoDB String.
+         */
+        S,
+        /**
+         * DynamoDB Number.
+         */
+        N,
+        /**
+         * DynamoDB Binary.
+         */
+        B,
+        /**
+         * DynamoDB String Set.
+         */
+        SS,
+        /**
+         * DynamoDB Number Set.
+         */
+        NS,
+        /**
+         * DynamoDB Binary Set.
+         */
+        BS,
+        /**
+         * DynamoDB Boolean.
+         */
+        BOOL,
+        /**
+         * DynamoDB Null.
+         */
+        NULL,
+        /**
+         * DynamoDB List.
+         */
+        L,
+        /**
+         * DynamoDB Map.
+         */
+        M
     }
 
     private final String dynamoDBAttributeName;
     private final DynamoDBAttributeType dynamoDBAttributeType;
     private final ArgumentMarshaller argumentMarshaller;
 
+    /**
+     * Constructor.
+     *
+     * @param dynamoDBAttributeName the attribute name.
+     * @param dynamoDBAttributeType the attribute type.
+     * @param argumentMarshaller the argument marshaller.
+     */
     public DynamoDBMapperFieldModel(
             String dynamoDBAttributeName,
             DynamoDBAttributeType dynamoDBAttributeType,
@@ -40,6 +91,8 @@ public class DynamoDBMapperFieldModel {
     /**
      * Returns the name of the DynamoDB attribute this mapped field will be
      * stored as.
+     *
+     * @return the dynamodb attribute name.
      */
     public String getDynamoDBAttributeName() {
         return dynamoDBAttributeName;
@@ -48,6 +101,8 @@ public class DynamoDBMapperFieldModel {
     /**
      * Returns the type of the DynamoDB attribute this mapped field will be
      * stored as.
+     *
+     * @return the {@link DynamoDBAttributeType}
      */
     public DynamoDBAttributeType getDynamoDBAttributeType() {
         return dynamoDBAttributeType;
@@ -56,6 +111,8 @@ public class DynamoDBMapperFieldModel {
     /**
      * (Internal usage only) Returns the argument marshaller that is bound to
      * this mapped field.
+     *
+     * @return the {@link ArgumentMarshaller}
      */
     ArgumentMarshaller getArgumentMarshaller() {
         return argumentMarshaller;

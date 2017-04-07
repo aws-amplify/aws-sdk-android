@@ -19,6 +19,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
+/**
+ * The class loader helper class.
+ */
+@SuppressWarnings({"checkstyle:nowhitespacebefore", "checkstyle:emptyblock"})
 public enum ClassLoaderHelper {
     ;
     /**

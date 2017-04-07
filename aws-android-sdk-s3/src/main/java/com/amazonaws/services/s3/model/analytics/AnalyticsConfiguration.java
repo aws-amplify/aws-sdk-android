@@ -26,6 +26,7 @@ public class AnalyticsConfiguration implements Serializable {
 
     /**
      * Returns the identifier used to represent an analytics configuration.
+     * @return id
      */
     public String getId() {
         return id;
@@ -33,6 +34,7 @@ public class AnalyticsConfiguration implements Serializable {
 
     /**
      * Sets the identifier used to represent an analytics configuration.
+     * @param id the id.
      */
     public void setId(String id) {
         this.id = id;
@@ -42,14 +44,17 @@ public class AnalyticsConfiguration implements Serializable {
      * Sets the identifier used to represent an analytics configuration
      * and returns the {@link AnalyticsConfiguration} object
      * for method chaining.
+     * @param id the id.
+     * @return this instance with the specified id.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public AnalyticsConfiguration withId(String id) {
         setId(id);
         return this;
     }
 
     /**
-     * Returns the filter used to describe a set of objects for analysis.
+     * @return the filter used to describe a set of objects for analysis.
      */
     public AnalyticsFilter getFilter() {
         return filter;
@@ -58,6 +63,7 @@ public class AnalyticsConfiguration implements Serializable {
     /**
      * Sets the filter used to describe a set of objects for analysis.
      * If no filter is provided, all objects will be considered in any analysis.
+     * @param filter used to describe a set of objects for analysis.
      */
     public void setFilter(AnalyticsFilter filter) {
         this.filter = filter;
@@ -68,7 +74,10 @@ public class AnalyticsConfiguration implements Serializable {
      * If no filter is provided, all objects will be considered in any analysis.
      *
      * The {@link AnalyticsConfiguration} object is returned for method chaining.
+     * @param filter used to describe a set of objects for analysis.
+     * @return this instance wth the specified filter.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public AnalyticsConfiguration withFilter(AnalyticsFilter filter) {
         setFilter(filter);
         return this;
@@ -78,6 +87,7 @@ public class AnalyticsConfiguration implements Serializable {
      * Returns the {@link StorageClassAnalysis} object.
      * If present, it indicates that data related to access patterns will be collected
      * and made available to analyze the tradeoffs between different storage classes.
+     * @return {@link StorageClassAnalysis} object.
      */
     public StorageClassAnalysis getStorageClassAnalysis() {
         return storageClassAnalysis;
@@ -86,6 +96,7 @@ public class AnalyticsConfiguration implements Serializable {
     /**
      * Sets the StorageClassAnalysis object which indicates that data related to access patterns
      * will be collected and made available to analyze the tradeoffs between different storage classes.
+     * @param storageClassAnalysis the storage class analysis.
      */
     public void setStorageClassAnalysis(StorageClassAnalysis storageClassAnalysis) {
         this.storageClassAnalysis = storageClassAnalysis;
@@ -96,7 +107,10 @@ public class AnalyticsConfiguration implements Serializable {
      * will be collected and made available to analyze the tradeoffs between different storage classes.
      *
      * The {@link AnalyticsConfiguration} object is returned for method chaining.
+     * @param storageClassAnalysis the storage class analysis.
+     * @return this instance with the specified storage class analysis.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public AnalyticsConfiguration withStorageClassAnalysis(StorageClassAnalysis storageClassAnalysis) {
         setStorageClassAnalysis(storageClassAnalysis);
         return this;

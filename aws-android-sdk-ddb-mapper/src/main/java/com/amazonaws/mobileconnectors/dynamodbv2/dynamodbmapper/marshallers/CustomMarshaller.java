@@ -28,6 +28,11 @@ public class CustomMarshaller implements StringAttributeMarshaller {
 
     private final Class<? extends DynamoDBMarshaller<?>> marshallerClass;
 
+    /**
+     * Constructor.
+     *
+     * @param marshallerClass an instance of marshaller.
+     */
     public CustomMarshaller(
             Class<? extends DynamoDBMarshaller<?>> marshallerClass) {
 
@@ -41,10 +46,10 @@ public class CustomMarshaller implements StringAttributeMarshaller {
         // do that now without a breaking change; user's marshalers might
         // not all be thread-safe.
 
-        DynamoDBMarshaller<Object> marshaler =
+        final DynamoDBMarshaller<Object> marshaler =
                 createMarshaller(marshallerClass);
 
-        String stringValue = marshaler.marshall(obj);
+        final String stringValue = marshaler.marshall(obj);
 
         if (stringValue == null) {
             return null;
@@ -59,12 +64,12 @@ public class CustomMarshaller implements StringAttributeMarshaller {
 
             return (DynamoDBMarshaller<Object>) clazz.newInstance();
 
-        } catch (InstantiationException e) {
+        } catch (final InstantiationException e) {
             throw new DynamoDBMappingException(
                     "Failed to instantiate custom marshaler for class " + clazz,
                     e);
 
-        } catch (IllegalAccessException e) {
+        } catch (final IllegalAccessException e) {
             throw new DynamoDBMappingException(
                     "Failed to instantiate custom marshaler for class " + clazz,
                     e);

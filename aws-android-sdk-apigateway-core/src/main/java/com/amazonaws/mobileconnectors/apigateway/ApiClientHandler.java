@@ -56,11 +56,14 @@ import java.util.Map;
 class ApiClientHandler implements InvocationHandler {
 
 
-    private static final Gson gson = new GsonBuilder()
+    private static final Gson GSON_WITH_DATE_FORMATTER = new GsonBuilder()
             .registerTypeAdapter(Date.class, new DateDeserializer(new String[] {
-                    DateUtils.ISO8601_DATE_PATTERN, DateUtils.ALTERNATE_ISO8601_DATE_PATTERN,
-                    DateUtils.COMPRESSED_DATE_PATTERN, DateUtils.RFC822_DATE_PATTERN
+                DateUtils.ISO8601_DATE_PATTERN, DateUtils.ALTERNATE_ISO8601_DATE_PATTERN,
+                DateUtils.COMPRESSED_DATE_PATTERN, DateUtils.RFC822_DATE_PATTERN
             })).create();
+
+    private static final int HTTP_RESPONSE_OK = 200;
+    private static final int HTTP_RESPONSE_LAST_SUCCESS_STATUSCODE = 300;
 
     private final String endpoint;
     private final String apiName;
@@ -162,7 +165,7 @@ class ApiClientHandler implements InvocationHandler {
                 if (content != null) {
                     throw new IllegalStateException("Can't have more than one Body");
                 }
-                content = args[i] == null ? null : gson.toJson(args[i]);
+                content = args[i] == null ? null : GSON_WITH_DATE_FORMATTER.toJson(args[i]);
                 continue;
             }
 
@@ -271,12 +274,12 @@ class ApiClientHandler implements InvocationHandler {
         final int code = response.getStatusCode();
         final InputStream content = response.getContent();
         // successful request if code is 2xx
-        if (code >= 200 && code < 300) {
+        if (code >= HTTP_RESPONSE_OK && code < HTTP_RESPONSE_LAST_SUCCESS_STATUSCODE) {
             final Type t = method.getReturnType();
             if (t != void.class && content != null) {
                 final Reader reader = new InputStreamReader(response.getContent(),
                         StringUtils.UTF8);
-                final Object obj = gson.fromJson(reader, t);
+                final Object obj = GSON_WITH_DATE_FORMATTER.fromJson(reader, t);
                 reader.close();
                 return obj;
             } else {
@@ -301,7 +304,7 @@ class ApiClientHandler implements InvocationHandler {
 
     boolean isExecuteMethod(Method method) {
         final Operation op = method.getAnnotation(Operation.class);
-        return op == null && method.getName().equalsIgnoreCase("execute")
+        return op == null && "execute".equalsIgnoreCase(method.getName())
                 && method.getReturnType().isAssignableFrom(ApiResponse.class)
                 && method.getParameterTypes().length == 1
                 && method.getParameterTypes()[0].isAssignableFrom(ApiRequest.class);

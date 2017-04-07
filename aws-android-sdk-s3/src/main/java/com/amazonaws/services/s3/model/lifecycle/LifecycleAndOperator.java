@@ -24,6 +24,10 @@ import java.util.List;
  */
 public final class LifecycleAndOperator extends LifecycleNAryOperator {
 
+    /**
+     * Constructor.
+     * @param operands the list of LifecycleFilterPredicate.
+     */
     public LifecycleAndOperator(List<LifecycleFilterPredicate> operands) {
         super(operands);
     }

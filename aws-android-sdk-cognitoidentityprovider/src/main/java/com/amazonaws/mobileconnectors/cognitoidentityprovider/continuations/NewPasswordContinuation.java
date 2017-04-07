@@ -55,25 +55,35 @@ public class NewPasswordContinuation extends ChallengeContinuation {
     /**
      * Callback handler.
      */
-    final private AuthenticationHandler callback;
+    private final AuthenticationHandler callback;
 
     /**
      * Constructs a new continuation for new user sign-in.
+     * @param user                  REQUIRED: Reference to the {@link CognitoUser} object.
+     * @param runInBackground       REQUIRED: Represents where this continuation has to run.
+     * @param callback              REQUIRED: Callback to interact with the app.
+     * @param context               REQUIRED: The android context.
+     * @param username              REQUIRED: the username.
+     * @param clientId              REQUIRED: the clientId.
+     * @param secretHash            REQUIRED: the secreth hash.
+     * @param challengeResult       REQUIRED: The response to respond to the authentication challenge.
      */
-    public NewPasswordContinuation (CognitoUser user,
-                                    Context context,
-                                    String username,
-                                    String clientId,
-                                    String secretHash,
-                                    RespondToAuthChallengeResult challengeResult,
-                                    boolean runInBackground,
-                                    AuthenticationHandler callback) {
-        super(user, context, username, clientId, secretHash, challengeResult, runInBackground, callback);
+    public NewPasswordContinuation(CognitoUser user,
+            Context context,
+            String username,
+            String clientId,
+            String secretHash,
+            RespondToAuthChallengeResult challengeResult,
+            boolean runInBackground,
+            AuthenticationHandler callback) {
+        super(user, context, username, clientId, secretHash, challengeResult, runInBackground,
+                callback);
         this.callback = callback;
 
         // Parse required User Attributes and current values of user attributes.
         parseUserAttributes(getParameters().get(CognitoServiceConstants.CHLG_PARAM_USER_ATTRIBUTE));
-        parseRequiredAttributes(getParameters().get(CognitoServiceConstants.CHLG_PARAM_REQUIRED_ATTRIBUTE));
+        parseRequiredAttributes(
+                getParameters().get(CognitoServiceConstants.CHLG_PARAM_REQUIRED_ATTRIBUTE));
     }
 
     /**

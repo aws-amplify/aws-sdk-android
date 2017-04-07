@@ -56,6 +56,7 @@ public abstract class SSEResultBase implements ServerSideEncryptionResult {
 
     /**
      * @deprecated Replaced by {@link #getSSEAlgorithm()}
+     * @return String the sse algorithm.
      */
     @Deprecated
     public final String getServerSideEncryption() {

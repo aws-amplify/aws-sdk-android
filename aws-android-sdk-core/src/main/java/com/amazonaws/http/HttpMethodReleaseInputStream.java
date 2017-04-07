@@ -63,6 +63,7 @@ public class HttpMethodReleaseInputStream extends SdkInputStream {
      * @param httpMethod The HTTP method being executed, whose response content
      *            is to be wrapped.
      */
+    @SuppressWarnings("checkstyle:emptyblock")
     public HttpMethodReleaseInputStream(HttpEntityEnclosingRequest httpMethod) {
         this.httpRequest = httpMethod;
 

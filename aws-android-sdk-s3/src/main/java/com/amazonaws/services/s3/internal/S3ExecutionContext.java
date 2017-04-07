@@ -23,9 +23,18 @@ import com.amazonaws.http.ExecutionContext;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * The ExecutionContext.
+ */
 public class S3ExecutionContext extends ExecutionContext {
     private Signer signer;
 
+    /**
+     * Constructor.
+     * @param requestHandler2s list of RequestHandler2.
+     * @param isMetricEnabled indicator to see if metric is enabled.
+     * @param awsClient the AmazonWebServiceClient.
+     */
     public S3ExecutionContext(List<RequestHandler2> requestHandler2s,
             boolean isMetricEnabled, AmazonWebServiceClient awsClient) {
         super(requestHandler2s, isMetricEnabled, awsClient);

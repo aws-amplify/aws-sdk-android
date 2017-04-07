@@ -15,6 +15,13 @@
 
 package com.amazonaws.metrics;
 
+/**
+ * The throughput metric type class.
+ */
 public interface ThroughputMetricType extends ServiceMetricType {
+
+    /**
+     * @return the byte count metric type.
+     */
     public ServiceMetricType getByteCountMetricType();
 }

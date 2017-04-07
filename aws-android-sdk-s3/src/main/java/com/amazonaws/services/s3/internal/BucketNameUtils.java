@@ -21,12 +21,14 @@ import java.util.regex.Pattern;
  * Utilities for working with Amazon S3 bucket names, such as validation and
  * checked to see if they are compatible with DNS addressing.
  */
+
+@SuppressWarnings("checkstyle:nowhitespacebefore")
 public enum BucketNameUtils {
     ;
     private static final int MIN_BUCKET_NAME_LENGTH = 3;
     private static final int MAX_BUCKET_NAME_LENGTH = 63;
 
-    private static final Pattern ipAddressPattern = Pattern.compile("(\\d+\\.){3}\\d+");
+    private static final Pattern IP_ADDRESS_PATTERN = Pattern.compile("(\\d+\\.){3}\\d+");
 
     /**
      * Validates that the specified bucket name is valid for Amazon S3 V2 naming
@@ -63,6 +65,9 @@ public enum BucketNameUtils {
     /**
      * Convience method that allows the DNS rules to be altered for different
      * SDKs.
+     *
+     * @param bucketName the name of the bucket.
+     * @return true if the name is valid, false if not.
      */
     public static boolean isDNSBucketName(String bucketName) {
         return isValidV2BucketName(bucketName);
@@ -93,7 +98,7 @@ public enum BucketNameUtils {
                             + MAX_BUCKET_NAME_LENGTH + " characters long");
         }
 
-        if (ipAddressPattern.matcher(bucketName).matches()) {
+        if (IP_ADDRESS_PATTERN.matcher(bucketName).matches()) {
             return exception(
                     throwOnError,
                     "Bucket name must not be formatted as an IP Address");

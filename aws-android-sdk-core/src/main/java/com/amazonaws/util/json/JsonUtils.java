@@ -60,7 +60,7 @@ public class JsonUtils {
     /**
      * Sets the JSON engine. Default is Gson.
      *
-     * @param jsonEngine
+     * @param jsonEngine the json engine.
      */
     public static void setJsonEngine(JsonEngine jsonEngine) {
         switch (jsonEngine) {
@@ -80,6 +80,7 @@ public class JsonUtils {
      *
      * @param factory an {@link AwsJsonFactory}
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     static void setJsonEngine(AwsJsonFactory factory) {
         if (factory == null) {
             throw new IllegalArgumentException("factory can't be null");

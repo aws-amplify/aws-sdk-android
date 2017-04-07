@@ -26,6 +26,7 @@ public abstract class InventoryFilterPredicate implements Serializable {
     /**
      * Helper method that accepts an implemenation of {@link InventoryPredicateVisitor}
      * and invokes the most applicable visit method in the visitor.
+     * @param inventoryPredicateVisitor the InventoryPredicateVisitor.
      */
     public abstract void accept(InventoryPredicateVisitor inventoryPredicateVisitor);
 }

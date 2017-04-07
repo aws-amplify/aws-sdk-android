@@ -21,10 +21,21 @@ package com.amazonaws.metrics;
  * >Service specific Metric type</a> (eg S3, DynamoDB, etc.)
  */
 public interface ServiceMetricType extends MetricType {
+
+    /**
+     * @return the service name.
+     */
     public String getServiceName();
 
+    /** Upload throughput name suffix. */
     public static final String UPLOAD_THROUGHPUT_NAME_SUFFIX = "UploadThroughput";
+
+    /** Upload byte count name suffic. */
     public static final String UPLOAD_BYTE_COUNT_NAME_SUFFIX = "UploadByteCount";
+
+    /** Download throughput name suffix. */
     public static final String DOWNLOAD_THROUGHPUT_NAME_SUFFIX = "DownloadThroughput";
+
+    /** Download byte count name suffix. */
     public static final String DOWNLOAD_BYTE_COUNT_NAME_SUFFIX = "DownloadByteCount";
 }

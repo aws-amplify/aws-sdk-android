@@ -26,7 +26,11 @@ import java.util.Map;
  * support when debugging an issue with Amazon S3.
  */
 public class S3ResponseMetadata extends ResponseMetadata {
+
+    /** Metadata for host ID */
     public static final String HOST_ID = "HOST_ID";
+
+    /** Metadata for CloudFront ID */
     public static final String CLOUD_FRONT_ID = "CLOUD_FRONT_ID";
 
     /**

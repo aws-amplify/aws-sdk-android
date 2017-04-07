@@ -5,7 +5,7 @@
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,10 +15,13 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile;
 
+import org.json.JSONObject;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.JSONBuilder;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.JSONSerializable;
-import org.json.JSONObject;
 
+/**
+ * An endpoint profile user
+ */
 public class EndpointProfileUser implements JSONSerializable {
 
     private String userId = "";
@@ -26,13 +29,14 @@ public class EndpointProfileUser implements JSONSerializable {
     public String getUserId() {
         return this.userId;
     }
+
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
     @Override
     public JSONObject toJSONObject() {
-        JSONBuilder builder = new JSONBuilder(null);
+        final JSONBuilder builder = new JSONBuilder(null);
         builder.withAttribute("UserId", getUserId());
         return builder.toJSONObject();
     }

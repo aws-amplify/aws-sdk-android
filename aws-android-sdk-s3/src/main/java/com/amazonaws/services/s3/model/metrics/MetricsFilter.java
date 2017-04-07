@@ -27,14 +27,21 @@ public class MetricsFilter implements Serializable {
 
     private MetricsFilterPredicate predicate;
 
+    /**
+     * Constructor.
+     */
     public MetricsFilter() { }
 
+    /**
+     * Constructor.
+     * @param predicate the MetricsFilterPredicate.
+     */
     public MetricsFilter(MetricsFilterPredicate predicate) {
         this.predicate = predicate;
     }
 
     /**
-     * Returns the {@link MetricsFilterPredicate} to be used when evaluating a metrics filter.
+     * @return the {@link MetricsFilterPredicate} to be used when evaluating a metrics filter.
      *
      * The predicate is one of {@link MetricsPrefixPredicate}, {@link MetricsTagPredicate}
      * or {@link MetricsAndOperator}.
@@ -44,7 +51,7 @@ public class MetricsFilter implements Serializable {
     }
 
     /**
-     * Sets the {@link MetricsFilterPredicate} to be used when evaluating a metrics filter.
+     * @param predicate  the {@link MetricsFilterPredicate} to be used when evaluating a metrics filter.
      *
      * The predicate should be one of {@link MetricsPrefixPredicate}, {@link MetricsTagPredicate}
      * or {@link MetricsAndOperator}.
@@ -54,12 +61,13 @@ public class MetricsFilter implements Serializable {
     }
 
     /**
-     * Sets the {@link MetricsFilterPredicate} to be used when evaluating a metrics filter
-     * and returns the {@link MetricsFilter} object for method chaining.
+     * @param predicate  the {@link MetricsFilterPredicate} to be used when evaluating a metrics filter
+     * @return the {@link MetricsFilter} object for method chaining.
      *
      * The predicate should be one of {@link MetricsPrefixPredicate}, {@link MetricsTagPredicate}
      * or {@link MetricsAndOperator}.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public MetricsFilter withPredicate(MetricsFilterPredicate predicate) {
         setPredicate(predicate);
         return this;

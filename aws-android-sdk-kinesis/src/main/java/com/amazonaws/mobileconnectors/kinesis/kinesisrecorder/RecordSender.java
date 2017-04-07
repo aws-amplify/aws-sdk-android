@@ -26,18 +26,17 @@ interface RecordSender {
     /**
      * Sends a batch of data to the given stream. If some data is rejected by
      * the server and is retryable, it should be added to the return list.
-     * 
+     *
      * @param streamName stream name
      * @param data a list of data to be sent
      * @return a list to data that is failed to send
-     * @throws AmazonClientException
      */
-    List<byte[]> sendBatch(String streamName, List<byte[]> data) throws AmazonClientException;
+    List<byte[]> sendBatch(String streamName, List<byte[]> data);
 
     /**
      * Tests whether an exception is recoverable. If true, the list of data
      * which is failed to send can be retried at a later time.
-     * 
+     *
      * @param ace exception thrown by {@link #sendBatch(String, List, List)}
      * @return true if the exception is recoverable, or false otherwise
      */

@@ -15,10 +15,18 @@
 
 package com.amazonaws.metrics;
 
+/**
+ * Simple service metric type class.
+ */
 public class SimpleServiceMetricType extends SimpleMetricType implements ServiceMetricType {
     private final String name;
     private final String serviceName;
 
+    /**
+     * Constructor.
+     * @param name the name of the service metric type.
+     * @param serviceName the service name.
+     */
     public SimpleServiceMetricType(String name, String serviceName) {
         this.name = name;
         this.serviceName = serviceName;

@@ -24,10 +24,17 @@ public class DataConflictException extends DataStorageException {
 
     private static final long serialVersionUID = 4937963535057299466L;
 
+    /**
+     * @param detailMessage the exception message.
+     * @param throwable exception as throwable.
+     */
     public DataConflictException(String detailMessage, Throwable throwable) {
         super(detailMessage, throwable);
     }
 
+    /**
+     * @param detailMessage the exception message.
+     */
     public DataConflictException(String detailMessage) {
         super(detailMessage);
     }

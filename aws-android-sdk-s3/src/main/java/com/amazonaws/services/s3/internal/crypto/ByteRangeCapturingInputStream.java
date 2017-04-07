@@ -34,6 +34,12 @@ public class ByteRangeCapturingInputStream extends SdkFilterInputStream {
     private long markedStreamPosition;
     private int markedBlockPosition;
 
+    /**
+     * Constructor.
+     * @param in the input stream.
+     * @param startingPosition the starting position.
+     * @param endingPosition the ending position.
+     */
     public ByteRangeCapturingInputStream(InputStream in, long startingPosition, long endingPosition) {
         super(in);
 

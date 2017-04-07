@@ -32,7 +32,6 @@ import com.amazonaws.services.s3.model.SSEAlgorithm;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.DateUtils;
-import com.amazonaws.util.HttpUtils;
 import com.amazonaws.util.Md5Utils;
 
 import org.apache.commons.logging.Log;
@@ -59,25 +58,49 @@ import javax.net.ssl.SSLProtocolException;
 public class ServiceUtils {
     private static final Log log = LogFactory.getLog(ServiceUtils.class);
 
+    private static final int DEAFAULT_BYTE_SIZE = 1024 * 10;
+
+    /** boolean to enable append mode */
     public static final boolean APPEND_MODE = true;
 
+    /** boolean to disable overwrite mode */
     public static final boolean OVERWRITE_MODE = false;
 
     @Deprecated
-    protected static final DateUtils dateUtils = new DateUtils();
+    protected static final DateUtils DATE_UTILS = new DateUtils();
 
+    /**
+     * Parses a date in ISO-8601 format to a Date object.
+     * @param dateString the date in ISO-8601 format.
+     * @return instance of Date.
+     */
     public static Date parseIso8601Date(String dateString) {
         return DateUtils.parseISO8601Date(dateString);
     }
 
+    /**
+     * Formats an instance of Date to ISO-8601.
+     * @param date Date
+     * @return date in ISO-8601 format.
+     */
     public static String formatIso8601Date(Date date) {
         return DateUtils.formatISO8601Date(date);
     }
 
+    /**
+     * Parses a date in RFC-822 format to a Date object.
+     * @param dateString the date in RFC-822 format.
+     * @return instance of Date.
+     */
     public static Date parseRfc822Date(String dateString) {
         return DateUtils.parseRFC822Date(dateString);
     }
 
+    /**
+     * Formats an instance of Date to RFC-822.
+     * @param date Date
+     * @return date in RFC-822 format.
+     */
     public static String formatRfc822Date(Date date) {
         return DateUtils.formatRFC822Date(date);
     }
@@ -161,7 +184,7 @@ public class ServiceUtils {
     public static URL convertRequestToUrl(Request<?> request,
             boolean removeLeadingSlashInResourcePath) {
 
-        String resourcePath = HttpUtils.urlEncode(request.getResourcePath(), true);
+        String resourcePath = S3HttpUtils.urlEncode(request.getResourcePath(), true);
 
         // Removed the padding "/" that was already added into the request's
         // resource path.
@@ -188,7 +211,7 @@ public class ServiceUtils {
             }
 
             final String value = request.getParameters().get(param);
-            urlString += param + "=" + HttpUtils.urlEncode(value, false);
+            urlString += param + "=" + S3HttpUtils.urlEncode(value, false);
         }
 
         try {
@@ -250,7 +273,7 @@ public class ServiceUtils {
         try {
             outputStream = new BufferedOutputStream(new FileOutputStream(
                     destinationFile, appendData));
-            final byte[] buffer = new byte[1024 * 10];
+            final byte[] buffer = new byte[DEAFAULT_BYTE_SIZE];
             int bytesRead;
             while ((bytesRead = s3Object.getObjectContent().read(buffer)) > -1) {
                 outputStream.write(buffer, 0, bytesRead);
@@ -263,10 +286,12 @@ public class ServiceUtils {
             try {
                 outputStream.close();
             } catch (final Exception e) {
+                log.debug("Caught exception. Ignoring.");
             }
             try {
                 s3Object.getObjectContent().close();
             } catch (final Exception e) {
+                log.debug("Caught exception. Ignoring.");
             }
         }
 
@@ -275,7 +300,7 @@ public class ServiceUtils {
         try {
             // Multipart Uploads don't have an MD5 calculated on the service
             // side
-            if (ServiceUtils.isMultipartUploadETag(s3Object.getObjectMetadata().getETag()) == false) {
+            if (!ServiceUtils.isMultipartUploadETag(s3Object.getObjectMetadata().getETag())) {
                 clientSideHash = Md5Utils.computeMD5Hash(new FileInputStream(destinationFile));
                 serverSideHash = BinaryUtils.fromHex(s3Object.getObjectMetadata().getETag());
             }
@@ -325,9 +350,9 @@ public class ServiceUtils {
      * specified constraints).
      *
      * @param file The file to store the object's data in.
-     * @param safeS3DownloadTask The implementation of SafeS3DownloadTask
-     *            interface which allows user to get access to all the visible
-     *            variables at the calling site of this method.
+     * @param retryableS3DownloadTask the task for download.
+     * @param appendData boolean to indicate if append data is enabled.
+     * @return S3Object.
      */
     public static S3Object retryableDownloadS3ObjectToFile(File file,
             RetryableS3DownloadTask retryableS3DownloadTask, boolean appendData) {
@@ -389,6 +414,9 @@ public class ServiceUtils {
      * from the server side is the MD5 of the ciphertext, which will by
      * definition mismatch the MD5 on the client side which is computed based on
      * the plaintext.
+     * @param metadata the ObjectMetadata of an S3 response.
+     * @return true if the specified response should skip MD5
+     *         check on the requested object content.
      */
     public static boolean skipMd5CheckPerResponse(ObjectMetadata metadata) {
         if (metadata == null) {
@@ -403,6 +431,9 @@ public class ServiceUtils {
     /**
      * Returns whether the specified request should skip MD5 check on the
      * requested object content.
+     * @param request the AmazonWebServiceRequest.
+     * @return true if the specified request should skip MD5
+     *         check on the requested object content.
      */
     public static boolean skipMd5CheckPerRequest(AmazonWebServiceRequest request) {
         if (System.getProperty("com.amazonaws.services.s3.disableGetObjectMD5Validation") != null) {

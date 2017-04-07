@@ -36,7 +36,7 @@ import java.util.Iterator;
  * time, as they are needed. The size of the page can be controlled with the
  * {@link S3Versions#withBatchSize(int)} method.
  */
-public class S3Versions implements Iterable<S3VersionSummary> {
+public final class S3Versions implements Iterable<S3VersionSummary> {
 
     private AmazonS3 s3;
     private String bucketName;
@@ -97,7 +97,9 @@ public class S3Versions implements Iterable<S3VersionSummary> {
      * fetched at once.
      *
      * @param batchSize How many object summaries to fetch at once.
+     * @return S3Versions.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public S3Versions withBatchSize(int batchSize) {
         this.batchSize = batchSize;
         return this;

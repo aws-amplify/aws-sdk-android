@@ -22,11 +22,16 @@ import com.amazonaws.util.DateUtils;
  * An unmarshaller that unmarshals ISO-8601-formatted dates as Java {@code Date}
  * objects.
  */
-public class DateUnmarshaller extends SUnmarshaller {
+public final class DateUnmarshaller extends SUnmarshaller {
 
     private static final DateUnmarshaller INSTANCE =
             new DateUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link DateUnmarshaller}
+     */
     public static DateUnmarshaller instance() {
         return INSTANCE;
     }

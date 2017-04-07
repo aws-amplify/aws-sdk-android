@@ -28,6 +28,7 @@ import java.util.Map;
 /**
  * S3 Implementation of HttpResponseHandler. Relies on a SAX unmarshaller for
  * handling the response.
+ * @param <T> class type.
  */
 public class S3XmlResponseHandler<T> extends AbstractS3ResponseHandler<T> {
 

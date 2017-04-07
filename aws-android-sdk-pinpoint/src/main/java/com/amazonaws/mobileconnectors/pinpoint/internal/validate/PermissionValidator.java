@@ -5,7 +5,7 @@
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -27,11 +27,13 @@ public class PermissionValidator {
 
     public void validate(Context context) {
         if (!hasPermission(context, permission)) {
-            throw new RuntimeException(permission + " permission is not granted.");
+            throw new RuntimeException(permission +
+                                               " permission is not granted.");
         }
     }
 
-    private boolean hasPermission(final Context context, final String permission) {
+    private boolean hasPermission(final Context context,
+                                         final String permission) {
         int res = context.checkCallingOrSelfPermission(permission);
         return (res == PackageManager.PERMISSION_GRANTED);
     }

@@ -15,9 +15,13 @@
 
 package com.amazonaws.auth;
 
+/** Enum for the signing algorithm. */
 public enum SigningAlgorithm {
 
+    /** HMAC SHA 1. */
     HmacSHA1,
+
+    /** HMAC SHA 256. */
     HmacSHA256;
 
 }

@@ -20,13 +20,15 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * The APIGateway service.
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Service {
     /**
      * Service endpoint.
      *
-     * @return service endpoint
      */
     String endpoint();
 }

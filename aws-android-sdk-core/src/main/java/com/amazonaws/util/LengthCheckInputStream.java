@@ -26,7 +26,11 @@ import java.io.InputStream;
  * underlying input stream is the same as the expected total.
  */
 public class LengthCheckInputStream extends SdkFilterInputStream {
+
+    /** Include skipped bytes. */
     public static final boolean INCLUDE_SKIPPED_BYTES = true;
+
+    /** Exclude skipped bytes. */
     public static final boolean EXCLUDE_SKIPPED_BYTES = false;
     /**
      * Total number of bytes expected to be read from the underlying input

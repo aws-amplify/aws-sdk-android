@@ -35,6 +35,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class S3UploadPolicy {
 
     private static final String HMAC_SHA1_ALGORITHM = "HmacSHA1";
+    private static final long ONE_MIN = 60L * 1000;
     private String policySignature;
     private String policyString;
 
@@ -57,8 +58,9 @@ public class S3UploadPolicy {
             String bucketName,
             String prefix,
             int expireInMinutes) {
-        Date expirationDate = new Date(System.currentTimeMillis() + 60L * 1000 * expireInMinutes);
-        StringBuilder builder = new StringBuilder();
+        final Date expirationDate = new Date(
+                System.currentTimeMillis() + ONE_MIN * expireInMinutes);
+        final StringBuilder builder = new StringBuilder();
         builder.append("{")
                 .append("\"expiration\": \"")
                 .append(DateUtils.format(DateUtils.ALTERNATE_ISO8601_DATE_PATTERN, expirationDate))
@@ -77,7 +79,7 @@ public class S3UploadPolicy {
         try {
             this.policyString = base64Encode(builder.toString().getBytes(UTF8));
             this.policySignature = signPolicy(awsSecretKey, policyString);
-        } catch (Exception ex) {
+        } catch (final Exception ex) {
             throw new RuntimeException("Unable to generate S3 upload policy", ex);
         }
     }
@@ -106,8 +108,8 @@ public class S3UploadPolicy {
             NoSuchAlgorithmException,
             InvalidKeyException,
             UnsupportedEncodingException {
-        SecretKeySpec signingKey = new SecretKeySpec(awsSecretKey.getBytes(), HMAC_SHA1_ALGORITHM);
-        Mac mac = Mac.getInstance(HMAC_SHA1_ALGORITHM);
+        final SecretKeySpec signingKey = new SecretKeySpec(awsSecretKey.getBytes(), HMAC_SHA1_ALGORITHM);
+        final Mac mac = Mac.getInstance(HMAC_SHA1_ALGORITHM);
         mac.init(signingKey);
         return base64Encode(mac.doFinal(base64EncodedPolicy.getBytes()));
     }

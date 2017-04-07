@@ -26,6 +26,11 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
 class AesGcm extends ContentCryptoScheme {
+
+    private static final int DEFAULT_KEY_LENGTH_IN_BITS = 256;
+    private static final int DEFAULT_BLOCK_SIZE_IN_BYTES = 16;
+    private static final int DEFAULT_IV_LENGTH_IN_BYTES = 12;
+    private static final int DEFAULT_TAG_LENGTH_IN_BITS = 128;
     @Override
     String getKeyGeneratorAlgorithm() {
         return "AES";
@@ -38,17 +43,17 @@ class AesGcm extends ContentCryptoScheme {
 
     @Override
     int getKeyLengthInBits() {
-        return 256;
+        return DEFAULT_KEY_LENGTH_IN_BITS;
     }
 
     @Override
     int getBlockSizeInBytes() {
-        return 16;
+        return DEFAULT_BLOCK_SIZE_IN_BYTES;
     }
 
     @Override
     int getIVLengthInBytes() {
-        return 12;
+        return DEFAULT_IV_LENGTH_IN_BYTES;
     }
 
     @Override
@@ -62,7 +67,7 @@ class AesGcm extends ContentCryptoScheme {
      */
     @Override
     int getTagLengthInBits() {
-        return 128;
+        return DEFAULT_TAG_LENGTH_IN_BITS;
     }
 
     /**

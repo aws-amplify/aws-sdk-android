@@ -21,7 +21,16 @@ package com.amazonaws.util;
  * @author Hanson Char
  */
 public interface EncodingScheme {
+
+    /**
+     * @param bytes bytes to encode.
+     * @return the string result.
+     */
     public String encodeAsString(byte[] bytes);
 
+    /**
+     * @param encoded string to decode.
+     * @return the decoded result.
+     */
     public byte[] decode(String encoded);
 }

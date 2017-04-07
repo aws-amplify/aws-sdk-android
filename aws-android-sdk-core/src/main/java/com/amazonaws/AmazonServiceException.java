@@ -29,6 +29,8 @@ package com.amazonaws;
  * while processing it.
  */
 public class AmazonServiceException extends AmazonClientException {
+
+    /** Default serial version UID. */
     private static final long serialVersionUID = 1L;
 
     /**
@@ -54,8 +56,13 @@ public class AmazonServiceException extends AmazonClientException {
      * error response is, an Unknown ErrorType will be set.
      */
     public enum ErrorType {
+        /** Client. */
         Client,
+
+        /** Service. */
         Service,
+
+        /** Unknown. */
         Unknown
     }
 
@@ -85,7 +92,7 @@ public class AmazonServiceException extends AmazonClientException {
      */
     private String errorMessage;
 
-    /** The HTTP status code that was returned with this error */
+    /** The HTTP status code that was returned with this error. */
     private int statusCode;
 
     /**
@@ -98,7 +105,7 @@ public class AmazonServiceException extends AmazonClientException {
      *
      * @param errorMessage An error message describing what went wrong.
      */
-    public AmazonServiceException(String errorMessage) {
+    public AmazonServiceException(final String errorMessage) {
         super(errorMessage);
         this.errorMessage = errorMessage;
     }
@@ -110,7 +117,8 @@ public class AmazonServiceException extends AmazonClientException {
      * @param errorMessage An error message describing what went wrong.
      * @param cause The root exception that caused this exception to be thrown.
      */
-    public AmazonServiceException(String errorMessage, Exception cause) {
+    public AmazonServiceException(final String errorMessage,
+                                  final Exception cause) {
         super(null, cause);
         this.errorMessage = errorMessage;
     }
@@ -121,7 +129,7 @@ public class AmazonServiceException extends AmazonClientException {
      * @param requestId The unique identifier for the service request the caller
      *            made.
      */
-    public void setRequestId(String requestId) {
+    public void setRequestId(final String requestId) {
         this.requestId = requestId;
     }
 
@@ -141,7 +149,7 @@ public class AmazonServiceException extends AmazonClientException {
      *
      * @param serviceName The name of the service that sent this error response.
      */
-    public void setServiceName(String serviceName) {
+    public void setServiceName(final String serviceName) {
         this.serviceName = serviceName;
     }
 
@@ -159,7 +167,7 @@ public class AmazonServiceException extends AmazonClientException {
      *
      * @param errorCode The AWS error code represented by this exception.
      */
-    public void setErrorCode(String errorCode) {
+    public void setErrorCode(final String errorCode) {
         this.errorCode = errorCode;
     }
 
@@ -181,7 +189,7 @@ public class AmazonServiceException extends AmazonClientException {
      *            or receiver), indicating if this exception was the caller's
      *            fault or the service's fault.
      */
-    public void setErrorType(ErrorType errorType) {
+    public void setErrorType(final ErrorType errorType) {
         this.errorType = errorType;
     }
 
@@ -209,7 +217,7 @@ public class AmazonServiceException extends AmazonClientException {
      * @param statusCode The HTTP status code that was returned with this
      *            service exception.
      */
-    public void setStatusCode(int statusCode) {
+    public void setStatusCode(final int statusCode) {
         this.statusCode = statusCode;
     }
 
@@ -233,7 +241,10 @@ public class AmazonServiceException extends AmazonClientException {
                 + "; Request ID: " + getRequestId() + ")";
     }
 
-    public void setErrorMessage(String errorMessage) {
+    /**
+     * @param errorMessage sets the error message.
+     */
+    public void setErrorMessage(final String errorMessage) {
         this.errorMessage = errorMessage;
     }
 }

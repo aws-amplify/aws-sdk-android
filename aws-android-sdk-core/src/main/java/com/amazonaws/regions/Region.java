@@ -54,7 +54,8 @@ public final class Region {
     }
 
     /**
-     * Returns the region with the id given, or null if it cannot be found in
+     * @param region the region.
+     * @return the region with the id given, or null if it cannot be found in
      * the current regions.xml file.
      */
     public static Region getRegion(Regions region) {
@@ -80,7 +81,7 @@ public final class Region {
     }
 
     /**
-     * Returns a map of the available services in this region and their
+     * @return a map of the available services in this region and their
      * endpoints. The keys of the map are service abbreviations, as defined in
      * {@link ServiceAbbreviations}, and the values are the endpoint URLs.
      *
@@ -99,7 +100,8 @@ public final class Region {
     }
 
     /**
-     * Returns the endpoint for the service given.
+     * @param serviceName the service name.
+     * @return the endpoint for the service given.
      *
      * @see ServiceAbbreviations
      */
@@ -108,7 +110,8 @@ public final class Region {
     }
 
     /**
-     * Returns whether the given service is supported in this region.
+     * @param serviceName the service name.
+     * @return whether the given service is supported in this region.
      *
      * @see ServiceAbbreviations
      */
@@ -117,7 +120,8 @@ public final class Region {
     }
 
     /**
-     * Returns whether the given service support the https protocol in this
+     * @param serviceName the service name.
+     * @return whether the given service support the https protocol in this
      * region.
      *
      * @see ServiceAbbreviations
@@ -127,7 +131,8 @@ public final class Region {
     }
 
     /**
-     * Returns whether the given service support the http protocol in this
+     * @param serviceName the service name.
+     * @return whether the given service support the http protocol in this
      * region.
      *
      * @see ServiceAbbreviations
@@ -146,6 +151,8 @@ public final class Region {
      *            default credentials provider
      * @param config The configuration to use, or null for the default
      *            configuration
+     * @param <T> the AmazonWebServiceClient type.
+     * @return the AmazonWebServiceClient.
      * @see ServiceAbbreviations
      */
     public <T extends AmazonWebServiceClient> T createClient(Class<T> serviceClass,
@@ -178,7 +185,7 @@ public final class Region {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Region == false)
+        if (!(obj instanceof Region))
             return false;
 
         Region region = (Region) obj;

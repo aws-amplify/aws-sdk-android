@@ -20,6 +20,22 @@ package com.amazonaws;
  */
 public enum HttpMethod {
 
-    GET, POST, PUT, DELETE, HEAD, PATCH;
+    /** Get. */
+    GET,
+
+    /** Post. */
+    POST,
+
+    /** Put. */
+    PUT,
+
+    /** Delete. */
+    DELETE,
+
+    /** Head. */
+    HEAD,
+
+    /** Patch. */
+    PATCH;
 
 }

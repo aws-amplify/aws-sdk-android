@@ -30,6 +30,7 @@ public interface ServerSideEncryptionResult {
     /**
      * Returns the server-side encryption algorithm if the object is encrypted
      * using AWS-managed keys. Otherwise returns null.
+     * @return String the sse algorithm.
      */
     public String getSSEAlgorithm();
 
@@ -43,6 +44,7 @@ public interface ServerSideEncryptionResult {
     /**
      * Returns the server-side encryption algorithm if the object is encrypted
      * using customer-provided keys. Otherwise returns null.
+     * @return String the sse customer algorithm.
      */
     public String getSSECustomerAlgorithm();
 
@@ -59,6 +61,7 @@ public interface ServerSideEncryptionResult {
      * Returns the base64-encoded MD5 digest of the encryption key for
      * server-side encryption, if the object is encrypted using
      * customer-provided keys. Otherwise returns null.
+     * @return String the sse customer key MD5.
      */
     public String getSSECustomerKeyMd5();
 

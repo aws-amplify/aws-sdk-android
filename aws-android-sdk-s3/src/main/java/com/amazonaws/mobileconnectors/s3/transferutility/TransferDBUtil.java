@@ -207,7 +207,7 @@ class TransferDBUtil {
                     TransferState.PAUSED.toString(),
                     TransferState.CANCELED.toString(),
                     TransferState.WAITING_FOR_NETWORK.toString()
-            });
+                    });
         } else {
             return transferDBBase.update(getRecordUri(id), values, null, null);
         }
@@ -272,7 +272,7 @@ class TransferDBUtil {
                         TransferState.IN_PROGRESS.toString(),
                         TransferState.RESUMED_WAITING.toString(),
                         TransferState.WAITING.toString()
-                });
+                        });
     }
 
     /**
@@ -289,7 +289,7 @@ class TransferDBUtil {
                         + " in (?,?)", new String[] {
                         TransferState.PENDING_NETWORK_DISCONNECT.toString(),
                         TransferState.WAITING_FOR_NETWORK.toString()
-                });
+                        });
     }
 
     /**
@@ -311,7 +311,7 @@ class TransferDBUtil {
                         TransferState.PENDING_PAUSE.toString(),
                         TransferState.RESUMED_WAITING.toString(),
                         TransferState.WAITING.toString()
-                });
+                    });
     }
 
     /**
@@ -573,7 +573,7 @@ class TransferDBUtil {
         values.put(TransferTable.COLUMN_BUCKET_NAME, bucket);
         values.put(TransferTable.COLUMN_KEY, key);
         values.put(TransferTable.COLUMN_FILE, file.getAbsolutePath());
-        values.put(TransferTable.COLUMN_BYTES_CURRENT, 0l);
+        values.put(TransferTable.COLUMN_BYTES_CURRENT, 0L);
         values.put(TransferTable.COLUMN_BYTES_TOTAL, bytesTotal);
         values.put(TransferTable.COLUMN_IS_MULTIPART, 1);
         values.put(TransferTable.COLUMN_PART_NUM, partNumber);
@@ -639,9 +639,9 @@ class TransferDBUtil {
         values.put(TransferTable.COLUMN_BUCKET_NAME, bucket);
         values.put(TransferTable.COLUMN_KEY, key);
         values.put(TransferTable.COLUMN_FILE, file.getAbsolutePath());
-        values.put(TransferTable.COLUMN_BYTES_CURRENT, 0l);
+        values.put(TransferTable.COLUMN_BYTES_CURRENT, 0L);
         if (type.equals(TransferType.UPLOAD)) {
-            values.put(TransferTable.COLUMN_BYTES_TOTAL, file == null ? 0l : file.length());
+            values.put(TransferTable.COLUMN_BYTES_TOTAL, file == null ? 0L : file.length());
         }
         values.put(TransferTable.COLUMN_IS_MULTIPART, 0);
         values.put(TransferTable.COLUMN_PART_NUM, 0);

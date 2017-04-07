@@ -23,13 +23,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
-import android.util.Log;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * Provides methods to access database through which applications can interact
  * with transfer tasks.
  */
 class TransferDBBase {
+    private static final Log LOGGER = LogFactory.getLog(TransferDBBase.class);
 
     private static final int TRANSFERS = 10;
     private static final int TRANSFER_ID = 20;
@@ -255,8 +258,7 @@ class TransferDBBase {
                     }
                     database.setTransactionSuccessful();
                 } catch (final Exception e) {
-                    Log.e(TransferDBBase.class.getSimpleName(),
-                            "bulkInsert error : " + e.getMessage());
+                    LOGGER.error("bulkInsert error : ", e);
                 } finally {
                     database.endTransaction();
                 }

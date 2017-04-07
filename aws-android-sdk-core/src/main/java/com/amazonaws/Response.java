@@ -27,6 +27,11 @@ public final class Response<T> {
     private final T response;
     private final HttpResponse httpResponse;
 
+    /**
+     * Constructor.
+     * @param response the response.
+     * @param httpResponse the HTTP response.
+     */
     public Response(T response, HttpResponse httpResponse) {
         this.response = response;
         this.httpResponse = httpResponse;

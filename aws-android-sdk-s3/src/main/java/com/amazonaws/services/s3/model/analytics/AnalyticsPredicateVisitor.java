@@ -26,18 +26,21 @@ public interface AnalyticsPredicateVisitor {
     /**
      * Implement this method to add behaviour performed when
      * {@link AnalyticsPrefixPredicate} is visited.
+     * @param analyticsPrefixPredicate the AnalyticsPrefixPredicate.
      */
     public void visit(AnalyticsPrefixPredicate analyticsPrefixPredicate);
 
     /**
      * Implement this method to add behaviour performed when
      * {@link AnalyticsTagPredicate} is visited.
+     * @param analyticsTagPredicate the AnalyticsTagPredicate.
      */
     public void visit(AnalyticsTagPredicate analyticsTagPredicate);
 
     /**
      * Implement this method to add behaviour performed when
      * {@link AnalyticsAndOperator} is visited.
+     * @param analyticsAndOperator the AnalyticsAndOperator.
      */
     public void visit(AnalyticsAndOperator analyticsAndOperator);
 }

@@ -26,11 +26,16 @@ import java.util.Set;
  * An unmarshaller that unmarshals sets of ISO-8601-formatted dates as sets of
  * Java {@code Calendar} objects.
  */
-public class CalendarSetUnmarshaller extends SSUnmarshaller {
+public final class CalendarSetUnmarshaller extends SSUnmarshaller {
 
     private static final CalendarSetUnmarshaller INSTANCE =
             new CalendarSetUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link CalendarSetUnmarshaller}
+     */
     public static CalendarSetUnmarshaller instance() {
         return INSTANCE;
     }
@@ -40,10 +45,10 @@ public class CalendarSetUnmarshaller extends SSUnmarshaller {
 
     @Override
     public Object unmarshall(AttributeValue value) {
-        Set<Calendar> result = new HashSet<Calendar>();
+        final Set<Calendar> result = new HashSet<Calendar>();
 
-        for (String s : value.getSS()) {
-            Calendar cal = Calendar.getInstance();
+        for (final String s : value.getSS()) {
+            final Calendar cal = Calendar.getInstance();
             cal.setTime(DateUtils.parseISO8601Date(s));
             result.add(cal);
         }

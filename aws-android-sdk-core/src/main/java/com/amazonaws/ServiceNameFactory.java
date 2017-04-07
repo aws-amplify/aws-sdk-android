@@ -21,6 +21,7 @@ import com.amazonaws.internal.config.InternalConfig;
 /**
  * An internal service name factory.
  */
+@SuppressWarnings("checkstyle:nowhitespacebefore")
 enum ServiceNameFactory {
     ;
 

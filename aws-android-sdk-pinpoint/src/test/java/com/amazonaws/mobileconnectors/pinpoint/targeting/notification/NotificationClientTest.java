@@ -1,18 +1,20 @@
+/**
+ * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ * http://aws.amazon.com/apache2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
 package com.amazonaws.mobileconnectors.pinpoint.targeting.notification;
 
-
-import android.app.Activity;
-import android.app.Service;
-import android.os.Bundle;
-import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
-import com.amazonaws.mobileconnectors.pinpoint.analytics.MobileAnalyticsTestBase;
-import com.amazonaws.mobileconnectors.pinpoint.analytics.SessionClient;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.configuration.AndroidPreferencesConfiguration;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.MockSystem;
-import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
-import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
-import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -23,16 +25,27 @@ import org.mockito.MockitoAnnotations;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
+import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
+import com.amazonaws.mobileconnectors.pinpoint.analytics.MobileAnalyticsTestBase;
+import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.configuration.AndroidPreferencesConfiguration;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.MockSystem;
+import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
+import android.app.Service;
+import android.os.Bundle;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE)
 public class NotificationClientTest extends MobileAnalyticsTestBase {
 
+    @Mock
+    AndroidPreferencesConfiguration mockConfiguration;
     private NotificationClient target;
-
     @Mock
     private AnalyticsClient mockAnalyticsClient;
     @Mock
@@ -41,26 +54,29 @@ public class NotificationClientTest extends MobileAnalyticsTestBase {
     private AnalyticsClient mockEventClient;
     @Mock
     private PinpointConfiguration mockPinpointConfiguration;
-    @Mock
-    AndroidPreferencesConfiguration mockConfiguration;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
 
         PinpointContext mockPinpointContext = new AnalyticsContextBuilder()
-                .withSystem(new MockSystem("JIMMY_CRACKED_CORN.and"))
-                .withConfiguration(mockConfiguration)
-                .withContext(Robolectric.application.getApplicationContext())
-                .build();
+                                                      .withSystem(new MockSystem("JIMMY_CRACKED_CORN.and"))
+                                                      .withConfiguration(mockConfiguration)
+                                                      .withContext(Robolectric.application
+                                                                           .getApplicationContext())
+                                                      .build();
 
+        when(mockConfiguration.optBoolean("isAnalyticsEnabled", true))
+                .thenReturn(true);
 
-        when(mockConfiguration.optBoolean("isAnalyticsEnabled", true)).thenReturn(true);
-
-        when(mockPinpointContext.getAnalyticsClient()).thenReturn(mockAnalyticsClient);
-        when(mockPinpointContext.getTargetingClient()).thenReturn(mockTargetingClient);
-        when(mockPinpointContext.getConfiguration()).thenReturn(mockConfiguration);
-        when(mockPinpointContext.getPinpointConfiguration()).thenReturn(mockPinpointConfiguration);
+        when(mockPinpointContext.getAnalyticsClient())
+                .thenReturn(mockAnalyticsClient);
+        when(mockPinpointContext.getTargetingClient())
+                .thenReturn(mockTargetingClient);
+        when(mockPinpointContext.getConfiguration())
+                .thenReturn(mockConfiguration);
+        when(mockPinpointContext.getPinpointConfiguration())
+                .thenReturn(mockPinpointConfiguration);
         target = new NotificationClient(mockPinpointContext);
     }
 
@@ -88,7 +104,6 @@ public class NotificationClientTest extends MobileAnalyticsTestBase {
         pushBundle.putString("pinpoint", engageJson.toString());
         return pushBundle;
     }
-
 
     //TODO FIX THESE TESTS
 //    @Test
@@ -133,7 +148,9 @@ public class NotificationClientTest extends MobileAnalyticsTestBase {
     @Test
     public void testEmptyBundle() {
         Bundle pushBundle = new Bundle();
-        NotificationClient.CampaignPushResult result = target.handleGCMCampaignPush("_campaign.opened", pushBundle, Service.class);
+        NotificationClient.CampaignPushResult result = target.handleGCMCampaignPush("_campaign.opened",
+                                                                                           pushBundle,
+                                                                                           Service.class);
         assertEquals(NotificationClient.CampaignPushResult.NOT_HANDLED, result);
     }
 

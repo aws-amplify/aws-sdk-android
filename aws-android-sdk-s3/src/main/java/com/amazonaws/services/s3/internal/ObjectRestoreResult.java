@@ -29,6 +29,7 @@ public interface ObjectRestoreResult {
     /**
      * Returns the expiration date when the Object is scheduled to move to
      * Amazon Glacier, or null if the object is not configured to expire.
+     * @return Date the restore expiration time.
      */
     public Date getRestoreExpirationTime();
 
@@ -43,13 +44,14 @@ public interface ObjectRestoreResult {
     /**
      * Sets a boolean value which indicates there is an ongoing restore request.
      *
-     * @param ongoingRestore
+     * @param ongoingRestore boolean which indicates if there is an ongoing restore.
      */
     public void setOngoingRestore(boolean ongoingRestore);
 
     /**
      * Returns then boolean value which indicates there is an ongoing restore
      * request.
+     * @return true if there is an ongoing restore
      */
     public Boolean getOngoingRestore();
 }

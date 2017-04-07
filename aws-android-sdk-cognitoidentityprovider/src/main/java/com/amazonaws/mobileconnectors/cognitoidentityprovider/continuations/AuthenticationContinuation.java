@@ -19,7 +19,6 @@ package com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations;
 
 import android.content.Context;
 import android.os.Handler;
-import android.util.Log;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
@@ -31,14 +30,20 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.Authentic
 public class AuthenticationContinuation implements CognitoIdentityProviderContinuation<String> {
 
     // Boolean constants used to indicate where this continuation will run.
-    final public static boolean RUN_IN_BACKGROUND = true;
-    final public static boolean RUN_IN_CURRENT = false;
+    /**
+     * Run in background.
+     */
+    public static final boolean RUN_IN_BACKGROUND = true;
+    /**
+     * Run on current thread.
+     */
+    public static final boolean RUN_IN_CURRENT = false;
 
     // Data required to continue with the authentication process.
-    final private CognitoUser user;
-    final private Context context;
-    final private AuthenticationHandler callback;
-    final private boolean runInBackground;
+    private final CognitoUser user;
+    private final Context context;
+    private final AuthenticationHandler callback;
+    private final boolean runInBackground;
 
     private AuthenticationDetails authenticationDetails = null;
 
@@ -72,7 +77,8 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
      *
      * @return
      */
-    public String getParameters(){
+    @Override
+    public String getParameters() {
         return "AuthenticationDetails";
     }
 
@@ -82,12 +88,13 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
      * or the background thread.
      *
      */
+    @Override
     public void continueTask() {
         if (runInBackground) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    Handler handler = new Handler(context.getMainLooper());
+                    final Handler handler = new Handler(context.getMainLooper());
                     Runnable nextStep;
                     try {
                         nextStep = user.initiateUserAuthentication(authenticationDetails, callback, RUN_IN_BACKGROUND);
@@ -121,7 +128,7 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
     /**
      * Set details required to continue with this authentication.
      *
-     * @param authenticationDetails
+     * @param authenticationDetails @see {@link AuthenticationDetails}
      */
     public void setAuthenticationDetails(AuthenticationDetails authenticationDetails) {
         this.authenticationDetails = authenticationDetails;

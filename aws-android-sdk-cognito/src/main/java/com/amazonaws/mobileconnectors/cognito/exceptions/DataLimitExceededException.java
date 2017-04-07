@@ -10,10 +10,17 @@ public class DataLimitExceededException extends DataStorageException {
 
     private static final long serialVersionUID = 4722137117318719134L;
 
+    /**
+     * @param detailMessage the exception message.
+     * @param throwable exception as throwable.
+     */
     public DataLimitExceededException(String detailMessage, Throwable throwable) {
         super(detailMessage, throwable);
     }
 
+    /**
+     * @param detailMessage the exception message.
+     */
     public DataLimitExceededException(String detailMessage) {
         super(detailMessage);
     }

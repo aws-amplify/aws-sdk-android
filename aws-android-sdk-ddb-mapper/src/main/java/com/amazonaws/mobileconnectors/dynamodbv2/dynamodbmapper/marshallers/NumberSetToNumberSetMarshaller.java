@@ -26,12 +26,17 @@ import java.util.Set;
  * A marshaller that marshals sets of Java {@code Number}s into DynamoDB
  * NumberSets.
  */
-public class NumberSetToNumberSetMarshaller
+public final class NumberSetToNumberSetMarshaller
         implements NumberSetAttributeMarshaller {
 
     private static final NumberSetToNumberSetMarshaller INSTANCE =
             new NumberSetToNumberSetMarshaller();
 
+    /**
+     * Return a singleton instance.
+     *
+     * @return instance of {@link NumberSetToNumberSetMarshaller}
+     */
     public static NumberSetToNumberSetMarshaller instance() {
         return INSTANCE;
     }
@@ -42,10 +47,10 @@ public class NumberSetToNumberSetMarshaller
     @Override
     public AttributeValue marshall(Object obj) {
         @SuppressWarnings("unchecked")
-        Set<? extends Number> numbers = (Set<? extends Number>) obj;
-        List<String> numberAttributes = new ArrayList<String>(numbers.size());
+        final Set<? extends Number> numbers = (Set<? extends Number>) obj;
+        final List<String> numberAttributes = new ArrayList<String>(numbers.size());
 
-        for (Number n : numbers) {
+        for (final Number n : numbers) {
             numberAttributes.add(n.toString());
         }
 

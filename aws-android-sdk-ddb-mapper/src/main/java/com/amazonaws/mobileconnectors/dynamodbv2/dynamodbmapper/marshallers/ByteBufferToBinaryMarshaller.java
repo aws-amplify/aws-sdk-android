@@ -24,11 +24,16 @@ import java.nio.ByteBuffer;
  * A marshaller that marshals Java {@code ByteBuffer}s into DynamoDB Binary
  * attributes.
  */
-public class ByteBufferToBinaryMarshaller implements BinaryAttributeMarshaller {
+public final class ByteBufferToBinaryMarshaller implements BinaryAttributeMarshaller {
 
     private static final ByteBufferToBinaryMarshaller INSTANCE =
             new ByteBufferToBinaryMarshaller();
 
+    /**
+     * Return a singleton instance.
+     *
+     * @return instance of {@link ByteBufferToBinaryMarshaller}
+     */
     public static ByteBufferToBinaryMarshaller instance() {
         return INSTANCE;
     }

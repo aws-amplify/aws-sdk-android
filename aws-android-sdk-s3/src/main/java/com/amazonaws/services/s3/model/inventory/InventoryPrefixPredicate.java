@@ -22,12 +22,16 @@ public final class InventoryPrefixPredicate extends InventoryFilterPredicate {
 
     private final String prefix;
 
+    /**
+     * Constructor.
+     * @param prefix the string prefix used when evaluating an inventory filter.
+     */
     public InventoryPrefixPredicate(String prefix) {
         this.prefix = prefix;
     }
 
     /**
-     * Returns the prefix to use when evaluating an inventory filter.
+     * @return the prefix to use when evaluating an inventory filter.
      */
     public String getPrefix() {
         return prefix;

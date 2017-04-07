@@ -44,10 +44,18 @@ public class DeleteObjectsResponse implements S3RequesterChargedResult {
      */
     private boolean isRequesterCharged;
 
+    /**
+     * Constructor.
+     */
     public DeleteObjectsResponse() {
         this(new ArrayList<DeletedObject>(), new ArrayList<DeleteError>());
     }
 
+    /**
+     * Constructor.
+     * @param deletedObjects list of deleted objects.
+     * @param errors list of delete errors.
+     */
     public DeleteObjectsResponse(List<DeletedObject> deletedObjects, List<DeleteError> errors) {
         this.deletedObjects = deletedObjects;
         this.errors = errors;
@@ -75,6 +83,7 @@ public class DeleteObjectsResponse implements S3RequesterChargedResult {
     }
 
     @Override
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setRequesterCharged(boolean isRequesterCharged) {
         this.isRequesterCharged = isRequesterCharged;
     }

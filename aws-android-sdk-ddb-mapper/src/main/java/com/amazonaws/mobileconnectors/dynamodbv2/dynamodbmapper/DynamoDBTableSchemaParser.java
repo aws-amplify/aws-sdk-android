@@ -62,17 +62,17 @@ class DynamoDBTableSchemaParser {
             DynamoDBReflector reflector,
             ItemConverter converter) {
 
-        CreateTableRequest createTableRequest = new CreateTableRequest();
+        final CreateTableRequest createTableRequest = new CreateTableRequest();
         createTableRequest.setTableName(DynamoDBMapper.internalGetTableName(clazz, null, config));
 
         // Primary keys
-        Method pHashKeyGetter = reflector.getPrimaryHashKeyGetter(clazz);
-        AttributeDefinition pHashAttrDefinition = getKeyAttributeDefinition(pHashKeyGetter,
+        final Method pHashKeyGetter = reflector.getPrimaryHashKeyGetter(clazz);
+        final AttributeDefinition pHashAttrDefinition = getKeyAttributeDefinition(pHashKeyGetter,
                 converter);
         createTableRequest.withKeySchema(new KeySchemaElement(pHashAttrDefinition
                 .getAttributeName(), KeyType.HASH));
         // Primary range
-        Method pRangeKeyGetter = reflector.getPrimaryRangeKeyGetter(clazz);
+        final Method pRangeKeyGetter = reflector.getPrimaryRangeKeyGetter(clazz);
         AttributeDefinition pRangeAttrDefinition = null;
         if (pRangeKeyGetter != null) {
             pRangeAttrDefinition = getKeyAttributeDefinition(pRangeKeyGetter, converter);
@@ -81,24 +81,24 @@ class DynamoDBTableSchemaParser {
         }
 
         // Parse the index schema
-        TableIndexesInfo indexesInfo = parseTableIndexes(clazz, reflector);
-        if (indexesInfo.getGlobalSecondaryIndexes().isEmpty() == false) {
+        final TableIndexesInfo indexesInfo = parseTableIndexes(clazz, reflector);
+        if (!indexesInfo.getGlobalSecondaryIndexes().isEmpty()) {
             createTableRequest.setGlobalSecondaryIndexes(indexesInfo.getGlobalSecondaryIndexes());
         }
-        if (indexesInfo.getLocalSecondaryIndexes().isEmpty() == false) {
+        if (!indexesInfo.getLocalSecondaryIndexes().isEmpty()) {
             createTableRequest.setLocalSecondaryIndexes(indexesInfo.getLocalSecondaryIndexes());
         }
 
         // Aggregate all key attribute definitions
-        Map<String, AttributeDefinition> attrDefinitions = new HashMap<String, AttributeDefinition>();
+        final Map<String, AttributeDefinition> attrDefinitions = new HashMap<String, AttributeDefinition>();
         // Hash key definition
         putAfterCheckConflict(attrDefinitions, pHashAttrDefinition);
         // Range key definition
         if (pRangeKeyGetter != null) {
             putAfterCheckConflict(attrDefinitions, pRangeAttrDefinition);
         }
-        for (Method indexKeyGetter : indexesInfo.getIndexKeyGetters()) {
-            AttributeDefinition indexKeyAttrDefinition = getKeyAttributeDefinition(indexKeyGetter,
+        for (final Method indexKeyGetter : indexesInfo.getIndexKeyGetters()) {
+            final AttributeDefinition indexKeyAttrDefinition = getKeyAttributeDefinition(indexKeyGetter,
                     converter);
             putAfterCheckConflict(attrDefinitions, indexKeyAttrDefinition);
         }
@@ -110,27 +110,27 @@ class DynamoDBTableSchemaParser {
     TableIndexesInfo parseTableIndexes(final Class<?> clazz, final DynamoDBReflector reflector) {
         synchronized (tableIndexesInfoCache) {
             if (!tableIndexesInfoCache.containsKey(clazz)) {
-                TableIndexesInfo tableIndexInfo = new TableIndexesInfo();
-                String pHashName = reflector.getPrimaryHashKeyName(clazz);
+                final TableIndexesInfo tableIndexInfo = new TableIndexesInfo();
+                final String pHashName = reflector.getPrimaryHashKeyName(clazz);
 
-                for (Method getter : reflector.getRelevantGetters(clazz)) {
+                for (final Method getter : reflector.getRelevantGetters(clazz)) {
                     // Only consider 0-arg getters
                     if (getter.getParameterTypes().length != 0) {
                         continue;
                     }
 
-                    String attributeName = reflector.getAttributeName(getter);
+                    final String attributeName = reflector.getAttributeName(getter);
 
                     if (ReflectionUtils.getterOrFieldHasAnnotation(getter,
                             DynamoDBIndexHashKey.class)) {
-                        DynamoDBIndexHashKey indexHashKeyAnnotation = ReflectionUtils
+                        final DynamoDBIndexHashKey indexHashKeyAnnotation = ReflectionUtils
                                 .getAnnotationFromGetterOrField(getter, DynamoDBIndexHashKey.class);
-                        String gsiName = indexHashKeyAnnotation.globalSecondaryIndexName();
-                        String[] gsiNames = indexHashKeyAnnotation.globalSecondaryIndexNames();
+                        final String gsiName = indexHashKeyAnnotation.globalSecondaryIndexName();
+                        final String[] gsiNames = indexHashKeyAnnotation.globalSecondaryIndexNames();
 
-                        boolean singleGsiName = gsiName != null &&
+                        final boolean singleGsiName = gsiName != null &&
                                 gsiName.length() != 0;
-                        boolean multipleGsiNames = gsiNames != null &&
+                        final boolean multipleGsiNames = gsiNames != null &&
                                 gsiNames.length != 0;
 
                         if (singleGsiName && multipleGsiNames) {
@@ -148,7 +148,7 @@ class DynamoDBTableSchemaParser {
                         if (singleGsiName) {
                             tableIndexInfo.addGsiKeys(gsiName, attributeName, null);
                         } else if (multipleGsiNames) {
-                            for (String gsi : gsiNames) {
+                            for (final String gsi : gsiNames) {
                                 tableIndexInfo.addGsiKeys(gsi, attributeName, null);
                             }
                         }
@@ -157,20 +157,20 @@ class DynamoDBTableSchemaParser {
 
                     if (ReflectionUtils.getterOrFieldHasAnnotation(getter,
                             DynamoDBIndexRangeKey.class)) {
-                        DynamoDBIndexRangeKey indexRangeKeyAnnotation = ReflectionUtils
+                        final DynamoDBIndexRangeKey indexRangeKeyAnnotation = ReflectionUtils
                                 .getAnnotationFromGetterOrField(getter, DynamoDBIndexRangeKey.class);
-                        String gsiName = indexRangeKeyAnnotation.globalSecondaryIndexName();
-                        String[] gsiNames = indexRangeKeyAnnotation.globalSecondaryIndexNames();
-                        String lsiName = indexRangeKeyAnnotation.localSecondaryIndexName();
-                        String[] lsiNames = indexRangeKeyAnnotation.localSecondaryIndexNames();
+                        final String gsiName = indexRangeKeyAnnotation.globalSecondaryIndexName();
+                        final String[] gsiNames = indexRangeKeyAnnotation.globalSecondaryIndexNames();
+                        final String lsiName = indexRangeKeyAnnotation.localSecondaryIndexName();
+                        final String[] lsiNames = indexRangeKeyAnnotation.localSecondaryIndexNames();
 
-                        boolean singleGsiName = gsiName != null &&
+                        final boolean singleGsiName = gsiName != null &&
                                 gsiName.length() != 0;
-                        boolean multipleGsiNames = gsiNames != null &&
+                        final boolean multipleGsiNames = gsiNames != null &&
                                 gsiNames.length != 0;
-                        boolean singleLsiName = lsiName != null &&
+                        final boolean singleLsiName = lsiName != null &&
                                 lsiName.length() != 0;
-                        boolean multipleLsiNames = lsiNames != null &&
+                        final boolean multipleLsiNames = lsiNames != null &&
                                 lsiNames.length != 0;
 
                         if (singleGsiName && multipleGsiNames) {
@@ -197,14 +197,14 @@ class DynamoDBTableSchemaParser {
                         if (singleGsiName) {
                             tableIndexInfo.addGsiKeys(gsiName, null, attributeName);
                         } else if (multipleGsiNames) {
-                            for (String gsi : gsiNames) {
+                            for (final String gsi : gsiNames) {
                                 tableIndexInfo.addGsiKeys(gsi, null, attributeName);
                             }
                         }
                         if (singleLsiName) {
                             tableIndexInfo.addLsiRangeKey(lsiName, pHashName, attributeName);
                         } else if (multipleLsiNames) {
-                            for (String lsi : lsiNames) {
+                            for (final String lsi : lsiNames) {
                                 tableIndexInfo.addLsiRangeKey(lsi, pHashName, attributeName);
                             }
                         }
@@ -221,10 +221,10 @@ class DynamoDBTableSchemaParser {
             Method keyGetter,
             ItemConverter converter) {
 
-        DynamoDBMapperFieldModel fieldModel = converter.getFieldModel(keyGetter);
+        final DynamoDBMapperFieldModel fieldModel = converter.getFieldModel(keyGetter);
 
-        String keyAttrName = fieldModel.getDynamoDBAttributeName();
-        DynamoDBAttributeType keyType = fieldModel.getDynamoDBAttributeType();
+        final String keyAttrName = fieldModel.getDynamoDBAttributeName();
+        final DynamoDBAttributeType keyType = fieldModel.getDynamoDBAttributeType();
 
         if (keyType == DynamoDBAttributeType.S ||
                 keyType == DynamoDBAttributeType.N ||
@@ -239,8 +239,8 @@ class DynamoDBTableSchemaParser {
 
     private static void putAfterCheckConflict(Map<String, AttributeDefinition> map,
             AttributeDefinition attrDefinition) {
-        String attrName = attrDefinition.getAttributeName();
-        AttributeDefinition existingDefinition = map.get(attrName);
+        final String attrName = attrDefinition.getAttributeName();
+        final AttributeDefinition existingDefinition = map.get(attrName);
         if (existingDefinition != null && !existingDefinition.equals(attrDefinition)) {
             throw new DynamoDBMappingException(
                     "Found conflicting definitions for attribute [" + attrName + "]: " +
@@ -333,7 +333,7 @@ class DynamoDBTableSchemaParser {
         private void addGsiKeys(String gsiName, String gsiHashKeyName, String gsiRangeKeyName) {
             GlobalSecondaryIndex gsi;
             if (gsiNameToGsiDefinition.containsKey(gsiName)) {
-                GlobalSecondaryIndex existingGsi = gsiNameToGsiDefinition.get(gsiName);
+                final GlobalSecondaryIndex existingGsi = gsiNameToGsiDefinition.get(gsiName);
                 gsi = existingGsi;
 
                 if (!gsiName.equals(existingGsi.getIndexName())) {
@@ -342,9 +342,9 @@ class DynamoDBTableSchemaParser {
                                     "associated with the GSI [" + gsiName + "].");
                 }
 
-                for (KeySchemaElement existingKey : existingGsi.getKeySchema()) {
-                    String existingKeyName = existingKey.getAttributeName();
-                    String existingKeyType = existingKey.getKeyType();
+                for (final KeySchemaElement existingKey : existingGsi.getKeySchema()) {
+                    final String existingKeyName = existingKey.getAttributeName();
+                    final String existingKeyType = existingKey.getKeyType();
 
                     if (KeyType.HASH.toString().equals(existingKeyType)) {
                         if (gsiHashKeyName != null && !gsiHashKeyName.equals(existingKeyName)) {
@@ -381,7 +381,7 @@ class DynamoDBTableSchemaParser {
                 if (gsi.getKeySchema() == null || gsi.getKeySchema().isEmpty()) {
                     gsi.withKeySchema(new KeySchemaElement(gsiHashKeyName, KeyType.HASH));
                 } else {
-                    LinkedList<KeySchemaElement> orderedKeys = new LinkedList<KeySchemaElement>(
+                    final LinkedList<KeySchemaElement> orderedKeys = new LinkedList<KeySchemaElement>(
                             gsi.getKeySchema());
                     orderedKeys.addFirst(new KeySchemaElement(gsiHashKeyName, KeyType.HASH));
                     gsi.setKeySchema(orderedKeys);
@@ -405,7 +405,7 @@ class DynamoDBTableSchemaParser {
             }
 
             if (lsiNameToLsiDefinition.containsKey(lsiName)) {
-                LocalSecondaryIndex existingLsi = lsiNameToLsiDefinition.get(lsiName);
+                final LocalSecondaryIndex existingLsi = lsiNameToLsiDefinition.get(lsiName);
                 if (!lsiName.equals(existingLsi.getIndexName())
                         || existingLsi.getKeySchema() == null
                         || existingLsi.getKeySchema().size() != 2 // the hash
@@ -420,7 +420,7 @@ class DynamoDBTableSchemaParser {
                                     "associated with the LSI [" + lsiName + "].");
                 }
 
-                String existingLsiRangeKeyName = existingLsi.getKeySchema().get(1)
+                final String existingLsiRangeKeyName = existingLsi.getKeySchema().get(1)
                         .getAttributeName();
                 if (!existingLsiRangeKeyName.equals(lsiRangeKeyName)) {
                     throw new DynamoDBMappingException("Multiple range keys ["
@@ -459,7 +459,7 @@ class DynamoDBTableSchemaParser {
                 String indexKeyName,
                 String indexName) {
             if (indexKeyNameToIndexNames.get(indexKeyName) == null) {
-                Set<String> indexNames = new HashSet<String>();
+                final Set<String> indexNames = new HashSet<String>();
                 indexNames.add(indexName);
                 indexKeyNameToIndexNames.put(indexKeyName, indexNames);
             } else {

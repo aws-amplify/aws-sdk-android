@@ -30,6 +30,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+/**
+ * A task thats runs DynamoDB scan operations in parallel.
+ */
 public class ParallelScanTask {
 
     /**
@@ -56,11 +59,12 @@ public class ParallelScanTask {
      */
     private final List<SegmentScanState> segmentScanStates;
 
-    private ExecutorService executorService;
+    private final ExecutorService executorService;
 
     private final AmazonDynamoDB dynamo;
 
     @Deprecated
+    @SuppressWarnings("checkstyle:javadocmethod")
     public ParallelScanTask(DynamoDBMapper mapper, AmazonDynamoDB dynamo,
             List<ScanRequest> parallelScanRequests) {
         this(dynamo, parallelScanRequests);
@@ -87,11 +91,17 @@ public class ParallelScanTask {
         return parallelScanRequests.get(0).getTableName();
     }
 
+    /**
+     * returns is the parallel scan is finished.
+     *
+     * @return true if scans are finished, false if it isnt.
+     */
     public boolean isAllSegmentScanFinished() {
         synchronized (segmentScanStates) {
             for (int segment = 0; segment < totalSegments; segment++) {
-                if (segmentScanStates.get(segment) != SegmentScanState.SegmentScanCompleted)
+                if (segmentScanStates.get(segment) != SegmentScanState.SegmentScanCompleted) {
                     return false;
+                }
             }
             // Shut down if all data have been scanned and loaded.
             executorService.shutdown();
@@ -99,7 +109,12 @@ public class ParallelScanTask {
         }
     }
 
-    public List<ScanResult> getNextBatchOfScanResults() throws AmazonClientException {
+    /**
+     * Gets the next batch of scan results.
+     * 
+     * @return list of {@link ScanResult}
+     */
+    public List<ScanResult> getNextBatchOfScanResults() {
         /**
          * Kick-off all the parallel scan tasks.
          */
@@ -112,7 +127,7 @@ public class ParallelScanTask {
                     || segmentScanStates.contains(SegmentScanState.Scanning)) {
                 try {
                     segmentScanStates.wait();
-                } catch (InterruptedException ie) {
+                } catch (final InterruptedException ie) {
                     throw new AmazonClientException("Parallel scan interrupted by other thread.",
                             ie);
                 }
@@ -157,7 +172,7 @@ public class ParallelScanTask {
                     segmentScanStates.set(currentSegment, SegmentScanState.Scanning);
                     segmentScanStates.notifyAll();
                 }
-                Future<ScanResult> futureTask = executorService.submit(new Callable<ScanResult>() {
+                final Future<ScanResult> futureTask = executorService.submit(new Callable<ScanResult>() {
                     @Override
                     public ScanResult call() throws Exception {
                         try {
@@ -171,7 +186,7 @@ public class ParallelScanTask {
                                 throw new AmazonClientException(
                                         "Should not start a new future task");
                             }
-                        } catch (Exception e) {
+                        } catch (final Exception e) {
                             synchronized (segmentScanStates) {
                                 segmentScanStates.set(currentSegment, SegmentScanState.Failed);
                                 segmentScanStates.notifyAll();
@@ -188,9 +203,9 @@ public class ParallelScanTask {
     }
 
     private List<ScanResult> marshalParallelScanResults() {
-        List<ScanResult> scanResults = new LinkedList<ScanResult>();
+        final List<ScanResult> scanResults = new LinkedList<ScanResult>();
         for (int segment = 0; segment < totalSegments; segment++) {
-            SegmentScanState currentSegmentState = segmentScanStates.get(segment);
+            final SegmentScanState currentSegmentState = segmentScanStates.get(segment);
             /**
              * Rethrow the exception from any failed segment scan.
              */
@@ -198,7 +213,7 @@ public class ParallelScanTask {
                 try {
                     segmentScanFutureTasks.get(segment).get();
                     throw new AmazonClientException("No Exception found in the failed scan task.");
-                } catch (ExecutionException ee) {
+                } catch (final ExecutionException ee) {
                     if (ee.getCause() instanceof AmazonClientException) {
                         throw (AmazonClientException) (ee.getCause());
                     } else {
@@ -206,7 +221,7 @@ public class ParallelScanTask {
                                 "Internal error during the scan on segment #" + segment + ".",
                                 ee.getCause());
                     }
-                } catch (Exception e) {
+                } catch (final Exception e) {
                     throw new AmazonClientException("Error during the scan on segment #" + segment
                             + ".", e);
                 }
@@ -216,7 +231,7 @@ public class ParallelScanTask {
              */
             else if (currentSegmentState == SegmentScanState.HasNextPage
                     || currentSegmentState == SegmentScanState.SegmentScanCompleted) {
-                ScanResult scanResult = segmentScanResults.get(segment);
+                final ScanResult scanResult = segmentScanResults.get(segment);
                 scanResults.add(scanResult);
             }
             else if (currentSegmentState == SegmentScanState.Waiting
@@ -229,14 +244,14 @@ public class ParallelScanTask {
     }
 
     ScanResult scanNextPageOfSegment(int currentSegment, boolean checkLastEvaluatedKey) {
-        ScanRequest segmentScanRequest = parallelScanRequests.get(currentSegment);
+        final ScanRequest segmentScanRequest = parallelScanRequests.get(currentSegment);
         if (checkLastEvaluatedKey) {
-            ScanResult lastScanResult = segmentScanResults.get(currentSegment);
+            final ScanResult lastScanResult = segmentScanResults.get(currentSegment);
             segmentScanRequest.setExclusiveStartKey(lastScanResult.getLastEvaluatedKey());
         } else {
             segmentScanRequest.setExclusiveStartKey(null);
         }
-        ScanResult scanResult = dynamo.scan(DynamoDBMapper.applyUserAgent(segmentScanRequest));
+        final ScanResult scanResult = dynamo.scan(DynamoDBMapper.applyUserAgent(segmentScanRequest));
 
         /**
          * Cache the scan result in segmentScanResults. We should never try to
@@ -248,10 +263,11 @@ public class ParallelScanTask {
          * Update the state and notify any waiting thread.
          */
         synchronized (segmentScanStates) {
-            if (null == scanResult.getLastEvaluatedKey())
+            if (null == scanResult.getLastEvaluatedKey()) {
                 segmentScanStates.set(currentSegment, SegmentScanState.SegmentScanCompleted);
-            else
+            } else {
                 segmentScanStates.set(currentSegment, SegmentScanState.HasNextPage);
+            }
             segmentScanStates.notifyAll();
         }
         return scanResult;

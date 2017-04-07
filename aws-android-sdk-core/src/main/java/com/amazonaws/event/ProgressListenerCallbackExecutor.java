@@ -35,6 +35,8 @@ public class ProgressListenerCallbackExecutor {
     /**
      * Used to submit a task to publish a progress event to the given listener.
      *
+     * @param listener the progress listener.
+     * @param progressEvent the process event.
      * @return the future of the submitted task; or null if there is no
      *         listener.
      */
@@ -51,14 +53,25 @@ public class ProgressListenerCallbackExecutor {
     }
 
     // ///////////////////////
+
+    /**
+     * Constructor.
+     * @param listener the progress listener.
+     */
     public ProgressListenerCallbackExecutor(ProgressListener listener) {
         this.listener = listener;
     }
 
+    /**
+     * Constructor.
+     */
     public ProgressListenerCallbackExecutor() {
         this.listener = null;
     }
 
+    /**
+     * @param progressEvent the progress event.
+     */
     public void progressChanged(final ProgressEvent progressEvent) {
         if (listener == null)
             return;
@@ -71,21 +84,22 @@ public class ProgressListenerCallbackExecutor {
     }
 
     /**
-     * Returns the listener associated with the callback executor.
+     * @return the listener associated with the callback executor.
      */
     protected ProgressListener getListener() {
         return listener;
     }
 
     /**
-     * Returns the executor service used for performing the callbacks.
+     * @return the executor service used for performing the callbacks.
      */
     protected static ExecutorService getExecutorService() {
         return executor;
     }
 
     /**
-     * Returns a new ProgressListenerCallbackExecutor instance that wraps the
+     * @param listener the progress listener.
+     * @return a new ProgressListenerCallbackExecutor instance that wraps the
      * specified ProgressListener if it is not null, otherwise directly returns
      * null.
      */

@@ -35,6 +35,12 @@ public class DigestValidationInputStream extends SdkDigestInputStream {
     // Flag do we don't validate twice. See validateMD5Digest()
     private boolean digestValidated = false;
 
+    /**
+     * Constructor.
+     * @param in input stream
+     * @param digest message digest
+     * @param serverSideHash server side hash
+     */
     public DigestValidationInputStream(InputStream in, MessageDigest digest, byte[] serverSideHash) {
         super(in, digest);
         this.expectedHash = serverSideHash;

@@ -36,8 +36,14 @@ import java.util.Map;
 public class ChallengeContinuation implements CognitoIdentityProviderContinuation<Map<String, String>> {
 
     // Boolean constants used to indicate where this continuation will run.
-    final public static boolean RUN_IN_BACKGROUND = true;
-    final public static boolean RUN_IN_CURRENT = false;
+    /**
+     * Run in background.
+     */
+    public static final boolean RUN_IN_BACKGROUND = true;
+    /**
+     * Run on current thread.
+     */
+    public static final boolean RUN_IN_CURRENT = false;
 
     private final RespondToAuthChallengeResult challengeResult;
     private final Context context;
@@ -47,8 +53,21 @@ public class ChallengeContinuation implements CognitoIdentityProviderContinuatio
     private final String username;
     private final AuthenticationHandler callback;
     protected Map<String, String> challengeResponses;
-    private boolean runInBackground;
+    private final boolean runInBackground;
 
+    /**
+     * Constructs a continuation for a challenge to be presented to the user.
+     *  
+     * @param user REQUIRED: Reference to the user being authenticated. 
+     * @param context REQUIRED: Android application context.
+     * @param username REQUIRED: Username used for this auth attempt.
+     * @param clientId REQUIRED: Cognito App Id 
+     * @param secretHash REQUIRED: Hash of the App Secret 
+     * @param challengeResult REQUIRED: Response from Cognito containing 
+     *                        information about the new challenge.
+     * @param runInBackground REQUIRED: Indicates if continuation must execute in a background thread.
+     * @param callback REQUIRED: Reference to the callback handler. 
+     */
     public ChallengeContinuation(CognitoUser user,
                                  Context context,
                                  String username,
@@ -77,6 +96,7 @@ public class ChallengeContinuation implements CognitoIdentityProviderContinuatio
      *
      * @return A {@link Map<String, String>} containing parameters for this auth challenge process.
      */
+    @Override
     public Map<String, String> getParameters() {
         return challengeResult.getChallengeParameters();
     }
@@ -94,11 +114,10 @@ public class ChallengeContinuation implements CognitoIdentityProviderContinuatio
     /**
      * Add responses to the authentication challenge. The responses are added as key-value pairs. The
      * keys are usually unique to the challenge and are often determined by the developers who have
-     * set this challenge.  <b>Note:</b> Overrides an earlier value set for an attribute
-     * which was already added to this object.
+     * set this challenge.  <b>Note:</b> Overrides an earlier value set for the attribute.
      *
-     * @param responseKey
-     * @param responseValue
+     * @param responseKey REQUIRED: The key (identifier) for a parameter in the challenge response.
+     * @param responseValue REQUIRED: The value of the key (identifier),
      */
     public void setChallengeResponse(String responseKey, String responseValue) {
         challengeResponses.put(responseKey, responseValue);
@@ -112,6 +131,7 @@ public class ChallengeContinuation implements CognitoIdentityProviderContinuatio
      * The mechanism to identify the current thread and to run the returned {@link Runnable} in the apps
      * thread is implemented in this method.
      */
+    @Override
     public void continueTask() {
         final RespondToAuthChallengeRequest respondToAuthChallengeRequest = new RespondToAuthChallengeRequest();
         challengeResponses.put(CognitoServiceConstants.CHLG_RESP_USERNAME, username);
@@ -124,7 +144,7 @@ public class ChallengeContinuation implements CognitoIdentityProviderContinuatio
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    Handler handler = new Handler(context.getMainLooper());
+                    final Handler handler = new Handler(context.getMainLooper());
                     Runnable nextStep;
                     try {
                         nextStep = user.respondToChallenge(respondToAuthChallengeRequest, callback, RUN_IN_BACKGROUND);
