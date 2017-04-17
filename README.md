@@ -53,7 +53,7 @@ The AWS SDK for Android supports the following AWS services:
 
 
 
-###A Quick Code Example
+### A Quick Code Example
 
 **Uploading a File to Amazon S3, and then downloading it using Async Task**
 
@@ -92,7 +92,7 @@ private class S3Example extends AsyncTask<Void,Void,Void>{
 
 ```
 
-###SDK Fundamentals
+### SDK Fundamentals
 There are only a few fundamentals that are helpful to know when developing against the AWS SDK for Android.
 
 * Never embed credentrials in an Android application.  It is trivially easy to decompile applications and steal embedded credentials.  Always use temporarily vended credentials from services such as [Amazon Cognito Identity](http://docs.aws.amazon.com/mobile/sdkforandroid/developerguide/cognito-auth.html).
@@ -170,7 +170,7 @@ Follow these step-by-step instructions to get up and running with the SDK.  Plea
 ### Sign up for AWS
 Before you begin, you need to sign up for an AWS account [here](http://aws.amazon.com/), click 'Sign In to the Console', and select new user.
 
-###Create an Amazon Cognito Identity pool 
+### Create an Amazon Cognito Identity pool 
 Amazon Cognito Identity allows you to authenticate users to access your AWS resources without having to place your credentials within the applicaiton itself (which is *very* insecure).
 
 To create a Identity Pool
@@ -180,7 +180,7 @@ To create a Identity Pool
 3.	You will need to create a role associated with your Identity Pool.  This role specifies the actions that users in the identity pool are allowed to make.  By default the console provides you with a role that allows the synchronization of user data from Cognito Sync and recording user events using Amazon Mobile Analytics.  For some example ways to allow other services, or to revoke the permission for these default services see the [Getting Started Guide](http://docs.aws.amazon.com/mobile/sdkforandroid/developerguide/getting-started-android.html) and navigate to the service you are interested in to see an example of how to create an appropriate role.
 4.	The Cognito console will then present you with a code snippet for getting AWS Credentials to your application.  Keep this open as you may find it useful once you are ready to start coding with the SDK.
 
-###Depend on the AWS SDK for Android in your application
+### Depend on the AWS SDK for Android in your application
 
 The following 3 sections describe how you can depend on the SDK in your application using Gradle with Android Studio, Maven, or by downloading the Jar files from our website.  If you use Maven or Gradle you can automatically get new versions of the SDK when they are released.
 
