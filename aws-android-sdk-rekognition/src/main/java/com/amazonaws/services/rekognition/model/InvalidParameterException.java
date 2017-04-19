@@ -20,7 +20,7 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * Input parameter violated a constraint. Validate your parameter before calling
- * the API again.
+ * the API operation again.
  * </p>
  */
 public class InvalidParameterException extends AmazonServiceException {

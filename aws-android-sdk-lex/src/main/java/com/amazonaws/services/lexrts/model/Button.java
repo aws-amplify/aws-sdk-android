@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import java.io.Serializable;
 public class Button implements Serializable {
     /**
      * <p>
-     * Text visible to the user on the button.
+     * Text that is visible to the user on the button.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -36,9 +36,9 @@ public class Button implements Serializable {
 
     /**
      * <p>
-     * Value sent to Amazon Lex when user clicks the button. For example,
-     * consider button text "NYC". When the user clicks the button, the value
-     * sent can be "New York City".
+     * The value sent to Amazon Lex when a user chooses the button. For example,
+     * consider button text "NYC." When the user chooses the button, the value
+     * sent can be "New York City."
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -48,14 +48,14 @@ public class Button implements Serializable {
 
     /**
      * <p>
-     * Text visible to the user on the button.
+     * Text that is visible to the user on the button.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 15<br/>
      *
      * @return <p>
-     *         Text visible to the user on the button.
+     *         Text that is visible to the user on the button.
      *         </p>
      */
     public String getText() {
@@ -64,14 +64,14 @@ public class Button implements Serializable {
 
     /**
      * <p>
-     * Text visible to the user on the button.
+     * Text that is visible to the user on the button.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 15<br/>
      *
      * @param text <p>
-     *            Text visible to the user on the button.
+     *            Text that is visible to the user on the button.
      *            </p>
      */
     public void setText(String text) {
@@ -80,7 +80,7 @@ public class Button implements Serializable {
 
     /**
      * <p>
-     * Text visible to the user on the button.
+     * Text that is visible to the user on the button.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -90,7 +90,7 @@ public class Button implements Serializable {
      * <b>Length: </b>1 - 15<br/>
      *
      * @param text <p>
-     *            Text visible to the user on the button.
+     *            Text that is visible to the user on the button.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -102,18 +102,18 @@ public class Button implements Serializable {
 
     /**
      * <p>
-     * Value sent to Amazon Lex when user clicks the button. For example,
-     * consider button text "NYC". When the user clicks the button, the value
-     * sent can be "New York City".
+     * The value sent to Amazon Lex when a user chooses the button. For example,
+     * consider button text "NYC." When the user chooses the button, the value
+     * sent can be "New York City."
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1000<br/>
      *
      * @return <p>
-     *         Value sent to Amazon Lex when user clicks the button. For
-     *         example, consider button text "NYC". When the user clicks the
-     *         button, the value sent can be "New York City".
+     *         The value sent to Amazon Lex when a user chooses the button. For
+     *         example, consider button text "NYC." When the user chooses the
+     *         button, the value sent can be "New York City."
      *         </p>
      */
     public String getValue() {
@@ -122,18 +122,18 @@ public class Button implements Serializable {
 
     /**
      * <p>
-     * Value sent to Amazon Lex when user clicks the button. For example,
-     * consider button text "NYC". When the user clicks the button, the value
-     * sent can be "New York City".
+     * The value sent to Amazon Lex when a user chooses the button. For example,
+     * consider button text "NYC." When the user chooses the button, the value
+     * sent can be "New York City."
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1000<br/>
      *
      * @param value <p>
-     *            Value sent to Amazon Lex when user clicks the button. For
-     *            example, consider button text "NYC". When the user clicks the
-     *            button, the value sent can be "New York City".
+     *            The value sent to Amazon Lex when a user chooses the button.
+     *            For example, consider button text "NYC." When the user chooses
+     *            the button, the value sent can be "New York City."
      *            </p>
      */
     public void setValue(String value) {
@@ -142,9 +142,9 @@ public class Button implements Serializable {
 
     /**
      * <p>
-     * Value sent to Amazon Lex when user clicks the button. For example,
-     * consider button text "NYC". When the user clicks the button, the value
-     * sent can be "New York City".
+     * The value sent to Amazon Lex when a user chooses the button. For example,
+     * consider button text "NYC." When the user chooses the button, the value
+     * sent can be "New York City."
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -154,9 +154,9 @@ public class Button implements Serializable {
      * <b>Length: </b>1 - 1000<br/>
      *
      * @param value <p>
-     *            Value sent to Amazon Lex when user clicks the button. For
-     *            example, consider button text "NYC". When the user clicks the
-     *            button, the value sent can be "New York City".
+     *            The value sent to Amazon Lex when a user chooses the button.
+     *            For example, consider button text "NYC." When the user chooses
+     *            the button, the value sent can be "New York City."
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

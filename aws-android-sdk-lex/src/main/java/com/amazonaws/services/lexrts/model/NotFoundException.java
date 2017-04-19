@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,7 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Resource (such as the Amazon Lex bot or an alias) referred is not found.
+ * The resource (such as the Amazon Lex bot or an alias) that is referred to is
+ * not found.
  * </p>
  */
 public class NotFoundException extends AmazonServiceException {

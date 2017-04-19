@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a collection in an AWS region. You can add faces to the collection
+ * Creates a collection in an AWS Region. You can add faces to the collection
  * using the operation.
  * </p>
  * <p>
@@ -49,6 +49,27 @@ public class CreateCollectionRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      */
     private String collectionId;
+
+    /**
+     * Default constructor for CreateCollectionRequest object. Callers should
+     * use the setter or fluent setter (with...) methods to initialize any
+     * additional object members.
+     */
+    public CreateCollectionRequest() {
+    }
+
+    /**
+     * Constructs a new CreateCollectionRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
+     * 
+     * @param collectionId <p>
+     *            ID for the collection that you are creating.
+     *            </p>
+     */
+    public CreateCollectionRequest(String collectionId) {
+        setCollectionId(collectionId);
+    }
 
     /**
      * <p>

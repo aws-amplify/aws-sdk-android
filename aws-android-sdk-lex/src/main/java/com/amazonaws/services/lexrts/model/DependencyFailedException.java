@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import com.amazonaws.AmazonServiceException;
  * <p>
  * One of the downstream dependencies, such as AWS Lambda or Amazon Polly, threw
  * an exception. For example, if Amazon Lex does not have sufficient permissions
- * to call a Lambda function which results in AWS Lambda throwing an exception.
+ * to call a Lambda function, it results in Lambda throwing an exception.
  * </p>
  */
 public class DependencyFailedException extends AmazonServiceException {

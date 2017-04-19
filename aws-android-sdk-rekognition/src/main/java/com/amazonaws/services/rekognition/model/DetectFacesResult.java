@@ -37,6 +37,13 @@ public class DetectFacesResult implements Serializable {
      * returns the faces. That is, the bounding box coordinates in the response
      * are based on the corrected orientation.
      * </p>
+     * <note>
+     * <p>
+     * If the source image Exif metadata populates the orientation field, Amazon
+     * Rekognition does not perform orientation correction and the value of
+     * OrientationCorrection will be nil.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
@@ -129,6 +136,13 @@ public class DetectFacesResult implements Serializable {
      * returns the faces. That is, the bounding box coordinates in the response
      * are based on the corrected orientation.
      * </p>
+     * <note>
+     * <p>
+     * If the source image Exif metadata populates the orientation field, Amazon
+     * Rekognition does not perform orientation correction and the value of
+     * OrientationCorrection will be nil.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
@@ -146,6 +160,13 @@ public class DetectFacesResult implements Serializable {
      *         coordinates in the response are based on the corrected
      *         orientation.
      *         </p>
+     *         <note>
+     *         <p>
+     *         If the source image Exif metadata populates the orientation
+     *         field, Amazon Rekognition does not perform orientation correction
+     *         and the value of OrientationCorrection will be nil.
+     *         </p>
+     *         </note>
      * @see OrientationCorrection
      */
     public String getOrientationCorrection() {
@@ -164,6 +185,13 @@ public class DetectFacesResult implements Serializable {
      * returns the faces. That is, the bounding box coordinates in the response
      * are based on the corrected orientation.
      * </p>
+     * <note>
+     * <p>
+     * If the source image Exif metadata populates the orientation field, Amazon
+     * Rekognition does not perform orientation correction and the value of
+     * OrientationCorrection will be nil.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
@@ -181,6 +209,13 @@ public class DetectFacesResult implements Serializable {
      *            box coordinates in the response are based on the corrected
      *            orientation.
      *            </p>
+     *            <note>
+     *            <p>
+     *            If the source image Exif metadata populates the orientation
+     *            field, Amazon Rekognition does not perform orientation
+     *            correction and the value of OrientationCorrection will be nil.
+     *            </p>
+     *            </note>
      * @see OrientationCorrection
      */
     public void setOrientationCorrection(String orientationCorrection) {
@@ -199,6 +234,13 @@ public class DetectFacesResult implements Serializable {
      * returns the faces. That is, the bounding box coordinates in the response
      * are based on the corrected orientation.
      * </p>
+     * <note>
+     * <p>
+     * If the source image Exif metadata populates the orientation field, Amazon
+     * Rekognition does not perform orientation correction and the value of
+     * OrientationCorrection will be nil.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -219,6 +261,13 @@ public class DetectFacesResult implements Serializable {
      *            box coordinates in the response are based on the corrected
      *            orientation.
      *            </p>
+     *            <note>
+     *            <p>
+     *            If the source image Exif metadata populates the orientation
+     *            field, Amazon Rekognition does not perform orientation
+     *            correction and the value of OrientationCorrection will be nil.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see OrientationCorrection
@@ -240,6 +289,13 @@ public class DetectFacesResult implements Serializable {
      * returns the faces. That is, the bounding box coordinates in the response
      * are based on the corrected orientation.
      * </p>
+     * <note>
+     * <p>
+     * If the source image Exif metadata populates the orientation field, Amazon
+     * Rekognition does not perform orientation correction and the value of
+     * OrientationCorrection will be nil.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
@@ -257,6 +313,13 @@ public class DetectFacesResult implements Serializable {
      *            box coordinates in the response are based on the corrected
      *            orientation.
      *            </p>
+     *            <note>
+     *            <p>
+     *            If the source image Exif metadata populates the orientation
+     *            field, Amazon Rekognition does not perform orientation
+     *            correction and the value of OrientationCorrection will be nil.
+     *            </p>
+     *            </note>
      * @see OrientationCorrection
      */
     public void setOrientationCorrection(OrientationCorrection orientationCorrection) {
@@ -275,6 +338,13 @@ public class DetectFacesResult implements Serializable {
      * returns the faces. That is, the bounding box coordinates in the response
      * are based on the corrected orientation.
      * </p>
+     * <note>
+     * <p>
+     * If the source image Exif metadata populates the orientation field, Amazon
+     * Rekognition does not perform orientation correction and the value of
+     * OrientationCorrection will be nil.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -295,6 +365,13 @@ public class DetectFacesResult implements Serializable {
      *            box coordinates in the response are based on the corrected
      *            orientation.
      *            </p>
+     *            <note>
+     *            <p>
+     *            If the source image Exif metadata populates the orientation
+     *            field, Amazon Rekognition does not perform orientation
+     *            correction and the value of OrientationCorrection will be nil.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see OrientationCorrection

@@ -22,7 +22,7 @@ import com.amazonaws.services.rekognition.model.*;
 /**
  * Interface for accessing Amazon Rekognition
  * <p>
- * This is Amazon Rekognition API guide.
+ * This is the Amazon Rekognition API reference.
  * </p>
  **/
 public interface AmazonRekognition {
@@ -155,7 +155,7 @@ public interface AmazonRekognition {
 
     /**
      * <p>
-     * Creates a collection in an AWS region. You can add faces to the
+     * Creates a collection in an AWS Region. You can add faces to the
      * collection using the operation.
      * </p>
      * <p>
@@ -395,6 +395,43 @@ public interface AmazonRekognition {
 
     /**
      * <p>
+     * Detects explicit or suggestive adult content in a specified .jpeg or .png
+     * image. Use <code>DetectModerationLabels</code> to moderate images
+     * depending on your requirements. For example, you might want to filter
+     * images that contain nudity, but not images containing suggestive content.
+     * </p>
+     * <p>
+     * To filter images, use the labels returned by
+     * <code>DetectModerationLabels</code> to determine which types of content
+     * are appropriate. For information about moderation labels, see
+     * <a>howitworks-moderateimage</a>.
+     * </p>
+     * 
+     * @param detectModerationLabelsRequest
+     * @return detectModerationLabelsResult The response from the
+     *         DetectModerationLabels service method, as returned by Amazon
+     *         Rekognition.
+     * @throws InvalidS3ObjectException
+     * @throws InvalidParameterException
+     * @throws ImageTooLargeException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DetectModerationLabelsResult detectModerationLabels(
+            DetectModerationLabelsRequest detectModerationLabelsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Detects faces in the input image and adds them to the specified
      * collection.
      * </p>
@@ -420,11 +457,11 @@ public interface AmazonRekognition {
      * value (indicating the bounding box contains a face), a face ID assigned
      * by the service for each face that is detected and stored, and an image ID
      * assigned by the service for the input image If you request all facial
-     * attributes (using the <code>detectionAttributes</code> parameter,
+     * attributes (using the <code>detectionAttributes</code> parameter, Amazon
      * Rekognition returns detailed facial attributes such as facial landmarks
      * (for example, location of eye and mount) and other facial attributes such
      * gender. If you provide the same image, specify the same collection, and
-     * use the same external ID in the <code>IndexFaces</code> operation,
+     * use the same external ID in the <code>IndexFaces</code> operation, Amazon
      * Rekognition doesn't save duplicate face metadata.
      * </p>
      * <p>
@@ -529,10 +566,10 @@ public interface AmazonRekognition {
 
     /**
      * <p>
-     * For a given input face ID, searches the specified collection for matching
-     * faces. You get a face ID when you add a face to the collection using the
-     * <a>IndexFaces</a> operation. The operation compares the features of the
-     * input face with faces in the specified collection.
+     * For a given input face ID, searches for matching faces in the collection
+     * the face belongs to. You get a face ID when you add a face to the
+     * collection using the <a>IndexFaces</a> operation. The operation compares
+     * the features of the input face with faces in the specified collection.
      * </p>
      * <note>
      * <p>
@@ -585,13 +622,14 @@ public interface AmazonRekognition {
      * </p>
      * <note>
      * <p>
-     * To search for all faces in an input image, you might first call the API,
-     * and then use the face IDs returned in subsequent calls to the API.
+     * To search for all faces in an input image, you might first call the
+     * operation, and then use the face IDs returned in subsequent calls to the
+     * operation.
      * </p>
      * <p>
-     * You can also call the <code>DetectFaces</code> API and use the bounding
-     * boxes in the response to make face crops, which then you can pass in to
-     * the <code>SearchFacesByImage</code> API.
+     * You can also call the <code>DetectFaces</code> operation and use the
+     * bounding boxes in the response to make face crops, which then you can
+     * pass in to the <code>SearchFacesByImage</code> operation.
      * </p>
      * </note>
      * <p>
@@ -599,9 +637,10 @@ public interface AmazonRekognition {
      * score with the highest similarity first. More specifically, it is an
      * array of metadata for each face match found. Along with the metadata, the
      * response also includes a <code>similarity</code> indicating how similar
-     * the face is to the input face. In the response, the API also returns the
-     * bounding box (and a confidence level that the bounding box contains a
-     * face) of the face that Rekognition used for the input image.
+     * the face is to the input face. In the response, the operation also
+     * returns the bounding box (and a confidence level that the bounding box
+     * contains a face) of the face that Amazon Rekognition used for the input
+     * image.
      * </p>
      * <p>
      * For an example, see <a>example3</a>.

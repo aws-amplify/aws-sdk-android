@@ -19,21 +19,24 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Identifies image brightness and sharpness.
+ * Identifies face image brightness and sharpness.
  * </p>
  */
 public class ImageQuality implements Serializable {
     /**
      * <p>
      * Value representing brightness of the face. The service returns a value
-     * between 0 and 1 (inclusive).
+     * between 0 and 100 (inclusive). A higher value indicates a brighter face
+     * image.
      * </p>
      */
     private Float brightness;
 
     /**
      * <p>
-     * Value representing sharpness of the face.
+     * Value representing sharpness of the face. The service returns a value
+     * between 0 and 100 (inclusive). A higher value indicates a sharper face
+     * image.
      * </p>
      */
     private Float sharpness;
@@ -41,12 +44,14 @@ public class ImageQuality implements Serializable {
     /**
      * <p>
      * Value representing brightness of the face. The service returns a value
-     * between 0 and 1 (inclusive).
+     * between 0 and 100 (inclusive). A higher value indicates a brighter face
+     * image.
      * </p>
      *
      * @return <p>
      *         Value representing brightness of the face. The service returns a
-     *         value between 0 and 1 (inclusive).
+     *         value between 0 and 100 (inclusive). A higher value indicates a
+     *         brighter face image.
      *         </p>
      */
     public Float getBrightness() {
@@ -56,12 +61,14 @@ public class ImageQuality implements Serializable {
     /**
      * <p>
      * Value representing brightness of the face. The service returns a value
-     * between 0 and 1 (inclusive).
+     * between 0 and 100 (inclusive). A higher value indicates a brighter face
+     * image.
      * </p>
      *
      * @param brightness <p>
      *            Value representing brightness of the face. The service returns
-     *            a value between 0 and 1 (inclusive).
+     *            a value between 0 and 100 (inclusive). A higher value
+     *            indicates a brighter face image.
      *            </p>
      */
     public void setBrightness(Float brightness) {
@@ -71,7 +78,8 @@ public class ImageQuality implements Serializable {
     /**
      * <p>
      * Value representing brightness of the face. The service returns a value
-     * between 0 and 1 (inclusive).
+     * between 0 and 100 (inclusive). A higher value indicates a brighter face
+     * image.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -79,7 +87,8 @@ public class ImageQuality implements Serializable {
      *
      * @param brightness <p>
      *            Value representing brightness of the face. The service returns
-     *            a value between 0 and 1 (inclusive).
+     *            a value between 0 and 100 (inclusive). A higher value
+     *            indicates a brighter face image.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -91,11 +100,15 @@ public class ImageQuality implements Serializable {
 
     /**
      * <p>
-     * Value representing sharpness of the face.
+     * Value representing sharpness of the face. The service returns a value
+     * between 0 and 100 (inclusive). A higher value indicates a sharper face
+     * image.
      * </p>
      *
      * @return <p>
-     *         Value representing sharpness of the face.
+     *         Value representing sharpness of the face. The service returns a
+     *         value between 0 and 100 (inclusive). A higher value indicates a
+     *         sharper face image.
      *         </p>
      */
     public Float getSharpness() {
@@ -104,11 +117,15 @@ public class ImageQuality implements Serializable {
 
     /**
      * <p>
-     * Value representing sharpness of the face.
+     * Value representing sharpness of the face. The service returns a value
+     * between 0 and 100 (inclusive). A higher value indicates a sharper face
+     * image.
      * </p>
      *
      * @param sharpness <p>
-     *            Value representing sharpness of the face.
+     *            Value representing sharpness of the face. The service returns
+     *            a value between 0 and 100 (inclusive). A higher value
+     *            indicates a sharper face image.
      *            </p>
      */
     public void setSharpness(Float sharpness) {
@@ -117,14 +134,18 @@ public class ImageQuality implements Serializable {
 
     /**
      * <p>
-     * Value representing sharpness of the face.
+     * Value representing sharpness of the face. The service returns a value
+     * between 0 and 100 (inclusive). A higher value indicates a sharper face
+     * image.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param sharpness <p>
-     *            Value representing sharpness of the face.
+     *            Value representing sharpness of the face. The service returns
+     *            a value between 0 and 100 (inclusive). A higher value
+     *            indicates a sharper face image.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

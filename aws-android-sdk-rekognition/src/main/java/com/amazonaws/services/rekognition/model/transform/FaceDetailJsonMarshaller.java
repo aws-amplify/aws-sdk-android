@@ -30,6 +30,11 @@ class FaceDetailJsonMarshaller {
             jsonWriter.name("BoundingBox");
             BoundingBoxJsonMarshaller.getInstance().marshall(boundingBox, jsonWriter);
         }
+        if (faceDetail.getAgeRange() != null) {
+            AgeRange ageRange = faceDetail.getAgeRange();
+            jsonWriter.name("AgeRange");
+            AgeRangeJsonMarshaller.getInstance().marshall(ageRange, jsonWriter);
+        }
         if (faceDetail.getSmile() != null) {
             Smile smile = faceDetail.getSmile();
             jsonWriter.name("Smile");

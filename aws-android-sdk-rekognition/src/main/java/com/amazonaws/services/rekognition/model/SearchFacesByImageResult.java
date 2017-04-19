@@ -20,8 +20,8 @@ import java.io.Serializable;
 public class SearchFacesByImageResult implements Serializable {
     /**
      * <p>
-     * The bounding box around the face in the input image that Rekognition used
-     * for the search.
+     * The bounding box around the face in the input image that Amazon
+     * Rekognition used for the search.
      * </p>
      */
     private BoundingBox searchedFaceBoundingBox;
@@ -47,12 +47,12 @@ public class SearchFacesByImageResult implements Serializable {
 
     /**
      * <p>
-     * The bounding box around the face in the input image that Rekognition used
-     * for the search.
+     * The bounding box around the face in the input image that Amazon
+     * Rekognition used for the search.
      * </p>
      *
      * @return <p>
-     *         The bounding box around the face in the input image that
+     *         The bounding box around the face in the input image that Amazon
      *         Rekognition used for the search.
      *         </p>
      */
@@ -62,13 +62,13 @@ public class SearchFacesByImageResult implements Serializable {
 
     /**
      * <p>
-     * The bounding box around the face in the input image that Rekognition used
-     * for the search.
+     * The bounding box around the face in the input image that Amazon
+     * Rekognition used for the search.
      * </p>
      *
      * @param searchedFaceBoundingBox <p>
      *            The bounding box around the face in the input image that
-     *            Rekognition used for the search.
+     *            Amazon Rekognition used for the search.
      *            </p>
      */
     public void setSearchedFaceBoundingBox(BoundingBox searchedFaceBoundingBox) {
@@ -77,8 +77,8 @@ public class SearchFacesByImageResult implements Serializable {
 
     /**
      * <p>
-     * The bounding box around the face in the input image that Rekognition used
-     * for the search.
+     * The bounding box around the face in the input image that Amazon
+     * Rekognition used for the search.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -86,7 +86,7 @@ public class SearchFacesByImageResult implements Serializable {
      *
      * @param searchedFaceBoundingBox <p>
      *            The bounding box around the face in the input image that
-     *            Rekognition used for the search.
+     *            Amazon Rekognition used for the search.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

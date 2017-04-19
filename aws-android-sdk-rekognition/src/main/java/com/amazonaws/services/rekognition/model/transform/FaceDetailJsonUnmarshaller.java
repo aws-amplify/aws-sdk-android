@@ -38,6 +38,9 @@ class FaceDetailJsonUnmarshaller implements Unmarshaller<FaceDetail, JsonUnmarsh
             if (name.equals("BoundingBox")) {
                 faceDetail.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("AgeRange")) {
+                faceDetail.setAgeRange(AgeRangeJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Smile")) {
                 faceDetail.setSmile(SmileJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,9 +18,15 @@ package com.amazonaws.services.polly;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.Request;
-import com.amazonaws.auth.*;
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.auth.AWSSessionCredentials;
+import com.amazonaws.auth.Presigner;
+import com.amazonaws.auth.Signer;
+import com.amazonaws.auth.SignerFactory;
 import com.amazonaws.http.HttpClient;
 import com.amazonaws.http.UrlHttpClient;
+import com.amazonaws.services.polly.internal.AmazonPollyCustomPresigner;
 import com.amazonaws.services.polly.internal.PresigningRequest;
 import com.amazonaws.services.polly.internal.ServiceUtils;
 import com.amazonaws.services.polly.model.SynthesizeSpeechPresignRequest;
@@ -47,6 +53,10 @@ import java.util.Date;
 public class AmazonPollyPresigningClient extends AmazonPollyClient implements AmazonPolly {
     private static final int DEFAULT_GET_REQUEST_EXPIRATION_MINUTES = 15;
 
+    static{
+        SignerFactory.registerSigner("AmazonPollyCustomPresigner", AmazonPollyCustomPresigner.class);
+    }
+    
     /** Provider for AWS credentials. */
     private AWSCredentialsProvider awsCredentialsProvider;
 

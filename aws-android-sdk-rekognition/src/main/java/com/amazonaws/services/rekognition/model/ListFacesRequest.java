@@ -66,6 +66,27 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
     private Integer maxResults;
 
     /**
+     * Default constructor for ListFacesRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
+     */
+    public ListFacesRequest() {
+    }
+
+    /**
+     * Constructs a new ListFacesRequest object. Callers should use the setter
+     * or fluent setter (with...) methods to initialize any additional object
+     * members.
+     * 
+     * @param collectionId <p>
+     *            ID of the collection from which to list the faces.
+     *            </p>
+     */
+    public ListFacesRequest(String collectionId) {
+        setCollectionId(collectionId);
+    }
+
+    /**
      * <p>
      * ID of the collection from which to list the faces.
      * </p>

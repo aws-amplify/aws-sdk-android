@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 
 package com.amazonaws.services.polly.model;
 
-import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentials;
 
 import java.io.Serializable;
@@ -82,6 +81,11 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * </p>
      */
     private String sampleRate;
+
+    /**
+     * The new value for the speechMarkTypes property for this object.
+     */
+    private java.util.List<String> speechMarkTypes;
 
     /**
      * <p>
@@ -203,9 +207,6 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * href="http://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html"
      * >PutLexicon</a>.
      * </p>
-     * <p>
-     * Currently only one lexicon per request is supported by AWS SDK for Android.
-     * </p>
 
      * @return <p>
      *         Lexicon name (returned as a single item of the List) you want
@@ -247,11 +248,6 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
             return;
         }
 
-        if (lexiconNames.size() > 1) {
-            throw new AmazonClientException(
-                    "Currently only one lexicon per request is supported by AWS SDK for Android.");
-        }
-
         this.lexiconNames = new java.util.ArrayList<String>(lexiconNames);
     }
 
@@ -286,11 +282,6 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
     public SynthesizeSpeechPresignRequest withLexiconNames(String... lexiconNames) {
         if (getLexiconNames() == null) {
             this.lexiconNames = new java.util.ArrayList<String>(lexiconNames.length);
-        }
-
-        if (lexiconNames.length + getLexiconNames().size() > 0) {
-            throw new AmazonClientException(
-                    "Currently only one lexicon per request is supported by AWS SDK for Android.");
         }
 
         for (String value : lexiconNames) {
@@ -525,6 +516,67 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      */
     public SynthesizeSpeechPresignRequest withSampleRate(String sampleRate) {
         this.sampleRate = sampleRate;
+        return this;
+    }
+
+    /**
+     * Returns the value of the speechMarkTypes property for this object.
+     *
+     * @return The value of the speechMarkTypes property for this object.
+     */
+    public java.util.List<String> getSpeechMarkTypes() {
+        return speechMarkTypes;
+    }
+
+    /**
+     * Sets the value of speechMarkTypes
+     *
+     * @param speechMarkTypes The new value for the speechMarkTypes property for
+     *            this object.
+     */
+    public void setSpeechMarkTypes(java.util.Collection<String> speechMarkTypes) {
+        if (speechMarkTypes == null) {
+            this.speechMarkTypes = null;
+            return;
+        }
+
+        this.speechMarkTypes = new java.util.ArrayList<String>(speechMarkTypes);
+    }
+
+    /**
+     * Sets the value of the speechMarkTypes property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param speechMarkTypes The new value for the speechMarkTypes property for
+     *            this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SynthesizeSpeechPresignRequest withSpeechMarkTypes(String... speechMarkTypes) {
+        if (getSpeechMarkTypes() == null) {
+            this.speechMarkTypes = new java.util.ArrayList<String>(speechMarkTypes.length);
+        }
+        for (String value : speechMarkTypes) {
+            this.speechMarkTypes.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * Sets the value of the speechMarkTypes property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param speechMarkTypes The new value for the speechMarkTypes property for
+     *            this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SynthesizeSpeechPresignRequest withSpeechMarkTypes(java.util.Collection<String> speechMarkTypes) {
+        setSpeechMarkTypes(speechMarkTypes);
         return this;
     }
 

@@ -19,8 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Structure containing details about the detected label, including bounding
- * box, name, and level of confidence.
+ * Structure containing details about the detected label, including name, and
+ * level of confidence.
  * </p>
  */
 public class Label implements Serializable {

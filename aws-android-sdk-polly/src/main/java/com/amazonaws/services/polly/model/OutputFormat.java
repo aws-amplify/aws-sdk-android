@@ -23,6 +23,7 @@ import java.util.Map;
  */
 public enum OutputFormat {
 
+    Json("json"),
     Mp3("mp3"),
     Ogg_vorbis("ogg_vorbis"),
     Pcm("pcm");
@@ -41,6 +42,7 @@ public enum OutputFormat {
     private static final Map<String, OutputFormat> enumMap;
     static {
         enumMap = new HashMap<String, OutputFormat>();
+        enumMap.put("json", Json);
         enumMap.put("mp3", Mp3);
         enumMap.put("ogg_vorbis", Ogg_vorbis);
         enumMap.put("pcm", Pcm);

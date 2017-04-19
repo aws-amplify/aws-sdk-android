@@ -111,7 +111,7 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * specified value.
      * </p>
      * <p>
-     * If <code>minConfidence</code> is not specified, the operation returns
+     * If <code>MinConfidence</code> is not specified, the operation returns
      * labels with a confidence values greater than or equal to 50 percent.
      * </p>
      * <p>
@@ -119,6 +119,28 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * <b>Length: </b>0 - 100<br/>
      */
     private Float minConfidence;
+
+    /**
+     * Default constructor for DetectLabelsRequest object. Callers should use
+     * the setter or fluent setter (with...) methods to initialize any
+     * additional object members.
+     */
+    public DetectLabelsRequest() {
+    }
+
+    /**
+     * Constructs a new DetectLabelsRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
+     * 
+     * @param image <p>
+     *            The input image. You can provide a blob of image bytes or an
+     *            S3 object.
+     *            </p>
+     */
+    public DetectLabelsRequest(Image image) {
+        setImage(image);
+    }
 
     /**
      * <p>
@@ -238,7 +260,7 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * specified value.
      * </p>
      * <p>
-     * If <code>minConfidence</code> is not specified, the operation returns
+     * If <code>MinConfidence</code> is not specified, the operation returns
      * labels with a confidence values greater than or equal to 50 percent.
      * </p>
      * <p>
@@ -251,7 +273,7 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      *         lower than this specified value.
      *         </p>
      *         <p>
-     *         If <code>minConfidence</code> is not specified, the operation
+     *         If <code>MinConfidence</code> is not specified, the operation
      *         returns labels with a confidence values greater than or equal to
      *         50 percent.
      *         </p>
@@ -267,7 +289,7 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * specified value.
      * </p>
      * <p>
-     * If <code>minConfidence</code> is not specified, the operation returns
+     * If <code>MinConfidence</code> is not specified, the operation returns
      * labels with a confidence values greater than or equal to 50 percent.
      * </p>
      * <p>
@@ -280,7 +302,7 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      *            confidence lower than this specified value.
      *            </p>
      *            <p>
-     *            If <code>minConfidence</code> is not specified, the operation
+     *            If <code>MinConfidence</code> is not specified, the operation
      *            returns labels with a confidence values greater than or equal
      *            to 50 percent.
      *            </p>
@@ -296,7 +318,7 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * specified value.
      * </p>
      * <p>
-     * If <code>minConfidence</code> is not specified, the operation returns
+     * If <code>MinConfidence</code> is not specified, the operation returns
      * labels with a confidence values greater than or equal to 50 percent.
      * </p>
      * <p>
@@ -312,7 +334,7 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      *            confidence lower than this specified value.
      *            </p>
      *            <p>
-     *            If <code>minConfidence</code> is not specified, the operation
+     *            If <code>MinConfidence</code> is not specified, the operation
      *            returns labels with a confidence values greater than or equal
      *            to 50 percent.
      *            </p>

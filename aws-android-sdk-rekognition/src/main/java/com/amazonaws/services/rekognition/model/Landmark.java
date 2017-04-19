@@ -42,7 +42,7 @@ public class Landmark implements Serializable {
      * <p>
      * x-coordinate from the top left of the landmark expressed as the ration of
      * the width of the image. For example, if the images is 700x200 and the
-     * x-coordinate of the landmark is at 350 pixels, then this value is 0.5.
+     * x-coordinate of the landmark is at 350 pixels, this value is 0.5.
      * </p>
      */
     private Float x;
@@ -51,7 +51,7 @@ public class Landmark implements Serializable {
      * <p>
      * y-coordinate from the top left of the landmark expressed as the ration of
      * the height of the image. For example, if the images is 700x200 and the
-     * y-coordinate of the landmark is at 100 pixels, then this value is 0.5.
+     * y-coordinate of the landmark is at 100 pixels, this value is 0.5.
      * </p>
      */
     private Float y;
@@ -182,14 +182,14 @@ public class Landmark implements Serializable {
      * <p>
      * x-coordinate from the top left of the landmark expressed as the ration of
      * the width of the image. For example, if the images is 700x200 and the
-     * x-coordinate of the landmark is at 350 pixels, then this value is 0.5.
+     * x-coordinate of the landmark is at 350 pixels, this value is 0.5.
      * </p>
      *
      * @return <p>
      *         x-coordinate from the top left of the landmark expressed as the
      *         ration of the width of the image. For example, if the images is
      *         700x200 and the x-coordinate of the landmark is at 350 pixels,
-     *         then this value is 0.5.
+     *         this value is 0.5.
      *         </p>
      */
     public Float getX() {
@@ -200,14 +200,14 @@ public class Landmark implements Serializable {
      * <p>
      * x-coordinate from the top left of the landmark expressed as the ration of
      * the width of the image. For example, if the images is 700x200 and the
-     * x-coordinate of the landmark is at 350 pixels, then this value is 0.5.
+     * x-coordinate of the landmark is at 350 pixels, this value is 0.5.
      * </p>
      *
      * @param x <p>
      *            x-coordinate from the top left of the landmark expressed as
      *            the ration of the width of the image. For example, if the
      *            images is 700x200 and the x-coordinate of the landmark is at
-     *            350 pixels, then this value is 0.5.
+     *            350 pixels, this value is 0.5.
      *            </p>
      */
     public void setX(Float x) {
@@ -218,7 +218,7 @@ public class Landmark implements Serializable {
      * <p>
      * x-coordinate from the top left of the landmark expressed as the ration of
      * the width of the image. For example, if the images is 700x200 and the
-     * x-coordinate of the landmark is at 350 pixels, then this value is 0.5.
+     * x-coordinate of the landmark is at 350 pixels, this value is 0.5.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -228,7 +228,7 @@ public class Landmark implements Serializable {
      *            x-coordinate from the top left of the landmark expressed as
      *            the ration of the width of the image. For example, if the
      *            images is 700x200 and the x-coordinate of the landmark is at
-     *            350 pixels, then this value is 0.5.
+     *            350 pixels, this value is 0.5.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -242,14 +242,14 @@ public class Landmark implements Serializable {
      * <p>
      * y-coordinate from the top left of the landmark expressed as the ration of
      * the height of the image. For example, if the images is 700x200 and the
-     * y-coordinate of the landmark is at 100 pixels, then this value is 0.5.
+     * y-coordinate of the landmark is at 100 pixels, this value is 0.5.
      * </p>
      *
      * @return <p>
      *         y-coordinate from the top left of the landmark expressed as the
      *         ration of the height of the image. For example, if the images is
      *         700x200 and the y-coordinate of the landmark is at 100 pixels,
-     *         then this value is 0.5.
+     *         this value is 0.5.
      *         </p>
      */
     public Float getY() {
@@ -260,14 +260,14 @@ public class Landmark implements Serializable {
      * <p>
      * y-coordinate from the top left of the landmark expressed as the ration of
      * the height of the image. For example, if the images is 700x200 and the
-     * y-coordinate of the landmark is at 100 pixels, then this value is 0.5.
+     * y-coordinate of the landmark is at 100 pixels, this value is 0.5.
      * </p>
      *
      * @param y <p>
      *            y-coordinate from the top left of the landmark expressed as
      *            the ration of the height of the image. For example, if the
      *            images is 700x200 and the y-coordinate of the landmark is at
-     *            100 pixels, then this value is 0.5.
+     *            100 pixels, this value is 0.5.
      *            </p>
      */
     public void setY(Float y) {
@@ -278,7 +278,7 @@ public class Landmark implements Serializable {
      * <p>
      * y-coordinate from the top left of the landmark expressed as the ration of
      * the height of the image. For example, if the images is 700x200 and the
-     * y-coordinate of the landmark is at 100 pixels, then this value is 0.5.
+     * y-coordinate of the landmark is at 100 pixels, this value is 0.5.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -288,7 +288,7 @@ public class Landmark implements Serializable {
      *            y-coordinate from the top left of the landmark expressed as
      *            the ration of the height of the image. For example, if the
      *            images is 700x200 and the y-coordinate of the landmark is at
-     *            100 pixels, then this value is 0.5.
+     *            100 pixels, this value is 0.5.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

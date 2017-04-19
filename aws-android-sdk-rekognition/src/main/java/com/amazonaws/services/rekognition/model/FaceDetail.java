@@ -32,6 +32,14 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
+     * The estimated age range, in years, for the face. Low represents the
+     * lowest estimated age and High represents the highest estimated age.
+     * </p>
+     */
+    private AgeRange ageRange;
+
+    /**
+     * <p>
      * Indicates whether or not the face is smiling, and the confidence level in
      * the determination.
      * </p>
@@ -175,6 +183,60 @@ public class FaceDetail implements Serializable {
      */
     public FaceDetail withBoundingBox(BoundingBox boundingBox) {
         this.boundingBox = boundingBox;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The estimated age range, in years, for the face. Low represents the
+     * lowest estimated age and High represents the highest estimated age.
+     * </p>
+     *
+     * @return <p>
+     *         The estimated age range, in years, for the face. Low represents
+     *         the lowest estimated age and High represents the highest
+     *         estimated age.
+     *         </p>
+     */
+    public AgeRange getAgeRange() {
+        return ageRange;
+    }
+
+    /**
+     * <p>
+     * The estimated age range, in years, for the face. Low represents the
+     * lowest estimated age and High represents the highest estimated age.
+     * </p>
+     *
+     * @param ageRange <p>
+     *            The estimated age range, in years, for the face. Low
+     *            represents the lowest estimated age and High represents the
+     *            highest estimated age.
+     *            </p>
+     */
+    public void setAgeRange(AgeRange ageRange) {
+        this.ageRange = ageRange;
+    }
+
+    /**
+     * <p>
+     * The estimated age range, in years, for the face. Low represents the
+     * lowest estimated age and High represents the highest estimated age.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param ageRange <p>
+     *            The estimated age range, in years, for the face. Low
+     *            represents the lowest estimated age and High represents the
+     *            highest estimated age.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public FaceDetail withAgeRange(AgeRange ageRange) {
+        this.ageRange = ageRange;
         return this;
     }
 
@@ -904,6 +966,8 @@ public class FaceDetail implements Serializable {
         sb.append("{");
         if (getBoundingBox() != null)
             sb.append("BoundingBox: " + getBoundingBox() + ",");
+        if (getAgeRange() != null)
+            sb.append("AgeRange: " + getAgeRange() + ",");
         if (getSmile() != null)
             sb.append("Smile: " + getSmile() + ",");
         if (getEyeglasses() != null)
@@ -941,6 +1005,7 @@ public class FaceDetail implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getBoundingBox() == null) ? 0 : getBoundingBox().hashCode());
+        hashCode = prime * hashCode + ((getAgeRange() == null) ? 0 : getAgeRange().hashCode());
         hashCode = prime * hashCode + ((getSmile() == null) ? 0 : getSmile().hashCode());
         hashCode = prime * hashCode + ((getEyeglasses() == null) ? 0 : getEyeglasses().hashCode());
         hashCode = prime * hashCode + ((getSunglasses() == null) ? 0 : getSunglasses().hashCode());
@@ -972,6 +1037,10 @@ public class FaceDetail implements Serializable {
             return false;
         if (other.getBoundingBox() != null
                 && other.getBoundingBox().equals(this.getBoundingBox()) == false)
+            return false;
+        if (other.getAgeRange() == null ^ this.getAgeRange() == null)
+            return false;
+        if (other.getAgeRange() != null && other.getAgeRange().equals(this.getAgeRange()) == false)
             return false;
         if (other.getSmile() == null ^ this.getSmile() == null)
             return false;

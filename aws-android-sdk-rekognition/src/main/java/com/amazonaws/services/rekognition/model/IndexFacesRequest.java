@@ -44,12 +44,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * (indicating the bounding box contains a face), a face ID assigned by the
  * service for each face that is detected and stored, and an image ID assigned
  * by the service for the input image If you request all facial attributes
- * (using the <code>detectionAttributes</code> parameter, Rekognition returns
- * detailed facial attributes such as facial landmarks (for example, location of
- * eye and mount) and other facial attributes such gender. If you provide the
- * same image, specify the same collection, and use the same external ID in the
- * <code>IndexFaces</code> operation, Rekognition doesn't save duplicate face
- * metadata.
+ * (using the <code>detectionAttributes</code> parameter, Amazon Rekognition
+ * returns detailed facial attributes such as facial landmarks (for example,
+ * location of eye and mount) and other facial attributes such gender. If you
+ * provide the same image, specify the same collection, and use the same
+ * external ID in the <code>IndexFaces</code> operation, Amazon Rekognition
+ * doesn't save duplicate face metadata.
  * </p>
  * <p>
  * For an example, see <a>example2</a>.
@@ -62,8 +62,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class IndexFacesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * ID of an existing collection to which you want to add the faces that are
-     * detected in the input images.
+     * The ID of an existing collection to which you want to add the faces that
+     * are detected in the input images.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -75,6 +75,26 @@ public class IndexFacesRequest extends AmazonWebServiceRequest implements Serial
     /**
      * <p>
      * Provides the source image either as bytes or an S3 object.
+     * </p>
+     * <p>
+     * The region for the S3 bucket containing the S3 object must match the
+     * region you use for Amazon Rekognition operations.
+     * </p>
+     * <p>
+     * You may need to Base64-encode the image bytes depending on the language
+     * you are using and whether or not you are using the AWS SDK. For more
+     * information, see <a>example4</a>.
+     * </p>
+     * <p>
+     * If you use the Amazon CLI to call Amazon Rekognition operations, passing
+     * image bytes using the Bytes property is not supported. You must first
+     * upload the image to an Amazon S3 bucket and then call the operation using
+     * the S3Object property.
+     * </p>
+     * <p>
+     * For Amazon Rekognition to process an S3 object, the user must have
+     * permission to access the S3 object. For more information, see
+     * <a>manage-access-resource-policies</a>.
      * </p>
      */
     private Image image;
@@ -92,23 +112,74 @@ public class IndexFacesRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * (Optional) Returns detailed attributes of indexed faces. By default, the
-     * operation returns a subset of the facial attributes.
+     * A list of facial attributes that you want to be returned. This can be the
+     * default list of attributes or all attributes. If you don't specify a
+     * value for <code>Attributes</code> or if you specify
+     * <code>["DEFAULT"]</code>, the API returns the following subset of facial
+     * attributes: <code>BoundingBox</code>, <code>Confidence</code>,
+     * <code>Pose</code>, <code>Quality</code> and <code>Landmarks</code>. If
+     * you provide <code>["ALL"]</code>, all facial attributes are returned but
+     * the operation will take longer to complete.
      * </p>
      * <p>
-     * For example, you can specify the value as, ["ALL"] or ["DEFAULT"]. If you
-     * provide both, ["ALL", "DEFAULT"], Rekognition uses the logical AND
-     * operator to determine which attributes to return (in this case, it is all
-     * attributes). If you specify all attributes, the service performs
-     * additional detection, in addition to the default.
+     * If you provide both, <code>["ALL", "DEFAULT"]</code>, the service uses a
+     * logical AND operator to determine which attributes to return (in this
+     * case, all attributes).
      * </p>
      */
     private java.util.List<String> detectionAttributes;
 
     /**
+     * Default constructor for IndexFacesRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
+     */
+    public IndexFacesRequest() {
+    }
+
+    /**
+     * Constructs a new IndexFacesRequest object. Callers should use the setter
+     * or fluent setter (with...) methods to initialize any additional object
+     * members.
+     * 
+     * @param collectionId <p>
+     *            The ID of an existing collection to which you want to add the
+     *            faces that are detected in the input images.
+     *            </p>
+     * @param image <p>
+     *            Provides the source image either as bytes or an S3 object.
+     *            </p>
+     *            <p>
+     *            The region for the S3 bucket containing the S3 object must
+     *            match the region you use for Amazon Rekognition operations.
+     *            </p>
+     *            <p>
+     *            You may need to Base64-encode the image bytes depending on the
+     *            language you are using and whether or not you are using the
+     *            AWS SDK. For more information, see <a>example4</a>.
+     *            </p>
+     *            <p>
+     *            If you use the Amazon CLI to call Amazon Rekognition
+     *            operations, passing image bytes using the Bytes property is
+     *            not supported. You must first upload the image to an Amazon S3
+     *            bucket and then call the operation using the S3Object
+     *            property.
+     *            </p>
+     *            <p>
+     *            For Amazon Rekognition to process an S3 object, the user must
+     *            have permission to access the S3 object. For more information,
+     *            see <a>manage-access-resource-policies</a>.
+     *            </p>
+     */
+    public IndexFacesRequest(String collectionId, Image image) {
+        setCollectionId(collectionId);
+        setImage(image);
+    }
+
+    /**
      * <p>
-     * ID of an existing collection to which you want to add the faces that are
-     * detected in the input images.
+     * The ID of an existing collection to which you want to add the faces that
+     * are detected in the input images.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -116,8 +187,8 @@ public class IndexFacesRequest extends AmazonWebServiceRequest implements Serial
      * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      *
      * @return <p>
-     *         ID of an existing collection to which you want to add the faces
-     *         that are detected in the input images.
+     *         The ID of an existing collection to which you want to add the
+     *         faces that are detected in the input images.
      *         </p>
      */
     public String getCollectionId() {
@@ -126,8 +197,8 @@ public class IndexFacesRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * ID of an existing collection to which you want to add the faces that are
-     * detected in the input images.
+     * The ID of an existing collection to which you want to add the faces that
+     * are detected in the input images.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -135,7 +206,7 @@ public class IndexFacesRequest extends AmazonWebServiceRequest implements Serial
      * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      *
      * @param collectionId <p>
-     *            ID of an existing collection to which you want to add the
+     *            The ID of an existing collection to which you want to add the
      *            faces that are detected in the input images.
      *            </p>
      */
@@ -145,8 +216,8 @@ public class IndexFacesRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * ID of an existing collection to which you want to add the faces that are
-     * detected in the input images.
+     * The ID of an existing collection to which you want to add the faces that
+     * are detected in the input images.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -157,7 +228,7 @@ public class IndexFacesRequest extends AmazonWebServiceRequest implements Serial
      * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      *
      * @param collectionId <p>
-     *            ID of an existing collection to which you want to add the
+     *            The ID of an existing collection to which you want to add the
      *            faces that are detected in the input images.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -172,9 +243,49 @@ public class IndexFacesRequest extends AmazonWebServiceRequest implements Serial
      * <p>
      * Provides the source image either as bytes or an S3 object.
      * </p>
+     * <p>
+     * The region for the S3 bucket containing the S3 object must match the
+     * region you use for Amazon Rekognition operations.
+     * </p>
+     * <p>
+     * You may need to Base64-encode the image bytes depending on the language
+     * you are using and whether or not you are using the AWS SDK. For more
+     * information, see <a>example4</a>.
+     * </p>
+     * <p>
+     * If you use the Amazon CLI to call Amazon Rekognition operations, passing
+     * image bytes using the Bytes property is not supported. You must first
+     * upload the image to an Amazon S3 bucket and then call the operation using
+     * the S3Object property.
+     * </p>
+     * <p>
+     * For Amazon Rekognition to process an S3 object, the user must have
+     * permission to access the S3 object. For more information, see
+     * <a>manage-access-resource-policies</a>.
+     * </p>
      *
      * @return <p>
      *         Provides the source image either as bytes or an S3 object.
+     *         </p>
+     *         <p>
+     *         The region for the S3 bucket containing the S3 object must match
+     *         the region you use for Amazon Rekognition operations.
+     *         </p>
+     *         <p>
+     *         You may need to Base64-encode the image bytes depending on the
+     *         language you are using and whether or not you are using the AWS
+     *         SDK. For more information, see <a>example4</a>.
+     *         </p>
+     *         <p>
+     *         If you use the Amazon CLI to call Amazon Rekognition operations,
+     *         passing image bytes using the Bytes property is not supported.
+     *         You must first upload the image to an Amazon S3 bucket and then
+     *         call the operation using the S3Object property.
+     *         </p>
+     *         <p>
+     *         For Amazon Rekognition to process an S3 object, the user must
+     *         have permission to access the S3 object. For more information,
+     *         see <a>manage-access-resource-policies</a>.
      *         </p>
      */
     public Image getImage() {
@@ -185,9 +296,50 @@ public class IndexFacesRequest extends AmazonWebServiceRequest implements Serial
      * <p>
      * Provides the source image either as bytes or an S3 object.
      * </p>
+     * <p>
+     * The region for the S3 bucket containing the S3 object must match the
+     * region you use for Amazon Rekognition operations.
+     * </p>
+     * <p>
+     * You may need to Base64-encode the image bytes depending on the language
+     * you are using and whether or not you are using the AWS SDK. For more
+     * information, see <a>example4</a>.
+     * </p>
+     * <p>
+     * If you use the Amazon CLI to call Amazon Rekognition operations, passing
+     * image bytes using the Bytes property is not supported. You must first
+     * upload the image to an Amazon S3 bucket and then call the operation using
+     * the S3Object property.
+     * </p>
+     * <p>
+     * For Amazon Rekognition to process an S3 object, the user must have
+     * permission to access the S3 object. For more information, see
+     * <a>manage-access-resource-policies</a>.
+     * </p>
      *
      * @param image <p>
      *            Provides the source image either as bytes or an S3 object.
+     *            </p>
+     *            <p>
+     *            The region for the S3 bucket containing the S3 object must
+     *            match the region you use for Amazon Rekognition operations.
+     *            </p>
+     *            <p>
+     *            You may need to Base64-encode the image bytes depending on the
+     *            language you are using and whether or not you are using the
+     *            AWS SDK. For more information, see <a>example4</a>.
+     *            </p>
+     *            <p>
+     *            If you use the Amazon CLI to call Amazon Rekognition
+     *            operations, passing image bytes using the Bytes property is
+     *            not supported. You must first upload the image to an Amazon S3
+     *            bucket and then call the operation using the S3Object
+     *            property.
+     *            </p>
+     *            <p>
+     *            For Amazon Rekognition to process an S3 object, the user must
+     *            have permission to access the S3 object. For more information,
+     *            see <a>manage-access-resource-policies</a>.
      *            </p>
      */
     public void setImage(Image image) {
@@ -199,11 +351,52 @@ public class IndexFacesRequest extends AmazonWebServiceRequest implements Serial
      * Provides the source image either as bytes or an S3 object.
      * </p>
      * <p>
+     * The region for the S3 bucket containing the S3 object must match the
+     * region you use for Amazon Rekognition operations.
+     * </p>
+     * <p>
+     * You may need to Base64-encode the image bytes depending on the language
+     * you are using and whether or not you are using the AWS SDK. For more
+     * information, see <a>example4</a>.
+     * </p>
+     * <p>
+     * If you use the Amazon CLI to call Amazon Rekognition operations, passing
+     * image bytes using the Bytes property is not supported. You must first
+     * upload the image to an Amazon S3 bucket and then call the operation using
+     * the S3Object property.
+     * </p>
+     * <p>
+     * For Amazon Rekognition to process an S3 object, the user must have
+     * permission to access the S3 object. For more information, see
+     * <a>manage-access-resource-policies</a>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param image <p>
      *            Provides the source image either as bytes or an S3 object.
+     *            </p>
+     *            <p>
+     *            The region for the S3 bucket containing the S3 object must
+     *            match the region you use for Amazon Rekognition operations.
+     *            </p>
+     *            <p>
+     *            You may need to Base64-encode the image bytes depending on the
+     *            language you are using and whether or not you are using the
+     *            AWS SDK. For more information, see <a>example4</a>.
+     *            </p>
+     *            <p>
+     *            If you use the Amazon CLI to call Amazon Rekognition
+     *            operations, passing image bytes using the Bytes property is
+     *            not supported. You must first upload the image to an Amazon S3
+     *            bucket and then call the operation using the S3Object
+     *            property.
+     *            </p>
+     *            <p>
+     *            For Amazon Rekognition to process an S3 object, the user must
+     *            have permission to access the S3 object. For more information,
+     *            see <a>manage-access-resource-policies</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -272,28 +465,36 @@ public class IndexFacesRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * (Optional) Returns detailed attributes of indexed faces. By default, the
-     * operation returns a subset of the facial attributes.
+     * A list of facial attributes that you want to be returned. This can be the
+     * default list of attributes or all attributes. If you don't specify a
+     * value for <code>Attributes</code> or if you specify
+     * <code>["DEFAULT"]</code>, the API returns the following subset of facial
+     * attributes: <code>BoundingBox</code>, <code>Confidence</code>,
+     * <code>Pose</code>, <code>Quality</code> and <code>Landmarks</code>. If
+     * you provide <code>["ALL"]</code>, all facial attributes are returned but
+     * the operation will take longer to complete.
      * </p>
      * <p>
-     * For example, you can specify the value as, ["ALL"] or ["DEFAULT"]. If you
-     * provide both, ["ALL", "DEFAULT"], Rekognition uses the logical AND
-     * operator to determine which attributes to return (in this case, it is all
-     * attributes). If you specify all attributes, the service performs
-     * additional detection, in addition to the default.
+     * If you provide both, <code>["ALL", "DEFAULT"]</code>, the service uses a
+     * logical AND operator to determine which attributes to return (in this
+     * case, all attributes).
      * </p>
      *
      * @return <p>
-     *         (Optional) Returns detailed attributes of indexed faces. By
-     *         default, the operation returns a subset of the facial attributes.
+     *         A list of facial attributes that you want to be returned. This
+     *         can be the default list of attributes or all attributes. If you
+     *         don't specify a value for <code>Attributes</code> or if you
+     *         specify <code>["DEFAULT"]</code>, the API returns the following
+     *         subset of facial attributes: <code>BoundingBox</code>,
+     *         <code>Confidence</code>, <code>Pose</code>, <code>Quality</code>
+     *         and <code>Landmarks</code>. If you provide <code>["ALL"]</code>,
+     *         all facial attributes are returned but the operation will take
+     *         longer to complete.
      *         </p>
      *         <p>
-     *         For example, you can specify the value as, ["ALL"] or
-     *         ["DEFAULT"]. If you provide both, ["ALL", "DEFAULT"], Rekognition
-     *         uses the logical AND operator to determine which attributes to
-     *         return (in this case, it is all attributes). If you specify all
-     *         attributes, the service performs additional detection, in
-     *         addition to the default.
+     *         If you provide both, <code>["ALL", "DEFAULT"]</code>, the service
+     *         uses a logical AND operator to determine which attributes to
+     *         return (in this case, all attributes).
      *         </p>
      */
     public java.util.List<String> getDetectionAttributes() {
@@ -302,29 +503,37 @@ public class IndexFacesRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * (Optional) Returns detailed attributes of indexed faces. By default, the
-     * operation returns a subset of the facial attributes.
+     * A list of facial attributes that you want to be returned. This can be the
+     * default list of attributes or all attributes. If you don't specify a
+     * value for <code>Attributes</code> or if you specify
+     * <code>["DEFAULT"]</code>, the API returns the following subset of facial
+     * attributes: <code>BoundingBox</code>, <code>Confidence</code>,
+     * <code>Pose</code>, <code>Quality</code> and <code>Landmarks</code>. If
+     * you provide <code>["ALL"]</code>, all facial attributes are returned but
+     * the operation will take longer to complete.
      * </p>
      * <p>
-     * For example, you can specify the value as, ["ALL"] or ["DEFAULT"]. If you
-     * provide both, ["ALL", "DEFAULT"], Rekognition uses the logical AND
-     * operator to determine which attributes to return (in this case, it is all
-     * attributes). If you specify all attributes, the service performs
-     * additional detection, in addition to the default.
+     * If you provide both, <code>["ALL", "DEFAULT"]</code>, the service uses a
+     * logical AND operator to determine which attributes to return (in this
+     * case, all attributes).
      * </p>
      *
      * @param detectionAttributes <p>
-     *            (Optional) Returns detailed attributes of indexed faces. By
-     *            default, the operation returns a subset of the facial
-     *            attributes.
+     *            A list of facial attributes that you want to be returned. This
+     *            can be the default list of attributes or all attributes. If
+     *            you don't specify a value for <code>Attributes</code> or if
+     *            you specify <code>["DEFAULT"]</code>, the API returns the
+     *            following subset of facial attributes:
+     *            <code>BoundingBox</code>, <code>Confidence</code>,
+     *            <code>Pose</code>, <code>Quality</code> and
+     *            <code>Landmarks</code>. If you provide <code>["ALL"]</code>,
+     *            all facial attributes are returned but the operation will take
+     *            longer to complete.
      *            </p>
      *            <p>
-     *            For example, you can specify the value as, ["ALL"] or
-     *            ["DEFAULT"]. If you provide both, ["ALL", "DEFAULT"],
-     *            Rekognition uses the logical AND operator to determine which
-     *            attributes to return (in this case, it is all attributes). If
-     *            you specify all attributes, the service performs additional
-     *            detection, in addition to the default.
+     *            If you provide both, <code>["ALL", "DEFAULT"]</code>, the
+     *            service uses a logical AND operator to determine which
+     *            attributes to return (in this case, all attributes).
      *            </p>
      */
     public void setDetectionAttributes(java.util.Collection<String> detectionAttributes) {
@@ -338,32 +547,40 @@ public class IndexFacesRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * (Optional) Returns detailed attributes of indexed faces. By default, the
-     * operation returns a subset of the facial attributes.
+     * A list of facial attributes that you want to be returned. This can be the
+     * default list of attributes or all attributes. If you don't specify a
+     * value for <code>Attributes</code> or if you specify
+     * <code>["DEFAULT"]</code>, the API returns the following subset of facial
+     * attributes: <code>BoundingBox</code>, <code>Confidence</code>,
+     * <code>Pose</code>, <code>Quality</code> and <code>Landmarks</code>. If
+     * you provide <code>["ALL"]</code>, all facial attributes are returned but
+     * the operation will take longer to complete.
      * </p>
      * <p>
-     * For example, you can specify the value as, ["ALL"] or ["DEFAULT"]. If you
-     * provide both, ["ALL", "DEFAULT"], Rekognition uses the logical AND
-     * operator to determine which attributes to return (in this case, it is all
-     * attributes). If you specify all attributes, the service performs
-     * additional detection, in addition to the default.
+     * If you provide both, <code>["ALL", "DEFAULT"]</code>, the service uses a
+     * logical AND operator to determine which attributes to return (in this
+     * case, all attributes).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param detectionAttributes <p>
-     *            (Optional) Returns detailed attributes of indexed faces. By
-     *            default, the operation returns a subset of the facial
-     *            attributes.
+     *            A list of facial attributes that you want to be returned. This
+     *            can be the default list of attributes or all attributes. If
+     *            you don't specify a value for <code>Attributes</code> or if
+     *            you specify <code>["DEFAULT"]</code>, the API returns the
+     *            following subset of facial attributes:
+     *            <code>BoundingBox</code>, <code>Confidence</code>,
+     *            <code>Pose</code>, <code>Quality</code> and
+     *            <code>Landmarks</code>. If you provide <code>["ALL"]</code>,
+     *            all facial attributes are returned but the operation will take
+     *            longer to complete.
      *            </p>
      *            <p>
-     *            For example, you can specify the value as, ["ALL"] or
-     *            ["DEFAULT"]. If you provide both, ["ALL", "DEFAULT"],
-     *            Rekognition uses the logical AND operator to determine which
-     *            attributes to return (in this case, it is all attributes). If
-     *            you specify all attributes, the service performs additional
-     *            detection, in addition to the default.
+     *            If you provide both, <code>["ALL", "DEFAULT"]</code>, the
+     *            service uses a logical AND operator to determine which
+     *            attributes to return (in this case, all attributes).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -380,32 +597,40 @@ public class IndexFacesRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * (Optional) Returns detailed attributes of indexed faces. By default, the
-     * operation returns a subset of the facial attributes.
+     * A list of facial attributes that you want to be returned. This can be the
+     * default list of attributes or all attributes. If you don't specify a
+     * value for <code>Attributes</code> or if you specify
+     * <code>["DEFAULT"]</code>, the API returns the following subset of facial
+     * attributes: <code>BoundingBox</code>, <code>Confidence</code>,
+     * <code>Pose</code>, <code>Quality</code> and <code>Landmarks</code>. If
+     * you provide <code>["ALL"]</code>, all facial attributes are returned but
+     * the operation will take longer to complete.
      * </p>
      * <p>
-     * For example, you can specify the value as, ["ALL"] or ["DEFAULT"]. If you
-     * provide both, ["ALL", "DEFAULT"], Rekognition uses the logical AND
-     * operator to determine which attributes to return (in this case, it is all
-     * attributes). If you specify all attributes, the service performs
-     * additional detection, in addition to the default.
+     * If you provide both, <code>["ALL", "DEFAULT"]</code>, the service uses a
+     * logical AND operator to determine which attributes to return (in this
+     * case, all attributes).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param detectionAttributes <p>
-     *            (Optional) Returns detailed attributes of indexed faces. By
-     *            default, the operation returns a subset of the facial
-     *            attributes.
+     *            A list of facial attributes that you want to be returned. This
+     *            can be the default list of attributes or all attributes. If
+     *            you don't specify a value for <code>Attributes</code> or if
+     *            you specify <code>["DEFAULT"]</code>, the API returns the
+     *            following subset of facial attributes:
+     *            <code>BoundingBox</code>, <code>Confidence</code>,
+     *            <code>Pose</code>, <code>Quality</code> and
+     *            <code>Landmarks</code>. If you provide <code>["ALL"]</code>,
+     *            all facial attributes are returned but the operation will take
+     *            longer to complete.
      *            </p>
      *            <p>
-     *            For example, you can specify the value as, ["ALL"] or
-     *            ["DEFAULT"]. If you provide both, ["ALL", "DEFAULT"],
-     *            Rekognition uses the logical AND operator to determine which
-     *            attributes to return (in this case, it is all attributes). If
-     *            you specify all attributes, the service performs additional
-     *            detection, in addition to the default.
+     *            If you provide both, <code>["ALL", "DEFAULT"]</code>, the
+     *            service uses a logical AND operator to determine which
+     *            attributes to return (in this case, all attributes).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

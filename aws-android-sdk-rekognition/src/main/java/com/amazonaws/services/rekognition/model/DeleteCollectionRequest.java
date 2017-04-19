@@ -42,6 +42,27 @@ public class DeleteCollectionRequest extends AmazonWebServiceRequest implements 
     private String collectionId;
 
     /**
+     * Default constructor for DeleteCollectionRequest object. Callers should
+     * use the setter or fluent setter (with...) methods to initialize any
+     * additional object members.
+     */
+    public DeleteCollectionRequest() {
+    }
+
+    /**
+     * Constructs a new DeleteCollectionRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
+     * 
+     * @param collectionId <p>
+     *            ID of the collection to delete.
+     *            </p>
+     */
+    public DeleteCollectionRequest(String collectionId) {
+        setCollectionId(collectionId);
+    }
+
+    /**
      * <p>
      * ID of the collection to delete.
      * </p>

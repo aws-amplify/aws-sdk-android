@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,8 +20,8 @@ import java.io.Serializable;
 /**
  * <p>
  * If you configure a response card when creating your bots, Amazon Lex
- * substitutes the session attributes and slot values available, and then
- * returns it. The response card can also come from a Lambda function (
+ * substitutes the session attributes and slot values that are available, and
+ * then returns it. The response card can also come from a Lambda function (
  * <code>dialogCodeHook</code> and <code>fulfillmentActivity</code> on an
  * intent).
  * </p>
@@ -29,14 +29,14 @@ import java.io.Serializable;
 public class ResponseCard implements Serializable {
     /**
      * <p>
-     * Version of response card format.
+     * The version of the response card format.
      * </p>
      */
     private String version;
 
     /**
      * <p>
-     * Content type of the response.
+     * The content type of the response.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,11 +53,11 @@ public class ResponseCard implements Serializable {
 
     /**
      * <p>
-     * Version of response card format.
+     * The version of the response card format.
      * </p>
      *
      * @return <p>
-     *         Version of response card format.
+     *         The version of the response card format.
      *         </p>
      */
     public String getVersion() {
@@ -66,11 +66,11 @@ public class ResponseCard implements Serializable {
 
     /**
      * <p>
-     * Version of response card format.
+     * The version of the response card format.
      * </p>
      *
      * @param version <p>
-     *            Version of response card format.
+     *            The version of the response card format.
      *            </p>
      */
     public void setVersion(String version) {
@@ -79,14 +79,14 @@ public class ResponseCard implements Serializable {
 
     /**
      * <p>
-     * Version of response card format.
+     * The version of the response card format.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param version <p>
-     *            Version of response card format.
+     *            The version of the response card format.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -98,14 +98,14 @@ public class ResponseCard implements Serializable {
 
     /**
      * <p>
-     * Content type of the response.
+     * The content type of the response.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>application/vnd.amazonaws.card.generic
      *
      * @return <p>
-     *         Content type of the response.
+     *         The content type of the response.
      *         </p>
      * @see ContentType
      */
@@ -115,14 +115,14 @@ public class ResponseCard implements Serializable {
 
     /**
      * <p>
-     * Content type of the response.
+     * The content type of the response.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>application/vnd.amazonaws.card.generic
      *
      * @param contentType <p>
-     *            Content type of the response.
+     *            The content type of the response.
      *            </p>
      * @see ContentType
      */
@@ -132,7 +132,7 @@ public class ResponseCard implements Serializable {
 
     /**
      * <p>
-     * Content type of the response.
+     * The content type of the response.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -142,7 +142,7 @@ public class ResponseCard implements Serializable {
      * <b>Allowed Values: </b>application/vnd.amazonaws.card.generic
      *
      * @param contentType <p>
-     *            Content type of the response.
+     *            The content type of the response.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -155,14 +155,14 @@ public class ResponseCard implements Serializable {
 
     /**
      * <p>
-     * Content type of the response.
+     * The content type of the response.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>application/vnd.amazonaws.card.generic
      *
      * @param contentType <p>
-     *            Content type of the response.
+     *            The content type of the response.
      *            </p>
      * @see ContentType
      */
@@ -172,7 +172,7 @@ public class ResponseCard implements Serializable {
 
     /**
      * <p>
-     * Content type of the response.
+     * The content type of the response.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -182,7 +182,7 @@ public class ResponseCard implements Serializable {
      * <b>Allowed Values: </b>application/vnd.amazonaws.card.generic
      *
      * @param contentType <p>
-     *            Content type of the response.
+     *            The content type of the response.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

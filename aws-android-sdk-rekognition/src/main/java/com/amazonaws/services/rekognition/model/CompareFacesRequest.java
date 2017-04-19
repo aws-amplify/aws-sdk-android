@@ -66,14 +66,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class CompareFacesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Source image either as bytes or an Amazon S3 object
+     * Source image either as bytes or an S3 object
      * </p>
      */
     private Image sourceImage;
 
     /**
      * <p>
-     * Target image either as bytes or an Amazon S3 object
+     * Target image either as bytes or an S3 object
      * </p>
      */
     private Image targetImage;
@@ -90,12 +90,37 @@ public class CompareFacesRequest extends AmazonWebServiceRequest implements Seri
     private Float similarityThreshold;
 
     /**
+     * Default constructor for CompareFacesRequest object. Callers should use
+     * the setter or fluent setter (with...) methods to initialize any
+     * additional object members.
+     */
+    public CompareFacesRequest() {
+    }
+
+    /**
+     * Constructs a new CompareFacesRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
+     * 
+     * @param sourceImage <p>
+     *            Source image either as bytes or an S3 object
+     *            </p>
+     * @param targetImage <p>
+     *            Target image either as bytes or an S3 object
+     *            </p>
+     */
+    public CompareFacesRequest(Image sourceImage, Image targetImage) {
+        setSourceImage(sourceImage);
+        setTargetImage(targetImage);
+    }
+
+    /**
      * <p>
-     * Source image either as bytes or an Amazon S3 object
+     * Source image either as bytes or an S3 object
      * </p>
      *
      * @return <p>
-     *         Source image either as bytes or an Amazon S3 object
+     *         Source image either as bytes or an S3 object
      *         </p>
      */
     public Image getSourceImage() {
@@ -104,11 +129,11 @@ public class CompareFacesRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * Source image either as bytes or an Amazon S3 object
+     * Source image either as bytes or an S3 object
      * </p>
      *
      * @param sourceImage <p>
-     *            Source image either as bytes or an Amazon S3 object
+     *            Source image either as bytes or an S3 object
      *            </p>
      */
     public void setSourceImage(Image sourceImage) {
@@ -117,14 +142,14 @@ public class CompareFacesRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * Source image either as bytes or an Amazon S3 object
+     * Source image either as bytes or an S3 object
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param sourceImage <p>
-     *            Source image either as bytes or an Amazon S3 object
+     *            Source image either as bytes or an S3 object
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -136,11 +161,11 @@ public class CompareFacesRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * Target image either as bytes or an Amazon S3 object
+     * Target image either as bytes or an S3 object
      * </p>
      *
      * @return <p>
-     *         Target image either as bytes or an Amazon S3 object
+     *         Target image either as bytes or an S3 object
      *         </p>
      */
     public Image getTargetImage() {
@@ -149,11 +174,11 @@ public class CompareFacesRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * Target image either as bytes or an Amazon S3 object
+     * Target image either as bytes or an S3 object
      * </p>
      *
      * @param targetImage <p>
-     *            Target image either as bytes or an Amazon S3 object
+     *            Target image either as bytes or an S3 object
      *            </p>
      */
     public void setTargetImage(Image targetImage) {
@@ -162,14 +187,14 @@ public class CompareFacesRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * Target image either as bytes or an Amazon S3 object
+     * Target image either as bytes or an S3 object
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param targetImage <p>
-     *            Target image either as bytes or an Amazon S3 object
+     *            Target image either as bytes or an S3 object
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

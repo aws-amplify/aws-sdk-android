@@ -1,4 +1,25 @@
 # Change Log - AWS SDK for Android
+
+## [Release 2.4.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.2)
+
+### Improvements:
+- **Amazon Lex**
+	- Amazon Lex is now Generally Available.
+	- Added support for input transcripts.
+
+- **Amazon Polly**
+	- Added support for multiple Lexicons in presigned request.
+	- Added support for speech marks.
+
+- **Amazon Rekognition**
+	- Added support for content moderation and age range estimation. See [issue #281](https://github.com/aws/aws-sdk-android/issues/281)
+
+### Bug Fixes:
+- **Amazon DynamoDB**
+	- Fixed bug which did not use credentials provider when available in method `getClient(Region)`.
+- **Amazon S3**
+	- Fixed bug which caused gradle build error on commons-io. See [issue #282](https://github.com/aws/aws-sdk-android/issues/282)
+
 ## [Release 2.4.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.1)
 
 ### New Features:

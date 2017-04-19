@@ -27,7 +27,7 @@ public class CompareFacesResult implements Serializable {
 
     /**
      * <p>
-     * Provides an array of <code>CompareFacesMatch </code> objects. Each object
+     * Provides an array of <code>CompareFacesMatch</code> objects. Each object
      * provides the bounding box, confidence that the bounding box contains a
      * face, and the similarity between the face in the bounding box and the
      * face in the source image.
@@ -82,17 +82,17 @@ public class CompareFacesResult implements Serializable {
 
     /**
      * <p>
-     * Provides an array of <code>CompareFacesMatch </code> objects. Each object
+     * Provides an array of <code>CompareFacesMatch</code> objects. Each object
      * provides the bounding box, confidence that the bounding box contains a
      * face, and the similarity between the face in the bounding box and the
      * face in the source image.
      * </p>
      *
      * @return <p>
-     *         Provides an array of <code>CompareFacesMatch </code> objects.
-     *         Each object provides the bounding box, confidence that the
-     *         bounding box contains a face, and the similarity between the face
-     *         in the bounding box and the face in the source image.
+     *         Provides an array of <code>CompareFacesMatch</code> objects. Each
+     *         object provides the bounding box, confidence that the bounding
+     *         box contains a face, and the similarity between the face in the
+     *         bounding box and the face in the source image.
      *         </p>
      */
     public java.util.List<CompareFacesMatch> getFaceMatches() {
@@ -101,14 +101,14 @@ public class CompareFacesResult implements Serializable {
 
     /**
      * <p>
-     * Provides an array of <code>CompareFacesMatch </code> objects. Each object
+     * Provides an array of <code>CompareFacesMatch</code> objects. Each object
      * provides the bounding box, confidence that the bounding box contains a
      * face, and the similarity between the face in the bounding box and the
      * face in the source image.
      * </p>
      *
      * @param faceMatches <p>
-     *            Provides an array of <code>CompareFacesMatch </code> objects.
+     *            Provides an array of <code>CompareFacesMatch</code> objects.
      *            Each object provides the bounding box, confidence that the
      *            bounding box contains a face, and the similarity between the
      *            face in the bounding box and the face in the source image.
@@ -125,7 +125,7 @@ public class CompareFacesResult implements Serializable {
 
     /**
      * <p>
-     * Provides an array of <code>CompareFacesMatch </code> objects. Each object
+     * Provides an array of <code>CompareFacesMatch</code> objects. Each object
      * provides the bounding box, confidence that the bounding box contains a
      * face, and the similarity between the face in the bounding box and the
      * face in the source image.
@@ -135,7 +135,7 @@ public class CompareFacesResult implements Serializable {
      * together.
      *
      * @param faceMatches <p>
-     *            Provides an array of <code>CompareFacesMatch </code> objects.
+     *            Provides an array of <code>CompareFacesMatch</code> objects.
      *            Each object provides the bounding box, confidence that the
      *            bounding box contains a face, and the similarity between the
      *            face in the bounding box and the face in the source image.
@@ -155,7 +155,7 @@ public class CompareFacesResult implements Serializable {
 
     /**
      * <p>
-     * Provides an array of <code>CompareFacesMatch </code> objects. Each object
+     * Provides an array of <code>CompareFacesMatch</code> objects. Each object
      * provides the bounding box, confidence that the bounding box contains a
      * face, and the similarity between the face in the bounding box and the
      * face in the source image.
@@ -165,7 +165,7 @@ public class CompareFacesResult implements Serializable {
      * together.
      *
      * @param faceMatches <p>
-     *            Provides an array of <code>CompareFacesMatch </code> objects.
+     *            Provides an array of <code>CompareFacesMatch</code> objects.
      *            Each object provides the bounding box, confidence that the
      *            bounding box contains a face, and the similarity between the
      *            face in the bounding box and the face in the source image.

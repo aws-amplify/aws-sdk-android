@@ -59,18 +59,44 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A list of facial attributes you would like to be returned. By default,
-     * the API returns subset of facial attributes.
+     * A list of facial attributes you want to be returned. This can be the
+     * default list of attributes or all attributes. If you don't specify a
+     * value for <code>Attributes</code> or if you specify
+     * <code>["DEFAULT"]</code>, the API returns the following subset of facial
+     * attributes: <code>BoundingBox</code>, <code>Confidence</code>,
+     * <code>Pose</code>, <code>Quality</code> and <code>Landmarks</code>. If
+     * you provide <code>["ALL"]</code>, all facial attributes are returned but
+     * the operation will take longer to complete.
      * </p>
      * <p>
-     * For example, you can specify the value as, ["ALL"] or ["DEFAULT"]. If you
-     * provide both, ["ALL", "DEFAULT"], the service uses a logical AND operator
-     * to determine which attributes to return (in this case, it is all
-     * attributes). If you specify all attributes, Rekognition performs
-     * additional detection.
+     * If you provide both, <code>["ALL", "DEFAULT"]</code>, the service uses a
+     * logical AND operator to determine which attributes to return (in this
+     * case, all attributes).
      * </p>
      */
     private java.util.List<String> attributes;
+
+    /**
+     * Default constructor for DetectFacesRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
+     */
+    public DetectFacesRequest() {
+    }
+
+    /**
+     * Constructs a new DetectFacesRequest object. Callers should use the setter
+     * or fluent setter (with...) methods to initialize any additional object
+     * members.
+     * 
+     * @param image <p>
+     *            The image in which you want to detect faces. You can specify a
+     *            blob or an S3 object.
+     *            </p>
+     */
+    public DetectFacesRequest(Image image) {
+        setImage(image);
+    }
 
     /**
      * <p>
@@ -125,27 +151,36 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A list of facial attributes you would like to be returned. By default,
-     * the API returns subset of facial attributes.
+     * A list of facial attributes you want to be returned. This can be the
+     * default list of attributes or all attributes. If you don't specify a
+     * value for <code>Attributes</code> or if you specify
+     * <code>["DEFAULT"]</code>, the API returns the following subset of facial
+     * attributes: <code>BoundingBox</code>, <code>Confidence</code>,
+     * <code>Pose</code>, <code>Quality</code> and <code>Landmarks</code>. If
+     * you provide <code>["ALL"]</code>, all facial attributes are returned but
+     * the operation will take longer to complete.
      * </p>
      * <p>
-     * For example, you can specify the value as, ["ALL"] or ["DEFAULT"]. If you
-     * provide both, ["ALL", "DEFAULT"], the service uses a logical AND operator
-     * to determine which attributes to return (in this case, it is all
-     * attributes). If you specify all attributes, Rekognition performs
-     * additional detection.
+     * If you provide both, <code>["ALL", "DEFAULT"]</code>, the service uses a
+     * logical AND operator to determine which attributes to return (in this
+     * case, all attributes).
      * </p>
      *
      * @return <p>
-     *         A list of facial attributes you would like to be returned. By
-     *         default, the API returns subset of facial attributes.
+     *         A list of facial attributes you want to be returned. This can be
+     *         the default list of attributes or all attributes. If you don't
+     *         specify a value for <code>Attributes</code> or if you specify
+     *         <code>["DEFAULT"]</code>, the API returns the following subset of
+     *         facial attributes: <code>BoundingBox</code>,
+     *         <code>Confidence</code>, <code>Pose</code>, <code>Quality</code>
+     *         and <code>Landmarks</code>. If you provide <code>["ALL"]</code>,
+     *         all facial attributes are returned but the operation will take
+     *         longer to complete.
      *         </p>
      *         <p>
-     *         For example, you can specify the value as, ["ALL"] or
-     *         ["DEFAULT"]. If you provide both, ["ALL", "DEFAULT"], the service
+     *         If you provide both, <code>["ALL", "DEFAULT"]</code>, the service
      *         uses a logical AND operator to determine which attributes to
-     *         return (in this case, it is all attributes). If you specify all
-     *         attributes, Rekognition performs additional detection.
+     *         return (in this case, all attributes).
      *         </p>
      */
     public java.util.List<String> getAttributes() {
@@ -154,28 +189,37 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A list of facial attributes you would like to be returned. By default,
-     * the API returns subset of facial attributes.
+     * A list of facial attributes you want to be returned. This can be the
+     * default list of attributes or all attributes. If you don't specify a
+     * value for <code>Attributes</code> or if you specify
+     * <code>["DEFAULT"]</code>, the API returns the following subset of facial
+     * attributes: <code>BoundingBox</code>, <code>Confidence</code>,
+     * <code>Pose</code>, <code>Quality</code> and <code>Landmarks</code>. If
+     * you provide <code>["ALL"]</code>, all facial attributes are returned but
+     * the operation will take longer to complete.
      * </p>
      * <p>
-     * For example, you can specify the value as, ["ALL"] or ["DEFAULT"]. If you
-     * provide both, ["ALL", "DEFAULT"], the service uses a logical AND operator
-     * to determine which attributes to return (in this case, it is all
-     * attributes). If you specify all attributes, Rekognition performs
-     * additional detection.
+     * If you provide both, <code>["ALL", "DEFAULT"]</code>, the service uses a
+     * logical AND operator to determine which attributes to return (in this
+     * case, all attributes).
      * </p>
      *
      * @param attributes <p>
-     *            A list of facial attributes you would like to be returned. By
-     *            default, the API returns subset of facial attributes.
+     *            A list of facial attributes you want to be returned. This can
+     *            be the default list of attributes or all attributes. If you
+     *            don't specify a value for <code>Attributes</code> or if you
+     *            specify <code>["DEFAULT"]</code>, the API returns the
+     *            following subset of facial attributes:
+     *            <code>BoundingBox</code>, <code>Confidence</code>,
+     *            <code>Pose</code>, <code>Quality</code> and
+     *            <code>Landmarks</code>. If you provide <code>["ALL"]</code>,
+     *            all facial attributes are returned but the operation will take
+     *            longer to complete.
      *            </p>
      *            <p>
-     *            For example, you can specify the value as, ["ALL"] or
-     *            ["DEFAULT"]. If you provide both, ["ALL", "DEFAULT"], the
+     *            If you provide both, <code>["ALL", "DEFAULT"]</code>, the
      *            service uses a logical AND operator to determine which
-     *            attributes to return (in this case, it is all attributes). If
-     *            you specify all attributes, Rekognition performs additional
-     *            detection.
+     *            attributes to return (in this case, all attributes).
      *            </p>
      */
     public void setAttributes(java.util.Collection<String> attributes) {
@@ -189,31 +233,40 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A list of facial attributes you would like to be returned. By default,
-     * the API returns subset of facial attributes.
+     * A list of facial attributes you want to be returned. This can be the
+     * default list of attributes or all attributes. If you don't specify a
+     * value for <code>Attributes</code> or if you specify
+     * <code>["DEFAULT"]</code>, the API returns the following subset of facial
+     * attributes: <code>BoundingBox</code>, <code>Confidence</code>,
+     * <code>Pose</code>, <code>Quality</code> and <code>Landmarks</code>. If
+     * you provide <code>["ALL"]</code>, all facial attributes are returned but
+     * the operation will take longer to complete.
      * </p>
      * <p>
-     * For example, you can specify the value as, ["ALL"] or ["DEFAULT"]. If you
-     * provide both, ["ALL", "DEFAULT"], the service uses a logical AND operator
-     * to determine which attributes to return (in this case, it is all
-     * attributes). If you specify all attributes, Rekognition performs
-     * additional detection.
+     * If you provide both, <code>["ALL", "DEFAULT"]</code>, the service uses a
+     * logical AND operator to determine which attributes to return (in this
+     * case, all attributes).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param attributes <p>
-     *            A list of facial attributes you would like to be returned. By
-     *            default, the API returns subset of facial attributes.
+     *            A list of facial attributes you want to be returned. This can
+     *            be the default list of attributes or all attributes. If you
+     *            don't specify a value for <code>Attributes</code> or if you
+     *            specify <code>["DEFAULT"]</code>, the API returns the
+     *            following subset of facial attributes:
+     *            <code>BoundingBox</code>, <code>Confidence</code>,
+     *            <code>Pose</code>, <code>Quality</code> and
+     *            <code>Landmarks</code>. If you provide <code>["ALL"]</code>,
+     *            all facial attributes are returned but the operation will take
+     *            longer to complete.
      *            </p>
      *            <p>
-     *            For example, you can specify the value as, ["ALL"] or
-     *            ["DEFAULT"]. If you provide both, ["ALL", "DEFAULT"], the
+     *            If you provide both, <code>["ALL", "DEFAULT"]</code>, the
      *            service uses a logical AND operator to determine which
-     *            attributes to return (in this case, it is all attributes). If
-     *            you specify all attributes, Rekognition performs additional
-     *            detection.
+     *            attributes to return (in this case, all attributes).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -230,31 +283,40 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A list of facial attributes you would like to be returned. By default,
-     * the API returns subset of facial attributes.
+     * A list of facial attributes you want to be returned. This can be the
+     * default list of attributes or all attributes. If you don't specify a
+     * value for <code>Attributes</code> or if you specify
+     * <code>["DEFAULT"]</code>, the API returns the following subset of facial
+     * attributes: <code>BoundingBox</code>, <code>Confidence</code>,
+     * <code>Pose</code>, <code>Quality</code> and <code>Landmarks</code>. If
+     * you provide <code>["ALL"]</code>, all facial attributes are returned but
+     * the operation will take longer to complete.
      * </p>
      * <p>
-     * For example, you can specify the value as, ["ALL"] or ["DEFAULT"]. If you
-     * provide both, ["ALL", "DEFAULT"], the service uses a logical AND operator
-     * to determine which attributes to return (in this case, it is all
-     * attributes). If you specify all attributes, Rekognition performs
-     * additional detection.
+     * If you provide both, <code>["ALL", "DEFAULT"]</code>, the service uses a
+     * logical AND operator to determine which attributes to return (in this
+     * case, all attributes).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param attributes <p>
-     *            A list of facial attributes you would like to be returned. By
-     *            default, the API returns subset of facial attributes.
+     *            A list of facial attributes you want to be returned. This can
+     *            be the default list of attributes or all attributes. If you
+     *            don't specify a value for <code>Attributes</code> or if you
+     *            specify <code>["DEFAULT"]</code>, the API returns the
+     *            following subset of facial attributes:
+     *            <code>BoundingBox</code>, <code>Confidence</code>,
+     *            <code>Pose</code>, <code>Quality</code> and
+     *            <code>Landmarks</code>. If you provide <code>["ALL"]</code>,
+     *            all facial attributes are returned but the operation will take
+     *            longer to complete.
      *            </p>
      *            <p>
-     *            For example, you can specify the value as, ["ALL"] or
-     *            ["DEFAULT"]. If you provide both, ["ALL", "DEFAULT"], the
+     *            If you provide both, <code>["ALL", "DEFAULT"]</code>, the
      *            service uses a logical AND operator to determine which
-     *            attributes to return (in this case, it is all attributes). If
-     *            you specify all attributes, Rekognition performs additional
-     *            detection.
+     *            attributes to return (in this case, all attributes).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

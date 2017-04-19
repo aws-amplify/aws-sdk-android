@@ -109,7 +109,7 @@ public class S3ClientCache {
         if (client != null) {
             return client;
         }
-        if (credentialProvider == null) {
+        if (credentialProvider != null) {
             client = new AmazonS3Client(credentialProvider);
         } else {
             client = new AmazonS3Client(credentials);

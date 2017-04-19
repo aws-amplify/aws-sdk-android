@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@
 package com.amazonaws.services.polly.model.transform;
 
 import com.amazonaws.AmazonClientException;
-import com.amazonaws.DefaultRequest;
 import com.amazonaws.Request;
 import com.amazonaws.http.HttpMethodName;
+import com.amazonaws.services.polly.internal.AmazonPollyCustomRequest;
 import com.amazonaws.services.polly.internal.PresigningRequest;
 import com.amazonaws.services.polly.model.SynthesizeSpeechPresignRequest;
 import com.amazonaws.transform.Marshaller;
@@ -41,7 +41,7 @@ public class SynthesizeSpeechPresignRequestMarshaller implements
         }
 
         Request<PresigningRequest> request =
-                new DefaultRequest<PresigningRequest>(
+                new AmazonPollyCustomRequest<PresigningRequest>(
                         new PresigningRequest()
                                 .withRequestCredentials(synthesizeSpeechPresignRequest.getRequestCredentials()),
                         "AmazonPolly");
@@ -50,6 +50,20 @@ public class SynthesizeSpeechPresignRequestMarshaller implements
 
         request.setResourcePath(URI_RESOURCE_PATH);
 
+        List<String> speechMarkTypes = synthesizeSpeechPresignRequest.getSpeechMarkTypes();
+        if (speechMarkTypes != null && speechMarkTypes.size() > 0) {
+            for (String speechMarkType : speechMarkTypes) {
+                request.addParameter("SpeechMarkTypes", speechMarkType);
+            }
+        }
+        
+        List<String> lexiconNames = synthesizeSpeechPresignRequest.getLexiconNames();
+        if (lexiconNames != null && lexiconNames.size() > 0) {
+            for(String lexicon : lexiconNames){
+                request.addParameter("LexiconNames", lexicon);
+            }
+        }
+        
         if (synthesizeSpeechPresignRequest.getText() != null) {
             request.addParameter("Text", synthesizeSpeechPresignRequest.getText());
         }
@@ -67,19 +81,12 @@ public class SynthesizeSpeechPresignRequestMarshaller implements
         if (synthesizeSpeechPresignRequest.getSampleRate() != null) {
             request.addParameter("SampleRate", synthesizeSpeechPresignRequest.getSampleRate());
         }
-
+        
         if (synthesizeSpeechPresignRequest.getOutputFormat() != null) {
             request.addParameter("OutputFormat", synthesizeSpeechPresignRequest.getOutputFormat());
         }
 
-        List<String> lexiconNames = synthesizeSpeechPresignRequest.getLexiconNames();
-        if (lexiconNames != null && lexiconNames.size() > 0) {
-            // Multiple parameters of the same name are currently not supported by the core runtime.
-            // Use only the first lexicon provided in the synthesizeSpeechPresignRequest.
-            // Please note that any lexicons should *NOT* be silently dropped here as SynthesizeSpeechPresignRequest
-            // will throw an Exception in case the client tries to use list of more than one lexicon.
-            request.addParameter("LexiconName", lexiconNames.get(0));
-        }
+        
 
         return request;
     }

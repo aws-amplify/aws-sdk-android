@@ -28,13 +28,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <note>
  * <p>
- * To search for all faces in an input image, you might first call the API, and
- * then use the face IDs returned in subsequent calls to the API.
+ * To search for all faces in an input image, you might first call the
+ * operation, and then use the face IDs returned in subsequent calls to the
+ * operation.
  * </p>
  * <p>
- * You can also call the <code>DetectFaces</code> API and use the bounding boxes
- * in the response to make face crops, which then you can pass in to the
- * <code>SearchFacesByImage</code> API.
+ * You can also call the <code>DetectFaces</code> operation and use the bounding
+ * boxes in the response to make face crops, which then you can pass in to the
+ * <code>SearchFacesByImage</code> operation.
  * </p>
  * </note>
  * <p>
@@ -42,9 +43,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * score with the highest similarity first. More specifically, it is an array of
  * metadata for each face match found. Along with the metadata, the response
  * also includes a <code>similarity</code> indicating how similar the face is to
- * the input face. In the response, the API also returns the bounding box (and a
- * confidence level that the bounding box contains a face) of the face that
- * Rekognition used for the input image.
+ * the input face. In the response, the operation also returns the bounding box
+ * (and a confidence level that the bounding box contains a face) of the face
+ * that Amazon Rekognition used for the input image.
  * </p>
  * <p>
  * For an example, see <a>example3</a>.
@@ -69,6 +70,26 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
     /**
      * <p>
      * Provides the source image either as bytes or an S3 object.
+     * </p>
+     * <p>
+     * The region for the S3 bucket containing the S3 object must match the
+     * region you use for Amazon Rekognition operations.
+     * </p>
+     * <p>
+     * You may need to Base64-encode the image bytes depending on the language
+     * you are using and whether or not you are using the AWS SDK. For more
+     * information, see <a>example4</a>.
+     * </p>
+     * <p>
+     * If you use the Amazon CLI to call Amazon Rekognition operations, passing
+     * image bytes using the Bytes property is not supported. You must first
+     * upload the image to an Amazon S3 bucket and then call the operation using
+     * the S3Object property.
+     * </p>
+     * <p>
+     * For Amazon Rekognition to process an S3 object, the user must have
+     * permission to access the S3 object. For more information, see
+     * <a>manage-access-resource-policies</a>.
      * </p>
      */
     private Image image;
@@ -95,6 +116,52 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * <b>Length: </b>0 - 100<br/>
      */
     private Float faceMatchThreshold;
+
+    /**
+     * Default constructor for SearchFacesByImageRequest object. Callers should
+     * use the setter or fluent setter (with...) methods to initialize any
+     * additional object members.
+     */
+    public SearchFacesByImageRequest() {
+    }
+
+    /**
+     * Constructs a new SearchFacesByImageRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
+     * 
+     * @param collectionId <p>
+     *            ID of the collection to search.
+     *            </p>
+     * @param image <p>
+     *            Provides the source image either as bytes or an S3 object.
+     *            </p>
+     *            <p>
+     *            The region for the S3 bucket containing the S3 object must
+     *            match the region you use for Amazon Rekognition operations.
+     *            </p>
+     *            <p>
+     *            You may need to Base64-encode the image bytes depending on the
+     *            language you are using and whether or not you are using the
+     *            AWS SDK. For more information, see <a>example4</a>.
+     *            </p>
+     *            <p>
+     *            If you use the Amazon CLI to call Amazon Rekognition
+     *            operations, passing image bytes using the Bytes property is
+     *            not supported. You must first upload the image to an Amazon S3
+     *            bucket and then call the operation using the S3Object
+     *            property.
+     *            </p>
+     *            <p>
+     *            For Amazon Rekognition to process an S3 object, the user must
+     *            have permission to access the S3 object. For more information,
+     *            see <a>manage-access-resource-policies</a>.
+     *            </p>
+     */
+    public SearchFacesByImageRequest(String collectionId, Image image) {
+        setCollectionId(collectionId);
+        setImage(image);
+    }
 
     /**
      * <p>
@@ -157,9 +224,49 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * <p>
      * Provides the source image either as bytes or an S3 object.
      * </p>
+     * <p>
+     * The region for the S3 bucket containing the S3 object must match the
+     * region you use for Amazon Rekognition operations.
+     * </p>
+     * <p>
+     * You may need to Base64-encode the image bytes depending on the language
+     * you are using and whether or not you are using the AWS SDK. For more
+     * information, see <a>example4</a>.
+     * </p>
+     * <p>
+     * If you use the Amazon CLI to call Amazon Rekognition operations, passing
+     * image bytes using the Bytes property is not supported. You must first
+     * upload the image to an Amazon S3 bucket and then call the operation using
+     * the S3Object property.
+     * </p>
+     * <p>
+     * For Amazon Rekognition to process an S3 object, the user must have
+     * permission to access the S3 object. For more information, see
+     * <a>manage-access-resource-policies</a>.
+     * </p>
      *
      * @return <p>
      *         Provides the source image either as bytes or an S3 object.
+     *         </p>
+     *         <p>
+     *         The region for the S3 bucket containing the S3 object must match
+     *         the region you use for Amazon Rekognition operations.
+     *         </p>
+     *         <p>
+     *         You may need to Base64-encode the image bytes depending on the
+     *         language you are using and whether or not you are using the AWS
+     *         SDK. For more information, see <a>example4</a>.
+     *         </p>
+     *         <p>
+     *         If you use the Amazon CLI to call Amazon Rekognition operations,
+     *         passing image bytes using the Bytes property is not supported.
+     *         You must first upload the image to an Amazon S3 bucket and then
+     *         call the operation using the S3Object property.
+     *         </p>
+     *         <p>
+     *         For Amazon Rekognition to process an S3 object, the user must
+     *         have permission to access the S3 object. For more information,
+     *         see <a>manage-access-resource-policies</a>.
      *         </p>
      */
     public Image getImage() {
@@ -170,9 +277,50 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * <p>
      * Provides the source image either as bytes or an S3 object.
      * </p>
+     * <p>
+     * The region for the S3 bucket containing the S3 object must match the
+     * region you use for Amazon Rekognition operations.
+     * </p>
+     * <p>
+     * You may need to Base64-encode the image bytes depending on the language
+     * you are using and whether or not you are using the AWS SDK. For more
+     * information, see <a>example4</a>.
+     * </p>
+     * <p>
+     * If you use the Amazon CLI to call Amazon Rekognition operations, passing
+     * image bytes using the Bytes property is not supported. You must first
+     * upload the image to an Amazon S3 bucket and then call the operation using
+     * the S3Object property.
+     * </p>
+     * <p>
+     * For Amazon Rekognition to process an S3 object, the user must have
+     * permission to access the S3 object. For more information, see
+     * <a>manage-access-resource-policies</a>.
+     * </p>
      *
      * @param image <p>
      *            Provides the source image either as bytes or an S3 object.
+     *            </p>
+     *            <p>
+     *            The region for the S3 bucket containing the S3 object must
+     *            match the region you use for Amazon Rekognition operations.
+     *            </p>
+     *            <p>
+     *            You may need to Base64-encode the image bytes depending on the
+     *            language you are using and whether or not you are using the
+     *            AWS SDK. For more information, see <a>example4</a>.
+     *            </p>
+     *            <p>
+     *            If you use the Amazon CLI to call Amazon Rekognition
+     *            operations, passing image bytes using the Bytes property is
+     *            not supported. You must first upload the image to an Amazon S3
+     *            bucket and then call the operation using the S3Object
+     *            property.
+     *            </p>
+     *            <p>
+     *            For Amazon Rekognition to process an S3 object, the user must
+     *            have permission to access the S3 object. For more information,
+     *            see <a>manage-access-resource-policies</a>.
      *            </p>
      */
     public void setImage(Image image) {
@@ -184,11 +332,52 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * Provides the source image either as bytes or an S3 object.
      * </p>
      * <p>
+     * The region for the S3 bucket containing the S3 object must match the
+     * region you use for Amazon Rekognition operations.
+     * </p>
+     * <p>
+     * You may need to Base64-encode the image bytes depending on the language
+     * you are using and whether or not you are using the AWS SDK. For more
+     * information, see <a>example4</a>.
+     * </p>
+     * <p>
+     * If you use the Amazon CLI to call Amazon Rekognition operations, passing
+     * image bytes using the Bytes property is not supported. You must first
+     * upload the image to an Amazon S3 bucket and then call the operation using
+     * the S3Object property.
+     * </p>
+     * <p>
+     * For Amazon Rekognition to process an S3 object, the user must have
+     * permission to access the S3 object. For more information, see
+     * <a>manage-access-resource-policies</a>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param image <p>
      *            Provides the source image either as bytes or an S3 object.
+     *            </p>
+     *            <p>
+     *            The region for the S3 bucket containing the S3 object must
+     *            match the region you use for Amazon Rekognition operations.
+     *            </p>
+     *            <p>
+     *            You may need to Base64-encode the image bytes depending on the
+     *            language you are using and whether or not you are using the
+     *            AWS SDK. For more information, see <a>example4</a>.
+     *            </p>
+     *            <p>
+     *            If you use the Amazon CLI to call Amazon Rekognition
+     *            operations, passing image bytes using the Bytes property is
+     *            not supported. You must first upload the image to an Amazon S3
+     *            bucket and then call the operation using the S3Object
+     *            property.
+     *            </p>
+     *            <p>
+     *            For Amazon Rekognition to process an S3 object, the user must
+     *            have permission to access the S3 object. For more information,
+     *            see <a>manage-access-resource-policies</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

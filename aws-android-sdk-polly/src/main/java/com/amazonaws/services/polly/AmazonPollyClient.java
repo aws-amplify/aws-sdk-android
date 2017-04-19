@@ -269,9 +269,11 @@ public class AmazonPollyClient extends AmazonWebServiceClient implements AmazonP
         jsonErrorUnmarshallers.add(new InvalidSsmlExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new LexiconNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new LexiconSizeExceededExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new MarksNotSupportedForFormatExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new MaxLexemeLengthExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new MaxLexiconsNumberExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ServiceFailureExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new SsmlMarksNotSupportedForTextTypeExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TextLengthExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UnsupportedPlsAlphabetExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UnsupportedPlsLanguageExceptionUnmarshaller());
@@ -593,6 +595,8 @@ public class AmazonPollyClient extends AmazonWebServiceClient implements AmazonP
      * @throws InvalidSsmlException
      * @throws LexiconNotFoundException
      * @throws ServiceFailureException
+     * @throws MarksNotSupportedForFormatException
+     * @throws SsmlMarksNotSupportedForTextTypeException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

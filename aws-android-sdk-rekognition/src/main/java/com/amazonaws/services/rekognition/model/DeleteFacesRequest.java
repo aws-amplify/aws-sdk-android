@@ -49,6 +49,31 @@ public class DeleteFacesRequest extends AmazonWebServiceRequest implements Seria
     private java.util.List<String> faceIds;
 
     /**
+     * Default constructor for DeleteFacesRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
+     */
+    public DeleteFacesRequest() {
+    }
+
+    /**
+     * Constructs a new DeleteFacesRequest object. Callers should use the setter
+     * or fluent setter (with...) methods to initialize any additional object
+     * members.
+     * 
+     * @param collectionId <p>
+     *            Collection from which to remove the specific faces.
+     *            </p>
+     * @param faceIds <p>
+     *            An array of face IDs to delete.
+     *            </p>
+     */
+    public DeleteFacesRequest(String collectionId, java.util.List<String> faceIds) {
+        setCollectionId(collectionId);
+        setFaceIds(faceIds);
+    }
+
+    /**
      * <p>
      * Collection from which to remove the specific faces.
      * </p>

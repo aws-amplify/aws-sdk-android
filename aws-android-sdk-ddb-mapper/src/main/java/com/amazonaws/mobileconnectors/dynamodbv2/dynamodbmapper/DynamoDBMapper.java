@@ -321,7 +321,6 @@ public class DynamoDBMapper {
         this.db = dynamoDB;
         this.config = config;
         this.transformer = transformer;
-
         if (s3CredentialsProvider == null) {
             this.s3cc = null;
         } else {

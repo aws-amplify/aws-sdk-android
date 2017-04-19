@@ -64,29 +64,29 @@ private class S3Example extends AsyncTask<Void,Void,Void>{
         @Override
         protected Void doInBackground(Void... params) {
         
-        	// Initialize the Amazon Cognito credentials provider
-        	CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
+            // Initialize the Amazon Cognito credentials provider
+            CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
                 MY-ACTIVITY.getApplicationContext(), // Application Context
                 "MY-IDENTITY-POOL-ID", // Identity Pool ID
                 Regions.SELECT_YOUR_REGION // Region enum
             );
 
-        	AmazonS3Client s3Client = new AmazonS3Client(credentialsProvider);
-       	 	File fileToUpload = YOUR_FILE;
-        	//(Replace "MY-BUCKET" with your S3 bucket name, and "MY-OBJECT-KEY" with whatever you would 			like to name the file in S3)
-        	PutObjectRequest putRequest = new PutObjectRequest("MY-BUCKET", "MY-OBJECT-KEY",
+            AmazonS3Client s3Client = new AmazonS3Client(credentialsProvider);
+            File fileToUpload = YOUR_FILE;
+            //(Replace "MY-BUCKET" with your S3 bucket name, and "MY-OBJECT-KEY" with whatever you would like to name the file in S3)
+            PutObjectRequest putRequest = new PutObjectRequest("MY-BUCKET", "MY-OBJECT-KEY",
                         fileToUpload);
-        	PutObjectResult putResponse = s3Client.putObject(putRequest);
+            PutObjectResult putResponse = s3Client.putObject(putRequest);
 
-        	GetObjectRequest getRequest = new GetObjectRequest("MY-BUCKET", "MY-OBJECT-KEY");
-        	S3Object getResponse = s3Client.getObject(getRequest);
-        	InputStream myObjectBytes = getResponse.getObjectContent();
+            GetObjectRequest getRequest = new GetObjectRequest("MY-BUCKET", "MY-OBJECT-KEY");
+            S3Object getResponse = s3Client.getObject(getRequest);
+            InputStream myObjectBytes = getResponse.getObjectContent();
 
-        	// Do what you want with the object
-        	
-			myObjectBytes.close();
+            // Do what you want with the object
+            
+            myObjectBytes.close();
 
-        	return null;
+            return null;
         }
 }
 
@@ -175,10 +175,10 @@ Amazon Cognito Identity allows you to authenticate users to access your AWS reso
 
 To create a Identity Pool
 
-1.	Log into the [Cognito Console](https://console.aws.amazon.com/cognito/home) and click the Get Started button (or the New Identity Pool button if your account already has an identity pool).
-2.	Give your Identity Pool a unique name and either enable access to unauthenticated identities or follow the guides presented in the console to setup an authentication provider (Such as Amazon, Facebook, Google, Twitter, or be your own authentication provider).  Then click create pool.
-3.	You will need to create a role associated with your Identity Pool.  This role specifies the actions that users in the identity pool are allowed to make.  By default the console provides you with a role that allows the synchronization of user data from Cognito Sync and recording user events using Amazon Mobile Analytics.  For some example ways to allow other services, or to revoke the permission for these default services see the [Getting Started Guide](http://docs.aws.amazon.com/mobile/sdkforandroid/developerguide/getting-started-android.html) and navigate to the service you are interested in to see an example of how to create an appropriate role.
-4.	The Cognito console will then present you with a code snippet for getting AWS Credentials to your application.  Keep this open as you may find it useful once you are ready to start coding with the SDK.
+1.  Log into the [Cognito Console](https://console.aws.amazon.com/cognito/home) and click the Get Started button (or the New Identity Pool button if your account already has an identity pool).
+2.  Give your Identity Pool a unique name and either enable access to unauthenticated identities or follow the guides presented in the console to setup an authentication provider (Such as Amazon, Facebook, Google, Twitter, or be your own authentication provider).  Then click create pool.
+3.  You will need to create a role associated with your Identity Pool.  This role specifies the actions that users in the identity pool are allowed to make.  By default the console provides you with a role that allows the synchronization of user data from Cognito Sync and recording user events using Amazon Mobile Analytics.  For some example ways to allow other services, or to revoke the permission for these default services see the [Getting Started Guide](http://docs.aws.amazon.com/mobile/sdkforandroid/developerguide/getting-started-android.html) and navigate to the service you are interested in to see an example of how to create an appropriate role.
+4.  The Cognito console will then present you with a code snippet for getting AWS Credentials to your application.  Keep this open as you may find it useful once you are ready to start coding with the SDK.
 
 ### Depend on the AWS SDK for Android in your application
 

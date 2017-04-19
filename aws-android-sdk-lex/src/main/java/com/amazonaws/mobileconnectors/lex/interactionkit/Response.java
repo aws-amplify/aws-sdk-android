@@ -130,4 +130,13 @@ public class Response {
     public Map<String, String> getSlots() {
         return result.getSlots();
     }
+
+    /**
+     * Transcript of the voice input to the operation.
+     * 
+     * @return
+     */
+    public String getInputTranscript() {
+        return result.getInputTranscript();
+    }
 }

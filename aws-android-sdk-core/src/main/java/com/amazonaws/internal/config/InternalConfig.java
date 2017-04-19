@@ -151,6 +151,7 @@ public class InternalConfig {
         ret.put("s3", new SignerConfig("S3SignerType"));
         ret.put("sdb", new SignerConfig("QueryStringSignerType"));
         ret.put("runtime.lex", new SignerConfig("AmazonLexV4Signer"));
+        ret.put("polly", new SignerConfig("AmazonPollyCustomPresigner"));
         return ret;
     }
 

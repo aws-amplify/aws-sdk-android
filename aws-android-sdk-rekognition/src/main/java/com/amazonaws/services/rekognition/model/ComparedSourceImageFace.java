@@ -61,7 +61,7 @@ public class ComparedSourceImageFace implements Serializable {
 
     /**
      * <p>
-     * Confidence that the selected bounding box contains a face.
+     * Confidence level that the selected bounding box contains a face.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -283,14 +283,14 @@ public class ComparedSourceImageFace implements Serializable {
 
     /**
      * <p>
-     * Confidence that the selected bounding box contains a face.
+     * Confidence level that the selected bounding box contains a face.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 100<br/>
      *
      * @return <p>
-     *         Confidence that the selected bounding box contains a face.
+     *         Confidence level that the selected bounding box contains a face.
      *         </p>
      */
     public Float getConfidence() {
@@ -299,14 +299,15 @@ public class ComparedSourceImageFace implements Serializable {
 
     /**
      * <p>
-     * Confidence that the selected bounding box contains a face.
+     * Confidence level that the selected bounding box contains a face.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 100<br/>
      *
      * @param confidence <p>
-     *            Confidence that the selected bounding box contains a face.
+     *            Confidence level that the selected bounding box contains a
+     *            face.
      *            </p>
      */
     public void setConfidence(Float confidence) {
@@ -315,7 +316,7 @@ public class ComparedSourceImageFace implements Serializable {
 
     /**
      * <p>
-     * Confidence that the selected bounding box contains a face.
+     * Confidence level that the selected bounding box contains a face.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -325,7 +326,8 @@ public class ComparedSourceImageFace implements Serializable {
      * <b>Length: </b>0 - 100<br/>
      *
      * @param confidence <p>
-     *            Confidence that the selected bounding box contains a face.
+     *            Confidence level that the selected bounding box contains a
+     *            face.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

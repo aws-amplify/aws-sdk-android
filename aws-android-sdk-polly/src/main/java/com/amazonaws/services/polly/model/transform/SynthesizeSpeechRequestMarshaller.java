@@ -78,6 +78,18 @@ public class SynthesizeSpeechRequestMarshaller implements
                 jsonWriter.name("SampleRate");
                 jsonWriter.value(sampleRate);
             }
+            if (synthesizeSpeechRequest.getSpeechMarkTypes() != null) {
+                java.util.List<String> speechMarkTypes = synthesizeSpeechRequest
+                        .getSpeechMarkTypes();
+                jsonWriter.name("SpeechMarkTypes");
+                jsonWriter.beginArray();
+                for (String speechMarkTypesItem : speechMarkTypes) {
+                    if (speechMarkTypesItem != null) {
+                        jsonWriter.value(speechMarkTypesItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
             if (synthesizeSpeechRequest.getText() != null) {
                 String text = synthesizeSpeechRequest.getText();
                 jsonWriter.name("Text");

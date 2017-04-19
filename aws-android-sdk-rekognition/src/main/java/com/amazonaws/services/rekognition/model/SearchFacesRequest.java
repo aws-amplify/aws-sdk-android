@@ -21,10 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * For a given input face ID, searches the specified collection for matching
- * faces. You get a face ID when you add a face to the collection using the
- * <a>IndexFaces</a> operation. The operation compares the features of the input
- * face with faces in the specified collection.
+ * For a given input face ID, searches for matching faces in the collection the
+ * face belongs to. You get a face ID when you add a face to the collection
+ * using the <a>IndexFaces</a> operation. The operation compares the features of
+ * the input face with faces in the specified collection.
  * </p>
  * <note>
  * <p>
@@ -51,7 +51,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class SearchFacesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * ID of the collection to search.
+     * ID of the collection the face belongs to.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -73,8 +73,8 @@ public class SearchFacesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Maximum number of faces to return. The API will return the maximum number
-     * of faces with the highest confidence in the match.
+     * Maximum number of faces to return. The operation returns the maximum
+     * number of faces with the highest confidence in the match.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -95,8 +95,33 @@ public class SearchFacesRequest extends AmazonWebServiceRequest implements Seria
     private Float faceMatchThreshold;
 
     /**
+     * Default constructor for SearchFacesRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
+     */
+    public SearchFacesRequest() {
+    }
+
+    /**
+     * Constructs a new SearchFacesRequest object. Callers should use the setter
+     * or fluent setter (with...) methods to initialize any additional object
+     * members.
+     * 
+     * @param collectionId <p>
+     *            ID of the collection the face belongs to.
+     *            </p>
+     * @param faceId <p>
+     *            ID of a face to find matches for in the collection.
+     *            </p>
+     */
+    public SearchFacesRequest(String collectionId, String faceId) {
+        setCollectionId(collectionId);
+        setFaceId(faceId);
+    }
+
+    /**
      * <p>
-     * ID of the collection to search.
+     * ID of the collection the face belongs to.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -104,7 +129,7 @@ public class SearchFacesRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      *
      * @return <p>
-     *         ID of the collection to search.
+     *         ID of the collection the face belongs to.
      *         </p>
      */
     public String getCollectionId() {
@@ -113,7 +138,7 @@ public class SearchFacesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * ID of the collection to search.
+     * ID of the collection the face belongs to.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -121,7 +146,7 @@ public class SearchFacesRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      *
      * @param collectionId <p>
-     *            ID of the collection to search.
+     *            ID of the collection the face belongs to.
      *            </p>
      */
     public void setCollectionId(String collectionId) {
@@ -130,7 +155,7 @@ public class SearchFacesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * ID of the collection to search.
+     * ID of the collection the face belongs to.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -141,7 +166,7 @@ public class SearchFacesRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      *
      * @param collectionId <p>
-     *            ID of the collection to search.
+     *            ID of the collection the face belongs to.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -210,15 +235,15 @@ public class SearchFacesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Maximum number of faces to return. The API will return the maximum number
-     * of faces with the highest confidence in the match.
+     * Maximum number of faces to return. The operation returns the maximum
+     * number of faces with the highest confidence in the match.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 4096<br/>
      *
      * @return <p>
-     *         Maximum number of faces to return. The API will return the
+     *         Maximum number of faces to return. The operation returns the
      *         maximum number of faces with the highest confidence in the match.
      *         </p>
      */
@@ -228,15 +253,15 @@ public class SearchFacesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Maximum number of faces to return. The API will return the maximum number
-     * of faces with the highest confidence in the match.
+     * Maximum number of faces to return. The operation returns the maximum
+     * number of faces with the highest confidence in the match.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 4096<br/>
      *
      * @param maxFaces <p>
-     *            Maximum number of faces to return. The API will return the
+     *            Maximum number of faces to return. The operation returns the
      *            maximum number of faces with the highest confidence in the
      *            match.
      *            </p>
@@ -247,8 +272,8 @@ public class SearchFacesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Maximum number of faces to return. The API will return the maximum number
-     * of faces with the highest confidence in the match.
+     * Maximum number of faces to return. The operation returns the maximum
+     * number of faces with the highest confidence in the match.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -258,7 +283,7 @@ public class SearchFacesRequest extends AmazonWebServiceRequest implements Seria
      * <b>Range: </b>1 - 4096<br/>
      *
      * @param maxFaces <p>
-     *            Maximum number of faces to return. The API will return the
+     *            Maximum number of faces to return. The operation returns the
      *            maximum number of faces with the highest confidence in the
      *            match.
      *            </p>
