@@ -119,7 +119,7 @@ public class MobileAnalyticsManager {
             eventClient = new DefaultEventClient(context, options.getAllowEventCollection());
 
             sessionClient = new DefaultSessionClient(context, eventClient, new FileSessionStore(
-                    context));
+                    context), options.getAllowResumePauseEvents(), options.getResumeDelay(), options.getRestartDelay());
             context.getERSClient().addRequestHandler(
                     new RequestTimingHandler(context.getSystem().getConnectivity(), eventClient));
 
@@ -228,7 +228,7 @@ public class MobileAnalyticsManager {
         }
     }
 
-    /*
+/*
      * Same as getOrCreateInstance(Context, String, Regions, AWSCredentialsProvider)
      * without the Regions and AWSCredentialsProvider parameters. This method defaults
      * to use Regions.US_EAST_1 and create a CognitoCachingCredentialsProvider with the
@@ -244,6 +244,24 @@ public class MobileAnalyticsManager {
                 Regions.US_EAST_1
         );
         return getOrCreateInstance(context, appId, Regions.US_EAST_1, cognitoProvider, null, null);
+    }
+
+    /*
+     * Same as getOrCreateInstance(Context, String, Regions, AWSCredentialsProvider, AnalyticsConfig)
+     * without the Regions and AWSCredentialsProvider parameters. This method defaults
+     * to use Regions.US_EAST_1 and create a CognitoCachingCredentialsProvider with the
+     * provided Cognito identity pool Id.
+     */
+    public static MobileAnalyticsManager getOrCreateInstance(Context context, String appId,
+            String cognitoId, AnalyticsConfig options
+            ) throws InitializationException {
+
+        CognitoCachingCredentialsProvider cognitoProvider = new CognitoCachingCredentialsProvider(
+                context,
+                cognitoId,
+                Regions.US_EAST_1
+        );
+        return getOrCreateInstance(context, appId, Regions.US_EAST_1, cognitoProvider, options, null);
     }
 
     /*

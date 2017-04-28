@@ -27,9 +27,11 @@ import com.amazonaws.ClientConfiguration;
  * AWS client can change through a ClientConfiguration object.
  */
 public class AnalyticsConfig {
-
     private boolean allowEventCollection = true;
     private boolean allowWANDelivery = true;
+    private boolean allowResumePauseEvents = true;
+    private long resumeDelayInMilliseconds = (long) 5e3;
+    private long restartDelayInMilliseconds = (long) 30e3;
     private ClientConfiguration clientConfiguration;
 
     /**
@@ -117,4 +119,66 @@ public class AnalyticsConfig {
     public boolean getAllowWANDelivery() {
         return this.allowWANDelivery;
     }
+
+	/**
+     * Sets whether or not resume and pause events will be sent to the Amazon Mobile Analytics
+     *
+     * @param allowResumePauseEvents
+     * @return AnalyticsConfig the current instance
+     */
+    public AnalyticsConfig withAllowReportingResumePauseEvents(boolean allowResumePauseEvents) {
+        this.allowResumePauseEvents = allowResumePauseEvents;
+        return this;
+    }
+
+    /**
+     * Indicates whether or not resume and pause events will be sent to the Amazon Mobile Analytics
+     *
+     * @return true indicates events will be delivered.
+     *         false indicates events will not be delivered.
+     */
+    public boolean getAllowResumePauseEvents() {
+        return this.allowResumePauseEvents;
+    }
+	
+	/**
+     * Sets the amount of time in milliseconds between consecutive session starts, after which a session new session will be created
+     *
+     * @param resumeDelayInMilliseconds
+     * @return AnalyticsConfig the current instance
+     */
+    public AnalyticsConfig withResumeDelay(long resumeDelayInMilliseconds) {
+        this.resumeDelayInMilliseconds = resumeDelayInMilliseconds;
+        return this;
+    }
+
+    /**
+     * Indicates the amount of time in milliseconds between session pause and resume, after which a session new session will be created.
+     *
+     * @return the amount of time in milliseconds between session pause and resume, after which a session new session will be created.
+     */
+    public long getResumeDelay() {
+        return this.resumeDelayInMilliseconds;
+    }
+
+    /**
+     * Sets the amount of time in milliseconds between consecutive session starts, after which a session new session will be created
+     *
+     * @param restartDelayInMilliseconds
+     * @return AnalyticsConfig the current instance
+     */
+    public AnalyticsConfig withRestartDelay(long restartDelayInMilliseconds) {
+        this.restartDelayInMilliseconds = restartDelayInMilliseconds;
+        return this;
+    }
+
+    /**
+     * Indicates the amount of time in milliseconds between consecutive session starts, after which a session new session will be created.
+     *
+     * @return the amount of time in milliseconds between consecutive session starts, after which a session new session will be created.
+     */
+    public long getRestartDelay() {
+        return this.restartDelayInMilliseconds;
+    }
+
 }

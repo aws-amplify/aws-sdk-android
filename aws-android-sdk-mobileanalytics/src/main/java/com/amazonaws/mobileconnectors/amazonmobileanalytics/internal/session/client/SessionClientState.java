@@ -18,6 +18,7 @@ package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.session.cl
 import android.util.Log;
 
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.AnalyticsEvent;
+import com.amazonaws.mobileconnectors.amazonmobileanalytics.MobileAnalyticsManager;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.session.Session;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.session.client.DefaultSessionClient.SessionState;
 
@@ -96,12 +97,15 @@ public abstract class SessionClientState {
         client.session.pause();
         Log.d(TAG, "Session Paused: " + client.session.getSessionID());
 
-        // - Fire Session Pause Event ----------------------------=
-        Log.v(TAG, "Firing Session Event: " + DefaultSessionClient.SESSION_PAUSE_EVENT_TYPE);
-        AnalyticsEvent e = client.eventClient.createInternalEvent(
-                DefaultSessionClient.SESSION_PAUSE_EVENT_TYPE, client.session.getStartTime(), null,
-                client.session.getSessionDuration());
-        client.eventClient.recordEvent(e);
+        if (client.getAllowReportResumePauseEvents()) {
+            Log.v(TAG, "Firing Session Event: " + DefaultSessionClient.SESSION_PAUSE_EVENT_TYPE);
+            AnalyticsEvent e = client.eventClient.createInternalEvent(
+                    DefaultSessionClient.SESSION_PAUSE_EVENT_TYPE, client.session.getStartTime(), null,
+                    client.session.getSessionDuration());
+            client.eventClient.recordEvent(e);
+        } else {
+            Log.v(TAG, "Not allowed to fire Session Event: " + DefaultSessionClient.SESSION_PAUSE_EVENT_TYPE);
+        }
 
         // Store session to file system
         client.sessionStore.storeSession(client.session);
@@ -117,11 +121,15 @@ public abstract class SessionClientState {
         // set session active
         client.session.resume();
 
-        // Fire Session Resume Event
-        Log.d(TAG, "Firing Session Event: " + DefaultSessionClient.SESSION_RESUME_EVENT_TYPE);
-        AnalyticsEvent e = client.eventClient
-                .createEvent(DefaultSessionClient.SESSION_RESUME_EVENT_TYPE);
-        client.eventClient.recordEvent(e);
+        if (client.getAllowReportResumePauseEvents()) {
+            // Fire Session Resume Event
+            Log.d(TAG, "Firing Session Event: " + DefaultSessionClient.SESSION_RESUME_EVENT_TYPE);
+            AnalyticsEvent e = client.eventClient
+                    .createEvent(DefaultSessionClient.SESSION_RESUME_EVENT_TYPE);
+            client.eventClient.recordEvent(e);
+        } else {
+            Log.v(TAG, "Not allowed to fire Session Event: " + DefaultSessionClient.SESSION_PAUSE_EVENT_TYPE);
+        }
 
         // log success
         Log.i(TAG, "Session Resumed: " + client.session.getSessionID());

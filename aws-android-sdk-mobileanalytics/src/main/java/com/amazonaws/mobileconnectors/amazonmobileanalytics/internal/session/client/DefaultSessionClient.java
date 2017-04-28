@@ -66,6 +66,7 @@ public class DefaultSessionClient implements InternalSessionClient {
 
     private final long resumeDelay;
     private final long restartDelay;
+    private final boolean allowReportResumePauseEvents;
 
     /**
      * Starts an application session Used solely by Amazon Insights
@@ -122,7 +123,19 @@ public class DefaultSessionClient implements InternalSessionClient {
      * @param eventClient
      */
     public DefaultSessionClient(final AnalyticsContext context,
-            final InternalEventClient eventClient, final SessionStore sessionStore) {
+                                final InternalEventClient eventClient, final SessionStore sessionStore) {
+    this(context, eventClient, sessionStore, true, DEFAULT_RESUME_DELAY, DEFAULT_RESTART_DELAY);
+    }
+
+    /**
+     * CONSTRUCTOR
+     *
+     * @param context
+     * @param eventClient
+     */
+    public DefaultSessionClient(final AnalyticsContext context,
+            final InternalEventClient eventClient, final SessionStore sessionStore,
+            final boolean allowReportResumePauseEvents, final long resumeDelayInMilliseconds, final long restartDelayInMilliseconds) {
         checkNotNull(context, "A valid InsightsContext must be provided!");
         checkNotNull(eventClient, "A valid EventClient must be provided!");
         checkNotNull(sessionStore, "A valid SessionStore must be provided!");
@@ -138,10 +151,9 @@ public class DefaultSessionClient implements InternalSessionClient {
 
         this.state = (this.session == null) ? INACTIVE_STATE : PAUSED_STATE;
 
-        this.restartDelay = context.getConfiguration().optLong(RESTART_DELAY_CONFIG_KEY,
-                DEFAULT_RESTART_DELAY);
-        this.resumeDelay = context.getConfiguration().optLong(RESUME_DELAY_CONFIG_KEY,
-                DEFAULT_RESUME_DELAY);
+		this.allowReportResumePauseEvents = allowReportResumePauseEvents;
+        this.resumeDelay = resumeDelayInMilliseconds;
+        this.restartDelay = restartDelayInMilliseconds;
     }
 
     /**
@@ -149,6 +161,10 @@ public class DefaultSessionClient implements InternalSessionClient {
      */
     protected Session getSession() {
         return this.session;
+    }
+
+	public boolean getAllowReportResumePauseEvents() {
+        return this.allowReportResumePauseEvents;
     }
 
     public long getRestartDelay() {
