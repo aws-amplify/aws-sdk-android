@@ -7,7 +7,7 @@
 	- Update API to latest spec.
 	
 - **Amazon Polly**
-	- Added support for new voice id - `Vicki`.
+	- Amazon Polly exposes new German voice `Vicki`.
 	
 - **Amazon Pinpoint**
 	- Update logging to be more restrictive.
