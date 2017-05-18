@@ -15,8 +15,8 @@
 
 package com.amazonaws.mobileconnectors.pinpoint;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import android.content.Context;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
@@ -29,11 +29,14 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.validate.PermissionValid
 import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.GCMTokenRegisteredHandler;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.NotificationClient;
+import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.PinpointNotificationReceiver;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.pinpoint.AmazonPinpointClient;
 import com.amazonaws.services.pinpointanalytics.AmazonPinpointAnalyticsClient;
 import com.amazonaws.util.VersionInfoUtils;
-import android.content.Context;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * PinpointManager is the entry point to Pinpoint Analytics and Targeting.
@@ -105,6 +108,7 @@ public class PinpointManager {
                                                               SDL_INFO, config);
             this.notificationClient = new NotificationClient(this.pinpointContext);
             this.pinpointContext.setNotificationClient(this.notificationClient);
+            PinpointNotificationReceiver.setWeakNotificationClient(this.notificationClient);
 
             if (config.getEnableEvents()) {
                 this.analyticsClient = new AnalyticsClient(this.pinpointContext);

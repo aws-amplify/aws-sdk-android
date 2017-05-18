@@ -129,7 +129,7 @@ class UploadTask implements Callable<Boolean> {
         for (final UploadPartRequest request : requestList) {
             TransferUtility.appendMultipartTransferServiceUserAgentString(request);
             request.setGeneralProgressListener(updater.newProgressListener(upload.id));
-            futures.add(TransferThreadPool.submitTask(new UploadPartTask(request, s3, dbUtil)));
+            futures.add(TransferThreadPool.submitTask(new UploadPartTask(request, s3, dbUtil, networkInfo)));
         }
         try {
             boolean isSuccess = true;
@@ -159,7 +159,15 @@ class UploadTask implements Callable<Boolean> {
             return false;
         } catch (final ExecutionException ee) {
             // handle pause, cancel, etc
+            boolean isNetworkInterrupted = false;
             if (ee.getCause() != null && ee.getCause() instanceof Exception) {
+                // check for network interruption and pause the transfer instead of failing them
+                isNetworkInterrupted = dbUtil.checkWaitingForNetworkPartRequestsFromDB(upload.id);
+                if (isNetworkInterrupted) {
+                    LOGGER.debug("Network Connection Interrupted: Transfer " + upload.id + " waits for network");
+                    updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
+                    return false;
+                }
                 final Exception e = (Exception) ee.getCause();
                 if (RetryUtils.isInterrupted(e)) {
                     /*
@@ -214,6 +222,12 @@ class UploadTask implements Callable<Boolean> {
                  * set by caller who interrupted
                  */
                 LOGGER.debug("Transfer " + upload.id + " is interrupted by user");
+                return false;
+            } else if (e.getCause() != null && e.getCause() instanceof AmazonClientException
+                    && !networkInfo.isNetworkConnected()) {
+                // check for network interruption and pause the transfer instead of failing them
+                LOGGER.debug("Network Connection Interrupted: Transfer " + upload.id + " waits for network");
+                updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
                 return false;
             } else if (e.getCause() != null && e.getCause() instanceof IOException
                     && !networkInfo.isNetworkConnected()) {

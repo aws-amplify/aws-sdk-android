@@ -38,6 +38,8 @@ import android.os.Bundle;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE)
@@ -152,6 +154,32 @@ public class NotificationClientTest extends MobileAnalyticsTestBase {
                                                                                            pushBundle,
                                                                                            Service.class);
         assertEquals(NotificationClient.CampaignPushResult.NOT_HANDLED, result);
+    }
+
+    @Test
+    public void testAreAppNotificationsEnabled_returnsFalse_whenOptOutProviderReturnsTrue() {
+        mockAppLevelOptOutProvider(true);
+        assertEquals(false, target.areAppNotificationsEnabled());
+    }
+
+    @Test
+    public void testAreAppNotificationsEnabled_callsPlatformMethod_whenOptOutProviderReturnsFalse() {
+        mockAppLevelOptOutProvider(false);
+
+        final NotificationClient notificationClient = spy(target);
+        notificationClient.areAppNotificationsEnabled();
+
+        verify(notificationClient).areAppNotificationsEnabledOnPlatform();
+    }
+
+    private void mockAppLevelOptOutProvider(final boolean returnValue) {
+        when(mockPinpointConfiguration.getAppLevelOptOutProvider()).thenReturn(
+            new AppLevelOptOutProvider() {
+                public boolean isOptedOut() {
+                    return returnValue;
+                }
+            }
+        );
     }
 
 }

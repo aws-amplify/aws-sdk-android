@@ -93,7 +93,8 @@ public class ClientContext {
             clientContextJSON.put(CUSTOM_OBJECT_KEY, customObj);
             clientContextJSON.put(SERVICES_OBJECT_KEY, servicesObj);
         } catch (final JSONException e) {
-            log.error("Error creating clientContextJSON", e);
+            // Do not log clientContextJSON/exception due to potential sensitive information.
+            log.error("Error creating clientContextJSON.");
             return clientContextJSON;
         }
 

@@ -56,6 +56,10 @@ public class RegisterCACertificateRequestMarshaller implements
             request.addParameter("setAsActive",
                     StringUtils.fromBoolean(registerCACertificateRequest.getSetAsActive()));
         }
+        if (registerCACertificateRequest.getAllowAutoRegistration() != null) {
+            request.addParameter("allowAutoRegistration", StringUtils
+                    .fromBoolean(registerCACertificateRequest.getAllowAutoRegistration()));
+        }
         request.setResourcePath(uriResourcePath);
         try {
             StringWriter stringWriter = new StringWriter();

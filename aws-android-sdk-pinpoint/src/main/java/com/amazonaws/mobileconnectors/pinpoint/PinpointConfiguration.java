@@ -15,10 +15,12 @@
 
 package com.amazonaws.mobileconnectors.pinpoint;
 
+import android.content.Context;
+
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.AppLevelOptOutProvider;
 import com.amazonaws.regions.Regions;
-import android.content.Context;
 
 /**
  * The PinpointConfiguration class allows developers to configure the Pinpoint SDK.
@@ -33,6 +35,7 @@ public class PinpointConfiguration {
     private ClientConfiguration clientConfiguration;
     private AWSCredentialsProvider credentialsProvider;
     private PinpointCallback<PinpointManager> initCompletionCallback;
+    private AppLevelOptOutProvider appLevelOptOutProvider;
 
     /**
      * Create an {@link PinpointConfiguration} object with the specified parameters.
@@ -224,4 +227,27 @@ public class PinpointConfiguration {
         this.initCompletionCallback = initCompletionCallback;
         return this;
     }
+
+    /**
+     * The provider to call to check app-level opt out
+     *
+     * @return the provider
+     */
+    public AppLevelOptOutProvider getAppLevelOptOutProvider() {
+        return appLevelOptOutProvider;
+    }
+
+    /**
+     * The provider to call to check app-level opt out
+     *
+     * @param appLevelOptOutProvider A provider that returns a boolean indicating whether the app is
+     * opted out of notifications at the application level.
+     * @return the current PinpointConfiguration instance
+     */
+    @SuppressWarnings("checkstyle:hiddenfield")
+    public PinpointConfiguration withAppLevelOptOutProvider(final AppLevelOptOutProvider appLevelOptOutProvider) {
+        this.appLevelOptOutProvider = appLevelOptOutProvider;
+        return this;
+    }
+
 }

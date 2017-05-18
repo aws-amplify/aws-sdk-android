@@ -61,10 +61,25 @@ public class UpdateThingRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
+            if (updateThingRequest.getThingTypeName() != null) {
+                String thingTypeName = updateThingRequest.getThingTypeName();
+                jsonWriter.name("thingTypeName");
+                jsonWriter.value(thingTypeName);
+            }
             if (updateThingRequest.getAttributePayload() != null) {
                 AttributePayload attributePayload = updateThingRequest.getAttributePayload();
                 jsonWriter.name("attributePayload");
                 AttributePayloadJsonMarshaller.getInstance().marshall(attributePayload, jsonWriter);
+            }
+            if (updateThingRequest.getExpectedVersion() != null) {
+                Long expectedVersion = updateThingRequest.getExpectedVersion();
+                jsonWriter.name("expectedVersion");
+                jsonWriter.value(expectedVersion);
+            }
+            if (updateThingRequest.getRemoveThingType() != null) {
+                Boolean removeThingType = updateThingRequest.getRemoveThingType();
+                jsonWriter.name("removeThingType");
+                jsonWriter.value(removeThingType);
             }
 
             jsonWriter.endObject();

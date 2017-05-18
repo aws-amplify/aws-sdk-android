@@ -54,6 +54,10 @@ class CACertificateDescriptionJsonUnmarshaller implements
             } else if (name.equals("creationDate")) {
                 cACertificateDescription.setCreationDate(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("autoRegistrationStatus")) {
+                cACertificateDescription.setAutoRegistrationStatus(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

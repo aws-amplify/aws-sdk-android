@@ -39,6 +39,18 @@ public class FirehoseAction implements Serializable {
 
     /**
      * <p>
+     * A character separator that will be used to separate records written to
+     * the Firehose stream. Valid values are: '\n' (newline), '\t' (tab), '\r\n'
+     * (Windows newline), ',' (comma).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>([\n\t])|(\r\n)|(,)<br/>
+     */
+    private String separator;
+
+    /**
+     * <p>
      * The IAM role that grants access to the Amazon Kinesis Firehost stream.
      * </p>
      *
@@ -131,6 +143,72 @@ public class FirehoseAction implements Serializable {
     }
 
     /**
+     * <p>
+     * A character separator that will be used to separate records written to
+     * the Firehose stream. Valid values are: '\n' (newline), '\t' (tab), '\r\n'
+     * (Windows newline), ',' (comma).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>([\n\t])|(\r\n)|(,)<br/>
+     *
+     * @return <p>
+     *         A character separator that will be used to separate records
+     *         written to the Firehose stream. Valid values are: '\n' (newline),
+     *         '\t' (tab), '\r\n' (Windows newline), ',' (comma).
+     *         </p>
+     */
+    public String getSeparator() {
+        return separator;
+    }
+
+    /**
+     * <p>
+     * A character separator that will be used to separate records written to
+     * the Firehose stream. Valid values are: '\n' (newline), '\t' (tab), '\r\n'
+     * (Windows newline), ',' (comma).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>([\n\t])|(\r\n)|(,)<br/>
+     *
+     * @param separator <p>
+     *            A character separator that will be used to separate records
+     *            written to the Firehose stream. Valid values are: '\n'
+     *            (newline), '\t' (tab), '\r\n' (Windows newline), ',' (comma).
+     *            </p>
+     */
+    public void setSeparator(String separator) {
+        this.separator = separator;
+    }
+
+    /**
+     * <p>
+     * A character separator that will be used to separate records written to
+     * the Firehose stream. Valid values are: '\n' (newline), '\t' (tab), '\r\n'
+     * (Windows newline), ',' (comma).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>([\n\t])|(\r\n)|(,)<br/>
+     *
+     * @param separator <p>
+     *            A character separator that will be used to separate records
+     *            written to the Firehose stream. Valid values are: '\n'
+     *            (newline), '\t' (tab), '\r\n' (Windows newline), ',' (comma).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public FirehoseAction withSeparator(String separator) {
+        this.separator = separator;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -144,7 +222,9 @@ public class FirehoseAction implements Serializable {
         if (getRoleArn() != null)
             sb.append("roleArn: " + getRoleArn() + ",");
         if (getDeliveryStreamName() != null)
-            sb.append("deliveryStreamName: " + getDeliveryStreamName());
+            sb.append("deliveryStreamName: " + getDeliveryStreamName() + ",");
+        if (getSeparator() != null)
+            sb.append("separator: " + getSeparator());
         sb.append("}");
         return sb.toString();
     }
@@ -157,6 +237,7 @@ public class FirehoseAction implements Serializable {
         hashCode = prime * hashCode + ((getRoleArn() == null) ? 0 : getRoleArn().hashCode());
         hashCode = prime * hashCode
                 + ((getDeliveryStreamName() == null) ? 0 : getDeliveryStreamName().hashCode());
+        hashCode = prime * hashCode + ((getSeparator() == null) ? 0 : getSeparator().hashCode());
         return hashCode;
     }
 
@@ -179,6 +260,11 @@ public class FirehoseAction implements Serializable {
             return false;
         if (other.getDeliveryStreamName() != null
                 && other.getDeliveryStreamName().equals(this.getDeliveryStreamName()) == false)
+            return false;
+        if (other.getSeparator() == null ^ this.getSeparator() == null)
+            return false;
+        if (other.getSeparator() != null
+                && other.getSeparator().equals(this.getSeparator()) == false)
             return false;
         return true;
     }

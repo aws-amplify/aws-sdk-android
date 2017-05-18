@@ -306,6 +306,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("elasticloadbalancing.amazonaws.com");
+        this.endpointPrefix = "elasticloadbalancing";
 
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(

@@ -264,6 +264,7 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("pinpoint.us-east-1.amazonaws.com");
+        this.endpointPrefix = "pinpoint";
 
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(

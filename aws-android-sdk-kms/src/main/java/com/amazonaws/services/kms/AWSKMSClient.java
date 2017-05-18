@@ -403,6 +403,7 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("kms.us-east-1.amazonaws.com");
+        this.endpointPrefix = "kms";
 
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(

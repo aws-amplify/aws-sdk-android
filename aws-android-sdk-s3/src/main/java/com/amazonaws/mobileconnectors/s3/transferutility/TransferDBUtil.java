@@ -547,6 +547,35 @@ class TransferDBUtil {
     }
 
     /**
+     * Queries waiting for network partUpload tasks of a multipart upload and returns
+     * true if one such partUpload tasks
+     *
+     * @param mainUploadId The mainUploadId of a multipart upload task
+     * @return If a partUpload task waiting for network exist
+     */
+    public boolean checkWaitingForNetworkPartRequestsFromDB(int mainUploadId) {
+        boolean isNetworkInterrupted = false;
+        Cursor c = null;
+
+        try {
+            c = transferDBBase.query(getPartUri(mainUploadId), null, TransferTable.COLUMN_STATE + "=?",
+                    new String[] {
+                            TransferState.WAITING_FOR_NETWORK.toString()
+                    }, null);
+            while (c.moveToNext()) {
+                isNetworkInterrupted = true;
+                break;
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+
+        return isNetworkInterrupted;
+    }
+
+    /**
      * Generates a ContentValues object to insert into the database with the
      * given values for a multipart upload record.
      *

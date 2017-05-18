@@ -60,6 +60,10 @@ public class UpdateCACertificateRequestMarshaller implements
             request.addParameter("newStatus",
                     StringUtils.fromString(updateCACertificateRequest.getNewStatus()));
         }
+        if (updateCACertificateRequest.getNewAutoRegistrationStatus() != null) {
+            request.addParameter("newAutoRegistrationStatus", StringUtils
+                    .fromString(updateCACertificateRequest.getNewAutoRegistrationStatus()));
+        }
         request.setResourcePath(uriResourcePath);
         request.addHeader("Content-Length", "0");
         request.setContent(new ByteArrayInputStream(new byte[0]));

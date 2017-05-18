@@ -105,8 +105,12 @@ public class EventRecorder {
     }
 
     public Uri recordEvent(AnalyticsEvent event) {
-        log.info(String.format("Event Recorded to database: %s",
-                                      event.toString()));
+        if (event != null) {
+            log.info(String.format("Event Recorded to database with EventType: %s", StringUtil
+                    .clipString(event.getEventType(),
+                            CLIPPED_EVENT_LENGTH,
+                            true)));
+        }
         long maxPendingSize = pinpointContext.getConfiguration().optLong(
                                                                                 KEY_MAX_PENDING_SIZE,
                                                                                 DEFAULT_MAX_PENDING_SIZE);
@@ -137,7 +141,7 @@ public class EventRecorder {
 
             return uri;
         } else {
-            log.warn(String.format("Event: '%s' failed to record to local database",
+            log.warn(String.format("Event: '%s' failed to record to local database.",
                                           StringUtil
                                                   .clipString(event.getEventType(),
                                                                      CLIPPED_EVENT_LENGTH,
@@ -151,7 +155,7 @@ public class EventRecorder {
             return new JSONObject(cursor.getString(EventTable.COLUMN_INDEX.JSON
                                                            .getValue()));
         } catch (final JSONException e) {
-            log.error(String.format("Unable to format events"));
+            log.error(String.format("Unable to format events."));
         }
         return null;
     }
@@ -291,7 +295,7 @@ public class EventRecorder {
         try {
             pinpointContext.getAnalyticsServiceClient().putEvents(request);
             submitted = true;
-            log.info(String.format("Successful submission of %d events",
+            log.info(String.format("Successful submission of %d events.",
                                           eventArray.length()));
 
             return submitted;
@@ -354,7 +358,8 @@ public class EventRecorder {
                 eventJSON = events.getJSONObject(i);
                 internalEvent = AnalyticsEvent.translateToEvent(eventJSON);
             } catch (final JSONException e) {
-                log.error("Stored event was invalid JSON", e);
+                // Do not log JSONException due to potentially sensitive information
+                log.error("Stored event was invalid JSON.");
                 continue;
             }
             clientContext = internalEvent.createClientContext(networkType);
@@ -367,10 +372,10 @@ public class EventRecorder {
                 final Map<String, String> customAttribute = new HashMap<String, String>();
                 customAttribute.put("endpoint", endpoint);
                 clientContext.setCustom(customAttribute);
-                log.info("Recorded profile to client pinpointContext: " +
-                                 clientContext.toJSONObject());
+                // Do not log client context due to potentially sensitive information
+                log.info("Recorded profile to client pinpointContext.");
             } else {
-                log.error("Event Client is null");
+                log.error("Event Client is null.");
             }
 
             final Event event = new Event();
@@ -413,7 +418,7 @@ public class EventRecorder {
                                                                                                     .toString()
                                                                                                     .getBytes()));
         } else {
-            log.error("ClientContext is null or event list is empty");
+            log.error("ClientContext is null or event list is empty.");
         }
         return putRequest;
     }

@@ -1,5 +1,26 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.4.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.3)
+
+### Improvements:
+- **AWS IoT**
+	- Update API to latest spec.
+	
+- **Amazon Polly**
+	- Added support for new voice id - `Vicki`.
+	
+- **Amazon Pinpoint**
+	- Update logging to be more restrictive.
+	- Added support for app-level opt-out.
+
+### Bug Fixes:
+- **All Services**
+	- Fixed an issue where endpoint URLs were incorrectly set after using `setRegion.`. See [issue #290](https://github.com/aws/aws-sdk-android/issues/290)
+- **Amazon S3**
+	- Fixed bug which caused gradle build error on commons-io. See [issue #282](https://github.com/aws/aws-sdk-android/issues/282)
+	- Fixed NPE error while resuming transfers using `TransferUtility`. See [issue #299](https://github.com/aws/aws-sdk-android/issues/299)
+	- Fixed `TransferUtility` observer progress tracking bug. See [issue #257](https://github.com/aws/aws-sdk-android/issues/257)	
+
 ## [Release 2.4.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.2)
 
 ### Improvements:

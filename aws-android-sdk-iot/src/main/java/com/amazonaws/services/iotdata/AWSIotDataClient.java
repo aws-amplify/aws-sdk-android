@@ -276,6 +276,7 @@ public class AWSIotDataClient extends AmazonWebServiceClient implements AWSIotDa
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("data.iot.us-east-1.amazonaws.com");
+        this.endpointPrefix = "data.iot";
 
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(

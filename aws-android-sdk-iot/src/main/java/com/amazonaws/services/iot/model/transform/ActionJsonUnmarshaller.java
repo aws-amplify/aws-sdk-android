@@ -38,6 +38,9 @@ class ActionJsonUnmarshaller implements Unmarshaller<Action, JsonUnmarshallerCon
             if (name.equals("dynamoDB")) {
                 action.setDynamoDB(DynamoDBActionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("dynamoDBv2")) {
+                action.setDynamoDBv2(DynamoDBv2ActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("lambda")) {
                 action.setLambda(LambdaActionJsonUnmarshaller.getInstance()
                         .unmarshall(context));

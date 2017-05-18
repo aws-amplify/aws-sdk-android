@@ -72,6 +72,11 @@ public class RegisterCertificateRequestMarshaller implements
                 jsonWriter.name("caCertificatePem");
                 jsonWriter.value(caCertificatePem);
             }
+            if (registerCertificateRequest.getStatus() != null) {
+                String status = registerCertificateRequest.getStatus();
+                jsonWriter.name("status");
+                jsonWriter.value(status);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -67,6 +67,10 @@ public class ListThingsRequestMarshaller implements
             request.addParameter("attributeValue",
                     StringUtils.fromString(listThingsRequest.getAttributeValue()));
         }
+        if (listThingsRequest.getThingTypeName() != null) {
+            request.addParameter("thingTypeName",
+                    StringUtils.fromString(listThingsRequest.getThingTypeName()));
+        }
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.0");

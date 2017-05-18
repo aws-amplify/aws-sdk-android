@@ -62,7 +62,7 @@ public class UpdateCertificateRequest extends AmazonWebServiceRequest implements
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
-     * REGISTER_INACTIVE
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      */
     private String newStatus;
 
@@ -139,7 +139,7 @@ public class UpdateCertificateRequest extends AmazonWebServiceRequest implements
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
-     * REGISTER_INACTIVE
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
      * @return <p>
      *         The new status.
@@ -175,7 +175,7 @@ public class UpdateCertificateRequest extends AmazonWebServiceRequest implements
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
-     * REGISTER_INACTIVE
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
      * @param newStatus <p>
      *            The new status.
@@ -215,7 +215,7 @@ public class UpdateCertificateRequest extends AmazonWebServiceRequest implements
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
-     * REGISTER_INACTIVE
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
      * @param newStatus <p>
      *            The new status.
@@ -255,7 +255,7 @@ public class UpdateCertificateRequest extends AmazonWebServiceRequest implements
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
-     * REGISTER_INACTIVE
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
      * @param newStatus <p>
      *            The new status.
@@ -295,7 +295,7 @@ public class UpdateCertificateRequest extends AmazonWebServiceRequest implements
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
-     * REGISTER_INACTIVE
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
      * @param newStatus <p>
      *            The new status.

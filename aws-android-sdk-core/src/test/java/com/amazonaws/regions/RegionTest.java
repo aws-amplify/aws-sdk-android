@@ -33,23 +33,23 @@ public class RegionTest {
 
     @Test
     public void testDefaultDomain() {
-        String serviceName = "s3";
+        final String serviceName = "s3";
         assertEquals("empty domain", DEFAULT_DOMAIN, new Region(serviceName, "").getDomain());
         assertEquals("null domain", DEFAULT_DOMAIN, new Region(serviceName, null).getDomain());
     }
 
     @Test
     public void testRegionEquals() {
-        Region usWest2 = RegionUtils.getRegion("us-west-2");
-        Region other = RegionUtils.getRegionByEndpoint("s3-us-west-2.amazonaws.com");
+        final Region usWest2 = RegionUtils.getRegion("us-west-2");
+        final Region other = RegionUtils.getRegionByEndpoint("s3-us-west-2.amazonaws.com");
 
         assertEquals(usWest2, other);
     }
 
     @Test
     public void testInstantiateClientNoConfigOrCredentials() {
-        Region usEast1 = Region.getRegion(Regions.US_EAST_1);
-        AmazonServiceClient asc = usEast1.createClient(AmazonServiceClient.class, null, null);
+        final Region usEast1 = Region.getRegion(Regions.US_EAST_1);
+        final AmazonServiceClient asc = usEast1.createClient(AmazonServiceClient.class, null, null);
         assertNotNull(asc);
         assertNull(asc.provider);
         assertNull(asc.conf);
@@ -57,8 +57,8 @@ public class RegionTest {
 
     @Test
     public void testInstantiateClient() {
-        Region usEast1 = Region.getRegion(Regions.US_EAST_1);
-        AWSCredentialsProvider prov = new AWSCredentialsProvider() {
+        final Region usEast1 = Region.getRegion(Regions.US_EAST_1);
+        final AWSCredentialsProvider prov = new AWSCredentialsProvider() {
 
             @Override
             public AWSCredentials getCredentials() {
@@ -71,9 +71,9 @@ public class RegionTest {
 
         };
 
-        ClientConfiguration conf = new ClientConfiguration();
+        final ClientConfiguration conf = new ClientConfiguration();
 
-        AmazonServiceClient asc = usEast1.createClient(AmazonServiceClient.class, prov, conf);
+        final AmazonServiceClient asc = usEast1.createClient(AmazonServiceClient.class, prov, conf);
         assertNotNull(asc);
         assertSame(asc.provider, prov);
         assertSame(asc.conf, conf);
@@ -81,8 +81,8 @@ public class RegionTest {
 
     @Test
     public void testInstantiateClientNoConfig() {
-        Region usEast1 = Region.getRegion(Regions.US_EAST_1);
-        AWSCredentialsProvider prov = new AWSCredentialsProvider() {
+        final Region usEast1 = Region.getRegion(Regions.US_EAST_1);
+        final AWSCredentialsProvider prov = new AWSCredentialsProvider() {
 
             @Override
             public AWSCredentials getCredentials() {
@@ -94,7 +94,7 @@ public class RegionTest {
             }
 
         };
-        AmazonServiceClient asc = usEast1.createClient(AmazonServiceClient.class, prov, null);
+        final AmazonServiceClient asc = usEast1.createClient(AmazonServiceClient.class, prov, null);
         assertNotNull(asc);
         assertSame(asc.provider, prov);
         assertNull(asc.conf);
@@ -102,10 +102,10 @@ public class RegionTest {
 
     @Test
     public void testInstantiateClientNoCredentials() {
-        Region usEast1 = Region.getRegion(Regions.US_EAST_1);
-        ClientConfiguration conf = new ClientConfiguration();
+        final Region usEast1 = Region.getRegion(Regions.US_EAST_1);
+        final ClientConfiguration conf = new ClientConfiguration();
         conf.setConnectionTimeout(5);
-        AmazonServiceClient asc = usEast1.createClient(AmazonServiceClient.class, null, conf);
+        final AmazonServiceClient asc = usEast1.createClient(AmazonServiceClient.class, null, conf);
         assertNotNull(asc);
         assertSame(asc.conf, conf);
         assertNull(asc.provider);
@@ -140,8 +140,14 @@ public class RegionTest {
             this.conf = null;
         }
 
+        @Override
         public String getEndpoint() {
             return endpoint.toString();
+        }
+
+        @Override
+        public String getEndpointPrefix() {
+            return "amazon";
         }
     }
 }

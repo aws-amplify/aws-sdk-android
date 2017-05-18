@@ -311,7 +311,9 @@ public class TransferService extends Service {
                     LOGGER.error("Can't find transfer: " + id);
                 }
             }
-            transfer.start(s3, dbUtil, updater, networkInfoReceiver);
+            if (transfer != null) {
+                transfer.start(s3, dbUtil, updater, networkInfoReceiver);
+            }
         } else if (INTENT_ACTION_TRANSFER_CANCEL.equals(action)) {
             TransferRecord transfer = updater.getTransfer(id);
             if (transfer == null) {

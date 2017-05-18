@@ -297,6 +297,7 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("cognito-sync.us-east-1.amazonaws.com");
+        this.endpointPrefix = "cognito-sync";
 
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(

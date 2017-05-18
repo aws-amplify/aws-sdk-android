@@ -32,17 +32,15 @@ public class DetachThingPrincipalRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      */
     private String thingName;
 
     /**
      * <p>
-     * The principal.
-     * </p>
-     * <p>
-     * If the principal is a certificate, specify the certificate ARN. If the
-     * principal is an Amazon Cognito identity, specify the identity ID.
+     * If the principal is a certificate, this value must be ARN of the
+     * certificate. If the principal is an Amazon Cognito identity, this value
+     * must be the ID of the Amazon Cognito identity.
      * </p>
      */
     private String principal;
@@ -54,7 +52,7 @@ public class DetachThingPrincipalRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @return <p>
      *         The name of the thing.
@@ -71,7 +69,7 @@ public class DetachThingPrincipalRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
      *            The name of the thing.
@@ -91,7 +89,7 @@ public class DetachThingPrincipalRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
      *            The name of the thing.
@@ -106,20 +104,15 @@ public class DetachThingPrincipalRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The principal.
-     * </p>
-     * <p>
-     * If the principal is a certificate, specify the certificate ARN. If the
-     * principal is an Amazon Cognito identity, specify the identity ID.
+     * If the principal is a certificate, this value must be ARN of the
+     * certificate. If the principal is an Amazon Cognito identity, this value
+     * must be the ID of the Amazon Cognito identity.
      * </p>
      *
      * @return <p>
-     *         The principal.
-     *         </p>
-     *         <p>
-     *         If the principal is a certificate, specify the certificate ARN.
-     *         If the principal is an Amazon Cognito identity, specify the
-     *         identity ID.
+     *         If the principal is a certificate, this value must be ARN of the
+     *         certificate. If the principal is an Amazon Cognito identity, this
+     *         value must be the ID of the Amazon Cognito identity.
      *         </p>
      */
     public String getPrincipal() {
@@ -128,20 +121,16 @@ public class DetachThingPrincipalRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The principal.
-     * </p>
-     * <p>
-     * If the principal is a certificate, specify the certificate ARN. If the
-     * principal is an Amazon Cognito identity, specify the identity ID.
+     * If the principal is a certificate, this value must be ARN of the
+     * certificate. If the principal is an Amazon Cognito identity, this value
+     * must be the ID of the Amazon Cognito identity.
      * </p>
      *
      * @param principal <p>
-     *            The principal.
-     *            </p>
-     *            <p>
-     *            If the principal is a certificate, specify the certificate
-     *            ARN. If the principal is an Amazon Cognito identity, specify
-     *            the identity ID.
+     *            If the principal is a certificate, this value must be ARN of
+     *            the certificate. If the principal is an Amazon Cognito
+     *            identity, this value must be the ID of the Amazon Cognito
+     *            identity.
      *            </p>
      */
     public void setPrincipal(String principal) {
@@ -150,23 +139,19 @@ public class DetachThingPrincipalRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The principal.
-     * </p>
-     * <p>
-     * If the principal is a certificate, specify the certificate ARN. If the
-     * principal is an Amazon Cognito identity, specify the identity ID.
+     * If the principal is a certificate, this value must be ARN of the
+     * certificate. If the principal is an Amazon Cognito identity, this value
+     * must be the ID of the Amazon Cognito identity.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param principal <p>
-     *            The principal.
-     *            </p>
-     *            <p>
-     *            If the principal is a certificate, specify the certificate
-     *            ARN. If the principal is an Amazon Cognito identity, specify
-     *            the identity ID.
+     *            If the principal is a certificate, this value must be ARN of
+     *            the certificate. If the principal is an Amazon Cognito
+     *            identity, this value must be the ID of the Amazon Cognito
+     *            identity.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -66,7 +66,7 @@ public class EndpointProfile implements JSONSerializable {
      */
     public EndpointProfile(final PinpointContext pinpointContext) {
         checkNotNull(pinpointContext,
-                            "A valid pinpointContext must be provided");
+                            "A valid pinpointContext must be provided.");
 
         this.pinpointContext = pinpointContext;
         this.effectiveDate = DateUtil.getCorrectedDate().getTime();
@@ -84,7 +84,7 @@ public class EndpointProfile implements JSONSerializable {
         if (trimmedKey.length() < key.length()) {
             log.warn("The attribute key has been trimmed to a length of "
                              + MAX_ENDPOINT_ATTRIBUTE_METRIC_KEY_LENGTH +
-                             " characters");
+                             " characters.");
         }
 
         return trimmedKey;
@@ -101,12 +101,12 @@ public class EndpointProfile implements JSONSerializable {
             if (trimmedValue.length() < value.length()) {
                 log.warn("The attribute value has been trimmed to a length of "
                                  + MAX_ENDPOINT_ATTRIBUTE_VALUE_LENGTH +
-                                 " characters");
+                                 " characters.");
             }
             trimmedValues.add(trimmedValue);
             if (++valuesCount >= MAX_ENDPOINT_ATTRIBUTE_VALUES) {
                 log.warn("The attribute values has been reduced to"
-                                 + MAX_ENDPOINT_ATTRIBUTE_VALUES + " values");
+                                 + MAX_ENDPOINT_ATTRIBUTE_VALUES + " values.");
                 break;
             }
         }
@@ -243,8 +243,7 @@ public class EndpointProfile implements JSONSerializable {
             } else {
                 log.warn("Max number of attributes/metrics reached(" +
                                  MAX_NUM_OF_METRICS_AND_ATTRIBUTES +
-                                 "). The attribute key " + name +
-                                 " has been ignored.");
+                                 ").");
             }
         } else {
             attributes.remove(name);
@@ -331,8 +330,7 @@ public class EndpointProfile implements JSONSerializable {
             } else {
                 log.warn("Max number of attributes/metrics reached(" +
                                  MAX_NUM_OF_METRICS_AND_ATTRIBUTES +
-                                 "). The metric key " + name +
-                                 " has been ignored.");
+                                 ").");
             }
         } else {
             metrics.remove(name);
@@ -442,7 +440,8 @@ public class EndpointProfile implements JSONSerializable {
                 final JSONArray array = new JSONArray(entry.getValue());
                 attributesJson.put(entry.getKey(), array);
             } catch (final JSONException e) {
-                log.warn("json error", e);
+                // Do not log e due to potentially sensitive information
+                log.warn("Error serializing attributes.");
             }
         }
 
@@ -457,9 +456,8 @@ public class EndpointProfile implements JSONSerializable {
             try {
                 metricsJson.put(entry.getKey(), entry.getValue());
             } catch (final JSONException e) {
-                log.error("error serializing metric. key:'" + entry.getKey() +
-                                  "', value: "
-                                  + entry.getValue().toString(), e);
+                // Do not log e due to potentially sensitive information
+                log.error("Error serializing metric.");
             }
         }
 

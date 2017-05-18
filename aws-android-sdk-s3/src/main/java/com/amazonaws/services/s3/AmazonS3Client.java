@@ -423,6 +423,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     private void init() {
         // calling this.setEndpoint(...) will also modify the signer accordingly
         setEndpoint(Constants.S3_HOSTNAME);
+        this.endpointPrefix = "s3";
 
         final HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(

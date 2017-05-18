@@ -39,6 +39,11 @@ class AttributePayloadJsonMarshaller {
             }
             jsonWriter.endObject();
         }
+        if (attributePayload.getMerge() != null) {
+            Boolean merge = attributePayload.getMerge();
+            jsonWriter.name("merge");
+            jsonWriter.value(merge);
+        }
         jsonWriter.endObject();
     }
 

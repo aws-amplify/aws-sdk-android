@@ -103,13 +103,13 @@ public class AnalyticsClient implements JSONSerializable {
      */
     public AnalyticsEvent createEvent(String eventType) {
         if (eventType == null) {
-            log.error("Null eventType provided to addGlobalAttribute");
+            log.error("Null eventType provided to addGlobalAttribute.");
             throw new IllegalArgumentException("The eventType passed into create event was null");
         }
         if (eventType.length() > MAX_EVENT_TYPE_LENGTH) {
             log.error("The event type is too long, the max event type length is " +
                               MAX_EVENT_TYPE_LENGTH
-                              + " characters");
+                              + " characters.");
             throw new IllegalArgumentException("The eventType passed into create event was too long");
         }
 
@@ -163,7 +163,7 @@ public class AnalyticsClient implements JSONSerializable {
      */
     public void recordEvent(AnalyticsEvent event) {
         if (event == null) {
-            log.info("The provided event was null");
+            log.info("The provided event was null.");
             return;
         }
         final AnalyticsEvent recordEvent = AnalyticsEvent
@@ -181,7 +181,7 @@ public class AnalyticsClient implements JSONSerializable {
      * for customizing which Internet connection the SDK can submit on.
      */
     public void submitEvents() {
-        log.info("Submitting events");
+        log.info("Submitting events.");
         eventRecorder.submitEvents();
     }
 
@@ -196,13 +196,12 @@ public class AnalyticsClient implements JSONSerializable {
     public void addGlobalAttribute(String attributeName,
                                           String attributeValue) {
         if (attributeName == null) {
-            log.info("Null attribute name provided to addGlobalAttribute");
+            log.info("Null attribute name provided to addGlobalAttribute.");
             return;
         }
 
         if (attributeValue == null) {
-            log.debug("Null attribute value provided to addGlobalAttribute. attribute name:"
-                              + attributeName);
+            log.debug("Null attribute value provided to addGlobalAttribute.");
             return;
         }
         globalAttributes.put(attributeName, attributeValue);
@@ -220,7 +219,7 @@ public class AnalyticsClient implements JSONSerializable {
     public void addGlobalAttribute(String eventType, String attributeName,
                                           String attributeValue) {
         if (eventType == null) {
-            log.warn("Null eventType provided to addGlobalAttribute");
+            log.warn("Null eventType provided to addGlobalAttribute.");
             return;
         }
 
@@ -232,8 +231,7 @@ public class AnalyticsClient implements JSONSerializable {
 
         if (attributeValue == null) {
             log.warn("Null value provided to addGlobalAttribute. eventType:" +
-                             eventType
-                             + ", attributeName:" + attributeName);
+                             eventType);
             return;
         }
 
@@ -255,13 +253,12 @@ public class AnalyticsClient implements JSONSerializable {
      */
     public void addGlobalMetric(String metricName, Double metricValue) {
         if (metricName == null) {
-            log.warn("Null metric name provided to addGlobalMetric");
+            log.warn("Null metric name provided to addGlobalMetric.");
             return;
         }
 
         if (metricValue == null) {
-            log.warn("Null metric value provided to addGlobalMetric.  metric name:" +
-                             metricName);
+            log.warn("Null metric value provided to addGlobalMetric.");
             return;
         }
 
@@ -280,7 +277,7 @@ public class AnalyticsClient implements JSONSerializable {
     public void addGlobalMetric(String eventType, String metricName,
                                        Double metricValue) {
         if (eventType == null) {
-            log.warn("Null eventType provided to addGlobalMetric");
+            log.warn("Null eventType provided to addGlobalMetric.");
             return;
         }
 
@@ -292,8 +289,7 @@ public class AnalyticsClient implements JSONSerializable {
 
         if (metricValue == null) {
             log.warn("Null metric value provided to addGlobalMetric. eventType:" +
-                             eventType
-                             + ", metric name:" + metricName);
+                             eventType);
             return;
         }
 
@@ -313,7 +309,7 @@ public class AnalyticsClient implements JSONSerializable {
      */
     public void removeGlobalAttribute(String attributeName) {
         if (attributeName == null) {
-            log.warn("Null attribute name provided to removeGlobalAttribute");
+            log.warn("Null attribute name provided to removeGlobalAttribute.");
             return;
         }
 
@@ -329,12 +325,12 @@ public class AnalyticsClient implements JSONSerializable {
      */
     public void removeGlobalAttribute(String eventType, String attributeName) {
         if (eventType == null) {
-            log.warn("Null eventType provided to removeGlobalAttribute");
+            log.warn("Null eventType provided to removeGlobalAttribute.");
             return;
         }
 
         if (attributeName == null) {
-            log.warn("Null attribute name provided to removeGlobalAttribute");
+            log.warn("Null attribute name provided to removeGlobalAttribute.");
             return;
         }
 
@@ -353,7 +349,7 @@ public class AnalyticsClient implements JSONSerializable {
      */
     public void removeGlobalMetric(String metricName) {
         if (metricName == null) {
-            log.warn("Null metric name provided to removeGlobalMetric");
+            log.warn("Null metric name provided to removeGlobalMetric.");
             return;
         }
 
@@ -369,12 +365,12 @@ public class AnalyticsClient implements JSONSerializable {
      */
     public void removeGlobalMetric(String eventType, String metricName) {
         if (eventType == null) {
-            log.warn("Null eventType provided to removeGlobalMetric");
+            log.warn("Null eventType provided to removeGlobalMetric.");
             return;
         }
 
         if (metricName == null) {
-            log.warn("Null metric name provided to removeGlobalMetric");
+            log.warn("Null metric name provided to removeGlobalMetric.");
             return;
         }
 
@@ -395,7 +391,7 @@ public class AnalyticsClient implements JSONSerializable {
      */
     public void setCampaignAttributes(Map<String, String> campaign) {
         if (campaign == null) {
-            log.warn("Null campaign attributes provided to setCampaignAttributes");
+            log.warn("Null campaign attributes provided to setCampaignAttributes.");
             return;
         }
 
@@ -438,8 +434,8 @@ public class AnalyticsClient implements JSONSerializable {
                     attr.put(entry.getKey(), entry.getValue());
                     globalAttrs.put(attr);
                 } catch (final JSONException e) {
-                    log.error("Error parsing Global Attributes: " +
-                                      e.toString());
+                    // Do not log e due to potentially sensitive information
+                    log.error("Error parsing Global Attributes.");
                 }
             }
         }
@@ -452,7 +448,8 @@ public class AnalyticsClient implements JSONSerializable {
                     attr.put(entry.getKey(), entry.getValue());
                     globalMets.put(attr);
                 } catch (final JSONException e) {
-                    log.error("Error parsing Global Metrics: " + e.toString());
+                    // Do not log e due to potentially sensitive information
+                    log.error("Error parsing Global Metrics.");
                 }
             }
         }
@@ -473,8 +470,8 @@ public class AnalyticsClient implements JSONSerializable {
                     eventTypesAttributesJson
                             .put(entry.getKey(), eventTypeAttrs);
                 } catch (final JSONException e) {
-                    log.error("Error parsing Event Type Attributes: " +
-                                      e.toString());
+                    // Do not log e due to potentially sensitive information
+                    log.error("Error parsing Event Type Attributes.");
                 }
             }
         }
@@ -493,8 +490,8 @@ public class AnalyticsClient implements JSONSerializable {
                     }
                     eventTypesMetricsJson.put(entry.getKey(), eventTypeMets);
                 } catch (final JSONException e) {
-                    log.error("Error parsing Event Type Metrics: " +
-                                      e.toString());
+                    // Do not log e due to potentially sensitive information
+                    log.error("Error parsing Event Type Metrics.");
                 }
             }
         }

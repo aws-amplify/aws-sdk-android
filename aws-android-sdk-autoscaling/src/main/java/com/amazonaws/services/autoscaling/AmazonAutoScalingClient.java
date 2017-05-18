@@ -273,6 +273,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("autoscaling.amazonaws.com");
+        this.endpointPrefix = "autoscaling";
 
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(

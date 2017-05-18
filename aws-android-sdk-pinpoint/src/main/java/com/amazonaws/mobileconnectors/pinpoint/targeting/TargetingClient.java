@@ -244,14 +244,10 @@ public class TargetingClient {
             @Override
             public void run() {
                 try {
-                    log.info(String.format("Updating EndpointProfile : %s",
-                                                  updateEndpointRequest
-                                                          .toString()));
+                    log.info("Updating EndpointProfile.");
                     context.getPinpointServiceClient()
                             .updateEndpoint(updateEndpointRequest);
-                    log.info(String.format("EndpointProfile updated successfully: %s",
-                                                  updateEndpointRequest
-                                                          .toString()));
+                    log.info("EndpointProfile updated successfully.");
                 } catch (final AmazonServiceException e) {
                     log.error("AmazonServiceException occurred during endpoint update:",
                                      e);
@@ -334,13 +330,12 @@ public class TargetingClient {
     public void addAttribute(final String attributeName,
                                     final java.util.List<String> attributeValues) {
         if (attributeName == null) {
-            log.debug("Null attribute name provided to addGlobalAttribute");
+            log.debug("Null attribute name provided to addGlobalAttribute.");
             return;
         }
 
         if (attributeValues == null) {
-            log.debug("Null attribute values provided to addGlobalAttribute. attribute name:"
-                              + attributeName);
+            log.debug("Null attribute values provided to addGlobalAttribute.");
             return;
         }
         globalAttributes.put(attributeName, attributeValues);
@@ -355,7 +350,7 @@ public class TargetingClient {
      */
     public void removeAttribute(final String attributeName) {
         if (attributeName == null) {
-            log.warn("Null attribute name provided to removeGlobalAttribute");
+            log.warn("Null attribute name provided to removeGlobalAttribute.");
             return;
         }
         this.endpointProfile.addAttribute(attributeName, null);
@@ -373,13 +368,12 @@ public class TargetingClient {
      */
     public void addMetric(String metricName, Double metricValue) {
         if (metricName == null) {
-            log.warn("Null metric name provided to addGlobalMetric");
+            log.warn("Null metric name provided to addGlobalMetric.");
             return;
         }
 
         if (metricValue == null) {
-            log.warn("Null metric value provided to addGlobalMetric.  metric name:" +
-                             metricName);
+            log.warn("Null metric value provided to addGlobalMetric.");
             return;
         }
 
@@ -394,7 +388,7 @@ public class TargetingClient {
      */
     public void removeMetric(String metricName) {
         if (metricName == null) {
-            log.warn("Null metric name provided to removeGlobalMetric");
+            log.warn("Null metric name provided to removeGlobalMetric.");
             return;
         }
         this.endpointProfile.addMetric(metricName, null);

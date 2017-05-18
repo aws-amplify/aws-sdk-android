@@ -39,11 +39,17 @@ public class DescribeThingResultJsonUnmarshaller implements
             } else if (name.equals("thingName")) {
                 describeThingResult.setThingName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("thingTypeName")) {
+                describeThingResult.setThingTypeName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("attributes")) {
                 describeThingResult.setAttributes(new MapUnmarshaller<String>(
                         StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("version")) {
+                describeThingResult.setVersion(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

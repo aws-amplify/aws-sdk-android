@@ -32,6 +32,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.SocketTimeoutException;
 import java.util.concurrent.Callable;
 
 /**
@@ -114,7 +115,8 @@ class DownloadTask implements Callable<Boolean> {
                  * set by caller who interrupted
                  */
                 LOGGER.debug("Transfer " + download.id + " is interrupted by user");
-            } else if (e.getCause() != null && e.getCause() instanceof IOException
+            } else if (e.getCause() != null &&
+                    (e.getCause() instanceof IOException || e.getCause() instanceof AmazonClientException)
                     && !networkInfo.isNetworkConnected()) {
                 LOGGER.debug("Transfer " + download.id + " waits for network");
                 updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
@@ -149,6 +151,11 @@ class DownloadTask implements Callable<Boolean> {
             while ((bytesRead = is.read(buffer)) != -1) {
                 os.write(buffer, 0, bytesRead);
             }
+        } catch (final SocketTimeoutException socketTimeoutException) {
+            String errorString = "SocketTimeoutException: Unable to retrieve contents over network: "
+                    + socketTimeoutException.getMessage();
+            LOGGER.error(errorString);
+            throw new AmazonClientException(errorString, socketTimeoutException);
         } catch (final IOException e) {
             throw new AmazonClientException(
                     "Unable to store object contents to disk: " + e.getMessage(), e);

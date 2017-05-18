@@ -266,6 +266,7 @@ public class AmazonPinpointAnalyticsClient extends AmazonWebServiceClient implem
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("mobileanalytics.us-east-1.amazonaws.com");
+        this.endpointPrefix = "mobileanalytics";
 
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(

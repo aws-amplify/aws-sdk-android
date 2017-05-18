@@ -55,6 +55,10 @@ public class DeleteThingRequestMarshaller implements
                 "{thingName}",
                 (deleteThingRequest.getThingName() == null) ? "" : StringUtils
                         .fromString(deleteThingRequest.getThingName()));
+        if (deleteThingRequest.getExpectedVersion() != null) {
+            request.addParameter("expectedVersion",
+                    StringUtils.fromLong(deleteThingRequest.getExpectedVersion()));
+        }
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.0");

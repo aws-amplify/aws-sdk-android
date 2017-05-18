@@ -36,6 +36,9 @@ public class ResourceAlreadyExistsExceptionUnmarshaller extends JsonErrorUnmarsh
 
         ResourceAlreadyExistsException e = (ResourceAlreadyExistsException) super.unmarshall(error);
         e.setErrorCode("ResourceAlreadyExistsException");
+        e.setResourceId(String.valueOf(error.get("resourceId")));
+
+        e.setResourceArn(String.valueOf(error.get("resourceArn")));
 
         return e;
     }

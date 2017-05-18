@@ -30,6 +30,11 @@ class ThingAttributeJsonMarshaller {
             jsonWriter.name("thingName");
             jsonWriter.value(thingName);
         }
+        if (thingAttribute.getThingTypeName() != null) {
+            String thingTypeName = thingAttribute.getThingTypeName();
+            jsonWriter.name("thingTypeName");
+            jsonWriter.value(thingTypeName);
+        }
         if (thingAttribute.getAttributes() != null) {
             java.util.Map<String, String> attributes = thingAttribute.getAttributes();
             jsonWriter.name("attributes");
@@ -42,6 +47,11 @@ class ThingAttributeJsonMarshaller {
                 }
             }
             jsonWriter.endObject();
+        }
+        if (thingAttribute.getVersion() != null) {
+            Long version = thingAttribute.getVersion();
+            jsonWriter.name("version");
+            jsonWriter.value(version);
         }
         jsonWriter.endObject();
     }

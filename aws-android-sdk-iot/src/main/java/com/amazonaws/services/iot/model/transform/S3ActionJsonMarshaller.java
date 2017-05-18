@@ -40,6 +40,11 @@ class S3ActionJsonMarshaller {
             jsonWriter.name("key");
             jsonWriter.value(key);
         }
+        if (s3Action.getCannedAcl() != null) {
+            String cannedAcl = s3Action.getCannedAcl();
+            jsonWriter.name("cannedAcl");
+            jsonWriter.value(cannedAcl);
+        }
         jsonWriter.endObject();
     }
 

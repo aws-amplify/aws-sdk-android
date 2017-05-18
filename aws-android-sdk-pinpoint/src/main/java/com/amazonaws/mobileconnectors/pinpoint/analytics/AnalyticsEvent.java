@@ -213,7 +213,7 @@ public class AnalyticsEvent implements JSONSerializable {
         if (trimmedKey.length() < key.length()) {
             log.warn("The attribute key has been trimmed to a length of "
                              + MAX_EVENT_ATTRIBUTE_METRIC_KEY_LENGTH +
-                             " characters");
+                             " characters.");
         }
         return trimmedKey;
     }
@@ -225,7 +225,7 @@ public class AnalyticsEvent implements JSONSerializable {
         if (trimmedValue.length() < value.length()) {
             log.warn("The attribute value has been trimmed to a length of "
                              + MAX_EVENT_ATTRIBUTE_VALUE_LENGTH +
-                             " characters");
+                             " characters.");
         }
         return trimmedValue;
     }
@@ -312,8 +312,8 @@ public class AnalyticsEvent implements JSONSerializable {
                 try {
                     metrics.put(key, metricsJSON.getDouble(key));
                 } catch (final JSONException e) {
-                    log.error("Failed to convert metric back to double from JSON value",
-                                     e);
+                    // Do not log e due to potentially sensitive information
+                    log.error("Failed to convert metric back to double from JSON value.");
                 }
             }
         }
@@ -360,9 +360,8 @@ public class AnalyticsEvent implements JSONSerializable {
                 currentNumOfAttributesAndMetrics.incrementAndGet();
             } else {
                 log.warn("Max number of attributes/metrics reached("
-                                 + MAX_NUM_OF_METRICS_AND_ATTRIBUTES +
-                                 "). The attribute key " + name +
-                                 " has been ignored.");
+                                 + MAX_NUM_OF_METRICS_AND_ATTRIBUTES
+                                 + ").");
             }
         } else {
             attributes.remove(name);
@@ -405,8 +404,7 @@ public class AnalyticsEvent implements JSONSerializable {
             } else {
                 log.warn("Max number of attributes/metrics reached("
                                  + MAX_NUM_OF_METRICS_AND_ATTRIBUTES +
-                                 "). The metric key " + name +
-                                 " has been ignored.");
+                                 ").");
             }
         } else {
             metrics.remove(name);
@@ -623,9 +621,8 @@ public class AnalyticsEvent implements JSONSerializable {
             try {
                 attributesJson.put(entry.getKey(), entry.getValue());
             } catch (final JSONException e) {
-                log.error("error serializing attribite. key:'" +
-                                  entry.getKey() + "', value: "
-                                  + entry.getValue().toString(), e);
+                // Do not log e due to potentially sensitive information
+                log.error("Error serializing attribute for eventType: " + eventType);
             }
         }
 
@@ -634,9 +631,8 @@ public class AnalyticsEvent implements JSONSerializable {
             try {
                 metricsJson.put(entry.getKey(), entry.getValue());
             } catch (final JSONException e) {
-                log.error("error serializing metric. key:'" + entry.getKey() +
-                                  "', value: "
-                                  + entry.getValue().toString(), e);
+                // Do not log e due to potentially sensitive information
+                log.error("Error serializing metric for eventType: " + eventType);
             }
         }
 

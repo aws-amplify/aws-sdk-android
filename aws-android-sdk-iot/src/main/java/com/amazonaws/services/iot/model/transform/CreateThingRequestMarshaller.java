@@ -61,6 +61,11 @@ public class CreateThingRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
+            if (createThingRequest.getThingTypeName() != null) {
+                String thingTypeName = createThingRequest.getThingTypeName();
+                jsonWriter.name("thingTypeName");
+                jsonWriter.value(thingTypeName);
+            }
             if (createThingRequest.getAttributePayload() != null) {
                 AttributePayload attributePayload = createThingRequest.getAttributePayload();
                 jsonWriter.name("attributePayload");

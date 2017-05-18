@@ -41,6 +41,9 @@ class AttributePayloadJsonUnmarshaller implements
                         .getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("merge")) {
+                attributePayload.setMerge(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

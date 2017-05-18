@@ -271,6 +271,7 @@ public class AmazonKinesisClient extends AmazonWebServiceClient implements Amazo
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("kinesis.us-east-1.amazonaws.com");
+        this.endpointPrefix = "kinesis";
 
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(

@@ -303,6 +303,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("cognito-idp.us-east-1.amazonaws.com");
+        this.endpointPrefix = "cognito-idp";
 
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(

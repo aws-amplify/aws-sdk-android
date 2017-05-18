@@ -51,7 +51,7 @@ public class Certificate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
-     * REGISTER_INACTIVE
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      */
     private String status;
 
@@ -174,7 +174,7 @@ public class Certificate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
-     * REGISTER_INACTIVE
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
      * @return <p>
      *         The status of the certificate.
@@ -199,7 +199,7 @@ public class Certificate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
-     * REGISTER_INACTIVE
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
      * @param status <p>
      *            The status of the certificate.
@@ -227,7 +227,7 @@ public class Certificate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
-     * REGISTER_INACTIVE
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
      * @param status <p>
      *            The status of the certificate.
@@ -255,7 +255,7 @@ public class Certificate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
-     * REGISTER_INACTIVE
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
      * @param status <p>
      *            The status of the certificate.
@@ -283,7 +283,7 @@ public class Certificate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
-     * REGISTER_INACTIVE
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
      * @param status <p>
      *            The status of the certificate.

@@ -19,28 +19,55 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The attribute payload, a JSON string containing up to three key-value pairs
- * (for example, {\"attributes\":{\"string1\":\"string2\"}}).
+ * The attribute payload.
  * </p>
  */
 public class AttributePayload implements Serializable {
     /**
      * <p>
-     * A JSON string containing up to three key-value pair in JSON format (for
-     * example, {\"attributes\":{\"string1\":\"string2\"}}).
+     * A JSON string containing up to three key-value pair in JSON format. For
+     * example:
+     * </p>
+     * <p>
+     * <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
      * </p>
      */
     private java.util.Map<String, String> attributes;
 
     /**
      * <p>
-     * A JSON string containing up to three key-value pair in JSON format (for
-     * example, {\"attributes\":{\"string1\":\"string2\"}}).
+     * Specifies whether the list of attributes provided in the
+     * <code>AttributePayload</code> is merged with the attributes stored in the
+     * registry, instead of overwriting them.
+     * </p>
+     * <p>
+     * To remove an attribute, call <code>UpdateThing</code> with an empty
+     * attribute value.
+     * </p>
+     * <note>
+     * <p>
+     * The <code>merge</code> attribute is only valid when calling
+     * <code>UpdateThing</code>.
+     * </p>
+     * </note>
+     */
+    private Boolean merge;
+
+    /**
+     * <p>
+     * A JSON string containing up to three key-value pair in JSON format. For
+     * example:
+     * </p>
+     * <p>
+     * <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
      * </p>
      *
      * @return <p>
      *         A JSON string containing up to three key-value pair in JSON
-     *         format (for example, {\"attributes\":{\"string1\":\"string2\"}}).
+     *         format. For example:
+     *         </p>
+     *         <p>
+     *         <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
      *         </p>
      */
     public java.util.Map<String, String> getAttributes() {
@@ -49,14 +76,19 @@ public class AttributePayload implements Serializable {
 
     /**
      * <p>
-     * A JSON string containing up to three key-value pair in JSON format (for
-     * example, {\"attributes\":{\"string1\":\"string2\"}}).
+     * A JSON string containing up to three key-value pair in JSON format. For
+     * example:
+     * </p>
+     * <p>
+     * <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
      * </p>
      *
      * @param attributes <p>
      *            A JSON string containing up to three key-value pair in JSON
-     *            format (for example,
-     *            {\"attributes\":{\"string1\":\"string2\"}}).
+     *            format. For example:
+     *            </p>
+     *            <p>
+     *            <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
      *            </p>
      */
     public void setAttributes(java.util.Map<String, String> attributes) {
@@ -65,8 +97,11 @@ public class AttributePayload implements Serializable {
 
     /**
      * <p>
-     * A JSON string containing up to three key-value pair in JSON format (for
-     * example, {\"attributes\":{\"string1\":\"string2\"}}).
+     * A JSON string containing up to three key-value pair in JSON format. For
+     * example:
+     * </p>
+     * <p>
+     * <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -74,8 +109,10 @@ public class AttributePayload implements Serializable {
      *
      * @param attributes <p>
      *            A JSON string containing up to three key-value pair in JSON
-     *            format (for example,
-     *            {\"attributes\":{\"string1\":\"string2\"}}).
+     *            format. For example:
+     *            </p>
+     *            <p>
+     *            <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -87,8 +124,11 @@ public class AttributePayload implements Serializable {
 
     /**
      * <p>
-     * A JSON string containing up to three key-value pair in JSON format (for
-     * example, {\"attributes\":{\"string1\":\"string2\"}}).
+     * A JSON string containing up to three key-value pair in JSON format. For
+     * example:
+     * </p>
+     * <p>
+     * <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
      * </p>
      * <p>
      * The method adds a new key-value pair into attributes parameter, and
@@ -124,6 +164,160 @@ public class AttributePayload implements Serializable {
     }
 
     /**
+     * <p>
+     * Specifies whether the list of attributes provided in the
+     * <code>AttributePayload</code> is merged with the attributes stored in the
+     * registry, instead of overwriting them.
+     * </p>
+     * <p>
+     * To remove an attribute, call <code>UpdateThing</code> with an empty
+     * attribute value.
+     * </p>
+     * <note>
+     * <p>
+     * The <code>merge</code> attribute is only valid when calling
+     * <code>UpdateThing</code>.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         Specifies whether the list of attributes provided in the
+     *         <code>AttributePayload</code> is merged with the attributes
+     *         stored in the registry, instead of overwriting them.
+     *         </p>
+     *         <p>
+     *         To remove an attribute, call <code>UpdateThing</code> with an
+     *         empty attribute value.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         The <code>merge</code> attribute is only valid when calling
+     *         <code>UpdateThing</code>.
+     *         </p>
+     *         </note>
+     */
+    public Boolean isMerge() {
+        return merge;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the list of attributes provided in the
+     * <code>AttributePayload</code> is merged with the attributes stored in the
+     * registry, instead of overwriting them.
+     * </p>
+     * <p>
+     * To remove an attribute, call <code>UpdateThing</code> with an empty
+     * attribute value.
+     * </p>
+     * <note>
+     * <p>
+     * The <code>merge</code> attribute is only valid when calling
+     * <code>UpdateThing</code>.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         Specifies whether the list of attributes provided in the
+     *         <code>AttributePayload</code> is merged with the attributes
+     *         stored in the registry, instead of overwriting them.
+     *         </p>
+     *         <p>
+     *         To remove an attribute, call <code>UpdateThing</code> with an
+     *         empty attribute value.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         The <code>merge</code> attribute is only valid when calling
+     *         <code>UpdateThing</code>.
+     *         </p>
+     *         </note>
+     */
+    public Boolean getMerge() {
+        return merge;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the list of attributes provided in the
+     * <code>AttributePayload</code> is merged with the attributes stored in the
+     * registry, instead of overwriting them.
+     * </p>
+     * <p>
+     * To remove an attribute, call <code>UpdateThing</code> with an empty
+     * attribute value.
+     * </p>
+     * <note>
+     * <p>
+     * The <code>merge</code> attribute is only valid when calling
+     * <code>UpdateThing</code>.
+     * </p>
+     * </note>
+     *
+     * @param merge <p>
+     *            Specifies whether the list of attributes provided in the
+     *            <code>AttributePayload</code> is merged with the attributes
+     *            stored in the registry, instead of overwriting them.
+     *            </p>
+     *            <p>
+     *            To remove an attribute, call <code>UpdateThing</code> with an
+     *            empty attribute value.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            The <code>merge</code> attribute is only valid when calling
+     *            <code>UpdateThing</code>.
+     *            </p>
+     *            </note>
+     */
+    public void setMerge(Boolean merge) {
+        this.merge = merge;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the list of attributes provided in the
+     * <code>AttributePayload</code> is merged with the attributes stored in the
+     * registry, instead of overwriting them.
+     * </p>
+     * <p>
+     * To remove an attribute, call <code>UpdateThing</code> with an empty
+     * attribute value.
+     * </p>
+     * <note>
+     * <p>
+     * The <code>merge</code> attribute is only valid when calling
+     * <code>UpdateThing</code>.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param merge <p>
+     *            Specifies whether the list of attributes provided in the
+     *            <code>AttributePayload</code> is merged with the attributes
+     *            stored in the registry, instead of overwriting them.
+     *            </p>
+     *            <p>
+     *            To remove an attribute, call <code>UpdateThing</code> with an
+     *            empty attribute value.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            The <code>merge</code> attribute is only valid when calling
+     *            <code>UpdateThing</code>.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AttributePayload withMerge(Boolean merge) {
+        this.merge = merge;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -135,7 +329,9 @@ public class AttributePayload implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getAttributes() != null)
-            sb.append("attributes: " + getAttributes());
+            sb.append("attributes: " + getAttributes() + ",");
+        if (getMerge() != null)
+            sb.append("merge: " + getMerge());
         sb.append("}");
         return sb.toString();
     }
@@ -146,6 +342,7 @@ public class AttributePayload implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getAttributes() == null) ? 0 : getAttributes().hashCode());
+        hashCode = prime * hashCode + ((getMerge() == null) ? 0 : getMerge().hashCode());
         return hashCode;
     }
 
@@ -164,6 +361,10 @@ public class AttributePayload implements Serializable {
             return false;
         if (other.getAttributes() != null
                 && other.getAttributes().equals(this.getAttributes()) == false)
+            return false;
+        if (other.getMerge() == null ^ this.getMerge() == null)
+            return false;
+        if (other.getMerge() != null && other.getMerge().equals(this.getMerge()) == false)
             return false;
         return true;
     }

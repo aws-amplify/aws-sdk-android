@@ -30,6 +30,11 @@ class ActionJsonMarshaller {
             jsonWriter.name("dynamoDB");
             DynamoDBActionJsonMarshaller.getInstance().marshall(dynamoDB, jsonWriter);
         }
+        if (action.getDynamoDBv2() != null) {
+            DynamoDBv2Action dynamoDBv2 = action.getDynamoDBv2();
+            jsonWriter.name("dynamoDBv2");
+            DynamoDBv2ActionJsonMarshaller.getInstance().marshall(dynamoDBv2, jsonWriter);
+        }
         if (action.getLambda() != null) {
             LambdaAction lambda = action.getLambda();
             jsonWriter.name("lambda");

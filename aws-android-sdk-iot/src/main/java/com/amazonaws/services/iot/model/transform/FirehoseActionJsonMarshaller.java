@@ -35,6 +35,11 @@ class FirehoseActionJsonMarshaller {
             jsonWriter.name("deliveryStreamName");
             jsonWriter.value(deliveryStreamName);
         }
+        if (firehoseAction.getSeparator() != null) {
+            String separator = firehoseAction.getSeparator();
+            jsonWriter.name("separator");
+            jsonWriter.value(separator);
+        }
         jsonWriter.endObject();
     }
 

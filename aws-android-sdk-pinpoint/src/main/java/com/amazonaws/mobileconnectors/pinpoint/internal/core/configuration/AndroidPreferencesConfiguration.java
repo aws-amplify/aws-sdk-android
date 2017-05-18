@@ -58,7 +58,8 @@ public class AndroidPreferencesConfiguration {
                 try {
                     configJson = new JSONObject(configurationJsonString);
                 } catch (final JSONException e) {
-                    log.error("Could not create Json object of Config", e);
+                    // Do not log e due to potential sensitive information.
+                    log.error("Could not create Json object of Config.");
                 }
             }
         }
@@ -79,8 +80,8 @@ public class AndroidPreferencesConfiguration {
             try {
                 value = Long.decode(valueString);
             } catch (Exception ex) {
-                log.error(String.format("Could not get Long for propertyName: %s",
-                                               propertyName), ex);
+                // Do not log property due to potential sensitive information.
+                log.error("Could not get Long for property.");
             }
         }
 
@@ -102,8 +103,8 @@ public class AndroidPreferencesConfiguration {
             try {
                 value = Integer.decode(valueString);
             } catch (Exception ex) {
-                log.error(String.format("Could not get Integer for propertyName: %s",
-                                               propertyName), ex);
+                // Do not log property due to potential sensitive information.
+                log.error("Could not get Integer for property.");
             }
         }
 
@@ -118,8 +119,8 @@ public class AndroidPreferencesConfiguration {
             try {
                 value = Double.parseDouble(valueString);
             } catch (Exception ex) {
-                log.error(String.format("Could not get Double for propertyName: %s",
-                                               propertyName), ex);
+                // Do not log property due to potential sensitive information.
+                log.error("Could not get Double for property.");
             }
         }
 
@@ -134,8 +135,8 @@ public class AndroidPreferencesConfiguration {
             try {
                 value = Boolean.parseBoolean(valueString);
             } catch (Exception ex) {
-                log.error(String.format("Could not get Boolean for propertyName: %s",
-                                               propertyName), ex);
+                // Do not log property due to potential sensitive information.
+                log.error("Could not get Boolean for property.");
             }
         }
 
@@ -152,8 +153,8 @@ public class AndroidPreferencesConfiguration {
                     value = Short.decode(valueString);
                 }
             } catch (Exception ex) {
-                log.error(String.format("Could not get Short for propertyName: %s",
-                                               propertyName), ex);
+                // Do not log property due to potential sensitive information.
+                log.error("Could not get Short for property.");
             }
         }
 
@@ -208,7 +209,8 @@ public class AndroidPreferencesConfiguration {
                     String value = configJson.getString(key);
                     newProperties.put(key, value);
                 } catch (JSONException e) {
-                    log.error("Could not update property mappings", e);
+                    // Do not log property mappings due to potential sensitive information.
+                    log.error("Could not update property mappings.");
                 }
             }
         }

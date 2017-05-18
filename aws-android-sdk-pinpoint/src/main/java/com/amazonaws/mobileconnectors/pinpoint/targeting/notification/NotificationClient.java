@@ -448,7 +448,7 @@ public class NotificationClient {
     private PendingIntent createOpenAppPendingIntent(final Bundle pushBundle, final Class<?> targetClass,
                                                      String campaignId, int requestId, String intentAction) {
         PendingIntent contentIntent = null;
-        if (intentAction == GCM_INTENT_ACTION) {
+        if (intentAction.equals(GCM_INTENT_ACTION)) {
             contentIntent = PendingIntent.getService(pinpointContext.getApplicationContext(), requestId,
                                                      this.notificationIntent(pushBundle, campaignId, requestId,
                                                                              GCM_INTENT_ACTION, targetClass),
@@ -726,9 +726,10 @@ public class NotificationClient {
     }
 
     /**
-     * On devices using Android API level 19 and above this method properly
-     * returns whether local notifications are enabled for the app. For devices
-     * before API level 19, this method always returns true. Disabling
+     * If app-level opt-out is enabled, this method always returns false. Otherwise,
+     * the following logic applies: On devices using Android API level 19 and above,
+     * this method properly returns whether local notifications are enabled for the app.
+     * For devices before API level 19, this method always returns true. Disabling
      * notifications was a feature added on devices supporting API Level 16 and
      * above, so devices from API level 16 to 18 will return true from this
      * method even when local notifications have been disabled for the app.
@@ -737,6 +738,15 @@ public class NotificationClient {
      * false.
      */
     public boolean areAppNotificationsEnabled() {
+        final AppLevelOptOutProvider provider = pinpointContext.getPinpointConfiguration().getAppLevelOptOutProvider();
+        if (provider != null && provider.isOptedOut()) {
+            return false;
+        }
+
+        return areAppNotificationsEnabledOnPlatform();
+    }
+
+    boolean areAppNotificationsEnabledOnPlatform() {
         if (android.os.Build.VERSION.SDK_INT < ANDROID_KITKAT) {
             return true;
         }

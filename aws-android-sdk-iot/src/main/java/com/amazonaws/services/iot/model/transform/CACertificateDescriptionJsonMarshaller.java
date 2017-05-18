@@ -56,6 +56,11 @@ class CACertificateDescriptionJsonMarshaller {
             jsonWriter.name("creationDate");
             jsonWriter.value(creationDate);
         }
+        if (cACertificateDescription.getAutoRegistrationStatus() != null) {
+            String autoRegistrationStatus = cACertificateDescription.getAutoRegistrationStatus();
+            jsonWriter.name("autoRegistrationStatus");
+            jsonWriter.value(autoRegistrationStatus);
+        }
         jsonWriter.endObject();
     }
 

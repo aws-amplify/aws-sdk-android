@@ -52,7 +52,7 @@ public class SharedPrefsUniqueIdService {
     public String getUniqueId(PinpointContext context) {
         if (context == null || context.getSystem() == null
                     || context.getSystem().getPreferences() == null) {
-            log.debug("Unable to generate unique id, pinpointContext has not been fully initialized");
+            log.debug("Unable to generate unique id, pinpointContext has not been fully initialized.");
             return "";
         }
 
@@ -94,8 +94,8 @@ public class SharedPrefsUniqueIdService {
         try {
             preferences.putString(UNIQUE_ID_KEY, uniqueId);
         } catch (Exception ex) {
-            log.error("There was an exception when trying to store the unique id into the Preferences",
-                             ex);
+            // Do not log ex due to potentially sensitive information
+            log.error("There was an exception when trying to store the unique id into the Preferences.");
         }
     }
 }

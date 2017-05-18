@@ -21,32 +21,42 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes the specified thing from the Thing Registry.
+ * Deletes the specified thing.
  * </p>
  */
 public class DeleteThingRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The thing name.
+     * The name of the thing to delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      */
     private String thingName;
 
     /**
      * <p>
-     * The thing name.
+     * The expected version of the thing record in the registry. If the version
+     * of the record in the registry does not match the expected version
+     * specified in the request, the <code>DeleteThing</code> request is
+     * rejected with a <code>VersionConflictException</code>.
+     * </p>
+     */
+    private Long expectedVersion;
+
+    /**
+     * <p>
+     * The name of the thing to delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @return <p>
-     *         The thing name.
+     *         The name of the thing to delete.
      *         </p>
      */
     public String getThingName() {
@@ -55,15 +65,15 @@ public class DeleteThingRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The thing name.
+     * The name of the thing to delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
-     *            The thing name.
+     *            The name of the thing to delete.
      *            </p>
      */
     public void setThingName(String thingName) {
@@ -72,7 +82,7 @@ public class DeleteThingRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The thing name.
+     * The name of the thing to delete.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -80,16 +90,81 @@ public class DeleteThingRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
-     *            The thing name.
+     *            The name of the thing to delete.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public DeleteThingRequest withThingName(String thingName) {
         this.thingName = thingName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The expected version of the thing record in the registry. If the version
+     * of the record in the registry does not match the expected version
+     * specified in the request, the <code>DeleteThing</code> request is
+     * rejected with a <code>VersionConflictException</code>.
+     * </p>
+     *
+     * @return <p>
+     *         The expected version of the thing record in the registry. If the
+     *         version of the record in the registry does not match the expected
+     *         version specified in the request, the <code>DeleteThing</code>
+     *         request is rejected with a <code>VersionConflictException</code>.
+     *         </p>
+     */
+    public Long getExpectedVersion() {
+        return expectedVersion;
+    }
+
+    /**
+     * <p>
+     * The expected version of the thing record in the registry. If the version
+     * of the record in the registry does not match the expected version
+     * specified in the request, the <code>DeleteThing</code> request is
+     * rejected with a <code>VersionConflictException</code>.
+     * </p>
+     *
+     * @param expectedVersion <p>
+     *            The expected version of the thing record in the registry. If
+     *            the version of the record in the registry does not match the
+     *            expected version specified in the request, the
+     *            <code>DeleteThing</code> request is rejected with a
+     *            <code>VersionConflictException</code>.
+     *            </p>
+     */
+    public void setExpectedVersion(Long expectedVersion) {
+        this.expectedVersion = expectedVersion;
+    }
+
+    /**
+     * <p>
+     * The expected version of the thing record in the registry. If the version
+     * of the record in the registry does not match the expected version
+     * specified in the request, the <code>DeleteThing</code> request is
+     * rejected with a <code>VersionConflictException</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param expectedVersion <p>
+     *            The expected version of the thing record in the registry. If
+     *            the version of the record in the registry does not match the
+     *            expected version specified in the request, the
+     *            <code>DeleteThing</code> request is rejected with a
+     *            <code>VersionConflictException</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DeleteThingRequest withExpectedVersion(Long expectedVersion) {
+        this.expectedVersion = expectedVersion;
         return this;
     }
 
@@ -105,7 +180,9 @@ public class DeleteThingRequest extends AmazonWebServiceRequest implements Seria
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getThingName() != null)
-            sb.append("thingName: " + getThingName());
+            sb.append("thingName: " + getThingName() + ",");
+        if (getExpectedVersion() != null)
+            sb.append("expectedVersion: " + getExpectedVersion());
         sb.append("}");
         return sb.toString();
     }
@@ -116,6 +193,8 @@ public class DeleteThingRequest extends AmazonWebServiceRequest implements Seria
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getThingName() == null) ? 0 : getThingName().hashCode());
+        hashCode = prime * hashCode
+                + ((getExpectedVersion() == null) ? 0 : getExpectedVersion().hashCode());
         return hashCode;
     }
 
@@ -134,6 +213,11 @@ public class DeleteThingRequest extends AmazonWebServiceRequest implements Seria
             return false;
         if (other.getThingName() != null
                 && other.getThingName().equals(this.getThingName()) == false)
+            return false;
+        if (other.getExpectedVersion() == null ^ this.getExpectedVersion() == null)
+            return false;
+        if (other.getExpectedVersion() != null
+                && other.getExpectedVersion().equals(this.getExpectedVersion()) == false)
             return false;
         return true;
     }

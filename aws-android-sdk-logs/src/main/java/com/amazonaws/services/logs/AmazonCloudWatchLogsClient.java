@@ -315,6 +315,7 @@ public class AmazonCloudWatchLogsClient extends AmazonWebServiceClient implement
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("https://logs.us-east-1.amazonaws.com");
+        this.endpointPrefix = "logs";
 
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(

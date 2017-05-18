@@ -106,6 +106,8 @@ public abstract class AmazonWebServiceClient {
      */
     private volatile String serviceName;
 
+    protected volatile String endpointPrefix;
+
     /**
      * Constructs a new AmazonWebServiceClient object using the specified
      * configuration.
@@ -209,14 +211,34 @@ public abstract class AmazonWebServiceClient {
      *             specified endpoint.
      */
     public void setEndpoint(final String endpoint) {
-        URI uri = toURI(endpoint);
+        final URI uri = toURI(endpoint);
 
         @SuppressWarnings("checkstyle:hiddenfield")
-        Signer signer = computeSignerByURI(uri, signerRegionOverride, false);
+        final Signer signer = computeSignerByURI(uri, signerRegionOverride, false);
         synchronized (this) {
             this.endpoint = uri;
             this.signer = signer;
         }
+    }
+
+    /**
+     * Returns the endpoint for the service.
+     *
+     * @return the endpoint for the service.
+     */
+    public String getEndpoint() {
+        synchronized (this) {
+            return this.endpoint.toString();
+        }
+    }
+
+    /**
+     * Returns the endpoint prefix for the service.
+     *
+     * @return the endpoint prefix.
+     */
+    public String getEndpointPrefix() {
+        return endpointPrefix;
     }
 
     /**
@@ -236,7 +258,7 @@ public abstract class AmazonWebServiceClient {
 
         try {
             return new URI(endpoint);
-        } catch (URISyntaxException e) {
+        } catch (final URISyntaxException e) {
             throw new IllegalArgumentException(e);
         }
     }
@@ -280,8 +302,8 @@ public abstract class AmazonWebServiceClient {
     public void setEndpoint(final String endpoint,
                             final String serviceName,
                             final String regionId) {
-        URI uri = toURI(endpoint);
-        Signer signer = computeSignerByServiceRegion(serviceName, regionId,
+        final URI uri = toURI(endpoint);
+        final Signer signer = computeSignerByServiceRegion(serviceName, regionId,
                 regionId, true);
         synchronized (this) {
             this.signer = signer;
@@ -346,8 +368,8 @@ public abstract class AmazonWebServiceClient {
             throw new IllegalArgumentException(
                     "Endpoint is not set. Use setEndpoint to set an endpoint before performing any request.");
         }
-        String service = getServiceNameIntern();
-        String region = AwsHostNameUtils.parseRegionName(uri.getHost(), service);
+        final String service = getServiceNameIntern();
+        final String region = AwsHostNameUtils.parseRegionName(uri.getHost(), service);
         return computeSignerByServiceRegion(
                 service, region, signerRegionOverride, isRegionIdAsSignerParam);
     }
@@ -374,20 +396,21 @@ public abstract class AmazonWebServiceClient {
             final String serviceName, final String regionId,
             final String signerRegionOverride,
             final boolean isRegionIdAsSignerParam) {
-        String signerType = clientConfiguration.getSignerOverride();
-        Signer signer = signerType == null
+        final String signerType = clientConfiguration.getSignerOverride();
+        final Signer signer = signerType == null
                 ? SignerFactory.getSigner(serviceName, regionId)
                 : SignerFactory.getSignerByTypeAndService(signerType, serviceName);
         if (signer instanceof RegionAwareSigner) {
             // Overrides the default region computed
-            RegionAwareSigner regionAwareSigner = (RegionAwareSigner) signer;
+            final RegionAwareSigner regionAwareSigner = (RegionAwareSigner) signer;
             // (signerRegionOverride != null) means that it is likely to be AWS
             // internal dev work, as "signerRegionOverride" is typically null
             // when used in the external release
-            if (signerRegionOverride != null)
+            if (signerRegionOverride != null) {
                 regionAwareSigner.setRegionName(signerRegionOverride);
-            else if (regionId != null && isRegionIdAsSignerParam)
+            } else if (regionId != null && isRegionIdAsSignerParam) {
                 regionAwareSigner.setRegionName(regionId);
+            }
         }
         return signer;
     }
@@ -422,42 +445,34 @@ public abstract class AmazonWebServiceClient {
             throw new IllegalArgumentException("No region provided");
         }
 
-        String serviceName = getServiceNameIntern();
+        final String serviceName = getServiceNameIntern();
         String serviceEndpoint;
 
         if (region.isServiceSupported(serviceName)) {
-
             serviceEndpoint = region.getServiceEndpoint(serviceName);
-
-            int protocolIdx = serviceEndpoint.indexOf("://");
+            final int protocolIdx = serviceEndpoint.indexOf("://");
             // Strip off the protocol to allow the client config to specify it
             if (protocolIdx >= 0) {
-                serviceEndpoint =
-                        serviceEndpoint.substring(protocolIdx + "://".length());
+                serviceEndpoint = serviceEndpoint.substring(protocolIdx + "://".length());
             }
-
         } else {
-
             serviceEndpoint = String.format("%s.%s.%s",
-                    serviceName,
-                    region.getName(),
-                    region.getDomain());
-
-            LOG.info("{" + serviceName + ", " + region.getName() + "} was not "
-                    + "found in region metadata, trying to construct an "
-                    + "endpoint using the standard pattern for this region: '"
-                    + serviceEndpoint + "'.");
+                getEndpointPrefix(),
+                region.getName(),
+                region.getDomain());
 
         }
 
-        URI uri = toURI(serviceEndpoint);
-        Signer signer = computeSignerByServiceRegion(serviceName,
+        final URI uri = toURI(serviceEndpoint);
+        final Signer signer = computeSignerByServiceRegion(serviceName,
                 region.getName(), signerRegionOverride, false);
         synchronized (this) {
             this.endpoint = uri;
             this.signer = signer;
         }
     }
+
+
 
     /**
      * @deprecated by client configuration via the constructor. This method will
@@ -467,7 +482,7 @@ public abstract class AmazonWebServiceClient {
     @Deprecated
     @SuppressWarnings("checkstyle:hiddenfield")
     public void setConfiguration(final ClientConfiguration clientConfiguration) {
-        AmazonHttpClient existingClient = this.client;
+        final AmazonHttpClient existingClient = this.client;
         RequestMetricCollector requestMetricCollector = null;
         if (existingClient != null) {
             requestMetricCollector = existingClient.getRequestMetricCollector();
@@ -535,7 +550,7 @@ public abstract class AmazonWebServiceClient {
     }
 
     protected ExecutionContext createExecutionContext(final AmazonWebServiceRequest req) {
-        boolean isMetricsEnabled = isRequestMetricsEnabled(req) || isProfilingEnabled();
+        final boolean isMetricsEnabled = isRequestMetricsEnabled(req) || isProfilingEnabled();
         return new ExecutionContext(requestHandler2s, isMetricsEnabled, this);
     }
 
@@ -555,7 +570,7 @@ public abstract class AmazonWebServiceClient {
      */
     @Deprecated
     protected final ExecutionContext createExecutionContext() {
-        boolean isMetricsEnabled = isRMCEnabledAtClientOrSdkLevel() || isProfilingEnabled();
+        final boolean isMetricsEnabled = isRMCEnabledAtClientOrSdkLevel() || isProfilingEnabled();
         return new ExecutionContext(requestHandler2s, isMetricsEnabled, this);
     }
 
@@ -573,7 +588,7 @@ public abstract class AmazonWebServiceClient {
      */
     @Deprecated
     protected final boolean isRequestMetricsEnabled(final AmazonWebServiceRequest req) {
-        RequestMetricCollector c = req.getRequestMetricCollector(); // request
+        final RequestMetricCollector c = req.getRequestMetricCollector(); // request
                                                                     // level
                                                                     // collector
         if (c != null && c.isEnabled()) {
@@ -590,7 +605,7 @@ public abstract class AmazonWebServiceClient {
      */
     @Deprecated
     private boolean isRMCEnabledAtClientOrSdkLevel() {
-        RequestMetricCollector c = requestMetricCollector();
+        final RequestMetricCollector c = requestMetricCollector();
         return c != null && c.isEnabled();
     }
 
@@ -654,7 +669,7 @@ public abstract class AmazonWebServiceClient {
      */
     @Deprecated
     protected RequestMetricCollector requestMetricCollector() {
-        RequestMetricCollector mc = client.getRequestMetricCollector();
+        final RequestMetricCollector mc = client.getRequestMetricCollector();
         return mc == null ? AwsSdkMetrics.getRequestMetricCollector() : mc;
     }
 
@@ -666,7 +681,7 @@ public abstract class AmazonWebServiceClient {
      */
     @Deprecated
     protected final RequestMetricCollector findRequestMetricCollector(final Request<?> req) {
-        AmazonWebServiceRequest origReq = req.getOriginalRequest();
+        final AmazonWebServiceRequest origReq = req.getOriginalRequest();
         RequestMetricCollector mc = origReq.getRequestMetricCollector();
         if (mc != null) {
             return mc;
@@ -707,11 +722,12 @@ public abstract class AmazonWebServiceClient {
         if (request != null) {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             awsRequestMetrics.getTimingInfo().endTiming();
-            RequestMetricCollector c = findRequestMetricCollector(request);
+            final RequestMetricCollector c = findRequestMetricCollector(request);
             c.collectMetrics(request, response);
         }
-        if (loggingAwsRequestMetrics)
+        if (loggingAwsRequestMetrics) {
             awsRequestMetrics.log();
+        }
     }
 
     /**
@@ -769,10 +785,10 @@ public abstract class AmazonWebServiceClient {
      */
     @SuppressWarnings("checkstyle:hiddenfield")
     private String computeServiceName() {
-        Class<?> httpClientClass = Classes.childClassOf(
+        final Class<?> httpClientClass = Classes.childClassOf(
                 AmazonWebServiceClient.class, this);
         final String httpClientName = httpClientClass.getSimpleName();
-        String service = ServiceNameFactory.getServiceName(httpClientName);
+        final String service = ServiceNameFactory.getServiceName(httpClientName);
         if (service != null) {
             return service; // only if it is so explicitly configured
         }
@@ -803,7 +819,7 @@ public abstract class AmazonWebServiceClient {
             throw new IllegalStateException(
                     "Unrecognized AWS http client class name " + httpClientName);
         }
-        String serviceName = httpClientName.substring(i + len, j);
+        final String serviceName = httpClientName.substring(i + len, j);
         return StringUtils.lowerCase(serviceName);
     }
 
@@ -824,7 +840,7 @@ public abstract class AmazonWebServiceClient {
      */
     @SuppressWarnings("checkstyle:hiddenfield")
     public final void setSignerRegionOverride(final String signerRegionOverride) {
-        Signer signer = computeSignerByURI(endpoint, signerRegionOverride, true);
+        final Signer signer = computeSignerByURI(endpoint, signerRegionOverride, true);
         synchronized (this) {
             this.signer = signer;
             this.signerRegionOverride = signerRegionOverride;

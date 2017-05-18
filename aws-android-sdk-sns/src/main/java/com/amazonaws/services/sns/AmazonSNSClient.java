@@ -290,6 +290,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("sns.us-east-1.amazonaws.com");
+        this.endpointPrefix = "sns";
 
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(

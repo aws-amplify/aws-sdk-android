@@ -16,6 +16,7 @@
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
 
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferService.NetworkInfoReceiver;
 import com.amazonaws.retry.RetryUtils;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.UploadPartRequest;
@@ -33,11 +34,25 @@ class UploadPartTask implements Callable<Boolean> {
     private final UploadPartRequest request;
     private final AmazonS3 s3;
     private final TransferDBUtil dbUtil;
+    private final NetworkInfoReceiver networkInfoReceiver;
 
-    public UploadPartTask(UploadPartRequest request, AmazonS3 s3, TransferDBUtil dbUtil) {
+    public UploadPartTask(UploadPartRequest request,
+                          AmazonS3 s3,
+                          TransferDBUtil dbUtil) {
         this.request = request;
         this.s3 = s3;
         this.dbUtil = dbUtil;
+        this.networkInfoReceiver = null;
+    }
+
+    public UploadPartTask(UploadPartRequest request,
+                          AmazonS3 s3,
+                          TransferDBUtil dbUtil,
+                          NetworkInfoReceiver networkInfoReceiver) {
+        this.request = request;
+        this.s3 = s3;
+        this.dbUtil = dbUtil;
+        this.networkInfoReceiver = networkInfoReceiver;
     }
 
     /*
@@ -51,12 +66,23 @@ class UploadPartTask implements Callable<Boolean> {
             dbUtil.updateETag(request.getId(), putPartResult.getETag());
             return true;
         } catch (final Exception e) {
-            dbUtil.updateState(request.getId(), TransferState.FAILED);
             if (RetryUtils.isInterrupted(e)) {
                 // thread interrupted by user
                 return false;
             }
-            LOGGER.error("Encountered error uploading part ", e);
+            if (networkInfoReceiver != null
+                && !networkInfoReceiver.isNetworkConnected()) {
+                /*
+                 * Network connection is being interrupted. Moving the TransferState
+                 * to WAITING_FOR_NETWORK till the network availability resumes.
+                 */
+                dbUtil.updateState(request.getId(), TransferState.WAITING_FOR_NETWORK);
+                LOGGER.debug("Network Connection Interrupted: " +
+                        "Moving the TransferState to WAITING_FOR_NETWORK");
+            } else {
+                dbUtil.updateState(request.getId(), TransferState.FAILED);
+                LOGGER.error("Encountered error uploading part ", e);
+            }
             throw e;
         }
     }

@@ -288,6 +288,7 @@ public class AmazonCloudWatchClient extends AmazonWebServiceClient implements Am
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("monitoring.us-east-1.amazonaws.com");
+        this.endpointPrefix = "monitoring";
 
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(

@@ -21,22 +21,25 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists your things. You can pass an AttributeName or AttributeValue to filter
- * your things (for example,
- * "ListThings where AttributeName=Color and AttributeValue=Red").
+ * Lists your things. Use the <b>attributeName</b> and <b>attributeValue</b>
+ * parameters to filter your things. For example, calling
+ * <code>ListThings</code> with attributeName=Color and attributeValue=Red
+ * retrieves all things in the registry that contain an attribute <b>Color</b>
+ * with the value <b>Red</b>.
  * </p>
  */
 public class ListThingsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The token for the next value.
+     * The token for the next set of results, or <b>null</b> if there are no
+     * additional results.
      * </p>
      */
     private String nextToken;
 
     /**
      * <p>
-     * The maximum number of results.
+     * The maximum number of results to return in this operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -46,7 +49,7 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The attribute name.
+     * The attribute name used to search for things.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -57,22 +60,35 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The attribute value.
+     * The attribute value used to search for things.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 1024<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_.,@/:#-]+<br/>
+     * <b>Length: </b> - 800<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_.,@/:#-]*<br/>
      */
     private String attributeValue;
 
     /**
      * <p>
-     * The token for the next value.
+     * The name of the thing type used to search for things.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     */
+    private String thingTypeName;
+
+    /**
+     * <p>
+     * The token for the next set of results, or <b>null</b> if there are no
+     * additional results.
      * </p>
      *
      * @return <p>
-     *         The token for the next value.
+     *         The token for the next set of results, or <b>null</b> if there
+     *         are no additional results.
      *         </p>
      */
     public String getNextToken() {
@@ -81,11 +97,13 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The token for the next value.
+     * The token for the next set of results, or <b>null</b> if there are no
+     * additional results.
      * </p>
      *
      * @param nextToken <p>
-     *            The token for the next value.
+     *            The token for the next set of results, or <b>null</b> if there
+     *            are no additional results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -94,14 +112,16 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The token for the next value.
+     * The token for the next set of results, or <b>null</b> if there are no
+     * additional results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nextToken <p>
-     *            The token for the next value.
+     *            The token for the next set of results, or <b>null</b> if there
+     *            are no additional results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -113,14 +133,14 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The maximum number of results.
+     * The maximum number of results to return in this operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 10000<br/>
      *
      * @return <p>
-     *         The maximum number of results.
+     *         The maximum number of results to return in this operation.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -129,14 +149,14 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The maximum number of results.
+     * The maximum number of results to return in this operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 10000<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of results.
+     *            The maximum number of results to return in this operation.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -145,7 +165,7 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The maximum number of results.
+     * The maximum number of results to return in this operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -155,7 +175,7 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
      * <b>Range: </b>1 - 10000<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of results.
+     *            The maximum number of results to return in this operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -167,7 +187,7 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The attribute name.
+     * The attribute name used to search for things.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -175,7 +195,7 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
      * <b>Pattern: </b>[a-zA-Z0-9_.,@/:#-]+<br/>
      *
      * @return <p>
-     *         The attribute name.
+     *         The attribute name used to search for things.
      *         </p>
      */
     public String getAttributeName() {
@@ -184,7 +204,7 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The attribute name.
+     * The attribute name used to search for things.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -192,7 +212,7 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
      * <b>Pattern: </b>[a-zA-Z0-9_.,@/:#-]+<br/>
      *
      * @param attributeName <p>
-     *            The attribute name.
+     *            The attribute name used to search for things.
      *            </p>
      */
     public void setAttributeName(String attributeName) {
@@ -201,7 +221,7 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The attribute name.
+     * The attribute name used to search for things.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -212,7 +232,7 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
      * <b>Pattern: </b>[a-zA-Z0-9_.,@/:#-]+<br/>
      *
      * @param attributeName <p>
-     *            The attribute name.
+     *            The attribute name used to search for things.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -224,15 +244,15 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The attribute value.
+     * The attribute value used to search for things.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 1024<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_.,@/:#-]+<br/>
+     * <b>Length: </b> - 800<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_.,@/:#-]*<br/>
      *
      * @return <p>
-     *         The attribute value.
+     *         The attribute value used to search for things.
      *         </p>
      */
     public String getAttributeValue() {
@@ -241,15 +261,15 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The attribute value.
+     * The attribute value used to search for things.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 1024<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_.,@/:#-]+<br/>
+     * <b>Length: </b> - 800<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_.,@/:#-]*<br/>
      *
      * @param attributeValue <p>
-     *            The attribute value.
+     *            The attribute value used to search for things.
      *            </p>
      */
     public void setAttributeValue(String attributeValue) {
@@ -258,24 +278,81 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The attribute value.
+     * The attribute value used to search for things.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 1024<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_.,@/:#-]+<br/>
+     * <b>Length: </b> - 800<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_.,@/:#-]*<br/>
      *
      * @param attributeValue <p>
-     *            The attribute value.
+     *            The attribute value used to search for things.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public ListThingsRequest withAttributeValue(String attributeValue) {
         this.attributeValue = attributeValue;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The name of the thing type used to search for things.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @return <p>
+     *         The name of the thing type used to search for things.
+     *         </p>
+     */
+    public String getThingTypeName() {
+        return thingTypeName;
+    }
+
+    /**
+     * <p>
+     * The name of the thing type used to search for things.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @param thingTypeName <p>
+     *            The name of the thing type used to search for things.
+     *            </p>
+     */
+    public void setThingTypeName(String thingTypeName) {
+        this.thingTypeName = thingTypeName;
+    }
+
+    /**
+     * <p>
+     * The name of the thing type used to search for things.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @param thingTypeName <p>
+     *            The name of the thing type used to search for things.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListThingsRequest withThingTypeName(String thingTypeName) {
+        this.thingTypeName = thingTypeName;
         return this;
     }
 
@@ -297,7 +374,9 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
         if (getAttributeName() != null)
             sb.append("attributeName: " + getAttributeName() + ",");
         if (getAttributeValue() != null)
-            sb.append("attributeValue: " + getAttributeValue());
+            sb.append("attributeValue: " + getAttributeValue() + ",");
+        if (getThingTypeName() != null)
+            sb.append("thingTypeName: " + getThingTypeName());
         sb.append("}");
         return sb.toString();
     }
@@ -313,6 +392,8 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
                 + ((getAttributeName() == null) ? 0 : getAttributeName().hashCode());
         hashCode = prime * hashCode
                 + ((getAttributeValue() == null) ? 0 : getAttributeValue().hashCode());
+        hashCode = prime * hashCode
+                + ((getThingTypeName() == null) ? 0 : getThingTypeName().hashCode());
         return hashCode;
     }
 
@@ -346,6 +427,11 @@ public class ListThingsRequest extends AmazonWebServiceRequest implements Serial
             return false;
         if (other.getAttributeValue() != null
                 && other.getAttributeValue().equals(this.getAttributeValue()) == false)
+            return false;
+        if (other.getThingTypeName() == null ^ this.getThingTypeName() == null)
+            return false;
+        if (other.getThingTypeName() != null
+                && other.getThingTypeName().equals(this.getThingTypeName()) == false)
             return false;
         return true;
     }

@@ -269,6 +269,7 @@ public class AmazonMachineLearningClient extends AmazonWebServiceClient implemen
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("machinelearning.us-east-1.amazonaws.com");
+        this.endpointPrefix = "machinelearning";
 
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(

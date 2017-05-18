@@ -111,7 +111,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
      * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz
+     * Tatyana, Astrid, Filiz, Vicki
      */
     private String voiceId;
 
@@ -716,7 +716,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
      * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz
+     * Tatyana, Astrid, Filiz, Vicki
      *
      * @return <p>
      *         Voice ID to use for the synthesis. You can get a list of
@@ -744,7 +744,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
      * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz
+     * Tatyana, Astrid, Filiz, Vicki
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -775,7 +775,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
      * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz
+     * Tatyana, Astrid, Filiz, Vicki
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -806,7 +806,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
      * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz
+     * Tatyana, Astrid, Filiz, Vicki
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -837,7 +837,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
      * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz
+     * Tatyana, Astrid, Filiz, Vicki
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of

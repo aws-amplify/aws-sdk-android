@@ -44,6 +44,9 @@ class S3ActionJsonUnmarshaller implements Unmarshaller<S3Action, JsonUnmarshalle
             } else if (name.equals("key")) {
                 s3Action.setKey(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("cannedAcl")) {
+                s3Action.setCannedAcl(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

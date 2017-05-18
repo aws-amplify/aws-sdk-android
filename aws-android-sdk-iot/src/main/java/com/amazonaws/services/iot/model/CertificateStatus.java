@@ -27,7 +27,8 @@ public enum CertificateStatus {
     INACTIVE("INACTIVE"),
     REVOKED("REVOKED"),
     PENDING_TRANSFER("PENDING_TRANSFER"),
-    REGISTER_INACTIVE("REGISTER_INACTIVE");
+    REGISTER_INACTIVE("REGISTER_INACTIVE"),
+    PENDING_ACTIVATION("PENDING_ACTIVATION");
 
     private String value;
 
@@ -48,6 +49,7 @@ public enum CertificateStatus {
         enumMap.put("REVOKED", REVOKED);
         enumMap.put("PENDING_TRANSFER", PENDING_TRANSFER);
         enumMap.put("REGISTER_INACTIVE", REGISTER_INACTIVE);
+        enumMap.put("PENDING_ACTIVATION", PENDING_ACTIVATION);
     }
 
     /**
