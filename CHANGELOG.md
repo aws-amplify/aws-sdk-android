@@ -3,7 +3,7 @@
 ## [Release 2.4.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.4)
 
 ### New Features:
-- **Amazon DynamoDB Document Model**
+- **Amazon DynamoDB Document Model (Beta)**
 	- Added DynamoDB Document API: The Document API provides full JSON data support, use of Document Path to access part of a document, and new data types such as Map, Primitive, List, and Boolean.
 
 * **Amazon Cognito Auth (Beta)**
