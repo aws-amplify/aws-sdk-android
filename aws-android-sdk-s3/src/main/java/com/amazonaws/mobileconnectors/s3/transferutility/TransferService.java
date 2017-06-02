@@ -1,12 +1,12 @@
 /**
  * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- *
- *  http://aws.amazon.com/apache2.0
- *
+ * <p>
+ * http://aws.amazon.com/apache2.0
+ * <p>
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
@@ -51,6 +51,7 @@ public class TransferService extends Service {
 
     private static final Log LOGGER = LogFactory.getLog(TransferService.class);
     private static final String TAG = TransferService.class.getSimpleName();
+
     /*
      * Constants of message sent to update handler.
      */
@@ -68,6 +69,17 @@ public class TransferService extends Service {
     static final String INTENT_ACTION_TRANSFER_CANCEL = "cancel_transfer";
     static final String INTENT_BUNDLE_TRANSFER_ID = "id";
     static final String INTENT_BUNDLE_S3_REFERENCE_KEY = "s3_reference_key";
+
+    /*
+     * Create a list of the transfer states depicting the transfers that
+     * are unfinished.
+     */
+    static final TransferState[] UNFINISHED_TRANSFER_STATES = new TransferState[]{
+        TransferState.WAITING,
+        TransferState.WAITING_FOR_NETWORK,
+        TransferState.IN_PROGRESS,
+        TransferState.RESUMED_WAITING
+    };
 
     private AmazonS3 s3;
 
@@ -375,18 +387,17 @@ public class TransferService extends Service {
         LOGGER.debug("Loading transfers from database");
         Cursor c = null;
         int count = 0;
+
         try {
-            c = dbUtil.queryAllTransfersWithType(TransferType.ANY);
+            // Query for the unfinshed transfers
+            c = dbUtil.queryTransfersWithTypeAndStates(TransferType.ANY, UNFINISHED_TRANSFER_STATES);
             while (c.moveToNext()) {
                 final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
                 final TransferState state = TransferState.getState(c.getString(c
                         .getColumnIndexOrThrow(TransferTable.COLUMN_STATE)));
                 final int partNumber = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM));
                 // add unfinished transfers
-                if (partNumber == 0 && (TransferState.WAITING.equals(state)
-                        || TransferState.WAITING_FOR_NETWORK.equals(state)
-                        || TransferState.RESUMED_WAITING.equals(state))
-                        || TransferState.IN_PROGRESS.equals(state)) {
+                if (partNumber == 0) {
                     if (updater.getTransfer(id) == null) {
                         final TransferRecord transfer = new TransferRecord(id);
                         transfer.updateFromDB(c);
@@ -403,7 +414,9 @@ public class TransferService extends Service {
                 }
             }
         } finally {
-            c.close();
+            if (c != null) {
+                c.close();
+            }
         }
         LOGGER.debug(count + " transfers are loaded from database");
     }

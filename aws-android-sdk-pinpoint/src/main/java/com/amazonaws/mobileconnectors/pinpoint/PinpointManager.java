@@ -108,7 +108,7 @@ public class PinpointManager {
                                                               SDL_INFO, config);
             this.notificationClient = new NotificationClient(this.pinpointContext);
             this.pinpointContext.setNotificationClient(this.notificationClient);
-            PinpointNotificationReceiver.setWeakNotificationClient(this.notificationClient);
+            PinpointNotificationReceiver.setNotificationClient(this.notificationClient);
 
             if (config.getEnableEvents()) {
                 this.analyticsClient = new AnalyticsClient(this.pinpointContext);

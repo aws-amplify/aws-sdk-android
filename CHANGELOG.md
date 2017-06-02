@@ -1,5 +1,22 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.4.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.4)
+
+### New Features:
+- **Amazon DynamoDB Document Model**
+	- Added DynamoDB Document API: The Document API provides full JSON data support, use of Document Path to access part of a document, and new data types such as Map, Primitive, List, and Boolean.
+
+* **Amazon Cognito Auth (Beta)**
+	- A new SDK that enables sign-up and sign-in for Amazon Cognito Your User Pools via a lightweight hosted UI.
+
+### Bug Fixes:
+- **Amazon Pinpoint**
+	- Change Pinpoint notification client to be a strong reference in Pinpoint notification receiver
+	- **Breaking API Change** Please use `PinpointNotificationReceiver.setNotificationClient()` API instead of `setWeakNotificationClient`.
+
+- **Amazon S3**
+	- Fixed bug in `TransferUtility` which caused the app to crash due to a race condition when loading Transfer Records from Transfer Database. See [issue #288](https://github.com/aws/aws-sdk-android/issues/288)
+
 ## [Release 2.4.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.3)
 
 ### Improvements:
@@ -7,7 +24,7 @@
 	- Update API to latest spec.
 	
 - **Amazon Polly**
-	- Amazon Polly exposes new German voice `Vicki`.
+	- Added support for new voice id - `Vicki`.
 	
 - **Amazon Pinpoint**
 	- Update logging to be more restrictive.

@@ -313,10 +313,26 @@ public class TransferUtility {
      */
     public List<TransferObserver> getTransfersWithTypeAndState(TransferType type,
             TransferState state) {
+        return getTransfersWithTypeAndStates(type, new TransferState[] {
+            state
+        });
+    }
+
+    /**
+     * Gets a list of TransferObserver instances which are observing records
+     * with the given type.
+     *
+     * @param type The type of the transfer.
+     * @param states A list of the the transfer states.
+     * @return A list of TransferObserver of transfer records with the given
+     *         type and state.
+     */
+    public List<TransferObserver> getTransfersWithTypeAndStates(TransferType type,
+                                                                TransferState[] states) {
         final List<TransferObserver> transferObservers = new ArrayList<TransferObserver>();
         Cursor c = null;
         try {
-            c = dbUtil.queryTransfersWithTypeAndState(type, state);
+            c = dbUtil.queryTransfersWithTypeAndStates(type, states);
             while (c.moveToNext()) {
                 final int partNum = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM));
                 if (partNum != 0) {

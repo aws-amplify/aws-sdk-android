@@ -26,6 +26,9 @@ import com.amazonaws.services.s3.model.PartETag;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.util.json.JsonUtils;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,10 @@ import java.util.List;
  * Provides methods to conveniently perform database operations.
  */
 class TransferDBUtil {
+
+    private static final Log LOGGER = LogFactory.getLog(TransferDBUtil.class);
+
+    private static final String QUERY_PLACE_HOLDER_STRING = ",?";
 
     /**
      * transferDBBase is a basic helper for accessing the database
@@ -422,6 +429,44 @@ class TransferDBUtil {
     }
 
     /**
+     * Queries all the records which have the given type and states.
+     *
+     * @param projections The list of columns to be projected
+     * @param type The type of Transfer
+     * @param String[] The list of Transfer States whose Transfer Records are required.
+     * @return A Cursor pointing to records in the database in any of the given states.
+     */
+    public Cursor queryTransfersWithTypeAndStates(TransferType type,
+                                                  TransferState[] states) {
+        final String selection;
+        final String[] selectionArgs;
+        int index = 0;
+        int numStates = states.length;
+        String placeholderString = createPlaceholders(numStates);
+
+        if (type == TransferType.ANY) {
+            selection = TransferTable.COLUMN_STATE +
+                    " in (" + placeholderString + ")";
+            selectionArgs = new String[numStates];
+            for (index = 0; index < numStates; index++) {
+                selectionArgs[index] = states[index].toString();
+            }
+        } else {
+            selection = TransferTable.COLUMN_STATE
+                    + " in (" + placeholderString + ") and "
+                    + TransferTable.COLUMN_TYPE + "=?";
+            selectionArgs = new String[numStates + 1];
+            for (index = 0; index < numStates; index++) {
+                selectionArgs[index] = states[index].toString();
+            }
+            selectionArgs[index] = type.toString();
+        }
+
+        return transferDBBase.query(transferDBBase.getContentUri(), null, selection,
+                selectionArgs, null);
+    }
+
+    /**
      * Queries the transfer record specified by id.
      *
      * @param id The id of the transfer.
@@ -573,6 +618,28 @@ class TransferDBUtil {
         }
 
         return isNetworkInterrupted;
+    }
+
+    /**
+     * Create a string with the required number of placeholders
+     *
+     * @param length Number of placeholders needed
+     * @return String with the required placeholders
+     */
+    private String createPlaceholders(int numPlaceHolders) {
+        if (numPlaceHolders <= 0) {
+            LOGGER.error("Cannot create a string of 0 or less placeholders.");
+            return null;
+        }
+
+        StringBuilder stringBuilder = new StringBuilder(
+                numPlaceHolders * QUERY_PLACE_HOLDER_STRING.length() - 1);
+        stringBuilder.append("?");
+
+        for (int index = 1; index < numPlaceHolders; index++) {
+            stringBuilder.append(QUERY_PLACE_HOLDER_STRING);
+        }
+        return stringBuilder.toString();
     }
 
     /**

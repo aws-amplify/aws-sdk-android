@@ -15,7 +15,6 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.targeting.notification;
 
-import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 import android.content.BroadcastReceiver;
@@ -28,28 +27,27 @@ import android.content.pm.PackageManager;
  */
 public class PinpointNotificationReceiver extends BroadcastReceiver {
 
-    private static WeakReference<NotificationClient> weakNotificationClient = null;
+    private static volatile NotificationClient notificationClient = null;
 
-    public static void setWeakNotificationClient(NotificationClient notificationClient) {
-        weakNotificationClient = new WeakReference<NotificationClient>(notificationClient);
+    public static void setNotificationClient(NotificationClient notificationClient) {
+        PinpointNotificationReceiver.notificationClient = notificationClient;
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (weakNotificationClient != null) {
+        if (notificationClient != null) {
             final String prefix = NotificationClient.CAMPAIGN_PUSH_KEY_PREFIX;
             final Map<String, String> campaignAttributes = new HashMap<String, String>();
             campaignAttributes.put(NotificationClient.CAMPAIGN_ID_ATTRIBUTE_KEY,
-                                          intent.getStringExtra(prefix.concat(NotificationClient.CAMPAIGN_ID_ATTRIBUTE_KEY)));
+                                   intent.getStringExtra(prefix.concat(NotificationClient.CAMPAIGN_ID_ATTRIBUTE_KEY)));
             campaignAttributes
-                    .put(NotificationClient.CAMPAIGN_TREATMENT_ID_ATTRIBUTE_KEY,
-                                intent.getStringExtra(prefix.concat(NotificationClient.CAMPAIGN_TREATMENT_ID_ATTRIBUTE_KEY)));
+                .put(NotificationClient.CAMPAIGN_TREATMENT_ID_ATTRIBUTE_KEY,
+                     intent.getStringExtra(prefix.concat(NotificationClient.CAMPAIGN_TREATMENT_ID_ATTRIBUTE_KEY)));
             campaignAttributes
-                    .put(NotificationClient.CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY,
-                                intent.getStringExtra(prefix.concat(NotificationClient.CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY)));
-            weakNotificationClient.get()
-                    .handleNotificationOpen(campaignAttributes,
-                                                   intent.getExtras());
+                .put(NotificationClient.CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY,
+                     intent.getStringExtra(prefix.concat(NotificationClient.CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY)));
+            notificationClient.handleNotificationOpen(campaignAttributes,
+                                                      intent.getExtras());
         } else {
             final PackageManager pm = context.getPackageManager();
             final Intent launchIntent = pm.getLaunchIntentForPackage(intent.getPackage());

@@ -458,7 +458,7 @@ public class NotificationClient {
                                                        this.notificationIntent(pushBundle, campaignId, requestId,
                                                                                FCM_INTENT_ACTION, targetClass),
                                                        PendingIntent.FLAG_ONE_SHOT);
-            PinpointNotificationReceiver.setWeakNotificationClient(this);
+            PinpointNotificationReceiver.setNotificationClient(this);
         }
         return contentIntent;
 
