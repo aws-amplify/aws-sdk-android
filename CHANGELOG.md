@@ -4,7 +4,7 @@
 
 ### New Features:
 - **Amazon DynamoDB Document Model (Beta)**
-	- Added DynamoDB Document API: The Document API provides full JSON data support, use of Document Path to access part of a document, and new data types such as Map, Primitive, List, and Boolean.
+	- Added DynamoDB Document API: The Document API provides full JSON data support, use of Document Path to access part of a document, and new data types such as Map, Primitive, List, and Boolean. More information and sample code can be found in the [blog](https://aws.amazon.com/blogs/mobile/using-amazon-dynamodb-document-api-with-aws-mobile-sdk-for-android-part-1/).
 
 * **Amazon Cognito Auth (Beta)**
 	- A new SDK that enables sign-up and sign-in for Amazon Cognito Your User Pools via a lightweight hosted UI.
