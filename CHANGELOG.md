@@ -1,5 +1,13 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.4.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.5)
+
+- **Amazon S3**
+	- Fixed bug that caused keys to convert spaces to url encoded characters. See [issue #310](https://github.com/aws/aws-sdk-android/issues/310)
+
+- **Amazon DynamoDB Document Model (Beta)**
+	- Fixed bug that caused item updates to fail due to equality check error.
+
 ## [Release 2.4.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.4)
 
 ### New Features:
