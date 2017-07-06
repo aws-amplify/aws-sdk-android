@@ -261,7 +261,7 @@ public class AmazonS3URI {
                 return (URLEncoder.encode(str, "UTF-8")
                         .replace("%3A", ":")
                         .replace("%2F", "/")
-                        .replace("+", "%20"));
+                        .replace("+", " "));
             } catch (UnsupportedEncodingException e) {
                 // This should never happen unless there is something
                 // fundamentally broken with the running JVM.

@@ -231,7 +231,7 @@ public class Primitive extends DynamoDBEntry {
             return false;
         }
         final Primitive other = (Primitive) obj;
-        return Objects.equal(this.type, other.type) && Objects.equal(this.value, this.value);
+        return Objects.equal(this.type, other.type) && Objects.equal(this.value, other.value);
     }
 
     @Override
