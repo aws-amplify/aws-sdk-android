@@ -40,8 +40,7 @@ public final class SDKInfoHandler extends RequestHandler2 {
     @Override
     public void beforeRequest(Request<?> request) {
         if (null != request) {
-            request.addHeader(CLIENT_SDK_VERSION_HEADER_NAME,
-                                     String.format("%s", sdkInfo.toString()));
+            request.addHeader(CLIENT_SDK_VERSION_HEADER_NAME, String.format("%s", sdkInfo.toString()));
         }
 
     }

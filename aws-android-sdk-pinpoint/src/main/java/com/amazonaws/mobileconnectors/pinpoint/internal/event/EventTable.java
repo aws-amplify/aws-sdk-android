@@ -32,23 +32,16 @@ public class EventTable {
     /*
      * Database creation SQL statement
      */
-    private static final String DATABASE_CREATE = "create table if not exists "
-                                                          + TABLE_EVENT
-                                                          + "("
-                                                          + COLUMN_ID +
-                                                          " integer primary key autoincrement, "
-                                                          + COLUMN_SIZE +
-                                                          " INTEGER NOT NULL,"
-                                                          + COLUMN_JSON +
-                                                          " TEXT NOT NULL"
-                                                          + ");";
+    private static final String DATABASE_CREATE =
+        "create table if not exists " + TABLE_EVENT + "(" + COLUMN_ID + " integer primary key autoincrement, " + COLUMN_SIZE
+        + " INTEGER NOT NULL," + COLUMN_JSON + " TEXT NOT NULL" + ");";
 
     /**
      * Creates the database.
      *
      * @param database An SQLiteDatabase instance.
      */
-    public static void onCreate(SQLiteDatabase database, int version) {
+    public static void onCreate(final SQLiteDatabase database, final int version) {
         database.execSQL(DATABASE_CREATE);
         onUpgrade(database, 1, version);
     }
@@ -60,8 +53,7 @@ public class EventTable {
      * @param oldVersion The old version of the database.
      * @param newVersion The new version of the database.
      */
-    public static void onUpgrade(SQLiteDatabase database, int oldVersion,
-                                        int newVersion) {
+    public static void onUpgrade(final SQLiteDatabase database, final int oldVersion, final int newVersion) {
 
     }
 
@@ -70,7 +62,7 @@ public class EventTable {
 
         private final int value;
 
-        private COLUMN_INDEX(int value) {
+        private COLUMN_INDEX(final int value) {
             this.value = value;
         }
 

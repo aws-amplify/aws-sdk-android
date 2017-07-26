@@ -56,8 +56,7 @@ public abstract class MonetizationEventBuilder {
     static final String AMAZON_STORE = "Amazon";
     static final String GOOGLE_PLAY_STORE = "Google Play";
     static final String VIRTUAL_STORE = "Virtual";
-    private static final org.apache.commons.logging.Log log =
-            LogFactory.getLog(MonetizationEventBuilder.class);
+    private static final org.apache.commons.logging.Log log = LogFactory.getLog(MonetizationEventBuilder.class);
     private final AnalyticsClient analyticsClient;
     private String productId;
     private String store;
@@ -86,30 +85,24 @@ public abstract class MonetizationEventBuilder {
         AnalyticsEvent purchaseEvent = null;
         if (isValid() && doBaseValidation()) {
             purchaseEvent = analyticsClient.createEvent(PURCHASE_EVENT_NAME);
-
-            purchaseEvent
-                    .addAttribute(PURCHASE_EVENT_PRODUCT_ID_ATTR, productId);
+            purchaseEvent.addAttribute(PURCHASE_EVENT_PRODUCT_ID_ATTR, productId);
             purchaseEvent.addAttribute(PURCHASE_EVENT_STORE_ATTR, store);
             purchaseEvent.addMetric(PURCHASE_EVENT_QUANTITY_METRIC, quantity);
 
             if (formattedItemPrice != null) {
-                purchaseEvent.addAttribute(PURCHASE_EVENT_PRICE_FORMATTED_ATTR,
-                                                  formattedItemPrice);
+                purchaseEvent.addAttribute(PURCHASE_EVENT_PRICE_FORMATTED_ATTR, formattedItemPrice);
             }
 
             if (itemPrice != null) {
-                purchaseEvent
-                        .addMetric(PURCHASE_EVENT_ITEM_PRICE_METRIC, itemPrice);
+                purchaseEvent.addMetric(PURCHASE_EVENT_ITEM_PRICE_METRIC, itemPrice);
             }
 
             if (transactionId != null) {
-                purchaseEvent.addAttribute(PURCHASE_EVENT_TRANSACTION_ID_ATTR,
-                                                  transactionId);
+                purchaseEvent.addAttribute(PURCHASE_EVENT_TRANSACTION_ID_ATTR, transactionId);
             }
 
             if (currency != null) {
-                purchaseEvent
-                        .addAttribute(PURCHASE_EVENT_CURRENCY_ATTR, currency);
+                purchaseEvent.addAttribute(PURCHASE_EVENT_CURRENCY_ATTR, currency);
             }
         }
 

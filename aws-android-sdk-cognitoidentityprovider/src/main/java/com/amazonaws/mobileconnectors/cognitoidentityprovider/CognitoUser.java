@@ -1172,6 +1172,7 @@ public class CognitoUser {
         try {
             final VerifyUserAttributeResult verifyUserAttributeResult = verifyAttributeInternal(
                     attributeName, verificationCode, this.getCachedSession());
+            callback.onSuccess();
         } catch (final Exception e) {
             callback.onFailure(e);
         }
@@ -2298,7 +2299,8 @@ public class CognitoUser {
                 deviceKey = CognitoDeviceHelper.getDeviceKey(usernameInternal, pool.getUserPoolId(),
                         context);
             } else {
-                deviceKey = CognitoDeviceHelper.getDeviceKey(userId, pool.getUserPoolId(), context);
+                deviceKey = CognitoDeviceHelper.getDeviceKey(currSession.getUsername(), 
+                        pool.getUserPoolId(), context);
             }
         }
         initiateAuthRequest.addAuthParametersEntry(CognitoServiceConstants.AUTH_PARAM_DEVICE_KEY,
@@ -2536,7 +2538,8 @@ public class CognitoUser {
 
     /**
      * Returns the current device, if users in this pool can remember devices.
-     *
+     * If a deviceKey is not found with the userId, the deviceKey is searched 
+     * with the username in cached tokens, if any. 
      * @return {@link CognitoDevice} if the device is available, null otherwise.
      */
     public CognitoDevice thisDevice() {
@@ -2546,6 +2549,11 @@ public class CognitoUser {
                         context);
             } else if (userId != null) {
                 deviceKey = CognitoDeviceHelper.getDeviceKey(userId, pool.getUserPoolId(), context);
+                if (deviceKey == null) {
+                    CognitoUserSession currSession = this.readCachedTokens();
+                    deviceKey = CognitoDeviceHelper.getDeviceKey(currSession.getUsername(), 
+                            this.pool.getUserPoolId(), this.context);
+                }
             }
         }
         if (deviceKey != null) {

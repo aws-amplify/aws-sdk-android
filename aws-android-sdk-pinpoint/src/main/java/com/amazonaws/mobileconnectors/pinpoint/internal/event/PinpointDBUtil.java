@@ -39,7 +39,7 @@ public class PinpointDBUtil {
      *
      * @param context An instance of Context.
      */
-    public PinpointDBUtil(Context context) {
+    public PinpointDBUtil(final Context context) {
         if (pinpointDBBase == null) {
             pinpointDBBase = new PinpointDBBase(context);
         }
@@ -60,12 +60,11 @@ public class PinpointDBUtil {
      * @param event The AnalyticsEvent to be saved.
      * @return An Uri of the record inserted.
      */
-    public Uri saveEvent(AnalyticsEvent event) {
-        return pinpointDBBase.insert(pinpointDBBase.getContentUri(),
-                                            generateContentValuesFromEvent(event));
+    public Uri saveEvent(final AnalyticsEvent event) {
+        return pinpointDBBase.insert(pinpointDBBase.getContentUri(), generateContentValuesFromEvent(event));
     }
 
-    private ContentValues generateContentValuesFromEvent(AnalyticsEvent event) {
+    private ContentValues generateContentValuesFromEvent(final AnalyticsEvent event) {
         ContentValues values = new ContentValues();
         String json = event.toJSONObject().toString();
         values.put(EventTable.COLUMN_JSON, json);
@@ -79,9 +78,7 @@ public class PinpointDBUtil {
      * @return A Cursor pointing to records in the database.
      */
     public Cursor queryAllEvents() {
-        return pinpointDBBase
-                       .query(pinpointDBBase.getContentUri(), null, null, null,
-                                     null, null);
+        return pinpointDBBase.query(pinpointDBBase.getContentUri(), null, null, null, null, null);
     }
 
     /**
@@ -89,13 +86,9 @@ public class PinpointDBUtil {
      *
      * @return A Cursor pointing to records in the database.
      */
-    public Cursor queryOldestEvents(int limit) {
-        return pinpointDBBase.query(pinpointDBBase.getContentUri(),
-                                           new String[] { COLUMN_ID,
-                                                                COLUMN_SIZE
-                                           },
-                                           null, null, null,
-                                           Integer.toString(limit));
+    public Cursor queryOldestEvents(final int limit) {
+        return pinpointDBBase.query(pinpointDBBase.getContentUri(), new String[] { COLUMN_ID, COLUMN_SIZE }, null, null, null,
+                                    Integer.toString(limit));
     }
 
     /**
@@ -104,9 +97,8 @@ public class PinpointDBUtil {
      * @param id The id of the event.
      * @return The result Cursor of the query.
      */
-    public Cursor queryEventById(int id) {
-        return pinpointDBBase
-                       .query(getEventUri(id), null, null, null, null, null);
+    public Cursor queryEventById(final int id) {
+        return pinpointDBBase.query(getEventUri(id), null, null, null, null, null);
     }
 
     /**
@@ -116,7 +108,7 @@ public class PinpointDBUtil {
      * @param size Known size of event.
      * @return Number of rows deleted.
      */
-    public int deleteEvent(int id, Integer size) {
+    public int deleteEvent(final int id, final Integer size) {
         return pinpointDBBase.delete(getEventUri(id), null, null, size);
     }
 
@@ -135,7 +127,7 @@ public class PinpointDBUtil {
      * @param id The id of the event.
      * @return The Uri of the event specified by the id.
      */
-    public Uri getEventUri(int id) {
+    public Uri getEventUri(final int id) {
         return Uri.parse(pinpointDBBase.getContentUri() + "/" + id);
     }
 

@@ -66,4 +66,12 @@ public class CognitoAccessToken extends CognitoUserToken {
             throw new CognitoInternalErrorException(e.getMessage());
         }
     }
+    
+    /**
+     * Returns the username set in the access token.
+     * @return Username.
+     */
+    public String getUsername() throws Exception {
+        return CognitoJWTParser.getClaim(super.getToken(), "username");
+    }
 }

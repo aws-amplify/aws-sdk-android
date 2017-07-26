@@ -73,8 +73,7 @@ public class ClientContext {
         envMap.put("networkType", networkType);
 
         // services section
-        final Map<String, JSONObject> servicesMap =
-                new HashMap<String, JSONObject>();
+        final Map<String, JSONObject> servicesMap = new HashMap<String, JSONObject>();
         final Map<String, String> analyticsServiceMap = new HashMap<String, String>();
         analyticsServiceMap.put(APP_ID_KEY, appId);
 

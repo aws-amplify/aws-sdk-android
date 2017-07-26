@@ -58,7 +58,7 @@ public class SessionClient {
     protected static final String NO_SESSION_ID = "00000000-00000000";
     protected static final String SHARED_PREFS_SESSION_KEY = "AWSPinpoint.Session";
     private static final Log log = LogFactory
-                                           .getLog(SessionClient.class);
+        .getLog(SessionClient.class);
     protected final PinpointContext pinpointContext;
     private final long resumeDelay;
     private final long restartDelay;
@@ -70,40 +70,27 @@ public class SessionClient {
      * @param pinpointContext The {@link PinpointContext}
      */
     public SessionClient(final PinpointContext pinpointContext) {
-        checkNotNull(pinpointContext,
-                            "A valid PinpointContext must be provided!");
-        checkNotNull(pinpointContext.getAnalyticsClient(),
-                            "A valid AnalyticsClient must be provided!");
+        checkNotNull(pinpointContext, "A valid PinpointContext must be provided!");
+        checkNotNull(pinpointContext.getAnalyticsClient(), "A valid AnalyticsClient must be provided!");
 
         this.pinpointContext = pinpointContext;
-        final String sessionString = pinpointContext.getSystem()
-                                             .getPreferences()
-                                             .getString(SHARED_PREFS_SESSION_KEY,
-                                                               null);
+        final String sessionString = pinpointContext.getSystem().getPreferences().getString(SHARED_PREFS_SESSION_KEY, null);
         if (sessionString != null) {
             this.session = Session.getSessionFromSerializedSession(sessionString);
         }
 
         if (session != null) {
-            pinpointContext.getAnalyticsClient()
-                    .setSessionId(session.getSessionID());
-            pinpointContext.getAnalyticsClient()
-                    .setSessionStartTime(session.getStartTime());
+            pinpointContext.getAnalyticsClient().setSessionId(session.getSessionID());
+            pinpointContext.getAnalyticsClient().setSessionStartTime(session.getStartTime());
         } else {
-            if (pinpointContext.getPinpointConfiguration()
-                        .getEnableTargeting()) {
-                pinpointContext.getAnalyticsClient()
-                        .setSessionId(NO_SESSION_ID);
+            if (pinpointContext.getPinpointConfiguration().getEnableTargeting()) {
+                pinpointContext.getAnalyticsClient().setSessionId(NO_SESSION_ID);
                 pinpointContext.getAnalyticsClient().setSessionStartTime(0);
             }
         }
 
-        this.restartDelay = pinpointContext.getConfiguration()
-                                    .optLong(RESTART_DELAY_CONFIG_KEY,
-                                                    DEFAULT_RESTART_DELAY);
-        this.resumeDelay = pinpointContext.getConfiguration()
-                                   .optLong(RESUME_DELAY_CONFIG_KEY,
-                                                   DEFAULT_RESUME_DELAY);
+        this.restartDelay = pinpointContext.getConfiguration().optLong(RESTART_DELAY_CONFIG_KEY, DEFAULT_RESTART_DELAY);
+        this.resumeDelay = pinpointContext.getConfiguration().optLong(RESUME_DELAY_CONFIG_KEY, DEFAULT_RESUME_DELAY);
     }
 
     /**
@@ -151,8 +138,7 @@ public class SessionClient {
         if (getSessionState().equals(SessionState.PAUSED)) {
             executeResume();
         } else {
-            final AnalyticsEvent e = this.pinpointContext.getAnalyticsClient()
-                                             .createEvent(SESSION_RESUME_EVENT_TYPE);
+            final AnalyticsEvent e = this.pinpointContext.getAnalyticsClient().createEvent(SESSION_RESUME_EVENT_TYPE);
             this.pinpointContext.getAnalyticsClient().recordEvent(e);
 
             // log failure
@@ -167,14 +153,9 @@ public class SessionClient {
      */
     @Override
     public String toString() {
-        return "[SessionClient]\n"
-                       + "- session: "
-                       + ((this.session == null)
-                                  ? "<null>"
-                                  : this.session.getSessionID())
-                       + ((this.session != null && this.session.isPaused())
-                                  ? ": paused"
-                                  : "");
+        return "[SessionClient]\n" + "- session: " +
+               ((this.session == null) ? "<null>" : this.session.getSessionID()) +
+               ((this.session != null && this.session.isPaused()) ? ": paused" : "");
     }
 
     // - Implementations --------------------------------=
@@ -186,16 +167,13 @@ public class SessionClient {
         session = Session.newInstance(pinpointContext);
 
         // Enable event tagging
-        this.pinpointContext.getAnalyticsClient()
-                .setSessionId(session.getSessionID());
-        this.pinpointContext.getAnalyticsClient()
-                .setSessionStartTime(session.getStartTime());
+        this.pinpointContext.getAnalyticsClient().setSessionId(session.getSessionID());
+        this.pinpointContext.getAnalyticsClient().setSessionStartTime(session.getStartTime());
 
         // Fire Session Start Event
         log.info("Firing Session Event: " + SESSION_START_EVENT_TYPE);
 
-        final AnalyticsEvent e = this.pinpointContext.getAnalyticsClient()
-                                         .createEvent(SESSION_START_EVENT_TYPE);
+        final AnalyticsEvent e = this.pinpointContext.getAnalyticsClient().createEvent(SESSION_START_EVENT_TYPE);
         this.pinpointContext.getAnalyticsClient().recordEvent(e);
     }
 
@@ -213,14 +191,9 @@ public class SessionClient {
         }
 
         log.info("Firing Session Event: " + SESSION_STOP_EVENT_TYPE);
-        final Long stopTime =
-                session.getStopTime() == null ? 0L : session.getStopTime();
-        final AnalyticsEvent e = this.pinpointContext.getAnalyticsClient()
-                                         .createEvent(
-                                                             SESSION_STOP_EVENT_TYPE,
-                                                             session.getStartTime(),
-                                                             stopTime,
-                                                             session.getSessionDuration());
+        final Long stopTime = session.getStopTime() == null ? 0L : session.getStopTime();
+        final AnalyticsEvent e = this.pinpointContext.getAnalyticsClient().createEvent(SESSION_STOP_EVENT_TYPE, session.getStartTime(),
+                                                                                       stopTime, session.getSessionDuration());
 
         this.pinpointContext.getAnalyticsClient().recordEvent(e);
 
@@ -247,18 +220,12 @@ public class SessionClient {
 
         // - Fire Session Pause Event ----------------------------=
         log.info("Firing Session Event: " + SESSION_PAUSE_EVENT_TYPE);
-        final AnalyticsEvent e = this.pinpointContext.getAnalyticsClient()
-                                         .createEvent(
-                                                             SESSION_PAUSE_EVENT_TYPE,
-                                                             session.getStartTime(),
-                                                             null,
-                                                             session.getSessionDuration());
+        final AnalyticsEvent e = this.pinpointContext.getAnalyticsClient().createEvent(SESSION_PAUSE_EVENT_TYPE, session.getStartTime(),
+                                                                                       null, session.getSessionDuration());
         this.pinpointContext.getAnalyticsClient().recordEvent(e);
 
         // Store session to file system
-        pinpointContext.getSystem().getPreferences()
-                .putString(SHARED_PREFS_SESSION_KEY,
-                                  this.session.toString());
+        pinpointContext.getSystem().getPreferences().putString(SHARED_PREFS_SESSION_KEY, this.session.toString());
     }
 
     /**
@@ -274,8 +241,7 @@ public class SessionClient {
 
         // Fire Session Resume Event
         log.debug("Firing Session Event: " + SESSION_RESUME_EVENT_TYPE);
-        final AnalyticsEvent e = this.pinpointContext.getAnalyticsClient()
-                                         .createEvent(SESSION_RESUME_EVENT_TYPE);
+        final AnalyticsEvent e = this.pinpointContext.getAnalyticsClient().createEvent(SESSION_RESUME_EVENT_TYPE);
         this.pinpointContext.getAnalyticsClient().recordEvent(e);
 
         // log success
@@ -303,8 +269,8 @@ public class SessionClient {
     protected SessionState getSessionState() {
         if (this.session != null) {
             return (this.session.isPaused()
-                            ? SessionState.PAUSED
-                            : SessionState.ACTIVE);
+                    ? SessionState.PAUSED
+                    : SessionState.ACTIVE);
         }
         return SessionState.INACTIVE;
     }

@@ -12,6 +12,7 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.mobileconnectors.pinpoint.internal.event;
 
 import android.content.ContentValues;
@@ -45,10 +46,10 @@ public class PinpointDBBase {
      *
      * @param context A Context instance.
      */
-    public PinpointDBBase(Context context) {
+    public PinpointDBBase(final Context context) {
         this.context = context;
         final String mAuthority = context.getApplicationContext()
-                                          .getPackageName();
+                                         .getPackageName();
         databaseHelper = new PinpointDatabaseHelper(this.context);
         contentUri = Uri.parse("content://" + mAuthority + "/" + BASE_PATH);
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -87,7 +88,7 @@ public class PinpointDBBase {
      * @param values The values of a record.
      * @return The Uri of the inserted record.
      */
-    public Uri insert(Uri uri, ContentValues values) {
+    public Uri insert(final Uri uri, final ContentValues values) {
         final int uriType = uriMatcher.match(uri);
         final SQLiteDatabase db = databaseHelper.getWritableDatabase();
         long id = 0;
@@ -112,10 +113,7 @@ public class PinpointDBBase {
         Cursor cursor = null;
         try {
             if (totalSize < 0) {
-                cursor = databaseHelper.getReadableDatabase()
-                                 .rawQuery("SELECT SUM(" + COLUMN_SIZE +
-                                                   ") FROM "
-                                                   + TABLE_EVENT, null);
+                cursor = databaseHelper.getReadableDatabase().rawQuery("SELECT SUM(" + COLUMN_SIZE + ") FROM " + TABLE_EVENT, null);
                 if (!cursor.moveToNext()) {
                     totalSize = 0;
                 } else if (cursor.isNull(0)) {
@@ -143,9 +141,8 @@ public class PinpointDBBase {
      * @param limit         Limit for query.
      * @return A Cursor pointing to records.
      */
-    public Cursor query(Uri uri, String[] projection, String selection,
-                               String[] selectionArgs,
-                               String sortOrder, String limit) {
+    public Cursor query(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs,
+                        final String sortOrder, final String limit) {
         final SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
         // TODO: currently all methods calling this pass null to projection.
         // In the future we want to update projection to be more specific for
@@ -156,17 +153,13 @@ public class PinpointDBBase {
             case EVENTS:
                 break;
             case EVENT_ID:
-                queryBuilder.appendWhere(EventTable.COLUMN_ID + "=" +
-                                                 uri.getLastPathSegment());
+                queryBuilder.appendWhere(EventTable.COLUMN_ID + "=" + uri.getLastPathSegment());
                 break;
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
         final SQLiteDatabase db = databaseHelper.getWritableDatabase();
-        final Cursor cursor = queryBuilder.query(db, projection, selection,
-                                                        selectionArgs, null,
-                                                        null,
-                                                        sortOrder, limit);
+        final Cursor cursor = queryBuilder.query(db, projection, selection, selectionArgs, null, null, sortOrder, limit);
         return cursor;
     }
 
@@ -179,31 +172,20 @@ public class PinpointDBBase {
      * @param whereArgs   Strings in the "where" clause.
      * @return Number of rows updated.
      */
-    public synchronized int update(Uri uri, ContentValues values,
-                                          String whereClause,
-                                          String[] whereArgs) {
+    public synchronized int update(final Uri uri, final ContentValues values, final String whereClause, final String[] whereArgs) {
         final int uriType = uriMatcher.match(uri);
         final SQLiteDatabase db = databaseHelper.getWritableDatabase();
         int rowsUpdated = 0;
         switch (uriType) {
             case EVENTS:
-                rowsUpdated = db.update(TABLE_EVENT, values, whereClause,
-                                               whereArgs);
+                rowsUpdated = db.update(TABLE_EVENT, values, whereClause, whereArgs);
                 break;
             case EVENT_ID:
                 final String id = uri.getLastPathSegment();
                 if (TextUtils.isEmpty(whereClause)) {
-                    rowsUpdated = db.update(TABLE_EVENT, values,
-                                                   EventTable.COLUMN_ID + "=" +
-                                                           id, null);
+                    rowsUpdated = db.update(TABLE_EVENT, values, EventTable.COLUMN_ID + "=" + id, null);
                 } else {
-                    rowsUpdated = db
-                                          .update(TABLE_EVENT, values,
-                                                         EventTable.COLUMN_ID
-                                                                 + "=" + id +
-                                                                 " and " +
-                                                                 whereClause,
-                                                         whereArgs);
+                    rowsUpdated = db.update(TABLE_EVENT, values, EventTable.COLUMN_ID + "=" + id + " and " + whereClause, whereArgs);
                 }
                 break;
             default:
@@ -221,8 +203,7 @@ public class PinpointDBBase {
      * @param knownSize     Known size (If known).
      * @return Number of rows deleted.
      */
-    public int delete(Uri uri, String selection, String[] selectionArgs,
-                             Integer knownSize) {
+    public int delete(final Uri uri, final String selection, final String[] selectionArgs, final Integer knownSize) {
         final int uriType = uriMatcher.match(uri);
         final SQLiteDatabase db = databaseHelper.getWritableDatabase();
         int rowsDeleted = 0;
@@ -235,18 +216,9 @@ public class PinpointDBBase {
                 final String id = uri.getLastPathSegment();
                 final long size = getTotalSize();
                 if (TextUtils.isEmpty(selection)) {
-                    rowsDeleted = db.delete(TABLE_EVENT,
-                                                   EventTable.COLUMN_ID + "=" +
-                                                           id, null);
+                    rowsDeleted = db.delete(TABLE_EVENT, EventTable.COLUMN_ID + "=" + id, null);
                 } else {
-                    rowsDeleted = db
-                                          .delete(TABLE_EVENT,
-                                                         EventTable.COLUMN_ID +
-                                                                 "="
-                                                                 + id +
-                                                                 " and " +
-                                                                 selection,
-                                                         selectionArgs);
+                    rowsDeleted = db.delete(TABLE_EVENT, EventTable.COLUMN_ID + "=" + id + " and " + selection, selectionArgs);
                 }
                 if (rowsDeleted == 1) {
                     if (knownSize != null) {

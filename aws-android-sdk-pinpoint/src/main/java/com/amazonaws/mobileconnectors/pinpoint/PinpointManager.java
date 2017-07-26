@@ -15,8 +15,8 @@
 
 package com.amazonaws.mobileconnectors.pinpoint;
 
-import android.content.Context;
-
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
@@ -34,9 +34,7 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.pinpoint.AmazonPinpointClient;
 import com.amazonaws.services.pinpointanalytics.AmazonPinpointAnalyticsClient;
 import com.amazonaws.util.VersionInfoUtils;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import android.content.Context;
 
 /**
  * PinpointManager is the entry point to Pinpoint Analytics and Targeting.
@@ -51,14 +49,10 @@ public class PinpointManager {
     private static final String SDK_VERSION = VersionInfoUtils.getVersion();
     private static final String SDK_NAME = "PinpointSDK";
     private static final SDKInfo SDL_INFO = new SDKInfo(SDK_NAME, SDK_VERSION);
-    private static final Log log =
-            LogFactory.getLog(PinpointManager.class);
-
-    private static final PermissionValidator INTERNET_PERMISSION_VALIDATOR = new PermissionValidator(
-                                                                                                            "android.permission.INTERNET");
+    private static final Log log = LogFactory.getLog(PinpointManager.class);
+    private static final PermissionValidator INTERNET_PERMISSION_VALIDATOR = new PermissionValidator("android.permission.INTERNET");
     private static final PermissionValidator ACCESS_NETWORK_STATE_PERMISSION_VALIDATOR = new PermissionValidator(
-                                                                                                                        "android.permission.ACCESS_NETWORK_STATE");
-
+        "android.permission.ACCESS_NETWORK_STATE");
     private static final EncodingValidator ENCODING_VALIDATOR = new EncodingValidator("UTF-8");
 
     private final PinpointContext pinpointContext;
@@ -74,38 +68,26 @@ public class PinpointManager {
      */
     public PinpointManager(final PinpointConfiguration config) {
         try {
-            Preconditions.checkNotNull(config,
-                                              "The config provided must not be null");
+            Preconditions.checkNotNull(config, "The config provided must not be null");
             final AWSCredentialsProvider credentialsProvider = config.getCredentialsProvider();
             final Context appContext = config.getAppContext();
             final String appId = config.getAppId();
             final Regions region = config.getRegion();
-            final PinpointCallback<PinpointManager> initCompletionCallback = config
-                                                                                     .getInitCompletionCallback();
+            final PinpointCallback<PinpointManager> initCompletionCallback = config.getInitCompletionCallback();
 
-            Preconditions.checkNotNull(credentialsProvider,
-                                              "The credentialsProvider provided must not be null");
-            Preconditions.checkNotNull(appContext,
-                                              "The application pinpointContext provided must not be null");
-            Preconditions.checkNotNull(appId,
-                                              "The app ID specified must not be null");
+            Preconditions.checkNotNull(credentialsProvider, "The credentialsProvider provided must not be null");
+            Preconditions.checkNotNull(appContext, "The application pinpointContext provided must not be null");
+            Preconditions.checkNotNull(appId, "The app ID specified must not be null");
 
-            final AmazonPinpointAnalyticsClient analyticsServiceClient = new AmazonPinpointAnalyticsClient(
-                                                                                                                  credentialsProvider,
-                                                                                                                  config.getClientConfiguration());
+            final AmazonPinpointAnalyticsClient analyticsServiceClient = new AmazonPinpointAnalyticsClient(credentialsProvider, config.getClientConfiguration());
 
-            final AmazonPinpointClient targetingServiceClient = new AmazonPinpointClient(
-                                                                                                credentialsProvider,
-                                                                                                config.getClientConfiguration());
+            final AmazonPinpointClient targetingServiceClient = new AmazonPinpointClient(credentialsProvider, config.getClientConfiguration());
 
             INTERNET_PERMISSION_VALIDATOR.validate(appContext);
             ACCESS_NETWORK_STATE_PERMISSION_VALIDATOR.validate(appContext);
             ENCODING_VALIDATOR.validate();
 
-            this.pinpointContext = new PinpointContext(analyticsServiceClient,
-                                                              targetingServiceClient,
-                                                              appContext, appId,
-                                                              SDL_INFO, config);
+            this.pinpointContext = new PinpointContext(analyticsServiceClient, targetingServiceClient, appContext, appId, SDL_INFO, config);
             this.notificationClient = new NotificationClient(this.pinpointContext);
             this.pinpointContext.setNotificationClient(this.notificationClient);
             PinpointNotificationReceiver.setNotificationClient(this.notificationClient);
@@ -115,7 +97,6 @@ public class PinpointManager {
                 this.pinpointContext.setAnalyticsClient(this.analyticsClient);
                 this.sessionClient = new SessionClient(this.pinpointContext);
                 this.pinpointContext.setSessionClient(this.sessionClient);
-
             } else {
                 this.analyticsClient = null;
                 this.sessionClient = null;
@@ -124,14 +105,12 @@ public class PinpointManager {
             if (config.getEnableTargeting()) {
                 this.targetingClient = new TargetingClient(pinpointContext);
                 this.pinpointContext.setTargetingClient(this.targetingClient);
-                this.notificationClient
-                        .addGCMTokenRegisteredHandler(new GCMTokenRegisteredHandler() {
-                            @Override
-                            public void tokenRegistered(String deviceToken) {
-                                PinpointManager.this.targetingClient
-                                        .updateEndpointProfile();
-                            }
-                        });
+                this.notificationClient.addGCMTokenRegisteredHandler(new GCMTokenRegisteredHandler() {
+                        @Override
+                        public void tokenRegistered(String deviceToken) {
+                            PinpointManager.this.targetingClient.updateEndpointProfile();
+                        }
+                    });
             } else {
                 this.targetingClient = null;
             }
@@ -140,9 +119,7 @@ public class PinpointManager {
                 initCompletionCallback.onComplete(this);
             }
 
-            log.debug(String.format(
-                                           "Pinpoint SDK(%s) initialization successfully completed",
-                                           SDK_VERSION));
+            log.debug(String.format("Pinpoint SDK(%s) initialization successfully completed", SDK_VERSION));
         } catch (final RuntimeException e) {
             log.debug("Cannot initialize Pinpoint SDK", e);
             throw new AmazonClientException(e.getLocalizedMessage());

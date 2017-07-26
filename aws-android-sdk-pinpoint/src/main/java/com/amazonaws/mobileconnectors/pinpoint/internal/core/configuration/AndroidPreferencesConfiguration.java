@@ -30,13 +30,9 @@ import static com.amazonaws.mobileconnectors.pinpoint.internal.core.util.Precond
 
 public class AndroidPreferencesConfiguration {
 
-    private static final Log log =
-            LogFactory.getLog(AndroidPreferencesConfiguration.class);
-
+    private static final Log log = LogFactory.getLog(AndroidPreferencesConfiguration.class);
     private static final String CONFIG_KEY = "configuration";
-
     private final PinpointContext context;
-
     private Map<String, String> properties = new ConcurrentHashMap<String, String>();
 
     AndroidPreferencesConfiguration(final PinpointContext context) {
@@ -47,13 +43,11 @@ public class AndroidPreferencesConfiguration {
         // load the configuration
         JSONObject configJson = null;
 
-        final AndroidPreferences preferences = getContext().getSystem()
-                                                       .getPreferences();
+        final AndroidPreferences preferences = getContext().getSystem().getPreferences();
         if (preferences != null) {
 
             // load our serialized prefs
-            String configurationJsonString = preferences.getString(CONFIG_KEY,
-                                                                          null);
+            String configurationJsonString = preferences.getString(CONFIG_KEY, null);
             if (configurationJsonString != null) {
                 try {
                     configJson = new JSONObject(configurationJsonString);
@@ -72,7 +66,7 @@ public class AndroidPreferencesConfiguration {
         return new AndroidPreferencesConfiguration(context);
     }
 
-    public Long getLong(String propertyName) {
+    public Long getLong(final String propertyName) {
         Long value = null;
         String valueString = properties.get(propertyName);
 
@@ -88,14 +82,12 @@ public class AndroidPreferencesConfiguration {
         return value;
     }
 
-    public String getString(String propertyName) {
-
+    public String getString(final String propertyName) {
         String value = properties.get(propertyName);
-
         return value;
     }
 
-    public Integer getInt(String propertyName) {
+    public Integer getInt(final String propertyName) {
         Integer value = null;
         String valueString = properties.get(propertyName);
 
@@ -111,7 +103,7 @@ public class AndroidPreferencesConfiguration {
         return value;
     }
 
-    public Double getDouble(String propertyName) {
+    public Double getDouble(final String propertyName) {
         Double value = null;
         String valueString = properties.get(propertyName);
 
@@ -127,7 +119,7 @@ public class AndroidPreferencesConfiguration {
         return value;
     }
 
-    public Boolean getBoolean(String propertyName) {
+    public Boolean getBoolean(final String propertyName) {
         Boolean value = null;
         String valueString = properties.get(propertyName);
 
@@ -143,7 +135,7 @@ public class AndroidPreferencesConfiguration {
         return value;
     }
 
-    public Short getShort(String propertyName) {
+    public Short getShort(final String propertyName) {
         Short value = null;
         String valueString = properties.get(propertyName);
 
@@ -161,32 +153,32 @@ public class AndroidPreferencesConfiguration {
         return value;
     }
 
-    public Long optLong(String propertyName, Long optValue) {
+    public Long optLong(final String propertyName, final Long optValue) {
         Long value = this.getLong(propertyName);
         return (value != null) ? value : optValue;
     }
 
-    public String optString(String propertyName, String optValue) {
+    public String optString(final String propertyName, final String optValue) {
         String value = this.getString(propertyName);
         return (value != null) ? value : optValue;
     }
 
-    public Integer optInt(String propertyName, Integer optValue) {
+    public Integer optInt(final String propertyName, final Integer optValue) {
         Integer value = this.getInt(propertyName);
         return (value != null) ? value : optValue;
     }
 
-    public Short optShort(String propertyName, Short optValue) {
+    public Short optShort(final String propertyName, final Short optValue) {
         Short value = this.getShort(propertyName);
         return (value != null) ? value : optValue;
     }
 
-    public Double optDouble(String propertyName, Double optValue) {
+    public Double optDouble(final String propertyName, final Double optValue) {
         Double value = this.getDouble(propertyName);
         return (value != null) ? value : optValue;
     }
 
-    public Boolean optBoolean(String propertyName, Boolean optValue) {
+    public Boolean optBoolean(final String propertyName, final Boolean optValue) {
         Boolean value = this.getBoolean(propertyName);
         return (value != null) ? value : optValue;
     }
@@ -197,7 +189,7 @@ public class AndroidPreferencesConfiguration {
      * @param configJson The Json to add to the map. If null, the internal map
      *                   is empty
      */
-    private void updateMappings(JSONObject configJson) {
+    private void updateMappings(final JSONObject configJson) {
         HashMap<String, String> newProperties = new HashMap<String, String>();
 
         if (configJson != null) {
@@ -217,7 +209,6 @@ public class AndroidPreferencesConfiguration {
 
         // put all new properties in our map
         properties.putAll(newProperties);
-
     }
 
     private PinpointContext getContext() {

@@ -64,16 +64,16 @@ public class PinpointContext implements Serializable {
     }
 
     public PinpointContext(final AmazonPinpointAnalyticsClient analyticsServiceClient,
-                                  final AmazonPinpointClient pinpointServiceClient,
-                                  final Context applicationContext,
-                                  final String appId,
-                                  final SDKInfo sdkInfo,
-                                  final PinpointConfiguration pinpointConfiguration) {
+                           final AmazonPinpointClient pinpointServiceClient,
+                           final Context applicationContext,
+                           final String appId,
+                           final SDKInfo sdkInfo,
+                           final PinpointConfiguration pinpointConfiguration) {
         this.sdkInfo = sdkInfo;
         this.pinpointConfiguration = pinpointConfiguration;
         this.system = new AndroidSystem(applicationContext, appId);
         this.uniqueIdService = new SharedPrefsUniqueIdService(appId,
-                                                                     applicationContext);
+                                                              applicationContext);
         this.uniqueId = uniqueIdService.getUniqueId(this);
         this.analyticsServiceClient = analyticsServiceClient;
         this.pinpointServiceClient = pinpointServiceClient;
@@ -150,12 +150,10 @@ public class PinpointContext implements Serializable {
 
     public String getNetworkType() {
         try {
-            final ConnectivityManager connectivity = (ConnectivityManager) applicationContext
-                                                                                   .getSystemService(Context.CONNECTIVITY_SERVICE);
+            final ConnectivityManager connectivity = (ConnectivityManager) applicationContext.getSystemService(
+                Context.CONNECTIVITY_SERVICE);
             final NetworkInfo networkInfo = connectivity.getActiveNetworkInfo();
-            if (null != networkInfo && networkInfo.isConnected() &&
-                        networkInfo.isAvailable()
-                        && networkInfo.getTypeName() != null) {
+            if (null != networkInfo && networkInfo.isConnected() && networkInfo.isAvailable() && networkInfo.getTypeName() != null) {
                 return networkInfo.getTypeName();
             } else {
                 return "Unknown";

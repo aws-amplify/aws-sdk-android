@@ -25,16 +25,16 @@ public class PinpointDatabaseHelper extends SQLiteOpenHelper {
 
     private int version;
 
-    public PinpointDatabaseHelper(Context context) {
+    public PinpointDatabaseHelper(final Context context) {
         this(context, DATABASE_VERSION);
     }
 
-    public PinpointDatabaseHelper(Context context, int version) {
+    public PinpointDatabaseHelper(final Context context, final int version) {
         super(context, DATABASE_NAME, null, version);
         this.version = version;
     }
 
-    public void onConfigure(SQLiteDatabase database) {
+    public void onConfigure(final SQLiteDatabase database) {
         database.execSQL("PRAGMA auto_vacuum = FULL");
     }
 
@@ -44,7 +44,7 @@ public class PinpointDatabaseHelper extends SQLiteOpenHelper {
      * @param database An SQLiteDatabase instance.
      */
     @Override
-    public void onCreate(SQLiteDatabase database) {
+    public void onCreate(final SQLiteDatabase database) {
         EventTable.onCreate(database, version);
     }
 
@@ -56,8 +56,7 @@ public class PinpointDatabaseHelper extends SQLiteOpenHelper {
      * @param newVersion The new version of the database.
      */
     @Override
-    public void onUpgrade(SQLiteDatabase database, int oldVersion,
-                                 int newVersion) {
+    public void onUpgrade(final SQLiteDatabase database, final int oldVersion, final int newVersion) {
         EventTable.onUpgrade(database, oldVersion, newVersion);
     }
 }

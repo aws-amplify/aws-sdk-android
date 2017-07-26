@@ -33,8 +33,7 @@ public class PinpointSession {
      * @param sessionStop     The sessionStop as an epoch timestamp
      * @param sessionDuration The session duration in seconds
      */
-    public PinpointSession(String sessionId, Long sessionStart,
-                                  Long sessionStop, Long sessionDuration) {
+    public PinpointSession(final String sessionId, final Long sessionStart, final Long sessionStop, final Long sessionDuration) {
         this.sessionId = sessionId;
         this.sessionStart = sessionStart;
         this.sessionStop = sessionStop;

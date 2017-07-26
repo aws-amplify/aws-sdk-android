@@ -44,8 +44,7 @@ import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
  */
 public class AmazonMonetizationEventBuilder extends MonetizationEventBuilder {
 
-    private static final org.apache.commons.logging.Log log =
-            LogFactory.getLog(AmazonMonetizationEventBuilder.class);
+    private static final org.apache.commons.logging.Log log = LogFactory.getLog(AmazonMonetizationEventBuilder.class);
 
     /**
      * Construct a AmazonMonetizationEventBuilder with the specified EventClient
@@ -145,12 +144,10 @@ public class AmazonMonetizationEventBuilder extends MonetizationEventBuilder {
 
         if (getFormattedItemPrice() == null) {
             if (getCurrency() == null) {
-                log.warn(
-                                "Amazon Monetization event is not valid: it is missing the localized currency");
+                log.warn("Amazon Monetization event is not valid: it is missing the localized currency");
                 return false;
             } else if (getItemPrice() == null) {
-                log.warn(
-                                "Amazon Monetization event is not valid: it is missing the localized item price");
+                log.warn("Amazon Monetization event is not valid: it is missing the localized item price");
                 return false;
             }
         }

@@ -1,5 +1,16 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.4.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.6)
+
+### Bug Fixes:
+
+- **Amazon Cognito Identity Provider**
+	- Fixed bug that caused `CognitoDeviceHelper.getDeviceKey` to return null on certain cases. See [issue #259](https://github.com/aws/aws-sdk-android/issues/259)
+	- Fixed bug where `onSuccess` callback was missing from `verifyAttribute` function. See [issue #266](https://github.com/aws/aws-sdk-android/issues/266)	
+	
+- **Amazon Pinpoint**
+	- Fix crash in Pinpoint SDK when getting locale's country code.
+
 ## [Release 2.4.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.5)
 
 - **Amazon S3**

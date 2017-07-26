@@ -38,7 +38,6 @@ import static com.amazonaws.mobileconnectors.pinpoint.internal.core.util.Precond
  * Represents the device endpoint for which your application may add information to
  *
  * The example below demonstrates how to add custom attributes
- *
  */
 public class EndpointProfile implements JSONSerializable {
 
@@ -47,7 +46,7 @@ public class EndpointProfile implements JSONSerializable {
     static final int MAX_ENDPOINT_ATTRIBUTE_VALUE_LENGTH = 100;
     static final int MAX_ENDPOINT_ATTRIBUTE_VALUES = 50;
     private static final Log log =
-            LogFactory.getLog(EndpointProfile.class);
+        LogFactory.getLog(EndpointProfile.class);
     private static final int JSON_INDENTATION = 4;
     private final PinpointContext pinpointContext;
     private final Map<String, java.util.List<String>> attributes = new ConcurrentHashMap<String, java.util.List<String>>();
@@ -66,7 +65,7 @@ public class EndpointProfile implements JSONSerializable {
      */
     public EndpointProfile(final PinpointContext pinpointContext) {
         checkNotNull(pinpointContext,
-                            "A valid pinpointContext must be provided.");
+                     "A valid pinpointContext must be provided.");
 
         this.pinpointContext = pinpointContext;
         this.effectiveDate = DateUtil.getCorrectedDate().getTime();
@@ -75,38 +74,28 @@ public class EndpointProfile implements JSONSerializable {
         this.user = new EndpointProfileUser();
     }
 
-    private static String processAttributeMetricKey(String key) {
+    private static String processAttributeMetricKey(final String key) {
 
-        final String trimmedKey = StringUtil
-                                          .clipString(key,
-                                                             MAX_ENDPOINT_ATTRIBUTE_METRIC_KEY_LENGTH,
-                                                             false);
+        final String trimmedKey = StringUtil.clipString(key, MAX_ENDPOINT_ATTRIBUTE_METRIC_KEY_LENGTH, false);
         if (trimmedKey.length() < key.length()) {
-            log.warn("The attribute key has been trimmed to a length of "
-                             + MAX_ENDPOINT_ATTRIBUTE_METRIC_KEY_LENGTH +
-                             " characters.");
+            log.warn("The attribute key has been trimmed to a length of " + MAX_ENDPOINT_ATTRIBUTE_METRIC_KEY_LENGTH + " characters.");
         }
 
         return trimmedKey;
     }
 
-    private static java.util.List<String> processAttributeValues(java.util.List<String> values) {
+    private static java.util.List<String> processAttributeValues(final List<String> values) {
 
         final List<String> trimmedValues = new ArrayList<String>();
         int valuesCount = 0;
         for (final String value : values) {
-            final String trimmedValue = StringUtil.clipString(value,
-                                                                     MAX_ENDPOINT_ATTRIBUTE_VALUE_LENGTH,
-                                                                     false);
+            final String trimmedValue = StringUtil.clipString(value, MAX_ENDPOINT_ATTRIBUTE_VALUE_LENGTH, false);
             if (trimmedValue.length() < value.length()) {
-                log.warn("The attribute value has been trimmed to a length of "
-                                 + MAX_ENDPOINT_ATTRIBUTE_VALUE_LENGTH +
-                                 " characters.");
+                log.warn("The attribute value has been trimmed to a length of " + MAX_ENDPOINT_ATTRIBUTE_VALUE_LENGTH + " characters.");
             }
             trimmedValues.add(trimmedValue);
             if (++valuesCount >= MAX_ENDPOINT_ATTRIBUTE_VALUES) {
-                log.warn("The attribute values has been reduced to"
-                                 + MAX_ENDPOINT_ATTRIBUTE_VALUES + " values.");
+                log.warn("The attribute values has been reduced to" + MAX_ENDPOINT_ATTRIBUTE_VALUES + " values.");
                 break;
             }
         }
@@ -210,13 +199,8 @@ public class EndpointProfile implements JSONSerializable {
      * @return String (ALL | NONE)
      */
     public String getOptOut() {
-        return (this.pinpointContext.getNotificationClient()
-                        .areAppNotificationsEnabled() &&
-                        !StringUtil.isBlank(this.pinpointContext
-                                                    .getNotificationClient()
-                                                    .getGCMDeviceToken()))
-                       ? "NONE"
-                       : "ALL";
+        return (this.pinpointContext.getNotificationClient().areAppNotificationsEnabled() && !StringUtil.isBlank(
+            this.pinpointContext.getNotificationClient().getGCMDeviceToken())) ? "NONE" : "ALL";
     }
 
     /**
@@ -229,21 +213,17 @@ public class EndpointProfile implements JSONSerializable {
      * @param values An array of values of the custom attribute. The values will be truncated if
      *               it exceeds 100 characters.
      */
-    public void addAttribute(String name, java.util.List<String> values) {
+    public void addAttribute(final String name, final List<String> values) {
         if (null == name) {
             return;
         }
 
         if (null != values) {
-            if (currentNumOfAttributesAndMetrics.get() <
-                        MAX_NUM_OF_METRICS_AND_ATTRIBUTES) {
-                attributes.put(this.processAttributeMetricKey(name),
-                                      this.processAttributeValues(values));
+            if (currentNumOfAttributesAndMetrics.get() < MAX_NUM_OF_METRICS_AND_ATTRIBUTES) {
+                attributes.put(this.processAttributeMetricKey(name), this.processAttributeValues(values));
                 currentNumOfAttributesAndMetrics.incrementAndGet();
             } else {
-                log.warn("Max number of attributes/metrics reached(" +
-                                 MAX_NUM_OF_METRICS_AND_ATTRIBUTES +
-                                 ").");
+                log.warn("Max number of attributes/metrics reached(" + MAX_NUM_OF_METRICS_AND_ATTRIBUTES + ").");
             }
         } else {
             attributes.remove(name);
@@ -257,7 +237,7 @@ public class EndpointProfile implements JSONSerializable {
      * @return true if this {@link EndpointProfile} has a custom attribute with the
      * specified name, false otherwise
      */
-    public boolean hasAttribute(String attributeName) {
+    public boolean hasAttribute(final String attributeName) {
         if (attributeName == null) {
             return false;
         }
@@ -271,7 +251,7 @@ public class EndpointProfile implements JSONSerializable {
      * @return The array of custom attributes with the specified name, or null if attribute does
      * not exist
      */
-    public java.util.List<String> getAttribute(String name) {
+    public List<String> getAttribute(final String name) {
         if (name == null) {
             return null;
         }
@@ -291,8 +271,7 @@ public class EndpointProfile implements JSONSerializable {
      * @return The same {@link EndpointProfile} instance is returned to allow for
      * method chaining.
      */
-    public EndpointProfile withAttribute(String name,
-                                                java.util.List<String> values) {
+    public EndpointProfile withAttribute(final String name, final List<String> values) {
         addAttribute(name, values);
         return this;
     }
@@ -317,20 +296,20 @@ public class EndpointProfile implements JSONSerializable {
      *              exceeds 50 characters.
      * @param value The value of the metric.
      */
-    public void addMetric(String name, Double value) {
+    public void addMetric(final String name, final Double value) {
         if (null == name) {
             return;
         }
 
         if (null != value) {
             if (currentNumOfAttributesAndMetrics.get() <
-                        MAX_NUM_OF_METRICS_AND_ATTRIBUTES) {
+                MAX_NUM_OF_METRICS_AND_ATTRIBUTES) {
                 metrics.put(this.processAttributeMetricKey(name), value);
                 currentNumOfAttributesAndMetrics.incrementAndGet();
             } else {
                 log.warn("Max number of attributes/metrics reached(" +
-                                 MAX_NUM_OF_METRICS_AND_ATTRIBUTES +
-                                 ").");
+                         MAX_NUM_OF_METRICS_AND_ATTRIBUTES +
+                         ").");
             }
         } else {
             metrics.remove(name);
@@ -344,7 +323,7 @@ public class EndpointProfile implements JSONSerializable {
      * @return true if this {@link EndpointProfile} has a metric with the
      * specified name, false otherwise
      */
-    public boolean hasMetric(String metricName) {
+    public boolean hasMetric(final String metricName) {
         if (metricName == null) {
             return false;
         }
@@ -358,7 +337,7 @@ public class EndpointProfile implements JSONSerializable {
      * @return The metric with the specified name, or null if metric does not
      * exist
      */
-    public Double getMetric(String name) {
+    public Double getMetric(final String name) {
         if (name == null) {
             return null;
         }
@@ -377,7 +356,7 @@ public class EndpointProfile implements JSONSerializable {
      * @return The same {@link EndpointProfile} instance is returned to allow for
      * method chaining.
      */
-    public EndpointProfile withMetric(String name, Double value) {
+    public EndpointProfile withMetric(final String name, final Double value) {
         addMetric(name, value);
         return this;
     }
@@ -406,7 +385,7 @@ public class EndpointProfile implements JSONSerializable {
      *
      * @param user The user facet
      */
-    public void setUser(EndpointProfileUser user) {
+    public void setUser(final EndpointProfileUser user) {
         this.user = user;
     }
 
@@ -429,13 +408,11 @@ public class EndpointProfile implements JSONSerializable {
         builder.withAttribute("Address", getAddress());
         builder.withAttribute("Location", getLocation().toJSONObject());
         builder.withAttribute("Demographic", getDemographic().toJSONObject());
-        builder.withAttribute("EffectiveDate",
-                                     DateUtil.isoDateFromMillis(getEffectiveDate()));
+        builder.withAttribute("EffectiveDate", DateUtil.isoDateFromMillis(getEffectiveDate()));
         builder.withAttribute("OptOut", getOptOut());
 
         final JSONObject attributesJson = new JSONObject();
-        for (final Map.Entry<String, List<String>> entry : getAllAttributes()
-                                                                   .entrySet()) {
+        for (final Map.Entry<String, List<String>> entry : getAllAttributes().entrySet()) {
             try {
                 final JSONArray array = new JSONArray(entry.getValue());
                 attributesJson.put(entry.getKey(), array);
@@ -451,8 +428,7 @@ public class EndpointProfile implements JSONSerializable {
         }
 
         final JSONObject metricsJson = new JSONObject();
-        for (final Map.Entry<String, Double> entry : getAllMetrics()
-                                                             .entrySet()) {
+        for (final Map.Entry<String, Double> entry : getAllMetrics().entrySet()) {
             try {
                 metricsJson.put(entry.getKey(), entry.getValue());
             } catch (final JSONException e) {

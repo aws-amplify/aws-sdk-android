@@ -28,15 +28,13 @@ public class JSONBuilder implements JSONSerializable {
     public JSONBuilder(Object component) {
         if (null != component) {
             this.withAttribute("class", component.getClass().getName());
-            this.withAttribute("hashCode", Integer.toHexString(component
-                                                                       .hashCode()));
+            this.withAttribute("hashCode", Integer.toHexString(component.hashCode()));
         }
     }
 
     public JSONBuilder withAttribute(String key, Object value) {
         final Object jsonValue = value instanceof JSONSerializable
-                                         ? ((JSONSerializable) value)
-                                                   .toJSONObject()
+                                         ? ((JSONSerializable) value).toJSONObject()
                                          : value;
         try {
             json.putOpt(key, jsonValue);

@@ -39,7 +39,6 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.event.ClientContext;
 
 /**
  * Represents an AnalyticsEvent
- *
  */
 public class AnalyticsEvent implements JSONSerializable {
 
@@ -61,35 +60,21 @@ public class AnalyticsEvent implements JSONSerializable {
     private final AndroidDeviceDetails deviceDetails;
     private final AtomicInteger currentNumOfAttributesAndMetrics = new AtomicInteger(0);
 
-    AnalyticsEvent(final String eventType, final Map<String, String> attributes,
-                          final Map<String, Double> metrics,
-                          final SDKInfo sdkInfo, String sessionId,
-                          long sessionStart, Long sessionEnd,
-                          Long sessionDuration,
-                          long timestamp, String uniqueId,
-                          AndroidAppDetails appDetails,
-                          AndroidDeviceDetails deviceDetails) {
-        this(UUID.randomUUID().toString(), eventType, attributes, metrics,
-                    sdkInfo, sessionId,
-                    sessionStart, sessionEnd, sessionDuration, timestamp,
-                    uniqueId, appDetails,
-                    deviceDetails);
+    AnalyticsEvent(final String eventType, final Map<String, String> attributes, final Map<String, Double> metrics, final SDKInfo sdkInfo,
+                   final String sessionId, final long sessionStart, final Long sessionEnd, final Long sessionDuration, final long timestamp,
+                   final String uniqueId, final AndroidAppDetails appDetails, final AndroidDeviceDetails deviceDetails) {
+        this(UUID.randomUUID().toString(), eventType, attributes, metrics, sdkInfo, sessionId, sessionStart, sessionEnd, sessionDuration,
+             timestamp, uniqueId, appDetails, deviceDetails);
     }
 
-    private AnalyticsEvent(final String eventId, final String eventType,
-                                  final Map<String, String> attributes,
-                                  final Map<String, Double> metrics,
-                                  final SDKInfo sdkInfo, String sessionId,
-                                  long sessionStart, Long sessionEnd,
-                                  Long sessionDuration,
-                                  long timestamp, String uniqueId,
-                                  AndroidAppDetails appDetails,
-                                  AndroidDeviceDetails deviceDetails) {
+    private AnalyticsEvent(final String eventId, final String eventType, final Map<String, String> attributes,
+                           final Map<String, Double> metrics, final SDKInfo sdkInfo, final String sessionId, final long sessionStart,
+                           final Long sessionEnd, final Long sessionDuration, final long timestamp, final String uniqueId,
+                           final AndroidAppDetails appDetails, final AndroidDeviceDetails deviceDetails) {
         this.eventId = eventId;
         this.sdkName = sdkInfo.getName();
         this.sdkVersion = sdkInfo.getVersion();
-        this.session = new PinpointSession(sessionId, sessionStart, sessionEnd,
-                                                  sessionDuration);
+        this.session = new PinpointSession(sessionId, sessionStart, sessionEnd, sessionDuration);
         this.timestamp = timestamp;
         this.uniqueId = uniqueId;
         this.eventType = eventType;
@@ -116,26 +101,12 @@ public class AnalyticsEvent implements JSONSerializable {
      * @param copyEvent The event to be copied
      * @return An instance of an AnalyticsEvent object
      */
-    public static AnalyticsEvent createFromEvent(PinpointContext context,
-                                                        String sessionId,
-                                                        long timestamp,
-                                                        AnalyticsEvent copyEvent) {
-        return new AnalyticsEvent(copyEvent.getEventId(),
-                                         copyEvent.getEventType(),
-                                         copyEvent.getAllAttributes(),
-                                         copyEvent.getAllMetrics(),
-                                         context.getSDKInfo(), sessionId,
-                                         copyEvent.getSession()
-                                                 .getSessionStart(),
-                                         copyEvent.getSession()
-                                                 .getSessionStop(),
-                                         copyEvent.getSession()
-                                                 .getSessionDuration(),
-                                         timestamp, context.getUniqueId(),
-                                         context.getSystem()
-                                                 .getAppDetails(),
-                                         context.getSystem()
-                                                 .getDeviceDetails());
+    public static AnalyticsEvent createFromEvent(final PinpointContext context, final String sessionId, final long timestamp,
+                                                 final AnalyticsEvent copyEvent) {
+        return new AnalyticsEvent(copyEvent.getEventId(), copyEvent.getEventType(), copyEvent.getAllAttributes(), copyEvent.getAllMetrics(),
+                                  context.getSDKInfo(), sessionId, copyEvent.getSession().getSessionStart(),
+                                  copyEvent.getSession().getSessionStop(), copyEvent.getSession().getSessionDuration(), timestamp,
+                                  context.getUniqueId(), context.getSystem().getAppDetails(), context.getSystem().getDeviceDetails());
     }
 
     /**
@@ -150,20 +121,15 @@ public class AnalyticsEvent implements JSONSerializable {
      * @param eventType    The eventType of the new event
      * @return An instance of an AnalyticsEvent object
      */
-    public static AnalyticsEvent newInstance(PinpointContext context,
-                                                    String sessionId,
-                                                    Long sessionStart,
-                                                    Long sessionEnd,
-                                                    Long duration,
-                                                    long timestamp,
-                                                    final String eventType) {
+    public static AnalyticsEvent newInstance(final PinpointContext context, final String sessionId, final Long sessionStart,
+                                             final Long sessionEnd, Long duration, long timestamp, final String eventType) {
         return new AnalyticsEvent(eventType, null, null, context.getSDKInfo(),
-                                         sessionId,
-                                         sessionStart, sessionEnd, duration,
-                                         timestamp, context.getUniqueId(),
-                                         context.getSystem().getAppDetails(),
-                                         context.getSystem()
-                                                 .getDeviceDetails());
+                                  sessionId,
+                                  sessionStart, sessionEnd, duration,
+                                  timestamp, context.getUniqueId(),
+                                  context.getSystem().getAppDetails(),
+                                  context.getSystem()
+                                         .getDeviceDetails());
     }
 
     /**
@@ -184,48 +150,27 @@ public class AnalyticsEvent implements JSONSerializable {
      * @param deviceDetails   The {@link AndroidDeviceDetails} of the new event
      * @return An instance of an AnalyticsEvent object
      */
-    public static AnalyticsEvent newInstance(final String eventId,
-                                                    final String eventType,
-                                                    final Map<String, String> attributes,
-                                                    final Map<String, Double> metrics,
-                                                    final SDKInfo sdkInfo,
-                                                    String sessionId,
-                                                    Long sessionStart,
-                                                    Long sessionStop,
-                                                    Long sessionDuration,
-                                                    long timestamp,
-                                                    String uniqueId,
-                                                    AndroidAppDetails appDetails,
-                                                    AndroidDeviceDetails deviceDetails) {
-        return new AnalyticsEvent(eventId, eventType, attributes, metrics,
-                                         sdkInfo, sessionId,
-                                         sessionStart,
-                                         sessionStop, sessionDuration,
-                                         timestamp, uniqueId, appDetails,
-                                         deviceDetails);
+    public static AnalyticsEvent newInstance(final String eventId, final String eventType, final Map<String, String> attributes,
+                                             final Map<String, Double> metrics, final SDKInfo sdkInfo, final String sessionId,
+                                             final Long sessionStart, final Long sessionStop, final Long sessionDuration,
+                                             final long timestamp, final String uniqueId, final AndroidAppDetails appDetails,
+                                             final AndroidDeviceDetails deviceDetails) {
+        return new AnalyticsEvent(eventId, eventType, attributes, metrics, sdkInfo, sessionId, sessionStart, sessionStop, sessionDuration,
+                                  timestamp, uniqueId, appDetails, deviceDetails);
     }
 
-    private static String processAttributeMetricKey(String key) {
-        final String trimmedKey = StringUtil
-                                          .clipString(key,
-                                                             MAX_EVENT_ATTRIBUTE_METRIC_KEY_LENGTH,
-                                                             false);
+    private static String processAttributeMetricKey(final String key) {
+        final String trimmedKey = StringUtil.clipString(key, MAX_EVENT_ATTRIBUTE_METRIC_KEY_LENGTH, false);
         if (trimmedKey.length() < key.length()) {
-            log.warn("The attribute key has been trimmed to a length of "
-                             + MAX_EVENT_ATTRIBUTE_METRIC_KEY_LENGTH +
-                             " characters.");
+            log.warn("The attribute key has been trimmed to a length of " + MAX_EVENT_ATTRIBUTE_METRIC_KEY_LENGTH + " characters.");
         }
         return trimmedKey;
     }
 
-    private static String processAttributeValue(String value) {
-        final String trimmedValue = StringUtil.clipString(value,
-                                                                 MAX_EVENT_ATTRIBUTE_VALUE_LENGTH,
-                                                                 false);
+    private static String processAttributeValue(final String value) {
+        final String trimmedValue = StringUtil.clipString(value, MAX_EVENT_ATTRIBUTE_VALUE_LENGTH, false);
         if (trimmedValue.length() < value.length()) {
-            log.warn("The attribute value has been trimmed to a length of "
-                             + MAX_EVENT_ATTRIBUTE_VALUE_LENGTH +
-                             " characters.");
+            log.warn("The attribute value has been trimmed to a length of " + MAX_EVENT_ATTRIBUTE_VALUE_LENGTH + " characters.");
         }
         return trimmedValue;
     }
@@ -236,7 +181,7 @@ public class AnalyticsEvent implements JSONSerializable {
      * @param source The event to transform
      * @return A {@link JSONObject}
      */
-    public static JSONObject translateFromEvent(AnalyticsEvent source) {
+    public static JSONObject translateFromEvent(final AnalyticsEvent source) {
         if (null == source) {
             log.warn("The Event provided was null");
             return new JSONObject();
@@ -259,22 +204,17 @@ public class AnalyticsEvent implements JSONSerializable {
      * @return An AnalyticsEvent
      * @throws JSONException
      */
-    public static AnalyticsEvent translateToEvent(JSONObject source)
-            throws JSONException {
-
+    public static AnalyticsEvent translateToEvent(final JSONObject source) throws JSONException {
         final Map<String, String> attributes = new HashMap<String, String>();
         final Map<String, Double> metrics = new HashMap<String, Double>();
 
-        final AndroidAppDetails appDetails = new AndroidAppDetails(
-                                                                          source.optString("app_package_name"),
-                                                                          source.optString("app_version_code"),
-                                                                          source.optString("app_version_name"),
-                                                                          source.optString("app_title"),
-                                                                          source.optString(ClientContext.APP_ID_KEY));
-        final SDKInfo sdkInfo = new SDKInfo(source.optString("sdk_version"),
-                                                   source.optString("sdk_name"));
-        final AndroidDeviceDetails deviceDetails = new AndroidDeviceDetails(
-                                                                                   source.optString("carrier"));
+        final AndroidAppDetails appDetails = new AndroidAppDetails(source.optString("app_package_name"),
+                                                                   source.optString("app_version_code"),
+                                                                   source.optString("app_version_name"),
+                                                                   source.optString("app_title"),
+                                                                   source.optString(ClientContext.APP_ID_KEY));
+        final SDKInfo sdkInfo = new SDKInfo(source.optString("sdk_version"), source.optString("sdk_name"));
+        final AndroidDeviceDetails deviceDetails = new AndroidDeviceDetails(source.optString("carrier"));
         final String eventId = source.getString("event_id");
         final String eventType = source.getString("event_type");
         final Long timestamp = source.getLong("timestamp");
@@ -318,14 +258,8 @@ public class AnalyticsEvent implements JSONSerializable {
             }
         }
 
-        return AnalyticsEvent
-                       .newInstance(eventId, eventType, attributes, metrics,
-                                           sdkInfo,
-                                           sessionId,
-                                           sessionStart, sessionStop,
-                                           sessionDuration, timestamp, uniqueId,
-                                           appDetails,
-                                           deviceDetails);
+        return AnalyticsEvent.newInstance(eventId, eventType, attributes, metrics, sdkInfo, sessionId, sessionStart, sessionStop,
+                                          sessionDuration, timestamp, uniqueId, appDetails, deviceDetails);
     }
 
     /**
@@ -347,21 +281,18 @@ public class AnalyticsEvent implements JSONSerializable {
      * @param value The value of the attribute. The value will be truncated if
      *              it exceeds 200 characters.
      */
-    public void addAttribute(String name, String value) {
+    public void addAttribute(final String name, final String value) {
         if (null == name) {
             return;
         }
 
         if (null != value) {
             if (currentNumOfAttributesAndMetrics.get() <
-                        MAX_NUM_OF_METRICS_AND_ATTRIBUTES) {
-                attributes.put(this.processAttributeMetricKey(name),
-                                      processAttributeValue(value));
+                MAX_NUM_OF_METRICS_AND_ATTRIBUTES) {
+                attributes.put(this.processAttributeMetricKey(name), processAttributeValue(value));
                 currentNumOfAttributesAndMetrics.incrementAndGet();
             } else {
-                log.warn("Max number of attributes/metrics reached("
-                                 + MAX_NUM_OF_METRICS_AND_ATTRIBUTES
-                                 + ").");
+                log.warn("Max number of attributes/metrics reached(" + MAX_NUM_OF_METRICS_AND_ATTRIBUTES + ").");
             }
         } else {
             attributes.remove(name);
@@ -375,7 +306,7 @@ public class AnalyticsEvent implements JSONSerializable {
      * @return true if this {@link AnalyticsEvent} has an attribute with the
      * specified name, false otherwise
      */
-    public boolean hasAttribute(String attributeName) {
+    public boolean hasAttribute(final String attributeName) {
         if (attributeName == null) {
             return false;
         }
@@ -391,20 +322,18 @@ public class AnalyticsEvent implements JSONSerializable {
      *              exceeds 50 characters.
      * @param value The value of the metric.
      */
-    public void addMetric(String name, Double value) {
+    public void addMetric(final String name, final Double value) {
         if (null == name) {
             return;
         }
 
         if (null != value) {
             if (currentNumOfAttributesAndMetrics.get() <
-                        MAX_NUM_OF_METRICS_AND_ATTRIBUTES) {
+                MAX_NUM_OF_METRICS_AND_ATTRIBUTES) {
                 metrics.put(this.processAttributeMetricKey(name), value);
                 currentNumOfAttributesAndMetrics.incrementAndGet();
             } else {
-                log.warn("Max number of attributes/metrics reached("
-                                 + MAX_NUM_OF_METRICS_AND_ATTRIBUTES +
-                                 ").");
+                log.warn("Max number of attributes/metrics reached(" + MAX_NUM_OF_METRICS_AND_ATTRIBUTES + ").");
             }
         } else {
             metrics.remove(name);
@@ -418,7 +347,7 @@ public class AnalyticsEvent implements JSONSerializable {
      * @return true if this {@link AnalyticsEvent} has a metric with the
      * specified name, false otherwise
      */
-    public boolean hasMetric(String metricName) {
+    public boolean hasMetric(final String metricName) {
         if (metricName == null) {
             return false;
         }
@@ -441,7 +370,7 @@ public class AnalyticsEvent implements JSONSerializable {
      * @return The attribute with the specified name, or null if attribute does
      * not exist
      */
-    public String getAttribute(String name) {
+    public String getAttribute(final String name) {
         if (name == null) {
             return null;
         }
@@ -455,7 +384,7 @@ public class AnalyticsEvent implements JSONSerializable {
      * @return The metric with the specified name, or null if metric does not
      * exist
      */
-    public Double getMetric(String name) {
+    public Double getMetric(final String name) {
         if (name == null) {
             return null;
         }
@@ -552,7 +481,7 @@ public class AnalyticsEvent implements JSONSerializable {
     public JSONObject toJSONObject() {
         final Locale locale = this.deviceDetails.locale();
         final String localeString =
-                locale != null ? locale.toString() : "UNKNOWN";
+            locale != null ? locale.toString() : "UNKNOWN";
 
         final JSONBuilder builder = new JSONBuilder(this);
 
@@ -568,8 +497,7 @@ public class AnalyticsEvent implements JSONSerializable {
         // ==============Device Details Attributes=============
         // ****************************************************
         builder.withAttribute("platform", this.deviceDetails.platform());
-        builder.withAttribute("platform_version",
-                                     this.deviceDetails.platformVersion());
+        builder.withAttribute("platform_version", this.deviceDetails.platformVersion());
         builder.withAttribute("make", this.deviceDetails.manufacturer());
         builder.withAttribute("model", this.deviceDetails.model());
         builder.withAttribute("locale", localeString);
@@ -588,8 +516,7 @@ public class AnalyticsEvent implements JSONSerializable {
                 sessionObject.put("stopTimestamp", session.getSessionStop());
             }
             if (session.getSessionDuration() != null) {
-                sessionObject.put("duration", session.getSessionDuration()
-                                                      .longValue());
+                sessionObject.put("duration", session.getSessionDuration().longValue());
             }
         } catch (final JSONException e) {
             log.error("Error serializing session information", e);
@@ -605,19 +532,14 @@ public class AnalyticsEvent implements JSONSerializable {
         // ****************************************************
         // Application Details Attributes -- Prefix with 'app_'
         // ****************************************************
-        builder.withAttribute("app_version_name",
-                                     this.appDetails.versionName());
-        builder.withAttribute("app_version_code",
-                                     this.appDetails.versionCode());
-        builder.withAttribute("app_package_name",
-                                     this.appDetails.packageName());
+        builder.withAttribute("app_version_name", this.appDetails.versionName());
+        builder.withAttribute("app_version_code", this.appDetails.versionCode());
+        builder.withAttribute("app_package_name", this.appDetails.packageName());
         builder.withAttribute("app_title", this.appDetails.getAppTitle());
-        builder.withAttribute(ClientContext.APP_ID_KEY,
-                                     this.appDetails.getAppId());
+        builder.withAttribute(ClientContext.APP_ID_KEY, this.appDetails.getAppId());
 
         final JSONObject attributesJson = new JSONObject();
-        for (final Entry<String, String> entry : getAllAttributes()
-                                                         .entrySet()) {
+        for (final Entry<String, String> entry : getAllAttributes().entrySet()) {
             try {
                 attributesJson.put(entry.getKey(), entry.getValue());
             } catch (final JSONException e) {
@@ -655,20 +577,12 @@ public class AnalyticsEvent implements JSONSerializable {
      * @param networkType The network type from the Pinpoint Context
      * @return Returns a {@link ClientContext} object
      */
-    public ClientContext createClientContext(String networkType) {
+    public ClientContext createClientContext(final String networkType) {
         final ClientContext.ClientContextBuilder builder = new ClientContext.ClientContextBuilder();
-        builder.withAppPackageName(appDetails.packageName())
-                .withAppVersionCode(appDetails.versionCode())
-                .withAppVersionName(appDetails.versionName())
-                .withLocale(deviceDetails.locale().toString())
-                .withMake(deviceDetails.manufacturer())
-                .withModel(deviceDetails.model())
-                .withPlatformVersion(deviceDetails.platformVersion())
-                .withUniqueId(uniqueId)
-                .withAppTitle(appDetails.getAppTitle())
-                .withNetworkType(networkType)
-                .withCarrier(deviceDetails.carrier())
-                .withAppId(appDetails.getAppId());
+        builder.withAppPackageName(appDetails.packageName()).withAppVersionCode(appDetails.versionCode()).withAppVersionName(
+            appDetails.versionName()).withLocale(deviceDetails.locale().toString()).withMake(deviceDetails.manufacturer()).withModel(
+            deviceDetails.model()).withPlatformVersion(deviceDetails.platformVersion()).withUniqueId(uniqueId).withAppTitle(
+            appDetails.getAppTitle()).withNetworkType(networkType).withCarrier(deviceDetails.carrier()).withAppId(appDetails.getAppId());
         return builder.build();
     }
 }

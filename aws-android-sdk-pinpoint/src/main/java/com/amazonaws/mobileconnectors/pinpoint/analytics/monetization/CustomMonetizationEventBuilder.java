@@ -58,8 +58,7 @@ import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
  */
 public class CustomMonetizationEventBuilder extends MonetizationEventBuilder {
 
-    private static final org.apache.commons.logging.Log log =
-            LogFactory.getLog(CustomMonetizationEventBuilder.class);
+    private static final org.apache.commons.logging.Log log = LogFactory.getLog(CustomMonetizationEventBuilder.class);
 
     /**
      * Construct a CustomMonetizationEventBuilder with the specified EventClient

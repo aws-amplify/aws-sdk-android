@@ -32,8 +32,7 @@ public final class DateUtil {
     private static final int SECS = 1000;
 
     static {
-        ISO_DATE_FORMATTER_UTC = new SimpleDateFormat(DATE_FORMAT_STRING,
-                                                             Locale.US);
+        ISO_DATE_FORMATTER_UTC = new SimpleDateFormat(DATE_FORMAT_STRING, Locale.US);
         ISO_DATE_FORMATTER_UTC.setTimeZone(TimeZone.getTimeZone("UTC"));
     }
 

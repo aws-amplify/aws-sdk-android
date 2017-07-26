@@ -18,6 +18,7 @@ package com.amazonaws.mobileconnectors.pinpoint.targeting;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.concurrent.ThreadPoolExecutor;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,11 +32,16 @@ import org.robolectric.annotation.Config;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.MobileAnalyticsTestBase;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidAppDetails;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidDeviceDetails;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidPreferences;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidSystem;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.MockDeviceDetails;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.DateUtil;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfile;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfileDemographic;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfileLocation;
+import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.NotificationClient;
 import android.os.Build;
 
 import static org.junit.Assert.assertEquals;
@@ -43,6 +49,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE)
@@ -235,5 +243,29 @@ public class EndpointProfileTest extends MobileAnalyticsTestBase {
         assertTrue(demographic.getString("Make")
                            .equalsIgnoreCase(target.getDemographic()
                                                      .getMake()));
+    }
+
+    @Test
+    public void testLocaleWithInvalidISO3Code() {
+        final PinpointContext context = mock(PinpointContext.class);
+        final AndroidSystem androidSystem = mock(AndroidSystem.class);
+        final NotificationClient notificationClient = mock(NotificationClient.class);
+
+        when(notificationClient.getGCMDeviceToken()).thenReturn("TEST_ADDRESS");
+        when(androidSystem.getDeviceDetails()).thenReturn(mock(AndroidDeviceDetails.class));
+        when(androidSystem.getAppDetails()).thenReturn(mock(AndroidAppDetails.class));
+        when(androidSystem.getPreferences()).thenReturn(mock(AndroidPreferences.class));
+        when(context.getSystem()).thenReturn(androidSystem);
+
+        final TargetingClient targetingClient = new TargetingClient(context, mock(ThreadPoolExecutor.class));
+        final EndpointProfile endpointProfile = targetingClient.currentEndpoint();
+        when(context.getNotificationClient()).thenReturn(notificationClient);
+
+        final EndpointProfileDemographic demographic = endpointProfile.getDemographic();
+        // Old country code for Serbia and Montenegro that has no ISO3 equivalent.
+        // See https://en.wikipedia.org/wiki/ISO_3166-2:CS  for more info
+        demographic.setLocale(new Locale("en", "CS"));
+
+        targetingClient.updateEndpointProfile(endpointProfile);
     }
 }

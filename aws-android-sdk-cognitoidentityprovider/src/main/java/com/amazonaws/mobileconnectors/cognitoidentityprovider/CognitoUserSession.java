@@ -117,4 +117,24 @@ public class CognitoUserSession {
             return false;
         }
     }
+    
+    /**
+     * Returns username contained in this session.
+     * <p>
+     *     Reads the username from Access Tokens.
+     *     Returns null on Exceptions - This would mean that the contained tokens are not parsable
+     *     and hence are not valid.
+     * </p>
+     * @return Username of the user to whom these tokens belong.
+     */
+    public String getUsername() {
+        if (this.accessToken != null) {
+            try {
+                return this.accessToken.getUsername();
+            } catch (Exception e) {
+                return null;
+            }
+        }
+        return null;
+    }
 }

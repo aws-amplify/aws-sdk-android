@@ -21,7 +21,7 @@ public class EncodingValidator {
 
     private final String encoding;
 
-    public EncodingValidator(String encoding) {
+    public EncodingValidator(final String encoding) {
         this.encoding = encoding;
     }
 
@@ -30,8 +30,7 @@ public class EncodingValidator {
         try {
             testString.getBytes(encoding);
         } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(encoding + " encoding is not supported",
-                                              e);
+            throw new RuntimeException(encoding + " encoding is not supported", e);
         }
     }
 }
