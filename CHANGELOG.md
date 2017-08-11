@@ -1,5 +1,20 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.4.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.7)
+
+### Improvements:
+
+- **Amazon Cognito Auth**
+	- Making Cognito App Integration and Federation feature generally available
+
+- **AWS IoT**
+	- Add API to enable/disable auto-resubscribe feature.
+
+### Bug Fixes:
+
+- **AWS IoT**
+	- Fixed bug that caused reconnecting to the session to throw an exception due to failure to obtain credentials.
+
 ## [Release 2.4.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.6)
 
 ### Bug Fixes:
@@ -12,6 +27,8 @@
 	- Fix crash in Pinpoint SDK when getting locale's country code.
 
 ## [Release 2.4.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.5)
+
+### Bug Fixes:
 
 - **Amazon S3**
 	- Fixed bug that caused keys to convert spaces to url encoded characters. See [issue #310](https://github.com/aws/aws-sdk-android/issues/310)

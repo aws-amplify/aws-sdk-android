@@ -29,6 +29,7 @@ public abstract class ClientConstants {
     public static final String AUTH_RESPONSE_TYPE_CODE = "code";
     public static final String CHROME_PACKAGE = "com.android.chrome";
     public static final int CHROME_NAVIGATION_CANCELLED = 6;
+    public static final String DOMAIN_PATH_OAUTH2 = "oauth2";
     public static final String DOMAIN_PATH_SIGN_IN = "authorize";
     public static final String DOMAIN_PATH_SIGN_OUT = "logout";
     public static final String DOMAIN_PATH_TOKEN_ENDPOINT = "token";

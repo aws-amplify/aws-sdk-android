@@ -252,6 +252,7 @@ public class AuthClient {
                 final Uri fqdn = new Uri.Builder()
                         .scheme(ClientConstants.DOMAIN_SCHEME)
                         .authority(pool.getAppWebDomain())
+                        .appendPath(ClientConstants.DOMAIN_PATH_OAUTH2)
                         .appendPath(ClientConstants.DOMAIN_PATH_TOKEN_ENDPOINT)
                         .build();
 
@@ -287,10 +288,10 @@ public class AuthClient {
                             String response =
                                     httpClient.httpPost(new URL(fqdn.toString()), httpHeaderParams, httpBodyParams);
                             final AuthUserSession session = AuthHttpResponseParser.parseHttpResponse(response);
-                            final String username = session.getUsername();
+                            userId = session.getUsername();
 
                             // Cache tokens if successful
-                            LocalDataManager.cacheSession(context, pool.getAppId(), username, session, tokenScopes);
+                            LocalDataManager.cacheSession(context, pool.getAppId(), userId, session, tokenScopes);
 
                             // Return tokens
                             returnCallback = new Runnable() {
@@ -350,6 +351,7 @@ public class AuthClient {
                 final Uri fqdn = new Uri.Builder()
                         .scheme(ClientConstants.DOMAIN_SCHEME)
                         .authority(pool.getAppWebDomain())
+                        .appendPath(ClientConstants.DOMAIN_PATH_OAUTH2)
                         .appendPath(ClientConstants.DOMAIN_PATH_TOKEN_ENDPOINT)
                         .build();
 
@@ -461,7 +463,9 @@ public class AuthClient {
         // Build the complete web domain to launch the login screen
         Uri.Builder builder = new Uri.Builder()
                 .scheme(ClientConstants.DOMAIN_SCHEME)
-                .authority(pool.getAppWebDomain()).appendPath(ClientConstants.DOMAIN_PATH_SIGN_IN)
+                .authority(pool.getAppWebDomain())
+                .appendPath(ClientConstants.DOMAIN_PATH_OAUTH2)
+                .appendPath(ClientConstants.DOMAIN_PATH_SIGN_IN)
                 .appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_CLIENT_ID, pool.getAppId())
                 .appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_REDIRECT_URI, redirectUri)
                 .appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_RESPONSE_TYPE,

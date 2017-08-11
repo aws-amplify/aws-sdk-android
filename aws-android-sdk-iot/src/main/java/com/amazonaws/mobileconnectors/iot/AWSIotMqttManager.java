@@ -494,6 +494,16 @@ public class AWSIotMqttManager {
     }
 
     /**
+     * Enable/Disable auto resubscribe feature. When enabled, it will automatically
+     * resubscribe to previous subscribed topics after abnormal disconnect.
+     * By default, this is set to true.
+     * @param enabled Indicate whether auto resubscribe feature is enabled.
+     */
+    public void setAutoResubscribe(boolean enabled) {
+        needResubscribe = enabled;
+    }
+
+    /**
      * Constructs a new AWSIotMqttManager.
      *
      * @param mqttClientId MQTT client ID to use with this client.
@@ -507,7 +517,6 @@ public class AWSIotMqttManager {
 
         this.topicListeners = new HashMap<String, AWSIotMqttTopic>();
         this.mqttMessageQueue = new LinkedList<AWSIotMqttQueueMessage>();
-
         this.accountEndpointPrefix = AwsIotEndpointUtility.getAccountPrefixFromEndpont(endpoint);
         this.mqttClientId = mqttClientId;
         this.region = AwsIotEndpointUtility.getRegionFromIotEndpoint(endpoint);
@@ -564,6 +573,7 @@ public class AWSIotMqttManager {
         setFullQueueToKeepNewestMessages();
         connectionStabilityTime = DEFAULT_CONNECTION_STABILITY_TIME_SECONDS;
         unitTestMillisOverride = null;
+        needResubscribe = true;
     }
 
     /**
@@ -710,8 +720,6 @@ public class AWSIotMqttManager {
 
         // AWS IoT does not currently support persistent sessions
         options.setCleanSession(true);
-        // when cleanSession is added, this should mirror cleanSession
-        needResubscribe = true;
         options.setKeepAliveInterval(userKeepAlive);
 
         topicListeners.clear();
@@ -734,9 +742,6 @@ public class AWSIotMqttManager {
 
                     lastConnackTime = getSystemTimeMs();
 
-                    if (needResubscribe) {
-                        resubscribeToTopics();
-                    }
                     if (mqttMessageQueue.size() > 0) {
                         publishMessagesFromQueue();
                     }
@@ -790,6 +795,7 @@ public class AWSIotMqttManager {
     public boolean disconnect() {
         userDisconnect = true;
         reset();
+        topicListeners.clear();
         connectionState = MqttManagerConnectionState.Disconnected;
         userConnectionCallback();
         return true;
@@ -823,8 +829,6 @@ public class AWSIotMqttManager {
             final MqttConnectOptions options = new MqttConnectOptions();
 
             options.setCleanSession(true);
-            // when cleanSession is added, this should mirror cleanSession
-            needResubscribe = true;
             options.setKeepAliveInterval(userKeepAlive);
 
             if (mqttLWT != null) {
@@ -838,22 +842,30 @@ public class AWSIotMqttManager {
                 final String endpoint = String
                         .format("%s.iot.%s.%s:443", accountEndpointPrefix, region.getName(),
                                 region.getDomain());
-
-                final String mqttWebSocketURL = signer
-                        .getSignedUrl(endpoint, clientCredentialsProvider.getCredentials(),
-                                System.currentTimeMillis());
-                LOGGER.debug("Reconnect to mqtt broker: " + endpoint + " mqttWebSocketURL: " + mqttWebSocketURL);
-                // Specify the URL through the server URI array.  This is checked
-                // at connect time and allows us to specify a new URL (with new
-                // SigV4 parameters) for each connect.
-                options.setServerURIs(new String[]{mqttWebSocketURL});
-
+                try {
+                    final String mqttWebSocketURL = signer
+                            .getSignedUrl(endpoint, clientCredentialsProvider.getCredentials(),
+                                    System.currentTimeMillis());
+                    LOGGER.debug("Reconnect to mqtt broker: " + endpoint + " mqttWebSocketURL: " + mqttWebSocketURL);
+                    // Specify the URL through the server URI array.  This is checked
+                    // at connect time and allows us to specify a new URL (with new
+                    // SigV4 parameters) for each connect.
+                    options.setServerURIs(new String[]{mqttWebSocketURL});
+                } catch (AmazonClientException e) {
+                    LOGGER.error("Failed to get credentials. AmazonClientException: ", e);
+                    //TODO: revisit how to handle exception thrown by getCredentials() properly.
+                    if (scheduleReconnect()) {
+                        connectionState = MqttManagerConnectionState.Reconnecting;
+                    } else {
+                        connectionState = MqttManagerConnectionState.Disconnected;
+                    }
+                    userConnectionCallback();
+                }
             } else {
                 options.setSocketFactory(clientSocketFactory);
             }
 
             setupCallbackForMqttClient();
-
             try {
                 ++autoReconnectsAttempted;
                 LOGGER.debug("mqtt reconnecting attempt " + autoReconnectsAttempted);
@@ -997,8 +1009,7 @@ public class AWSIotMqttManager {
      * Resubscribe to previously subscribed topics on reconnecting.
      */
     void resubscribeToTopics() {
-        needResubscribe = false;
-
+        LOGGER.info("Auto-resubscribe is enabled. Resubscribing to previous topics.");
         for (final AWSIotMqttTopic topic : topicListeners.values()) {
             if (mqttClient != null) {
                 try {
