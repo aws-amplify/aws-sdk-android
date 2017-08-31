@@ -19,6 +19,7 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapperConfig.ConsistentReads;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapperConfig.PaginationLoadingStrategy;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapperConfig.SaveBehavior;
@@ -60,6 +61,7 @@ import com.amazonaws.util.VersionInfoUtils;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.JSONObject;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -208,9 +210,160 @@ public class DynamoDBMapper {
     private static final String USER_AGENT_BATCH_OPERATION =
             DynamoDBMapper.class.getName() + "_batch_operation/" + VersionInfoUtils.getVersion();
 
+    private static String userAgentFromConfig = "";
+    private static void setUserAgentFromConfig(String userAgent) {
+        synchronized (DynamoDBMapper.userAgentFromConfig) {
+            DynamoDBMapper.userAgentFromConfig = userAgent;
+        }
+    }
+    private static String getUserAgentFromConfig() {
+        synchronized (DynamoDBMapper.userAgentFromConfig) {
+            if (DynamoDBMapper.userAgentFromConfig == null
+                    || DynamoDBMapper.userAgentFromConfig.trim().isEmpty()) {
+                return "";
+            }
+            return DynamoDBMapper.userAgentFromConfig.trim() + "/";
+        }
+    }
+
     private static final String NO_RANGE_KEY = new String();
 
     private static final Log log = LogFactory.getLog(DynamoDBMapper.class);
+
+    /**
+     * Builder class for DynamoDBMapper
+     */
+    public static class Builder {
+        private AmazonDynamoDB dynamoDB;
+        private DynamoDBMapperConfig config;
+        private AttributeTransformer transformer;
+        private AWSCredentialsProvider s3CredentialProvider;
+        private AWSConfiguration awsConfig;
+        
+        protected Builder() { }
+        
+        /**
+         * 
+         * @param dynamoDBClient The service object to use for all service calls
+         * @return builder
+         */
+        public Builder dynamoDBClient(AmazonDynamoDB dynamoDBClient) {
+            this.dynamoDB = dynamoDBClient;
+            return this;
+        }
+        
+        /**
+         * The configuration to use for all service calls. It can be overridden
+         * on a per-operation basis. If no configuration is provided,
+         * {@link DynamoDBMapperConfig#DEFAULT} will be used,
+         * 
+         * @param dynamoConfig config
+         * @return builder
+         * @see DynamoDBMapperConfig#DEFAULT
+         */
+        public Builder dynamoDBMapperConfig(DynamoDBMapperConfig dynamoConfig) {
+            this.config = dynamoConfig;
+            return this;
+        }
+        
+        /**
+         * 
+         * @param attributeTransformer The custom attribute transformer to invoke when
+         *            serializing or deserializing an object.
+         * @return builder
+         */
+        public Builder attributeTransformer(AttributeTransformer attributeTransformer) {
+            this.transformer = attributeTransformer;
+            return this;
+        }
+        
+        /**
+         * 
+         * @param s3CredentialsProvider The credentials provider for accessing S3.
+         *            Relevant only if {@link S3Link} is involved.
+         * @return builder
+         */
+        public Builder awsCredentialsProviderForS3(AWSCredentialsProvider s3CredentialsProvider) {
+            this.s3CredentialProvider = s3CredentialsProvider;
+            return this;
+        }
+        
+        /**
+         * The region of the AmazonDynamoDB object will be set to
+         * the region found in the AWSConfiguration.
+         * 
+         * Example awsconfiguration.json
+         * {
+         *     "DynamoDBObjectMapper": {
+         *         "Default": {
+         *             "Region": "us-east-1"
+         *         }
+         *     }
+         * }
+         * @param awsConfig the config
+         * @return builder
+         */
+        public Builder awsConfiguration(AWSConfiguration awsConfig) {
+            this.awsConfig = awsConfig;
+            return this;
+        }
+        
+        /**
+         * 
+         * @return the constructed DynamoDBMapper
+         */
+        public DynamoDBMapper build() {
+            if (this.dynamoDB == null) {
+                throw new IllegalArgumentException("AmazonDynamoDB client is required please set using .dynamoDBClient(yourClient)");
+            }
+            
+            if (this.awsConfig != null) {
+                try {
+                    final JSONObject ddbConfig = awsConfig.optJsonObject("DynamoDBObjectMapper");
+                    final String regionString = ddbConfig.getString("Region");
+                    dynamoDB.setRegion(com.amazonaws.regions.Region.getRegion(com.amazonaws.regions.Regions.fromName(regionString)));
+                    
+                    DynamoDBMapper.setUserAgentFromConfig(awsConfig.getUserAgent());
+                } catch (Exception e) {
+                    throw new IllegalArgumentException("Failed to read Region from AWSConfiguration please check your setup or awsconfiguration.json file", e);
+                }
+            }
+            
+            return new DynamoDBMapper(
+                    this.dynamoDB,
+                    this.config == null ? DynamoDBMapperConfig.DEFAULT : this.config,
+                    this.transformer,
+                    this.s3CredentialProvider,
+                    this.awsConfig);
+        }
+    }
+
+    /**
+     * Minimum calls required.
+     * DynamoDBMapper.builder().dynamoDBClient(client).build()
+     * 
+     * @return The builder object to construct a DynamoDBMapper.
+     */
+    public static Builder builder() {
+        return new Builder();
+    }
+    
+    private DynamoDBMapper(
+            final AmazonDynamoDB dynamoDB,
+            final DynamoDBMapperConfig config,
+            final AttributeTransformer transformer,
+            final AWSCredentialsProvider s3CredentialsProvider,
+            final AWSConfiguration awsConfig) {
+
+        this.db = dynamoDB;
+        this.config = config;
+        this.transformer = transformer;
+        if (s3CredentialsProvider == null) {
+            this.s3cc = null;
+        } else {
+            this.s3cc = new S3ClientCache(s3CredentialsProvider);
+        }
+    }
 
     /**
      * Constructs a new mapper with the service object given, using the default
@@ -218,6 +371,9 @@ public class DynamoDBMapper {
      *
      * @param dynamoDB The service object to use for all service calls.
      * @see DynamoDBMapperConfig#DEFAULT
+     * @deprecated Please use DynamoDBMapper.builder()
+     *                                      .dynamoDBClient(dynamoDB)
+     *                                      .build();
      */
     public DynamoDBMapper(final AmazonDynamoDB dynamoDB) {
         this(dynamoDB, DynamoDBMapperConfig.DEFAULT, null, null);
@@ -229,6 +385,11 @@ public class DynamoDBMapper {
      * @param dynamoDB The service object to use for all service calls.
      * @param config The default configuration to use for all service calls. It
      *            can be overridden on a per-operation basis.
+     * @deprecated Please use
+     *             DynamoDBMapper.builder()
+     *                           .dynamoDBClient(dynamoDB)
+     *                           .dynamoDBMapperConfig(config)
+     *                           .build();
      */
     public DynamoDBMapper(
             final AmazonDynamoDB dynamoDB,
@@ -245,6 +406,10 @@ public class DynamoDBMapper {
      * @param s3CredentialProvider The credentials provider for accessing S3.
      *            Relevant only if {@link S3Link} is involved.
      * @see DynamoDBMapperConfig#DEFAULT
+     * @deprecated Please use DynamoDBMapper.builder()
+     *                                      .dynamoDBClient(dynamoDB)
+     *                                      .awsCredentialsProviderForS3(creds)
+     *                                      .build();
      */
     public DynamoDBMapper(
             final AmazonDynamoDB ddb,
@@ -262,6 +427,11 @@ public class DynamoDBMapper {
      *            can be overridden on a per-operation basis
      * @param transformer The custom attribute transformer to invoke when
      *            serializing or deserializing an object.
+     * @deprecated Please use DynamoDBMapper.builder()
+     *                                      .dynamoDBClient(dynamoDB)
+     *                                      .dynamoDBMapperConfig(config)
+     *                                      .attributeTransformer(transformer)
+     *                                      .build();
      */
     public DynamoDBMapper(
             final AmazonDynamoDB dynamoDB,
@@ -280,6 +450,11 @@ public class DynamoDBMapper {
      *            can be overridden on a per-operation basis.
      * @param s3CredentialProvider The credentials provider for accessing S3.
      *            Relevant only if {@link S3Link} is involved.
+     * @deprecated Please use DynamoDBMapper.builder()
+     *                                      .dynamoDBClient(dynamoDB)
+     *                                      .dynamoDBMapperConfig(config)
+     *                                      .awsCredentialsProviderForS3(creds)
+     *                                      .build();
      */
     public DynamoDBMapper(
             final AmazonDynamoDB dynamoDB,
@@ -311,6 +486,12 @@ public class DynamoDBMapper {
      *            serializing or deserializing an object.
      * @param s3CredentialsProvider The credentials provider for accessing S3.
      *            Relevant only if {@link S3Link} is involved.
+     * @deprecated Please use DynamoDBMapper.builder()
+     *                                      .dynamoDBClient(dynamoDB)
+     *                                      .dynamoDBMapperConfig(config)
+     *                                      .attributeTransformer(transformer)
+     *                                      .awsCredentialsProviderForS3(creds)
+     *                                      .build();
      */
     public DynamoDBMapper(
             final AmazonDynamoDB dynamoDB,
@@ -3084,12 +3265,18 @@ public class DynamoDBMapper {
     }
 
     static <X extends AmazonWebServiceRequest> X applyUserAgent(X request) {
-        request.getRequestClientOptions().appendUserAgent(USER_AGENT);
+        request.getRequestClientOptions().appendUserAgent(
+                DynamoDBMapper.class.getName() + "/"
+                        + DynamoDBMapper.getUserAgentFromConfig()
+                        + VersionInfoUtils.getVersion());
         return request;
     }
 
     static <X extends AmazonWebServiceRequest> X applyBatchOperationUserAgent(X request) {
-        request.getRequestClientOptions().appendUserAgent(USER_AGENT_BATCH_OPERATION);
+        request.getRequestClientOptions()
+                .appendUserAgent(DynamoDBMapper.class.getName() + "_batch_operation/"
+                        + DynamoDBMapper.getUserAgentFromConfig()
+                        + VersionInfoUtils.getVersion());
         return request;
     }
 

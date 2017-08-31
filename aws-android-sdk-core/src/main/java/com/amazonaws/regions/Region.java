@@ -63,6 +63,15 @@ public final class Region {
     }
 
     /**
+     * @param regionString the region represented as a string. i.e. us-east-1
+     * @return the region with the id given, or null if it cannot be found in
+     * the current regions.xml file.
+     */
+    public static Region getRegion(String regionString) {
+        return RegionUtils.getRegion(regionString);
+    }
+
+    /**
      * The unique system ID for this region; ex: &quot;us-east-1&quot;.
      *
      * @return The unique system ID for this region.

@@ -19,8 +19,11 @@ import android.content.Context;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.AppLevelOptOutProvider;
 import com.amazonaws.regions.Regions;
+
+import org.json.JSONObject;
 
 /**
  * The PinpointConfiguration class allows developers to configure the Pinpoint SDK.
@@ -32,6 +35,7 @@ public class PinpointConfiguration {
     private Regions region;
     private boolean enableEvents = true;
     private boolean enableTargeting = true;
+    private boolean shouldPostNotificationsInForeground = false;
     private ClientConfiguration clientConfiguration;
     private AWSCredentialsProvider credentialsProvider;
     private PinpointCallback<PinpointManager> initCompletionCallback;
@@ -46,13 +50,45 @@ public class PinpointConfiguration {
      * @param credentialsProvider The {@link AWSCredentialsProvider} to be used for the service.
      */
     public PinpointConfiguration(final Context context, final String appId,
-                                        final Regions region,
-                                        final AWSCredentialsProvider credentialsProvider) {
+                                 final Regions region,
+                                 final AWSCredentialsProvider credentialsProvider) {
         this.clientConfiguration = new ClientConfiguration();
         this.context = context;
         this.appId = appId;
         this.credentialsProvider = credentialsProvider;
         this.region = region;
+    }
+
+    /**
+     * Create an {@link PinpointConfiguration} object with the specified parameters.
+     *
+     * @param context             the android context object.
+     * @param credentialsProvider The {@link AWSCredentialsProvider} to be used for the service.
+     * @param awsConfiguration    the aws configuration.
+     */
+    public PinpointConfiguration(final Context context,
+                                 final AWSCredentialsProvider credentialsProvider,
+                                 final AWSConfiguration awsConfiguration) {
+        this.clientConfiguration = new ClientConfiguration();
+        this.context = context;
+        try {
+            final JSONObject pinpointConfig = awsConfiguration.optJsonObject("PinpointAnalytics");
+            this.appId = pinpointConfig.getString("AppId");
+            this.region = Regions.fromName(pinpointConfig.getString("Region"));
+
+            final String userAgent = awsConfiguration.getUserAgent();
+            String currentUserAgent = this.clientConfiguration.getUserAgent();
+            currentUserAgent = currentUserAgent != null ? currentUserAgent : "";
+
+            if (userAgent != null) {
+                this.clientConfiguration.setUserAgent(currentUserAgent.trim() + " " + userAgent);
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Failed to read AppId or Region"
+                    + " from AWSConfiguration please check your setup or "
+                    + "awsconfiguration.json file", e);
+        }
+        this.credentialsProvider = credentialsProvider;
     }
 
     /**
@@ -111,7 +147,7 @@ public class PinpointConfiguration {
     /**
      * Enables pinpoint and endpoint registration.
      *
-     * @param enablePinpoint true if Pinpoint to be enabled. Defaults to false.
+     * @param enablePinpoint true if Pinpoint to be enabled. Defaults to true.
      * @return the current PinpointConfiguration instance
      */
     @SuppressWarnings("checkstyle:hiddenfield")
@@ -250,4 +286,23 @@ public class PinpointConfiguration {
         return this;
     }
 
+    /**
+     * Configuration option to post notifications even if the app is in the foreground. By default notifications are
+     * not posted when the app is in the foreground.
+     *
+     * @param shouldPostNotificationsInForeground true to indicate to post app notifications in the foreground.
+     * @return the current PinpointConfiguration instance.
+     */
+    @SuppressWarnings("checkstyle:hiddenfield")
+    public PinpointConfiguration withPostNotificationsInForeground(final boolean shouldPostNotificationsInForeground) {
+        this.shouldPostNotificationsInForeground = shouldPostNotificationsInForeground;
+        return this;
+    }
+
+    /**
+     * @return true if notifications should be posted while the app is in the foreground, otherwise false.
+     */
+    public boolean getShouldPostNotificationsInForeground() {
+        return shouldPostNotificationsInForeground;
+    }
 }

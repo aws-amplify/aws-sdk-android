@@ -220,13 +220,18 @@ public class EndpointProfile implements JSONSerializable {
 
         if (null != values) {
             if (currentNumOfAttributesAndMetrics.get() < MAX_NUM_OF_METRICS_AND_ATTRIBUTES) {
-                attributes.put(this.processAttributeMetricKey(name), this.processAttributeValues(values));
-                currentNumOfAttributesAndMetrics.incrementAndGet();
+                final String key = processAttributeMetricKey(name);
+                if (!attributes.containsKey(key)) {
+                    currentNumOfAttributesAndMetrics.incrementAndGet();
+                }
+                attributes.put(key, processAttributeValues(values));
             } else {
                 log.warn("Max number of attributes/metrics reached(" + MAX_NUM_OF_METRICS_AND_ATTRIBUTES + ").");
             }
         } else {
-            attributes.remove(name);
+            if (attributes.remove(name) != null) {
+                currentNumOfAttributesAndMetrics.decrementAndGet();
+            }
         }
     }
 
@@ -304,15 +309,20 @@ public class EndpointProfile implements JSONSerializable {
         if (null != value) {
             if (currentNumOfAttributesAndMetrics.get() <
                 MAX_NUM_OF_METRICS_AND_ATTRIBUTES) {
-                metrics.put(this.processAttributeMetricKey(name), value);
-                currentNumOfAttributesAndMetrics.incrementAndGet();
+                final String key = processAttributeMetricKey(name);
+                if (!metrics.containsKey(key)) {
+                    currentNumOfAttributesAndMetrics.incrementAndGet();
+                }
+                metrics.put(key, value);
             } else {
                 log.warn("Max number of attributes/metrics reached(" +
                          MAX_NUM_OF_METRICS_AND_ATTRIBUTES +
                          ").");
             }
         } else {
-            metrics.remove(name);
+            if (metrics.remove(name) != null) {
+                currentNumOfAttributesAndMetrics.decrementAndGet();
+            }
         }
     }
 

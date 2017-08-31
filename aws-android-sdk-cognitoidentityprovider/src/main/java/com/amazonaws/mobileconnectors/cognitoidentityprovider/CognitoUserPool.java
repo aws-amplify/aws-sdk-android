@@ -23,6 +23,7 @@ import android.os.Handler;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AnonymousAWSCredentials;
+import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoSecretHash;
@@ -32,6 +33,8 @@ import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvi
 import com.amazonaws.services.cognitoidentityprovider.model.AttributeType;
 import com.amazonaws.services.cognitoidentityprovider.model.SignUpRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.SignUpResult;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -129,6 +132,31 @@ public class CognitoUserPool {
     @Deprecated()
     public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret) {
         this(context, userPoolId, clientId, clientSecret, new ClientConfiguration(), Regions.US_EAST_1);
+    }
+
+    /**
+     * Constructs a user-pool with default {@link ClientConfiguration}.
+     *
+     * @param context               REQUIRED: Android application context.
+     * @param awsConfiguration      REQUIRED: Holds the configuration read from awsconfiguration.json
+     */
+    public CognitoUserPool(Context context, AWSConfiguration awsConfiguration) {
+        try {
+            final JSONObject userPoolConfiguration = awsConfiguration.optJsonObject("CognitoUserPool");
+            this.context = context;
+            this.userPoolId = userPoolConfiguration.getString("PoolId");
+            this.clientId = userPoolConfiguration.getString("AppClientId");
+            this.clientSecret = userPoolConfiguration.getString("AppClientSecret");
+            
+            final ClientConfiguration clientConfig = new ClientConfiguration();
+            clientConfig.setUserAgent(awsConfiguration.getUserAgent());
+            this.client = new AmazonCognitoIdentityProviderClient(new AnonymousAWSCredentials(), clientConfig);
+            this.client.setRegion(com.amazonaws.regions.Region.getRegion(Regions.fromName(userPoolConfiguration.getString("Region"))));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Failed to read PoolId, AppClientId, "
+                    + "AppClientSecret, or Region from AWSConfiguration please check your setup "
+                    + "or awsconfiguration.json file", e);
+        }
     }
 
     /**

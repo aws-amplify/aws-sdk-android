@@ -31,7 +31,6 @@ import org.apache.commons.logging.LogFactory;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidPreferences;
-import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -110,6 +109,7 @@ public class NotificationClient {
     private static final String APP_OPS_MODE_ALLOWED = "MODE_ALLOWED";
     private static final String APP_OPS_SERVICE = "APP_OPS_SERVICE";
     private final PinpointContext pinpointContext;
+    private final AppUtil appUtil;
     private final List<GCMTokenRegisteredHandler> gcmTokenRegisteredHandlers;
     private volatile String theGCMToken;
     private Constructor<?> notificationBuilderConstructor = null;
@@ -145,6 +145,7 @@ public class NotificationClient {
      */
     public NotificationClient(final PinpointContext pinpointContext) {
         this.pinpointContext = pinpointContext;
+        this.appUtil = new AppUtil(pinpointContext.getApplicationContext());
         this.gcmTokenRegisteredHandlers = new ArrayList<GCMTokenRegisteredHandler>();
         this.loadGCMToken();
     }
@@ -201,27 +202,6 @@ public class NotificationClient {
     public String getGCMDeviceToken() {
         this.loadGCMToken();
         return theGCMToken;
-    }
-
-    private boolean isForeground() {
-        // Gets a list of running processes.
-        final ActivityManager am = (ActivityManager) pinpointContext.getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
-        final List<ActivityManager.RunningAppProcessInfo> tasks = am.getRunningAppProcesses();
-
-        // On some versions of android the first item in the list is what runs
-        // in the foreground,
-        // but this is not true on all versions. Check the process importance to
-        // see if the app
-        // is in the foreground.
-        final String packageName = pinpointContext.getApplicationContext().getPackageName();
-        for (final ActivityManager.RunningAppProcessInfo appProcess : tasks) {
-            final String processName = appProcess.processName;
-            if (ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND == appProcess.importance &&
-                packageName.equals(processName)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private void addGlobalCampaignAttributes(
@@ -638,7 +618,8 @@ public class NotificationClient {
         if (!data.containsKey(CAMPAIGN_ID_PUSH_KEY)) {
             return CampaignPushResult.NOT_HANDLED;
         }
-        final boolean isAppInForeground = isForeground();
+
+        final boolean isAppInForeground = appUtil.isAppInForeground();
 
         final String imageUrl = data.getString(CAMPAIGN_IMAGE_PUSH_KEY);
         final String imageIconUrl = data.getString(CAMPAIGN_IMAGE_ICON_PUSH_KEY);
@@ -670,8 +651,10 @@ public class NotificationClient {
             addCampaignAttributesToEvent(pushEvent, campaignAttributes);
             pushEvent.addAttribute("isAppInForeground", Boolean.toString(isAppInForeground));
             try {
-
-                if (isAppInForeground) {
+                // Ignore whether the app is in the foreground if the configuration indicates it should post
+                // notifications in the foreground.
+                if (
+                    !pinpointContext.getPinpointConfiguration().getShouldPostNotificationsInForeground() && isAppInForeground) {
                     // Notify the caller that the app was in the foreground.
                     return CampaignPushResult.APP_IN_FOREGROUND;
                 } else {

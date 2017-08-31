@@ -15,13 +15,19 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.targeting.notification;
 
+import android.content.Context;
+import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
+import com.amazonaws.mobileconnectors.pinpoint.internal.event.EventRecorder;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.internal.util.reflection.Whitebox;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
@@ -36,7 +42,14 @@ import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
 import android.app.Service;
 import android.os.Bundle;
 
+import java.util.Map;
+
+import static junit.framework.Assert.assertTrue;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
@@ -48,37 +61,48 @@ public class NotificationClientTest extends MobileAnalyticsTestBase {
     @Mock
     AndroidPreferencesConfiguration mockConfiguration;
     private NotificationClient target;
+    private AnalyticsClient analyticsClient;
     @Mock
-    private AnalyticsClient mockAnalyticsClient;
+    private EventRecorder mockEventRecorder;
     @Mock
     private TargetingClient mockTargetingClient;
     @Mock
-    private AnalyticsClient mockEventClient;
-    @Mock
     private PinpointConfiguration mockPinpointConfiguration;
+
+    private PinpointContext mockPinpointContext;
+
+    private Context spiedRoboContext;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
 
-        PinpointContext mockPinpointContext = new AnalyticsContextBuilder()
+        final Context roboContext = Robolectric.application
+            .getApplicationContext();
+        spiedRoboContext = Mockito.spy(roboContext);
+        mockPinpointContext = new AnalyticsContextBuilder()
                                                       .withSystem(new MockSystem("JIMMY_CRACKED_CORN.and"))
                                                       .withConfiguration(mockConfiguration)
-                                                      .withContext(Robolectric.application
-                                                                           .getApplicationContext())
+                                                      .withContext(spiedRoboContext)
                                                       .build();
+
+        analyticsClient =  new AnalyticsClient(mockPinpointContext);
+        Whitebox.setInternalState(analyticsClient, "eventRecorder", mockEventRecorder);
 
         when(mockConfiguration.optBoolean("isAnalyticsEnabled", true))
                 .thenReturn(true);
 
         when(mockPinpointContext.getAnalyticsClient())
-                .thenReturn(mockAnalyticsClient);
+            .thenReturn(analyticsClient);
+        //target.setSessionClient(new SessionClient(mockContext, mockEventClient, mockTargetingClient,
+        //    new TestSessionStore(), false));
         when(mockPinpointContext.getTargetingClient())
                 .thenReturn(mockTargetingClient);
         when(mockPinpointContext.getConfiguration())
                 .thenReturn(mockConfiguration);
         when(mockPinpointContext.getPinpointConfiguration())
                 .thenReturn(mockPinpointConfiguration);
+
         target = new NotificationClient(mockPinpointContext);
     }
 
@@ -92,6 +116,9 @@ public class NotificationClientTest extends MobileAnalyticsTestBase {
 
     private Bundle buildPushBundle() throws JSONException {
         Bundle pushBundle = new Bundle();
+        pushBundle.putString("pinpoint.campaign.campaign_id", "Customers rule");
+        pushBundle.putString("pinpoint.campaign.treatment_id", "Treat Me well please");
+        pushBundle.putString("pinpoint.campaign.campaign_activity_id", "the brink of dawn");
         pushBundle.putString("gcm.notification.title", "Robots are Red");
         pushBundle.putString("gcm.notification.body", "My Class is New");
         pushBundle.putString("gcm.notification.color", "#FF0000");
@@ -107,45 +134,162 @@ public class NotificationClientTest extends MobileAnalyticsTestBase {
         return pushBundle;
     }
 
-    //TODO FIX THESE TESTS
-//    @Test
-//    public void testHandleGCMPinpointMessageReceived() throws JSONException {
-//        target.handleGCMCampaignPush("12345", buildPushBundle(), Service.class);
-//
-//        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
-////        verify(mockDeliveryClient, times(1)).enqueueEventForDelivery(eventCaptor.capture());
-////
-//        final AnalyticsEvent receivedEvent = eventCaptor.getAllValues().get(0);
-//        assertThat(receivedEvent.getEventType(), is("_campaign.received"));
-//        assertTrue(receivedEvent.getEventTimestamp() > 0);
-//        //for (Map.Entry<String, String> entry : receivedEvent.getAllAttributes().entrySet()) {
-//        //    System.out.println(entry.getKey() + ":" + entry.getValue());
-//        //}
-//        assertThat(receivedEvent.getAllAttributes().size(), is(4));
-//        assertThat(receivedEvent.getAttribute("isOptedOut"), is("true"));
-//        assertThat(receivedEvent.getAttribute("isAppInForeground"), is("false"));
-//        assertThat(receivedEvent.getAttribute("campaign_id"), is("Customers rule"));
-//        assertThat(receivedEvent.getAttribute("campaign_activity_id"), is("the brink of dawn"));
-//        // optOut is true because this test can't get the app icon resource id.
-//        assertThat(receivedEvent.getAllMetrics().size(), is(0));
-//    }
-//
-//    @Test
-//    public void testHandleGCMPinpointMessageOpened() throws JSONException {
-//        NotificationClient.CampaignPushResult result = target.handleGCMCampaignPush("_campaign.opened", buildPushBundle(), Service.class);
-//        assertEquals(NotificationClient.CampaignPushResult.NOTIFICATION_OPENED, result);
-//
-//        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
-//        verify(mockDeliveryClient, times(1)).enqueueEventForDelivery(eventCaptor.capture());
-//
-//        final AnalyticsEvent receivedEvent = eventCaptor.getAllValues().get(0);
-//        assertThat(receivedEvent.getEventType(), is("_campaign.opened"));
-//        assertTrue(receivedEvent.getEventTimestamp() > 0);
-//        assertThat(receivedEvent.getAllAttributes().size(), is(2));
-//        assertThat(receivedEvent.getAttribute("campaign_id"), is("Customers rule"));
-//        assertThat(receivedEvent.getAttribute("campaign_activity_id"), is("the brink of dawn"));
-//        assertThat(receivedEvent.getAllMetrics().size(), is(0));
-//    }
+    @Test
+    public void testGCMMessageReceivedDefaultDoNotPostNotificationInForeground() throws JSONException {
+        // by default AppUtil will return that the app is not in the background
+
+        NotificationClient.CampaignPushResult pushResult
+            = target.handleGCMCampaignPush("12345", buildPushBundle(), Service.class);
+        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
+        verify(mockEventRecorder, times(1)).recordEvent(eventCaptor.capture());
+
+        final AnalyticsEvent receivedEvent = eventCaptor.getAllValues().get(0);
+        assertThat(receivedEvent.getEventType(), is("_campaign.received_background"));
+        assertTrue(receivedEvent.getEventTimestamp() > 0);
+        for (Map.Entry<String, String> entry : receivedEvent.getAllAttributes().entrySet()) {
+            System.out.println(entry.getKey() + ":" + entry.getValue());
+        }
+        assertThat(receivedEvent.getAllAttributes().size(), is(5));
+        assertThat(receivedEvent.getAttribute("isOptedOut"), is("true"));
+        assertThat(receivedEvent.getAttribute("isAppInForeground"), is("false"));
+        assertThat(receivedEvent.getAttribute("campaign_id"), is("Customers rule"));
+        assertThat(receivedEvent.getAttribute("treatment_id"), is("Treat Me well please"));
+        assertThat(receivedEvent.getAttribute("campaign_activity_id"), is("the brink of dawn"));
+        // optOut is true because this test can't get the app icon resource id.
+        assertThat(receivedEvent.getAllMetrics().size(), is(0));
+
+        assertTrue(pushResult.equals(NotificationClient.CampaignPushResult.OPTED_OUT));
+
+        // Verify isAooInForeground method is called by verifying a call to getSystemService.
+        verify(spiedRoboContext, times(1))
+            .getSystemService(Mockito.eq(Context.ACTIVITY_SERVICE));
+    }
+
+
+    @Test
+    public void testGCMMessageReceivedInForegroundDefaultConfig() throws JSONException {
+        // Force the app to be in the foreground.
+        final AppUtil appUtil = Mockito.mock(AppUtil.class);
+        Whitebox.setInternalState(target, "appUtil", appUtil);
+        Mockito.when(appUtil.isAppInForeground()).thenReturn(true);
+
+        NotificationClient.CampaignPushResult pushResult
+            = target.handleGCMCampaignPush("12345", buildPushBundle(), Service.class);
+        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
+        verify(mockEventRecorder, times(1)).recordEvent(eventCaptor.capture());
+
+        final AnalyticsEvent receivedEvent = eventCaptor.getAllValues().get(0);
+        assertThat(receivedEvent.getEventType(), is("_campaign.received_foreground"));
+        assertTrue(receivedEvent.getEventTimestamp() > 0);
+        for (Map.Entry<String, String> entry : receivedEvent.getAllAttributes().entrySet()) {
+            System.out.println(entry.getKey() + ":" + entry.getValue());
+        }
+        assertThat(receivedEvent.getAllAttributes().size(), is(4));
+        assertThat(receivedEvent.getAttribute("isAppInForeground"), is("true"));
+        assertThat(receivedEvent.getAttribute("campaign_id"), is("Customers rule"));
+        assertThat(receivedEvent.getAttribute("treatment_id"), is("Treat Me well please"));
+        assertThat(receivedEvent.getAttribute("campaign_activity_id"), is("the brink of dawn"));
+        // optOut is true because this test can't get the app icon resource id.
+        assertThat(receivedEvent.getAllMetrics().size(), is(0));
+
+        // Verify the notification is not posted and instead we get the result that the app was in the foreground.
+        assertTrue(pushResult.equals(NotificationClient.CampaignPushResult.APP_IN_FOREGROUND));
+    }
+
+    @Test
+    public void testGCMMessageReceivedInForegroundExplicitDoNotPostNotificationInForeground() throws JSONException {
+        // Setting this false should be the same as the default config, since default is false.
+        when(mockPinpointConfiguration.getShouldPostNotificationsInForeground()).thenReturn(false);
+
+        testGCMMessageReceivedInForegroundDefaultConfig();
+    }
+
+    @Test
+    public void testGCMMessageReceivedInForegroundWithConfigShouldPostNotificationsInForegroundSet() throws JSONException {
+        when(mockPinpointConfiguration.getShouldPostNotificationsInForeground()).thenReturn(true);
+
+        // Force the app to be in the foreground.
+        final AppUtil appUtil = Mockito.mock(AppUtil.class);
+        Whitebox.setInternalState(target, "appUtil", appUtil);
+        Mockito.when(appUtil.isAppInForeground()).thenReturn(true);
+
+        NotificationClient.CampaignPushResult pushResult
+            = target.handleGCMCampaignPush("12345", buildPushBundle(), Service.class);
+        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
+        verify(mockEventRecorder, times(1)).recordEvent(eventCaptor.capture());
+
+        final AnalyticsEvent receivedEvent = eventCaptor.getAllValues().get(0);
+        assertThat(receivedEvent.getEventType(), is("_campaign.received_foreground"));
+        assertTrue(receivedEvent.getEventTimestamp() > 0);
+        for (Map.Entry<String, String> entry : receivedEvent.getAllAttributes().entrySet()) {
+            System.out.println(entry.getKey() + ":" + entry.getValue());
+        }
+        assertThat(receivedEvent.getAllAttributes().size(), is(5));
+        assertThat(receivedEvent.getAttribute("isOptedOut"), is("true"));
+        assertThat(receivedEvent.getAttribute("isAppInForeground"), is("true"));
+        assertThat(receivedEvent.getAttribute("campaign_id"), is("Customers rule"));
+        assertThat(receivedEvent.getAttribute("treatment_id"), is("Treat Me well please"));
+        assertThat(receivedEvent.getAttribute("campaign_activity_id"), is("the brink of dawn"));
+        // optOut is true because this test can't get the app icon resource id.
+        assertThat(receivedEvent.getAllMetrics().size(), is(0));
+
+        // verify that the notification is posted even though the app is in the foreground, will actually
+        // be OPTED_OUT, since the test can't get the app icon id.
+        assertTrue(pushResult.equals(NotificationClient.CampaignPushResult.OPTED_OUT));
+    }
+
+    @Test
+    public void testGCMMessageReceivedInBackgroundWithConfigShouldPostNotificationsInForegroundSet() throws JSONException {
+        when(mockPinpointConfiguration.getShouldPostNotificationsInForeground()).thenReturn(true);
+
+        // Force the app to be in the foreground.
+        final AppUtil appUtil = Mockito.mock(AppUtil.class);
+        Whitebox.setInternalState(target, "appUtil", appUtil);
+        Mockito.when(appUtil.isAppInForeground()).thenReturn(false);
+
+        NotificationClient.CampaignPushResult pushResult
+            = target.handleGCMCampaignPush("12345", buildPushBundle(), Service.class);
+        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
+        verify(mockEventRecorder, times(1)).recordEvent(eventCaptor.capture());
+
+        final AnalyticsEvent receivedEvent = eventCaptor.getAllValues().get(0);
+        assertThat(receivedEvent.getEventType(), is("_campaign.received_background"));
+        assertTrue(receivedEvent.getEventTimestamp() > 0);
+        for (Map.Entry<String, String> entry : receivedEvent.getAllAttributes().entrySet()) {
+            System.out.println(entry.getKey() + ":" + entry.getValue());
+        }
+        assertThat(receivedEvent.getAllAttributes().size(), is(5));
+        assertThat(receivedEvent.getAttribute("isOptedOut"), is("true"));
+        assertThat(receivedEvent.getAttribute("isAppInForeground"), is("false"));
+        assertThat(receivedEvent.getAttribute("campaign_id"), is("Customers rule"));
+        assertThat(receivedEvent.getAttribute("treatment_id"), is("Treat Me well please"));
+        assertThat(receivedEvent.getAttribute("campaign_activity_id"), is("the brink of dawn"));
+        // optOut is true because this test can't get the app icon resource id.
+        assertThat(receivedEvent.getAllMetrics().size(), is(0));
+
+        // verify that the notification is posted even though the app is in the foreground, will actually
+        // be OPTED_OUT, since the test can't get the app icon id.
+        assertTrue(pushResult.equals(NotificationClient.CampaignPushResult.OPTED_OUT));
+    }
+
+    @Test
+    public void testHandleGCMPinpointMessageOpened() throws JSONException {
+        NotificationClient.CampaignPushResult result
+            = target.handleGCMCampaignPush("_campaign.opened_notification", buildPushBundle(), Service.class);
+        assertEquals(NotificationClient.CampaignPushResult.NOTIFICATION_OPENED, result);
+
+        ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
+        verify(mockEventRecorder, times(1)).recordEvent(eventCaptor.capture());
+
+        final AnalyticsEvent receivedEvent = eventCaptor.getAllValues().get(0);
+        assertThat(receivedEvent.getEventType(), is("_campaign.opened_notification"));
+        assertTrue(receivedEvent.getEventTimestamp() > 0);
+        assertThat(receivedEvent.getAllAttributes().size(), is(3));
+        assertThat(receivedEvent.getAttribute("campaign_id"), is("Customers rule"));
+        assertThat(receivedEvent.getAttribute("campaign_activity_id"), is("the brink of dawn"));
+        assertThat(receivedEvent.getAttribute("treatment_id"), is("Treat Me well please"));
+        assertThat(receivedEvent.getAllMetrics().size(), is(0));
+    }
 
     @Test
     public void testEmptyBundle() {

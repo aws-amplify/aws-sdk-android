@@ -12,7 +12,7 @@
     <parent>
         <groupId>com.amazonaws</groupId>
         <artifactId>aws-android-sdk-pom</artifactId>
-        <version>2.4.7</version>
+        <version>2.6.0</version>
     </parent>
 
    <!-- Component includes software under each of these licenses; this is not a choice of license -->
@@ -33,7 +33,7 @@
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-android-sdk-core</artifactId>
             <optional>false</optional>
-            <version>2.4.7</version>
+            <version>2.6.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.android</groupId>
@@ -65,11 +65,12 @@
             <plugin>
                 <groupId>com.simpligility.maven.plugins</groupId>
                 <artifactId>android-maven-plugin</artifactId>
-                <version>4.4.3</version>
+                <version>4.5.0</version>
                 <extensions>true</extensions>
                 <configuration>
                     <sdk>
                         <platform>11</platform>
+                        <buildTools>19.1.0</buildTools>
                     </sdk>
                     <nativeLibrariesDirectory>${project.basedir}/src/main/jni</nativeLibrariesDirectory>
                 </configuration>

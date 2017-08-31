@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.amazonaws</groupId>
+  <artifactId>aws-android-sdk-auth-core</artifactId>
+  <packaging>aar</packaging>
+  <name>AWS SDK for Android - AWS Authentication Core</name>
+  <description>The AWS Android SDK for AWS Authentication Core module holds the client classes that are used for enabling communication with Amazon CognitoIdentityProvider, Amazon Cognito UserPools, Facebook and Google SignIn Providers</description>
+  <url>http://aws.amazon.com/sdkforandroid</url>
+
+  <properties>
+    <project.build.sourceEncoding>
+      UTF-8
+    </project.build.sourceEncoding>
+    <project.reporting.outputEncoding>
+      UTF-8
+    </project.reporting.outputEncoding>
+  </properties>
+
+  <parent>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-android-sdk-pom</artifactId>
+    <version>2.6.0</version>
+  </parent>
+
+  <repositories>
+    <repository>
+      <id>android-support</id>
+      <url>file://${env.ANDROID_HOME}/extras/android/m2repository/</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-android-sdk-core</artifactId>
+      <optional>false</optional>
+      <version>2.6.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.android</groupId>
+      <artifactId>android</artifactId>
+      <version>4.1.1.4</version>
+      <scope>provided</scope>
+    </dependency>
+   
+    <dependency>
+      <groupId>com.android.support</groupId>
+      <artifactId>support-v4</artifactId>
+      <version>24.2.0</version>
+      <type>aar</type>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.simpligility.maven.plugins</groupId>
+        <artifactId>android-maven-plugin</artifactId>
+        <version>4.5.0</version>
+        <extensions>true</extensions>
+        <configuration>
+          <sdk>
+            <platform>11</platform>
+            <buildTools>19.1.0</buildTools>
+          </sdk>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+</project>

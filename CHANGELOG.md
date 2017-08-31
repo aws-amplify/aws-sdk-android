@@ -1,5 +1,36 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.0)
+
+### New Features:
+
+- **AWS Auth SDK**
+	- Added new SDK for configurable User SignIn Screen with Amazon Cognito UserPools, Facebook SignIn and Google SignIn.
+
+- **AWS Core Runtime**
+	- Added support for a configuration file `awsconfiguration.json` that can be used to construct:
+		- `CognitoCredentialsProvider`, `CognitoCachingCredentialsProvider`, `CognitoUserPool`, `TransferUtility`, `DynamoDBMapper`, `PinpointConfiguration`, `CognitoSyncManager`, and `LambdaInvokerFactory`.
+
+### Improvements:
+
+- **AWS S3**
+	- Add builder pattern constructor to `TransferUtility`.
+	- Add default bucket property in `TransferUtility` builder. The default bucket will be used when no bucket is specified.
+
+- **AWS Lambda**
+	- Add builder pattern constructor to `LambdaInvokerFactory`.
+
+- **Amazon DynamoDB**
+	- Add builder pattern constructor to `DynamoDBMapper`.
+
+- **Amazon Pinpoint**
+	- Add configuration option to post notifications even if the app is in the foreground.
+
+### Bug Fixes:
+
+- **Amazon Pinpoint**
+	- Fixed bug that caused Pinpoint endpoint profile to incorrectly calculate the number of profile attributes and metrics.
+
 ## [Release 2.4.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.7)
 
 ### Improvements:

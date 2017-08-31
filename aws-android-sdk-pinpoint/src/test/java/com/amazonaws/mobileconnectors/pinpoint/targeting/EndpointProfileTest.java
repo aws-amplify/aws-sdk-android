@@ -19,6 +19,8 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,6 +28,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.internal.util.reflection.Whitebox;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
@@ -149,16 +152,26 @@ public class EndpointProfileTest extends MobileAnalyticsTestBase {
         target.addAttribute("key1", Arrays.asList(new String[] { "attr1",
                                                                        "attr2"
         }));
+        assertEquals(((AtomicInteger) Whitebox.getInternalState(target, "currentNumOfAttributesAndMetrics")).get(), 1);
         assertFalse(target.getAllAttributes().isEmpty());
         assertNotNull(target.getAttribute("key1"));
         assertTrue(target.hasAttribute("key1"));
+        target.addAttribute("key1", Arrays.asList(new String[] { "attr1",
+            "attr2", "attr3"
+        }));
+        assertFalse(target.getAllAttributes().isEmpty());
+        assertNotNull(target.getAttribute("key1"));
+        assertTrue(target.hasAttribute("key1"));
+        assertEquals(((AtomicInteger) Whitebox.getInternalState(target, "currentNumOfAttributesAndMetrics")).get(), 1);
         target.addAttribute("key1", null);
         assertTrue(target.getAllAttributes().isEmpty());
+        assertEquals(((AtomicInteger) Whitebox.getInternalState(target, "currentNumOfAttributesAndMetrics")).get(), 0);
         target.withAttribute("key2", Arrays.asList(new String[] { "attr3",
                                                                         "attr4"
         }));
         assertNotNull(target.getAttribute("key2"));
         assertTrue(target.hasAttribute("key2"));
+        assertEquals(((AtomicInteger) Whitebox.getInternalState(target, "currentNumOfAttributesAndMetrics")).get(), 1);
     }
 
     @Test
@@ -167,14 +180,18 @@ public class EndpointProfileTest extends MobileAnalyticsTestBase {
         assertTrue(target.getAllMetrics().isEmpty());
         assertNull(target.getMetric(null));
         assertFalse(target.hasMetric(null));
+        assertEquals(((AtomicInteger) Whitebox.getInternalState(target, "currentNumOfAttributesAndMetrics")).get(), 0);
         target.addMetric("key1", 0.0);
         assertFalse(target.getAllMetrics().isEmpty());
         assertNotNull(target.getMetric("key1"));
         assertTrue(target.hasMetric("key1"));
+        assertEquals(((AtomicInteger) Whitebox.getInternalState(target, "currentNumOfAttributesAndMetrics")).get(), 1);
         target.addMetric("key1", null);
         assertTrue(target.getAllMetrics().isEmpty());
+        assertEquals(((AtomicInteger) Whitebox.getInternalState(target, "currentNumOfAttributesAndMetrics")).get(), 0);
         target.withMetric("key2", 0.0);
         assertTrue(target.hasMetric("key2"));
+        assertEquals(((AtomicInteger) Whitebox.getInternalState(target, "currentNumOfAttributesAndMetrics")).get(), 1);
     }
 
     @Test
