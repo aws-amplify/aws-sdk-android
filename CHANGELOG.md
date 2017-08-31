@@ -31,6 +31,9 @@
 - **Amazon Pinpoint**
 	- Fixed bug that caused Pinpoint endpoint profile to incorrectly calculate the number of profile attributes and metrics.
 
+- **Amazon Lex**
+	- Fixed aar file and added new architecture support arm64-v8a, mips, mips64, x86, x86_64.
+
 ## [Release 2.4.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.7)
 
 ### Improvements:
