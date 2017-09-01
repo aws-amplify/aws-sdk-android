@@ -7,6 +7,7 @@ android:
     - build-tools-24.0.2
     - build-tools-19.1.0
     - android-11
+    - android-15
 sudo: true
 script:
     - sudo rm /etc/mavenrc
