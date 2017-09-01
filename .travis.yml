@@ -5,6 +5,7 @@ android:
     - tools # see https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943)
     - platform-tools
     - build-tools-24.0.2
+    - build-tools-19.1.0
     - android-11
 sudo: true
 script:
