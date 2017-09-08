@@ -1576,6 +1576,7 @@ public class CognitoUser {
 
         try {
             deleteUserInternal(this.getCachedSession());
+            callback.onSuccess();
         } catch (final Exception e) {
             callback.onFailure(e);
         }
