@@ -221,7 +221,7 @@ public class CognitoUser {
     /**
      * Determines whether this user has an active session or not
      * 
-     * @return
+     * @return True if the user has an active session
      */
     public boolean isSignedIn() {
         if (usernameInternal == null) {
