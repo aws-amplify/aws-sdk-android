@@ -751,7 +751,7 @@ public class CognitoUserPoolsSignInProvider implements SignInProvider {
     /**
      * Determines whether the user has an active session or not
      * 
-     * @return
+     * @return True if the user has an active session
      */
     public boolean isLoggedIn() {
         return cognitoUserPool.getUser().isSignedIn();
