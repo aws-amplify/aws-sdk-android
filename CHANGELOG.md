@@ -1,5 +1,13 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.2)
+
+### Bug Fixes:
+
+- **AWS Auth SDK**
+	- Fixed a bug in the creation of SignInButton.
+	- Removed the manifest entries for Facebook Application ID and Google Play Services version.
+
 ## [Release 2.6.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.1)
 
 ### Bug Fixes:
