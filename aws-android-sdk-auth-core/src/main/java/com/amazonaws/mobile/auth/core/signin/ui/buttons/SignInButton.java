@@ -172,13 +172,13 @@ public class SignInButton extends LinearLayout {
                             insetBackgroundDrawable});
 
         // Top shadow is the furthest down drawable, so it is ok if this overlaps the bottom shadow.
-        layerDrawable.setLayerInset(1, 0, 0, 0, 0);
+        layerDrawable.setLayerInset(0, 0, 0, 0, 0);
         
         // Bottom shadow does not overlap the top shadow.
-        layerDrawable.setLayerInset(2, attributes.getTopShadowThickness(), attributes.getTopShadowThickness(), 0, 0);
+        layerDrawable.setLayerInset(1, attributes.getTopShadowThickness(), attributes.getTopShadowThickness(), 0, 0);
         
         // Background must not overlap either of the shadows.
-        layerDrawable.setLayerInset(3, attributes.getTopShadowThickness(), attributes.getTopShadowThickness(),
+        layerDrawable.setLayerInset(2, attributes.getTopShadowThickness(), attributes.getTopShadowThickness(),
             attributes.getBottomShadowThickness(), attributes.getBottomShadowThickness());
 
         return layerDrawable;
