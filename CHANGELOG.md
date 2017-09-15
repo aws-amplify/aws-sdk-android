@@ -1,5 +1,16 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.1)
+
+### Bug Fixes:
+
+- **AWS Auth SDK**
+	- Fixed border and shadow for Facebook and Google SignIn buttons.
+	- Fixed the Android Support Package dependencies of the different auth clients. The Android Support Packages support-v4 and appcompat-v7 of all the auth clients now have the same version 23.0.1 and are optional dependencies. Apps consuming the auth clients will now declare the appcompat-v7 and support-v4 dependencies in the gradle manually.
+
+- **Amazon Pinpoint**
+	- Notification icon handling has been improved. By default, when the Notification icon uses the app icon, the icon will now be shown in color on Apps targeting SDK version 21 or greater. This will be achieved by setting the large icon to the app icon and generating the small icon by converting the app icon image to gray scale. For Apps targeting SDK version below 21, the behavior remains the same and the color icon is shown.
+
 ## [Release 2.6.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.0)
 
 ### New Features:

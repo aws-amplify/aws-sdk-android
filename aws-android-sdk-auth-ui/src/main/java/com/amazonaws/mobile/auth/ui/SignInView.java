@@ -21,8 +21,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -58,7 +56,7 @@ public class SignInView extends LinearLayout {
     private static final int IMAGE_LAYOUT_MARGINS = dp(10);
 
     /** String that represents the SDK Version. */
-    private static final String SDK_VERSION = "2.6.0";
+    private static final String SDK_VERSION = "2.6.1";
 
     /** Common Prefix of the namespaces of different SignIn providers. */
     private static final String NAMESPACE_COMMON_PREFIX = "com.amazonaws.mobile.auth";
@@ -145,7 +143,7 @@ public class SignInView extends LinearLayout {
      * Consructor.
      * @param context Activity Context
      */
-    public SignInView(@NonNull final Context context) {
+    public SignInView(final Context context) {
         this(context, null);
     }
 
@@ -154,8 +152,8 @@ public class SignInView extends LinearLayout {
      * @param context Activity Context
      * @param attrs Attribute Set
      */
-    public SignInView(@NonNull final Context context,
-                      @Nullable final AttributeSet attrs) {
+    public SignInView(final Context context,
+                      final AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
@@ -203,7 +201,7 @@ public class SignInView extends LinearLayout {
      * Sets up the image view that displays the logo image.
      * @param context The activity context.
      */
-    private void setUpImageView(@NonNull final Context context) {
+    private void setUpImageView(final Context context) {
         /**
          * ImageView that holds the logo image.
          */
@@ -225,7 +223,7 @@ public class SignInView extends LinearLayout {
      * Sets up the UserPools UI with the Email and Password FormView.
      * @param context The activity context.
      */
-    private void setUpUserPools(@NonNull final Context context) {
+    private void setUpUserPools(final Context context) {
         /**
          * Use Reflection for UserPoolSignIn dependency.
          */
@@ -245,7 +243,7 @@ public class SignInView extends LinearLayout {
      * Sets up the divider that divides the UserPools UI and the SignInButtons.
      * @param context The activity context.
      */
-    private void setUpDivider(@NonNull final Context context) {
+    private void setUpDivider(final Context context) {
         /**
          * Create "--or sign in with--" divider if userpools is configured.
          * Else create "--sign in with--" divider.
@@ -262,7 +260,7 @@ public class SignInView extends LinearLayout {
      * Sets up the SignIn Buttons.
      * @param context The activity context.
      */
-    private void setUpSignInButtons(@NonNull final Context context) {
+    private void setUpSignInButtons(final Context context) {
         /**
          * Get the height, width and margins for the sign in buttons.
          */
@@ -293,8 +291,8 @@ public class SignInView extends LinearLayout {
      * @param attrs Attribute Set
      * @param defStyleAttr Default Style Attribute
      */
-    public SignInView(@NonNull final Context context,
-                      @Nullable final AttributeSet attrs,
+    public SignInView(final Context context,
+                      final AttributeSet attrs,
                       final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
@@ -469,7 +467,7 @@ public class SignInView extends LinearLayout {
      * @param context The activity context.
      * @return AuthUIConfiguration The configuration object passed in by the application.
      */
-    private AuthUIConfiguration getConfiguration(@NonNull final Context context) {
+    private AuthUIConfiguration getConfiguration(final Context context) {
         try {
             Intent intent = ((Activity) context).getIntent();
             String uuid = (String)(intent.getSerializableExtra(CONFIGURATION_KEY));
@@ -503,7 +501,7 @@ public class SignInView extends LinearLayout {
      * Add SignInButtons to the view.
      * @param context The activity context.
      */
-    private void addSignInButtonsToView(@NonNull final Context context) {
+    private void addSignInButtonsToView(final Context context) {
         try {
             if (this.config != null) {
                 ArrayList<Class<? extends SignInButton>> signInButtons = this.config.getSignInButtons();

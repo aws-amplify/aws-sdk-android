@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-     <application android:allowBackup="true">
+     <application>
          <activity
              android:name="com.amazonaws.mobile.auth.userpools.ForgotPasswordActivity"
              android:label="@string/title_activity_forgot_password"

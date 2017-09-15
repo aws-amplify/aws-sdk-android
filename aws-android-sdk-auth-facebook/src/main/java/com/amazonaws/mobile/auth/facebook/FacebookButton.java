@@ -49,6 +49,15 @@ public class FacebookButton extends SignInButton {
     /** Button background color when pressed. */
     private static final int FB_BACKGROUND_COLOR_PRESSED = 0xFF2D4570;
 
+    /** Button top shadow color. */
+    private static final int BUTTON_TOP_SHADOW_COLOR = 0xFFCCCCCC;
+
+    /** Button top shadow thickness in pixels. */
+    private static final int BUTTON_TOP_SHADOW_THICKNESS = (int) dp(1);
+
+    /** Button bottom shadow thickness in pixels. */
+    private static final int BUTTON_BOTTOM_SHADOW_THICKNESS = (int) dp(2);
+
     /**
      * Constructor.
      * @param context context.
@@ -77,13 +86,16 @@ public class FacebookButton extends SignInButton {
                           @Nullable final AttributeSet attrs,
                           final int defStyleAttr) {
         super(context, attrs, defStyleAttr,
-            new SignInButtonAttributes()
-                .withCornerRadius(CORNER_RADIUS)
-                .withBackgroundColor(FB_BACKGROUND_COLOR)
-                .withBackgroundColorPressed(FB_BACKGROUND_COLOR_PRESSED)
-                .withTextColor(Color.WHITE)
-                .withDefaultTextResourceId(R.string.default_facebook_button_text)
-                .withImageIconResourceId(R.drawable.facebook_icon)
+                new SignInButtonAttributes()
+                        .withCornerRadius(CORNER_RADIUS)
+                        .withBackgroundColor(FB_BACKGROUND_COLOR)
+                        .withBackgroundColorPressed(FB_BACKGROUND_COLOR_PRESSED)
+                        .withTextColor(Color.WHITE)
+                        .withDefaultTextResourceId(R.string.default_facebook_button_text)
+                        .withImageIconResourceId(R.drawable.facebook_icon)
+                        .withTopShadowColor(BUTTON_TOP_SHADOW_COLOR)
+                        .withTopShadowThickness(BUTTON_TOP_SHADOW_THICKNESS)
+                        .withBottomShadowThickness(BUTTON_BOTTOM_SHADOW_THICKNESS)
         );
 
 
@@ -97,7 +109,7 @@ public class FacebookButton extends SignInButton {
         } catch (Exception exception) {
             exception.printStackTrace();
             Log.e(LOG_TAG, "Cannot initialize the SignInButton. Please check if IdentityManager : "
-                           + " startUpAuth and setUpToAuthenticate are invoked");
+                    + " startUpAuth and setUpToAuthenticate are invoked");
         }
     }
 }

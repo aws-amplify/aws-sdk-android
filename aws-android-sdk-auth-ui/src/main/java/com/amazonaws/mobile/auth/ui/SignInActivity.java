@@ -20,7 +20,6 @@ package com.amazonaws.mobile.auth.ui;
 import android.content.Intent;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -124,8 +123,8 @@ public class SignInActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(final int requestCode,
-                                           @NonNull final String[] permissions,
-                                           @NonNull final int[] grantResults) {
+                                           final String[] permissions,
+                                           final int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         signInManager.handleRequestPermissionsResult(requestCode, permissions, grantResults);
     }
@@ -154,7 +153,7 @@ public class SignInActivity extends AppCompatActivity {
      * @param context The context from which the SignInActivity will be started
      * @param config  Reference to AuthUIConfiguration object
      */
-    public static void startSignInActivity(@NonNull final Context context,
+    public static void startSignInActivity(final Context context,
                                            final AuthUIConfiguration config) {
         try {
             String uuid = UUID.randomUUID().toString();
@@ -178,7 +177,7 @@ public class SignInActivity extends AppCompatActivity {
      *
      * @param context The context from which the SignInActivity will be started
      */
-    public static void startSignInActivity(@NonNull final Context context) {
+    public static void startSignInActivity(final Context context) {
         try {
             Intent intent = new Intent(context, SignInActivity.class);
             context.startActivity(intent);

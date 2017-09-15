@@ -24,8 +24,6 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 /**
  * Provides drawable for a vertically split background.
@@ -54,7 +52,7 @@ public class SplitBackgroundDrawable extends Drawable {
     }
 
     @Override
-    public void draw(@NonNull final Canvas canvas) {
+    public void draw(final Canvas canvas) {
         final Rect b = getBounds();
         paint.setColor(this.topBackgroundColor);
         float y = distanceFromTopToSplitPoint < b.height() ? distanceFromTopToSplitPoint : b.height();
@@ -69,7 +67,7 @@ public class SplitBackgroundDrawable extends Drawable {
     }
 
     @Override
-    public void setColorFilter(@Nullable final ColorFilter colorFilter) {
+    public void setColorFilter(final ColorFilter colorFilter) {
     }
 
     @Override

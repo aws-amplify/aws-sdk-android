@@ -17,9 +17,6 @@
 
 package com.amazonaws.mobile.auth.ui;
 
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-
 import com.amazonaws.mobile.auth.core.signin.ui.buttons.SignInButton;
 
 import java.util.ArrayList;
@@ -145,7 +142,7 @@ public final class AuthUIConfiguration {
          * @param logoResId The Resource identifier for the logo image
          * @return builder
          */
-        public Builder logoResId(@DrawableRes final int logoResId) {
+        public Builder logoResId(final int logoResId) {
             configuration.put(CONFIG_KEY_SIGN_IN_IMAGE_RESOURCE_ID, logoResId);
             return this;
         }
@@ -180,7 +177,7 @@ public final class AuthUIConfiguration {
          * @param signInButton Button Class that inherits from the SignInButton
          * @return builder
          */
-        public Builder signInButton(@NonNull final Class<? extends SignInButton> signInButton) {
+        public Builder signInButton(final Class<? extends SignInButton> signInButton) {
             ArrayList<Class<? extends SignInButton>> signInButtonList;
             if (configuration.get(CONFIG_KEY_SIGN_IN_BUTTONS) == null) {
                 signInButtonList = new ArrayList<Class<? extends SignInButton>>();

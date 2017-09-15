@@ -29,7 +29,6 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
-import android.support.annotation.Nullable;
 import android.text.TextPaint;
 import android.text.method.TransformationMethod;
 import android.util.AttributeSet;
@@ -85,7 +84,7 @@ public class SignInButton extends LinearLayout {
     /** Boolean to keep track of whether the button should only display the image and no text. */
     protected boolean isSmallStyle = false;
 
-    public SignInButton(final Context context, @Nullable final AttributeSet attrs,
+    public SignInButton(final Context context, final AttributeSet attrs,
                         final int defStyleAttr, final SignInButtonAttributes buttonAttributes) {
         super(context, attrs, defStyleAttr);
         this.attributes = buttonAttributes;
@@ -167,18 +166,10 @@ public class SignInButton extends LinearLayout {
             attributes.getBottomShadowColor(), attributes.getBottomShadowColor()});
         outerShadowBottomDrawable.setCornerRadius(dp(cornerRadius));
 
-        final GradientDrawable border = new GradientDrawable();
-        border.setColor(BORDER_COLOR);
-        border.setCornerRadius(dp(cornerRadius));
-
         final LayerDrawable layerDrawable = new LayerDrawable(
-            new Drawable[] {border,
-                            outerShadowTopDrawable,
+            new Drawable[] {outerShadowTopDrawable,
                             outerShadowBottomDrawable,
                             insetBackgroundDrawable});
-
-        // Border for the button.
-        layerDrawable.setLayerInset(0, 0, 0, 0, 0);
 
         // Top shadow is the furthest down drawable, so it is ok if this overlaps the bottom shadow.
         layerDrawable.setLayerInset(1, 0, 0, 0, 0);

@@ -221,6 +221,19 @@ public class NotificationClient {
         }
     }
 
+
+    private Resources getPackageResources() {
+        final PackageManager packageManager = pinpointContext.getApplicationContext().getPackageManager();
+        try {
+            final String packageName = pinpointContext.getApplicationContext().getPackageName();
+            final ApplicationInfo applicationInfo = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
+            return packageManager.getResourcesForApplication(applicationInfo);
+        } catch (final PackageManager.NameNotFoundException ex) {
+            log.error("Can't find resources for our application package.", ex);
+            return null;
+        }
+    }
+
     private int getNotificationIconResourceId(
         final String drawableResourceName) {
         final PackageManager packageManager = pinpointContext.getApplicationContext().getPackageManager();
@@ -304,12 +317,102 @@ public class NotificationClient {
         }
     }
 
-    private boolean buildNotificationIcons(final int iconResId, final String imageIconUrl, final String imageSmallIconUrl,
+    private static final float RED_MULTIPLIER = 0.299f;
+    private static final float GREEN_MULTIPLIER = 0.587f;
+    private static final float BLUE_MULTIPLIER =  0.114f;
+    private static final int TRANSPARENT_WHITE_COLOR = 0x00FFFFFF;
+    private static final int BITS_TO_SHIFT_FOR_ALPHA = 24;
+    private static final int MAX_ALPHA = Color.alpha(Color.WHITE);
+
+    /**
+     * Convert a bitmap to gray-scale and store the gray-scale value in the bitmap alpha channel.
+     * If the bitmap to be converted is already a solid color, the input bitmap will be copied
+     * as is to the output.
+     *
+     * @param input the input bitmap.
+     * @return the output bitmap.
+     */
+    /*package*/ static Bitmap convertBitmapToAlphaGreyscale(final Bitmap input) {
+        final int pixelCount = input.getWidth() * input.getHeight();
+        int[] inPixels = new int[pixelCount];
+        input.getPixels(inPixels, 0, input.getWidth(), 0, 0, input.getWidth(), input.getHeight());
+        int[] outPixels = new int[pixelCount];
+        boolean hasMoreThanOneNonTransparentColor = false;
+        Integer firstColor = null;
+
+        for (int i = 0; i < pixelCount; i++) {
+            final int inputArgb = inPixels[i];
+            final int greyScale;
+            final int inputAlpha = Color.alpha(inputArgb);
+
+            // Color is changed to gray-scale in the alpha channel.
+            final int calculatedColor = MAX_ALPHA - (Math.round(Color.red(inputArgb) * RED_MULTIPLIER)
+                + Math.round(Color.green(inputArgb) * GREEN_MULTIPLIER)
+                + Math.round(Color.blue(inputArgb) * BLUE_MULTIPLIER));
+            if (inputAlpha != 0) {
+                if (firstColor == null) {
+                    firstColor = inputArgb & TRANSPARENT_WHITE_COLOR;
+                } else if ((inputArgb & TRANSPARENT_WHITE_COLOR) != firstColor) {
+                    hasMoreThanOneNonTransparentColor = true;
+                }
+            }
+            greyScale = calculatedColor * inputAlpha / MAX_ALPHA;
+            outPixels[i] = (greyScale << BITS_TO_SHIFT_FOR_ALPHA) | TRANSPARENT_WHITE_COLOR;
+        }
+
+        if (!hasMoreThanOneNonTransparentColor) {
+            // Images that have only one non-transparent color, are already in the expected format
+            // for a small icon, and so can be used directly.
+            return Bitmap.createBitmap(inPixels, input.getWidth(), input.getHeight(), Bitmap.Config.ARGB_8888);
+        }
+
+        return Bitmap.createBitmap(outPixels, input.getWidth(), input.getHeight(), Bitmap.Config.ARGB_8888);
+    }
+
+    private void setSmallIconWithFallbackToLargeIconForSDKAbove20(final Object notificationBuilder,
+                                                                  final boolean alreadySetLargeIcon,
+                                                                  final int iconResId,
+                                                                  final Bitmap largeIconBitmap)
+        throws InvocationTargetException, IllegalAccessException {
+        if (!alreadySetLargeIcon && android.os.Build.VERSION.SDK_INT >= ANDROID_LOLLIPOP) {
+            final Resources resources = getPackageResources();
+
+            if (resources != null) {
+                final Bitmap iconBitmap;
+                if (largeIconBitmap == null) {
+                    // We have to get the iconResId as a bitmap to call setLargeIcon.
+                    iconBitmap = BitmapFactory.decodeResource(resources, iconResId);
+                } else {
+                    iconBitmap = largeIconBitmap;
+                }
+                if (iconBitmap != null) {
+                    setLargeIconMethod.invoke(notificationBuilder, iconBitmap);
+                    if (android.os.Build.VERSION.SDK_INT >= ANDROID_MARSHMALLOW) {
+                        final Bitmap smallBitmap
+                            = convertBitmapToAlphaGreyscale(iconBitmap);
+                        setSmallIconMethod
+                            .invoke(notificationBuilder, createWithBitmapMethod.invoke(iconClass, smallBitmap));
+                    } else {
+                        setSmallIconResIdMethod.invoke(notificationBuilder, iconResId);
+                    }
+                    return;
+                }
+            }
+        }
+        setSmallIconResIdMethod.invoke(notificationBuilder, iconResId);
+    }
+
+    private boolean buildNotificationIcons(final int iconResId, final String imageIconUrl,
+                                           final String imageSmallIconUrl,
                                            final Object notificationBuilder) {
         try {
+            boolean setLargeIcon = false;
+            Bitmap largeIconBitmap = null;
             if (imageIconUrl != null) {
                 try {
-                    setLargeIconMethod.invoke(notificationBuilder, new DownloadImageTask().execute(imageIconUrl).get());
+                    largeIconBitmap = new DownloadImageTask().execute(imageIconUrl).get();
+                    setLargeIconMethod.invoke(notificationBuilder, largeIconBitmap);
+                    setLargeIcon = true;
                 } catch (final InterruptedException e) {
                     log.error("Interrupted when downloading image : " + e.getMessage(), e);
                 } catch (final ExecutionException e) {
@@ -320,17 +423,33 @@ public class NotificationClient {
                 && android.os.Build.VERSION.SDK_INT >= ANDROID_MARSHMALLOW) {
                 try {
                     final Bitmap iconBitmap = new DownloadImageTask().execute(imageSmallIconUrl).get();
-                    setSmallIconMethod
-                        .invoke(notificationBuilder, createWithBitmapMethod.invoke(iconClass, iconBitmap));
+                    if (!setLargeIcon && android.os.Build.VERSION.SDK_INT >= ANDROID_LOLLIPOP) {
+                        setSmallIconWithFallbackToLargeIconForSDKAbove20(notificationBuilder,
+                            false, iconResId, iconBitmap);
+                    } else {
+                        setSmallIconMethod.invoke(notificationBuilder,
+                            createWithBitmapMethod.invoke(iconClass, iconBitmap));
+                    }
                 } catch (final InterruptedException e) {
                     log.error("Interrupted when downloading small icon : " + e.getMessage(), e);
-                    setSmallIconResIdMethod.invoke(notificationBuilder, iconResId);
+                    setSmallIconWithFallbackToLargeIconForSDKAbove20(notificationBuilder,
+                        setLargeIcon, iconResId, null);
+
                 } catch (final ExecutionException e) {
                     log.error("Failed execute download image small icon thread : " + e.getMessage(), e);
-                    setSmallIconResIdMethod.invoke(notificationBuilder, iconResId);
+                    setSmallIconWithFallbackToLargeIconForSDKAbove20(notificationBuilder,
+                        setLargeIcon, iconResId, null);
                 }
             } else {
-                setSmallIconResIdMethod.invoke(notificationBuilder, iconResId);
+                if (setLargeIcon && android.os.Build.VERSION.SDK_INT >= ANDROID_MARSHMALLOW) {
+                    final Bitmap smallBitmap =
+                        convertBitmapToAlphaGreyscale(largeIconBitmap);
+                    setSmallIconMethod
+                        .invoke(notificationBuilder, createWithBitmapMethod.invoke(iconClass, smallBitmap));
+                } else {
+                    setSmallIconWithFallbackToLargeIconForSDKAbove20(notificationBuilder,
+                        setLargeIcon, iconResId, null);
+                }
             }
             return true;
         } catch (final InvocationTargetException ex) {
@@ -444,6 +563,10 @@ public class NotificationClient {
         return notificationIntent;
     }
 
+    /* package */ int getNotificationRequestId(final String campaignId, final String activityId) {
+        return (campaignId + ":" + activityId).hashCode();
+    }
+
     private boolean displayNotification(final Bundle pushBundle, final Class<?> targetClass, String imageUrl,
                                         String iconImageUrl, String iconSmallImageUrl,
                                         Map<String, String> campaignAttributes, String intentAction) {
@@ -455,7 +578,7 @@ public class NotificationClient {
         final String campaignId = campaignAttributes.get(CAMPAIGN_ID_ATTRIBUTE_KEY);
         final String activityId = campaignAttributes.get(CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY);
 
-        final int requestID = (campaignId + ":" + activityId + ":" + System.currentTimeMillis()).hashCode();
+        final int requestID = getNotificationRequestId(campaignId, activityId);
 
         final int iconResId = getNotificationIconResourceId(pushBundle.getString(NOTIFICATION_ICON_PUSH_KEY));
         if (iconResId == 0) {

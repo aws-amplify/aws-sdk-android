@@ -39,7 +39,7 @@ public class GoogleButton extends SignInButton {
     private static final String LOG_TAG = GoogleButton.class.getSimpleName();
 
     /** Button corner radius. */
-    private static final int CORNER_RADIUS = dp(4);
+    private static final int CORNER_RADIUS = 4;
 
     /** Button background color. */
     private static final int GOOGLE_BACKGROUND_COLOR = Color.WHITE;
@@ -50,11 +50,14 @@ public class GoogleButton extends SignInButton {
     /** Text Color. */
     private static final int TEXT_COLOR = Color.DKGRAY;
 
+    /** Button top shadow color. */
+    private static final int BUTTON_TOP_SHADOW_COLOR = 0xFFCCCCCC;
+
     /** Button top shadow thickness in pixels. */
-    private static final int BUTTON_TOP_SHADOW_THICKNESS = (int) dp(3);
- 
+    private static final int BUTTON_TOP_SHADOW_THICKNESS = (int) dp(1);
+
     /** Button bottom shadow thickness in pixels. */
-    private static final int BUTTON_BOTTOM_SHADOW_THICKNESS = (int) dp(3);
+    private static final int BUTTON_BOTTOM_SHADOW_THICKNESS = (int) dp(2);
 
     /**
      * Constructor.
@@ -84,15 +87,16 @@ public class GoogleButton extends SignInButton {
                         @Nullable final AttributeSet attrs,
                         final int defStyleAttr) {
         super(context, attrs, defStyleAttr,
-            new SignInButtonAttributes()
-                .withCornerRadius(CORNER_RADIUS)
-                .withBackgroundColor(GOOGLE_BACKGROUND_COLOR)
-                .withBackgroundColorPressed(GOOGLE_BACKGROUND_COLOR_PRESSED)
-                .withTextColor(TEXT_COLOR)
-                .withDefaultTextResourceId(R.string.default_google_button_text)
-                .withImageIconResourceId(R.drawable.google_icon)
-                .withTopShadowThickness(BUTTON_TOP_SHADOW_THICKNESS)
-                .withBottomShadowThickness(BUTTON_BOTTOM_SHADOW_THICKNESS)
+                new SignInButtonAttributes()
+                        .withCornerRadius(CORNER_RADIUS)
+                        .withBackgroundColor(GOOGLE_BACKGROUND_COLOR)
+                        .withBackgroundColorPressed(GOOGLE_BACKGROUND_COLOR_PRESSED)
+                        .withTextColor(TEXT_COLOR)
+                        .withDefaultTextResourceId(R.string.default_google_button_text)
+                        .withImageIconResourceId(R.drawable.google_icon)
+                        .withTopShadowColor(BUTTON_TOP_SHADOW_COLOR)
+                        .withTopShadowThickness(BUTTON_TOP_SHADOW_THICKNESS)
+                        .withBottomShadowThickness(BUTTON_BOTTOM_SHADOW_THICKNESS)
         );
 
         if (isInEditMode()) {
@@ -103,9 +107,9 @@ public class GoogleButton extends SignInButton {
             final SignInManager signInManager = SignInManager.getInstance();
             signInManager.initializeSignInButton(GoogleSignInProvider.class, this);
         } catch (Exception exception) {
-             exception.printStackTrace();
-             Log.e(LOG_TAG, "Cannot initialize the SignInButton. Please check if IdentityManager :"
-                          + " startUpAuth and setUpToAuthenticate are invoked");
+            exception.printStackTrace();
+            Log.e(LOG_TAG, "Cannot initialize the SignInButton. Please check if IdentityManager :"
+                    + " startUpAuth and setUpToAuthenticate are invoked");
         }
     }
 

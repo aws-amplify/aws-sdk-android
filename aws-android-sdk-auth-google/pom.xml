@@ -21,7 +21,7 @@
   <parent>
     <groupId>com.amazonaws</groupId>
     <artifactId>aws-android-sdk-pom</artifactId>
-    <version>2.6.0</version>
+    <version>2.6.1</version>
   </parent>
 
   <repositories>
@@ -40,7 +40,7 @@
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-android-sdk-auth-core</artifactId>
       <optional>false</optional>
-      <version>2.6.0</version>
+      <version>2.6.1</version>
       <type>aar</type>
     </dependency>
     
@@ -54,8 +54,8 @@
     <dependency>
       <groupId>com.android.support</groupId>
       <artifactId>support-v4</artifactId>
-      <version>24.2.0</version>
-      <optional>false</optional>
+      <version>23.0.1</version>
+      <optional>true</optional>
       <type>aar</type>
     </dependency>
 
