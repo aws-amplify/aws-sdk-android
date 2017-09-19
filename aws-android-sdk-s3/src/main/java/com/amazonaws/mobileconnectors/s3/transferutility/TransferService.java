@@ -319,6 +319,11 @@ public class TransferService extends Service {
                 transfer = dbUtil.getTransferById(id);
                 if (transfer != null) {
                     updater.addTransfer(transfer);
+                    /*
+                     * @Anchorer
+                     * while resuming a transfer, if the transfer is null, create a new one, and trigger a state callback instantly. (for UI display)
+                     */
+                    updater.updateState(id, transfer.state);
                 } else {
                     LOGGER.error("Can't find transfer: " + id);
                 }
