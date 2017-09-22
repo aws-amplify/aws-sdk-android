@@ -56,7 +56,7 @@ class FileRecordStore {
     /**
      * Creates the FileRecordStore.
      *
-     * @param recorderDirectory The directory (which the FileRecordStore is only
+     * @param workDirectory The directory (which the FileRecordStore is only
      *            used for the KinesisRecorder) to use to store requests in
      * @param recordFileName Name of the record file
      * @param maxStorageSize Maximum storage size in bytes
