@@ -1,12 +1,12 @@
 /**
  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at:
- *
- *    http://aws.amazon.com/apache2.0
- *
+ * <p>
+ * http://aws.amazon.com/apache2.0
+ * <p>
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
  * OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and
@@ -652,7 +652,7 @@ public class AWSIotMqttManager {
      *                       be called with new connection status.
      */
     public void connect(AWSCredentialsProvider credentialsProvider,
-            final AWSIotMqttClientStatusCallback statusCallback) {
+                        final AWSIotMqttClientStatusCallback statusCallback) {
         clientCredentialsProvider = credentialsProvider;
 
         if (credentialsProvider == null) {
@@ -688,7 +688,7 @@ public class AWSIotMqttManager {
                     // Specify the URL through the server URI array.  This is checked
                     // at connect time and allows us to specify a new URL (with new
                     // SigV4 parameters) for each connect.
-                    options.setServerURIs(new String[] {mqttWebSocketURL});
+                    options.setServerURIs(new String[]{mqttWebSocketURL});
 
                     if (mqttLWT != null) {
                         options.setWill(mqttLWT.getTopic(), mqttLWT.getMessage().getBytes(),
@@ -715,7 +715,7 @@ public class AWSIotMqttManager {
      * @param statusCallback callback for status updates on connection.
      */
     private void mqttConnect(MqttConnectOptions options,
-            final AWSIotMqttClientStatusCallback statusCallback) {
+                             final AWSIotMqttClientStatusCallback statusCallback) {
         LOGGER.debug("ready to do mqtt connect");
 
         // AWS IoT does not currently support persistent sessions
@@ -919,7 +919,7 @@ public class AWSIotMqttManager {
      */
     private boolean scheduleReconnect() {
         LOGGER.info("schedule Reconnect attempt " + autoReconnectsAttempted + " of " + maxAutoReconnectAttempts
-            + " in " + currentReconnectRetryTime + " seconds.");
+                + " in " + currentReconnectRetryTime + " seconds.");
         // schedule a reconnect if unlimited or if we haven't yet hit the limit
 
         if (maxAutoReconnectAttempts == -1 || autoReconnectsAttempted < maxAutoReconnectAttempts) {
@@ -963,7 +963,7 @@ public class AWSIotMqttManager {
      *            this topic for this subscription.
      */
     public void subscribeToTopic(String topic, AWSIotMqttQos qos,
-            AWSIotMqttNewMessageCallback callback) {
+                                 AWSIotMqttNewMessageCallback callback) {
 
         if (topic == null || topic.isEmpty()) {
             throw new IllegalArgumentException("topic is null or empty");
@@ -1028,7 +1028,7 @@ public class AWSIotMqttManager {
      * @param topic The topic on which to publish.
      * @param qos The quality of service requested for this message.
      */
-    public void publishString(String str, String topic, AWSIotMqttQos qos) {
+    public void publishString(String str, String topic, AWSIotMqttQos qos, IMqttActionListener iMqttActionListener) {
 
         if (str == null) {
             throw new IllegalArgumentException("publish string is null");
@@ -1042,7 +1042,7 @@ public class AWSIotMqttManager {
             throw new IllegalArgumentException("QoS cannot be null");
         }
 
-        publishData(str.getBytes(StringUtils.UTF8), topic, qos);
+        publishData(str.getBytes(StringUtils.UTF8), topic, qos, iMqttActionListener);
     }
 
     /**
@@ -1056,7 +1056,7 @@ public class AWSIotMqttManager {
      *                 callback is invoked.
      */
     public void publishString(String str, String topic, AWSIotMqttQos qos,
-            AWSIotMqttMessageDeliveryCallback cb, Object userData) {
+                              AWSIotMqttMessageDeliveryCallback cb, Object userData, IMqttActionListener iMqttActionListener) {
 
         if (str == null) {
             throw new IllegalArgumentException("publish string is null");
@@ -1070,33 +1070,32 @@ public class AWSIotMqttManager {
             throw new IllegalArgumentException("QoS cannot be null");
         }
 
-        publishData(str.getBytes(StringUtils.UTF8), topic, qos, cb, userData);
+        publishData(str.getBytes(StringUtils.UTF8), topic, qos, cb, userData, iMqttActionListener);
     }
 
     /**
      * Publish data to an MQTT topic.
-     *
-     * @param data The message payload to be sent as a byte array.
+     *  @param data The message payload to be sent as a byte array.
      * @param topic The topic on which to publish.
      * @param qos The quality of service requested for this message.
+     * @param iMqttActionListener
      */
-    public void publishData(byte[] data, String topic, AWSIotMqttQos qos) {
+    public void publishData(byte[] data, String topic, AWSIotMqttQos qos, IMqttActionListener iMqttActionListener) {
 
-        publishData(data, topic, qos, null, null);
+        publishData(data, topic, qos, null, null, iMqttActionListener);
     }
 
     /**
      * Publish data to an MQTT topic.
-     *
-     * @param data The message payload to be sent as a byte array.
+     *  @param data The message payload to be sent as a byte array.
      * @param topic The topic on which to publish.
      * @param qos The quality of service requested for this message.
      * @param callback Callback for message status.
      * @param userData User defined data which will be passed back to the user when the
-     *                 callback is invoked.
+     * @param iMqttActionListener
      */
     public void publishData(byte[] data, String topic, AWSIotMqttQos qos,
-            AWSIotMqttMessageDeliveryCallback callback, Object userData) {
+                            AWSIotMqttMessageDeliveryCallback callback, Object userData, IMqttActionListener iMqttActionListener) {
 
         if (topic == null || topic.isEmpty()) {
             throw new IllegalArgumentException("topic is null or empty");
@@ -1115,7 +1114,7 @@ public class AWSIotMqttManager {
         if (connectionState == MqttManagerConnectionState.Connected) {
             if (mqttMessageQueue.isEmpty()) {
                 try {
-                    mqttClient.publish(topic, data, qos.asInt(), false, publishMessageUserData, null);
+                    mqttClient.publish(topic, data, qos.asInt(), false, publishMessageUserData, iMqttActionListener);
                 } catch (final MqttException e) {
                     if (callback != null) {
                         userPublishCallback(callback,
@@ -1165,7 +1164,7 @@ public class AWSIotMqttManager {
      * @return True if message is enqueued, false if queue is full and queue is set to skip on full.
      */
     boolean putMessageInQueue(byte[] data, String topic, AWSIotMqttQos qos,
-            PublishMessageUserData publishMessageUserData) {
+                              PublishMessageUserData publishMessageUserData) {
         final AWSIotMqttQueueMessage message = new AWSIotMqttQueueMessage(topic, data, qos, publishMessageUserData);
 
         if (mqttMessageQueue.size() >= offlinePublishQueueBound) {
@@ -1342,8 +1341,8 @@ public class AWSIotMqttManager {
      * @param userData User defined data to be passed to the user in the callback.
      */
     void userPublishCallback(AWSIotMqttMessageDeliveryCallback cb,
-            AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus status,
-            Object userData) {
+                             AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus status,
+                             Object userData) {
         if (cb != null) {
             cb.statusChanged(status, userData);
         }
