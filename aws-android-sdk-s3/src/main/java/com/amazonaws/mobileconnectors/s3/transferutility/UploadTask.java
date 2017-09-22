@@ -106,10 +106,7 @@ class UploadTask implements Callable<Boolean> {
                         + " due to " + ace.getMessage(), ace);
                 updater.throwError(upload.id, ace);
 
-                /*
-                 * @Anchorer
-                 * While initiating Multi-part upload, if the task is already paused by user, the task should not be set to FAILED.
-                 */
+                // While initiating Multi-part upload, if the task is already paused by user, the task should not be set to FAILED.
                 if (!TransferState.PAUSED.equals(upload.state)) {
                     updater.updateState(upload.id, TransferState.FAILED);
                 }
@@ -191,10 +188,7 @@ class UploadTask implements Callable<Boolean> {
                 updater.throwError(upload.id, e);
             }
 
-            /*
-             * @Anchorer
-             * If the task is already paused by user, it should not be set to FAILED state.
-             */
+            // If the task is already paused by user, it should not be set to FAILED state.
             if (!TransferState.PAUSED.equals(upload.state)) {
                 updater.updateState(upload.id, TransferState.FAILED);
             }
@@ -212,10 +206,7 @@ class UploadTask implements Callable<Boolean> {
                     + " due to " + ace.getMessage(), ace);
             updater.throwError(upload.id, ace);
 
-            /*
-             * @Anchorer
-             * If the task is already paused by user, it should not be set to FAILED state.
-             */
+            // If the task is already paused by user, it should not be set to FAILED state.
             if (!TransferState.PAUSED.equals(upload.state)) {
                 updater.updateState(upload.id, TransferState.FAILED);
             }
@@ -259,10 +250,7 @@ class UploadTask implements Callable<Boolean> {
             LOGGER.debug("Failed to upload: " + upload.id + " due to " + e.getMessage(), e);
             updater.throwError(upload.id, e);
 
-            /*
-             * @Anchorer
-             * If the task is already paused by user, it should not be set to FAILED state.
-             */
+            // If the task is already paused by user, it should not be set to FAILED state.
             if (!TransferState.PAUSED.equals(upload.state)) {
                 updater.updateState(upload.id, TransferState.FAILED);
             }
