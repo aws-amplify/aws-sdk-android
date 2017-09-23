@@ -71,7 +71,7 @@ public abstract class AbstractKinesisRecorder {
 
         public List<byte[]> get(String key) {
             if (key == null)
-                return new ArrayList<>();
+                return new ArrayList<byte[]>();
             else
                 return super.get(key);
         }
