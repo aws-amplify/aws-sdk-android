@@ -59,6 +59,7 @@ public class AbstractKinesisRecorderTest {
         protected MockAbstractKinesisRecorder(FileRecordStore recordStore,
                 KinesisRecorderConfig config) {
             super(recordStore, config);
+            clearBatchBuffer();
         }
 
         private void setRecordSender(RecordSender sender) {
@@ -104,25 +105,27 @@ public class AbstractKinesisRecorderTest {
 
     @Test
     public void testNextBatchLimit() throws IOException {
+        String streamName = null;
         for (int i = 0; i < 10; i++) {
             recorder.saveRecord(randomBytes(1024), STREAM_NAME);
         }
-        List<byte[]> data = new ArrayList<byte[]>();
-        RecordIterator iterator;
 
-        iterator = recorder.recordStore.iterator();
-        String streamName = recorder.nextBatch(iterator, data, 1, 5 * 1024);
+        RecordIterator iterator = recorder.recordStore.iterator();
+        streamName = recorder.nextBatch(iterator, streamName, 1, 5 * 1024);
+        List<byte[]> data = recorder.batchBuffer.get(streamName);
         assertEquals("read 1 records", 1, data.size());
         assertEquals("stream name", STREAM_NAME, streamName);
         iterator.close();
 
         iterator = recorder.recordStore.iterator();
-        recorder.nextBatch(iterator, data, 10, 5 * 1024);
+        recorder.nextBatch(iterator, streamName, 10, 5 * 1024);
+        data = recorder.batchBuffer.get(streamName);
         assertEquals("read 5 records", 5, data.size());
         iterator.close();
 
         iterator = recorder.recordStore.iterator();
-        recorder.nextBatch(iterator, data, 10, 5 * 1024 - 10);
+        recorder.nextBatch(iterator, streamName, 10, 5 * 1024 - 10);
+        data = recorder.batchBuffer.get(streamName);
         // allows 1 record to bring the total size over the limit
         assertEquals("read 5 records", 5, data.size());
         iterator.close();
@@ -130,38 +133,129 @@ public class AbstractKinesisRecorderTest {
 
     @Test
     public void testNextBatch() throws IOException {
+        String anotherStream = "another_stream";
+        int maxCount = 6;
+        int maxSize = 10 * 1024;
+        String streamName = null;
+
+        for (int i = 0; i < 10; i++) {
+            if (i % 2 == 0)
+                recorder.saveRecord(randomBytes(1024), STREAM_NAME);
+            else
+                recorder.saveRecord(randomBytes(997), STREAM_NAME);
+        }
+
+        for (int i = 0; i < 10; i++) {
+            if (i % 2 == 0)
+                recorder.saveRecord(randomBytes(1024), anotherStream);
+            else
+                recorder.saveRecord(randomBytes(997), anotherStream);
+        }
+
+        // read all data
+        RecordIterator iterator = recorder.recordStore.iterator();
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        List<byte[]> data = recorder.batchBuffer.get(streamName);
+        assertEquals("read 6 records", 6, data.size());
+        assertEquals("stream name", STREAM_NAME, streamName);
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        data = recorder.batchBuffer.get(streamName);
+        assertEquals("read 6 records", 6, data.size());
+        assertEquals("stream name", anotherStream, streamName);
+
+        // next batches are the remaining data for the 2 streams
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        data = recorder.batchBuffer.get(streamName);
+        assertEquals("read 4 records", 4, data.size());
+        assertEquals("stream name", STREAM_NAME, streamName);
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        data = recorder.batchBuffer.get(streamName);
+        assertEquals("read 4 records", 4, data.size());
+        assertEquals("stream name", anotherStream, streamName);
+
+        // reach the end
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        data = recorder.batchBuffer.get(streamName);
+        assertEquals("no more records", 0, data.size());
+        assertNull("no stream", streamName);
+        iterator.close();
+    }
+
+    @Test
+    public void testNextBatchWithCorruptData() throws IOException {
+        String anotherStream = "another_stream";
+        int maxCount = 6;
+        int maxSize = 10 * 1024;
+        String streamName = null;
+
+        for (int i = 0; i < 10; i++) {
+            recorder.saveRecord(randomBytes(1024), STREAM_NAME);
+            recorder.recordStore.put(anotherStream + "," + "totally_not_base64");
+        }
+
+        // read all data
+        RecordIterator iterator = recorder.recordStore.iterator();
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        List<byte[]> data = recorder.batchBuffer.get(streamName);
+        assertEquals("read 6 records", 6, data.size());
+        assertEquals("stream name", STREAM_NAME, streamName);
+
+        // next batches are the remaining data for the 2 streams
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        data = recorder.batchBuffer.get(streamName);
+        assertEquals("read 4 records", 4, data.size());
+        assertEquals("stream name", STREAM_NAME, streamName);
+
+        // reach the end
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        data = recorder.batchBuffer.get(streamName);
+        assertEquals("no more records", 0, data.size());
+        assertNull("no stream", streamName);
+        iterator.close();
+    }
+
+    @Test
+    public void testNextBatchMixedStreams() throws IOException {
+        String anotherStream = "another_stream";
+        String streamName = null;
         int maxCount = 6;
         int maxSize = 10 * 1024;
 
         for (int i = 0; i < 10; i++) {
             recorder.saveRecord(randomBytes(1024), STREAM_NAME);
-        }
-        String anotherStream = "another_stream";
-        for (int i = 0; i < 10; i++) {
             recorder.saveRecord(randomBytes(1024), anotherStream);
         }
-        List<byte[]> data = new ArrayList<byte[]>();
 
         // read all data
         RecordIterator iterator = recorder.recordStore.iterator();
-        iterator = recorder.recordStore.iterator();
-        String streamName = recorder.nextBatch(iterator, data, maxCount, maxSize);
+
+        // first batch belongs to stream1
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        List<byte[]> data = recorder.batchBuffer.get(streamName);
         assertEquals("read 6 records", 6, data.size());
         assertEquals("stream name", STREAM_NAME, streamName);
-        streamName = recorder.nextBatch(iterator, data, maxCount, maxSize);
+
+        // second batch belongs to stream2
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        data = recorder.batchBuffer.get(streamName);
+        assertEquals("read 6 records", 6, data.size());
+        assertEquals("stream name", anotherStream, streamName);
+
+        // third batch includes the rest of stream1 records
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        data = recorder.batchBuffer.get(streamName);
         assertEquals("read 4 records", 4, data.size());
         assertEquals("stream name", STREAM_NAME, streamName);
 
-        // next batch belongs to a different stream
-        streamName = recorder.nextBatch(iterator, data, maxCount, maxSize);
-        assertEquals("read 6 records", 6, data.size());
-        assertEquals("stream name", anotherStream, streamName);
-        streamName = recorder.nextBatch(iterator, data, maxCount, maxSize);
+        // last batch includes the rest of stream2 records
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        data = recorder.batchBuffer.get(streamName);
         assertEquals("read 4 records", 4, data.size());
         assertEquals("stream name", anotherStream, streamName);
 
         // reach the end
-        streamName = recorder.nextBatch(iterator, data, maxCount, maxSize);
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        data = recorder.batchBuffer.get(streamName);
         assertEquals("no more records", 0, data.size());
         assertNull("no stream", streamName);
         iterator.close();
@@ -169,30 +263,65 @@ public class AbstractKinesisRecorderTest {
 
     @Test
     public void testNextBatchWithRemove() throws IOException {
+        String anotherStream = "another_stream";
+        String streamName = null;
         int maxCount = 100;
         int maxSize = 100 * 1024;
 
         for (int i = 0; i < 10; i++) {
             recorder.saveRecord(randomBytes(1024), STREAM_NAME);
         }
-        String anotherStream = "another_stream";
+
         for (int i = 0; i < 10; i++) {
             recorder.saveRecord(randomBytes(1024), anotherStream);
         }
-        List<byte[]> data = new ArrayList<byte[]>();
 
         // read all data
         RecordIterator iterator = recorder.recordStore.iterator();
-        iterator = recorder.recordStore.iterator();
-        String streamName = recorder.nextBatch(iterator, data, maxCount, maxSize);
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        List<byte[]> data = recorder.batchBuffer.get(streamName);
         assertEquals("read 10 records", 10, data.size());
         assertEquals("stream name", STREAM_NAME, streamName);
         iterator.removeReadRecords();
-        streamName = recorder.nextBatch(iterator, data, maxCount, maxSize);
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        data = recorder.batchBuffer.get(streamName);
         assertEquals("read 10 records", 10, data.size());
         assertEquals("stream name", anotherStream, streamName);
         iterator.removeReadRecords();
-        streamName = recorder.nextBatch(iterator, data, maxCount, maxSize);
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        data = recorder.batchBuffer.get(streamName);
+        assertEquals("no more records", 0, data.size());
+        assertNull("no stream", streamName);
+        iterator.close();
+        assertEquals("empty record store", 0, recorder.getDiskBytesUsed());
+    }
+
+    @Test
+    public void testNextBatchMixedStreamsWithRemove() throws IOException {
+        String anotherStream = "another_stream";
+        String streamName = null;
+        int maxCount = 100;
+        int maxSize = 100 * 1024;
+
+        for (int i = 0; i < 10; i++) {
+            recorder.saveRecord(randomBytes(1024), STREAM_NAME);
+            recorder.saveRecord(randomBytes(1024), anotherStream);
+        }
+
+        // read all data
+        RecordIterator iterator = recorder.recordStore.iterator();
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        List<byte[]> data = recorder.batchBuffer.get(streamName);
+        assertEquals("read 10 records", 10, data.size());
+        assertEquals("stream name", STREAM_NAME, streamName);
+        iterator.removeReadRecords();
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        data = recorder.batchBuffer.get(streamName);
+        assertEquals("read 10 records", 10, data.size());
+        assertEquals("stream name", anotherStream, streamName);
+        iterator.removeReadRecords();
+        streamName = recorder.nextBatch(iterator, streamName, maxCount, maxSize);
+        data = recorder.batchBuffer.get(streamName);
         assertEquals("no more records", 0, data.size());
         assertNull("no stream", streamName);
         iterator.close();
@@ -212,12 +341,29 @@ public class AbstractKinesisRecorderTest {
                 .thenReturn(new ArrayList<byte[]>());
         recorder.submitAllRecords();
         assertEquals("no records after submitAllRecords", 0, recorder.getDiskBytesUsed());
+        assertEquals("no records in batchBuffer after submitAllRecords", null, recorder.batchBuffer);
+    }
+
+    @Test
+    public void testSubmitAllRecordsMixedBatches() {
+        String anotherStream = "another_stream";
+        for (int i = 0; i < 10; i++) {
+            recorder.saveRecord(randomBytes(1024), STREAM_NAME);
+            recorder.saveRecord(randomBytes(1024), anotherStream);
+        }
+        Mockito.when(sender.sendBatch(Mockito.anyString(), Mockito.anyListOf(byte[].class)))
+                .thenReturn(new ArrayList<byte[]>());
+        recorder.submitAllRecords();
+        assertEquals("no records after submitAllRecords", 0, recorder.getDiskBytesUsed());
+        assertEquals("no records in batchBuffer after submitAllRecords", null, recorder.batchBuffer);
     }
 
     @Test
     public void testSubmitAllRecordsWithRecoverableFailures() {
+        String anotherStream = "another_stream";
         for (int i = 0; i < 10; i++) {
             recorder.saveRecord(randomBytes(1024), STREAM_NAME);
+            recorder.saveRecord(randomBytes(1024), anotherStream);
         }
         long size = recorder.getDiskBytesUsed();
         AmazonServiceException ase = new AmazonServiceException("some failures");
@@ -231,12 +377,15 @@ public class AbstractKinesisRecorderTest {
             assertSame("same exception", ase, ace);
         }
         assertEquals("no records sent", size, recorder.getDiskBytesUsed());
+        assertEquals("no records in batchBuffer after submitAllRecords", null, recorder.batchBuffer);
     }
 
     @Test
     public void testSubmitAllRecordsWithNonRecoverableFailures() {
+        String anotherStream = "another_stream";
         for (int i = 0; i < 10; i++) {
             recorder.saveRecord(randomBytes(1024), STREAM_NAME);
+            recorder.saveRecord(randomBytes(1024), anotherStream);
         }
         AmazonServiceException ase = new AmazonServiceException("some failures");
         Mockito.when(sender.sendBatch(Mockito.anyString(), Mockito.anyListOf(byte[].class)))
@@ -249,12 +398,15 @@ public class AbstractKinesisRecorderTest {
             assertSame("same exception", ase, ace);
         }
         assertEquals("records removed", 0, recorder.getDiskBytesUsed());
+        assertEquals("no records in batchBuffer after submitAllRecords", null, recorder.batchBuffer);
     }
 
     @Test
     public void testSubmitAllRecordsWithPartialFailures() {
+        String anotherStream = "another_stream";
         for (int i = 0; i < 10; i++) {
             recorder.saveRecord(randomBytes(1024), STREAM_NAME);
+            recorder.saveRecord(randomBytes(1024), anotherStream);
         }
         Mockito.when(sender.sendBatch(Mockito.anyString(), Mockito.anyListOf(byte[].class)))
                 // one of the records fails, but succeeds the next time
@@ -262,18 +414,22 @@ public class AbstractKinesisRecorderTest {
                 .thenReturn(new ArrayList<byte[]>());
         recorder.submitAllRecords();
         assertEquals("records removed", 0, recorder.getDiskBytesUsed());
+        assertEquals("no records in batchBuffer after submitAllRecords", null, recorder.batchBuffer);
     }
 
     @Test
     public void testSubmitAllRecordsWithPartialFailuresExceedsMaxRetry() {
+        String anotherStream = "another_stream";
         for (int i = 0; i < 10; i++) {
             recorder.saveRecord(randomBytes(1024), STREAM_NAME);
+            recorder.saveRecord(randomBytes(1024), anotherStream);
         }
         Mockito.when(sender.sendBatch(Mockito.anyString(), Mockito.anyListOf(byte[].class)))
-                // one of the records always failes
+                // one of the records always fails
                 .thenReturn(Arrays.asList(randomBytes(1024)));
         recorder.submitAllRecords();
         assertTrue("records not removed", recorder.getDiskBytesUsed() > 0);
+        assertNotNull(recorder.batchBuffer);
     }
 
     private byte[] randomBytes(int length) {

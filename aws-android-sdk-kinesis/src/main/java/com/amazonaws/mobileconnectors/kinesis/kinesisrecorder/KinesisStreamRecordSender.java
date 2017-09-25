@@ -54,7 +54,7 @@ class KinesisStreamRecordSender implements RecordSender {
      *
      * @param client an {@link AmazonKinesis} client
      * @param userAgent user agent string to be set in each request
-     * @param config the Kinesis recorder config.
+     * @param partitionKey the Kinesis partition key.
      */
     public KinesisStreamRecordSender(AmazonKinesis client, String userAgent,
             String partitionKey) {

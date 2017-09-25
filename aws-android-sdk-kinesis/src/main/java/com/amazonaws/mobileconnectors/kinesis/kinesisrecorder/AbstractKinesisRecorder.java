@@ -25,7 +25,9 @@ import org.apache.commons.logging.LogFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * An abstract class for Amazon Kinesis recorders. It manages local file store
@@ -54,6 +56,29 @@ public abstract class AbstractKinesisRecorder {
     protected FileRecordStore recordStore;
 
     /**
+     * A LinkedHashMap-backed Buffer that will ensure that the next
+     * batch for a given stream is filled to maximum capacity before being
+     * submitted.
+     */
+    protected class BatchHashBuffer extends LinkedHashMap<String, List<byte[]>> {
+        public BatchHashBuffer() {
+            super();
+        }
+
+        public void clearBatch(String key) {
+            this.put(key, new ArrayList<byte[]>());
+        }
+
+        public List<byte[]> get(String key) {
+            if (key == null)
+                return new ArrayList<byte[]>();
+            else
+                return super.get(key);
+        }
+    }
+    protected BatchHashBuffer batchBuffer;
+
+    /**
      * Gets the sender to send saved records.
      *
      * @return a {@link RecordSender}
@@ -72,6 +97,17 @@ public abstract class AbstractKinesisRecorder {
         }
         this.recordStore = recordStore;
         this.config = config;
+        clearBatchBuffer();
+    }
+
+    /**
+     * Initializes a BatchHashBuffer.
+     * For each stream name in the record store, a key value pair is created
+     * where the key is the stream name, and the value is an empty batch
+     * to be filled with records to max capacity before being returned by nextBatch().
+     */
+    protected void clearBatchBuffer() {
+        this.batchBuffer = new BatchHashBuffer();
     }
 
     /**
@@ -120,21 +156,22 @@ public abstract class AbstractKinesisRecorder {
     public synchronized void submitAllRecords() {
         final RecordSender sender = getRecordSender();
         final RecordIterator iterator = recordStore.iterator();
-        final List<byte[]> data = new ArrayList<byte[]>(MAX_RECORDS_PER_BATCH);
+        String streamName = null;
         int retry = 0;
         int count = 0;
+        clearBatchBuffer();
         try {
-            while (iterator.hasNext() && retry < MAX_RETRY_COUNT) {
-                final String streamName = nextBatch(iterator, data, MAX_RECORDS_PER_BATCH,
+            while ((iterator.hasNext() || !batchBuffer.isEmpty()) && retry < MAX_RETRY_COUNT) {
+                streamName = nextBatch(iterator, streamName, MAX_RECORDS_PER_BATCH,
                         MAX_BATCH_RECORDS_SIZE_BYTES);
-                if (streamName == null || data.isEmpty()) {
+                if (streamName == null || this.batchBuffer.get(streamName).isEmpty()) {
                     break;
                 }
 
                 try {
 
-                    final List<byte[]> failures = sender.sendBatch(streamName, data);
-                    final int successCount = data.size() - failures.size();
+                    final List<byte[]> failures = sender.sendBatch(streamName, this.batchBuffer.get(streamName));
+                    final int successCount = this.batchBuffer.get(streamName).size() - failures.size();
                     count += successCount;
 
                     /**
@@ -178,6 +215,7 @@ public abstract class AbstractKinesisRecorder {
                                 "ServiceException in submit all, the last request is presumed to be the cause and will be dropped",
                                 ace);
                     }
+                    batchBuffer.clear();
                     throw ace;
                 } catch (final IOException e) {
                     throw new AmazonClientException("Failed to remove read records", e);
@@ -185,6 +223,10 @@ public abstract class AbstractKinesisRecorder {
             }
         } finally {
             LOGGER.debug(String.format("submitAllRecords sent %d records", count));
+            if (batchBuffer.isEmpty())
+                batchBuffer = null;
+            else
+                LOGGER.error("Batch Buffer deallocated before being emptied");
             try {
                 iterator.close();
             } catch (final IOException e) {
@@ -194,25 +236,26 @@ public abstract class AbstractKinesisRecorder {
     }
 
     /**
-     * Reads a batch of records belong to the same stream into a list. If data
-     * is read successfully, the stream name is returned.
+     * Reads a batch of records belonging to the same stream into a LinkedHashMap-backed buffer.
+     * If a batch for a given stream name reaches max capacity, the batch
+     * will be returned immediately. All remaining batches in the buffer that have not reached
+     * max capacity will be the next batches to be returned. If a batch is read successfully,
+     * the stream name is returned.
      *
      * @param iterator record iterator
-     * @param data a list to hold data.
+     * @param lastStreamName last stream name. Pass null on first call to nextBatch().
      * @param maxCount maximum number of records in a batch
      * @param maxSize a threshold that concludes a batch. It allows one extra
      *            record that brings the total size over this threshold.
      * @return the stream name that the batch belongs to
      */
-    protected String nextBatch(RecordIterator iterator, List<byte[]> data, int maxCount,
+    protected String nextBatch(RecordIterator iterator, String lastStreamName, int maxCount,
             int maxSize) {
-        data.clear();
+        if (lastStreamName != null)
+            this.batchBuffer.remove(lastStreamName);
 
-        String lastStreamName = null;
-        int size = 0;
-        int count = 0;
         final FileRecordParser frp = new FileRecordParser();
-        while (iterator.hasNext() && count < maxCount && size < maxSize) {
+        while (iterator.hasNext()) {
             final String line = iterator.peek();
             if (line == null || line.isEmpty()) {
                 continue;
@@ -222,23 +265,45 @@ public abstract class AbstractKinesisRecorder {
                 frp.parse(line);
             } catch (final Exception e) {
                 LOGGER.warn("Failed to read line. Skip.", e);
+                iterator.next();
                 continue;
             }
-
-            // check whether it belongs to previous batch
-            if (lastStreamName == null || lastStreamName.equals(frp.streamName)) {
-                data.add(frp.bytes);
-                // update counter
-                count++;
-                size += frp.bytes.length;
+            // add record to respective batch in the buffer
+            if (this.batchBuffer.get(frp.streamName) == null) {
+                this.batchBuffer.clearBatch(frp.streamName);
+            }
+            this.batchBuffer.get(frp.streamName).add(frp.bytes);
+            int count = this.batchBuffer.get(frp.streamName).size();
+            int size = calculateBatchSize(this.batchBuffer.get(frp.streamName));
+            iterator.next();
+            // when the limit is reached, return the stream name of the filled batch
+            if (count >= maxCount || size >= maxSize) {
                 lastStreamName = frp.streamName;
-                iterator.next();
-            } else {
-                break;
+                return lastStreamName;
             }
         }
+        // return the stream name of any remaining data in the buffer
+        for(Map.Entry<String, List<byte[]>> entry : batchBuffer.entrySet()) {
+            if (!entry.getValue().isEmpty()) {
+                lastStreamName = entry.getKey();
+                return lastStreamName;
+            }
+        }
+        return null;
+    }
 
-        return lastStreamName;
+    /**
+     * Calculates the size of a batch in the batch buffer
+     *
+     * @param batch, a batch from batchBuffer
+     * @return the size of the batch in bytes
+     */
+    protected int calculateBatchSize(List<byte[]> batch) {
+        int size = 0;
+        for (byte[] record : batch) {
+            size += record.length;
+        }
+        return size;
     }
 
     /**
