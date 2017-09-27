@@ -70,6 +70,9 @@ class WriteCampaignRequestJsonUnmarshaller implements
             } else if (name.equals("SegmentVersion")) {
                 writeCampaignRequest.setSegmentVersion(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Trace")) {
+                writeCampaignRequest.setTrace(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("TreatmentDescription")) {
                 writeCampaignRequest.setTreatmentDescription(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

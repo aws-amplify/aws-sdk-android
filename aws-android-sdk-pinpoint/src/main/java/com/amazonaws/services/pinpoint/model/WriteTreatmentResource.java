@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Used to create a campaign treatment.
+ */
 public class WriteTreatmentResource implements Serializable {
     /**
      * The message configuration settings.

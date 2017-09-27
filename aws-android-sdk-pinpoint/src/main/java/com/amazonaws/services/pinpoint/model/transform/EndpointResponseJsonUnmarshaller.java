@@ -83,9 +83,6 @@ class EndpointResponseJsonUnmarshaller implements
             } else if (name.equals("RequestId")) {
                 endpointResponse.setRequestId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("ShardId")) {
-                endpointResponse.setShardId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
             } else if (name.equals("User")) {
                 endpointResponse.setUser(EndpointUserJsonUnmarshaller.getInstance()
                         .unmarshall(context));

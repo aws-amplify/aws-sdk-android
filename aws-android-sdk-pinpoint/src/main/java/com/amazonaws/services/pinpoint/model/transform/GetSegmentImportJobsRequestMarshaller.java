@@ -51,10 +51,6 @@ public class GetSegmentImportJobsRequestMarshaller implements
                 getSegmentImportJobsRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.GET);
 
-        if (getSegmentImportJobsRequest.getAccept() != null) {
-            request.addHeader("accept",
-                    StringUtils.fromString(getSegmentImportJobsRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/segments/{segment-id}/jobs/import";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

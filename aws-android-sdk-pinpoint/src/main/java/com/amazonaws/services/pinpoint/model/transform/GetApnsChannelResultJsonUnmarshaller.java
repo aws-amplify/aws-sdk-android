@@ -29,9 +29,6 @@ public class GetApnsChannelResultJsonUnmarshaller implements
     public GetApnsChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         GetApnsChannelResult getApnsChannelResult = new GetApnsChannelResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            getApnsChannelResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return getApnsChannelResult;
     }
 

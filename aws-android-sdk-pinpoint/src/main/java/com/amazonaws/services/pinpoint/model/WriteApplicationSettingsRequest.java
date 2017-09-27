@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Creating application setting request
+ */
 public class WriteApplicationSettingsRequest implements Serializable {
     /**
      * The default campaign limits for the app. These limits apply to each

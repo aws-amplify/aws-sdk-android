@@ -22,6 +22,7 @@ import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.AppLevelOptOutProvider;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.pinpoint.model.ChannelType;
 
 import org.json.JSONObject;
 
@@ -33,6 +34,7 @@ public class PinpointConfiguration {
     private Context context;
     private String appId;
     private Regions region;
+    private ChannelType channelType;
     private boolean enableEvents = true;
     private boolean enableTargeting = true;
     private boolean shouldPostNotificationsInForeground = false;
@@ -47,8 +49,29 @@ public class PinpointConfiguration {
      * @param context             the android context object.
      * @param appId               the Pinpoint Application Id.
      * @param region              the AWS {@link Regions} for the Pinpoint service.
+     * @param channelType         the Pinpoint Channel type.
      * @param credentialsProvider The {@link AWSCredentialsProvider} to be used for the service.
      */
+    public PinpointConfiguration(final Context context, final String appId,
+                                 final Regions region, final ChannelType channelType,
+                                 final AWSCredentialsProvider credentialsProvider) {
+        this.clientConfiguration = new ClientConfiguration();
+        this.context = context;
+        this.appId = appId;
+        this.credentialsProvider = credentialsProvider;
+        this.region = region;
+        this.channelType = channelType;
+    }
+
+    /**
+     * Create an {@link PinpointConfiguration} object with the specified parameters.
+     *
+     * @param context             the android context object.
+     * @param appId               the Pinpoint Application Id.
+     * @param region              the AWS {@link Regions} for the Pinpoint service.
+     * @param credentialsProvider The {@link AWSCredentialsProvider} to be used for the service.
+     */
+    @Deprecated
     public PinpointConfiguration(final Context context, final String appId,
                                  final Regions region,
                                  final AWSCredentialsProvider credentialsProvider) {
@@ -57,6 +80,7 @@ public class PinpointConfiguration {
         this.appId = appId;
         this.credentialsProvider = credentialsProvider;
         this.region = region;
+        this.channelType = ChannelType.GCM;
     }
 
     /**
@@ -74,6 +98,7 @@ public class PinpointConfiguration {
         try {
             final JSONObject pinpointConfig = awsConfiguration.optJsonObject("PinpointAnalytics");
             this.appId = pinpointConfig.getString("AppId");
+            this.channelType = convertToChannelType(pinpointConfig.optString("ChannelType"));
             this.region = Regions.fromName(pinpointConfig.getString("Region"));
 
             final String userAgent = awsConfiguration.getUserAgent();
@@ -89,6 +114,13 @@ public class PinpointConfiguration {
                     + "awsconfiguration.json file", e);
         }
         this.credentialsProvider = credentialsProvider;
+    }
+
+    private ChannelType convertToChannelType(String channel) {
+        if (channel.isEmpty())
+            return  ChannelType.GCM;
+
+        return ChannelType.fromValue(channel);
     }
 
     /**
@@ -283,6 +315,26 @@ public class PinpointConfiguration {
     @SuppressWarnings("checkstyle:hiddenfield")
     public PinpointConfiguration withAppLevelOptOutProvider(final AppLevelOptOutProvider appLevelOptOutProvider) {
         this.appLevelOptOutProvider = appLevelOptOutProvider;
+        return this;
+    }
+
+    /**
+     * The channel type supported by this configuration.
+     * @return The channel type.
+     */
+    public ChannelType getChannelType() {
+        return channelType;
+    }
+
+    /**
+     * The channel type configured.
+     *
+     * @param channelType The ChannelType for this service.
+     * @return the current PinpointConfiguration instance.
+     */
+    @SuppressWarnings("checkstyle:hiddenfield")
+    public PinpointConfiguration withChannelType(final ChannelType channelType) {
+        this.channelType = channelType;
         return this;
     }
 

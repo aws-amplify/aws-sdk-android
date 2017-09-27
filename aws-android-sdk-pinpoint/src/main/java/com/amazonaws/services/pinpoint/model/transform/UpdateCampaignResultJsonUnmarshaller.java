@@ -29,9 +29,6 @@ public class UpdateCampaignResultJsonUnmarshaller implements
     public UpdateCampaignResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         UpdateCampaignResult updateCampaignResult = new UpdateCampaignResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            updateCampaignResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return updateCampaignResult;
     }
 

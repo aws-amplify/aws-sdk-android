@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Define how a segment based on recency of use.
+ */
 public class RecencyDimension implements Serializable {
     /**
      * The length of time during which users have been active or inactive with
@@ -28,10 +31,10 @@ public class RecencyDimension implements Serializable {
     private String duration;
 
     /**
-     * The recency dimension type: ACTIVE â€“ Users who have used your app
-     * within the specified duration are included in the segment. INACTIVE â€“
-     * Users who have not used your app within the specified duration are
-     * included in the segment.
+     * The recency dimension type: ACTIVE - Users who have used your app within
+     * the specified duration are included in the segment. INACTIVE - Users who
+     * have not used your app within the specified duration are included in the
+     * segment.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE
@@ -131,18 +134,18 @@ public class RecencyDimension implements Serializable {
     }
 
     /**
-     * The recency dimension type: ACTIVE â€“ Users who have used your app
-     * within the specified duration are included in the segment. INACTIVE â€“
-     * Users who have not used your app within the specified duration are
-     * included in the segment.
+     * The recency dimension type: ACTIVE - Users who have used your app within
+     * the specified duration are included in the segment. INACTIVE - Users who
+     * have not used your app within the specified duration are included in the
+     * segment.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE
      *
-     * @return The recency dimension type: ACTIVE â€“ Users who have used your
-     *         app within the specified duration are included in the segment.
-     *         INACTIVE â€“ Users who have not used your app within the
-     *         specified duration are included in the segment.
+     * @return The recency dimension type: ACTIVE - Users who have used your app
+     *         within the specified duration are included in the segment.
+     *         INACTIVE - Users who have not used your app within the specified
+     *         duration are included in the segment.
      * @see RecencyType
      */
     public String getRecencyType() {
@@ -150,17 +153,17 @@ public class RecencyDimension implements Serializable {
     }
 
     /**
-     * The recency dimension type: ACTIVE â€“ Users who have used your app
-     * within the specified duration are included in the segment. INACTIVE â€“
-     * Users who have not used your app within the specified duration are
-     * included in the segment.
+     * The recency dimension type: ACTIVE - Users who have used your app within
+     * the specified duration are included in the segment. INACTIVE - Users who
+     * have not used your app within the specified duration are included in the
+     * segment.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE
      *
-     * @param recencyType The recency dimension type: ACTIVE â€“ Users who have
+     * @param recencyType The recency dimension type: ACTIVE - Users who have
      *            used your app within the specified duration are included in
-     *            the segment. INACTIVE â€“ Users who have not used your app
+     *            the segment. INACTIVE - Users who have not used your app
      *            within the specified duration are included in the segment.
      * @see RecencyType
      */
@@ -169,10 +172,10 @@ public class RecencyDimension implements Serializable {
     }
 
     /**
-     * The recency dimension type: ACTIVE â€“ Users who have used your app
-     * within the specified duration are included in the segment. INACTIVE â€“
-     * Users who have not used your app within the specified duration are
-     * included in the segment.
+     * The recency dimension type: ACTIVE - Users who have used your app within
+     * the specified duration are included in the segment. INACTIVE - Users who
+     * have not used your app within the specified duration are included in the
+     * segment.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -180,9 +183,9 @@ public class RecencyDimension implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE
      *
-     * @param recencyType The recency dimension type: ACTIVE â€“ Users who have
+     * @param recencyType The recency dimension type: ACTIVE - Users who have
      *            used your app within the specified duration are included in
-     *            the segment. INACTIVE â€“ Users who have not used your app
+     *            the segment. INACTIVE - Users who have not used your app
      *            within the specified duration are included in the segment.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -194,17 +197,17 @@ public class RecencyDimension implements Serializable {
     }
 
     /**
-     * The recency dimension type: ACTIVE â€“ Users who have used your app
-     * within the specified duration are included in the segment. INACTIVE â€“
-     * Users who have not used your app within the specified duration are
-     * included in the segment.
+     * The recency dimension type: ACTIVE - Users who have used your app within
+     * the specified duration are included in the segment. INACTIVE - Users who
+     * have not used your app within the specified duration are included in the
+     * segment.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE
      *
-     * @param recencyType The recency dimension type: ACTIVE â€“ Users who have
+     * @param recencyType The recency dimension type: ACTIVE - Users who have
      *            used your app within the specified duration are included in
-     *            the segment. INACTIVE â€“ Users who have not used your app
+     *            the segment. INACTIVE - Users who have not used your app
      *            within the specified duration are included in the segment.
      * @see RecencyType
      */
@@ -213,10 +216,10 @@ public class RecencyDimension implements Serializable {
     }
 
     /**
-     * The recency dimension type: ACTIVE â€“ Users who have used your app
-     * within the specified duration are included in the segment. INACTIVE â€“
-     * Users who have not used your app within the specified duration are
-     * included in the segment.
+     * The recency dimension type: ACTIVE - Users who have used your app within
+     * the specified duration are included in the segment. INACTIVE - Users who
+     * have not used your app within the specified duration are included in the
+     * segment.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -224,9 +227,9 @@ public class RecencyDimension implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE
      *
-     * @param recencyType The recency dimension type: ACTIVE â€“ Users who have
+     * @param recencyType The recency dimension type: ACTIVE - Users who have
      *            used your app within the specified duration are included in
-     *            the segment. INACTIVE â€“ Users who have not used your app
+     *            the segment. INACTIVE - Users who have not used your app
      *            within the specified duration are included in the segment.
      * @return A reference to this updated object so that method calls can be
      *         chained together.

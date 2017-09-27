@@ -39,6 +39,12 @@ class CampaignLimitsJsonUnmarshaller implements
             if (name.equals("Daily")) {
                 campaignLimits.setDaily(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("MaximumDuration")) {
+                campaignLimits.setMaximumDuration(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("MessagesPerSecond")) {
+                campaignLimits.setMessagesPerSecond(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Total")) {
                 campaignLimits.setTotal(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));

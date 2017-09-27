@@ -19,79 +19,35 @@ import java.io.Serializable;
 
 public class DeleteCampaignResult implements Serializable {
     /**
-     * The new value for the accessControlAllowOrigin property for this object.
-     */
-    private String accessControlAllowOrigin;
-
-    /**
-     * The new value for the campaignResponse property for this object.
+     * Campaign definition
      */
     private CampaignResponse campaignResponse;
 
     /**
-     * Returns the value of the accessControlAllowOrigin property for this
-     * object.
+     * Campaign definition
      *
-     * @return The value of the accessControlAllowOrigin property for this
-     *         object.
-     */
-    public String getAccessControlAllowOrigin() {
-        return accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of accessControlAllowOrigin
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     */
-    public void setAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of the accessControlAllowOrigin property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public DeleteCampaignResult withAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-        return this;
-    }
-
-    /**
-     * Returns the value of the campaignResponse property for this object.
-     *
-     * @return The value of the campaignResponse property for this object.
+     * @return Campaign definition
      */
     public CampaignResponse getCampaignResponse() {
         return campaignResponse;
     }
 
     /**
-     * Sets the value of campaignResponse
+     * Campaign definition
      *
-     * @param campaignResponse The new value for the campaignResponse property
-     *            for this object.
+     * @param campaignResponse Campaign definition
      */
     public void setCampaignResponse(CampaignResponse campaignResponse) {
         this.campaignResponse = campaignResponse;
     }
 
     /**
-     * Sets the value of the campaignResponse property for this object.
+     * Campaign definition
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param campaignResponse The new value for the campaignResponse property
-     *            for this object.
+     * @param campaignResponse Campaign definition
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -111,8 +67,6 @@ public class DeleteCampaignResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAccessControlAllowOrigin() != null)
-            sb.append("AccessControlAllowOrigin: " + getAccessControlAllowOrigin() + ",");
         if (getCampaignResponse() != null)
             sb.append("CampaignResponse: " + getCampaignResponse());
         sb.append("}");
@@ -124,10 +78,6 @@ public class DeleteCampaignResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime
-                * hashCode
-                + ((getAccessControlAllowOrigin() == null) ? 0 : getAccessControlAllowOrigin()
-                        .hashCode());
         hashCode = prime * hashCode
                 + ((getCampaignResponse() == null) ? 0 : getCampaignResponse().hashCode());
         return hashCode;
@@ -144,12 +94,6 @@ public class DeleteCampaignResult implements Serializable {
             return false;
         DeleteCampaignResult other = (DeleteCampaignResult) obj;
 
-        if (other.getAccessControlAllowOrigin() == null
-                ^ this.getAccessControlAllowOrigin() == null)
-            return false;
-        if (other.getAccessControlAllowOrigin() != null
-                && other.getAccessControlAllowOrigin().equals(this.getAccessControlAllowOrigin()) == false)
-            return false;
         if (other.getCampaignResponse() == null ^ this.getCampaignResponse() == null)
             return false;
         if (other.getCampaignResponse() != null

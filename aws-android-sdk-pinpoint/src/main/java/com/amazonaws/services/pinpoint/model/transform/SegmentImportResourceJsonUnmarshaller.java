@@ -36,7 +36,12 @@ class SegmentImportResourceJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("ExternalId")) {
+            if (name.equals("ChannelCounts")) {
+                segmentImportResource.setChannelCounts(new MapUnmarshaller<Integer>(
+                        IntegerJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("ExternalId")) {
                 segmentImportResource.setExternalId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Format")) {

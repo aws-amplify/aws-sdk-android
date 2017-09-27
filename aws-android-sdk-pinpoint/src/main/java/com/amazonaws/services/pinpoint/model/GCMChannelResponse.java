@@ -17,9 +17,12 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Google Cloud Messaging channel definition
+ */
 public class GCMChannelResponse implements Serializable {
     /**
-     * The new value for the applicationId property for this object.
+     * The ID of the application to which the channel applies.
      */
     private String applicationId;
 
@@ -34,7 +37,12 @@ public class GCMChannelResponse implements Serializable {
     private String credential;
 
     /**
-     * The new value for the id property for this object.
+     * If the channel is enabled for sending messages.
+     */
+    private Boolean enabled;
+
+    /**
+     * Channel ID. Not used. Present only for backwards compatibility.
      */
     private String id;
 
@@ -64,32 +72,32 @@ public class GCMChannelResponse implements Serializable {
     private Integer version;
 
     /**
-     * Returns the value of the applicationId property for this object.
+     * The ID of the application to which the channel applies.
      *
-     * @return The value of the applicationId property for this object.
+     * @return The ID of the application to which the channel applies.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * Sets the value of applicationId
+     * The ID of the application to which the channel applies.
      *
-     * @param applicationId The new value for the applicationId property for
-     *            this object.
+     * @param applicationId The ID of the application to which the channel
+     *            applies.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * Sets the value of the applicationId property for this object.
+     * The ID of the application to which the channel applies.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The new value for the applicationId property for
-     *            this object.
+     * @param applicationId The ID of the application to which the channel
+     *            applies.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -165,30 +173,72 @@ public class GCMChannelResponse implements Serializable {
     }
 
     /**
-     * Returns the value of the id property for this object.
+     * If the channel is enabled for sending messages.
      *
-     * @return The value of the id property for this object.
+     * @return If the channel is enabled for sending messages.
+     */
+    public Boolean isEnabled() {
+        return enabled;
+    }
+
+    /**
+     * If the channel is enabled for sending messages.
+     *
+     * @return If the channel is enabled for sending messages.
+     */
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    /**
+     * If the channel is enabled for sending messages.
+     *
+     * @param enabled If the channel is enabled for sending messages.
+     */
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    /**
+     * If the channel is enabled for sending messages.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param enabled If the channel is enabled for sending messages.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GCMChannelResponse withEnabled(Boolean enabled) {
+        this.enabled = enabled;
+        return this;
+    }
+
+    /**
+     * Channel ID. Not used. Present only for backwards compatibility.
+     *
+     * @return Channel ID. Not used. Present only for backwards compatibility.
      */
     public String getId() {
         return id;
     }
 
     /**
-     * Sets the value of id
+     * Channel ID. Not used. Present only for backwards compatibility.
      *
-     * @param id The new value for the id property for this object.
+     * @param id Channel ID. Not used. Present only for backwards compatibility.
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * Sets the value of the id property for this object.
+     * Channel ID. Not used. Present only for backwards compatibility.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id The new value for the id property for this object.
+     * @param id Channel ID. Not used. Present only for backwards compatibility.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -388,6 +438,8 @@ public class GCMChannelResponse implements Serializable {
             sb.append("CreationDate: " + getCreationDate() + ",");
         if (getCredential() != null)
             sb.append("Credential: " + getCredential() + ",");
+        if (getEnabled() != null)
+            sb.append("Enabled: " + getEnabled() + ",");
         if (getId() != null)
             sb.append("Id: " + getId() + ",");
         if (getIsArchived() != null)
@@ -414,6 +466,7 @@ public class GCMChannelResponse implements Serializable {
         hashCode = prime * hashCode
                 + ((getCreationDate() == null) ? 0 : getCreationDate().hashCode());
         hashCode = prime * hashCode + ((getCredential() == null) ? 0 : getCredential().hashCode());
+        hashCode = prime * hashCode + ((getEnabled() == null) ? 0 : getEnabled().hashCode());
         hashCode = prime * hashCode + ((getId() == null) ? 0 : getId().hashCode());
         hashCode = prime * hashCode + ((getIsArchived() == null) ? 0 : getIsArchived().hashCode());
         hashCode = prime * hashCode
@@ -450,6 +503,10 @@ public class GCMChannelResponse implements Serializable {
             return false;
         if (other.getCredential() != null
                 && other.getCredential().equals(this.getCredential()) == false)
+            return false;
+        if (other.getEnabled() == null ^ this.getEnabled() == null)
+            return false;
+        if (other.getEnabled() != null && other.getEnabled().equals(this.getEnabled()) == false)
             return false;
         if (other.getId() == null ^ this.getId() == null)
             return false;

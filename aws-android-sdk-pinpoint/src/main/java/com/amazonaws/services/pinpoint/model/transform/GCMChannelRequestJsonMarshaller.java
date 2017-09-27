@@ -31,6 +31,11 @@ class GCMChannelRequestJsonMarshaller {
             jsonWriter.name("ApiKey");
             jsonWriter.value(apiKey);
         }
+        if (gCMChannelRequest.getEnabled() != null) {
+            Boolean enabled = gCMChannelRequest.getEnabled();
+            jsonWriter.name("Enabled");
+            jsonWriter.value(enabled);
+        }
         jsonWriter.endObject();
     }
 

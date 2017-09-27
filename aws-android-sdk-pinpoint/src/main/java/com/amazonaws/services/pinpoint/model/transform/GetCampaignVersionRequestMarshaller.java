@@ -51,10 +51,6 @@ public class GetCampaignVersionRequestMarshaller implements
                 getCampaignVersionRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.GET);
 
-        if (getCampaignVersionRequest.getAccept() != null) {
-            request.addHeader("accept",
-                    StringUtils.fromString(getCampaignVersionRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/campaigns/{campaign-id}/versions/{version}";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

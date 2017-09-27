@@ -88,6 +88,13 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
+     * The pinpoint installation id.
+     * </p>
+     */
+    private AnalyticsMetadataType analyticsMetadata;
+
+    /**
+     * <p>
      * The ID of the client associated with the user pool.
      * </p>
      * <p>
@@ -475,6 +482,51 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
     }
 
     /**
+     * <p>
+     * The pinpoint installation id.
+     * </p>
+     *
+     * @return <p>
+     *         The pinpoint installation id.
+     *         </p>
+     */
+    public AnalyticsMetadataType getAnalyticsMetadata() {
+        return analyticsMetadata;
+    }
+
+    /**
+     * <p>
+     * The pinpoint installation id.
+     * </p>
+     *
+     * @param analyticsMetadata <p>
+     *            The pinpoint installation id.
+     *            </p>
+     */
+    public void setAnalyticsMetadata(AnalyticsMetadataType analyticsMetadata) {
+        this.analyticsMetadata = analyticsMetadata;
+    }
+
+    /**
+     * <p>
+     * The pinpoint installation id.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param analyticsMetadata <p>
+     *            The pinpoint installation id.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SignUpRequest withAnalyticsMetadata(AnalyticsMetadataType analyticsMetadata) {
+        this.analyticsMetadata = analyticsMetadata;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -496,7 +548,9 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
         if (getUserAttributes() != null)
             sb.append("UserAttributes: " + getUserAttributes() + ",");
         if (getValidationData() != null)
-            sb.append("ValidationData: " + getValidationData());
+            sb.append("ValidationData: " + getValidationData() + ",");
+        if (getAnalyticsMetadata() != null)
+            sb.append("AnalyticsMetadata: " + getAnalyticsMetadata());
         sb.append("}");
         return sb.toString();
     }
@@ -514,6 +568,8 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
                 + ((getUserAttributes() == null) ? 0 : getUserAttributes().hashCode());
         hashCode = prime * hashCode
                 + ((getValidationData() == null) ? 0 : getValidationData().hashCode());
+        hashCode = prime * hashCode
+                + ((getAnalyticsMetadata() == null) ? 0 : getAnalyticsMetadata().hashCode());
         return hashCode;
     }
 
@@ -554,6 +610,11 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
             return false;
         if (other.getValidationData() != null
                 && other.getValidationData().equals(this.getValidationData()) == false)
+            return false;
+        if (other.getAnalyticsMetadata() == null ^ this.getAnalyticsMetadata() == null)
+            return false;
+        if (other.getAnalyticsMetadata() != null
+                && other.getAnalyticsMetadata().equals(this.getAnalyticsMetadata()) == false)
             return false;
         return true;
     }

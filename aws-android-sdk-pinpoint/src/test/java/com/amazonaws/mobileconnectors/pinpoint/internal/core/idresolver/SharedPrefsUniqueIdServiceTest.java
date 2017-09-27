@@ -28,6 +28,8 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidPreferences;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidSystem;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.pinpoint.model.ChannelType;
+
 import android.app.Activity;
 import android.content.Context;
 
@@ -62,6 +64,7 @@ public class SharedPrefsUniqueIdServiceTest extends MobileAnalyticsTestBase {
         when(mockPinpointContext.getPinpointConfiguration())
                 .thenReturn(new PinpointConfiguration(mockAppContext, appId,
                                                              Regions.US_EAST_1,
+                                                             ChannelType.GCM,
                                                              credentialsProvider));
         when(mockSystem.getPreferences()).thenReturn(mockPreferences);
 

@@ -24,11 +24,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  */
 public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the accept property for this object.
-     */
-    private String accept;
-
-    /**
      * The new value for the applicationId property for this object.
      */
     private String applicationId;
@@ -39,42 +34,9 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
     private String endpointId;
 
     /**
-     * The new value for the endpointRequest property for this object.
+     * Endpoint update request
      */
     private EndpointRequest endpointRequest;
-
-    /**
-     * Returns the value of the accept property for this object.
-     *
-     * @return The value of the accept property for this object.
-     */
-    public String getAccept() {
-        return accept;
-    }
-
-    /**
-     * Sets the value of accept
-     *
-     * @param accept The new value for the accept property for this object.
-     */
-    public void setAccept(String accept) {
-        this.accept = accept;
-    }
-
-    /**
-     * Sets the value of the accept property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param accept The new value for the accept property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public UpdateEndpointRequest withAccept(String accept) {
-        this.accept = accept;
-        return this;
-    }
 
     /**
      * Returns the value of the applicationId property for this object.
@@ -147,32 +109,30 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * Returns the value of the endpointRequest property for this object.
+     * Endpoint update request
      *
-     * @return The value of the endpointRequest property for this object.
+     * @return Endpoint update request
      */
     public EndpointRequest getEndpointRequest() {
         return endpointRequest;
     }
 
     /**
-     * Sets the value of endpointRequest
+     * Endpoint update request
      *
-     * @param endpointRequest The new value for the endpointRequest property for
-     *            this object.
+     * @param endpointRequest Endpoint update request
      */
     public void setEndpointRequest(EndpointRequest endpointRequest) {
         this.endpointRequest = endpointRequest;
     }
 
     /**
-     * Sets the value of the endpointRequest property for this object.
+     * Endpoint update request
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endpointRequest The new value for the endpointRequest property for
-     *            this object.
+     * @param endpointRequest Endpoint update request
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -192,8 +152,6 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAccept() != null)
-            sb.append("Accept: " + getAccept() + ",");
         if (getApplicationId() != null)
             sb.append("ApplicationId: " + getApplicationId() + ",");
         if (getEndpointId() != null)
@@ -209,7 +167,6 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getAccept() == null) ? 0 : getAccept().hashCode());
         hashCode = prime * hashCode
                 + ((getApplicationId() == null) ? 0 : getApplicationId().hashCode());
         hashCode = prime * hashCode + ((getEndpointId() == null) ? 0 : getEndpointId().hashCode());
@@ -229,10 +186,6 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
             return false;
         UpdateEndpointRequest other = (UpdateEndpointRequest) obj;
 
-        if (other.getAccept() == null ^ this.getAccept() == null)
-            return false;
-        if (other.getAccept() != null && other.getAccept().equals(this.getAccept()) == false)
-            return false;
         if (other.getApplicationId() == null ^ this.getApplicationId() == null)
             return false;
         if (other.getApplicationId() != null

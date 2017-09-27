@@ -29,9 +29,6 @@ public class CreateSegmentResultJsonUnmarshaller implements
     public CreateSegmentResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         CreateSegmentResult createSegmentResult = new CreateSegmentResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            createSegmentResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return createSegmentResult;
     }
 

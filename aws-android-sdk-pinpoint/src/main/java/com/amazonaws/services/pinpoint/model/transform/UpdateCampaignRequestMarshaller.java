@@ -50,9 +50,6 @@ public class UpdateCampaignRequestMarshaller implements
                 updateCampaignRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.PUT);
 
-        if (updateCampaignRequest.getAccept() != null) {
-            request.addHeader("accept", StringUtils.fromString(updateCampaignRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/campaigns/{campaign-id}";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

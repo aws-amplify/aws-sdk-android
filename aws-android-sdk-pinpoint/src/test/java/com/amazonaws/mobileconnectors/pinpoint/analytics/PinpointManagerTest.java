@@ -28,6 +28,8 @@ import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.PinpointManager;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.ContextWithPermissions;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.pinpoint.model.ChannelType;
+
 import android.app.Activity;
 
 import static org.junit.Assert.assertNotNull;
@@ -48,6 +50,7 @@ public class PinpointManagerTest {
                                                                                    .getApplicationContext()),
                                                 appId,
                                                 Regions.US_EAST_1,
+                                                ChannelType.GCM,
                                                 provider);
     }
 

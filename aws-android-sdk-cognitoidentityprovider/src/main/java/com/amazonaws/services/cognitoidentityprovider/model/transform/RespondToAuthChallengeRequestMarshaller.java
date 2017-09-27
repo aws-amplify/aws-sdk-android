@@ -90,6 +90,13 @@ public class RespondToAuthChallengeRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
+            if (respondToAuthChallengeRequest.getAnalyticsMetadata() != null) {
+                AnalyticsMetadataType analyticsMetadata = respondToAuthChallengeRequest
+                        .getAnalyticsMetadata();
+                jsonWriter.name("AnalyticsMetadata");
+                AnalyticsMetadataTypeJsonMarshaller.getInstance().marshall(analyticsMetadata,
+                        jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Treatment resource
+ */
 public class TreatmentResource implements Serializable {
     /**
      * The unique treatment ID.

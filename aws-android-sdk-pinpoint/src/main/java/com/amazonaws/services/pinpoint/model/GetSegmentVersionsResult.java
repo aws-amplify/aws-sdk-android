@@ -19,79 +19,35 @@ import java.io.Serializable;
 
 public class GetSegmentVersionsResult implements Serializable {
     /**
-     * The new value for the accessControlAllowOrigin property for this object.
-     */
-    private String accessControlAllowOrigin;
-
-    /**
-     * The new value for the segmentsResponse property for this object.
+     * Segments in your account.
      */
     private SegmentsResponse segmentsResponse;
 
     /**
-     * Returns the value of the accessControlAllowOrigin property for this
-     * object.
+     * Segments in your account.
      *
-     * @return The value of the accessControlAllowOrigin property for this
-     *         object.
-     */
-    public String getAccessControlAllowOrigin() {
-        return accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of accessControlAllowOrigin
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     */
-    public void setAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of the accessControlAllowOrigin property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetSegmentVersionsResult withAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-        return this;
-    }
-
-    /**
-     * Returns the value of the segmentsResponse property for this object.
-     *
-     * @return The value of the segmentsResponse property for this object.
+     * @return Segments in your account.
      */
     public SegmentsResponse getSegmentsResponse() {
         return segmentsResponse;
     }
 
     /**
-     * Sets the value of segmentsResponse
+     * Segments in your account.
      *
-     * @param segmentsResponse The new value for the segmentsResponse property
-     *            for this object.
+     * @param segmentsResponse Segments in your account.
      */
     public void setSegmentsResponse(SegmentsResponse segmentsResponse) {
         this.segmentsResponse = segmentsResponse;
     }
 
     /**
-     * Sets the value of the segmentsResponse property for this object.
+     * Segments in your account.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param segmentsResponse The new value for the segmentsResponse property
-     *            for this object.
+     * @param segmentsResponse Segments in your account.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -111,8 +67,6 @@ public class GetSegmentVersionsResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAccessControlAllowOrigin() != null)
-            sb.append("AccessControlAllowOrigin: " + getAccessControlAllowOrigin() + ",");
         if (getSegmentsResponse() != null)
             sb.append("SegmentsResponse: " + getSegmentsResponse());
         sb.append("}");
@@ -124,10 +78,6 @@ public class GetSegmentVersionsResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime
-                * hashCode
-                + ((getAccessControlAllowOrigin() == null) ? 0 : getAccessControlAllowOrigin()
-                        .hashCode());
         hashCode = prime * hashCode
                 + ((getSegmentsResponse() == null) ? 0 : getSegmentsResponse().hashCode());
         return hashCode;
@@ -144,12 +94,6 @@ public class GetSegmentVersionsResult implements Serializable {
             return false;
         GetSegmentVersionsResult other = (GetSegmentVersionsResult) obj;
 
-        if (other.getAccessControlAllowOrigin() == null
-                ^ this.getAccessControlAllowOrigin() == null)
-            return false;
-        if (other.getAccessControlAllowOrigin() != null
-                && other.getAccessControlAllowOrigin().equals(this.getAccessControlAllowOrigin()) == false)
-            return false;
         if (other.getSegmentsResponse() == null ^ this.getSegmentsResponse() == null)
             return false;
         if (other.getSegmentsResponse() != null

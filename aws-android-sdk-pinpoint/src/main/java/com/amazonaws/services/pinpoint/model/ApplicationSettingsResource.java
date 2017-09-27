@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Application settings.
+ */
 public class ApplicationSettingsResource implements Serializable {
     /**
      * The unique ID for the application.

@@ -19,79 +19,35 @@ import java.io.Serializable;
 
 public class GetEndpointResult implements Serializable {
     /**
-     * The new value for the accessControlAllowOrigin property for this object.
-     */
-    private String accessControlAllowOrigin;
-
-    /**
-     * The new value for the endpointResponse property for this object.
+     * Endpoint response
      */
     private EndpointResponse endpointResponse;
 
     /**
-     * Returns the value of the accessControlAllowOrigin property for this
-     * object.
+     * Endpoint response
      *
-     * @return The value of the accessControlAllowOrigin property for this
-     *         object.
-     */
-    public String getAccessControlAllowOrigin() {
-        return accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of accessControlAllowOrigin
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     */
-    public void setAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of the accessControlAllowOrigin property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetEndpointResult withAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-        return this;
-    }
-
-    /**
-     * Returns the value of the endpointResponse property for this object.
-     *
-     * @return The value of the endpointResponse property for this object.
+     * @return Endpoint response
      */
     public EndpointResponse getEndpointResponse() {
         return endpointResponse;
     }
 
     /**
-     * Sets the value of endpointResponse
+     * Endpoint response
      *
-     * @param endpointResponse The new value for the endpointResponse property
-     *            for this object.
+     * @param endpointResponse Endpoint response
      */
     public void setEndpointResponse(EndpointResponse endpointResponse) {
         this.endpointResponse = endpointResponse;
     }
 
     /**
-     * Sets the value of the endpointResponse property for this object.
+     * Endpoint response
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endpointResponse The new value for the endpointResponse property
-     *            for this object.
+     * @param endpointResponse Endpoint response
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -111,8 +67,6 @@ public class GetEndpointResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAccessControlAllowOrigin() != null)
-            sb.append("AccessControlAllowOrigin: " + getAccessControlAllowOrigin() + ",");
         if (getEndpointResponse() != null)
             sb.append("EndpointResponse: " + getEndpointResponse());
         sb.append("}");
@@ -124,10 +78,6 @@ public class GetEndpointResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime
-                * hashCode
-                + ((getAccessControlAllowOrigin() == null) ? 0 : getAccessControlAllowOrigin()
-                        .hashCode());
         hashCode = prime * hashCode
                 + ((getEndpointResponse() == null) ? 0 : getEndpointResponse().hashCode());
         return hashCode;
@@ -144,12 +94,6 @@ public class GetEndpointResult implements Serializable {
             return false;
         GetEndpointResult other = (GetEndpointResult) obj;
 
-        if (other.getAccessControlAllowOrigin() == null
-                ^ this.getAccessControlAllowOrigin() == null)
-            return false;
-        if (other.getAccessControlAllowOrigin() != null
-                && other.getAccessControlAllowOrigin().equals(this.getAccessControlAllowOrigin()) == false)
-            return false;
         if (other.getEndpointResponse() == null ^ this.getEndpointResponse() == null)
             return false;
         if (other.getEndpointResponse() != null

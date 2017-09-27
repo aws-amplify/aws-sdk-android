@@ -19,79 +19,35 @@ import java.io.Serializable;
 
 public class UpdateEndpointsBatchResult implements Serializable {
     /**
-     * The new value for the accessControlAllowOrigin property for this object.
-     */
-    private String accessControlAllowOrigin;
-
-    /**
-     * The new value for the messageBody property for this object.
+     * Simple message object.
      */
     private MessageBody messageBody;
 
     /**
-     * Returns the value of the accessControlAllowOrigin property for this
-     * object.
+     * Simple message object.
      *
-     * @return The value of the accessControlAllowOrigin property for this
-     *         object.
-     */
-    public String getAccessControlAllowOrigin() {
-        return accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of accessControlAllowOrigin
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     */
-    public void setAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of the accessControlAllowOrigin property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public UpdateEndpointsBatchResult withAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-        return this;
-    }
-
-    /**
-     * Returns the value of the messageBody property for this object.
-     *
-     * @return The value of the messageBody property for this object.
+     * @return Simple message object.
      */
     public MessageBody getMessageBody() {
         return messageBody;
     }
 
     /**
-     * Sets the value of messageBody
+     * Simple message object.
      *
-     * @param messageBody The new value for the messageBody property for this
-     *            object.
+     * @param messageBody Simple message object.
      */
     public void setMessageBody(MessageBody messageBody) {
         this.messageBody = messageBody;
     }
 
     /**
-     * Sets the value of the messageBody property for this object.
+     * Simple message object.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param messageBody The new value for the messageBody property for this
-     *            object.
+     * @param messageBody Simple message object.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -111,8 +67,6 @@ public class UpdateEndpointsBatchResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAccessControlAllowOrigin() != null)
-            sb.append("AccessControlAllowOrigin: " + getAccessControlAllowOrigin() + ",");
         if (getMessageBody() != null)
             sb.append("MessageBody: " + getMessageBody());
         sb.append("}");
@@ -124,10 +78,6 @@ public class UpdateEndpointsBatchResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime
-                * hashCode
-                + ((getAccessControlAllowOrigin() == null) ? 0 : getAccessControlAllowOrigin()
-                        .hashCode());
         hashCode = prime * hashCode
                 + ((getMessageBody() == null) ? 0 : getMessageBody().hashCode());
         return hashCode;
@@ -144,12 +94,6 @@ public class UpdateEndpointsBatchResult implements Serializable {
             return false;
         UpdateEndpointsBatchResult other = (UpdateEndpointsBatchResult) obj;
 
-        if (other.getAccessControlAllowOrigin() == null
-                ^ this.getAccessControlAllowOrigin() == null)
-            return false;
-        if (other.getAccessControlAllowOrigin() != null
-                && other.getAccessControlAllowOrigin().equals(this.getAccessControlAllowOrigin()) == false)
-            return false;
         if (other.getMessageBody() == null ^ this.getMessageBody() == null)
             return false;
         if (other.getMessageBody() != null

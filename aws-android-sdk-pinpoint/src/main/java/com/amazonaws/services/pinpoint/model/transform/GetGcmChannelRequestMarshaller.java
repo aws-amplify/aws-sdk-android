@@ -50,9 +50,6 @@ public class GetGcmChannelRequestMarshaller implements
                 getGcmChannelRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.GET);
 
-        if (getGcmChannelRequest.getAccept() != null) {
-            request.addHeader("accept", StringUtils.fromString(getGcmChannelRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/channels/gcm";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

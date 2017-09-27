@@ -24,52 +24,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  */
 public class UpdateGcmChannelRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the accept property for this object.
-     */
-    private String accept;
-
-    /**
      * The new value for the applicationId property for this object.
      */
     private String applicationId;
 
     /**
-     * The new value for the gCMChannelRequest property for this object.
+     * Google Cloud Messaging credentials
      */
     private GCMChannelRequest gCMChannelRequest;
-
-    /**
-     * Returns the value of the accept property for this object.
-     *
-     * @return The value of the accept property for this object.
-     */
-    public String getAccept() {
-        return accept;
-    }
-
-    /**
-     * Sets the value of accept
-     *
-     * @param accept The new value for the accept property for this object.
-     */
-    public void setAccept(String accept) {
-        this.accept = accept;
-    }
-
-    /**
-     * Sets the value of the accept property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param accept The new value for the accept property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public UpdateGcmChannelRequest withAccept(String accept) {
-        this.accept = accept;
-        return this;
-    }
 
     /**
      * Returns the value of the applicationId property for this object.
@@ -107,32 +69,30 @@ public class UpdateGcmChannelRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
-     * Returns the value of the gCMChannelRequest property for this object.
+     * Google Cloud Messaging credentials
      *
-     * @return The value of the gCMChannelRequest property for this object.
+     * @return Google Cloud Messaging credentials
      */
     public GCMChannelRequest getGCMChannelRequest() {
         return gCMChannelRequest;
     }
 
     /**
-     * Sets the value of gCMChannelRequest
+     * Google Cloud Messaging credentials
      *
-     * @param gCMChannelRequest The new value for the gCMChannelRequest property
-     *            for this object.
+     * @param gCMChannelRequest Google Cloud Messaging credentials
      */
     public void setGCMChannelRequest(GCMChannelRequest gCMChannelRequest) {
         this.gCMChannelRequest = gCMChannelRequest;
     }
 
     /**
-     * Sets the value of the gCMChannelRequest property for this object.
+     * Google Cloud Messaging credentials
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param gCMChannelRequest The new value for the gCMChannelRequest property
-     *            for this object.
+     * @param gCMChannelRequest Google Cloud Messaging credentials
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -152,8 +112,6 @@ public class UpdateGcmChannelRequest extends AmazonWebServiceRequest implements 
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAccept() != null)
-            sb.append("Accept: " + getAccept() + ",");
         if (getApplicationId() != null)
             sb.append("ApplicationId: " + getApplicationId() + ",");
         if (getGCMChannelRequest() != null)
@@ -167,7 +125,6 @@ public class UpdateGcmChannelRequest extends AmazonWebServiceRequest implements 
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getAccept() == null) ? 0 : getAccept().hashCode());
         hashCode = prime * hashCode
                 + ((getApplicationId() == null) ? 0 : getApplicationId().hashCode());
         hashCode = prime * hashCode
@@ -186,10 +143,6 @@ public class UpdateGcmChannelRequest extends AmazonWebServiceRequest implements 
             return false;
         UpdateGcmChannelRequest other = (UpdateGcmChannelRequest) obj;
 
-        if (other.getAccept() == null ^ this.getAccept() == null)
-            return false;
-        if (other.getAccept() != null && other.getAccept().equals(this.getAccept()) == false)
-            return false;
         if (other.getApplicationId() == null ^ this.getApplicationId() == null)
             return false;
         if (other.getApplicationId() != null

@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Message configuration for a campaign.
+ */
 public class MessageConfiguration implements Serializable {
     /**
      * The message that the campaign delivers to APNS channels. Overrides the
@@ -30,10 +33,20 @@ public class MessageConfiguration implements Serializable {
     private Message defaultMessage;
 
     /**
+     * The email message configuration.
+     */
+    private CampaignEmailMessage emailMessage;
+
+    /**
      * The message that the campaign delivers to GCM channels. Overrides the
      * default message.
      */
     private Message gCMMessage;
+
+    /**
+     * The SMS message configuration.
+     */
+    private CampaignSmsMessage sMSMessage;
 
     /**
      * The message that the campaign delivers to APNS channels. Overrides the
@@ -108,6 +121,39 @@ public class MessageConfiguration implements Serializable {
     }
 
     /**
+     * The email message configuration.
+     *
+     * @return The email message configuration.
+     */
+    public CampaignEmailMessage getEmailMessage() {
+        return emailMessage;
+    }
+
+    /**
+     * The email message configuration.
+     *
+     * @param emailMessage The email message configuration.
+     */
+    public void setEmailMessage(CampaignEmailMessage emailMessage) {
+        this.emailMessage = emailMessage;
+    }
+
+    /**
+     * The email message configuration.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param emailMessage The email message configuration.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public MessageConfiguration withEmailMessage(CampaignEmailMessage emailMessage) {
+        this.emailMessage = emailMessage;
+        return this;
+    }
+
+    /**
      * The message that the campaign delivers to GCM channels. Overrides the
      * default message.
      *
@@ -147,6 +193,39 @@ public class MessageConfiguration implements Serializable {
     }
 
     /**
+     * The SMS message configuration.
+     *
+     * @return The SMS message configuration.
+     */
+    public CampaignSmsMessage getSMSMessage() {
+        return sMSMessage;
+    }
+
+    /**
+     * The SMS message configuration.
+     *
+     * @param sMSMessage The SMS message configuration.
+     */
+    public void setSMSMessage(CampaignSmsMessage sMSMessage) {
+        this.sMSMessage = sMSMessage;
+    }
+
+    /**
+     * The SMS message configuration.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sMSMessage The SMS message configuration.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public MessageConfiguration withSMSMessage(CampaignSmsMessage sMSMessage) {
+        this.sMSMessage = sMSMessage;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -161,8 +240,12 @@ public class MessageConfiguration implements Serializable {
             sb.append("APNSMessage: " + getAPNSMessage() + ",");
         if (getDefaultMessage() != null)
             sb.append("DefaultMessage: " + getDefaultMessage() + ",");
+        if (getEmailMessage() != null)
+            sb.append("EmailMessage: " + getEmailMessage() + ",");
         if (getGCMMessage() != null)
-            sb.append("GCMMessage: " + getGCMMessage());
+            sb.append("GCMMessage: " + getGCMMessage() + ",");
+        if (getSMSMessage() != null)
+            sb.append("SMSMessage: " + getSMSMessage());
         sb.append("}");
         return sb.toString();
     }
@@ -176,7 +259,10 @@ public class MessageConfiguration implements Serializable {
                 + ((getAPNSMessage() == null) ? 0 : getAPNSMessage().hashCode());
         hashCode = prime * hashCode
                 + ((getDefaultMessage() == null) ? 0 : getDefaultMessage().hashCode());
+        hashCode = prime * hashCode
+                + ((getEmailMessage() == null) ? 0 : getEmailMessage().hashCode());
         hashCode = prime * hashCode + ((getGCMMessage() == null) ? 0 : getGCMMessage().hashCode());
+        hashCode = prime * hashCode + ((getSMSMessage() == null) ? 0 : getSMSMessage().hashCode());
         return hashCode;
     }
 
@@ -201,10 +287,20 @@ public class MessageConfiguration implements Serializable {
         if (other.getDefaultMessage() != null
                 && other.getDefaultMessage().equals(this.getDefaultMessage()) == false)
             return false;
+        if (other.getEmailMessage() == null ^ this.getEmailMessage() == null)
+            return false;
+        if (other.getEmailMessage() != null
+                && other.getEmailMessage().equals(this.getEmailMessage()) == false)
+            return false;
         if (other.getGCMMessage() == null ^ this.getGCMMessage() == null)
             return false;
         if (other.getGCMMessage() != null
                 && other.getGCMMessage().equals(this.getGCMMessage()) == false)
+            return false;
+        if (other.getSMSMessage() == null ^ this.getSMSMessage() == null)
+            return false;
+        if (other.getSMSMessage() != null
+                && other.getSMSMessage().equals(this.getSMSMessage()) == false)
             return false;
         return true;
     }

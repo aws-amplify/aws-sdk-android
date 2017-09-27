@@ -20,8 +20,6 @@ import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
 import com.amazonaws.services.pinpoint.model.BadRequestException;
 
-import com.amazonaws.services.pinpoint.model.MessageBody;
-
 public class BadRequestExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
     public BadRequestExceptionUnmarshaller() {
@@ -35,12 +33,10 @@ public class BadRequestExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
-        final com.google.gson.Gson gson = new com.google.gson.Gson();
+
         BadRequestException e = (BadRequestException) super.unmarshall(error);
         e.setErrorCode("BadRequestException");
-        e.setAccessControlAllowOrigin(String.valueOf(error.get("AccessControlAllowOrigin")));
-
-        e.setMessageBody(gson.fromJson(error.get("MessageBody"), MessageBody.class));
+        e.setRequestID(String.valueOf(error.get("RequestID")));
 
         return e;
     }

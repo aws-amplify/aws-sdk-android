@@ -99,6 +99,13 @@ public class InitiateAuthRequestMarshaller implements
                 jsonWriter.name("ClientId");
                 jsonWriter.value(clientId);
             }
+            if (initiateAuthRequest.getAnalyticsMetadata() != null) {
+                AnalyticsMetadataType analyticsMetadata = initiateAuthRequest
+                        .getAnalyticsMetadata();
+                jsonWriter.name("AnalyticsMetadata");
+                AnalyticsMetadataTypeJsonMarshaller.getInstance().marshall(analyticsMetadata,
+                        jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

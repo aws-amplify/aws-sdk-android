@@ -51,10 +51,6 @@ public class GetApplicationSettingsRequestMarshaller implements
                 getApplicationSettingsRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.GET);
 
-        if (getApplicationSettingsRequest.getAccept() != null) {
-            request.addHeader("accept",
-                    StringUtils.fromString(getApplicationSettingsRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/settings";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

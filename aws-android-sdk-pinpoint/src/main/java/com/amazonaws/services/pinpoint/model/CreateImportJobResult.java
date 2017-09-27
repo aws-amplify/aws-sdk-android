@@ -19,51 +19,9 @@ import java.io.Serializable;
 
 public class CreateImportJobResult implements Serializable {
     /**
-     * The new value for the accessControlAllowOrigin property for this object.
-     */
-    private String accessControlAllowOrigin;
-
-    /**
      * The new value for the importJobResponse property for this object.
      */
     private ImportJobResponse importJobResponse;
-
-    /**
-     * Returns the value of the accessControlAllowOrigin property for this
-     * object.
-     *
-     * @return The value of the accessControlAllowOrigin property for this
-     *         object.
-     */
-    public String getAccessControlAllowOrigin() {
-        return accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of accessControlAllowOrigin
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     */
-    public void setAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of the accessControlAllowOrigin property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateImportJobResult withAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-        return this;
-    }
 
     /**
      * Returns the value of the importJobResponse property for this object.
@@ -111,8 +69,6 @@ public class CreateImportJobResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAccessControlAllowOrigin() != null)
-            sb.append("AccessControlAllowOrigin: " + getAccessControlAllowOrigin() + ",");
         if (getImportJobResponse() != null)
             sb.append("ImportJobResponse: " + getImportJobResponse());
         sb.append("}");
@@ -124,10 +80,6 @@ public class CreateImportJobResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime
-                * hashCode
-                + ((getAccessControlAllowOrigin() == null) ? 0 : getAccessControlAllowOrigin()
-                        .hashCode());
         hashCode = prime * hashCode
                 + ((getImportJobResponse() == null) ? 0 : getImportJobResponse().hashCode());
         return hashCode;
@@ -144,12 +96,6 @@ public class CreateImportJobResult implements Serializable {
             return false;
         CreateImportJobResult other = (CreateImportJobResult) obj;
 
-        if (other.getAccessControlAllowOrigin() == null
-                ^ this.getAccessControlAllowOrigin() == null)
-            return false;
-        if (other.getAccessControlAllowOrigin() != null
-                && other.getAccessControlAllowOrigin().equals(this.getAccessControlAllowOrigin()) == false)
-            return false;
         if (other.getImportJobResponse() == null ^ this.getImportJobResponse() == null)
             return false;
         if (other.getImportJobResponse() != null

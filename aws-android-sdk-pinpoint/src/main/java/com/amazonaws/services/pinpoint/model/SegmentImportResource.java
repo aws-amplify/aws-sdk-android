@@ -17,7 +17,15 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Segment import definition.
+ */
 public class SegmentImportResource implements Serializable {
+    /**
+     * Channel type counts
+     */
+    private java.util.Map<String, Integer> channelCounts;
+
     /**
      * A unique, custom ID assigned to the IAM role that restricts who can
      * assume the role.
@@ -50,6 +58,74 @@ public class SegmentImportResource implements Serializable {
      * segment.
      */
     private Integer size;
+
+    /**
+     * Channel type counts
+     *
+     * @return Channel type counts
+     */
+    public java.util.Map<String, Integer> getChannelCounts() {
+        return channelCounts;
+    }
+
+    /**
+     * Channel type counts
+     *
+     * @param channelCounts Channel type counts
+     */
+    public void setChannelCounts(java.util.Map<String, Integer> channelCounts) {
+        this.channelCounts = channelCounts;
+    }
+
+    /**
+     * Channel type counts
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param channelCounts Channel type counts
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SegmentImportResource withChannelCounts(java.util.Map<String, Integer> channelCounts) {
+        this.channelCounts = channelCounts;
+        return this;
+    }
+
+    /**
+     * Channel type counts
+     * <p>
+     * The method adds a new key-value pair into ChannelCounts parameter, and
+     * returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param key The key of the entry to be added into ChannelCounts.
+     * @param value The corresponding value of the entry to be added into
+     *            ChannelCounts.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SegmentImportResource addChannelCountsEntry(String key, Integer value) {
+        if (null == this.channelCounts) {
+            this.channelCounts = new java.util.HashMap<String, Integer>();
+        }
+        if (this.channelCounts.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.channelCounts.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into ChannelCounts.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public SegmentImportResource clearChannelCountsEntries() {
+        this.channelCounts = null;
+        return this;
+    }
 
     /**
      * A unique, custom ID assigned to the IAM role that restricts who can
@@ -305,6 +381,8 @@ public class SegmentImportResource implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getChannelCounts() != null)
+            sb.append("ChannelCounts: " + getChannelCounts() + ",");
         if (getExternalId() != null)
             sb.append("ExternalId: " + getExternalId() + ",");
         if (getFormat() != null)
@@ -324,6 +402,8 @@ public class SegmentImportResource implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode
+                + ((getChannelCounts() == null) ? 0 : getChannelCounts().hashCode());
         hashCode = prime * hashCode + ((getExternalId() == null) ? 0 : getExternalId().hashCode());
         hashCode = prime * hashCode + ((getFormat() == null) ? 0 : getFormat().hashCode());
         hashCode = prime * hashCode + ((getRoleArn() == null) ? 0 : getRoleArn().hashCode());
@@ -343,6 +423,11 @@ public class SegmentImportResource implements Serializable {
             return false;
         SegmentImportResource other = (SegmentImportResource) obj;
 
+        if (other.getChannelCounts() == null ^ this.getChannelCounts() == null)
+            return false;
+        if (other.getChannelCounts() != null
+                && other.getChannelCounts().equals(this.getChannelCounts()) == false)
+            return false;
         if (other.getExternalId() == null ^ this.getExternalId() == null)
             return false;
         if (other.getExternalId() != null

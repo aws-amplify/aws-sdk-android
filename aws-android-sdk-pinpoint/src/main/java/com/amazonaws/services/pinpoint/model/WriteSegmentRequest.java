@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Segment definition.
+ */
 public class WriteSegmentRequest implements Serializable {
     /**
      * The segment dimensions attributes.

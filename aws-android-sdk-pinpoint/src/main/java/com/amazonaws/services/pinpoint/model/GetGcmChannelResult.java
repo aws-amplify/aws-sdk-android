@@ -19,79 +19,35 @@ import java.io.Serializable;
 
 public class GetGcmChannelResult implements Serializable {
     /**
-     * The new value for the accessControlAllowOrigin property for this object.
-     */
-    private String accessControlAllowOrigin;
-
-    /**
-     * The new value for the gCMChannelResponse property for this object.
+     * Google Cloud Messaging channel definition
      */
     private GCMChannelResponse gCMChannelResponse;
 
     /**
-     * Returns the value of the accessControlAllowOrigin property for this
-     * object.
+     * Google Cloud Messaging channel definition
      *
-     * @return The value of the accessControlAllowOrigin property for this
-     *         object.
-     */
-    public String getAccessControlAllowOrigin() {
-        return accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of accessControlAllowOrigin
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     */
-    public void setAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of the accessControlAllowOrigin property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetGcmChannelResult withAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-        return this;
-    }
-
-    /**
-     * Returns the value of the gCMChannelResponse property for this object.
-     *
-     * @return The value of the gCMChannelResponse property for this object.
+     * @return Google Cloud Messaging channel definition
      */
     public GCMChannelResponse getGCMChannelResponse() {
         return gCMChannelResponse;
     }
 
     /**
-     * Sets the value of gCMChannelResponse
+     * Google Cloud Messaging channel definition
      *
-     * @param gCMChannelResponse The new value for the gCMChannelResponse
-     *            property for this object.
+     * @param gCMChannelResponse Google Cloud Messaging channel definition
      */
     public void setGCMChannelResponse(GCMChannelResponse gCMChannelResponse) {
         this.gCMChannelResponse = gCMChannelResponse;
     }
 
     /**
-     * Sets the value of the gCMChannelResponse property for this object.
+     * Google Cloud Messaging channel definition
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param gCMChannelResponse The new value for the gCMChannelResponse
-     *            property for this object.
+     * @param gCMChannelResponse Google Cloud Messaging channel definition
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -111,8 +67,6 @@ public class GetGcmChannelResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAccessControlAllowOrigin() != null)
-            sb.append("AccessControlAllowOrigin: " + getAccessControlAllowOrigin() + ",");
         if (getGCMChannelResponse() != null)
             sb.append("GCMChannelResponse: " + getGCMChannelResponse());
         sb.append("}");
@@ -124,10 +78,6 @@ public class GetGcmChannelResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime
-                * hashCode
-                + ((getAccessControlAllowOrigin() == null) ? 0 : getAccessControlAllowOrigin()
-                        .hashCode());
         hashCode = prime * hashCode
                 + ((getGCMChannelResponse() == null) ? 0 : getGCMChannelResponse().hashCode());
         return hashCode;
@@ -144,12 +94,6 @@ public class GetGcmChannelResult implements Serializable {
             return false;
         GetGcmChannelResult other = (GetGcmChannelResult) obj;
 
-        if (other.getAccessControlAllowOrigin() == null
-                ^ this.getAccessControlAllowOrigin() == null)
-            return false;
-        if (other.getAccessControlAllowOrigin() != null
-                && other.getAccessControlAllowOrigin().equals(this.getAccessControlAllowOrigin()) == false)
-            return false;
         if (other.getGCMChannelResponse() == null ^ this.getGCMChannelResponse() == null)
             return false;
         if (other.getGCMChannelResponse() != null

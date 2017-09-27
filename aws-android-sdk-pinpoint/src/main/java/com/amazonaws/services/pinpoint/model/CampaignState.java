@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * State of the Campaign
+ */
 public class CampaignState implements Serializable {
     /**
      * The status of the campaign, or the status of a treatment that belongs to

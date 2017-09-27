@@ -71,6 +71,16 @@ class ActivityResponseJsonMarshaller {
             jsonWriter.name("SuccessfulEndpointCount");
             jsonWriter.value(successfulEndpointCount);
         }
+        if (activityResponse.getTimezonesCompletedCount() != null) {
+            Integer timezonesCompletedCount = activityResponse.getTimezonesCompletedCount();
+            jsonWriter.name("TimezonesCompletedCount");
+            jsonWriter.value(timezonesCompletedCount);
+        }
+        if (activityResponse.getTimezonesTotalCount() != null) {
+            Integer timezonesTotalCount = activityResponse.getTimezonesTotalCount();
+            jsonWriter.name("TimezonesTotalCount");
+            jsonWriter.value(timezonesTotalCount);
+        }
         if (activityResponse.getTotalEndpointCount() != null) {
             Integer totalEndpointCount = activityResponse.getTotalEndpointCount();
             jsonWriter.name("TotalEndpointCount");

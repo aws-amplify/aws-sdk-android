@@ -36,6 +36,11 @@ class APNSChannelResponseJsonMarshaller {
             jsonWriter.name("CreationDate");
             jsonWriter.value(creationDate);
         }
+        if (aPNSChannelResponse.getEnabled() != null) {
+            Boolean enabled = aPNSChannelResponse.getEnabled();
+            jsonWriter.name("Enabled");
+            jsonWriter.value(enabled);
+        }
         if (aPNSChannelResponse.getId() != null) {
             String id = aPNSChannelResponse.getId();
             jsonWriter.name("Id");

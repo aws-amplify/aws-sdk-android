@@ -50,9 +50,6 @@ public class GetApnsChannelRequestMarshaller implements
                 getApnsChannelRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.GET);
 
-        if (getApnsChannelRequest.getAccept() != null) {
-            request.addHeader("accept", StringUtils.fromString(getApnsChannelRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/channels/apns";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

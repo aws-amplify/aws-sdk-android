@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Used to create a campaign.
+ */
 public class WriteCampaignRequest implements Serializable {
     /**
      * Treatments that are defined in addition to the default treatment.
@@ -69,6 +72,11 @@ public class WriteCampaignRequest implements Serializable {
      * The version of the segment to which the campaign sends messages.
      */
     private Integer segmentVersion;
+
+    /**
+     * Whether or not to enable trace logging for the campaign. Undocumented
+     */
+    private Boolean trace;
 
     /**
      * A custom description for the treatment.
@@ -475,6 +483,52 @@ public class WriteCampaignRequest implements Serializable {
     }
 
     /**
+     * Whether or not to enable trace logging for the campaign. Undocumented
+     *
+     * @return Whether or not to enable trace logging for the campaign.
+     *         Undocumented
+     */
+    public Boolean isTrace() {
+        return trace;
+    }
+
+    /**
+     * Whether or not to enable trace logging for the campaign. Undocumented
+     *
+     * @return Whether or not to enable trace logging for the campaign.
+     *         Undocumented
+     */
+    public Boolean getTrace() {
+        return trace;
+    }
+
+    /**
+     * Whether or not to enable trace logging for the campaign. Undocumented
+     *
+     * @param trace Whether or not to enable trace logging for the campaign.
+     *            Undocumented
+     */
+    public void setTrace(Boolean trace) {
+        this.trace = trace;
+    }
+
+    /**
+     * Whether or not to enable trace logging for the campaign. Undocumented
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param trace Whether or not to enable trace logging for the campaign.
+     *            Undocumented
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public WriteCampaignRequest withTrace(Boolean trace) {
+        this.trace = trace;
+        return this;
+    }
+
+    /**
      * A custom description for the treatment.
      *
      * @return A custom description for the treatment.
@@ -574,6 +628,8 @@ public class WriteCampaignRequest implements Serializable {
             sb.append("SegmentId: " + getSegmentId() + ",");
         if (getSegmentVersion() != null)
             sb.append("SegmentVersion: " + getSegmentVersion() + ",");
+        if (getTrace() != null)
+            sb.append("Trace: " + getTrace() + ",");
         if (getTreatmentDescription() != null)
             sb.append("TreatmentDescription: " + getTreatmentDescription() + ",");
         if (getTreatmentName() != null)
@@ -602,6 +658,7 @@ public class WriteCampaignRequest implements Serializable {
         hashCode = prime * hashCode + ((getSegmentId() == null) ? 0 : getSegmentId().hashCode());
         hashCode = prime * hashCode
                 + ((getSegmentVersion() == null) ? 0 : getSegmentVersion().hashCode());
+        hashCode = prime * hashCode + ((getTrace() == null) ? 0 : getTrace().hashCode());
         hashCode = prime * hashCode
                 + ((getTreatmentDescription() == null) ? 0 : getTreatmentDescription().hashCode());
         hashCode = prime * hashCode
@@ -665,6 +722,10 @@ public class WriteCampaignRequest implements Serializable {
             return false;
         if (other.getSegmentVersion() != null
                 && other.getSegmentVersion().equals(this.getSegmentVersion()) == false)
+            return false;
+        if (other.getTrace() == null ^ this.getTrace() == null)
+            return false;
+        if (other.getTrace() != null && other.getTrace().equals(this.getTrace()) == false)
             return false;
         if (other.getTreatmentDescription() == null ^ this.getTreatmentDescription() == null)
             return false;

@@ -18,14 +18,15 @@ package com.amazonaws.services.pinpoint.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * Simple message object.
  */
 public class BadRequestException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
-    private String accessControlAllowOrigin;
-
-    private MessageBody messageBody;
+    /**
+     * The unique message body ID.
+     */
+    private String requestID;
 
     /**
      * Constructs a new BadRequestException with the specified error message.
@@ -37,42 +38,20 @@ public class BadRequestException extends AmazonServiceException {
     }
 
     /**
-     * Returns the value of the accessControlAllowOrigin property for this
-     * object.
+     * The unique message body ID.
      *
-     * @return The value of the accessControlAllowOrigin property for this
-     *         object.
+     * @return The unique message body ID.
      */
-    public String getAccessControlAllowOrigin() {
-        return accessControlAllowOrigin;
+    public String getRequestID() {
+        return requestID;
     }
 
     /**
-     * Sets the value of accessControlAllowOrigin
+     * The unique message body ID.
      *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
+     * @param requestID The unique message body ID.
      */
-    public void setAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-    }
-
-    /**
-     * Returns the value of the messageBody property for this object.
-     *
-     * @return The value of the messageBody property for this object.
-     */
-    public MessageBody getMessageBody() {
-        return messageBody;
-    }
-
-    /**
-     * Sets the value of messageBody
-     *
-     * @param messageBody The new value for the messageBody property for this
-     *            object.
-     */
-    public void setMessageBody(MessageBody messageBody) {
-        this.messageBody = messageBody;
+    public void setRequestID(String requestID) {
+        this.requestID = requestID;
     }
 }

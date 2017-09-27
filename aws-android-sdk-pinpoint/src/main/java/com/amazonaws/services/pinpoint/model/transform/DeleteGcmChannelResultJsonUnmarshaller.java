@@ -29,9 +29,6 @@ public class DeleteGcmChannelResultJsonUnmarshaller implements
     public DeleteGcmChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeleteGcmChannelResult deleteGcmChannelResult = new DeleteGcmChannelResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            deleteGcmChannelResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return deleteGcmChannelResult;
     }
 

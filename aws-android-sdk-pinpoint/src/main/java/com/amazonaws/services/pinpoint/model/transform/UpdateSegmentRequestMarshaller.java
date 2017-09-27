@@ -50,9 +50,6 @@ public class UpdateSegmentRequestMarshaller implements
                 updateSegmentRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.PUT);
 
-        if (updateSegmentRequest.getAccept() != null) {
-            request.addHeader("accept", StringUtils.fromString(updateSegmentRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/segments/{segment-id}";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

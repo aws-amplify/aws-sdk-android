@@ -24,11 +24,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  */
 public class GetSegmentVersionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the accept property for this object.
-     */
-    private String accept;
-
-    /**
      * The new value for the applicationId property for this object.
      */
     private String applicationId;
@@ -42,39 +37,6 @@ public class GetSegmentVersionRequest extends AmazonWebServiceRequest implements
      * The new value for the version property for this object.
      */
     private String version;
-
-    /**
-     * Returns the value of the accept property for this object.
-     *
-     * @return The value of the accept property for this object.
-     */
-    public String getAccept() {
-        return accept;
-    }
-
-    /**
-     * Sets the value of accept
-     *
-     * @param accept The new value for the accept property for this object.
-     */
-    public void setAccept(String accept) {
-        this.accept = accept;
-    }
-
-    /**
-     * Sets the value of the accept property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param accept The new value for the accept property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetSegmentVersionRequest withAccept(String accept) {
-        this.accept = accept;
-        return this;
-    }
 
     /**
      * Returns the value of the applicationId property for this object.
@@ -190,8 +152,6 @@ public class GetSegmentVersionRequest extends AmazonWebServiceRequest implements
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAccept() != null)
-            sb.append("Accept: " + getAccept() + ",");
         if (getApplicationId() != null)
             sb.append("ApplicationId: " + getApplicationId() + ",");
         if (getSegmentId() != null)
@@ -207,7 +167,6 @@ public class GetSegmentVersionRequest extends AmazonWebServiceRequest implements
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getAccept() == null) ? 0 : getAccept().hashCode());
         hashCode = prime * hashCode
                 + ((getApplicationId() == null) ? 0 : getApplicationId().hashCode());
         hashCode = prime * hashCode + ((getSegmentId() == null) ? 0 : getSegmentId().hashCode());
@@ -226,10 +185,6 @@ public class GetSegmentVersionRequest extends AmazonWebServiceRequest implements
             return false;
         GetSegmentVersionRequest other = (GetSegmentVersionRequest) obj;
 
-        if (other.getAccept() == null ^ this.getAccept() == null)
-            return false;
-        if (other.getAccept() != null && other.getAccept().equals(this.getAccept()) == false)
-            return false;
         if (other.getApplicationId() == null ^ this.getApplicationId() == null)
             return false;
         if (other.getApplicationId() != null

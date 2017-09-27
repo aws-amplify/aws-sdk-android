@@ -29,9 +29,6 @@ public class GetCampaignVersionsResultJsonUnmarshaller implements
     public GetCampaignVersionsResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         GetCampaignVersionsResult getCampaignVersionsResult = new GetCampaignVersionsResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            getCampaignVersionsResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return getCampaignVersionsResult;
     }
 

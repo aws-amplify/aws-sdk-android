@@ -63,6 +63,12 @@ class ActivityResponseJsonUnmarshaller implements
             } else if (name.equals("SuccessfulEndpointCount")) {
                 activityResponse.setSuccessfulEndpointCount(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("TimezonesCompletedCount")) {
+                activityResponse.setTimezonesCompletedCount(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("TimezonesTotalCount")) {
+                activityResponse.setTimezonesTotalCount(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("TotalEndpointCount")) {
                 activityResponse.setTotalEndpointCount(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));

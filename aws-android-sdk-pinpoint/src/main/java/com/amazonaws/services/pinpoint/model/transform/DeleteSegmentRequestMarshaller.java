@@ -50,9 +50,6 @@ public class DeleteSegmentRequestMarshaller implements
                 deleteSegmentRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.DELETE);
 
-        if (deleteSegmentRequest.getAccept() != null) {
-            request.addHeader("accept", StringUtils.fromString(deleteSegmentRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/segments/{segment-id}";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

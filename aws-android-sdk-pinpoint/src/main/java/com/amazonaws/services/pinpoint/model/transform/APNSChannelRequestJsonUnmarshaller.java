@@ -39,6 +39,9 @@ class APNSChannelRequestJsonUnmarshaller implements
             if (name.equals("Certificate")) {
                 aPNSChannelRequest.setCertificate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Enabled")) {
+                aPNSChannelRequest.setEnabled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("PrivateKey")) {
                 aPNSChannelRequest.setPrivateKey(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

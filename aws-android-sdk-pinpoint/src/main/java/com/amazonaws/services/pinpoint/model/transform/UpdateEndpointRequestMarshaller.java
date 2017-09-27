@@ -50,9 +50,6 @@ public class UpdateEndpointRequestMarshaller implements
                 updateEndpointRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.PUT);
 
-        if (updateEndpointRequest.getAccept() != null) {
-            request.addHeader("accept", StringUtils.fromString(updateEndpointRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/endpoints/{endpoint-id}";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

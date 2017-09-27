@@ -39,6 +39,9 @@ class SegmentDemographicsJsonUnmarshaller implements
             if (name.equals("AppVersion")) {
                 segmentDemographics.setAppVersion(SetDimensionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Channel")) {
+                segmentDemographics.setChannel(SetDimensionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("DeviceType")) {
                 segmentDemographics.setDeviceType(SetDimensionJsonUnmarshaller.getInstance()
                         .unmarshall(context));

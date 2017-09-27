@@ -75,6 +75,13 @@ public class ResendConfirmationCodeRequestMarshaller implements
                 jsonWriter.name("Username");
                 jsonWriter.value(username);
             }
+            if (resendConfirmationCodeRequest.getAnalyticsMetadata() != null) {
+                AnalyticsMetadataType analyticsMetadata = resendConfirmationCodeRequest
+                        .getAnalyticsMetadata();
+                jsonWriter.name("AnalyticsMetadata");
+                AnalyticsMetadataTypeJsonMarshaller.getInstance().marshall(analyticsMetadata,
+                        jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

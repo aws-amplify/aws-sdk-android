@@ -29,9 +29,6 @@ public class GetEndpointResultJsonUnmarshaller implements
     public GetEndpointResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         GetEndpointResult getEndpointResult = new GetEndpointResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            getEndpointResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return getEndpointResult;
     }
 

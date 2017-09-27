@@ -36,10 +36,20 @@ class MessageConfigurationJsonMarshaller {
             jsonWriter.name("DefaultMessage");
             MessageJsonMarshaller.getInstance().marshall(defaultMessage, jsonWriter);
         }
+        if (messageConfiguration.getEmailMessage() != null) {
+            CampaignEmailMessage emailMessage = messageConfiguration.getEmailMessage();
+            jsonWriter.name("EmailMessage");
+            CampaignEmailMessageJsonMarshaller.getInstance().marshall(emailMessage, jsonWriter);
+        }
         if (messageConfiguration.getGCMMessage() != null) {
             Message gCMMessage = messageConfiguration.getGCMMessage();
             jsonWriter.name("GCMMessage");
             MessageJsonMarshaller.getInstance().marshall(gCMMessage, jsonWriter);
+        }
+        if (messageConfiguration.getSMSMessage() != null) {
+            CampaignSmsMessage sMSMessage = messageConfiguration.getSMSMessage();
+            jsonWriter.name("SMSMessage");
+            CampaignSmsMessageJsonMarshaller.getInstance().marshall(sMSMessage, jsonWriter);
         }
         jsonWriter.endObject();
     }

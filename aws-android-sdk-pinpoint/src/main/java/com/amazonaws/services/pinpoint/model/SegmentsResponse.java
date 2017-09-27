@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Segments in your account.
+ */
 public class SegmentsResponse implements Serializable {
     /**
      * The list of segments.

@@ -29,9 +29,6 @@ public class UpdateSegmentResultJsonUnmarshaller implements
     public UpdateSegmentResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         UpdateSegmentResult updateSegmentResult = new UpdateSegmentResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            updateSegmentResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return updateSegmentResult;
     }
 

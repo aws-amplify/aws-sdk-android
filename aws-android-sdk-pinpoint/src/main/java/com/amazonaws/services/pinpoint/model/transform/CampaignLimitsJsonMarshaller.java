@@ -30,6 +30,16 @@ class CampaignLimitsJsonMarshaller {
             jsonWriter.name("Daily");
             jsonWriter.value(daily);
         }
+        if (campaignLimits.getMaximumDuration() != null) {
+            Integer maximumDuration = campaignLimits.getMaximumDuration();
+            jsonWriter.name("MaximumDuration");
+            jsonWriter.value(maximumDuration);
+        }
+        if (campaignLimits.getMessagesPerSecond() != null) {
+            Integer messagesPerSecond = campaignLimits.getMessagesPerSecond();
+            jsonWriter.name("MessagesPerSecond");
+            jsonWriter.value(messagesPerSecond);
+        }
         if (campaignLimits.getTotal() != null) {
             Integer total = campaignLimits.getTotal();
             jsonWriter.name("Total");

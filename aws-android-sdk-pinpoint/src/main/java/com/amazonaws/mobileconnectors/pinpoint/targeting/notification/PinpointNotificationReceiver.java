@@ -33,19 +33,23 @@ public class PinpointNotificationReceiver extends BroadcastReceiver {
         PinpointNotificationReceiver.notificationClient = notificationClient;
     }
 
+    public static void setNotificationClient(NotificationClientBase notificationClientBase) {
+        PinpointNotificationReceiver.notificationClient = new NotificationClient(notificationClientBase);
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
         if (notificationClient != null) {
-            final String prefix = NotificationClient.CAMPAIGN_PUSH_KEY_PREFIX;
+            final String prefix = NotificationClientBase.CAMPAIGN_PUSH_KEY_PREFIX;
             final Map<String, String> campaignAttributes = new HashMap<String, String>();
-            campaignAttributes.put(NotificationClient.CAMPAIGN_ID_ATTRIBUTE_KEY,
-                                   intent.getStringExtra(prefix.concat(NotificationClient.CAMPAIGN_ID_ATTRIBUTE_KEY)));
+            campaignAttributes.put(NotificationClientBase.CAMPAIGN_ID_ATTRIBUTE_KEY,
+                                   intent.getStringExtra(prefix.concat(NotificationClientBase.CAMPAIGN_ID_ATTRIBUTE_KEY)));
             campaignAttributes
-                .put(NotificationClient.CAMPAIGN_TREATMENT_ID_ATTRIBUTE_KEY,
-                     intent.getStringExtra(prefix.concat(NotificationClient.CAMPAIGN_TREATMENT_ID_ATTRIBUTE_KEY)));
+                .put(NotificationClientBase.CAMPAIGN_TREATMENT_ID_ATTRIBUTE_KEY,
+                     intent.getStringExtra(prefix.concat(NotificationClientBase.CAMPAIGN_TREATMENT_ID_ATTRIBUTE_KEY)));
             campaignAttributes
-                .put(NotificationClient.CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY,
-                     intent.getStringExtra(prefix.concat(NotificationClient.CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY)));
+                .put(NotificationClientBase.CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY,
+                     intent.getStringExtra(prefix.concat(NotificationClientBase.CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY)));
             notificationClient.handleNotificationOpen(campaignAttributes,
                                                       intent.getExtras());
         } else {

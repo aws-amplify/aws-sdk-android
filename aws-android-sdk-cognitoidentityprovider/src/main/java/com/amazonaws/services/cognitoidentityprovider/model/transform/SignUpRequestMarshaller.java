@@ -101,6 +101,12 @@ public class SignUpRequestMarshaller implements Marshaller<Request<SignUpRequest
                 }
                 jsonWriter.endArray();
             }
+            if (signUpRequest.getAnalyticsMetadata() != null) {
+                AnalyticsMetadataType analyticsMetadata = signUpRequest.getAnalyticsMetadata();
+                jsonWriter.name("AnalyticsMetadata");
+                AnalyticsMetadataTypeJsonMarshaller.getInstance().marshall(analyticsMetadata,
+                        jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

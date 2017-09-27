@@ -31,6 +31,11 @@ class APNSChannelRequestJsonMarshaller {
             jsonWriter.name("Certificate");
             jsonWriter.value(certificate);
         }
+        if (aPNSChannelRequest.getEnabled() != null) {
+            Boolean enabled = aPNSChannelRequest.getEnabled();
+            jsonWriter.name("Enabled");
+            jsonWriter.value(enabled);
+        }
         if (aPNSChannelRequest.getPrivateKey() != null) {
             String privateKey = aPNSChannelRequest.getPrivateKey();
             jsonWriter.name("PrivateKey");

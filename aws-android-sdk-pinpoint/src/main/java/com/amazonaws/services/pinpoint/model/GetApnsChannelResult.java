@@ -19,84 +19,42 @@ import java.io.Serializable;
 
 public class GetApnsChannelResult implements Serializable {
     /**
-     * The new value for the aPNSChannelResponse property for this object.
+     * Apple Distribution Push Notification Service channel definition.
      */
     private APNSChannelResponse aPNSChannelResponse;
 
     /**
-     * The new value for the accessControlAllowOrigin property for this object.
-     */
-    private String accessControlAllowOrigin;
-
-    /**
-     * Returns the value of the aPNSChannelResponse property for this object.
+     * Apple Distribution Push Notification Service channel definition.
      *
-     * @return The value of the aPNSChannelResponse property for this object.
+     * @return Apple Distribution Push Notification Service channel definition.
      */
     public APNSChannelResponse getAPNSChannelResponse() {
         return aPNSChannelResponse;
     }
 
     /**
-     * Sets the value of aPNSChannelResponse
+     * Apple Distribution Push Notification Service channel definition.
      *
-     * @param aPNSChannelResponse The new value for the aPNSChannelResponse
-     *            property for this object.
+     * @param aPNSChannelResponse Apple Distribution Push Notification Service
+     *            channel definition.
      */
     public void setAPNSChannelResponse(APNSChannelResponse aPNSChannelResponse) {
         this.aPNSChannelResponse = aPNSChannelResponse;
     }
 
     /**
-     * Sets the value of the aPNSChannelResponse property for this object.
+     * Apple Distribution Push Notification Service channel definition.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param aPNSChannelResponse The new value for the aPNSChannelResponse
-     *            property for this object.
+     * @param aPNSChannelResponse Apple Distribution Push Notification Service
+     *            channel definition.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public GetApnsChannelResult withAPNSChannelResponse(APNSChannelResponse aPNSChannelResponse) {
         this.aPNSChannelResponse = aPNSChannelResponse;
-        return this;
-    }
-
-    /**
-     * Returns the value of the accessControlAllowOrigin property for this
-     * object.
-     *
-     * @return The value of the accessControlAllowOrigin property for this
-     *         object.
-     */
-    public String getAccessControlAllowOrigin() {
-        return accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of accessControlAllowOrigin
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     */
-    public void setAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of the accessControlAllowOrigin property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetApnsChannelResult withAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
         return this;
     }
 
@@ -112,9 +70,7 @@ public class GetApnsChannelResult implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getAPNSChannelResponse() != null)
-            sb.append("APNSChannelResponse: " + getAPNSChannelResponse() + ",");
-        if (getAccessControlAllowOrigin() != null)
-            sb.append("AccessControlAllowOrigin: " + getAccessControlAllowOrigin());
+            sb.append("APNSChannelResponse: " + getAPNSChannelResponse());
         sb.append("}");
         return sb.toString();
     }
@@ -126,10 +82,6 @@ public class GetApnsChannelResult implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getAPNSChannelResponse() == null) ? 0 : getAPNSChannelResponse().hashCode());
-        hashCode = prime
-                * hashCode
-                + ((getAccessControlAllowOrigin() == null) ? 0 : getAccessControlAllowOrigin()
-                        .hashCode());
         return hashCode;
     }
 
@@ -148,12 +100,6 @@ public class GetApnsChannelResult implements Serializable {
             return false;
         if (other.getAPNSChannelResponse() != null
                 && other.getAPNSChannelResponse().equals(this.getAPNSChannelResponse()) == false)
-            return false;
-        if (other.getAccessControlAllowOrigin() == null
-                ^ this.getAccessControlAllowOrigin() == null)
-            return false;
-        if (other.getAccessControlAllowOrigin() != null
-                && other.getAccessControlAllowOrigin().equals(this.getAccessControlAllowOrigin()) == false)
             return false;
         return true;
     }

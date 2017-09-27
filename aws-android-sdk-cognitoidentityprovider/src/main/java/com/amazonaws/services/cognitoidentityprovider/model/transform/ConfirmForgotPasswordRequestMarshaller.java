@@ -85,6 +85,13 @@ public class ConfirmForgotPasswordRequestMarshaller implements
                 jsonWriter.name("Password");
                 jsonWriter.value(password);
             }
+            if (confirmForgotPasswordRequest.getAnalyticsMetadata() != null) {
+                AnalyticsMetadataType analyticsMetadata = confirmForgotPasswordRequest
+                        .getAnalyticsMetadata();
+                jsonWriter.name("AnalyticsMetadata");
+                AnalyticsMetadataTypeJsonMarshaller.getInstance().marshall(analyticsMetadata,
+                        jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

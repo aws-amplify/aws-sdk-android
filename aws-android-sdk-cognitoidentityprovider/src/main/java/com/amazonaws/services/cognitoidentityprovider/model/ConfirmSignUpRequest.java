@@ -86,6 +86,13 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
+     * The pinpoint installation id.
+     * </p>
+     */
+    private AnalyticsMetadataType analyticsMetadata;
+
+    /**
+     * <p>
      * The ID of the client associated with the user pool.
      * </p>
      * <p>
@@ -434,6 +441,51 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
     }
 
     /**
+     * <p>
+     * The pinpoint installation id.
+     * </p>
+     *
+     * @return <p>
+     *         The pinpoint installation id.
+     *         </p>
+     */
+    public AnalyticsMetadataType getAnalyticsMetadata() {
+        return analyticsMetadata;
+    }
+
+    /**
+     * <p>
+     * The pinpoint installation id.
+     * </p>
+     *
+     * @param analyticsMetadata <p>
+     *            The pinpoint installation id.
+     *            </p>
+     */
+    public void setAnalyticsMetadata(AnalyticsMetadataType analyticsMetadata) {
+        this.analyticsMetadata = analyticsMetadata;
+    }
+
+    /**
+     * <p>
+     * The pinpoint installation id.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param analyticsMetadata <p>
+     *            The pinpoint installation id.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ConfirmSignUpRequest withAnalyticsMetadata(AnalyticsMetadataType analyticsMetadata) {
+        this.analyticsMetadata = analyticsMetadata;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -453,7 +505,9 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
         if (getConfirmationCode() != null)
             sb.append("ConfirmationCode: " + getConfirmationCode() + ",");
         if (getForceAliasCreation() != null)
-            sb.append("ForceAliasCreation: " + getForceAliasCreation());
+            sb.append("ForceAliasCreation: " + getForceAliasCreation() + ",");
+        if (getAnalyticsMetadata() != null)
+            sb.append("AnalyticsMetadata: " + getAnalyticsMetadata());
         sb.append("}");
         return sb.toString();
     }
@@ -470,6 +524,8 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
                 + ((getConfirmationCode() == null) ? 0 : getConfirmationCode().hashCode());
         hashCode = prime * hashCode
                 + ((getForceAliasCreation() == null) ? 0 : getForceAliasCreation().hashCode());
+        hashCode = prime * hashCode
+                + ((getAnalyticsMetadata() == null) ? 0 : getAnalyticsMetadata().hashCode());
         return hashCode;
     }
 
@@ -506,6 +562,11 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
             return false;
         if (other.getForceAliasCreation() != null
                 && other.getForceAliasCreation().equals(this.getForceAliasCreation()) == false)
+            return false;
+        if (other.getAnalyticsMetadata() == null ^ this.getAnalyticsMetadata() == null)
+            return false;
+        if (other.getAnalyticsMetadata() != null
+                && other.getAnalyticsMetadata().equals(this.getAnalyticsMetadata()) == false)
             return false;
         return true;
     }

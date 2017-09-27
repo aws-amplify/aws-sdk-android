@@ -29,9 +29,6 @@ public class GetImportJobsResultJsonUnmarshaller implements
     public GetImportJobsResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         GetImportJobsResult getImportJobsResult = new GetImportJobsResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            getImportJobsResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return getImportJobsResult;
     }
 

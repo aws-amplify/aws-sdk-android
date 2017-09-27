@@ -42,6 +42,9 @@ class APNSChannelResponseJsonUnmarshaller implements
             } else if (name.equals("CreationDate")) {
                 aPNSChannelResponse.setCreationDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Enabled")) {
+                aPNSChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Id")) {
                 aPNSChannelResponse.setId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

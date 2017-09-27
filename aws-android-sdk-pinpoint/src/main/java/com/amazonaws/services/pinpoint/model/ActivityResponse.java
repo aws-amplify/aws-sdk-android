@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Activity definition
+ */
 public class ActivityResponse implements Serializable {
     /**
      * The ID of the application to which the campaign applies.
@@ -65,6 +68,16 @@ public class ActivityResponse implements Serializable {
      * delivered messages.
      */
     private Integer successfulEndpointCount;
+
+    /**
+     * The total number of timezones completed.
+     */
+    private Integer timezonesCompletedCount;
+
+    /**
+     * The total number of unique timezones present in the segment.
+     */
+    private Integer timezonesTotalCount;
 
     /**
      * The total number of endpoints to which the campaign attempts to deliver
@@ -400,6 +413,74 @@ public class ActivityResponse implements Serializable {
     }
 
     /**
+     * The total number of timezones completed.
+     *
+     * @return The total number of timezones completed.
+     */
+    public Integer getTimezonesCompletedCount() {
+        return timezonesCompletedCount;
+    }
+
+    /**
+     * The total number of timezones completed.
+     *
+     * @param timezonesCompletedCount The total number of timezones completed.
+     */
+    public void setTimezonesCompletedCount(Integer timezonesCompletedCount) {
+        this.timezonesCompletedCount = timezonesCompletedCount;
+    }
+
+    /**
+     * The total number of timezones completed.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param timezonesCompletedCount The total number of timezones completed.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ActivityResponse withTimezonesCompletedCount(Integer timezonesCompletedCount) {
+        this.timezonesCompletedCount = timezonesCompletedCount;
+        return this;
+    }
+
+    /**
+     * The total number of unique timezones present in the segment.
+     *
+     * @return The total number of unique timezones present in the segment.
+     */
+    public Integer getTimezonesTotalCount() {
+        return timezonesTotalCount;
+    }
+
+    /**
+     * The total number of unique timezones present in the segment.
+     *
+     * @param timezonesTotalCount The total number of unique timezones present
+     *            in the segment.
+     */
+    public void setTimezonesTotalCount(Integer timezonesTotalCount) {
+        this.timezonesTotalCount = timezonesTotalCount;
+    }
+
+    /**
+     * The total number of unique timezones present in the segment.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param timezonesTotalCount The total number of unique timezones present
+     *            in the segment.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ActivityResponse withTimezonesTotalCount(Integer timezonesTotalCount) {
+        this.timezonesTotalCount = timezonesTotalCount;
+        return this;
+    }
+
+    /**
      * The total number of endpoints to which the campaign attempts to deliver
      * messages.
      *
@@ -502,6 +583,10 @@ public class ActivityResponse implements Serializable {
             sb.append("State: " + getState() + ",");
         if (getSuccessfulEndpointCount() != null)
             sb.append("SuccessfulEndpointCount: " + getSuccessfulEndpointCount() + ",");
+        if (getTimezonesCompletedCount() != null)
+            sb.append("TimezonesCompletedCount: " + getTimezonesCompletedCount() + ",");
+        if (getTimezonesTotalCount() != null)
+            sb.append("TimezonesTotalCount: " + getTimezonesTotalCount() + ",");
         if (getTotalEndpointCount() != null)
             sb.append("TotalEndpointCount: " + getTotalEndpointCount() + ",");
         if (getTreatmentId() != null)
@@ -529,6 +614,12 @@ public class ActivityResponse implements Serializable {
                 * hashCode
                 + ((getSuccessfulEndpointCount() == null) ? 0 : getSuccessfulEndpointCount()
                         .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getTimezonesCompletedCount() == null) ? 0 : getTimezonesCompletedCount()
+                        .hashCode());
+        hashCode = prime * hashCode
+                + ((getTimezonesTotalCount() == null) ? 0 : getTimezonesTotalCount().hashCode());
         hashCode = prime * hashCode
                 + ((getTotalEndpointCount() == null) ? 0 : getTotalEndpointCount().hashCode());
         hashCode = prime * hashCode
@@ -586,6 +677,16 @@ public class ActivityResponse implements Serializable {
             return false;
         if (other.getSuccessfulEndpointCount() != null
                 && other.getSuccessfulEndpointCount().equals(this.getSuccessfulEndpointCount()) == false)
+            return false;
+        if (other.getTimezonesCompletedCount() == null ^ this.getTimezonesCompletedCount() == null)
+            return false;
+        if (other.getTimezonesCompletedCount() != null
+                && other.getTimezonesCompletedCount().equals(this.getTimezonesCompletedCount()) == false)
+            return false;
+        if (other.getTimezonesTotalCount() == null ^ this.getTimezonesTotalCount() == null)
+            return false;
+        if (other.getTimezonesTotalCount() != null
+                && other.getTimezonesTotalCount().equals(this.getTimezonesTotalCount()) == false)
             return false;
         if (other.getTotalEndpointCount() == null ^ this.getTotalEndpointCount() == null)
             return false;

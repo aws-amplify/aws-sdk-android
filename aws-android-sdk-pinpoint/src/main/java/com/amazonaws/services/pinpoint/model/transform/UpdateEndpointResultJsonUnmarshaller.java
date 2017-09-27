@@ -29,9 +29,6 @@ public class UpdateEndpointResultJsonUnmarshaller implements
     public UpdateEndpointResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         UpdateEndpointResult updateEndpointResult = new UpdateEndpointResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            updateEndpointResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return updateEndpointResult;
     }
 

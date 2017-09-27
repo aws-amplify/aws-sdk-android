@@ -24,14 +24,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  */
 public class UpdateApnsChannelRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the aPNSChannelRequest property for this object.
+     * Apple Push Notification Service channel definition.
      */
     private APNSChannelRequest aPNSChannelRequest;
-
-    /**
-     * The new value for the accept property for this object.
-     */
-    private String accept;
 
     /**
      * The new value for the applicationId property for this object.
@@ -39,70 +34,37 @@ public class UpdateApnsChannelRequest extends AmazonWebServiceRequest implements
     private String applicationId;
 
     /**
-     * Returns the value of the aPNSChannelRequest property for this object.
+     * Apple Push Notification Service channel definition.
      *
-     * @return The value of the aPNSChannelRequest property for this object.
+     * @return Apple Push Notification Service channel definition.
      */
     public APNSChannelRequest getAPNSChannelRequest() {
         return aPNSChannelRequest;
     }
 
     /**
-     * Sets the value of aPNSChannelRequest
+     * Apple Push Notification Service channel definition.
      *
-     * @param aPNSChannelRequest The new value for the aPNSChannelRequest
-     *            property for this object.
+     * @param aPNSChannelRequest Apple Push Notification Service channel
+     *            definition.
      */
     public void setAPNSChannelRequest(APNSChannelRequest aPNSChannelRequest) {
         this.aPNSChannelRequest = aPNSChannelRequest;
     }
 
     /**
-     * Sets the value of the aPNSChannelRequest property for this object.
+     * Apple Push Notification Service channel definition.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param aPNSChannelRequest The new value for the aPNSChannelRequest
-     *            property for this object.
+     * @param aPNSChannelRequest Apple Push Notification Service channel
+     *            definition.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public UpdateApnsChannelRequest withAPNSChannelRequest(APNSChannelRequest aPNSChannelRequest) {
         this.aPNSChannelRequest = aPNSChannelRequest;
-        return this;
-    }
-
-    /**
-     * Returns the value of the accept property for this object.
-     *
-     * @return The value of the accept property for this object.
-     */
-    public String getAccept() {
-        return accept;
-    }
-
-    /**
-     * Sets the value of accept
-     *
-     * @param accept The new value for the accept property for this object.
-     */
-    public void setAccept(String accept) {
-        this.accept = accept;
-    }
-
-    /**
-     * Sets the value of the accept property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param accept The new value for the accept property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public UpdateApnsChannelRequest withAccept(String accept) {
-        this.accept = accept;
         return this;
     }
 
@@ -154,8 +116,6 @@ public class UpdateApnsChannelRequest extends AmazonWebServiceRequest implements
         sb.append("{");
         if (getAPNSChannelRequest() != null)
             sb.append("APNSChannelRequest: " + getAPNSChannelRequest() + ",");
-        if (getAccept() != null)
-            sb.append("Accept: " + getAccept() + ",");
         if (getApplicationId() != null)
             sb.append("ApplicationId: " + getApplicationId());
         sb.append("}");
@@ -169,7 +129,6 @@ public class UpdateApnsChannelRequest extends AmazonWebServiceRequest implements
 
         hashCode = prime * hashCode
                 + ((getAPNSChannelRequest() == null) ? 0 : getAPNSChannelRequest().hashCode());
-        hashCode = prime * hashCode + ((getAccept() == null) ? 0 : getAccept().hashCode());
         hashCode = prime * hashCode
                 + ((getApplicationId() == null) ? 0 : getApplicationId().hashCode());
         return hashCode;
@@ -190,10 +149,6 @@ public class UpdateApnsChannelRequest extends AmazonWebServiceRequest implements
             return false;
         if (other.getAPNSChannelRequest() != null
                 && other.getAPNSChannelRequest().equals(this.getAPNSChannelRequest()) == false)
-            return false;
-        if (other.getAccept() == null ^ this.getAccept() == null)
-            return false;
-        if (other.getAccept() != null && other.getAccept().equals(this.getAccept()) == false)
             return false;
         if (other.getApplicationId() == null ^ this.getApplicationId() == null)
             return false;

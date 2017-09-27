@@ -20,12 +20,12 @@ import java.io.Serializable;
 public class Message implements Serializable {
     /**
      * The action that occurs if the user taps a push notification delivered by
-     * the campaign: OPEN_APP â€“ Your app launches, or it becomes the
-     * foreground app if it has been sent to the background. This is the default
-     * action. DEEP_LINK â€“ Uses deep linking features in iOS and Android to
-     * open your app and display a designated user interface within the app. URL
-     * â€“ The default mobile browser on the user's device launches and opens a
-     * web page at the URL you specify.
+     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
+     * app if it has been sent to the background. This is the default action.
+     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
+     * app and display a designated user interface within the app. URL - The
+     * default mobile browser on the user's device launches and opens a web page
+     * at the URL you specify.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
@@ -44,6 +44,12 @@ public class Message implements Serializable {
     private String imageIconUrl;
 
     /**
+     * The URL that points to the small icon image for the push notification
+     * icon, for example, the app icon.
+     */
+    private String imageSmallIconUrl;
+
+    /**
      * The URL that points to an image used in the push notification.
      */
     private String imageUrl;
@@ -58,6 +64,12 @@ public class Message implements Serializable {
      * file.
      */
     private String mediaUrl;
+
+    /**
+     * The Raw JSON formatted string to be used as the payload. This value
+     * overrides the message.
+     */
+    private String rawContent;
 
     /**
      * Indicates if the message should display on the users device. Silent
@@ -78,22 +90,22 @@ public class Message implements Serializable {
 
     /**
      * The action that occurs if the user taps a push notification delivered by
-     * the campaign: OPEN_APP â€“ Your app launches, or it becomes the
-     * foreground app if it has been sent to the background. This is the default
-     * action. DEEP_LINK â€“ Uses deep linking features in iOS and Android to
-     * open your app and display a designated user interface within the app. URL
-     * â€“ The default mobile browser on the user's device launches and opens a
-     * web page at the URL you specify.
+     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
+     * app if it has been sent to the background. This is the default action.
+     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
+     * app and display a designated user interface within the app. URL - The
+     * default mobile browser on the user's device launches and opens a web page
+     * at the URL you specify.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
      * @return The action that occurs if the user taps a push notification
-     *         delivered by the campaign: OPEN_APP â€“ Your app launches, or it
+     *         delivered by the campaign: OPEN_APP - Your app launches, or it
      *         becomes the foreground app if it has been sent to the background.
-     *         This is the default action. DEEP_LINK â€“ Uses deep linking
+     *         This is the default action. DEEP_LINK - Uses deep linking
      *         features in iOS and Android to open your app and display a
-     *         designated user interface within the app. URL â€“ The default
+     *         designated user interface within the app. URL - The default
      *         mobile browser on the user's device launches and opens a web page
      *         at the URL you specify.
      * @see Action
@@ -104,24 +116,24 @@ public class Message implements Serializable {
 
     /**
      * The action that occurs if the user taps a push notification delivered by
-     * the campaign: OPEN_APP â€“ Your app launches, or it becomes the
-     * foreground app if it has been sent to the background. This is the default
-     * action. DEEP_LINK â€“ Uses deep linking features in iOS and Android to
-     * open your app and display a designated user interface within the app. URL
-     * â€“ The default mobile browser on the user's device launches and opens a
-     * web page at the URL you specify.
+     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
+     * app if it has been sent to the background. This is the default action.
+     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
+     * app and display a designated user interface within the app. URL - The
+     * default mobile browser on the user's device launches and opens a web page
+     * at the URL you specify.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
      * @param action The action that occurs if the user taps a push notification
-     *            delivered by the campaign: OPEN_APP â€“ Your app launches, or
-     *            it becomes the foreground app if it has been sent to the
-     *            background. This is the default action. DEEP_LINK â€“ Uses
-     *            deep linking features in iOS and Android to open your app and
-     *            display a designated user interface within the app. URL â€“
-     *            The default mobile browser on the user's device launches and
-     *            opens a web page at the URL you specify.
+     *            delivered by the campaign: OPEN_APP - Your app launches, or it
+     *            becomes the foreground app if it has been sent to the
+     *            background. This is the default action. DEEP_LINK - Uses deep
+     *            linking features in iOS and Android to open your app and
+     *            display a designated user interface within the app. URL - The
+     *            default mobile browser on the user's device launches and opens
+     *            a web page at the URL you specify.
      * @see Action
      */
     public void setAction(String action) {
@@ -130,12 +142,12 @@ public class Message implements Serializable {
 
     /**
      * The action that occurs if the user taps a push notification delivered by
-     * the campaign: OPEN_APP â€“ Your app launches, or it becomes the
-     * foreground app if it has been sent to the background. This is the default
-     * action. DEEP_LINK â€“ Uses deep linking features in iOS and Android to
-     * open your app and display a designated user interface within the app. URL
-     * â€“ The default mobile browser on the user's device launches and opens a
-     * web page at the URL you specify.
+     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
+     * app if it has been sent to the background. This is the default action.
+     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
+     * app and display a designated user interface within the app. URL - The
+     * default mobile browser on the user's device launches and opens a web page
+     * at the URL you specify.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -144,13 +156,13 @@ public class Message implements Serializable {
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
      * @param action The action that occurs if the user taps a push notification
-     *            delivered by the campaign: OPEN_APP â€“ Your app launches, or
-     *            it becomes the foreground app if it has been sent to the
-     *            background. This is the default action. DEEP_LINK â€“ Uses
-     *            deep linking features in iOS and Android to open your app and
-     *            display a designated user interface within the app. URL â€“
-     *            The default mobile browser on the user's device launches and
-     *            opens a web page at the URL you specify.
+     *            delivered by the campaign: OPEN_APP - Your app launches, or it
+     *            becomes the foreground app if it has been sent to the
+     *            background. This is the default action. DEEP_LINK - Uses deep
+     *            linking features in iOS and Android to open your app and
+     *            display a designated user interface within the app. URL - The
+     *            default mobile browser on the user's device launches and opens
+     *            a web page at the URL you specify.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Action
@@ -162,24 +174,24 @@ public class Message implements Serializable {
 
     /**
      * The action that occurs if the user taps a push notification delivered by
-     * the campaign: OPEN_APP â€“ Your app launches, or it becomes the
-     * foreground app if it has been sent to the background. This is the default
-     * action. DEEP_LINK â€“ Uses deep linking features in iOS and Android to
-     * open your app and display a designated user interface within the app. URL
-     * â€“ The default mobile browser on the user's device launches and opens a
-     * web page at the URL you specify.
+     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
+     * app if it has been sent to the background. This is the default action.
+     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
+     * app and display a designated user interface within the app. URL - The
+     * default mobile browser on the user's device launches and opens a web page
+     * at the URL you specify.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
      * @param action The action that occurs if the user taps a push notification
-     *            delivered by the campaign: OPEN_APP â€“ Your app launches, or
-     *            it becomes the foreground app if it has been sent to the
-     *            background. This is the default action. DEEP_LINK â€“ Uses
-     *            deep linking features in iOS and Android to open your app and
-     *            display a designated user interface within the app. URL â€“
-     *            The default mobile browser on the user's device launches and
-     *            opens a web page at the URL you specify.
+     *            delivered by the campaign: OPEN_APP - Your app launches, or it
+     *            becomes the foreground app if it has been sent to the
+     *            background. This is the default action. DEEP_LINK - Uses deep
+     *            linking features in iOS and Android to open your app and
+     *            display a designated user interface within the app. URL - The
+     *            default mobile browser on the user's device launches and opens
+     *            a web page at the URL you specify.
      * @see Action
      */
     public void setAction(Action action) {
@@ -188,12 +200,12 @@ public class Message implements Serializable {
 
     /**
      * The action that occurs if the user taps a push notification delivered by
-     * the campaign: OPEN_APP â€“ Your app launches, or it becomes the
-     * foreground app if it has been sent to the background. This is the default
-     * action. DEEP_LINK â€“ Uses deep linking features in iOS and Android to
-     * open your app and display a designated user interface within the app. URL
-     * â€“ The default mobile browser on the user's device launches and opens a
-     * web page at the URL you specify.
+     * the campaign: OPEN_APP - Your app launches, or it becomes the foreground
+     * app if it has been sent to the background. This is the default action.
+     * DEEP_LINK - Uses deep linking features in iOS and Android to open your
+     * app and display a designated user interface within the app. URL - The
+     * default mobile browser on the user's device launches and opens a web page
+     * at the URL you specify.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -202,13 +214,13 @@ public class Message implements Serializable {
      * <b>Allowed Values: </b>OPEN_APP, DEEP_LINK, URL
      *
      * @param action The action that occurs if the user taps a push notification
-     *            delivered by the campaign: OPEN_APP â€“ Your app launches, or
-     *            it becomes the foreground app if it has been sent to the
-     *            background. This is the default action. DEEP_LINK â€“ Uses
-     *            deep linking features in iOS and Android to open your app and
-     *            display a designated user interface within the app. URL â€“
-     *            The default mobile browser on the user's device launches and
-     *            opens a web page at the URL you specify.
+     *            delivered by the campaign: OPEN_APP - Your app launches, or it
+     *            becomes the foreground app if it has been sent to the
+     *            background. This is the default action. DEEP_LINK - Uses deep
+     *            linking features in iOS and Android to open your app and
+     *            display a designated user interface within the app. URL - The
+     *            default mobile browser on the user's device launches and opens
+     *            a web page at the URL you specify.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Action
@@ -287,6 +299,45 @@ public class Message implements Serializable {
      */
     public Message withImageIconUrl(String imageIconUrl) {
         this.imageIconUrl = imageIconUrl;
+        return this;
+    }
+
+    /**
+     * The URL that points to the small icon image for the push notification
+     * icon, for example, the app icon.
+     *
+     * @return The URL that points to the small icon image for the push
+     *         notification icon, for example, the app icon.
+     */
+    public String getImageSmallIconUrl() {
+        return imageSmallIconUrl;
+    }
+
+    /**
+     * The URL that points to the small icon image for the push notification
+     * icon, for example, the app icon.
+     *
+     * @param imageSmallIconUrl The URL that points to the small icon image for
+     *            the push notification icon, for example, the app icon.
+     */
+    public void setImageSmallIconUrl(String imageSmallIconUrl) {
+        this.imageSmallIconUrl = imageSmallIconUrl;
+    }
+
+    /**
+     * The URL that points to the small icon image for the push notification
+     * icon, for example, the app icon.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param imageSmallIconUrl The URL that points to the small icon image for
+     *            the push notification icon, for example, the app icon.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Message withImageSmallIconUrl(String imageSmallIconUrl) {
+        this.imageSmallIconUrl = imageSmallIconUrl;
         return this;
     }
 
@@ -394,6 +445,45 @@ public class Message implements Serializable {
      */
     public Message withMediaUrl(String mediaUrl) {
         this.mediaUrl = mediaUrl;
+        return this;
+    }
+
+    /**
+     * The Raw JSON formatted string to be used as the payload. This value
+     * overrides the message.
+     *
+     * @return The Raw JSON formatted string to be used as the payload. This
+     *         value overrides the message.
+     */
+    public String getRawContent() {
+        return rawContent;
+    }
+
+    /**
+     * The Raw JSON formatted string to be used as the payload. This value
+     * overrides the message.
+     *
+     * @param rawContent The Raw JSON formatted string to be used as the
+     *            payload. This value overrides the message.
+     */
+    public void setRawContent(String rawContent) {
+        this.rawContent = rawContent;
+    }
+
+    /**
+     * The Raw JSON formatted string to be used as the payload. This value
+     * overrides the message.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param rawContent The Raw JSON formatted string to be used as the
+     *            payload. This value overrides the message.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Message withRawContent(String rawContent) {
+        this.rawContent = rawContent;
         return this;
     }
 
@@ -543,12 +633,16 @@ public class Message implements Serializable {
             sb.append("Body: " + getBody() + ",");
         if (getImageIconUrl() != null)
             sb.append("ImageIconUrl: " + getImageIconUrl() + ",");
+        if (getImageSmallIconUrl() != null)
+            sb.append("ImageSmallIconUrl: " + getImageSmallIconUrl() + ",");
         if (getImageUrl() != null)
             sb.append("ImageUrl: " + getImageUrl() + ",");
         if (getJsonBody() != null)
             sb.append("JsonBody: " + getJsonBody() + ",");
         if (getMediaUrl() != null)
             sb.append("MediaUrl: " + getMediaUrl() + ",");
+        if (getRawContent() != null)
+            sb.append("RawContent: " + getRawContent() + ",");
         if (getSilentPush() != null)
             sb.append("SilentPush: " + getSilentPush() + ",");
         if (getTitle() != null)
@@ -568,9 +662,12 @@ public class Message implements Serializable {
         hashCode = prime * hashCode + ((getBody() == null) ? 0 : getBody().hashCode());
         hashCode = prime * hashCode
                 + ((getImageIconUrl() == null) ? 0 : getImageIconUrl().hashCode());
+        hashCode = prime * hashCode
+                + ((getImageSmallIconUrl() == null) ? 0 : getImageSmallIconUrl().hashCode());
         hashCode = prime * hashCode + ((getImageUrl() == null) ? 0 : getImageUrl().hashCode());
         hashCode = prime * hashCode + ((getJsonBody() == null) ? 0 : getJsonBody().hashCode());
         hashCode = prime * hashCode + ((getMediaUrl() == null) ? 0 : getMediaUrl().hashCode());
+        hashCode = prime * hashCode + ((getRawContent() == null) ? 0 : getRawContent().hashCode());
         hashCode = prime * hashCode + ((getSilentPush() == null) ? 0 : getSilentPush().hashCode());
         hashCode = prime * hashCode + ((getTitle() == null) ? 0 : getTitle().hashCode());
         hashCode = prime * hashCode + ((getUrl() == null) ? 0 : getUrl().hashCode());
@@ -601,6 +698,11 @@ public class Message implements Serializable {
         if (other.getImageIconUrl() != null
                 && other.getImageIconUrl().equals(this.getImageIconUrl()) == false)
             return false;
+        if (other.getImageSmallIconUrl() == null ^ this.getImageSmallIconUrl() == null)
+            return false;
+        if (other.getImageSmallIconUrl() != null
+                && other.getImageSmallIconUrl().equals(this.getImageSmallIconUrl()) == false)
+            return false;
         if (other.getImageUrl() == null ^ this.getImageUrl() == null)
             return false;
         if (other.getImageUrl() != null && other.getImageUrl().equals(this.getImageUrl()) == false)
@@ -612,6 +714,11 @@ public class Message implements Serializable {
         if (other.getMediaUrl() == null ^ this.getMediaUrl() == null)
             return false;
         if (other.getMediaUrl() != null && other.getMediaUrl().equals(this.getMediaUrl()) == false)
+            return false;
+        if (other.getRawContent() == null ^ this.getRawContent() == null)
+            return false;
+        if (other.getRawContent() != null
+                && other.getRawContent().equals(this.getRawContent()) == false)
             return false;
         if (other.getSilentPush() == null ^ this.getSilentPush() == null)
             return false;

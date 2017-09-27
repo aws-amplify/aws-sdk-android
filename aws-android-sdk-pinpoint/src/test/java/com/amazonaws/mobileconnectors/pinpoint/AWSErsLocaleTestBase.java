@@ -36,6 +36,8 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.core.configuration.Andro
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.MockSystem;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.pinpoint.model.ChannelType;
+
 import android.app.Activity;
 import android.content.Context;
 
@@ -89,6 +91,7 @@ public abstract class AWSErsLocaleTestBase
         PinpointConfiguration options = new PinpointConfiguration(mockAndroidContext,
                                                                          UNIQUE_ID,
                                                                          Regions.US_EAST_1,
+                                                                         ChannelType.GCM,
                                                                          provider);
         context = new AnalyticsContextBuilder()
                           .withSdkInfo(SDK_NAME, SDK_VERSION)
@@ -107,6 +110,7 @@ public abstract class AWSErsLocaleTestBase
         PinpointConfiguration config = new PinpointConfiguration(mockAndroidContext,
                                                                         UNIQUE_ID,
                                                                         Regions.US_EAST_1,
+                                                                        ChannelType.GCM,
                                                                         provider);
 
         instance = new PinpointManager(config);

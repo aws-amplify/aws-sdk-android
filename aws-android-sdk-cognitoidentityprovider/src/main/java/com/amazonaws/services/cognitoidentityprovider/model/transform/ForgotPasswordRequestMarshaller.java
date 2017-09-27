@@ -74,6 +74,13 @@ public class ForgotPasswordRequestMarshaller implements
                 jsonWriter.name("Username");
                 jsonWriter.value(username);
             }
+            if (forgotPasswordRequest.getAnalyticsMetadata() != null) {
+                AnalyticsMetadataType analyticsMetadata = forgotPasswordRequest
+                        .getAnalyticsMetadata();
+                jsonWriter.name("AnalyticsMetadata");
+                AnalyticsMetadataTypeJsonMarshaller.getInstance().marshall(analyticsMetadata,
+                        jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

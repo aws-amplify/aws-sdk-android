@@ -41,6 +41,8 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.configuration.AndroidPreferencesConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.MockSystem;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
+import com.amazonaws.services.pinpoint.model.ChannelType;
+
 import android.app.Service;
 import android.os.Bundle;
 import org.robolectric.shadows.ShadowBitmap;
@@ -50,6 +52,7 @@ import java.util.Map;
 import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.anyString;
@@ -57,10 +60,11 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.withSettings;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE)
-public class NotificationClientTest extends MobileAnalyticsTestBase {
+public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
 
     @Mock
     AndroidPreferencesConfiguration mockConfiguration;
@@ -72,9 +76,9 @@ public class NotificationClientTest extends MobileAnalyticsTestBase {
     private TargetingClient mockTargetingClient;
     @Mock
     private PinpointConfiguration mockPinpointConfiguration;
-
+    @Mock
     private PinpointContext mockPinpointContext;
-
+    @Mock
     private Context spiedRoboContext;
 
     @Before
@@ -107,7 +111,7 @@ public class NotificationClientTest extends MobileAnalyticsTestBase {
         when(mockPinpointContext.getPinpointConfiguration())
                 .thenReturn(mockPinpointConfiguration);
 
-        target = new NotificationClient(mockPinpointContext);
+        target = NotificationClient.createClient(mockPinpointContext, ChannelType.GCM);
     }
 
     @Test
@@ -174,7 +178,7 @@ public class NotificationClientTest extends MobileAnalyticsTestBase {
     public void testGCMMessageReceivedInForegroundDefaultConfig() throws JSONException {
         // Force the app to be in the foreground.
         final AppUtil appUtil = Mockito.mock(AppUtil.class);
-        Whitebox.setInternalState(target, "appUtil", appUtil);
+        Whitebox.setInternalState(target.notificationClientBase, "appUtil", appUtil);
         Mockito.when(appUtil.isAppInForeground()).thenReturn(true);
 
         NotificationClient.CampaignPushResult pushResult
@@ -214,7 +218,7 @@ public class NotificationClientTest extends MobileAnalyticsTestBase {
 
         // Force the app to be in the foreground.
         final AppUtil appUtil = Mockito.mock(AppUtil.class);
-        Whitebox.setInternalState(target, "appUtil", appUtil);
+        Whitebox.setInternalState(target.notificationClientBase, "appUtil", appUtil);
         Mockito.when(appUtil.isAppInForeground()).thenReturn(true);
 
         NotificationClient.CampaignPushResult pushResult
@@ -248,7 +252,7 @@ public class NotificationClientTest extends MobileAnalyticsTestBase {
 
         // Force the app to be in the foreground.
         final AppUtil appUtil = Mockito.mock(AppUtil.class);
-        Whitebox.setInternalState(target, "appUtil", appUtil);
+        Whitebox.setInternalState(target.notificationClientBase, "appUtil", appUtil);
         Mockito.when(appUtil.isAppInForeground()).thenReturn(false);
 
         NotificationClient.CampaignPushResult pushResult
@@ -329,7 +333,11 @@ public class NotificationClientTest extends MobileAnalyticsTestBase {
     public void testAreAppNotificationsEnabled_callsPlatformMethod_whenOptOutProviderReturnsFalse() {
         mockAppLevelOptOutProvider(false);
 
-        final NotificationClient notificationClient = spy(target);
+        final NotificationClientBase notificationClient = Mockito.mock(NotificationClientBase.class,
+                withSettings().defaultAnswer(CALLS_REAL_METHODS));
+
+        Whitebox.setInternalState(notificationClient, "pinpointContext", mockPinpointContext);
+
         notificationClient.areAppNotificationsEnabled();
 
         verify(notificationClient).areAppNotificationsEnabledOnPlatform();
@@ -364,7 +372,7 @@ public class NotificationClientTest extends MobileAnalyticsTestBase {
 
         final Bitmap inputBitmap = Bitmap.createBitmap(inputPixels, 255, 255, Bitmap.Config.ARGB_8888);
 
-        final Bitmap outputBitmap = NotificationClient.convertBitmapToAlphaGreyscale(inputBitmap);
+        final Bitmap outputBitmap = NotificationClientBase.convertBitmapToAlphaGreyscale(inputBitmap);
         // Verify the output is white with greyscale in the alpha channel.
         for (int x = 0; x < 255; x++) {
             for (int y = 0; y < 255; y++) {
@@ -384,7 +392,7 @@ public class NotificationClientTest extends MobileAnalyticsTestBase {
         }
 
         // call the method again with the converted image, it should leave the bitmap unchanged.
-        final Bitmap dupOutput = NotificationClient.convertBitmapToAlphaGreyscale(outputBitmap);
+        final Bitmap dupOutput = NotificationClientBase.convertBitmapToAlphaGreyscale(outputBitmap);
 
         for (int x = 0; x < 255; x++) {
             for (int y = 0; y < 255; y++) {

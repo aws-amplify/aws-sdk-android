@@ -51,10 +51,6 @@ public class GetSegmentVersionsRequestMarshaller implements
                 getSegmentVersionsRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.GET);
 
-        if (getSegmentVersionsRequest.getAccept() != null) {
-            request.addHeader("accept",
-                    StringUtils.fromString(getSegmentVersionsRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/segments/{segment-id}/versions";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

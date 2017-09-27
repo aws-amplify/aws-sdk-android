@@ -17,9 +17,13 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Endpoint response
+ */
 public class EndpointResponse implements Serializable {
     /**
-     * The address or token of the endpoint.
+     * The address or token of the endpoint as provided by your push provider
+     * (e.g. DeviceToken or RegistrationId).
      */
     private String address;
 
@@ -35,10 +39,10 @@ public class EndpointResponse implements Serializable {
     private java.util.Map<String, java.util.List<String>> attributes;
 
     /**
-     * The channel type. Valid values: APNS, GCM
+     * The channel type. Valid values: GCM | APNS | SMS | EMAIL
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>APNS, GCM
+     * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, ADM, SMS, EMAIL, BAIDU
      */
     private String channelType;
 
@@ -91,8 +95,8 @@ public class EndpointResponse implements Serializable {
 
     /**
      * Indicates whether a user has opted out of receiving messages with one of
-     * the following values: ALL â€“ User receives all messages. NONE â€“ User
-     * receives no messages.
+     * the following values: ALL - User has opted out of all messages. NONE -
+     * Users has not opted out and receives all messages.
      */
     private String optOut;
 
@@ -102,40 +106,41 @@ public class EndpointResponse implements Serializable {
     private String requestId;
 
     /**
-     * The ShardId of endpoint
-     */
-    private String shardId;
-
-    /**
      * Custom user-specific attributes that your app reports to Amazon Pinpoint.
      */
     private EndpointUser user;
 
     /**
-     * The address or token of the endpoint.
+     * The address or token of the endpoint as provided by your push provider
+     * (e.g. DeviceToken or RegistrationId).
      *
-     * @return The address or token of the endpoint.
+     * @return The address or token of the endpoint as provided by your push
+     *         provider (e.g. DeviceToken or RegistrationId).
      */
     public String getAddress() {
         return address;
     }
 
     /**
-     * The address or token of the endpoint.
+     * The address or token of the endpoint as provided by your push provider
+     * (e.g. DeviceToken or RegistrationId).
      *
-     * @param address The address or token of the endpoint.
+     * @param address The address or token of the endpoint as provided by your
+     *            push provider (e.g. DeviceToken or RegistrationId).
      */
     public void setAddress(String address) {
         this.address = address;
     }
 
     /**
-     * The address or token of the endpoint.
+     * The address or token of the endpoint as provided by your push provider
+     * (e.g. DeviceToken or RegistrationId).
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param address The address or token of the endpoint.
+     * @param address The address or token of the endpoint as provided by your
+     *            push provider (e.g. DeviceToken or RegistrationId).
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -258,12 +263,12 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * The channel type. Valid values: APNS, GCM
+     * The channel type. Valid values: GCM | APNS | SMS | EMAIL
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>APNS, GCM
+     * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, ADM, SMS, EMAIL, BAIDU
      *
-     * @return The channel type. Valid values: APNS, GCM
+     * @return The channel type. Valid values: GCM | APNS | SMS | EMAIL
      * @see ChannelType
      */
     public String getChannelType() {
@@ -271,12 +276,13 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * The channel type. Valid values: APNS, GCM
+     * The channel type. Valid values: GCM | APNS | SMS | EMAIL
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>APNS, GCM
+     * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, ADM, SMS, EMAIL, BAIDU
      *
-     * @param channelType The channel type. Valid values: APNS, GCM
+     * @param channelType The channel type. Valid values: GCM | APNS | SMS |
+     *            EMAIL
      * @see ChannelType
      */
     public void setChannelType(String channelType) {
@@ -284,15 +290,16 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * The channel type. Valid values: APNS, GCM
+     * The channel type. Valid values: GCM | APNS | SMS | EMAIL
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>APNS, GCM
+     * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, ADM, SMS, EMAIL, BAIDU
      *
-     * @param channelType The channel type. Valid values: APNS, GCM
+     * @param channelType The channel type. Valid values: GCM | APNS | SMS |
+     *            EMAIL
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ChannelType
@@ -303,12 +310,13 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * The channel type. Valid values: APNS, GCM
+     * The channel type. Valid values: GCM | APNS | SMS | EMAIL
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>APNS, GCM
+     * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, ADM, SMS, EMAIL, BAIDU
      *
-     * @param channelType The channel type. Valid values: APNS, GCM
+     * @param channelType The channel type. Valid values: GCM | APNS | SMS |
+     *            EMAIL
      * @see ChannelType
      */
     public void setChannelType(ChannelType channelType) {
@@ -316,15 +324,16 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * The channel type. Valid values: APNS, GCM
+     * The channel type. Valid values: GCM | APNS | SMS | EMAIL
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>APNS, GCM
+     * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, ADM, SMS, EMAIL, BAIDU
      *
-     * @param channelType The channel type. Valid values: APNS, GCM
+     * @param channelType The channel type. Valid values: GCM | APNS | SMS |
+     *            EMAIL
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ChannelType
@@ -685,12 +694,13 @@ public class EndpointResponse implements Serializable {
 
     /**
      * Indicates whether a user has opted out of receiving messages with one of
-     * the following values: ALL â€“ User receives all messages. NONE â€“ User
-     * receives no messages.
+     * the following values: ALL - User has opted out of all messages. NONE -
+     * Users has not opted out and receives all messages.
      *
      * @return Indicates whether a user has opted out of receiving messages with
-     *         one of the following values: ALL â€“ User receives all messages.
-     *         NONE â€“ User receives no messages.
+     *         one of the following values: ALL - User has opted out of all
+     *         messages. NONE - Users has not opted out and receives all
+     *         messages.
      */
     public String getOptOut() {
         return optOut;
@@ -698,12 +708,13 @@ public class EndpointResponse implements Serializable {
 
     /**
      * Indicates whether a user has opted out of receiving messages with one of
-     * the following values: ALL â€“ User receives all messages. NONE â€“ User
-     * receives no messages.
+     * the following values: ALL - User has opted out of all messages. NONE -
+     * Users has not opted out and receives all messages.
      *
      * @param optOut Indicates whether a user has opted out of receiving
-     *            messages with one of the following values: ALL â€“ User
-     *            receives all messages. NONE â€“ User receives no messages.
+     *            messages with one of the following values: ALL - User has
+     *            opted out of all messages. NONE - Users has not opted out and
+     *            receives all messages.
      */
     public void setOptOut(String optOut) {
         this.optOut = optOut;
@@ -711,15 +722,16 @@ public class EndpointResponse implements Serializable {
 
     /**
      * Indicates whether a user has opted out of receiving messages with one of
-     * the following values: ALL â€“ User receives all messages. NONE â€“ User
-     * receives no messages.
+     * the following values: ALL - User has opted out of all messages. NONE -
+     * Users has not opted out and receives all messages.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param optOut Indicates whether a user has opted out of receiving
-     *            messages with one of the following values: ALL â€“ User
-     *            receives all messages. NONE â€“ User receives no messages.
+     *            messages with one of the following values: ALL - User has
+     *            opted out of all messages. NONE - Users has not opted out and
+     *            receives all messages.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -760,39 +772,6 @@ public class EndpointResponse implements Serializable {
      */
     public EndpointResponse withRequestId(String requestId) {
         this.requestId = requestId;
-        return this;
-    }
-
-    /**
-     * The ShardId of endpoint
-     *
-     * @return The ShardId of endpoint
-     */
-    public String getShardId() {
-        return shardId;
-    }
-
-    /**
-     * The ShardId of endpoint
-     *
-     * @param shardId The ShardId of endpoint
-     */
-    public void setShardId(String shardId) {
-        this.shardId = shardId;
-    }
-
-    /**
-     * The ShardId of endpoint
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param shardId The ShardId of endpoint
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public EndpointResponse withShardId(String shardId) {
-        this.shardId = shardId;
         return this;
     }
 
@@ -871,8 +850,6 @@ public class EndpointResponse implements Serializable {
             sb.append("OptOut: " + getOptOut() + ",");
         if (getRequestId() != null)
             sb.append("RequestId: " + getRequestId() + ",");
-        if (getShardId() != null)
-            sb.append("ShardId: " + getShardId() + ",");
         if (getUser() != null)
             sb.append("User: " + getUser());
         sb.append("}");
@@ -904,7 +881,6 @@ public class EndpointResponse implements Serializable {
         hashCode = prime * hashCode + ((getMetrics() == null) ? 0 : getMetrics().hashCode());
         hashCode = prime * hashCode + ((getOptOut() == null) ? 0 : getOptOut().hashCode());
         hashCode = prime * hashCode + ((getRequestId() == null) ? 0 : getRequestId().hashCode());
-        hashCode = prime * hashCode + ((getShardId() == null) ? 0 : getShardId().hashCode());
         hashCode = prime * hashCode + ((getUser() == null) ? 0 : getUser().hashCode());
         return hashCode;
     }
@@ -983,10 +959,6 @@ public class EndpointResponse implements Serializable {
             return false;
         if (other.getRequestId() != null
                 && other.getRequestId().equals(this.getRequestId()) == false)
-            return false;
-        if (other.getShardId() == null ^ this.getShardId() == null)
-            return false;
-        if (other.getShardId() != null && other.getShardId().equals(this.getShardId()) == false)
             return false;
         if (other.getUser() == null ^ this.getUser() == null)
             return false;

@@ -29,9 +29,6 @@ public class UpdateGcmChannelResultJsonUnmarshaller implements
     public UpdateGcmChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         UpdateGcmChannelResult updateGcmChannelResult = new UpdateGcmChannelResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            updateGcmChannelResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return updateGcmChannelResult;
     }
 

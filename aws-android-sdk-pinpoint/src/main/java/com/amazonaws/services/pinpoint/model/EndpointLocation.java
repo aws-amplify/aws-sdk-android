@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Endpoint location data
+ */
 public class EndpointLocation implements Serializable {
     /**
      * The city where the endpoint is located.

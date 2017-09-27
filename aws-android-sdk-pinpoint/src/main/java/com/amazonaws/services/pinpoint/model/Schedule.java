@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Shcedule that defines when a campaign is run.
+ */
 public class Schedule implements Serializable {
     /**
      * The scheduled time that the campaign ends in ISO 8601 format.

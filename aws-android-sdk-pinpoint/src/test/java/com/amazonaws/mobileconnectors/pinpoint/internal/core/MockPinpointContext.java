@@ -34,6 +34,7 @@ import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.NotificationClient;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.pinpoint.AmazonPinpointClient;
+import com.amazonaws.services.pinpoint.model.ChannelType;
 import com.amazonaws.services.pinpointanalytics.AmazonPinpointAnalyticsClient;
 import android.app.Activity;
 import android.content.Context;
@@ -102,6 +103,7 @@ public class MockPinpointContext extends PinpointContext {
                                                                                                   .getApplicationContext()),
                                                                       getUniqueId(),
                                                                       Regions.US_EAST_1,
+                                                                      ChannelType.GCM,
                                                                       provider);
         this.system = new MockSystem(id);
         this.system.getPreferences().putString("UniqueId", id);
@@ -120,7 +122,7 @@ public class MockPinpointContext extends PinpointContext {
 
         this.configuration = AndroidPreferencesConfiguration.newInstance(this);
 
-        this.notificationClient = new NotificationClient(this);
+        this.notificationClient = NotificationClient.createClient(this, ChannelType.GCM);
     }
 
     @Override

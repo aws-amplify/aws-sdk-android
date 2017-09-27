@@ -42,8 +42,15 @@ class MessageConfigurationJsonUnmarshaller implements
             } else if (name.equals("DefaultMessage")) {
                 messageConfiguration.setDefaultMessage(MessageJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("EmailMessage")) {
+                messageConfiguration.setEmailMessage(CampaignEmailMessageJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("GCMMessage")) {
                 messageConfiguration.setGCMMessage(MessageJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("SMSMessage")) {
+                messageConfiguration.setSMSMessage(CampaignSmsMessageJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

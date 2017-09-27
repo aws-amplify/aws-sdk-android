@@ -51,10 +51,6 @@ public class UpdateApplicationSettingsRequestMarshaller implements
                 updateApplicationSettingsRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.PUT);
 
-        if (updateApplicationSettingsRequest.getAccept() != null) {
-            request.addHeader("accept",
-                    StringUtils.fromString(updateApplicationSettingsRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/settings";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

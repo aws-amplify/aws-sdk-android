@@ -40,6 +40,11 @@ class MessageJsonMarshaller {
             jsonWriter.name("ImageIconUrl");
             jsonWriter.value(imageIconUrl);
         }
+        if (message.getImageSmallIconUrl() != null) {
+            String imageSmallIconUrl = message.getImageSmallIconUrl();
+            jsonWriter.name("ImageSmallIconUrl");
+            jsonWriter.value(imageSmallIconUrl);
+        }
         if (message.getImageUrl() != null) {
             String imageUrl = message.getImageUrl();
             jsonWriter.name("ImageUrl");
@@ -54,6 +59,11 @@ class MessageJsonMarshaller {
             String mediaUrl = message.getMediaUrl();
             jsonWriter.name("MediaUrl");
             jsonWriter.value(mediaUrl);
+        }
+        if (message.getRawContent() != null) {
+            String rawContent = message.getRawContent();
+            jsonWriter.name("RawContent");
+            jsonWriter.value(rawContent);
         }
         if (message.getSilentPush() != null) {
             Boolean silentPush = message.getSilentPush();

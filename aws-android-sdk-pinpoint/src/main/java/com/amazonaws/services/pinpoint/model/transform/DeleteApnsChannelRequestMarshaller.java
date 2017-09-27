@@ -51,10 +51,6 @@ public class DeleteApnsChannelRequestMarshaller implements
                 deleteApnsChannelRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.DELETE);
 
-        if (deleteApnsChannelRequest.getAccept() != null) {
-            request.addHeader("accept",
-                    StringUtils.fromString(deleteApnsChannelRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/channels/apns";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

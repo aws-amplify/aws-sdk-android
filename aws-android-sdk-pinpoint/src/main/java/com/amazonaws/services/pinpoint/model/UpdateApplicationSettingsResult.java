@@ -19,70 +19,23 @@ import java.io.Serializable;
 
 public class UpdateApplicationSettingsResult implements Serializable {
     /**
-     * The new value for the accessControlAllowOrigin property for this object.
-     */
-    private String accessControlAllowOrigin;
-
-    /**
-     * The new value for the applicationSettingsResource property for this
-     * object.
+     * Application settings.
      */
     private ApplicationSettingsResource applicationSettingsResource;
 
     /**
-     * Returns the value of the accessControlAllowOrigin property for this
-     * object.
+     * Application settings.
      *
-     * @return The value of the accessControlAllowOrigin property for this
-     *         object.
-     */
-    public String getAccessControlAllowOrigin() {
-        return accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of accessControlAllowOrigin
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     */
-    public void setAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of the accessControlAllowOrigin property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public UpdateApplicationSettingsResult withAccessControlAllowOrigin(
-            String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-        return this;
-    }
-
-    /**
-     * Returns the value of the applicationSettingsResource property for this
-     * object.
-     *
-     * @return The value of the applicationSettingsResource property for this
-     *         object.
+     * @return Application settings.
      */
     public ApplicationSettingsResource getApplicationSettingsResource() {
         return applicationSettingsResource;
     }
 
     /**
-     * Sets the value of applicationSettingsResource
+     * Application settings.
      *
-     * @param applicationSettingsResource The new value for the
-     *            applicationSettingsResource property for this object.
+     * @param applicationSettingsResource Application settings.
      */
     public void setApplicationSettingsResource(
             ApplicationSettingsResource applicationSettingsResource) {
@@ -90,14 +43,12 @@ public class UpdateApplicationSettingsResult implements Serializable {
     }
 
     /**
-     * Sets the value of the applicationSettingsResource property for this
-     * object.
+     * Application settings.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationSettingsResource The new value for the
-     *            applicationSettingsResource property for this object.
+     * @param applicationSettingsResource Application settings.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -118,8 +69,6 @@ public class UpdateApplicationSettingsResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAccessControlAllowOrigin() != null)
-            sb.append("AccessControlAllowOrigin: " + getAccessControlAllowOrigin() + ",");
         if (getApplicationSettingsResource() != null)
             sb.append("ApplicationSettingsResource: " + getApplicationSettingsResource());
         sb.append("}");
@@ -131,10 +80,6 @@ public class UpdateApplicationSettingsResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime
-                * hashCode
-                + ((getAccessControlAllowOrigin() == null) ? 0 : getAccessControlAllowOrigin()
-                        .hashCode());
         hashCode = prime
                 * hashCode
                 + ((getApplicationSettingsResource() == null) ? 0
@@ -153,12 +98,6 @@ public class UpdateApplicationSettingsResult implements Serializable {
             return false;
         UpdateApplicationSettingsResult other = (UpdateApplicationSettingsResult) obj;
 
-        if (other.getAccessControlAllowOrigin() == null
-                ^ this.getAccessControlAllowOrigin() == null)
-            return false;
-        if (other.getAccessControlAllowOrigin() != null
-                && other.getAccessControlAllowOrigin().equals(this.getAccessControlAllowOrigin()) == false)
-            return false;
         if (other.getApplicationSettingsResource() == null
                 ^ this.getApplicationSettingsResource() == null)
             return false;

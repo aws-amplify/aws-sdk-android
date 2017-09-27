@@ -16,6 +16,8 @@
 package com.amazonaws.mobileconnectors.pinpoint.analytics.utils;
 
 import org.mockito.internal.util.MockUtil;
+
+import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.configuration.AndroidPreferencesConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidAppDetails;
@@ -38,8 +40,9 @@ import static org.mockito.Mockito.when;
 
 public class AnalyticsContextBuilder {
 
-    private final NotificationClient mockNotificationClient = mock(NotificationClient.class);
+    private NotificationClient mockNotificationClient;
     private final TargetingClient mockTargetingClient = mock(TargetingClient.class);
+    private final PinpointConfiguration mockPinpointConfig = mock(PinpointConfiguration.class);
     private String sdkName = "";
     private String sdkVersion = "";
     private String mockUniqueIdValue = "";
@@ -50,8 +53,7 @@ public class AnalyticsContextBuilder {
     private AndroidConnectivity mockConnectivity = mock(AndroidConnectivity.class);
     private AndroidDeviceDetails mockDeviceDetails = new MockDeviceDetails();
     private AmazonPinpointAnalyticsClient mockERS = mock(AmazonPinpointAnalyticsClient.class);
-    private AndroidSystem mockSystem
-            = mock(AndroidSystem.class);
+    private AndroidSystem mockSystem = mock(AndroidSystem.class);
     private AmazonPinpointClient mockPinpointService = mock(AmazonPinpointClient.class);
 
     public PinpointContext build() {
@@ -60,7 +62,8 @@ public class AnalyticsContextBuilder {
         when(mockSDKInfo.getName()).thenReturn(sdkName);
         when(mockSDKInfo.getVersion()).thenReturn(sdkVersion);
 
-        if (new MockUtil().isMock(mockSystem)) {
+        final MockUtil mockUtil = new MockUtil();
+        if (mockUtil.isMock(mockSystem)) {
             when(mockSystem.getPreferences()).thenReturn(mockPreferences);
             when(mockSystem.getConnectivity()).thenReturn(mockConnectivity);
             final AndroidAppDetails mockAppDetails = new MockAppDetails();
@@ -77,12 +80,16 @@ public class AnalyticsContextBuilder {
         when(mockContext.getPinpointServiceClient())
                 .thenReturn(mockPinpointService);
         when(mockContext.getSystem()).thenReturn(mockSystem);
+        // Notification client must be constructed after mock system is set
+        mockNotificationClient = new NotificationClient(mockContext);
         when(mockContext.getNotificationClient())
                 .thenReturn(mockNotificationClient);
         when(mockContext.getApplicationContext()).thenReturn(context);
         when(mockContext.getConfiguration()).thenReturn(mockConfig);
         when(mockContext.getNetworkType()).thenCallRealMethod();
         when(mockContext.getTargetingClient()).thenReturn(mockTargetingClient);
+        when(mockContext.getPinpointConfiguration()).thenReturn(mockPinpointConfig);
+
 
         return mockContext;
     }

@@ -27,11 +27,12 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.SDKInfo;
 import com.amazonaws.mobileconnectors.pinpoint.internal.validate.EncodingValidator;
 import com.amazonaws.mobileconnectors.pinpoint.internal.validate.PermissionValidator;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
-import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.GCMTokenRegisteredHandler;
+import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.DeviceTokenRegisteredHandler;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.NotificationClient;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.PinpointNotificationReceiver;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.pinpoint.AmazonPinpointClient;
+import com.amazonaws.services.pinpoint.model.ChannelType;
 import com.amazonaws.services.pinpointanalytics.AmazonPinpointAnalyticsClient;
 import com.amazonaws.util.VersionInfoUtils;
 import android.content.Context;
@@ -73,6 +74,7 @@ public class PinpointManager {
             final Context appContext = config.getAppContext();
             final String appId = config.getAppId();
             final Regions region = config.getRegion();
+            final ChannelType channelType = config.getChannelType();
             final PinpointCallback<PinpointManager> initCompletionCallback = config.getInitCompletionCallback();
 
             Preconditions.checkNotNull(credentialsProvider, "The credentialsProvider provided must not be null");
@@ -88,7 +90,7 @@ public class PinpointManager {
             ENCODING_VALIDATOR.validate();
 
             this.pinpointContext = new PinpointContext(analyticsServiceClient, targetingServiceClient, appContext, appId, SDL_INFO, config);
-            this.notificationClient = new NotificationClient(this.pinpointContext);
+            this.notificationClient = NotificationClient.createClient(this.pinpointContext, channelType);
             this.pinpointContext.setNotificationClient(this.notificationClient);
             PinpointNotificationReceiver.setNotificationClient(this.notificationClient);
 
@@ -105,12 +107,13 @@ public class PinpointManager {
             if (config.getEnableTargeting()) {
                 this.targetingClient = new TargetingClient(pinpointContext);
                 this.pinpointContext.setTargetingClient(this.targetingClient);
-                this.notificationClient.addGCMTokenRegisteredHandler(new GCMTokenRegisteredHandler() {
-                        @Override
-                        public void tokenRegistered(String deviceToken) {
-                            PinpointManager.this.targetingClient.updateEndpointProfile();
-                        }
-                    });
+                this.notificationClient.addDeviceTokenRegisteredHandler(new DeviceTokenRegisteredHandler() {
+
+                    @Override
+                    public void tokenRegistered(String deviceToken) {
+                        PinpointManager.this.targetingClient.updateEndpointProfile();
+                    }
+                });
             } else {
                 this.targetingClient = null;
             }

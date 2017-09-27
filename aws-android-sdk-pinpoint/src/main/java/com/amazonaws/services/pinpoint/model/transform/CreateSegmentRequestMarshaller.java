@@ -50,9 +50,6 @@ public class CreateSegmentRequestMarshaller implements
                 createSegmentRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.POST);
 
-        if (createSegmentRequest.getAccept() != null) {
-            request.addHeader("accept", StringUtils.fromString(createSegmentRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/segments";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

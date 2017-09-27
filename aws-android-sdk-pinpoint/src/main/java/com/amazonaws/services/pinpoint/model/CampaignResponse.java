@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Campaign definition
+ */
 public class CampaignResponse implements Serializable {
     /**
      * Treatments that are defined in addition to the default treatment.

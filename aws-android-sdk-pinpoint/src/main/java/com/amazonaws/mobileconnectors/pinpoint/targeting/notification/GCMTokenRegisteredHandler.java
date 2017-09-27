@@ -18,11 +18,5 @@ package com.amazonaws.mobileconnectors.pinpoint.targeting.notification;
 /**
  * interface to handle the gcm token registration.
  */
-public interface GCMTokenRegisteredHandler {
-    /**
-     * callback when token is registered.
-     *
-     * @param deviceToken the gcm device token.
-     */
-    void tokenRegistered(final String deviceToken);
+public interface GCMTokenRegisteredHandler extends DeviceTokenRegisteredHandler {
 }

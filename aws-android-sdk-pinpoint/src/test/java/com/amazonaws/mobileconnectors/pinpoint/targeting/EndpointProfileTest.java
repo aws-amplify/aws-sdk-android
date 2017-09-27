@@ -45,6 +45,7 @@ import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.Endpoin
 import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfileDemographic;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfileLocation;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.NotificationClient;
+
 import android.os.Build;
 
 import static org.junit.Assert.assertEquals;
@@ -264,19 +265,8 @@ public class EndpointProfileTest extends MobileAnalyticsTestBase {
 
     @Test
     public void testLocaleWithInvalidISO3Code() {
-        final PinpointContext context = mock(PinpointContext.class);
-        final AndroidSystem androidSystem = mock(AndroidSystem.class);
-        final NotificationClient notificationClient = mock(NotificationClient.class);
-
-        when(notificationClient.getGCMDeviceToken()).thenReturn("TEST_ADDRESS");
-        when(androidSystem.getDeviceDetails()).thenReturn(mock(AndroidDeviceDetails.class));
-        when(androidSystem.getAppDetails()).thenReturn(mock(AndroidAppDetails.class));
-        when(androidSystem.getPreferences()).thenReturn(mock(AndroidPreferences.class));
-        when(context.getSystem()).thenReturn(androidSystem);
-
-        final TargetingClient targetingClient = new TargetingClient(context, mock(ThreadPoolExecutor.class));
+        final TargetingClient targetingClient = new TargetingClient(mockContext, mock(ThreadPoolExecutor.class));
         final EndpointProfile endpointProfile = targetingClient.currentEndpoint();
-        when(context.getNotificationClient()).thenReturn(notificationClient);
 
         final EndpointProfileDemographic demographic = endpointProfile.getDemographic();
         // Old country code for Serbia and Montenegro that has no ISO3 equivalent.

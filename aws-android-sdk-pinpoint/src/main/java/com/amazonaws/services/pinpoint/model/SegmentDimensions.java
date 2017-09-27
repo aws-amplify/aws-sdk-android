@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Segment dimensions
+ */
 public class SegmentDimensions implements Serializable {
     /**
      * Custom segment attributes.
@@ -37,6 +40,11 @@ public class SegmentDimensions implements Serializable {
      * The segment location attributes.
      */
     private SegmentLocation location;
+
+    /**
+     * Custom segment user attributes.
+     */
+    private java.util.Map<String, AttributeDimension> userAttributes;
 
     /**
      * Custom segment attributes.
@@ -174,7 +182,7 @@ public class SegmentDimensions implements Serializable {
 
     /**
      * The segment location attributes.
-     * 
+     *
      * @return The segment location attributes.
      */
     public SegmentLocation getLocation() {
@@ -183,7 +191,7 @@ public class SegmentDimensions implements Serializable {
 
     /**
      * The segment location attributes.
-     * 
+     *
      * @param location The segment location attributes.
      */
     public void setLocation(SegmentLocation location) {
@@ -191,15 +199,86 @@ public class SegmentDimensions implements Serializable {
     }
 
     /**
-     * The segment location attributes. <p>
+     * The segment location attributes.
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param location The segment location attributes. @return A reference to this updated object so that method calls can be
+     * @param location The segment location attributes.
+     * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public SegmentDimensions withLocation(SegmentLocation location) {
         this.location = location;
+        return this;
+    }
+
+    /**
+     * Custom segment user attributes.
+     *
+     * @return Custom segment user attributes.
+     */
+    public java.util.Map<String, AttributeDimension> getUserAttributes() {
+        return userAttributes;
+    }
+
+    /**
+     * Custom segment user attributes.
+     *
+     * @param userAttributes Custom segment user attributes.
+     */
+    public void setUserAttributes(java.util.Map<String, AttributeDimension> userAttributes) {
+        this.userAttributes = userAttributes;
+    }
+
+    /**
+     * Custom segment user attributes.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param userAttributes Custom segment user attributes.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SegmentDimensions withUserAttributes(
+            java.util.Map<String, AttributeDimension> userAttributes) {
+        this.userAttributes = userAttributes;
+        return this;
+    }
+
+    /**
+     * Custom segment user attributes.
+     * <p>
+     * The method adds a new key-value pair into UserAttributes parameter, and
+     * returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param key The key of the entry to be added into UserAttributes.
+     * @param value The corresponding value of the entry to be added into
+     *            UserAttributes.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SegmentDimensions addUserAttributesEntry(String key, AttributeDimension value) {
+        if (null == this.userAttributes) {
+            this.userAttributes = new java.util.HashMap<String, AttributeDimension>();
+        }
+        if (this.userAttributes.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.userAttributes.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into UserAttributes.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public SegmentDimensions clearUserAttributesEntries() {
+        this.userAttributes = null;
         return this;
     }
 
@@ -221,7 +300,9 @@ public class SegmentDimensions implements Serializable {
         if (getDemographic() != null)
             sb.append("Demographic: " + getDemographic() + ",");
         if (getLocation() != null)
-            sb.append("Location: " + getLocation());
+            sb.append("Location: " + getLocation() + ",");
+        if (getUserAttributes() != null)
+            sb.append("UserAttributes: " + getUserAttributes());
         sb.append("}");
         return sb.toString();
     }
@@ -236,6 +317,8 @@ public class SegmentDimensions implements Serializable {
         hashCode = prime * hashCode
                 + ((getDemographic() == null) ? 0 : getDemographic().hashCode());
         hashCode = prime * hashCode + ((getLocation() == null) ? 0 : getLocation().hashCode());
+        hashCode = prime * hashCode
+                + ((getUserAttributes() == null) ? 0 : getUserAttributes().hashCode());
         return hashCode;
     }
 
@@ -267,6 +350,11 @@ public class SegmentDimensions implements Serializable {
         if (other.getLocation() == null ^ this.getLocation() == null)
             return false;
         if (other.getLocation() != null && other.getLocation().equals(this.getLocation()) == false)
+            return false;
+        if (other.getUserAttributes() == null ^ this.getUserAttributes() == null)
+            return false;
+        if (other.getUserAttributes() != null
+                && other.getUserAttributes().equals(this.getUserAttributes()) == false)
             return false;
         return true;
     }

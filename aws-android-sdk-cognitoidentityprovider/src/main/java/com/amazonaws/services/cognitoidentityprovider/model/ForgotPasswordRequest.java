@@ -63,6 +63,13 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
+     * The pinpoint installation id.
+     * </p>
+     */
+    private AnalyticsMetadataType analyticsMetadata;
+
+    /**
+     * <p>
      * The ID of the client associated with the user pool.
      * </p>
      * <p>
@@ -251,6 +258,51 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p>
+     * The pinpoint installation id.
+     * </p>
+     *
+     * @return <p>
+     *         The pinpoint installation id.
+     *         </p>
+     */
+    public AnalyticsMetadataType getAnalyticsMetadata() {
+        return analyticsMetadata;
+    }
+
+    /**
+     * <p>
+     * The pinpoint installation id.
+     * </p>
+     *
+     * @param analyticsMetadata <p>
+     *            The pinpoint installation id.
+     *            </p>
+     */
+    public void setAnalyticsMetadata(AnalyticsMetadataType analyticsMetadata) {
+        this.analyticsMetadata = analyticsMetadata;
+    }
+
+    /**
+     * <p>
+     * The pinpoint installation id.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param analyticsMetadata <p>
+     *            The pinpoint installation id.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ForgotPasswordRequest withAnalyticsMetadata(AnalyticsMetadataType analyticsMetadata) {
+        this.analyticsMetadata = analyticsMetadata;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -266,7 +318,9 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
         if (getSecretHash() != null)
             sb.append("SecretHash: " + getSecretHash() + ",");
         if (getUsername() != null)
-            sb.append("Username: " + getUsername());
+            sb.append("Username: " + getUsername() + ",");
+        if (getAnalyticsMetadata() != null)
+            sb.append("AnalyticsMetadata: " + getAnalyticsMetadata());
         sb.append("}");
         return sb.toString();
     }
@@ -279,6 +333,8 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
         hashCode = prime * hashCode + ((getClientId() == null) ? 0 : getClientId().hashCode());
         hashCode = prime * hashCode + ((getSecretHash() == null) ? 0 : getSecretHash().hashCode());
         hashCode = prime * hashCode + ((getUsername() == null) ? 0 : getUsername().hashCode());
+        hashCode = prime * hashCode
+                + ((getAnalyticsMetadata() == null) ? 0 : getAnalyticsMetadata().hashCode());
         return hashCode;
     }
 
@@ -305,6 +361,11 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
         if (other.getUsername() == null ^ this.getUsername() == null)
             return false;
         if (other.getUsername() != null && other.getUsername().equals(this.getUsername()) == false)
+            return false;
+        if (other.getAnalyticsMetadata() == null ^ this.getAnalyticsMetadata() == null)
+            return false;
+        if (other.getAnalyticsMetadata() != null
+                && other.getAnalyticsMetadata().equals(this.getAnalyticsMetadata()) == false)
             return false;
         return true;
     }

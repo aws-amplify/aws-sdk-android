@@ -50,9 +50,6 @@ public class GetImportJobRequestMarshaller implements
                 getImportJobRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.GET);
 
-        if (getImportJobRequest.getAccept() != null) {
-            request.addHeader("accept", StringUtils.fromString(getImportJobRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/jobs/import/{job-id}";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

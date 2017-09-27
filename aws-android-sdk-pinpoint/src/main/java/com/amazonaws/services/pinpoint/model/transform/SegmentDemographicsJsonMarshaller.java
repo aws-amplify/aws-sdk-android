@@ -31,6 +31,11 @@ class SegmentDemographicsJsonMarshaller {
             jsonWriter.name("AppVersion");
             SetDimensionJsonMarshaller.getInstance().marshall(appVersion, jsonWriter);
         }
+        if (segmentDemographics.getChannel() != null) {
+            SetDimension channel = segmentDemographics.getChannel();
+            jsonWriter.name("Channel");
+            SetDimensionJsonMarshaller.getInstance().marshall(channel, jsonWriter);
+        }
         if (segmentDemographics.getDeviceType() != null) {
             SetDimension deviceType = segmentDemographics.getDeviceType();
             jsonWriter.name("DeviceType");

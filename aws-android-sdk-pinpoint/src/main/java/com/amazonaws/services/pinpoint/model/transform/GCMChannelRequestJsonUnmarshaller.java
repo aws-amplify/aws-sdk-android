@@ -39,6 +39,9 @@ class GCMChannelRequestJsonUnmarshaller implements
             if (name.equals("ApiKey")) {
                 gCMChannelRequest.setApiKey(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Enabled")) {
+                gCMChannelRequest.setEnabled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

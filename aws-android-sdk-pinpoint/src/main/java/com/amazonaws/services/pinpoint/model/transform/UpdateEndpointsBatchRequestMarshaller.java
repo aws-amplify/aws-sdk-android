@@ -51,10 +51,6 @@ public class UpdateEndpointsBatchRequestMarshaller implements
                 updateEndpointsBatchRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.PUT);
 
-        if (updateEndpointsBatchRequest.getAccept() != null) {
-            request.addHeader("accept",
-                    StringUtils.fromString(updateEndpointsBatchRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/endpoints";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

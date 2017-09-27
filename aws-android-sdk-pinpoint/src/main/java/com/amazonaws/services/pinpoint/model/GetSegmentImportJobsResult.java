@@ -19,79 +19,35 @@ import java.io.Serializable;
 
 public class GetSegmentImportJobsResult implements Serializable {
     /**
-     * The new value for the accessControlAllowOrigin property for this object.
-     */
-    private String accessControlAllowOrigin;
-
-    /**
-     * The new value for the importJobsResponse property for this object.
+     * Import job list.
      */
     private ImportJobsResponse importJobsResponse;
 
     /**
-     * Returns the value of the accessControlAllowOrigin property for this
-     * object.
+     * Import job list.
      *
-     * @return The value of the accessControlAllowOrigin property for this
-     *         object.
-     */
-    public String getAccessControlAllowOrigin() {
-        return accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of accessControlAllowOrigin
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     */
-    public void setAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of the accessControlAllowOrigin property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetSegmentImportJobsResult withAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-        return this;
-    }
-
-    /**
-     * Returns the value of the importJobsResponse property for this object.
-     *
-     * @return The value of the importJobsResponse property for this object.
+     * @return Import job list.
      */
     public ImportJobsResponse getImportJobsResponse() {
         return importJobsResponse;
     }
 
     /**
-     * Sets the value of importJobsResponse
+     * Import job list.
      *
-     * @param importJobsResponse The new value for the importJobsResponse
-     *            property for this object.
+     * @param importJobsResponse Import job list.
      */
     public void setImportJobsResponse(ImportJobsResponse importJobsResponse) {
         this.importJobsResponse = importJobsResponse;
     }
 
     /**
-     * Sets the value of the importJobsResponse property for this object.
+     * Import job list.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param importJobsResponse The new value for the importJobsResponse
-     *            property for this object.
+     * @param importJobsResponse Import job list.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -111,8 +67,6 @@ public class GetSegmentImportJobsResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAccessControlAllowOrigin() != null)
-            sb.append("AccessControlAllowOrigin: " + getAccessControlAllowOrigin() + ",");
         if (getImportJobsResponse() != null)
             sb.append("ImportJobsResponse: " + getImportJobsResponse());
         sb.append("}");
@@ -124,10 +78,6 @@ public class GetSegmentImportJobsResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime
-                * hashCode
-                + ((getAccessControlAllowOrigin() == null) ? 0 : getAccessControlAllowOrigin()
-                        .hashCode());
         hashCode = prime * hashCode
                 + ((getImportJobsResponse() == null) ? 0 : getImportJobsResponse().hashCode());
         return hashCode;
@@ -144,12 +94,6 @@ public class GetSegmentImportJobsResult implements Serializable {
             return false;
         GetSegmentImportJobsResult other = (GetSegmentImportJobsResult) obj;
 
-        if (other.getAccessControlAllowOrigin() == null
-                ^ this.getAccessControlAllowOrigin() == null)
-            return false;
-        if (other.getAccessControlAllowOrigin() != null
-                && other.getAccessControlAllowOrigin().equals(this.getAccessControlAllowOrigin()) == false)
-            return false;
         if (other.getImportJobsResponse() == null ^ this.getImportJobsResponse() == null)
             return false;
         if (other.getImportJobsResponse() != null

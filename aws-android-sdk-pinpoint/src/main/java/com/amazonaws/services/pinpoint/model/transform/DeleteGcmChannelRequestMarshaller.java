@@ -50,9 +50,6 @@ public class DeleteGcmChannelRequestMarshaller implements
                 deleteGcmChannelRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.DELETE);
 
-        if (deleteGcmChannelRequest.getAccept() != null) {
-            request.addHeader("accept", StringUtils.fromString(deleteGcmChannelRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/channels/gcm";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

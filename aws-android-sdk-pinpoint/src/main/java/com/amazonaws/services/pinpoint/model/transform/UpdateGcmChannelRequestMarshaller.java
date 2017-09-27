@@ -50,9 +50,6 @@ public class UpdateGcmChannelRequestMarshaller implements
                 updateGcmChannelRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.PUT);
 
-        if (updateGcmChannelRequest.getAccept() != null) {
-            request.addHeader("accept", StringUtils.fromString(updateGcmChannelRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/channels/gcm";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

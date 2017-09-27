@@ -30,9 +30,6 @@ public class GetApplicationSettingsResultJsonUnmarshaller implements
             throws Exception {
         GetApplicationSettingsResult getApplicationSettingsResult = new GetApplicationSettingsResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            getApplicationSettingsResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return getApplicationSettingsResult;
     }
 

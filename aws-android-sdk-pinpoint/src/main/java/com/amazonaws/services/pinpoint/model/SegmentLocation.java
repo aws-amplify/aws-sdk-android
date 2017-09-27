@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Segment location dimensions
+ */
 public class SegmentLocation implements Serializable {
     /**
      * The country filter according to ISO 3166-1 Alpha-2 codes.

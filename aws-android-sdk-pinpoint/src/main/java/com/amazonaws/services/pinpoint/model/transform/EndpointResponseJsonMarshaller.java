@@ -120,11 +120,6 @@ class EndpointResponseJsonMarshaller {
             jsonWriter.name("RequestId");
             jsonWriter.value(requestId);
         }
-        if (endpointResponse.getShardId() != null) {
-            String shardId = endpointResponse.getShardId();
-            jsonWriter.name("ShardId");
-            jsonWriter.value(shardId);
-        }
         if (endpointResponse.getUser() != null) {
             EndpointUser user = endpointResponse.getUser();
             jsonWriter.name("User");

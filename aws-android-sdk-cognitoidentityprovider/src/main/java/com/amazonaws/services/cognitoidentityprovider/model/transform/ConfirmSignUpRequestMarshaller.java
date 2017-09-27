@@ -84,6 +84,13 @@ public class ConfirmSignUpRequestMarshaller implements
                 jsonWriter.name("ForceAliasCreation");
                 jsonWriter.value(forceAliasCreation);
             }
+            if (confirmSignUpRequest.getAnalyticsMetadata() != null) {
+                AnalyticsMetadataType analyticsMetadata = confirmSignUpRequest
+                        .getAnalyticsMetadata();
+                jsonWriter.name("AnalyticsMetadata");
+                AnalyticsMetadataTypeJsonMarshaller.getInstance().marshall(analyticsMetadata,
+                        jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

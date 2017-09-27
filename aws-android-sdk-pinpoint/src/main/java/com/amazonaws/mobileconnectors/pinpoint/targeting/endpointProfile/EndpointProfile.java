@@ -127,16 +127,16 @@ public class EndpointProfile implements JSONSerializable {
      * @return the channel type
      */
     public String getChannelType() {
-        return "GCM";
+        return this.pinpointContext.getNotificationClient().getChannelType();
     }
 
     /**
-     * Returns the Address of the endpoint. The token that is returned by GCM.
+     * Returns the Address of the endpoint. The token that is returned by the channel selected.
      *
      * @return the address
      */
     public String getAddress() {
-        return this.pinpointContext.getNotificationClient().getGCMDeviceToken();
+        return this.pinpointContext.getNotificationClient().getDeviceToken();
     }
 
     /**
@@ -200,7 +200,7 @@ public class EndpointProfile implements JSONSerializable {
      */
     public String getOptOut() {
         return (this.pinpointContext.getNotificationClient().areAppNotificationsEnabled() && !StringUtil.isBlank(
-            this.pinpointContext.getNotificationClient().getGCMDeviceToken())) ? "NONE" : "ALL";
+            this.pinpointContext.getNotificationClient().getDeviceToken())) ? "NONE" : "ALL";
     }
 
     /**

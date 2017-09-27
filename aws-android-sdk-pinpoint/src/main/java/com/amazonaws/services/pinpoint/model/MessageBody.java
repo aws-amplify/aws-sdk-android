@@ -17,42 +17,45 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Simple message object.
+ */
 public class MessageBody implements Serializable {
     /**
-     * The new value for the message property for this object.
+     * The error message returned from the API.
      */
     private String message;
 
     /**
-     * The new value for the requestID property for this object.
+     * The unique message body ID.
      */
     private String requestID;
 
     /**
-     * Returns the value of the message property for this object.
+     * The error message returned from the API.
      *
-     * @return The value of the message property for this object.
+     * @return The error message returned from the API.
      */
     public String getMessage() {
         return message;
     }
 
     /**
-     * Sets the value of message
+     * The error message returned from the API.
      *
-     * @param message The new value for the message property for this object.
+     * @param message The error message returned from the API.
      */
     public void setMessage(String message) {
         this.message = message;
     }
 
     /**
-     * Sets the value of the message property for this object.
+     * The error message returned from the API.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param message The new value for the message property for this object.
+     * @param message The error message returned from the API.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -62,32 +65,30 @@ public class MessageBody implements Serializable {
     }
 
     /**
-     * Returns the value of the requestID property for this object.
+     * The unique message body ID.
      *
-     * @return The value of the requestID property for this object.
+     * @return The unique message body ID.
      */
     public String getRequestID() {
         return requestID;
     }
 
     /**
-     * Sets the value of requestID
+     * The unique message body ID.
      *
-     * @param requestID The new value for the requestID property for this
-     *            object.
+     * @param requestID The unique message body ID.
      */
     public void setRequestID(String requestID) {
         this.requestID = requestID;
     }
 
     /**
-     * Sets the value of the requestID property for this object.
+     * The unique message body ID.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param requestID The new value for the requestID property for this
-     *            object.
+     * @param requestID The unique message body ID.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -29,9 +29,6 @@ public class DeleteApnsChannelResultJsonUnmarshaller implements
     public DeleteApnsChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeleteApnsChannelResult deleteApnsChannelResult = new DeleteApnsChannelResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            deleteApnsChannelResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return deleteApnsChannelResult;
     }
 

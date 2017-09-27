@@ -26,6 +26,19 @@ class SegmentImportResourceJsonMarshaller {
     public void marshall(SegmentImportResource segmentImportResource, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
+        if (segmentImportResource.getChannelCounts() != null) {
+            java.util.Map<String, Integer> channelCounts = segmentImportResource.getChannelCounts();
+            jsonWriter.name("ChannelCounts");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, Integer> channelCountsEntry : channelCounts.entrySet()) {
+                Integer channelCountsValue = channelCountsEntry.getValue();
+                if (channelCountsValue != null) {
+                    jsonWriter.name(channelCountsEntry.getKey());
+                    jsonWriter.value(channelCountsValue);
+                }
+            }
+            jsonWriter.endObject();
+        }
         if (segmentImportResource.getExternalId() != null) {
             String externalId = segmentImportResource.getExternalId();
             jsonWriter.name("ExternalId");

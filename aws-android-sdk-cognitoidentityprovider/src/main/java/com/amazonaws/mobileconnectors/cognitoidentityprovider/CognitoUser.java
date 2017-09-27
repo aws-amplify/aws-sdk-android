@@ -45,6 +45,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoSecret
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoServiceConstants;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.Hkdf;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
+import com.amazonaws.services.cognitoidentityprovider.model.AnalyticsMetadataType;
 import com.amazonaws.services.cognitoidentityprovider.model.AttributeType;
 import com.amazonaws.services.cognitoidentityprovider.model.AuthenticationResultType;
 import com.amazonaws.services.cognitoidentityprovider.model.ChangePasswordRequest;
@@ -321,7 +322,12 @@ public class CognitoUser {
         confirmUserRegistrationRequest.setUsername(userId);
         confirmUserRegistrationRequest.setConfirmationCode(confirmationCode);
         confirmUserRegistrationRequest.setForceAliasCreation(forcedAliasCreation);
-
+        final String pinpointEndpointId = pool.getPinpointEndpointId();
+        if (pinpointEndpointId != null) {
+            final AnalyticsMetadataType amd = new AnalyticsMetadataType();
+            amd.setAnalyticsEndpointId(pinpointEndpointId);
+            confirmUserRegistrationRequest.setAnalyticsMetadata(amd);
+        }
         cognitoIdentityProviderClient.confirmSignUp(confirmUserRegistrationRequest);
     }
 
@@ -394,6 +400,12 @@ public class CognitoUser {
         resendConfirmationCodeRequest.setUsername(userId);
         resendConfirmationCodeRequest.setClientId(clientId);
         resendConfirmationCodeRequest.setSecretHash(secretHash);
+        final String pinpointEndpointId = pool.getPinpointEndpointId();
+        if (pinpointEndpointId != null) {
+            AnalyticsMetadataType amd = new AnalyticsMetadataType();
+            amd.setAnalyticsEndpointId(pinpointEndpointId);
+            resendConfirmationCodeRequest.setAnalyticsMetadata(amd);
+        }
 
         return cognitoIdentityProviderClient.resendConfirmationCode(resendConfirmationCodeRequest);
     }
@@ -499,6 +511,12 @@ public class CognitoUser {
         resetPasswordRequest.setClientId(clientId);
         resetPasswordRequest.setSecretHash(secretHash);
         resetPasswordRequest.setUsername(userId);
+        final String pinpointEndpointId = pool.getPinpointEndpointId();
+        if (pinpointEndpointId != null) {
+            AnalyticsMetadataType amd = new AnalyticsMetadataType();
+            amd.setAnalyticsEndpointId(pinpointEndpointId);
+            resetPasswordRequest.setAnalyticsMetadata(amd);
+        }
 
         return cognitoIdentityProviderClient.forgotPassword(resetPasswordRequest);
     }
@@ -594,6 +612,12 @@ public class CognitoUser {
         confirmResetPasswordRequest.setSecretHash(secretHash);
         confirmResetPasswordRequest.setConfirmationCode(verificationCode);
         confirmResetPasswordRequest.setPassword(newPassword);
+        final String pinpointEndpointId = pool.getPinpointEndpointId();
+        if (pinpointEndpointId != null) {
+            AnalyticsMetadataType amd = new AnalyticsMetadataType();
+            amd.setAnalyticsEndpointId(pinpointEndpointId);
+            confirmResetPasswordRequest.setAnalyticsMetadata(amd);
+        }
 
         cognitoIdentityProviderClient.confirmForgotPassword(confirmResetPasswordRequest);
     }
@@ -2226,6 +2250,12 @@ public class CognitoUser {
             }
             initiateAuthRequest.setClientMetadata(userValidationData);
         }
+        final String pinpointEndpointId = this.pool.getPinpointEndpointId();
+        if (pinpointEndpointId != null) {
+            AnalyticsMetadataType amd = new AnalyticsMetadataType();
+            amd.setAnalyticsEndpointId(pinpointEndpointId);
+            initiateAuthRequest.setAnalyticsMetadata(amd);
+        }
         return initiateAuthRequest;
     }
 
@@ -2309,6 +2339,12 @@ public class CognitoUser {
                 clientSecret);
         initiateAuthRequest.setClientId(clientId);
         initiateAuthRequest.setAuthFlow(CognitoServiceConstants.AUTH_TYPE_REFRESH_TOKEN);
+        final String pinpointEndpointId = pool.getPinpointEndpointId();
+        if (pinpointEndpointId != null) {
+            AnalyticsMetadataType amd = new AnalyticsMetadataType();
+            amd.setAnalyticsEndpointId(pinpointEndpointId);
+            initiateAuthRequest.setAnalyticsMetadata(amd);
+        }
         return initiateAuthRequest;
     }
 
@@ -2383,6 +2419,12 @@ public class CognitoUser {
         authChallengeRequest.setClientId(clientId);
         authChallengeRequest.setSession(challenge.getSession());
         authChallengeRequest.setChallengeResponses(srpAuthResponses);
+        final String pinpointEndpointId = pool.getPinpointEndpointId();
+        if (pinpointEndpointId != null) {
+            AnalyticsMetadataType amd = new AnalyticsMetadataType();
+            amd.setAnalyticsEndpointId(pinpointEndpointId);
+            authChallengeRequest.setAnalyticsMetadata(amd);
+        }
 
         return authChallengeRequest;
     }

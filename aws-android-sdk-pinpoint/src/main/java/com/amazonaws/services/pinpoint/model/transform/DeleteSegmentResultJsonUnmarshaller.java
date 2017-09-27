@@ -29,9 +29,6 @@ public class DeleteSegmentResultJsonUnmarshaller implements
     public DeleteSegmentResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeleteSegmentResult deleteSegmentResult = new DeleteSegmentResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            deleteSegmentResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return deleteSegmentResult;
     }
 

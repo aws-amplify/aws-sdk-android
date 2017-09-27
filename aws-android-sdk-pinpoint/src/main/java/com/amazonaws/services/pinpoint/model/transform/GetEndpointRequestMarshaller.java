@@ -50,9 +50,6 @@ public class GetEndpointRequestMarshaller implements
                 getEndpointRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.GET);
 
-        if (getEndpointRequest.getAccept() != null) {
-            request.addHeader("accept", StringUtils.fromString(getEndpointRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/endpoints/{endpoint-id}";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

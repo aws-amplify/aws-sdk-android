@@ -19,79 +19,35 @@ import java.io.Serializable;
 
 public class GetCampaignsResult implements Serializable {
     /**
-     * The new value for the accessControlAllowOrigin property for this object.
-     */
-    private String accessControlAllowOrigin;
-
-    /**
-     * The new value for the campaignsResponse property for this object.
+     * List of available campaigns.
      */
     private CampaignsResponse campaignsResponse;
 
     /**
-     * Returns the value of the accessControlAllowOrigin property for this
-     * object.
+     * List of available campaigns.
      *
-     * @return The value of the accessControlAllowOrigin property for this
-     *         object.
-     */
-    public String getAccessControlAllowOrigin() {
-        return accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of accessControlAllowOrigin
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     */
-    public void setAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of the accessControlAllowOrigin property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetCampaignsResult withAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-        return this;
-    }
-
-    /**
-     * Returns the value of the campaignsResponse property for this object.
-     *
-     * @return The value of the campaignsResponse property for this object.
+     * @return List of available campaigns.
      */
     public CampaignsResponse getCampaignsResponse() {
         return campaignsResponse;
     }
 
     /**
-     * Sets the value of campaignsResponse
+     * List of available campaigns.
      *
-     * @param campaignsResponse The new value for the campaignsResponse property
-     *            for this object.
+     * @param campaignsResponse List of available campaigns.
      */
     public void setCampaignsResponse(CampaignsResponse campaignsResponse) {
         this.campaignsResponse = campaignsResponse;
     }
 
     /**
-     * Sets the value of the campaignsResponse property for this object.
+     * List of available campaigns.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param campaignsResponse The new value for the campaignsResponse property
-     *            for this object.
+     * @param campaignsResponse List of available campaigns.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -111,8 +67,6 @@ public class GetCampaignsResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAccessControlAllowOrigin() != null)
-            sb.append("AccessControlAllowOrigin: " + getAccessControlAllowOrigin() + ",");
         if (getCampaignsResponse() != null)
             sb.append("CampaignsResponse: " + getCampaignsResponse());
         sb.append("}");
@@ -124,10 +78,6 @@ public class GetCampaignsResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime
-                * hashCode
-                + ((getAccessControlAllowOrigin() == null) ? 0 : getAccessControlAllowOrigin()
-                        .hashCode());
         hashCode = prime * hashCode
                 + ((getCampaignsResponse() == null) ? 0 : getCampaignsResponse().hashCode());
         return hashCode;
@@ -144,12 +94,6 @@ public class GetCampaignsResult implements Serializable {
             return false;
         GetCampaignsResult other = (GetCampaignsResult) obj;
 
-        if (other.getAccessControlAllowOrigin() == null
-                ^ this.getAccessControlAllowOrigin() == null)
-            return false;
-        if (other.getAccessControlAllowOrigin() != null
-                && other.getAccessControlAllowOrigin().equals(this.getAccessControlAllowOrigin()) == false)
-            return false;
         if (other.getCampaignsResponse() == null ^ this.getCampaignsResponse() == null)
             return false;
         if (other.getCampaignsResponse() != null

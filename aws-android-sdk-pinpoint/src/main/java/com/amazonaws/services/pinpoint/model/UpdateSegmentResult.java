@@ -19,79 +19,35 @@ import java.io.Serializable;
 
 public class UpdateSegmentResult implements Serializable {
     /**
-     * The new value for the accessControlAllowOrigin property for this object.
-     */
-    private String accessControlAllowOrigin;
-
-    /**
-     * The new value for the segmentResponse property for this object.
+     * Segment definition.
      */
     private SegmentResponse segmentResponse;
 
     /**
-     * Returns the value of the accessControlAllowOrigin property for this
-     * object.
+     * Segment definition.
      *
-     * @return The value of the accessControlAllowOrigin property for this
-     *         object.
-     */
-    public String getAccessControlAllowOrigin() {
-        return accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of accessControlAllowOrigin
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     */
-    public void setAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of the accessControlAllowOrigin property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public UpdateSegmentResult withAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-        return this;
-    }
-
-    /**
-     * Returns the value of the segmentResponse property for this object.
-     *
-     * @return The value of the segmentResponse property for this object.
+     * @return Segment definition.
      */
     public SegmentResponse getSegmentResponse() {
         return segmentResponse;
     }
 
     /**
-     * Sets the value of segmentResponse
+     * Segment definition.
      *
-     * @param segmentResponse The new value for the segmentResponse property for
-     *            this object.
+     * @param segmentResponse Segment definition.
      */
     public void setSegmentResponse(SegmentResponse segmentResponse) {
         this.segmentResponse = segmentResponse;
     }
 
     /**
-     * Sets the value of the segmentResponse property for this object.
+     * Segment definition.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param segmentResponse The new value for the segmentResponse property for
-     *            this object.
+     * @param segmentResponse Segment definition.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -111,8 +67,6 @@ public class UpdateSegmentResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAccessControlAllowOrigin() != null)
-            sb.append("AccessControlAllowOrigin: " + getAccessControlAllowOrigin() + ",");
         if (getSegmentResponse() != null)
             sb.append("SegmentResponse: " + getSegmentResponse());
         sb.append("}");
@@ -124,10 +78,6 @@ public class UpdateSegmentResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime
-                * hashCode
-                + ((getAccessControlAllowOrigin() == null) ? 0 : getAccessControlAllowOrigin()
-                        .hashCode());
         hashCode = prime * hashCode
                 + ((getSegmentResponse() == null) ? 0 : getSegmentResponse().hashCode());
         return hashCode;
@@ -144,12 +94,6 @@ public class UpdateSegmentResult implements Serializable {
             return false;
         UpdateSegmentResult other = (UpdateSegmentResult) obj;
 
-        if (other.getAccessControlAllowOrigin() == null
-                ^ this.getAccessControlAllowOrigin() == null)
-            return false;
-        if (other.getAccessControlAllowOrigin() != null
-                && other.getAccessControlAllowOrigin().equals(this.getAccessControlAllowOrigin()) == false)
-            return false;
         if (other.getSegmentResponse() == null ^ this.getSegmentResponse() == null)
             return false;
         if (other.getSegmentResponse() != null

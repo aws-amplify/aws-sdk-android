@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Activities for campaign.
+ */
 public class ActivitiesResponse implements Serializable {
     /**
      * List of campaign activities

@@ -67,6 +67,13 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
+     * The pinpoint installation id.
+     * </p>
+     */
+    private AnalyticsMetadataType analyticsMetadata;
+
+    /**
+     * <p>
      * The client ID.
      * </p>
      * <p>
@@ -367,6 +374,52 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
     }
 
     /**
+     * <p>
+     * The pinpoint installation id.
+     * </p>
+     *
+     * @return <p>
+     *         The pinpoint installation id.
+     *         </p>
+     */
+    public AnalyticsMetadataType getAnalyticsMetadata() {
+        return analyticsMetadata;
+    }
+
+    /**
+     * <p>
+     * The pinpoint installation id.
+     * </p>
+     *
+     * @param analyticsMetadata <p>
+     *            The pinpoint installation id.
+     *            </p>
+     */
+    public void setAnalyticsMetadata(AnalyticsMetadataType analyticsMetadata) {
+        this.analyticsMetadata = analyticsMetadata;
+    }
+
+    /**
+     * <p>
+     * The pinpoint installation id.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param analyticsMetadata <p>
+     *            The pinpoint installation id.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public RespondToAuthChallengeRequest withAnalyticsMetadata(
+            AnalyticsMetadataType analyticsMetadata) {
+        this.analyticsMetadata = analyticsMetadata;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -384,7 +437,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
         if (getSession() != null)
             sb.append("Session: " + getSession() + ",");
         if (getChallengeResponses() != null)
-            sb.append("ChallengeResponses: " + getChallengeResponses());
+            sb.append("ChallengeResponses: " + getChallengeResponses() + ",");
+        if (getAnalyticsMetadata() != null)
+            sb.append("AnalyticsMetadata: " + getAnalyticsMetadata());
         sb.append("}");
         return sb.toString();
     }
@@ -400,6 +455,8 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
         hashCode = prime * hashCode + ((getSession() == null) ? 0 : getSession().hashCode());
         hashCode = prime * hashCode
                 + ((getChallengeResponses() == null) ? 0 : getChallengeResponses().hashCode());
+        hashCode = prime * hashCode
+                + ((getAnalyticsMetadata() == null) ? 0 : getAnalyticsMetadata().hashCode());
         return hashCode;
     }
 
@@ -431,6 +488,11 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
             return false;
         if (other.getChallengeResponses() != null
                 && other.getChallengeResponses().equals(this.getChallengeResponses()) == false)
+            return false;
+        if (other.getAnalyticsMetadata() == null ^ this.getAnalyticsMetadata() == null)
+            return false;
+        if (other.getAnalyticsMetadata() != null
+                && other.getAnalyticsMetadata().equals(this.getAnalyticsMetadata()) == false)
             return false;
         return true;
     }

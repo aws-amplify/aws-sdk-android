@@ -17,11 +17,19 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Apple Push Notification Service channel definition.
+ */
 public class APNSChannelRequest implements Serializable {
     /**
      * The distribution certificate from Apple.
      */
     private String certificate;
+
+    /**
+     * If the channel is enabled for sending messages.
+     */
+    private Boolean enabled;
 
     /**
      * The certificate private key.
@@ -58,6 +66,48 @@ public class APNSChannelRequest implements Serializable {
      */
     public APNSChannelRequest withCertificate(String certificate) {
         this.certificate = certificate;
+        return this;
+    }
+
+    /**
+     * If the channel is enabled for sending messages.
+     *
+     * @return If the channel is enabled for sending messages.
+     */
+    public Boolean isEnabled() {
+        return enabled;
+    }
+
+    /**
+     * If the channel is enabled for sending messages.
+     *
+     * @return If the channel is enabled for sending messages.
+     */
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    /**
+     * If the channel is enabled for sending messages.
+     *
+     * @param enabled If the channel is enabled for sending messages.
+     */
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    /**
+     * If the channel is enabled for sending messages.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param enabled If the channel is enabled for sending messages.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public APNSChannelRequest withEnabled(Boolean enabled) {
+        this.enabled = enabled;
         return this;
     }
 
@@ -107,6 +157,8 @@ public class APNSChannelRequest implements Serializable {
         sb.append("{");
         if (getCertificate() != null)
             sb.append("Certificate: " + getCertificate() + ",");
+        if (getEnabled() != null)
+            sb.append("Enabled: " + getEnabled() + ",");
         if (getPrivateKey() != null)
             sb.append("PrivateKey: " + getPrivateKey());
         sb.append("}");
@@ -120,6 +172,7 @@ public class APNSChannelRequest implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getCertificate() == null) ? 0 : getCertificate().hashCode());
+        hashCode = prime * hashCode + ((getEnabled() == null) ? 0 : getEnabled().hashCode());
         hashCode = prime * hashCode + ((getPrivateKey() == null) ? 0 : getPrivateKey().hashCode());
         return hashCode;
     }
@@ -139,6 +192,10 @@ public class APNSChannelRequest implements Serializable {
             return false;
         if (other.getCertificate() != null
                 && other.getCertificate().equals(this.getCertificate()) == false)
+            return false;
+        if (other.getEnabled() == null ^ this.getEnabled() == null)
+            return false;
+        if (other.getEnabled() != null && other.getEnabled().equals(this.getEnabled()) == false)
             return false;
         if (other.getPrivateKey() == null ^ this.getPrivateKey() == null)
             return false;

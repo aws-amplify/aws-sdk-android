@@ -17,11 +17,28 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Campaign Limits are used to limit the number of messages that can be sent to
+ * a user.
+ */
 public class CampaignLimits implements Serializable {
     /**
      * The maximum number of messages that the campaign can send daily.
      */
     private Integer daily;
+
+    /**
+     * The maximum duration of a campaign from the scheduled start. Must be a
+     * minimum of 60 seconds.
+     */
+    private Integer maximumDuration;
+
+    /**
+     * The maximum number of messages per second that the campaign will send.
+     * This is a best effort maximum cap and can go as high as 20000 and as low
+     * as 50
+     */
+    private Integer messagesPerSecond;
 
     /**
      * The maximum total number of messages that the campaign can send.
@@ -60,6 +77,90 @@ public class CampaignLimits implements Serializable {
      */
     public CampaignLimits withDaily(Integer daily) {
         this.daily = daily;
+        return this;
+    }
+
+    /**
+     * The maximum duration of a campaign from the scheduled start. Must be a
+     * minimum of 60 seconds.
+     *
+     * @return The maximum duration of a campaign from the scheduled start. Must
+     *         be a minimum of 60 seconds.
+     */
+    public Integer getMaximumDuration() {
+        return maximumDuration;
+    }
+
+    /**
+     * The maximum duration of a campaign from the scheduled start. Must be a
+     * minimum of 60 seconds.
+     *
+     * @param maximumDuration The maximum duration of a campaign from the
+     *            scheduled start. Must be a minimum of 60 seconds.
+     */
+    public void setMaximumDuration(Integer maximumDuration) {
+        this.maximumDuration = maximumDuration;
+    }
+
+    /**
+     * The maximum duration of a campaign from the scheduled start. Must be a
+     * minimum of 60 seconds.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param maximumDuration The maximum duration of a campaign from the
+     *            scheduled start. Must be a minimum of 60 seconds.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CampaignLimits withMaximumDuration(Integer maximumDuration) {
+        this.maximumDuration = maximumDuration;
+        return this;
+    }
+
+    /**
+     * The maximum number of messages per second that the campaign will send.
+     * This is a best effort maximum cap and can go as high as 20000 and as low
+     * as 50
+     *
+     * @return The maximum number of messages per second that the campaign will
+     *         send. This is a best effort maximum cap and can go as high as
+     *         20000 and as low as 50
+     */
+    public Integer getMessagesPerSecond() {
+        return messagesPerSecond;
+    }
+
+    /**
+     * The maximum number of messages per second that the campaign will send.
+     * This is a best effort maximum cap and can go as high as 20000 and as low
+     * as 50
+     *
+     * @param messagesPerSecond The maximum number of messages per second that
+     *            the campaign will send. This is a best effort maximum cap and
+     *            can go as high as 20000 and as low as 50
+     */
+    public void setMessagesPerSecond(Integer messagesPerSecond) {
+        this.messagesPerSecond = messagesPerSecond;
+    }
+
+    /**
+     * The maximum number of messages per second that the campaign will send.
+     * This is a best effort maximum cap and can go as high as 20000 and as low
+     * as 50
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param messagesPerSecond The maximum number of messages per second that
+     *            the campaign will send. This is a best effort maximum cap and
+     *            can go as high as 20000 and as low as 50
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CampaignLimits withMessagesPerSecond(Integer messagesPerSecond) {
+        this.messagesPerSecond = messagesPerSecond;
         return this;
     }
 
@@ -111,6 +212,10 @@ public class CampaignLimits implements Serializable {
         sb.append("{");
         if (getDaily() != null)
             sb.append("Daily: " + getDaily() + ",");
+        if (getMaximumDuration() != null)
+            sb.append("MaximumDuration: " + getMaximumDuration() + ",");
+        if (getMessagesPerSecond() != null)
+            sb.append("MessagesPerSecond: " + getMessagesPerSecond() + ",");
         if (getTotal() != null)
             sb.append("Total: " + getTotal());
         sb.append("}");
@@ -123,6 +228,10 @@ public class CampaignLimits implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getDaily() == null) ? 0 : getDaily().hashCode());
+        hashCode = prime * hashCode
+                + ((getMaximumDuration() == null) ? 0 : getMaximumDuration().hashCode());
+        hashCode = prime * hashCode
+                + ((getMessagesPerSecond() == null) ? 0 : getMessagesPerSecond().hashCode());
         hashCode = prime * hashCode + ((getTotal() == null) ? 0 : getTotal().hashCode());
         return hashCode;
     }
@@ -141,6 +250,16 @@ public class CampaignLimits implements Serializable {
         if (other.getDaily() == null ^ this.getDaily() == null)
             return false;
         if (other.getDaily() != null && other.getDaily().equals(this.getDaily()) == false)
+            return false;
+        if (other.getMaximumDuration() == null ^ this.getMaximumDuration() == null)
+            return false;
+        if (other.getMaximumDuration() != null
+                && other.getMaximumDuration().equals(this.getMaximumDuration()) == false)
+            return false;
+        if (other.getMessagesPerSecond() == null ^ this.getMessagesPerSecond() == null)
+            return false;
+        if (other.getMessagesPerSecond() != null
+                && other.getMessagesPerSecond().equals(this.getMessagesPerSecond()) == false)
             return false;
         if (other.getTotal() == null ^ this.getTotal() == null)
             return false;

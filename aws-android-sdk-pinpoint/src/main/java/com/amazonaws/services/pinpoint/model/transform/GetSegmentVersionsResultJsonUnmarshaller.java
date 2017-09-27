@@ -29,9 +29,6 @@ public class GetSegmentVersionsResultJsonUnmarshaller implements
     public GetSegmentVersionsResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         GetSegmentVersionsResult getSegmentVersionsResult = new GetSegmentVersionsResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            getSegmentVersionsResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return getSegmentVersionsResult;
     }
 

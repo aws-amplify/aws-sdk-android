@@ -29,9 +29,6 @@ public class UpdateEndpointsBatchResultJsonUnmarshaller implements
     public UpdateEndpointsBatchResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         UpdateEndpointsBatchResult updateEndpointsBatchResult = new UpdateEndpointsBatchResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            updateEndpointsBatchResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return updateEndpointsBatchResult;
     }
 

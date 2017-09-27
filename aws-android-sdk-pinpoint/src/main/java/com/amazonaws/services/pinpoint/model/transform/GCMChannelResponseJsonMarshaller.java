@@ -41,6 +41,11 @@ class GCMChannelResponseJsonMarshaller {
             jsonWriter.name("Credential");
             jsonWriter.value(credential);
         }
+        if (gCMChannelResponse.getEnabled() != null) {
+            Boolean enabled = gCMChannelResponse.getEnabled();
+            jsonWriter.name("Enabled");
+            jsonWriter.value(enabled);
+        }
         if (gCMChannelResponse.getId() != null) {
             String id = gCMChannelResponse.getId();
             jsonWriter.name("Id");

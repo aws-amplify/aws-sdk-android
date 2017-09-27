@@ -19,79 +19,35 @@ import java.io.Serializable;
 
 public class GetCampaignActivitiesResult implements Serializable {
     /**
-     * The new value for the accessControlAllowOrigin property for this object.
-     */
-    private String accessControlAllowOrigin;
-
-    /**
-     * The new value for the activitiesResponse property for this object.
+     * Activities for campaign.
      */
     private ActivitiesResponse activitiesResponse;
 
     /**
-     * Returns the value of the accessControlAllowOrigin property for this
-     * object.
+     * Activities for campaign.
      *
-     * @return The value of the accessControlAllowOrigin property for this
-     *         object.
-     */
-    public String getAccessControlAllowOrigin() {
-        return accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of accessControlAllowOrigin
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     */
-    public void setAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-    }
-
-    /**
-     * Sets the value of the accessControlAllowOrigin property for this object.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param accessControlAllowOrigin The new value for the
-     *            accessControlAllowOrigin property for this object.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public GetCampaignActivitiesResult withAccessControlAllowOrigin(String accessControlAllowOrigin) {
-        this.accessControlAllowOrigin = accessControlAllowOrigin;
-        return this;
-    }
-
-    /**
-     * Returns the value of the activitiesResponse property for this object.
-     *
-     * @return The value of the activitiesResponse property for this object.
+     * @return Activities for campaign.
      */
     public ActivitiesResponse getActivitiesResponse() {
         return activitiesResponse;
     }
 
     /**
-     * Sets the value of activitiesResponse
+     * Activities for campaign.
      *
-     * @param activitiesResponse The new value for the activitiesResponse
-     *            property for this object.
+     * @param activitiesResponse Activities for campaign.
      */
     public void setActivitiesResponse(ActivitiesResponse activitiesResponse) {
         this.activitiesResponse = activitiesResponse;
     }
 
     /**
-     * Sets the value of the activitiesResponse property for this object.
+     * Activities for campaign.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param activitiesResponse The new value for the activitiesResponse
-     *            property for this object.
+     * @param activitiesResponse Activities for campaign.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -111,8 +67,6 @@ public class GetCampaignActivitiesResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAccessControlAllowOrigin() != null)
-            sb.append("AccessControlAllowOrigin: " + getAccessControlAllowOrigin() + ",");
         if (getActivitiesResponse() != null)
             sb.append("ActivitiesResponse: " + getActivitiesResponse());
         sb.append("}");
@@ -124,10 +78,6 @@ public class GetCampaignActivitiesResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime
-                * hashCode
-                + ((getAccessControlAllowOrigin() == null) ? 0 : getAccessControlAllowOrigin()
-                        .hashCode());
         hashCode = prime * hashCode
                 + ((getActivitiesResponse() == null) ? 0 : getActivitiesResponse().hashCode());
         return hashCode;
@@ -144,12 +94,6 @@ public class GetCampaignActivitiesResult implements Serializable {
             return false;
         GetCampaignActivitiesResult other = (GetCampaignActivitiesResult) obj;
 
-        if (other.getAccessControlAllowOrigin() == null
-                ^ this.getAccessControlAllowOrigin() == null)
-            return false;
-        if (other.getAccessControlAllowOrigin() != null
-                && other.getAccessControlAllowOrigin().equals(this.getAccessControlAllowOrigin()) == false)
-            return false;
         if (other.getActivitiesResponse() == null ^ this.getActivitiesResponse() == null)
             return false;
         if (other.getActivitiesResponse() != null

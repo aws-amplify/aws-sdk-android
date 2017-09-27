@@ -29,9 +29,6 @@ public class DeleteCampaignResultJsonUnmarshaller implements
     public DeleteCampaignResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeleteCampaignResult deleteCampaignResult = new DeleteCampaignResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            deleteCampaignResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return deleteCampaignResult;
     }
 

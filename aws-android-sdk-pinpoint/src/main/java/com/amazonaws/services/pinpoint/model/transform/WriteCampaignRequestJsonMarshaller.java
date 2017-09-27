@@ -86,6 +86,11 @@ class WriteCampaignRequestJsonMarshaller {
             jsonWriter.name("SegmentVersion");
             jsonWriter.value(segmentVersion);
         }
+        if (writeCampaignRequest.getTrace() != null) {
+            Boolean trace = writeCampaignRequest.getTrace();
+            jsonWriter.name("Trace");
+            jsonWriter.value(trace);
+        }
         if (writeCampaignRequest.getTreatmentDescription() != null) {
             String treatmentDescription = writeCampaignRequest.getTreatmentDescription();
             jsonWriter.name("TreatmentDescription");

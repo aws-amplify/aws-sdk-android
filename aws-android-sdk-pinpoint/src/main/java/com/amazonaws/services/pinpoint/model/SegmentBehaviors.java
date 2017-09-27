@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Segment behavior dimensions
+ */
 public class SegmentBehaviors implements Serializable {
     /**
      * The recency of use.

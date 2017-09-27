@@ -29,9 +29,6 @@ public class GetGcmChannelResultJsonUnmarshaller implements
     public GetGcmChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         GetGcmChannelResult getGcmChannelResult = new GetGcmChannelResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            getGcmChannelResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return getGcmChannelResult;
     }
 

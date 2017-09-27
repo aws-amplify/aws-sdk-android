@@ -50,9 +50,6 @@ public class DeleteCampaignRequestMarshaller implements
                 deleteCampaignRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.DELETE);
 
-        if (deleteCampaignRequest.getAccept() != null) {
-            request.addHeader("accept", StringUtils.fromString(deleteCampaignRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/campaigns/{campaign-id}";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

@@ -17,11 +17,14 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Custom attibute dimension
+ */
 public class AttributeDimension implements Serializable {
     /**
-     * The type of dimension: INCLUSIVE â€“ Endpoints that match the criteria
-     * are included in the segment. EXCLUSIVE â€“ Endpoints that match the
-     * criteria are excluded from the segment.
+     * The type of dimension: INCLUSIVE - Endpoints that match the criteria are
+     * included in the segment. EXCLUSIVE - Endpoints that match the criteria
+     * are excluded from the segment.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCLUSIVE, EXCLUSIVE
@@ -36,16 +39,16 @@ public class AttributeDimension implements Serializable {
     private java.util.List<String> values;
 
     /**
-     * The type of dimension: INCLUSIVE â€“ Endpoints that match the criteria
-     * are included in the segment. EXCLUSIVE â€“ Endpoints that match the
-     * criteria are excluded from the segment.
+     * The type of dimension: INCLUSIVE - Endpoints that match the criteria are
+     * included in the segment. EXCLUSIVE - Endpoints that match the criteria
+     * are excluded from the segment.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCLUSIVE, EXCLUSIVE
      *
-     * @return The type of dimension: INCLUSIVE â€“ Endpoints that match the
-     *         criteria are included in the segment. EXCLUSIVE â€“ Endpoints
-     *         that match the criteria are excluded from the segment.
+     * @return The type of dimension: INCLUSIVE - Endpoints that match the
+     *         criteria are included in the segment. EXCLUSIVE - Endpoints that
+     *         match the criteria are excluded from the segment.
      * @see AttributeType
      */
     public String getAttributeType() {
@@ -53,15 +56,15 @@ public class AttributeDimension implements Serializable {
     }
 
     /**
-     * The type of dimension: INCLUSIVE â€“ Endpoints that match the criteria
-     * are included in the segment. EXCLUSIVE â€“ Endpoints that match the
-     * criteria are excluded from the segment.
+     * The type of dimension: INCLUSIVE - Endpoints that match the criteria are
+     * included in the segment. EXCLUSIVE - Endpoints that match the criteria
+     * are excluded from the segment.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCLUSIVE, EXCLUSIVE
      *
-     * @param attributeType The type of dimension: INCLUSIVE â€“ Endpoints that
-     *            match the criteria are included in the segment. EXCLUSIVE â€“
+     * @param attributeType The type of dimension: INCLUSIVE - Endpoints that
+     *            match the criteria are included in the segment. EXCLUSIVE -
      *            Endpoints that match the criteria are excluded from the
      *            segment.
      * @see AttributeType
@@ -71,9 +74,9 @@ public class AttributeDimension implements Serializable {
     }
 
     /**
-     * The type of dimension: INCLUSIVE â€“ Endpoints that match the criteria
-     * are included in the segment. EXCLUSIVE â€“ Endpoints that match the
-     * criteria are excluded from the segment.
+     * The type of dimension: INCLUSIVE - Endpoints that match the criteria are
+     * included in the segment. EXCLUSIVE - Endpoints that match the criteria
+     * are excluded from the segment.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -81,8 +84,8 @@ public class AttributeDimension implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCLUSIVE, EXCLUSIVE
      *
-     * @param attributeType The type of dimension: INCLUSIVE â€“ Endpoints that
-     *            match the criteria are included in the segment. EXCLUSIVE â€“
+     * @param attributeType The type of dimension: INCLUSIVE - Endpoints that
+     *            match the criteria are included in the segment. EXCLUSIVE -
      *            Endpoints that match the criteria are excluded from the
      *            segment.
      * @return A reference to this updated object so that method calls can be
@@ -95,15 +98,15 @@ public class AttributeDimension implements Serializable {
     }
 
     /**
-     * The type of dimension: INCLUSIVE â€“ Endpoints that match the criteria
-     * are included in the segment. EXCLUSIVE â€“ Endpoints that match the
-     * criteria are excluded from the segment.
+     * The type of dimension: INCLUSIVE - Endpoints that match the criteria are
+     * included in the segment. EXCLUSIVE - Endpoints that match the criteria
+     * are excluded from the segment.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCLUSIVE, EXCLUSIVE
      *
-     * @param attributeType The type of dimension: INCLUSIVE â€“ Endpoints that
-     *            match the criteria are included in the segment. EXCLUSIVE â€“
+     * @param attributeType The type of dimension: INCLUSIVE - Endpoints that
+     *            match the criteria are included in the segment. EXCLUSIVE -
      *            Endpoints that match the criteria are excluded from the
      *            segment.
      * @see AttributeType
@@ -113,9 +116,9 @@ public class AttributeDimension implements Serializable {
     }
 
     /**
-     * The type of dimension: INCLUSIVE â€“ Endpoints that match the criteria
-     * are included in the segment. EXCLUSIVE â€“ Endpoints that match the
-     * criteria are excluded from the segment.
+     * The type of dimension: INCLUSIVE - Endpoints that match the criteria are
+     * included in the segment. EXCLUSIVE - Endpoints that match the criteria
+     * are excluded from the segment.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -123,8 +126,8 @@ public class AttributeDimension implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCLUSIVE, EXCLUSIVE
      *
-     * @param attributeType The type of dimension: INCLUSIVE â€“ Endpoints that
-     *            match the criteria are included in the segment. EXCLUSIVE â€“
+     * @param attributeType The type of dimension: INCLUSIVE - Endpoints that
+     *            match the criteria are included in the segment. EXCLUSIVE -
      *            Endpoints that match the criteria are excluded from the
      *            segment.
      * @return A reference to this updated object so that method calls can be
