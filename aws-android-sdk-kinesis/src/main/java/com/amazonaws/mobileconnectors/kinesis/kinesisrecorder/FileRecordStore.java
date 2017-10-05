@@ -68,7 +68,7 @@ class FileRecordStore {
         try {
             tryCreateRecordsFile();
         } catch (final IOException ioe) {
-            throw new AmazonClientException("Failed to create fire store", ioe);
+            throw new AmazonClientException("Failed to create file store", ioe);
         }
     }
 

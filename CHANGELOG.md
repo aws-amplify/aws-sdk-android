@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.4)
+
+### Bug Fixes:
+
+- **Amazon Kinesis Firehose & Amazon Kinesis Streams**
+  - Fixed a bug that caused infinite loops while reading local cache of streams used for batching. See [issue #182](https://github.com/aws/aws-sdk-android/issues/182)
+
 ## [Release 2.6.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.3)
 
 ### New Features:
