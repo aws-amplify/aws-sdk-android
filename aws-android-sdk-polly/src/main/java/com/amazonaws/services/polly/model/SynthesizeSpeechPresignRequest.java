@@ -119,10 +119,10 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
      * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki
+     * Tatyana, Astrid, Filiz, Vicki, Takumi
      */
     private String voiceId;
 
@@ -775,10 +775,10 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
      * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki
+     * Tatyana, Astrid, Filiz, Vicki, Takumi
      *
      * @return <p>
      *         Voice ID to use for the synthesis. You can get a list of
@@ -803,10 +803,10 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
      * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki
+     * Tatyana, Astrid, Filiz, Vicki, Takumi
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -834,10 +834,10 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Liv, Lotte, Ruben, Ewa,
      * Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki
+     * Tatyana, Astrid, Filiz, Vicki, Takumi
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -865,10 +865,10 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
      * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki
+     * Tatyana, Astrid, Filiz, Vicki, Takumi
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -896,10 +896,10 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Liv, Lotte, Ruben, Ewa,
      * Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki
+     * Tatyana, Astrid, Filiz, Vicki, Takumi
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of

@@ -41,6 +41,7 @@ public enum VoiceId {
     Justin("Justin"),
     Kendra("Kendra"),
     Kimberly("Kimberly"),
+    Matthew("Matthew"),
     Salli("Salli"),
     Conchita("Conchita"),
     Enrique("Enrique"),
@@ -70,7 +71,8 @@ public enum VoiceId {
     Tatyana("Tatyana"),
     Astrid("Astrid"),
     Filiz("Filiz"),
-    Vicki("Vicki");
+    Vicki("Vicki"),
+    Takumi("Takumi");
 
     private String value;
 
@@ -104,6 +106,7 @@ public enum VoiceId {
         enumMap.put("Justin", Justin);
         enumMap.put("Kendra", Kendra);
         enumMap.put("Kimberly", Kimberly);
+        enumMap.put("Matthew", Matthew);
         enumMap.put("Salli", Salli);
         enumMap.put("Conchita", Conchita);
         enumMap.put("Enrique", Enrique);
@@ -134,6 +137,7 @@ public enum VoiceId {
         enumMap.put("Astrid", Astrid);
         enumMap.put("Filiz", Filiz);
         enumMap.put("Vicki", Vicki);
+        enumMap.put("Takumi", Takumi);
     }
 
     /**

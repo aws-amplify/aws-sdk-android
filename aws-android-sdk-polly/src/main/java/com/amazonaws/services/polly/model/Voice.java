@@ -42,10 +42,10 @@ public class Voice implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
+     * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
+     * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi
      */
     private String id;
 
@@ -182,10 +182,10 @@ public class Voice implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
+     * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
+     * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi
      *
      * @return <p>
      *         Amazon Polly assigned voice ID. This is the ID that you specify
@@ -206,10 +206,10 @@ public class Voice implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
+     * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
+     * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
@@ -234,10 +234,10 @@ public class Voice implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
+     * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
+     * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
@@ -262,10 +262,10 @@ public class Voice implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
+     * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
+     * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
@@ -290,10 +290,10 @@ public class Voice implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
+     * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
+     * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you

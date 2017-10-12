@@ -1,5 +1,18 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.5)
+
+###Enhancements:
+
+- **Amazon Polly**
+  - Added support for new voices - `Matthew` and `Takumi`.
+  - Polly is now available in `ap-northeast-1` region.
+
+### Bug Fixes:
+
+- **Amazon Cognito Identity Provider**
+  - Fixed a bug in the deletion of CognitoUser where the callback function is not invoked when deletion is successful. See [issue #304](https://github.com/aws/aws-sdk-android/issues/304)
+
 ## [Release 2.6.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.4)
 
 ### Bug Fixes:
