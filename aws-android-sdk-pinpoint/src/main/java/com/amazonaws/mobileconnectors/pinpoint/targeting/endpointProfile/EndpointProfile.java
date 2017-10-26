@@ -70,7 +70,7 @@ public class EndpointProfile implements JSONSerializable {
         this.pinpointContext = pinpointContext;
         this.effectiveDate = DateUtil.getCorrectedDate().getTime();
         this.demographic = new EndpointProfileDemographic(this.pinpointContext);
-        this.location = new EndpointProfileLocation();
+        this.location = new EndpointProfileLocation(this.pinpointContext);
         this.user = new EndpointProfileUser();
     }
 

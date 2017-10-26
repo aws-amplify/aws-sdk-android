@@ -104,7 +104,7 @@ There are only a few fundamentals that are helpful to know when developing again
 
 ### Basic Service API Calls
 
-The SDK provides access to many AWS Services.  At the most basic level the SDK provides a request/response model for many of the various service methods.  At this level, for a given service, you will have a client that accepts request objects and will pass back a response object, or throw an error.  This basic model is shown in the above example.  Looking at the [Javadoc](http://docs.aws.amazon.com/AWSAndroidSDK/latest/javadoc/) you will notice that services typically have a com.amazonaws.services.*servicename* packageand com.amazonaws.services.*servicename*.model package .  This *servicename* package contains the client that you will pass request/response objects to in order to make service calls.  The *servicename*.model package contains classes that model the request and response parameters of calls to and from AWS services.
+The SDK provides access to many AWS Services.  At the most basic level the SDK provides a request/response model for many of the various service methods.  At this level, for a given service, you will have a client that accepts request objects and will pass back a response object, or throw an error.  This basic model is shown in the above example.  Looking at the [Javadoc](http://docs.aws.amazon.com/AWSAndroidSDK/latest/javadoc/) you will notice that services typically have a com.amazonaws.services.*servicename* package and com.amazonaws.services.*servicename*.model package .  This *servicename* package contains the client that you will pass request/response objects to in order to make service calls.  The *servicename*.model package contains classes that model the request and response parameters of calls to and from AWS services.
 
 
 ### Mobile Connectors  
@@ -278,4 +278,4 @@ If you are using a Mac, you may run into issues when trying to compile, because 
 
 ## To learn more about Android Development
 
-For more information on Andorid development, see the Android developer site at: [developer.android.com](http://developer.android.com/index.html)
+For more information on Android development, see the Android developer site at: [developer.android.com](http://developer.android.com/index.html)

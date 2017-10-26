@@ -213,6 +213,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      */
     volatile String clientRegion;
 
+    // Number of Kbytes that needs to be written before status updates are called
+    private int notificationThreshold = 1024;
+
     private static final int BUCKET_REGION_CACHE_SIZE = 300;
 
     private static final Map<String, String> bucketRegionCache = Collections.synchronizedMap(
@@ -431,6 +434,20 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         requestHandler2s.addAll(chainFactory.newRequestHandler2Chain(
                 "/com/amazonaws/services/s3/request.handler2s"));
     }
+
+
+    /**
+     * Sets the number of Kbytes that need to be written before updates to the
+     * listener occur.
+     *
+     * @param threshold Number of Kbytes that needs to be written before
+     *            write update notification occurs.
+     */
+    public void setNotificationThreshold(final int threshold) {
+        this.notificationThreshold = threshold;
+    }
+
+
 
     @Override
     public void setEndpoint(String endpoint) {
@@ -1393,6 +1410,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 ProgressReportingInputStream progressReportingInputStream = new ProgressReportingInputStream(
                         input, progressListenerCallbackExecutor);
                 progressReportingInputStream.setFireCompletedEvent(true);
+                progressReportingInputStream.setNotificationThreshold(this.notificationThreshold);
                 input = progressReportingInputStream;
                 fireProgressEvent(progressListenerCallbackExecutor,
                         ProgressEvent.STARTED_EVENT_CODE);
@@ -1684,6 +1702,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
         if (progressListenerCallbackExecutor != null) {
             input = new ProgressReportingInputStream(input, progressListenerCallbackExecutor);
+            ((ProgressReportingInputStream)input).setNotificationThreshold(this.notificationThreshold);
             fireProgressEvent(progressListenerCallbackExecutor, ProgressEvent.STARTED_EVENT_CODE);
         }
 
@@ -3631,10 +3650,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 .wrapListener(progressListener);
 
         if (progressListenerCallbackExecutor != null) {
-            inputStream = new ProgressReportingInputStream(inputStream,
-                    progressListenerCallbackExecutor);
-            fireProgressEvent(progressListenerCallbackExecutor,
-                    ProgressEvent.PART_STARTED_EVENT_CODE);
+            inputStream = new ProgressReportingInputStream(inputStream, progressListenerCallbackExecutor);
+            ((ProgressReportingInputStream)inputStream).setNotificationThreshold(this.notificationThreshold);
+            fireProgressEvent(progressListenerCallbackExecutor, ProgressEvent.PART_STARTED_EVENT_CODE);
         }
 
         try {

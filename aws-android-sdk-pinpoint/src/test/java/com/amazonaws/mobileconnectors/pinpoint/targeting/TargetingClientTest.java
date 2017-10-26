@@ -155,4 +155,26 @@ public class TargetingClientTest extends MobileAnalyticsTestBase {
             enqueueRunnable.run();
         }
     }
+
+    @Test
+    public void updateEndpointCallNullSetters() {
+        //Verify null checks on setters should not throw a null pointer exception
+        EndpointProfile profile = new EndpointProfile(mockContext);
+        profile.getDemographic().setLocale(null);
+        profile.getDemographic().setAppVersion(null);
+        profile.getDemographic().setMake(null);
+        profile.getDemographic().setModel(null);
+        profile.getDemographic().setPlatform(null);
+        profile.getDemographic().setPlatformVersion(null);
+        profile.getDemographic().setTimezone(null);
+
+        profile.getLocation().setCountry(null);
+        profile.getLocation().setCity(null);
+        profile.getLocation().setLatitude(null);
+        profile.getLocation().setLongitude(null);
+        profile.getLocation().setPostalCode(null);
+        profile.getLocation().setRegion(null);
+
+        targetingClient.updateEndpointProfile(profile);
+    }
 }

@@ -104,7 +104,6 @@ public class TransferObserver {
      *
      * @param id The transfer id of the transfer to be observed.
      * @param dbUtil an instance of database utility
-     * @param c a cursor to read the state of the transfer from
      */
     TransferObserver(int id, TransferDBUtil dbUtil) {
         this.id = id;
