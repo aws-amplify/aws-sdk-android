@@ -218,6 +218,20 @@ public class CognitoUser {
     public String getUserPoolId() {
         return pool.getUserPoolId();
     }
+    
+    /**
+     * Determines whether this user has an active session or not
+     * 
+     * @return True if the user has an active session
+     */
+    public boolean isSignedIn() {
+        if (usernameInternal == null) {
+            return false;
+        }
+        final SharedPreferences prefs = context.getSharedPreferences("CognitoIdentityProviderCache", 0);
+        final String csiIdTokenKey = String.format("CognitoIdentityProvider.%s.%s.idToken", clientId, userId);
+        return prefs.contains(csiIdTokenKey);
+    }
 
     /**
      * Method low-level client for Amazon Cognito Identity Provider.
