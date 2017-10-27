@@ -20,7 +20,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.MissingResourceException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -152,17 +151,9 @@ public class TargetingClient {
             return;
         }
 
-        String locale;
-        try {
-            locale = endpointProfile.getDemographic().getLocale().getISO3Country();
-        } catch (final MissingResourceException exception) {
-            log.debug("Locale getISO3Country failed, falling back to getCountry.");
-            locale = endpointProfile.getDemographic().getLocale().getCountry();
-        }
-
         final EndpointDemographic demographic = new EndpointDemographic()
             .withAppVersion(endpointProfile.getDemographic().getAppVersion())
-            .withLocale(locale)
+            .withLocale(endpointProfile.getDemographic().getLocale().toString())
             .withTimezone(endpointProfile.getDemographic().getTimezone())
             .withMake(endpointProfile.getDemographic().getMake())
             .withModel(endpointProfile.getDemographic().getModel())

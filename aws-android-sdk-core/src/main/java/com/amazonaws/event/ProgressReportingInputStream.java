@@ -32,8 +32,14 @@ import java.io.InputStream;
  */
 public class ProgressReportingInputStream extends SdkFilterInputStream {
 
+    /** Constant to represent 1KB. */
+    private static final int BYTES_IN_KB = 1024;
+
+    /** Constant to represent the Notification Threshold in KB. */
+    private static final int THRESHOLD_IN_KB = 8;
+
     /** The threshold of bytes between notifications. */
-    private static final int NOTIFICATION_THRESHOLD = 8 * 1024;
+    private int notificationThreshold = THRESHOLD_IN_KB * BYTES_IN_KB;
 
     /** The listener callback executor */
     private final ProgressListenerCallbackExecutor listenerCallbackExecutor;
@@ -64,6 +70,17 @@ public class ProgressReportingInputStream extends SdkFilterInputStream {
             final ProgressListenerCallbackExecutor listenerCallbackExecutor) {
         super(in);
         this.listenerCallbackExecutor = listenerCallbackExecutor;
+    }
+
+    /**
+     * Sets the number of Kbytes that need to be written before updates to the
+     * listener occur.
+     *
+     * @param threshold Number of Kbytes that needs to be written before
+     *            write update notification occurs.
+     */
+    public void setNotificationThreshold(final int threshold) {
+        this.notificationThreshold = threshold * BYTES_IN_KB;
     }
 
     /**
@@ -141,7 +158,8 @@ public class ProgressReportingInputStream extends SdkFilterInputStream {
 
     private void notify(int bytesRead) {
         unnotifiedByteCount += bytesRead;
-        if (unnotifiedByteCount >= NOTIFICATION_THRESHOLD) {
+
+        if (unnotifiedByteCount >= this.notificationThreshold) {
             listenerCallbackExecutor.progressChanged(new ProgressEvent(unnotifiedByteCount));
             unnotifiedByteCount = 0;
         }

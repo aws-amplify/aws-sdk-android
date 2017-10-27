@@ -278,4 +278,4 @@ If you are using a Mac, you may run into issues when trying to compile, because 
 
 ## To learn more about Android Development
 
-For more information on Andorid development, see the Android developer site at: [developer.android.com](http://developer.android.com/index.html)
+For more information on Android development, see the Android developer site at: [developer.android.com](http://developer.android.com/index.html)

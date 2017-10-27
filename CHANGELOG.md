@@ -1,5 +1,18 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.6)
+
+### Bug Fixes:
+
+- **Amazon Pinpoint**
+  - Fix locale issue for endpoint profile updates. See [issue #355](https://github.com/aws/aws-sdk-android/issues/355) and see [issue #354](https://github.com/aws/aws-sdk-android/issues/354)
+
+- **Amazon S3**
+  - Fixed a bug in the download progress reporting for large files where the last status update could be a jump of 75% or more. The default for notification used to be 8K bytes chunks, it has been changed to 1024K bytes.  The value can be changed using the `setNotificationThreshold` method of AmazonS3Client instead of being a constant.  See [issue #333](https://github.com/aws/aws-sdk-android/issues/333)
+
+- **AWS IoT**
+  - Fix validation for endpoint in China that ends with ".cn". See [issue #337](https://github.com/aws/aws-sdk-android/issues/337)
+
 ## [Release 2.6.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.5)
 
 ### Enhancements:
