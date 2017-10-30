@@ -319,7 +319,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.us-west-2.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.amazonaws.com", false, true);
 
-        region = new Region("cn-north-1", "");
+        region = new Region("cn-north-1", "amazonaws.com.cn");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.cn-north-1.amazonaws.com.cn", false, true);
         updateRegion(region, "dynamodb", "dynamodb.cn-north-1.amazonaws.com.cn", false, true);
