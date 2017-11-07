@@ -68,6 +68,11 @@ public class AwsHostNameUtils {
             return parseStandardRegionName(host.substring(0, index));
         }
 
+        if (host.endsWith(".amazonaws.com.cn")) {
+            int index = host.length() - ".amazonaws.com.cn".length();
+            return parseStandardRegionName(host.substring(0, index));
+        }
+
         if (serviceHint != null) {
             // If we have a service hint, look for 'service.[region]' or
             // 'service-[region]' in the endpoint's hostname.
