@@ -48,7 +48,7 @@ public final class Pkce {
     public final static String generateHash(String data) throws Exception {
         String hashedData = data;
         try {
-            byte[] bytes = data.getBytes("US-ASCII");
+            byte[] bytes = data.getBytes(StandardCharsets.US_ASCII);
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             digest.update(bytes, 0, bytes.length);
             byte[] digestBytes = digest.digest();
@@ -69,6 +69,6 @@ public final class Pkce {
             return null;
         }
         byte[] data = str.getBytes(Charset.forName("ISO-8859-1"));
-        return Base64.encodeToString(data, Base64.NO_PADDING);
+        return Base64.encodeToString(data, Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING);
     }
 }
