@@ -20,14 +20,13 @@ package com.amazonaws.mobileconnectors.cognitoauth.util;
 import android.util.Base64;
 
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 
 /**
  * Utility class to generate random string, hash, and encoding.
+ *
  */
-
 public final class Pkce {
 
     /**
@@ -49,7 +48,7 @@ public final class Pkce {
     public final static String generateHash(String data) throws Exception {
         String hashedData = data;
         try {
-            byte[] bytes = data.getBytes(StandardCharsets.US_ASCII);
+            byte[] bytes = data.getBytes("US-ASCII");
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             digest.update(bytes, 0, bytes.length);
             byte[] digestBytes = digest.digest();
