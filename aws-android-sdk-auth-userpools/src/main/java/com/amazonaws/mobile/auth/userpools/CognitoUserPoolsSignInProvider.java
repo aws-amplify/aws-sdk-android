@@ -86,6 +86,12 @@ public class CognitoUserPoolsSignInProvider implements SignInProvider {
 
         /** Background Color. */
         public static final String BACKGROUND_COLOR = "signInBackgroundColor";
+
+        /** Key for enabling background color full screen. */
+        public static final String FULL_SCREEN_BACKGROUND_COLOR = "fullScreenBackgroundColor";
+
+        /** Key for specifying the custom font family. */
+        public static final String FONT_FAMILY = "fontFamily";
     }
 
     /** Log tag. */
@@ -160,7 +166,13 @@ public class CognitoUserPoolsSignInProvider implements SignInProvider {
     private AWSConfiguration awsConfiguration;
 
     /** Background Color for the View. */
-    private int backgroundColor;
+    private static int backgroundColor;
+
+    /** Draw the background color full screen if fullScreenBackgroundColor is True. */
+    private static boolean isBackgroundColorFullScreenEnabled;
+
+    /** Tyypeface font-family. */
+    private static String fontFamily;
 
     /**
      * Handle callbacks from the Forgot Password flow.
@@ -178,8 +190,6 @@ public class CognitoUserPoolsSignInProvider implements SignInProvider {
             forgotPasswordContinuation = continuation;
 
             final Intent intent = new Intent(context, ForgotPasswordActivity.class);
-            intent.putExtra(CognitoUserPoolsSignInProvider.AttributeKeys.BACKGROUND_COLOR,
-                            CognitoUserPoolsSignInProvider.this.backgroundColor);
             activity.startActivityForResult(intent, FORGOT_PASSWORD_REQUEST_CODE);
         }
 
@@ -204,8 +214,6 @@ public class CognitoUserPoolsSignInProvider implements SignInProvider {
     private void startVerificationActivity() {
         final Intent intent = new Intent(context, SignUpConfirmActivity.class);
         intent.putExtra(AttributeKeys.USERNAME, username);
-        intent.putExtra(CognitoUserPoolsSignInProvider.AttributeKeys.BACKGROUND_COLOR,
-                        CognitoUserPoolsSignInProvider.this.backgroundColor);
         activity.startActivityForResult(intent, VERIFICATION_REQUEST_CODE);
     }
 
@@ -315,8 +323,6 @@ public class CognitoUserPoolsSignInProvider implements SignInProvider {
             multiFactorAuthenticationContinuation = continuation;
 
             final Intent intent = new Intent(context, MFAActivity.class);
-            intent.putExtra(CognitoUserPoolsSignInProvider.AttributeKeys.BACKGROUND_COLOR,
-                            CognitoUserPoolsSignInProvider.this.backgroundColor);
             activity.startActivityForResult(intent, MFA_REQUEST_CODE);
         }
 
@@ -377,7 +383,6 @@ public class CognitoUserPoolsSignInProvider implements SignInProvider {
 
         cognitoLoginKey = "cognito-idp." +  region.getName()
             + ".amazonaws.com/" + getCognitoUserPoolId();
-        Log.d(LOG_TAG, "CognitoLoginKey: " + cognitoLoginKey);
     }
 
     /** {@inheritDoc} */
@@ -495,7 +500,6 @@ public class CognitoUserPoolsSignInProvider implements SignInProvider {
                     Log.e(LOG_TAG, "Unknown Request Code sent.");
             }
         }
-
     }
 
     /** {@inheritDoc} */
@@ -509,14 +513,14 @@ public class CognitoUserPoolsSignInProvider implements SignInProvider {
         final UserPoolSignInView userPoolSignInView =
             (UserPoolSignInView) activity.findViewById(R.id.user_pool_sign_in_view_id);
 
-        this.backgroundColor = userPoolSignInView.getBackgroundColor();
+        backgroundColor = userPoolSignInView.getBackgroundColor();
+        fontFamily = userPoolSignInView.getFontFamily();
+        isBackgroundColorFullScreenEnabled = userPoolSignInView.isBackgroundColorFullScreen();
 
         userPoolSignInView.getSignUpTextView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, SignUpActivity.class);
-                intent.putExtra(CognitoUserPoolsSignInProvider.AttributeKeys.BACKGROUND_COLOR,
-                                CognitoUserPoolsSignInProvider.this.backgroundColor);
                 activity.startActivityForResult(intent, CognitoUserPoolsSignInProvider.SIGN_UP_REQUEST_CODE);
             }
         });
@@ -746,5 +750,17 @@ public class CognitoUserPoolsSignInProvider implements SignInProvider {
         } else {
             return message.substring(0, index);
         }
+    }
+
+    static boolean isBackgroundColorFullScreen() {
+        return isBackgroundColorFullScreenEnabled;
+    }
+
+    static int getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    static String getFontFamily() {
+        return fontFamily;
     }
 }

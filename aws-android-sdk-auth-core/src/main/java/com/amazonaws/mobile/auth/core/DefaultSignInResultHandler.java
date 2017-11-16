@@ -27,7 +27,7 @@ import com.amazonaws.mobile.auth.core.R;
 
 /**
  * A default base class easing the work required for implementing the SignInResultHandler for
- * {@link IdentityManager#setUpToAuthenticate(Context, SignInResultHandler)} by providing default
+ * {@link IdentityManager#login(Context, SignInResultHandler)} by providing default
  * behavior in the case that the user cancels signing in or encounters an error. The default for
  * canceling is to toast that sign-in was canceled. The default for a sign-in error is to show
  * an alert dialog specifying the error message.

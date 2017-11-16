@@ -15,8 +15,7 @@
         android:id="@+id/signup_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        com.amazonaws.mobile.auth.userpools:signUpViewBackgroundColor="@android:color/darker_gray">
+        android:gravity="center_horizontal">
 
         <TextView
             android:id="@+id/signup_message"

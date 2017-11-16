@@ -45,7 +45,7 @@ public class Voice implements Serializable {
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
      * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
      * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
-     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
      */
     private String id;
 
@@ -56,8 +56,8 @@ public class Voice implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, nb-NO,
-     * nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ko-KR, ja-JP,
+     * nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      */
     private String languageCode;
 
@@ -185,7 +185,7 @@ public class Voice implements Serializable {
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
      * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
      * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
-     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
      *
      * @return <p>
      *         Amazon Polly assigned voice ID. This is the ID that you specify
@@ -209,7 +209,7 @@ public class Voice implements Serializable {
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
      * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
      * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
-     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
@@ -237,7 +237,7 @@ public class Voice implements Serializable {
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
      * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
      * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
-     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
@@ -265,7 +265,7 @@ public class Voice implements Serializable {
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
      * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
      * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
-     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
@@ -293,7 +293,7 @@ public class Voice implements Serializable {
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
      * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
      * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
-     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
@@ -316,8 +316,8 @@ public class Voice implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, nb-NO,
-     * nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ko-KR, ja-JP,
+     * nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
      * @return <p>
      *         Language code of the voice.
@@ -335,8 +335,8 @@ public class Voice implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, nb-NO,
-     * nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ko-KR, ja-JP,
+     * nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
      * @param languageCode <p>
      *            Language code of the voice.
@@ -357,8 +357,8 @@ public class Voice implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, nb-NO,
-     * nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ko-KR, ja-JP,
+     * nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
      * @param languageCode <p>
      *            Language code of the voice.
@@ -379,8 +379,8 @@ public class Voice implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, nb-NO,
-     * nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ko-KR, ja-JP,
+     * nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
      * @param languageCode <p>
      *            Language code of the voice.
@@ -401,8 +401,8 @@ public class Voice implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, nb-NO,
-     * nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ko-KR, ja-JP,
+     * nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
      * @param languageCode <p>
      *            Language code of the voice.

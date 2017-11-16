@@ -13,8 +13,7 @@
         android:id="@+id/signup_confirm_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        com.amazonaws.mobile.auth.userpools:signUpConfirmViewBackgroundColor="@android:color/darker_gray">
+        android:gravity="center_horizontal">
 
         <TextView
             android:layout_width="match_parent"

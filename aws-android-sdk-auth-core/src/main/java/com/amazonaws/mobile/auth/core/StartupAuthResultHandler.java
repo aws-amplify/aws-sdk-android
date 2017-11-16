@@ -18,7 +18,8 @@
 package com.amazonaws.mobile.auth.core;
 
 /**
- * Interface for calling IdentityManager's doStartupAuth().
+ * Callback function for calling 
+ * {@link IdentityManager#resumeSession(Activity, StartupAuthResultHandler, long)}.
  */
 public interface StartupAuthResultHandler {
     /**

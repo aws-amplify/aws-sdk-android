@@ -19,8 +19,8 @@ package com.amazonaws.mobile.auth.ui;
 
 import android.content.Intent;
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.amazonaws.mobile.auth.core.IdentityManager;
@@ -29,9 +29,10 @@ import com.amazonaws.mobile.auth.core.SignInResultHandler;
 import com.amazonaws.mobile.auth.core.signin.SignInManager;
 import com.amazonaws.mobile.auth.core.signin.SignInProviderResultHandler;
 
+import com.amazonaws.mobile.auth.core.signin.ui.buttons.SignInButton;
+
 import java.util.HashMap;
 import java.util.UUID;
-
 
 /**
  * Activity for handling Sign-in with an Identity Provider.
@@ -43,10 +44,6 @@ public class SignInActivity extends AppCompatActivity {
 
     /** Reference to the singleton instance of SignInManager. */
     private SignInManager signInManager;
-
-    /** Stores the UI Configuration object passed into SignInActivity. */
-    static HashMap<String, AuthUIConfiguration> configurationStore
-            = new HashMap<String, AuthUIConfiguration>();
 
     /**
      * SignInProviderResultHandlerImpl handles the final result from sign in.
@@ -143,6 +140,7 @@ public class SignInActivity extends AppCompatActivity {
             super.onBackPressed();
             // Since we are leaving sign-in via back, we can dispose the sign-in manager, since sign-in was cancelled.
             SignInManager.dispose();
+            finish();
         }
     }
 
@@ -156,14 +154,14 @@ public class SignInActivity extends AppCompatActivity {
     public static void startSignInActivity(final Context context,
                                            final AuthUIConfiguration config) {
         try {
-            String uuid = UUID.randomUUID().toString();
-            synchronized (configurationStore) {
-                configurationStore.put(uuid, config);
-            }
             Intent intent = new Intent(context, SignInActivity.class);
-            intent.putExtra(SignInView.CONFIGURATION_KEY, uuid);
-            intent.putExtra(SignInView.BACKGROUND_COLOR_KEY,
-                            config.getSignInBackgroundColor(SignInView.DEFAULT_BACKGROUND_COLOR));
+            intent.putExtra(SignInView.CONFIGURATION_KEY, config);
+            intent.putExtra(AuthUIConfiguration.CONFIG_KEY_SIGN_IN_BACKGROUND_COLOR,
+                config.getSignInBackgroundColor(SignInView.DEFAULT_BACKGROUND_COLOR));
+            intent.putExtra(AuthUIConfiguration.CONFIG_KEY_FONT_FAMILY,
+                config.getFontFamily());
+            intent.putExtra(AuthUIConfiguration.CONFIG_KEY_FULL_SCREEN_BACKGROUND,
+                config.isBackgroundColorFullScreen());
             context.startActivity(intent);
         } catch (Exception exception) {
             Log.e(LOG_TAG, "Cannot start the SignInActivity. "
@@ -183,7 +181,7 @@ public class SignInActivity extends AppCompatActivity {
             context.startActivity(intent);
         } catch (Exception exception) {
             Log.e(LOG_TAG, "Cannot start the SignInActivity. "
-              + "Check the context and the configuration object passed in.", exception);
+              + "Check the context passed in.", exception);
         }
     }
 }

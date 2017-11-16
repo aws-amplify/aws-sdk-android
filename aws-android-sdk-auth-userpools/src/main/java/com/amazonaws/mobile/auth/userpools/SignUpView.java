@@ -22,18 +22,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.text.InputType;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import android.support.v4.content.res.ResourcesCompat;
+
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobile.auth.core.IdentityManager;
 import com.amazonaws.mobile.auth.core.signin.SignInManager;
 import com.amazonaws.mobile.auth.core.signin.ui.DisplayUtils;
+import com.amazonaws.mobile.auth.core.signin.ui.BackgroundDrawable;
 import com.amazonaws.mobile.auth.core.signin.ui.SplitBackgroundDrawable;
 
 import com.amazonaws.mobile.auth.userpools.R;
@@ -47,6 +52,10 @@ import static com.amazonaws.mobile.auth.userpools.UserPoolFormConstants.MAX_FORM
  * The view that handles user sign-up for Cognito User Pools.
  */
 public class SignUpView extends LinearLayout {
+
+    /** Log tag. */
+    private static final String LOG_TAG = SignUpView.class.getSimpleName();
+
     private TextView signUpMessage;
     private Button signUpButton;
     private FormView signUpForm;
@@ -55,7 +64,13 @@ public class SignUpView extends LinearLayout {
     private EditText givenNameEditText;
     private EditText emailEditText;
     private EditText phoneEditText;
+
     private SplitBackgroundDrawable splitBackgroundDrawable;
+    private BackgroundDrawable backgroundDrawable;
+    private String fontFamily;
+    private boolean fullScreenBackgroundColor;
+    private Typeface typeFace;
+    private int backgroundColor;
 
     /**
      * Constructs the SignUp View.
@@ -93,13 +108,29 @@ public class SignUpView extends LinearLayout {
             styledAttributes.recycle();
         }
 
-        splitBackgroundDrawable = new SplitBackgroundDrawable(0, getBackgroundColor(context, backgroundColor));
+        this.fontFamily = CognitoUserPoolsSignInProvider.getFontFamily();
+        this.typeFace = Typeface.create(this.fontFamily, Typeface.NORMAL);
+        this.fullScreenBackgroundColor = CognitoUserPoolsSignInProvider.isBackgroundColorFullScreen();
+        this.backgroundColor = CognitoUserPoolsSignInProvider.getBackgroundColor();
+
+        if (this.fullScreenBackgroundColor) {
+            this.backgroundDrawable = new BackgroundDrawable(this.backgroundColor);
+        } else {
+            this.splitBackgroundDrawable = new SplitBackgroundDrawable(0, this.backgroundColor);
+        }
     }
 
-    private int getBackgroundColor(final Context context, final int defaultBackgroundColor) {
-        Intent intent = ((Activity) context).getIntent();
-        return (int) (intent.getIntExtra(CognitoUserPoolsSignInProvider.AttributeKeys.BACKGROUND_COLOR,
-                                             defaultBackgroundColor));
+    private void setupFontFamily() {
+        if (this.typeFace != null) {
+            Log.d(LOG_TAG, "Setup font in SignUpView: " + this.fontFamily);
+            userNameEditText.setTypeface(typeFace);
+            passwordEditText.setTypeface(typeFace);
+            givenNameEditText.setTypeface(typeFace);
+            emailEditText.setTypeface(typeFace);
+            phoneEditText.setTypeface(typeFace);
+            signUpMessage.setTypeface(typeFace);
+            signUpButton.setTypeface(typeFace);
+        }
     }
 
     @Override
@@ -128,7 +159,9 @@ public class SignUpView extends LinearLayout {
 
         this.signUpMessage = (TextView) findViewById(R.id.signup_message);
         this.signUpButton = (Button) findViewById(R.id.signup_button);
+
         setupSignUpButtonBackground();
+        setupFontFamily();
     }
 
     @Override
@@ -141,7 +174,7 @@ public class SignUpView extends LinearLayout {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        setupSplitBackground();
+        setupBackground();
     }
 
     private void setupSignUpButtonBackground() {
@@ -155,10 +188,14 @@ public class SignUpView extends LinearLayout {
             signUpButtonLayoutParams.bottomMargin);
     }
 
-    private void setupSplitBackground() {
-        splitBackgroundDrawable.setSplitPointDistanceFromTop(
-            signUpForm.getTop() + (signUpForm.getMeasuredHeight()/2));
-        ((ViewGroup) getParent()).setBackgroundDrawable(splitBackgroundDrawable);
+    private void setupBackground() {
+        if (!this.fullScreenBackgroundColor) {
+            splitBackgroundDrawable.setSplitPointDistanceFromTop(signUpForm.getTop()
+                + (signUpForm.getMeasuredHeight()/2));
+            ((ViewGroup) getParent()).setBackgroundDrawable(splitBackgroundDrawable);
+        } else {
+            ((ViewGroup) getParent()).setBackgroundDrawable(backgroundDrawable);
+        }
     }
 
     /**

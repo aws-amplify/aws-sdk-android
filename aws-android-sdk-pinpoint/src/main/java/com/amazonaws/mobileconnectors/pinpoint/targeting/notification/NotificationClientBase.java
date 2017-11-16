@@ -101,6 +101,8 @@ abstract class NotificationClientBase {
     private static final int ANDROID_KITKAT = 19;
     private static final int ANDROID_LOLLIPOP = 21;
     private static final int ANDROID_MARSHMALLOW = 23;
+    private static final int ANDROID_OREO = 26;
+    private static final int NOTIFICATION_CHANNEL_IMPORTANCE = 4; //IMPORTANCE_HIGH = 4. This corresponds to PRIORITY_HIGH (value 1) in NotificationBuilder. setPriority is deprecated in API 26
 
     private static final String AWS_EVENT_TYPE_OPENED = "_campaign.opened_notification";
     private static final String AWS_EVENT_TYPE_RECEIVED_FOREGROUND = "_campaign.received_foreground";
@@ -109,12 +111,15 @@ abstract class NotificationClientBase {
     private static final String OP_POST_NOTIFICATION = "OP_POST_NOTIFICATION";
     private static final String APP_OPS_MODE_ALLOWED = "MODE_ALLOWED";
     private static final String APP_OPS_SERVICE = "APP_OPS_SERVICE";
+    private static final String DEFAULT_NOTIFICATION_CHANNEL_ID = "PINPOINT.NOTIFICATION";
+    private static final CharSequence DEFAULT_NOTIFICATION_CHANNEL_NAME = "Notifications";
     protected final PinpointContext pinpointContext;
     private final AppUtil appUtil;
     private final List<DeviceTokenRegisteredHandler> deviceRegisteredHandlers;
     private volatile String theDeviceToken;
     private Constructor<?> notificationBuilderConstructor = null;
     private Class<?> notificationBuilderClass = null;
+    private Class<?> notificationChannelClass = null;
     private Class<?> notificationBigTextStyleClass = null;
     private Class<?> notificationBigPictureStyleClass = null;
     private Class<?> notificationStyleClass = null;
@@ -138,6 +143,7 @@ abstract class NotificationClientBase {
     private Method checkOpNoThrowMethod = null;
     private Field opPostNotificationField = null;
     private Field modeAllowedField = null;
+    private String notificationChannelId = null;
 
     /**
      * Constructor.
@@ -260,6 +266,7 @@ abstract class NotificationClientBase {
         }
     }
 
+
     private int getNotificationIconResourceId(
         final String drawableResourceName) {
         final PackageManager packageManager = pinpointContext.getApplicationContext().getPackageManager();
@@ -305,6 +312,9 @@ abstract class NotificationClientBase {
             if (android.os.Build.VERSION.SDK_INT >= ANDROID_MARSHMALLOW) {
                 iconClass = Class.forName("android.graphics.drawable.Icon"); //API Level 23
             }
+            if (android.os.Build.VERSION.SDK_INT >= ANDROID_OREO) {
+                notificationChannelClass = Class.forName("android.app.NotificationChannel"); //API Level 26
+            }
             if (!buildMethodsByReflection()) {
                 // fall back to creating the legacy notification.
                 return false;
@@ -318,7 +328,13 @@ abstract class NotificationClientBase {
 
     private boolean buildMethodsByReflection() {
         try {
-            notificationBuilderConstructor = notificationBuilderClass.getDeclaredConstructor(Context.class);
+            if (android.os.Build.VERSION.SDK_INT >= ANDROID_OREO) {
+                notificationBuilderConstructor = notificationBuilderClass.getDeclaredConstructor(Context.class, String.class);
+            } else {
+                notificationBuilderConstructor = notificationBuilderClass.getDeclaredConstructor(Context.class);
+                setPriorityMethod = notificationBuilderClass.getDeclaredMethod("setPriority", int.class);
+                setSoundMethod = notificationBuilderClass.getDeclaredMethod("setSound", Uri.class);
+            }
             setContentTitleMethod = notificationBuilderClass.getDeclaredMethod("setContentTitle", CharSequence.class);
             setContentTextMethod = notificationBuilderClass.getDeclaredMethod("setContentText", CharSequence.class);
             setContentIntent = notificationBuilderClass.getDeclaredMethod("setContentIntent", PendingIntent.class);
@@ -329,8 +345,6 @@ abstract class NotificationClientBase {
             bigPictureMethod = notificationBigPictureStyleClass.getDeclaredMethod("bigPicture", Bitmap.class);
             setSummaryMethod = notificationBigPictureStyleClass.getDeclaredMethod("setSummaryText", CharSequence.class);
             setLargeIconMethod = notificationBuilderClass.getDeclaredMethod("setLargeIcon", Bitmap.class);
-            setPriorityMethod = notificationBuilderClass.getDeclaredMethod("setPriority", int.class);
-            setSoundMethod = notificationBuilderClass.getDeclaredMethod("setSound", Uri.class);
 
             if (android.os.Build.VERSION.SDK_INT >= ANDROID_MARSHMALLOW) {
                 setSmallIconMethod = notificationBuilderClass.getDeclaredMethod("setSmallIcon", iconClass);
@@ -339,6 +353,61 @@ abstract class NotificationClientBase {
             return true;
         } catch (final NoSuchMethodException ex) {
             log.debug("Failed to get notification builder methods by reflection. : " + ex.getMessage(), ex);
+            return false;
+        }
+    }
+
+    private Object retrieveNotificationChannel(String channelId) {
+        if (channelId == null) {
+            return null;
+        }
+        try {
+            log.info("Notification channel is needed");
+            NotificationManager notificationManager = (NotificationManager) pinpointContext.getApplicationContext()
+                    .getSystemService(
+                            Context.NOTIFICATION_SERVICE);
+            Method getNotificationChannelMethod = notificationManager.getClass().getDeclaredMethod("getNotificationChannel", String.class);
+            return getNotificationChannelMethod.invoke(notificationManager, channelId);
+
+        } catch (final NoSuchMethodException ex) {
+            log.debug("Failed to get notification channel by reflection. : " + ex.getMessage(), ex);
+            return null;
+        } catch (final IllegalAccessException ex) {
+            log.debug("Failed to get notification channel by reflection. : " + ex.getMessage(), ex);
+            return null;
+        } catch (final InvocationTargetException ex) {
+            log.debug("Failed to get notification channel by reflection. : " + ex.getMessage(), ex);
+            return null;
+        }
+    }
+
+    private boolean registerDefaultNotificationChannel() {
+        try {
+            Object notificationChannel = retrieveNotificationChannel(DEFAULT_NOTIFICATION_CHANNEL_ID);
+            if (notificationChannel != null) {
+                return true;
+            }
+            /* Registering the default notification channel for the first time */
+            Constructor<?> notificationChannelConstructor = notificationChannelClass.getDeclaredConstructor(String.class, CharSequence.class, int.class);
+            notificationChannel = notificationChannelConstructor.newInstance(DEFAULT_NOTIFICATION_CHANNEL_ID, DEFAULT_NOTIFICATION_CHANNEL_NAME, NOTIFICATION_CHANNEL_IMPORTANCE);
+            final NotificationManager notificationManager = (NotificationManager) pinpointContext.getApplicationContext()
+                    .getSystemService(
+                            Context.NOTIFICATION_SERVICE);
+            Method createNotificationChannelMethod =  notificationManager.getClass().getDeclaredMethod("createNotificationChannel", notificationChannelClass);
+            createNotificationChannelMethod.invoke(notificationManager, notificationChannel);
+            return true;
+        } catch (final InvocationTargetException ex) {
+            log.debug("Can't invoke notification channel constructor. : " + ex.getMessage(), ex);
+            return false;
+        } catch (final IllegalAccessException ex) {
+            log.debug("Can't access notification channel  " + ex.getMessage(), ex);
+            return false;
+        } catch (final InstantiationException ex) {
+            log.debug("Exception while instantiating notification channel . : " + ex.getMessage(),
+                    ex);
+            return false;
+        } catch (final NoSuchMethodException ex) {
+            log.debug("Failed to get notification channel method getId by reflection. : " + ex.getMessage(), ex);
             return false;
         }
     }
@@ -395,88 +464,82 @@ abstract class NotificationClientBase {
         return Bitmap.createBitmap(outPixels, input.getWidth(), input.getHeight(), Bitmap.Config.ARGB_8888);
     }
 
-    private void setSmallIconWithFallbackToLargeIconForSDKAbove20(final Object notificationBuilder,
-                                                                  final boolean alreadySetLargeIcon,
-                                                                  final int iconResId,
-                                                                  final Bitmap largeIconBitmap)
-        throws InvocationTargetException, IllegalAccessException {
-        if (!alreadySetLargeIcon && android.os.Build.VERSION.SDK_INT >= ANDROID_LOLLIPOP) {
-            final Resources resources = getPackageResources();
-
-            if (resources != null) {
-                final Bitmap iconBitmap;
-                if (largeIconBitmap == null) {
-                    // We have to get the iconResId as a bitmap to call setLargeIcon.
-                    iconBitmap = BitmapFactory.decodeResource(resources, iconResId);
-                } else {
-                    iconBitmap = largeIconBitmap;
-                }
-                if (iconBitmap != null) {
-                    setLargeIconMethod.invoke(notificationBuilder, iconBitmap);
-                    if (android.os.Build.VERSION.SDK_INT >= ANDROID_MARSHMALLOW) {
-                        final Bitmap smallBitmap
-                            = convertBitmapToAlphaGreyscale(iconBitmap);
-                        setSmallIconMethod
-                            .invoke(notificationBuilder, createWithBitmapMethod.invoke(iconClass, smallBitmap));
-                    } else {
-                        setSmallIconResIdMethod.invoke(notificationBuilder, iconResId);
-                    }
-                    return;
-                }
-            }
+    private Bitmap obtainBitmapFromResId(final int iconResId) {
+        final Resources resources = getPackageResources();
+        if (resources == null) {
+            return null;
         }
-        setSmallIconResIdMethod.invoke(notificationBuilder, iconResId);
+        return BitmapFactory.decodeResource(resources, iconResId);
     }
 
     private boolean buildNotificationIcons(final int iconResId, final String imageIconUrl,
                                            final String imageSmallIconUrl,
                                            final Object notificationBuilder) {
         try {
-            boolean setLargeIcon = false;
             Bitmap largeIconBitmap = null;
             if (imageIconUrl != null) {
                 try {
                     largeIconBitmap = new DownloadImageTask().execute(imageIconUrl).get();
-                    setLargeIconMethod.invoke(notificationBuilder, largeIconBitmap);
-                    setLargeIcon = true;
                 } catch (final InterruptedException e) {
                     log.error("Interrupted when downloading image : " + e.getMessage(), e);
                 } catch (final ExecutionException e) {
-                    log.error("Failed execute download image thread : " + e.getMessage(), e);
+                    log.error("Failed to execute download image thread : " + e.getMessage(), e);
                 }
             }
-            if (imageSmallIconUrl != null && iconClass != null
-                && android.os.Build.VERSION.SDK_INT >= ANDROID_MARSHMALLOW) {
-                try {
-                    final Bitmap iconBitmap = new DownloadImageTask().execute(imageSmallIconUrl).get();
-                    if (!setLargeIcon && android.os.Build.VERSION.SDK_INT >= ANDROID_LOLLIPOP) {
-                        setSmallIconWithFallbackToLargeIconForSDKAbove20(notificationBuilder,
-                            false, iconResId, iconBitmap);
-                    } else {
-                        setSmallIconMethod.invoke(notificationBuilder,
-                            createWithBitmapMethod.invoke(iconClass, iconBitmap));
-                    }
-                } catch (final InterruptedException e) {
-                    log.error("Interrupted when downloading small icon : " + e.getMessage(), e);
-                    setSmallIconWithFallbackToLargeIconForSDKAbove20(notificationBuilder,
-                        setLargeIcon, iconResId, null);
 
-                } catch (final ExecutionException e) {
-                    log.error("Failed execute download image small icon thread : " + e.getMessage(), e);
-                    setSmallIconWithFallbackToLargeIconForSDKAbove20(notificationBuilder,
-                        setLargeIcon, iconResId, null);
-                }
-            } else {
-                if (setLargeIcon && android.os.Build.VERSION.SDK_INT >= ANDROID_MARSHMALLOW) {
-                    final Bitmap smallBitmap =
-                        convertBitmapToAlphaGreyscale(largeIconBitmap);
-                    setSmallIconMethod
-                        .invoke(notificationBuilder, createWithBitmapMethod.invoke(iconClass, smallBitmap));
-                } else {
-                    setSmallIconWithFallbackToLargeIconForSDKAbove20(notificationBuilder,
-                        setLargeIcon, iconResId, null);
-                }
+            // When no large icon is set or the large icon can't be loaded.
+            if (largeIconBitmap == null &&
+                    // For API level 21 and 22, a small icon will be set as the app icon in greyscale,
+                    // this could result in a grey box if the app icon was fully opaque, it improve this situation,
+                    // we can set the large icon as the app icon, so that the small icon will be shown in the corner
+                    // of the large icon, where it doesn't look as bad that it may be a grey box.
+                    ((android.os.Build.VERSION.SDK_INT >= ANDROID_LOLLIPOP
+                        && android.os.Build.VERSION.SDK_INT < ANDROID_MARSHMALLOW)
+                    // For API level 23 and above when the small icon isn't set it makes sense to show the large icon
+                    // also for the user experience (to make it easiest for the customer to quickly recognize the app
+                    // that caused the notification) also if the large icon fails to load we can fall back to app icon.
+                     || (android.os.Build.VERSION.SDK_INT >= ANDROID_MARSHMALLOW
+                        && (imageIconUrl != null || imageSmallIconUrl == null)))) {
+                largeIconBitmap = obtainBitmapFromResId(iconResId);
             }
+            // else before SDK version 21, setting the small icon from the res id will render correctly in color.
+            // and if after 23, we will convert the app icon to grey scale when setting the small icon so it will be
+            // rendered in a way that looks reasonable.
+
+            if (largeIconBitmap != null) {
+                setLargeIconMethod.invoke(notificationBuilder, largeIconBitmap);
+            }
+
+            // If we are able to use a bitmap to set the small icon.
+            if (iconClass != null && android.os.Build.VERSION.SDK_INT >= ANDROID_MARSHMALLOW) {
+                // Small icon cannot be set from a bitmap unless on SDK version 23 or above.
+                Bitmap smallIconBitmap = null;
+                if (imageSmallIconUrl != null) {
+                    try {
+                        smallIconBitmap = new DownloadImageTask().execute(imageSmallIconUrl).get();
+                    } catch (final InterruptedException e) {
+                        log.error("Interrupted when downloading small icon : " + e.getMessage(), e);
+                    } catch (final ExecutionException e) {
+                        log.error("Failed to execute download image small icon thread : " + e.getMessage(), e);
+                    }
+                }
+
+                if (smallIconBitmap == null) {
+                    // Fall back to using the app icon bitmap as the small icon if no icon was provided.
+                    smallIconBitmap = obtainBitmapFromResId(iconResId);
+                }
+
+                if (smallIconBitmap != null) {
+                    // Set the small icon from the obtained bitmap and always ensure it is properly formatted in
+                    // greyscale to avoid ever erroneously showing a grey box.
+                    setSmallIconMethod.invoke(notificationBuilder,
+                        createWithBitmapMethod.invoke(iconClass, convertBitmapToAlphaGreyscale(smallIconBitmap)));
+                    return true;
+                }
+                // fall through if we can't set the small icon from the bitmap and fall back to setting by icon res id.
+            }
+
+            setSmallIconResIdMethod.invoke(notificationBuilder, iconResId);
             return true;
         } catch (final InvocationTargetException ex) {
             log.debug("Can't invoke notification builder methods. : " + ex.getMessage(), ex);
@@ -502,9 +565,24 @@ abstract class NotificationClientBase {
         final Object notificationBuilder;
         final Object bigTextStyle;
         final Object bigPictureStyle;
+        if (android.os.Build.VERSION.SDK_INT >= ANDROID_OREO) {
+            if (notificationChannelId == null || retrieveNotificationChannel(notificationChannelId) == null) {
+                /* Need to Check if the Default Pinpoint notification channel is registered. The app developer can delete any channel */
+                notificationChannelId = DEFAULT_NOTIFICATION_CHANNEL_ID;
+                if (!registerDefaultNotificationChannel()) {
+                    notificationChannelId = null;
+                }
+            }
+        }
 
         try {
-            notificationBuilder = notificationBuilderConstructor.newInstance(pinpointContext.getApplicationContext());
+            if (android.os.Build.VERSION.SDK_INT < ANDROID_OREO || notificationChannelId == null) {
+                notificationBuilder = notificationBuilderConstructor.newInstance(pinpointContext.getApplicationContext());
+                setPriorityMethod.invoke(notificationBuilder, 1);
+            } else {
+                notificationBuilder = notificationBuilderConstructor.newInstance(pinpointContext.getApplicationContext(), notificationChannelId);
+            }
+
             bigTextStyle = notificationBigTextStyleClass.newInstance();
             bigPictureStyle = notificationBigPictureStyleClass.newInstance();
         } catch (final InvocationTargetException ex) {
@@ -523,9 +601,10 @@ abstract class NotificationClientBase {
             setContentTitleMethod.invoke(notificationBuilder, title);
             setContentTextMethod.invoke(notificationBuilder, contentText);
             setContentIntent.invoke(notificationBuilder, contentIntent);
-            setPriorityMethod.invoke(notificationBuilder, 1);
-            final Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-            setSoundMethod.invoke(notificationBuilder, defaultSoundUri);
+            if (android.os.Build.VERSION.SDK_INT < ANDROID_OREO) {
+                final Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                setSoundMethod.invoke(notificationBuilder, defaultSoundUri);
+            }
 
             if (!buildNotificationIcons(iconResId, imageIconUrl, imageSmallIconUrl, notificationBuilder)) {
                 return createLegacyNotification(iconResId, title, contentText, contentIntent);
@@ -736,6 +815,7 @@ abstract class NotificationClientBase {
         final Bundle data = notificationDetails.getBundle();
         final Class<?> targetClass = notificationDetails.getTargetClass();
         String intentAction = notificationDetails.getIntentAction();
+        notificationChannelId = notificationDetails.getNotificationChannelId();
 
         // Check if push data contains a Campaign Id
         if (data == null || !data.containsKey(CAMPAIGN_ID_PUSH_KEY)) {
