@@ -18,14 +18,15 @@
 package com.amazonaws.mobile.auth.core;
 
 /**
- * The result for IdentityManager's doStartupAuth().
+ * Callback function result for calling 
+ * {@link IdentityManager#resumeSession(Activity, StartupAuthResultHandler, long)}.
  */
 public class StartupAuthResult {
     private final IdentityManager identityManager;
     private final StartupAuthErrorDetails errors;
 
     public StartupAuthResult(final IdentityManager identityManager,
-                                    final StartupAuthErrorDetails startupAuthErrorDetails) {
+                             final StartupAuthErrorDetails startupAuthErrorDetails) {
         this.identityManager = identityManager;
         this.errors = startupAuthErrorDetails;
     }
@@ -41,13 +42,13 @@ public class StartupAuthResult {
      * @return true if an unauthenticated (guest) identity was obtained, otherwise false.
      */
     public boolean isUserAnonymous() {
-        return didObtainIdentity() && !isUserSignedIn();
+        return isIdentityIdAvailable() && !isUserSignedIn();
     }
 
     /**
      * @return true if an identity was obtained, either unauthenticated (guest) or authenticated with a provider.
      */
-    private boolean didObtainIdentity() {
+    public boolean isIdentityIdAvailable() {
         return identityManager.getCachedUserID() != null;
     }
 

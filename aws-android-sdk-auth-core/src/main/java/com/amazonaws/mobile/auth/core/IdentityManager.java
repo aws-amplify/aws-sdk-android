@@ -1,5 +1,5 @@
 /*
-  * Copyright 2013-2017 Amazon.com, Inc. or its affiliates.
+  * Copyright 2017-2017 Amazon.com, Inc. or its affiliates.
   * All Rights Reserved.
   *
   * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,8 +25,6 @@ import android.util.Log;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.SDKGlobalConfiguration;
 
-import com.amazonaws.mobile.config.AWSConfiguration;
-
 import com.amazonaws.auth.AWSBasicCognitoIdentityProvider;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
@@ -39,11 +37,14 @@ import com.amazonaws.mobile.auth.core.signin.SignInManager;
 import com.amazonaws.mobile.auth.core.signin.SignInProvider;
 import com.amazonaws.mobile.auth.core.signin.SignInProviderResultHandler;
 import com.amazonaws.mobile.auth.core.internal.util.ThreadUtils;
+import com.amazonaws.mobile.config.AWSConfiguration;
 
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -54,6 +55,8 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import org.json.JSONArray;
 
 /**
  * The identity manager keeps track of the current sign-in provider and is responsible
@@ -170,6 +173,16 @@ public class IdentityManager {
     }
 
     /**
+     * @param context the application context.
+     */
+    public IdentityManager(final Context context) {
+        this.appContext = context.getApplicationContext();
+        this.awsConfiguration = null;
+        this.clientConfiguration = null;
+        this.credentialsProviderHolder = null;
+    }
+
+    /**
      * Constructor. 
      * Initializes with the application context and the AWSConfiguration passed in.
      * Creates a default ClientConfiguration with the user agent from AWSConfiguration.
@@ -253,12 +266,20 @@ public class IdentityManager {
     }
 
     /**
-     * Retrieve the AWSConfiguration object
+     * Retrieve the AWSConfiguration object that represents the `awsconfiguration.json`.
      *
      * @return AWSConfiguration Return the reference to the AWSConfiguration object
      */
     public AWSConfiguration getConfiguration() {
         return this.awsConfiguration;
+    }
+
+    /**
+     * Set the AWSConfiguration.
+     * @param configuration
+     */
+    public void setConfiguration(AWSConfiguration configuration) {
+        this.awsConfiguration = configuration;
     }
 
     /**
@@ -589,26 +610,8 @@ public class IdentityManager {
     private void handleUnauthenticated(final Activity callingActivity,
                                        final StartupAuthResultHandler startupAuthResultHandler,
                                        final AuthException ex) {
-        // Optional Sign-in can dispose the sign-in manager right away here, while mandatory sign-in, needs
-        // it to stay around a bit longer, since it will be required to call sign-in or sign-up.
-
         SignInManager.dispose();
 
-        if (getCachedUserID() != null) {
-            handleStartupAuthResult(callingActivity, startupAuthResultHandler, ex, null);
-        }
-
-        getUserID(new IdentityHandler() {
-            @Override
-            public void onIdentityId(final String identityId) {
-                handleStartupAuthResult(callingActivity, startupAuthResultHandler, ex, null);
-            }
-
-            @Override
-            public void handleError(final Exception exception) {
-                handleStartupAuthResult(callingActivity, startupAuthResultHandler, ex, exception);
-            }
-        });
         handleStartupAuthResult(callingActivity, startupAuthResultHandler, ex, null);
     }
 
@@ -643,9 +646,11 @@ public class IdentityManager {
      * @param startupAuthResultHandler a handler for returning results.
      * @param minimumDelay the minimum delay to wait before returning the sign-in result.
      */
-    public void doStartupAuth(final Activity callingActivity,
+    public void resumeSession(final Activity callingActivity,
                               final StartupAuthResultHandler startupAuthResultHandler,
                               final long minimumDelay) {
+
+        Log.d(LOG_TAG, "Resume session called.");
 
         executorService.submit(new Runnable() {
             public void run() {
@@ -732,9 +737,44 @@ public class IdentityManager {
      * @param callingActivity the calling activity.
      * @param startupAuthResultHandler a handler for returning results.
      */
-    public void doStartupAuth(final Activity callingActivity,
+    public void resumeSession(final Activity callingActivity,
                               final StartupAuthResultHandler startupAuthResultHandler) {
-        doStartupAuth(callingActivity, startupAuthResultHandler, 0);
+        resumeSession(callingActivity, startupAuthResultHandler, 0);
+    }
+
+    /**
+     * This should be called from your app's splash activity upon start-up. If the user was previously
+     * signed in, this will attempt to refresh their identity using the previously sign-ed in provider.
+     * If the user was not previously signed in or their identity could not be refreshed with the
+     * previously signed in provider and sign-in is optional, it will attempt to obtain an unauthenticated (guest)
+     * identity.
+     *
+     * @param callingActivity the calling activity.
+     * @param startupAuthResultHandler a handler for returning results.
+     * @deprecated Please use {@link #resumeSession(Activity, StartupAuthResultHandler)} method instead.
+     */
+    @Deprecated
+    public void doStartUpAuth(final Activity callingActivity,
+                              final StartupAuthResultHandler startupAuthResultHandler) {
+        resumeSession(callingActivity, startupAuthResultHandler, 0);
+    }
+
+    /**
+     * This should be called from your app's splash activity upon start-up. If the user was previously
+     * signed in, this will attempt to refresh their identity using the previously sign-ed in provider.
+     * If the user was not previously signed in or their identity could not be refreshed with the
+     * previously signed in provider and sign-in is optional, it will attempt to obtain an unauthenticated (guest)
+     * identity.
+     *
+     * @param callingActivity the calling activity.
+     * @param startupAuthResultHandler a handler for returning results.
+     * @deprecated Please use {@link #resumeSession(Activity, StartupAuthResultHandler, long)} method instead.
+     */
+    @Deprecated
+    public void doStartUpAuth(final Activity callingActivity,
+                              final StartupAuthResultHandler startupAuthResultHandler,
+                              final long minimumDelay) {
+        resumeSession(callingActivity, startupAuthResultHandler, minimumDelay);
     }
 
     /**
@@ -751,13 +791,34 @@ public class IdentityManager {
      *
      * @param context context.
      * @param signInResultHandler the results handler.
+     * @deprecated Please use {@link #login(Context, SignInResultHandler)} method instead.
      */
+    @Deprecated
     public void setUpToAuthenticate(final Context context,
                                     final SignInResultHandler signInResultHandler) {
-        // Start the sign-in activity. We do not finish the calling activity allowing the user to navigate back.
-        final SignInManager signInManager = SignInManager.getInstance(
-            context.getApplicationContext());
-        signInManager.setResultHandler(signInResultHandler);
+        this.login(context, signInResultHandler);
+    }
+
+    /**
+     * Call login to initiate sign-in with a provider.
+     *
+     * Note: This should not be called when already signed in with a provider.
+     *
+     * @param context context.
+     * @param signInResultHandler the results handler.
+     */
+    public void login(final Context context,
+                      final SignInResultHandler signInResultHandler) {
+        // Start the sign-in activity. 
+        // We do not finish the calling activity allowing the user to navigate back.
+        try {
+            SignInManager
+                .getInstance(context.getApplicationContext())
+                .setResultHandler(signInResultHandler);
+        } catch (final Exception exception) {
+            Log.e(LOG_TAG, "Error in instantiating SignInManager. " +
+                           "Check the context and completion handler.", exception);
+        }
     }
 
     private void setCredentialsProvider(final Context context,

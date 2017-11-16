@@ -82,7 +82,7 @@ public class AWSIotMqttManager {
     /** Default value for number of auto reconnect attempts before giving up. */
     public static final Integer DEFAULT_AUTO_RECONNECT_ATTEMPTS = 10;
     /** Default value for MQTT keep alive. */
-    public static final Integer DEFAULT_KEEP_ALIVE_SECONDS = 10;
+    public static final Integer DEFAULT_KEEP_ALIVE_SECONDS = 300;
     /** Default value for offline publish queue enabled. */
     public static final Boolean DEFAULT_OFFLINE_PUBLISH_QUEUE_ENABLED = true;
     /** Default value for offline publish queue bound. */

@@ -56,7 +56,7 @@ public class EventRecorder {
     static final String KEY_MAX_SUBMISSIONS_ALLOWED = "maxSubmissionAllowed";
     static final int DEFAULT_MAX_SUBMISSIONS_ALLOWED = 3;
     private static final String USER_AGENT = PinpointManager.class.getName() + "/" + VersionInfoUtils.getVersion();
-    private static final int CLIPPED_EVENT_LENGTH = 10;
+    private static int clippedEventLength = 10;
     private final static int MAX_EVENT_OPERATIONS = 1000;
     private static final long MINIMUM_PENDING_SIZE = 16 * 1024;
     private static final Log log = LogFactory.getLog(EventRecorder.class);
@@ -87,6 +87,15 @@ public class EventRecorder {
         return new EventRecorder(pinpointContext, dbUtil, submissionRunnableQueue);
     }
 
+    /**
+     * Sets clipped event length.
+     *
+     * @param clippedEventLength the clipped event length
+     */
+    public static void setClippedEventLength(final int clippedEventLength) {
+        EventRecorder.clippedEventLength = clippedEventLength;
+    }
+
     public void closeDB() {
         dbUtil.closeDB();
     }
@@ -94,7 +103,7 @@ public class EventRecorder {
     public Uri recordEvent(final AnalyticsEvent event) {
         if (event != null) {
             log.info(String.format("Event Recorded to database with EventType: %s",
-                                   StringUtil.clipString(event.getEventType(), CLIPPED_EVENT_LENGTH, true)));
+                                   StringUtil.clipString(event.getEventType(), clippedEventLength, true)));
         }
         long maxPendingSize = pinpointContext.getConfiguration().optLong(KEY_MAX_PENDING_SIZE, DEFAULT_MAX_PENDING_SIZE);
         if (maxPendingSize < MINIMUM_PENDING_SIZE) {
@@ -122,7 +131,7 @@ public class EventRecorder {
             return uri;
         } else {
             log.warn(String.format("Event: '%s' failed to record to local database.",
-                                   StringUtil.clipString(event.getEventType(), CLIPPED_EVENT_LENGTH, true)));
+                                   StringUtil.clipString(event.getEventType(), clippedEventLength, true)));
             return null;
         }
     }

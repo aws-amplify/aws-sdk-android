@@ -37,6 +37,7 @@ public class NotificationDetails {
     private Bundle bundle;
     private Class<?> targetClass;
     private String intentAction;
+    private String notificationChannelId;
 
     public String getFrom() {
         return from;
@@ -68,6 +69,14 @@ public class NotificationDetails {
 
     public void setIntentAction(String intentAction) {
         this.intentAction = intentAction;
+    }
+
+    public String getNotificationChannelId() {
+        return notificationChannelId;
+    }
+
+    public void setNotificationChannelId(String notificationChannelId) {
+        this.notificationChannelId = notificationChannelId;
     }
 
     /**
@@ -119,6 +128,8 @@ public class NotificationDetails {
         private Map<String, String> mapData;
         private Intent intent;
         private String message;
+        private String notificationChannelId;
+
 
         /**
          * The from string received by the local push notification service.
@@ -198,6 +209,18 @@ public class NotificationDetails {
         }
 
         /**
+         * The NotificationChannelId needed for the local push notification service in Android Oreo and above.
+         * In the case that the NotificationChannelId is not provided or the provided channel id is not valid, Pinpoint assigns the notifications to its own NotificationChannel with the id "PINPOINT.NOTIFICATION" and channel name as "Notifications"
+         * @param notificationChannelId the notification channel id to be associated with this notification.
+         * @return {@link NotificationDetailsBuilder}
+         */
+        @SuppressWarnings("checkstyle:hiddenfield")
+        public NotificationDetailsBuilder notificationChannelId(String notificationChannelId) {
+            this.notificationChannelId = notificationChannelId;
+            return this;
+        }
+
+        /**
          * Builds and returns an instance of {@link NotificationDetails}.
          * @return {@link NotificationDetails}
          */
@@ -208,6 +231,7 @@ public class NotificationDetails {
                 notificationDetails.setBundle(bundle);
                 notificationDetails.setTargetClass(serviceClass);
                 notificationDetails.setIntentAction(intentAction);
+                notificationDetails.setNotificationChannelId(notificationChannelId);
             }
 
             if (NotificationClient.FCM_INTENT_ACTION.equals(intentAction)) {
@@ -222,6 +246,7 @@ public class NotificationDetails {
                 notificationDetails.setFrom(from);
                 notificationDetails.setTargetClass(PinpointNotificationReceiver.class);
                 notificationDetails.setIntentAction(intentAction);
+                notificationDetails.setNotificationChannelId(notificationChannelId);
             }
 
             if (NotificationClient.ADM_INTENT_ACTION.equals(intentAction)) {

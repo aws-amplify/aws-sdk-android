@@ -25,7 +25,7 @@ class RegionDefaults {
         final List<Region> ret = new ArrayList<Region>();
         Region region;
 
-        region = new Region("ap-northeast-1", "");
+        region = new Region("ap-northeast-1", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.ap-northeast-1.amazonaws.com", false, true);
         updateRegion(region, "cognito-identity", "cognito-identity.ap-northeast-1.amazonaws.com",
@@ -48,7 +48,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.ap-northeast-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.amazonaws.com", false, true);
 
-        region = new Region("ap-northeast-2", "");
+        region = new Region("ap-northeast-2", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.ap-northeast-2.amazonaws.com", false, true);
         updateRegion(region, "cognito-identity", "cognito-identity.ap-northeast-2.amazonaws.com",
@@ -70,7 +70,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.ap-northeast-2.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.ap-northeast-2.amazonaws.com", false, true);
 
-        region = new Region("ap-south-1", "");
+        region = new Region("ap-south-1", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.ap-south-1.amazonaws.com", false, true);
         updateRegion(region, "cognito-identity", "cognito-identity.ap-south-1.amazonaws.com",
@@ -89,7 +89,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.ap-south-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.amazonaws.com", false, true);
 
-        region = new Region("ap-southeast-1", "");
+        region = new Region("ap-southeast-1", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.ap-southeast-1.amazonaws.com", false, true);
         updateRegion(region, "data.iot", "data.iot.ap-southeast-1.amazonaws.com", false, true);
@@ -107,7 +107,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.ap-southeast-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.amazonaws.com", false, true);
 
-        region = new Region("ap-southeast-2", "");
+        region = new Region("ap-southeast-2", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.ap-southeast-2.amazonaws.com", false, true);
         updateRegion(region, "cognito-identity", "cognito-identity.ap-southeast-2.amazonaws.com",
@@ -130,7 +130,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.ap-southeast-2.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.amazonaws.com", false, true);
 
-        region = new Region("ca-central-1", "");
+        region = new Region("ca-central-1", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.ca-central-1.amazonaws.com", false, true);
         updateRegion(region, "dynamodb", "dynamodb.ca-central-1.amazonaws.com", false, true);
@@ -144,7 +144,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.ca-central-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.amazonaws.com", false, true);
 
-        region = new Region("eu-central-1", "");
+        region = new Region("eu-central-1", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.eu-central-1.amazonaws.com", false, true);
         updateRegion(region, "cognito-identity", "cognito-identity.eu-central-1.amazonaws.com",
@@ -165,7 +165,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.eu-central-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.amazonaws.com", false, true);
 
-        region = new Region("eu-west-1", "");
+        region = new Region("eu-west-1", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.eu-west-1.amazonaws.com", false, true);
         updateRegion(region, "cognito-identity", "cognito-identity.eu-west-1.amazonaws.com", false,
@@ -192,7 +192,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.eu-west-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.amazonaws.com", false, true);
 
-        region = new Region("eu-west-2", "");
+        region = new Region("eu-west-2", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.eu-west-2.amazonaws.com", false, true);
         updateRegion(region, "cognito-identity", "cognito-identity.eu-west-2.amazonaws.com", false,
@@ -212,7 +212,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.eu-west-2.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.amazonaws.com", false, true);
 
-        region = new Region("sa-east-1", "");
+        region = new Region("sa-east-1", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.sa-east-1.amazonaws.com", false, true);
         updateRegion(region, "dynamodb", "dynamodb.sa-east-1.amazonaws.com", false, true);
@@ -227,7 +227,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.sa-east-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.amazonaws.com", false, true);
 
-        region = new Region("us-east-1", "");
+        region = new Region("us-east-1", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.us-east-1.amazonaws.com", false, true);
         updateRegion(region, "cognito-identity", "cognito-identity.us-east-1.amazonaws.com", false,
@@ -257,7 +257,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.us-east-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.amazonaws.com", false, true);
 
-        region = new Region("us-east-2", "");
+        region = new Region("us-east-2", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.us-east-2.amazonaws.com", false, true);
         updateRegion(region, "cognito-identity", "cognito-identity.us-east-2.amazonaws.com", false,
@@ -278,7 +278,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.us-east-2.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.amazonaws.com", false, true);
 
-        region = new Region("us-west-1", "");
+        region = new Region("us-west-1", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.us-west-1.amazonaws.com", false, true);
         updateRegion(region, "dynamodb", "dynamodb.us-west-1.amazonaws.com", false, true);
@@ -294,7 +294,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.us-west-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.amazonaws.com", false, true);
 
-        region = new Region("us-west-2", "");
+        region = new Region("us-west-2", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.us-west-2.amazonaws.com", false, true);
         updateRegion(region, "cognito-identity", "cognito-identity.us-west-2.amazonaws.com", false,
@@ -319,7 +319,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.us-west-2.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.amazonaws.com", false, true);
 
-        region = new Region("cn-north-1", "");
+        region = new Region("cn-north-1", "amazonaws.com.cn");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.cn-north-1.amazonaws.com.cn", false, true);
         updateRegion(region, "dynamodb", "dynamodb.cn-north-1.amazonaws.com.cn", false, true);
@@ -332,7 +332,7 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.cn-north-1.amazonaws.com.cn", false, true);
         updateRegion(region, "sts", "sts.cn-north-1.amazonaws.com.cn", false, true);
 
-        region = new Region("us-gov-west-1", "");
+        region = new Region("us-gov-west-1", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.us-gov-west-1.amazonaws.com", false, true);
         updateRegion(region, "dynamodb", "dynamodb.us-gov-west-1.amazonaws.com", false, true);

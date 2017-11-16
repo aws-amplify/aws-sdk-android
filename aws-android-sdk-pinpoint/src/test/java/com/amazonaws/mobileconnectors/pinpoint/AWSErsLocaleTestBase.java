@@ -51,15 +51,10 @@ public abstract class AWSErsLocaleTestBase
     protected static final String SDK_NAME = "AmazonAnalyticsSDK";
     protected static final String UNIQUE_ID = "BEEFBEEF-BEEF-BEEF-BEEF-BEEFBEEFBEEF";
     private static final Locale[] locales = new Locale[] {
-                                                                 new Locale("en",
-                                                                                   "US"),
-                                                                 new Locale("ar",
-                                                                                   "SA"),
-                                                                 new Locale("ja",
-                                                                                   "JP",
-                                                                                   "JP"),
-                                                                 new Locale("fr",
-                                                                                   "FR")
+                                                           new Locale("en", "US"),
+                                                           new Locale("ar", "SA"),
+                                                           new Locale("ja", "JP", "JP"),
+                                                           new Locale("fr", "FR")
     };
     @Rule
     public ApplyLocalesRule applyLocalesRule = new ApplyLocalesRule(locales);

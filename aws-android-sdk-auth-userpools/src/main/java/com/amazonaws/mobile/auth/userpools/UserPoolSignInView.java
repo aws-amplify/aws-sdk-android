@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 import android.text.InputType;
 import android.util.AttributeSet;
@@ -35,12 +36,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.amazonaws.mobile.auth.core.signin.SignInManager;
-
-import com.amazonaws.mobile.auth.userpools.R;
-
 import static com.amazonaws.mobile.auth.core.signin.ui.DisplayUtils.dp;
 import static com.amazonaws.mobile.auth.core.signin.ui.DisplayUtils.getRoundedRectangleBackground;
 
+import com.amazonaws.mobile.auth.userpools.R;
 import static com.amazonaws.mobile.auth.userpools.UserPoolFormConstants.FORM_BUTTON_COLOR;
 import static com.amazonaws.mobile.auth.userpools.UserPoolFormConstants.FORM_BUTTON_CORNER_RADIUS;
 import static com.amazonaws.mobile.auth.userpools.UserPoolFormConstants.FORM_SIDE_MARGIN_RATIO;
@@ -82,6 +81,12 @@ public class UserPoolSignInView extends LinearLayout {
     /** Default Background color used by the views. */
     private static final int DEFAULT_BACKGROUND_COLOR = Color.DKGRAY;
 
+    /** Font family. */
+    private String fontFamily;
+
+    /** Typeface for font family. */
+    private boolean isBackgroundColorFullScreenEnabled;
+
     public UserPoolSignInView(final Context context) {
         this(context, null);
     }
@@ -99,7 +104,9 @@ public class UserPoolSignInView extends LinearLayout {
         setupCredentialsForm(context);
         setupSignInButton(context);
         setupLayoutForSignUpAndForgotPassword(context);
-        setupBackgroundColor(context);
+        setupFontFamily((Activity) context);
+        setupBackgroundColor((Activity) context);
+        setupBackgroundColorFullScreen((Activity) context);
     }
 
     private void initializeIfNecessary() {
@@ -132,6 +139,7 @@ public class UserPoolSignInView extends LinearLayout {
             // Mobile Hub does not set up email verification because it requires SES verification.
             // Hence, prompt customers to login using the username or phone number.
             context.getString(R.string.sign_in_username));
+
         passwordEditText = credentialsFormView.addFormField(context,
             InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD,
             context.getString(R.string.sign_in_password));
@@ -194,18 +202,42 @@ public class UserPoolSignInView extends LinearLayout {
         this.addView(layoutForSignUpAndForgotPassword, layoutParamsForSignUpAndForgotPassword);
     }
 
-    private void setupBackgroundColor(final Context context) {
-        Intent intent = ((Activity) context).getIntent();
+    private void setupBackgroundColor(final Activity activity) {
+        Intent intent = activity.getIntent();
         this.backgroundColor = (int) (intent.getIntExtra(CognitoUserPoolsSignInProvider.AttributeKeys.BACKGROUND_COLOR,
                                                              DEFAULT_BACKGROUND_COLOR));
     }
 
-    /**
-     * Gets the Background Color passed in by the UI.
-     * @return
-     */
-    public int getBackgroundColor() {
+    int getBackgroundColor() {
         return this.backgroundColor;
+    }
+
+    String getFontFamily() {
+        return this.fontFamily;
+    }
+
+    boolean isBackgroundColorFullScreen() {
+        return this.isBackgroundColorFullScreenEnabled;
+    }
+
+    private void setupFontFamily(final Activity activity) {
+        Intent intent = activity.getIntent();
+        this.fontFamily = (String) (intent.getStringExtra(CognitoUserPoolsSignInProvider.AttributeKeys.FONT_FAMILY));
+        if (this.fontFamily != null) {
+            Typeface typeFace = Typeface.create(this.fontFamily, Typeface.NORMAL);
+            Log.d(LOG_TAG, "Setup font in UserPoolSignInView: " + this.fontFamily);
+            signUpTextView.setTypeface(typeFace);
+            forgotPasswordTextView.setTypeface(typeFace);
+            signInButton.setTypeface(typeFace);
+            userNameEditText.setTypeface(typeFace);
+            passwordEditText.setTypeface(typeFace);
+        }
+    }
+
+    private void setupBackgroundColorFullScreen(final Activity activity) {
+        Intent intent = activity.getIntent();
+        this.isBackgroundColorFullScreenEnabled = (boolean) (intent.getBooleanExtra(
+            CognitoUserPoolsSignInProvider.AttributeKeys.FULL_SCREEN_BACKGROUND_COLOR, false));
     }
 
     @Override

@@ -13,8 +13,7 @@
     <com.amazonaws.mobile.auth.userpools.MFAView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/mfa_view"
-        com.amazonaws.mobile.auth.userpools:mfaViewBackgroundColor="@android:color/darker_gray">
+        android:id="@+id/mfa_view">
 
         <TextView
             android:layout_width="match_parent"

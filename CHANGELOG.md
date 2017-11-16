@@ -1,5 +1,31 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.7)
+
+### New Features
+
+- **AWS MobileClient**
+  - Added `AWSMobileClient` to initialize the SDK and create instances of other SDK clients. Currently support is limited to `SignInUI`. AWSMobileClient creates the `AWSConfiguration` based on `awsconfiguration.json`, fetches the Cognito Identity and registers the SignIn providers with the permissions based on the  `AWSConfiguration`.
+
+### Enhancements
+
+- **Amazon Polly**
+  - Added support for new voices - `Aditi` and `Seoyeon`.
+  - Added support for new language code - `ko-KR`.
+
+- **Amazon Pinpoint**
+  - Added support for notification channel on Android SDK 26 (Oreo).
+  - On Android SDK 23 (Marshmallow) and newer devices, the large icon is not set if it is not present from the push payload and a small icon is set in the push payload. This allows setting only the small icon from the campaign in the Pinpoint console.
+  - On Android SDK 23 and newer devices, if the small icon is set in a format that is an opaque color image, it is now converted to greyscale to prevent displaying a grey box. Small icons in the correct format of opaque white with a transparent background will still render appropriately.
+
+### Bug Fixes:
+
+- **General**
+  - Fixed domain returned for `cn-north-1` region and region parsing for `amazonaws.com.cn` domains. See [pr #362](https://github.com/aws/aws-sdk-android/pull/362).
+
+- **AWS IoT**
+  - Increased default time to keep alive to 300 seconds.
+
 ## [Release 2.6.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.6)
 
 ### Bug Fixes:

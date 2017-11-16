@@ -19,6 +19,7 @@ package com.amazonaws.mobile.auth.ui;
 
 import com.amazonaws.mobile.auth.core.signin.ui.buttons.SignInButton;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
@@ -26,27 +27,42 @@ import java.util.HashMap;
 /**
  * Stores Configuration information related to the SignIn UI screen.
  */
-public final class AuthUIConfiguration {
+public final class AuthUIConfiguration implements Serializable {
 
     /**
      * Key for Background Color.
      */
-    private static final String CONFIG_KEY_SIGN_IN_BACKGROUND_COLOR = "signInBackgroundColor";
+    static final String CONFIG_KEY_SIGN_IN_BACKGROUND_COLOR = "signInBackgroundColor";
 
     /**
      * Key for Resource Identifier of the Logo Image.
      */
-    private static final String CONFIG_KEY_SIGN_IN_IMAGE_RESOURCE_ID = "signInImageResId";
+    static final String CONFIG_KEY_SIGN_IN_IMAGE_RESOURCE_ID = "signInImageResId";
 
     /**
      * Key for UserPools.
      */
-    private static final String CONFIG_KEY_ENABLE_USER_POOLS = "signInUserPoolsEnabled";
+    static final String CONFIG_KEY_ENABLE_USER_POOLS = "signInUserPoolsEnabled";
 
     /**
      * Key for SignInButtons.
      */
-    private static final String CONFIG_KEY_SIGN_IN_BUTTONS = "signInButtons";
+    static final String CONFIG_KEY_SIGN_IN_BUTTONS = "signInButtons";
+
+    /**
+     * Key for global Font across all the SignIn views and its subviews.
+     */
+    static final String CONFIG_KEY_FONT_FAMILY = "fontFamily";
+
+    /**
+     * Key for Enabling background color full screen.
+     */
+    static final String CONFIG_KEY_FULL_SCREEN_BACKGROUND = "fullScreenBackgroundColor";
+
+    /**
+     * Key for ability to cancel the sign-in.
+     */
+    static final String CONFIG_KEY_CAN_CANCEL = "canCancel";
 
     /**
      * Map to store the key and the corresponding objects.
@@ -114,6 +130,35 @@ public final class AuthUIConfiguration {
         return (ArrayList) config.get(CONFIG_KEY_SIGN_IN_BUTTONS);
     }
 
+    /**
+     * Gets the font family.
+     * @return The font family.
+     */
+    public String getFontFamily() {
+        return (String) config.get(CONFIG_KEY_FONT_FAMILY);
+    }
+
+    /**
+     * Gets the Full screen background enabled or not.
+     * @return True if full screen background is enabled.
+     */
+    public boolean isBackgroundColorFullScreen() {
+        Object fullScreenBackgroundColorEnabled = config.get(CONFIG_KEY_FULL_SCREEN_BACKGROUND);
+        if (fullScreenBackgroundColorEnabled != null) {
+            return (Boolean) fullScreenBackgroundColorEnabled;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean getCanCancel() {
+        Object canCancel = config.get(CONFIG_KEY_CAN_CANCEL);
+        if (canCancel != null) {
+            return (Boolean) canCancel;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * Class for building the AWSMobileAuthUIConfiguration object
@@ -187,6 +232,39 @@ public final class AuthUIConfiguration {
                 signInButtonList = (ArrayList) configuration.get(CONFIG_KEY_SIGN_IN_BUTTONS);
                 signInButtonList.add(signInButton);
             }
+            return this;
+        }
+
+        /**
+         * Invoke this method in order to pass in a custom font family.
+         *
+         * @param fontFamily The custom font family.
+         * @return builder
+         */
+        public Builder fontFamily(final String fontFamily) {
+            configuration.put(CONFIG_KEY_FONT_FAMILY, fontFamily);
+            return this;
+        }
+
+        /**
+         * Invoke this method in order to draw the background color full screen.
+         *
+         * @param isFullScreenBackgroundEnabled
+         * @return builder
+         */
+        public Builder isBackgroundColorFullScreen(final boolean isFullScreenBackgroundEnabled) {
+            configuration.put(CONFIG_KEY_FULL_SCREEN_BACKGROUND, isFullScreenBackgroundEnabled);
+            return this;
+        }
+
+        /**
+         * Ability to cancel the signin flow.
+         * 
+         * @param canCancelSignIn
+         * @return builder
+         */
+        public Builder canCancel(final boolean canCancelSignIn) {
+            configuration.put(CONFIG_KEY_CAN_CANCEL, canCancelSignIn);
             return this;
         }
 

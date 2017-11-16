@@ -23,9 +23,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.text.InputType;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +38,7 @@ import com.amazonaws.mobile.config.AWSConfiguration;
 
 import com.amazonaws.mobile.auth.core.IdentityManager;
 import com.amazonaws.mobile.auth.core.signin.SignInManager;
+import com.amazonaws.mobile.auth.core.signin.ui.BackgroundDrawable;
 import com.amazonaws.mobile.auth.core.signin.ui.DisplayUtils;
 import com.amazonaws.mobile.auth.core.signin.ui.SplitBackgroundDrawable;
 
@@ -50,11 +54,21 @@ import static com.amazonaws.mobile.auth.userpools.UserPoolFormConstants.MAX_FORM
  * password.
  */
 public class ForgotPasswordView extends LinearLayout {
+
+    /** Log tag. */
+    private static final String LOG_TAG = ForgotPasswordView.class.getSimpleName();
+
     private FormView forgotPassForm;
     private EditText verificationCodeEditText;
     private EditText passwordEditText;
+    private Button confirmButton;
 
     private SplitBackgroundDrawable splitBackgroundDrawable;
+    private BackgroundDrawable backgroundDrawable;
+    private String fontFamily;
+    private boolean fullScreenBackgroundColor;
+    private Typeface typeFace;
+    private int backgroundColor;
 
     /**
      * Constructs the ForgotPassword View.
@@ -93,13 +107,24 @@ public class ForgotPasswordView extends LinearLayout {
             styledAttributes.recycle();
         }
 
-        splitBackgroundDrawable = new SplitBackgroundDrawable(0, getBackgroundColor(context, backgroundColor));
+        this.fontFamily = CognitoUserPoolsSignInProvider.getFontFamily();
+        this.typeFace = Typeface.create(this.fontFamily, Typeface.NORMAL);
+        this.fullScreenBackgroundColor = CognitoUserPoolsSignInProvider.isBackgroundColorFullScreen();
+        this.backgroundColor = CognitoUserPoolsSignInProvider.getBackgroundColor();
+
+        if (fullScreenBackgroundColor) {
+            this.backgroundDrawable = new BackgroundDrawable(this.backgroundColor);
+        } else {
+            this.splitBackgroundDrawable = new SplitBackgroundDrawable(0, this.backgroundColor);
+        }
     }
 
-    private int getBackgroundColor(final Context context, final int defaultBackgroundColor) {
-        Intent intent = ((Activity) context).getIntent();
-        return (int) (intent.getIntExtra(CognitoUserPoolsSignInProvider.AttributeKeys.BACKGROUND_COLOR,
-                                             defaultBackgroundColor));
+    private void setupFontFamily() {
+        if (this.typeFace != null) {
+            Log.d(LOG_TAG, "Setup font in ForgotPasswordView: " + this.fontFamily);
+            verificationCodeEditText.setTypeface(this.typeFace);
+            passwordEditText.setTypeface(this.typeFace);
+        }
     }
 
     @Override
@@ -116,10 +141,11 @@ public class ForgotPasswordView extends LinearLayout {
             getContext().getString(R.string.sign_in_password));
 
         setupConfirmButtonColor();
+        setupFontFamily();
     }
 
     private void setupConfirmButtonColor() {
-        final Button confirmButton = (Button) findViewById(R.id.forgot_password_button);
+        confirmButton = (Button) findViewById(R.id.forgot_password_button);
         confirmButton.setBackgroundDrawable(DisplayUtils.getRoundedRectangleBackground(
             FORM_BUTTON_CORNER_RADIUS, FORM_BUTTON_COLOR));
         LayoutParams signUpButtonLayoutParams = (LayoutParams) confirmButton.getLayoutParams();
@@ -140,13 +166,17 @@ public class ForgotPasswordView extends LinearLayout {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        setupSplitBackground();
+        setupBackground();
     }
 
-    private void setupSplitBackground() {
-        splitBackgroundDrawable.setSplitPointDistanceFromTop(forgotPassForm.getTop()
-            + (forgotPassForm.getMeasuredHeight()/2));
-        ((ViewGroup) getParent()).setBackgroundDrawable(splitBackgroundDrawable);
+    private void setupBackground() {
+        if (!this.fullScreenBackgroundColor) {
+            splitBackgroundDrawable.setSplitPointDistanceFromTop(forgotPassForm.getTop()
+                + (forgotPassForm.getMeasuredHeight()/2));
+            ((ViewGroup) getParent()).setBackgroundDrawable(splitBackgroundDrawable);
+        } else {
+            ((ViewGroup) getParent()).setBackgroundDrawable(backgroundDrawable);
+        }
     }
 
     public String getVerificationCode() {
