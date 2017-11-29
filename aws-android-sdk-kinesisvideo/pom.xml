@@ -1,0 +1,100 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.amazonaws</groupId>
+  <artifactId>aws-android-sdk-kinesisvideo</artifactId>
+  <packaging>aar</packaging>
+  <name>AWS SDK for Android - Amazon Kinesis Video Streams</name>
+  <description>The AWS Android SDK for Amazon Kinesis Video Streams module holds the client classes that are used for communicating with Amazon Kinesis Video Streams Service</description>
+  <url>http://aws.amazon.com/sdkforandroid</url>
+
+  <parent>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-android-sdk-pom</artifactId>
+    <version>2.6.8</version>
+  </parent>
+
+  <licenses>
+    <license>
+      <name>Amazon Software License</name>
+      <url>http://aws.amazon.com/asl/</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+    <repositories>    
+      <repository>
+       <id>android-support</id>
+       <url>file://${env.ANDROID_HOME}/extras/android/m2repository/</url>
+     </repository>
+     <repository>
+       <id>google-android-gms</id>
+       <url>file://${env.ANDROID_HOME}/extras/google/m2repository/</url>
+     </repository>
+     <repository>
+       <id>google-maven</id>
+       <url>https://maven.google.com</url>
+     </repository>
+   </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-android-sdk-core</artifactId>
+      <optional>false</optional>
+      <version>2.6.8</version>
+    </dependency>
+
+    <dependency>
+       <groupId>com.android.support</groupId>
+       <artifactId>support-annotations</artifactId>
+       <version>24.2.0</version>
+    </dependency>
+
+    <dependency>
+       <groupId>android</groupId>
+       <artifactId>android</artifactId>
+       <version>5.0</version>
+       <scope>system</scope>
+       <systemPath>${basedir}/android-21-linux.jar</systemPath>
+     </dependency>
+
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.5.3</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+       <plugin>
+         <groupId>com.simpligility.maven.plugins</groupId>
+         <artifactId>android-maven-plugin</artifactId>
+         <version>4.5.0</version>
+         <extensions>true</extensions>
+         <configuration>
+           <sdk>
+             <platform>21</platform>
+           </sdk>
+           <nativeLibrariesDirectory>${project.basedir}/src/main/jni</nativeLibrariesDirectory>
+         </configuration>
+       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.7</source>
+            <target>1.7</target>
+            <encoding>UTF-8</encoding>
+            <forceJavacCompilerUse>true</forceJavacCompilerUse>
+          </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+</project>

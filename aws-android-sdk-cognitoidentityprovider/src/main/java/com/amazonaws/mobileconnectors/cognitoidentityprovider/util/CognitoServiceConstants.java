@@ -34,9 +34,21 @@ public class CognitoServiceConstants {
      */
     public static final String AUTH_TYPE_INIT_CUSTOM_AUTH = "CUSTOM_AUTH";
     /**
+     * Indicates MFA SETUP challenge.
+     */
+    public static final String CHLG_TYPE_MFA_SETUP = "MFA_SETUP";
+    /**
+     * Indicates SELECT MFA TYPE challenge.
+     */
+    public static final String CHLG_TYPE_SELECT_MFA_TYPE = "SELECT_MFA_TYPE";
+    /**
      * Indicates SMS MFA challenge.
      */
     public static final String CHLG_TYPE_SMS_MFA = "SMS_MFA";
+    /**
+     * Indicates SOFTWARE TOKEN MFA challenge.
+     */
+    public static final String CHLG_TYPE_SOFTWARE_TOKEN_MFA = "SOFTWARE_TOKEN_MFA";
     /**
      * Indicates challenge for user password.
      */
@@ -118,6 +130,14 @@ public class CognitoServiceConstants {
      */
     public static final String CHLG_PARAM_CODE_DEL_DESTINATION = "CODE_DELIVERY_DESTINATION";
     /**
+     * Indicates parameter for MFA options available to authenticate.
+     */
+    public static final String CHLG_PARAM_MFAS_CAN_CHOOSE = "MFAS_CAN_CHOOSE";
+    /**
+     * Indicates parameter for MFA's to be setup to authenticate.
+     */
+    public static final String CHLG_PARAM_MFAS_CAN_SETUP = "MFAS_CAN_SETUP";
+    /**
      * Indicates parameter for internal user-name.
      */
     public static final String CHLG_PARAM_USER_ID_FOR_SRP = "USER_ID_FOR_SRP";
@@ -137,6 +157,10 @@ public class CognitoServiceConstants {
      * Indicates SMS MFA code response parameter.
      */
     public static final String CHLG_RESP_SMS_MFA_CODE = "SMS_MFA_CODE";
+    /**
+     * Indicates SOFTWARE TOKEN MFA code response parameter.
+     */
+    public static final String CHLG_RESP_SOFTWARE_TOKEN_MFA_CODE = "SOFTWARE_TOKEN_MFA_CODE";
     /**
      * Indicates time-stamp response parameter.
      */
@@ -177,4 +201,8 @@ public class CognitoServiceConstants {
      * Indicates new user password response parameter.
      */
     public static final String CHLG_RESP_NEW_PASSWORD = "NEW_PASSWORD";
+    /**
+     * Indicates the default value for device friendly name for TOTP MFA.
+     */
+    public static final String DEFAULT_TOTP_DEVICE_FRIENDLY_NAME = "Time-based One-time Password MFA";
 }

@@ -63,6 +63,13 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
+     * Base64 encoded string for user context data collected for risk evaluation
+     * </p>
+     */
+    private UserContextDataType userContextData;
+
+    /**
+     * <p>
      * The pinpoint installation id.
      * </p>
      */
@@ -256,6 +263,54 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
+     * Base64 encoded string for user context data collected for risk evaluation
+     * </p>
+     *
+     * @return <p>
+     *         Base64 encoded string for user context data collected for risk
+     *         evaluation
+     *         </p>
+     */
+    public UserContextDataType getUserContextData() {
+        return userContextData;
+    }
+
+    /**
+     * <p>
+     * Base64 encoded string for user context data collected for risk evaluation
+     * </p>
+     *
+     * @param userContextData <p>
+     *            Base64 encoded string for user context data collected for risk
+     *            evaluation
+     *            </p>
+     */
+    public void setUserContextData(UserContextDataType userContextData) {
+        this.userContextData = userContextData;
+    }
+
+    /**
+     * <p>
+     * Base64 encoded string for user context data collected for risk evaluation
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param userContextData <p>
+     *            Base64 encoded string for user context data collected for risk
+     *            evaluation
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ResendConfirmationCodeRequest withUserContextData(UserContextDataType userContextData) {
+        this.userContextData = userContextData;
+        return this;
+    }
+
+    /**
+     * <p>
      * The pinpoint installation id.
      * </p>
      *
@@ -317,6 +372,8 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
             sb.append("SecretHash: " + getSecretHash() + ",");
         if (getUsername() != null)
             sb.append("Username: " + getUsername() + ",");
+        if (getUserContextData() != null)
+            sb.append("UserContextData: " + getUserContextData() + ",");
         if (getAnalyticsMetadata() != null)
             sb.append("AnalyticsMetadata: " + getAnalyticsMetadata());
         sb.append("}");
@@ -331,6 +388,8 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
         hashCode = prime * hashCode + ((getClientId() == null) ? 0 : getClientId().hashCode());
         hashCode = prime * hashCode + ((getSecretHash() == null) ? 0 : getSecretHash().hashCode());
         hashCode = prime * hashCode + ((getUsername() == null) ? 0 : getUsername().hashCode());
+        hashCode = prime * hashCode
+                + ((getUserContextData() == null) ? 0 : getUserContextData().hashCode());
         hashCode = prime * hashCode
                 + ((getAnalyticsMetadata() == null) ? 0 : getAnalyticsMetadata().hashCode());
         return hashCode;
@@ -359,6 +418,11 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
         if (other.getUsername() == null ^ this.getUsername() == null)
             return false;
         if (other.getUsername() != null && other.getUsername().equals(this.getUsername()) == false)
+            return false;
+        if (other.getUserContextData() == null ^ this.getUserContextData() == null)
+            return false;
+        if (other.getUserContextData() != null
+                && other.getUserContextData().equals(this.getUserContextData()) == false)
             return false;
         if (other.getAnalyticsMetadata() == null ^ this.getAnalyticsMetadata() == null)
             return false;

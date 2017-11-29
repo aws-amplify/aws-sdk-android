@@ -23,6 +23,7 @@ import android.os.Handler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserCodeDeliveryDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoServiceConstants;
 import com.amazonaws.services.cognitoidentityprovider.model.RespondToAuthChallengeResult;
 
 /**
@@ -75,10 +76,19 @@ public class MultiFactorAuthenticationContinuation implements CognitoIdentityPro
      */
     @Override
     public CognitoUserCodeDeliveryDetails getParameters() {
-        return new CognitoUserCodeDeliveryDetails(
-                challenge.getChallengeParameters().get("CODE_DELIVERY_DESTINATION"),
-                challenge.getChallengeParameters().get("CODE_DELIVERY_DELIVERY_MEDIUM"),
-                null);
+        if (CognitoServiceConstants.CHLG_TYPE_SOFTWARE_TOKEN_MFA.equals(challenge.getChallengeName())) {
+            return new CognitoUserCodeDeliveryDetails(
+                    "Time-based One-time Password",
+                    challenge.getChallengeParameters().get("FRIENDLY_DEVICE_NAME"),
+                    null);
+        }
+        if (CognitoServiceConstants.CHLG_TYPE_SMS_MFA.equals(challenge.getChallengeName())) {
+            return new CognitoUserCodeDeliveryDetails(
+                    challenge.getChallengeParameters().get("CODE_DELIVERY_DESTINATION"),
+                    challenge.getChallengeParameters().get("CODE_DELIVERY_DELIVERY_MEDIUM"),
+                    null);
+        }
+        return new CognitoUserCodeDeliveryDetails("", "", "");
     }
 
     /**

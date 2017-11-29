@@ -30,6 +30,7 @@ import android.support.customtabs.CustomTabsServiceConnection;
 import android.support.customtabs.CustomTabsSession;
 import android.util.Log;
 
+import com.amazonaws.cognito.clientcontext.data.UserContextDataProvider;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthInvalidGrantException;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthNavigationException;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthServiceException;
@@ -451,6 +452,7 @@ public class AuthClient {
         httpBodyParams.put(ClientConstants.DOMAIN_QUERY_PARAM_REDIRECT_URI, redirectUri);
         httpBodyParams.put(ClientConstants.DOMAIN_QUERY_PARAM_CLIENT_ID, pool.getAppId());
         httpBodyParams.put(ClientConstants.HTTP_REQUEST_REFRESH_TOKEN, session.getRefreshToken().getToken());
+        httpBodyParams.put(ClientConstants.DOMAIN_QUERY_PARAM_USERCONTEXTDATA, getUserContextData());
         return  httpBodyParams;
     }
 
@@ -473,7 +475,8 @@ public class AuthClient {
                 .appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_CODE_CHALLENGE, proofKeyHash)
                 .appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_CODE_CHALLENGE_METHOD,
                         ClientConstants.DOMAIN_QUERY_PARAM_CODE_CHALLENGE_METHOD_SHA256)
-                .appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_STATE, state);
+                .appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_STATE, state)
+                .appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_USERCONTEXTDATA, getUserContextData());;
 
         // Convert scopes into a string of comma separated values.
         final int noOfScopes = tokenScopes.size();
@@ -525,6 +528,16 @@ public class AuthClient {
     	} catch (final Exception e) {
     		userHandler.onFailure(e);
     	}
+    }
+
+    private String getUserContextData() {
+        String userContextData = null;
+        if (pool.isAdvancedSecurityDataCollectionEnabled()) {
+            UserContextDataProvider dataProvider = UserContextDataProvider.getInstance();
+            userContextData = dataProvider.getEncodedContextData(this.context, userId, pool.getUserPoolId(),
+                    pool.getAppId());
+        }
+        return userContextData;
     }
 
     /**
