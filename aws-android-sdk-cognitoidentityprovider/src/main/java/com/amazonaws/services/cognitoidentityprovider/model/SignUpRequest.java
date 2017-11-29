@@ -88,6 +88,13 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
+     * Base64 encoded string for user context data collected for risk evaluation
+     * </p>
+     */
+    private UserContextDataType userContextData;
+
+    /**
+     * <p>
      * The pinpoint installation id.
      * </p>
      */
@@ -483,6 +490,54 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
+     * Base64 encoded string for user context data collected for risk evaluation
+     * </p>
+     *
+     * @return <p>
+     *         Base64 encoded string for user context data collected for risk
+     *         evaluation
+     *         </p>
+     */
+    public UserContextDataType getUserContextData() {
+        return userContextData;
+    }
+
+    /**
+     * <p>
+     * Base64 encoded string for user context data collected for risk evaluation
+     * </p>
+     *
+     * @param userContextData <p>
+     *            Base64 encoded string for user context data collected for risk
+     *            evaluation
+     *            </p>
+     */
+    public void setUserContextData(UserContextDataType userContextData) {
+        this.userContextData = userContextData;
+    }
+
+    /**
+     * <p>
+     * Base64 encoded string for user context data collected for risk evaluation
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param userContextData <p>
+     *            Base64 encoded string for user context data collected for risk
+     *            evaluation
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SignUpRequest withUserContextData(UserContextDataType userContextData) {
+        this.userContextData = userContextData;
+        return this;
+    }
+
+    /**
+     * <p>
      * The pinpoint installation id.
      * </p>
      *
@@ -549,6 +604,8 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
             sb.append("UserAttributes: " + getUserAttributes() + ",");
         if (getValidationData() != null)
             sb.append("ValidationData: " + getValidationData() + ",");
+        if (getUserContextData() != null)
+            sb.append("UserContextData: " + getUserContextData() + ",");
         if (getAnalyticsMetadata() != null)
             sb.append("AnalyticsMetadata: " + getAnalyticsMetadata());
         sb.append("}");
@@ -568,6 +625,8 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
                 + ((getUserAttributes() == null) ? 0 : getUserAttributes().hashCode());
         hashCode = prime * hashCode
                 + ((getValidationData() == null) ? 0 : getValidationData().hashCode());
+        hashCode = prime * hashCode
+                + ((getUserContextData() == null) ? 0 : getUserContextData().hashCode());
         hashCode = prime * hashCode
                 + ((getAnalyticsMetadata() == null) ? 0 : getAnalyticsMetadata().hashCode());
         return hashCode;
@@ -610,6 +669,11 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
             return false;
         if (other.getValidationData() != null
                 && other.getValidationData().equals(this.getValidationData()) == false)
+            return false;
+        if (other.getUserContextData() == null ^ this.getUserContextData() == null)
+            return false;
+        if (other.getUserContextData() != null
+                && other.getUserContextData().equals(this.getUserContextData()) == false)
             return false;
         if (other.getAnalyticsMetadata() == null ^ this.getAnalyticsMetadata() == null)
             return false;

@@ -23,6 +23,7 @@ import android.os.Handler;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AnonymousAWSCredentials;
+import com.amazonaws.cognito.clientcontext.data.UserContextDataProvider;
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
@@ -35,6 +36,7 @@ import com.amazonaws.services.cognitoidentityprovider.model.AnalyticsMetadataTyp
 import com.amazonaws.services.cognitoidentityprovider.model.AttributeType;
 import com.amazonaws.services.cognitoidentityprovider.model.SignUpRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.SignUpResult;
+import com.amazonaws.services.cognitoidentityprovider.model.UserContextDataType;
 
 import org.json.JSONObject;
 
@@ -100,6 +102,11 @@ public class CognitoUserPool {
      *
      */
     private String pinpointEndpointId;
+
+    /**
+     * This flag indicates if the data collection is allowed. This is enabled by default.
+     */
+    private boolean advancedSecurityDataCollectionFlag = true;
 
     /**
      * @deprecated use {@link CognitoUserPool#CognitoUserPool(Context, String, String, String, ClientConfiguration, Regions)}
@@ -297,6 +304,17 @@ public class CognitoUserPool {
     }
 
     /**
+     * This method sets context data collection for the user. This data is
+     * sent to the server for risk evaluation. By default data collection
+     * is enabled.
+     *
+     * @param isEnabled if the data collection is enabled.
+     */
+    public void setAdvancedSecurityDataCollectionFlag(boolean isEnabled) {
+        this.advancedSecurityDataCollectionFlag = isEnabled;
+    }
+
+    /**
      * Runs user registration in background.
      *
      * @param userId            REQUIRED: userId for this user
@@ -405,6 +423,7 @@ public class CognitoUserPool {
         signUpUserRequest.setSecretHash(secretHash);
         signUpUserRequest.setUserAttributes(userAttributes.getAttributesList());
         signUpUserRequest.setValidationData(validationDataList);
+        signUpUserRequest.setUserContextData(getUserContextData(userId));
         String ppEndpoint = getPinpointEndpointId();
         if (ppEndpoint != null) {
             AnalyticsMetadataType amd = new AnalyticsMetadataType();
@@ -472,5 +491,22 @@ public class CognitoUserPool {
      */
     protected String getPinpointEndpointId() {
         return pinpointEndpointId;
+    }
+
+    /**
+     * Generates user context data.
+     * @param userId Required: The current user.
+     * @return Encoded user context.
+     */
+    protected UserContextDataType getUserContextData(String userId) {
+        UserContextDataType contextData = null;
+        if (this.advancedSecurityDataCollectionFlag) {
+            UserContextDataProvider provider = UserContextDataProvider.getInstance();
+            String encodedData = provider.getEncodedContextData(context, userId, this.getUserPoolId(), clientId);
+
+            contextData = new UserContextDataType();
+            contextData.setEncodedData(encodedData);
+        }
+        return contextData;
     }
 }

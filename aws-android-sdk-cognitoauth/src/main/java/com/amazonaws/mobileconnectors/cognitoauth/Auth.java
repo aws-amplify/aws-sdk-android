@@ -45,6 +45,16 @@ public final class Auth {
     private final Context context;
 
     /**
+     * Cognito user pool Id
+     */
+    private final String userPoolId;
+
+    /**
+     * This identifies the settings for additional userPool features.
+     */
+    private boolean advancedSecurityDataCollectionFlag;
+
+    /**
      * This is the  hostname for the app/user-pool.
      */
     private final String appWebDomain;
@@ -81,10 +91,26 @@ public final class Auth {
     private AuthClient user;
 
     /**
+     * It enables user context data collection for frontline.
+     */
+    public void setAdvancedSecurityDataCollection(boolean isEnabled) {
+            this.advancedSecurityDataCollectionFlag = isEnabled;
+    }
+ 
+    /**
+     * @return It identifies if the data collection is enabled. By default, we
+     *         do collect user context data.
+     */
+    public boolean isAdvancedSecurityDataCollectionEnabled() {
+        return advancedSecurityDataCollectionFlag;
+    }
+
+    /**
      * Instantiates {@link Auth}.
      * <p><b>Note: </b>This SDK not obfuscate the App Secret. When using App Secret in the production
      * app's, you must take precautions to properly hide the Secret.</p>
      * @param context Required: The Android application {@link Context}.
+     * @param userPoolId : Id for cognito user pool used by application.
      * @param appWebDomain Required: The application/user-pools Cognito web hostname,
      *                     this is set at the Cognito console.
      * @param appId Required: The Cognito App/Client Id.
@@ -93,16 +119,19 @@ public final class Auth {
      * @param signOutRedirectUri Required: The callback Uri after sign-out.
      * @param scopes Required: Scopes requested for the tokens.
      * @param userHandler Required: An instance of the callback handler.
+     * @param advancedSecurityDataCollectionFlag : Flag identifying if user context data should be collected.
      */
     @SuppressWarnings("checkstyle:hiddenfield")
     private Auth(final Context context,
+                 final String userPoolId,
                  final String appWebDomain,
                  final String appId,
                  final String appSecret,
                  final String signInRedirectUri,
                  final String signOutRedirectUri,
                  final Set<String> scopes,
-                 final AuthHandler userHandler) {
+                 final AuthHandler userHandler,
+                 final boolean advancedSecurityDataCollectionFlag) {
         this.context = context;
         this.appWebDomain = appWebDomain;
         this.appId = appId;
@@ -113,6 +142,8 @@ public final class Auth {
         this.user = new AuthClient(context, this);
         this.user = new AuthClient(context, this);
         this.user.setUserHandler(userHandler);
+        this.userPoolId = userPoolId;
+        this.advancedSecurityDataCollectionFlag = advancedSecurityDataCollectionFlag;
         getCurrentUser();
     }
 
@@ -161,6 +192,42 @@ public final class Auth {
          * Callback handler.
          */
         private AuthHandler mUserHandler;
+
+        /**
+         * User Pool id for the userPool.
+         */
+        private String mUserPoolId;
+
+        /**
+         * Flag indicating if data collection for advanced security mode is enabled.
+         * By default this is enabled.
+         */
+        private boolean mAdvancedSecurityDataCollectionFlag = true;
+
+        /**
+         * Sets flag to enable user context data collection. By
+         * default, the flag is set to true.
+         * <p>
+         *     Flag identifying if user context data should be collected for
+         *     advanced security evaluation.
+         * </p>
+         * @param flag value for data collection
+         * @return A reference to this builder.
+         */
+        public Builder setAdvancedSecurityDataCollection(final boolean advancedSecurityDataCollectionFlag) {
+            this.mAdvancedSecurityDataCollectionFlag = advancedSecurityDataCollectionFlag;
+            return this;
+        }
+ 
+        /**
+         * Sets cognito user pool Id used by the application. 
+         * @param userPoolId pool id for cognito user pool.
+         * @return A reference to this builder.
+         */
+        public Builder setUserPoolId(final String userPoolId) {
+            this.mUserPoolId = userPoolId;
+            return this;
+        }
 
         /**
          * Sets the Cognito App-Client Id.
@@ -287,13 +354,15 @@ public final class Auth {
         public Auth build() {
             validateCognitoAuthParameters();
             return new Auth(this.mAppContext,
+                    this.mUserPoolId,
                     this.mAppWebDomain,
                     this.mAppClientId,
                     this.mAppSecret,
                     this.mSignInRedirect,
                     this.mSignOutRedirect,
                     this.mScopes,
-                    this.mUserHandler);
+                    this.mUserHandler,
+                    this.mAdvancedSecurityDataCollectionFlag);
         }
 
         /**
@@ -362,6 +431,13 @@ public final class Auth {
     public Auth getCurrentUser() {
         this.user.setUsername(LocalDataManager.getLastAuthUser(context, appId));
         return this;
+    }
+
+    /**
+     * @return Id for the cognito user pool used by the application.
+     */
+    public String getUserPoolId() {
+        return userPoolId;
     }
 
     /**

@@ -24,9 +24,12 @@ import android.os.Handler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ChallengeContinuation;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ChooseMfaContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ForgotPasswordContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.MultiFactorAuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.NewPasswordContinuation;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.RegisterMfaContinuation;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.VerifyMfaContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoInternalErrorException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoNotAuthorizedException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoParameterInvalidException;
@@ -35,6 +38,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.DevicesHa
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.ForgotPasswordHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GetDetailsHandler;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.RegisterMfaHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.UpdateAttributesHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.VerificationHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.tokens.CognitoAccessToken;
@@ -46,6 +50,8 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoServic
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.Hkdf;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidentityprovider.model.AnalyticsMetadataType;
+import com.amazonaws.services.cognitoidentityprovider.model.AssociateSoftwareTokenRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.AssociateSoftwareTokenResult;
 import com.amazonaws.services.cognitoidentityprovider.model.AttributeType;
 import com.amazonaws.services.cognitoidentityprovider.model.AuthenticationResultType;
 import com.amazonaws.services.cognitoidentityprovider.model.ChangePasswordRequest;
@@ -77,10 +83,18 @@ import com.amazonaws.services.cognitoidentityprovider.model.ResendConfirmationCo
 import com.amazonaws.services.cognitoidentityprovider.model.ResourceNotFoundException;
 import com.amazonaws.services.cognitoidentityprovider.model.RespondToAuthChallengeRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.RespondToAuthChallengeResult;
+import com.amazonaws.services.cognitoidentityprovider.model.SMSMfaSettingsType;
+import com.amazonaws.services.cognitoidentityprovider.model.SetUserMFAPreferenceRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.SetUserMFAPreferenceResult;
 import com.amazonaws.services.cognitoidentityprovider.model.SetUserSettingsRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.SetUserSettingsResult;
+import com.amazonaws.services.cognitoidentityprovider.model.SoftwareTokenMfaSettingsType;
 import com.amazonaws.services.cognitoidentityprovider.model.UpdateUserAttributesRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.UpdateUserAttributesResult;
+import com.amazonaws.services.cognitoidentityprovider.model.UserContextDataType;
+import com.amazonaws.services.cognitoidentityprovider.model.VerifySoftwareTokenRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.VerifySoftwareTokenResponseType;
+import com.amazonaws.services.cognitoidentityprovider.model.VerifySoftwareTokenResult;
 import com.amazonaws.services.cognitoidentityprovider.model.VerifyUserAttributeRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.VerifyUserAttributeResult;
 import com.amazonaws.util.Base64;
@@ -322,6 +336,7 @@ public class CognitoUser {
         confirmUserRegistrationRequest.setUsername(userId);
         confirmUserRegistrationRequest.setConfirmationCode(confirmationCode);
         confirmUserRegistrationRequest.setForceAliasCreation(forcedAliasCreation);
+        confirmUserRegistrationRequest.setUserContextData(getUserContextData());
         final String pinpointEndpointId = pool.getPinpointEndpointId();
         if (pinpointEndpointId != null) {
             final AnalyticsMetadataType amd = new AnalyticsMetadataType();
@@ -401,6 +416,7 @@ public class CognitoUser {
         resendConfirmationCodeRequest.setClientId(clientId);
         resendConfirmationCodeRequest.setSecretHash(secretHash);
         final String pinpointEndpointId = pool.getPinpointEndpointId();
+        resendConfirmationCodeRequest.setUserContextData(getUserContextData());
         if (pinpointEndpointId != null) {
             AnalyticsMetadataType amd = new AnalyticsMetadataType();
             amd.setAnalyticsEndpointId(pinpointEndpointId);
@@ -511,6 +527,7 @@ public class CognitoUser {
         resetPasswordRequest.setClientId(clientId);
         resetPasswordRequest.setSecretHash(secretHash);
         resetPasswordRequest.setUsername(userId);
+        resetPasswordRequest.setUserContextData(getUserContextData());
         final String pinpointEndpointId = pool.getPinpointEndpointId();
         if (pinpointEndpointId != null) {
             AnalyticsMetadataType amd = new AnalyticsMetadataType();
@@ -612,6 +629,7 @@ public class CognitoUser {
         confirmResetPasswordRequest.setSecretHash(secretHash);
         confirmResetPasswordRequest.setConfirmationCode(verificationCode);
         confirmResetPasswordRequest.setPassword(newPassword);
+        confirmResetPasswordRequest.setUserContextData(getUserContextData());
         final String pinpointEndpointId = pool.getPinpointEndpointId();
         if (pinpointEndpointId != null) {
             AnalyticsMetadataType amd = new AnalyticsMetadataType();
@@ -780,7 +798,11 @@ public class CognitoUser {
             final boolean runInBackground) {
         final RespondToAuthChallengeRequest challengeResponse = new RespondToAuthChallengeRequest();
         final Map<String, String> mfaParameters = new HashMap<String, String>();
-        mfaParameters.put(CognitoServiceConstants.CHLG_RESP_SMS_MFA_CODE, mfaCode);
+        if (CognitoServiceConstants.CHLG_TYPE_SMS_MFA.equals(challenge.getChallengeName())) {
+            mfaParameters.put(CognitoServiceConstants.CHLG_RESP_SMS_MFA_CODE, mfaCode);
+        } else if (CognitoServiceConstants.CHLG_TYPE_SOFTWARE_TOKEN_MFA.equals(challenge.getChallengeName())) {
+            mfaParameters.put(CognitoServiceConstants.CHLG_RESP_SOFTWARE_TOKEN_MFA_CODE, mfaCode);
+        }
         mfaParameters.put(CognitoServiceConstants.CHLG_RESP_USERNAME, usernameInternal);
         mfaParameters.put(CognitoServiceConstants.CHLG_RESP_DEVICE_KEY, deviceKey);
         mfaParameters.put(CognitoServiceConstants.CHLG_RESP_SECRET_HASH, secretHash);
@@ -788,6 +810,7 @@ public class CognitoUser {
         challengeResponse.setSession(challenge.getSession());
         challengeResponse.setChallengeName(challenge.getChallengeName());
         challengeResponse.setChallengeResponses(mfaParameters);
+        challengeResponse.setUserContextData(getUserContextData());
         return respondToChallenge(challengeResponse, callback, runInBackground);
     }
 
@@ -1223,6 +1246,286 @@ public class CognitoUser {
         } else {
             throw new CognitoNotAuthorizedException("user is not authenticated");
         }
+    }
+
+    /**
+     * Registers an MFA based on Time-based One-time Password.
+     * @param sessionToken Optional: If a session token has to be used to register the MFA.
+     * @param callback Required: Callback handler {@link VerifyMfaContinuation}.
+     */
+    public void associateSoftwareTokenInBackground(final String sessionToken, final RegisterMfaHandler callback) {
+        if (callback == null) {
+            throw new CognitoParameterInvalidException("callback is null");
+        }
+        final CognitoUser user = this;
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final Handler handler = new Handler(context.getMainLooper());
+                Runnable returnCallback;
+                boolean useSessionToken;
+                try {
+                    final CognitoUserSession cognitoTokens = user.getCachedSession();
+                    AssociateSoftwareTokenResult result;
+                    if (!StringUtils.isBlank(sessionToken)) {
+                        result = associateTotpMfaInternalWithSession(sessionToken);
+                        useSessionToken = true;
+                    } else {
+                        result = associateTotpMfaInternalWithTokens(cognitoTokens);
+                        useSessionToken = false;
+                    }
+                    final String nextSessionToken = result.getSession();
+                    final Map<String, String> parameters = new HashMap<String, String>();
+                    parameters.put("type", CognitoServiceConstants.CHLG_TYPE_SOFTWARE_TOKEN_MFA);
+                    parameters.put("secretKey", result.getSecretCode());
+                    if (useSessionToken) {
+                        returnCallback = new Runnable() {
+                            @Override
+                            public void run() {
+                                callback.onVerify(new VerifyMfaContinuation(context, clientId, user, callback, parameters, true, nextSessionToken, VerifyMfaContinuation.RUN_IN_BACKGROUND));
+                            }
+                        };
+                    } else {
+                        returnCallback = new Runnable() {
+                            @Override
+                            public void run() {
+                                callback.onVerify(new VerifyMfaContinuation(context, clientId, user, callback, parameters, false, nextSessionToken, VerifyMfaContinuation.RUN_IN_BACKGROUND));
+                            }
+                        };
+                    }
+                } catch (final Exception e) {
+                    returnCallback = new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.onFailure(e);
+                        }
+                    };
+                }
+                handler.post(returnCallback);
+            }
+        }).start();
+    }
+
+    /**
+     * Registers an MFA based on Time-based One-time Password, run on current thread.
+     * @param sessionToken Optional: If a session token has to be used to register the MFA.
+     * @param callback Required: Callback handler {@link VerifyMfaContinuation}.
+     */
+    public void associateSoftwareToken(final String sessionToken, final RegisterMfaHandler callback) {
+        if (callback == null) {
+            throw new CognitoParameterInvalidException("callback is null");
+        }
+        final CognitoUser user = this;
+        boolean useSessionToken;
+        try {
+            final CognitoUserSession cognitoTokens = user.getCachedSession();
+            AssociateSoftwareTokenResult result;
+            if (!StringUtils.isBlank(sessionToken)) {
+                result = associateTotpMfaInternalWithSession(sessionToken);
+                useSessionToken = true;
+            } else {
+                result = associateTotpMfaInternalWithTokens(cognitoTokens);
+                useSessionToken = false;
+            }
+            final String nextSessionToken = result.getSession();
+            final Map<String, String> parameters = new HashMap<String, String>();
+            parameters.put("type", CognitoServiceConstants.CHLG_TYPE_SOFTWARE_TOKEN_MFA);
+            parameters.put("secretKey", result.getSecretCode());
+            callback.onVerify(new VerifyMfaContinuation(context, clientId, user, callback, parameters, useSessionToken, nextSessionToken, VerifyMfaContinuation.RUN_IN_CURRENT));
+        } catch (Exception e) {
+            callback.onFailure(e);
+        }
+    }
+
+    /**
+     * Internal method to register a TOTP MFA with {@link CognitoUserSession}.
+     * @param session Required: {@link CognitoUserSession}.
+     * @return Response from the service.
+     */
+    private AssociateSoftwareTokenResult associateTotpMfaInternalWithTokens(
+            final CognitoUserSession session) {
+        if (session != null && session.isValid()) {
+            final AssociateSoftwareTokenRequest request = new AssociateSoftwareTokenRequest();
+            request.setAccessToken(session.getAccessToken().getJWTToken());
+            return associateTotpMfaInternal(request);
+        } else {
+            throw new CognitoNotAuthorizedException("user is not authenticated");
+        }
+    }
+
+    /**
+     * Internal method to register a TOTP MFA with session token.
+     * @param sessionToken Required: The session token.
+     * @return Response from the service.
+     */
+    private AssociateSoftwareTokenResult associateTotpMfaInternalWithSession(
+            final String sessionToken) {
+        if (sessionToken != null) {
+            final AssociateSoftwareTokenRequest request = new AssociateSoftwareTokenRequest();
+            request.setSession(sessionToken);
+            return associateTotpMfaInternal(request);
+        } else {
+            throw new CognitoNotAuthorizedException("session token is invalid");
+        }
+    }
+
+    /**
+     * Makes service call to register the MFA.
+     * @param request Required: {@link AssociateSoftwareTokenRequest}.
+     * @return Response from the service.
+     */
+    private AssociateSoftwareTokenResult associateTotpMfaInternal(AssociateSoftwareTokenRequest request) {
+        return cognitoIdentityProviderClient.associateSoftwareToken(request);
+    }
+
+    /**
+     * Verify the Time-based One-time Password based MFA tpo complete registration.
+     * @param sessionToken Optional: If a session token has to be used to register the MFA.
+     * @param totpCode Required: The TOTP code.
+     * @param friendlyName Required: Friendly name to be associated with this MFA.
+     * @param callback Required: Callback handler {@link VerifyMfaContinuation}.
+     */
+    public void verifySoftwareTokenInBackground(
+            final String sessionToken, final String totpCode, final String friendlyName, final RegisterMfaHandler callback) {
+        if (callback == null) {
+            throw new CognitoParameterInvalidException("callback is null");
+        }
+        final CognitoUser user = this;
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final Handler handler = new Handler(context.getMainLooper());
+                Runnable returnCallback;
+                try {
+                    final CognitoUserSession cognitoTokens = user.getCachedSession();
+                    VerifySoftwareTokenResult result;
+                    boolean useSessionToken;
+                    if (!StringUtils.isBlank(sessionToken)) {
+                        result = verifyTotpAssociationWithSession(sessionToken, totpCode, friendlyName);
+                        useSessionToken = true;
+                    } else {
+                        result = verifyTotpAssociationWithTokens(cognitoTokens, totpCode, friendlyName);
+                        useSessionToken = false;
+                    }
+                    final String newSessionToken = result.getSession();
+                    if (VerifySoftwareTokenResponseType.ERROR.equals(result.getStatus())) {
+                        throw new CognitoInternalErrorException("verification failed");
+                    }
+                    if (useSessionToken) {
+                        returnCallback = new Runnable() {
+                            @Override
+                            public void run() {
+                                callback.onSuccess(newSessionToken);
+                            }
+                        };
+                    } else {
+                        returnCallback = new Runnable() {
+                            @Override
+                            public void run() {
+                                callback.onSuccess(null);
+                            }
+                        };
+                    }
+                } catch (final Exception e) {
+                    returnCallback = new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.onFailure(e);
+                        }
+                    };
+                }
+                handler.post(returnCallback);
+            }
+        }).start();
+    }
+
+    /**
+     * Verify the Time-based One-time Password based MFA tpo complete registration, in current thread.
+     * @param sessionToken Optional: If a session token has to be used to register the MFA.
+     * @param totpCode Required: The TOTP code.
+     * @param friendlyName Required: Friendly name to be associated with this MFA.
+     * @param callback Required: Callback handler {@link VerifyMfaContinuation}.
+     */
+    public void verifySoftwareToken(
+            final String sessionToken, final String totpCode, final String friendlyName, final RegisterMfaHandler callback) {
+        if (callback == null) {
+            throw new CognitoParameterInvalidException("callback is null");
+        }
+        final CognitoUser user = this;
+        boolean useSessionToken;
+        try {
+            final CognitoUserSession cognitoTokens = user.getCachedSession();
+            VerifySoftwareTokenResult result;
+            if (!StringUtils.isBlank(sessionToken)) {
+                result = verifyTotpAssociationWithSession(sessionToken, totpCode, friendlyName);
+                useSessionToken = true;
+            } else {
+                result = verifyTotpAssociationWithTokens(cognitoTokens, totpCode, friendlyName);
+                useSessionToken = false;
+            }
+            final String newSessionToken = result.getSession();
+            if (VerifySoftwareTokenResponseType.ERROR.equals(result.getStatus())) {
+                throw new CognitoInternalErrorException("verification failed");
+            }
+            if (useSessionToken) {
+                callback.onSuccess(newSessionToken);
+            } else {
+                callback.onSuccess(null);
+            }
+        } catch (Exception e) {
+            callback.onFailure(e);
+        }
+    }
+
+    /**
+     * Internal method to verify TOTP MFA with {@link CognitoUserSession}.
+     * @param session Required: A valid {@link CognitoUserSession}.
+     * @param totpCode Required: The TOTP code.
+     * @param friendlyName Required: Friendly name to be associated with this MFA.
+     * @return Response from the service.
+     */
+    private VerifySoftwareTokenResult verifyTotpAssociationWithTokens(
+            final CognitoUserSession session, final String totpCode, final String friendlyName) {
+        if (session != null && session.isValid()) {
+            final VerifySoftwareTokenRequest request = new VerifySoftwareTokenRequest();
+            request.setAccessToken(session.getAccessToken().getJWTToken());
+            request.setUserCode(totpCode);
+            request.setFriendlyDeviceName(friendlyName);
+            return verifyTotpAssociationInternal(request);
+        } else {
+            throw new CognitoNotAuthorizedException("user is not authenticated");
+        }
+    }
+
+    /**
+     * Internal method to verify a TOTP MFA with session token.
+     * @param session Required: The session token.
+     * @param totpCode Required: The TOTP code.
+     * @param friendlyName Required: Friendly name to be associated with this MFA.
+     * @return Response from the service.
+     */
+    private VerifySoftwareTokenResult verifyTotpAssociationWithSession(
+            final String session, final String totpCode, final String friendlyName) {
+        if (session != null) {
+            final VerifySoftwareTokenRequest request = new VerifySoftwareTokenRequest();
+            request.setSession(session);
+            request.setUserCode(totpCode);
+            request.setFriendlyDeviceName(friendlyName);
+            return verifyTotpAssociationInternal(request);
+        } else {
+            throw new CognitoNotAuthorizedException("session token is invalid");
+        }
+    }
+
+    /**
+     * Makes service call to verify the MFA.
+     * @param request Required: {@link VerifySoftwareTokenRequest}.
+     * @return Response from the service.
+     */
+    private VerifySoftwareTokenResult verifyTotpAssociationInternal(VerifySoftwareTokenRequest request) {
+        return cognitoIdentityProviderClient.verifySoftwareToken(request);
     }
 
     /**
@@ -1704,6 +2007,78 @@ public class CognitoUser {
     }
 
     /**
+     * Sets preferences for the registered MFA's of a user.
+     * @param mfaSettings Required: A list with all MFA settings.
+     * @param callback Required: {@link GenericHandler} callback.
+     */
+    public void setUserMfaSettingsInBackground(final List<CognitoMfaSettings> mfaSettings,
+                                            final GenericHandler callback) {
+        if (callback == null) {
+            throw new CognitoParameterInvalidException("callback is null");
+        }
+        final CognitoUserSession session = this.getCachedSession();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final Handler handler = new Handler(context.getMainLooper());
+                Runnable returnCallback;
+                try {
+                    setUserMfaSettingsInternal(mfaSettings, session);
+                    returnCallback = new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.onSuccess();
+                        }
+                    };
+                } catch (final Exception e) {
+                    returnCallback = new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.onFailure(e);
+                        }
+                    };
+                }
+                handler.post(returnCallback);
+            }
+        }).start();
+    }
+
+    /**
+     * Internal method to update MFA preferences.
+     * @param mfaSettings Required: A list with all MFA settings.
+     * @param session Required: A valid {@link CognitoUserSession}.
+     */
+    private void setUserMfaSettingsInternal(List<CognitoMfaSettings> mfaSettings, CognitoUserSession session) {
+        if (session != null && session.isValid()) {
+            if (mfaSettings == null || mfaSettings.size() < 1) {
+                throw new CognitoParameterInvalidException("mfa settings are empty");
+            }
+            final SetUserMFAPreferenceRequest request = new SetUserMFAPreferenceRequest();
+            request.setAccessToken(session.getAccessToken().getJWTToken());
+            for (CognitoMfaSettings mfaSetting: mfaSettings) {
+                if (CognitoMfaSettings.SMS_MFA.equals(mfaSetting.getMfaName())) {
+                    final SMSMfaSettingsType smsMfaSetting = new SMSMfaSettingsType();
+                    smsMfaSetting.setEnabled(mfaSetting.isEnabled());
+                    smsMfaSetting.setPreferredMfa(mfaSetting.isPreferred());
+                    request.setSMSMfaSettings(smsMfaSetting);
+                }
+                if (CognitoMfaSettings.TOTP_MFA.equals(mfaSetting.getMfaName())) {
+                    final SoftwareTokenMfaSettingsType softwareTokenMfaSetting =
+                            new SoftwareTokenMfaSettingsType();
+                    softwareTokenMfaSetting.setEnabled(mfaSetting.isEnabled());
+                    softwareTokenMfaSetting.setPreferredMfa(mfaSetting.isPreferred());
+                    request.setSoftwareTokenMfaSettings(softwareTokenMfaSetting);
+                }
+            }
+            final SetUserMFAPreferenceResult result = cognitoIdentityProviderClient.setUserMFAPreference(request);
+
+        } else {
+            throw new CognitoNotAuthorizedException("user is not authenticated");
+        }
+    }
+
+    /**
      * Removes all cached tokens.
      */
     private void clearCachedTokens() {
@@ -2087,13 +2462,32 @@ public class CognitoUser {
             }
         } else if (CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD_VERIFIER.equals(challengeName)) {
             return nextTask;
-        } else if (CognitoServiceConstants.CHLG_TYPE_SMS_MFA.equals(challengeName)) {
+        } else if (CognitoServiceConstants.CHLG_TYPE_SMS_MFA.equals(challengeName)
+                || CognitoServiceConstants.CHLG_TYPE_SOFTWARE_TOKEN_MFA.equals(challengeName)) {
             final MultiFactorAuthenticationContinuation multiFactorAuthenticationContinuation = new MultiFactorAuthenticationContinuation(
                     cognitoUser, context, challenge, runInBackground, callback);
             nextTask = new Runnable() {
                 @Override
                 public void run() {
                     callback.getMFACode(multiFactorAuthenticationContinuation);
+                }
+            };
+        } else if (CognitoServiceConstants.CHLG_TYPE_SELECT_MFA_TYPE.equals(challengeName)) {
+            final ChooseMfaContinuation continuation = new ChooseMfaContinuation(
+                    cognitoUser, context, usernameInternal, clientId, secretHash, challenge, runInBackground, callback);
+            nextTask = new Runnable() {
+                @Override
+                public void run() {
+                    callback.authenticationChallenge(continuation);
+                }
+            };
+        } else if (CognitoServiceConstants.CHLG_TYPE_MFA_SETUP.equals(challengeName)) {
+            final RegisterMfaContinuation continuation = new RegisterMfaContinuation(
+                    cognitoUser, context, usernameInternal, clientId, secretHash, challenge, runInBackground, callback);
+            nextTask = new Runnable() {
+                @Override
+                public void run() {
+                    callback.authenticationChallenge(continuation);
                 }
             };
         } else if (CognitoServiceConstants.CHLG_TYPE_DEVICE_SRP_AUTH.equals(challengeName)) {
@@ -2257,6 +2651,7 @@ public class CognitoUser {
             amd.setAnalyticsEndpointId(pinpointEndpointId);
             initiateAuthRequest.setAnalyticsMetadata(amd);
         }
+        initiateAuthRequest.setUserContextData(getUserContextData());
         return initiateAuthRequest;
     }
 
@@ -2284,6 +2679,7 @@ public class CognitoUser {
             }
             authRequest.setClientMetadata(userValidationData);
         }
+        authRequest.setUserContextData(getUserContextData());
         return authRequest;
     }
 
@@ -2312,6 +2708,7 @@ public class CognitoUser {
         initiateDevicesAuthRequest.addChallengeResponsesEntry(
                 CognitoServiceConstants.CHLG_RESP_SECRET_HASH, secretHash);
 
+        initiateDevicesAuthRequest.setUserContextData(getUserContextData());
         return initiateDevicesAuthRequest;
     }
 
@@ -2346,6 +2743,7 @@ public class CognitoUser {
             amd.setAnalyticsEndpointId(pinpointEndpointId);
             initiateAuthRequest.setAnalyticsMetadata(amd);
         }
+        initiateAuthRequest.setUserContextData(getUserContextData());
         return initiateAuthRequest;
     }
 
@@ -2426,7 +2824,7 @@ public class CognitoUser {
             amd.setAnalyticsEndpointId(pinpointEndpointId);
             authChallengeRequest.setAnalyticsMetadata(amd);
         }
-
+        authChallengeRequest.setUserContextData(getUserContextData());
         return authChallengeRequest;
     }
 
@@ -2500,7 +2898,7 @@ public class CognitoUser {
         authChallengeRequest.setClientId(clientId);
         authChallengeRequest.setSession(challenge.getSession());
         authChallengeRequest.setChallengeResponses(srpAuthResponses);
-
+        authChallengeRequest.setUserContextData(getUserContextData());
         return authChallengeRequest;
     }
 
@@ -2724,6 +3122,14 @@ public class CognitoUser {
                 }
             }
         }
+    }
+
+    /**
+     * Fetches the encoded user context.
+     * @return user context.
+     */
+    private UserContextDataType getUserContextData() {
+        return pool.getUserContextData(userId);
     }
 
     /**
