@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.9](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.9)
+
+### Bug Fixes:
+
+- **AWS Auth Core**
+  - Fixed a bug where the `doStartupAuth` method in `IdentityManager` method introduced in 2.6.0 was misspelled as `doStartUpAuth` in SDK versions 2.6.7 and 2.6.8. The method now continues to have the name `doStartupAuth` from SDK version 2.6.9.
+
 ## [Release 2.6.8](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.8)
 
 ### New Features
