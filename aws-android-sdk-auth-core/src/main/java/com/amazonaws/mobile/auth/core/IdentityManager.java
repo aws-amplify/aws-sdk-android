@@ -754,7 +754,7 @@ public class IdentityManager {
      * @deprecated Please use {@link #resumeSession(Activity, StartupAuthResultHandler)} method instead.
      */
     @Deprecated
-    public void doStartUpAuth(final Activity callingActivity,
+    public void doStartupAuth(final Activity callingActivity,
                               final StartupAuthResultHandler startupAuthResultHandler) {
         resumeSession(callingActivity, startupAuthResultHandler, 0);
     }
@@ -771,7 +771,7 @@ public class IdentityManager {
      * @deprecated Please use {@link #resumeSession(Activity, StartupAuthResultHandler, long)} method instead.
      */
     @Deprecated
-    public void doStartUpAuth(final Activity callingActivity,
+    public void doStartupAuth(final Activity callingActivity,
                               final StartupAuthResultHandler startupAuthResultHandler,
                               final long minimumDelay) {
         resumeSession(callingActivity, startupAuthResultHandler, minimumDelay);
