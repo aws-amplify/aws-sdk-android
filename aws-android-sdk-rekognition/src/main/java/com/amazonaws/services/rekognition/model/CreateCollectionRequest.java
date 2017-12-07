@@ -30,9 +30,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * operation and persist results in a specific collection. Then, a user can
  * search the collection for faces in the user-specific container.
  * </p>
+ * <note>
  * <p>
- * For an example, see <a>example1</a>.
+ * Collection names are case-sensitive.
  * </p>
+ * </note>
  * <p>
  * This operation requires permissions to perform the
  * <code>rekognition:CreateCollection</code> action.

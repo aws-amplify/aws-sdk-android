@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Collection specified in the request is not found.
+ * The collection specified in the request cannot be found.
  * </p>
  */
 public class ResourceNotFoundException extends AmazonServiceException {

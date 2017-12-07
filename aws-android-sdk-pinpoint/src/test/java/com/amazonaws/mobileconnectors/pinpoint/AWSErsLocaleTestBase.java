@@ -21,6 +21,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
@@ -91,7 +92,7 @@ public abstract class AWSErsLocaleTestBase
         context = new AnalyticsContextBuilder()
                           .withSdkInfo(SDK_NAME, SDK_VERSION)
                           .withUniqueIdValue(UNIQUE_ID)
-                          .withContext(Robolectric.application
+                          .withContext(RuntimeEnvironment.application
                                                .getApplicationContext())
                           .withSystem(new MockSystem("HELLO.world"))
                           .withConfiguration(mockConfiguration)

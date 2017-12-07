@@ -27,7 +27,7 @@ public class FaceRecord implements Serializable {
     /**
      * <p>
      * Describes the face properties such as the bounding box, face ID, image ID
-     * of the source image, and external image ID that you assigned.
+     * of the input image, and external image ID that you assigned.
      * </p>
      */
     private Face face;
@@ -42,12 +42,12 @@ public class FaceRecord implements Serializable {
     /**
      * <p>
      * Describes the face properties such as the bounding box, face ID, image ID
-     * of the source image, and external image ID that you assigned.
+     * of the input image, and external image ID that you assigned.
      * </p>
      *
      * @return <p>
      *         Describes the face properties such as the bounding box, face ID,
-     *         image ID of the source image, and external image ID that you
+     *         image ID of the input image, and external image ID that you
      *         assigned.
      *         </p>
      */
@@ -58,12 +58,12 @@ public class FaceRecord implements Serializable {
     /**
      * <p>
      * Describes the face properties such as the bounding box, face ID, image ID
-     * of the source image, and external image ID that you assigned.
+     * of the input image, and external image ID that you assigned.
      * </p>
      *
      * @param face <p>
      *            Describes the face properties such as the bounding box, face
-     *            ID, image ID of the source image, and external image ID that
+     *            ID, image ID of the input image, and external image ID that
      *            you assigned.
      *            </p>
      */
@@ -74,7 +74,7 @@ public class FaceRecord implements Serializable {
     /**
      * <p>
      * Describes the face properties such as the bounding box, face ID, image ID
-     * of the source image, and external image ID that you assigned.
+     * of the input image, and external image ID that you assigned.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -82,7 +82,7 @@ public class FaceRecord implements Serializable {
      *
      * @param face <p>
      *            Describes the face properties such as the bounding box, face
-     *            ID, image ID of the source image, and external image ID that
+     *            ID, image ID of the input image, and external image ID that
      *            you assigned.
      *            </p>
      * @return A reference to this updated object so that method calls can be

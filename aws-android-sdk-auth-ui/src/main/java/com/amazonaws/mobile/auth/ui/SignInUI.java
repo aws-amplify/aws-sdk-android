@@ -31,6 +31,8 @@ import com.amazonaws.mobile.auth.core.signin.ui.buttons.SignInButton;
 import com.amazonaws.mobile.config.AWSConfigurable;
 import com.amazonaws.mobile.config.AWSConfiguration;
 
+import org.json.JSONObject;
+
 public class SignInUI implements AWSConfigurable {
 
     /** Log Tag. */
@@ -60,6 +62,7 @@ public class SignInUI implements AWSConfigurable {
     private static final String GOOGLE      = "GoogleSignIn";
     private static final String FACEBOOK_BUTTON = "com.amazonaws.mobile.auth.facebook.FacebookButton";
     private static final String GOOGLE_BUTTON = "com.amazonaws.mobile.auth.google.GoogleButton";
+    private static final String GOOGLE_WEBAPP_CONFIG_KEY = "ClientId-WebApp";
 
     /**
      * Initiate the login flow and present the AuthUI.
@@ -182,18 +185,15 @@ public class SignInUI implements AWSConfigurable {
         AuthUIConfiguration.Builder configBuilder = new AuthUIConfiguration.Builder();
 
         try {
-            if (configHasKey(USER_POOLS)) {
-                Log.d(LOG_TAG, "Configuring UserPools in SignInUI.");
+            if (isConfigurationKeyPresent(USER_POOLS)) {
                 configBuilder.userPools(true);
             }
 
-            if (configHasKey(FACEBOOK)) {
-                Log.d(LOG_TAG, "Configuring FacebookButton in SignInUI.");
+            if (isConfigurationKeyPresent(FACEBOOK)) {
                 configBuilder.signInButton((Class<? extends SignInButton>)Class.forName(FACEBOOK_BUTTON));
             }
 
-            if (configHasKey(GOOGLE)) {
-                Log.d(LOG_TAG, "Configuring GoogleButton in SignInUI.");
+            if (isConfigurationKeyPresent(GOOGLE)) {
                 configBuilder.signInButton((Class<? extends SignInButton>)Class.forName(GOOGLE_BUTTON));
             }
 
@@ -209,10 +209,20 @@ public class SignInUI implements AWSConfigurable {
     /**
      * Check if the AWSConfiguration has the specified key.
      * 
-     * @param configKey
+     * @param configurationKey The key for SignIn in AWSConfiguration
      */
-    private boolean configHasKey(final String configKey) {
-        return this.awsConfiguration.optJsonObject(configKey) != null;
+    private boolean isConfigurationKeyPresent(final String configurationKey) {
+        try {
+            JSONObject jsonObject = this.awsConfiguration.optJsonObject(configurationKey);
+            if (configurationKey.equals(GOOGLE)) {
+                return jsonObject != null && jsonObject.getString(GOOGLE_WEBAPP_CONFIG_KEY) != null;
+            } else {
+                return jsonObject != null;
+            }
+        } catch (final Exception exception) {
+            Log.d(LOG_TAG, configurationKey + " not found in `awsconfiguration.json`");
+            return false;
+        }
     }
 
     /**

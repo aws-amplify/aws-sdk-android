@@ -128,7 +128,9 @@ public class GoogleSignInProvider implements SignInProvider, SignInPermissionsHa
                     .split(",")
             );
         } catch (final Exception exception) {
-                Log.e(LOG_TAG, "Failed to register the permissions with GoogleSignInProvider.", exception);
+                Log.e(LOG_TAG, "Failed to register the permissions with GoogleSignInProvider. "
+                    + "Use GoogleSignInProvider.setPermissions() to register the permissions. "
+                    + "Check if GoogleSignIn is present in `awsconfiguration.json`.");
         }
 
         GoogleSignInOptions.Builder builder = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN);
@@ -201,9 +203,7 @@ public class GoogleSignInProvider implements SignInProvider, SignInPermissionsHa
         synchronized (GoogleSignInProvider.loginScopeList) {
             GoogleSignInProvider.loginScopeList.clear();
             for (String scope : loginScopes) {
-                if (!GoogleSignInProvider.loginScopeList.contains(scope)) {
-                    GoogleSignInProvider.loginScopeList.add(scope);
-                }
+                GoogleSignInProvider.loginScopeList.add(scope);
             }
         }
     }

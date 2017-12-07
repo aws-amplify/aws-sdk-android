@@ -110,7 +110,7 @@ public class SignUpConfirmView extends LinearLayout {
         if (this.fullScreenBackgroundColor) {
             this.backgroundDrawable = new BackgroundDrawable(this.backgroundColor);
         } else {
-            this.splitBackgroundDrawable = new SplitBackgroundDrawable(this.backgroundColor);
+            this.splitBackgroundDrawable = new SplitBackgroundDrawable(0, this.backgroundColor);
         }
     }
 

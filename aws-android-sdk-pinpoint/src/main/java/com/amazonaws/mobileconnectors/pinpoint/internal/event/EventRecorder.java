@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -136,11 +137,63 @@ public class EventRecorder {
         }
     }
 
-    JSONObject translateFromCursor(final Cursor cursor) {
+    private static final int JSON_COLUMN_INDEX = EventTable.COLUMN_INDEX.JSON.getValue();
+    private static final int ID_COLUMN_INDEX = EventTable.COLUMN_INDEX.ID.getValue();
+    private static final int SIZE_COLUMN_INDEX = EventTable.COLUMN_INDEX.SIZE.getValue();
+
+    JSONObject readEventFromCursor(final Cursor cursor,
+                                   final List<Integer> idsToDelete,
+                                   final List<Integer> sizeToDelete) {
+        Integer rowId = null;
+        Integer size = null;
         try {
-            return new JSONObject(cursor.getString(EventTable.COLUMN_INDEX.JSON.getValue()));
-        } catch (final JSONException e) {
-            log.error(String.format("Unable to format events."));
+            if (cursor.isNull(ID_COLUMN_INDEX)) {
+                log.error("Column 'ID' for event was NULL.");
+                return null;
+            } else {
+                rowId = cursor.getInt(ID_COLUMN_INDEX);
+            }
+
+            if (cursor.isNull(SIZE_COLUMN_INDEX)) {
+                log.error("Column 'SIZE' for event was NULL.");
+            } else {
+                size = cursor.getInt(SIZE_COLUMN_INDEX);
+            }
+
+            JSONObject jsonObject = null;
+            if (cursor.isNull(JSON_COLUMN_INDEX)) {
+                log.error(String.format(Locale.US,
+                    "Event from DB with ID=%d and SiZE=%d contained a NULL message.", rowId, size));
+            } else {
+                final String message = cursor.getString(JSON_COLUMN_INDEX);
+                try {
+                    jsonObject = new JSONObject(message);
+                } catch (final JSONException e) {
+                    log.error(String.format(Locale.US,
+                        "Unable to deserialize event JSON for event with ID=%d.", rowId));
+                }
+
+                if (size != null && message.length() != size) {
+                    log.warn(String.format(Locale.US,
+                        "Message with ID=%d has a size mismatch. DBMsgSize=%d DBSizeCol=%d",
+                        rowId, message.length(), size));
+                    // In this case we had a size in the DB, but it didn't match the size of the message in the DB.
+                    // We set the size as null so the total size will end up recalculated from the remaining
+                    // items in the database after this item is removed.
+                    size = null;
+                }
+            }
+
+            return jsonObject;
+        } catch (final Exception ex) {
+            log.error("Failed accessing cursor to get next event.", ex);
+        } finally {
+            // if the row Id is not null then this item needs to be deleted from the database regardless of whether
+            // the message was valid json or not, since we don't want to leave a corrupted item in the DB.
+            if (rowId != null && idsToDelete != null && sizeToDelete != null) {
+                idsToDelete.add(rowId);
+                sizeToDelete.add(size);
+            }
         }
         return null;
     }
@@ -154,35 +207,23 @@ public class EventRecorder {
         });
     }
 
-    JSONArray getBatchOfEvents(final Cursor cursor, final List<Integer> idsToDeletes, final List<Integer> sizeToDeletes) {
+    JSONArray getBatchOfEvents(final Cursor cursor, final List<Integer> idsToDelete, final List<Integer> sizeToDelete) {
         final JSONArray eventArray = new JSONArray();
         long currentRequestSize = 0;
         long eventLength;
         final long maxRequestSize = pinpointContext.getConfiguration().optLong(KEY_MAX_SUBMISSION_SIZE, DEFAULT_MAX_SUBMISSION_SIZE);
 
-        JSONObject json = translateFromCursor(cursor);
-        idsToDeletes.add(cursor.getInt(EventTable.COLUMN_INDEX.ID.getValue()));
-        sizeToDeletes.add(cursor.getInt(EventTable.COLUMN_INDEX.ID.getValue()));
-        if (json != null) {
-            eventLength = json.length();
-            currentRequestSize += eventLength;
-            eventArray.put(json);
-        }
-
-        while (cursor.moveToNext()) {
-            json = translateFromCursor(cursor);
-            idsToDeletes.add(cursor.getInt(EventTable.COLUMN_INDEX.ID.getValue()));
-            sizeToDeletes.add(cursor.getInt(EventTable.COLUMN_INDEX.ID.getValue()));
+        do {
+            JSONObject json = readEventFromCursor(cursor, idsToDelete, sizeToDelete);
             if (json != null) {
                 eventLength = json.length();
                 currentRequestSize += eventLength;
                 eventArray.put(json);
-
-                if (currentRequestSize > maxRequestSize) {
-                    break;
-                }
             }
-        }
+            if (currentRequestSize > maxRequestSize) {
+                break;
+            }
+        } while (cursor.moveToNext());
 
         return eventArray;
     }
@@ -193,7 +234,10 @@ public class EventRecorder {
         try {
             cursor = dbUtil.queryAllEvents();
             while (cursor.moveToNext()) {
-                events.add(translateFromCursor(cursor));
+                JSONObject jsonEvent = readEventFromCursor(cursor, null, null);
+                if (jsonEvent != null) {
+                    events.add(jsonEvent);
+                }
             }
         } finally {
             if (cursor != null) {
@@ -204,47 +248,54 @@ public class EventRecorder {
     }
 
     void processEvents() {
-        final long start = System.currentTimeMillis();
+        final long start = TimeUnit.NANOSECONDS.toMillis(System.nanoTime());
 
         Cursor cursor = null;
 
         try {
             cursor = dbUtil.queryAllEvents();
 
-            final List<Integer> idsToDeletes = new ArrayList<Integer>();
-            final List<Integer> sizeToDeletes = new ArrayList<Integer>();
+            if (!cursor.moveToFirst()) {
+                // if the cursor is empty there is nothing to do.
+                log.info("No events available to submit.");
+                return;
+            }
+
+            final List<Integer> idsToDelete = new ArrayList<Integer>();
+            final List<Integer> sizeToDelete = new ArrayList<Integer>();
             boolean successful;
             int submissions = 0;
             final long maxSubmissionsAllowed = pinpointContext
                 .getConfiguration()
                 .optInt(KEY_MAX_SUBMISSIONS_ALLOWED, DEFAULT_MAX_SUBMISSIONS_ALLOWED);
 
-            while (cursor.moveToNext()) {
-                final List<Integer> batchIdsToDeletes = new ArrayList<Integer>();
-                final List<Integer> batchSizeToDeletes = new ArrayList<Integer>();
+            do {
+                final List<Integer> batchIdsToDelete = new ArrayList<Integer>();
+                final List<Integer> batchSizeToDelete = new ArrayList<Integer>();
                 successful = submitEvents(
-                    this.getBatchOfEvents(cursor, batchIdsToDeletes, batchSizeToDeletes));
+                    this.getBatchOfEvents(cursor, batchIdsToDelete, batchSizeToDelete));
                 if (successful) {
-                    idsToDeletes.addAll(batchIdsToDeletes);
-                    sizeToDeletes.addAll(batchSizeToDeletes);
+                    idsToDelete.addAll(batchIdsToDelete);
+                    sizeToDelete.addAll(batchSizeToDelete);
                     submissions++;
                 }
                 if (submissions >= maxSubmissionsAllowed) {
                     break;
                 }
-            }
+            } while (cursor.moveToNext());
 
-            if (sizeToDeletes.size() > 0) {
-                for (int i = 0; i < sizeToDeletes.size(); i++) {
+            if (sizeToDelete.size() > 0) {
+                for (int i = 0; i < sizeToDelete.size(); i++) {
                     try {
-                        dbUtil.deleteEvent(idsToDeletes.get(i), sizeToDeletes.get(i));
+                        dbUtil.deleteEvent(idsToDelete.get(i), sizeToDelete.get(i));
                     } catch (final Exception exc) {
-                        log.error("Failed to delete event: " + idsToDeletes.get(i), exc);
+                        log.error("Failed to delete event: " + idsToDelete.get(i), exc);
                     }
                 }
             }
 
-            log.info(String.format("Time of attemptDelivery: %d", System.currentTimeMillis() - start));
+            log.info(String.format(Locale.US, "Time of attemptDelivery: %d",
+                TimeUnit.NANOSECONDS.toMillis(System.nanoTime()) - start));
         } finally {
             if (cursor != null) {
                 cursor.close();

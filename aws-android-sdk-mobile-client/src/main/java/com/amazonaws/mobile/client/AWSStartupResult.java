@@ -29,10 +29,16 @@ public class AWSStartupResult {
 
     private IdentityManager identityManager;
     
+    /**
+     * Construct the AWSStartupResult object with the IdentityManager passed in
+     */
     public AWSStartupResult(final IdentityManager identityManager) {
         this.identityManager = identityManager;
     }
 
+    /**
+     * Retrieve the IdentityId from the IdentityManager
+     */
     public boolean isIdentityIdAvailable() {
         return this.identityManager.getCachedUserID() != null;
     }

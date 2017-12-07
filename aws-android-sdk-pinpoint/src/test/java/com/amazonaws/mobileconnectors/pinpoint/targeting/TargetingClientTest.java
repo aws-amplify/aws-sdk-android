@@ -27,6 +27,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.MobileAnalyticsTestBase;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
@@ -68,7 +69,7 @@ public class TargetingClientTest extends MobileAnalyticsTestBase {
                               .withUniqueIdValue(UNIQUE_ID)
                               .withDeviceDetails(testDeviceDetails)
                               .withPinpointServiceClient(mockPinpointServiceClient)
-                              .withContext(Robolectric.application
+                              .withContext(RuntimeEnvironment.application
                                                    .getApplicationContext())
                               .build();
 

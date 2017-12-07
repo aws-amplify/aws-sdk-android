@@ -39,6 +39,9 @@ public class CreateCollectionResultJsonUnmarshaller implements
             } else if (name.equals("CollectionArn")) {
                 createCollectionResult.setCollectionArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("FaceModelVersion")) {
+                createCollectionResult.setFaceModelVersion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

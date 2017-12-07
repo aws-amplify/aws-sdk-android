@@ -23,6 +23,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
@@ -79,7 +80,7 @@ public class SessionClientTest extends MobileAnalyticsTestBase {
                                            .withSdkInfo(SDK_NAME, SDK_VERSION)
                                            .withUniqueIdValue(UNIQUE_ID)
                                            .withConfiguration(mockConfiguration)
-                                           .withContext(Robolectric.application
+                                           .withContext(RuntimeEnvironment.application
                                                                 .getApplicationContext())
                                            .withSystem(new MockSystem("SESSION_CLIENT.test"))
                                            .build();

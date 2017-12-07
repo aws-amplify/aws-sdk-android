@@ -101,7 +101,9 @@ public class FacebookSignInProvider implements SignInProvider {
                         .split(",")
                 );
         } catch (final Exception exception) {
-                Log.e(LOG_TAG, "Failed to register the permissions with FacebookSignInProvider.", exception);
+                Log.e(LOG_TAG, "Failed to register the permissions with FacebookSignInProvider. "
+                    + "Use FacebookSignInProvider.setPermissions() to register the permissions. "
+                    + "Check if FacebookSignIn is present in `awsconfiguration.json`.");
         }
     }
 
@@ -206,9 +208,7 @@ public class FacebookSignInProvider implements SignInProvider {
         synchronized (FacebookSignInProvider.permissions) {
             FacebookSignInProvider.permissions.clear();
             for (String permission : userPermissions) {
-                if (!FacebookSignInProvider.permissions.contains(permissions)) {
-                    FacebookSignInProvider.permissions.add(permission);
-                }
+                FacebookSignInProvider.permissions.add(permission);
             }
         }
     }
