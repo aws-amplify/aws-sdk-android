@@ -15,4 +15,8 @@
   * limitations under the License.
   */
 
+  /**
+   * AWS Authentication Core caches the credentials and 
+   * handles the user sign-in flow.
+   */
 package com.amazonaws.mobile.auth.core;

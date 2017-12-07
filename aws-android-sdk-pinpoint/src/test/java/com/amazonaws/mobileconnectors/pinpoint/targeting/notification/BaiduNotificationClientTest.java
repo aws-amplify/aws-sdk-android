@@ -41,6 +41,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.internal.util.reflection.Whitebox;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
 import java.util.Map;
@@ -79,7 +80,7 @@ public class BaiduNotificationClientTest extends MobileAnalyticsTestBase {
     public void setup() {
         MockitoAnnotations.initMocks(this);
 
-        final Context roboContext = Robolectric.application
+        final Context roboContext = RuntimeEnvironment.application
             .getApplicationContext();
         spiedRoboContext = Mockito.spy(roboContext);
         mockPinpointContext = new AnalyticsContextBuilder()
@@ -153,7 +154,10 @@ public class BaiduNotificationClientTest extends MobileAnalyticsTestBase {
 
     @Test
     public void testBaiduMessageReceivedDefaultDoNotPostNotificationInForeground() throws JSONException {
-        // by default AppUtil will return that the app is not in the background
+        // Force the app to be in the background.
+        final AppUtil appUtil = Mockito.mock(AppUtil.class);
+        Whitebox.setInternalState(target.notificationClientBase, "appUtil", appUtil);
+        Mockito.when(appUtil.isAppInForeground()).thenReturn(false);
 
         NotificationClient.CampaignPushResult pushResult
             = target.handleCampaignPush(buildNotificationDetails());
@@ -176,10 +180,6 @@ public class BaiduNotificationClientTest extends MobileAnalyticsTestBase {
         assertThat(receivedEvent.getAllMetrics().size(), is(0));
 
         assertTrue(pushResult.equals(NotificationClient.CampaignPushResult.OPTED_OUT));
-
-        // Verify isAooInForeground method is called by verifying a call to getSystemService.
-        verify(spiedRoboContext, times(1))
-            .getSystemService(Mockito.eq(Context.ACTIVITY_SERVICE));
     }
 
 

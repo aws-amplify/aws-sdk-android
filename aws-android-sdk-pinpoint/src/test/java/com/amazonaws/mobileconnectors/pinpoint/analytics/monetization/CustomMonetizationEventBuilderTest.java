@@ -24,6 +24,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
@@ -153,7 +154,7 @@ public class CustomMonetizationEventBuilderTest
 
         PinpointContext mockContext = new AnalyticsContextBuilder()
                                               .withConfiguration(mockConfiguration)
-                                              .withContext(Robolectric.application
+                                              .withContext(RuntimeEnvironment.application
                                                                    .getApplicationContext())
                                               .build();
 

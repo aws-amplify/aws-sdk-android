@@ -23,6 +23,7 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.event.EventRecorder;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -30,8 +31,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.internal.util.reflection.Whitebox;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.rule.PowerMockRule;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
@@ -63,8 +68,13 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.withSettings;
 
 @RunWith(RobolectricTestRunner.class)
+//@PowerMockIgnore({ "org.mockito.*", "org.robolectric.*", "android.*" })
+//@PrepareForTest(Static.class)
 @Config(manifest = Config.NONE)
 public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
+
+//    @Rule
+//    public PowerMockRule rule = new PowerMockRule();
 
     @Mock
     AndroidPreferencesConfiguration mockConfiguration;
@@ -85,7 +95,7 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
     public void setup() {
         MockitoAnnotations.initMocks(this);
 
-        final Context roboContext = Robolectric.application
+        final Context roboContext = RuntimeEnvironment.application
             .getApplicationContext();
         spiedRoboContext = Mockito.spy(roboContext);
         mockPinpointContext = new AnalyticsContextBuilder()
@@ -144,7 +154,10 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
 
     @Test
     public void testGCMMessageReceivedDefaultDoNotPostNotificationInForeground() throws JSONException {
-        // by default AppUtil will return that the app is not in the background
+        // Force the app to be in the background
+        final AppUtil appUtil = Mockito.mock(AppUtil.class);
+        Whitebox.setInternalState(target.notificationClientBase, "appUtil", appUtil);
+        Mockito.when(appUtil.isAppInForeground()).thenReturn(false);
 
         NotificationClient.CampaignPushResult pushResult
             = target.handleGCMCampaignPush("12345", buildPushBundle(), Service.class);
@@ -167,10 +180,6 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
         assertThat(receivedEvent.getAllMetrics().size(), is(0));
 
         assertTrue(pushResult.equals(NotificationClient.CampaignPushResult.OPTED_OUT));
-
-        // Verify isAooInForeground method is called by verifying a call to getSystemService.
-        verify(spiedRoboContext, times(1))
-            .getSystemService(Mockito.eq(Context.ACTIVITY_SERVICE));
     }
 
 
@@ -356,16 +365,15 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
     @Test
     public void testConvertBitmapToAlphaGrayscale() {
         // Create a color image to be converted to grayscale;
-        //final Bitmap inputBitmap = Bitmap.createBitmap(10, 10, Bitmap.Config.ARGB_8888);
         final int[] inputPixels = new int[255*255];
 
         for (int x = 0; x < 255; x++) {
             for (int y = 0; y < 255; y++) {
                 if (x < 10 || y < 10) {
                     // Outsides transparent.
-                    inputPixels[y * 10 + x] = Color.TRANSPARENT;
+                    inputPixels[x * 255 + y] = Color.TRANSPARENT;
                 } else {
-                    inputPixels[y * 10 + x] = Color.argb(255, x, y, 255 - x);
+                    inputPixels[x * 255 + y] = Color.argb(255, x, y, 255 - x);
                 }
             }
         }
@@ -381,12 +389,10 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
                 //    x, y, Color.alpha(pixel), Color.red(pixel), Color.green(pixel), Color.blue(pixel)));
                 if (x < 10 || y < 10) {
                     // Outsides transparent.
-                    // TODO: Fix this test to use ShadowBitmap so this check can be enabled.
-                    //assertEquals(0x00FFFFFF, outputBitmap.getPixel(x, y));
+                    assertEquals(0x00FFFFFF, pixel);
                 } else {
                     // Pixel should not be transparent.
-                    // TODO: Fix this test to use ShadowBitmap so this check can be enabled.
-                    //assertNotEquals(0, Color.alpha(pixel));
+                    assertNotEquals(0, Color.alpha(pixel));
                 }
             }
         }
@@ -396,8 +402,7 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
 
         for (int x = 0; x < 255; x++) {
             for (int y = 0; y < 255; y++) {
-                // TODO: Fix this test to use ShadowBitmap so this check can be enabled.
-                //assertEquals(outputBitmap.getPixel(x, y), dupOutput.getPixel(x, y));
+                assertEquals(outputBitmap.getPixel(x, y), dupOutput.getPixel(x, y));
             }
         }
     }

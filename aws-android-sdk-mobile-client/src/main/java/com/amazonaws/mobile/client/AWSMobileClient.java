@@ -46,19 +46,21 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
 
+import org.json.JSONObject;
+
 /**
  * {@code AWSMobileClient} is a high-level SDK client that
  * initilalizes the SDK, fetches Cognito Identity and
  * creates other SDK client instances.
  * 
- * <p>
- *  To initialize the SDK, invoke the #{@link #initialize(Context)}
+ * <pre>
+ *  To initialize the SDK, invoke the {@link #initialize(Context)}
  *  method:
  * 
  *  AWSMobileClient.getInstance().initialize(this);
  * 
  *  To get a callback when the initalize is successful, invoke the
- *  #{@link #initialize(Context, AWSStartupHandler)} method.
+ *  {@link #initialize(Context, AWSStartupHandler)} method.
  * 
  *  AWSMobileClient.getInstance().initalize(this, new AWSStartupHandler() {
  *      @Override
@@ -67,7 +69,7 @@ import java.util.LinkedHashMap;
  *      }
  *  });
  * 
- * </p>
+ * </pre>
  */
 public final class AWSMobileClient {
 
@@ -97,7 +99,7 @@ public final class AWSMobileClient {
 
     /** 
      * Flag to use default config automatically. 
-     *  Use the default configuration information if TRUE.
+     * Use the default configuration information if TRUE.
      */
     private boolean defaultConfig = true;
 
@@ -106,6 +108,7 @@ public final class AWSMobileClient {
     private static final String FACEBOOK    = "FacebookSignIn";
     private static final String GOOGLE      = "GoogleSignIn";
     private static final String PERMISSIONS = "Permissions";
+    private static final String GOOGLE_WEBAPP_CONFIG_KEY = "ClientId-WebApp";
 
     /**
      * Constructor invoked by getInstance.
@@ -168,7 +171,7 @@ public final class AWSMobileClient {
 
     /**
      * Initialize the AWSMobileClient with the parameters passed in
-     * {@link AWSMobileClient.InitializeBuilder}.
+     * {@link InitializeBuilder}
      */
     private void initializeWithBuilder(final InitializeBuilder initializeBuilder) {
         if (initializeBuilder.getAwsConfiguration() != null) {
@@ -191,24 +194,25 @@ public final class AWSMobileClient {
      * Get the AWSConfigurable client if exists, else create one and
      * add it to the clientMap and return.
      *
-     * @param clientClass SDK Client Class that confirms to the AWSConfigurable interface.
-     * @return client The AWSConfigurable client object
+     * @param context       The activity context
+     * @param clientClass   SDK Client Class that confirms to the AWSConfigurable interface.
      */
     public AWSConfigurable getClient(final Context context,
                                      final Class<? extends AWSConfigurable> clientClass) {
 
-        AWSConfigurable client = clientMap.get(clientClass);
         Log.d(LOG_TAG, "Retrieving the client instance for class: " + clientClass);
+
+        AWSConfigurable client = clientMap.get(clientClass);
 
         try {
             if (client == null) {
                 client = clientClass.newInstance().initialize(context.getApplicationContext(), this.awsConfiguration);
                 clientMap.put(clientClass, client);
-                Log.d(LOG_TAG, "Created the new client: " + client);
+                Log.d(LOG_TAG, "Created the new client: " + client.toString());
             }
         } catch (final Exception exception) {
-            Log.e(LOG_TAG, "Error occurred in creating and initializing client: "
-                    + clientClass, exception);
+            Log.e(LOG_TAG, "Error occurred in creating and initializing client. "
+                    + "Check the context and the clientClass passed in: " + clientClass, exception);
         }
 
         return client;
@@ -228,7 +232,7 @@ public final class AWSMobileClient {
 
     /**
      * Set the CredentialsProvider passed in as the default.
-     * @return the awsCredentialsProvider
+     * @param awsCredentialsProvider The credentials provider object created by the user.
      */
     public void setCredentialsProvider(final AWSCredentialsProvider awsCredentialsProvider) {
         this.awsCredentialsProvider = awsCredentialsProvider;
@@ -237,6 +241,8 @@ public final class AWSMobileClient {
     /**
      * Retrieve the AWSConfiguration object that represents
      * the awsconfiguration.json file.
+     * 
+     * @return the AWSConfiguration object
      */
     public AWSConfiguration getConfiguration() {
         return this.awsConfiguration;
@@ -246,7 +252,7 @@ public final class AWSMobileClient {
      * Gets the singleton instance of this class.
      * 
      * @param context The activity context in the app
-     * @return instance
+     * @return singleton instance
      */
     public static synchronized AWSMobileClient getInstance() {
         if (singleton == null) {
@@ -311,18 +317,18 @@ public final class AWSMobileClient {
      * AWSConfiguration.
      */
     private void registerConfigSignInProviders() {
-        Log.d(LOG_TAG, "Using the SignInProviderConfig from awsconfiguration.json.");
+        Log.d(LOG_TAG, "Using the SignInProviderConfig from `awsconfiguration.json`.");
         final IdentityManager identityManager = IdentityManager.getDefaultIdentityManager();
 
-        if (configHasKey(USER_POOLS)) {
+        if (isConfigurationKeyPresent(USER_POOLS)) {
             identityManager.addSignInProvider(CognitoUserPoolsSignInProvider.class);
         }
 
-        if (configHasKey(FACEBOOK)) {
+        if (isConfigurationKeyPresent(FACEBOOK)) {
             identityManager.addSignInProvider(FacebookSignInProvider.class);
         }
 
-        if (configHasKey(GOOGLE)) {
+        if (isConfigurationKeyPresent(GOOGLE)) {
             identityManager.addSignInProvider(GoogleSignInProvider.class);
         }
     }
@@ -330,20 +336,21 @@ public final class AWSMobileClient {
     /**
      * Check if the AWSConfiguration has the specified key.
      * 
-     * @param configKey
+     * @param configurationKey The key for SignIn in AWSConfiguration
      */
-    private boolean configHasKey(final String configKey) {
+    private boolean isConfigurationKeyPresent(final String configurationKey) {
         try {
-            if (configKey == GOOGLE) {
-                return this.awsConfiguration.optJsonObject(configKey).getString("ClientId-WebApp") != null;
+            JSONObject jsonObject = this.awsConfiguration.optJsonObject(configurationKey);
+            if (configurationKey.equals(GOOGLE)) {
+                return jsonObject != null && jsonObject.getString(GOOGLE_WEBAPP_CONFIG_KEY) != null;
+            } else {
+                return jsonObject != null;
             }
-            return this.awsConfiguration.optJsonObject(configKey) != null;
         } catch (final Exception exception) {
-            Log.e(LOG_TAG, "Error in reading awsconfiguration.json for " + configKey, exception);
+            Log.d(LOG_TAG, configurationKey + " not found in `awsconfiguration.json`");
             return false;
         }
     }
-
     /**
      * Resume any previusly signed-in session.
      * 
@@ -358,9 +365,9 @@ public final class AWSMobileClient {
     }
 
     /**
-     * {@code AWSMobileClient.InitializeBuilder} accepts and retrieves
+     * {@code InitializeBuilder} accepts and retrieves
      * the optional parameters necessary for initializing the 
-     * AWSMobileClient to work on.
+     * {@link AWSMobileClient} to work on.
      */
     public class InitializeBuilder {
 
@@ -368,12 +375,20 @@ public final class AWSMobileClient {
         private AWSConfiguration awsConfiguration;
         private SignInProviderConfig[] signInProviderConfig;
 
+        /**
+         * Constructor that intializes the InitializeBuilder
+         */
         public InitializeBuilder() {
             this.context = null;
             this.awsConfiguration = null;
             this.signInProviderConfig = null;
         }
 
+        /**
+         * Constructor that intializes the InitializeBuilder
+         * with the context passed in.
+         * @param context The context object passed in
+         */
         public InitializeBuilder(final Context context) {
             this.context = context;
             this.awsConfiguration = null;
@@ -381,6 +396,7 @@ public final class AWSMobileClient {
         }
 
         /**
+         * Sets the AWSConfiguration object passed in
          * @param awsConfiguration The instance of awsconfiguration.json
          * @return instance of InitializeBuilder
          */
@@ -390,6 +406,7 @@ public final class AWSMobileClient {
         }
 
         /**
+         * Sets the list of SignInProviderConfig passed in
          * @param providersConfig The SignInProvider class with permissions
          * @return instance of InitializeBuilder
          */
@@ -423,7 +440,7 @@ public final class AWSMobileClient {
         }
 
         /**
-         * Initialize the AWSMobileClient with the parameters passed in. 
+         * Initialize the {@link AWSMobileClient} with the parameters passed in. 
          */
         public void execute() {
             initializeWithBuilder(this);
@@ -444,8 +461,8 @@ public final class AWSMobileClient {
 
         /**
          * Constructor
-         * @param signInProvider 
-         * @param providerPermissions
+         * @param signInProvider        The class object of the SignInProvider
+         * @param providerPermissions   Provider permissions if applicable
          */
         public SignInProviderConfig(final Class<? extends SignInProvider> signInProvider,
                                     final String... providerPermissions) {

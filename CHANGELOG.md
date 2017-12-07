@@ -1,5 +1,25 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.10](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.10)
+
+### New Features
+
+* **Amazon Rekognition**
+  * **Breaking API Change**
+    * The `GenderType` enum entries have changed from `MALE` `FEMALE` to `Male` `Female`.
+    * The `LandmarkType` enum entries have changed to camelcase. i.e. `EYE_LEFT` `LEFT_EYEBROW_LEFT` to `EyeLeft` `LeftEyebrowLeft`
+  * Update the enum value of LandmarkType and GenderType to be consistent with service response.
+  * Update to add face and text detection.
+  * Update to Amazon Rekognition in general to latest API specifications.
+
+### Bug Fixes:
+
+- **Amazon Pinpoint**
+  - Improve error handling during event submission to ensure DB event corruption is handled gracefully (without crashing the app due to an uncaught exception).
+
+- **Amazon Kinesis Video Streams**
+  - **Breaking API Change** `KinesisVideoAndroidServiceClient.getAwsAcuityClient()` is renamed to `KinesisVideoAndroidServiceClient.getAwsKinesisVideoClient()` for consistency.
+
 ## [Release 2.6.9](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.9)
 
 ### Bug Fixes:

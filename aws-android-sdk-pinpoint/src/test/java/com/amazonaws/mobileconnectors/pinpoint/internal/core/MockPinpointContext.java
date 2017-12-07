@@ -38,6 +38,7 @@ import com.amazonaws.services.pinpoint.model.ChannelType;
 import com.amazonaws.services.pinpointanalytics.AmazonPinpointAnalyticsClient;
 import android.app.Activity;
 import android.content.Context;
+import org.robolectric.RuntimeEnvironment;
 
 public class MockPinpointContext extends PinpointContext {
 
@@ -78,8 +79,7 @@ public class MockPinpointContext extends PinpointContext {
                                       boolean initWifi,
                                       boolean initWAN, String networkType) {
 
-        final SharedPrefsUniqueIdService uniqueIdService = new SharedPrefsUniqueIdService(id,
-                                                                                                 new Activity());
+        final SharedPrefsUniqueIdService uniqueIdService = new SharedPrefsUniqueIdService(id, RuntimeEnvironment.application.getApplicationContext());
         this.uniqueId = uniqueIdService.getUniqueId(this);
 
         this.sdkInfo = sdkInfo;

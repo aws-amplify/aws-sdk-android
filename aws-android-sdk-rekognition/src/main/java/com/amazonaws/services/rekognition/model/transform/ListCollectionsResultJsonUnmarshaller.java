@@ -41,6 +41,11 @@ public class ListCollectionsResultJsonUnmarshaller implements
             } else if (name.equals("NextToken")) {
                 listCollectionsResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("FaceModelVersions")) {
+                listCollectionsResult.setFaceModelVersions(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

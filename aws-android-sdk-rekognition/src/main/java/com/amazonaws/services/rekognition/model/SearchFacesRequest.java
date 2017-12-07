@@ -41,7 +41,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * input face.
  * </p>
  * <p>
- * For an example, see <a>example3</a>.
+ * For an example, see <a>search-face-with-id-procedure</a>.
  * </p>
  * <p>
  * This operation requires permissions to perform the

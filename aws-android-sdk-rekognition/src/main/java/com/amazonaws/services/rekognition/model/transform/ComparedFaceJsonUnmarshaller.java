@@ -41,6 +41,17 @@ class ComparedFaceJsonUnmarshaller implements Unmarshaller<ComparedFace, JsonUnm
             } else if (name.equals("Confidence")) {
                 comparedFace.setConfidence(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Landmarks")) {
+                comparedFace.setLandmarks(new ListUnmarshaller<Landmark>(LandmarkJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("Pose")) {
+                comparedFace.setPose(PoseJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Quality")) {
+                comparedFace.setQuality(ImageQualityJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

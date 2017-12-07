@@ -35,6 +35,27 @@ class ComparedFaceJsonMarshaller {
             jsonWriter.name("Confidence");
             jsonWriter.value(confidence);
         }
+        if (comparedFace.getLandmarks() != null) {
+            java.util.List<Landmark> landmarks = comparedFace.getLandmarks();
+            jsonWriter.name("Landmarks");
+            jsonWriter.beginArray();
+            for (Landmark landmarksItem : landmarks) {
+                if (landmarksItem != null) {
+                    LandmarkJsonMarshaller.getInstance().marshall(landmarksItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (comparedFace.getPose() != null) {
+            Pose pose = comparedFace.getPose();
+            jsonWriter.name("Pose");
+            PoseJsonMarshaller.getInstance().marshall(pose, jsonWriter);
+        }
+        if (comparedFace.getQuality() != null) {
+            ImageQuality quality = comparedFace.getQuality();
+            jsonWriter.name("Quality");
+            ImageQualityJsonMarshaller.getInstance().marshall(quality, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

@@ -19,6 +19,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.MobileAnalyticsTestBase;
 import android.app.Activity;
@@ -43,7 +44,7 @@ public class AndroidPreferencesTest extends MobileAnalyticsTestBase {
 
     @Before
     public void setup() {
-        context = new Activity();
+        context = RuntimeEnvironment.application.getApplicationContext();
         pref = context.getSharedPreferences(preferencesKey,
                                                    Context.MODE_PRIVATE);
     }

@@ -16,6 +16,7 @@
   */
 
 /**
- * Package Info for UserPools.
+ * AWS Auth SDK - UserPools contains high-level
+ * wrapper over the Amazon Cognito UserPools with a managed SignIn-UI.
  */
 package com.amazonaws.mobile.auth.userpools;

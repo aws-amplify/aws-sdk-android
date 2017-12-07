@@ -58,7 +58,7 @@ public class SignInView extends LinearLayout {
     private static final int IMAGE_LAYOUT_MARGINS = dp(10);
 
     /** String that represents the SDK Version. */
-    private static final String SDK_VERSION = "2.6.9";
+    private static final String SDK_VERSION = "2.6.10";
 
     /** Common Prefix of the namespaces of different SignIn providers. */
     private static final String NAMESPACE_COMMON_PREFIX = "com.amazonaws.mobile.auth";
@@ -480,8 +480,7 @@ public class SignInView extends LinearLayout {
             Intent intent = ((Activity) context).getIntent();
             return (AuthUIConfiguration)(intent.getSerializableExtra(CONFIGURATION_KEY));
         } catch (Exception exception) {
-            exception.printStackTrace();
-            Log.e(LOG_TAG, "Intent is null. Cannot read the configuration from the intent.");
+            Log.e(LOG_TAG, "Intent is null. Cannot read the configuration from the intent.", exception);
             return null;
         }
     }
@@ -494,6 +493,11 @@ public class SignInView extends LinearLayout {
         try {
             if (this.config != null) {
                 ArrayList<Class<? extends SignInButton>> signInButtons = this.config.getSignInButtons();
+                if (signInButtons == null) {
+                    Log.d(LOG_TAG, "Skipping creating the SignInButtons. No SignInbuttons were added to the view.");
+                    return;
+                }
+
                 for (Class<? extends SignInButton> signInButton : signInButtons) {
                     SignInButton buttonObject = (SignInButton) createDependencyObject(signInButton.getName(),
                             context, signInButton.getCanonicalName());
@@ -509,11 +513,11 @@ public class SignInView extends LinearLayout {
                       }
                 }
             } else {
-                Log.d(LOG_TAG, "Configuration is Null. There are no buttons to add to the view");
+                Log.d(LOG_TAG, "AuthUIConfiguration is not configured with any SignInButtons. "
+                                + "There are no buttons to add to the view");
             }
         } catch (Exception exception) {
-            exception.printStackTrace();
-            Log.e(LOG_TAG, "Cannot access the configuration or error in adding the signin button to the view");
+            Log.e(LOG_TAG, "Cannot access the configuration or error in adding the signin button to the view", exception);
             return;
         }
     }

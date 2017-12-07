@@ -26,7 +26,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * subsequent request to fetch the next set of collection IDs.
  * </p>
  * <p>
- * For an example, see <a>example1</a>.
+ * For an example, see <a>list-collection-procedure</a>.
  * </p>
  * <p>
  * This operation requires permissions to perform the

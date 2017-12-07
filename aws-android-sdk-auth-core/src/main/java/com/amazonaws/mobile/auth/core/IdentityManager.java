@@ -61,6 +61,13 @@ import org.json.JSONArray;
 /**
  * The identity manager keeps track of the current sign-in provider and is responsible
  * for caching credentials.
+ * 
+ * <pre>
+ * // Create IdentityManager and set it as the default instance.
+ * IdentityManager idm = new IdentityManager(getApplicationContext(), 
+ *                             new AWSConfiguration(getApplicationContext()));
+ * IdentityManager.setDefaultIdentityManager(idm);
+ * </pre>
  */
 public class IdentityManager {
 
@@ -173,6 +180,8 @@ public class IdentityManager {
     }
 
     /**
+     * Constructor that takes in the application context.
+     * 
      * @param context the application context.
      */
     public IdentityManager(final Context context) {

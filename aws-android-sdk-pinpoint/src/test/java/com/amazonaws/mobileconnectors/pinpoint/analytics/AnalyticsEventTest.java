@@ -24,6 +24,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
@@ -59,7 +60,7 @@ public class AnalyticsEventTest extends MobileAnalyticsTestBase {
                                                                   SDK_VERSION)
                                               .withUniqueIdValue(UNIQUE_ID)
                                               .withDeviceDetails(testDeviceDetails)
-                                              .withContext(Robolectric.application
+                                              .withContext(RuntimeEnvironment.application
                                                                    .getApplicationContext())
                                               .build();
 
@@ -94,7 +95,7 @@ public class AnalyticsEventTest extends MobileAnalyticsTestBase {
                                                                   SDK_VERSION)
                                               .withUniqueIdValue(UNIQUE_ID)
                                               .withDeviceDetails(testDeviceDetails)
-                                              .withContext(Robolectric.application
+                                              .withContext(RuntimeEnvironment.application
                                                                    .getApplicationContext())
                                               .build();
 

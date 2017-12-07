@@ -41,6 +41,9 @@ public class IndexFacesResultJsonUnmarshaller implements
             } else if (name.equals("OrientationCorrection")) {
                 indexFacesResult.setOrientationCorrection(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("FaceModelVersion")) {
+                indexFacesResult.setFaceModelVersion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Indicates the pose of the face as determined by pitch, roll, and the yaw.
+ * Indicates the pose of the face as determined by its pitch, roll, and yaw.
  * </p>
  */
 public class Pose implements Serializable {

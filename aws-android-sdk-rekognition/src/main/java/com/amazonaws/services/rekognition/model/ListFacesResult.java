@@ -35,6 +35,14 @@ public class ListFacesResult implements Serializable {
 
     /**
      * <p>
+     * Version number of the face detection model associated with the input
+     * collection (<code>CollectionId</code>).
+     * </p>
+     */
+    private String faceModelVersion;
+
+    /**
+     * <p>
      * An array of <code>Face</code> objects.
      * </p>
      *
@@ -162,6 +170,57 @@ public class ListFacesResult implements Serializable {
     }
 
     /**
+     * <p>
+     * Version number of the face detection model associated with the input
+     * collection (<code>CollectionId</code>).
+     * </p>
+     *
+     * @return <p>
+     *         Version number of the face detection model associated with the
+     *         input collection (<code>CollectionId</code>).
+     *         </p>
+     */
+    public String getFaceModelVersion() {
+        return faceModelVersion;
+    }
+
+    /**
+     * <p>
+     * Version number of the face detection model associated with the input
+     * collection (<code>CollectionId</code>).
+     * </p>
+     *
+     * @param faceModelVersion <p>
+     *            Version number of the face detection model associated with the
+     *            input collection (<code>CollectionId</code>).
+     *            </p>
+     */
+    public void setFaceModelVersion(String faceModelVersion) {
+        this.faceModelVersion = faceModelVersion;
+    }
+
+    /**
+     * <p>
+     * Version number of the face detection model associated with the input
+     * collection (<code>CollectionId</code>).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param faceModelVersion <p>
+     *            Version number of the face detection model associated with the
+     *            input collection (<code>CollectionId</code>).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListFacesResult withFaceModelVersion(String faceModelVersion) {
+        this.faceModelVersion = faceModelVersion;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -175,7 +234,9 @@ public class ListFacesResult implements Serializable {
         if (getFaces() != null)
             sb.append("Faces: " + getFaces() + ",");
         if (getNextToken() != null)
-            sb.append("NextToken: " + getNextToken());
+            sb.append("NextToken: " + getNextToken() + ",");
+        if (getFaceModelVersion() != null)
+            sb.append("FaceModelVersion: " + getFaceModelVersion());
         sb.append("}");
         return sb.toString();
     }
@@ -187,6 +248,8 @@ public class ListFacesResult implements Serializable {
 
         hashCode = prime * hashCode + ((getFaces() == null) ? 0 : getFaces().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
+        hashCode = prime * hashCode
+                + ((getFaceModelVersion() == null) ? 0 : getFaceModelVersion().hashCode());
         return hashCode;
     }
 
@@ -209,6 +272,11 @@ public class ListFacesResult implements Serializable {
             return false;
         if (other.getNextToken() != null
                 && other.getNextToken().equals(this.getNextToken()) == false)
+            return false;
+        if (other.getFaceModelVersion() == null ^ this.getFaceModelVersion() == null)
+            return false;
+        if (other.getFaceModelVersion() != null
+                && other.getFaceModelVersion().equals(this.getFaceModelVersion()) == false)
             return false;
         return true;
     }

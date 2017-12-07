@@ -23,8 +23,8 @@ import java.util.Map;
  */
 public enum GenderType {
 
-    MALE("MALE"),
-    FEMALE("FEMALE");
+    Male("Male"),
+    Female("Female");
 
     private String value;
 
@@ -40,8 +40,8 @@ public enum GenderType {
     private static final Map<String, GenderType> enumMap;
     static {
         enumMap = new HashMap<String, GenderType>();
-        enumMap.put("MALE", MALE);
-        enumMap.put("FEMALE", FEMALE);
+        enumMap.put("Male", Male);
+        enumMap.put("Female", Female);
     }
 
     /**

@@ -28,6 +28,7 @@ import org.junit.runner.RunWith;
 import org.mockito.internal.util.reflection.Whitebox;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.MobileAnalyticsTestBase;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
@@ -68,7 +69,7 @@ public class EndpointProfileTest extends MobileAnalyticsTestBase {
             .withSdkInfo(SDK_NAME, SDK_VERSION)
             .withUniqueIdValue(UNIQUE_ID)
             .withDeviceDetails(testDeviceDetails)
-            .withContext(Robolectric.application
+            .withContext(RuntimeEnvironment.application
                              .getApplicationContext())
             .build();
 

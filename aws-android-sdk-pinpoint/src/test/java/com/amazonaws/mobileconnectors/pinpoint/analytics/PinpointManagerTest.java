@@ -20,6 +20,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import com.amazonaws.auth.AnonymousAWSCredentials;
 import com.amazonaws.internal.StaticCredentialsProvider;
@@ -46,12 +47,11 @@ public class PinpointManagerTest {
     private PinpointConfiguration createConfig(String appId) {
         provider = new StaticCredentialsProvider(new AnonymousAWSCredentials());
         return new PinpointConfiguration(new ContextWithPermissions(
-                                                                           new Activity()
-                                                                                   .getApplicationContext()),
-                                                appId,
-                                                Regions.US_EAST_1,
-                                                ChannelType.GCM,
-                                                provider);
+                RuntimeEnvironment.application.getApplicationContext()),
+                appId,
+                Regions.US_EAST_1,
+                ChannelType.GCM,
+                provider);
     }
 
     /**
