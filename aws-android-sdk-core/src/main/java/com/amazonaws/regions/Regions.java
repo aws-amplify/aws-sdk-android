@@ -66,7 +66,10 @@ public enum Regions {
     CA_CENTRAL_1("ca-central-1"),
 
     /** cn-north-1. */
-    CN_NORTH_1("cn-north-1");
+    CN_NORTH_1("cn-north-1"),
+    
+    /** cn-northwest-1. */
+    CN_NORTHWEST_1("cn-northwest-1");
 
     /**
      * The default region that new customers in the US are encouraged to use
