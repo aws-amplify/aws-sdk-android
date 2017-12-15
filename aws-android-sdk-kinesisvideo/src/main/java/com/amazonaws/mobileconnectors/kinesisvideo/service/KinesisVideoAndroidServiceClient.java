@@ -77,7 +77,7 @@ public final class KinesisVideoAndroidServiceClient implements KinesisVideoServi
     private final Log log;
     private KinesisVideoClientConfiguration configuration;
 
-    private static AWSKinesisVideoClient createAwsAcuityClient(final KinesisVideoCredentialsProvider credentialsProvider,
+    private static AWSKinesisVideoClient createAwsKinesisVideoClient(final KinesisVideoCredentialsProvider credentialsProvider,
             final Region region,
             final String endpoint,
             final int timeoutInMillis)
@@ -85,10 +85,10 @@ public final class KinesisVideoAndroidServiceClient implements KinesisVideoServi
     {
 
         final AWSCredentials credentials = createAwsCredentials(credentialsProvider);
-        return createAwsAcuityClient(credentials, region, endpoint, timeoutInMillis);
+        return createAwsKinesisVideoClient(credentials, region, endpoint, timeoutInMillis);
     }
 
-    private static AWSKinesisVideoClient createAwsAcuityClient(final AWSCredentialsProvider awsCredentialsProvider,
+    private static AWSKinesisVideoClient createAwsKinesisVideoClient(final AWSCredentialsProvider awsCredentialsProvider,
             final Region region,
             final String endpoint,
             final int timeoutInMillis)
@@ -96,10 +96,10 @@ public final class KinesisVideoAndroidServiceClient implements KinesisVideoServi
     {
 
         final AWSCredentials credentials = awsCredentialsProvider.getCredentials();
-        return createAwsAcuityClient(credentials, region, endpoint, timeoutInMillis);
+        return createAwsKinesisVideoClient(credentials, region, endpoint, timeoutInMillis);
     }
 
-    private static AWSKinesisVideoClient createAwsAcuityClient(final AWSCredentials credentials,
+    private static AWSKinesisVideoClient createAwsKinesisVideoClient(final AWSCredentials credentials,
             final Region region,
             final String endpoint,
             final int timeoutInMillis)
@@ -107,14 +107,14 @@ public final class KinesisVideoAndroidServiceClient implements KinesisVideoServi
     {
 
         final ClientConfiguration clientConfiguration = createClientConfiguration(timeoutInMillis);
-        final AWSKinesisVideoClient awsAcuityClient = new AWSKinesisVideoClient(credentials, clientConfiguration);
+        final AWSKinesisVideoClient awsKinesisVideoClient = new AWSKinesisVideoClient(credentials, clientConfiguration);
 
-        awsAcuityClient.setRegion(region);
-        awsAcuityClient.setSignerRegionOverride(region.getName());
-        awsAcuityClient.setServiceNameIntern("kinesisvideo");
-        awsAcuityClient.setEndpoint(endpoint);
+        awsKinesisVideoClient.setRegion(region);
+        awsKinesisVideoClient.setSignerRegionOverride(region.getName());
+        awsKinesisVideoClient.setServiceNameIntern("kinesisvideo");
+        awsKinesisVideoClient.setEndpoint(endpoint);
 
-        return awsAcuityClient;
+        return awsKinesisVideoClient;
     }
 
     private static AWSCredentials createAwsCredentials(final @NonNull KinesisVideoCredentialsProvider credentialsProvider)
@@ -156,11 +156,11 @@ public final class KinesisVideoAndroidServiceClient implements KinesisVideoServi
     }
 
     @NonNull
-    public static AWSKinesisVideo getAwsAcuityClient(final @NonNull AWSCredentialsProvider credentialsProvider,
+    public static AWSKinesisVideo getAwsKinesisVideoClient(final @NonNull AWSCredentialsProvider credentialsProvider,
             final @NonNull Region region,
             final @NonNull String endpoint,
             final int timeoutInMillis) throws KinesisVideoException {
-        return createAwsAcuityClient(credentialsProvider,
+        return createAwsKinesisVideoClient(credentialsProvider,
                 region,
                 endpoint,
                 timeoutInMillis);
@@ -182,7 +182,7 @@ public final class KinesisVideoAndroidServiceClient implements KinesisVideoServi
             @Nullable final KinesisVideoCredentialsProvider credentialsProvider)
             throws KinesisVideoException
     {
-        final AWSKinesisVideoClient serviceClient = createAwsAcuityClient(credentialsProvider,
+        final AWSKinesisVideoClient serviceClient = createAwsKinesisVideoClient(credentialsProvider,
                 Region.getRegion(Regions.fromName(configuration.getRegion())),
                 configuration.getEndpoint(),
                 (int) timeoutInMillis);
@@ -215,7 +215,7 @@ public final class KinesisVideoAndroidServiceClient implements KinesisVideoServi
             long timeoutInMillis,
             @Nullable final KinesisVideoCredentialsProvider credentialsProvider) throws KinesisVideoException
     {
-        final AWSKinesisVideoClient serviceClient = createAwsAcuityClient(credentialsProvider,
+        final AWSKinesisVideoClient serviceClient = createAwsKinesisVideoClient(credentialsProvider,
                 Region.getRegion(Regions.fromName(configuration.getRegion())),
                 configuration.getEndpoint(),
                 (int) timeoutInMillis);
@@ -249,7 +249,7 @@ public final class KinesisVideoAndroidServiceClient implements KinesisVideoServi
             long timeoutInMillis,
             @Nullable final KinesisVideoCredentialsProvider credentialsProvider) throws KinesisVideoException
     {
-        final AWSKinesisVideoClient serviceClient = createAwsAcuityClient(credentialsProvider,
+        final AWSKinesisVideoClient serviceClient = createAwsKinesisVideoClient(credentialsProvider,
                 Region.getRegion(Regions.fromName(configuration.getRegion())),
                 configuration.getEndpoint(),
                 (int) timeoutInMillis);
@@ -279,7 +279,7 @@ public final class KinesisVideoAndroidServiceClient implements KinesisVideoServi
             long timeoutInMillis,
             @Nullable final KinesisVideoCredentialsProvider credentialsProvider) throws KinesisVideoException
     {
-        final AWSKinesisVideoClient serviceClient = createAwsAcuityClient(credentialsProvider,
+        final AWSKinesisVideoClient serviceClient = createAwsKinesisVideoClient(credentialsProvider,
                 Region.getRegion(Regions.fromName(configuration.getRegion())),
                 configuration.getEndpoint(),
                 (int) timeoutInMillis);
@@ -307,7 +307,7 @@ public final class KinesisVideoAndroidServiceClient implements KinesisVideoServi
             long timeoutInMillis,
             @Nullable final KinesisVideoCredentialsProvider credentialsProvider) throws KinesisVideoException
     {
-        final AWSKinesisVideoClient serviceClient = createAwsAcuityClient(credentialsProvider,
+        final AWSKinesisVideoClient serviceClient = createAwsKinesisVideoClient(credentialsProvider,
                 Region.getRegion(Regions.fromName(configuration.getRegion())),
                 configuration.getEndpoint(),
                 (int) timeoutInMillis);
