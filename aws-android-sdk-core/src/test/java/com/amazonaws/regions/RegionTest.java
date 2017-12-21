@@ -41,7 +41,7 @@ public class RegionTest {
     @Test
     public void testRegionEquals() {
         final Region usWest2 = RegionUtils.getRegion("us-west-2");
-        final Region other = RegionUtils.getRegionByEndpoint("s3-us-west-2.amazonaws.com");
+        final Region other = RegionUtils.getRegionByEndpoint("s3.us-west-2.amazonaws.com");
 
         assertEquals(usWest2, other);
     }

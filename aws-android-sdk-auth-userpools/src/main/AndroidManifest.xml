@@ -40,4 +40,4 @@
              >
          </activity>
      </application>
-</manifest>
+<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="25" /></manifest>

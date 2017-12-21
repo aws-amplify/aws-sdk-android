@@ -1,6 +1,23 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.12)
+
+### New Features
+
+* **AWS Core Runtime**
+  * Added support for Europe (Paris) region `eu-west-3`.
+
+### Bug Fixes
+
+* **AWS Auth SDK**
+  * Added minimum sdks and target sdk version.
+
+* **Amazon Kinesis Video Streams**
+  * Added minimum sdks and target sdk version.
+
 ## [Release 2.6.11](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.11)
+
+### New Features
 
 * **AWS Core Runtime**
   * Added support for China (Ningxia) region `cn-northwest-1`.
