@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2017 Amazon Technologies, Inc.
+ * Copyright 2016-2018 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,9 @@
  */
 package com.amazonaws.services.s3.internal;
 
+/**
+ * Interface for S3RequesterChargedResult.
+ */
 public interface S3RequesterChargedResult {
 
     /**

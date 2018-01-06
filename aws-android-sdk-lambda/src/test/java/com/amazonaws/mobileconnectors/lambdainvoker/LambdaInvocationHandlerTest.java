@@ -19,10 +19,17 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+import com.amazonaws.ClientConfiguration;
 import com.amazonaws.services.lambda.AWSLambda;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.lambda.model.InvokeRequest;
 import com.amazonaws.services.lambda.model.InvokeResult;
 import com.amazonaws.util.StringUtils;
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.internal.StaticCredentialsProvider;
+import com.amazonaws.mobile.config.AWSConfiguration;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -71,6 +78,76 @@ public class LambdaInvocationHandlerTest {
 
         @LambdaFunction
         String echoNoArgument();
+    }
+    
+    @Test(expected=java.lang.IllegalArgumentException.class)
+    public void testConstructors() {
+    	LambdaInvokerFactory f = new LambdaInvokerFactory.Builder().build();
+    }
+    
+    @Test
+    public void testConstructors2() {
+    	ClientConfiguration c = new ClientConfiguration();
+    	LambdaInvokerFactory f = new LambdaInvokerFactory.Builder()
+    			.clientConfiguration(c)
+    			.lambdaClient(lambda).build();
+    }
+    
+    @Test
+    public void testConstructors3() {
+    	ClientConfiguration c = new ClientConfiguration();
+    	c.setUserAgent("test");
+    	c.setMaxConnections(2);
+    	c.getMaxConnections();
+    	c.getUserAgent();
+    	LambdaInvokerFactory f = new LambdaInvokerFactory.Builder()
+    			.clientConfiguration(c)
+    			.lambdaClient(lambda).build();
+    }
+    
+    @Test(expected=java.lang.IllegalArgumentException.class)
+    public void testConstructors4() {
+    	ClientConfiguration c = new ClientConfiguration();
+    	c.setUserAgent("test");
+    	c.setMaxConnections(2);
+    	c.getMaxConnections();
+    	c.getUserAgent();
+    	LambdaInvokerFactory f = new LambdaInvokerFactory.Builder()
+    			.clientConfiguration(c)
+    			.build();
+    			
+    }
+    
+    @Test
+    public void testConstructors5() {
+    	ClientConfiguration c = new ClientConfiguration();
+    	c.setUserAgent("test");
+    	c.setMaxConnections(2);
+    	c.getMaxConnections();
+    	c.getUserAgent();
+    	LambdaInvokerFactory f = new LambdaInvokerFactory.Builder()
+    			.clientConfiguration(c)
+    			.lambdaClient(lambda)
+    			.region(Regions.US_WEST_2)
+    			.build();
+    			
+    }
+    
+    @Test
+    public void testConstructors6() {
+    	ClientConfiguration c = new ClientConfiguration();
+    	c.setUserAgent("test");
+    	c.setMaxConnections(2);
+    	c.getMaxConnections();
+    	c.getUserAgent();
+    	AWSCredentials creds =  new BasicAWSCredentials("random", "test");
+    	StaticCredentialsProvider credProvider = new StaticCredentialsProvider(creds);
+    	LambdaInvokerFactory f = new LambdaInvokerFactory.Builder()
+    			.clientConfiguration(c)
+    			.credentialsProvider(credProvider)
+    			.region(Regions.US_WEST_2)
+    			.build();
+    			
     }
 
     @Test(expected = UnsupportedOperationException.class)

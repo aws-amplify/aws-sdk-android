@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -46,7 +46,14 @@ public class SynthesizeSpeechResult implements Serializable {
      * <li>
      * <p>
      * If you request <code>pcm</code> as the <code>OutputFormat</code>, the
-     * <code>ContentType</code> returned is audio/pcm.
+     * <code>ContentType</code> returned is audio/pcm in a signed 16-bit, 1
+     * channel (mono), little-endian format.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you request <code>json</code> as the <code>OutputFormat</code>, the
+     * <code>ContentType</code> returned is audio/json.
      * </p>
      * </li>
      * </ul>
@@ -128,7 +135,14 @@ public class SynthesizeSpeechResult implements Serializable {
      * <li>
      * <p>
      * If you request <code>pcm</code> as the <code>OutputFormat</code>, the
-     * <code>ContentType</code> returned is audio/pcm.
+     * <code>ContentType</code> returned is audio/pcm in a signed 16-bit, 1
+     * channel (mono), little-endian format.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you request <code>json</code> as the <code>OutputFormat</code>, the
+     * <code>ContentType</code> returned is audio/json.
      * </p>
      * </li>
      * </ul>
@@ -156,7 +170,14 @@ public class SynthesizeSpeechResult implements Serializable {
      *         <li>
      *         <p>
      *         If you request <code>pcm</code> as the <code>OutputFormat</code>,
-     *         the <code>ContentType</code> returned is audio/pcm.
+     *         the <code>ContentType</code> returned is audio/pcm in a signed
+     *         16-bit, 1 channel (mono), little-endian format.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         If you request <code>json</code> as the <code>OutputFormat</code>
+     *         , the <code>ContentType</code> returned is audio/json.
      *         </p>
      *         </li>
      *         </ul>
@@ -188,7 +209,14 @@ public class SynthesizeSpeechResult implements Serializable {
      * <li>
      * <p>
      * If you request <code>pcm</code> as the <code>OutputFormat</code>, the
-     * <code>ContentType</code> returned is audio/pcm.
+     * <code>ContentType</code> returned is audio/pcm in a signed 16-bit, 1
+     * channel (mono), little-endian format.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you request <code>json</code> as the <code>OutputFormat</code>, the
+     * <code>ContentType</code> returned is audio/json.
      * </p>
      * </li>
      * </ul>
@@ -218,7 +246,15 @@ public class SynthesizeSpeechResult implements Serializable {
      *            <p>
      *            If you request <code>pcm</code> as the
      *            <code>OutputFormat</code>, the <code>ContentType</code>
-     *            returned is audio/pcm.
+     *            returned is audio/pcm in a signed 16-bit, 1 channel (mono),
+     *            little-endian format.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            If you request <code>json</code> as the
+     *            <code>OutputFormat</code>, the <code>ContentType</code>
+     *            returned is audio/json.
      *            </p>
      *            </li>
      *            </ul>
@@ -250,7 +286,14 @@ public class SynthesizeSpeechResult implements Serializable {
      * <li>
      * <p>
      * If you request <code>pcm</code> as the <code>OutputFormat</code>, the
-     * <code>ContentType</code> returned is audio/pcm.
+     * <code>ContentType</code> returned is audio/pcm in a signed 16-bit, 1
+     * channel (mono), little-endian format.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you request <code>json</code> as the <code>OutputFormat</code>, the
+     * <code>ContentType</code> returned is audio/json.
      * </p>
      * </li>
      * </ul>
@@ -283,7 +326,15 @@ public class SynthesizeSpeechResult implements Serializable {
      *            <p>
      *            If you request <code>pcm</code> as the
      *            <code>OutputFormat</code>, the <code>ContentType</code>
-     *            returned is audio/pcm.
+     *            returned is audio/pcm in a signed 16-bit, 1 channel (mono),
+     *            little-endian format.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            If you request <code>json</code> as the
+     *            <code>OutputFormat</code>, the <code>ContentType</code>
+     *            returned is audio/json.
      *            </p>
      *            </li>
      *            </ul>

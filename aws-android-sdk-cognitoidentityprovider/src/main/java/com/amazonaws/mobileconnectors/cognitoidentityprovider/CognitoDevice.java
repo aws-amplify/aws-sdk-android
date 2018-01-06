@@ -40,14 +40,14 @@ import java.util.Date;
  */
 public class CognitoDevice {
 
-    final private String DEVICE_NAME_ATTRIBUTE = "device_name";
-    final private String DEVICE_TYPE_REMEMBERED = "remembered";
-    final private String DEVICE_TYPE_NOT_REMEMBERED = "not_remembered";
+    private static final String DEVICE_NAME_ATTRIBUTE = "device_name";
+    private static final String DEVICE_TYPE_REMEMBERED = "remembered";
+    private static final String DEVICE_TYPE_NOT_REMEMBERED = "not_remembered";
 
     /**
      * Service generated device-key.
      */
-    final private String deviceKey;
+    private final String deviceKey;
 
     /**
      * Device attributes, will be null if no device attributes are available.
@@ -72,12 +72,12 @@ public class CognitoDevice {
     /**
      * The {@link CognitoUser} this device is linked to.
      */
-    final private CognitoUser user;
+    private final CognitoUser user;
 
     /**
      * Required to access Android OS resources.
      */
-    final private Context context;
+    private final Context context;
 
     /**
      * Constructs an object of type {@link CognitoDevice} with device details.
@@ -425,10 +425,6 @@ public class CognitoDevice {
     private void forgetDeviceInternal(CognitoUserSession session) {
         if (session != null && session.isValid()) {
             if (this.deviceKey != null) {
-                final CognitoDevice currentDeviceKey = user.thisDevice();
-                if (this.deviceKey.equals(currentDeviceKey.getDeviceKey())) {
-                    // CognitoDeviceHelper.clearCachedDevice(user.context);
-                }
                 final ForgetDeviceRequest forgetDeviceRequest = new ForgetDeviceRequest();
                 forgetDeviceRequest.setAccessToken(session.getAccessToken().getJWTToken());
                 forgetDeviceRequest.setDeviceKey(this.deviceKey);

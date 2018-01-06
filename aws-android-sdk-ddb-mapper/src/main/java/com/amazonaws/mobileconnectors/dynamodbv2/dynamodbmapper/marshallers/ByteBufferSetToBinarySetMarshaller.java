@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,12 +27,17 @@ import java.util.Set;
  * A marshaller that marshals sets of Java {@code ByteBuffer}s into DynamoDB
  * BinarySet attributes.
  */
-public class ByteBufferSetToBinarySetMarshaller
+public final class ByteBufferSetToBinarySetMarshaller
         implements BinarySetAttributeMarshaller {
 
     private static final ByteBufferSetToBinarySetMarshaller INSTANCE =
             new ByteBufferSetToBinarySetMarshaller();
 
+    /**
+     * Return a singleton instance.
+     *
+     * @return instance of {@link ByteBufferSetToBinarySetMarshaller}
+     */
     public static ByteBufferSetToBinarySetMarshaller instance() {
         return INSTANCE;
     }
@@ -43,10 +48,10 @@ public class ByteBufferSetToBinarySetMarshaller
     @Override
     public AttributeValue marshall(Object obj) {
         @SuppressWarnings("unchecked")
-        Set<ByteBuffer> buffers = (Set<ByteBuffer>) obj;
-        List<ByteBuffer> attributes = new ArrayList<ByteBuffer>(buffers.size());
+        final Set<ByteBuffer> buffers = (Set<ByteBuffer>) obj;
+        final List<ByteBuffer> attributes = new ArrayList<ByteBuffer>(buffers.size());
 
-        for (ByteBuffer b : buffers) {
+        for (final ByteBuffer b : buffers) {
             attributes.add(b);
         }
 

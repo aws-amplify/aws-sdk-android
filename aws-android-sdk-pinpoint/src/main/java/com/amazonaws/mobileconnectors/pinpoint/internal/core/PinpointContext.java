@@ -1,11 +1,11 @@
 /**
- * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,10 +15,7 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.internal.core;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-
+import java.io.Serializable;
 import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.SessionClient;
@@ -29,24 +26,23 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidSyste
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.SDKInfo;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.NotificationClient;
-import com.amazonaws.regions.Region;
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.pinpoint.AmazonPinpoint;
 import com.amazonaws.services.pinpoint.AmazonPinpointClient;
 import com.amazonaws.services.pinpointanalytics.AmazonPinpointAnalyticsClient;
-
-import java.io.Serializable;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 public class PinpointContext implements Serializable {
     private final AndroidPreferencesConfiguration configuration;
     private final PinpointConfiguration pinpointConfiguration;
-    private String uniqueId;
     private final SDKInfo sdkInfo;
     private final SharedPrefsUniqueIdService uniqueIdService;
     private final AndroidSystem system;
     private final AmazonPinpointAnalyticsClient analyticsServiceClient;
     private final AmazonPinpointClient pinpointServiceClient;
     private final Context applicationContext;
+    private String uniqueId;
     private AnalyticsClient analyticsClient;
     private TargetingClient targetingClient;
     private SessionClient sessionClient;
@@ -68,13 +64,16 @@ public class PinpointContext implements Serializable {
     }
 
     public PinpointContext(final AmazonPinpointAnalyticsClient analyticsServiceClient,
-            final AmazonPinpointClient pinpointServiceClient,
-            final Context applicationContext, final String appId,
-            final SDKInfo sdkInfo, final PinpointConfiguration pinpointConfiguration) {
+                           final AmazonPinpointClient pinpointServiceClient,
+                           final Context applicationContext,
+                           final String appId,
+                           final SDKInfo sdkInfo,
+                           final PinpointConfiguration pinpointConfiguration) {
         this.sdkInfo = sdkInfo;
         this.pinpointConfiguration = pinpointConfiguration;
         this.system = new AndroidSystem(applicationContext, appId);
-        this.uniqueIdService = new SharedPrefsUniqueIdService(appId, applicationContext);
+        this.uniqueIdService = new SharedPrefsUniqueIdService(appId,
+                                                              applicationContext);
         this.uniqueId = uniqueIdService.getUniqueId(this);
         this.analyticsServiceClient = analyticsServiceClient;
         this.pinpointServiceClient = pinpointServiceClient;
@@ -151,11 +150,10 @@ public class PinpointContext implements Serializable {
 
     public String getNetworkType() {
         try {
-            final ConnectivityManager connectivity = (ConnectivityManager) applicationContext
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            final ConnectivityManager connectivity = (ConnectivityManager) applicationContext.getSystemService(
+                Context.CONNECTIVITY_SERVICE);
             final NetworkInfo networkInfo = connectivity.getActiveNetworkInfo();
-            if (null != networkInfo && networkInfo.isConnected() && networkInfo.isAvailable()
-                    && networkInfo.getTypeName() != null) {
+            if (null != networkInfo && networkInfo.isConnected() && networkInfo.isAvailable() && networkInfo.getTypeName() != null) {
                 return networkInfo.getTypeName();
             } else {
                 return "Unknown";

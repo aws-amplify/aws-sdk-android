@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,9 @@ package com.amazonaws.services.s3.model.analytics;
 
 import java.io.Serializable;
 
+/**
+ * The StorageClassAnalysis class.
+ */
 public class StorageClassAnalysis implements Serializable {
 
     private StorageClassAnalysisDataExport dataExport;
@@ -23,6 +26,7 @@ public class StorageClassAnalysis implements Serializable {
     /**
      * Returns the container used to describe how data related to the
      * storage class analysis should be exported.
+     * @return the data export (StorageClassAnalysisDataExport)
      */
     public StorageClassAnalysisDataExport getDataExport() {
         return dataExport;
@@ -31,7 +35,9 @@ public class StorageClassAnalysis implements Serializable {
     /**
      * Sets the container used to describe how data related to the
      * storage class analysis should be exported.
+     * @param dataExport the StorageClassAnalysisDataExport.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setDataExport(StorageClassAnalysisDataExport dataExport) {
         this.dataExport = dataExport;
     }
@@ -40,8 +46,10 @@ public class StorageClassAnalysis implements Serializable {
      * Sets the container used to describe how data related to the
      * storage class analysis should be exported.
      *
-     * Returns this object for method chaining.
+     * @param dataExport the StorageClassAnalysisDataExport.
+     * @return this object for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public StorageClassAnalysis withDataExport(StorageClassAnalysisDataExport dataExport) {
         setDataExport(dataExport);
         return this;

@@ -35,7 +35,7 @@ public interface GetDetailsHandler {
      * This method is called upon encountering errors during this operation.
      * Probe {@code exception} for the cause of this exception.
      *
-     * @param exception
+     * @param exception REQUIRED: Failure details.
      */
     public void onFailure(Exception exception);
 }

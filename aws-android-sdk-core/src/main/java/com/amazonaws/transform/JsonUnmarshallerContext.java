@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,20 +18,33 @@ package com.amazonaws.transform;
 import com.amazonaws.http.HttpResponse;
 import com.amazonaws.util.json.AwsJsonReader;
 
+/** JsonUnmarshallerContext class. */
 public class JsonUnmarshallerContext {
 
     private final AwsJsonReader reader;
     private final HttpResponse httpResponse;
 
+    /**
+     * Constructor.
+     * @param reader the AwsJsonReader.
+     */
     public JsonUnmarshallerContext(AwsJsonReader reader) {
         this(reader, null);
     }
 
+    /**
+     * Constructor.
+     * @param reader the AwsJsonReader.
+     * @param httpResponse the HTTP response.
+     */
     public JsonUnmarshallerContext(AwsJsonReader reader, HttpResponse httpResponse) {
         this.reader = reader;
         this.httpResponse = httpResponse;
     }
 
+    /**
+     * @return the AwsJsonReader.
+     */
     public AwsJsonReader getReader() {
         return reader;
     }
@@ -51,6 +64,9 @@ public class JsonUnmarshallerContext {
         return httpResponse.getHeaders().get(header);
     }
 
+    /**
+     * @return the HTTP response.
+     */
     public HttpResponse getHttpResponse() {
         return httpResponse;
     }

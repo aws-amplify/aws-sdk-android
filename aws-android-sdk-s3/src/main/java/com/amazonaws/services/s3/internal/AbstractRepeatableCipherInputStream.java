@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Portions copyright 2006-2009 James Murty. Please see LICENSE.txt
  * for applicable license terms and NOTICE.txt for applicable notices.
@@ -41,6 +41,8 @@ import java.io.InputStream;
  * encryption state of a {@code CipherInputStream} to an arbitrary point. If you
  * call {@code mark} after calling {@code read} or {@code skip}, it will throw
  * an {@code UnsupportedOperationException}.
+ *
+ * @param <T> The input stream.
  */
 public abstract class AbstractRepeatableCipherInputStream<T>
         extends SdkFilterInputStream {
@@ -121,6 +123,7 @@ public abstract class AbstractRepeatableCipherInputStream<T>
         return super.skip(n);
     }
 
+    @SuppressWarnings("checkstyle:hiddenfield")
     protected abstract FilterInputStream createCipherInputStream(
             InputStream unencryptedDataStream, T cipherFactory);
 }

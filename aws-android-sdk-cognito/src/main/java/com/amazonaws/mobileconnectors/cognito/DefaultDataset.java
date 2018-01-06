@@ -1,5 +1,5 @@
 /**
- * Copyright 2013-2017 Amazon.com, 
+ * Copyright 2013-2018 Amazon.com, 
  * Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Amazon Software License (the "License"). 
@@ -24,7 +24,6 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
 
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.mobileconnectors.cognito.exceptions.DataConflictException;
@@ -47,14 +46,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * Default implementation of {@link Dataset}. It uses {@link CognitoSyncStorage}
  * as remote storage and {@link SQLiteLocalStorage} as local storage.
  */
 class DefaultDataset implements Dataset {
 
-    private static final String TAG = "DefaultDataset";
-
+    private static final Log LOGGER = LogFactory.getLog(DefaultDataset.class);
+    
     /**
      * Max number of retries during synchronize before it gives up.
      */
@@ -135,14 +137,14 @@ class DefaultDataset implements Dataset {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.d(TAG, "start to synchronize " + datasetName);
+                LOGGER.debug("start to synchronize " + datasetName);
 
                 boolean result = false;
                 try {
                     List<String> mergedDatasets = getLocalMergedDatasets();
                     boolean doSync = true;
                     if (!mergedDatasets.isEmpty()) {
-                        Log.i(TAG, "detected merge datasets " + datasetName);
+                        LOGGER.info("detected merge datasets " + datasetName);
                         doSync = callback.onDatasetsMerged(DefaultDataset.this, mergedDatasets);
                     }
                     if (doSync) {
@@ -153,9 +155,9 @@ class DefaultDataset implements Dataset {
                 }
 
                 if (result) {
-                    Log.d(TAG, "successfully synchronize " + datasetName);
+                    LOGGER.debug("successfully synchronize " + datasetName);
                 } else {
-                    Log.d(TAG, "failed to synchronize " + datasetName);
+                    LOGGER.debug("failed to synchronize " + datasetName);
                 }
             }
         }).start();
@@ -174,9 +176,10 @@ class DefaultDataset implements Dataset {
             } catch (DatasetNotFoundException e) {
                 // This exception will fire if this was a local-only dataset and
                 // should be ignored
+                LOGGER.debug("Possibly a local-only dataset", e);
             }
             local.purgeDataset(getIdentityId(), datasetName);
-            callback.onSuccess(DefaultDataset.this, Collections.<Record> emptyList());
+            callback.onSuccess(DefaultDataset.this, Collections.<Record>emptyList());
             return true;
         } catch (DataStorageException dse) {
             callback.onFailure(dse);
@@ -222,7 +225,7 @@ class DefaultDataset implements Dataset {
             // remove both records and metadata
             local.deleteDataset(getIdentityId(), datasetName);
             local.purgeDataset(getIdentityId(), datasetName);
-            callback.onSuccess(DefaultDataset.this, Collections.<Record> emptyList());
+            callback.onSuccess(DefaultDataset.this, Collections.<Record>emptyList());
             return true;
         } else {
             callback.onFailure(new DataStorageException("Manual cancel"));
@@ -266,7 +269,7 @@ class DefaultDataset implements Dataset {
                 }
             }
             if (!conflicts.isEmpty()) {
-                Log.i(TAG, String.format("%d records in conflict!", conflicts.size()));
+                LOGGER.info(String.format("%d records in conflict!", conflicts.size()));
                 if (!callback.onConflict(DefaultDataset.this, conflicts)) {
                     // if they didn't want to continue on resolving conflicts
                     // return
@@ -277,11 +280,11 @@ class DefaultDataset implements Dataset {
             // if there are non-conflicting records from the remote, update them
             // in local
             if (!remoteRecords.isEmpty()) {
-                Log.i(TAG, String.format("save %d records to local", remoteRecords.size()));
+                LOGGER.info(String.format("save %d records to local", remoteRecords.size()));
                 local.putRecords(getIdentityId(), datasetName, remoteRecords);
             }
             // new last sync count
-            Log.i(TAG, String.format("updated sync count %d", datasetUpdates.getSyncCount()));
+            LOGGER.info(String.format("updated sync count %d", datasetUpdates.getSyncCount()));
             local.updateLastSyncCount(getIdentityId(), datasetName,
                     datasetUpdates.getSyncCount());
         }
@@ -316,7 +319,7 @@ class DefaultDataset implements Dataset {
                 }
             }
 
-            Log.i(TAG, String.format("push %d records to remote", localChanges.size()));
+            LOGGER.info(String.format("push %d records to remote", localChanges.size()));
             List<Record> result = null;
             try {
                 SharedPreferences sp = getSharedPreferences();
@@ -324,7 +327,7 @@ class DefaultDataset implements Dataset {
                 result = remote.putRecords(datasetName, localChanges,
                         datasetUpdates.getSyncSessionToken(), deviceId);
             } catch (DataConflictException dce) {
-                Log.i(TAG, "conflicts detected when pushing changes to remote.");
+                LOGGER.info("conflicts detected when pushing changes to remote.");
                 if (lastSyncCount > maxPatchSyncCount) {
                     local.updateLastSyncCount(getIdentityId(), datasetName, maxPatchSyncCount);
                 }
@@ -348,7 +351,7 @@ class DefaultDataset implements Dataset {
             }
 
             if (newSyncCount == lastSyncCount + 1) {
-                Log.i(TAG, String.format("updated sync count %d", newSyncCount));
+                LOGGER.info(String.format("updated sync count %d", newSyncCount));
                 local.updateLastSyncCount(getIdentityId(), datasetName,
                         newSyncCount);
             }
@@ -368,7 +371,7 @@ class DefaultDataset implements Dataset {
      */
     synchronized boolean synchronizeInternal(final SyncCallback callback, int retry) {
         if (retry < 0) {
-            Log.e(TAG, "Synchronize failed because it exceeded the maximum retries");
+            LOGGER.error("Synchronize failed because it exceeded the maximum retries");
             callback.onFailure(new DataStorageException(
                     "Synchronize failed because it exceeded the maximum retries"));
             return false;
@@ -382,7 +385,7 @@ class DefaultDataset implements Dataset {
         }
 
         // get latest modified records from remote
-        Log.d(TAG, "get latest modified records since " + lastSyncCount);
+        LOGGER.debug("get latest modified records since " + lastSyncCount);
         DatasetUpdates datasetUpdates = null;
         try {
             datasetUpdates = remote.listUpdates(datasetName, lastSyncCount);
@@ -522,10 +525,10 @@ class DefaultDataset implements Dataset {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (!DefaultDataset.isNetworkAvailable(context)) {
-                Log.d(TAG, "Connectivity is unavailable.");
+                LOGGER.debug("Connectivity is unavailable.");
                 return;
             }
-            Log.d(TAG, "Connectivity is available. Try synchronizing.");
+            LOGGER.debug("Connectivity is available. Try synchronizing.");
             context.unregisterReceiver(this);
 
             // dereference dataset and callback
@@ -533,7 +536,7 @@ class DefaultDataset implements Dataset {
             SyncCallback callback = callbackRef.get();
             // make sure they are valid
             if (dataset == null || callback == null) {
-                Log.w(TAG, "Abort syncOnConnectivity because either dataset "
+                LOGGER.warn("Abort syncOnConnectivity because either dataset "
                         + "or callback was garbage collected");
             } else {
                 dataset.synchronize(callback);
@@ -547,7 +550,7 @@ class DefaultDataset implements Dataset {
             synchronize(callback);
         } else {
             discardPendingSyncRequest();
-            Log.d(TAG, "Connectivity is unavailable. "
+            LOGGER.debug("Connectivity is unavailable. "
                     + "Scheduling synchronize for when connectivity is resumed.");
             pendingSyncRequest = new SyncOnConnectivity(this, callback);
             // listen to only connectivity change
@@ -558,13 +561,13 @@ class DefaultDataset implements Dataset {
 
     void discardPendingSyncRequest() {
         if (pendingSyncRequest != null) {
-            Log.d(TAG, "Discard previous pending sync request");
+            LOGGER.debug("Discard previous pending sync request");
             synchronized (this) {
                 try {
                     context.unregisterReceiver(pendingSyncRequest);
                 } catch (IllegalArgumentException e) {
                     // ignore in case it has been unregistered
-                    Log.d(TAG, "SyncOnConnectivity has been unregistered.");
+                    LOGGER.debug("SyncOnConnectivity has been unregistered.");
                 }
                 pendingSyncRequest = null;
             }

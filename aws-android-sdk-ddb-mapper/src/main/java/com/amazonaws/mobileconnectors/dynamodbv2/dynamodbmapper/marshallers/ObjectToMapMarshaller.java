@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,11 +21,19 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 import java.util.Map;
 
+/**
+ * A marshaller that marshals object to map.
+ */
 public class ObjectToMapMarshaller implements MapAttributeMarshaller {
 
     private static final ObjectToMapMarshaller INSTANCE =
             new ObjectToMapMarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link ObjectToMapMarshaller}
+     */
     public static ObjectToMapMarshaller instance() {
         return INSTANCE;
     }
@@ -36,6 +44,11 @@ public class ObjectToMapMarshaller implements MapAttributeMarshaller {
         converter = null;
     }
 
+    /**
+     * Constructor.
+     *
+     * @param converter the {@link ItemConverter}
+     */
     public ObjectToMapMarshaller(ItemConverter converter) {
         if (converter == null) {
             throw new NullPointerException("converter");
@@ -45,7 +58,7 @@ public class ObjectToMapMarshaller implements MapAttributeMarshaller {
 
     @Override
     public AttributeValue marshall(Object obj) {
-        Map<String, AttributeValue> values = converter.convert(obj);
+        final Map<String, AttributeValue> values = converter.convert(obj);
         return new AttributeValue().withM(values);
     }
 }

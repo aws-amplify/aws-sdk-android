@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon Technologies, Inc.
+ * Copyright 2011-2018 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ package com.amazonaws.auth;
 public interface AWSSessionCredentials extends AWSCredentials {
 
     /**
-     * Returns the session token for this session.
+     * @return the session token for this session.
      */
     public String getSessionToken();
 }

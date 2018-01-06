@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Portions copyright 2006-2009 James Murty. Please see LICENSE.txt
  * for applicable license terms and NOTICE.txt for applicable notices.
@@ -29,7 +29,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -71,6 +70,7 @@ public final class Mimetypes {
      */
     private final HashMap<String, String> extensionToMimetypeMap;
 
+    @SuppressWarnings("checkstyle:methodlength")
     Mimetypes() {
         extensionToMimetypeMap = new HashMap<String, String>();
         // Default mime types
@@ -263,7 +263,7 @@ public final class Mimetypes {
      *
      * @return an instance of {@link Mimetypes}
      */
-    public synchronized static Mimetypes getInstance() {
+    public static synchronized Mimetypes getInstance() {
         if (mimetypes != null)
             return mimetypes;
 
@@ -284,7 +284,7 @@ public final class Mimetypes {
      * exists when this method is run, the mime type value is replaced with the
      * newer one.
      *
-     * @param is
+     * @param is the input stream.
      * @throws IOException
      */
     public void loadAndReplaceMimetypes(InputStream is) throws IOException {
@@ -296,6 +296,7 @@ public final class Mimetypes {
 
             if (line.startsWith("#") || line.length() == 0) {
                 // Ignore comments and empty lines.
+                log.debug("Ignoring comments and empty lines.");
             } else {
                 StringTokenizer st = new StringTokenizer(line, " \t");
                 if (st.countTokens() > 1) {

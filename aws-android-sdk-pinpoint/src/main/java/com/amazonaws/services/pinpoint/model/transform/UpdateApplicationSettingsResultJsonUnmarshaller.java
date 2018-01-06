@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,9 +30,6 @@ public class UpdateApplicationSettingsResultJsonUnmarshaller implements
             throws Exception {
         UpdateApplicationSettingsResult updateApplicationSettingsResult = new UpdateApplicationSettingsResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            updateApplicationSettingsResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return updateApplicationSettingsResult;
     }
 

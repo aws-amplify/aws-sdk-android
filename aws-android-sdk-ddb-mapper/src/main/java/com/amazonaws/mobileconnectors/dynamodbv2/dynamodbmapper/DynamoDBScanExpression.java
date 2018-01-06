@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -159,6 +159,7 @@ public class DynamoDBScanExpression {
      * @param scanFilter The map of attribute names to conditions to use when
      *            filtering scan results.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setScanFilter(Map<String, Condition> scanFilter) {
         this.scanFilter = scanFilter;
     }
@@ -169,7 +170,9 @@ public class DynamoDBScanExpression {
      *
      * @param scanFilter The map of attribute names to conditions to use when
      *            filtering scan results.
+     * @return updated {@link DynamoDBScanExpression}
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBScanExpression withScanFilter(Map<String, Condition> scanFilter) {
         setScanFilter(scanFilter);
         return this;
@@ -185,8 +188,9 @@ public class DynamoDBScanExpression {
      *            results returned by the scan operation.
      */
     public void addFilterCondition(String attributeName, Condition condition) {
-        if (scanFilter == null)
+        if (scanFilter == null) {
             scanFilter = new HashMap<String, Condition>();
+        }
 
         scanFilter.put(attributeName, condition);
     }
@@ -200,10 +204,12 @@ public class DynamoDBScanExpression {
      * @param condition The condition which describes how the specified
      *            attribute is compared and if a row of data is included in the
      *            results returned by the scan operation.
+     * @return updated {@link DynamoDBScanExpression}
      */
     public DynamoDBScanExpression withFilterConditionEntry(String attributeName, Condition condition) {
-        if (scanFilter == null)
+        if (scanFilter == null) {
             scanFilter = new HashMap<String, Condition>();
+        }
 
         scanFilter.put(attributeName, condition);
         return this;
@@ -211,6 +217,8 @@ public class DynamoDBScanExpression {
 
     /**
      * Returns the exclusive start key for this scan.
+     *
+     * @return the exclusive start key
      */
     public Map<String, AttributeValue> getExclusiveStartKey() {
         return exclusiveStartKey;
@@ -218,7 +226,10 @@ public class DynamoDBScanExpression {
 
     /**
      * Sets the exclusive start key for this scan.
+     *
+     * @param exclusiveStartKey the exclusive start key.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setExclusiveStartKey(Map<String, AttributeValue> exclusiveStartKey) {
         this.exclusiveStartKey = exclusiveStartKey;
     }
@@ -226,7 +237,11 @@ public class DynamoDBScanExpression {
     /**
      * Sets the exclusive start key for this scan and returns a pointer to this
      * object for method-chaining.
+     *
+     * @param exclusiveStartKey a map of string to attribute value.
+     * @return updated {@link DynamoDBScanExpression}
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBScanExpression withExclusiveStartKey(
             Map<String, AttributeValue> exclusiveStartKey) {
         this.exclusiveStartKey = exclusiveStartKey;
@@ -247,6 +262,8 @@ public class DynamoDBScanExpression {
      * set a low limit, since doing so will often generate the same amount of
      * traffic to DynamoDB but with a greater number of round trips and
      * therefore more overall latency.
+     *
+     * @return the limit for scan.
      */
     public Integer getLimit() {
         return limit;
@@ -258,6 +275,7 @@ public class DynamoDBScanExpression {
      * operation -- the operation will cease and return as soon as this many
      * items are scanned, even if no matching results are found.
      *
+     * @param limit the limit for scan operation.
      * @see DynamoDBScanExpression#getLimit()
      */
     public void setLimit(Integer limit) {
@@ -271,8 +289,11 @@ public class DynamoDBScanExpression {
      * cease and return as soon as this many items are scanned, even if no
      * matching results are found.
      *
+     * @param limit the limit for scan operation.
+     * @return updated {@link DynamoDBScanExpression}
      * @see DynamoDBScanExpression#getLimit()
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBScanExpression withLimit(Integer limit) {
         this.limit = limit;
         return this;
@@ -280,6 +301,8 @@ public class DynamoDBScanExpression {
 
     /**
      * Returns the total number of segments into which the scan will be divided.
+     *
+     * @return the total segments.
      */
     public Integer getTotalSegments() {
         return totalSegments;
@@ -287,7 +310,10 @@ public class DynamoDBScanExpression {
 
     /**
      * Sets the total number of segments into which the scan will be divided.
+     * 
+     * @param totalSegments the total segments.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setTotalSegments(Integer totalSegments) {
         this.totalSegments = totalSegments;
     }
@@ -295,7 +321,11 @@ public class DynamoDBScanExpression {
     /**
      * Sets the total number of segments into which the scan will be divided and
      * returns a pointer to this object for method-chaining.
+     *
+     * @param totalSegments the total segments.
+     * @return updated {@link DynamoDBScanExpression}
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBScanExpression withTotalSegments(Integer totalSegments) {
         setTotalSegments(totalSegments);
         return this;
@@ -303,6 +333,8 @@ public class DynamoDBScanExpression {
 
     /**
      * Returns the ID of the segment to be scanned.
+     *
+     * @return the id of the segment to be scanned.
      */
     public Integer getSegment() {
         return segment;
@@ -310,6 +342,8 @@ public class DynamoDBScanExpression {
 
     /**
      * Sets the ID of the segment to be scanned.
+     *
+     * @param segment the id of the segment to be scanned.
      */
     public void setSegment(Integer segment) {
         this.segment = segment;
@@ -318,7 +352,11 @@ public class DynamoDBScanExpression {
     /**
      * Sets the ID of the segment to be scanned and returns a pointer to this
      * object for method-chaining.
+     *
+     * @param segment the id of the segment to be scanned.
+     * @return updated {@link DynamoDBScanExpression}
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBScanExpression withSegment(Integer segment) {
         setSegment(segment);
         return this;
@@ -326,6 +364,8 @@ public class DynamoDBScanExpression {
 
     /**
      * Returns the logical operator on the filter conditions of this scan.
+     *
+     * @return the conditional operator.
      */
     public String getConditionalOperator() {
         return conditionalOperator;
@@ -333,7 +373,10 @@ public class DynamoDBScanExpression {
 
     /**
      * Sets the logical operator on the filter conditions of this scan.
+     *
+     * @param conditionalOperator the logical operator.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setConditionalOperator(String conditionalOperator) {
         this.conditionalOperator = conditionalOperator;
     }
@@ -341,7 +384,11 @@ public class DynamoDBScanExpression {
     /**
      * Sets the logical operator on the filter conditions of this scan and
      * returns a pointer to this object for method-chaining.
+     *
+     * @param conditionalOperator the logical operator.
+     * @return updated {@link DynamoDBScanExpression}
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBScanExpression withConditionalOperator(String conditionalOperator) {
         setConditionalOperator(conditionalOperator);
         return this;
@@ -349,7 +396,10 @@ public class DynamoDBScanExpression {
 
     /**
      * Sets the logical operator on the filter conditions of this scan.
+     *
+     * @param conditionalOperator the logical operator.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setConditionalOperator(ConditionalOperator conditionalOperator) {
         setConditionalOperator(conditionalOperator.toString());
     }
@@ -357,7 +407,11 @@ public class DynamoDBScanExpression {
     /**
      * Sets the logical operator on the filter conditions of this scan and
      * returns a pointer to this object for method-chaining.
+     *
+     * @param conditionalOperator the logical operator.
+     * @return updated {@link DynamoDBScanExpression}
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBScanExpression withConditionalOperator(ConditionalOperator conditionalOperator) {
         return withConditionalOperator(conditionalOperator.toString());
     }
@@ -391,6 +445,7 @@ public class DynamoDBScanExpression {
      *            items that do not match the expression are not returned.
      * @see ScanRequest#setFilterExpression(String)
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setFilterExpression(String filterExpression) {
         this.filterExpression = filterExpression;
     }
@@ -413,6 +468,7 @@ public class DynamoDBScanExpression {
      *         chained together.
      * @see ScanRequest#withFilterExpression(String)
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBScanExpression withFilterExpression(String filterExpression) {
         this.filterExpression = filterExpression;
         return this;
@@ -437,6 +493,7 @@ public class DynamoDBScanExpression {
      *            simplifying complex expressions.
      * @see ScanRequest#setExpressionAttributeNames(Map)
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setExpressionAttributeNames(
             java.util.Map<String, String> expressionAttributeNames) {
         this.expressionAttributeNames = expressionAttributeNames;
@@ -451,6 +508,7 @@ public class DynamoDBScanExpression {
      *         chained together.
      * @see ScanRequest#withExpressionAttributeNames(Map)
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBScanExpression withExpressionAttributeNames(
             java.util.Map<String, String> expressionAttributeNames) {
         setExpressionAttributeNames(expressionAttributeNames);
@@ -467,6 +525,7 @@ public class DynamoDBScanExpression {
      *            ExpressionAttributeNames.
      * @param value The corresponding value of the entry to be added into
      *            ExpressionAttributeNames.
+     * @return updated {@link DynamoDBScanExpression}
      * @see ScanRequest#addExpressionAttributeNamesEntry(String, String)
      */
     public DynamoDBScanExpression addExpressionAttributeNamesEntry(String key,
@@ -474,9 +533,10 @@ public class DynamoDBScanExpression {
         if (null == this.expressionAttributeNames) {
             this.expressionAttributeNames = new java.util.HashMap<String, String>();
         }
-        if (this.expressionAttributeNames.containsKey(key))
+        if (this.expressionAttributeNames.containsKey(key)) {
             throw new IllegalArgumentException("Duplicated keys ("
                     + key.toString() + ") are provided.");
+        }
         this.expressionAttributeNames.put(key, value);
         return this;
     }
@@ -487,6 +547,8 @@ public class DynamoDBScanExpression {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     *
+     * @return updated {@link DynamoDBScanExpression}
      */
     public DynamoDBScanExpression clearExpressionAttributeNamesEntries() {
         this.expressionAttributeNames = null;
@@ -511,6 +573,7 @@ public class DynamoDBScanExpression {
      *            substituted in an expression.
      * @see ScanRequest#setExpressionAttributeValues(Map)
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setExpressionAttributeValues(
             java.util.Map<String, AttributeValue> expressionAttributeValues) {
         this.expressionAttributeValues = expressionAttributeValues;
@@ -525,6 +588,7 @@ public class DynamoDBScanExpression {
      *         chained together.
      * @see ScanRequest#withExpressionAttributeValues(Map)
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public DynamoDBScanExpression withExpressionAttributeValues(
             java.util.Map<String, AttributeValue> expressionAttributeValues) {
         setExpressionAttributeValues(expressionAttributeValues);
@@ -541,6 +605,7 @@ public class DynamoDBScanExpression {
      *            ExpressionAttributeValues.
      * @param value The corresponding value of the entry to be added into
      *            ExpressionAttributeValues.
+     * @return updated {@link DynamoDBScanExpression}
      * @see ScanRequest#addExpressionAttributeValuesEntry(String,
      *      AttributeValue)
      */
@@ -549,9 +614,10 @@ public class DynamoDBScanExpression {
         if (null == this.expressionAttributeValues) {
             this.expressionAttributeValues = new java.util.HashMap<String, AttributeValue>();
         }
-        if (this.expressionAttributeValues.containsKey(key))
+        if (this.expressionAttributeValues.containsKey(key)) {
             throw new IllegalArgumentException("Duplicated keys ("
                     + key.toString() + ") are provided.");
+        }
         this.expressionAttributeValues.put(key, value);
         return this;
     }
@@ -562,6 +628,8 @@ public class DynamoDBScanExpression {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     *
+     * @return updated {@link DynamoDBScanExpression}
      */
     public DynamoDBScanExpression clearExpressionAttributeValuesEntries() {
         this.expressionAttributeValues = null;

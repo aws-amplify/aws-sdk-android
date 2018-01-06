@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -66,13 +66,14 @@ public final class SignerFactory {
     }
 
     /**
-     * Returns a non-null signer for the specified service and region according
-     * to the internal configuration which provides a basic default algorithm
-     * used for signer determination.
      *
      * @param serviceName The name of the service to talk to.
      * @param regionName The name of the region to talk to; not necessarily the
      *            region used for signing.
+     *
+     * @return a non-null signer for the specified service and region according
+     * to the internal configuration which provides a basic default algorithm
+     * used for signer determination.
      */
     public static Signer getSigner(String serviceName, String regionName) {
         return lookupAndCreateSigner(serviceName, regionName);

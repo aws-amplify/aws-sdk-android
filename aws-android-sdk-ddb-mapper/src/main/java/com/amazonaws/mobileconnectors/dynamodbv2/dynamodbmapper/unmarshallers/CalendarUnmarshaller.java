@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,11 +24,16 @@ import java.util.Calendar;
  * An unmarshaller that unmarshals ISO-8601-formatted dates as Java
  * {@code Calendar} objects.
  */
-public class CalendarUnmarshaller extends SUnmarshaller {
+public final class CalendarUnmarshaller extends SUnmarshaller {
 
     private static final CalendarUnmarshaller INSTANCE =
             new CalendarUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link CalendarUnmarshaller}
+     */
     public static CalendarUnmarshaller instance() {
         return INSTANCE;
     }
@@ -38,7 +43,7 @@ public class CalendarUnmarshaller extends SUnmarshaller {
 
     @Override
     public Object unmarshall(AttributeValue value) {
-        Calendar cal = Calendar.getInstance();
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(DateUtils.parseISO8601Date(value.getS()));
         return cal;
     }

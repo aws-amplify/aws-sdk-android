@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,11 +24,16 @@ import java.nio.ByteBuffer;
  * A marshaller that marshals Java {@code byte[]}s into DynamoDB Binary
  * attributes.
  */
-public class ByteArrayToBinaryMarshaller implements BinaryAttributeMarshaller {
+public final class ByteArrayToBinaryMarshaller implements BinaryAttributeMarshaller {
 
     private static final ByteArrayToBinaryMarshaller INSTANCE =
             new ByteArrayToBinaryMarshaller();
 
+    /**
+     * Return a singleton instance.
+     *
+     * @return instance of {@link ByteArrayToBinaryMarshaller}
+     */
     public static ByteArrayToBinaryMarshaller instance() {
         return INSTANCE;
     }

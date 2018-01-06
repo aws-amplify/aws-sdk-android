@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ import java.util.Map;
  * <p>
  * This class is only intended for internal use inside the AWS client libraries.
  * Callers shouldn't ever interact directly with objects of this class.
+ * @param <T> class type.
  */
 public class DefaultRequest<T> implements Request<T> {
 
@@ -262,12 +263,14 @@ public class DefaultRequest<T> implements Request<T> {
      * @see Request#setTimeOffset(int)
      */
     @Override
+    @SuppressWarnings("checkstyle:hiddenfield")
     public Request<T> withTimeOffset(int timeOffset) {
         setTimeOffset(timeOffset);
         return this;
     }
 
     @Override
+    @SuppressWarnings("checkstyle:hiddenfield")
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getHttpMethod()).append(" ");
@@ -313,6 +316,7 @@ public class DefaultRequest<T> implements Request<T> {
 
     @Override
     @Deprecated
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setAWSRequestMetrics(AWSRequestMetrics metrics) {
         if (this.metrics == null) {
             this.metrics = metrics;

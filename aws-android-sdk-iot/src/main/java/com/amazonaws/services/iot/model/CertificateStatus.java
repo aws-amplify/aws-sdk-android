@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,7 +27,8 @@ public enum CertificateStatus {
     INACTIVE("INACTIVE"),
     REVOKED("REVOKED"),
     PENDING_TRANSFER("PENDING_TRANSFER"),
-    REGISTER_INACTIVE("REGISTER_INACTIVE");
+    REGISTER_INACTIVE("REGISTER_INACTIVE"),
+    PENDING_ACTIVATION("PENDING_ACTIVATION");
 
     private String value;
 
@@ -48,6 +49,7 @@ public enum CertificateStatus {
         enumMap.put("REVOKED", REVOKED);
         enumMap.put("PENDING_TRANSFER", PENDING_TRANSFER);
         enumMap.put("REGISTER_INACTIVE", REGISTER_INACTIVE);
+        enumMap.put("PENDING_ACTIVATION", PENDING_ACTIVATION);
     }
 
     /**

@@ -1,11 +1,11 @@
 /**
- * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,18 +15,21 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.internal.core.util;
 
-import com.amazonaws.SDKGlobalConfiguration;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
+import com.amazonaws.SDKGlobalConfiguration;
 
-public class DateUtil {
+/**
+ * A utility class for date marshalling
+ */
+public final class DateUtil {
 
     private static final DateFormat ISO_DATE_FORMATTER_UTC;
     private static final String DATE_FORMAT_STRING = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    private static final int SECS = 1000;
 
     static {
         ISO_DATE_FORMATTER_UTC = new SimpleDateFormat(DATE_FORMAT_STRING, Locale.US);
@@ -42,6 +45,12 @@ public class DateUtil {
         return ISO_DATE_FORMATTER_UTC;
     }
 
+    /**
+     * get date in iso format "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+     *
+     * @param millis the time in milli seconds
+     * @return the formatted date.
+     */
     public static synchronized String isoDateFromMillis(long millis) {
         return getDateFormat().format(new Date(millis));
     }
@@ -51,7 +60,7 @@ public class DateUtil {
      * independent of Locale
      *
      * @param dateFormatString The date format string to use when formatting a
-     *            date
+     *                         date
      * @return A Locale Independent DateFormat object
      */
     public static DateFormat createLocaleIndependentDateFormatter(String dateFormatString) {
@@ -60,13 +69,13 @@ public class DateUtil {
 
     /**
      * @return A date object taking the devices clock skew into configuration if
-     *         neccesary
+     * neccesary
      */
     public static Date getCorrectedDate() {
         Date dateValue = new Date();
         if (SDKGlobalConfiguration.getGlobalTimeOffset() != 0) {
             long epochMillis = dateValue.getTime();
-            epochMillis -= SDKGlobalConfiguration.getGlobalTimeOffset() * 1000;
+            epochMillis -= SDKGlobalConfiguration.getGlobalTimeOffset() * SECS;
             dateValue = new Date(epochMillis);
         }
         return dateValue;

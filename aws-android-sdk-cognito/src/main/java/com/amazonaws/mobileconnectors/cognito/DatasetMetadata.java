@@ -1,5 +1,5 @@
 /**
- * Copyright 2013-2017 Amazon.com, 
+ * Copyright 2013-2018 Amazon.com, 
  * Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Amazon Software License (the "License"). 
@@ -149,61 +149,61 @@ public final class DatasetMetadata {
         /**
          * Sets the creation date of this dataset. Default is 0 (unknown).
          * 
-         * @param creationDate creation date of this dataset.
+         * @param nCreationDate creation date of this dataset.
          * @return builder itself
          */
-        public Builder creationDate(Date creationDate) {
-            this.creationDate = creationDate;
+        public Builder creationDate(Date nCreationDate) {
+            this.creationDate = nCreationDate;
             return this;
         }
 
         /**
          * Sets the last modified date. Default is current date.
          * 
-         * @param lastModifiedDate last modified date
+         * @param nLastModifiedDate last modified date
          * @return builder itself.
          */
-        public Builder lastModifiedDate(Date lastModifiedDate) {
-            this.lastModifiedDate = lastModifiedDate;
+        public Builder lastModifiedDate(Date nLastModifiedDate) {
+            this.lastModifiedDate = nLastModifiedDate;
             return this;
         }
 
         /**
          * Sets the device which made the last modification. Default is null.
          * 
-         * @param lastModifiedBy device which made the last modification
+         * @param nLastModifiedBy device which made the last modification
          * @return builder itself
          */
-        public Builder lastModifiedBy(String lastModifiedBy) {
-            this.lastModifiedBy = lastModifiedBy;
+        public Builder lastModifiedBy(String nLastModifiedBy) {
+            this.lastModifiedBy = nLastModifiedBy;
             return this;
         }
 
         /**
          * Set the storage size in bytes of this dataset. Default is 0.
          * 
-         * @param storageSizeBytes storage size in bytes
+         * @param nStorageSizeBytes storage size in bytes
          * @return builder itself
          */
-        public Builder storageSizeBytes(long storageSizeBytes) {
-            if (storageSizeBytes < 0) {
+        public Builder storageSizeBytes(long nStorageSizeBytes) {
+            if (nStorageSizeBytes < 0) {
                 throw new IllegalArgumentException("Storage size can't be negative");
             }
-            this.storageSizeBytes = storageSizeBytes;
+            this.storageSizeBytes = nStorageSizeBytes;
             return this;
         }
 
         /**
          * Sets the number of records in this dataset. Default is 0.
          * 
-         * @param recordCount number of records
+         * @param nRecordCount number of records
          * @return builder itself
          */
-        public Builder recordCount(long recordCount) {
-            if (recordCount < 0) {
+        public Builder recordCount(long nRecordCount) {
+            if (nRecordCount < 0) {
                 throw new IllegalArgumentException("Number of records can't be negative");
             }
-            this.recordCount = recordCount;
+            this.recordCount = nRecordCount;
             return this;
         }
 

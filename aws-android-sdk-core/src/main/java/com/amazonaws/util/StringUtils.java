@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,52 +29,113 @@ public class StringUtils {
 
     private static final String DEFAULT_ENCODING = "UTF-8";
 
+    /** UTF8. */
     public static final Charset UTF8 = Charset.forName(DEFAULT_ENCODING);
 
+    /**
+     * Converts object to Integer.
+     * @param value object value.
+     * @return Integer.
+     */
     public static Integer toInteger(StringBuilder value) {
         return Integer.parseInt(value.toString());
     }
 
+    /**
+     * Converts object to string.
+     * @param value object value.
+     * @return String.
+     */
     public static String toString(StringBuilder value) {
         return value.toString();
     }
 
+    /**
+     * Converts
+     * @param value object value.
+     * @return Boolean.
+     */
     public static Boolean toBoolean(StringBuilder value) {
         return Boolean.getBoolean(value.toString());
     }
 
+    /**
+     * Converts Integer to String.
+     * @param value Integer value.
+     * @return String.
+     */
     public static String fromInteger(Integer value) {
         return Integer.toString(value);
     }
 
+    /**
+     * Converts Long to String.
+     * @param value Long value.
+     * @return String.
+     */
     public static String fromLong(Long value) {
         return Long.toString(value);
     }
 
+    /**
+     * Converts String to String.
+     * @param value String value.
+     * @return String.
+     */
     public static String fromString(String value) {
         return value;
     }
 
+    /**
+     * Converts Boolean to String.
+     * @param value Boolean value.
+     * @return String.
+     */
     public static String fromBoolean(Boolean value) {
         return Boolean.toString(value);
     }
 
+    /**
+     * Converts BigInteger to String.
+     * @param value BigInteger value.
+     * @return String.
+     */
     public static String fromBigInteger(BigInteger value) {
         return value.toString();
     }
 
+    /**
+     * Converts BigDecimal to String.
+     * @param value Big Decimal value.
+     * @return String.
+     */
     public static String fromBigDecimal(BigDecimal value) {
         return value.toString();
     }
 
+    /**
+     * Converts from String to BigInteger.
+     * @param s String value.
+     * @return BigInteger.
+     */
     public static BigInteger toBigInteger(String s) {
         return new BigInteger(s);
     }
 
+    /**
+     * Converts from String to BigDecimal.
+     * @param s String value.
+     * @return BigDecimal.
+     */
     public static BigDecimal toBigDecimal(String s) {
         return new BigDecimal(s);
     }
 
+    /**
+     * Converts Float to String.
+     * @param value Float value.
+     * @return String.
+     */
     public static String fromFloat(Float value) {
         return Float.toString(value);
     }
@@ -126,6 +187,13 @@ public class StringUtils {
         return Base64.encodeAsString(binaryData);
     }
 
+    /**
+     * Finds partToMatch in original string and replaces.
+     * @param originalString original string.
+     * @param partToMatch string to match.
+     * @param replacement string to replace with.
+     * @return replaced string.
+     */
     public static String replace(String originalString, String partToMatch, String replacement) {
         StringBuffer buffer = new StringBuffer(originalString.length());
         buffer.append(originalString);
@@ -144,6 +212,7 @@ public class StringUtils {
      *
      * @param joiner the string to insert between the strings in parts
      * @param parts the parts to join
+     * @return joined string.
      */
     public static String join(String joiner, String... parts) {
         final StringBuilder builder = new StringBuilder();
@@ -194,6 +263,7 @@ public class StringUtils {
      * @param cs the CharSequence to check, may be null
      * @return if the CharSequence is null, empty or whitespace
      */
+    @SuppressWarnings("checkstyle:innerassignment")
     public static boolean isBlank(final CharSequence cs) {
         int strLen;
         if (cs == null || (strLen = cs.length()) == 0) {

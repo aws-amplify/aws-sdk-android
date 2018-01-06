@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -44,6 +44,9 @@ class MessageJsonUnmarshaller implements Unmarshaller<Message, JsonUnmarshallerC
             } else if (name.equals("ImageIconUrl")) {
                 message.setImageIconUrl(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ImageSmallIconUrl")) {
+                message.setImageSmallIconUrl(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ImageUrl")) {
                 message.setImageUrl(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -52,6 +55,9 @@ class MessageJsonUnmarshaller implements Unmarshaller<Message, JsonUnmarshallerC
                         .unmarshall(context));
             } else if (name.equals("MediaUrl")) {
                 message.setMediaUrl(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("RawContent")) {
+                message.setRawContent(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("SilentPush")) {
                 message.setSilentPush(BooleanJsonUnmarshaller.getInstance()

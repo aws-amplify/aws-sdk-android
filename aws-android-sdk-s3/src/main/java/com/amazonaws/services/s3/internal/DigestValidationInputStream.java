@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,6 +35,12 @@ public class DigestValidationInputStream extends SdkDigestInputStream {
     // Flag do we don't validate twice. See validateMD5Digest()
     private boolean digestValidated = false;
 
+    /**
+     * Constructor.
+     * @param in input stream
+     * @param digest message digest
+     * @param serverSideHash server side hash
+     */
     public DigestValidationInputStream(InputStream in, MessageDigest digest, byte[] serverSideHash) {
         super(in, digest);
         this.expectedHash = serverSideHash;

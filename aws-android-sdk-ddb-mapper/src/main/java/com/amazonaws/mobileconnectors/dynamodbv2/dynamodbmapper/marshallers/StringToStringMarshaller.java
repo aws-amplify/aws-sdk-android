@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,11 +21,16 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 /**
  * A marshaller that marshals Java {@code String} objects to DynamoDB Strings.
  */
-public class StringToStringMarshaller implements StringAttributeMarshaller {
+public final class StringToStringMarshaller implements StringAttributeMarshaller {
 
     private static final StringToStringMarshaller INSTANCE =
             new StringToStringMarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link StringToStringMarshaller}
+     */
     public static StringToStringMarshaller instance() {
         return INSTANCE;
     }
@@ -35,7 +40,7 @@ public class StringToStringMarshaller implements StringAttributeMarshaller {
 
     @Override
     public AttributeValue marshall(Object obj) {
-        String string = (String) obj;
+        final String string = (String) obj;
         if (string.length() == 0) {
             // Sticking with the legacy behavior for now.
             return null;

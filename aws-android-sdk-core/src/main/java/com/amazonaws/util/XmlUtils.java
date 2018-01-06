@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,8 +24,19 @@ import org.xml.sax.helpers.XMLReaderFactory;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * XmlUtils class.
+ */
 public class XmlUtils {
 
+    /**
+     * Parse.
+     * @param in the input stream.
+     * @param handler the content handler.
+     * @return parsed XMLReader.
+     * @throws SAXException
+     * @throws IOException
+     */
     public static XMLReader parse(InputStream in, ContentHandler handler)
             throws SAXException, IOException {
 

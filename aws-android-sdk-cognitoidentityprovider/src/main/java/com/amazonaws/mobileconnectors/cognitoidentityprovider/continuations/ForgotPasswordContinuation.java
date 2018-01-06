@@ -27,8 +27,14 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.ForgotPas
 public class ForgotPasswordContinuation implements CognitoIdentityProviderContinuation<CognitoUserCodeDeliveryDetails> {
 
     // Boolean constants used to indicate where this continuation will run.
-    final public static boolean RUN_IN_BACKGROUND = true;
-    final public static boolean RUN_IN_CURRENT = false;
+    /**
+     * Run in background.
+     */
+    public static final boolean RUN_IN_BACKGROUND = true;
+    /**
+     * Run on current thread.
+     */
+    public static final boolean RUN_IN_CURRENT = false;
 
     private final ForgotPasswordHandler callback;
     private final CognitoUser user;
@@ -41,10 +47,10 @@ public class ForgotPasswordContinuation implements CognitoIdentityProviderContin
     /**
      * Constructs a new Continuation for forgot password process.
      *
-     * @param user                  REQUIRED: Reference to the {@link CognitoUser} object.
-     * @param parameters
-     * @param runInBackground       REQUIRED: Represents where this continuation has to run.
-     * @param callback              REQUIRED: Callback to interact with the app.
+     * @param user REQUIRED: Reference to the {@link CognitoUser} object.
+     * @param parameters REQUIRED: Contains information about the medium and destination of the verification code.
+     * @param runInBackground REQUIRED: Represents where this continuation has to run.
+     * @param callback REQUIRED: Callback to interact with the app.
      */
     public ForgotPasswordContinuation(CognitoUser user,
                                       CognitoUserCodeDeliveryDetails parameters,
@@ -60,18 +66,19 @@ public class ForgotPasswordContinuation implements CognitoIdentityProviderContin
      * Returns Continuation parameters.
      * @return
      */
-    public CognitoUserCodeDeliveryDetails getParameters(){
+    @Override
+    public CognitoUserCodeDeliveryDetails getParameters() {
         return parameters;
     }
 
     /**
      * Call this method to continue with the forgot password processing.s
      */
+    @Override
     public void continueTask() {
-        if(runInBackground){
+        if (runInBackground) {
             user.confirmPasswordInBackground(verificationCode, password, callback);
-        }
-        else{
+        } else {
             user.confirmPassword(verificationCode, password, callback);
         }
     }
@@ -79,18 +86,18 @@ public class ForgotPasswordContinuation implements CognitoIdentityProviderContin
     /**
      * Set the new password.
      *
-     * @param password
+     * @param password REQUIRED: The new password.
      */
-    public void setPassword(String password){
+    public void setPassword(String password) {
         this.password = password;
     }
 
     /**
      * Set the verification code for this processing.
      *
-     * @param verificationCode
+     * @param verificationCode REQUIRED: The verification code to set a new password.
      */
-    public void setVerificationCode(String verificationCode){
+    public void setVerificationCode(String verificationCode) {
         this.verificationCode = verificationCode;
     }
 }

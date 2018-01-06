@@ -29,7 +29,7 @@ public interface GenericHandler {
     /**
      * This callback method is invoked when call has failed. Probe {@code exception} for cause.
      *
-     * @param exception
+     * @param exception REQUIRED: Failure details.
      */
     public void onFailure(Exception exception);
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +22,16 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
  * A marshaller that marshals Java {@code Boolean} objects to Dynamodb-native
  * {@code BOOL} attribute values.
  */
-public class BooleanToBooleanMarshaller implements BooleanAttributeMarshaller {
+public final class BooleanToBooleanMarshaller implements BooleanAttributeMarshaller {
 
     private static final BooleanToBooleanMarshaller INSTANCE =
             new BooleanToBooleanMarshaller();
 
+    /**
+     * Return a singleton instance.
+     *
+     * @return instance of {@link BooleanToBooleanMarshaller}
+     */
     public static BooleanToBooleanMarshaller instance() {
         return INSTANCE;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import java.io.OutputStream;
 /**
  * Utilities for IO operations.
  */
+@SuppressWarnings("checkstyle:nowhitespacebefore")
 public enum IOUtils {
     ;
 
@@ -36,6 +37,8 @@ public enum IOUtils {
     /**
      * Reads and returns the rest of the given input stream as a byte array,
      * closing the input stream afterwards.
+     * @param is the input stream.
+     * @return the rest of the given input stream.
      */
     public static byte[] toByteArray(InputStream is) throws IOException {
         final ByteArrayOutputStream output = new ByteArrayOutputStream();
@@ -54,6 +57,8 @@ public enum IOUtils {
     /**
      * Reads and returns the rest of the given input stream as a string, closing
      * the input stream afterwards.
+     * @param is the input stream.
+     * @return the rest of the given input stream.
      */
     public static String toString(InputStream is) throws IOException {
         return new String(toByteArray(is), StringUtils.UTF8);
@@ -91,6 +96,8 @@ public enum IOUtils {
      * accidental closing via <code>ResettableInputStream#disableClose()</code>,
      * so that the release method becomes the only way to truly close the opened
      * file.
+     * @param is the closeable.
+     * @param log the log.
      */
     public static void release(Closeable is, Log log) {
         closeQuietly(is, log);
@@ -99,7 +106,10 @@ public enum IOUtils {
     /**
      * Copies all bytes from the given input stream to the given output stream.
      * Caller is responsible for closing the streams.
+     * @param in the input stream.
+     * @param out the output stream.
      *
+     * @return the count of bytes copied.
      * @throws IOException if there is any IO exception during read or write.
      */
     public static long copy(InputStream in, OutputStream out)

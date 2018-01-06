@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,8 +20,18 @@ import com.amazonaws.services.simpledb.SimpleDBResponseMetadata;
 import com.amazonaws.transform.StaxUnmarshallerContext;
 import com.amazonaws.transform.Unmarshaller;
 
+/**
+ * The SimpleDB stax response handler.
+ *
+ * @param <T> Indicates the type being unmarshalled by this response handler.
+ */
 public class SimpleDBStaxResponseHandler<T> extends StaxResponseHandler<T> {
 
+    /**
+     * Constructor.
+     *
+     * @param responseUnmarshaller the response unmarshaller.
+     */
     public SimpleDBStaxResponseHandler(Unmarshaller<T, StaxUnmarshallerContext> responseUnmarshaller) {
         super(responseUnmarshaller);
     }

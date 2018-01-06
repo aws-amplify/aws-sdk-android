@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -297,6 +297,7 @@ public class AmazonCognitoSyncClient extends AmazonWebServiceClient implements A
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("cognito-sync.us-east-1.amazonaws.com");
+        this.endpointPrefix = "cognito-sync";
 
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(

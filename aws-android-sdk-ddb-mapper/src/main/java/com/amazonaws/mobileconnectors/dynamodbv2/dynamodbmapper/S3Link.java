@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,9 @@ import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.json.AwsJsonReader;
 import com.amazonaws.util.json.JsonUtils;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -105,6 +108,11 @@ import java.net.URL;
  * </pre>
  */
 public class S3Link {
+
+    private static final Log LOGGER = LogFactory.getLog(S3Link.class);
+
+    private static final int TEN_MB = 1024 * 10;
+
     private final S3ClientCache s3cc;
     private final ID id;
 
@@ -159,18 +167,22 @@ public class S3Link {
     public String toJson() {
         try {
             return id.toJson();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new AmazonClientException("Unable to serialize to Json.", e);
         }
     }
 
     /**
      * Deserializes from a JSON string.
+     *
+     * @param s3cc the s3 client cache {@link S3ClientCache}
+     * @param json the json representation of the s3 link.
+     * @return an instance of {@link S3Link}
      */
     public static S3Link fromJson(S3ClientCache s3cc, String json) {
         try {
             return new S3Link(s3cc, ID.fromJson(json));
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new AmazonClientException("Unable to parse Json string.", e);
         }
     }
@@ -198,10 +210,14 @@ public class S3Link {
     /**
      * Same as {@link #uploadFrom(File)} but allows specifying a request metric
      * collector.
+     *
+     * @param source the file to upload from.
+     * @param requestMetricCollector the request metric collector.
+     * @return instance of {@link PutObjectRequest}
      */
     public PutObjectResult uploadFrom(final File source,
             RequestMetricCollector requestMetricCollector) {
-        PutObjectRequest req = new PutObjectRequest(getBucketName(), getKey(),
+        final PutObjectRequest req = new PutObjectRequest(getBucketName(), getKey(),
                 source).withRequestMetricCollector(requestMetricCollector);
         return getAmazonS3Client().putObject(req);
     }
@@ -221,12 +237,16 @@ public class S3Link {
     /**
      * Same as {@link #uploadFrom(byte[])} but allows specifying a request
      * metric collector.
+     *
+     * @param buffer the byte buffer.
+     * @param requestMetricCollector the request metrics collector.
+     * @return an instance of {@link PutObjectResult}
      */
     public PutObjectResult uploadFrom(final byte[] buffer,
             RequestMetricCollector requestMetricCollector) {
-        ObjectMetadata objectMetadata = new ObjectMetadata();
+        final ObjectMetadata objectMetadata = new ObjectMetadata();
         objectMetadata.setContentLength(buffer.length);
-        PutObjectRequest req = new PutObjectRequest(getBucketName(), getKey(),
+        final PutObjectRequest req = new PutObjectRequest(getBucketName(), getKey(),
                 new ByteArrayInputStream(buffer), objectMetadata)
                 .withRequestMetricCollector(requestMetricCollector);
         return getAmazonS3Client().putObject(req);
@@ -244,6 +264,15 @@ public class S3Link {
         setAcl(acl, null);
     }
 
+    /**
+     * Sets the access control list for the object represented by this S3Link.
+     * Note: Executing this method requires that the object already exists in
+     * Amazon S3.
+     *
+     * @param acl The access control list describing the new permissions for the
+     *            object represented by this S3Link.
+     * @param col the request metrics collector.
+     */
     public void setAcl(CannedAccessControlList acl, RequestMetricCollector col) {
         getAmazonS3Client()
                 .setObjectAcl(getBucketName(), getKey(), null, acl, col);
@@ -264,6 +293,9 @@ public class S3Link {
     /**
      * Same as {@link #setAcl(AccessControlList)} but allows specifying a
      * request metric collector.
+     *
+     * @param acl an access control list.
+     * @param requestMetricCollector the request metrics collector.
      */
     public void setAcl(AccessControlList acl,
             RequestMetricCollector requestMetricCollector) {
@@ -299,10 +331,14 @@ public class S3Link {
     /**
      * Same as {@link #downloadTo(File)} but allows specifying a request metric
      * collector.
+     *
+     * @param destination the file to download to.
+     * @param requestMetricCollector the request metrics collector.
+     * @return an instance of {@link ObjectMetadata}
      */
     public ObjectMetadata downloadTo(final File destination,
             RequestMetricCollector requestMetricCollector) {
-        GetObjectRequest req = new GetObjectRequest(getBucketName(), getKey())
+        final GetObjectRequest req = new GetObjectRequest(getBucketName(), getKey())
                 .withRequestMetricCollector(requestMetricCollector);
         return getAmazonS3Client().getObject(req, destination);
     }
@@ -321,28 +357,33 @@ public class S3Link {
     /**
      * Same as {@link #downloadTo(OutputStream)} but allows specifying a request
      * metric collector.
+     *
+     * @param output the outputstream to downloadto.
+     * @param requestMetricCollector the request metrics collector.
+     * @return an instance of {@link ObjectMetadata}
      */
     public ObjectMetadata downloadTo(final OutputStream output,
             RequestMetricCollector requestMetricCollector) {
-        GetObjectRequest req = new GetObjectRequest(getBucketName(), getKey())
+        final GetObjectRequest req = new GetObjectRequest(getBucketName(), getKey())
                 .withRequestMetricCollector(requestMetricCollector);
-        S3Object s3Object = getAmazonS3Client().getObject(req);
-        S3ObjectInputStream objectContent = s3Object.getObjectContent();
+        final S3Object s3Object = getAmazonS3Client().getObject(req);
+        final S3ObjectInputStream objectContent = s3Object.getObjectContent();
 
         try {
-            byte[] buffer = new byte[1024 * 10];
+            final byte[] buffer = new byte[TEN_MB];
             int bytesRead = -1;
             while ((bytesRead = objectContent.read(buffer)) > -1) {
                 output.write(buffer, 0, bytesRead);
             }
-        } catch (IOException ioe) {
+        } catch (final IOException ioe) {
             objectContent.abort();
             throw new AmazonClientException(
                     "Unable to transfer content from Amazon S3 to the output stream", ioe);
         } finally {
             try {
                 objectContent.close();
-            } catch (IOException ioe) {
+            } catch (final IOException ioe) {
+                LOGGER.warn("could not close the object content", ioe);
             }
         }
 
@@ -429,7 +470,7 @@ public class S3Link {
         }
 
         String toJson() throws IOException {
-            StringWriter out = new StringWriter();
+            final StringWriter out = new StringWriter();
             JsonUtils.getJsonWriter(out)
                     .beginObject()
                     .name("s3")
@@ -448,17 +489,17 @@ public class S3Link {
             String key = null;
             String regionId = null;
 
-            AwsJsonReader reader = JsonUtils.getJsonReader(new StringReader(json));
+            final AwsJsonReader reader = JsonUtils.getJsonReader(new StringReader(json));
             reader.beginObject();
             reader.nextName(); // get to "s3"
             reader.beginObject();
             while (reader.hasNext()) {
-                String name = reader.nextName();
-                if (name.equals("bucket")) {
+                final String name = reader.nextName();
+                if ("bucket".equals(name)) {
                     bucket = reader.nextString();
-                } else if (name.equals("key")) {
+                } else if ("key".equals(name)) {
                     key = reader.nextString();
-                } else if (name.equals("region")) {
+                } else if ("region".equals(name)) {
                     regionId = reader.nextString();
                 } else {
                     // skip unknown value
@@ -468,7 +509,7 @@ public class S3Link {
             reader.endObject();
             reader.endObject();
 
-            Region region = regionId == null ? null : Region.fromValue(regionId);
+            final Region region = regionId == null ? null : Region.fromValue(regionId);
             return new ID(region, bucket, key);
         }
     }

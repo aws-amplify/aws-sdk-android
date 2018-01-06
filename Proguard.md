@@ -7,6 +7,7 @@ When exporting your app using the AWS SDK for Android with the default, empty _p
 ```
 # Class names are needed in reflection
 -keepnames class com.amazonaws.**
+-keepnames class com.amazon.**
 # Request handlers defined in request.handlers
 -keep class com.amazonaws.services.**.*Handler
 # The following are referenced but aren't required to run

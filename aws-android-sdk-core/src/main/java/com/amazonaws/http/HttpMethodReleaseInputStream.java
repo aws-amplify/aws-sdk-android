@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Portions copyright 2006-2009 James Murty. Please see LICENSE.txt
  * for applicable license terms and NOTICE.txt for applicable notices.
@@ -63,6 +63,7 @@ public class HttpMethodReleaseInputStream extends SdkInputStream {
      * @param httpMethod The HTTP method being executed, whose response content
      *            is to be wrapped.
      */
+    @SuppressWarnings("checkstyle:emptyblock")
     public HttpMethodReleaseInputStream(HttpEntityEnclosingRequest httpMethod) {
         this.httpRequest = httpMethod;
 

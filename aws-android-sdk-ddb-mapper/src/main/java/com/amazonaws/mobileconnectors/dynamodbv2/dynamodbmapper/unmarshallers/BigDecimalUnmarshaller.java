@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,11 +23,16 @@ import java.math.BigDecimal;
  * An unmarshaller that unmarshals DynamoDB Numbers into Java {@code BigDecimal}
  * s.
  */
-public class BigDecimalUnmarshaller extends NUnmarshaller {
+public final class BigDecimalUnmarshaller extends NUnmarshaller {
 
     private static final BigDecimalUnmarshaller INSTANCE =
             new BigDecimalUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link BigDecimalUnmarshaller}
+     */
     public static BigDecimalUnmarshaller instance() {
         return INSTANCE;
     }

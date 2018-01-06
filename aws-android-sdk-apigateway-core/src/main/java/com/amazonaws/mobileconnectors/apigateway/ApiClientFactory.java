@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,7 +33,8 @@ public class ApiClientFactory {
     private static final String AMAZON_API_GATEWAY_SERVICE_NAME = "execute-api";
     // endpoint pattern for extracting region out of an endpoint
     // e.g. https://my-api-id.execute-api.region-id.amazonaws.com/stage
-    private static Pattern ENDPOINT_PATTERN = Pattern.compile("^https?://\\w+.execute-api.([a-z0-9-]+).amazonaws.com/.*");
+    private static final Pattern ENDPOINT_PATTERN = Pattern
+            .compile("^https?://\\w+.execute-api.([a-z0-9-]+).amazonaws.com/.*");
 
     private String endpoint;
     private String apiKey;
@@ -47,6 +48,7 @@ public class ApiClientFactory {
      * @param endpoint endpoint url
      * @return the factory itself for chaining
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ApiClientFactory endpoint(String endpoint) {
         this.endpoint = endpoint;
         return this;
@@ -58,6 +60,7 @@ public class ApiClientFactory {
      * @param apiKey to send in header
      * @return the factory itself for chaining
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ApiClientFactory apiKey(String apiKey) {
         this.apiKey = apiKey;
         return this;
@@ -70,6 +73,7 @@ public class ApiClientFactory {
      * @param region a region string
      * @return the factory itself for chaining
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ApiClientFactory region(String region) {
         this.regionOverride = region;
         return this;
@@ -81,6 +85,7 @@ public class ApiClientFactory {
      * @param clientConfiguration Configuration to use
      * @return the factory itself for chaining
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ApiClientFactory clientConfiguration(ClientConfiguration clientConfiguration) {
         this.clientConfiguration = clientConfiguration;
         return this;
@@ -92,6 +97,7 @@ public class ApiClientFactory {
      * @param provider an AWS credentials provider
      * @return the factory itself for chaining
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ApiClientFactory credentialsProvider(AWSCredentialsProvider provider) {
         this.provider = provider;
         return this;
@@ -100,20 +106,22 @@ public class ApiClientFactory {
     /**
      * Instantiates a client for the given API.
      *
+     * @param <T> the api client interface.
      * @param apiClass API class defined in API Gateway.
-     * @return a client for the given API
+     * @return a client for the given API.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public <T> T build(Class<T> apiClass) {
         if (apiClass == null) {
             throw new IllegalArgumentException("Missing API class");
         }
-        String endpoint = getEndpoint(apiClass);
+        final String endpoint = getEndpoint(apiClass);
         if (endpoint == null) {
             throw new IllegalArgumentException("Missing endpoint information");
         }
-        String apiName = getApiName(apiClass);
-        ApiClientHandler handler = getHandler(endpoint, apiName);
-        Object proxy = Proxy.newProxyInstance(apiClass.getClassLoader(),
+        final String apiName = getApiName(apiClass);
+        final ApiClientHandler handler = getHandler(endpoint, apiName);
+        final Object proxy = Proxy.newProxyInstance(apiClass.getClassLoader(),
                 new Class<?>[] {
                     apiClass
                 }, handler);
@@ -127,11 +135,12 @@ public class ApiClientFactory {
      * @param apiName API class name
      * @return an invocation handler
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     ApiClientHandler getHandler(String endpoint, String apiName) {
-        Signer signer = provider == null ? null : getSigner(getRegion(endpoint));
+        final Signer signer = provider == null ? null : getSigner(getRegion(endpoint));
 
         // Ensure we always pass a configuration to the handler
-        ClientConfiguration configuration = (clientConfiguration == null) ? new ClientConfiguration() : clientConfiguration;
+        final ClientConfiguration configuration = (clientConfiguration == null) ? new ClientConfiguration() : clientConfiguration;
 
         return new ApiClientHandler(endpoint, apiName, signer, provider, apiKey, configuration);
     }
@@ -143,7 +152,7 @@ public class ApiClientFactory {
      * @return endpoint
      */
     String getEndpoint(Class<?> apiClass) {
-        Service service = apiClass.getAnnotation(Service.class);
+        final Service service = apiClass.getAnnotation(Service.class);
         if (service == null) {
             throw new IllegalArgumentException("Can't find annotation Service");
         }
@@ -168,7 +177,7 @@ public class ApiClientFactory {
      * @return signer
      */
     Signer getSigner(String region) {
-        AWS4Signer signer = new AWS4Signer();
+        final AWS4Signer signer = new AWS4Signer();
         signer.setServiceName(AMAZON_API_GATEWAY_SERVICE_NAME);
         signer.setRegionName(region);
         return signer;
@@ -180,11 +189,12 @@ public class ApiClientFactory {
      * @param endpoint endpoint string
      * @return region string
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     String getRegion(String endpoint) {
         if (regionOverride != null) {
             return regionOverride;
         }
-        Matcher m = ENDPOINT_PATTERN.matcher(endpoint);
+        final Matcher m = ENDPOINT_PATTERN.matcher(endpoint);
         if (m.matches()) {
             return m.group(1);
         }

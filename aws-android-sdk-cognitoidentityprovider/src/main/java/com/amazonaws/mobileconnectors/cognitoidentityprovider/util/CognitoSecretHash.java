@@ -29,7 +29,7 @@ import javax.crypto.spec.SecretKeySpec;
  * Utility class for all operations involving secret hash.
  */
 public final class CognitoSecretHash {
-    private final static String HMAC_SHA_256 = "HmacSHA256";
+    private static final String HMAC_SHA_256 = "HmacSHA256";
 
     /**
      * Generates secret hash. Uses HMAC SHA256.
@@ -54,16 +54,16 @@ public final class CognitoSecretHash {
             return null;
         }
 
-        SecretKeySpec signingKey = new SecretKeySpec(clientSecret.getBytes(StringUtils.UTF8),
+        final SecretKeySpec signingKey = new SecretKeySpec(clientSecret.getBytes(StringUtils.UTF8),
                 HMAC_SHA_256);
 
         try {
-            Mac mac = Mac.getInstance(HMAC_SHA_256);
+            final Mac mac = Mac.getInstance(HMAC_SHA_256);
             mac.init(signingKey);
             mac.update(userId.getBytes(StringUtils.UTF8));
-            byte[] rawHmac = mac.doFinal(clientId.getBytes(StringUtils.UTF8));
+            final byte[] rawHmac = mac.doFinal(clientId.getBytes(StringUtils.UTF8));
             return  new String(Base64.encode(rawHmac));
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new CognitoInternalErrorException("errors in HMAC calculation");
         }
     }

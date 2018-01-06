@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,11 +20,16 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 /**
  * An unmarshaller that unmarshals Binary values as Java {@code ByteBuffer}s.
  */
-public class ByteBufferUnmarshaller extends BUnmarshaller {
+public final class ByteBufferUnmarshaller extends BUnmarshaller {
 
     private static final ByteBufferUnmarshaller INSTANCE =
             new ByteBufferUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link ByteBufferUnmarshaller}
+     */
     public static ByteBufferUnmarshaller instance() {
         return INSTANCE;
     }

@@ -1,0 +1,5 @@
+<resources>
+  <string name="sign_in_canceled_message_format">"Sign-in with %s canceled."</string>
+  <string name="sign_in_failure_dialog_title">Sign-In Error</string>
+  <string name="sign_in_failure_message_format">Sign-in with %1$s failed.\n%2$s</string>
+</resources>

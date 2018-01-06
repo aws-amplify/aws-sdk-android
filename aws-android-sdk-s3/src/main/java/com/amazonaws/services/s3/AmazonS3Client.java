@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -71,6 +71,7 @@ import com.amazonaws.services.s3.internal.RepeatableFileInputStream;
 import com.amazonaws.services.s3.internal.ResponseHeaderHandlerChain;
 import com.amazonaws.services.s3.internal.S3ErrorResponseHandler;
 import com.amazonaws.services.s3.internal.S3ExecutionContext;
+import com.amazonaws.services.s3.internal.S3HttpUtils;
 import com.amazonaws.services.s3.internal.S3MetadataResponseHandler;
 import com.amazonaws.services.s3.internal.S3ObjectResponseHandler;
 import com.amazonaws.services.s3.internal.S3QueryStringSigner;
@@ -108,7 +109,6 @@ import com.amazonaws.util.AwsHostNameUtils;
 import com.amazonaws.util.Base64;
 import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.DateUtils;
-import com.amazonaws.util.HttpUtils;
 import com.amazonaws.util.IOUtils;
 import com.amazonaws.util.LengthCheckInputStream;
 import com.amazonaws.util.Md5Utils;
@@ -212,6 +212,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * requests sent by this client.
      */
     volatile String clientRegion;
+
+    // Number of Kbytes that needs to be written before status updates are called
+    private int notificationThreshold = 1024;
 
     private static final int BUCKET_REGION_CACHE_SIZE = 300;
 
@@ -423,6 +426,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     private void init() {
         // calling this.setEndpoint(...) will also modify the signer accordingly
         setEndpoint(Constants.S3_HOSTNAME);
+        this.endpointPrefix = "s3";
 
         final HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(
@@ -430,6 +434,20 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         requestHandler2s.addAll(chainFactory.newRequestHandler2Chain(
                 "/com/amazonaws/services/s3/request.handler2s"));
     }
+
+
+    /**
+     * Sets the number of Kbytes that need to be written before updates to the
+     * listener occur.
+     *
+     * @param threshold Number of Kbytes that needs to be written before
+     *            write update notification occurs.
+     */
+    public void setNotificationThreshold(final int threshold) {
+        this.notificationThreshold = threshold;
+    }
+
+
 
     @Override
     public void setEndpoint(String endpoint) {
@@ -571,14 +589,15 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         request.addParameter("versions", null);
 
         addParameterIfNotNull(request, "prefix",
-                shouldSDKDecodeResponse ? HttpUtils.urlEncode(listVersionsRequest.getPrefix(), true)
+                shouldSDKDecodeResponse
+                        ? S3HttpUtils.urlEncode(listVersionsRequest.getPrefix(), true)
                         : listVersionsRequest.getPrefix());
         addParameterIfNotNull(request, "key-marker", listVersionsRequest.getKeyMarker());
         addParameterIfNotNull(request, "version-id-marker",
                 listVersionsRequest.getVersionIdMarker());
         addParameterIfNotNull(request, "delimiter",
                 shouldSDKDecodeResponse
-                        ? HttpUtils.urlEncode(listVersionsRequest.getDelimiter(), true)
+                        ? S3HttpUtils.urlEncode(listVersionsRequest.getDelimiter(), true)
                         : listVersionsRequest.getDelimiter());
 
         if (listVersionsRequest.getMaxResults() != null
@@ -637,12 +656,12 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 listObjectsRequest.getBucketName(), null, listObjectsRequest, HttpMethodName.GET);
 
         addParameterIfNotNull(request, "prefix", shouldSDKDecodeResponse
-                ? HttpUtils.urlEncode(listObjectsRequest.getPrefix(), true)
+                ? S3HttpUtils.urlEncode(listObjectsRequest.getPrefix(), true)
                 : listObjectsRequest.getPrefix());
         addParameterIfNotNull(request, "marker", listObjectsRequest.getMarker());
         addParameterIfNotNull(request, "delimiter",
                 shouldSDKDecodeResponse
-                        ? HttpUtils.urlEncode(listObjectsRequest.getDelimiter(), true)
+                        ? S3HttpUtils.urlEncode(listObjectsRequest.getDelimiter(), true)
                         : listObjectsRequest.getDelimiter());
         addParameterIfNotNull(request, "encoding-type", listObjectsRequest.getEncodingType());
 
@@ -1391,6 +1410,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 ProgressReportingInputStream progressReportingInputStream = new ProgressReportingInputStream(
                         input, progressListenerCallbackExecutor);
                 progressReportingInputStream.setFireCompletedEvent(true);
+                progressReportingInputStream.setNotificationThreshold(this.notificationThreshold);
                 input = progressReportingInputStream;
                 fireProgressEvent(progressListenerCallbackExecutor,
                         ProgressEvent.STARTED_EVENT_CODE);
@@ -1682,6 +1702,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
         if (progressListenerCallbackExecutor != null) {
             input = new ProgressReportingInputStream(input, progressListenerCallbackExecutor);
+            ((ProgressReportingInputStream)input).setNotificationThreshold(this.notificationThreshold);
             fireProgressEvent(progressListenerCallbackExecutor, ProgressEvent.STARTED_EVENT_CODE);
         }
 
@@ -3629,10 +3650,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 .wrapListener(progressListener);
 
         if (progressListenerCallbackExecutor != null) {
-            inputStream = new ProgressReportingInputStream(inputStream,
-                    progressListenerCallbackExecutor);
-            fireProgressEvent(progressListenerCallbackExecutor,
-                    ProgressEvent.PART_STARTED_EVENT_CODE);
+            inputStream = new ProgressReportingInputStream(inputStream, progressListenerCallbackExecutor);
+            ((ProgressReportingInputStream)inputStream).setNotificationThreshold(this.notificationThreshold);
+            fireProgressEvent(progressListenerCallbackExecutor, ProgressEvent.PART_STARTED_EVENT_CODE);
         }
 
         try {
@@ -3912,7 +3932,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 if (region != null) {
                      // If cache contains the region for the bucket, create an endpoint for the region and
                      // update the request with that endpoint.
-                     resolveRequestEndpoint(request, bucketName, key, RuntimeHttpUtils.toUri(RegionUtils.getRegion(region).getServiceEndpoint(S3_SERVICE_NAME), clientConfiguration));
+                    resolveRequestEndpoint(request, bucketName, key, RuntimeHttpUtils.toUri(
+                            RegionUtils.getRegion(region).getServiceEndpoint(S3_SERVICE_NAME),
+                            clientConfiguration));
 
                      final AWSS3V4Signer v4Signer = (AWSS3V4Signer) signer;
                      v4Signer.setServiceName(getServiceNameIntern());
@@ -4021,7 +4043,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
         String resourcePath = "/" +
                 ((bucketName != null) ? bucketName + "/" : "") +
-                ((key != null) ? HttpUtils.urlEncode(key, true) : "") +
+                ((key != null) ? S3HttpUtils.urlEncode(key, true) : "") +
                 ((subResource != null) ? "?" + subResource : "");
 
         // Make sure the resource-path for signing does not contain
@@ -4170,8 +4192,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     private static void populateRequestWithCopyObjectParameters(
             Request<? extends AmazonWebServiceRequest> request, CopyObjectRequest copyObjectRequest) {
         String copySourceHeader =
-                "/" + HttpUtils.urlEncode(copyObjectRequest.getSourceBucketName(), true)
-                        + "/" + HttpUtils.urlEncode(copyObjectRequest.getSourceKey(), true);
+                "/" + S3HttpUtils.urlEncode(copyObjectRequest.getSourceBucketName(), true)
+                        + "/" + S3HttpUtils.urlEncode(copyObjectRequest.getSourceKey(), true);
         if (copyObjectRequest.getSourceVersionId() != null) {
             copySourceHeader += "?versionId=" + copyObjectRequest.getSourceVersionId();
         }
@@ -4229,8 +4251,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     private static void populateRequestWithCopyPartParameters(Request<?> request,
             CopyPartRequest copyPartRequest) {
         String copySourceHeader =
-                "/" + HttpUtils.urlEncode(copyPartRequest.getSourceBucketName(), true)
-                        + "/" + HttpUtils.urlEncode(copyPartRequest.getSourceKey(), true);
+                "/" + S3HttpUtils.urlEncode(copyPartRequest.getSourceBucketName(), true)
+                        + "/" + S3HttpUtils.urlEncode(copyPartRequest.getSourceKey(), true);
         if (copyPartRequest.getSourceVersionId() != null) {
             copySourceHeader += "?versionId=" + copyPartRequest.getSourceVersionId();
         }
@@ -5406,12 +5428,14 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         final URI ep = endpoint == null ? this.endpoint : endpoint;
         if (shouldUseVirtualAddressing(ep, bucketName)) {
             request.setEndpoint(convertToVirtualHostEndpoint(ep, bucketName));
-            request.setResourcePath(HttpUtils.urlEncode(getHostStyleResourcePath(key), true));
+            request.setResourcePath(
+                    S3HttpUtils.urlEncode(getHostStyleResourcePath(key), true));
         } else {
             request.setEndpoint(ep);
             if (bucketName != null) {
                 request.setResourcePath(
-                        HttpUtils.urlEncode(getPathStyleResourcePath(bucketName, key), true));
+                        S3HttpUtils.urlEncode(getPathStyleResourcePath(bucketName, key),
+                                true));
             }
         }
     }

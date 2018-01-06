@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -65,7 +65,12 @@ public class Statement {
      * deny access.
      */
     public static enum Effect {
-        Allow(), Deny();
+
+        /** Allow. */
+        Allow(),
+
+        /** Deny. */
+        Deny();
     }
 
     private String id;
@@ -149,7 +154,9 @@ public class Statement {
      * different policies is not a problem.
      *
      * @param id The new statement ID for this statement.
+     * @return the Statement.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public Statement withId(String id) {
         setId(id);
         return this;
@@ -219,6 +226,7 @@ public class Statement {
      * @return The updated Statement object so that additional method calls can
      *         be chained together.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public Statement withActions(Action... actions) {
         setActions(Arrays.asList(actions));
         return this;
@@ -267,6 +275,7 @@ public class Statement {
      * @return The updated Statement object so that additional method calls can
      *         be chained together.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public Statement withResources(Resource... resources) {
         setResources(Arrays.asList(resources));
         return this;
@@ -333,6 +342,7 @@ public class Statement {
      * @return The updated Statement object so that additional method calls can
      *         be chained together.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public Statement withConditions(Condition... conditions) {
         setConditions(Arrays.asList(conditions));
         return this;
@@ -392,6 +402,7 @@ public class Statement {
      * @return The updated Statement object so that additional method calls can
      *         be chained together.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public Statement withPrincipals(Principal... principals) {
         setPrincipals(principals);
         return this;

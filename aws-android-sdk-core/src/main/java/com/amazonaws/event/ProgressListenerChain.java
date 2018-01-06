@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -42,6 +42,7 @@ public class ProgressListenerChain implements ProgressListener {
     /**
      * Create a listener chain that directly passes all the progress events to
      * the specified listeners.
+     * @param listeners the progress listener.
      */
     public ProgressListenerChain(ProgressListener... listeners) {
         this(null, listeners);
@@ -49,6 +50,8 @@ public class ProgressListenerChain implements ProgressListener {
 
     /**
      * Create a listener chain with a ProgressEventFilter.
+     * @param listeners the progress listener.
+     * @param progressEventFilter the progress event filter.
      */
     public ProgressListenerChain(ProgressEventFilter progressEventFilter,
             ProgressListener... listeners) {
@@ -61,12 +64,20 @@ public class ProgressListenerChain implements ProgressListener {
         this.progressEventFilter = progressEventFilter;
     }
 
+    /**
+     * Adds the progress listener.
+     * @param listener the progress listener.
+     */
     public synchronized void addProgressListener(ProgressListener listener) {
         if (listener == null)
             return;
         this.listeners.add(listener);
     }
 
+    /**
+     * Removes the progress listeners.
+     * @param listener the progress listener.
+     */
     public synchronized void removeProgressListener(ProgressListener listener) {
         if (listener == null)
             return;
@@ -74,7 +85,7 @@ public class ProgressListenerChain implements ProgressListener {
     }
 
     /**
-     * Returns the listeners associated with this listener chain.
+     * @return the listeners associated with this listener chain.
      */
     protected List<ProgressListener> getListeners() {
         return listeners;
@@ -105,7 +116,8 @@ public class ProgressListenerChain implements ProgressListener {
     public static interface ProgressEventFilter {
 
         /**
-         * Returns the filtered event object that will be actually passed into
+         * @param progressEvent the progress event.
+         * @return the filtered event object that will be actually passed into
          * the listeners. Returns null if the event should be completely
          * blocked.
          */

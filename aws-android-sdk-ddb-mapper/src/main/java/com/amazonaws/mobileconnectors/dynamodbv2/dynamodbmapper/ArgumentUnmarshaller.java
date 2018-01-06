@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,9 @@ public interface ArgumentUnmarshaller {
 
     /**
      * Asserts that the value given can be processed using the setter given.
+     *
+     * @param value the attribute value.
+     * @param setter the method.
      */
     public void typeCheck(AttributeValue value, Method setter);
 
@@ -37,6 +40,8 @@ public interface ArgumentUnmarshaller {
      * appropriate type, as determined by {@link DynamoDBReflector} and
      * {@link DynamoDBMapper}
      *
+     * @param value the attribute value.
+     * @return the unmarshalled object.
      * @throws ParseException when unable to parse a date string
      */
     public Object unmarshall(AttributeValue value) throws ParseException;

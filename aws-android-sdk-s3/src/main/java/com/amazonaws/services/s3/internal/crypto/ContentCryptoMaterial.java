@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -120,6 +120,7 @@ final class ContentCryptoMaterial {
     /**
      * Returns the metadata in the latest format.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     private ObjectMetadata toObjectMetadata(ObjectMetadata metadata) {
         // If we generated a symmetric key to encrypt the data, store it in the
         // object metadata.
@@ -155,6 +156,7 @@ final class ContentCryptoMaterial {
      * Returns the metadata in backward compatibility (old) format, so it can be
      * read by older version of the AWS SDK.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     private ObjectMetadata toObjectMetadataEO(ObjectMetadata metadata) {
         // If we generated a symmetric key to encrypt the data, store it in the
         // object metadata.
@@ -182,6 +184,7 @@ final class ContentCryptoMaterial {
     /**
      * Returns the json string in the latest format.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     String toJsonString() {
         final Map<String, String> map = new HashMap<String, String>();
         final byte[] encryptedCEK = getEncryptedCEK();
@@ -205,6 +208,7 @@ final class ContentCryptoMaterial {
         return JsonUtils.mapToString(map);
     }
 
+    @SuppressWarnings("checkstyle:hiddenfield")
     private String toJsonStringEO() {
         final Map<String, String> map = new HashMap<String, String>();
         final byte[] encryptedCEK = getEncryptedCEK();
@@ -393,8 +397,7 @@ final class ContentCryptoMaterial {
         } else {
             materials = kekMaterialAccessor == null
                 ? null
-                : kekMaterialAccessor.getEncryptionMaterials(merged)
-                ;
+                : kekMaterialAccessor.getEncryptionMaterials(merged);
             if (materials == null) {
                 throw new AmazonClientException(
                         "Unable to retrieve the client encryption materials");
@@ -696,9 +699,9 @@ final class ContentCryptoMaterial {
             EncryptionMaterialsAccessor accessor, S3CryptoScheme targetScheme,
             Provider p, AWSKMSClient kms, AmazonWebServiceRequest req) {
         if (!usesKMSKey()
-        &&  newKEK.getMaterialsDescription().equals(kekMaterialsDescription)) {
+            &&  newKEK.getMaterialsDescription().equals(kekMaterialsDescription)) {
             throw new SecurityException(
-                "Material description of the new KEK must differ from the current one");
+                    "Material description of the new KEK must differ from the current one");
         }
         final EncryptionMaterials origKEK;
         if (usesKMSKey()) {
@@ -835,8 +838,8 @@ final class ContentCryptoMaterial {
                 cekSecured.getMaterialDescription(),
                 cekSecured.getEncrypted(),
                 cekSecured.getKeyWrapAlgorithm(),
-                contentCryptoScheme.createCipherLite
-                    (cek, iv, Cipher.ENCRYPT_MODE, provider));
+                contentCryptoScheme.createCipherLite(
+                        cek, iv, Cipher.ENCRYPT_MODE, provider));
     }
 
     /**
@@ -854,19 +857,17 @@ final class ContentCryptoMaterial {
             EncryptionMaterials materials, S3KeyWrapScheme kwScheme,
             SecureRandom srand, Provider p, AWSKMSClient kms,
             AmazonWebServiceRequest req) {
-        final Map<String,String> matdesc;
+        final Map<String, String> matdesc;
 
         if (materials.isKMSEnabled()) {
             matdesc = mergeMaterialDescriptions(materials, req);
             final EncryptRequest encryptRequest = new EncryptRequest()
                 .withEncryptionContext(matdesc)
                 .withKeyId(materials.getCustomerMasterKeyId())
-                .withPlaintext(ByteBuffer.wrap(cek.getEncoded()))
-                ;
+                .withPlaintext(ByteBuffer.wrap(cek.getEncoded()));
             encryptRequest
                 .withGeneralProgressListener(req.getGeneralProgressListener())
-                .withRequestMetricCollector(req.getRequestMetricCollector())
-                ;
+                .withRequestMetricCollector(req.getRequestMetricCollector());
             final EncryptResult encryptResult = kms.encrypt(encryptRequest);
             final byte[] keyBlob = copyAllBytesFrom(encryptResult.getCiphertextBlob());
             return new KMSSecuredCEK(keyBlob, matdesc);
@@ -908,15 +909,14 @@ final class ContentCryptoMaterial {
 
     static Map<String, String> mergeMaterialDescriptions(
             EncryptionMaterials materials,
-            AmazonWebServiceRequest req)
-    {
-        Map<String,String> matdesc = materials.getMaterialsDescription();
+            AmazonWebServiceRequest req) {
+        Map<String, String> matdesc = materials.getMaterialsDescription();
         if (req instanceof MaterialsDescriptionProvider) {
             final MaterialsDescriptionProvider mdp = (MaterialsDescriptionProvider) req;
-            final Map<String, String> matdesc_req = mdp.getMaterialsDescription();
-            if (matdesc_req != null) {
+            final Map<String, String> matdescReq = mdp.getMaterialsDescription();
+            if (matdescReq != null) {
                 matdesc = new TreeMap<String, String>(matdesc);
-                matdesc.putAll(matdesc_req);    // request takes precedence
+                matdesc.putAll(matdescReq);    // request takes precedence
             }
         }
         return matdesc;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -54,6 +54,9 @@ import java.util.Map;
  * Authenticated encryption (AE) cryptographic module for the S3 encryption client.
  */
 class S3CryptoModuleAE extends S3CryptoModuleBase<MultipartUploadCryptoContext> {
+
+    private static final int BIT_SIZE = 8;
+    private static final int DEFAULT_BYTE_SIZE = 1024 * 10;
     static {
         // Enable bouncy castle if available
         CryptoRuntime.enableBouncyCastle();
@@ -69,7 +72,7 @@ class S3CryptoModuleAE extends S3CryptoModuleBase<MultipartUploadCryptoContext> 
                 cryptoConfig);
         final CryptoMode mode = cryptoConfig.getCryptoMode();
         if (mode != StrictAuthenticatedEncryption
-        &&  mode != AuthenticatedEncryption) {
+                &&  mode != AuthenticatedEncryption) {
             throw new IllegalArgumentException();
         }
     }
@@ -123,16 +126,14 @@ class S3CryptoModuleAE extends S3CryptoModuleBase<MultipartUploadCryptoContext> 
         }
         String suffix = null;
         if (req instanceof EncryptedGetObjectRequest) {
-            final EncryptedGetObjectRequest ereq = (EncryptedGetObjectRequest)req;
+            final EncryptedGetObjectRequest ereq = (EncryptedGetObjectRequest) req;
             suffix = ereq.getInstructionFileSuffix();
         }
         try {
             return suffix == null || suffix.trim().isEmpty()
-             ? decipher(req, desiredRange, adjustedCryptoRange, retrieved)
-             : decipherWithInstFileSuffix(req,
-                     desiredRange, adjustedCryptoRange, retrieved,
-                     suffix)
-             ;
+                    ? decipher(req, desiredRange, adjustedCryptoRange, retrieved)
+                    : decipherWithInstFileSuffix(req,
+                    desiredRange, adjustedCryptoRange, retrieved, suffix);
         } catch (final RuntimeException ex) {
             // If we're unable to set up the decryption, make sure we close the
             // HTTP connection
@@ -219,7 +220,7 @@ class S3CryptoModuleAE extends S3CryptoModuleBase<MultipartUploadCryptoContext> 
         ExtraMaterialsDescription extraMatDesc = NONE;
         boolean keyWrapExpected = isStrict();
         if (req instanceof EncryptedGetObjectRequest) {
-            final EncryptedGetObjectRequest ereq = (EncryptedGetObjectRequest)req;
+            final EncryptedGetObjectRequest ereq = (EncryptedGetObjectRequest) req;
             extraMatDesc = ereq.getExtraMaterialDescription();
             if (!keyWrapExpected) {
                 keyWrapExpected = ereq.isKeyWrapExpected();
@@ -227,8 +228,7 @@ class S3CryptoModuleAE extends S3CryptoModuleBase<MultipartUploadCryptoContext> 
         }
         final String json = instructionFile.toJsonString();
         @SuppressWarnings("unchecked")
-        final
-        Map<String, String> matdesc =
+        final Map<String, String> matdesc =
                 Collections.unmodifiableMap(JsonUtils.jsonToMap(json));
         final ContentCryptoMaterial cekMaterial =
                 ContentCryptoMaterial.fromInstructionFile(
@@ -254,7 +254,7 @@ class S3CryptoModuleAE extends S3CryptoModuleBase<MultipartUploadCryptoContext> 
         ExtraMaterialsDescription extraMatDesc = NONE;
         boolean keyWrapExpected = isStrict();
         if (req instanceof EncryptedGetObjectRequest) {
-            final EncryptedGetObjectRequest ereq = (EncryptedGetObjectRequest)req;
+            final EncryptedGetObjectRequest ereq = (EncryptedGetObjectRequest) req;
             extraMatDesc = ereq.getExtraMaterialDescription();
             if (!keyWrapExpected) {
                 keyWrapExpected = ereq.isKeyWrapExpected();
@@ -297,7 +297,7 @@ class S3CryptoModuleAE extends S3CryptoModuleBase<MultipartUploadCryptoContext> 
      *      If the range specified is invalid, then the S3Object is returned without any modifications.
      */
     protected final S3ObjectWrapper adjustToDesiredRange(S3ObjectWrapper s3object,
-            long[] range, Map<String,String> instruction) {
+            long[] range, Map<String, String> instruction) {
         if (range == null) {
             return s3object;
         }
@@ -306,7 +306,7 @@ class S3CryptoModuleAE extends S3CryptoModuleBase<MultipartUploadCryptoContext> 
         final ContentCryptoScheme encryptionScheme = s3object.encryptionSchemeOf(instruction);
         // range get on data encrypted using AES_GCM
         final long instanceLen = s3object.getObjectMetadata().getInstanceLength();
-        final long maxOffset = instanceLen - encryptionScheme.getTagLengthInBits() / 8 - 1;
+        final long maxOffset = instanceLen - encryptionScheme.getTagLengthInBits() / BIT_SIZE - 1;
         if (range[1] > maxOffset) {
             range[1] = maxOffset;
             if (range[0] > range[1]) {
@@ -336,7 +336,7 @@ class S3CryptoModuleAE extends S3CryptoModuleBase<MultipartUploadCryptoContext> 
     public ObjectMetadata getObjectSecurely(GetObjectRequest getObjectRequest,
             File destinationFile) {
         assertParameterNotNull(destinationFile,
-        "The destination file parameter must be specified when downloading an object directly to a file");
+                "The destination file parameter must be specified when downloading an object directly to a file");
 
         final S3Object s3Object = getObjectSecurely(getObjectRequest);
         // getObject can return null if constraints were specified but not met
@@ -347,7 +347,7 @@ class S3CryptoModuleAE extends S3CryptoModuleBase<MultipartUploadCryptoContext> 
         OutputStream outputStream = null;
         try {
             outputStream = new BufferedOutputStream(new FileOutputStream(destinationFile));
-            final byte[] buffer = new byte[1024*10];
+            final byte[] buffer = new byte[DEFAULT_BYTE_SIZE];
             int bytesRead;
             while ((bytesRead = s3Object.getObjectContent().read(buffer)) > -1) {
                 outputStream.write(buffer, 0, bytesRead);
@@ -390,7 +390,7 @@ class S3CryptoModuleAE extends S3CryptoModuleBase<MultipartUploadCryptoContext> 
     @Override
     final long computeLastPartSize(UploadPartRequest req) {
         return req.getPartSize()
-             + (contentCryptoScheme.getTagLengthInBits() / 8);
+             + (contentCryptoScheme.getTagLengthInBits() / BIT_SIZE);
     }
     @Override
     final void updateUploadContext(MultipartUploadCryptoContext uploadContext,
@@ -441,6 +441,6 @@ class S3CryptoModuleAE extends S3CryptoModuleBase<MultipartUploadCryptoContext> 
     @Override
     protected final long ciphertextLength(long originalContentLength) {
         // Add 16 bytes for the 128-bit tag length using AES/GCM
-        return originalContentLength + contentCryptoScheme.getTagLengthInBits()/8;
+        return originalContentLength + contentCryptoScheme.getTagLengthInBits() / BIT_SIZE;
     }
 }

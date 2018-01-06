@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -53,6 +53,7 @@ public class ApiRequest {
     /**
      * Sets all headers, clearing any existing ones.
      *
+     * @param headers A map of all http headers
      * @return the updated request object.
      */
     public ApiRequest withHeaders(Map<String, String> headers) {
@@ -63,8 +64,8 @@ public class ApiRequest {
     /**
      * Sets the header in the request.
      *
-     * @param header
-     * @param value
+     * @param header the http header name.
+     * @param value the http header value.
      * @return the updated request object.
      */
     public ApiRequest addHeader(String header, String value) {
@@ -104,6 +105,7 @@ public class ApiRequest {
     /**
      * Sets all parameters, clearing any existing values.
      *
+     * @param parameters the http request parameters.
      * @return the updated request object.
      */
     public ApiRequest withParameters(Map<String, String> parameters) {
@@ -123,8 +125,8 @@ public class ApiRequest {
     /**
      * Set parameters with name and value.
      *
-     * @param name
-     * @param value
+     * @param name the parameter name.
+     * @param value the parameter value.
      * @return the updated request object.
      */
     public ApiRequest withParameter(String name, String value) {
@@ -144,7 +146,7 @@ public class ApiRequest {
     }
 
     /**
-     * @return
+     * @return the {@link HttpMethodName}
      */
     public HttpMethodName getHttpMethod() {
         return request.getHttpMethod();
@@ -167,7 +169,7 @@ public class ApiRequest {
      * Sets the optional stream containing the payload data from the byte array
      * to include for this request. Not all requests will contain payload data.
      *
-     * @param body
+     * @param body The request body represented as a array of bytes.
      * @return the updated request object.
      */
     public ApiRequest withBody(byte[] body) {
@@ -180,7 +182,7 @@ public class ApiRequest {
      * content to include for this request. Not all requests will contain
      * payload data.
      *
-     * @param body
+     * @param body the request body represented as a string.
      * @return the updated request object.
      */
     public ApiRequest withBody(String body) {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,10 +20,14 @@ import org.apache.commons.logging.LogFactory;
 /**
  * Utility for use with errors or exceptions.
  */
+@SuppressWarnings("checkstyle:nowhitespacebefore")
 public enum Throwables {
     ;
+
+    private static final int MAX_RETRY = 1000;
     /**
-     * Returns the root cause of the given throwable, or null if the given
+     * @param orig the throwable.
+     * @return the root cause of the given throwable, or null if the given
      * throwable is null. If the root cause is over 1000 level deep, the
      * original throwable will be returned defensively as this is heuristically
      * considered a circular reference, however unlikely.
@@ -33,7 +37,7 @@ public enum Throwables {
             return orig;
         Throwable t = orig;
         // defend against (malicious?) circularity
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < MAX_RETRY; i++) {
             Throwable cause = t.getCause();
             if (cause == null)
                 return t;

@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,6 +26,9 @@ import com.amazonaws.services.s3.model.PartETag;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.util.json.JsonUtils;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,10 @@ import java.util.List;
  * Provides methods to conveniently perform database operations.
  */
 class TransferDBUtil {
+
+    private static final Log LOGGER = LogFactory.getLog(TransferDBUtil.class);
+
+    private static final String QUERY_PLACE_HOLDER_STRING = ",?";
 
     /**
      * transferDBBase is a basic helper for accessing the database
@@ -207,7 +214,7 @@ class TransferDBUtil {
                     TransferState.PAUSED.toString(),
                     TransferState.CANCELED.toString(),
                     TransferState.WAITING_FOR_NETWORK.toString()
-            });
+                    });
         } else {
             return transferDBBase.update(getRecordUri(id), values, null, null);
         }
@@ -272,7 +279,7 @@ class TransferDBUtil {
                         TransferState.IN_PROGRESS.toString(),
                         TransferState.RESUMED_WAITING.toString(),
                         TransferState.WAITING.toString()
-                });
+                        });
     }
 
     /**
@@ -289,7 +296,7 @@ class TransferDBUtil {
                         + " in (?,?)", new String[] {
                         TransferState.PENDING_NETWORK_DISCONNECT.toString(),
                         TransferState.WAITING_FOR_NETWORK.toString()
-                });
+                        });
     }
 
     /**
@@ -311,7 +318,7 @@ class TransferDBUtil {
                         TransferState.PENDING_PAUSE.toString(),
                         TransferState.RESUMED_WAITING.toString(),
                         TransferState.WAITING.toString()
-                });
+                    });
     }
 
     /**
@@ -419,6 +426,44 @@ class TransferDBUtil {
                         type.toString()
                     }, null);
         }
+    }
+
+    /**
+     * Queries all the records which have the given type and states.
+     *
+     * @param projections The list of columns to be projected
+     * @param type The type of Transfer
+     * @param String[] The list of Transfer States whose Transfer Records are required.
+     * @return A Cursor pointing to records in the database in any of the given states.
+     */
+    public Cursor queryTransfersWithTypeAndStates(TransferType type,
+                                                  TransferState[] states) {
+        final String selection;
+        final String[] selectionArgs;
+        int index = 0;
+        int numStates = states.length;
+        String placeholderString = createPlaceholders(numStates);
+
+        if (type == TransferType.ANY) {
+            selection = TransferTable.COLUMN_STATE +
+                    " in (" + placeholderString + ")";
+            selectionArgs = new String[numStates];
+            for (index = 0; index < numStates; index++) {
+                selectionArgs[index] = states[index].toString();
+            }
+        } else {
+            selection = TransferTable.COLUMN_STATE
+                    + " in (" + placeholderString + ") and "
+                    + TransferTable.COLUMN_TYPE + "=?";
+            selectionArgs = new String[numStates + 1];
+            for (index = 0; index < numStates; index++) {
+                selectionArgs[index] = states[index].toString();
+            }
+            selectionArgs[index] = type.toString();
+        }
+
+        return transferDBBase.query(transferDBBase.getContentUri(), null, selection,
+                selectionArgs, null);
     }
 
     /**
@@ -547,6 +592,57 @@ class TransferDBUtil {
     }
 
     /**
+     * Queries waiting for network partUpload tasks of a multipart upload and returns
+     * true if one such partUpload tasks
+     *
+     * @param mainUploadId The mainUploadId of a multipart upload task
+     * @return If a partUpload task waiting for network exist
+     */
+    public boolean checkWaitingForNetworkPartRequestsFromDB(int mainUploadId) {
+        boolean isNetworkInterrupted = false;
+        Cursor c = null;
+
+        try {
+            c = transferDBBase.query(getPartUri(mainUploadId), null, TransferTable.COLUMN_STATE + "=?",
+                    new String[] {
+                            TransferState.WAITING_FOR_NETWORK.toString()
+                    }, null);
+            while (c.moveToNext()) {
+                isNetworkInterrupted = true;
+                break;
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+
+        return isNetworkInterrupted;
+    }
+
+    /**
+     * Create a string with the required number of placeholders
+     *
+     * @param length Number of placeholders needed
+     * @return String with the required placeholders
+     */
+    private String createPlaceholders(int numPlaceHolders) {
+        if (numPlaceHolders <= 0) {
+            LOGGER.error("Cannot create a string of 0 or less placeholders.");
+            return null;
+        }
+
+        StringBuilder stringBuilder = new StringBuilder(
+                numPlaceHolders * QUERY_PLACE_HOLDER_STRING.length() - 1);
+        stringBuilder.append("?");
+
+        for (int index = 1; index < numPlaceHolders; index++) {
+            stringBuilder.append(QUERY_PLACE_HOLDER_STRING);
+        }
+        return stringBuilder.toString();
+    }
+
+    /**
      * Generates a ContentValues object to insert into the database with the
      * given values for a multipart upload record.
      *
@@ -573,7 +669,7 @@ class TransferDBUtil {
         values.put(TransferTable.COLUMN_BUCKET_NAME, bucket);
         values.put(TransferTable.COLUMN_KEY, key);
         values.put(TransferTable.COLUMN_FILE, file.getAbsolutePath());
-        values.put(TransferTable.COLUMN_BYTES_CURRENT, 0l);
+        values.put(TransferTable.COLUMN_BYTES_CURRENT, 0L);
         values.put(TransferTable.COLUMN_BYTES_TOTAL, bytesTotal);
         values.put(TransferTable.COLUMN_IS_MULTIPART, 1);
         values.put(TransferTable.COLUMN_PART_NUM, partNumber);
@@ -639,9 +735,9 @@ class TransferDBUtil {
         values.put(TransferTable.COLUMN_BUCKET_NAME, bucket);
         values.put(TransferTable.COLUMN_KEY, key);
         values.put(TransferTable.COLUMN_FILE, file.getAbsolutePath());
-        values.put(TransferTable.COLUMN_BYTES_CURRENT, 0l);
+        values.put(TransferTable.COLUMN_BYTES_CURRENT, 0L);
         if (type.equals(TransferType.UPLOAD)) {
-            values.put(TransferTable.COLUMN_BYTES_TOTAL, file == null ? 0l : file.length());
+            values.put(TransferTable.COLUMN_BYTES_TOTAL, file == null ? 0L : file.length());
         }
         values.put(TransferTable.COLUMN_IS_MULTIPART, 0);
         values.put(TransferTable.COLUMN_PART_NUM, 0);

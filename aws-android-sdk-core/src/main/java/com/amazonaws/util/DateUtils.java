@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Portions copyright 2006-2009 James Murty. Please see LICENSE.txt
  * for applicable license terms and NOTICE.txt for applicable notices.
@@ -53,7 +53,7 @@ public class DateUtils {
     /**
      * A map to cache date pattern string to SimpleDateFormat object
      */
-    private static final Map<String, ThreadLocal<SimpleDateFormat>> sdfMap = new HashMap<String, ThreadLocal<SimpleDateFormat>>();
+    private static final Map<String, ThreadLocal<SimpleDateFormat>> SDF_MAP = new HashMap<String, ThreadLocal<SimpleDateFormat>>();
 
     /**
      * A helper function to retrieve a SimpleDateFormat object for the given
@@ -63,10 +63,10 @@ public class DateUtils {
      * @return SimpleDateFormat object
      */
     private static ThreadLocal<SimpleDateFormat> getSimpleDateFormat(final String pattern) {
-        ThreadLocal<SimpleDateFormat> sdf = sdfMap.get(pattern);
+        ThreadLocal<SimpleDateFormat> sdf = SDF_MAP.get(pattern);
         if (sdf == null) {
-            synchronized (sdfMap) {
-                sdf = sdfMap.get(pattern);
+            synchronized (SDF_MAP) {
+                sdf = SDF_MAP.get(pattern);
                 if (sdf == null) {
                     sdf = new ThreadLocal<SimpleDateFormat>() {
                         @Override
@@ -77,7 +77,7 @@ public class DateUtils {
                             return sdf;
                         }
                     };
-                    sdfMap.put(pattern, sdf);
+                    SDF_MAP.put(pattern, sdf);
                 }
             }
         }
@@ -173,19 +173,18 @@ public class DateUtils {
     /**
      * Clone date.
      *
-     * @param date
-     * @return
+     * @param date the date to clone.
+     * @return the cloned Date.
      */
     public static Date cloneDate(Date date) {
         return date == null ? null : new Date(date.getTime());
     }
 
     /**
-     * Returns the number of days since epoch with respect to the given number
+     * @return the number of days since epoch with respect to the given number
      * of milliseconds since epoch.
      *
-     * @param milliSinceEpoch
-     * @return number of days.
+     * @param milliSinceEpoch milliseconds since epoch.
      */
     public static long numberOfDaysSinceEpoch(long milliSinceEpoch) {
         return TimeUnit.MILLISECONDS.toDays(milliSinceEpoch);

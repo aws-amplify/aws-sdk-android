@@ -69,6 +69,9 @@ public class PostContentResultJsonUnmarshaller implements
         if (context.getHeader("x-amz-lex-slot-to-elicit") != null) {
             postContentResult.setSlotToElicit(context.getHeader("x-amz-lex-slot-to-elicit"));
         }
+        if (context.getHeader("x-amz-lex-input-transcript") != null) {
+            postContentResult.setInputTranscript(context.getHeader("x-amz-lex-input-transcript"));
+        }
         final java.io.InputStream is = context.getHttpResponse().getContent();
         if (is != null) {
             final byte[] bytes = IOUtils.toByteArray(is);

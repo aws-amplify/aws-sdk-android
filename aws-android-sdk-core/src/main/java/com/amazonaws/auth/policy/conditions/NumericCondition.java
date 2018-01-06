@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,11 +27,23 @@ public class NumericCondition extends Condition {
 
     /** Enumeration of the supported ways a numeric comparison can be evaluated */
     public static enum NumericComparisonType {
+
+        /** Numeric equals. */
         NumericEquals,
+
+        /** Numeric greater than. */
         NumericGreaterThan,
+
+        /** Numeric greater than or equals. */
         NumericGreaterThanEquals,
+
+        /** Numeric less than. */
         NumericLessThan,
+
+        /** Numeric less than or equals. */
         NumericLessThanEquals,
+
+        /** Numeric not equals. */
         NumericNotEquals;
     };
 

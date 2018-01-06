@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,6 +46,17 @@ public class PaginatedScanList<T> extends PaginatedList<T> {
     /** The current results for the last executed scan operation */
     private ScanResult scanResult;
 
+    /**
+     * Constructor.
+     *
+     * @param mapper an instance of {@link DynamoDBMapper}
+     * @param clazz the class that is being mapped to a dynamodb table
+     * @param dynamo an instance of {@link AmazonDynamoDB}
+     * @param scanRequest a {@link ScanRequest}
+     * @param scanResult a {@link ScanResult}
+     * @param paginationLoadingStrategy {@link PaginationLoadingStrategy}
+     * @param config the {@link DynamoDBMapperConfig}
+     */
     public PaginatedScanList(
             DynamoDBMapper mapper,
             Class<T> clazz,

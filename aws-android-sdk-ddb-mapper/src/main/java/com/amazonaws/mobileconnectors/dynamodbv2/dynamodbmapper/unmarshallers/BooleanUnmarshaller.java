@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,11 +28,16 @@ import java.lang.reflect.Method;
  * added, which stored Java {@code Boolean}s as either the Number 0 (false) or 1
  * (true).
  */
-public class BooleanUnmarshaller implements ArgumentUnmarshaller {
+public final class BooleanUnmarshaller implements ArgumentUnmarshaller {
 
     private static final BooleanUnmarshaller INSTANCE =
             new BooleanUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link BooleanUnmarshaller}
+     */
     public static BooleanUnmarshaller instance() {
         return INSTANCE;
     }

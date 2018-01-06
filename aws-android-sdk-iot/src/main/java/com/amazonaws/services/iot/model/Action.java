@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,6 +29,15 @@ public class Action implements Serializable {
      * </p>
      */
     private DynamoDBAction dynamoDB;
+
+    /**
+     * <p>
+     * Write to a DynamoDB table. This is a new version of the DynamoDB action.
+     * It allows you to write each attribute in an MQTT message payload into a
+     * separate DynamoDB column.
+     * </p>
+     */
+    private DynamoDBv2Action dynamoDBv2;
 
     /**
      * <p>
@@ -95,7 +104,7 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Write data to an Amazon Elasticsearch Service; domain.
+     * Write data to an Amazon Elasticsearch Service domain.
      * </p>
      */
     private ElasticsearchAction elasticsearch;
@@ -142,6 +151,63 @@ public class Action implements Serializable {
      */
     public Action withDynamoDB(DynamoDBAction dynamoDB) {
         this.dynamoDB = dynamoDB;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Write to a DynamoDB table. This is a new version of the DynamoDB action.
+     * It allows you to write each attribute in an MQTT message payload into a
+     * separate DynamoDB column.
+     * </p>
+     *
+     * @return <p>
+     *         Write to a DynamoDB table. This is a new version of the DynamoDB
+     *         action. It allows you to write each attribute in an MQTT message
+     *         payload into a separate DynamoDB column.
+     *         </p>
+     */
+    public DynamoDBv2Action getDynamoDBv2() {
+        return dynamoDBv2;
+    }
+
+    /**
+     * <p>
+     * Write to a DynamoDB table. This is a new version of the DynamoDB action.
+     * It allows you to write each attribute in an MQTT message payload into a
+     * separate DynamoDB column.
+     * </p>
+     *
+     * @param dynamoDBv2 <p>
+     *            Write to a DynamoDB table. This is a new version of the
+     *            DynamoDB action. It allows you to write each attribute in an
+     *            MQTT message payload into a separate DynamoDB column.
+     *            </p>
+     */
+    public void setDynamoDBv2(DynamoDBv2Action dynamoDBv2) {
+        this.dynamoDBv2 = dynamoDBv2;
+    }
+
+    /**
+     * <p>
+     * Write to a DynamoDB table. This is a new version of the DynamoDB action.
+     * It allows you to write each attribute in an MQTT message payload into a
+     * separate DynamoDB column.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param dynamoDBv2 <p>
+     *            Write to a DynamoDB table. This is a new version of the
+     *            DynamoDB action. It allows you to write each attribute in an
+     *            MQTT message payload into a separate DynamoDB column.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Action withDynamoDBv2(DynamoDBv2Action dynamoDBv2) {
+        this.dynamoDBv2 = dynamoDBv2;
         return this;
     }
 
@@ -552,11 +618,11 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Write data to an Amazon Elasticsearch Service; domain.
+     * Write data to an Amazon Elasticsearch Service domain.
      * </p>
      *
      * @return <p>
-     *         Write data to an Amazon Elasticsearch Service; domain.
+     *         Write data to an Amazon Elasticsearch Service domain.
      *         </p>
      */
     public ElasticsearchAction getElasticsearch() {
@@ -565,11 +631,11 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Write data to an Amazon Elasticsearch Service; domain.
+     * Write data to an Amazon Elasticsearch Service domain.
      * </p>
      *
      * @param elasticsearch <p>
-     *            Write data to an Amazon Elasticsearch Service; domain.
+     *            Write data to an Amazon Elasticsearch Service domain.
      *            </p>
      */
     public void setElasticsearch(ElasticsearchAction elasticsearch) {
@@ -578,14 +644,14 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Write data to an Amazon Elasticsearch Service; domain.
+     * Write data to an Amazon Elasticsearch Service domain.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param elasticsearch <p>
-     *            Write data to an Amazon Elasticsearch Service; domain.
+     *            Write data to an Amazon Elasticsearch Service domain.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -608,6 +674,8 @@ public class Action implements Serializable {
         sb.append("{");
         if (getDynamoDB() != null)
             sb.append("dynamoDB: " + getDynamoDB() + ",");
+        if (getDynamoDBv2() != null)
+            sb.append("dynamoDBv2: " + getDynamoDBv2() + ",");
         if (getLambda() != null)
             sb.append("lambda: " + getLambda() + ",");
         if (getSns() != null)
@@ -638,6 +706,7 @@ public class Action implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getDynamoDB() == null) ? 0 : getDynamoDB().hashCode());
+        hashCode = prime * hashCode + ((getDynamoDBv2() == null) ? 0 : getDynamoDBv2().hashCode());
         hashCode = prime * hashCode + ((getLambda() == null) ? 0 : getLambda().hashCode());
         hashCode = prime * hashCode + ((getSns() == null) ? 0 : getSns().hashCode());
         hashCode = prime * hashCode + ((getSqs() == null) ? 0 : getSqs().hashCode());
@@ -668,6 +737,11 @@ public class Action implements Serializable {
         if (other.getDynamoDB() == null ^ this.getDynamoDB() == null)
             return false;
         if (other.getDynamoDB() != null && other.getDynamoDB().equals(this.getDynamoDB()) == false)
+            return false;
+        if (other.getDynamoDBv2() == null ^ this.getDynamoDBv2() == null)
+            return false;
+        if (other.getDynamoDBv2() != null
+                && other.getDynamoDBv2().equals(this.getDynamoDBv2()) == false)
             return false;
         if (other.getLambda() == null ^ this.getLambda() == null)
             return false;

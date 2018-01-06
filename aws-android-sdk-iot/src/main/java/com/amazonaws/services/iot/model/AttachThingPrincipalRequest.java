@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,13 +32,13 @@ public class AttachThingPrincipalRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      */
     private String thingName;
 
     /**
      * <p>
-     * The principal (certificate or other credential).
+     * The principal, such as a certificate or other credential.
      * </p>
      */
     private String principal;
@@ -50,7 +50,7 @@ public class AttachThingPrincipalRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @return <p>
      *         The name of the thing.
@@ -67,7 +67,7 @@ public class AttachThingPrincipalRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
      *            The name of the thing.
@@ -87,7 +87,7 @@ public class AttachThingPrincipalRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
      *            The name of the thing.
@@ -102,11 +102,11 @@ public class AttachThingPrincipalRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The principal (certificate or other credential).
+     * The principal, such as a certificate or other credential.
      * </p>
      *
      * @return <p>
-     *         The principal (certificate or other credential).
+     *         The principal, such as a certificate or other credential.
      *         </p>
      */
     public String getPrincipal() {
@@ -115,11 +115,11 @@ public class AttachThingPrincipalRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The principal (certificate or other credential).
+     * The principal, such as a certificate or other credential.
      * </p>
      *
      * @param principal <p>
-     *            The principal (certificate or other credential).
+     *            The principal, such as a certificate or other credential.
      *            </p>
      */
     public void setPrincipal(String principal) {
@@ -128,14 +128,14 @@ public class AttachThingPrincipalRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The principal (certificate or other credential).
+     * The principal, such as a certificate or other credential.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param principal <p>
-     *            The principal (certificate or other credential).
+     *            The principal, such as a certificate or other credential.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

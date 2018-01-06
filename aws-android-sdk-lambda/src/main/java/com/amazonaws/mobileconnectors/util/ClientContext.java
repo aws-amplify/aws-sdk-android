@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,12 +22,13 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
-import android.util.Log;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.util.Base64;
 import com.amazonaws.util.StringUtils;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -55,8 +56,7 @@ import java.util.UUID;
  * </pre>
  */
 public class ClientContext {
-
-    private static final String TAG = "ClientContext";
+    private static final Log LOGGER = LogFactory.getLog(ClientContext.class);
 
     /**
      * Name of the shared preferences where client id is saved.
@@ -80,7 +80,7 @@ public class ClientContext {
         try {
             json.put("client", getClientInfo(context))
                     .put("env", getDeviceInfo(context));
-        } catch (JSONException e) {
+        } catch (final JSONException e) {
             throw new AmazonClientException("Failed to build client context", e);
         }
     }
@@ -98,7 +98,7 @@ public class ClientContext {
      *      Context Object (Node.js)</a>
      */
     public static String getInstallationId(Context context) {
-        SharedPreferences sp = context.getSharedPreferences(SHARED_PREFERENCES,
+        final SharedPreferences sp = context.getSharedPreferences(SHARED_PREFERENCES,
                 Context.MODE_PRIVATE);
         String installationId = sp.getString("installation_id", null);
         if (installationId == null) {
@@ -117,25 +117,25 @@ public class ClientContext {
      * @throws JSONException
      */
     static JSONObject getClientInfo(Context context) throws JSONException {
-        JSONObject client = new JSONObject();
+        final JSONObject client = new JSONObject();
 
-        PackageManager packageManager = context.getPackageManager();
+        final PackageManager packageManager = context.getPackageManager();
         try {
-            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-            ApplicationInfo applicationInfo = context.getApplicationInfo();
+            final PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+            final ApplicationInfo applicationInfo = context.getApplicationInfo();
 
             client.put("installation_id", getInstallationId(context))
                     .put("app_version_name", packageInfo.versionName)
                     .put("app_version_code", String.valueOf(packageInfo.versionCode))
                     .put("app_package_name", packageInfo.packageName);
             // If null is returned for some reason, fall back to "Unknown"
-            CharSequence title = packageManager.getApplicationLabel(applicationInfo);
+            final CharSequence title = packageManager.getApplicationLabel(applicationInfo);
             client.put("app_title", title == null ? "Unknown" : title.toString());
-        } catch (NameNotFoundException e) {
+        } catch (final NameNotFoundException e) {
             // When device starts, PackageManager will gather package
             // information by scanning them. It will take a while to finish.
             // This exception may be thrown when scan doesn't finish.
-            Log.w(TAG, "Failed to load package info: " + context.getPackageName(), e);
+            LOGGER.warn("Failed to load package info: " + context.getPackageName(), e);
         }
 
         return client;
@@ -150,7 +150,7 @@ public class ClientContext {
      * @throws JSONException
      */
     static JSONObject getDeviceInfo(Context context) throws JSONException {
-        JSONObject env = new JSONObject()
+        final JSONObject env = new JSONObject()
                 .put("platform", "Android")
                 .put("model", Build.MODEL)
                 .put("make", Build.MANUFACTURER)
@@ -190,7 +190,7 @@ public class ClientContext {
         base64String = null;
         try {
             json.put("custom", new JSONObject(map));
-        } catch (JSONException e) {
+        } catch (final JSONException e) {
             throw new AmazonClientException("Failed to add user defined context", e);
         }
     }
@@ -219,9 +219,9 @@ public class ClientContext {
             if (!json.has("services")) {
                 json.put("services", new JSONObject());
             }
-            JSONObject services = json.getJSONObject("services");
+            final JSONObject services = json.getJSONObject("services");
             services.put(service, new JSONObject(map));
-        } catch (JSONException e) {
+        } catch (final JSONException e) {
             throw new AmazonClientException("Failed to add service context", e);
         }
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,8 +15,18 @@
 
 package com.amazonaws.transform;
 
+/**
+ * Marshaller class.
+ * @param <T> type.
+ * @param <R> type.
+ */
 public interface Marshaller<T, R> {
 
+    /**
+     * @param in input to marshall.
+     * @return marshalled result.
+     * @throws Exception
+     */
     public T marshall(R in) throws Exception;
 
 }

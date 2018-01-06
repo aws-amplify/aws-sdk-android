@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -49,6 +49,17 @@ public class UpdateCACertificateRequest extends AmazonWebServiceRequest implemen
      * <b>Allowed Values: </b>ACTIVE, INACTIVE
      */
     private String newStatus;
+
+    /**
+     * <p>
+     * The new value for the auto registration status. Valid values are:
+     * "ENABLE" or "DISABLE".
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ENABLE, DISABLE
+     */
+    private String newAutoRegistrationStatus;
 
     /**
      * <p>
@@ -245,6 +256,114 @@ public class UpdateCACertificateRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
+     * <p>
+     * The new value for the auto registration status. Valid values are:
+     * "ENABLE" or "DISABLE".
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ENABLE, DISABLE
+     *
+     * @return <p>
+     *         The new value for the auto registration status. Valid values are:
+     *         "ENABLE" or "DISABLE".
+     *         </p>
+     * @see AutoRegistrationStatus
+     */
+    public String getNewAutoRegistrationStatus() {
+        return newAutoRegistrationStatus;
+    }
+
+    /**
+     * <p>
+     * The new value for the auto registration status. Valid values are:
+     * "ENABLE" or "DISABLE".
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ENABLE, DISABLE
+     *
+     * @param newAutoRegistrationStatus <p>
+     *            The new value for the auto registration status. Valid values
+     *            are: "ENABLE" or "DISABLE".
+     *            </p>
+     * @see AutoRegistrationStatus
+     */
+    public void setNewAutoRegistrationStatus(String newAutoRegistrationStatus) {
+        this.newAutoRegistrationStatus = newAutoRegistrationStatus;
+    }
+
+    /**
+     * <p>
+     * The new value for the auto registration status. Valid values are:
+     * "ENABLE" or "DISABLE".
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ENABLE, DISABLE
+     *
+     * @param newAutoRegistrationStatus <p>
+     *            The new value for the auto registration status. Valid values
+     *            are: "ENABLE" or "DISABLE".
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see AutoRegistrationStatus
+     */
+    public UpdateCACertificateRequest withNewAutoRegistrationStatus(String newAutoRegistrationStatus) {
+        this.newAutoRegistrationStatus = newAutoRegistrationStatus;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The new value for the auto registration status. Valid values are:
+     * "ENABLE" or "DISABLE".
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ENABLE, DISABLE
+     *
+     * @param newAutoRegistrationStatus <p>
+     *            The new value for the auto registration status. Valid values
+     *            are: "ENABLE" or "DISABLE".
+     *            </p>
+     * @see AutoRegistrationStatus
+     */
+    public void setNewAutoRegistrationStatus(AutoRegistrationStatus newAutoRegistrationStatus) {
+        this.newAutoRegistrationStatus = newAutoRegistrationStatus.toString();
+    }
+
+    /**
+     * <p>
+     * The new value for the auto registration status. Valid values are:
+     * "ENABLE" or "DISABLE".
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ENABLE, DISABLE
+     *
+     * @param newAutoRegistrationStatus <p>
+     *            The new value for the auto registration status. Valid values
+     *            are: "ENABLE" or "DISABLE".
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see AutoRegistrationStatus
+     */
+    public UpdateCACertificateRequest withNewAutoRegistrationStatus(
+            AutoRegistrationStatus newAutoRegistrationStatus) {
+        this.newAutoRegistrationStatus = newAutoRegistrationStatus.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -258,7 +377,9 @@ public class UpdateCACertificateRequest extends AmazonWebServiceRequest implemen
         if (getCertificateId() != null)
             sb.append("certificateId: " + getCertificateId() + ",");
         if (getNewStatus() != null)
-            sb.append("newStatus: " + getNewStatus());
+            sb.append("newStatus: " + getNewStatus() + ",");
+        if (getNewAutoRegistrationStatus() != null)
+            sb.append("newAutoRegistrationStatus: " + getNewAutoRegistrationStatus());
         sb.append("}");
         return sb.toString();
     }
@@ -271,6 +392,10 @@ public class UpdateCACertificateRequest extends AmazonWebServiceRequest implemen
         hashCode = prime * hashCode
                 + ((getCertificateId() == null) ? 0 : getCertificateId().hashCode());
         hashCode = prime * hashCode + ((getNewStatus() == null) ? 0 : getNewStatus().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getNewAutoRegistrationStatus() == null) ? 0 : getNewAutoRegistrationStatus()
+                        .hashCode());
         return hashCode;
     }
 
@@ -294,6 +419,12 @@ public class UpdateCACertificateRequest extends AmazonWebServiceRequest implemen
             return false;
         if (other.getNewStatus() != null
                 && other.getNewStatus().equals(this.getNewStatus()) == false)
+            return false;
+        if (other.getNewAutoRegistrationStatus() == null
+                ^ this.getNewAutoRegistrationStatus() == null)
+            return false;
+        if (other.getNewAutoRegistrationStatus() != null
+                && other.getNewAutoRegistrationStatus().equals(this.getNewAutoRegistrationStatus()) == false)
             return false;
         return true;
     }

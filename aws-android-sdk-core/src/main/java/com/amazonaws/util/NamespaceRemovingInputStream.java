@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,8 +27,10 @@ import java.io.InputStream;
  */
 class NamespaceRemovingInputStream extends SdkFilterInputStream {
 
+    private static final int BUFFER_SIZE = 200;
+
     /** look ahead buffer */
-    private final byte[] lookAheadData = new byte[200];
+    private final byte[] lookAheadData = new byte[BUFFER_SIZE];
 
     /** Set to true once the namespace has been removed */
     private boolean hasRemovedNamespace = false;
@@ -117,17 +119,17 @@ class NamespaceRemovingInputStream extends SdkFilterInputStream {
          * The regex we're simulating is: "xmlns\\s*=\\s*\".+?\".*"
          */
         StringPrefixSlicer stringSlicer = new StringPrefixSlicer(s);
-        if (stringSlicer.removePrefix("xmlns") == false)
+        if (!stringSlicer.removePrefix("xmlns"))
             return -1;
 
         stringSlicer.removeRepeatingPrefix(" ");
-        if (stringSlicer.removePrefix("=") == false)
+        if (!stringSlicer.removePrefix("="))
             return -1;
         stringSlicer.removeRepeatingPrefix(" ");
 
-        if (stringSlicer.removePrefix("\"") == false)
+        if (!stringSlicer.removePrefix("\""))
             return -1;
-        if (stringSlicer.removePrefixEndingWith("\"") == false)
+        if (!stringSlicer.removePrefixEndingWith("\""))
             return -1;
 
         return s.length() - stringSlicer.getString().length();
@@ -152,14 +154,14 @@ class NamespaceRemovingInputStream extends SdkFilterInputStream {
         }
 
         public boolean removePrefix(String prefix) {
-            if (s.startsWith(prefix) == false)
+            if (!s.startsWith(prefix))
                 return false;
             s = s.substring(prefix.length());
             return true;
         }
 
         public boolean removeRepeatingPrefix(String prefix) {
-            if (s.startsWith(prefix) == false)
+            if (!s.startsWith(prefix))
                 return false;
 
             while (s.startsWith(prefix)) {

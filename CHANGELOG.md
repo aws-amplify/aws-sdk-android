@@ -1,4 +1,313 @@
 # Change Log - AWS SDK for Android
+
+## [Release 2.6.13](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.13)
+
+### Bug Fixes
+
+* **Amazon S3**
+  * Fix the upload method with CannedAccessControlList and TransferListener in TransferUtility. See [issue #388](https://github.com/aws/aws-sdk-android/issues/388)
+
+* **Amazon Cognito Auth**
+  * Fixes bug - "Unexpected char 0x0a at 82 in header value" error, when using App clients with an associated secret. See [pr #367](https://github.com/aws/aws-sdk-android/pull/367)
+  * Added `minSdkVersion` and `targetSdkVersion` in `AndroidManifest`
+
+* **AWS Mobile Client**
+  * Added `minSdkVersion` and `targetSdkVersion` in `AndroidManifest`
+
+### New Features
+
+* **AWS IoT**
+  * Starting from this release, AWS IoT SDK by default sends metrics indicating which language and version of the SDK is being used. However, user may disable this by calling `setMetricsEnabled(false)` before calling `connect` method, if they do not want metrics to be sent.
+
+## [Release 2.6.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.12)
+
+### New Features
+
+* **AWS Core Runtime**
+  * Added support for Europe (Paris) region `eu-west-3`.
+
+### Bug Fixes
+
+* **AWS Auth SDK**
+  * Added minimum sdks and target sdk version.
+
+* **Amazon Kinesis Video Streams**
+  * Added minimum sdks and target sdk version.
+
+## [Release 2.6.11](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.11)
+
+### New Features
+
+* **AWS Core Runtime**
+  * Added support for China (Ningxia) region `cn-northwest-1`.
+
+## [Release 2.6.10](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.10)
+
+### New Features
+
+* **Amazon Rekognition**
+  * **Breaking API Change**
+    * The `GenderType` enum entries have changed from `MALE` `FEMALE` to `Male` `Female`.
+    * The `LandmarkType` enum entries have changed to camelcase. i.e. `EYE_LEFT` `LEFT_EYEBROW_LEFT` to `EyeLeft` `LeftEyebrowLeft`
+  * Update the enum value of LandmarkType and GenderType to be consistent with service response.
+  * Update to add face and text detection.
+  * Update to Amazon Rekognition in general to latest API specifications.
+
+### Bug Fixes:
+
+- **Amazon Pinpoint**
+  - Improve error handling during event submission to ensure DB event corruption is handled gracefully (without crashing the app due to an uncaught exception).
+
+- **Amazon Kinesis Video Streams**
+  - **Breaking API Change** `KinesisVideoAndroidServiceClient.getAwsAcuityClient()` is renamed to `KinesisVideoAndroidServiceClient.getAwsKinesisVideoClient()` for consistency.
+
+## [Release 2.6.9](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.9)
+
+### Bug Fixes:
+
+- **AWS Auth Core**
+  - Fixed a bug where the `doStartupAuth` method in `IdentityManager` method introduced in 2.6.0 was misspelled as `doStartUpAuth` in SDK versions 2.6.7 and 2.6.8. The method now continues to have the name `doStartupAuth` from SDK version 2.6.9.
+
+## [Release 2.6.8](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.8)
+
+### New Features
+
+- **Support for Amazon Kinesis Video Streams**: Amazon Kinesis Video Streams is a fully managed video ingestion and storage service. It enables you to securely ingest, process, and store video at any scale for applications that power robots, smart cities, industrial automation, security monitoring, machine learning (ML), and more. Kinesis Video Streams also ingests other kinds of time-encoded data like audio, RADAR, and LIDAR signals. Kinesis Video Streams provides you SDKs to install on your devices to make it easy to securely stream video to AWS. Kinesis Video Streams automatically provisions and elastically scales all the infrastructure needed to ingest video streams from millions of devices. It also durably stores, encrypts, and indexes the video streams and provides easy-to-use APIs so that applications can access and retrieve indexed video fragments based on tags and timestamps. Kinesis Video Streams provides a library to integrate ML frameworks such as Apache MxNet, TensorFlow, and OpenCV with video streams to build machine learning applications.
+
+- **Amazon Cognito Auth**
+  - Add support for the adaptive authentication feature of Amazon Cognito advanced security features (Beta).
+
+- **Amazon Cognito Identity Provider**
+  - Add support for Time-based One-time Passcode multi-factor authentication.
+  - Add support for the adaptive authentication feature of Amazon Cognito advanced security features (Beta).
+
+## [Release 2.6.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.7)
+
+### New Features
+
+- **AWS MobileClient**
+  - Added `AWSMobileClient` to initialize the SDK and create instances of other SDK clients. Currently support is limited to `SignInUI`. AWSMobileClient creates the `AWSConfiguration` based on `awsconfiguration.json`, fetches the Cognito Identity and registers the SignIn providers with the permissions based on the  `AWSConfiguration`.
+
+### Enhancements
+
+- **Amazon Polly**
+  - Added support for new voices - `Aditi` and `Seoyeon`.
+  - Added support for new language code - `ko-KR`.
+
+- **Amazon Pinpoint**
+  - Added support for notification channel on Android SDK 26 (Oreo).
+  - On Android SDK 23 (Marshmallow) and newer devices, the large icon is not set if it is not present from the push payload and a small icon is set in the push payload. This allows setting only the small icon from the campaign in the Pinpoint console.
+  - On Android SDK 23 and newer devices, if the small icon is set in a format that is an opaque color image, it is now converted to greyscale to prevent displaying a grey box. Small icons in the correct format of opaque white with a transparent background will still render appropriately.
+
+### Bug Fixes:
+
+- **General**
+  - Fixed domain returned for `cn-north-1` region and region parsing for `amazonaws.com.cn` domains. See [pr #362](https://github.com/aws/aws-sdk-android/pull/362).
+
+- **AWS IoT**
+  - Increased default time to keep alive to 300 seconds.
+
+## [Release 2.6.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.6)
+
+### Bug Fixes:
+
+- **Amazon Pinpoint**
+  - Fix locale issue for endpoint profile updates. See [issue #355](https://github.com/aws/aws-sdk-android/issues/355) and see [issue #354](https://github.com/aws/aws-sdk-android/issues/354)
+
+- **Amazon S3**
+  - Fixed a bug in the download progress reporting for large files where the last status update could be a jump of 75% or more. The default for notification used to be 8K bytes chunks, it has been changed to 1024K bytes.  The value can be changed using the `setNotificationThreshold` method of AmazonS3Client instead of being a constant.  See [issue #333](https://github.com/aws/aws-sdk-android/issues/333)
+
+- **AWS IoT**
+  - Fix validation for endpoint in China that ends with ".cn". See [issue #337](https://github.com/aws/aws-sdk-android/issues/337)
+
+## [Release 2.6.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.5)
+
+### Enhancements:
+
+- **Amazon Polly**
+  - Added support for new voices - `Matthew` and `Takumi`.
+  - Polly is now available in `ap-northeast-1` region.
+
+### Bug Fixes:
+
+- **Amazon Cognito Identity Provider**
+  - Fixed a bug in the deletion of CognitoUser where the callback function is not invoked when deletion is successful. See [issue #304](https://github.com/aws/aws-sdk-android/issues/304)
+
+## [Release 2.6.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.4)
+
+### Bug Fixes:
+
+- **Amazon Kinesis Firehose & Amazon Kinesis Streams**
+  - Fixed a bug that caused infinite loops while reading local cache of streams used for batching. See [issue #182](https://github.com/aws/aws-sdk-android/issues/182)
+
+## [Release 2.6.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.3)
+
+### New Features:
+
+- **Amazon Pinpoint**
+  - Add support for ADM and Baidu channels. Now Android developers will be able to target devices that leverage Amazon Device messaging and Baidu Cloud messaging. 
+- **Amazon Cognito Identity Provider**
+  - Support for Pinpoint Analytics integration in Cognito User Pools.
+
+## [Release 2.6.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.2)
+
+### Bug Fixes:
+
+- **AWS Auth SDK**
+  - Fixed a bug in the creation of SignInButton.
+  - Removed the manifest entries for Facebook Application ID and Google Play Services version.
+
+## [Release 2.6.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.1)
+
+### Bug Fixes:
+
+- **AWS Auth SDK**
+  - Fixed border and shadow for Facebook and Google SignIn buttons.
+  - Fixed the Android Support Package dependencies of the different auth clients. The Android Support Packages support-v4 and appcompat-v7 of all the auth clients now have the same version 23.0.1 and are optional dependencies. Apps consuming the auth clients will now declare the appcompat-v7 and support-v4 dependencies in the gradle manually.
+
+- **Amazon Pinpoint**
+  - Notification icon handling has been improved. By default, when the Notification icon uses the app icon, the icon will now be shown in color on Apps targeting SDK version 21 or greater. This will be achieved by setting the large icon to the app icon and generating the small icon by converting the app icon image to gray scale. For Apps targeting SDK version below 21, the behavior remains the same and the color icon is shown.
+
+## [Release 2.6.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.0)
+
+### New Features:
+
+- **AWS Auth SDK**
+  - Added new SDK for configurable User SignIn Screen with Amazon Cognito UserPools, Facebook SignIn and Google SignIn.
+
+- **AWS Core Runtime**
+  - Added support for a configuration file `awsconfiguration.json` that can be used to construct:
+    - `CognitoCredentialsProvider`, `CognitoCachingCredentialsProvider`, `CognitoUserPool`, `TransferUtility`, `DynamoDBMapper`, `PinpointConfiguration`, `CognitoSyncManager`, and `LambdaInvokerFactory`.
+
+### Improvements:
+
+- **AWS S3**
+  - Add builder pattern constructor to `TransferUtility`.
+  - Add default bucket property in `TransferUtility` builder. The default bucket will be used when no bucket is specified.
+
+- **AWS Lambda**
+  - Add builder pattern constructor to `LambdaInvokerFactory`.
+
+- **Amazon DynamoDB**
+  - Add builder pattern constructor to `DynamoDBMapper`.
+
+- **Amazon Pinpoint**
+  - Add configuration option to post notifications even if the app is in the foreground.
+
+### Bug Fixes:
+
+- **Amazon Pinpoint**
+  - Fixed bug that caused Pinpoint endpoint profile to incorrectly calculate the number of profile attributes and metrics.
+
+- **Amazon Lex**
+  - Fixed aar file and added new architecture support arm64-v8a, mips, mips64, x86, x86_64. See [issue #298](https://github.com/aws/aws-sdk-android/issues/298)
+
+## [Release 2.4.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.7)
+
+### Improvements:
+
+- **Amazon Cognito Auth**
+  - Making Cognito App Integration and Federation feature generally available
+
+- **AWS IoT**
+  - Add API to enable/disable auto-resubscribe feature.
+
+### Bug Fixes:
+
+- **AWS IoT**
+  - Fixed bug that caused reconnecting to the session to throw an exception due to failure to obtain credentials.
+
+## [Release 2.4.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.6)
+
+### Bug Fixes:
+
+- **Amazon Cognito Identity Provider**
+  - Fixed bug that caused `CognitoDeviceHelper.getDeviceKey` to return null on certain cases. See [issue #259](https://github.com/aws/aws-sdk-android/issues/259)
+  - Fixed bug where `onSuccess` callback was missing from `verifyAttribute` function. See [issue #266](https://github.com/aws/aws-sdk-android/issues/266)
+
+- **Amazon Pinpoint**
+  - Fix crash in Pinpoint SDK when getting locale's country code.
+
+## [Release 2.4.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.5)
+
+### Bug Fixes:
+
+- **Amazon S3**
+  - Fixed bug that caused keys to convert spaces to url encoded characters. See [issue #310](https://github.com/aws/aws-sdk-android/issues/310)
+
+- **Amazon DynamoDB Document Model (Beta)**
+  - Fixed bug that caused item updates to fail due to equality check error.
+
+## [Release 2.4.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.4)
+
+### New Features:
+- **Amazon DynamoDB Document Model (Beta)**
+  - Added DynamoDB Document API: The Document API provides full JSON data support, use of Document Path to access part of a document, and new data types such as Map, Primitive, List, and Boolean. More information and sample code can be found in the [blog](https://aws.amazon.com/blogs/mobile/using-amazon-dynamodb-document-api-with-aws-mobile-sdk-for-android-part-1/).
+
+* **Amazon Cognito Auth (Beta)**
+  - A new SDK that enables sign-up and sign-in for Amazon Cognito Your User Pools via a lightweight hosted UI.
+
+### Bug Fixes:
+- **Amazon Pinpoint**
+  - Change Pinpoint notification client to be a strong reference in Pinpoint notification receiver
+  - **Breaking API Change** Please use `PinpointNotificationReceiver.setNotificationClient()` API instead of `setWeakNotificationClient`.
+
+- **Amazon S3**
+  - Fixed bug in `TransferUtility` which caused the app to crash due to a race condition when loading Transfer Records from Transfer Database. See [issue #288](https://github.com/aws/aws-sdk-android/issues/288)
+
+## [Release 2.4.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.3)
+
+### Improvements:
+- **AWS IoT**
+  - Update API to latest spec.
+
+- **Amazon Polly**
+  - Added support for new voice id - `Vicki`.
+
+- **Amazon Pinpoint**
+  - Update logging to be more restrictive.
+  - Added support for app-level opt-out.
+
+### Bug Fixes:
+- **All Services**
+  - Fixed an issue where endpoint URLs were incorrectly set after using `setRegion.`. See [issue #290](https://github.com/aws/aws-sdk-android/issues/290)
+- **Amazon S3**
+  - Fixed bug which caused gradle build error on commons-io. See [issue #282](https://github.com/aws/aws-sdk-android/issues/282)
+  - Fixed NPE error while resuming transfers using `TransferUtility`. See [issue #299](https://github.com/aws/aws-sdk-android/issues/299)
+  - Fixed `TransferUtility` observer progress tracking bug. See [issue #257](https://github.com/aws/aws-sdk-android/issues/257)
+
+## [Release 2.4.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.2)
+
+### Improvements:
+- **Amazon Lex**
+  - Amazon Lex is now Generally Available.
+  - Added support for input transcripts.
+
+- **Amazon Polly**
+  - Added support for multiple Lexicons in presigned request.
+  - Added support for speech marks.
+
+- **Amazon Rekognition**
+  - Added support for content moderation and age range estimation. See [issue #281](https://github.com/aws/aws-sdk-android/issues/281)
+
+### Bug Fixes:
+- **Amazon DynamoDB**
+  - Fixed bug which did not use credentials provider when available in method `getClient(Region)`.
+- **Amazon S3**
+  - Fixed bug which caused gradle build error on commons-io. See [issue #282](https://github.com/aws/aws-sdk-android/issues/282)
+
+## [Release 2.4.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.1)
+
+### New Features:
+- **Support for Amazon Cloudwatch Logs**: Amazon CloudWatch is a monitoring service for AWS cloud resources and the applications you run on AWS. You can use Amazon CloudWatch to collect and track metrics, collect and monitor log files, and set alarms.
+
+### Bug Fixes:
+- **Amazon IoT**: fix an issue which triggers `NetworkOnMainThreadException` when calling `reconnectToSession()`. See [issue #261](https://github.com/aws/aws-sdk-android/issues/261)
+- **Amazon S3**: fixed maven dependencies. See [issue #276](https://github.com/aws/aws-sdk-android/issues/276) & [issue #268](https://github.com/aws/aws-sdk-android/issues/268)
+- **Amazon S3**: fixed an issue which caused resource path to be incorrectly encoded.See [AWS Forum Post](https://forums.aws.amazon.com/thread.jspa?threadID=252898)
+- **General**: checkstyle fixes across the sdk.
+- **General**: move all sdk's to use commons logging instead of LogCat.
+
 ## [Release 2.4.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.4.0) (03/21/2017)
 
 ### Improvements:
@@ -36,7 +345,7 @@
 - **Amazon Pinpoint**: Fixed a bug that caused a crash when opening a deep link. See [issue #246](https://github.com/aws/aws-sdk-android/pull/246).
 - **Amazon Lex**: Fix incorrect comparison for dialog states. See [issue #245](https://github.com/aws/aws-sdk-android/pull/245).
 
-## [Release 2.3.8](https://github.com/aws/aws-sdk-android/release/tag/release_v2.3.8) (12/20/2016)
+## [Release 2.3.8] (https://github.com/aws/aws-sdk-android/release/tag/release_v2.3.8) (12/20/2016)
 
 ### Bug Fixes:
 
@@ -120,7 +429,7 @@
 ### Bug Fixes
 - **Amazon Cognito Identity Provider**: 
 - Authentication flow in Android SDK now uses Custom Authentication API.
-Two new exceptions added for getSession API. These exceptions have been added to accurately represent the user state when the username is invalid and when the user is not confirmed. You will have to update your application to handle these exceptions.
+- Two new exceptions added for getSession API. These exceptions have been added to accurately represent the user state when the username is invalid and when the user is not confirmed. You will have to update your application to handle these exceptions.
 - UserNotFoundException: Returned when the username user does not exist.
 - UserNotConfirmedException: Returned when the user has not been confirmed.
 

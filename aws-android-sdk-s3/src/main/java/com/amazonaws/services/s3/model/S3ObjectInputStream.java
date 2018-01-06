@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2012-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ public class S3ObjectInputStream extends SdkFilterInputStream {
             boolean collectMetrics) {
 
         super(collectMetrics
-                ? new MetricFilterInputStream(S3ServiceMetric.S3DownloadThroughput, in)
+                ? new MetricFilterInputStream(S3ServiceMetric.S3_DOWLOAD_THROUGHPUT, in)
                 : in);
 
         this.httpRequest = httpRequest;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ public class JsonUtils {
     /**
      * Sets the JSON engine. Default is Gson.
      *
-     * @param jsonEngine
+     * @param jsonEngine the json engine.
      */
     public static void setJsonEngine(JsonEngine jsonEngine) {
         switch (jsonEngine) {
@@ -80,6 +80,7 @@ public class JsonUtils {
      *
      * @param factory an {@link AwsJsonFactory}
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     static void setJsonEngine(AwsJsonFactory factory) {
         if (factory == null) {
             throw new IllegalArgumentException("factory can't be null");

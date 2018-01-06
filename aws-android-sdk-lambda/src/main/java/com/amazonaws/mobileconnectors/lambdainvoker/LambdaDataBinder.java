@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ public interface LambdaDataBinder {
      *
      * @param content an encoded content in bytes
      * @param clazz class to be deserialized into
+     * @param <T> the type of the class
      * @return a POJO
      */
     <T> T deserialize(byte[] content, Class<T> clazz);

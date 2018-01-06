@@ -1,11 +1,11 @@
 /**
- * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,35 +15,25 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.internal.core.configuration;
 
-import static com.amazonaws.mobileconnectors.pinpoint.internal.core.util.Preconditions.checkNotNull;
-
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidPreferences;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.json.JSONException;
+import org.json.JSONObject;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidPreferences;
 
-public class AndroidPreferencesConfiguration  {
+import static com.amazonaws.mobileconnectors.pinpoint.internal.core.util.Preconditions.checkNotNull;
 
-    private static final Log log =
-            LogFactory.getLog(AndroidPreferencesConfiguration.class);
+public class AndroidPreferencesConfiguration {
 
+    private static final Log log = LogFactory.getLog(AndroidPreferencesConfiguration.class);
     private static final String CONFIG_KEY = "configuration";
-
     private final PinpointContext context;
-
     private Map<String, String> properties = new ConcurrentHashMap<String, String>();
-
-    public static AndroidPreferencesConfiguration newInstance(final PinpointContext context) {
-        return new AndroidPreferencesConfiguration(context);
-    }
 
     AndroidPreferencesConfiguration(final PinpointContext context) {
         checkNotNull(context);
@@ -62,7 +52,8 @@ public class AndroidPreferencesConfiguration  {
                 try {
                     configJson = new JSONObject(configurationJsonString);
                 } catch (final JSONException e) {
-                    log.error("Could not create Json object of Config", e);
+                    // Do not log e due to potential sensitive information.
+                    log.error("Could not create Json object of Config.");
                 }
             }
         }
@@ -71,7 +62,11 @@ public class AndroidPreferencesConfiguration  {
         updateMappings(configJson);
     }
 
-    public Long getLong(String propertyName) {
+    public static AndroidPreferencesConfiguration newInstance(final PinpointContext context) {
+        return new AndroidPreferencesConfiguration(context);
+    }
+
+    public Long getLong(final String propertyName) {
         Long value = null;
         String valueString = properties.get(propertyName);
 
@@ -79,21 +74,20 @@ public class AndroidPreferencesConfiguration  {
             try {
                 value = Long.decode(valueString);
             } catch (Exception ex) {
-                log.error(String.format("Could not get Long for propertyName: %s", propertyName), ex);
+                // Do not log property due to potential sensitive information.
+                log.error("Could not get Long for property.");
             }
         }
 
         return value;
     }
 
-    public String getString(String propertyName) {
-
+    public String getString(final String propertyName) {
         String value = properties.get(propertyName);
-
         return value;
     }
 
-    public Integer getInt(String propertyName) {
+    public Integer getInt(final String propertyName) {
         Integer value = null;
         String valueString = properties.get(propertyName);
 
@@ -101,14 +95,15 @@ public class AndroidPreferencesConfiguration  {
             try {
                 value = Integer.decode(valueString);
             } catch (Exception ex) {
-                log.error(String.format("Could not get Integer for propertyName: %s", propertyName), ex);
+                // Do not log property due to potential sensitive information.
+                log.error("Could not get Integer for property.");
             }
         }
 
         return value;
     }
 
-    public Double getDouble(String propertyName) {
+    public Double getDouble(final String propertyName) {
         Double value = null;
         String valueString = properties.get(propertyName);
 
@@ -116,14 +111,15 @@ public class AndroidPreferencesConfiguration  {
             try {
                 value = Double.parseDouble(valueString);
             } catch (Exception ex) {
-                log.error(String.format("Could not get Double for propertyName: %s", propertyName), ex);
+                // Do not log property due to potential sensitive information.
+                log.error("Could not get Double for property.");
             }
         }
 
         return value;
     }
 
-    public Boolean getBoolean(String propertyName) {
+    public Boolean getBoolean(final String propertyName) {
         Boolean value = null;
         String valueString = properties.get(propertyName);
 
@@ -131,14 +127,15 @@ public class AndroidPreferencesConfiguration  {
             try {
                 value = Boolean.parseBoolean(valueString);
             } catch (Exception ex) {
-                log.error(String.format("Could not get Boolean for propertyName: %s", propertyName), ex);
+                // Do not log property due to potential sensitive information.
+                log.error("Could not get Boolean for property.");
             }
         }
 
         return value;
     }
 
-    public Short getShort(String propertyName) {
+    public Short getShort(final String propertyName) {
         Short value = null;
         String valueString = properties.get(propertyName);
 
@@ -148,39 +145,40 @@ public class AndroidPreferencesConfiguration  {
                     value = Short.decode(valueString);
                 }
             } catch (Exception ex) {
-                log.error(String.format("Could not get Short for propertyName: %s", propertyName), ex);
+                // Do not log property due to potential sensitive information.
+                log.error("Could not get Short for property.");
             }
         }
 
         return value;
     }
 
-    public Long optLong(String propertyName, Long optValue) {
+    public Long optLong(final String propertyName, final Long optValue) {
         Long value = this.getLong(propertyName);
         return (value != null) ? value : optValue;
     }
 
-    public String optString(String propertyName, String optValue) {
+    public String optString(final String propertyName, final String optValue) {
         String value = this.getString(propertyName);
         return (value != null) ? value : optValue;
     }
 
-    public Integer optInt(String propertyName, Integer optValue) {
+    public Integer optInt(final String propertyName, final Integer optValue) {
         Integer value = this.getInt(propertyName);
         return (value != null) ? value : optValue;
     }
 
-    public Short optShort(String propertyName, Short optValue) {
+    public Short optShort(final String propertyName, final Short optValue) {
         Short value = this.getShort(propertyName);
         return (value != null) ? value : optValue;
     }
 
-    public Double optDouble(String propertyName, Double optValue) {
+    public Double optDouble(final String propertyName, final Double optValue) {
         Double value = this.getDouble(propertyName);
         return (value != null) ? value : optValue;
     }
 
-    public Boolean optBoolean(String propertyName, Boolean optValue) {
+    public Boolean optBoolean(final String propertyName, final Boolean optValue) {
         Boolean value = this.getBoolean(propertyName);
         return (value != null) ? value : optValue;
     }
@@ -189,9 +187,9 @@ public class AndroidPreferencesConfiguration  {
      * Update the property map with the JSON key value pairs
      *
      * @param configJson The Json to add to the map. If null, the internal map
-     *            is empty
+     *                   is empty
      */
-    private void updateMappings(JSONObject configJson) {
+    private void updateMappings(final JSONObject configJson) {
         HashMap<String, String> newProperties = new HashMap<String, String>();
 
         if (configJson != null) {
@@ -203,14 +201,14 @@ public class AndroidPreferencesConfiguration  {
                     String value = configJson.getString(key);
                     newProperties.put(key, value);
                 } catch (JSONException e) {
-                    log.error("Could not update property mappings", e);
+                    // Do not log property mappings due to potential sensitive information.
+                    log.error("Could not update property mappings.");
                 }
             }
         }
 
         // put all new properties in our map
         properties.putAll(newProperties);
-
     }
 
     private PinpointContext getContext() {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,12 +28,17 @@ import java.util.Set;
  * A marshaller that marshals sets of Java {@code Calendar} objects into
  * DynamoDB StringSets (in ISO 8601 format, ie {"2014-01-01T00:00:00Z", ...}).
  */
-public class CalendarSetToStringSetMarshaller
+public final class CalendarSetToStringSetMarshaller
         implements StringSetAttributeMarshaller {
 
     private static final CalendarSetToStringSetMarshaller INSTANCE =
             new CalendarSetToStringSetMarshaller();
 
+    /**
+     * Return a singleton instance.
+     *
+     * @return instance of {@link CalendarSetToStringSetMarshaller}
+     */
     public static CalendarSetToStringSetMarshaller instance() {
         return INSTANCE;
     }
@@ -44,10 +49,10 @@ public class CalendarSetToStringSetMarshaller
     @Override
     public AttributeValue marshall(Object obj) {
         @SuppressWarnings("unchecked")
-        Set<Calendar> dates = (Set<Calendar>) obj;
+        final Set<Calendar> dates = (Set<Calendar>) obj;
 
-        List<String> timestamps = new ArrayList<String>(dates.size());
-        for (Calendar date : dates) {
+        final List<String> timestamps = new ArrayList<String>(dates.size());
+        for (final Calendar date : dates) {
             timestamps.add(DateUtils.formatISO8601Date(date.getTime()));
         }
 

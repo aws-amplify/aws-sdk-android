@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ public abstract class ByteThroughputProvider {
     }
 
     /**
-     * Returns a provider id that can be used to compute the number of active
+     * @return a provider id that can be used to compute the number of active
      * byte throughput provider of a specific metric type being active in a
      * given time interval.
      */

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ public class AWS3Signer extends AbstractAWSSigner {
      * @param request The request to sign.
      */
     @Override
-    public void sign(Request<?> request, AWSCredentials credentials) throws AmazonClientException {
+    public void sign(Request<?> request, AWSCredentials credentials) {
         // annonymous credentials, don't sign
         if (credentials instanceof AnonymousAWSCredentials) {
             return;
@@ -153,7 +153,7 @@ public class AWS3Signer extends AbstractAWSSigner {
             String key = entry.getKey();
             String lowerCaseKey = StringUtils.lowerCase(key);
             if (lowerCaseKey.startsWith("x-amz")
-                    || lowerCaseKey.equals("host")) {
+                    || "host".equals(lowerCaseKey)) {
                 headersToSign.add(key);
             }
         }
@@ -195,12 +195,12 @@ public class AWS3Signer extends AbstractAWSSigner {
         return builder.toString();
     }
 
-    boolean shouldUseHttpsScheme(Request<?> request) throws AmazonClientException {
+    boolean shouldUseHttpsScheme(Request<?> request) {
         try {
             String protocol = StringUtils.lowerCase(request.getEndpoint().toURL().getProtocol());
-            if (protocol.equals("http")) {
+            if ("http".equals(protocol)) {
                 return false;
-            } else if (protocol.equals("https")) {
+            } else if ("https".equals(protocol)) {
                 return true;
             } else {
                 throw new AmazonClientException("Unknown request endpoint protocol " +

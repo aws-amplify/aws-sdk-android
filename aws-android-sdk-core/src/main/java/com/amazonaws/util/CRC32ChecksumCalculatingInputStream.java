@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,6 +30,10 @@ public class CRC32ChecksumCalculatingInputStream extends SdkFilterInputStream {
     /** The CRC32 being calculated by this input stream */
     private CRC32 crc32;
 
+    /**
+     * Constructor.
+     * @param in the input stream.
+     */
     public CRC32ChecksumCalculatingInputStream(InputStream in) {
         super(in);
         crc32 = new CRC32();

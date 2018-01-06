@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,18 +25,18 @@ import java.io.Serializable;
 public class ListThingPrincipalsResult implements Serializable {
     /**
      * <p>
-     * The principals.
+     * The principals associated with the thing.
      * </p>
      */
     private java.util.List<String> principals;
 
     /**
      * <p>
-     * The principals.
+     * The principals associated with the thing.
      * </p>
      *
      * @return <p>
-     *         The principals.
+     *         The principals associated with the thing.
      *         </p>
      */
     public java.util.List<String> getPrincipals() {
@@ -45,11 +45,11 @@ public class ListThingPrincipalsResult implements Serializable {
 
     /**
      * <p>
-     * The principals.
+     * The principals associated with the thing.
      * </p>
      *
      * @param principals <p>
-     *            The principals.
+     *            The principals associated with the thing.
      *            </p>
      */
     public void setPrincipals(java.util.Collection<String> principals) {
@@ -63,14 +63,14 @@ public class ListThingPrincipalsResult implements Serializable {
 
     /**
      * <p>
-     * The principals.
+     * The principals associated with the thing.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param principals <p>
-     *            The principals.
+     *            The principals associated with the thing.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -87,14 +87,14 @@ public class ListThingPrincipalsResult implements Serializable {
 
     /**
      * <p>
-     * The principals.
+     * The principals associated with the thing.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param principals <p>
-     *            The principals.
+     *            The principals associated with the thing.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

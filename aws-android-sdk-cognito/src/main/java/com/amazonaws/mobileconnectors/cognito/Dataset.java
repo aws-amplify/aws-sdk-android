@@ -1,5 +1,5 @@
 /**
- * Copyright 2013-2017 Amazon.com, 
+ * Copyright 2013-2018 Amazon.com, 
  * Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Amazon Software License (the "License"). 
@@ -100,7 +100,7 @@ public interface Dataset {
     void put(String key, String value);
 
     /**
-     * @param values
+     * @param values to be added to the dataset 
      */
     void putAll(Map<String, String> values);
 
@@ -108,7 +108,7 @@ public interface Dataset {
      * Marks a {@link Record} with the given key as deleted. Nothing happens if
      * the {@link Record} doesn't exist or is deleted already.
      * 
-     * @param key
+     * @param key for the Record to be removed
      */
     void remove(String key);
 

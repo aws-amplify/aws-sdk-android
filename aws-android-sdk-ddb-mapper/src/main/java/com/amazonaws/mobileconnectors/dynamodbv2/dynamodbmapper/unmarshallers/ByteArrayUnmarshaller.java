@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +22,16 @@ import java.nio.ByteBuffer;
 /**
  * An unmarshaller that unmarshals Binary values as Java {@code byte[]}s.
  */
-public class ByteArrayUnmarshaller extends BUnmarshaller {
+public final class ByteArrayUnmarshaller extends BUnmarshaller {
 
     private static final ByteArrayUnmarshaller INSTANCE =
             new ByteArrayUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link ByteArrayUnmarshaller}
+     */
     public static ByteArrayUnmarshaller instance() {
         return INSTANCE;
     }
@@ -36,13 +41,13 @@ public class ByteArrayUnmarshaller extends BUnmarshaller {
 
     @Override
     public Object unmarshall(AttributeValue value) {
-        ByteBuffer buffer = value.getB();
+        final ByteBuffer buffer = value.getB();
 
         if (buffer.hasArray()) {
             return buffer.array();
         }
 
-        byte[] array = new byte[buffer.remaining()];
+        final byte[] array = new byte[buffer.remaining()];
         buffer.get(array);
         return array;
     }

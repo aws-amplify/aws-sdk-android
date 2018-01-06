@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,11 +20,16 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 /**
  * An unmarshaller that unmarshals DynamoDB Numbers into Java {@code Double}s.
  */
-public class DoubleUnmarshaller extends NUnmarshaller {
+public final class DoubleUnmarshaller extends NUnmarshaller {
 
     private static final DoubleUnmarshaller INSTANCE =
             new DoubleUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link DoubleUnmarshaller}
+     */
     public static DoubleUnmarshaller instance() {
         return INSTANCE;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -44,11 +44,13 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The audio format in which the resulting stream will be encoded.
+     * The format in which the returned output will be encoded. For audio
+     * stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will
+     * be json.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, ogg_vorbis, pcm
+     * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
      */
     private String outputFormat;
 
@@ -66,6 +68,13 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * </p>
      */
     private String sampleRate;
+
+    /**
+     * <p>
+     * The type of speech marks returned for the input text.
+     * </p>
+     */
+    private java.util.List<String> speechMarkTypes;
 
     /**
      * <p>
@@ -99,10 +108,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
+     * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
+     * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
      */
     private String voiceId;
 
@@ -225,14 +234,18 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The audio format in which the resulting stream will be encoded.
+     * The format in which the returned output will be encoded. For audio
+     * stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will
+     * be json.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, ogg_vorbis, pcm
+     * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
      *
      * @return <p>
-     *         The audio format in which the resulting stream will be encoded.
+     *         The format in which the returned output will be encoded. For
+     *         audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
+     *         marks, this will be json.
      *         </p>
      * @see OutputFormat
      */
@@ -242,15 +255,18 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The audio format in which the resulting stream will be encoded.
+     * The format in which the returned output will be encoded. For audio
+     * stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will
+     * be json.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, ogg_vorbis, pcm
+     * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
      *
      * @param outputFormat <p>
-     *            The audio format in which the resulting stream will be
-     *            encoded.
+     *            The format in which the returned output will be encoded. For
+     *            audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
+     *            marks, this will be json.
      *            </p>
      * @see OutputFormat
      */
@@ -260,18 +276,21 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The audio format in which the resulting stream will be encoded.
+     * The format in which the returned output will be encoded. For audio
+     * stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will
+     * be json.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, ogg_vorbis, pcm
+     * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
      *
      * @param outputFormat <p>
-     *            The audio format in which the resulting stream will be
-     *            encoded.
+     *            The format in which the returned output will be encoded. For
+     *            audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
+     *            marks, this will be json.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -284,15 +303,18 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The audio format in which the resulting stream will be encoded.
+     * The format in which the returned output will be encoded. For audio
+     * stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will
+     * be json.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, ogg_vorbis, pcm
+     * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
      *
      * @param outputFormat <p>
-     *            The audio format in which the resulting stream will be
-     *            encoded.
+     *            The format in which the returned output will be encoded. For
+     *            audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
+     *            marks, this will be json.
      *            </p>
      * @see OutputFormat
      */
@@ -302,18 +324,21 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The audio format in which the resulting stream will be encoded.
+     * The format in which the returned output will be encoded. For audio
+     * stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will
+     * be json.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, ogg_vorbis, pcm
+     * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
      *
      * @param outputFormat <p>
-     *            The audio format in which the resulting stream will be
-     *            encoded.
+     *            The format in which the returned output will be encoded. For
+     *            audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
+     *            marks, this will be json.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -416,6 +441,80 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      */
     public SynthesizeSpeechRequest withSampleRate(String sampleRate) {
         this.sampleRate = sampleRate;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The type of speech marks returned for the input text.
+     * </p>
+     *
+     * @return <p>
+     *         The type of speech marks returned for the input text.
+     *         </p>
+     */
+    public java.util.List<String> getSpeechMarkTypes() {
+        return speechMarkTypes;
+    }
+
+    /**
+     * <p>
+     * The type of speech marks returned for the input text.
+     * </p>
+     *
+     * @param speechMarkTypes <p>
+     *            The type of speech marks returned for the input text.
+     *            </p>
+     */
+    public void setSpeechMarkTypes(java.util.Collection<String> speechMarkTypes) {
+        if (speechMarkTypes == null) {
+            this.speechMarkTypes = null;
+            return;
+        }
+
+        this.speechMarkTypes = new java.util.ArrayList<String>(speechMarkTypes);
+    }
+
+    /**
+     * <p>
+     * The type of speech marks returned for the input text.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param speechMarkTypes <p>
+     *            The type of speech marks returned for the input text.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SynthesizeSpeechRequest withSpeechMarkTypes(String... speechMarkTypes) {
+        if (getSpeechMarkTypes() == null) {
+            this.speechMarkTypes = new java.util.ArrayList<String>(speechMarkTypes.length);
+        }
+        for (String value : speechMarkTypes) {
+            this.speechMarkTypes.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The type of speech marks returned for the input text.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param speechMarkTypes <p>
+     *            The type of speech marks returned for the input text.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SynthesizeSpeechRequest withSpeechMarkTypes(java.util.Collection<String> speechMarkTypes) {
+        setSpeechMarkTypes(speechMarkTypes);
         return this;
     }
 
@@ -614,10 +713,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
+     * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
+     * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
      *
      * @return <p>
      *         Voice ID to use for the synthesis. You can get a list of
@@ -642,10 +741,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
+     * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
+     * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -673,10 +772,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
+     * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
+     * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -704,10 +803,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
+     * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
+     * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -735,10 +834,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
+     * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
+     * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -772,6 +871,8 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
             sb.append("OutputFormat: " + getOutputFormat() + ",");
         if (getSampleRate() != null)
             sb.append("SampleRate: " + getSampleRate() + ",");
+        if (getSpeechMarkTypes() != null)
+            sb.append("SpeechMarkTypes: " + getSpeechMarkTypes() + ",");
         if (getText() != null)
             sb.append("Text: " + getText() + ",");
         if (getTextType() != null)
@@ -792,6 +893,8 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
         hashCode = prime * hashCode
                 + ((getOutputFormat() == null) ? 0 : getOutputFormat().hashCode());
         hashCode = prime * hashCode + ((getSampleRate() == null) ? 0 : getSampleRate().hashCode());
+        hashCode = prime * hashCode
+                + ((getSpeechMarkTypes() == null) ? 0 : getSpeechMarkTypes().hashCode());
         hashCode = prime * hashCode + ((getText() == null) ? 0 : getText().hashCode());
         hashCode = prime * hashCode + ((getTextType() == null) ? 0 : getTextType().hashCode());
         hashCode = prime * hashCode + ((getVoiceId() == null) ? 0 : getVoiceId().hashCode());
@@ -823,6 +926,11 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
             return false;
         if (other.getSampleRate() != null
                 && other.getSampleRate().equals(this.getSampleRate()) == false)
+            return false;
+        if (other.getSpeechMarkTypes() == null ^ this.getSpeechMarkTypes() == null)
+            return false;
+        if (other.getSpeechMarkTypes() != null
+                && other.getSpeechMarkTypes().equals(this.getSpeechMarkTypes()) == false)
             return false;
         if (other.getText() == null ^ this.getText() == null)
             return false;

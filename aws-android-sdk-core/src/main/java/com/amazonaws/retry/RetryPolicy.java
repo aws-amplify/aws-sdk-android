@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -139,6 +139,9 @@ public final class RetryPolicy {
      */
     public static interface RetryCondition {
 
+        /**
+         * Condition for no retry.
+         */
         RetryCondition NO_RETRY_CONDITION = new RetryCondition() {
             @Override
             public boolean shouldRetry(AmazonWebServiceRequest originalRequest,
@@ -191,6 +194,9 @@ public final class RetryPolicy {
      */
     public static interface BackoffStrategy {
 
+        /**
+         * Backoff strategy.
+         */
         RetryPolicy.BackoffStrategy NO_DELAY = new BackoffStrategy() {
             @Override
             public long delayBeforeNextRetry(AmazonWebServiceRequest originalRequest,

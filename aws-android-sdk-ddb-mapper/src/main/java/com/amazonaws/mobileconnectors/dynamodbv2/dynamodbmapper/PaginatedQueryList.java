@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,6 +46,17 @@ public class PaginatedQueryList<T> extends PaginatedList<T> {
     /** The current results for the last executed query operation */
     private QueryResult queryResult;
 
+    /**
+     * Constructor.
+     * 
+     * @param mapper an instance of {@link DynamoDBMapper}
+     * @param clazz the class that is being mapped to a dynamodb table
+     * @param dynamo an instance of {@link AmazonDynamoDB}
+     * @param queryRequest the {@link QueryRequest}
+     * @param queryResult the {@link QueryResult}
+     * @param paginationLoadingStrategy {@link PaginationLoadingStrategy}
+     * @param config the {@link DynamoDBMapperConfig}
+     */
     public PaginatedQueryList(
             DynamoDBMapper mapper,
             Class<T> clazz,

@@ -1,11 +1,11 @@
 /**
- * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,11 +15,15 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.internal.core.util;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class JSONBuilder implements JSONSerializable {
-    private JSONObject json = new JSONObject();
+    private static final Log LOGGER = LogFactory.getLog(JSONBuilder.class);
+    private static final int INDENTATION = 4;
+    private final JSONObject json = new JSONObject();
 
     public JSONBuilder(Object component) {
         if (null != component) {
@@ -29,12 +33,13 @@ public class JSONBuilder implements JSONSerializable {
     }
 
     public JSONBuilder withAttribute(String key, Object value) {
-        Object jsonValue = value instanceof JSONSerializable ? ((JSONSerializable) value)
-                .toJSONObject() : value;
+        final Object jsonValue = value instanceof JSONSerializable
+                                         ? ((JSONSerializable) value).toJSONObject()
+                                         : value;
         try {
             json.putOpt(key, jsonValue);
-        } catch (JSONException e) {
-            // somehow value is Double or Float NaN or Infinity, so ignore
+        } catch (final JSONException e) {
+            LOGGER.warn("error parsing json", e);
         }
         return this;
     }
@@ -48,11 +53,11 @@ public class JSONBuilder implements JSONSerializable {
     public String toString() {
         try {
             if (json != null) {
-                return json.toString(4);
+                return json.toString(INDENTATION);
             } else {
                 return "";
             }
-        } catch (JSONException e) {
+        } catch (final JSONException e) {
             return json.toString();
         }
     }

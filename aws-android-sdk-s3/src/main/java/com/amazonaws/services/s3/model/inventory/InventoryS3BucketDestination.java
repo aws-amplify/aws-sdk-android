@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,113 +31,123 @@ public class InventoryS3BucketDestination implements Serializable {
     private String prefix;
 
     /**
-     * Returns the account ID that owns the destination bucket.
+     * @return the account ID that owns the destination bucket.
      */
     public String getAccountId() {
         return accountId;
     }
 
     /**
-     * Sets the account ID that owns the destination bucket.
+     * @param accountId  the account ID that owns the destination bucket.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setAccountId(String accountId) {
         this.accountId = accountId;
     }
 
     /**
-     * Returns the account ID that owns the destination bucket
-     * and returns this {@link InventoryS3BucketDestination} object
+     * @param accountId  the account ID that owns the destination bucket
+     * @return this {@link InventoryS3BucketDestination} object
      * for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public InventoryS3BucketDestination withAccountId(String accountId) {
         setAccountId(accountId);
         return this;
     }
 
     /**
-     * Returns the Amazon resource name (ARN) of the bucket where inventory results will be published.
+     * @return the Amazon resource name (ARN) of the bucket where inventory results will be published.
      */
     public String getBucketArn() {
         return bucketArn;
     }
 
     /**
-     * Sets the Amazon resource name (ARN) of the bucket where inventory results will be published.
+     * @param bucketArn  the Amazon resource name (ARN) of the bucket where inventory results will be published.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setBucketArn(String bucketArn) {
         this.bucketArn = bucketArn;
     }
 
     /**
-     * Sets the Amazon resource name (ARN) of the bucket where inventory results will be published.
+     * @param bucketArn  the Amazon resource name (ARN) of the bucket where inventory results will be published.
      *
-     * The {@link InventoryS3BucketDestination} object is returned for method chaining.
+     * @return this {@link InventoryS3BucketDestination} object is returned for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public InventoryS3BucketDestination withBucketArn(String bucketArn) {
         setBucketArn(bucketArn);
         return this;
     }
 
     /**
-     * Returns the output format of the inventory results.
+     * @return the output format of the inventory results.
      */
     public String getFormat() {
         return format;
     }
 
     /**
-     * Sets the output format of the inventory results.
+     * @param format  the output format of the inventory results.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setFormat(String format) {
         this.format = format;
     }
 
     /**
-     * Sets the output format of the inventory results.
+     * @param format  the output format of the inventory results.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setFormat(InventoryFormat format) {
         setFormat(format == null ? (String) null : format.toString());
     }
 
     /**
-     * Sets the output format of the inventory results
-     * and returns this {@link InventoryS3BucketDestination} object
+     * @param format  the output format of the inventory results
+     * @return this {@link InventoryS3BucketDestination} object
      * for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public InventoryS3BucketDestination withFormat(String format) {
         setFormat(format);
         return this;
     }
 
     /**
-     * Sets the output format of the inventory results
-     * and returns this {@link InventoryS3BucketDestination} object
+     * @param format  the output format of the inventory results
+     * @return this {@link InventoryS3BucketDestination} object
      * for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public InventoryS3BucketDestination withFormat(InventoryFormat format) {
         setFormat(format);
         return this;
     }
 
     /**
-     * Returns the prefix that is prepended to all inventory results.
+     * @return the prefix that is prepended to all inventory results.
      */
     public String getPrefix() {
         return prefix;
     }
 
     /**
-     * Sets the prefix that is prepended to all inventory results.
+     * @param prefix  the prefix that is prepended to all inventory results.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setPrefix(String prefix) {
         this.prefix = prefix;
     }
 
     /**
-     * Sets the prefix that is prepended to all inventory results
-     * and returns this {@link InventoryS3BucketDestination} object
+     * @param prefix  the prefix that is prepended to all inventory results
+     * @return this {@link InventoryS3BucketDestination} object
      * for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public InventoryS3BucketDestination withPrefix(String prefix) {
         setPrefix(prefix);
         return this;

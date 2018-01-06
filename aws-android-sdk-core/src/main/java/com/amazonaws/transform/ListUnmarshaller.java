@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,11 +21,19 @@ import com.amazonaws.util.json.AwsJsonToken;
 import java.util.ArrayList;
 import java.util.List;
 
+/***
+ * The ListUnmarshaller class.
+ * @param <T> the class type.
+ */
 public class ListUnmarshaller<T>
         implements Unmarshaller<List<T>, JsonUnmarshallerContext> {
 
     private final Unmarshaller<T, JsonUnmarshallerContext> itemUnmarshaller;
 
+    /**
+     * Constructor.
+     * @param itemUnmarshaller the item unmarshaller.
+     */
     public ListUnmarshaller(
             Unmarshaller<T, JsonUnmarshallerContext> itemUnmarshaller) {
         this.itemUnmarshaller = itemUnmarshaller;

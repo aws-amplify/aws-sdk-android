@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -64,8 +64,7 @@ class KinesisStreamRecordSender implements RecordSender {
     }
 
     @Override
-    public List<byte[]> sendBatch(String streamName, List<byte[]> data)
-            throws AmazonClientException {
+    public List<byte[]> sendBatch(String streamName, List<byte[]> data) {
         if (data == null || data.isEmpty()) {
             return Collections.emptyList();
         }
@@ -73,12 +72,12 @@ class KinesisStreamRecordSender implements RecordSender {
         final PutRecordsRequest request = new PutRecordsRequest();
         request.setStreamName(streamName);
         final List<PutRecordsRequestEntry> records = new ArrayList<PutRecordsRequestEntry>(data.size());
-        final String partitionKey = StringUtils.isBlank(this.partitionKey)
+        final String partKey = StringUtils.isBlank(this.partitionKey)
                 ? UUID.randomUUID().toString() : this.partitionKey;
         for (final byte[] d : data) {
             final PutRecordsRequestEntry r = new PutRecordsRequestEntry();
             r.setData(ByteBuffer.wrap(d));
-            r.setPartitionKey(partitionKey);
+            r.setPartitionKey(partKey);
             records.add(r);
         }
         request.setRecords(records);

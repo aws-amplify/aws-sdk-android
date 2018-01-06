@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,12 +22,16 @@ public final class InventoryPrefixPredicate extends InventoryFilterPredicate {
 
     private final String prefix;
 
+    /**
+     * Constructor.
+     * @param prefix the string prefix used when evaluating an inventory filter.
+     */
     public InventoryPrefixPredicate(String prefix) {
         this.prefix = prefix;
     }
 
     /**
-     * Returns the prefix to use when evaluating an inventory filter.
+     * @return the prefix to use when evaluating an inventory filter.
      */
     public String getPrefix() {
         return prefix;

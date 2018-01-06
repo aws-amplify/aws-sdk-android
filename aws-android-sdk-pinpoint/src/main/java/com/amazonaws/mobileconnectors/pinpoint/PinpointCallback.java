@@ -1,11 +1,11 @@
 /**
- * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -19,6 +19,8 @@ package com.amazonaws.mobileconnectors.pinpoint;
  * The {@link PinpointCallback} is an abstract class which allows you create
  * subclasses that will handle the completion of certain tasks. On success, the
  * handler's return object is passed into the onComplete method as an argument.
+ *
+ * @param <T>
  */
 public abstract class PinpointCallback<T> {
     protected PinpointCallback() {

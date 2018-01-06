@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ public class Certificate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
-     * REGISTER_INACTIVE
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      */
     private String status;
 
@@ -174,7 +174,7 @@ public class Certificate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
-     * REGISTER_INACTIVE
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
      * @return <p>
      *         The status of the certificate.
@@ -199,7 +199,7 @@ public class Certificate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
-     * REGISTER_INACTIVE
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
      * @param status <p>
      *            The status of the certificate.
@@ -227,7 +227,7 @@ public class Certificate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
-     * REGISTER_INACTIVE
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
      * @param status <p>
      *            The status of the certificate.
@@ -255,7 +255,7 @@ public class Certificate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
-     * REGISTER_INACTIVE
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
      * @param status <p>
      *            The status of the certificate.
@@ -283,7 +283,7 @@ public class Certificate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
-     * REGISTER_INACTIVE
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
      * @param status <p>
      *            The status of the certificate.

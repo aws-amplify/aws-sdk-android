@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,9 +20,11 @@ import org.xmlpull.v1.XmlPullParser;
 /**
  * Simple StAX unmarshaller that iterates through the XML events but always
  * returns null.
+ * @param <T> the VoidStaxUnmarshaller type.
  */
 public class VoidStaxUnmarshaller<T> implements Unmarshaller<T, StaxUnmarshallerContext> {
     @Override
+    @SuppressWarnings("checkstyle:emptystatement")
     public T unmarshall(StaxUnmarshallerContext context) throws Exception {
         while (context.nextEvent() != XmlPullParser.END_DOCUMENT)
             ;

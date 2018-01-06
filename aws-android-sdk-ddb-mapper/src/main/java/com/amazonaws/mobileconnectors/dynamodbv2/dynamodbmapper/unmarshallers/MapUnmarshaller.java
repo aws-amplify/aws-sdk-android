@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,10 +22,18 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * An unmarshaller that unmarshals DynamoDB Map type to a Java Map.
+ */
 public class MapUnmarshaller extends MUnmarshaller {
 
     private static final MapUnmarshaller INSTANCE = new MapUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link MapUnmarshaller}
+     */
     public static MapUnmarshaller instance() {
         return INSTANCE;
     }
@@ -36,6 +44,11 @@ public class MapUnmarshaller extends MUnmarshaller {
         memberUnmarshaller = null;
     }
 
+    /**
+     * Constructor.
+     *
+     * @param memberUnmarshaller a {@link ArgumentUnmarshaller}
+     */
     public MapUnmarshaller(ArgumentUnmarshaller memberUnmarshaller) {
         if (memberUnmarshaller == null) {
             throw new NullPointerException("memberUnmarshaller");
@@ -45,10 +58,10 @@ public class MapUnmarshaller extends MUnmarshaller {
 
     @Override
     public Object unmarshall(AttributeValue value) throws ParseException {
-        Map<String, AttributeValue> map = value.getM();
-        Map<String, Object> result = new HashMap<String, Object>();
+        final Map<String, AttributeValue> map = value.getM();
+        final Map<String, Object> result = new HashMap<String, Object>();
 
-        for (Map.Entry<String, AttributeValue> entry : map.entrySet()) {
+        for (final Map.Entry<String, AttributeValue> entry : map.entrySet()) {
             memberUnmarshaller.typeCheck(entry.getValue(), null);
             result.put(entry.getKey(),
                     memberUnmarshaller.unmarshall(entry.getValue()));

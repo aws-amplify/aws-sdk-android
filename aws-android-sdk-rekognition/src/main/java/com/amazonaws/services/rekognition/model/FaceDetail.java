@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,6 +29,14 @@ public class FaceDetail implements Serializable {
      * </p>
      */
     private BoundingBox boundingBox;
+
+    /**
+     * <p>
+     * The estimated age range, in years, for the face. Low represents the
+     * lowest estimated age and High represents the highest estimated age.
+     * </p>
+     */
+    private AgeRange ageRange;
 
     /**
      * <p>
@@ -103,14 +111,14 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the landmark on the face.
+     * Indicates the location of landmarks on the face.
      * </p>
      */
     private java.util.List<Landmark> landmarks;
 
     /**
      * <p>
-     * Indicates the pose of the face as determined by pitch, roll, and the yaw.
+     * Indicates the pose of the face as determined by its pitch, roll, and yaw.
      * </p>
      */
     private Pose pose;
@@ -175,6 +183,60 @@ public class FaceDetail implements Serializable {
      */
     public FaceDetail withBoundingBox(BoundingBox boundingBox) {
         this.boundingBox = boundingBox;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The estimated age range, in years, for the face. Low represents the
+     * lowest estimated age and High represents the highest estimated age.
+     * </p>
+     *
+     * @return <p>
+     *         The estimated age range, in years, for the face. Low represents
+     *         the lowest estimated age and High represents the highest
+     *         estimated age.
+     *         </p>
+     */
+    public AgeRange getAgeRange() {
+        return ageRange;
+    }
+
+    /**
+     * <p>
+     * The estimated age range, in years, for the face. Low represents the
+     * lowest estimated age and High represents the highest estimated age.
+     * </p>
+     *
+     * @param ageRange <p>
+     *            The estimated age range, in years, for the face. Low
+     *            represents the lowest estimated age and High represents the
+     *            highest estimated age.
+     *            </p>
+     */
+    public void setAgeRange(AgeRange ageRange) {
+        this.ageRange = ageRange;
+    }
+
+    /**
+     * <p>
+     * The estimated age range, in years, for the face. Low represents the
+     * lowest estimated age and High represents the highest estimated age.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param ageRange <p>
+     *            The estimated age range, in years, for the face. Low
+     *            represents the lowest estimated age and High represents the
+     *            highest estimated age.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public FaceDetail withAgeRange(AgeRange ageRange) {
+        this.ageRange = ageRange;
         return this;
     }
 
@@ -666,11 +728,11 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the landmark on the face.
+     * Indicates the location of landmarks on the face.
      * </p>
      *
      * @return <p>
-     *         Indicates the location of the landmark on the face.
+     *         Indicates the location of landmarks on the face.
      *         </p>
      */
     public java.util.List<Landmark> getLandmarks() {
@@ -679,11 +741,11 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the landmark on the face.
+     * Indicates the location of landmarks on the face.
      * </p>
      *
      * @param landmarks <p>
-     *            Indicates the location of the landmark on the face.
+     *            Indicates the location of landmarks on the face.
      *            </p>
      */
     public void setLandmarks(java.util.Collection<Landmark> landmarks) {
@@ -697,14 +759,14 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the landmark on the face.
+     * Indicates the location of landmarks on the face.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param landmarks <p>
-     *            Indicates the location of the landmark on the face.
+     *            Indicates the location of landmarks on the face.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -721,14 +783,14 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the landmark on the face.
+     * Indicates the location of landmarks on the face.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param landmarks <p>
-     *            Indicates the location of the landmark on the face.
+     *            Indicates the location of landmarks on the face.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -740,12 +802,12 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Indicates the pose of the face as determined by pitch, roll, and the yaw.
+     * Indicates the pose of the face as determined by its pitch, roll, and yaw.
      * </p>
      *
      * @return <p>
-     *         Indicates the pose of the face as determined by pitch, roll, and
-     *         the yaw.
+     *         Indicates the pose of the face as determined by its pitch, roll,
+     *         and yaw.
      *         </p>
      */
     public Pose getPose() {
@@ -754,12 +816,12 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Indicates the pose of the face as determined by pitch, roll, and the yaw.
+     * Indicates the pose of the face as determined by its pitch, roll, and yaw.
      * </p>
      *
      * @param pose <p>
-     *            Indicates the pose of the face as determined by pitch, roll,
-     *            and the yaw.
+     *            Indicates the pose of the face as determined by its pitch,
+     *            roll, and yaw.
      *            </p>
      */
     public void setPose(Pose pose) {
@@ -768,15 +830,15 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Indicates the pose of the face as determined by pitch, roll, and the yaw.
+     * Indicates the pose of the face as determined by its pitch, roll, and yaw.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param pose <p>
-     *            Indicates the pose of the face as determined by pitch, roll,
-     *            and the yaw.
+     *            Indicates the pose of the face as determined by its pitch,
+     *            roll, and yaw.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -904,6 +966,8 @@ public class FaceDetail implements Serializable {
         sb.append("{");
         if (getBoundingBox() != null)
             sb.append("BoundingBox: " + getBoundingBox() + ",");
+        if (getAgeRange() != null)
+            sb.append("AgeRange: " + getAgeRange() + ",");
         if (getSmile() != null)
             sb.append("Smile: " + getSmile() + ",");
         if (getEyeglasses() != null)
@@ -941,6 +1005,7 @@ public class FaceDetail implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getBoundingBox() == null) ? 0 : getBoundingBox().hashCode());
+        hashCode = prime * hashCode + ((getAgeRange() == null) ? 0 : getAgeRange().hashCode());
         hashCode = prime * hashCode + ((getSmile() == null) ? 0 : getSmile().hashCode());
         hashCode = prime * hashCode + ((getEyeglasses() == null) ? 0 : getEyeglasses().hashCode());
         hashCode = prime * hashCode + ((getSunglasses() == null) ? 0 : getSunglasses().hashCode());
@@ -972,6 +1037,10 @@ public class FaceDetail implements Serializable {
             return false;
         if (other.getBoundingBox() != null
                 && other.getBoundingBox().equals(this.getBoundingBox()) == false)
+            return false;
+        if (other.getAgeRange() == null ^ this.getAgeRange() == null)
+            return false;
+        if (other.getAgeRange() != null && other.getAgeRange().equals(this.getAgeRange()) == false)
             return false;
         if (other.getSmile() == null ^ this.getSmile() == null)
             return false;

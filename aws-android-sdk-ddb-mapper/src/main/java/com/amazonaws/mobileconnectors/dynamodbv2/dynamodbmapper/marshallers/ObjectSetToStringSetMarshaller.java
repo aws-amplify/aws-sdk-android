@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import java.util.Set;
  * warning if ever used since we only know how to unmarshal back to Java
  * Strings.
  */
-public class ObjectSetToStringSetMarshaller
+public final class ObjectSetToStringSetMarshaller
         implements StringSetAttributeMarshaller {
 
     private static final Log LOG =
@@ -41,6 +41,11 @@ public class ObjectSetToStringSetMarshaller
     private static final ObjectSetToStringSetMarshaller INSTANCE =
             new ObjectSetToStringSetMarshaller();
 
+    /**
+     * Return a singleton instance.
+     *
+     * @return instance of {@link ObjectSetToStringSetMarshaller}
+     */
     public static ObjectSetToStringSetMarshaller instance() {
         return INSTANCE;
     }
@@ -50,7 +55,7 @@ public class ObjectSetToStringSetMarshaller
 
     @Override
     public AttributeValue marshall(Object obj) {
-        Set<?> set = (Set<?>) obj;
+        final Set<?> set = (Set<?>) obj;
 
         LOG.warn("Marshaling a set of non-String objects to a DynamoDB "
                 + "StringSet. You won't be able to read these objects back "
@@ -59,8 +64,8 @@ public class ObjectSetToStringSetMarshaller
                 + "free to ignore this warning, but consider using a custom "
                 + "marshaler for this instead.");
 
-        List<String> strings = new ArrayList<String>(set.size());
-        for (Object o : set) {
+        final List<String> strings = new ArrayList<String>(set.size());
+        for (final Object o : set) {
             strings.add(String.valueOf(o));
         }
 

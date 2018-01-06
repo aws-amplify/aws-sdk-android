@@ -1,5 +1,5 @@
 /**
- * Copyright 2013-2017 Amazon.com, 
+ * Copyright 2013-2018 Amazon.com, 
  * Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Amazon Software License (the "License"). 
@@ -162,7 +162,7 @@ public final class Record {
     /**
      * A Builder class that helps build an immutable {@link Record} object.
      */
-    public final static class Builder {
+    public static final class Builder {
         private final String key;
         private String value;
         private long syncCount;
@@ -187,11 +187,11 @@ public final class Record {
          * Sets the value of the new {@link Record}. Default is null, aka
          * deleted record.
          * 
-         * @param value nullable String value of this record
+         * @param nValue nullable String value of this record
          * @return builder itself
          */
-        public Builder value(String value) {
-            this.value = value;
+        public Builder value(String nValue) {
+            this.value = nValue;
             return this;
         }
 
@@ -199,14 +199,14 @@ public final class Record {
          * Sets the syncCount of the new {@link Record}. Default is the current
          * time.
          * 
-         * @param syncCount non negative long value
+         * @param nSyncCount non negative long value
          * @return builder itself
          */
-        public Builder syncCount(long syncCount) {
-            if (syncCount < 0) {
+        public Builder syncCount(long nSyncCount) {
+            if (nSyncCount < 0) {
                 throw new IllegalArgumentException("sync count can't be negative");
             }
-            this.syncCount = syncCount;
+            this.syncCount = nSyncCount;
             return this;
         }
 
@@ -214,11 +214,11 @@ public final class Record {
          * Sets the last modified date of this {@link Record}. Default is the
          * current time.
          * 
-         * @param lastModifiedDate last modified date of this record
+         * @param nLastModifiedDate last modified date of this record
          * @return builder itself
          */
-        public Builder lastModifiedDate(Date lastModifiedDate) {
-            this.lastModifiedDate = lastModifiedDate;
+        public Builder lastModifiedDate(Date nLastModifiedDate) {
+            this.lastModifiedDate = nLastModifiedDate;
             return this;
         }
 
@@ -226,12 +226,12 @@ public final class Record {
          * Sets the last modified by of this {@link Record}. Default is empty
          * string.
          * 
-         * @param lastModifiedBy device name or user name that last modified
+         * @param nLastModifiedBy device name or user name that last modified
          *            this record.
          * @return builder itself
          */
-        public Builder lastModifiedBy(String lastModifiedBy) {
-            this.lastModifiedBy = lastModifiedBy;
+        public Builder lastModifiedBy(String nLastModifiedBy) {
+            this.lastModifiedBy = nLastModifiedBy;
             return this;
         }
 
@@ -240,23 +240,23 @@ public final class Record {
          * local date of the device that modified this record. Default is the
          * current date.
          * 
-         * @param deviceLastModifiedDate device last modified date
+         * @param nDeviceLastModifiedDate device last modified date
          * @return builder itself
          */
-        public Builder deviceLastModifiedDate(Date deviceLastModifiedDate) {
-            this.deviceLastModifiedDate = deviceLastModifiedDate;
+        public Builder deviceLastModifiedDate(Date nDeviceLastModifiedDate) {
+            this.deviceLastModifiedDate = nDeviceLastModifiedDate;
             return this;
         }
 
         /**
          * Sets whether this {@link Record} has local modification.
          * 
-         * @param modified a flag that indicates whether the record has local
+         * @param nModified a flag that indicates whether the record has local
          *            modification
          * @return builder itself
          */
-        public Builder modified(boolean modified) {
-            this.modified = modified;
+        public Builder modified(boolean nModified) {
+            this.modified = nModified;
             return this;
         }
 

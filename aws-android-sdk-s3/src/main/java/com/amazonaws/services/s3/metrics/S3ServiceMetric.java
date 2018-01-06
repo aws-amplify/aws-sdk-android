@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import com.amazonaws.services.s3.internal.Constants;
  * for the default AWS SDK metric collection system to recognize it as a
  * predefined S3 metrics.
  */
+@SuppressWarnings("checkstyle:finalclass")
 public class S3ServiceMetric extends SimpleMetricType implements ServiceMetricType {
     static final String SERVICE_NAME_PREFIX = "S3";
 
@@ -37,29 +38,45 @@ public class S3ServiceMetric extends SimpleMetricType implements ServiceMetricTy
         return SERVICE_NAME_PREFIX + suffix;
     }
 
-    public static final S3ThroughputMetric S3DownloadThroughput = new S3ThroughputMetric(
+    /**
+     * The S3 throughput metric for download.
+     */
+    public static final S3ThroughputMetric S3_DOWLOAD_THROUGHPUT = new S3ThroughputMetric(
             metricName(DOWNLOAD_THROUGHPUT_NAME_SUFFIX)) {
         @Override
         public ServiceMetricType getByteCountMetricType() {
-            return S3DownloadByteCount;
+            return S3_DOWNLOAD_BYTE_COUNT;
         }
     };
-    public static final S3ServiceMetric S3DownloadByteCount = new S3ServiceMetric(
+
+    /**
+     * The S3 service metric for download.
+     */
+    public static final S3ServiceMetric S3_DOWNLOAD_BYTE_COUNT = new S3ServiceMetric(
             metricName(DOWNLOAD_BYTE_COUNT_NAME_SUFFIX));
-    public static final S3ThroughputMetric S3UploadThroughput = new S3ThroughputMetric(
+
+    /**
+     * The S3 throughput metric for upload.
+     */
+    public static final S3ThroughputMetric S3_UPLOAD_THROUGHPUT = new S3ThroughputMetric(
             metricName(UPLOAD_THROUGHPUT_NAME_SUFFIX)) {
         @Override
         public ServiceMetricType getByteCountMetricType() {
-            return S3UploadByteCount;
+            return S3_UPLOAD_BYTE_COUNT;
         }
     };
-    public static final S3ServiceMetric S3UploadByteCount = new S3ServiceMetric(
+
+    /**
+     * The S3 service metric for upload.
+     */
+    public static final S3ServiceMetric S3_UPLOAD_BYTE_COUNT = new S3ServiceMetric(
             metricName(UPLOAD_BYTE_COUNT_NAME_SUFFIX));
-    private static final S3ServiceMetric[] values = {
-            S3DownloadThroughput,
-            S3DownloadByteCount,
-            S3UploadThroughput,
-            S3UploadByteCount
+
+    private static final S3ServiceMetric[] VALUES = {
+        S3_DOWLOAD_THROUGHPUT,
+        S3_DOWNLOAD_BYTE_COUNT,
+        S3_UPLOAD_THROUGHPUT,
+        S3_UPLOAD_BYTE_COUNT
     };
 
     private final String name;
@@ -78,17 +95,24 @@ public class S3ServiceMetric extends SimpleMetricType implements ServiceMetricTy
         return Constants.S3_SERVICE_DISPLAY_NAME;
     }
 
-    private static abstract class S3ThroughputMetric extends S3ServiceMetric
+    private abstract static class S3ThroughputMetric extends S3ServiceMetric
             implements ThroughputMetricType {
         private S3ThroughputMetric(String name) {
             super(name);
         }
     };
 
+    /**
+     * @return array of S3ServiceMetric values.
+     */
     public static S3ServiceMetric[] values() {
-        return values.clone();
+        return VALUES.clone();
     }
 
+    /**
+     * @param name the value name.
+     * @return the value corresponding to the specified name.
+     */
     public static S3ServiceMetric valueOf(String name) {
         for (final S3ServiceMetric e : values()) {
             if (e.name().equals(name)) {

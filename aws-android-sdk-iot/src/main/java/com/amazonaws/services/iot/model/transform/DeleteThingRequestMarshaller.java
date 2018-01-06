@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -55,6 +55,10 @@ public class DeleteThingRequestMarshaller implements
                 "{thingName}",
                 (deleteThingRequest.getThingName() == null) ? "" : StringUtils
                         .fromString(deleteThingRequest.getThingName()));
+        if (deleteThingRequest.getExpectedVersion() != null) {
+            request.addParameter("expectedVersion",
+                    StringUtils.fromLong(deleteThingRequest.getExpectedVersion()));
+        }
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.0");

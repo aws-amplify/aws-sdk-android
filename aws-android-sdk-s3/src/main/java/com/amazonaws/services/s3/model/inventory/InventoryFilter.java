@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,14 +24,21 @@ public class InventoryFilter implements Serializable {
 
     private InventoryFilterPredicate predicate;
 
+    /**
+     * Constructor.
+     */
     public InventoryFilter() { }
 
+    /**
+     * Constructor.
+     * @param predicate the InventoryFilterPredicate.
+     */
     public InventoryFilter(InventoryFilterPredicate predicate) {
         this.predicate = predicate;
     }
 
     /**
-     * Returns the {@link InventoryFilterPredicate} to be used when evaluating an inventory filter.
+     * @return the {@link InventoryFilterPredicate} to be used when evaluating an inventory filter.
      *
      * The predicate should be of type {@link InventoryPrefixPredicate}.
      */
@@ -40,7 +47,7 @@ public class InventoryFilter implements Serializable {
     }
 
     /**
-     * Sets the {@link InventoryFilterPredicate} to be used when evaluating an inventory filter.
+     * @param predicate  the {@link InventoryFilterPredicate} to be used when evaluating an inventory filter.
      *
      * The predicate should be of type {@link InventoryPrefixPredicate}.
      */
@@ -49,11 +56,12 @@ public class InventoryFilter implements Serializable {
     }
 
     /**
-     * Sets the {@link InventoryFilterPredicate} to be used when evaluating an inventory filter
-     * and returns the {@link InventoryFilter} object for method chaining.
+     * @param predicate  the {@link InventoryFilterPredicate} to be used when evaluating an inventory filter
+     * @return the {@link InventoryFilter} object for method chaining.
      *
      * The predicate should be of type {@link InventoryPrefixPredicate}.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public InventoryFilter withPredicate(InventoryFilterPredicate predicate) {
         setPredicate(predicate);
         return this;

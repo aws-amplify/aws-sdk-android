@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -57,6 +57,14 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
      * </p>
      */
     private Boolean setAsActive;
+
+    /**
+     * <p>
+     * Allows this CA certificate to be used for auto registration of device
+     * certificates.
+     * </p>
+     */
+    private Boolean allowAutoRegistration;
 
     /**
      * <p>
@@ -229,6 +237,72 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
     }
 
     /**
+     * <p>
+     * Allows this CA certificate to be used for auto registration of device
+     * certificates.
+     * </p>
+     *
+     * @return <p>
+     *         Allows this CA certificate to be used for auto registration of
+     *         device certificates.
+     *         </p>
+     */
+    public Boolean isAllowAutoRegistration() {
+        return allowAutoRegistration;
+    }
+
+    /**
+     * <p>
+     * Allows this CA certificate to be used for auto registration of device
+     * certificates.
+     * </p>
+     *
+     * @return <p>
+     *         Allows this CA certificate to be used for auto registration of
+     *         device certificates.
+     *         </p>
+     */
+    public Boolean getAllowAutoRegistration() {
+        return allowAutoRegistration;
+    }
+
+    /**
+     * <p>
+     * Allows this CA certificate to be used for auto registration of device
+     * certificates.
+     * </p>
+     *
+     * @param allowAutoRegistration <p>
+     *            Allows this CA certificate to be used for auto registration of
+     *            device certificates.
+     *            </p>
+     */
+    public void setAllowAutoRegistration(Boolean allowAutoRegistration) {
+        this.allowAutoRegistration = allowAutoRegistration;
+    }
+
+    /**
+     * <p>
+     * Allows this CA certificate to be used for auto registration of device
+     * certificates.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param allowAutoRegistration <p>
+     *            Allows this CA certificate to be used for auto registration of
+     *            device certificates.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public RegisterCACertificateRequest withAllowAutoRegistration(Boolean allowAutoRegistration) {
+        this.allowAutoRegistration = allowAutoRegistration;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -244,7 +318,9 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
         if (getVerificationCertificate() != null)
             sb.append("verificationCertificate: " + getVerificationCertificate() + ",");
         if (getSetAsActive() != null)
-            sb.append("setAsActive: " + getSetAsActive());
+            sb.append("setAsActive: " + getSetAsActive() + ",");
+        if (getAllowAutoRegistration() != null)
+            sb.append("allowAutoRegistration: " + getAllowAutoRegistration());
         sb.append("}");
         return sb.toString();
     }
@@ -262,6 +338,9 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
                         .hashCode());
         hashCode = prime * hashCode
                 + ((getSetAsActive() == null) ? 0 : getSetAsActive().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAllowAutoRegistration() == null) ? 0 : getAllowAutoRegistration().hashCode());
         return hashCode;
     }
 
@@ -290,6 +369,11 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
             return false;
         if (other.getSetAsActive() != null
                 && other.getSetAsActive().equals(this.getSetAsActive()) == false)
+            return false;
+        if (other.getAllowAutoRegistration() == null ^ this.getAllowAutoRegistration() == null)
+            return false;
+        if (other.getAllowAutoRegistration() != null
+                && other.getAllowAutoRegistration().equals(this.getAllowAutoRegistration()) == false)
             return false;
         return true;
     }

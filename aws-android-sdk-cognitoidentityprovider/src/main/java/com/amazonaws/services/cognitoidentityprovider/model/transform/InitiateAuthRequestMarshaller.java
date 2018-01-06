@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -98,6 +98,19 @@ public class InitiateAuthRequestMarshaller implements
                 String clientId = initiateAuthRequest.getClientId();
                 jsonWriter.name("ClientId");
                 jsonWriter.value(clientId);
+            }
+            if (initiateAuthRequest.getUserContextData() != null) {
+                UserContextDataType userContextData = initiateAuthRequest.getUserContextData();
+                jsonWriter.name("UserContextData");
+                UserContextDataTypeJsonMarshaller.getInstance().marshall(userContextData,
+                        jsonWriter);
+            }
+            if (initiateAuthRequest.getAnalyticsMetadata() != null) {
+                AnalyticsMetadataType analyticsMetadata = initiateAuthRequest
+                        .getAnalyticsMetadata();
+                jsonWriter.name("AnalyticsMetadata");
+                AnalyticsMetadataTypeJsonMarshaller.getInstance().marshall(analyticsMetadata,
+                        jsonWriter);
             }
 
             jsonWriter.endObject();

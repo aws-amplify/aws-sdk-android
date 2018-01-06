@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ public abstract class InventoryFilterPredicate implements Serializable {
     /**
      * Helper method that accepts an implemenation of {@link InventoryPredicateVisitor}
      * and invokes the most applicable visit method in the visitor.
+     * @param inventoryPredicateVisitor the InventoryPredicateVisitor.
      */
     public abstract void accept(InventoryPredicateVisitor inventoryPredicateVisitor);
 }

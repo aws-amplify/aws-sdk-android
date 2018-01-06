@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,11 +21,16 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
  * An unmarshaller that unmarshals DynamoDB Strings as Java {@code String}
  * objects.
  */
-public class StringUnmarshaller extends SUnmarshaller {
+public final class StringUnmarshaller extends SUnmarshaller {
 
     private static final StringUnmarshaller INSTANCE =
             new StringUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link StringUnmarshaller}
+     */
     public static StringUnmarshaller instance() {
         return INSTANCE;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,16 +27,23 @@ public class DetectFacesResult implements Serializable {
 
     /**
      * <p>
-     * The algorithm detects the image orientation. If it detects that the image
-     * was rotated, it returns the degrees of rotation. If your application is
-     * displaying the image, you can use this value to adjust the orientation.
+     * The orientation of the input image (counter-clockwise direction). If your
+     * application displays the image, you can use this value to correct image
+     * orientation. The bounding box coordinates returned in
+     * <code>FaceDetails</code> represent face locations before the image
+     * orientation is corrected.
      * </p>
+     * <note>
      * <p>
-     * For example, if the service detects that the input image was rotated by
-     * 90 degrees, it corrects orientation, performs face detection, and then
-     * returns the faces. That is, the bounding box coordinates in the response
-     * are based on the corrected orientation.
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image (Exif) metadata that includes the image's orientation. If so, and
+     * the Exif metadata for the input image populates the orientation field,
+     * the value of <code>OrientationCorrection</code> is null and the
+     * <code>FaceDetails</code> bounding box coordinates represent face
+     * locations after Exif metadata is used to correct the image orientation.
+     * Images in .png format don't contain Exif metadata.
      * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
@@ -119,33 +126,46 @@ public class DetectFacesResult implements Serializable {
 
     /**
      * <p>
-     * The algorithm detects the image orientation. If it detects that the image
-     * was rotated, it returns the degrees of rotation. If your application is
-     * displaying the image, you can use this value to adjust the orientation.
+     * The orientation of the input image (counter-clockwise direction). If your
+     * application displays the image, you can use this value to correct image
+     * orientation. The bounding box coordinates returned in
+     * <code>FaceDetails</code> represent face locations before the image
+     * orientation is corrected.
      * </p>
+     * <note>
      * <p>
-     * For example, if the service detects that the input image was rotated by
-     * 90 degrees, it corrects orientation, performs face detection, and then
-     * returns the faces. That is, the bounding box coordinates in the response
-     * are based on the corrected orientation.
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image (Exif) metadata that includes the image's orientation. If so, and
+     * the Exif metadata for the input image populates the orientation field,
+     * the value of <code>OrientationCorrection</code> is null and the
+     * <code>FaceDetails</code> bounding box coordinates represent face
+     * locations after Exif metadata is used to correct the image orientation.
+     * Images in .png format don't contain Exif metadata.
      * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @return <p>
-     *         The algorithm detects the image orientation. If it detects that
-     *         the image was rotated, it returns the degrees of rotation. If
-     *         your application is displaying the image, you can use this value
-     *         to adjust the orientation.
+     *         The orientation of the input image (counter-clockwise direction).
+     *         If your application displays the image, you can use this value to
+     *         correct image orientation. The bounding box coordinates returned
+     *         in <code>FaceDetails</code> represent face locations before the
+     *         image orientation is corrected.
      *         </p>
+     *         <note>
      *         <p>
-     *         For example, if the service detects that the input image was
-     *         rotated by 90 degrees, it corrects orientation, performs face
-     *         detection, and then returns the faces. That is, the bounding box
-     *         coordinates in the response are based on the corrected
-     *         orientation.
+     *         If the input image is in .jpeg format, it might contain
+     *         exchangeable image (Exif) metadata that includes the image's
+     *         orientation. If so, and the Exif metadata for the input image
+     *         populates the orientation field, the value of
+     *         <code>OrientationCorrection</code> is null and the
+     *         <code>FaceDetails</code> bounding box coordinates represent face
+     *         locations after Exif metadata is used to correct the image
+     *         orientation. Images in .png format don't contain Exif metadata.
      *         </p>
+     *         </note>
      * @see OrientationCorrection
      */
     public String getOrientationCorrection() {
@@ -154,33 +174,47 @@ public class DetectFacesResult implements Serializable {
 
     /**
      * <p>
-     * The algorithm detects the image orientation. If it detects that the image
-     * was rotated, it returns the degrees of rotation. If your application is
-     * displaying the image, you can use this value to adjust the orientation.
+     * The orientation of the input image (counter-clockwise direction). If your
+     * application displays the image, you can use this value to correct image
+     * orientation. The bounding box coordinates returned in
+     * <code>FaceDetails</code> represent face locations before the image
+     * orientation is corrected.
      * </p>
+     * <note>
      * <p>
-     * For example, if the service detects that the input image was rotated by
-     * 90 degrees, it corrects orientation, performs face detection, and then
-     * returns the faces. That is, the bounding box coordinates in the response
-     * are based on the corrected orientation.
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image (Exif) metadata that includes the image's orientation. If so, and
+     * the Exif metadata for the input image populates the orientation field,
+     * the value of <code>OrientationCorrection</code> is null and the
+     * <code>FaceDetails</code> bounding box coordinates represent face
+     * locations after Exif metadata is used to correct the image orientation.
+     * Images in .png format don't contain Exif metadata.
      * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @param orientationCorrection <p>
-     *            The algorithm detects the image orientation. If it detects
-     *            that the image was rotated, it returns the degrees of
-     *            rotation. If your application is displaying the image, you can
-     *            use this value to adjust the orientation.
+     *            The orientation of the input image (counter-clockwise
+     *            direction). If your application displays the image, you can
+     *            use this value to correct image orientation. The bounding box
+     *            coordinates returned in <code>FaceDetails</code> represent
+     *            face locations before the image orientation is corrected.
      *            </p>
+     *            <note>
      *            <p>
-     *            For example, if the service detects that the input image was
-     *            rotated by 90 degrees, it corrects orientation, performs face
-     *            detection, and then returns the faces. That is, the bounding
-     *            box coordinates in the response are based on the corrected
-     *            orientation.
+     *            If the input image is in .jpeg format, it might contain
+     *            exchangeable image (Exif) metadata that includes the image's
+     *            orientation. If so, and the Exif metadata for the input image
+     *            populates the orientation field, the value of
+     *            <code>OrientationCorrection</code> is null and the
+     *            <code>FaceDetails</code> bounding box coordinates represent
+     *            face locations after Exif metadata is used to correct the
+     *            image orientation. Images in .png format don't contain Exif
+     *            metadata.
      *            </p>
+     *            </note>
      * @see OrientationCorrection
      */
     public void setOrientationCorrection(String orientationCorrection) {
@@ -189,16 +223,23 @@ public class DetectFacesResult implements Serializable {
 
     /**
      * <p>
-     * The algorithm detects the image orientation. If it detects that the image
-     * was rotated, it returns the degrees of rotation. If your application is
-     * displaying the image, you can use this value to adjust the orientation.
+     * The orientation of the input image (counter-clockwise direction). If your
+     * application displays the image, you can use this value to correct image
+     * orientation. The bounding box coordinates returned in
+     * <code>FaceDetails</code> represent face locations before the image
+     * orientation is corrected.
      * </p>
+     * <note>
      * <p>
-     * For example, if the service detects that the input image was rotated by
-     * 90 degrees, it corrects orientation, performs face detection, and then
-     * returns the faces. That is, the bounding box coordinates in the response
-     * are based on the corrected orientation.
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image (Exif) metadata that includes the image's orientation. If so, and
+     * the Exif metadata for the input image populates the orientation field,
+     * the value of <code>OrientationCorrection</code> is null and the
+     * <code>FaceDetails</code> bounding box coordinates represent face
+     * locations after Exif metadata is used to correct the image orientation.
+     * Images in .png format don't contain Exif metadata.
      * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -207,18 +248,25 @@ public class DetectFacesResult implements Serializable {
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @param orientationCorrection <p>
-     *            The algorithm detects the image orientation. If it detects
-     *            that the image was rotated, it returns the degrees of
-     *            rotation. If your application is displaying the image, you can
-     *            use this value to adjust the orientation.
+     *            The orientation of the input image (counter-clockwise
+     *            direction). If your application displays the image, you can
+     *            use this value to correct image orientation. The bounding box
+     *            coordinates returned in <code>FaceDetails</code> represent
+     *            face locations before the image orientation is corrected.
      *            </p>
+     *            <note>
      *            <p>
-     *            For example, if the service detects that the input image was
-     *            rotated by 90 degrees, it corrects orientation, performs face
-     *            detection, and then returns the faces. That is, the bounding
-     *            box coordinates in the response are based on the corrected
-     *            orientation.
+     *            If the input image is in .jpeg format, it might contain
+     *            exchangeable image (Exif) metadata that includes the image's
+     *            orientation. If so, and the Exif metadata for the input image
+     *            populates the orientation field, the value of
+     *            <code>OrientationCorrection</code> is null and the
+     *            <code>FaceDetails</code> bounding box coordinates represent
+     *            face locations after Exif metadata is used to correct the
+     *            image orientation. Images in .png format don't contain Exif
+     *            metadata.
      *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see OrientationCorrection
@@ -230,33 +278,47 @@ public class DetectFacesResult implements Serializable {
 
     /**
      * <p>
-     * The algorithm detects the image orientation. If it detects that the image
-     * was rotated, it returns the degrees of rotation. If your application is
-     * displaying the image, you can use this value to adjust the orientation.
+     * The orientation of the input image (counter-clockwise direction). If your
+     * application displays the image, you can use this value to correct image
+     * orientation. The bounding box coordinates returned in
+     * <code>FaceDetails</code> represent face locations before the image
+     * orientation is corrected.
      * </p>
+     * <note>
      * <p>
-     * For example, if the service detects that the input image was rotated by
-     * 90 degrees, it corrects orientation, performs face detection, and then
-     * returns the faces. That is, the bounding box coordinates in the response
-     * are based on the corrected orientation.
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image (Exif) metadata that includes the image's orientation. If so, and
+     * the Exif metadata for the input image populates the orientation field,
+     * the value of <code>OrientationCorrection</code> is null and the
+     * <code>FaceDetails</code> bounding box coordinates represent face
+     * locations after Exif metadata is used to correct the image orientation.
+     * Images in .png format don't contain Exif metadata.
      * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @param orientationCorrection <p>
-     *            The algorithm detects the image orientation. If it detects
-     *            that the image was rotated, it returns the degrees of
-     *            rotation. If your application is displaying the image, you can
-     *            use this value to adjust the orientation.
+     *            The orientation of the input image (counter-clockwise
+     *            direction). If your application displays the image, you can
+     *            use this value to correct image orientation. The bounding box
+     *            coordinates returned in <code>FaceDetails</code> represent
+     *            face locations before the image orientation is corrected.
      *            </p>
+     *            <note>
      *            <p>
-     *            For example, if the service detects that the input image was
-     *            rotated by 90 degrees, it corrects orientation, performs face
-     *            detection, and then returns the faces. That is, the bounding
-     *            box coordinates in the response are based on the corrected
-     *            orientation.
+     *            If the input image is in .jpeg format, it might contain
+     *            exchangeable image (Exif) metadata that includes the image's
+     *            orientation. If so, and the Exif metadata for the input image
+     *            populates the orientation field, the value of
+     *            <code>OrientationCorrection</code> is null and the
+     *            <code>FaceDetails</code> bounding box coordinates represent
+     *            face locations after Exif metadata is used to correct the
+     *            image orientation. Images in .png format don't contain Exif
+     *            metadata.
      *            </p>
+     *            </note>
      * @see OrientationCorrection
      */
     public void setOrientationCorrection(OrientationCorrection orientationCorrection) {
@@ -265,16 +327,23 @@ public class DetectFacesResult implements Serializable {
 
     /**
      * <p>
-     * The algorithm detects the image orientation. If it detects that the image
-     * was rotated, it returns the degrees of rotation. If your application is
-     * displaying the image, you can use this value to adjust the orientation.
+     * The orientation of the input image (counter-clockwise direction). If your
+     * application displays the image, you can use this value to correct image
+     * orientation. The bounding box coordinates returned in
+     * <code>FaceDetails</code> represent face locations before the image
+     * orientation is corrected.
      * </p>
+     * <note>
      * <p>
-     * For example, if the service detects that the input image was rotated by
-     * 90 degrees, it corrects orientation, performs face detection, and then
-     * returns the faces. That is, the bounding box coordinates in the response
-     * are based on the corrected orientation.
+     * If the input image is in .jpeg format, it might contain exchangeable
+     * image (Exif) metadata that includes the image's orientation. If so, and
+     * the Exif metadata for the input image populates the orientation field,
+     * the value of <code>OrientationCorrection</code> is null and the
+     * <code>FaceDetails</code> bounding box coordinates represent face
+     * locations after Exif metadata is used to correct the image orientation.
+     * Images in .png format don't contain Exif metadata.
      * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -283,18 +352,25 @@ public class DetectFacesResult implements Serializable {
      * <b>Allowed Values: </b>ROTATE_0, ROTATE_90, ROTATE_180, ROTATE_270
      *
      * @param orientationCorrection <p>
-     *            The algorithm detects the image orientation. If it detects
-     *            that the image was rotated, it returns the degrees of
-     *            rotation. If your application is displaying the image, you can
-     *            use this value to adjust the orientation.
+     *            The orientation of the input image (counter-clockwise
+     *            direction). If your application displays the image, you can
+     *            use this value to correct image orientation. The bounding box
+     *            coordinates returned in <code>FaceDetails</code> represent
+     *            face locations before the image orientation is corrected.
      *            </p>
+     *            <note>
      *            <p>
-     *            For example, if the service detects that the input image was
-     *            rotated by 90 degrees, it corrects orientation, performs face
-     *            detection, and then returns the faces. That is, the bounding
-     *            box coordinates in the response are based on the corrected
-     *            orientation.
+     *            If the input image is in .jpeg format, it might contain
+     *            exchangeable image (Exif) metadata that includes the image's
+     *            orientation. If so, and the Exif metadata for the input image
+     *            populates the orientation field, the value of
+     *            <code>OrientationCorrection</code> is null and the
+     *            <code>FaceDetails</code> bounding box coordinates represent
+     *            face locations after Exif metadata is used to correct the
+     *            image orientation. Images in .png format don't contain Exif
+     *            metadata.
      *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see OrientationCorrection

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,26 +28,33 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <note>
  * <p>
- * To search for all faces in an input image, you might first call the API, and
- * then use the face IDs returned in subsequent calls to the API.
+ * To search for all faces in an input image, you might first call the
+ * operation, and then use the face IDs returned in subsequent calls to the
+ * operation.
  * </p>
  * <p>
- * You can also call the <code>DetectFaces</code> API and use the bounding boxes
- * in the response to make face crops, which then you can pass in to the
- * <code>SearchFacesByImage</code> API.
+ * You can also call the <code>DetectFaces</code> operation and use the bounding
+ * boxes in the response to make face crops, which then you can pass in to the
+ * <code>SearchFacesByImage</code> operation.
  * </p>
  * </note>
+ * <p>
+ * You pass the input image either as base64-encoded image bytes or as a
+ * reference to an image in an Amazon S3 bucket. If you use the Amazon CLI to
+ * call Amazon Rekognition operations, passing image bytes is not supported. The
+ * image must be either a PNG or JPEG formatted file.
+ * </p>
  * <p>
  * The response returns an array of faces that match, ordered by similarity
  * score with the highest similarity first. More specifically, it is an array of
  * metadata for each face match found. Along with the metadata, the response
  * also includes a <code>similarity</code> indicating how similar the face is to
- * the input face. In the response, the API also returns the bounding box (and a
- * confidence level that the bounding box contains a face) of the face that
- * Rekognition used for the input image.
+ * the input face. In the response, the operation also returns the bounding box
+ * (and a confidence level that the bounding box contains a face) of the face
+ * that Amazon Rekognition used for the input image.
  * </p>
  * <p>
- * For an example, see <a>example3</a>.
+ * For an example, see <a>search-face-with-image-procedure</a>.
  * </p>
  * <p>
  * This operation requires permissions to perform the
@@ -68,7 +75,9 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * Provides the source image either as bytes or an S3 object.
+     * The input image as base64-encoded bytes or an S3 object. If you use the
+     * AWS CLI to call Amazon Rekognition operations, passing base64-encoded
+     * image bytes is not supported.
      * </p>
      */
     private Image image;
@@ -95,6 +104,33 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * <b>Length: </b>0 - 100<br/>
      */
     private Float faceMatchThreshold;
+
+    /**
+     * Default constructor for SearchFacesByImageRequest object. Callers should
+     * use the setter or fluent setter (with...) methods to initialize any
+     * additional object members.
+     */
+    public SearchFacesByImageRequest() {
+    }
+
+    /**
+     * Constructs a new SearchFacesByImageRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
+     * 
+     * @param collectionId <p>
+     *            ID of the collection to search.
+     *            </p>
+     * @param image <p>
+     *            The input image as base64-encoded bytes or an S3 object. If
+     *            you use the AWS CLI to call Amazon Rekognition operations,
+     *            passing base64-encoded image bytes is not supported.
+     *            </p>
+     */
+    public SearchFacesByImageRequest(String collectionId, Image image) {
+        setCollectionId(collectionId);
+        setImage(image);
+    }
 
     /**
      * <p>
@@ -155,11 +191,15 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * Provides the source image either as bytes or an S3 object.
+     * The input image as base64-encoded bytes or an S3 object. If you use the
+     * AWS CLI to call Amazon Rekognition operations, passing base64-encoded
+     * image bytes is not supported.
      * </p>
      *
      * @return <p>
-     *         Provides the source image either as bytes or an S3 object.
+     *         The input image as base64-encoded bytes or an S3 object. If you
+     *         use the AWS CLI to call Amazon Rekognition operations, passing
+     *         base64-encoded image bytes is not supported.
      *         </p>
      */
     public Image getImage() {
@@ -168,11 +208,15 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * Provides the source image either as bytes or an S3 object.
+     * The input image as base64-encoded bytes or an S3 object. If you use the
+     * AWS CLI to call Amazon Rekognition operations, passing base64-encoded
+     * image bytes is not supported.
      * </p>
      *
      * @param image <p>
-     *            Provides the source image either as bytes or an S3 object.
+     *            The input image as base64-encoded bytes or an S3 object. If
+     *            you use the AWS CLI to call Amazon Rekognition operations,
+     *            passing base64-encoded image bytes is not supported.
      *            </p>
      */
     public void setImage(Image image) {
@@ -181,14 +225,18 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * Provides the source image either as bytes or an S3 object.
+     * The input image as base64-encoded bytes or an S3 object. If you use the
+     * AWS CLI to call Amazon Rekognition operations, passing base64-encoded
+     * image bytes is not supported.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param image <p>
-     *            Provides the source image either as bytes or an S3 object.
+     *            The input image as base64-encoded bytes or an S3 object. If
+     *            you use the AWS CLI to call Amazon Rekognition operations,
+     *            passing base64-encoded image bytes is not supported.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

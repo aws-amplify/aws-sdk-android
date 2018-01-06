@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -66,6 +66,10 @@ public class ListThingsRequestMarshaller implements
         if (listThingsRequest.getAttributeValue() != null) {
             request.addParameter("attributeValue",
                     StringUtils.fromString(listThingsRequest.getAttributeValue()));
+        }
+        if (listThingsRequest.getThingTypeName() != null) {
+            request.addParameter("thingTypeName",
+                    StringUtils.fromString(listThingsRequest.getThingTypeName()));
         }
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -63,9 +63,10 @@ public abstract class RequestHandler2 {
             Exception e);
 
     /**
-     * Returns an instance of request handler adapted to the
+     * @return an instance of request handler adapted to the
      * {@link RequestHandler2} interface from the given request handler
      * implementing the deprecated {@link RequestHandler} interface.
+     * @param old the request handler.
      */
     public static RequestHandler2 adapt(
             @SuppressWarnings("deprecation")

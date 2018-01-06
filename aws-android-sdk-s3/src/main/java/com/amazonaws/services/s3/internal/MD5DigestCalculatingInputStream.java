@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,6 +35,10 @@ public class MD5DigestCalculatingInputStream extends SdkFilterInputStream {
      */
     private MessageDigest digestLastMarked;
 
+    /**
+     * Constructor.
+     * @param in input stream
+     */
     public MD5DigestCalculatingInputStream(InputStream in) {
         super(in);
         digest = newMD5();
@@ -47,10 +51,10 @@ public class MD5DigestCalculatingInputStream extends SdkFilterInputStream {
             throw new IllegalStateException("unexpected", e);
         }
     }
-    
+
     private MessageDigest cloneFrom(MessageDigest from) {
         try {
-            return (MessageDigest)from.clone();
+            return (MessageDigest) from.clone();
         } catch (CloneNotSupportedException e) { // should never occur
             throw new IllegalStateException("unexpected", e);
         }

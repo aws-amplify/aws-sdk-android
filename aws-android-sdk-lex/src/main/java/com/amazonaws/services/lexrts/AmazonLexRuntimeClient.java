@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,68 +15,21 @@
 
 package com.amazonaws.services.lexrts;
 
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.AmazonServiceException;
-import com.amazonaws.AmazonWebServiceClient;
-import com.amazonaws.AmazonWebServiceRequest;
-import com.amazonaws.AmazonWebServiceResponse;
-import com.amazonaws.ClientConfiguration;
-import com.amazonaws.Request;
-import com.amazonaws.Response;
-import com.amazonaws.ResponseMetadata;
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AWSCredentialsProvider;
-import com.amazonaws.auth.AWSSessionCredentials;
-import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
-import com.amazonaws.auth.SignerFactory;
-import com.amazonaws.handlers.HandlerChainFactory;
-import com.amazonaws.http.ExecutionContext;
-import com.amazonaws.http.HttpClient;
-import com.amazonaws.http.HttpResponseHandler;
-import com.amazonaws.http.JsonErrorResponseHandler;
-import com.amazonaws.http.JsonResponseHandler;
-import com.amazonaws.http.UrlHttpClient;
-import com.amazonaws.internal.StaticCredentialsProvider;
-import com.amazonaws.metrics.RequestMetricCollector;
-import com.amazonaws.services.lexrts.internal.AmazonLexV4Signer;
-import com.amazonaws.services.lexrts.model.BadGatewayException;
-import com.amazonaws.services.lexrts.model.BadRequestException;
-import com.amazonaws.services.lexrts.model.ConflictException;
-import com.amazonaws.services.lexrts.model.DependencyFailedException;
-import com.amazonaws.services.lexrts.model.InternalFailureException;
-import com.amazonaws.services.lexrts.model.LimitExceededException;
-import com.amazonaws.services.lexrts.model.LoopDetectedException;
-import com.amazonaws.services.lexrts.model.NotAcceptableException;
-import com.amazonaws.services.lexrts.model.NotFoundException;
-import com.amazonaws.services.lexrts.model.PostContentRequest;
-import com.amazonaws.services.lexrts.model.PostContentResult;
-import com.amazonaws.services.lexrts.model.PostTextRequest;
-import com.amazonaws.services.lexrts.model.PostTextResult;
-import com.amazonaws.services.lexrts.model.RequestTimeoutException;
-import com.amazonaws.services.lexrts.model.UnsupportedMediaTypeException;
-import com.amazonaws.services.lexrts.model.transform.BadGatewayExceptionUnmarshaller;
-import com.amazonaws.services.lexrts.model.transform.BadRequestExceptionUnmarshaller;
-import com.amazonaws.services.lexrts.model.transform.ConflictExceptionUnmarshaller;
-import com.amazonaws.services.lexrts.model.transform.DependencyFailedExceptionUnmarshaller;
-import com.amazonaws.services.lexrts.model.transform.InternalFailureExceptionUnmarshaller;
-import com.amazonaws.services.lexrts.model.transform.LimitExceededExceptionUnmarshaller;
-import com.amazonaws.services.lexrts.model.transform.LoopDetectedExceptionUnmarshaller;
-import com.amazonaws.services.lexrts.model.transform.NotAcceptableExceptionUnmarshaller;
-import com.amazonaws.services.lexrts.model.transform.NotFoundExceptionUnmarshaller;
-import com.amazonaws.services.lexrts.model.transform.PostContentRequestMarshaller;
-import com.amazonaws.services.lexrts.model.transform.PostContentResultJsonUnmarshaller;
-import com.amazonaws.services.lexrts.model.transform.PostTextRequestMarshaller;
-import com.amazonaws.services.lexrts.model.transform.PostTextResultJsonUnmarshaller;
-import com.amazonaws.services.lexrts.model.transform.RequestTimeoutExceptionUnmarshaller;
-import com.amazonaws.services.lexrts.model.transform.UnsupportedMediaTypeExceptionUnmarshaller;
-import com.amazonaws.transform.JsonErrorUnmarshaller;
-import com.amazonaws.transform.JsonUnmarshallerContext;
-import com.amazonaws.transform.Unmarshaller;
-import com.amazonaws.util.AWSRequestMetrics;
+import java.util.*;
+
+import com.amazonaws.*;
+import com.amazonaws.auth.*;
+import com.amazonaws.handlers.*;
+import com.amazonaws.http.*;
+import com.amazonaws.internal.*;
+import com.amazonaws.metrics.*;
+import com.amazonaws.transform.*;
+import com.amazonaws.util.*;
 import com.amazonaws.util.AWSRequestMetrics.Field;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.amazonaws.services.lexrts.model.*;
+import com.amazonaws.services.lexrts.model.transform.*;
+import com.amazonaws.services.lexrts.internal.AmazonLexV4Signer;
 
 /**
  * Client for accessing Amazon Lex Runtime Service. All service calls made using
@@ -85,17 +38,16 @@ import java.util.List;
  * <p>
  * <p>
  * Amazon Lex provides both build and runtime endpoints. Each endpoint provides
- * a set of operations (API). Your application uses the runtime API to
- * understand user utterances (user input text or voice). For example, suppose
- * user says "I want pizza", your application sends this input to Amazon Lex
- * using the runtime API. Amazon Lex recognizes that the user request is for the
- * OrderPizza intent (one of the intents defined in the application). Then
- * Amazon Lex engages in user conversation on behalf of the application to
- * elicit required information (slot values, such as pizza size and crust type),
- * and then performs fulfillment activity (that you configured when you created
- * the application). You use the build-time API to create and manage your Amazon
- * Lex applications. For a list of build-time operations, see the build-time
- * API. .
+ * a set of operations (API). Your conversational bot uses the runtime API to
+ * understand user utterances (user input text or voice). For example, suppose a
+ * user says "I want pizza", your bot sends this input to Amazon Lex using the
+ * runtime API. Amazon Lex recognizes that the user request is for the
+ * OrderPizza intent (one of the intents defined in the bot). Then Amazon Lex
+ * engages in user conversation on behalf of the bot to elicit required
+ * information (slot values, such as pizza size and crust type), and then
+ * performs fulfillment activity (that you configured when you created the bot).
+ * You use the build-time API to create and manage your Amazon Lex bot. For a
+ * list of build-time operations, see the build-time API, .
  * </p>
  */
 public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements AmazonLexRuntime {
@@ -106,7 +58,7 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
         SignerFactory.registerSigner(CUSTOM_SIGNER, AmazonLexV4Signer.class);
     }
     /** Provider for AWS credentials. */
-    private final AWSCredentialsProvider awsCredentialsProvider;
+    private AWSCredentialsProvider awsCredentialsProvider;
 
     /**
      * List of exception unmarshallers for all Amazon Lex Runtime Service
@@ -340,8 +292,9 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("runtime.lex.us-east-1.amazonaws.com");
+        this.endpointPrefix = "runtime.lex";
 
-        final HandlerChainFactory chainFactory = new HandlerChainFactory();
+        HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(
                 "/com/amazonaws/services/lexrts/request.handlers"));
         requestHandler2s.addAll(chainFactory.newRequestHandler2Chain(
@@ -349,65 +302,110 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
     }
 
     private static ClientConfiguration adjustClientConfiguration(ClientConfiguration orig) {
-        final ClientConfiguration config = orig;
+        ClientConfiguration config = orig;
 
         return config;
     }
 
     /**
      * <p>
-     * Sends user input (speech or text), at runtime, to Amazon Lex. Amazon Lex
-     * uses the machine learning model (built for the specific bot), in order to
-     * interpret the user input specified in the request.
+     * Sends user input (text or speech) to Amazon Lex. Clients use this API to
+     * send requests to Amazon Lex at runtime. Amazon Lex interprets the user
+     * input using the machine learning model that it built for the bot.
      * </p>
-     * <note>
      * <p>
-     * When building Amazon Lex text bots, you can use the <code>PostText</code>
-     * API operation, which supports response cards. When building Amazon Lex
-     * bots that communicate by speech alone or by speech and text, you use the
-     * this API.
-     * </p>
-     * </note>
-     * <p>
-     * In response, Amazon Lex returns the next <code>message</code> to convey
-     * to the user and the message type (<code>dialogState</code>). Based on the
-     * user interaction context, Amazon Lex knows the message to return and the
-     * message type indicates whether to expect a user response for that
-     * message. For example, consider the following response messages:
+     * In response, Amazon Lex returns the next message to convey to the user.
+     * Consider the following example messages:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * "What pizza toppings would you like?" - For this message, the
-     * <code>dialogState</code> would be <code>ElicitSlot</code> (that is, a
-     * user response is expected).
+     * For a user input "I would like a pizza," Amazon Lex might return a
+     * response with a message eliciting slot data (for example,
+     * <code>PizzaSize</code>): "What size pizza would you like?".
      * </p>
      * </li>
      * <li>
      * <p>
-     * "Your order has been placed." - For this message, Amazon Lex returns one
-     * of the following dialog states depending on how the fulfillment is
-     * configured for the intent (see <code>fulfillmentActivity</code> in
-     * <code>CreateIntent</code>):
+     * After the user provides all of the pizza order information, Amazon Lex
+     * might return a response with a message to get user confirmation:
+     * "Order the pizza?".
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * After the user replies "Yes" to the confirmation prompt, Amazon Lex might
+     * return a conclusion statement:
+     * "Thank you, your cheese pizza has been ordered.".
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Not all Amazon Lex messages require a response from the user. For
+     * example, conclusion statements do not require a response. Some messages
+     * require only a yes or no response. In addition to the
+     * <code>message</code>, Amazon Lex provides additional context about the
+     * message in the response that you can use to enhance client behavior, such
+     * as displaying the appropriate client user interface. Consider the
+     * following examples:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>FulFilled</code> – The intent <code>fulfillmentActivity</code> is
-     * configured with a Lambda function to fulfill the intent.
+     * If the message is to elicit slot data, Amazon Lex returns the following
+     * context information:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>x-amz-lex-dialog-state</code> header set to <code>ElicitSlot</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReadyForFulfilment</code> – The intent's
-     * <code>fulfillmentActivity</code> is configured to simply return the
-     * intent data back to the client application.
+     * <code>x-amz-lex-intent-name</code> header set to the intent name in the
+     * current context
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>x-amz-lex-slot-to-elicit</code> header set to the slot name for
+     * which the <code>message</code> is eliciting information
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>x-amz-lex-slots</code> header set to a map of slots configured for
+     * the intent with their current values
      * </p>
      * </li>
      * </ul>
      * </li>
+     * <li>
+     * <p>
+     * If the message is a confirmation prompt, the
+     * <code>x-amz-lex-dialog-state</code> header is set to
+     * <code>Confirmation</code> and the <code>x-amz-lex-slot-to-elicit</code>
+     * header is omitted.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the message is a clarification prompt configured for the intent,
+     * indicating that the user intent is not understood, the
+     * <code>x-amz-dialog-state</code> header is set to
+     * <code>ElicitIntent</code> and the <code>x-amz-slot-to-elicit</code>
+     * header is omitted.
+     * </p>
+     * </li>
      * </ul>
-     *
+     * <p>
+     * In addition, Amazon Lex also returns your application-specific
+     * <code>sessionAttributes</code>. For more information, see <a
+     * href="http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html"
+     * >Managing Conversation Context</a>.
+     * </p>
+     * 
      * @param postContentRequest
      * @return postContentResult The response from the PostContent service
      *         method, as returned by Amazon Lex Runtime Service.
@@ -430,11 +428,10 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
      *             Lex Runtime Service indicating either a problem with the data
      *             in the request, or a server side issue.
      */
-    @Override
     public PostContentResult postContent(PostContentRequest postContentRequest)
             throws AmazonServiceException, AmazonClientException {
-        final ExecutionContext executionContext = createExecutionContext(postContentRequest);
-        final AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        ExecutionContext executionContext = createExecutionContext(postContentRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
         awsRequestMetrics.startEvent(Field.ClientExecuteTime);
         Request<PostContentRequest> request = null;
         Response<PostContentResult> response = null;
@@ -447,8 +444,8 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
             } finally {
                 awsRequestMetrics.endEvent(Field.RequestMarshallTime);
             }
-            final Unmarshaller<PostContentResult, JsonUnmarshallerContext> unmarshaller = new PostContentResultJsonUnmarshaller();
-            final JsonResponseHandler<PostContentResult> responseHandler = new JsonResponseHandler<PostContentResult>(
+            Unmarshaller<PostContentResult, JsonUnmarshallerContext> unmarshaller = new PostContentResultJsonUnmarshaller();
+            JsonResponseHandler<PostContentResult> responseHandler = new JsonResponseHandler<PostContentResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -461,49 +458,103 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
-     * Sends user input text to Amazon Lex at runtime. Amazon Lex uses the
-     * machine learning model that the service built for the application to
-     * interpret user input.
+     * Sends user input (text-only) to Amazon Lex. Client applications can use
+     * this API to send requests to Amazon Lex at runtime. Amazon Lex then
+     * interprets the user input using the machine learning model it built for
+     * the bot.
      * </p>
      * <p>
-     * In response, Amazon Lex returns the next message to convey to the user
-     * (based on the context of the user interaction) and whether to expect a
-     * user response to the message (<code>dialogState</code>). For example,
-     * consider the following response messages:
+     * In response, Amazon Lex returns the next <code>message</code> to convey
+     * to the user an optional <code>responseCard</code> to display. Consider
+     * the following example messages:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * "What pizza toppings would you like?" – In this case, the
-     * <code>dialogState</code> would be <code>ElicitSlot</code> (that is, a
-     * user response is expected).
+     * For a user input "I would like a pizza", Amazon Lex might return a
+     * response with a message eliciting slot data (for example, PizzaSize):
+     * "What size pizza would you like?"
      * </p>
      * </li>
      * <li>
      * <p>
-     * "Your order has been placed." – In this case, Amazon Lex returns one of
-     * the following <code>dialogState</code> values depending on how the intent
-     * fulfillment is configured (see <code>fulfillmentActivity</code> in
-     * <code>CreateIntent</code>):
+     * After the user provides all of the pizza order information, Amazon Lex
+     * might return a response with a message to obtain user confirmation
+     * "Proceed with the pizza order?".
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * After the user replies to a confirmation prompt with a "yes", Amazon Lex
+     * might return a conclusion statement:
+     * "Thank you, your cheese pizza has been ordered.".
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Not all Amazon Lex messages require a user response. For example, a
+     * conclusion statement does not require a response. Some messages require
+     * only a "yes" or "no" user response. In addition to the
+     * <code>message</code>, Amazon Lex provides additional context about the
+     * message in the response that you might use to enhance client behavior,
+     * for example, to display the appropriate client user interface. These are
+     * the <code>slotToElicit</code>, <code>dialogState</code>,
+     * <code>intentName</code>, and <code>slots</code> fields in the response.
+     * Consider the following examples:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>FulFilled</code> – The intent fulfillment is configured through a
-     * Lambda function.
+     * If the message is to elicit slot data, Amazon Lex returns the following
+     * context information:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>dialogState</code> set to ElicitSlot
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReadyForFulfilment</code> – The intent's
-     * <code>fulfillmentActivity</code> is to simply return the intent data back
-     * to the client application.
+     * <code>intentName</code> set to the intent name in the current context
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>slotToElicit</code> set to the slot name for which the
+     * <code>message</code> is eliciting information
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>slots</code> set to a map of slots, configured for the intent, with
+     * currently known values
      * </p>
      * </li>
      * </ul>
      * </li>
+     * <li>
+     * <p>
+     * If the message is a confirmation prompt, the <code>dialogState</code> is
+     * set to ConfirmIntent and <code>SlotToElicit</code> is set to null.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the message is a clarification prompt (configured for the intent) that
+     * indicates that user intent is not understood, the
+     * <code>dialogState</code> is set to ElicitIntent and
+     * <code>slotToElicit</code> is set to null.
+     * </p>
+     * </li>
      * </ul>
-     *
+     * <p>
+     * In addition, Amazon Lex also returns your application-specific
+     * <code>sessionAttributes</code>. For more information, see <a
+     * href="http://docs.aws.amazon.com/lex/latest/dg/context-mgmt.html"
+     * >Managing Conversation Context</a>.
+     * </p>
+     * 
      * @param postTextRequest
      * @return postTextResult The response from the PostText service method, as
      *         returned by Amazon Lex Runtime Service.
@@ -523,11 +574,10 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
      *             Lex Runtime Service indicating either a problem with the data
      *             in the request, or a server side issue.
      */
-    @Override
     public PostTextResult postText(PostTextRequest postTextRequest)
             throws AmazonServiceException, AmazonClientException {
-        final ExecutionContext executionContext = createExecutionContext(postTextRequest);
-        final AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        ExecutionContext executionContext = createExecutionContext(postTextRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
         awsRequestMetrics.startEvent(Field.ClientExecuteTime);
         Request<PostTextRequest> request = null;
         Response<PostTextResult> response = null;
@@ -540,8 +590,8 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
             } finally {
                 awsRequestMetrics.endEvent(Field.RequestMarshallTime);
             }
-            final Unmarshaller<PostTextResult, JsonUnmarshallerContext> unmarshaller = new PostTextResultJsonUnmarshaller();
-            final JsonResponseHandler<PostTextResult> responseHandler = new JsonResponseHandler<PostTextResult>(
+            Unmarshaller<PostTextResult, JsonUnmarshallerContext> unmarshaller = new PostTextResultJsonUnmarshaller();
+            JsonResponseHandler<PostTextResult> responseHandler = new JsonResponseHandler<PostTextResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -571,7 +621,6 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
      *             responses in memory and will cause memory issue. This method
      *             now always returns null.
      */
-    @Override
     @Deprecated
     public ResponseMetadata getCachedResponseMetadata(AmazonWebServiceRequest request) {
         return client.getResponseMetadataForRequest(request);
@@ -583,7 +632,7 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
         request.setEndpoint(endpoint);
         request.setTimeOffset(timeOffset);
 
-        final AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
         AWSCredentials credentials;
         awsRequestMetrics.startEvent(Field.CredentialsRequestTime);
         try {
@@ -592,15 +641,15 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
             awsRequestMetrics.endEvent(Field.CredentialsRequestTime);
         }
 
-        final AmazonWebServiceRequest originalRequest = request.getOriginalRequest();
+        AmazonWebServiceRequest originalRequest = request.getOriginalRequest();
         if (originalRequest != null && originalRequest.getRequestCredentials() != null) {
             credentials = originalRequest.getRequestCredentials();
         }
 
         executionContext.setCredentials(credentials);
-        final JsonErrorResponseHandler errorResponseHandler = new JsonErrorResponseHandler(
+        JsonErrorResponseHandler errorResponseHandler = new JsonErrorResponseHandler(
                 jsonErrorUnmarshallers);
-        final Response<X> result = client.execute(request, responseHandler,
+        Response<X> result = client.execute(request, responseHandler,
                 errorResponseHandler, executionContext);
         return result;
     }

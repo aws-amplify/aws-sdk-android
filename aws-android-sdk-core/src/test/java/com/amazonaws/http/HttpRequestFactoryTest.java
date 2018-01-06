@@ -65,6 +65,7 @@ public class HttpRequestFactoryTest {
 
     @Test
     public void testEnableCompression() {
+        clientConfiguration.withEnableGzip(true);
         final HttpRequest httpRequest = factory.createHttpRequest(request, clientConfiguration, context);
         final Map<String, String> headers = httpRequest.getHeaders();
         assertEquals("accept encoding is gzip", "gzip", headers.get("Accept-Encoding"));

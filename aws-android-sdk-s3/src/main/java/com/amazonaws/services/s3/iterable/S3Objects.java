@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2012-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ import java.util.Iterator;
  * time, as they are needed. The size of the page can be controlled with the
  * {@link S3Objects#withBatchSize(int)} method.
  */
-public class S3Objects implements Iterable<S3ObjectSummary> {
+public final class S3Objects implements Iterable<S3ObjectSummary> {
 
     private AmazonS3 s3;
     private String prefix = null;
@@ -80,7 +80,9 @@ public class S3Objects implements Iterable<S3ObjectSummary> {
      * fetched at once.
      *
      * @param batchSize How many object summaries to fetch at once.
+     * @return the S3Objects.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public S3Objects withBatchSize(int batchSize) {
         this.batchSize = batchSize;
         return this;

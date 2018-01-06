@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,8 @@ import java.util.Map;
 
 /**
  * Container for a page of scan results.
+ *
+ * @param <T> the result type.
  */
 public class ScanResultPage<T> {
 
@@ -31,6 +33,8 @@ public class ScanResultPage<T> {
     /**
      * Returns all matching items for this page of scan results, which may be
      * empty.
+     * 
+     * @return a typed list.
      */
     public List<T> getResults() {
         return results;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,9 +31,15 @@ import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * HTTP utils class.
+ */
 public class HttpUtils {
 
     private static final String DEFAULT_ENCODING = "UTF-8";
+    private static final int PORT_HTTP = 80;
+    private static final int PORT_HTTPS = 443;
+    private static final int HTTP_STATUS_OK = 200;
 
     /**
      * Regex which matches any of the sequences that we need to fix up after
@@ -102,7 +108,6 @@ public class HttpUtils {
                 } else if (path && "%2F".equals(replacement)) {
                     replacement = "/";
                 }
-
                 matcher.appendReplacement(buffer, replacement);
             }
 
@@ -139,7 +144,7 @@ public class HttpUtils {
      * port other than 80 for HTTP URIs or any port other than 443 for HTTPS
      * URIs).
      *
-     * @param uri
+     * @param uri the URI.
      * @return True if the specified URI is using a non-standard port, otherwise
      *         false.
      */
@@ -150,16 +155,20 @@ public class HttpUtils {
         if (port <= 0) {
             return false;
         }
-        if (scheme.equals("http") && port == 80) {
+        if ("http".equals(scheme) && port == PORT_HTTP) {
             return false;
         }
-        if (scheme.equals("https") && port == 443) {
+        if ("https".equals(scheme) && port == PORT_HTTPS) {
             return false;
         }
 
         return true;
     }
 
+    /**
+     * @param request the request.
+     * @return true if request is post and request has no payload.
+     */
     public static boolean usePayloadForQueryParameters(Request<?> request) {
         final boolean requestIsPOST = HttpMethodName.POST.equals(request.getHttpMethod());
         final boolean requestHasNoPayload = (request.getContent() == null);
@@ -203,6 +212,9 @@ public class HttpUtils {
     /**
      * Append the given path to the given baseUri. By default, all slash
      * characters in path will not be url-encoded.
+     * @param baseUri the base URI.
+     * @param path the path.
+     * @return the appended URI.
      */
     public static String appendUri(String baseUri, String path) {
         return appendUri(baseUri, path, false);
@@ -263,7 +275,7 @@ public class HttpUtils {
         connection.setReadTimeout(getSocketTimeout(config));
         connection.addRequestProperty("User-Agent", getUserAgent(config));
 
-        if (connection.getResponseCode() != 200) {
+        if (connection.getResponseCode() != HTTP_STATUS_OK) {
             final InputStream is = connection.getErrorStream();
             if (is != null) {
                 is.close();

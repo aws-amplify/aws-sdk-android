@@ -1,11 +1,11 @@
 /**
- * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,13 +15,13 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.internal.core.system;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 public class AndroidAppDetails {
     private static final Log log =
@@ -42,10 +42,15 @@ public class AndroidAppDetails {
     public AndroidAppDetails(Context context, String appId) {
         this.applicationContext = context.getApplicationContext();
         try {
-            PackageManager packageManager = this.applicationContext.getPackageManager();
+            PackageManager packageManager = this.applicationContext
+                                                    .getPackageManager();
             PackageInfo packageInfo = packageManager.getPackageInfo(
-                    this.applicationContext.getPackageName(), 0);
-            ApplicationInfo appInfo = packageManager.getApplicationInfo(packageInfo.packageName, 0);
+                                                                           this.applicationContext
+                                                                                   .getPackageName(),
+                                                                           0);
+            ApplicationInfo appInfo = packageManager
+                                              .getApplicationInfo(packageInfo.packageName,
+                                                                         0);
 
             appTitle = (String) packageManager.getApplicationLabel(appInfo);
             packageName = packageInfo.packageName;
@@ -53,7 +58,8 @@ public class AndroidAppDetails {
             versionName = packageInfo.versionName;
             this.appId = appId;
         } catch (NameNotFoundException e) {
-            log.warn("Unable to get details for package " + this.applicationContext.getPackageName());
+            log.warn("Unable to get details for package " +
+                             this.applicationContext.getPackageName());
             appTitle = "Unknown";
             packageName = "Unknown";
             versionCode = "Unknown";
@@ -61,8 +67,9 @@ public class AndroidAppDetails {
         }
     }
 
-    public AndroidAppDetails(String packageName, String versionCode, String versionName,
-            String appTitle, String appId) {
+    public AndroidAppDetails(String packageName, String versionCode,
+                                    String versionName,
+                                    String appTitle, String appId) {
         this.packageName = packageName;
         this.versionCode = versionCode;
         this.versionName = versionName;

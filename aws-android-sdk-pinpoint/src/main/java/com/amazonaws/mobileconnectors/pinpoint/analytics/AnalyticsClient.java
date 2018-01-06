@@ -1,11 +1,11 @@
-/*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+/**
+ * Copyright 2016-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,78 +15,76 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.analytics;
 
-import static com.amazonaws.mobileconnectors.pinpoint.internal.core.util.Preconditions.checkNotNull;
-
-import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.JSONBuilder;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.JSONSerializable;
-
-import com.amazonaws.mobileconnectors.pinpoint.internal.event.EventRecorder;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.JSONBuilder;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.JSONSerializable;
+import com.amazonaws.mobileconnectors.pinpoint.internal.event.EventRecorder;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.concurrent.ConcurrentHashMap;
+import static com.amazonaws.mobileconnectors.pinpoint.internal.core.util.Preconditions.checkNotNull;
 
 /**
  * AnalyticsClient is the entry point into the Amazon Pinpoint SDK where
  * {@link AnalyticsEvent} objects are created, recorded, and submitted to the
- * Amazon Pinpoint Service. <h3>Recording Events</h3> Example:
+ * Amazon Pinpoint Service. Recording Events Example:
  *
- * <pre class="prettyprint">
  * // get the event client from your PinpointManager instance
  * AnalyticsClient analyticsClient = pinpointManager.getAnalyticsClient();
  *
  * // create and record an event
- * Event level1CompleteEvent = analyticsClient.createEvent(&quot;level1Complete&quot;);
+ * Event level1CompleteEvent = analyticsClient.createEvent("level1Complete");
  * analyticsClient.recordEvent(level1CompleteEvent);
  *
- * </pre>
  *
- * <h3>Submitting Events</h3>
- * <p>
+ * Submitting Events
+ *
  * The example below demonstrates how to submit events to the Amazon Pinpoint
  * Service. You have direct control over when events are submitted in
  * your app. Events are submitted in a background thread.
- * </p>
+ *
  * Example:
  *
- * <pre class="prettyprint">
  * // submit events to the website
  * AnalyticsClient analyticsClient = pinpointManager.getAnalyticsClient();
  * analyticsClient.submitEvents();
- * </pre>
  *
- * Amazon recommends that you call <code>submitEvents</code> once you stop the session.
- * <p>
+ * Amazon recommends that you call submitEvents once you stop the session.
+ *
  * Note: This client will store at most 5MiB of event data locally. Past that
  * events will be dropped. When events successfully submitted, they are removed
  * from the local database.
- * </p>
  */
 public class AnalyticsClient implements JSONSerializable {
     private static final Log log =
-            LogFactory.getLog(AnalyticsClient.class);
+        LogFactory.getLog(AnalyticsClient.class);
 
     private static final String ANALYTICS_ENABLED = "isAnalyticsEnabled";
     private static final int MAX_EVENT_TYPE_LENGTH = 50;
-
+    private static final int INDENTATION = 4;
     private final PinpointContext context;
     private final Map<String, String> globalAttributes = new ConcurrentHashMap<String, String>();
     private final Map<String, Double> globalMetrics = new ConcurrentHashMap<String, Double>();
-    private Map<String, String> campaignAttributes = new ConcurrentHashMap<String, String>();
     private final Map<String, Map<String, String>> eventTypeAttributes = new ConcurrentHashMap<String, Map<String, String>>();
     private final Map<String, Map<String, Double>> eventTypeMetrics = new ConcurrentHashMap<String, Map<String, Double>>();
+    private Map<String, String> campaignAttributes = new ConcurrentHashMap<String, String>();
     private String sessionId;
     private long sessionStartTime;
     private EventRecorder eventRecorder;
 
+    /**
+     * A client to manage creating and sending analytics events.
+     *
+     * @param context The {@link PinpointContext} of the Pinpoint Manager
+     */
     public AnalyticsClient(final PinpointContext context) {
         checkNotNull(context, "A valid pinpointContext must be provided");
         this.context = context;
@@ -102,14 +100,15 @@ public class AnalyticsClient implements JSONSerializable {
      * @param eventType the type of event to create
      * @return an Event with the specified eventType
      */
-    public AnalyticsEvent createEvent(String eventType) throws IllegalArgumentException {
+    public AnalyticsEvent createEvent(String eventType) {
         if (eventType == null) {
-            log.error("Null eventType provided to addGlobalAttribute");
+            log.error("Null eventType provided to addGlobalAttribute.");
             throw new IllegalArgumentException("The eventType passed into create event was null");
         }
         if (eventType.length() > MAX_EVENT_TYPE_LENGTH) {
-            log.error("The event type is too long, the max event type length is " + MAX_EVENT_TYPE_LENGTH
-                    + " characters");
+            log.error("The event type is too long, the max event type length is " +
+                      MAX_EVENT_TYPE_LENGTH
+                      + " characters.");
             throw new IllegalArgumentException("The eventType passed into create event was too long");
         }
 
@@ -117,16 +116,15 @@ public class AnalyticsClient implements JSONSerializable {
     }
 
     protected AnalyticsEvent createEvent(String eventType, long sessionStart, Long sessionEnd, Long sessionDuration) {
-        AnalyticsEvent event = AnalyticsEvent.newInstance(context, sessionId, sessionStart, sessionEnd,
-                                                       sessionDuration, System.currentTimeMillis(), eventType);
+        final AnalyticsEvent event = AnalyticsEvent.newInstance(context, sessionId, sessionStart, sessionEnd, sessionDuration,
+                                                                System.currentTimeMillis(), eventType);
 
         for (final Entry<String, String> attr : globalAttributes.entrySet()) {
             event.addAttribute(attr.getKey(), attr.getValue());
         }
 
         if (eventTypeAttributes.containsKey(event.getEventType())) {
-            for (final Entry<String, String> attr : eventTypeAttributes.get(
-                event.getEventType()).entrySet()) {
+            for (final Entry<String, String> attr : eventTypeAttributes.get(event.getEventType()).entrySet()) {
                 event.addAttribute(attr.getKey(), attr.getValue());
             }
         }
@@ -136,8 +134,7 @@ public class AnalyticsClient implements JSONSerializable {
         }
 
         if (eventTypeMetrics.containsKey(event.getEventType())) {
-            for (final Entry<String, Double> metric : eventTypeMetrics.get(
-                event.getEventType()).entrySet()) {
+            for (final Entry<String, Double> metric : eventTypeMetrics.get(event.getEventType()).entrySet()) {
                 event.addMetric(metric.getKey(), metric.getValue());
             }
         }
@@ -154,11 +151,10 @@ public class AnalyticsClient implements JSONSerializable {
      */
     public void recordEvent(AnalyticsEvent event) {
         if (event == null) {
-            log.info("The provided event was null");
+            log.info("The provided event was null.");
             return;
         }
-        AnalyticsEvent recordEvent = AnalyticsEvent.createFromEvent(context, sessionId,
-                System.currentTimeMillis(), event);
+        final AnalyticsEvent recordEvent = AnalyticsEvent.createFromEvent(context, sessionId, System.currentTimeMillis(), event);
         eventRecorder.recordEvent(recordEvent);
     }
 
@@ -169,7 +165,7 @@ public class AnalyticsClient implements JSONSerializable {
      * for customizing which Internet connection the SDK can submit on.
      */
     public void submitEvents() {
-        log.info("Submitting events");
+        log.info("Submitting events.");
         eventRecorder.submitEvents();
     }
 
@@ -178,18 +174,18 @@ public class AnalyticsClient implements JSONSerializable {
      * maximum allowed attributes and metrics on a single event is 40. Attempts
      * to add more may be ignored
      *
-     * @param attributeName the name of the attribute to add
+     * @param attributeName  the name of the attribute to add
      * @param attributeValue the value of the attribute
      */
-    public void addGlobalAttribute(String attributeName, String attributeValue) {
+    public void addGlobalAttribute(String attributeName,
+                                   String attributeValue) {
         if (attributeName == null) {
-            log.info("Null attribute name provided to addGlobalAttribute");
+            log.info("Null attribute name provided to addGlobalAttribute.");
             return;
         }
 
         if (attributeValue == null) {
-            log.debug("Null attribute value provided to addGlobalAttribute. attribute name:"
-                    + attributeName);
+            log.debug("Null attribute value provided to addGlobalAttribute.");
             return;
         }
         globalAttributes.put(attributeName, attributeValue);
@@ -200,13 +196,13 @@ public class AnalyticsClient implements JSONSerializable {
      * specified event type Note: The maximum allowed attributes and metrics on
      * a single event is 40. Attempts to add more may be ignored
      *
-     * @param eventType the type of events to add the attribute to
-     * @param attributeName the name of the attribute to add
+     * @param eventType      the type of events to add the attribute to
+     * @param attributeName  the name of the attribute to add
      * @param attributeValue the value of the attribute
      */
     public void addGlobalAttribute(String eventType, String attributeName, String attributeValue) {
         if (eventType == null) {
-            log.warn("Null eventType provided to addGlobalAttribute");
+            log.warn("Null eventType provided to addGlobalAttribute.");
             return;
         }
 
@@ -216,8 +212,7 @@ public class AnalyticsClient implements JSONSerializable {
         }
 
         if (attributeValue == null) {
-            log.warn("Null value provided to addGlobalAttribute. eventType:" + eventType
-                     + ", attributeName:" + attributeName);
+            log.warn("Null value provided to addGlobalAttribute. eventType:" + eventType);
             return;
         }
 
@@ -234,17 +229,17 @@ public class AnalyticsClient implements JSONSerializable {
      * maximum allowed attributes and metrics on a single event is 40. Attempts
      * to add more may be ignored
      *
-     * @param metricName the name of the metric to add
+     * @param metricName  the name of the metric to add
      * @param metricValue the value of the metric
      */
     public void addGlobalMetric(String metricName, Double metricValue) {
         if (metricName == null) {
-            log.warn("Null metric name provided to addGlobalMetric");
+            log.warn("Null metric name provided to addGlobalMetric.");
             return;
         }
 
         if (metricValue == null) {
-            log.warn("Null metric value provided to addGlobalMetric.  metric name:" + metricName);
+            log.warn("Null metric value provided to addGlobalMetric.");
             return;
         }
 
@@ -256,13 +251,14 @@ public class AnalyticsClient implements JSONSerializable {
      * specified event type Note: The maximum allowed attributes and metrics on
      * a single event is 40. Attempts to add more may be ignored
      *
-     * @param eventType the type of events to add the metric to
-     * @param metricName the name of the metric to add
+     * @param eventType   the type of events to add the metric to
+     * @param metricName  the name of the metric to add
      * @param metricValue the value of the metric
      */
-    public void addGlobalMetric(String eventType, String metricName, Double metricValue) {
+    public void addGlobalMetric(String eventType, String metricName,
+                                Double metricValue) {
         if (eventType == null) {
-            log.warn("Null eventType provided to addGlobalMetric");
+            log.warn("Null eventType provided to addGlobalMetric.");
             return;
         }
 
@@ -272,8 +268,7 @@ public class AnalyticsClient implements JSONSerializable {
         }
 
         if (metricValue == null) {
-            log.warn("Null metric value provided to addGlobalMetric. eventType:" + eventType
-                    + ", metric name:" + metricName);
+            log.warn("Null metric value provided to addGlobalMetric. eventType:" + eventType);
             return;
         }
 
@@ -293,7 +288,7 @@ public class AnalyticsClient implements JSONSerializable {
      */
     public void removeGlobalAttribute(String attributeName) {
         if (attributeName == null) {
-            log.warn("Null attribute name provided to removeGlobalAttribute");
+            log.warn("Null attribute name provided to removeGlobalAttribute.");
             return;
         }
 
@@ -304,17 +299,17 @@ public class AnalyticsClient implements JSONSerializable {
      * Removes the specified attribute. All subsequently created events with the
      * specified event type will no longer have this global attribute.
      *
-     * @param eventType the type of events to remove the attribute from
+     * @param eventType     the type of events to remove the attribute from
      * @param attributeName the name of the attribute to remove
      */
     public void removeGlobalAttribute(String eventType, String attributeName) {
         if (eventType == null) {
-            log.warn("Null eventType provided to removeGlobalAttribute");
+            log.warn("Null eventType provided to removeGlobalAttribute.");
             return;
         }
 
         if (attributeName == null) {
-            log.warn("Null attribute name provided to removeGlobalAttribute");
+            log.warn("Null attribute name provided to removeGlobalAttribute.");
             return;
         }
 
@@ -332,7 +327,7 @@ public class AnalyticsClient implements JSONSerializable {
      */
     public void removeGlobalMetric(String metricName) {
         if (metricName == null) {
-            log.warn("Null metric name provided to removeGlobalMetric");
+            log.warn("Null metric name provided to removeGlobalMetric.");
             return;
         }
 
@@ -343,17 +338,17 @@ public class AnalyticsClient implements JSONSerializable {
      * Removes the specified metric. All subsequently created events with the
      * specified event type will no longer have this global metric.
      *
-     * @param eventType the type of events to remove the metric from
+     * @param eventType  the type of events to remove the metric from
      * @param metricName the name of the metric to remove
      */
     public void removeGlobalMetric(String eventType, String metricName) {
         if (eventType == null) {
-            log.warn("Null eventType provided to removeGlobalMetric");
+            log.warn("Null eventType provided to removeGlobalMetric.");
             return;
         }
 
         if (metricName == null) {
-            log.warn("Null metric name provided to removeGlobalMetric");
+            log.warn("Null metric name provided to removeGlobalMetric.");
             return;
         }
 
@@ -365,7 +360,7 @@ public class AnalyticsClient implements JSONSerializable {
 
     /**
      * Adds the specified campaign attributes to events to track Campaign Analytic
-     *
+     * <p>
      * You should not use this method as it will be called by the NotificationManager when the app is opened
      * from a push notification.
      *
@@ -373,7 +368,7 @@ public class AnalyticsClient implements JSONSerializable {
      */
     public void setCampaignAttributes(Map<String, String> campaign) {
         if (campaign == null) {
-            log.warn("Null campaign attributes provided to setCampaignAttributes");
+            log.warn("Null campaign attributes provided to setCampaignAttributes.");
             return;
         }
 
@@ -382,125 +377,159 @@ public class AnalyticsClient implements JSONSerializable {
 
     /**
      * Clears campaign attributes
-     *
+     * <p>
      * You should not use this method as it will be called by the NotificationManager when the app is opened
      * from a push notification.
-     *
      */
     public void clearCampaignAttributes() {
-        for (String key : campaignAttributes.keySet()) {
+        for (final String key : campaignAttributes.keySet()) {
             this.removeGlobalAttribute(key);
         }
         campaignAttributes.clear();
     }
 
+    @Override
     public String toString() {
-        JSONObject json = toJSONObject();
+        final JSONObject json = toJSONObject();
         try {
-            return json.toString(4);
-        } catch (JSONException e) {
+            return json.toString(INDENTATION);
+        } catch (final JSONException e) {
             return json.toString();
         }
     }
 
+    @Override
     public JSONObject toJSONObject() {
-        JSONArray observersJSON = new JSONArray();
+        final JSONArray observersJSON = new JSONArray();
 
-        JSONArray globalAttrs = new JSONArray();
+        final JSONArray globalAttrs = new JSONArray();
         if (null != globalAttributes) {
-            for (Entry<String, String> entry : globalAttributes.entrySet()) {
+            for (final Entry<String, String> entry : globalAttributes.entrySet()) {
                 try {
-                    JSONObject attr = new JSONObject();
+                    final JSONObject attr = new JSONObject();
                     attr.put(entry.getKey(), entry.getValue());
                     globalAttrs.put(attr);
-                } catch (JSONException e) {
-                    log.error("Error parsing Global Attributes: " + e.toString());
+                } catch (final JSONException e) {
+                    // Do not log e due to potentially sensitive information
+                    log.error("Error parsing Global Attributes.");
                 }
             }
         }
 
-        JSONArray globalMets = new JSONArray();
+        final JSONArray globalMets = new JSONArray();
         if (null != globalMetrics) {
-            for (Entry<String, Double> entry : globalMetrics.entrySet()) {
+            for (final Entry<String, Double> entry : globalMetrics.entrySet()) {
                 try {
-                    JSONObject attr = new JSONObject();
+                    final JSONObject attr = new JSONObject();
                     attr.put(entry.getKey(), entry.getValue());
                     globalMets.put(attr);
-                } catch (JSONException e) {
-                    log.error("Error parsing Global Metrics: " + e.toString());
+                } catch (final JSONException e) {
+                    // Do not log e due to potentially sensitive information
+                    log.error("Error parsing Global Metrics.");
                 }
             }
         }
 
-        JSONObject eventTypesAttributesJson = new JSONObject();
+        final JSONObject eventTypesAttributesJson = new JSONObject();
         if (null != eventTypeAttributes) {
-            for (Entry<String, Map<String, String>> entry : eventTypeAttributes.entrySet()) {
-                JSONArray eventTypeAttrs = new JSONArray();
+            for (final Entry<String, Map<String, String>> entry : eventTypeAttributes.entrySet()) {
+                final JSONArray eventTypeAttrs = new JSONArray();
                 try {
-                    for (Entry<String, String> attrEntry : entry.getValue().entrySet()) {
-                            JSONObject attr = new JSONObject();
-                            attr.put(attrEntry.getKey(), attrEntry.getValue());
-                            eventTypeAttrs.put(attr);
+                    for (final Entry<String, String> attrEntry : entry.getValue().entrySet()) {
+                        final JSONObject attr = new JSONObject();
+                        attr.put(attrEntry.getKey(), attrEntry.getValue());
+                        eventTypeAttrs.put(attr);
 
                     }
                     eventTypesAttributesJson.put(entry.getKey(), eventTypeAttrs);
-                } catch (JSONException e) {
-                    log.error("Error parsing Event Type Attributes: " + e.toString());
+                } catch (final JSONException e) {
+                    // Do not log e due to potentially sensitive information
+                    log.error("Error parsing Event Type Attributes.");
                 }
             }
         }
 
-        JSONObject eventTypesMetricsJson = new JSONObject();
+        final JSONObject eventTypesMetricsJson = new JSONObject();
         if (null != eventTypeMetrics) {
-            for (Entry<String, Map<String, Double>> entry : eventTypeMetrics.entrySet()) {
-                JSONArray eventTypeMets = new JSONArray();
+            for (final Entry<String, Map<String, Double>> entry : eventTypeMetrics.entrySet()) {
+                final JSONArray eventTypeMets = new JSONArray();
                 try {
-                    for (Entry<String, Double> attrEntry : entry.getValue().entrySet()) {
-                        JSONObject attr = new JSONObject();
+                    for (final Entry<String, Double> attrEntry : entry.getValue().entrySet()) {
+                        final JSONObject attr = new JSONObject();
                         attr.put(attrEntry.getKey(), attrEntry.getValue());
                         eventTypeMets.put(attr);
                     }
                     eventTypesMetricsJson.put(entry.getKey(), eventTypeMets);
-                } catch (JSONException e) {
-                    log.error("Error parsing Event Type Metrics: " + e.toString());
+                } catch (final JSONException e) {
+                    // Do not log e due to potentially sensitive information
+                    log.error("Error parsing Event Type Metrics.");
                 }
             }
         }
 
-        return new JSONBuilder(this).withAttribute("uniqueId", context.getUniqueId())
-                .withAttribute("observers", observersJSON)
-                .withAttribute("globalAttributes", globalAttrs)
-                .withAttribute("globalMetrics", globalMets)
-                .withAttribute("eventTypeAttributes", eventTypesAttributesJson)
-                .withAttribute("eventTypeMetrics", eventTypesMetricsJson)
-                .toJSONObject();
+        return new JSONBuilder(this)
+            .withAttribute("uniqueId", context.getUniqueId())
+            .withAttribute("observers", observersJSON)
+            .withAttribute("globalAttributes", globalAttrs)
+            .withAttribute("globalMetrics", globalMets)
+            .withAttribute("eventTypeAttributes", eventTypesAttributesJson)
+            .withAttribute("eventTypeMetrics", eventTypesMetricsJson)
+            .toJSONObject();
     }
 
+    /**
+     * Closes the database
+     */
     public void closeDB() {
         eventRecorder.closeDB();
     }
 
+    /**
+     * Returns a list of all events
+     *
+     * @return List of events
+     */
     public List<JSONObject> getAllEvents() {
         return eventRecorder.getAllEvents();
     }
 
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
-    }
-
-    public void setSessionStartTime(long sessionStartTime) {
-        this.sessionStartTime = sessionStartTime;
-    }
-
+    /**
+     * Get the current sessionId
+     *
+     * @return the sessionId
+     */
     public String getSessionId() {
         return sessionId;
     }
 
+    /**
+     * Sets the sessionId
+     *
+     * @param sessionId The sessionId
+     */
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    /**
+     * Get the session start time
+     *
+     * @return The Session Start Time
+     */
     public long getSessionStartTime() {
         return sessionStartTime;
     }
 
-    void setEventRecorder(EventRecorder eventRecorder){
+    /**
+     * Set the session start time
+     *
+     * @param sessionStartTime The sessionStartTime
+     */
+    public void setSessionStartTime(long sessionStartTime) {
+        this.sessionStartTime = sessionStartTime;
+    }
+
+    void setEventRecorder(EventRecorder eventRecorder) {
         this.eventRecorder = eventRecorder;
     }
 }

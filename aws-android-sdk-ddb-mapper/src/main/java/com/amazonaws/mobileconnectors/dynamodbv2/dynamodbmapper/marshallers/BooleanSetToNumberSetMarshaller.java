@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,12 +28,17 @@ import java.util.Set;
  * Retained for backwards compatibility with older versions of the mapper which
  * don't know about the DynamoDB BOOL type.
  */
-public class BooleanSetToNumberSetMarshaller
+public final class BooleanSetToNumberSetMarshaller
         implements NumberSetAttributeMarshaller {
 
     private static final BooleanSetToNumberSetMarshaller INSTANCE =
             new BooleanSetToNumberSetMarshaller();
 
+    /**
+     * Return a singleton instance.
+     *
+     * @return instance of {@link BooleanToBooleanMarshaller}
+     */
     public static BooleanSetToNumberSetMarshaller instance() {
         return INSTANCE;
     }
@@ -44,11 +49,11 @@ public class BooleanSetToNumberSetMarshaller
     @Override
     public AttributeValue marshall(Object obj) {
         @SuppressWarnings("unchecked")
-        Set<Boolean> booleans = (Set<Boolean>) obj;
-        List<String> booleanAttributes = new ArrayList<String>(booleans.size());
+        final Set<Boolean> booleans = (Set<Boolean>) obj;
+        final List<String> booleanAttributes = new ArrayList<String>(booleans.size());
 
-        for (Boolean b : booleans) {
-            if (b == null || b == false) {
+        for (final Boolean b : booleans) {
+            if (!b) {
                 booleanAttributes.add("0");
             } else {
                 booleanAttributes.add("1");

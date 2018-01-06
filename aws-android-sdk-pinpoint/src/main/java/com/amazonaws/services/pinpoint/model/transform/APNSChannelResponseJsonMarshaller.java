@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,6 +35,11 @@ class APNSChannelResponseJsonMarshaller {
             String creationDate = aPNSChannelResponse.getCreationDate();
             jsonWriter.name("CreationDate");
             jsonWriter.value(creationDate);
+        }
+        if (aPNSChannelResponse.getEnabled() != null) {
+            Boolean enabled = aPNSChannelResponse.getEnabled();
+            jsonWriter.name("Enabled");
+            jsonWriter.value(enabled);
         }
         if (aPNSChannelResponse.getId() != null) {
             String id = aPNSChannelResponse.getId();

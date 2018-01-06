@@ -1,11 +1,11 @@
-/*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+/**
+ * Copyright 2016-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,10 +15,10 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.analytics.monetization;
 
+import org.apache.commons.logging.LogFactory;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.StringUtil;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * Base class for handling the required attributes and metrics for monetization
@@ -44,23 +44,20 @@ import org.apache.commons.logging.LogFactory;
 
 public abstract class MonetizationEventBuilder {
 
-    private static final org.apache.commons.logging.Log log =
-            LogFactory.getLog(MonetizationEventBuilder.class);
     static final String PURCHASE_EVENT_NAME = "_monetization.purchase";
     static final String PURCHASE_EVENT_QUANTITY_METRIC = "_quantity";
     static final String PURCHASE_EVENT_ITEM_PRICE_METRIC = "_item_price";
-
     static final String PURCHASE_EVENT_PRODUCT_ID_ATTR = "_product_id";
     static final String PURCHASE_EVENT_PRICE_FORMATTED_ATTR = "_item_price_formatted";
     static final String PURCHASE_EVENT_STORE_ATTR = "_store";
     static final String PURCHASE_EVENT_LOCALE_ATTR = "_locale";
     static final String PURCHASE_EVENT_TRANSACTION_ID_ATTR = "_transaction_id";
     static final String PURCHASE_EVENT_CURRENCY_ATTR = "_currency";
-
     static final String AMAZON_STORE = "Amazon";
     static final String GOOGLE_PLAY_STORE = "Google Play";
     static final String VIRTUAL_STORE = "Virtual";
-
+    private static final org.apache.commons.logging.Log log = LogFactory.getLog(MonetizationEventBuilder.class);
+    private final AnalyticsClient analyticsClient;
     private String productId;
     private String store;
     private Double quantity;
@@ -68,19 +65,26 @@ public abstract class MonetizationEventBuilder {
     private Double itemPrice;
     private String transactionId;
     private String currency;
-    private final AnalyticsClient analyticsClient;
+
+    /**
+     * Creates a MonetizationEventBuilder with the specified EventClient
+     *
+     * @param analyticsClient The EventClient to use when building events
+     */
+    protected MonetizationEventBuilder(AnalyticsClient analyticsClient) {
+        this.analyticsClient = analyticsClient;
+    }
 
     /**
      * Builds a monetization event.
      *
      * @return A monetization event that can be recorded. If the builder is in
-     *         an invalid state, this method returns null.
+     * an invalid state, this method returns null.
      */
     public AnalyticsEvent build() {
         AnalyticsEvent purchaseEvent = null;
         if (isValid() && doBaseValidation()) {
             purchaseEvent = analyticsClient.createEvent(PURCHASE_EVENT_NAME);
-
             purchaseEvent.addAttribute(PURCHASE_EVENT_PRODUCT_ID_ATTR, productId);
             purchaseEvent.addAttribute(PURCHASE_EVENT_STORE_ATTR, store);
             purchaseEvent.addMetric(PURCHASE_EVENT_QUANTITY_METRIC, quantity);
@@ -109,24 +113,15 @@ public abstract class MonetizationEventBuilder {
      * Determines if all builder methods on this builder have been called
      *
      * @return true if this builder can create a Monetization event, false
-     *         otherwise
+     * otherwise
      */
     protected abstract boolean isValid();
-
-    /**
-     * Creates a MonetizationEventBuilder with the specified EventClient
-     *
-     * @param analyticsClient The EventClient to use when building events
-     */
-    protected MonetizationEventBuilder(AnalyticsClient analyticsClient) {
-        this.analyticsClient = analyticsClient;
-    }
 
     /**
      * Accessor for the product identifier
      *
      * @return The product identifier that will be used to build the
-     *         monetization event
+     * monetization event
      */
     protected String getProductId() {
         return productId;
@@ -163,7 +158,7 @@ public abstract class MonetizationEventBuilder {
      * Accessor for the item price
      *
      * @return The numerical item price that will be used to build the
-     *         monetization event
+     * monetization event
      */
     protected Double getItemPrice() {
         return itemPrice;
@@ -182,10 +177,9 @@ public abstract class MonetizationEventBuilder {
      * Accessor for the formatted item price
      *
      * @return The formatted item price that will be used to build the
-     *         monetization event. Price should be formatted for the locale and
-     *         currency representing the transaction.
-     *
-     * @deprecated  Will be removed. Please set Currency and Item Price
+     * monetization event. Price should be formatted for the locale and
+     * currency representing the transaction.
+     * @deprecated Will be removed. Please set Currency and Item Price
      */
     @Deprecated
     protected String getFormattedItemPrice() {
@@ -197,8 +191,7 @@ public abstract class MonetizationEventBuilder {
      * building the monetization event
      *
      * @param formattedItemPrice the formatted item price in its local currency
-     *
-     * @deprecated  Will be removed. Please set Currency and Item Price
+     * @deprecated Will be removed. Please set Currency and Item Price
      */
     @Deprecated
     protected void setFormattedItemPrice(String formattedItemPrice) {
@@ -218,7 +211,7 @@ public abstract class MonetizationEventBuilder {
      * Sets the item price currency to use when building the monetization event
      *
      * @param currency the ISO currency code or virtual curreny name of the item
-     *            price
+     *                 price
      */
     protected void setCurrency(String currency) {
         this.currency = currency;
@@ -249,7 +242,7 @@ public abstract class MonetizationEventBuilder {
      * Accessor for the transaction identifier
      *
      * @return The transaction identifier that will be used to build the
-     *         monetization event
+     * monetization event
      */
     protected String getTransactionId() {
         return transactionId;

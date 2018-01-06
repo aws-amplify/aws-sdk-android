@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,10 +21,18 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import java.text.ParseException;
 import java.util.Map;
 
+/**
+ * An unmarshaller that unmarshals DynamoDB Object.
+ */
 public class ObjectUnmarshaller extends MUnmarshaller {
 
     private static final ObjectUnmarshaller INSTANCE = new ObjectUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link ObjectUnmarshaller}
+     */
     public static ObjectUnmarshaller instance() {
         return INSTANCE;
     }
@@ -37,6 +45,12 @@ public class ObjectUnmarshaller extends MUnmarshaller {
         clazz = null;
     }
 
+    /**
+     * Constructor.
+     *
+     * @param converter an {@link ItemConverter}
+     * @param clazz a class to unmarshal to
+     */
     public ObjectUnmarshaller(ItemConverter converter, Class<?> clazz) {
         if (converter == null) {
             throw new NullPointerException("converter");
@@ -51,7 +65,7 @@ public class ObjectUnmarshaller extends MUnmarshaller {
 
     @Override
     public Object unmarshall(AttributeValue value) throws ParseException {
-        Map<String, AttributeValue> map = value.getM();
+        final Map<String, AttributeValue> map = value.getM();
         return converter.unconvert(clazz, map);
     }
 }

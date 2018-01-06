@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ public interface ObjectExpirationResult {
     /**
      * Returns the expiration date of the object, or null if the object is not
      * configured to expire.
+     * @return Date the expiration time.
      */
     public Date getExpirationTime();
 
@@ -45,6 +46,7 @@ public interface ObjectExpirationResult {
      * this object.
      *
      * @see Rule#getId()
+     * @return String the expiration time rule ID.
      */
     public String getExpirationTimeRuleId();
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,6 +29,11 @@ class FaceDetailJsonMarshaller {
             BoundingBox boundingBox = faceDetail.getBoundingBox();
             jsonWriter.name("BoundingBox");
             BoundingBoxJsonMarshaller.getInstance().marshall(boundingBox, jsonWriter);
+        }
+        if (faceDetail.getAgeRange() != null) {
+            AgeRange ageRange = faceDetail.getAgeRange();
+            jsonWriter.name("AgeRange");
+            AgeRangeJsonMarshaller.getInstance().marshall(ageRange, jsonWriter);
         }
         if (faceDetail.getSmile() != null) {
             Smile smile = faceDetail.getSmile();

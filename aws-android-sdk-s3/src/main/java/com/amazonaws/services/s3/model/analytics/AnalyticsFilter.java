@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,15 @@ public class AnalyticsFilter implements Serializable {
 
     private AnalyticsFilterPredicate predicate;
 
+    /**
+     * Constructor.
+     */
     public AnalyticsFilter() { }
 
+    /**
+     * Constructor.
+     * @param predicate the AnalyticsFilterPredicate.
+     */
     public AnalyticsFilter(AnalyticsFilterPredicate predicate) {
         this.predicate = predicate;
     }
@@ -38,6 +45,7 @@ public class AnalyticsFilter implements Serializable {
      *
      * The predicate is one of {@link AnalyticsPrefixPredicate}, {@link AnalyticsTagPredicate}
      * or {@link AnalyticsAndOperator}.
+     * @return the AnalyticsFilterPredicate.
      */
     public AnalyticsFilterPredicate getPredicate() {
         return predicate;
@@ -48,6 +56,7 @@ public class AnalyticsFilter implements Serializable {
      *
      * The predicate should be one of {@link AnalyticsPrefixPredicate}, {@link AnalyticsTagPredicate}
      * or {@link AnalyticsAndOperator}.
+     * @param predicate the AnalyticsFilterPredicate.
      */
     public void setPredicate(AnalyticsFilterPredicate predicate) {
         this.predicate = predicate;
@@ -59,7 +68,10 @@ public class AnalyticsFilter implements Serializable {
      *
      * The predicate should be one of {@link AnalyticsPrefixPredicate}, {@link AnalyticsTagPredicate}
      * or {@link AnalyticsAndOperator}.
+     * @param predicate the AnalyticsFilterPredicate.
+     * @return this instance with the specified AnalyticsFilterPredicate.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public AnalyticsFilter withPredicate(AnalyticsFilterPredicate predicate) {
         setPredicate(predicate);
         return this;

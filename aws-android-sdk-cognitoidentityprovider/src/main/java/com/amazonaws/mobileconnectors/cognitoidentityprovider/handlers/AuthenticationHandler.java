@@ -22,8 +22,10 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserSession
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ChallengeContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.MultiFactorAuthenticationContinuation;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.NewPasswordContinuation;
 
+/**
+ * Callback handler for user authentication process.
+ */
 public interface AuthenticationHandler {
 
     /**
@@ -46,10 +48,10 @@ public interface AuthenticationHandler {
      * @param authenticationContinuation is a {@link AuthenticationContinuation} object that should
      *                                   be used to continue with the authentication process when
      *                                   the users' authentication details are available.
-     * @param UserId                     Is the user-ID (username  or alias) used in authentication.
+     * @param userId                     Is the user-ID (username  or alias) used in authentication.
      *                                   This will be null if the user ID is not available.
      */
-    public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String UserId);
+    public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId);
 
     /**
      * Call out to the dev to send MFA code.
@@ -80,8 +82,7 @@ public interface AuthenticationHandler {
      * authentication. The current authentication process continue because of the error
      * , hence a continuation is not available. Probe {@code exception} for details.
      *
-     * @param exception is this Exception leading to authentication failure
-     * @return Should authentication flow continue
+     * @param exception is this Exception leading to authentication failure.
      */
     public void onFailure(Exception exception);
 }

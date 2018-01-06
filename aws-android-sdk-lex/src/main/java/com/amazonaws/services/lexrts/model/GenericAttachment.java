@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import java.io.Serializable;
 public class GenericAttachment implements Serializable {
     /**
      * <p>
-     * Title of the option.
+     * The title of the option.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -36,7 +36,7 @@ public class GenericAttachment implements Serializable {
 
     /**
      * <p>
-     * Subtitle shown below the title.
+     * The subtitle shown below the title.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,7 +45,9 @@ public class GenericAttachment implements Serializable {
     private String subTitle;
 
     /**
-     * The new value for the attachmentLinkUrl property for this object.
+     * <p>
+     * The URL of an attachment to the response card.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
@@ -54,7 +56,7 @@ public class GenericAttachment implements Serializable {
 
     /**
      * <p>
-     * URL of an image that is displayed to the user.
+     * The URL of an image that is displayed to the user.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -64,21 +66,21 @@ public class GenericAttachment implements Serializable {
 
     /**
      * <p>
-     * List of options to show to the user.
+     * The list of options to show to the user.
      * </p>
      */
     private java.util.List<Button> buttons;
 
     /**
      * <p>
-     * Title of the option.
+     * The title of the option.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 80<br/>
      *
      * @return <p>
-     *         Title of the option.
+     *         The title of the option.
      *         </p>
      */
     public String getTitle() {
@@ -87,14 +89,14 @@ public class GenericAttachment implements Serializable {
 
     /**
      * <p>
-     * Title of the option.
+     * The title of the option.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 80<br/>
      *
      * @param title <p>
-     *            Title of the option.
+     *            The title of the option.
      *            </p>
      */
     public void setTitle(String title) {
@@ -103,7 +105,7 @@ public class GenericAttachment implements Serializable {
 
     /**
      * <p>
-     * Title of the option.
+     * The title of the option.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -113,7 +115,7 @@ public class GenericAttachment implements Serializable {
      * <b>Length: </b>1 - 80<br/>
      *
      * @param title <p>
-     *            Title of the option.
+     *            The title of the option.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -125,14 +127,14 @@ public class GenericAttachment implements Serializable {
 
     /**
      * <p>
-     * Subtitle shown below the title.
+     * The subtitle shown below the title.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 80<br/>
      *
      * @return <p>
-     *         Subtitle shown below the title.
+     *         The subtitle shown below the title.
      *         </p>
      */
     public String getSubTitle() {
@@ -141,14 +143,14 @@ public class GenericAttachment implements Serializable {
 
     /**
      * <p>
-     * Subtitle shown below the title.
+     * The subtitle shown below the title.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 80<br/>
      *
      * @param subTitle <p>
-     *            Subtitle shown below the title.
+     *            The subtitle shown below the title.
      *            </p>
      */
     public void setSubTitle(String subTitle) {
@@ -157,7 +159,7 @@ public class GenericAttachment implements Serializable {
 
     /**
      * <p>
-     * Subtitle shown below the title.
+     * The subtitle shown below the title.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -167,7 +169,7 @@ public class GenericAttachment implements Serializable {
      * <b>Length: </b>1 - 80<br/>
      *
      * @param subTitle <p>
-     *            Subtitle shown below the title.
+     *            The subtitle shown below the title.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -178,32 +180,41 @@ public class GenericAttachment implements Serializable {
     }
 
     /**
-     * Returns the value of the attachmentLinkUrl property for this object.
+     * <p>
+     * The URL of an attachment to the response card.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
-     * @return The value of the attachmentLinkUrl property for this object.
+     * @return <p>
+     *         The URL of an attachment to the response card.
+     *         </p>
      */
     public String getAttachmentLinkUrl() {
         return attachmentLinkUrl;
     }
 
     /**
-     * Sets the value of attachmentLinkUrl
+     * <p>
+     * The URL of an attachment to the response card.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
-     * @param attachmentLinkUrl The new value for the attachmentLinkUrl property
-     *            for this object.
+     * @param attachmentLinkUrl <p>
+     *            The URL of an attachment to the response card.
+     *            </p>
      */
     public void setAttachmentLinkUrl(String attachmentLinkUrl) {
         this.attachmentLinkUrl = attachmentLinkUrl;
     }
 
     /**
-     * Sets the value of the attachmentLinkUrl property for this object.
+     * <p>
+     * The URL of an attachment to the response card.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -211,8 +222,9 @@ public class GenericAttachment implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
-     * @param attachmentLinkUrl The new value for the attachmentLinkUrl property
-     *            for this object.
+     * @param attachmentLinkUrl <p>
+     *            The URL of an attachment to the response card.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -223,14 +235,14 @@ public class GenericAttachment implements Serializable {
 
     /**
      * <p>
-     * URL of an image that is displayed to the user.
+     * The URL of an image that is displayed to the user.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         URL of an image that is displayed to the user.
+     *         The URL of an image that is displayed to the user.
      *         </p>
      */
     public String getImageUrl() {
@@ -239,14 +251,14 @@ public class GenericAttachment implements Serializable {
 
     /**
      * <p>
-     * URL of an image that is displayed to the user.
+     * The URL of an image that is displayed to the user.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param imageUrl <p>
-     *            URL of an image that is displayed to the user.
+     *            The URL of an image that is displayed to the user.
      *            </p>
      */
     public void setImageUrl(String imageUrl) {
@@ -255,7 +267,7 @@ public class GenericAttachment implements Serializable {
 
     /**
      * <p>
-     * URL of an image that is displayed to the user.
+     * The URL of an image that is displayed to the user.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -265,7 +277,7 @@ public class GenericAttachment implements Serializable {
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param imageUrl <p>
-     *            URL of an image that is displayed to the user.
+     *            The URL of an image that is displayed to the user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -277,11 +289,11 @@ public class GenericAttachment implements Serializable {
 
     /**
      * <p>
-     * List of options to show to the user.
+     * The list of options to show to the user.
      * </p>
      *
      * @return <p>
-     *         List of options to show to the user.
+     *         The list of options to show to the user.
      *         </p>
      */
     public java.util.List<Button> getButtons() {
@@ -290,11 +302,11 @@ public class GenericAttachment implements Serializable {
 
     /**
      * <p>
-     * List of options to show to the user.
+     * The list of options to show to the user.
      * </p>
      *
      * @param buttons <p>
-     *            List of options to show to the user.
+     *            The list of options to show to the user.
      *            </p>
      */
     public void setButtons(java.util.Collection<Button> buttons) {
@@ -308,14 +320,14 @@ public class GenericAttachment implements Serializable {
 
     /**
      * <p>
-     * List of options to show to the user.
+     * The list of options to show to the user.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param buttons <p>
-     *            List of options to show to the user.
+     *            The list of options to show to the user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -332,14 +344,14 @@ public class GenericAttachment implements Serializable {
 
     /**
      * <p>
-     * List of options to show to the user.
+     * The list of options to show to the user.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param buttons <p>
-     *            List of options to show to the user.
+     *            The list of options to show to the user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

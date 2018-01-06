@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -34,6 +34,11 @@ class FirehoseActionJsonMarshaller {
             String deliveryStreamName = firehoseAction.getDeliveryStreamName();
             jsonWriter.name("deliveryStreamName");
             jsonWriter.value(deliveryStreamName);
+        }
+        if (firehoseAction.getSeparator() != null) {
+            String separator = firehoseAction.getSeparator();
+            jsonWriter.name("separator");
+            jsonWriter.value(separator);
         }
         jsonWriter.endObject();
     }

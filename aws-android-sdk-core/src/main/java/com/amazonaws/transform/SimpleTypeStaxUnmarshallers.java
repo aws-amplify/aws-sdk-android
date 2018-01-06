@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -45,6 +45,10 @@ public class SimpleTypeStaxUnmarshallers {
 
         private static StringStaxUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static StringStaxUnmarshaller getInstance() {
             if (instance == null)
                 instance = new StringStaxUnmarshaller();
@@ -52,6 +56,10 @@ public class SimpleTypeStaxUnmarshallers {
         }
     }
 
+
+    /**
+     * Unmarshaller for Big Decimal values.
+     */
     public static class BigDecimalStaxUnmarshaller implements
             Unmarshaller<BigDecimal, StaxUnmarshallerContext> {
         @Override
@@ -63,6 +71,10 @@ public class SimpleTypeStaxUnmarshallers {
 
         private static BigDecimalStaxUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static BigDecimalStaxUnmarshaller getInstance() {
             if (instance == null)
                 instance = new BigDecimalStaxUnmarshaller();
@@ -70,6 +82,9 @@ public class SimpleTypeStaxUnmarshallers {
         }
     }
 
+    /**
+     * Unmarshaller for Big Integer values.
+     */
     public static class BigIntegerStaxUnmarshaller implements
             Unmarshaller<BigInteger, StaxUnmarshallerContext> {
         @Override
@@ -81,6 +96,10 @@ public class SimpleTypeStaxUnmarshallers {
 
         private static BigIntegerStaxUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static BigIntegerStaxUnmarshaller getInstance() {
             if (instance == null)
                 instance = new BigIntegerStaxUnmarshaller();
@@ -101,6 +120,10 @@ public class SimpleTypeStaxUnmarshallers {
 
         private static DoubleStaxUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static DoubleStaxUnmarshaller getInstance() {
             if (instance == null)
                 instance = new DoubleStaxUnmarshaller();
@@ -121,6 +144,10 @@ public class SimpleTypeStaxUnmarshallers {
 
         private static IntegerStaxUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static IntegerStaxUnmarshaller getInstance() {
             if (instance == null)
                 instance = new IntegerStaxUnmarshaller();
@@ -141,6 +168,10 @@ public class SimpleTypeStaxUnmarshallers {
 
         private static BooleanStaxUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static BooleanStaxUnmarshaller getInstance() {
             if (instance == null)
                 instance = new BooleanStaxUnmarshaller();
@@ -161,6 +192,10 @@ public class SimpleTypeStaxUnmarshallers {
 
         private static FloatStaxUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static FloatStaxUnmarshaller getInstance() {
             if (instance == null)
                 instance = new FloatStaxUnmarshaller();
@@ -180,6 +215,10 @@ public class SimpleTypeStaxUnmarshallers {
 
         private static LongStaxUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static LongStaxUnmarshaller getInstance() {
             if (instance == null)
                 instance = new LongStaxUnmarshaller();
@@ -199,6 +238,10 @@ public class SimpleTypeStaxUnmarshallers {
 
         private static ByteStaxUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static ByteStaxUnmarshaller getInstance() {
             if (instance == null)
                 instance = new ByteStaxUnmarshaller();
@@ -226,6 +269,10 @@ public class SimpleTypeStaxUnmarshallers {
 
         private static DateStaxUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static DateStaxUnmarshaller getInstance() {
             if (instance == null)
                 instance = new DateStaxUnmarshaller();
@@ -248,6 +295,10 @@ public class SimpleTypeStaxUnmarshallers {
 
         private static ByteBufferStaxUnmarshaller instance;
 
+        /**
+         * Constructor.
+         * @return the instance.
+         */
         public static ByteBufferStaxUnmarshaller getInstance() {
             if (instance == null)
                 instance = new ByteBufferStaxUnmarshaller();

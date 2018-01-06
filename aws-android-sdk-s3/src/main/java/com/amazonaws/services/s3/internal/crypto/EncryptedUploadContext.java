@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,6 +28,12 @@ public class EncryptedUploadContext extends MultipartUploadContext {
     private byte[] firstIV;
     private byte[] nextIV;
 
+    /**
+     * Constructor.
+     * @param bucketName the bucket name.
+     * @param key the key.
+     * @param envelopeEncryptionKey the secret key.
+     */
     public EncryptedUploadContext(String bucketName, String key,
             SecretKey envelopeEncryptionKey) {
         super(bucketName, key);
@@ -38,6 +44,7 @@ public class EncryptedUploadContext extends MultipartUploadContext {
         return envelopeEncryptionKey;
     }
 
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setNextInitializationVector(byte[] nextIV) {
         this.nextIV = nextIV;
     }
@@ -46,6 +53,7 @@ public class EncryptedUploadContext extends MultipartUploadContext {
         return nextIV;
     }
 
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setFirstInitializationVector(byte[] firstIV) {
         this.firstIV = firstIV;
     }

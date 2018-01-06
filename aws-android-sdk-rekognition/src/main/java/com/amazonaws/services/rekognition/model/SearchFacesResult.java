@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,6 +36,14 @@ public class SearchFacesResult implements Serializable {
      * </p>
      */
     private java.util.List<FaceMatch> faceMatches;
+
+    /**
+     * <p>
+     * Version number of the face detection model associated with the input
+     * collection (<code>CollectionId</code>).
+     * </p>
+     */
+    private String faceModelVersion;
 
     /**
      * <p>
@@ -177,6 +185,57 @@ public class SearchFacesResult implements Serializable {
     }
 
     /**
+     * <p>
+     * Version number of the face detection model associated with the input
+     * collection (<code>CollectionId</code>).
+     * </p>
+     *
+     * @return <p>
+     *         Version number of the face detection model associated with the
+     *         input collection (<code>CollectionId</code>).
+     *         </p>
+     */
+    public String getFaceModelVersion() {
+        return faceModelVersion;
+    }
+
+    /**
+     * <p>
+     * Version number of the face detection model associated with the input
+     * collection (<code>CollectionId</code>).
+     * </p>
+     *
+     * @param faceModelVersion <p>
+     *            Version number of the face detection model associated with the
+     *            input collection (<code>CollectionId</code>).
+     *            </p>
+     */
+    public void setFaceModelVersion(String faceModelVersion) {
+        this.faceModelVersion = faceModelVersion;
+    }
+
+    /**
+     * <p>
+     * Version number of the face detection model associated with the input
+     * collection (<code>CollectionId</code>).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param faceModelVersion <p>
+     *            Version number of the face detection model associated with the
+     *            input collection (<code>CollectionId</code>).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchFacesResult withFaceModelVersion(String faceModelVersion) {
+        this.faceModelVersion = faceModelVersion;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -190,7 +249,9 @@ public class SearchFacesResult implements Serializable {
         if (getSearchedFaceId() != null)
             sb.append("SearchedFaceId: " + getSearchedFaceId() + ",");
         if (getFaceMatches() != null)
-            sb.append("FaceMatches: " + getFaceMatches());
+            sb.append("FaceMatches: " + getFaceMatches() + ",");
+        if (getFaceModelVersion() != null)
+            sb.append("FaceModelVersion: " + getFaceModelVersion());
         sb.append("}");
         return sb.toString();
     }
@@ -204,6 +265,8 @@ public class SearchFacesResult implements Serializable {
                 + ((getSearchedFaceId() == null) ? 0 : getSearchedFaceId().hashCode());
         hashCode = prime * hashCode
                 + ((getFaceMatches() == null) ? 0 : getFaceMatches().hashCode());
+        hashCode = prime * hashCode
+                + ((getFaceModelVersion() == null) ? 0 : getFaceModelVersion().hashCode());
         return hashCode;
     }
 
@@ -227,6 +290,11 @@ public class SearchFacesResult implements Serializable {
             return false;
         if (other.getFaceMatches() != null
                 && other.getFaceMatches().equals(this.getFaceMatches()) == false)
+            return false;
+        if (other.getFaceModelVersion() == null ^ this.getFaceModelVersion() == null)
+            return false;
+        if (other.getFaceModelVersion() != null
+                && other.getFaceModelVersion().equals(this.getFaceModelVersion()) == false)
             return false;
         return true;
     }

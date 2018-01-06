@@ -17,20 +17,27 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * The DateDeserializer class.
+ */
 public class DateDeserializer implements JsonDeserializer<Date>, JsonSerializer<Date> {
 
     private SimpleDateFormat mSimpleDateFormat;
     private final List<String> dateFormats;
     private final SimpleDateFormat mIso8601DateFormat;
 
+    /**
+     * Constructor.
+     * @param dateFormats the array of date formats.
+     */
     public DateDeserializer(String[] dateFormats) {
         this.dateFormats = Arrays.asList(dateFormats);
         this.mIso8601DateFormat = new SimpleDateFormat(DateUtils.ISO8601_DATE_PATTERN);
     }
 
     @Override
-    public Date deserialize(JsonElement element, Type arg1, JsonDeserializationContext context)
-            throws JsonParseException {
+    @SuppressWarnings("checkstyle:emptyblock")
+    public Date deserialize(JsonElement element, Type arg1, JsonDeserializationContext context) {
         final String dateString = element.getAsString();
         Date date = null;
         for (final String df : dateFormats) {

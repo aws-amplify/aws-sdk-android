@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,18 +24,43 @@ public interface Headers {
      * Standard HTTP Headers
      */
 
+    /** Cache control header */
     public static final String CACHE_CONTROL = "Cache-Control";
+
+    /** Content disposition header */
     public static final String CONTENT_DISPOSITION = "Content-Disposition";
+
+    /** Content encoding header */
     public static final String CONTENT_ENCODING = "Content-Encoding";
+
+    /** Content length header */
     public static final String CONTENT_LENGTH = "Content-Length";
+
+    /** Content range header */
     public static final String CONTENT_RANGE = "Content-Range";
+
+    /** Content MD5 header */
     public static final String CONTENT_MD5 = "Content-MD5";
+
+    /** Content type header */
     public static final String CONTENT_TYPE = "Content-Type";
+
+    /** Content language header */
     public static final String CONTENT_LANGUAGE = "Content-Language";
+
+    /** Date header */
     public static final String DATE = "Date";
+
+    /** Etag header */
     public static final String ETAG = "ETag";
+
+    /** Last modified header */
     public static final String LAST_MODIFIED = "Last-Modified";
+
+    /** Server header */
     public static final String SERVER = "Server";
+
+    /** Connection header */
     public static final String CONNECTION = "Connection";
 
     /*
@@ -201,7 +226,7 @@ public interface Headers {
     public static String RESTORE = "x-amz-restore";
 
     /**
-     * Key wrapping algorithm such as "AESWrap" and
+     * Key wrapping algorithm such as "AES_WRAP" and
      * "RSA/ECB/OAEPWithSHA-256AndMGF1Padding".
      */
     public static final String CRYPTO_KEYWRAP_ALGORITHM = "x-amz-wrap-alg";
@@ -251,5 +276,6 @@ public interface Headers {
     /** S3 response header the number of tags on an object */
     public static final String S3_TAGGING_COUNT = "x-amz-tagging-count";
 
+    /** S3 response header for tagging directive */
     public static final String TAGGING_DIRECTIVE = "x-amz-tagging-directive";
 }

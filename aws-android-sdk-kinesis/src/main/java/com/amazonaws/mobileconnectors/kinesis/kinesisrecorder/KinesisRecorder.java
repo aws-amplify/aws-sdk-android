@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,6 +23,8 @@ import com.amazonaws.services.kinesis.AmazonKinesis;
 import com.amazonaws.services.kinesis.AmazonKinesisClient;
 import com.amazonaws.util.VersionInfoUtils;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -74,12 +76,14 @@ import java.util.regex.Pattern;
  */
 public class KinesisRecorder extends AbstractKinesisRecorder {
 
+    private static final Log LOGGER = LogFactory.getLog(KinesisRecorder.class);
+
     /**
      * Name of local file record store.
      */
     private static final String RECORD_FILE_NAME = "kinesis_stream_records";
     /**
-     * User agent string to identify {@link KinesisRecorder}
+     * User agent string to identify {@link KinesisRecorder}.
      */
     private static final String USER_AGENT = KinesisRecorder.class.getName() + "/"
             + VersionInfoUtils.getVersion();
@@ -207,14 +211,14 @@ public class KinesisRecorder extends AbstractKinesisRecorder {
                     saveRecord(JSONRecordAdapter.getData(json).array(),
                             JSONRecordAdapter.getStreamName(json));
                 } catch (final JSONException e) {
-                    // skip invalid json
+                    LOGGER.debug("caught exception", e);
                     continue;
                 }
             }
             try {
                 iterator.close();
             } catch (final IOException e) {
-                // ignore
+                LOGGER.debug("caught exception", e);
             }
             oldRecordsFile.delete();
         }

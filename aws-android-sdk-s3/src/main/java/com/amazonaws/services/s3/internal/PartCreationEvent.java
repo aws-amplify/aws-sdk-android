@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,6 +18,9 @@ import java.io.File;
 
 import com.amazonaws.services.s3.OnFileDelete;
 
+/**
+ * Used to create an upload part.
+ */
 public class PartCreationEvent {
     private final File part;
     private final int partNumber;
@@ -35,7 +38,8 @@ public class PartCreationEvent {
     }
 
     /**
-     * Returns a non-null part (in the form of a file) for multi-part upload.
+     * Retrieves the non-null part.
+     * @return File a non-null part (in the form of a file) for multi-part upload.
      */
     public File getPart() {
         return part;
@@ -51,6 +55,7 @@ public class PartCreationEvent {
 
     /**
      * Returns an observer for file deletion; or null if there is none.
+     * @return an observer for file deletion.
      */
     public OnFileDelete getFileDeleteObserver() {
         return fileDeleteObserver;

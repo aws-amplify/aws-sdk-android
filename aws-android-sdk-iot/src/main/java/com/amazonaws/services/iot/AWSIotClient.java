@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -286,11 +286,13 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
         jsonErrorUnmarshallers.add(new TransferAlreadyCompletedExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TransferConflictExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UnauthorizedExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new VersionConflictExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new VersionsLimitExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("iot.us-east-1.amazonaws.com");
+        this.endpointPrefix = "iot";
 
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(
@@ -914,7 +916,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Creates a thing in the Thing Registry.
+     * Creates a thing record in the thing registry.
      * </p>
      * 
      * @param createThingRequest <p>
@@ -939,6 +941,9 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      *             </p>
      * @throws ResourceAlreadyExistsException <p>
      *             The resource already exists.
+     *             </p>
+     * @throws ResourceNotFoundException <p>
+     *             The specified resource does not exist.
      *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -966,6 +971,70 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<CreateThingResult, JsonUnmarshallerContext> unmarshaller = new CreateThingResultJsonUnmarshaller();
             JsonResponseHandler<CreateThingResult> responseHandler = new JsonResponseHandler<CreateThingResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a new thing type.
+     * </p>
+     * 
+     * @param createThingTypeRequest <p>
+     *            The input for the CreateThingType operation.
+     *            </p>
+     * @return createThingTypeResult The response from the CreateThingType
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException <p>
+     *             The request is not valid.
+     *             </p>
+     * @throws ThrottlingException <p>
+     *             The rate exceeds the limit.
+     *             </p>
+     * @throws UnauthorizedException <p>
+     *             You are not authorized to perform this operation.
+     *             </p>
+     * @throws ServiceUnavailableException <p>
+     *             The service is temporarily unavailable.
+     *             </p>
+     * @throws InternalFailureException <p>
+     *             An unexpected error has occurred.
+     *             </p>
+     * @throws ResourceAlreadyExistsException <p>
+     *             The resource already exists.
+     *             </p>
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public CreateThingTypeResult createThingType(CreateThingTypeRequest createThingTypeRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createThingTypeRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateThingTypeRequest> request = null;
+        Response<CreateThingTypeResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateThingTypeRequestMarshaller().marshall(createThingTypeRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateThingTypeResult, JsonUnmarshallerContext> unmarshaller = new CreateThingTypeResultJsonUnmarshaller();
+            JsonResponseHandler<CreateThingTypeResult> responseHandler = new JsonResponseHandler<CreateThingTypeResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1378,7 +1447,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Deletes the specified thing from the Thing Registry.
+     * Deletes the specified thing.
      * </p>
      * 
      * @param deleteThingRequest <p>
@@ -1388,6 +1457,11 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      *         method, as returned by AWS IoT.
      * @throws ResourceNotFoundException <p>
      *             The specified resource does not exist.
+     *             </p>
+     * @throws VersionConflictException <p>
+     *             An exception thrown when the version of a thing passed to a
+     *             command is different than the version specified with the
+     *             --version parameter.
      *             </p>
      * @throws InvalidRequestException <p>
      *             The request is not valid.
@@ -1430,6 +1504,75 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<DeleteThingResult, JsonUnmarshallerContext> unmarshaller = new DeleteThingResultJsonUnmarshaller();
             JsonResponseHandler<DeleteThingResult> responseHandler = new JsonResponseHandler<DeleteThingResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes the specified thing type . You cannot delete a thing type if it
+     * has things associated with it. To delete a thing type, first mark it as
+     * deprecated by calling <a>DeprecateThingType</a>, then remove any
+     * associated things by calling <a>UpdateThing</a> to change the thing type
+     * on any associated thing, and finally use <a>DeleteThingType</a> to delete
+     * the thing type.
+     * </p>
+     * 
+     * @param deleteThingTypeRequest <p>
+     *            The input for the DeleteThingType operation.
+     *            </p>
+     * @return deleteThingTypeResult The response from the DeleteThingType
+     *         service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException <p>
+     *             The specified resource does not exist.
+     *             </p>
+     * @throws InvalidRequestException <p>
+     *             The request is not valid.
+     *             </p>
+     * @throws ThrottlingException <p>
+     *             The rate exceeds the limit.
+     *             </p>
+     * @throws UnauthorizedException <p>
+     *             You are not authorized to perform this operation.
+     *             </p>
+     * @throws ServiceUnavailableException <p>
+     *             The service is temporarily unavailable.
+     *             </p>
+     * @throws InternalFailureException <p>
+     *             An unexpected error has occurred.
+     *             </p>
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DeleteThingTypeResult deleteThingType(DeleteThingTypeRequest deleteThingTypeRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteThingTypeRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteThingTypeRequest> request = null;
+        Response<DeleteThingTypeResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteThingTypeRequestMarshaller().marshall(deleteThingTypeRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteThingTypeResult, JsonUnmarshallerContext> unmarshaller = new DeleteThingTypeResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteThingTypeResult> responseHandler = new JsonResponseHandler<DeleteThingTypeResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1486,6 +1629,73 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
             invoke(request, responseHandler, executionContext);
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deprecates a thing type. You can not associate new things with deprecated
+     * thing type.
+     * </p>
+     * 
+     * @param deprecateThingTypeRequest <p>
+     *            The input for the DeprecateThingType operation.
+     *            </p>
+     * @return deprecateThingTypeResult The response from the DeprecateThingType
+     *         service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException <p>
+     *             The specified resource does not exist.
+     *             </p>
+     * @throws InvalidRequestException <p>
+     *             The request is not valid.
+     *             </p>
+     * @throws ThrottlingException <p>
+     *             The rate exceeds the limit.
+     *             </p>
+     * @throws UnauthorizedException <p>
+     *             You are not authorized to perform this operation.
+     *             </p>
+     * @throws ServiceUnavailableException <p>
+     *             The service is temporarily unavailable.
+     *             </p>
+     * @throws InternalFailureException <p>
+     *             An unexpected error has occurred.
+     *             </p>
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DeprecateThingTypeResult deprecateThingType(
+            DeprecateThingTypeRequest deprecateThingTypeRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deprecateThingTypeRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeprecateThingTypeRequest> request = null;
+        Response<DeprecateThingTypeResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeprecateThingTypeRequestMarshaller()
+                        .marshall(deprecateThingTypeRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeprecateThingTypeResult, JsonUnmarshallerContext> unmarshaller = new DeprecateThingTypeResultJsonUnmarshaller();
+            JsonResponseHandler<DeprecateThingTypeResult> responseHandler = new JsonResponseHandler<DeprecateThingTypeResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
         } finally {
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
         }
@@ -1732,6 +1942,72 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<DescribeThingResult, JsonUnmarshallerContext> unmarshaller = new DescribeThingResultJsonUnmarshaller();
             JsonResponseHandler<DescribeThingResult> responseHandler = new JsonResponseHandler<DescribeThingResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets information about the specified thing type.
+     * </p>
+     * 
+     * @param describeThingTypeRequest <p>
+     *            The input for the DescribeThingType operation.
+     *            </p>
+     * @return describeThingTypeResult The response from the DescribeThingType
+     *         service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException <p>
+     *             The specified resource does not exist.
+     *             </p>
+     * @throws InvalidRequestException <p>
+     *             The request is not valid.
+     *             </p>
+     * @throws ThrottlingException <p>
+     *             The rate exceeds the limit.
+     *             </p>
+     * @throws UnauthorizedException <p>
+     *             You are not authorized to perform this operation.
+     *             </p>
+     * @throws ServiceUnavailableException <p>
+     *             The service is temporarily unavailable.
+     *             </p>
+     * @throws InternalFailureException <p>
+     *             An unexpected error has occurred.
+     *             </p>
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DescribeThingTypeResult describeThingType(
+            DescribeThingTypeRequest describeThingTypeRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeThingTypeRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeThingTypeRequest> request = null;
+        Response<DescribeThingTypeResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeThingTypeRequestMarshaller()
+                        .marshall(describeThingTypeRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeThingTypeResult, JsonUnmarshallerContext> unmarshaller = new DescribeThingTypeResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeThingTypeResult> responseHandler = new JsonResponseHandler<DescribeThingTypeResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -2472,6 +2748,69 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Lists certificates that are being transfered but not yet accepted.
+     * </p>
+     * 
+     * @param listOutgoingCertificatesRequest <p>
+     *            The input to the ListOutgoingCertificates operation.
+     *            </p>
+     * @return listOutgoingCertificatesResult The response from the
+     *         ListOutgoingCertificates service method, as returned by AWS IoT.
+     * @throws InvalidRequestException <p>
+     *             The request is not valid.
+     *             </p>
+     * @throws ThrottlingException <p>
+     *             The rate exceeds the limit.
+     *             </p>
+     * @throws UnauthorizedException <p>
+     *             You are not authorized to perform this operation.
+     *             </p>
+     * @throws ServiceUnavailableException <p>
+     *             The service is temporarily unavailable.
+     *             </p>
+     * @throws InternalFailureException <p>
+     *             An unexpected error has occurred.
+     *             </p>
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListOutgoingCertificatesResult listOutgoingCertificates(
+            ListOutgoingCertificatesRequest listOutgoingCertificatesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listOutgoingCertificatesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListOutgoingCertificatesRequest> request = null;
+        Response<ListOutgoingCertificatesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListOutgoingCertificatesRequestMarshaller()
+                        .marshall(listOutgoingCertificatesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListOutgoingCertificatesResult, JsonUnmarshallerContext> unmarshaller = new ListOutgoingCertificatesResultJsonUnmarshaller();
+            JsonResponseHandler<ListOutgoingCertificatesResult> responseHandler = new JsonResponseHandler<ListOutgoingCertificatesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Lists your policies.
      * </p>
      * 
@@ -2758,6 +3097,9 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * @throws InternalFailureException <p>
      *             An unexpected error has occurred.
      *             </p>
+     * @throws ResourceNotFoundException <p>
+     *             The specified resource does not exist.
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2821,6 +3163,9 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * @throws InternalFailureException <p>
      *             An unexpected error has occurred.
      *             </p>
+     * @throws ResourceNotFoundException <p>
+     *             The specified resource does not exist.
+     *             </p>
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2861,9 +3206,72 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Lists your things. You can pass an AttributeName or AttributeValue to
-     * filter your things (for example,
-     * "ListThings where AttributeName=Color and AttributeValue=Red").
+     * Lists the existing thing types.
+     * </p>
+     * 
+     * @param listThingTypesRequest <p>
+     *            The input for the ListThingTypes operation.
+     *            </p>
+     * @return listThingTypesResult The response from the ListThingTypes service
+     *         method, as returned by AWS IoT.
+     * @throws InvalidRequestException <p>
+     *             The request is not valid.
+     *             </p>
+     * @throws ThrottlingException <p>
+     *             The rate exceeds the limit.
+     *             </p>
+     * @throws UnauthorizedException <p>
+     *             You are not authorized to perform this operation.
+     *             </p>
+     * @throws ServiceUnavailableException <p>
+     *             The service is temporarily unavailable.
+     *             </p>
+     * @throws InternalFailureException <p>
+     *             An unexpected error has occurred.
+     *             </p>
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListThingTypesResult listThingTypes(ListThingTypesRequest listThingTypesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listThingTypesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListThingTypesRequest> request = null;
+        Response<ListThingTypesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListThingTypesRequestMarshaller().marshall(listThingTypesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListThingTypesResult, JsonUnmarshallerContext> unmarshaller = new ListThingTypesResultJsonUnmarshaller();
+            JsonResponseHandler<ListThingTypesResult> responseHandler = new JsonResponseHandler<ListThingTypesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists your things. Use the <b>attributeName</b> and <b>attributeValue</b>
+     * parameters to filter your things. For example, calling
+     * <code>ListThings</code> with attributeName=Color and attributeValue=Red
+     * retrieves all things in the registry that contain an attribute
+     * <b>Color</b> with the value <b>Red</b>.
      * </p>
      * 
      * @param listThingsRequest <p>
@@ -3611,6 +4019,11 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      *         method, as returned by AWS IoT.
      * @throws InvalidRequestException <p>
      *             The request is not valid.
+     *             </p>
+     * @throws VersionConflictException <p>
+     *             An exception thrown when the version of a thing passed to a
+     *             command is different than the version specified with the
+     *             --version parameter.
      *             </p>
      * @throws ThrottlingException <p>
      *             The rate exceeds the limit.

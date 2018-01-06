@@ -1,25 +1,23 @@
-/*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+/**
+ * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at:
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
  *
- *    http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
- * OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and
- * limitations under the License.
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.mobileconnectors.pinpoint.analytics.utils;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import org.mockito.internal.util.MockUtil;
 
-import android.content.Context;
-
+import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.configuration.AndroidPreferencesConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidAppDetails;
@@ -35,11 +33,16 @@ import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.NotificationClient;
 import com.amazonaws.services.pinpoint.AmazonPinpointClient;
 import com.amazonaws.services.pinpointanalytics.AmazonPinpointAnalyticsClient;
+import android.content.Context;
 
-import org.mockito.internal.util.MockUtil;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class AnalyticsContextBuilder {
 
+    private NotificationClient mockNotificationClient;
+    private final TargetingClient mockTargetingClient = mock(TargetingClient.class);
+    private final PinpointConfiguration mockPinpointConfig = mock(PinpointConfiguration.class);
     private String sdkName = "";
     private String sdkVersion = "";
     private String mockUniqueIdValue = "";
@@ -50,12 +53,8 @@ public class AnalyticsContextBuilder {
     private AndroidConnectivity mockConnectivity = mock(AndroidConnectivity.class);
     private AndroidDeviceDetails mockDeviceDetails = new MockDeviceDetails();
     private AmazonPinpointAnalyticsClient mockERS = mock(AmazonPinpointAnalyticsClient.class);
-    private AndroidSystem mockSystem
-        = mock(AndroidSystem.class);
+    private AndroidSystem mockSystem = mock(AndroidSystem.class);
     private AmazonPinpointClient mockPinpointService = mock(AmazonPinpointClient.class);
-    private final NotificationClient mockNotificationClient = mock(NotificationClient.class);
-    private final TargetingClient mockTargetingClient = mock(TargetingClient.class);
-
 
     public PinpointContext build() {
 
@@ -63,7 +62,8 @@ public class AnalyticsContextBuilder {
         when(mockSDKInfo.getName()).thenReturn(sdkName);
         when(mockSDKInfo.getVersion()).thenReturn(sdkVersion);
 
-        if (new MockUtil().isMock(mockSystem)) {
+        final MockUtil mockUtil = new MockUtil();
+        if (mockUtil.isMock(mockSystem)) {
             when(mockSystem.getPreferences()).thenReturn(mockPreferences);
             when(mockSystem.getConnectivity()).thenReturn(mockConnectivity);
             final AndroidAppDetails mockAppDetails = new MockAppDetails();
@@ -77,13 +77,19 @@ public class AnalyticsContextBuilder {
         when(mockContext.getConfiguration()).thenReturn(mockConfig);
         when(mockContext.getUniqueId()).thenReturn(mockUniqueIdValue);
         when(mockContext.getAnalyticsServiceClient()).thenReturn(mockERS);
-        when(mockContext.getPinpointServiceClient()).thenReturn(mockPinpointService);
+        when(mockContext.getPinpointServiceClient())
+                .thenReturn(mockPinpointService);
         when(mockContext.getSystem()).thenReturn(mockSystem);
-        when(mockContext.getNotificationClient()).thenReturn(mockNotificationClient);
+        // Notification client must be constructed after mock system is set
+        mockNotificationClient = new NotificationClient(mockContext);
+        when(mockContext.getNotificationClient())
+                .thenReturn(mockNotificationClient);
         when(mockContext.getApplicationContext()).thenReturn(context);
         when(mockContext.getConfiguration()).thenReturn(mockConfig);
         when(mockContext.getNetworkType()).thenCallRealMethod();
         when(mockContext.getTargetingClient()).thenReturn(mockTargetingClient);
+        when(mockContext.getPinpointConfiguration()).thenReturn(mockPinpointConfig);
+
 
         return mockContext;
     }
@@ -99,7 +105,7 @@ public class AnalyticsContextBuilder {
     }
 
     public AnalyticsContextBuilder withPinpointServiceClient(
-            AmazonPinpointClient mockPinpointService) {
+                                                                    AmazonPinpointClient mockPinpointService) {
         this.mockPinpointService = mockPinpointService;
         return this;
     }
@@ -109,7 +115,8 @@ public class AnalyticsContextBuilder {
         return this;
     }
 
-    public AnalyticsContextBuilder withSdkInfo(String sdkName, String sdkVersion) {
+    public AnalyticsContextBuilder withSdkInfo(String sdkName,
+                                                      String sdkVersion) {
         this.sdkName = sdkName;
         this.sdkVersion = sdkVersion;
         return this;
@@ -140,7 +147,7 @@ public class AnalyticsContextBuilder {
         return this;
     }
 
-    public AnalyticsContextBuilder withContext(Context context){
+    public AnalyticsContextBuilder withContext(Context context) {
         this.context = context;
         return this;
     }

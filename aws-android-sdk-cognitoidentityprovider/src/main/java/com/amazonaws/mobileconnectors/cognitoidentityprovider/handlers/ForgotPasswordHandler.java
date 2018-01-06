@@ -34,14 +34,14 @@ public interface ForgotPasswordHandler {
      * A code may be required to confirm and complete the password reset process
      * Supply the new password and the confirmation code - which was sent through email/sms
      * to the continuation
-     * @param continuation
+     * @param continuation REQUIRED: Continuation to the next step.
      */
     public void getResetCode(ForgotPasswordContinuation continuation);
 
     /**
      * This is called for all fatal errors encountered during the password reset process
      * Probe {@exception} for cause of this failure.
-     * @param exception
+     * @param exception REQUIRED: Contains failure details.
      */
     public void onFailure(Exception exception);
 }

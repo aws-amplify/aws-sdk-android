@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ public interface ServerSideEncryptionResult {
     /**
      * Returns the server-side encryption algorithm if the object is encrypted
      * using AWS-managed keys. Otherwise returns null.
+     * @return String the sse algorithm.
      */
     public String getSSEAlgorithm();
 
@@ -43,6 +44,7 @@ public interface ServerSideEncryptionResult {
     /**
      * Returns the server-side encryption algorithm if the object is encrypted
      * using customer-provided keys. Otherwise returns null.
+     * @return String the sse customer algorithm.
      */
     public String getSSECustomerAlgorithm();
 
@@ -59,6 +61,7 @@ public interface ServerSideEncryptionResult {
      * Returns the base64-encoded MD5 digest of the encryption key for
      * server-side encryption, if the object is encrypted using
      * customer-provided keys. Otherwise returns null.
+     * @return String the sse customer key MD5.
      */
     public String getSSECustomerKeyMd5();
 

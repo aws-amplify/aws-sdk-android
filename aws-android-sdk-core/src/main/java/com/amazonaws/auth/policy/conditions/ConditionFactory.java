@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import com.amazonaws.auth.policy.conditions.StringCondition.StringComparisonType
  * conditions are common for AWS services and can be expected to work across any
  * service that supports AWS access control policies.
  */
-public class ConditionFactory {
+public final class ConditionFactory {
 
     /**
      * Condition key for the current time.

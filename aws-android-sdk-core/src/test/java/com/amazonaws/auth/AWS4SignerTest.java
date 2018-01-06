@@ -57,11 +57,11 @@ public class AWS4SignerTest {
         final String EXPECTED_AUTHORIZATION_HEADER_WITH_SHA256_HEADER =
                 "AWS4-HMAC-SHA256 Credential=access/19810216/us-east-1/demo/aws4_request, SignedHeaders=host;x-amz-archive-description;x-amz-date;x-amz-sha256, Signature=e73e20539446307a5dc71252dbd5b97e861f1d1267456abda3ebd8d57e519951";
 
-        AWSCredentials credentials = new BasicAWSCredentials("access", "secret");
+        final AWSCredentials credentials = new BasicAWSCredentials("access", "secret");
         // Test request without 'x-amz-sha256' header
         Request<?> request = generateBasicRequest();
 
-        Calendar c = new GregorianCalendar();
+        final Calendar c = new GregorianCalendar();
         c.set(1981, 1, 16, 6, 30, 0);
         c.setTimeZone(TimeZone.getTimeZone("UTC"));
 
@@ -78,6 +78,75 @@ public class AWS4SignerTest {
         signer.sign(request, credentials);
         assertEquals(EXPECTED_AUTHORIZATION_HEADER_WITH_SHA256_HEADER,
                 request.getHeaders().get("Authorization"));
+    }
+
+    @Test
+    public void testPresigning() throws Exception {
+        final String EXPECTED_AMZ_SIGNATURE = "909d8bc528fec51c0cc6daaa6c29291c519de10f77490d8af57872c29203ebdb";
+        final String EXPECTED_AMZ_CREDENTIALS = "access/19810216/us-east-1/demo/aws4_request";
+        final String EXPECTED_AMZ_HEADER = "19810216T063000Z";
+        final String EXPECTED_AMZ_EXPIRES = "604800";
+        final AWSCredentials credentials = new AWSSessionCredentials() {
+
+            @Override
+            public String getAWSSecretKey() {
+                // TODO Auto-generated method stub
+                return "secret";
+            }
+
+            @Override
+            public String getAWSAccessKeyId() {
+                // TODO Auto-generated method stub
+                return "access";
+            }
+
+            @Override
+            public String getSessionToken() {
+                // TODO Auto-generated method stub
+                return "token";
+            }
+        };
+        // final AWSCredentials credentials = new BasicAWSCredentials("access",
+        // "secret");
+        // Test request without 'x-amz-sha256' header
+
+        final Request<?> request = generateBasicRequest();
+
+        final Calendar c = new GregorianCalendar();
+        c.set(1981, 1, 16, 6, 30, 0);
+        c.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        signer.overrideDate(c.getTime());
+        signer.setServiceName("demo");
+
+        signer.presignRequest(request, credentials, null);
+        assertEquals(EXPECTED_AMZ_SIGNATURE,
+                request.getParameters().get("X-Amz-Signature"));
+        assertEquals(EXPECTED_AMZ_CREDENTIALS,
+                request.getParameters().get("X-Amz-Credential"));
+        assertEquals(EXPECTED_AMZ_HEADER, request.getParameters().get("X-Amz-Date"));
+        assertEquals(EXPECTED_AMZ_EXPIRES, request.getParameters().get("X-Amz-Expires"));
+        assertEquals("token", request.getParameters().get("X-Amz-Security-Token"));
+
+    }
+
+    @Test
+    public void testPresigners2() throws Exception {
+        final AWSCredentials credentials = new AnonymousAWSCredentials();
+        final Request<?> request = generateBasicRequest();
+        final Calendar c = new GregorianCalendar();
+        c.set(1981, 1, 16, 6, 30, 0);
+        c.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        signer.overrideDate(c.getTime());
+        signer.setServiceName("demo");
+
+        signer.presignRequest(request, credentials, null);
+        assertNull(request.getParameters().get("X-Amz-Credential"));
+        assertNull(request.getParameters().get("X-Amz-Date"));
+        assertNull(request.getParameters().get("X-Amz-Expires"));
+        assertNull(request.getParameters().get("X-Amz-Security-Token"));
+
     }
 
     @Test
@@ -106,10 +175,10 @@ public class AWS4SignerTest {
      */
     @Test
     public void testAnonymous() throws Exception {
-        AWSCredentials credentials = new AnonymousAWSCredentials();
-        Request<?> request = generateBasicRequest();
+        final AWSCredentials credentials = new AnonymousAWSCredentials();
+        final Request<?> request = generateBasicRequest();
 
-        Calendar c = new GregorianCalendar();
+        final Calendar c = new GregorianCalendar();
         c.set(1981, 1, 16, 6, 30, 0);
         c.setTimeZone(TimeZone.getTimeZone("UTC"));
 
@@ -121,7 +190,7 @@ public class AWS4SignerTest {
     }
 
     private Request<?> generateBasicRequest() {
-        Request<?> request = new DefaultRequest<Void>("Foo");
+        final Request<?> request = new DefaultRequest<Void>("Foo");
         request.setContent(new ByteArrayInputStream("{\"TableName\": \"foo\"}"
                 .getBytes(StringUtils.UTF8)));
         request.addHeader("Host", "demo.us-east-1.amazonaws.com");
@@ -141,9 +210,9 @@ public class AWS4SignerTest {
 
     @Test
     public void getTimeStamp() {
-        Date now = new Date();
-        String timeStamp = new AWS4Signer().getTimeStamp(now.getTime());
-        String old = getOldTimeStamp(now);
+        final Date now = new Date();
+        final String timeStamp = new AWS4Signer().getTimeStamp(now.getTime());
+        final String old = getOldTimeStamp(now);
         assertEquals(old, timeStamp);
     }
 
@@ -155,9 +224,9 @@ public class AWS4SignerTest {
 
     @Test
     public void getDateStamp() {
-        Date now = new Date();
-        String dateStamp = new AWS4Signer().getDateStamp(now.getTime());
-        String old = getOldDateStamp(now);
+        final Date now = new Date();
+        final String dateStamp = new AWS4Signer().getDateStamp(now.getTime());
+        final String old = getOldDateStamp(now);
         assertEquals(old, dateStamp);
     }
 }

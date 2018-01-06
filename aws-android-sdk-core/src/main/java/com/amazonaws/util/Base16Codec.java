@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,9 +21,13 @@ package com.amazonaws.util;
  * @author Hanson Char
  */
 class Base16Codec implements Codec {
-    private static final int OFFSET_OF_a = 'a' - 10;
-    private static final int OFFSET_OF_A = 'A' - 10;
-    private static final int MASK_4BITS = (1 << 4) - 1;
+    private static final int OFFSET_VALUE = 10;
+    private static final int BITS_4 = 4;
+
+    @SuppressWarnings("checkstyle:constantname")
+    private static final int OFFSET_OF_a = 'a' - OFFSET_VALUE;
+    private static final int OFFSET_OF_A = 'A' - OFFSET_VALUE;
+    private static final int MASK_4BITS = (1 << BITS_4) - 1;
 
     private static class LazyHolder {
         private static final byte[] DECODED = decodeTable();
@@ -31,8 +35,7 @@ class Base16Codec implements Codec {
         private static byte[] decodeTable() {
             final byte[] dest = new byte['f' + 1];
 
-            for (int i = 0; i <= 'f'; i++)
-            {
+            for (int i = 0; i <= 'f'; i++) {
                 if (i >= '0' && i <= '9')
                     dest[i] = (byte) (i - '0');
                 else if (i >= 'A' && i <= 'F')
@@ -46,23 +49,23 @@ class Base16Codec implements Codec {
         }
     }
 
-    private final byte[] ALPAHBETS = CodecUtils.toBytesDirect("0123456789ABCDEF");
+    private final byte[] alpahbets = CodecUtils.toBytesDirect("0123456789ABCDEF");
 
     @Override
+    @SuppressWarnings("checkstyle:innerassignment")
     public byte[] encode(byte[] src) {
         byte[] dest = new byte[src.length * 2];
         byte p;
 
         for (int i = 0, j = 0; i < src.length; i++) {
-            dest[j++] = ALPAHBETS[(p = src[i]) >>> 4 & MASK_4BITS];
-            dest[j++] = ALPAHBETS[p & MASK_4BITS];
+            dest[j++] = alpahbets[(p = src[i]) >>> BITS_4 & MASK_4BITS];
+            dest[j++] = alpahbets[p & MASK_4BITS];
         }
         return dest;
     }
 
     @Override
-    public byte[] decode(byte[] src, final int length)
-    {
+    public byte[] decode(byte[] src, final int length) {
         if (length % 2 != 0) {
             throw new IllegalArgumentException(
                     "Input is expected to be encoded in multiple of 2 bytes but found: "
@@ -70,11 +73,10 @@ class Base16Codec implements Codec {
         }
         final byte[] dest = new byte[length / 2];
 
-        for (int i = 0, j = 0; j < dest.length; j++)
-        {
+        for (int i = 0, j = 0; j < dest.length; j++) {
             dest[j] = (byte)
                     (
-                    pos(src[i++]) << 4 | pos(src[i++])
+                    pos(src[i++]) << BITS_4 | pos(src[i++])
                     );
 
         }
@@ -84,8 +86,9 @@ class Base16Codec implements Codec {
     protected int pos(byte in) {
         int pos = LazyHolder.DECODED[in];
 
-        if (pos > -1)
+        if (pos > -1) {
             return pos;
+        }
         throw new IllegalArgumentException("Invalid base 16 character: \'" + (char) in + "\'");
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -17,9 +17,12 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Endpoint user specific custom userAttributes
+ */
 public class EndpointUser implements Serializable {
     /**
-     * Custom attributesd specific to the user.
+     * Custom attributes specific to the user.
      */
     private java.util.Map<String, java.util.List<String>> userAttributes;
 
@@ -29,30 +32,30 @@ public class EndpointUser implements Serializable {
     private String userId;
 
     /**
-     * Custom attributesd specific to the user.
+     * Custom attributes specific to the user.
      *
-     * @return Custom attributesd specific to the user.
+     * @return Custom attributes specific to the user.
      */
     public java.util.Map<String, java.util.List<String>> getUserAttributes() {
         return userAttributes;
     }
 
     /**
-     * Custom attributesd specific to the user.
+     * Custom attributes specific to the user.
      *
-     * @param userAttributes Custom attributesd specific to the user.
+     * @param userAttributes Custom attributes specific to the user.
      */
     public void setUserAttributes(java.util.Map<String, java.util.List<String>> userAttributes) {
         this.userAttributes = userAttributes;
     }
 
     /**
-     * Custom attributesd specific to the user.
+     * Custom attributes specific to the user.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param userAttributes Custom attributesd specific to the user.
+     * @param userAttributes Custom attributes specific to the user.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -63,7 +66,7 @@ public class EndpointUser implements Serializable {
     }
 
     /**
-     * Custom attributesd specific to the user.
+     * Custom attributes specific to the user.
      * <p>
      * The method adds a new key-value pair into UserAttributes parameter, and
      * returns a reference to this object so that method calls can be chained

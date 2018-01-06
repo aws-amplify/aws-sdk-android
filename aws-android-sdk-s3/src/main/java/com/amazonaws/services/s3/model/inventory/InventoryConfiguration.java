@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The InventoryConfiguration class.
+ */
 public class InventoryConfiguration implements Serializable {
 
     /** The ID used to identify the inventory configuration. */
@@ -43,30 +46,31 @@ public class InventoryConfiguration implements Serializable {
 
 
     /**
-     * Returns the ID used to identify the inventory configuration.
+     * @return the ID used to identify the inventory configuration.
      */
     public String getId() {
         return id;
     }
 
     /**
-     * Sets the ID used to identify the inventory configuration.
+     * @param id the ID used to identify the inventory configuration.
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * Sets the ID used to identify the inventory configuration
-     * and returns this object for method chaining.
+     * @param id the ID used to identify the inventory configuration
+     * @return this object for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public InventoryConfiguration withId(String id) {
         setId(id);
         return this;
     }
 
     /**
-     * Returns the {@link InventoryDestination} that contains information
+     * @return the {@link InventoryDestination} that contains information
      * about where to publish the inventory results.
      */
     public InventoryDestination getDestination() {
@@ -74,7 +78,7 @@ public class InventoryConfiguration implements Serializable {
     }
 
     /**
-     * Sets the {@link InventoryDestination} that contains information
+     * @param destination the {@link InventoryDestination} that contains information
      * about where to publish the inventory results.
      */
     public void setDestination(InventoryDestination destination) {
@@ -82,17 +86,18 @@ public class InventoryConfiguration implements Serializable {
     }
 
     /**
-     * Sets the {@link InventoryDestination} that contains information
-     * about where to publish the inventory results and returns
-     * this object for method chaining.
+     * @param destination  the {@link InventoryDestination} that contains information
+     * about where to publish the inventory results.
+     * @return this object for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public InventoryConfiguration withDestination(InventoryDestination destination) {
         setDestination(destination);
         return this;
     }
 
     /**
-     * Returns true if the inventory is enabled or
+     * @return true if the inventory is enabled or
      * false if inventory is disabled.
      */
     public Boolean isEnabled() {
@@ -100,7 +105,7 @@ public class InventoryConfiguration implements Serializable {
     }
 
     /**
-     * Sets the value whether the inventory is enabled or disabled.
+     * @param enabled the value whether the inventory is enabled or disabled.
      *
      * The value true indicates the inventory is enabled and
      * false indicates the inventory is disabled.
@@ -110,11 +115,11 @@ public class InventoryConfiguration implements Serializable {
     }
 
     /**
-     * Sets the value whether the inventory is enabled or disabled
-     * and returns this object for method chaining.
+     * @param enabled the value whether the inventory is enabled or disabled.
      *
      * The value true indicates the inventory is enabled and
      * false indicates the inventory is disabled.
+     * @return this object for method chaining.
      */
     public InventoryConfiguration withEnabled(Boolean enabled) {
         setEnabled(enabled);
@@ -122,7 +127,7 @@ public class InventoryConfiguration implements Serializable {
     }
 
     /**
-     * Returns the inventoryFilter used to describe a set of objects
+     * @return the inventoryFilter used to describe a set of objects
      * to include in inventory results.
      */
     public InventoryFilter getInventoryFilter() {
@@ -130,7 +135,7 @@ public class InventoryConfiguration implements Serializable {
     }
 
     /**
-     * Sets the inventoryFilter used to describe a set of objects
+     * @param inventoryFilter he inventoryFilter used to describe a set of objects
      * to include in inventory results.
      */
     public void setInventoryFilter(InventoryFilter inventoryFilter) {
@@ -138,117 +143,122 @@ public class InventoryConfiguration implements Serializable {
     }
 
     /**
-     * Sets the inventoryFilter used to describe a set of objects
+     * @param inventoryFilter the inventoryFilter used to describe a set of objects
      * to include in inventory results.
      *
-     * The {@link InventoryConfiguration} object is returned
+     * @return the {@link InventoryConfiguration} object is returned
      * for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public InventoryConfiguration withFilter(InventoryFilter inventoryFilter) {
         setInventoryFilter(inventoryFilter);
         return this;
     }
 
     /**
-     * Returns which object version(s) to included in the inventory results.
+     * @return which object version(s) to included in the inventory results.
      */
     public String getIncludedObjectVersions() {
         return includedObjectVersions;
     }
 
     /**
-     * Sets which object version(s) to included in the inventory results.
+     * @param includedObjectVersions  which object version(s) to included in the inventory results.
      */
     public void setIncludedObjectVersions(String includedObjectVersions) {
         this.includedObjectVersions = includedObjectVersions;
     }
 
     /**
-     * Sets which object version(s) to included in the inventory results
-     * and returns this object for method chaining.
+     * @param includedObjectVersions  which object version(s) to included in the inventory results
+     * @return this object for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public InventoryConfiguration withIncludedObjectVersions(String includedObjectVersions) {
         setIncludedObjectVersions(includedObjectVersions);
         return this;
     }
 
     /**
-     * Sets which object version(s) to included in the inventory results.
+     * @param includedObjectVersions  which object version(s) to included in the inventory results.
      */
     public void setIncludedObjectVersions(InventoryIncludedObjectVersions includedObjectVersions) {
         setIncludedObjectVersions(includedObjectVersions == null ? (String) null : includedObjectVersions.toString());
     }
 
     /**
-     * Sets which object version(s) to included in the inventory results
-     * and returns this object for method chaining.
+     * @param includedObjectVersions  which object version(s) to included in the inventory results
+     * @return this object for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public InventoryConfiguration withIncludedObjectVersions(InventoryIncludedObjectVersions includedObjectVersions) {
         setIncludedObjectVersions(includedObjectVersions);
         return this;
     }
 
     /**
-     * Returns the optional fields that are included in the inventory results.
+     * @return the optional fields that are included in the inventory results.
      */
     public List<String> getOptionalFields() {
         return optionalFields;
     }
 
     /**
-     * Sets the optional fields that are included in the inventory results.
+     * @param optionalFields  the optional fields that are included in the inventory results.
      */
     public void setOptionalFields(List<String> optionalFields) {
         this.optionalFields = optionalFields;
     }
 
     /**
-     * Sets the optional fields that are included in the inventory results.
-     * The {@link InventoryConfiguration} object is returned for method chaining.
+     * @param optionalFields  the optional fields that are included in the inventory results.
+     * @return the {@link InventoryConfiguration} object is returned for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public InventoryConfiguration withOptionalFields(List<String> optionalFields) {
         setOptionalFields(optionalFields);
         return this;
     }
 
     /**
-     * Add a field to the list of optional fields that are included in the inventory results.
+     * @param optionalField  to add a field to the list of optional fields that are included in the inventory results.
      */
     public void addOptionalField(String optionalField) {
         if (optionalField == null) {
             return;
         } else if (this.optionalFields == null) {
-            this.optionalFields = new ArrayList<String >();
+            this.optionalFields = new ArrayList<String>();
         }
         this.optionalFields.add(optionalField);
     }
 
     /**
-     * Add a field to the list of optional fields that are included in the inventory results.
+     * @param optionalField to add a field to the list of optional fields that are included in the inventory results.
      */
     public void addOptionalField(InventoryOptionalField optionalField) {
         addOptionalField(optionalField == null ? (String) null : optionalField.toString());
     }
 
     /**
-     * Returns the schedule for generating inventory results.
+     * @return the schedule for generating inventory results.
      */
     public InventorySchedule getSchedule() {
         return schedule;
     }
 
     /**
-     * Sets the schedule for generating inventory results.
+     * @param schedule  the schedule for generating inventory results.
      */
     public void setSchedule(InventorySchedule schedule) {
         this.schedule = schedule;
     }
 
     /**
-     * Returns the schedule for generating inventory results
-     * and returns {@link InventoryConfiguration} object
+     * @param schedule  the schedule for generating inventory results
+     * @return {@link InventoryConfiguration} object
      * for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public InventoryConfiguration withSchedule(InventorySchedule schedule) {
         setSchedule(schedule);
         return this;

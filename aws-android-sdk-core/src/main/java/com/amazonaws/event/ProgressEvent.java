@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,16 +27,32 @@ package com.amazonaws.event;
  */
 public class ProgressEvent {
 
+    /** Event code for preparing. */
     public static final int PREPARING_EVENT_CODE = 1;
+
+    /** Event code for started. */
     public static final int STARTED_EVENT_CODE = 2;
+
+    /** Event code for completed. */
     public static final int COMPLETED_EVENT_CODE = 4;
+
+    /** Event code for failed. */
     public static final int FAILED_EVENT_CODE = 8;
+
+    /** Event code for canceled. */
     public static final int CANCELED_EVENT_CODE = 16;
+
+    /** Event code for reset. */
     public static final int RESET_EVENT_CODE = 32;
 
     // Multipart event codes
+    /** Event code for multipart started. */
     public static final int PART_STARTED_EVENT_CODE = 1024;
+
+    /** Event code for  multipart completed. */
     public static final int PART_COMPLETED_EVENT_CODE = 2048;
+
+    /** Event code for multipart failed. */
     public static final int PART_FAILED_EVENT_CODE = 4096;
 
     /** The number of bytes transferred since the last progress event. */
@@ -48,10 +64,19 @@ public class ProgressEvent {
      */
     protected int eventCode;
 
+    /**
+     * Constructor.
+     * @param bytesTransferred the bytes transferred.
+     */
     public ProgressEvent(long bytesTransferred) {
         this.bytesTransferred = bytesTransferred;
     }
 
+    /**
+     * Constructor.
+     * @param eventCode the event code.
+     * @param bytesTransferred the bytes transferred.
+     */
     public ProgressEvent(int eventCode, long bytesTransferred) {
         this.eventCode = eventCode;
         this.bytesTransferred = bytesTransferred;

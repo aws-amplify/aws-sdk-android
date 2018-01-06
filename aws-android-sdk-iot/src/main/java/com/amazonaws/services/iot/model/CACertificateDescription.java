@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -77,6 +77,17 @@ public class CACertificateDescription implements Serializable {
      * </p>
      */
     private java.util.Date creationDate;
+
+    /**
+     * <p>
+     * Whether the CA certificate configured for auto registration of device
+     * certificates. Valid values are "ENABLE" and "DISABLE"
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ENABLE, DISABLE
+     */
+    private String autoRegistrationStatus;
 
     /**
      * <p>
@@ -431,6 +442,114 @@ public class CACertificateDescription implements Serializable {
     }
 
     /**
+     * <p>
+     * Whether the CA certificate configured for auto registration of device
+     * certificates. Valid values are "ENABLE" and "DISABLE"
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ENABLE, DISABLE
+     *
+     * @return <p>
+     *         Whether the CA certificate configured for auto registration of
+     *         device certificates. Valid values are "ENABLE" and "DISABLE"
+     *         </p>
+     * @see AutoRegistrationStatus
+     */
+    public String getAutoRegistrationStatus() {
+        return autoRegistrationStatus;
+    }
+
+    /**
+     * <p>
+     * Whether the CA certificate configured for auto registration of device
+     * certificates. Valid values are "ENABLE" and "DISABLE"
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ENABLE, DISABLE
+     *
+     * @param autoRegistrationStatus <p>
+     *            Whether the CA certificate configured for auto registration of
+     *            device certificates. Valid values are "ENABLE" and "DISABLE"
+     *            </p>
+     * @see AutoRegistrationStatus
+     */
+    public void setAutoRegistrationStatus(String autoRegistrationStatus) {
+        this.autoRegistrationStatus = autoRegistrationStatus;
+    }
+
+    /**
+     * <p>
+     * Whether the CA certificate configured for auto registration of device
+     * certificates. Valid values are "ENABLE" and "DISABLE"
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ENABLE, DISABLE
+     *
+     * @param autoRegistrationStatus <p>
+     *            Whether the CA certificate configured for auto registration of
+     *            device certificates. Valid values are "ENABLE" and "DISABLE"
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see AutoRegistrationStatus
+     */
+    public CACertificateDescription withAutoRegistrationStatus(String autoRegistrationStatus) {
+        this.autoRegistrationStatus = autoRegistrationStatus;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Whether the CA certificate configured for auto registration of device
+     * certificates. Valid values are "ENABLE" and "DISABLE"
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ENABLE, DISABLE
+     *
+     * @param autoRegistrationStatus <p>
+     *            Whether the CA certificate configured for auto registration of
+     *            device certificates. Valid values are "ENABLE" and "DISABLE"
+     *            </p>
+     * @see AutoRegistrationStatus
+     */
+    public void setAutoRegistrationStatus(AutoRegistrationStatus autoRegistrationStatus) {
+        this.autoRegistrationStatus = autoRegistrationStatus.toString();
+    }
+
+    /**
+     * <p>
+     * Whether the CA certificate configured for auto registration of device
+     * certificates. Valid values are "ENABLE" and "DISABLE"
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ENABLE, DISABLE
+     *
+     * @param autoRegistrationStatus <p>
+     *            Whether the CA certificate configured for auto registration of
+     *            device certificates. Valid values are "ENABLE" and "DISABLE"
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see AutoRegistrationStatus
+     */
+    public CACertificateDescription withAutoRegistrationStatus(
+            AutoRegistrationStatus autoRegistrationStatus) {
+        this.autoRegistrationStatus = autoRegistrationStatus.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -452,7 +571,9 @@ public class CACertificateDescription implements Serializable {
         if (getOwnedBy() != null)
             sb.append("ownedBy: " + getOwnedBy() + ",");
         if (getCreationDate() != null)
-            sb.append("creationDate: " + getCreationDate());
+            sb.append("creationDate: " + getCreationDate() + ",");
+        if (getAutoRegistrationStatus() != null)
+            sb.append("autoRegistrationStatus: " + getAutoRegistrationStatus());
         sb.append("}");
         return sb.toString();
     }
@@ -472,6 +593,10 @@ public class CACertificateDescription implements Serializable {
         hashCode = prime * hashCode + ((getOwnedBy() == null) ? 0 : getOwnedBy().hashCode());
         hashCode = prime * hashCode
                 + ((getCreationDate() == null) ? 0 : getCreationDate().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAutoRegistrationStatus() == null) ? 0 : getAutoRegistrationStatus()
+                        .hashCode());
         return hashCode;
     }
 
@@ -513,6 +638,11 @@ public class CACertificateDescription implements Serializable {
             return false;
         if (other.getCreationDate() != null
                 && other.getCreationDate().equals(this.getCreationDate()) == false)
+            return false;
+        if (other.getAutoRegistrationStatus() == null ^ this.getAutoRegistrationStatus() == null)
+            return false;
+        if (other.getAutoRegistrationStatus() != null
+                && other.getAutoRegistrationStatus().equals(this.getAutoRegistrationStatus()) == false)
             return false;
         return true;
     }

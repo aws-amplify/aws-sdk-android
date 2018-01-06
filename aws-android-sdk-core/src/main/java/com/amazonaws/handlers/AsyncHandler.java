@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2012-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,13 +20,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * Callback interface for notification on web service requests executed with the
  * asynchronous clients in the AWS SDK for Java.
+ * @param <REQUEST> the request type.
+ * @param <RESULT> the result type.
  */
 public interface AsyncHandler<REQUEST extends AmazonWebServiceRequest, RESULT> {
 
     /**
      * Invoked after an asynchronous request
      *
-     * @param exception
+     * @param exception the exception.
      */
     public void onError(Exception exception);
 

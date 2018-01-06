@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -83,6 +83,10 @@ public abstract class PaginatedList<T> implements List<T> {
     /**
      * Constructs a PaginatedList instance using the default
      * PaginationLoadingStrategy
+     * 
+     * @param mapper the {@link DynamoDBMapper}
+     * @param clazz the class that is being mapped to a table.
+     * @param dynamo the instance of {@link AmazonDynamoDB}
      */
     public PaginatedList(DynamoDBMapper mapper, Class<T> clazz, AmazonDynamoDB dynamo) {
         this(mapper, clazz, dynamo, null);
@@ -127,8 +131,9 @@ public abstract class PaginatedList<T> implements List<T> {
     public synchronized void loadAllResults() {
         checkUnsupportedOperationForIterationOnlyMode("loadAllResults()");
 
-        if (allResultsLoaded)
+        if (allResultsLoaded) {
             return;
+        }
 
         while (nextResultsAvailable()) {
             // Keep all loaded results
@@ -155,8 +160,9 @@ public abstract class PaginatedList<T> implements List<T> {
      * return value of true guarantees that nextResults had items added to it.
      */
     private synchronized boolean loadNextResults() {
-        if (atEndOfResults())
+        if (atEndOfResults()) {
             return false;
+        }
 
         do {
             nextResults.addAll(fetchNextPage());
@@ -275,7 +281,7 @@ public abstract class PaginatedList<T> implements List<T> {
                         throw new NoSuchElementException();
                     }
                     /* Clear previous results if it's in ITERATION_ONLY mode */
-                    boolean clearPreviousResults = iterationOnly;
+                    final boolean clearPreviousResults = iterationOnly;
                     moveNextResults(clearPreviousResults);
                 }
 
@@ -290,9 +296,10 @@ public abstract class PaginatedList<T> implements List<T> {
                      * Update our private results copy, and then update the
                      * inner iterator
                      */
-                    if (allResults.size() > allResultsCopy.size())
+                    if (allResults.size() > allResultsCopy.size()) {
                         allResultsCopy.addAll(allResults.subList(allResultsCopy.size(),
                                 allResults.size()));
+                    }
 
                     innerIterator = allResultsCopy.listIterator(pos);
                 }
@@ -353,14 +360,16 @@ public abstract class PaginatedList<T> implements List<T> {
     public boolean contains(Object arg0) {
         checkUnsupportedOperationForIterationOnlyMode("contains(Object arg0)");
 
-        if (allResults.contains(arg0))
+        if (allResults.contains(arg0)) {
             return true;
+        }
 
         while (nextResultsAvailable()) {
-            boolean found = nextResults.contains(arg0);
+            final boolean found = nextResults.contains(arg0);
             moveNextResults(false);
-            if (found)
+            if (found) {
                 return true;
+            }
         }
 
         return false;
@@ -396,15 +405,17 @@ public abstract class PaginatedList<T> implements List<T> {
         checkUnsupportedOperationForIterationOnlyMode("indexOf(Object org0)");
 
         int indexOf = allResults.indexOf(arg0);
-        if (indexOf >= 0)
+        if (indexOf >= 0) {
             return indexOf;
+        }
 
         while (nextResultsAvailable()) {
             indexOf = nextResults.indexOf(arg0);
-            int size = allResults.size();
+            final int size = allResults.size();
             moveNextResults(false);
-            if (indexOf >= 0)
+            if (indexOf >= 0) {
                 return indexOf + size;
+            }
         }
 
         return -1;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -179,9 +179,21 @@ public class ClientConfiguration {
      */
     private boolean curlLogging = false;
 
+    /**
+     * Optional whether to use gzip compression when making HTTP requests.
+     */
+    private boolean enableGzip = false;
+
+    /**
+     * Constructor.
+     */
     public ClientConfiguration() {
     }
 
+    /**
+     * Constructor.
+     * @param other the client configuration.
+     */
     public ClientConfiguration(ClientConfiguration other) {
         this.connectionTimeout = other.connectionTimeout;
         this.maxConnections = other.maxConnections;
@@ -204,6 +216,7 @@ public class ClientConfiguration {
         this.signerOverride = other.signerOverride;
         this.trustManager = other.trustManager;
         this.curlLogging = other.curlLogging;
+        this.enableGzip = other.enableGzip;
     }
 
     /**
@@ -219,6 +232,7 @@ public class ClientConfiguration {
      *
      * @return The protocol to use when connecting to Amazon Web Services.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public Protocol getProtocol() {
         return protocol;
     }
@@ -258,6 +272,7 @@ public class ClientConfiguration {
      * @return The updated ClientConfiguration object with the new max HTTP
      *         connections setting.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withProtocol(Protocol protocol) {
         setProtocol(protocol);
         return this;
@@ -278,6 +293,7 @@ public class ClientConfiguration {
      * @param maxConnections The maximum number of allowed open HTTP
      *            connections.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setMaxConnections(int maxConnections) {
         this.maxConnections = maxConnections;
     }
@@ -291,6 +307,7 @@ public class ClientConfiguration {
      * @return The updated ClientConfiguration object with the new max HTTP
      *         connections setting.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withMaxConnections(int maxConnections) {
         setMaxConnections(maxConnections);
         return this;
@@ -321,6 +338,7 @@ public class ClientConfiguration {
      * @param userAgent The user agent string to use when sending requests.
      * @return The updated ClientConfiguration object.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withUserAgent(String userAgent) {
         setUserAgent(userAgent);
         return this;
@@ -351,6 +369,7 @@ public class ClientConfiguration {
      * @param localAddress The local address the client will bind to.
      * @return The updated ClientConfiguration object.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withLocalAddress(InetAddress localAddress) {
         setLocalAddress(localAddress);
         return this;
@@ -381,6 +400,7 @@ public class ClientConfiguration {
      * @param proxyHost The proxy host the client will connect through.
      * @return The updated ClientConfiguration object.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withProxyHost(String proxyHost) {
         setProxyHost(proxyHost);
         return this;
@@ -411,6 +431,7 @@ public class ClientConfiguration {
      * @param proxyPort The proxy port the client will connect through.
      * @return The updated ClientConfiguration object.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withProxyPort(int proxyPort) {
         setProxyPort(proxyPort);
         return this;
@@ -445,6 +466,7 @@ public class ClientConfiguration {
      *            proxy.
      * @return The updated ClientConfiguration object.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withProxyUsername(String proxyUsername) {
         setProxyUsername(proxyUsername);
         return this;
@@ -476,6 +498,7 @@ public class ClientConfiguration {
      * @param proxyPassword The password to use when connecting through a proxy.
      * @return The updated ClientConfiguration object.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withProxyPassword(String proxyPassword) {
         setProxyPassword(proxyPassword);
         return this;
@@ -516,6 +539,7 @@ public class ClientConfiguration {
      * @return The updated ClientConfiguration object.
      */
     @Deprecated
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withProxyDomain(String proxyDomain) {
         setProxyDomain(proxyDomain);
         return this;
@@ -557,6 +581,7 @@ public class ClientConfiguration {
      * @return The updated ClientConfiguration object.
      */
     @Deprecated
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withProxyWorkstation(String proxyWorkstation) {
         setProxyWorkstation(proxyWorkstation);
         return this;
@@ -588,7 +613,9 @@ public class ClientConfiguration {
      * should honor maxErrorRetry set by {@link #setMaxErrorRetry(int)}
      *
      * @param retryPolicy The retry policy upon failed requests.
+     * @return the client configuration.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withRetryPolicy(RetryPolicy retryPolicy) {
         setRetryPolicy(retryPolicy);
         return this;
@@ -632,6 +659,7 @@ public class ClientConfiguration {
      *            retryable requests. This value should not be negative.
      * @return The updated ClientConfiguration object.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withMaxErrorRetry(int maxErrorRetry) {
         setMaxErrorRetry(maxErrorRetry);
         return this;
@@ -676,6 +704,7 @@ public class ClientConfiguration {
      *            before the connection is times out and is closed.
      * @return The updated ClientConfiguration object.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withSocketTimeout(int socketTimeout) {
         setSocketTimeout(socketTimeout);
         return this;
@@ -717,6 +746,7 @@ public class ClientConfiguration {
      *            timing out.
      * @return The updated ClientConfiguration object.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withConnectionTimeout(int connectionTimeout) {
         setConnectionTimeout(connectionTimeout);
         return this;
@@ -791,7 +821,7 @@ public class ClientConfiguration {
      */
     public int[] getSocketBufferSizeHints() {
         return new int[] {
-                socketSendBufferSizeHint, socketReceiveBufferSizeHint
+            socketSendBufferSizeHint, socketReceiveBufferSizeHint
         };
     }
 
@@ -830,6 +860,7 @@ public class ClientConfiguration {
      * @param socketReceiveBufferSizeHint The size hint (in bytes) for the low
      *            level TCP receive buffer.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setSocketBufferSizeHints(
             int socketSendBufferSizeHint, int socketReceiveBufferSizeHint) {
         this.socketSendBufferSizeHint = socketSendBufferSizeHint;
@@ -875,6 +906,7 @@ public class ClientConfiguration {
      *            level TCP receive buffer.
      * @return The updated ClientConfiguration object.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withSocketBufferSizeHints(
             int socketSendBufferSizeHint, int socketReceiveBufferSizeHint) {
         setSocketBufferSizeHints(socketSendBufferSizeHint, socketReceiveBufferSizeHint);
@@ -995,6 +1027,7 @@ public class ClientConfiguration {
      *            against proxy server.
      * @return The updated ClientConfiguration objectt=
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withPreemptiveBasicProxyAuth(boolean preemptiveBasicProxyAuth) {
         setPreemptiveBasicProxyAuth(preemptiveBasicProxyAuth);
         return this;
@@ -1030,6 +1063,7 @@ public class ClientConfiguration {
      * @param trustManager The trust manager to use for this client.
      * @return The updated ClientConfiguration object.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withTrustManager(TrustManager trustManager) {
         setTrustManager(trustManager);
         return this;
@@ -1049,7 +1083,7 @@ public class ClientConfiguration {
      * Sets whether or not the client should be logging any information. This
      * should be used for debug builds only. Defaults to false.
      *
-     * @param logging Whether or not the client should be logging operations.
+     * @param curlLogging Whether or not the client should be logging operations.
      */
     public void setCurlLogging(boolean curlLogging) {
         this.curlLogging = curlLogging;
@@ -1061,12 +1095,41 @@ public class ClientConfiguration {
      * ClientConfiguration object so that additional calls may be chained
      * together. Defaults to false.
      *
-     * @param logging Whether or not the client should be logging operations.
+     * @param curlLogging Whether or not the client should be logging operations.
      * @return The updated ClientConfiguration object.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withCurlLogging(boolean curlLogging) {
         this.curlLogging = curlLogging;
         return this;
     }
 
+    /**
+     * @return if gzip compression is used.
+     */
+    public boolean isEnableGzip() {
+        return enableGzip;
+    }
+
+    /**
+     * Sets whether gzip compression should be used
+     *
+     * @param enableGzip true if it is a gzip.
+     */
+    @SuppressWarnings("checkstyle:hiddenfield")
+    public void setEnableGzip(boolean enableGzip) {
+        this.enableGzip = enableGzip;
+    }
+
+    /**
+     * Sets whether gzip compression should be used
+     *
+     * @param enableGzip whether gzip compression should be used
+     * @return The updated ClientConfiguration object.
+     */
+    @SuppressWarnings("checkstyle:hiddenfield")
+    public ClientConfiguration withEnableGzip(boolean enableGzip) {
+        setEnableGzip(enableGzip);
+        return this;
+    }
 }

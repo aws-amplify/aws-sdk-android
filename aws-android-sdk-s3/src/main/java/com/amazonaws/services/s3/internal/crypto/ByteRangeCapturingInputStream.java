@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -34,6 +34,12 @@ public class ByteRangeCapturingInputStream extends SdkFilterInputStream {
     private long markedStreamPosition;
     private int markedBlockPosition;
 
+    /**
+     * Constructor.
+     * @param in the input stream.
+     * @param startingPosition the starting position.
+     * @param endingPosition the ending position.
+     */
     public ByteRangeCapturingInputStream(InputStream in, long startingPosition, long endingPosition) {
         super(in);
 

@@ -1,6 +1,6 @@
 /**
  * This package contains helper classes for managing upload and download tasks and a public
- * class {@link com.amazonaws.mobileconnectors.s3.transferservice.transferUtility}
+ * class {@link com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility}
  * which is a high level client that provides methods to control users' upload and download tasks.
  *
  * For starting transfer tasks, here is a sample usage.
@@ -8,6 +8,7 @@
  * <pre>
  * // Initializes TransferUtility
  * TransferUtility transferUtility = new TransferUtility(s3, getApplicationContext());
+ *
  * // Starts a download
  * TransferObserver observer = transferUtility.download("bucket_name", "key", file);
  * observer.setTransferListener(new TransferListener() {

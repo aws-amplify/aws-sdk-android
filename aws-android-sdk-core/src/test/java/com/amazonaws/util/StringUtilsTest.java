@@ -19,6 +19,7 @@ import static com.amazonaws.util.StringUtils.UTF8;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.nio.ByteBuffer;
@@ -36,11 +37,11 @@ public class StringUtilsTest {
      */
     @Test
     public void testFromByteBuffer() {
-        String expectedData = "hello world";
-        String expectedEncodedData = "aGVsbG8gd29ybGQ=";
+        final String expectedData = "hello world";
+        final String expectedEncodedData = "aGVsbG8gd29ybGQ=";
 
-        ByteBuffer byteBuffer = ByteBuffer.wrap(expectedData.getBytes(UTF8));
-        String encodedData = StringUtils.fromByteBuffer(byteBuffer);
+        final ByteBuffer byteBuffer = ByteBuffer.wrap(expectedData.getBytes(UTF8));
+        final String encodedData = StringUtils.fromByteBuffer(byteBuffer);
 
         assertEquals(expectedEncodedData, encodedData);
     }
@@ -61,18 +62,18 @@ public class StringUtilsTest {
 
     @Test
     public void testReplace() {
-        String orig = "To have or not to have";
-        String replacement = "be";
+        final String orig = "To have or not to have";
+        final String replacement = "be";
         assertEquals(StringUtils.replace(orig, "have", replacement), "To be or not to be");
     }
 
     @Test
     public void testJoiner() {
-        String part1 = "one";
-        String part2 = "two";
-        String part3 = "one";
-        String part4 = "four";
-        String join1 = StringUtils.join("+", part1, part2, part3);
+        final String part1 = "one";
+        final String part2 = "two";
+        final String part3 = "one";
+        final String part4 = "four";
+        final String join1 = StringUtils.join("+", part1, part2, part3);
         assertEquals(StringUtils.join("=", join1, part4), "one+two+one=four");
     }
 
@@ -83,7 +84,7 @@ public class StringUtilsTest {
         assertEquals("aBc -> abc", "abc", StringUtils.lowerCase("aBc"));
 
         // https://github.com/aws/aws-sdk-android/issues/96
-        Locale defaultLocale = Locale.getDefault();
+        final Locale defaultLocale = Locale.getDefault();
         Locale.setDefault(new Locale("tr", "TR"));
         assertEquals("turkish locale", "x-amz-invocation-type",
                 StringUtils.lowerCase("X-Amz-Invocation-Type"));
@@ -97,10 +98,28 @@ public class StringUtilsTest {
         assertEquals("aBc -> ABC", "ABC", StringUtils.upperCase("aBc"));
 
         // https://github.com/aws/aws-sdk-android/issues/96
-        Locale defaultLocale = Locale.getDefault();
+        final Locale defaultLocale = Locale.getDefault();
         Locale.setDefault(new Locale("tr", "TR"));
         assertEquals("turkish locale", "X-AMZ-INVOCATION-TYPE",
                 StringUtils.upperCase("X-Amz-Invocation-Type"));
         Locale.setDefault(defaultLocale);
+    }
+
+    @Test
+    public void isBlankTest() {
+        Assert.assertTrue(StringUtils.isBlank(""));
+        Assert.assertTrue(StringUtils.isBlank(null));
+        Assert.assertFalse(StringUtils.isBlank("12334"));
+        Assert.assertTrue(StringUtils.isBlank("  "));
+    }
+
+    @Test
+    public void otherTest() {
+        Assert.assertEquals("123.45", StringUtils.fromDouble(123.45));
+        Assert.assertEquals("123", StringUtils.fromInteger(123));
+        Assert.assertEquals("123.45", StringUtils.fromFloat(123.45f));
+        Assert.assertEquals("abcd", StringUtils.toString(new StringBuilder("abcd")));
+        Assert.assertEquals(false, StringUtils.toBoolean(new StringBuilder("true")));
+        Assert.assertEquals("1234567890", StringUtils.fromLong(1234567890L));
     }
 }

@@ -55,7 +55,7 @@ public class NetworkInfoReceiver extends BroadcastReceiver {
 
     public static final Type DEFAULT_CONNECTION_CHECK_TYPE = Type.ANY;
 
-    Type connectionCheckType = DEFAULT_CONNECTION_CHECK_TYPE;
+    private Type connectionCheckType = DEFAULT_CONNECTION_CHECK_TYPE;
 
     public void setConnectionCheckType(Type connectionCheckType) {
         this.connectionCheckType = connectionCheckType;

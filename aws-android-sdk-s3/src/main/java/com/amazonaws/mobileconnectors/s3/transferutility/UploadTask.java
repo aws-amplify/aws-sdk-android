@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
-import android.util.Log;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.mobileconnectors.s3.receiver.NetworkInfoReceiver;
 import com.amazonaws.retry.RetryUtils;
@@ -23,16 +22,23 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.*;
 import com.amazonaws.services.s3.util.Mimetypes;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 class UploadTask implements Callable<Boolean> {
 
-    private final static String TAG = "UploadTask";
+    private static final Log LOGGER = LogFactory.getLog(UploadTask.class);
 
     private final AmazonS3 s3;
     private final TransferRecord upload;
@@ -88,8 +94,8 @@ class UploadTask implements Callable<Boolean> {
             try {
                 upload.multipartId = initiateMultipartUpload(putObjectRequest);
             } catch (final AmazonClientException ace) {
-                Log.e(TAG, "Error initiating multipart upload: " + upload.id
-                        + " due to " + ace.getMessage());
+                LOGGER.error("Error initiating multipart upload: " + upload.id
+                        + " due to " + ace.getMessage(), ace);
                 updater.throwError(upload.id, ace);
                 updater.updateState(upload.id, TransferState.FAILED);
                 return false;
@@ -102,7 +108,7 @@ class UploadTask implements Callable<Boolean> {
              */
             bytesAlreadyTransferrd = dbUtil.queryBytesTransferredByMainUploadId(upload.id);
             if (bytesAlreadyTransferrd > 0) {
-                Log.d(TAG, String.format("Resume transfer %d from %d bytes",
+                LOGGER.debug(String.format("Resume transfer %d from %d bytes",
                         upload.id, bytesAlreadyTransferrd));
             }
         }
@@ -110,12 +116,12 @@ class UploadTask implements Callable<Boolean> {
 
         final List<UploadPartRequest> requestList = dbUtil.getNonCompletedPartRequestsFromDB(upload.id,
                 upload.multipartId);
-        Log.d(TAG, "multipart upload " + upload.id + " in " + requestList.size() + " parts.");
+        LOGGER.debug("multipart upload " + upload.id + " in " + requestList.size() + " parts.");
         final ArrayList<Future<Boolean>> futures = new ArrayList<Future<Boolean>>();
         for (final UploadPartRequest request : requestList) {
             TransferUtility.appendMultipartTransferServiceUserAgentString(request);
             request.setGeneralProgressListener(updater.newProgressListener(upload.id));
-            futures.add(TransferThreadPool.submitTask(new UploadPartTask(request, s3, dbUtil)));
+            futures.add(TransferThreadPool.submitTask(new UploadPartTask(request, s3, dbUtil, networkInfo)));
         }
         try {
             boolean isSuccess = true;
@@ -141,22 +147,30 @@ class UploadTask implements Callable<Boolean> {
                 f.cancel(true);
             }
             // abort by user
-            Log.d(TAG, "Transfer " + upload.id + " is interrupted by user");
+            LOGGER.debug("Transfer " + upload.id + " is interrupted by user");
             return false;
         } catch (final ExecutionException ee) {
             // handle pause, cancel, etc
+            boolean isNetworkInterrupted = false;
             if (ee.getCause() != null && ee.getCause() instanceof Exception) {
+                // check for network interruption and pause the transfer instead of failing them
+                isNetworkInterrupted = dbUtil.checkWaitingForNetworkPartRequestsFromDB(upload.id);
+                if (isNetworkInterrupted) {
+                    LOGGER.debug("Network Connection Interrupted: Transfer " + upload.id + " waits for network");
+                    updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
+                    return false;
+                }
                 final Exception e = (Exception) ee.getCause();
                 if (RetryUtils.isInterrupted(e)) {
                     /*
                      * thread is interrupted by user. don't update the state as
                      * it's set by caller who interrupted
                      */
-                    Log.d(TAG, "Transfer " + upload.id + " is interrupted by user");
+                    LOGGER.debug("Transfer " + upload.id + " is interrupted by user");
                     return false;
                 } else if (e.getCause() != null && e.getCause() instanceof IOException
                         && !networkInfo.isNetworkConnected()) {
-                    Log.d(TAG, "Transfer " + upload.id + " waits for network");
+                    LOGGER.debug("Transfer " + upload.id + " waits for network");
                     updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
                 }
                 updater.throwError(upload.id, e);
@@ -172,8 +186,8 @@ class UploadTask implements Callable<Boolean> {
             updater.updateState(upload.id, TransferState.COMPLETED);
             return true;
         } catch (final AmazonClientException ace) {
-            Log.e(TAG, "Failed to complete multipart: " + upload.id
-                    + " due to " + ace.getMessage());
+            LOGGER.error("Failed to complete multipart: " + upload.id
+                    + " due to " + ace.getMessage(), ace);
             updater.throwError(upload.id, ace);
             updater.updateState(upload.id, TransferState.FAILED);
             return false;
@@ -199,15 +213,21 @@ class UploadTask implements Callable<Boolean> {
                  * thread is interrupted by user. don't update the state as it's
                  * set by caller who interrupted
                  */
-                Log.d(TAG, "Transfer " + upload.id + " is interrupted by user");
+                LOGGER.debug("Transfer " + upload.id + " is interrupted by user");
+                return false;
+            } else if (e.getCause() != null && e.getCause() instanceof AmazonClientException
+                    && !networkInfo.isNetworkConnected()) {
+                // check for network interruption and pause the transfer instead of failing them
+                LOGGER.debug("Network Connection Interrupted: Transfer " + upload.id + " waits for network");
+                updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
                 return false;
             } else if (e.getCause() != null && e.getCause() instanceof IOException
                     && !networkInfo.isNetworkConnected()) {
-                Log.d(TAG, "Transfer " + upload.id + " waits for network");
+                LOGGER.debug("Transfer " + upload.id + " waits for network");
                 updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
             }
             // all other exceptions
-            Log.e(TAG, "Failed to upload: " + upload.id + " due to " + e.getMessage());
+            LOGGER.debug("Failed to upload: " + upload.id + " due to " + e.getMessage(), e);
             updater.throwError(upload.id, e);
             updater.updateState(upload.id, TransferState.FAILED);
             return false;
@@ -215,7 +235,7 @@ class UploadTask implements Callable<Boolean> {
     }
 
     private void completeMultiPartUpload(int mainUploadId, String bucket,
-            String key, String multipartId) throws AmazonClientException {
+            String key, String multipartId) {
         final List<PartETag> partETags = dbUtil.queryPartETagsOfUpload(mainUploadId);
         final CompleteMultipartUploadRequest completeRequest = new CompleteMultipartUploadRequest(bucket,
                 key, multipartId, partETags);
@@ -229,8 +249,7 @@ class UploadTask implements Callable<Boolean> {
      * @param putObjectRequest An PutObjectRequest object for the whole upload
      * @return A multipart upload id
      */
-    private String initiateMultipartUpload(PutObjectRequest putObjectRequest)
-            throws AmazonClientException {
+    private String initiateMultipartUpload(PutObjectRequest putObjectRequest) {
         InitiateMultipartUploadRequest initiateMultipartUploadRequest = null;
         initiateMultipartUploadRequest = new InitiateMultipartUploadRequest(
                 putObjectRequest.getBucketName(), putObjectRequest.getKey())
@@ -250,6 +269,7 @@ class UploadTask implements Callable<Boolean> {
      * @param upload The data for the Object Metadata
      * @return Returns a PutObjectRequest with filled in metadata and parameters
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     private PutObjectRequest createPutObjectRequest(TransferRecord upload) {
         final File file = new File(upload.file);
         final PutObjectRequest putObjectRequest = new PutObjectRequest(upload.bucketName,
@@ -298,15 +318,15 @@ class UploadTask implements Callable<Boolean> {
         return putObjectRequest;
     }
 
-    private static final Map<String, CannedAccessControlList> cannedAclMap;
+    private static final Map<String, CannedAccessControlList> CANNED_ACL_MAP;
     static {
-        cannedAclMap = new HashMap<String, CannedAccessControlList>();
+        CANNED_ACL_MAP = new HashMap<String, CannedAccessControlList>();
         for (final CannedAccessControlList cannedAcl : CannedAccessControlList.values()) {
-            cannedAclMap.put(cannedAcl.toString(), cannedAcl);
+            CANNED_ACL_MAP.put(cannedAcl.toString(), cannedAcl);
         }
     }
 
     private static CannedAccessControlList getCannedAclFromString(String cannedAcl) {
-        return cannedAcl == null ? null : cannedAclMap.get(cannedAcl);
+        return cannedAcl == null ? null : CANNED_ACL_MAP.get(cannedAcl);
     }
 }

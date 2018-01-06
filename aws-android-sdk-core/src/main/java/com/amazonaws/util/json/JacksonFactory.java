@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -201,6 +201,7 @@ final class JacksonFactory implements AwsJsonFactory {
 
     private static final class JacksonWriter implements AwsJsonWriter {
         private JsonGenerator writer;
+        private static final int NEGATIVE_THREE = -3;
 
         public JacksonWriter(JsonFactory factory, Writer out) {
             try {
@@ -273,7 +274,7 @@ final class JacksonFactory implements AwsJsonFactory {
         @Override
         public AwsJsonWriter value(Date value) throws IOException {
             BigDecimal dateValue = BigDecimal.valueOf(value.getTime());
-            writer.writeNumber(dateValue.scaleByPowerOfTen(-3).toPlainString());
+            writer.writeNumber(dateValue.scaleByPowerOfTen(NEGATIVE_THREE).toPlainString());
             return this;
         }
 

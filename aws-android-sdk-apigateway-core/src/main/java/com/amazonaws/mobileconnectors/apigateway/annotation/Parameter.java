@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,21 +20,24 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * The request parameter.
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.PARAMETER)
 public @interface Parameter {
     /**
      * Name of the parameter.
-     *
-     * @return name of the parameter
+     * 
+     * @return
      */
     String name() default "";
 
     /**
      * Location of this parameter. Possible values are <tt>header</tt>,
      * <tt>path</tt> , and <tt>query</tt>.
-     *
-     * @return location of the parameter
+     * 
+     * @return
      */
     String location();
 }

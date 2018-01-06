@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -37,18 +37,42 @@ public class DescribeThingResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      */
     private String thingName;
 
     /**
      * <p>
-     * The attributes, which are name/value pairs in JSON format (for example:
-     * {\"attributes\":{\"some-name1\":\"some-value1\"},
-     * {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}})
+     * The thing type name.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     */
+    private String thingTypeName;
+
+    /**
+     * <p>
+     * The thing attributes.
      * </p>
      */
     private java.util.Map<String, String> attributes;
+
+    /**
+     * <p>
+     * The current version of the thing record in the registry.
+     * </p>
+     * <note>
+     * <p>
+     * To avoid unintentional changes to the information in the registry, you
+     * can pass the version information in the <code>expectedVersion</code>
+     * parameter of the <code>UpdateThing</code> and <code>DeleteThing</code>
+     * calls.
+     * </p>
+     * </note>
+     */
+    private Long version;
 
     /**
      * <p>
@@ -102,7 +126,7 @@ public class DescribeThingResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @return <p>
      *         The name of the thing.
@@ -119,7 +143,7 @@ public class DescribeThingResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
      *            The name of the thing.
@@ -139,7 +163,7 @@ public class DescribeThingResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
      *            The name of the thing.
@@ -154,16 +178,68 @@ public class DescribeThingResult implements Serializable {
 
     /**
      * <p>
-     * The attributes, which are name/value pairs in JSON format (for example:
-     * {\"attributes\":{\"some-name1\":\"some-value1\"},
-     * {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}})
+     * The thing type name.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @return <p>
+     *         The thing type name.
+     *         </p>
+     */
+    public String getThingTypeName() {
+        return thingTypeName;
+    }
+
+    /**
+     * <p>
+     * The thing type name.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @param thingTypeName <p>
+     *            The thing type name.
+     *            </p>
+     */
+    public void setThingTypeName(String thingTypeName) {
+        this.thingTypeName = thingTypeName;
+    }
+
+    /**
+     * <p>
+     * The thing type name.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @param thingTypeName <p>
+     *            The thing type name.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeThingResult withThingTypeName(String thingTypeName) {
+        this.thingTypeName = thingTypeName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The thing attributes.
      * </p>
      *
      * @return <p>
-     *         The attributes, which are name/value pairs in JSON format (for
-     *         example: {\"attributes\":{\"some-name1\":\"some-value1\"},
-     *         {\"some-name2\":\"some-value2\"},
-     *         {\"some-name3\":\"some-value3\"}})
+     *         The thing attributes.
      *         </p>
      */
     public java.util.Map<String, String> getAttributes() {
@@ -172,16 +248,11 @@ public class DescribeThingResult implements Serializable {
 
     /**
      * <p>
-     * The attributes, which are name/value pairs in JSON format (for example:
-     * {\"attributes\":{\"some-name1\":\"some-value1\"},
-     * {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}})
+     * The thing attributes.
      * </p>
      *
      * @param attributes <p>
-     *            The attributes, which are name/value pairs in JSON format (for
-     *            example: {\"attributes\":{\"some-name1\":\"some-value1\"},
-     *            {\"some-name2\":\"some-value2\"},
-     *            {\"some-name3\":\"some-value3\"}})
+     *            The thing attributes.
      *            </p>
      */
     public void setAttributes(java.util.Map<String, String> attributes) {
@@ -190,19 +261,14 @@ public class DescribeThingResult implements Serializable {
 
     /**
      * <p>
-     * The attributes, which are name/value pairs in JSON format (for example:
-     * {\"attributes\":{\"some-name1\":\"some-value1\"},
-     * {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}})
+     * The thing attributes.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param attributes <p>
-     *            The attributes, which are name/value pairs in JSON format (for
-     *            example: {\"attributes\":{\"some-name1\":\"some-value1\"},
-     *            {\"some-name2\":\"some-value2\"},
-     *            {\"some-name3\":\"some-value3\"}})
+     *            The thing attributes.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -214,9 +280,7 @@ public class DescribeThingResult implements Serializable {
 
     /**
      * <p>
-     * The attributes, which are name/value pairs in JSON format (for example:
-     * {\"attributes\":{\"some-name1\":\"some-value1\"},
-     * {\"some-name2\":\"some-value2\"}, {\"some-name3\":\"some-value3\"}})
+     * The thing attributes.
      * </p>
      * <p>
      * The method adds a new key-value pair into attributes parameter, and
@@ -252,6 +316,99 @@ public class DescribeThingResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The current version of the thing record in the registry.
+     * </p>
+     * <note>
+     * <p>
+     * To avoid unintentional changes to the information in the registry, you
+     * can pass the version information in the <code>expectedVersion</code>
+     * parameter of the <code>UpdateThing</code> and <code>DeleteThing</code>
+     * calls.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         The current version of the thing record in the registry.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         To avoid unintentional changes to the information in the
+     *         registry, you can pass the version information in the
+     *         <code>expectedVersion</code> parameter of the
+     *         <code>UpdateThing</code> and <code>DeleteThing</code> calls.
+     *         </p>
+     *         </note>
+     */
+    public Long getVersion() {
+        return version;
+    }
+
+    /**
+     * <p>
+     * The current version of the thing record in the registry.
+     * </p>
+     * <note>
+     * <p>
+     * To avoid unintentional changes to the information in the registry, you
+     * can pass the version information in the <code>expectedVersion</code>
+     * parameter of the <code>UpdateThing</code> and <code>DeleteThing</code>
+     * calls.
+     * </p>
+     * </note>
+     *
+     * @param version <p>
+     *            The current version of the thing record in the registry.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            To avoid unintentional changes to the information in the
+     *            registry, you can pass the version information in the
+     *            <code>expectedVersion</code> parameter of the
+     *            <code>UpdateThing</code> and <code>DeleteThing</code> calls.
+     *            </p>
+     *            </note>
+     */
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
+    /**
+     * <p>
+     * The current version of the thing record in the registry.
+     * </p>
+     * <note>
+     * <p>
+     * To avoid unintentional changes to the information in the registry, you
+     * can pass the version information in the <code>expectedVersion</code>
+     * parameter of the <code>UpdateThing</code> and <code>DeleteThing</code>
+     * calls.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param version <p>
+     *            The current version of the thing record in the registry.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            To avoid unintentional changes to the information in the
+     *            registry, you can pass the version information in the
+     *            <code>expectedVersion</code> parameter of the
+     *            <code>UpdateThing</code> and <code>DeleteThing</code> calls.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeThingResult withVersion(Long version) {
+        this.version = version;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -266,8 +423,12 @@ public class DescribeThingResult implements Serializable {
             sb.append("defaultClientId: " + getDefaultClientId() + ",");
         if (getThingName() != null)
             sb.append("thingName: " + getThingName() + ",");
+        if (getThingTypeName() != null)
+            sb.append("thingTypeName: " + getThingTypeName() + ",");
         if (getAttributes() != null)
-            sb.append("attributes: " + getAttributes());
+            sb.append("attributes: " + getAttributes() + ",");
+        if (getVersion() != null)
+            sb.append("version: " + getVersion());
         sb.append("}");
         return sb.toString();
     }
@@ -280,7 +441,10 @@ public class DescribeThingResult implements Serializable {
         hashCode = prime * hashCode
                 + ((getDefaultClientId() == null) ? 0 : getDefaultClientId().hashCode());
         hashCode = prime * hashCode + ((getThingName() == null) ? 0 : getThingName().hashCode());
+        hashCode = prime * hashCode
+                + ((getThingTypeName() == null) ? 0 : getThingTypeName().hashCode());
         hashCode = prime * hashCode + ((getAttributes() == null) ? 0 : getAttributes().hashCode());
+        hashCode = prime * hashCode + ((getVersion() == null) ? 0 : getVersion().hashCode());
         return hashCode;
     }
 
@@ -305,10 +469,19 @@ public class DescribeThingResult implements Serializable {
         if (other.getThingName() != null
                 && other.getThingName().equals(this.getThingName()) == false)
             return false;
+        if (other.getThingTypeName() == null ^ this.getThingTypeName() == null)
+            return false;
+        if (other.getThingTypeName() != null
+                && other.getThingTypeName().equals(this.getThingTypeName()) == false)
+            return false;
         if (other.getAttributes() == null ^ this.getAttributes() == null)
             return false;
         if (other.getAttributes() != null
                 && other.getAttributes().equals(this.getAttributes()) == false)
+            return false;
+        if (other.getVersion() == null ^ this.getVersion() == null)
+            return false;
+        if (other.getVersion() != null && other.getVersion().equals(this.getVersion()) == false)
             return false;
         return true;
     }

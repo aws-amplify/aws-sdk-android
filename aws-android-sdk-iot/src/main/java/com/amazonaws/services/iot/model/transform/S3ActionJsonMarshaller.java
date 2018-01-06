@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,6 +39,11 @@ class S3ActionJsonMarshaller {
             String key = s3Action.getKey();
             jsonWriter.name("key");
             jsonWriter.value(key);
+        }
+        if (s3Action.getCannedAcl() != null) {
+            String cannedAcl = s3Action.getCannedAcl();
+            jsonWriter.name("cannedAcl");
+            jsonWriter.value(cannedAcl);
         }
         jsonWriter.endObject();
     }

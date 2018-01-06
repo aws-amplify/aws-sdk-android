@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,27 +15,35 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
-import android.util.Log;
 
+import com.amazonaws.mobileconnectors.s3.receiver.NetworkInfoReceiver;
 import com.amazonaws.retry.RetryUtils;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.model.UploadPartResult;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.util.concurrent.Callable;
 
 class UploadPartTask implements Callable<Boolean> {
+    private static final Log LOGGER = LogFactory.getLog(UploadPartTask.class);
 
-    private final static String TAG = "UploadPartTask";
 
     private final UploadPartRequest request;
     private final AmazonS3 s3;
     private final TransferDBUtil dbUtil;
+    private final NetworkInfoReceiver networkInfoReceiver;
 
-    public UploadPartTask(UploadPartRequest request, AmazonS3 s3, TransferDBUtil dbUtil) {
+    public UploadPartTask(UploadPartRequest request,
+                          AmazonS3 s3,
+                          TransferDBUtil dbUtil,
+                          NetworkInfoReceiver networkInfoReceiver) {
         this.request = request;
         this.s3 = s3;
         this.dbUtil = dbUtil;
+        this.networkInfoReceiver = networkInfoReceiver;
     }
 
     /*
@@ -44,17 +52,28 @@ class UploadPartTask implements Callable<Boolean> {
     @Override
     public Boolean call() throws Exception {
         try {
-            UploadPartResult putPartResult = s3.uploadPart(request);
+            final UploadPartResult putPartResult = s3.uploadPart(request);
             dbUtil.updateState(request.getId(), TransferState.PART_COMPLETED);
             dbUtil.updateETag(request.getId(), putPartResult.getETag());
             return true;
-        } catch (Exception e) {
-            dbUtil.updateState(request.getId(), TransferState.FAILED);
+        } catch (final Exception e) {
             if (RetryUtils.isInterrupted(e)) {
                 // thread interrupted by user
                 return false;
             }
-            Log.e(TAG, "Encountered error uploading part " + e.getMessage());
+            if (networkInfoReceiver != null
+                && !networkInfoReceiver.isNetworkConnected()) {
+                /*
+                 * Network connection is being interrupted. Moving the TransferState
+                 * to WAITING_FOR_NETWORK till the network availability resumes.
+                 */
+                dbUtil.updateState(request.getId(), TransferState.WAITING_FOR_NETWORK);
+                LOGGER.debug("Network Connection Interrupted: " +
+                        "Moving the TransferState to WAITING_FOR_NETWORK");
+            } else {
+                dbUtil.updateState(request.getId(), TransferState.FAILED);
+                LOGGER.error("Encountered error uploading part ", e);
+            }
             throw e;
         }
     }

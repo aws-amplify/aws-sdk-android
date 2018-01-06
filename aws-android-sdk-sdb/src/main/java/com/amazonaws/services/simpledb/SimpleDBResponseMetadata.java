@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,6 +30,10 @@ import java.util.Map;
  * monthly SimpleDB usage charges.
  */
 public class SimpleDBResponseMetadata extends ResponseMetadata {
+
+    /**
+     * Box Usage Constant.
+     */
     public static final String BOX_USAGE = "BOX_USAGE";
 
     /**
@@ -66,9 +70,10 @@ public class SimpleDBResponseMetadata extends ResponseMetadata {
      * @return The SimpleDB box usage reported for the associated request.
      */
     public float getBoxUsage() {
-        String boxUsage = metadata.get(BOX_USAGE);
-        if (boxUsage == null || boxUsage.trim().length() == 0)
+        final String boxUsage = metadata.get(BOX_USAGE);
+        if (boxUsage == null || boxUsage.trim().length() == 0) {
             return 0;
+        }
         return Float.parseFloat(boxUsage);
     }
 }

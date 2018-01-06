@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ package com.amazonaws.util;
  *
  * @author Hanson Char
  */
+@SuppressWarnings("checkstyle:nowhitespacebefore")
 public enum CodecUtils {
     ;
     /**
@@ -62,7 +63,8 @@ public enum CodecUtils {
     }
 
     /**
-     * Returns a byte array representing the given string, truncating each
+     * @param singleOctets the string of single octet.
+     * @return a byte array representing the given string, truncating each
      * character into a byte directly.
      *
      * @throws IllegalArgumentException if the input string contains any
@@ -84,7 +86,8 @@ public enum CodecUtils {
     }
 
     /**
-     * Returns a string representing the given byte array, treating each byte as
+     * @param bytes the bytes.
+     * @return a string representing the given byte array, treating each byte as
      * a single octet character.
      */
     public static String toStringDirect(final byte[] bytes) {
@@ -100,6 +103,8 @@ public enum CodecUtils {
     /**
      * Sanity check the last decoded position is a possible value.
      *
+     * @param pos the position.
+     * @param mask the mask int.
      * @throws IllegalArgumentException if the given decoded position is not a
      *             possible value produced via the respective encoding
      */

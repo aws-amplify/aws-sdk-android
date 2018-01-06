@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -269,9 +269,11 @@ public class AmazonPollyClient extends AmazonWebServiceClient implements AmazonP
         jsonErrorUnmarshallers.add(new InvalidSsmlExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new LexiconNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new LexiconSizeExceededExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new MarksNotSupportedForFormatExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new MaxLexemeLengthExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new MaxLexiconsNumberExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ServiceFailureExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new SsmlMarksNotSupportedForTextTypeExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TextLengthExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UnsupportedPlsAlphabetExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UnsupportedPlsLanguageExceptionUnmarshaller());
@@ -279,6 +281,7 @@ public class AmazonPollyClient extends AmazonWebServiceClient implements AmazonP
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
         this.setEndpoint("https://polly.us-east-1.amazonaws.com");
+        this.endpointPrefix = "polly";
 
         HandlerChainFactory chainFactory = new HandlerChainFactory();
         requestHandler2s.addAll(chainFactory.newRequestHandlerChain(
@@ -593,6 +596,8 @@ public class AmazonPollyClient extends AmazonWebServiceClient implements AmazonP
      * @throws InvalidSsmlException
      * @throws LexiconNotFoundException
      * @throws ServiceFailureException
+     * @throws MarksNotSupportedForFormatException
+     * @throws SsmlMarksNotSupportedForTextTypeException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

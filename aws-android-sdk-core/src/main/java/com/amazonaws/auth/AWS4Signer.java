@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -44,9 +44,10 @@ public class AWS4Signer extends AbstractAWSSigner
     protected static final String TERMINATOR = "aws4_request";
     private static final String DATE_PATTERN = "yyyyMMdd";
     private static final String TIME_PATTERN = "yyyyMMdd'T'HHmmss'Z'";
+    private static final long MILLISEC = 1000L;
 
     /** Seconds in a week, which is the max expiration time Sig-v4 accepts */
-    private final static long MAX_EXPIRATION_TIME_IN_SECONDS = 60 * 60 * 24 * 7;
+    private static final long MAX_EXPIRATION_TIME_IN_SECONDS = 60 * 60 * 24 * 7;
     /**
      * Service name override for use when the endpoint can't be used to
      * determine the service name.
@@ -115,7 +116,7 @@ public class AWS4Signer extends AbstractAWSSigner
         request.addHeader("X-Amz-Date", timeStamp);
 
         if (request.getHeaders().get("x-amz-content-sha256") != null
-                && request.getHeaders().get("x-amz-content-sha256").equals("required")) {
+                && "required".equals(request.getHeaders().get("x-amz-content-sha256"))) {
             request.addHeader("x-amz-content-sha256", contentSha256);
         }
 
@@ -201,6 +202,7 @@ public class AWS4Signer extends AbstractAWSSigner
         return AwsHostNameUtils.parseServiceName(endpoint);
     }
 
+    @SuppressWarnings("checkstyle:hiddenfield")
     void overrideDate(Date overriddenDate) {
         this.overriddenDate = overriddenDate;
     }
@@ -277,14 +279,14 @@ public class AWS4Signer extends AbstractAWSSigner
         return stringToSign;
     }
 
+    @SuppressWarnings("checkstyle:hiddenfield")
     protected final HeaderSigningResult computeSignature(
             Request<?> request,
             String dateStamp,
             String timeStamp,
             String algorithm,
             String contentSha256,
-            AWSCredentials sanitizedCredentials)
-    {
+            AWSCredentials sanitizedCredentials) {
         final String regionName = extractRegionName(request.getEndpoint());
         final String serviceName = extractServiceName(request.getEndpoint());
         final String scope = dateStamp + "/" + regionName + "/" + serviceName + "/" + TERMINATOR;
@@ -333,6 +335,7 @@ public class AWS4Signer extends AbstractAWSSigner
         request.addHeader("Host", hostHeader);
     }
 
+    @SuppressWarnings("checkstyle:hiddenfield")
     protected String getScope(Request<?> request, String dateStamp) {
         final String regionName = extractRegionName(request.getEndpoint());
         final String serviceName = extractServiceName(request.getEndpoint());
@@ -418,7 +421,7 @@ public class AWS4Signer extends AbstractAWSSigner
 
         if (expiration != null) {
             expirationInSeconds = (expiration.getTime() - System
-                    .currentTimeMillis()) / 1000L;
+                    .currentTimeMillis()) / MILLISEC;
         }
 
         if (expirationInSeconds > MAX_EXPIRATION_TIME_IN_SECONDS) {
@@ -451,8 +454,7 @@ public class AWS4Signer extends AbstractAWSSigner
                 + "/" + scope;
 
         // Add the important parameters for v4 signing
-        final long now = System.currentTimeMillis();
-        final String timeStamp = getTimeStamp(now);
+        final String timeStamp = getTimeStamp(dateMilli);
         request.addParameter("X-Amz-Algorithm", ALGORITHM);
         request.addParameter("X-Amz-Date", timeStamp);
         request.addParameter("X-Amz-SignedHeaders",
@@ -489,8 +491,8 @@ public class AWS4Signer extends AbstractAWSSigner
      * @return true if it should be sign, false otherwise
      */
     boolean needsSign(String header) {
-        return header.equalsIgnoreCase("date") || header.equalsIgnoreCase("Content-MD5")
-                || header.equalsIgnoreCase("host")
+        return "date".equalsIgnoreCase(header) || "Content-MD5".equalsIgnoreCase(header)
+                || "host".equalsIgnoreCase(header)
                 || header.startsWith("x-amz") || header.startsWith("X-Amz");
     }
 }

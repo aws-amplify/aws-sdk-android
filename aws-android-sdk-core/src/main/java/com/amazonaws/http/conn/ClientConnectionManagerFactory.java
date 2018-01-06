@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,11 +25,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+/**
+ * The client connection manager factory class.
+ */
 public class ClientConnectionManagerFactory {
     private static final Log log = LogFactory.getLog(ClientConnectionManagerFactory.class);
 
     /**
-     * Returns a wrapped instance of {@link ClientConnectionManager} to capture
+     * @return a wrapped instance of {@link ClientConnectionManager} to capture
      * the necessary performance metrics.
      *
      * @param orig the target instance to be wrapped
@@ -38,8 +41,8 @@ public class ClientConnectionManagerFactory {
         if (orig instanceof Wrapped)
             throw new IllegalArgumentException();
         final Class<?>[] interfaces = new Class<?>[] {
-                ClientConnectionManager.class,
-                Wrapped.class
+            ClientConnectionManager.class,
+            Wrapped.class
         };
         return (ClientConnectionManager) Proxy.newProxyInstance(
                 // https://github.com/aws/aws-sdk-java/pull/48#issuecomment-29454423

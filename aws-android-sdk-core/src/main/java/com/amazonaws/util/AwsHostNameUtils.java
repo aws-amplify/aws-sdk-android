@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2012-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,6 +25,9 @@ import java.net.URI;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * AWS host name utils class.
+ */
 public class AwsHostNameUtils {
 
     private static final Pattern S3_ENDPOINT_PATTERN =
@@ -32,6 +35,8 @@ public class AwsHostNameUtils {
 
     /**
      * @deprecated in favor of {@link #parseRegionName(String, String)}.
+     * @param endpoint the URI endpoint.
+     * @return the region name.
      */
     @Deprecated
     public static String parseRegionName(URI endpoint) {
@@ -60,6 +65,11 @@ public class AwsHostNameUtils {
 
         if (host.endsWith(".amazonaws.com")) {
             int index = host.length() - ".amazonaws.com".length();
+            return parseStandardRegionName(host.substring(0, index));
+        }
+
+        if (host.endsWith(".amazonaws.com.cn")) {
+            int index = host.length() - ".amazonaws.com.cn".length();
             return parseStandardRegionName(host.substring(0, index));
         }
 
@@ -140,7 +150,8 @@ public class AwsHostNameUtils {
     /**
      * Parses the service name from an endpoint. Can only handle endpoints of
      * the form 'service.[region.]amazonaws.com'.
-     *
+     * @param endpoint the URI endpoint.
+     * @return the parsed service name.
      * @deprecated because it's no longer needed by the SDK, and therefore not
      *             maintained.
      */
@@ -181,7 +192,7 @@ public class AwsHostNameUtils {
     }
 
     /**
-     * Returns the host name for the local host. If the operation is not allowed
+     * @return the host name for the local host. If the operation is not allowed
      * by the security check, the textual representation of the IP address of
      * the local host is returned instead. If the ip address of the local host
      * cannot be resolved or if there is any other failure, "localhost" is

@@ -30,27 +30,27 @@ import java.io.UnsupportedEncodingException;
  * Utility class for all operations on JWT.
  */
 public class CognitoJWTParser {
-    private static int HEADER = 0;
-    private static int PAYLOAD = 1;
-    private static int SIGNATURE = 2;
-
+    private static final int HEADER = 0;
+    private static final int PAYLOAD = 1;
+    private static final int SIGNATURE = 2;
+    private static final int JWT_PARTS = 3;
     /**
      * Returns header for a JWT as a JSON object.
      *
-     * @param JWT       REQUIRED: valid JSON Web Token as String.
+     * @param jwt       REQUIRED: valid JSON Web Token as String.
      * @return header as a JSONObject.
      */
-    public static JSONObject getHeader(String JWT) {
+    public static JSONObject getHeader(String jwt) {
         try {
-            validateJWT(JWT);
-            byte[] sectionDecoded = Base64.decode(JWT.split("\\.")[HEADER], Base64.URL_SAFE);
-            String jwtSection = new String(sectionDecoded, "UTF-8");
+            validateJWT(jwt);
+            final byte[] sectionDecoded = Base64.decode(jwt.split("\\.")[HEADER], Base64.URL_SAFE);
+            final String jwtSection = new String(sectionDecoded, "UTF-8");
             return new JSONObject(jwtSection);
-        } catch (UnsupportedEncodingException e) {
+        } catch (final UnsupportedEncodingException e) {
             throw new CognitoParameterInvalidException(e.getMessage());
-        } catch (JSONException e) {
+        } catch (final JSONException e) {
             throw new CognitoParameterInvalidException(e.getMessage());
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new CognitoParameterInvalidException("error in parsing JSON");
         }
     }
@@ -58,21 +58,21 @@ public class CognitoJWTParser {
     /**
      * Returns payload of a JWT as a JSON object.
      *
-     * @param JWT       REQUIRED: valid JSON Web Token as String.
+     * @param jwt       REQUIRED: valid JSON Web Token as String.
      * @return payload as a JSONObject.
      */
-    public static JSONObject getPayload(String JWT) {
+    public static JSONObject getPayload(String jwt) {
         try {
-            validateJWT(JWT);
-            String payload = JWT.split("\\.")[PAYLOAD];
-            byte[] sectionDecoded = Base64.decode(payload, Base64.URL_SAFE);
-            String jwtSection = new String(sectionDecoded, "UTF-8");
+            validateJWT(jwt);
+            final String payload = jwt.split("\\.")[PAYLOAD];
+            final byte[] sectionDecoded = Base64.decode(payload, Base64.URL_SAFE);
+            final String jwtSection = new String(sectionDecoded, "UTF-8");
             return new JSONObject(jwtSection);
-        } catch (UnsupportedEncodingException e) {
+        } catch (final UnsupportedEncodingException e) {
             throw new CognitoParameterInvalidException(e.getMessage());
-        } catch (JSONException e) {
+        } catch (final JSONException e) {
             throw new CognitoParameterInvalidException(e.getMessage());
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new CognitoParameterInvalidException("error in parsing JSON");
         }
     }
@@ -80,15 +80,15 @@ public class CognitoJWTParser {
     /**
      * Returns signature of a JWT as a String.
      *
-     * @param JWT       REQUIRED: valid JSON Web Token as String.
+     * @param jwt       REQUIRED: valid JSON Web Token as String.
      * @return signature as a String.
      */
-    public static String getSignature(String JWT) {
+    public static String getSignature(String jwt) {
         try {
-            validateJWT(JWT);
-            byte[] sectionDecoded = Base64.decode(JWT.split("\\.")[SIGNATURE], Base64.URL_SAFE);
+            validateJWT(jwt);
+            final byte[] sectionDecoded = Base64.decode(jwt.split("\\.")[SIGNATURE], Base64.URL_SAFE);
             return new String(sectionDecoded, "UTF-8");
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new CognitoParameterInvalidException("error in parsing JSON");
         }
     }
@@ -96,35 +96,34 @@ public class CognitoJWTParser {
     /**
      * Returns a claim, from the {@code JWT}s' payload, as a String.
      *
-     * @param JWT       REQUIRED: valid JSON Web Token as String.
+     * @param jwt       REQUIRED: valid JSON Web Token as String.
      * @param claim     REQUIRED: claim name as String.
      * @return  claim from the JWT as a String.
      */
-    public static String getClaim(String JWT, String claim) {
+    public static String getClaim(String jwt, String claim) {
         try {
-            JSONObject payload = getPayload(JWT);
-            Object claimValue = payload.get(claim);
+            final JSONObject payload = getPayload(jwt);
+            final Object claimValue = payload.get(claim);
 
             if (claimValue != null) {
                 return claimValue.toString();
             }
 
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new CognitoParameterInvalidException("invalid token");
         }
         return null;
     }
 
-
     /**
-     *  Checks if {@code JWT} is a valid JSON Web Token.
+     * Checks if {@code JWT} is a valid JSON Web Token.
      *
-     * @param JWT
+     * @param jwt REQUIRED: The JWT as a {@link String}.
      */
-    public static void validateJWT(String JWT) {
+    public static void validateJWT(String jwt) {
         // Check if the the JWT has the three parts
-        String[] jwtParts = JWT.split("\\.");
-        if(jwtParts.length != 3) {
+        final String[] jwtParts = jwt.split("\\.");
+        if (jwtParts.length != JWT_PARTS) {
             throw new CognitoParameterInvalidException("not a JSON Web Token");
         }
     }

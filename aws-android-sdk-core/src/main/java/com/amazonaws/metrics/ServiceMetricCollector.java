@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,9 +20,11 @@ package com.amazonaws.metrics;
  * purpose metric collector.
  */
 public abstract class ServiceMetricCollector {
+
+    /** Interface for Factory. */
     public static interface Factory {
         /**
-         * Returns an instance of the collector; or null if if failed to create
+         * @return an instance of the collector; or null if if failed to create
          * one.
          */
         public ServiceMetricCollector getServiceMetricCollector();
@@ -31,14 +33,19 @@ public abstract class ServiceMetricCollector {
     /**
      * Collects metrics on the number of bytes written or read and the
      * respective duration.
+     * @param provider the byte throughput provider.
      */
     public abstract void collectByteThroughput(ByteThroughputProvider provider);
 
     /**
      * Collects metrics for non-request specific latencies.
+     * @param provider the service latency provider.
      */
     public abstract void collectLatency(ServiceLatencyProvider provider);
 
+    /**
+     * @return true if this is enabled.
+     */
     public boolean isEnabled() {
         return true;
     }

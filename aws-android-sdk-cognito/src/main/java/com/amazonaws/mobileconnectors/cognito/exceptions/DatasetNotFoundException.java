@@ -1,5 +1,5 @@
 /**
- * Copyright 2013-2017 Amazon.com, 
+ * Copyright 2013-2018 Amazon.com, 
  * Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Amazon Software License (the "License"). 
@@ -25,10 +25,17 @@ public class DatasetNotFoundException extends DataStorageException {
 
     private static final long serialVersionUID = -5043074429464815354L;
 
+    /**
+     * @param detailMessage the exception message.
+     * @param throwable exception as throwable.
+     */
     public DatasetNotFoundException(String detailMessage, Throwable throwable) {
         super(detailMessage, throwable);
     }
 
+    /**
+     * @param detailMessage the exception message.
+     */
     public DatasetNotFoundException(String detailMessage) {
         super(detailMessage);
     }

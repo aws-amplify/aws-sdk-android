@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,18 +27,21 @@ public interface LifecyclePredicateVisitor {
     /**
      * Implement this method to add behaviour performed when
      * {@link LifecyclePrefixPredicate} is visited.
+     * @param lifecyclePrefixPredicate the LifecyclePrefixPredicate.
      */
     public void visit(LifecyclePrefixPredicate lifecyclePrefixPredicate);
 
     /**
      * Implement this method to add behaviour performed when
      * {@link LifecycleTagPredicate} is visited.
+     * @param lifecycleTagPredicate the LifecycleTagPredicate.
      */
     public void visit(LifecycleTagPredicate lifecycleTagPredicate);
 
     /**
      * Implement this method to add behaviour performed when
      * {@link LifecycleAndOperator} is visited.
+     * @param lifecycleAndOperator the LifecycleAndOperator.
      */
     public void visit(LifecycleAndOperator lifecycleAndOperator);
 }

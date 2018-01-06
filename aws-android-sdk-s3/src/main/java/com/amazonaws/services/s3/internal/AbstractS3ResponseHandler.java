@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -48,16 +48,16 @@ public abstract class AbstractS3ResponseHandler<T>
     private static final Log log = LogFactory.getLog(S3MetadataResponseHandler.class);
 
     /** The set of response headers that aren't part of the object's metadata */
-    private static final Set<String> ignoredHeaders;
+    private static final Set<String> IGNORED_HEADERS;
 
     static {
-        ignoredHeaders = new HashSet<String>();
-        ignoredHeaders.add(Headers.DATE);
-        ignoredHeaders.add(Headers.SERVER);
-        ignoredHeaders.add(Headers.REQUEST_ID);
-        ignoredHeaders.add(Headers.EXTENDED_REQUEST_ID);
-        ignoredHeaders.add(Headers.CLOUD_FRONT_ID);
-        ignoredHeaders.add(Headers.CONNECTION);
+        IGNORED_HEADERS = new HashSet<String>();
+        IGNORED_HEADERS.add(Headers.DATE);
+        IGNORED_HEADERS.add(Headers.SERVER);
+        IGNORED_HEADERS.add(Headers.REQUEST_ID);
+        IGNORED_HEADERS.add(Headers.EXTENDED_REQUEST_ID);
+        IGNORED_HEADERS.add(Headers.CLOUD_FRONT_ID);
+        IGNORED_HEADERS.add(Headers.CONNECTION);
     }
 
     /**
@@ -86,7 +86,7 @@ public abstract class AbstractS3ResponseHandler<T>
         final AmazonWebServiceResponse<T> awsResponse = new AmazonWebServiceResponse<T>();
         final String awsRequestId = response.getHeaders().get(Headers.REQUEST_ID);
         final String hostId = response.getHeaders().get(Headers.EXTENDED_REQUEST_ID);
-	final String cloudFrontId = response.getHeaders().get(Headers.CLOUD_FRONT_ID);
+        final String cloudFrontId = response.getHeaders().get(Headers.CLOUD_FRONT_ID);
 
         final Map<String, String> metadataMap = new HashMap<String, String>();
         metadataMap.put(ResponseMetadata.AWS_REQUEST_ID, awsRequestId);
@@ -112,8 +112,8 @@ public abstract class AbstractS3ResponseHandler<T>
             if (key.startsWith(Headers.S3_USER_METADATA_PREFIX)) {
                 key = key.substring(Headers.S3_USER_METADATA_PREFIX.length());
                 metadata.addUserMetadata(key, header.getValue());
-            } else if (ignoredHeaders.contains(key)) {
-                // ignore...
+            } else if (IGNORED_HEADERS.contains(key)) {
+                log.debug(String.format("%s is ignored.", key));
             } else if (key.equalsIgnoreCase(Headers.LAST_MODIFIED)) {
                 try {
                     metadata.setHeader(key, ServiceUtils.parseRfc822Date(header.getValue()));

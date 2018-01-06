@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -141,12 +141,29 @@ public class EncryptionUtils {
         return generateInstruction(new StaticEncryptionMaterialsProvider(materials), cryptoProvider);
     }
 
+    /**
+     * Constructor.
+     * @param materialsProvider The encryption materials provider to be used to encrypt and
+     *            decrypt data.
+     * @param cryptoProvider The crypto provider whose encryption implementation
+     *            will be used to encrypt and decrypt data.
+     * @return The instruction that will be used to encrypt an object.
+     */
     public static EncryptionInstruction generateInstruction(
             EncryptionMaterialsProvider materialsProvider,
             Provider cryptoProvider) {
         return buildInstruction(materialsProvider.getEncryptionMaterials(), cryptoProvider);
     }
 
+    /**
+     * Constructor.
+     * @param materialsProvider The encryption materials provider to be used to encrypt and
+     *            decrypt data.
+     * @param materialsDescription The map of material to description.
+     * @param cryptoProvider The crypto provider whose encryption implementation
+     *            will be used to encrypt and decrypt data.
+     * @return The instruction that will be used to encrypt an object.
+     */
     public static EncryptionInstruction generateInstruction(
             EncryptionMaterialsProvider materialsProvider,
             Map<String, String> materialsDescription, Provider cryptoProvider) {
@@ -180,7 +197,7 @@ public class EncryptionUtils {
      * @param materials The non-null encryption materials to be used to encrypt
      *            and decrypt data.
      * @param cryptoProvider The crypto provider whose encryption implementation
-     *            will be used to encrypt and decrypt data. Null is ok and uses
+     *            will be used to encrypt and decrypt data. NULL is ok and uses
      *            the preferred provider from Security.getProviders().
      * @return A non-null instruction object containing encryption information
      */
@@ -199,7 +216,7 @@ public class EncryptionUtils {
      * @param materialsProvider The non-null encryption materials provider to be
      *            used to encrypt and decrypt data.
      * @param cryptoProvider The crypto provider whose encryption implementation
-     *            will be used to encrypt and decrypt data. Null is ok and uses
+     *            will be used to encrypt and decrypt data. NULL is ok and uses
      *            the preferred provider from Security.getProviders().
      * @return A non-null instruction object containing encryption information
      */
@@ -258,7 +275,7 @@ public class EncryptionUtils {
      * @param materials The non-null encryption materials to be used to encrypt
      *            and decrypt data.
      * @param cryptoProvider The crypto provider whose encryption implementation
-     *            will be used to encrypt and decrypt data. Null is ok and uses
+     *            will be used to encrypt and decrypt data. NULL is ok and uses
      *            the preferred provider from Security.getProviders().
      * @return A non-null instruction object containing encryption information
      * @throws AmazonClientException if encryption information is missing in the
@@ -280,7 +297,7 @@ public class EncryptionUtils {
      * @param materialsProvider The non-null encryption materials provider to be
      *            used to encrypt and decrypt data.
      * @param cryptoProvider The crypto provider whose encryption implementation
-     *            will be used to encrypt and decrypt data. Null is ok and uses
+     *            will be used to encrypt and decrypt data. NULL is ok and uses
      *            the preferred provider from Security.getProviders().
      * @return A non-null instruction object containing encryption information
      * @throws AmazonClientException if encryption information is missing in the
@@ -434,6 +451,13 @@ public class EncryptionUtils {
         return request;
     }
 
+    /**
+     * Creates the Instruction PutObjectRequest.
+     * @param bucketName the name of the bucket.
+     * @param key the key.
+     * @param instruction the instruction.
+     * @return the PutObjectRequest.
+     */
     public static PutObjectRequest createInstructionPutRequest(String bucketName, String key,
             EncryptionInstruction instruction) {
         Map<String, String> instructionJSON = convertInstructionToJSONObject(instruction);
@@ -569,6 +593,7 @@ public class EncryptionUtils {
     /**
      * Generates a one-time use Symmetric Key on-the-fly for use in envelope
      * encryption.
+     * @return the secret key.
      */
     public static SecretKey generateOneTimeUseSymmetricKey() {
         KeyGenerator generator;
@@ -587,6 +612,11 @@ public class EncryptionUtils {
      * key and IV. The given crypto provider will provide the encryption
      * implementation. If the crypto provider is null, then the default JCE
      * crypto provider will be used.
+     * @param symmetricCryptoKey the symmetric key.
+     * @param encryptMode the encryption mode.
+     * @param cryptoProvider tbe crypto provider used to encrypt.
+     * @param initVector the IV.
+     * @return the symmetric cipher.
      */
     public static Cipher createSymmetricCipher(SecretKey symmetricCryptoKey, int encryptMode,
             Provider cryptoProvider, byte[] initVector) {
@@ -614,6 +644,10 @@ public class EncryptionUtils {
     /**
      * Encrypts a symmetric key using the provided encryption materials and
      * returns it in raw byte array form.
+     * @param toBeEncrypted the secret key to be encrypted.
+     * @param materials the encryption materials.
+     * @param cryptoProvider the crypto provider used to encrypt.
+     * @return raw byte array of the encrypted symmetric key.
      */
     public static byte[] getEncryptedSymmetricKey(SecretKey toBeEncrypted,
             EncryptionMaterials materials, Provider cryptoProvider) {
@@ -701,6 +735,12 @@ public class EncryptionUtils {
         }
     }
 
+    /**
+     * Retrives the encrypted input stream.
+     * @param request the UploadPartRequest to encrypt.
+     * @param cipherFactory the CipherFactory used to encrypt.
+     * @return the encrypted input stream.
+     */
     public static ByteRangeCapturingInputStream getEncryptedInputStream(UploadPartRequest request,
             CipherFactory cipherFactory) {
         try {
@@ -714,7 +754,7 @@ public class EncryptionUtils {
             originalInputStream = new RepeatableCipherInputStream(originalInputStream,
                     cipherFactory);
 
-            if (request.isLastPart() == false) {
+            if (!request.isLastPart()) {
                 // We want to prevent the final padding from being sent on the
                 // stream...
                 originalInputStream = new InputSubstream(originalInputStream, 0,
@@ -737,8 +777,7 @@ public class EncryptionUtils {
      * are transported in Base64-encoding, so they are decoded before they are
      * returned.
      */
-    private static byte[] getCryptoBytesFromMetadata(String headerName, ObjectMetadata metadata)
-            throws NullPointerException {
+    private static byte[] getCryptoBytesFromMetadata(String headerName, ObjectMetadata metadata) {
         Map<String, String> userMetadata = metadata.getUserMetadata();
         if (userMetadata == null || !userMetadata.containsKey(headerName)) {
             return null;
@@ -752,8 +791,7 @@ public class EncryptionUtils {
      * Retrieves the String value of the given header from the metadata. Returns
      * null if the field is not found in the metadata.
      */
-    private static String getStringFromMetadata(String headerName, ObjectMetadata metadata)
-            throws NullPointerException {
+    private static String getStringFromMetadata(String headerName, ObjectMetadata metadata) {
         Map<String, String> userMetadata = metadata.getUserMetadata();
         if (userMetadata == null || !userMetadata.containsKey(headerName)) {
             return null;
@@ -823,6 +861,14 @@ public class EncryptionUtils {
         metadata.addUserMetadata(Headers.MATERIALS_DESCRIPTION, description);
     }
 
+    /**
+     * Updates the metadata with the encryption info.
+     * @param request the request that contains the metadata.
+     * @param keyBytesToStoreInMetadata the key in bytes to store in the metadata.
+     * @param symmetricCipher the Cipher.
+     * @param materialsDescription the map of materials to description.
+     * @return the updated ObjectMetadata.
+     */
     public static ObjectMetadata updateMetadataWithEncryptionInfo(
             InitiateMultipartUploadRequest request, byte[] keyBytesToStoreInMetadata,
             Cipher symmetricCipher, Map<String, String> materialsDescription) {
@@ -866,6 +912,12 @@ public class EncryptionUtils {
         return plaintextLength + offset;
     }
 
+    /**
+     * Calculates the content length of the crypto.
+     * @param symmetricCipher the Cipher.
+     * @param request the UploadPartRequest.
+     * @return the length of the content.
+     */
     public static long calculateCryptoContentLength(Cipher symmetricCipher,
             UploadPartRequest request) {
         long plaintextLength;

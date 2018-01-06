@@ -1,11 +1,11 @@
 /**
- * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -90,17 +90,20 @@ public class FileManager {
         return false;
     }
 
-    public InputStream newInputStream(final String filepath) throws FileNotFoundException {
+    public InputStream newInputStream(final String filepath)
+            throws FileNotFoundException {
         final File file = new File(directory, filepath);
         return newInputStream(file);
     }
 
-    public InputStream newInputStream(final File file) throws FileNotFoundException {
+    public InputStream newInputStream(final File file)
+            throws FileNotFoundException {
         final InputStream stream = new FileInputStream(file);
         return stream;
     }
 
-    public OutputStream newOutputStream(final String filepath, final boolean append)
+    public OutputStream newOutputStream(final String filepath,
+                                               final boolean append)
             throws FileNotFoundException {
         final File file = new File(directory, filepath);
         return newOutputStream(file, append);

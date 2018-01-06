@@ -24,6 +24,9 @@ import com.amazonaws.util.HttpUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -63,7 +66,11 @@ public class ServiceUtils {
 
         boolean firstParam = true;
         Map<String, String> parameters = request.getParameters();
-        for (String param : parameters.keySet()) {
+        Map<String, List<String>> parametersWithList = null;
+        if (request instanceof AmazonPollyCustomRequest) {
+            parametersWithList = ((AmazonPollyCustomRequest<?>) request).getParametersWithList();
+        }
+        for (String param : (parametersWithList == null ? parameters : parametersWithList).keySet()) {
             if (firstParam) {
                 urlString += "?";
                 firstParam = false;
@@ -71,8 +78,20 @@ public class ServiceUtils {
                 urlString += "&";
             }
 
-            String value = parameters.get(param);
-            urlString += param + "=" + HttpUtils.urlEncode(value, false);
+            if (parametersWithList != null) {
+                List<String> values = parametersWithList.get(param);
+                Collections.sort(values);
+                Iterator<?> iter = values.iterator();
+                while (iter.hasNext()) {
+                    urlString += param + "=" + HttpUtils.urlEncode(iter.next().toString(), false);
+                    if (iter.hasNext()) {
+                        urlString += "&";
+                    }
+                }
+            } else {
+                String value = parameters.get(param);
+                urlString += param + "=" + HttpUtils.urlEncode(value.toString(), false);
+            }
         }
 
         try {

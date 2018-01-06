@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -58,6 +58,7 @@ public class HandlerChainFactory {
         return createRequestHandlerChain(resource, RequestHandler2.class);
     }
 
+    @SuppressWarnings("checkstyle:emptyblock")
     private List<RequestHandler2> createRequestHandlerChain(String resource,
             Class<?> handlerApiClass) {
         List<RequestHandler2> handlers = new ArrayList<RequestHandler2>();
@@ -74,7 +75,7 @@ public class HandlerChainFactory {
                 if (requestHandlerClassName == null)
                     break;
                 requestHandlerClassName = requestHandlerClassName.trim();
-                if (requestHandlerClassName.equals(""))
+                if ("".equals(requestHandlerClassName))
                     continue;
                 Class<?> requestHandlerClass = ClassLoaderHelper.loadClass(
                         requestHandlerClassName,

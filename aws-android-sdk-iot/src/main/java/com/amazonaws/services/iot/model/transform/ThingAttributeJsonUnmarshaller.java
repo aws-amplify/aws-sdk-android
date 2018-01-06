@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,11 +39,17 @@ class ThingAttributeJsonUnmarshaller implements
             if (name.equals("thingName")) {
                 thingAttribute.setThingName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("thingTypeName")) {
+                thingAttribute.setThingTypeName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("attributes")) {
                 thingAttribute.setAttributes(new MapUnmarshaller<String>(StringJsonUnmarshaller
                         .getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("version")) {
+                thingAttribute.setVersion(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

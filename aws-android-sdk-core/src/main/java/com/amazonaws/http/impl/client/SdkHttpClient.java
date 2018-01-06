@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,7 +23,16 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HttpRequestExecutor;
 
+/**
+ * SDK HTTP client class.
+ */
 public class SdkHttpClient extends DefaultHttpClient {
+
+    /**
+     * Constructor.
+     * @param conman the client connection manager.
+     * @param params the HTTP parameters.
+     */
     public SdkHttpClient(
             final ClientConnectionManager conman,
             final HttpParams params) {

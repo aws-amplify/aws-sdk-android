@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,12 +16,16 @@ package com.amazonaws.services.s3.model.analytics;
 
 import java.io.Serializable;
 
+/**
+ * The StorageClassAnalysisDataExport class.
+ */
 public class StorageClassAnalysisDataExport implements Serializable {
     private String outputSchemaVersion;
     private AnalyticsExportDestination destination;
 
     /**
      * Sets the version of the output schema to use when exporting data.
+     * @param outputSchemaVersion the output schema version.
      */
     public void setOutputSchemaVersion(StorageClassAnalysisSchemaVersion outputSchemaVersion) {
         if (outputSchemaVersion == null) {
@@ -32,16 +36,18 @@ public class StorageClassAnalysisDataExport implements Serializable {
     }
 
     /**
-     * Sets the version of the output schema to use when exporting data
-     * and returns this object for method chaining.
+     * Sets the version of the output schema to use when exporting data.
+     * @param outputSchemaVersion the output schema version.
+     * @return this object for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public StorageClassAnalysisDataExport withOutputSchemaVersion(StorageClassAnalysisSchemaVersion outputSchemaVersion) {
         setOutputSchemaVersion(outputSchemaVersion);
         return this;
     }
 
     /**
-     * Returns the version of the output schema to use when exporting data.
+     * @return the version of the output schema to use when exporting data.
      */
     public String getOutputSchemaVersion() {
         return outputSchemaVersion;
@@ -49,6 +55,7 @@ public class StorageClassAnalysisDataExport implements Serializable {
 
     /**
      * Sets the version of the output schema to use when exporting data.
+     * @param outputSchemaVersion the output schema version.
      */
     public void setOutputSchemaVersion(String outputSchemaVersion) {
         this.outputSchemaVersion = outputSchemaVersion;
@@ -56,15 +63,17 @@ public class StorageClassAnalysisDataExport implements Serializable {
 
     /**
      * Sets the version of the output schema to use when exporting data
-     * and returns this object for method chaining.
+     * @param outputSchemaVersion the output schema version.
+     * @return this object for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public StorageClassAnalysisDataExport withOutputSchemaVersion(String outputSchemaVersion) {
         setOutputSchemaVersion(outputSchemaVersion);
         return this;
     }
 
     /**
-     * Returns the place to store the data for an analysis.
+     * @return the place to store the data for an analysis.
      */
     public AnalyticsExportDestination getDestination() {
         return destination;
@@ -72,6 +81,7 @@ public class StorageClassAnalysisDataExport implements Serializable {
 
     /**
      * Sets the place to store the data for an analysis.
+     * @param destination the destination to store the data.
      */
     public void setDestination(AnalyticsExportDestination destination) {
         this.destination = destination;
@@ -79,8 +89,10 @@ public class StorageClassAnalysisDataExport implements Serializable {
 
     /**
      * Sets the place to store the data for an analysis
-     * and return this object for method chaining.
+     * @param destination the destination to store the data.
+     * @return this object for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public StorageClassAnalysisDataExport withDestination(AnalyticsExportDestination destination) {
         setDestination(destination);
         return this;

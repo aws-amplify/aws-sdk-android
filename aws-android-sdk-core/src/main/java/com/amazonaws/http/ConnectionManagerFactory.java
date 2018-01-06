@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,6 +32,9 @@ import org.apache.http.params.HttpParams;
  */
 class ConnectionManagerFactory {
 
+    private static final int DEFAULT_HTTP_PORT = 80;
+    private static final int DEFAULT_HTTPS_PORT = 443;
+
     public static ThreadSafeClientConnManager createThreadSafeClientConnManager(
             ClientConfiguration config, HttpParams httpClientParams) {
         ConnManagerParams.setMaxConnectionsPerRoute(httpClientParams,
@@ -42,8 +45,8 @@ class ConnectionManagerFactory {
         sslSocketFactory.setHostnameVerifier(SSLSocketFactory.STRICT_HOSTNAME_VERIFIER);
 
         SchemeRegistry registry = new SchemeRegistry();
-        registry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
-        registry.register(new Scheme("https", sslSocketFactory, 443));
+        registry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), DEFAULT_HTTP_PORT));
+        registry.register(new Scheme("https", sslSocketFactory, DEFAULT_HTTPS_PORT));
 
         ThreadSafeClientConnManager connectionManager = new ThreadSafeClientConnManager(
                 httpClientParams, registry);

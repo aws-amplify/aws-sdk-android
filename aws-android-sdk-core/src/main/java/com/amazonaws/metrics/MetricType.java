@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ public interface MetricType {
      * Non-null name of the metric type. Used to uniquely identify the metric
      * type. Therefore, the name returned must be globally unique across all
      * metric types that implement this interface.
+     * @return the non-null name of the metric type.
      */
     public String name();
 }

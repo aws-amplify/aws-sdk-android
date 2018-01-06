@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,8 +15,25 @@
 
 package com.amazonaws.http;
 
+/** Enums for HTTP method. */
 public enum HttpMethodName {
 
-    GET, POST, PUT, DELETE, HEAD, PATCH;
+    /** Http method for GET. */
+    GET,
+
+    /** Http method for POST. */
+    POST,
+
+    /** Http method for PUT. */
+    PUT,
+
+    /** Http method for DELETE. */
+    DELETE,
+
+    /** Http method for HEAD. */
+    HEAD,
+
+    /** Http method for PATCH. */
+    PATCH;
 
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -16,12 +16,15 @@
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import android.database.Cursor;
-import android.util.Log;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.mobileconnectors.s3.receiver.NetworkInfoReceiver;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
 import com.amazonaws.util.json.JsonUtils;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.File;
 import java.util.Map;
@@ -34,8 +37,9 @@ import java.util.concurrent.TimeoutException;
  * TransferRecord is used to store all the information of a transfer and
  * start/stop the a thread for the transfer task.
  */
+@SuppressWarnings("checkstyle:visibilitymodifier")
 class TransferRecord {
-    private static final String TAG = "TransferRecord";
+    private static final Log LOGGER = LogFactory.getLog(TransferRecord.class);
 
     public int id;
     public int mainUploadId;
@@ -211,9 +215,9 @@ class TransferRecord {
                         try {
                             s3.abortMultipartUpload(new AbortMultipartUploadRequest(bucketName,
                                     key, multipartId));
-                            Log.d(TAG, "Successfully clean up multipart upload: " + id);
-                        } catch (AmazonClientException e) {
-                            Log.d(TAG, "Failed to abort multiplart upload: " + id, e);
+                            LOGGER.debug("Successfully clean up multipart upload: " + id);
+                        } catch (final AmazonClientException e) {
+                            LOGGER.debug("Failed to abort multiplart upload: " + id, e);
                         }
                     }
                 }).start();
@@ -253,6 +257,7 @@ class TransferRecord {
     /**
      * Determines whether a transfer state is a final state.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     private boolean isFinalState(TransferState state) {
         return TransferState.COMPLETED.equals(state)
                 || TransferState.FAILED.equals(state)
@@ -265,7 +270,7 @@ class TransferRecord {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
         sb.append("[")
                 .append("id:").append(id).append(",")
                 .append("bucketName:").append(bucketName).append(",")

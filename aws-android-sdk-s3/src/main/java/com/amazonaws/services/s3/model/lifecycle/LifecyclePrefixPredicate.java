@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,12 +23,16 @@ public final class LifecyclePrefixPredicate extends LifecycleFilterPredicate {
 
     private final String prefix;
 
+    /**
+     * Constructor.
+     * @param prefix the prefix used to identify one or more objects that apply.
+     */
     public LifecyclePrefixPredicate(String prefix) {
         this.prefix = prefix;
     }
 
     /**
-     * Returns the key prefix for which the
+     * @return the key prefix for which the
      * {@link com.amazonaws.services.s3.model.BucketLifecycleConfiguration.Rule} will apply.
      */
     public String getPrefix() {

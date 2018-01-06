@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Deletes the specified collection. Note that this operation removes all faces
- * in the collection. For an example, see <a>example1</a>.
+ * in the collection. For an example, see <a>delete-collection-procedure</a>.
  * </p>
  * <p>
  * This operation requires permissions to perform the
@@ -40,6 +40,27 @@ public class DeleteCollectionRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      */
     private String collectionId;
+
+    /**
+     * Default constructor for DeleteCollectionRequest object. Callers should
+     * use the setter or fluent setter (with...) methods to initialize any
+     * additional object members.
+     */
+    public DeleteCollectionRequest() {
+    }
+
+    /**
+     * Constructs a new DeleteCollectionRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
+     * 
+     * @param collectionId <p>
+     *            ID of the collection to delete.
+     *            </p>
+     */
+    public DeleteCollectionRequest(String collectionId) {
+        setCollectionId(collectionId);
+    }
 
     /**
      * <p>

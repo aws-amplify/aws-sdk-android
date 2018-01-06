@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,6 +26,20 @@ public class ResourceAlreadyExistsException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
+     * <p>
+     * The ID of the resource that caused the exception.
+     * </p>
+     */
+    private String resourceId;
+
+    /**
+     * <p>
+     * The ARN of the resource that caused the exception.
+     * </p>
+     */
+    private String resourceArn;
+
+    /**
      * Constructs a new ResourceAlreadyExistsException with the specified error
      * message.
      *
@@ -33,5 +47,57 @@ public class ResourceAlreadyExistsException extends AmazonServiceException {
      */
     public ResourceAlreadyExistsException(String message) {
         super(message);
+    }
+
+    /**
+     * <p>
+     * The ID of the resource that caused the exception.
+     * </p>
+     *
+     * @return <p>
+     *         The ID of the resource that caused the exception.
+     *         </p>
+     */
+    public String getResourceId() {
+        return resourceId;
+    }
+
+    /**
+     * <p>
+     * The ID of the resource that caused the exception.
+     * </p>
+     *
+     * @param resourceId <p>
+     *            The ID of the resource that caused the exception.
+     *            </p>
+     */
+    public void setResourceId(String resourceId) {
+        this.resourceId = resourceId;
+    }
+
+    /**
+     * <p>
+     * The ARN of the resource that caused the exception.
+     * </p>
+     *
+     * @return <p>
+     *         The ARN of the resource that caused the exception.
+     *         </p>
+     */
+    public String getResourceArn() {
+        return resourceArn;
+    }
+
+    /**
+     * <p>
+     * The ARN of the resource that caused the exception.
+     * </p>
+     *
+     * @param resourceArn <p>
+     *            The ARN of the resource that caused the exception.
+     *            </p>
+     */
+    public void setResourceArn(String resourceArn) {
+        this.resourceArn = resourceArn;
     }
 }

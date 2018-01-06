@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,8 +31,11 @@ public class SimpleDBUtils {
      * static value hardcoding date format used for conversation of Date into
      * String
      */
-    private static String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+    private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 
+    private static final int RADIX = 10;
+    private static final int DATE_SPLIT_1 = 3;
+    private static final int DATE_SPLIT_2 = 2;
     /**
      * Encodes positive integer value into a string by zero-padding number up to
      * the specified number of digits.
@@ -43,9 +46,9 @@ public class SimpleDBUtils {
      * @return string representation of the zero-padded integer
      */
     public static String encodeZeroPadding(int number, int maxNumDigits) {
-        String integerString = Integer.toString(number);
-        int numZeroes = maxNumDigits - integerString.length();
-        StringBuffer strBuffer = new StringBuffer(numZeroes + integerString.length());
+        final String integerString = Integer.toString(number);
+        final int numZeroes = maxNumDigits - integerString.length();
+        final StringBuffer strBuffer = new StringBuffer(numZeroes + integerString.length());
         for (int i = 0; i < numZeroes; i++) {
             strBuffer.insert(i, '0');
         }
@@ -63,9 +66,9 @@ public class SimpleDBUtils {
      * @return string representation of the zero-padded long
      */
     public static String encodeZeroPadding(long number, int maxNumDigits) {
-        String longString = Long.toString(number);
-        int numZeroes = maxNumDigits - longString.length();
-        StringBuffer strBuffer = new StringBuffer(numZeroes + longString.length());
+        final String longString = Long.toString(number);
+        final int numZeroes = maxNumDigits - longString.length();
+        final StringBuffer strBuffer = new StringBuffer(numZeroes + longString.length());
         for (int i = 0; i < numZeroes; i++) {
             strBuffer.insert(i, '0');
         }
@@ -83,11 +86,11 @@ public class SimpleDBUtils {
      * @return string representation of the zero-padded float value
      */
     public static String encodeZeroPadding(float number, int maxNumDigits) {
-        String floatString = Float.toString(number);
+        final String floatString = Float.toString(number);
         int numBeforeDecimal = floatString.indexOf('.');
         numBeforeDecimal = (numBeforeDecimal >= 0 ? numBeforeDecimal : floatString.length());
-        int numZeroes = maxNumDigits - numBeforeDecimal;
-        StringBuffer strBuffer = new StringBuffer(numZeroes + floatString.length());
+        final int numZeroes = maxNumDigits - numBeforeDecimal;
+        final StringBuffer strBuffer = new StringBuffer(numZeroes + floatString.length());
         for (int i = 0; i < numZeroes; i++) {
             strBuffer.insert(i, '0');
         }
@@ -102,7 +105,7 @@ public class SimpleDBUtils {
      * @return original integer value
      */
     public static int decodeZeroPaddingInt(String value) {
-        return Integer.parseInt(value, 10);
+        return Integer.parseInt(value, RADIX);
     }
 
     /**
@@ -112,7 +115,7 @@ public class SimpleDBUtils {
      * @return original long value
      */
     public static long decodeZeroPaddingLong(String value) {
-        return Long.parseLong(value, 10);
+        return Long.parseLong(value, RADIX);
     }
 
     /**
@@ -139,10 +142,10 @@ public class SimpleDBUtils {
      */
     public static String encodeRealNumberRange(int number, int maxNumDigits,
             int offsetValue) {
-        long offsetNumber = number + offsetValue;
-        String longString = Long.toString(offsetNumber);
-        int numZeroes = maxNumDigits - longString.length();
-        StringBuffer strBuffer = new StringBuffer(numZeroes + longString.length());
+        final long offsetNumber = number + offsetValue;
+        final String longString = Long.toString(offsetNumber);
+        final int numZeroes = maxNumDigits - longString.length();
+        final StringBuffer strBuffer = new StringBuffer(numZeroes + longString.length());
         for (int i = 0; i < numZeroes; i++) {
             strBuffer.insert(i, '0');
         }
@@ -165,10 +168,10 @@ public class SimpleDBUtils {
      */
     public static String encodeRealNumberRange(long number, int maxNumDigits,
             long offsetValue) {
-        long offsetNumber = number + offsetValue;
-        String longString = Long.toString(offsetNumber);
-        int numZeroes = maxNumDigits - longString.length();
-        StringBuffer strBuffer = new StringBuffer(numZeroes + longString.length());
+        final long offsetNumber = number + offsetValue;
+        final String longString = Long.toString(offsetNumber);
+        final int numZeroes = maxNumDigits - longString.length();
+        final StringBuffer strBuffer = new StringBuffer(numZeroes + longString.length());
         for (int i = 0; i < numZeroes; i++) {
             strBuffer.insert(i, '0');
         }
@@ -192,30 +195,30 @@ public class SimpleDBUtils {
      */
     public static String encodeRealNumberRange(float number, int maxDigitsLeft,
             int maxDigitsRight, int offsetValue) {
-        int shiftMultiplier = (int) Math.pow(10, maxDigitsRight);
-        long shiftedNumber = Math.round((double) number * shiftMultiplier);
-        long shiftedOffset = offsetValue * shiftMultiplier;
-        long offsetNumber = shiftedNumber + shiftedOffset;
+        final int shiftMultiplier = (int) Math.pow(RADIX, maxDigitsRight);
+        final long shiftedNumber = Math.round((double) number * shiftMultiplier);
+        final long shiftedOffset = offsetValue * shiftMultiplier;
+        final long offsetNumber = shiftedNumber + shiftedOffset;
 
-        if (offsetNumber < 0)
-        {
+        if (offsetNumber < 0) {
             throw new IllegalArgumentException("OffsetNumber[" + offsetNumber
                     + "] is negative - Number[" + number + "], maxDigitsLeft[" + maxDigitsLeft
-                    + "], maxDigitsRight[" + maxDigitsRight + "], offsetValue[" + offsetValue + "]");
+                    + "], maxDigitsRight[" + maxDigitsRight + "], offsetValue[" + offsetValue
+                    + "]");
         }
 
-        String longString = Long.toString(offsetNumber);
-        int numBeforeDecimal = longString.length();
-        int numZeroes = maxDigitsLeft + maxDigitsRight - numBeforeDecimal;
+        final String longString = Long.toString(offsetNumber);
+        final int numBeforeDecimal = longString.length();
+        final int numZeroes = maxDigitsLeft + maxDigitsRight - numBeforeDecimal;
 
-        if (numZeroes < 0)
-        {
+        if (numZeroes < 0) {
             throw new IllegalArgumentException("Number[" + number
                     + "] has too many digits - maxDigitsLeft[" + maxDigitsLeft
-                    + "], maxDigitsRight[" + maxDigitsRight + "], offsetValue[" + offsetValue + "]");
+                    + "], maxDigitsRight[" + maxDigitsRight + "], offsetValue[" + offsetValue
+                    + "]");
         }
 
-        StringBuffer strBuffer = new StringBuffer(numZeroes + longString.length());
+        final StringBuffer strBuffer = new StringBuffer(numZeroes + longString.length());
         for (int i = 0; i < numZeroes; i++) {
             strBuffer.insert(i, '0');
         }
@@ -232,7 +235,7 @@ public class SimpleDBUtils {
      * @return original integer value
      */
     public static int decodeRealNumberRangeInt(String value, int offsetValue) {
-        long offsetNumber = Long.parseLong(value, 10);
+        final long offsetNumber = Long.parseLong(value, RADIX);
         return (int) (offsetNumber - offsetValue);
     }
 
@@ -245,7 +248,7 @@ public class SimpleDBUtils {
      * @return original long value
      */
     public static long decodeRealNumberRangeLong(String value, long offsetValue) {
-        long offsetNumber = Long.parseLong(value, 10);
+        final long offsetNumber = Long.parseLong(value, RADIX);
         return offsetNumber - offsetValue;
     }
 
@@ -262,9 +265,9 @@ public class SimpleDBUtils {
      */
     public static float decodeRealNumberRangeFloat(String value,
             int maxDigitsRight, int offsetValue) {
-        long offsetNumber = Long.parseLong(value, 10);
-        int shiftMultiplier = (int) Math.pow(10, maxDigitsRight);
-        double tempVal = offsetNumber - offsetValue * shiftMultiplier;
+        final long offsetNumber = Long.parseLong(value, RADIX);
+        final int shiftMultiplier = (int) Math.pow(RADIX, maxDigitsRight);
+        final double tempVal = offsetNumber - offsetValue * shiftMultiplier;
         return (float) (tempVal / (shiftMultiplier));
     }
 
@@ -277,9 +280,9 @@ public class SimpleDBUtils {
      */
     public static String encodeDate(Date date) {
         /* Java doesn't handle ISO8601 nicely: need to add ':' manually */
-        String result = DateUtils.format(DATE_FORMAT, date);
-        return result.substring(0, result.length() - 2) + ":"
-                + result.substring(result.length() - 2);
+        final String result = DateUtils.format(DATE_FORMAT, date);
+        return result.substring(0, result.length() - DATE_SPLIT_2) + ":"
+                + result.substring(result.length() - DATE_SPLIT_2);
     }
 
     /**
@@ -290,8 +293,8 @@ public class SimpleDBUtils {
      * @return original date value
      */
     public static Date decodeDate(String value) throws ParseException {
-        String javaValue = value.substring(0, value.length() - 3)
-                + value.substring(value.length() - 2);
+        final String javaValue = value.substring(0, value.length() - DATE_SPLIT_1)
+                + value.substring(value.length() - DATE_SPLIT_2);
         return DateUtils.parse(DATE_FORMAT, javaValue);
     }
 
@@ -305,12 +308,13 @@ public class SimpleDBUtils {
      *         individual values properly quoted and escaped.
      */
     public static String quoteValues(Collection<String> values) {
-        StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
 
         boolean first = true;
-        for (String s : values) {
-            if (!first)
+        for (final String s : values) {
+            if (!first) {
                 sb.append(",");
+            }
             first = false;
             sb.append(quoteValue(s));
         }
@@ -343,7 +347,7 @@ public class SimpleDBUtils {
     }
 
     protected static String replaceChar(String value, String termToFind, String replacementTerm) {
-        StringBuilder buffer = new StringBuilder(value);
+        final StringBuilder buffer = new StringBuilder(value);
 
         int searchIndex = 0;
         while (searchIndex < buffer.length()) {

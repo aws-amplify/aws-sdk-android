@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,8 +15,18 @@
 
 package com.amazonaws.transform;
 
+/**
+ * Interface for Unmarshaller.
+ * @param <T> the type.
+ * @param <R> the type.
+ */
 public interface Unmarshaller<T, R> {
 
+    /**
+     * @param in to unmarshall.
+     * @return unmarshalled result.
+     * @throws Exception
+     */
     public T unmarshall(R in) throws Exception;
 
 }

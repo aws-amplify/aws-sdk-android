@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,33 +25,33 @@ import java.io.Serializable;
 public class CreateThingResult implements Serializable {
     /**
      * <p>
-     * The name of the thing.
+     * The name of the new thing.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      */
     private String thingName;
 
     /**
      * <p>
-     * The thing ARN.
+     * The ARN of the new thing.
      * </p>
      */
     private String thingArn;
 
     /**
      * <p>
-     * The name of the thing.
+     * The name of the new thing.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @return <p>
-     *         The name of the thing.
+     *         The name of the new thing.
      *         </p>
      */
     public String getThingName() {
@@ -60,15 +60,15 @@ public class CreateThingResult implements Serializable {
 
     /**
      * <p>
-     * The name of the thing.
+     * The name of the new thing.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
-     *            The name of the thing.
+     *            The name of the new thing.
      *            </p>
      */
     public void setThingName(String thingName) {
@@ -77,7 +77,7 @@ public class CreateThingResult implements Serializable {
 
     /**
      * <p>
-     * The name of the thing.
+     * The name of the new thing.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -85,10 +85,10 @@ public class CreateThingResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
-     *            The name of the thing.
+     *            The name of the new thing.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -100,11 +100,11 @@ public class CreateThingResult implements Serializable {
 
     /**
      * <p>
-     * The thing ARN.
+     * The ARN of the new thing.
      * </p>
      *
      * @return <p>
-     *         The thing ARN.
+     *         The ARN of the new thing.
      *         </p>
      */
     public String getThingArn() {
@@ -113,11 +113,11 @@ public class CreateThingResult implements Serializable {
 
     /**
      * <p>
-     * The thing ARN.
+     * The ARN of the new thing.
      * </p>
      *
      * @param thingArn <p>
-     *            The thing ARN.
+     *            The ARN of the new thing.
      *            </p>
      */
     public void setThingArn(String thingArn) {
@@ -126,14 +126,14 @@ public class CreateThingResult implements Serializable {
 
     /**
      * <p>
-     * The thing ARN.
+     * The ARN of the new thing.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param thingArn <p>
-     *            The thing ARN.
+     *            The ARN of the new thing.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

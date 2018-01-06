@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,18 +25,21 @@ public interface MetricsPredicateVisitor {
     /**
      * Implement this method to add behaviour performed when
      * {@link MetricsPrefixPredicate} is visited.
+     * @param metricsPrefixPredicate the MetricsPrefixPredicate.
      */
     public void visit(MetricsPrefixPredicate metricsPrefixPredicate);
 
     /**
      * Implement this method to add behaviour performed when
      * {@link MetricsTagPredicate} is visited.
+     * @param metricsTagPredicate the MetricsTagPredicate.
      */
     public void visit(MetricsTagPredicate metricsTagPredicate);
 
     /**
      * Implement this method to add behaviour performed when
      * {@link MetricsAndOperator} is visited.
+     * @param metricsAndOperator the MetricsAndOperator.
      */
     public void visit(MetricsAndOperator metricsAndOperator);
 }

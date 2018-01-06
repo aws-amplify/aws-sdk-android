@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@ class TransferThreadPool {
     private static ExecutorService executorMainTask;
     private static ExecutorService executorPartTask;
 
-    private synchronized static void init() {
-        int processors = Runtime.getRuntime().availableProcessors();
+    private static synchronized void init() {
+        final int processors = Runtime.getRuntime().availableProcessors();
         if (executorMainTask == null) {
             executorMainTask = buildExecutor(processors + 1);
         }
@@ -53,6 +53,8 @@ class TransferThreadPool {
         executorMainTask = null;
     }
 
+    private static final int WAIT_TIME = 250;
+
     private static void shutdown(ExecutorService executor) {
         if (executor == null) {
             return;
@@ -61,11 +63,11 @@ class TransferThreadPool {
         executor.shutdown();
         try {
             // Wait for existing tasks
-            if (!executor.awaitTermination(250, TimeUnit.MILLISECONDS)) {
+            if (!executor.awaitTermination(WAIT_TIME, TimeUnit.MILLISECONDS)) {
                 // Cancel tasks in execution
                 executor.shutdownNow();
             }
-        } catch (InterruptedException ie) {
+        } catch (final InterruptedException ie) {
             executor.shutdownNow();
             Thread.currentThread().interrupt();
         }

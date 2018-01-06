@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Portions copyright 2006-2009 James Murty. Please see LICENSE.txt
  * for applicable license terms and NOTICE.txt for applicable notices.
@@ -24,6 +24,7 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.services.s3.internal.Constants;
 import com.amazonaws.services.s3.internal.DeleteObjectsResponse;
 import com.amazonaws.services.s3.internal.ObjectExpirationResult;
+import com.amazonaws.services.s3.internal.S3HttpUtils;
 import com.amazonaws.services.s3.internal.S3RequesterChargedResult;
 import com.amazonaws.services.s3.internal.S3VersionResult;
 import com.amazonaws.services.s3.internal.ServerSideEncryptionResult;
@@ -110,7 +111,6 @@ import com.amazonaws.services.s3.model.metrics.MetricsFilterPredicate;
 import com.amazonaws.services.s3.model.metrics.MetricsPrefixPredicate;
 import com.amazonaws.services.s3.model.metrics.MetricsTagPredicate;
 import com.amazonaws.util.DateUtils;
-import com.amazonaws.util.HttpUtils;
 import com.amazonaws.util.StringUtils;
 
 import org.apache.commons.logging.Log;
@@ -349,7 +349,7 @@ public class XmlResponsesSaxParser {
      * default;
      */
     private static String decodeIfSpecified(String value, boolean decode) {
-        return decode ? HttpUtils.urlDecode(value) : value;
+        return decode ? S3HttpUtils.urlDecode(value) : value;
     }
 
     /**
@@ -1479,7 +1479,7 @@ public class XmlResponsesSaxParser {
                 if (name.equals("Prefix")) {
                     final String commonPrefix = checkForEmptyString(getText());
                     versionListing.getCommonPrefixes().add(shouldSDKDecodeResponse
-                            ? HttpUtils.urlDecode(commonPrefix) : commonPrefix);
+                            ? S3HttpUtils.urlDecode(commonPrefix) : commonPrefix);
                 }
             }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,6 +25,9 @@ import com.amazonaws.util.AWSRequestMetricsFullSupport;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * The execution context.
+ */
 public class ExecutionContext {
     private final AWSRequestMetrics awsRequestMetrics;
     private final List<RequestHandler2> requestHandler2s;
@@ -37,7 +40,9 @@ public class ExecutionContext {
      */
     private AWSCredentials credentials;
 
-    /** For testing purposes. */
+    /** For testing purposes.
+     * @param isMetricEnabled true if metric is enabled.
+     */
     @Deprecated
     public ExecutionContext(boolean isMetricEnabled) {
         this(null, isMetricEnabled, null);
@@ -48,6 +53,12 @@ public class ExecutionContext {
         this(null, false, null);
     }
 
+    /**
+     * Constructor.
+     * @param requestHandler2s the list of request handlers.
+     * @param isMetricEnabled true if metric is enabled.
+     * @param awsClient the AWS client.
+     */
     public ExecutionContext(List<RequestHandler2> requestHandler2s,
             boolean isMetricEnabled, AmazonWebServiceClient awsClient) {
         this.requestHandler2s = requestHandler2s;
@@ -81,12 +92,14 @@ public class ExecutionContext {
      * only when the S3 client is constructed. Hence the need for this method.
      * We may consider supporting a per request level signer determination for
      * S3 later on.
+     * @param signer the signer.
      */
     public void setSigner(Signer signer) {
     }
 
     /**
-     * Returns the signer for the given uri. Note S3 in particular overrides
+     * @param uri the URI.
+     * @return the signer for the given uri. Note S3 in particular overrides
      * this method.
      */
     public Signer getSignerByURI(URI uri) {

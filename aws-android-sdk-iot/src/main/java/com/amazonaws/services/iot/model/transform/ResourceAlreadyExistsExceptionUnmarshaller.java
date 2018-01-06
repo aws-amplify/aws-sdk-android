@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,6 +36,9 @@ public class ResourceAlreadyExistsExceptionUnmarshaller extends JsonErrorUnmarsh
 
         ResourceAlreadyExistsException e = (ResourceAlreadyExistsException) super.unmarshall(error);
         e.setErrorCode("ResourceAlreadyExistsException");
+        e.setResourceId(String.valueOf(error.get("resourceId")));
+
+        e.setResourceArn(String.valueOf(error.get("resourceArn")));
 
         return e;
     }

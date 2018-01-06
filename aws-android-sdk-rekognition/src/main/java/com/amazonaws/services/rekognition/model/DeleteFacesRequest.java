@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -47,6 +47,31 @@ public class DeleteFacesRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      */
     private java.util.List<String> faceIds;
+
+    /**
+     * Default constructor for DeleteFacesRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
+     */
+    public DeleteFacesRequest() {
+    }
+
+    /**
+     * Constructs a new DeleteFacesRequest object. Callers should use the setter
+     * or fluent setter (with...) methods to initialize any additional object
+     * members.
+     * 
+     * @param collectionId <p>
+     *            Collection from which to remove the specific faces.
+     *            </p>
+     * @param faceIds <p>
+     *            An array of face IDs to delete.
+     *            </p>
+     */
+    public DeleteFacesRequest(String collectionId, java.util.List<String> faceIds) {
+        setCollectionId(collectionId);
+        setFaceIds(faceIds);
+    }
 
     /**
      * <p>

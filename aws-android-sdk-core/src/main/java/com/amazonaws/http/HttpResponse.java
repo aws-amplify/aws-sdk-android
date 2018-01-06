@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import java.util.zip.GZIPInputStream;
  * Represents an HTTP response returned by an AWS service in response to a
  * service request.
  */
+@SuppressWarnings("checkstyle:finalclass")
 public class HttpResponse {
 
     private final String statusText;
@@ -61,7 +62,7 @@ public class HttpResponse {
     public InputStream getContent() throws IOException {
         if (content == null) {
             // Avoid decoding the content multiple times
-            synchronized(this) {
+            synchronized (this) {
                 if (rawContent != null && "gzip".equals(headers.get("Content-Encoding"))) {
                     content = new GZIPInputStream(rawContent);
                 } else {
@@ -126,6 +127,7 @@ public class HttpResponse {
          * @param statusText status text
          * @return builder itself
          */
+        @SuppressWarnings("checkstyle:hiddenfield")
         public Builder statusText(String statusText) {
             this.statusText = statusText;
             return this;
@@ -137,6 +139,7 @@ public class HttpResponse {
          * @param statusCode status code
          * @return builder itself
          */
+        @SuppressWarnings("checkstyle:hiddenfield")
         public Builder statusCode(int statusCode) {
             this.statusCode = statusCode;
             return this;
@@ -148,6 +151,7 @@ public class HttpResponse {
          * @param content input stream
          * @return builder itself
          */
+        @SuppressWarnings("checkstyle:hiddenfield")
         public Builder content(InputStream content) {
             this.content = content;
             return this;

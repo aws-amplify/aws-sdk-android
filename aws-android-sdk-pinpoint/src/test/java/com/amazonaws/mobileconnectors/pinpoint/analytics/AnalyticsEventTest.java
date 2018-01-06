@@ -1,28 +1,21 @@
-/*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+/**
+ * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at:
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
  *
- *    http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
- * OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and
- * limitations under the License.
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.mobileconnectors.pinpoint.analytics;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.MockDeviceDetails;
-import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
-
+import java.util.Locale;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.After;
@@ -31,9 +24,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
+import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.MockDeviceDetails;
 
-import java.util.Locale;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE)
@@ -57,14 +56,19 @@ public class AnalyticsEventTest extends MobileAnalyticsTestBase {
         testDeviceDetails = new MockDeviceDetails();
 
         PinpointContext mockContext = new AnalyticsContextBuilder()
-                .withSdkInfo(SDK_NAME, SDK_VERSION)
-                .withUniqueIdValue(UNIQUE_ID)
-                .withDeviceDetails(testDeviceDetails)
-                .withContext(Robolectric.application.getApplicationContext())
-                .build();
+                                              .withSdkInfo(SDK_NAME,
+                                                                  SDK_VERSION)
+                                              .withUniqueIdValue(UNIQUE_ID)
+                                              .withDeviceDetails(testDeviceDetails)
+                                              .withContext(RuntimeEnvironment.application
+                                                                   .getApplicationContext())
+                                              .build();
 
-        target = AnalyticsEvent.newInstance(mockContext, SESSION_ID, SESSION_START, SESSION_END,
-                SESSION_DURATION, TIME_STAMP, EVENT_NAME);
+        target = AnalyticsEvent
+                         .newInstance(mockContext, SESSION_ID, SESSION_START,
+                                             SESSION_END,
+                                             SESSION_DURATION, TIME_STAMP,
+                                             EVENT_NAME);
 
         assertEquals(EVENT_NAME, target.getEventType());
         assertEquals(UNIQUE_ID, target.getUniqueId());
@@ -87,18 +91,24 @@ public class AnalyticsEventTest extends MobileAnalyticsTestBase {
         target.addMetric("metric", 1.0);
 
         PinpointContext mockContext = new AnalyticsContextBuilder()
-                .withSdkInfo(SDK_NAME, SDK_VERSION)
-                .withUniqueIdValue(UNIQUE_ID)
-                .withDeviceDetails(testDeviceDetails)
-                .withContext(Robolectric.application.getApplicationContext())
-                .build();
+                                              .withSdkInfo(SDK_NAME,
+                                                                  SDK_VERSION)
+                                              .withUniqueIdValue(UNIQUE_ID)
+                                              .withDeviceDetails(testDeviceDetails)
+                                              .withContext(RuntimeEnvironment.application
+                                                                   .getApplicationContext())
+                                              .build();
 
-        AnalyticsEvent copiedTarget = AnalyticsEvent.createFromEvent(mockContext, SESSION_ID,
-                System.currentTimeMillis(), target);
+        AnalyticsEvent copiedTarget = AnalyticsEvent
+                                              .createFromEvent(mockContext,
+                                                                      SESSION_ID,
+                                                                      System.currentTimeMillis(),
+                                                                      target);
 
         assertEquals(EVENT_NAME, copiedTarget.getEventType());
         assertEquals(UNIQUE_ID, copiedTarget.getUniqueId());
-        assertEquals(true, System.currentTimeMillis() - copiedTarget.getEventTimestamp() < 50);
+        assertEquals(true, System.currentTimeMillis() -
+                                   copiedTarget.getEventTimestamp() < 50);
         assertEquals(SDK_NAME, copiedTarget.getSdkName());
         assertEquals(SDK_VERSION, copiedTarget.getSdkVersion());
         assertEquals("value", copiedTarget.getAttribute("attr"));
@@ -226,7 +236,8 @@ public class AnalyticsEventTest extends MobileAnalyticsTestBase {
         assertEquals("14", out.getString("app_version_code"));
 
         assertTrue(out.has("app_package_name"));
-        assertEquals("com.amazon.packagename", out.getString("app_package_name"));
+        assertEquals("com.amazon.packagename",
+                            out.getString("app_package_name"));
 
         assertTrue(out.has("attributes"));
         JSONObject attributes = out.getJSONObject("attributes");

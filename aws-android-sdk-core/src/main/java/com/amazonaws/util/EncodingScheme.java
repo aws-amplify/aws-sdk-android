@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,16 @@ package com.amazonaws.util;
  * @author Hanson Char
  */
 public interface EncodingScheme {
+
+    /**
+     * @param bytes bytes to encode.
+     * @return the string result.
+     */
     public String encodeAsString(byte[] bytes);
 
+    /**
+     * @param encoded string to decode.
+     * @return the decoded result.
+     */
     public byte[] decode(String encoded);
 }

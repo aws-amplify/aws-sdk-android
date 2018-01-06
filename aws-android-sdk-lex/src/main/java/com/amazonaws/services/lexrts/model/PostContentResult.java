@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * Name of the intent.
+     * Current user intent that Amazon Lex is aware of.
      * </p>
      */
     private String intentName;
@@ -44,18 +44,27 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * JSON serialized and then base64-encoded map of key value pairs
-     * representing the session specific context information.
+     * Map of key/value pairs representing the session-specific context
+     * information.
      * </p>
      */
     private Map<String, String> sessionAttributes;
 
     /**
      * <p>
-     * Based on the build-time application configuration, Amazon Lex determines
-     * the prompt (or statement) to convey to the user. If your application uses
-     * a Lambda function, then it can determine what prompt (or statement) to
-     * convey to the user.
+     * Message to convey to the user. It can come from the bot's configuration
+     * or a code hook (Lambda function). If the current intent is not configured
+     * with a code hook or if the code hook returned <code>Delegate</code> as
+     * the <code>dialogAction.type</code> in its response, then Amazon Lex
+     * decides the next course of action and selects an appropriate message from
+     * the bot configuration based on the current user interaction context. For
+     * example, if Amazon Lex is not able to understand the user input, it uses
+     * a clarification prompt message (For more information, see the Error
+     * Handling section in the Amazon Lex console). Another example: if the
+     * intent requires confirmation before fulfillment, then Amazon Lex uses the
+     * confirmation prompt message in the intent configuration. If the code hook
+     * returns a message, Amazon Lex passes it as-is in its response to the
+     * client.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -65,7 +74,9 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * Represents the message type to be conveyed to the user. For example:
+     * Identifies the current state of the user interaction. Amazon Lex returns
+     * one of the following values as <code>dialogState</code>. The client can
+     * optionally use this information to customize the user interface.
      * </p>
      * <ul>
      * <li>
@@ -73,83 +84,61 @@ public class PostContentResult implements Serializable {
      * <code>ElicitIntent</code> – Amazon Lex wants to elicit the user's intent.
      * Consider the following examples:
      * </p>
-     * <ul>
-     * <li>
      * <p>
-     * Suppose Amazon Lex did not understand the first utterances. For example,
-     * "I want to order pizza" (indicating OrderPizza intent). If Amazon Lex
-     * doesn't understand the user's input to determine the intent, the service
-     * returns this dialog state.
+     * For example, a user might utter an intent ("I want to order a pizza"). If
+     * Amazon Lex cannot infer the user intent from this utterance, it will
+     * return this dialog state.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Suppose the intent is configured with a follow up prompt. For example,
-     * after the OrderPizza intent is fulfilled, the intent might have a follow
-     * up prompt such as "Do you want to order a drink or desert?" In this case,
-     * Amazon Lex returns this dialog state.
+     * <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes" or "no"
+     * response.
      * </p>
-     * </li>
-     * </ul>
+     * <p>
+     * For example, Amazon Lex wants user confirmation before fulfilling an
+     * intent. Instead of a simple "yes" or "no" response, a user might respond
+     * with additional information. For example,
+     * "yes, but make it a thick crust pizza" or "no, I want to order a drink."
+     * Amazon Lex can process such additional information (in these examples,
+     * update the crust type slot or change the intent from OrderPizza to
+     * OrderDrink).
+     * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ConfirmIntent</code> – Amazon Lex is expecting a yes/no response
-     * from the user indicating whether to go ahead and fulfill the intent (for
-     * example, OK to go ahead and order the pizza).
-     * </p>
-     * <note>
-     * <p>
-     * In addition to yes/no reply, user might provide respond with additional
-     * slot information. It can be a new slot information or change in existing
-     * slot value. For example, the user might reply with
-     * "Yes, but change the crust to thick crust." Amazon Lex can understand the
-     * additional information and update the intent slots accordingly.
+     * <code>ElicitSlot</code> – Amazon Lex is expecting the value of a slot for
+     * the current intent.
      * </p>
      * <p>
-     * Consider another example. Before fulfilling an order, your application
-     * might prompt for confirmation such as "OK to place this pizza order?" A
-     * user might reply with "No, I want to order a drink." In this case, Amazon
-     * Lex recognizes the new OrderDrink intent.
-     * </p>
-     * </note></li>
-     * <li>
-     * <p>
-     * <code>ElicitSlot</code> – Amazon Lex is expecting a value of a slot for
-     * the current intent. Suppose Amazon Lex asks
-     * "What size pizza would you like?" A user might reply with "Medium" or
-     * "Medium pepperoni pizza". Amazon Lex recognizes the size and the topping
-     * as the two separate slot values.
+     * For example, suppose that in the response Amazon Lex sends this message:
+     * "What size pizza would you like?". A user might reply with the slot value
+     * (e.g., "medium"). The user might also provide additional information in
+     * the response (e.g., "medium thick crust pizza"). Amazon Lex can process
+     * such additional information appropriately.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>Fulfilled</code> – Conveys that the Lambda function has
-     * successfully fulfilled the intent. If Lambda function returns a
-     * statement/message to convey the fulfillment result, Amazon Lex passes
-     * this string to the client. If not, Amazon Lex looks for
-     * <code>conclusionStatement</code> that you configured for the intent.
-     * </p>
-     * <p>
-     * If both the Lambda function statement and the
-     * <code>conclusionStatement</code> are missing, Amazon Lex throws a bad
-     * request exception.
+     * successfully fulfilled the intent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReadyForFulfillment</code> – Conveys that the client has to do the
-     * fulfillment work for the intent (this is the case when the current intent
-     * has the <code>fulfillmentActivity </code> configured as
-     * <code>ReturnIntent</code>).
+     * <code>ReadyForFulfillment</code> – Conveys that the client has to
+     * fullfill the request.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Failed</code> – Conversation with the user failed. Some of the
-     * reasons for this dialog state are: the user did not provide appropriate
-     * response after the preconfigured number of attempts, or the Lambda
-     * function failed to fulfill an intent.
+     * <code>Failed</code> – Conveys that the conversation with the user failed.
+     * </p>
+     * <p>
+     * This can happen for various reasons, including that the user does not
+     * provide an appropriate response to prompts from the service (you can
+     * configure how many times Amazon Lex can prompt a user for specific
+     * information), or if the Lambda function fails to fulfill the intent.
      * </p>
      * </li>
      * </ul>
@@ -162,22 +151,29 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * If <code>dialogState</code> value is <code>ElicitSlot</code>, this
-     * returns the name of the slot for which Amazon Lex is eliciting a value.
+     * If the <code>dialogState</code> value is <code>ElicitSlot</code>, returns
+     * the name of the slot for which Amazon Lex is eliciting a value.
      * </p>
      */
     private String slotToElicit;
 
     /**
      * <p>
-     * Prompt (or statement) to convey to the user. This is based on the
-     * application configuration and context. For example, if Amazon Lex did not
-     * understand the user intent, it sends the <code>clarificationPrompt</code>
-     * configured for the application. If the intent requires confirmation
-     * before taking the fulfillment action, it sends the
-     * <code>confirmationPrompt</code>. Here is another example, suppose the
-     * Lambda function successfully fulfilled the intent, and sent a message to
-     * convey to the user. Then Amazon Lex sends that message in the response.
+     * Transcript of the voice input to the operation.
+     * </p>
+     */
+    private String inputTranscript;
+
+    /**
+     * <p>
+     * The prompt (or statement) to convey to the user. This is based on the bot
+     * configuration and context. For example, if Amazon Lex did not understand
+     * the user intent, it sends the <code>clarificationPrompt</code> configured
+     * for the bot. If the intent requires confirmation before taking the
+     * fulfillment action, it sends the <code>confirmationPrompt</code>. Another
+     * example: Suppose that the Lambda function successfully fulfilled the
+     * intent, and sent a message to convey to the user. Then Amazon Lex sends
+     * that message in the response.
      * </p>
      */
     private java.io.InputStream audioStream;
@@ -235,11 +231,12 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * Name of the intent.
+     * Current user intent that Amazon Lex is aware of.
      * </p>
      *
-     * @return <p>
-     *         Name of the intent.
+     * @return
+     *         <p>
+     *         Current user intent that Amazon Lex is aware of.
      *         </p>
      */
     public String getIntentName() {
@@ -248,11 +245,12 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * Name of the intent.
+     * Current user intent that Amazon Lex is aware of.
      * </p>
      *
-     * @param intentName <p>
-     *            Name of the intent.
+     * @param intentName
+     *            <p>
+     *            Current user intent that Amazon Lex is aware of.
      *            </p>
      */
     public void setIntentName(String intentName) {
@@ -261,14 +259,15 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * Name of the intent.
+     * Current user intent that Amazon Lex is aware of.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param intentName <p>
-     *            Name of the intent.
+     * @param intentName
+     *            <p>
+     *            Current user intent that Amazon Lex is aware of.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -331,13 +330,14 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * JSON serialized and then base64-encoded map of key value pairs
-     * representing the session specific context information.
+     * Map of key/value pairs representing the session-specific context
+     * information.
      * </p>
      *
-     * @return <p>
-     *         JSON serialized and then base64-encoded map of key value pairs
-     *         representing the session specific context information.
+     * @return
+     *         <p>
+     *         Map of key/value pairs representing the session-specific context
+     *         information.
      *         </p>
      */
     public Map<String, String> getSessionAttributes() {
@@ -346,13 +346,14 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * JSON serialized and then base64-encoded map of key value pairs
-     * representing the session specific context information.
+     * Map of key/value pairs representing the session-specific context
+     * information.
      * </p>
      *
-     * @param sessionAttributes <p>
-     *            JSON serialized and then base64-encoded map of key value pairs
-     *            representing the session specific context information.
+     * @param sessionAttributes
+     *            <p>
+     *            Map of key/value pairs representing the session-specific
+     *            context information.
      *            </p>
      */
     public void setSessionAttributes(Map<String, String> sessionAttributes) {
@@ -361,16 +362,17 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * JSON serialized and then base64-encoded map of key value pairs
-     * representing the session specific context information.
+     * Map of key/value pairs representing the session-specific context
+     * information.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param sessionAttributes <p>
-     *            JSON serialized and then base64-encoded map of key value pairs
-     *            representing the session specific context information.
+     * @param sessionAttributes
+     *            <p>
+     *            Map of key/value pairs representing the session-specific
+     *            context information.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -382,20 +384,41 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * Based on the build-time application configuration, Amazon Lex determines
-     * the prompt (or statement) to convey to the user. If your application uses
-     * a Lambda function, then it can determine what prompt (or statement) to
-     * convey to the user.
+     * Message to convey to the user. It can come from the bot's configuration
+     * or a code hook (Lambda function). If the current intent is not configured
+     * with a code hook or if the code hook returned <code>Delegate</code> as
+     * the <code>dialogAction.type</code> in its response, then Amazon Lex
+     * decides the next course of action and selects an appropriate message from
+     * the bot configuration based on the current user interaction context. For
+     * example, if Amazon Lex is not able to understand the user input, it uses
+     * a clarification prompt message (For more information, see the Error
+     * Handling section in the Amazon Lex console). Another example: if the
+     * intent requires confirmation before fulfillment, then Amazon Lex uses the
+     * confirmation prompt message in the intent configuration. If the code hook
+     * returns a message, Amazon Lex passes it as-is in its response to the
+     * client.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      *
-     * @return <p>
-     *         Based on the build-time application configuration, Amazon Lex
-     *         determines the prompt (or statement) to convey to the user. If
-     *         your application uses a Lambda function, then it can determine
-     *         what prompt (or statement) to convey to the user.
+     * @return
+     *         <p>
+     *         Message to convey to the user. It can come from the bot's
+     *         configuration or a code hook (Lambda function). If the current
+     *         intent is not configured with a code hook or if the code hook
+     *         returned <code>Delegate</code> as the
+     *         <code>dialogAction.type</code> in its response, then Amazon Lex
+     *         decides the next course of action and selects an appropriate
+     *         message from the bot configuration based on the current user
+     *         interaction context. For example, if Amazon Lex is not able to
+     *         understand the user input, it uses a clarification prompt message
+     *         (For more information, see the Error Handling section in the
+     *         Amazon Lex console). Another example: if the intent requires
+     *         confirmation before fulfillment, then Amazon Lex uses the
+     *         confirmation prompt message in the intent configuration. If the
+     *         code hook returns a message, Amazon Lex passes it as-is in its
+     *         response to the client.
      *         </p>
      */
     public String getMessage() {
@@ -404,20 +427,42 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * Based on the build-time application configuration, Amazon Lex determines
-     * the prompt (or statement) to convey to the user. If your application uses
-     * a Lambda function, then it can determine what prompt (or statement) to
-     * convey to the user.
+     * Message to convey to the user. It can come from the bot's configuration
+     * or a code hook (Lambda function). If the current intent is not configured
+     * with a code hook or if the code hook returned <code>Delegate</code> as
+     * the <code>dialogAction.type</code> in its response, then Amazon Lex
+     * decides the next course of action and selects an appropriate message from
+     * the bot configuration based on the current user interaction context. For
+     * example, if Amazon Lex is not able to understand the user input, it uses
+     * a clarification prompt message (For more information, see the Error
+     * Handling section in the Amazon Lex console). Another example: if the
+     * intent requires confirmation before fulfillment, then Amazon Lex uses the
+     * confirmation prompt message in the intent configuration. If the code hook
+     * returns a message, Amazon Lex passes it as-is in its response to the
+     * client.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      *
-     * @param message <p>
-     *            Based on the build-time application configuration, Amazon Lex
-     *            determines the prompt (or statement) to convey to the user. If
-     *            your application uses a Lambda function, then it can determine
-     *            what prompt (or statement) to convey to the user.
+     * @param message
+     *            <p>
+     *            Message to convey to the user. It can come from the bot's
+     *            configuration or a code hook (Lambda function). If the current
+     *            intent is not configured with a code hook or if the code hook
+     *            returned <code>Delegate</code> as the
+     *            <code>dialogAction.type</code> in its response, then Amazon
+     *            Lex decides the next course of action and selects an
+     *            appropriate message from the bot configuration based on the
+     *            current user interaction context. For example, if Amazon Lex
+     *            is not able to understand the user input, it uses a
+     *            clarification prompt message (For more information, see the
+     *            Error Handling section in the Amazon Lex console). Another
+     *            example: if the intent requires confirmation before
+     *            fulfillment, then Amazon Lex uses the confirmation prompt
+     *            message in the intent configuration. If the code hook returns
+     *            a message, Amazon Lex passes it as-is in its response to the
+     *            client.
      *            </p>
      */
     public void setMessage(String message) {
@@ -426,10 +471,19 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * Based on the build-time application configuration, Amazon Lex determines
-     * the prompt (or statement) to convey to the user. If your application uses
-     * a Lambda function, then it can determine what prompt (or statement) to
-     * convey to the user.
+     * Message to convey to the user. It can come from the bot's configuration
+     * or a code hook (Lambda function). If the current intent is not configured
+     * with a code hook or if the code hook returned <code>Delegate</code> as
+     * the <code>dialogAction.type</code> in its response, then Amazon Lex
+     * decides the next course of action and selects an appropriate message from
+     * the bot configuration based on the current user interaction context. For
+     * example, if Amazon Lex is not able to understand the user input, it uses
+     * a clarification prompt message (For more information, see the Error
+     * Handling section in the Amazon Lex console). Another example: if the
+     * intent requires confirmation before fulfillment, then Amazon Lex uses the
+     * confirmation prompt message in the intent configuration. If the code hook
+     * returns a message, Amazon Lex passes it as-is in its response to the
+     * client.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -438,11 +492,24 @@ public class PostContentResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      *
-     * @param message <p>
-     *            Based on the build-time application configuration, Amazon Lex
-     *            determines the prompt (or statement) to convey to the user. If
-     *            your application uses a Lambda function, then it can determine
-     *            what prompt (or statement) to convey to the user.
+     * @param message
+     *            <p>
+     *            Message to convey to the user. It can come from the bot's
+     *            configuration or a code hook (Lambda function). If the current
+     *            intent is not configured with a code hook or if the code hook
+     *            returned <code>Delegate</code> as the
+     *            <code>dialogAction.type</code> in its response, then Amazon
+     *            Lex decides the next course of action and selects an
+     *            appropriate message from the bot configuration based on the
+     *            current user interaction context. For example, if Amazon Lex
+     *            is not able to understand the user input, it uses a
+     *            clarification prompt message (For more information, see the
+     *            Error Handling section in the Amazon Lex console). Another
+     *            example: if the intent requires confirmation before
+     *            fulfillment, then Amazon Lex uses the confirmation prompt
+     *            message in the intent configuration. If the code hook returns
+     *            a message, Amazon Lex passes it as-is in its response to the
+     *            client.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -454,7 +521,9 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * Represents the message type to be conveyed to the user. For example:
+     * Identifies the current state of the user interaction. Amazon Lex returns
+     * one of the following values as <code>dialogState</code>. The client can
+     * optionally use this information to customize the user interface.
      * </p>
      * <ul>
      * <li>
@@ -462,83 +531,61 @@ public class PostContentResult implements Serializable {
      * <code>ElicitIntent</code> – Amazon Lex wants to elicit the user's intent.
      * Consider the following examples:
      * </p>
-     * <ul>
-     * <li>
      * <p>
-     * Suppose Amazon Lex did not understand the first utterances. For example,
-     * "I want to order pizza" (indicating OrderPizza intent). If Amazon Lex
-     * doesn't understand the user's input to determine the intent, the service
-     * returns this dialog state.
+     * For example, a user might utter an intent ("I want to order a pizza"). If
+     * Amazon Lex cannot infer the user intent from this utterance, it will
+     * return this dialog state.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Suppose the intent is configured with a follow up prompt. For example,
-     * after the OrderPizza intent is fulfilled, the intent might have a follow
-     * up prompt such as "Do you want to order a drink or desert?" In this case,
-     * Amazon Lex returns this dialog state.
+     * <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes" or "no"
+     * response.
      * </p>
-     * </li>
-     * </ul>
+     * <p>
+     * For example, Amazon Lex wants user confirmation before fulfilling an
+     * intent. Instead of a simple "yes" or "no" response, a user might respond
+     * with additional information. For example,
+     * "yes, but make it a thick crust pizza" or "no, I want to order a drink."
+     * Amazon Lex can process such additional information (in these examples,
+     * update the crust type slot or change the intent from OrderPizza to
+     * OrderDrink).
+     * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ConfirmIntent</code> – Amazon Lex is expecting a yes/no response
-     * from the user indicating whether to go ahead and fulfill the intent (for
-     * example, OK to go ahead and order the pizza).
-     * </p>
-     * <note>
-     * <p>
-     * In addition to yes/no reply, user might provide respond with additional
-     * slot information. It can be a new slot information or change in existing
-     * slot value. For example, the user might reply with
-     * "Yes, but change the crust to thick crust." Amazon Lex can understand the
-     * additional information and update the intent slots accordingly.
+     * <code>ElicitSlot</code> – Amazon Lex is expecting the value of a slot for
+     * the current intent.
      * </p>
      * <p>
-     * Consider another example. Before fulfilling an order, your application
-     * might prompt for confirmation such as "OK to place this pizza order?" A
-     * user might reply with "No, I want to order a drink." In this case, Amazon
-     * Lex recognizes the new OrderDrink intent.
-     * </p>
-     * </note></li>
-     * <li>
-     * <p>
-     * <code>ElicitSlot</code> – Amazon Lex is expecting a value of a slot for
-     * the current intent. Suppose Amazon Lex asks
-     * "What size pizza would you like?" A user might reply with "Medium" or
-     * "Medium pepperoni pizza". Amazon Lex recognizes the size and the topping
-     * as the two separate slot values.
+     * For example, suppose that in the response Amazon Lex sends this message:
+     * "What size pizza would you like?". A user might reply with the slot value
+     * (e.g., "medium"). The user might also provide additional information in
+     * the response (e.g., "medium thick crust pizza"). Amazon Lex can process
+     * such additional information appropriately.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>Fulfilled</code> – Conveys that the Lambda function has
-     * successfully fulfilled the intent. If Lambda function returns a
-     * statement/message to convey the fulfillment result, Amazon Lex passes
-     * this string to the client. If not, Amazon Lex looks for
-     * <code>conclusionStatement</code> that you configured for the intent.
-     * </p>
-     * <p>
-     * If both the Lambda function statement and the
-     * <code>conclusionStatement</code> are missing, Amazon Lex throws a bad
-     * request exception.
+     * successfully fulfilled the intent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReadyForFulfillment</code> – Conveys that the client has to do the
-     * fulfillment work for the intent (this is the case when the current intent
-     * has the <code>fulfillmentActivity </code> configured as
-     * <code>ReturnIntent</code>).
+     * <code>ReadyForFulfillment</code> – Conveys that the client has to
+     * fullfill the request.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Failed</code> – Conversation with the user failed. Some of the
-     * reasons for this dialog state are: the user did not provide appropriate
-     * response after the preconfigured number of attempts, or the Lambda
-     * function failed to fulfill an intent.
+     * <code>Failed</code> – Conveys that the conversation with the user failed.
+     * </p>
+     * <p>
+     * This can happen for various reasons, including that the user does not
+     * provide an appropriate response to prompts from the service (you can
+     * configure how many times Amazon Lex can prompt a user for specific
+     * information), or if the Lambda function fails to fulfill the intent.
      * </p>
      * </li>
      * </ul>
@@ -547,9 +594,12 @@ public class PostContentResult implements Serializable {
      * <b>Allowed Values: </b>ElicitIntent, ConfirmIntent, ElicitSlot,
      * Fulfilled, ReadyForFulfillment, Failed
      *
-     * @return <p>
-     *         Represents the message type to be conveyed to the user. For
-     *         example:
+     * @return
+     *         <p>
+     *         Identifies the current state of the user interaction. Amazon Lex
+     *         returns one of the following values as <code>dialogState</code>.
+     *         The client can optionally use this information to customize the
+     *         user interface.
      *         </p>
      *         <ul>
      *         <li>
@@ -557,87 +607,64 @@ public class PostContentResult implements Serializable {
      *         <code>ElicitIntent</code> – Amazon Lex wants to elicit the user's
      *         intent. Consider the following examples:
      *         </p>
-     *         <ul>
-     *         <li>
      *         <p>
-     *         Suppose Amazon Lex did not understand the first utterances. For
-     *         example, "I want to order pizza" (indicating OrderPizza intent).
-     *         If Amazon Lex doesn't understand the user's input to determine
-     *         the intent, the service returns this dialog state.
+     *         For example, a user might utter an intent (
+     *         "I want to order a pizza"). If Amazon Lex cannot infer the user
+     *         intent from this utterance, it will return this dialog state.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         Suppose the intent is configured with a follow up prompt. For
-     *         example, after the OrderPizza intent is fulfilled, the intent
-     *         might have a follow up prompt such as
-     *         "Do you want to order a drink or desert?" In this case, Amazon
-     *         Lex returns this dialog state.
+     *         <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes" or
+     *         "no" response.
      *         </p>
-     *         </li>
-     *         </ul>
+     *         <p>
+     *         For example, Amazon Lex wants user confirmation before fulfilling
+     *         an intent. Instead of a simple "yes" or "no" response, a user
+     *         might respond with additional information. For example,
+     *         "yes, but make it a thick crust pizza" or
+     *         "no, I want to order a drink." Amazon Lex can process such
+     *         additional information (in these examples, update the crust type
+     *         slot or change the intent from OrderPizza to OrderDrink).
+     *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>ConfirmIntent</code> – Amazon Lex is expecting a yes/no
-     *         response from the user indicating whether to go ahead and fulfill
-     *         the intent (for example, OK to go ahead and order the pizza).
-     *         </p>
-     *         <note>
-     *         <p>
-     *         In addition to yes/no reply, user might provide respond with
-     *         additional slot information. It can be a new slot information or
-     *         change in existing slot value. For example, the user might reply
-     *         with "Yes, but change the crust to thick crust." Amazon Lex can
-     *         understand the additional information and update the intent slots
-     *         accordingly.
+     *         <code>ElicitSlot</code> – Amazon Lex is expecting the value of a
+     *         slot for the current intent.
      *         </p>
      *         <p>
-     *         Consider another example. Before fulfilling an order, your
-     *         application might prompt for confirmation such as
-     *         "OK to place this pizza order?" A user might reply with
-     *         "No, I want to order a drink." In this case, Amazon Lex
-     *         recognizes the new OrderDrink intent.
-     *         </p>
-     *         </note></li>
-     *         <li>
-     *         <p>
-     *         <code>ElicitSlot</code> – Amazon Lex is expecting a value of a
-     *         slot for the current intent. Suppose Amazon Lex asks
-     *         "What size pizza would you like?" A user might reply with
-     *         "Medium" or "Medium pepperoni pizza". Amazon Lex recognizes the
-     *         size and the topping as the two separate slot values.
+     *         For example, suppose that in the response Amazon Lex sends this
+     *         message: "What size pizza would you like?". A user might reply
+     *         with the slot value (e.g., "medium"). The user might also provide
+     *         additional information in the response (e.g.,
+     *         "medium thick crust pizza"). Amazon Lex can process such
+     *         additional information appropriately.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         <code>Fulfilled</code> – Conveys that the Lambda function has
-     *         successfully fulfilled the intent. If Lambda function returns a
-     *         statement/message to convey the fulfillment result, Amazon Lex
-     *         passes this string to the client. If not, Amazon Lex looks for
-     *         <code>conclusionStatement</code> that you configured for the
-     *         intent.
-     *         </p>
-     *         <p>
-     *         If both the Lambda function statement and the
-     *         <code>conclusionStatement</code> are missing, Amazon Lex throws a
-     *         bad request exception.
+     *         successfully fulfilled the intent.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         <code>ReadyForFulfillment</code> – Conveys that the client has to
-     *         do the fulfillment work for the intent (this is the case when the
-     *         current intent has the <code>fulfillmentActivity </code>
-     *         configured as <code>ReturnIntent</code>).
+     *         fullfill the request.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>Failed</code> – Conversation with the user failed. Some of
-     *         the reasons for this dialog state are: the user did not provide
-     *         appropriate response after the preconfigured number of attempts,
-     *         or the Lambda function failed to fulfill an intent.
+     *         <code>Failed</code> – Conveys that the conversation with the user
+     *         failed.
+     *         </p>
+     *         <p>
+     *         This can happen for various reasons, including that the user does
+     *         not provide an appropriate response to prompts from the service
+     *         (you can configure how many times Amazon Lex can prompt a user
+     *         for specific information), or if the Lambda function fails to
+     *         fulfill the intent.
      *         </p>
      *         </li>
      *         </ul>
@@ -649,7 +676,9 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * Represents the message type to be conveyed to the user. For example:
+     * Identifies the current state of the user interaction. Amazon Lex returns
+     * one of the following values as <code>dialogState</code>. The client can
+     * optionally use this information to customize the user interface.
      * </p>
      * <ul>
      * <li>
@@ -657,83 +686,61 @@ public class PostContentResult implements Serializable {
      * <code>ElicitIntent</code> – Amazon Lex wants to elicit the user's intent.
      * Consider the following examples:
      * </p>
-     * <ul>
-     * <li>
      * <p>
-     * Suppose Amazon Lex did not understand the first utterances. For example,
-     * "I want to order pizza" (indicating OrderPizza intent). If Amazon Lex
-     * doesn't understand the user's input to determine the intent, the service
-     * returns this dialog state.
+     * For example, a user might utter an intent ("I want to order a pizza"). If
+     * Amazon Lex cannot infer the user intent from this utterance, it will
+     * return this dialog state.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Suppose the intent is configured with a follow up prompt. For example,
-     * after the OrderPizza intent is fulfilled, the intent might have a follow
-     * up prompt such as "Do you want to order a drink or desert?" In this case,
-     * Amazon Lex returns this dialog state.
+     * <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes" or "no"
+     * response.
      * </p>
-     * </li>
-     * </ul>
+     * <p>
+     * For example, Amazon Lex wants user confirmation before fulfilling an
+     * intent. Instead of a simple "yes" or "no" response, a user might respond
+     * with additional information. For example,
+     * "yes, but make it a thick crust pizza" or "no, I want to order a drink."
+     * Amazon Lex can process such additional information (in these examples,
+     * update the crust type slot or change the intent from OrderPizza to
+     * OrderDrink).
+     * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ConfirmIntent</code> – Amazon Lex is expecting a yes/no response
-     * from the user indicating whether to go ahead and fulfill the intent (for
-     * example, OK to go ahead and order the pizza).
-     * </p>
-     * <note>
-     * <p>
-     * In addition to yes/no reply, user might provide respond with additional
-     * slot information. It can be a new slot information or change in existing
-     * slot value. For example, the user might reply with
-     * "Yes, but change the crust to thick crust." Amazon Lex can understand the
-     * additional information and update the intent slots accordingly.
+     * <code>ElicitSlot</code> – Amazon Lex is expecting the value of a slot for
+     * the current intent.
      * </p>
      * <p>
-     * Consider another example. Before fulfilling an order, your application
-     * might prompt for confirmation such as "OK to place this pizza order?" A
-     * user might reply with "No, I want to order a drink." In this case, Amazon
-     * Lex recognizes the new OrderDrink intent.
-     * </p>
-     * </note></li>
-     * <li>
-     * <p>
-     * <code>ElicitSlot</code> – Amazon Lex is expecting a value of a slot for
-     * the current intent. Suppose Amazon Lex asks
-     * "What size pizza would you like?" A user might reply with "Medium" or
-     * "Medium pepperoni pizza". Amazon Lex recognizes the size and the topping
-     * as the two separate slot values.
+     * For example, suppose that in the response Amazon Lex sends this message:
+     * "What size pizza would you like?". A user might reply with the slot value
+     * (e.g., "medium"). The user might also provide additional information in
+     * the response (e.g., "medium thick crust pizza"). Amazon Lex can process
+     * such additional information appropriately.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>Fulfilled</code> – Conveys that the Lambda function has
-     * successfully fulfilled the intent. If Lambda function returns a
-     * statement/message to convey the fulfillment result, Amazon Lex passes
-     * this string to the client. If not, Amazon Lex looks for
-     * <code>conclusionStatement</code> that you configured for the intent.
-     * </p>
-     * <p>
-     * If both the Lambda function statement and the
-     * <code>conclusionStatement</code> are missing, Amazon Lex throws a bad
-     * request exception.
+     * successfully fulfilled the intent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReadyForFulfillment</code> – Conveys that the client has to do the
-     * fulfillment work for the intent (this is the case when the current intent
-     * has the <code>fulfillmentActivity </code> configured as
-     * <code>ReturnIntent</code>).
+     * <code>ReadyForFulfillment</code> – Conveys that the client has to
+     * fullfill the request.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Failed</code> – Conversation with the user failed. Some of the
-     * reasons for this dialog state are: the user did not provide appropriate
-     * response after the preconfigured number of attempts, or the Lambda
-     * function failed to fulfill an intent.
+     * <code>Failed</code> – Conveys that the conversation with the user failed.
+     * </p>
+     * <p>
+     * This can happen for various reasons, including that the user does not
+     * provide an appropriate response to prompts from the service (you can
+     * configure how many times Amazon Lex can prompt a user for specific
+     * information), or if the Lambda function fails to fulfill the intent.
      * </p>
      * </li>
      * </ul>
@@ -742,9 +749,12 @@ public class PostContentResult implements Serializable {
      * <b>Allowed Values: </b>ElicitIntent, ConfirmIntent, ElicitSlot,
      * Fulfilled, ReadyForFulfillment, Failed
      *
-     * @param dialogState <p>
-     *            Represents the message type to be conveyed to the user. For
-     *            example:
+     * @param dialogState
+     *            <p>
+     *            Identifies the current state of the user interaction. Amazon
+     *            Lex returns one of the following values as
+     *            <code>dialogState</code>. The client can optionally use this
+     *            information to customize the user interface.
      *            </p>
      *            <ul>
      *            <li>
@@ -752,89 +762,65 @@ public class PostContentResult implements Serializable {
      *            <code>ElicitIntent</code> – Amazon Lex wants to elicit the
      *            user's intent. Consider the following examples:
      *            </p>
-     *            <ul>
-     *            <li>
      *            <p>
-     *            Suppose Amazon Lex did not understand the first utterances.
-     *            For example, "I want to order pizza" (indicating OrderPizza
-     *            intent). If Amazon Lex doesn't understand the user's input to
-     *            determine the intent, the service returns this dialog state.
+     *            For example, a user might utter an intent (
+     *            "I want to order a pizza"). If Amazon Lex cannot infer the
+     *            user intent from this utterance, it will return this dialog
+     *            state.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Suppose the intent is configured with a follow up prompt. For
-     *            example, after the OrderPizza intent is fulfilled, the intent
-     *            might have a follow up prompt such as
-     *            "Do you want to order a drink or desert?" In this case, Amazon
-     *            Lex returns this dialog state.
+     *            <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes"
+     *            or "no" response.
      *            </p>
-     *            </li>
-     *            </ul>
+     *            <p>
+     *            For example, Amazon Lex wants user confirmation before
+     *            fulfilling an intent. Instead of a simple "yes" or "no"
+     *            response, a user might respond with additional information.
+     *            For example, "yes, but make it a thick crust pizza" or
+     *            "no, I want to order a drink." Amazon Lex can process such
+     *            additional information (in these examples, update the crust
+     *            type slot or change the intent from OrderPizza to OrderDrink).
+     *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ConfirmIntent</code> – Amazon Lex is expecting a yes/no
-     *            response from the user indicating whether to go ahead and
-     *            fulfill the intent (for example, OK to go ahead and order the
-     *            pizza).
-     *            </p>
-     *            <note>
-     *            <p>
-     *            In addition to yes/no reply, user might provide respond with
-     *            additional slot information. It can be a new slot information
-     *            or change in existing slot value. For example, the user might
-     *            reply with "Yes, but change the crust to thick crust." Amazon
-     *            Lex can understand the additional information and update the
-     *            intent slots accordingly.
+     *            <code>ElicitSlot</code> – Amazon Lex is expecting the value of
+     *            a slot for the current intent.
      *            </p>
      *            <p>
-     *            Consider another example. Before fulfilling an order, your
-     *            application might prompt for confirmation such as
-     *            "OK to place this pizza order?" A user might reply with
-     *            "No, I want to order a drink." In this case, Amazon Lex
-     *            recognizes the new OrderDrink intent.
-     *            </p>
-     *            </note></li>
-     *            <li>
-     *            <p>
-     *            <code>ElicitSlot</code> – Amazon Lex is expecting a value of a
-     *            slot for the current intent. Suppose Amazon Lex asks
-     *            "What size pizza would you like?" A user might reply with
-     *            "Medium" or "Medium pepperoni pizza". Amazon Lex recognizes
-     *            the size and the topping as the two separate slot values.
+     *            For example, suppose that in the response Amazon Lex sends
+     *            this message: "What size pizza would you like?". A user might
+     *            reply with the slot value (e.g., "medium"). The user might
+     *            also provide additional information in the response (e.g.,
+     *            "medium thick crust pizza"). Amazon Lex can process such
+     *            additional information appropriately.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>Fulfilled</code> – Conveys that the Lambda function has
-     *            successfully fulfilled the intent. If Lambda function returns
-     *            a statement/message to convey the fulfillment result, Amazon
-     *            Lex passes this string to the client. If not, Amazon Lex looks
-     *            for <code>conclusionStatement</code> that you configured for
-     *            the intent.
-     *            </p>
-     *            <p>
-     *            If both the Lambda function statement and the
-     *            <code>conclusionStatement</code> are missing, Amazon Lex
-     *            throws a bad request exception.
+     *            successfully fulfilled the intent.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>ReadyForFulfillment</code> – Conveys that the client has
-     *            to do the fulfillment work for the intent (this is the case
-     *            when the current intent has the
-     *            <code>fulfillmentActivity </code> configured as
-     *            <code>ReturnIntent</code>).
+     *            to fullfill the request.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Failed</code> – Conversation with the user failed. Some
-     *            of the reasons for this dialog state are: the user did not
-     *            provide appropriate response after the preconfigured number of
-     *            attempts, or the Lambda function failed to fulfill an intent.
+     *            <code>Failed</code> – Conveys that the conversation with the
+     *            user failed.
+     *            </p>
+     *            <p>
+     *            This can happen for various reasons, including that the user
+     *            does not provide an appropriate response to prompts from the
+     *            service (you can configure how many times Amazon Lex can
+     *            prompt a user for specific information), or if the Lambda
+     *            function fails to fulfill the intent.
      *            </p>
      *            </li>
      *            </ul>
@@ -846,7 +832,9 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * Represents the message type to be conveyed to the user. For example:
+     * Identifies the current state of the user interaction. Amazon Lex returns
+     * one of the following values as <code>dialogState</code>. The client can
+     * optionally use this information to customize the user interface.
      * </p>
      * <ul>
      * <li>
@@ -854,83 +842,61 @@ public class PostContentResult implements Serializable {
      * <code>ElicitIntent</code> – Amazon Lex wants to elicit the user's intent.
      * Consider the following examples:
      * </p>
-     * <ul>
-     * <li>
      * <p>
-     * Suppose Amazon Lex did not understand the first utterances. For example,
-     * "I want to order pizza" (indicating OrderPizza intent). If Amazon Lex
-     * doesn't understand the user's input to determine the intent, the service
-     * returns this dialog state.
+     * For example, a user might utter an intent ("I want to order a pizza"). If
+     * Amazon Lex cannot infer the user intent from this utterance, it will
+     * return this dialog state.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Suppose the intent is configured with a follow up prompt. For example,
-     * after the OrderPizza intent is fulfilled, the intent might have a follow
-     * up prompt such as "Do you want to order a drink or desert?" In this case,
-     * Amazon Lex returns this dialog state.
+     * <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes" or "no"
+     * response.
      * </p>
-     * </li>
-     * </ul>
+     * <p>
+     * For example, Amazon Lex wants user confirmation before fulfilling an
+     * intent. Instead of a simple "yes" or "no" response, a user might respond
+     * with additional information. For example,
+     * "yes, but make it a thick crust pizza" or "no, I want to order a drink."
+     * Amazon Lex can process such additional information (in these examples,
+     * update the crust type slot or change the intent from OrderPizza to
+     * OrderDrink).
+     * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ConfirmIntent</code> – Amazon Lex is expecting a yes/no response
-     * from the user indicating whether to go ahead and fulfill the intent (for
-     * example, OK to go ahead and order the pizza).
-     * </p>
-     * <note>
-     * <p>
-     * In addition to yes/no reply, user might provide respond with additional
-     * slot information. It can be a new slot information or change in existing
-     * slot value. For example, the user might reply with
-     * "Yes, but change the crust to thick crust." Amazon Lex can understand the
-     * additional information and update the intent slots accordingly.
+     * <code>ElicitSlot</code> – Amazon Lex is expecting the value of a slot for
+     * the current intent.
      * </p>
      * <p>
-     * Consider another example. Before fulfilling an order, your application
-     * might prompt for confirmation such as "OK to place this pizza order?" A
-     * user might reply with "No, I want to order a drink." In this case, Amazon
-     * Lex recognizes the new OrderDrink intent.
-     * </p>
-     * </note></li>
-     * <li>
-     * <p>
-     * <code>ElicitSlot</code> – Amazon Lex is expecting a value of a slot for
-     * the current intent. Suppose Amazon Lex asks
-     * "What size pizza would you like?" A user might reply with "Medium" or
-     * "Medium pepperoni pizza". Amazon Lex recognizes the size and the topping
-     * as the two separate slot values.
+     * For example, suppose that in the response Amazon Lex sends this message:
+     * "What size pizza would you like?". A user might reply with the slot value
+     * (e.g., "medium"). The user might also provide additional information in
+     * the response (e.g., "medium thick crust pizza"). Amazon Lex can process
+     * such additional information appropriately.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>Fulfilled</code> – Conveys that the Lambda function has
-     * successfully fulfilled the intent. If Lambda function returns a
-     * statement/message to convey the fulfillment result, Amazon Lex passes
-     * this string to the client. If not, Amazon Lex looks for
-     * <code>conclusionStatement</code> that you configured for the intent.
-     * </p>
-     * <p>
-     * If both the Lambda function statement and the
-     * <code>conclusionStatement</code> are missing, Amazon Lex throws a bad
-     * request exception.
+     * successfully fulfilled the intent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReadyForFulfillment</code> – Conveys that the client has to do the
-     * fulfillment work for the intent (this is the case when the current intent
-     * has the <code>fulfillmentActivity </code> configured as
-     * <code>ReturnIntent</code>).
+     * <code>ReadyForFulfillment</code> – Conveys that the client has to
+     * fullfill the request.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Failed</code> – Conversation with the user failed. Some of the
-     * reasons for this dialog state are: the user did not provide appropriate
-     * response after the preconfigured number of attempts, or the Lambda
-     * function failed to fulfill an intent.
+     * <code>Failed</code> – Conveys that the conversation with the user failed.
+     * </p>
+     * <p>
+     * This can happen for various reasons, including that the user does not
+     * provide an appropriate response to prompts from the service (you can
+     * configure how many times Amazon Lex can prompt a user for specific
+     * information), or if the Lambda function fails to fulfill the intent.
      * </p>
      * </li>
      * </ul>
@@ -942,9 +908,12 @@ public class PostContentResult implements Serializable {
      * <b>Allowed Values: </b>ElicitIntent, ConfirmIntent, ElicitSlot,
      * Fulfilled, ReadyForFulfillment, Failed
      *
-     * @param dialogState <p>
-     *            Represents the message type to be conveyed to the user. For
-     *            example:
+     * @param dialogState
+     *            <p>
+     *            Identifies the current state of the user interaction. Amazon
+     *            Lex returns one of the following values as
+     *            <code>dialogState</code>. The client can optionally use this
+     *            information to customize the user interface.
      *            </p>
      *            <ul>
      *            <li>
@@ -952,89 +921,65 @@ public class PostContentResult implements Serializable {
      *            <code>ElicitIntent</code> – Amazon Lex wants to elicit the
      *            user's intent. Consider the following examples:
      *            </p>
-     *            <ul>
-     *            <li>
      *            <p>
-     *            Suppose Amazon Lex did not understand the first utterances.
-     *            For example, "I want to order pizza" (indicating OrderPizza
-     *            intent). If Amazon Lex doesn't understand the user's input to
-     *            determine the intent, the service returns this dialog state.
+     *            For example, a user might utter an intent (
+     *            "I want to order a pizza"). If Amazon Lex cannot infer the
+     *            user intent from this utterance, it will return this dialog
+     *            state.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Suppose the intent is configured with a follow up prompt. For
-     *            example, after the OrderPizza intent is fulfilled, the intent
-     *            might have a follow up prompt such as
-     *            "Do you want to order a drink or desert?" In this case, Amazon
-     *            Lex returns this dialog state.
+     *            <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes"
+     *            or "no" response.
      *            </p>
-     *            </li>
-     *            </ul>
+     *            <p>
+     *            For example, Amazon Lex wants user confirmation before
+     *            fulfilling an intent. Instead of a simple "yes" or "no"
+     *            response, a user might respond with additional information.
+     *            For example, "yes, but make it a thick crust pizza" or
+     *            "no, I want to order a drink." Amazon Lex can process such
+     *            additional information (in these examples, update the crust
+     *            type slot or change the intent from OrderPizza to OrderDrink).
+     *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ConfirmIntent</code> – Amazon Lex is expecting a yes/no
-     *            response from the user indicating whether to go ahead and
-     *            fulfill the intent (for example, OK to go ahead and order the
-     *            pizza).
-     *            </p>
-     *            <note>
-     *            <p>
-     *            In addition to yes/no reply, user might provide respond with
-     *            additional slot information. It can be a new slot information
-     *            or change in existing slot value. For example, the user might
-     *            reply with "Yes, but change the crust to thick crust." Amazon
-     *            Lex can understand the additional information and update the
-     *            intent slots accordingly.
+     *            <code>ElicitSlot</code> – Amazon Lex is expecting the value of
+     *            a slot for the current intent.
      *            </p>
      *            <p>
-     *            Consider another example. Before fulfilling an order, your
-     *            application might prompt for confirmation such as
-     *            "OK to place this pizza order?" A user might reply with
-     *            "No, I want to order a drink." In this case, Amazon Lex
-     *            recognizes the new OrderDrink intent.
-     *            </p>
-     *            </note></li>
-     *            <li>
-     *            <p>
-     *            <code>ElicitSlot</code> – Amazon Lex is expecting a value of a
-     *            slot for the current intent. Suppose Amazon Lex asks
-     *            "What size pizza would you like?" A user might reply with
-     *            "Medium" or "Medium pepperoni pizza". Amazon Lex recognizes
-     *            the size and the topping as the two separate slot values.
+     *            For example, suppose that in the response Amazon Lex sends
+     *            this message: "What size pizza would you like?". A user might
+     *            reply with the slot value (e.g., "medium"). The user might
+     *            also provide additional information in the response (e.g.,
+     *            "medium thick crust pizza"). Amazon Lex can process such
+     *            additional information appropriately.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>Fulfilled</code> – Conveys that the Lambda function has
-     *            successfully fulfilled the intent. If Lambda function returns
-     *            a statement/message to convey the fulfillment result, Amazon
-     *            Lex passes this string to the client. If not, Amazon Lex looks
-     *            for <code>conclusionStatement</code> that you configured for
-     *            the intent.
-     *            </p>
-     *            <p>
-     *            If both the Lambda function statement and the
-     *            <code>conclusionStatement</code> are missing, Amazon Lex
-     *            throws a bad request exception.
+     *            successfully fulfilled the intent.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>ReadyForFulfillment</code> – Conveys that the client has
-     *            to do the fulfillment work for the intent (this is the case
-     *            when the current intent has the
-     *            <code>fulfillmentActivity </code> configured as
-     *            <code>ReturnIntent</code>).
+     *            to fullfill the request.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Failed</code> – Conversation with the user failed. Some
-     *            of the reasons for this dialog state are: the user did not
-     *            provide appropriate response after the preconfigured number of
-     *            attempts, or the Lambda function failed to fulfill an intent.
+     *            <code>Failed</code> – Conveys that the conversation with the
+     *            user failed.
+     *            </p>
+     *            <p>
+     *            This can happen for various reasons, including that the user
+     *            does not provide an appropriate response to prompts from the
+     *            service (you can configure how many times Amazon Lex can
+     *            prompt a user for specific information), or if the Lambda
+     *            function fails to fulfill the intent.
      *            </p>
      *            </li>
      *            </ul>
@@ -1049,7 +994,9 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * Represents the message type to be conveyed to the user. For example:
+     * Identifies the current state of the user interaction. Amazon Lex returns
+     * one of the following values as <code>dialogState</code>. The client can
+     * optionally use this information to customize the user interface.
      * </p>
      * <ul>
      * <li>
@@ -1057,83 +1004,61 @@ public class PostContentResult implements Serializable {
      * <code>ElicitIntent</code> – Amazon Lex wants to elicit the user's intent.
      * Consider the following examples:
      * </p>
-     * <ul>
-     * <li>
      * <p>
-     * Suppose Amazon Lex did not understand the first utterances. For example,
-     * "I want to order pizza" (indicating OrderPizza intent). If Amazon Lex
-     * doesn't understand the user's input to determine the intent, the service
-     * returns this dialog state.
+     * For example, a user might utter an intent ("I want to order a pizza"). If
+     * Amazon Lex cannot infer the user intent from this utterance, it will
+     * return this dialog state.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Suppose the intent is configured with a follow up prompt. For example,
-     * after the OrderPizza intent is fulfilled, the intent might have a follow
-     * up prompt such as "Do you want to order a drink or desert?" In this case,
-     * Amazon Lex returns this dialog state.
+     * <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes" or "no"
+     * response.
      * </p>
-     * </li>
-     * </ul>
+     * <p>
+     * For example, Amazon Lex wants user confirmation before fulfilling an
+     * intent. Instead of a simple "yes" or "no" response, a user might respond
+     * with additional information. For example,
+     * "yes, but make it a thick crust pizza" or "no, I want to order a drink."
+     * Amazon Lex can process such additional information (in these examples,
+     * update the crust type slot or change the intent from OrderPizza to
+     * OrderDrink).
+     * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ConfirmIntent</code> – Amazon Lex is expecting a yes/no response
-     * from the user indicating whether to go ahead and fulfill the intent (for
-     * example, OK to go ahead and order the pizza).
-     * </p>
-     * <note>
-     * <p>
-     * In addition to yes/no reply, user might provide respond with additional
-     * slot information. It can be a new slot information or change in existing
-     * slot value. For example, the user might reply with
-     * "Yes, but change the crust to thick crust." Amazon Lex can understand the
-     * additional information and update the intent slots accordingly.
+     * <code>ElicitSlot</code> – Amazon Lex is expecting the value of a slot for
+     * the current intent.
      * </p>
      * <p>
-     * Consider another example. Before fulfilling an order, your application
-     * might prompt for confirmation such as "OK to place this pizza order?" A
-     * user might reply with "No, I want to order a drink." In this case, Amazon
-     * Lex recognizes the new OrderDrink intent.
-     * </p>
-     * </note></li>
-     * <li>
-     * <p>
-     * <code>ElicitSlot</code> – Amazon Lex is expecting a value of a slot for
-     * the current intent. Suppose Amazon Lex asks
-     * "What size pizza would you like?" A user might reply with "Medium" or
-     * "Medium pepperoni pizza". Amazon Lex recognizes the size and the topping
-     * as the two separate slot values.
+     * For example, suppose that in the response Amazon Lex sends this message:
+     * "What size pizza would you like?". A user might reply with the slot value
+     * (e.g., "medium"). The user might also provide additional information in
+     * the response (e.g., "medium thick crust pizza"). Amazon Lex can process
+     * such additional information appropriately.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>Fulfilled</code> – Conveys that the Lambda function has
-     * successfully fulfilled the intent. If Lambda function returns a
-     * statement/message to convey the fulfillment result, Amazon Lex passes
-     * this string to the client. If not, Amazon Lex looks for
-     * <code>conclusionStatement</code> that you configured for the intent.
-     * </p>
-     * <p>
-     * If both the Lambda function statement and the
-     * <code>conclusionStatement</code> are missing, Amazon Lex throws a bad
-     * request exception.
+     * successfully fulfilled the intent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReadyForFulfillment</code> – Conveys that the client has to do the
-     * fulfillment work for the intent (this is the case when the current intent
-     * has the <code>fulfillmentActivity </code> configured as
-     * <code>ReturnIntent</code>).
+     * <code>ReadyForFulfillment</code> – Conveys that the client has to
+     * fullfill the request.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Failed</code> – Conversation with the user failed. Some of the
-     * reasons for this dialog state are: the user did not provide appropriate
-     * response after the preconfigured number of attempts, or the Lambda
-     * function failed to fulfill an intent.
+     * <code>Failed</code> – Conveys that the conversation with the user failed.
+     * </p>
+     * <p>
+     * This can happen for various reasons, including that the user does not
+     * provide an appropriate response to prompts from the service (you can
+     * configure how many times Amazon Lex can prompt a user for specific
+     * information), or if the Lambda function fails to fulfill the intent.
      * </p>
      * </li>
      * </ul>
@@ -1142,9 +1067,12 @@ public class PostContentResult implements Serializable {
      * <b>Allowed Values: </b>ElicitIntent, ConfirmIntent, ElicitSlot,
      * Fulfilled, ReadyForFulfillment, Failed
      *
-     * @param dialogState <p>
-     *            Represents the message type to be conveyed to the user. For
-     *            example:
+     * @param dialogState
+     *            <p>
+     *            Identifies the current state of the user interaction. Amazon
+     *            Lex returns one of the following values as
+     *            <code>dialogState</code>. The client can optionally use this
+     *            information to customize the user interface.
      *            </p>
      *            <ul>
      *            <li>
@@ -1152,89 +1080,65 @@ public class PostContentResult implements Serializable {
      *            <code>ElicitIntent</code> – Amazon Lex wants to elicit the
      *            user's intent. Consider the following examples:
      *            </p>
-     *            <ul>
-     *            <li>
      *            <p>
-     *            Suppose Amazon Lex did not understand the first utterances.
-     *            For example, "I want to order pizza" (indicating OrderPizza
-     *            intent). If Amazon Lex doesn't understand the user's input to
-     *            determine the intent, the service returns this dialog state.
+     *            For example, a user might utter an intent (
+     *            "I want to order a pizza"). If Amazon Lex cannot infer the
+     *            user intent from this utterance, it will return this dialog
+     *            state.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Suppose the intent is configured with a follow up prompt. For
-     *            example, after the OrderPizza intent is fulfilled, the intent
-     *            might have a follow up prompt such as
-     *            "Do you want to order a drink or desert?" In this case, Amazon
-     *            Lex returns this dialog state.
+     *            <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes"
+     *            or "no" response.
      *            </p>
-     *            </li>
-     *            </ul>
+     *            <p>
+     *            For example, Amazon Lex wants user confirmation before
+     *            fulfilling an intent. Instead of a simple "yes" or "no"
+     *            response, a user might respond with additional information.
+     *            For example, "yes, but make it a thick crust pizza" or
+     *            "no, I want to order a drink." Amazon Lex can process such
+     *            additional information (in these examples, update the crust
+     *            type slot or change the intent from OrderPizza to OrderDrink).
+     *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ConfirmIntent</code> – Amazon Lex is expecting a yes/no
-     *            response from the user indicating whether to go ahead and
-     *            fulfill the intent (for example, OK to go ahead and order the
-     *            pizza).
-     *            </p>
-     *            <note>
-     *            <p>
-     *            In addition to yes/no reply, user might provide respond with
-     *            additional slot information. It can be a new slot information
-     *            or change in existing slot value. For example, the user might
-     *            reply with "Yes, but change the crust to thick crust." Amazon
-     *            Lex can understand the additional information and update the
-     *            intent slots accordingly.
+     *            <code>ElicitSlot</code> – Amazon Lex is expecting the value of
+     *            a slot for the current intent.
      *            </p>
      *            <p>
-     *            Consider another example. Before fulfilling an order, your
-     *            application might prompt for confirmation such as
-     *            "OK to place this pizza order?" A user might reply with
-     *            "No, I want to order a drink." In this case, Amazon Lex
-     *            recognizes the new OrderDrink intent.
-     *            </p>
-     *            </note></li>
-     *            <li>
-     *            <p>
-     *            <code>ElicitSlot</code> – Amazon Lex is expecting a value of a
-     *            slot for the current intent. Suppose Amazon Lex asks
-     *            "What size pizza would you like?" A user might reply with
-     *            "Medium" or "Medium pepperoni pizza". Amazon Lex recognizes
-     *            the size and the topping as the two separate slot values.
+     *            For example, suppose that in the response Amazon Lex sends
+     *            this message: "What size pizza would you like?". A user might
+     *            reply with the slot value (e.g., "medium"). The user might
+     *            also provide additional information in the response (e.g.,
+     *            "medium thick crust pizza"). Amazon Lex can process such
+     *            additional information appropriately.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>Fulfilled</code> – Conveys that the Lambda function has
-     *            successfully fulfilled the intent. If Lambda function returns
-     *            a statement/message to convey the fulfillment result, Amazon
-     *            Lex passes this string to the client. If not, Amazon Lex looks
-     *            for <code>conclusionStatement</code> that you configured for
-     *            the intent.
-     *            </p>
-     *            <p>
-     *            If both the Lambda function statement and the
-     *            <code>conclusionStatement</code> are missing, Amazon Lex
-     *            throws a bad request exception.
+     *            successfully fulfilled the intent.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>ReadyForFulfillment</code> – Conveys that the client has
-     *            to do the fulfillment work for the intent (this is the case
-     *            when the current intent has the
-     *            <code>fulfillmentActivity </code> configured as
-     *            <code>ReturnIntent</code>).
+     *            to fullfill the request.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Failed</code> – Conversation with the user failed. Some
-     *            of the reasons for this dialog state are: the user did not
-     *            provide appropriate response after the preconfigured number of
-     *            attempts, or the Lambda function failed to fulfill an intent.
+     *            <code>Failed</code> – Conveys that the conversation with the
+     *            user failed.
+     *            </p>
+     *            <p>
+     *            This can happen for various reasons, including that the user
+     *            does not provide an appropriate response to prompts from the
+     *            service (you can configure how many times Amazon Lex can
+     *            prompt a user for specific information), or if the Lambda
+     *            function fails to fulfill the intent.
      *            </p>
      *            </li>
      *            </ul>
@@ -1246,7 +1150,9 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * Represents the message type to be conveyed to the user. For example:
+     * Identifies the current state of the user interaction. Amazon Lex returns
+     * one of the following values as <code>dialogState</code>. The client can
+     * optionally use this information to customize the user interface.
      * </p>
      * <ul>
      * <li>
@@ -1254,83 +1160,61 @@ public class PostContentResult implements Serializable {
      * <code>ElicitIntent</code> – Amazon Lex wants to elicit the user's intent.
      * Consider the following examples:
      * </p>
-     * <ul>
-     * <li>
      * <p>
-     * Suppose Amazon Lex did not understand the first utterances. For example,
-     * "I want to order pizza" (indicating OrderPizza intent). If Amazon Lex
-     * doesn't understand the user's input to determine the intent, the service
-     * returns this dialog state.
+     * For example, a user might utter an intent ("I want to order a pizza"). If
+     * Amazon Lex cannot infer the user intent from this utterance, it will
+     * return this dialog state.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Suppose the intent is configured with a follow up prompt. For example,
-     * after the OrderPizza intent is fulfilled, the intent might have a follow
-     * up prompt such as "Do you want to order a drink or desert?" In this case,
-     * Amazon Lex returns this dialog state.
+     * <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes" or "no"
+     * response.
      * </p>
-     * </li>
-     * </ul>
+     * <p>
+     * For example, Amazon Lex wants user confirmation before fulfilling an
+     * intent. Instead of a simple "yes" or "no" response, a user might respond
+     * with additional information. For example,
+     * "yes, but make it a thick crust pizza" or "no, I want to order a drink."
+     * Amazon Lex can process such additional information (in these examples,
+     * update the crust type slot or change the intent from OrderPizza to
+     * OrderDrink).
+     * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ConfirmIntent</code> – Amazon Lex is expecting a yes/no response
-     * from the user indicating whether to go ahead and fulfill the intent (for
-     * example, OK to go ahead and order the pizza).
-     * </p>
-     * <note>
-     * <p>
-     * In addition to yes/no reply, user might provide respond with additional
-     * slot information. It can be a new slot information or change in existing
-     * slot value. For example, the user might reply with
-     * "Yes, but change the crust to thick crust." Amazon Lex can understand the
-     * additional information and update the intent slots accordingly.
+     * <code>ElicitSlot</code> – Amazon Lex is expecting the value of a slot for
+     * the current intent.
      * </p>
      * <p>
-     * Consider another example. Before fulfilling an order, your application
-     * might prompt for confirmation such as "OK to place this pizza order?" A
-     * user might reply with "No, I want to order a drink." In this case, Amazon
-     * Lex recognizes the new OrderDrink intent.
-     * </p>
-     * </note></li>
-     * <li>
-     * <p>
-     * <code>ElicitSlot</code> – Amazon Lex is expecting a value of a slot for
-     * the current intent. Suppose Amazon Lex asks
-     * "What size pizza would you like?" A user might reply with "Medium" or
-     * "Medium pepperoni pizza". Amazon Lex recognizes the size and the topping
-     * as the two separate slot values.
+     * For example, suppose that in the response Amazon Lex sends this message:
+     * "What size pizza would you like?". A user might reply with the slot value
+     * (e.g., "medium"). The user might also provide additional information in
+     * the response (e.g., "medium thick crust pizza"). Amazon Lex can process
+     * such additional information appropriately.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>Fulfilled</code> – Conveys that the Lambda function has
-     * successfully fulfilled the intent. If Lambda function returns a
-     * statement/message to convey the fulfillment result, Amazon Lex passes
-     * this string to the client. If not, Amazon Lex looks for
-     * <code>conclusionStatement</code> that you configured for the intent.
-     * </p>
-     * <p>
-     * If both the Lambda function statement and the
-     * <code>conclusionStatement</code> are missing, Amazon Lex throws a bad
-     * request exception.
+     * successfully fulfilled the intent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReadyForFulfillment</code> – Conveys that the client has to do the
-     * fulfillment work for the intent (this is the case when the current intent
-     * has the <code>fulfillmentActivity </code> configured as
-     * <code>ReturnIntent</code>).
+     * <code>ReadyForFulfillment</code> – Conveys that the client has to
+     * fullfill the request.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Failed</code> – Conversation with the user failed. Some of the
-     * reasons for this dialog state are: the user did not provide appropriate
-     * response after the preconfigured number of attempts, or the Lambda
-     * function failed to fulfill an intent.
+     * <code>Failed</code> – Conveys that the conversation with the user failed.
+     * </p>
+     * <p>
+     * This can happen for various reasons, including that the user does not
+     * provide an appropriate response to prompts from the service (you can
+     * configure how many times Amazon Lex can prompt a user for specific
+     * information), or if the Lambda function fails to fulfill the intent.
      * </p>
      * </li>
      * </ul>
@@ -1342,9 +1226,12 @@ public class PostContentResult implements Serializable {
      * <b>Allowed Values: </b>ElicitIntent, ConfirmIntent, ElicitSlot,
      * Fulfilled, ReadyForFulfillment, Failed
      *
-     * @param dialogState <p>
-     *            Represents the message type to be conveyed to the user. For
-     *            example:
+     * @param dialogState
+     *            <p>
+     *            Identifies the current state of the user interaction. Amazon
+     *            Lex returns one of the following values as
+     *            <code>dialogState</code>. The client can optionally use this
+     *            information to customize the user interface.
      *            </p>
      *            <ul>
      *            <li>
@@ -1352,89 +1239,65 @@ public class PostContentResult implements Serializable {
      *            <code>ElicitIntent</code> – Amazon Lex wants to elicit the
      *            user's intent. Consider the following examples:
      *            </p>
-     *            <ul>
-     *            <li>
      *            <p>
-     *            Suppose Amazon Lex did not understand the first utterances.
-     *            For example, "I want to order pizza" (indicating OrderPizza
-     *            intent). If Amazon Lex doesn't understand the user's input to
-     *            determine the intent, the service returns this dialog state.
+     *            For example, a user might utter an intent (
+     *            "I want to order a pizza"). If Amazon Lex cannot infer the
+     *            user intent from this utterance, it will return this dialog
+     *            state.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Suppose the intent is configured with a follow up prompt. For
-     *            example, after the OrderPizza intent is fulfilled, the intent
-     *            might have a follow up prompt such as
-     *            "Do you want to order a drink or desert?" In this case, Amazon
-     *            Lex returns this dialog state.
+     *            <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes"
+     *            or "no" response.
      *            </p>
-     *            </li>
-     *            </ul>
+     *            <p>
+     *            For example, Amazon Lex wants user confirmation before
+     *            fulfilling an intent. Instead of a simple "yes" or "no"
+     *            response, a user might respond with additional information.
+     *            For example, "yes, but make it a thick crust pizza" or
+     *            "no, I want to order a drink." Amazon Lex can process such
+     *            additional information (in these examples, update the crust
+     *            type slot or change the intent from OrderPizza to OrderDrink).
+     *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ConfirmIntent</code> – Amazon Lex is expecting a yes/no
-     *            response from the user indicating whether to go ahead and
-     *            fulfill the intent (for example, OK to go ahead and order the
-     *            pizza).
-     *            </p>
-     *            <note>
-     *            <p>
-     *            In addition to yes/no reply, user might provide respond with
-     *            additional slot information. It can be a new slot information
-     *            or change in existing slot value. For example, the user might
-     *            reply with "Yes, but change the crust to thick crust." Amazon
-     *            Lex can understand the additional information and update the
-     *            intent slots accordingly.
+     *            <code>ElicitSlot</code> – Amazon Lex is expecting the value of
+     *            a slot for the current intent.
      *            </p>
      *            <p>
-     *            Consider another example. Before fulfilling an order, your
-     *            application might prompt for confirmation such as
-     *            "OK to place this pizza order?" A user might reply with
-     *            "No, I want to order a drink." In this case, Amazon Lex
-     *            recognizes the new OrderDrink intent.
-     *            </p>
-     *            </note></li>
-     *            <li>
-     *            <p>
-     *            <code>ElicitSlot</code> – Amazon Lex is expecting a value of a
-     *            slot for the current intent. Suppose Amazon Lex asks
-     *            "What size pizza would you like?" A user might reply with
-     *            "Medium" or "Medium pepperoni pizza". Amazon Lex recognizes
-     *            the size and the topping as the two separate slot values.
+     *            For example, suppose that in the response Amazon Lex sends
+     *            this message: "What size pizza would you like?". A user might
+     *            reply with the slot value (e.g., "medium"). The user might
+     *            also provide additional information in the response (e.g.,
+     *            "medium thick crust pizza"). Amazon Lex can process such
+     *            additional information appropriately.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>Fulfilled</code> – Conveys that the Lambda function has
-     *            successfully fulfilled the intent. If Lambda function returns
-     *            a statement/message to convey the fulfillment result, Amazon
-     *            Lex passes this string to the client. If not, Amazon Lex looks
-     *            for <code>conclusionStatement</code> that you configured for
-     *            the intent.
-     *            </p>
-     *            <p>
-     *            If both the Lambda function statement and the
-     *            <code>conclusionStatement</code> are missing, Amazon Lex
-     *            throws a bad request exception.
+     *            successfully fulfilled the intent.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>ReadyForFulfillment</code> – Conveys that the client has
-     *            to do the fulfillment work for the intent (this is the case
-     *            when the current intent has the
-     *            <code>fulfillmentActivity </code> configured as
-     *            <code>ReturnIntent</code>).
+     *            to fullfill the request.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Failed</code> – Conversation with the user failed. Some
-     *            of the reasons for this dialog state are: the user did not
-     *            provide appropriate response after the preconfigured number of
-     *            attempts, or the Lambda function failed to fulfill an intent.
+     *            <code>Failed</code> – Conveys that the conversation with the
+     *            user failed.
+     *            </p>
+     *            <p>
+     *            This can happen for various reasons, including that the user
+     *            does not provide an appropriate response to prompts from the
+     *            service (you can configure how many times Amazon Lex can
+     *            prompt a user for specific information), or if the Lambda
+     *            function fails to fulfill the intent.
      *            </p>
      *            </li>
      *            </ul>
@@ -1449,14 +1312,15 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * If <code>dialogState</code> value is <code>ElicitSlot</code>, this
-     * returns the name of the slot for which Amazon Lex is eliciting a value.
+     * If the <code>dialogState</code> value is <code>ElicitSlot</code>, returns
+     * the name of the slot for which Amazon Lex is eliciting a value.
      * </p>
      *
-     * @return <p>
-     *         If <code>dialogState</code> value is <code>ElicitSlot</code>,
-     *         this returns the name of the slot for which Amazon Lex is
-     *         eliciting a value.
+     * @return
+     *         <p>
+     *         If the <code>dialogState</code> value is <code>ElicitSlot</code>,
+     *         returns the name of the slot for which Amazon Lex is eliciting a
+     *         value.
      *         </p>
      */
     public String getSlotToElicit() {
@@ -1465,14 +1329,15 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * If <code>dialogState</code> value is <code>ElicitSlot</code>, this
-     * returns the name of the slot for which Amazon Lex is eliciting a value.
+     * If the <code>dialogState</code> value is <code>ElicitSlot</code>, returns
+     * the name of the slot for which Amazon Lex is eliciting a value.
      * </p>
      *
-     * @param slotToElicit <p>
-     *            If <code>dialogState</code> value is <code>ElicitSlot</code>,
-     *            this returns the name of the slot for which Amazon Lex is
-     *            eliciting a value.
+     * @param slotToElicit
+     *            <p>
+     *            If the <code>dialogState</code> value is
+     *            <code>ElicitSlot</code>, returns the name of the slot for
+     *            which Amazon Lex is eliciting a value.
      *            </p>
      */
     public void setSlotToElicit(String slotToElicit) {
@@ -1481,17 +1346,18 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * If <code>dialogState</code> value is <code>ElicitSlot</code>, this
-     * returns the name of the slot for which Amazon Lex is eliciting a value.
+     * If the <code>dialogState</code> value is <code>ElicitSlot</code>, returns
+     * the name of the slot for which Amazon Lex is eliciting a value.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param slotToElicit <p>
-     *            If <code>dialogState</code> value is <code>ElicitSlot</code>,
-     *            this returns the name of the slot for which Amazon Lex is
-     *            eliciting a value.
+     * @param slotToElicit
+     *            <p>
+     *            If the <code>dialogState</code> value is
+     *            <code>ElicitSlot</code>, returns the name of the slot for
+     *            which Amazon Lex is eliciting a value.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1503,26 +1369,75 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * Prompt (or statement) to convey to the user. This is based on the
-     * application configuration and context. For example, if Amazon Lex did not
-     * understand the user intent, it sends the <code>clarificationPrompt</code>
-     * configured for the application. If the intent requires confirmation
-     * before taking the fulfillment action, it sends the
-     * <code>confirmationPrompt</code>. Here is another example, suppose the
-     * Lambda function successfully fulfilled the intent, and sent a message to
-     * convey to the user. Then Amazon Lex sends that message in the response.
+     * Transcript of the voice input to the operation.
      * </p>
      *
-     * @return <p>
-     *         Prompt (or statement) to convey to the user. This is based on the
-     *         application configuration and context. For example, if Amazon Lex
-     *         did not understand the user intent, it sends the
-     *         <code>clarificationPrompt</code> configured for the application.
-     *         If the intent requires confirmation before taking the fulfillment
-     *         action, it sends the <code>confirmationPrompt</code>. Here is
-     *         another example, suppose the Lambda function successfully
-     *         fulfilled the intent, and sent a message to convey to the user.
-     *         Then Amazon Lex sends that message in the response.
+     * @return
+     *         <p>
+     *         Transcript of the voice input to the operation.
+     *         </p>
+     */
+    public String getInputTranscript() {
+        return inputTranscript;
+    }
+
+    /**
+     * <p>
+     * Transcript of the voice input to the operation.
+     * </p>
+     *
+     * @param inputTranscript
+     *            <p>
+     *            Transcript of the voice input to the operation.
+     *            </p>
+     */
+    public void setInputTranscript(String inputTranscript) {
+        this.inputTranscript = inputTranscript;
+    }
+
+    /**
+     * <p>
+     * Transcript of the voice input to the operation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param inputTranscript
+     *            <p>
+     *            Transcript of the voice input to the operation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostContentResult withInputTranscript(String inputTranscript) {
+        this.inputTranscript = inputTranscript;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The prompt (or statement) to convey to the user. This is based on the bot
+     * configuration and context. For example, if Amazon Lex did not understand
+     * the user intent, it sends the <code>clarificationPrompt</code> configured
+     * for the bot. If the intent requires confirmation before taking the
+     * fulfillment action, it sends the <code>confirmationPrompt</code>. Another
+     * example: Suppose that the Lambda function successfully fulfilled the
+     * intent, and sent a message to convey to the user. Then Amazon Lex sends
+     * that message in the response.
+     * </p>
+     *
+     * @return
+     *         <p>
+     *         The prompt (or statement) to convey to the user. This is based on
+     *         the bot configuration and context. For example, if Amazon Lex did
+     *         not understand the user intent, it sends the
+     *         <code>clarificationPrompt</code> configured for the bot. If the
+     *         intent requires confirmation before taking the fulfillment
+     *         action, it sends the <code>confirmationPrompt</code>. Another
+     *         example: Suppose that the Lambda function successfully fulfilled
+     *         the intent, and sent a message to convey to the user. Then Amazon
+     *         Lex sends that message in the response.
      *         </p>
      */
     public java.io.InputStream getAudioStream() {
@@ -1531,27 +1446,27 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * Prompt (or statement) to convey to the user. This is based on the
-     * application configuration and context. For example, if Amazon Lex did not
-     * understand the user intent, it sends the <code>clarificationPrompt</code>
-     * configured for the application. If the intent requires confirmation
-     * before taking the fulfillment action, it sends the
-     * <code>confirmationPrompt</code>. Here is another example, suppose the
-     * Lambda function successfully fulfilled the intent, and sent a message to
-     * convey to the user. Then Amazon Lex sends that message in the response.
+     * The prompt (or statement) to convey to the user. This is based on the bot
+     * configuration and context. For example, if Amazon Lex did not understand
+     * the user intent, it sends the <code>clarificationPrompt</code> configured
+     * for the bot. If the intent requires confirmation before taking the
+     * fulfillment action, it sends the <code>confirmationPrompt</code>. Another
+     * example: Suppose that the Lambda function successfully fulfilled the
+     * intent, and sent a message to convey to the user. Then Amazon Lex sends
+     * that message in the response.
      * </p>
      *
-     * @param audioStream <p>
-     *            Prompt (or statement) to convey to the user. This is based on
-     *            the application configuration and context. For example, if
-     *            Amazon Lex did not understand the user intent, it sends the
-     *            <code>clarificationPrompt</code> configured for the
-     *            application. If the intent requires confirmation before taking
-     *            the fulfillment action, it sends the
-     *            <code>confirmationPrompt</code>. Here is another example,
-     *            suppose the Lambda function successfully fulfilled the intent,
-     *            and sent a message to convey to the user. Then Amazon Lex
-     *            sends that message in the response.
+     * @param audioStream
+     *            <p>
+     *            The prompt (or statement) to convey to the user. This is based
+     *            on the bot configuration and context. For example, if Amazon
+     *            Lex did not understand the user intent, it sends the
+     *            <code>clarificationPrompt</code> configured for the bot. If
+     *            the intent requires confirmation before taking the fulfillment
+     *            action, it sends the <code>confirmationPrompt</code>. Another
+     *            example: Suppose that the Lambda function successfully
+     *            fulfilled the intent, and sent a message to convey to the
+     *            user. Then Amazon Lex sends that message in the response.
      *            </p>
      */
     public void setAudioStream(java.io.InputStream audioStream) {
@@ -1560,30 +1475,30 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
-     * Prompt (or statement) to convey to the user. This is based on the
-     * application configuration and context. For example, if Amazon Lex did not
-     * understand the user intent, it sends the <code>clarificationPrompt</code>
-     * configured for the application. If the intent requires confirmation
-     * before taking the fulfillment action, it sends the
-     * <code>confirmationPrompt</code>. Here is another example, suppose the
-     * Lambda function successfully fulfilled the intent, and sent a message to
-     * convey to the user. Then Amazon Lex sends that message in the response.
+     * The prompt (or statement) to convey to the user. This is based on the bot
+     * configuration and context. For example, if Amazon Lex did not understand
+     * the user intent, it sends the <code>clarificationPrompt</code> configured
+     * for the bot. If the intent requires confirmation before taking the
+     * fulfillment action, it sends the <code>confirmationPrompt</code>. Another
+     * example: Suppose that the Lambda function successfully fulfilled the
+     * intent, and sent a message to convey to the user. Then Amazon Lex sends
+     * that message in the response.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param audioStream <p>
-     *            Prompt (or statement) to convey to the user. This is based on
-     *            the application configuration and context. For example, if
-     *            Amazon Lex did not understand the user intent, it sends the
-     *            <code>clarificationPrompt</code> configured for the
-     *            application. If the intent requires confirmation before taking
-     *            the fulfillment action, it sends the
-     *            <code>confirmationPrompt</code>. Here is another example,
-     *            suppose the Lambda function successfully fulfilled the intent,
-     *            and sent a message to convey to the user. Then Amazon Lex
-     *            sends that message in the response.
+     * @param audioStream
+     *            <p>
+     *            The prompt (or statement) to convey to the user. This is based
+     *            on the bot configuration and context. For example, if Amazon
+     *            Lex did not understand the user intent, it sends the
+     *            <code>clarificationPrompt</code> configured for the bot. If
+     *            the intent requires confirmation before taking the fulfillment
+     *            action, it sends the <code>confirmationPrompt</code>. Another
+     *            example: Suppose that the Lambda function successfully
+     *            fulfilled the intent, and sent a message to convey to the
+     *            user. Then Amazon Lex sends that message in the response.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1625,6 +1540,9 @@ public class PostContentResult implements Serializable {
         if (getSlotToElicit() != null) {
             sb.append("slotToElicit: " + getSlotToElicit() + ",");
         }
+        if (getInputTranscript() != null) {
+            sb.append("inputTranscript: " + getInputTranscript() + ",");
+        }
         if (getAudioStream() != null) {
             sb.append("audioStream: " + getAudioStream());
         }
@@ -1648,6 +1566,8 @@ public class PostContentResult implements Serializable {
                 + ((getDialogState() == null) ? 0 : getDialogState().hashCode());
         hashCode = prime * hashCode
                 + ((getSlotToElicit() == null) ? 0 : getSlotToElicit().hashCode());
+        hashCode = prime * hashCode
+                + ((getInputTranscript() == null) ? 0 : getInputTranscript().hashCode());
         hashCode = prime * hashCode
                 + ((getAudioStream() == null) ? 0 : getAudioStream().hashCode());
         return hashCode;
@@ -1712,6 +1632,13 @@ public class PostContentResult implements Serializable {
         }
         if (other.getSlotToElicit() != null
                 && other.getSlotToElicit().equals(this.getSlotToElicit()) == false) {
+            return false;
+        }
+        if (other.getInputTranscript() == null ^ this.getInputTranscript() == null) {
+            return false;
+        }
+        if (other.getInputTranscript() != null
+                && other.getInputTranscript().equals(this.getInputTranscript()) == false) {
             return false;
         }
         if (other.getAudioStream() == null ^ this.getAudioStream() == null) {

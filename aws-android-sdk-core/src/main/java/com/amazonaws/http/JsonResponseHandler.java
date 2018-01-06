@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -52,6 +52,8 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
     /** Shared logger for profiling information */
     private static final Log log = LogFactory.getLog("com.amazonaws.request");
 
+    /** Boolean to indicate if connect needs to be left open. */
+    @SuppressWarnings({"checkstyle:constantname", "checkstyle:visibilitymodifier"})
     public boolean needsConnectionLeftOpen = false;
 
     /**
@@ -83,7 +85,7 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
     public AmazonWebServiceResponse<T> handle(HttpResponse response) throws Exception {
         log.trace("Parsing service response JSON");
 
-        String CRC32Checksum = response.getHeaders().get("x-amz-crc32");
+        final String crc32Checksum = response.getHeaders().get("x-amz-crc32");
         CRC32ChecksumCalculatingInputStream crc32ChecksumInputStream = null;
 
         // Get the raw content input stream to calculate the crc32 checksum on
@@ -94,27 +96,31 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
             content = new ByteArrayInputStream("{}".getBytes(StringUtils.UTF8));
         }
 
-        if (CRC32Checksum != null) {
+        log.debug("CRC32Checksum = " + crc32Checksum);
+        log.debug("content encoding = " + response.getHeaders().get("Content-Encoding"));
+
+        if (crc32Checksum != null) {
             crc32ChecksumInputStream = new CRC32ChecksumCalculatingInputStream(content);
-            content = crc32ChecksumInputStream;
-        }
-        if ("gzip".equals(response.getHeaders().get("Content-Encoding"))) {
-            content = new GZIPInputStream(content);
+            if ("gzip".equals(response.getHeaders().get("Content-Encoding"))) {
+                content = new GZIPInputStream(crc32ChecksumInputStream);
+            } else {
+                content = crc32ChecksumInputStream;
+            }
         }
 
-        AwsJsonReader jsonReader = JsonUtils.getJsonReader(new InputStreamReader(content,
+        final AwsJsonReader jsonReader = JsonUtils.getJsonReader(new InputStreamReader(content,
                 StringUtils.UTF8));
 
         try {
-            AmazonWebServiceResponse<T> awsResponse = new AmazonWebServiceResponse<T>();
-            JsonUnmarshallerContext unmarshallerContext = new JsonUnmarshallerContext(jsonReader,
+            final AmazonWebServiceResponse<T> awsResponse = new AmazonWebServiceResponse<T>();
+            final JsonUnmarshallerContext unmarshallerContext = new JsonUnmarshallerContext(jsonReader,
                     response);
 
-            T result = responseUnmarshaller.unmarshall(unmarshallerContext);
+            final T result = responseUnmarshaller.unmarshall(unmarshallerContext);
 
-            if (CRC32Checksum != null) {
-                long serverSideCRC = Long.parseLong(CRC32Checksum);
-                long clientSideCRC = crc32ChecksumInputStream.getCRC32Checksum();
+            if (crc32Checksum != null) {
+                final long serverSideCRC = Long.parseLong(crc32Checksum);
+                final long clientSideCRC = crc32ChecksumInputStream.getCRC32Checksum();
                 if (clientSideCRC != serverSideCRC) {
                     throw new CRC32MismatchException(
                             "Client calculated crc32 checksum didn't match that calculated by server side");
@@ -123,7 +129,7 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
 
             awsResponse.setResult(result);
 
-            Map<String, String> metadata = new HashMap<String, String>();
+            final Map<String, String> metadata = new HashMap<String, String>();
             metadata.put(ResponseMetadata.AWS_REQUEST_ID,
                     response.getHeaders().get("x-amzn-RequestId"));
             awsResponse.setResponseMetadata(new ResponseMetadata(metadata));
@@ -134,7 +140,7 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
             if (!needsConnectionLeftOpen) {
                 try {
                     jsonReader.close();
-                } catch (IOException e) {
+                } catch (final IOException e) {
                     log.warn("Error closing json parser", e);
                 }
             }

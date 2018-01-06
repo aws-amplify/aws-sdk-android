@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -62,8 +62,7 @@ class MultipartUploadCryptoContext extends MultipartUploadContext {
      * @see #endPartUpload()
      * @throws AmazonClientException if parallel part upload is detected
      */
-    void beginPartUpload(final int nextPartNumber)
-            throws AmazonClientException {
+    void beginPartUpload(final int nextPartNumber) {
         if (nextPartNumber < 1) {
             throw new IllegalArgumentException("part number must be at least 1");
         }

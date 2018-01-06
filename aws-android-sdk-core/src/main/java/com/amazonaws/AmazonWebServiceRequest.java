@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -58,6 +58,7 @@ public abstract class AmazonWebServiceRequest implements Cloneable {
      *            request, overriding the default credentials set at the client
      *            level.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public void setRequestCredentials(AWSCredentials credentials) {
         this.credentials = credentials;
     }
@@ -74,7 +75,7 @@ public abstract class AmazonWebServiceRequest implements Cloneable {
     }
 
     /**
-     * Gets the options stored with this request object. Intended for internal
+     * @return the options stored with this request object. Intended for internal
      * use only.
      */
     public RequestClientOptions getRequestClientOptions() {
@@ -82,7 +83,7 @@ public abstract class AmazonWebServiceRequest implements Cloneable {
     }
 
     /**
-     * Returns a request level metric collector; or null if not specified.
+     * @return a request level metric collector; or null if not specified.
      *
      * @deprecated metrics is deprecated
      */
@@ -95,6 +96,7 @@ public abstract class AmazonWebServiceRequest implements Cloneable {
      * Sets a request level request metric collector which takes precedence over
      * the ones at the http client level and AWS SDK level.
      *
+     * @param requestMetricCollector the request metric collector.
      * @deprecated metrics is deprecated
      */
     @Deprecated
@@ -106,6 +108,9 @@ public abstract class AmazonWebServiceRequest implements Cloneable {
      * Specifies a request level metric collector which takes precedence over
      * the ones at the http client level and AWS SDK level.
      *
+     * @param metricCollector the request metric collector.
+     * @param <T> class type.
+     * @return this for method chaining.
      * @deprecated metrics is deprecated
      */
     @Deprecated
@@ -143,8 +148,10 @@ public abstract class AmazonWebServiceRequest implements Cloneable {
      * and returns a reference to this object so that method calls can be chained together.
      *
      * @param generalProgressListener The new progress listener.
+     * @param <T> class type.
      * @return This updated PutObjectRequest object.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public <T extends AmazonWebServiceRequest> T withGeneralProgressListener(
             ProgressListener generalProgressListener) {
         setGeneralProgressListener(generalProgressListener);
@@ -172,7 +179,7 @@ public abstract class AmazonWebServiceRequest implements Cloneable {
     private AmazonWebServiceRequest cloneSource;
 
     /**
-     * Returns the source object from which the current object was cloned; or
+     * @return the source object from which the current object was cloned; or
      * null if there isn't one.
      */
     public AmazonWebServiceRequest getCloneSource() {
@@ -180,7 +187,7 @@ public abstract class AmazonWebServiceRequest implements Cloneable {
     }
 
     /**
-     * Returns the root object from which the current object was cloned; or null
+     * @return the root object from which the current object was cloned; or null
      * if there isn't one.
      */
     public AmazonWebServiceRequest getCloneRoot() {

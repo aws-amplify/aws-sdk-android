@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,9 +18,9 @@ package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 import com.google.gson.Gson;
 
 /**
- * Simple JSON marshaller that uses Gson mapper. It has all the limitations of
- * that library, the documentation of which is available here:
- * http://docs.codehaus.org/display/JACKSON/Home
+ * Simple JSON marshaller that uses Gson mapper.
+ *
+ * @param <T> the type of object to be marshalled to json.
  */
 public class JsonMarshaller<T extends Object> implements DynamoDBMarshaller<T> {
 
@@ -35,7 +35,7 @@ public class JsonMarshaller<T extends Object> implements DynamoDBMarshaller<T> {
     public T unmarshall(Class<T> clazz, String json) {
         try {
             return gson.fromJson(json, clazz);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new RuntimeException("Unable to unmarshall the string " + json
                     + "into " + clazz, e);
         }

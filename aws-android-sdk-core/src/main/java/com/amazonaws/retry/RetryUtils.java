@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import com.amazonaws.AmazonServiceException;
 import java.io.InterruptedIOException;
 import java.net.SocketTimeoutException;
 
+/** RetryUtils class. */
 public class RetryUtils {
 
     /**
@@ -74,7 +75,7 @@ public class RetryUtils {
 
     /**
      * Return true if the error is caused by interruption.
-     * 
+     *
      * @param error throwable
      * @return true if the exception is caused by interruption.
      */

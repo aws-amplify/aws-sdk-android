@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -16,6 +16,10 @@
 package com.amazonaws.services.s3.internal.crypto;
 
 class AesCbc extends ContentCryptoScheme {
+
+    private static final int DEFAULT_KEY_LENGTH_IN_BITS = 256;
+    private static final int DEFAULT_BLOCK_SIZE_IN_BYTES = 16;
+    private static final int DEFAULT_IV_LENGTH_IN_BYTES = 16;
     @Override
     String getKeyGeneratorAlgorithm() {
         return "AES";
@@ -28,17 +32,17 @@ class AesCbc extends ContentCryptoScheme {
 
     @Override
     int getKeyLengthInBits() {
-        return 256;
+        return DEFAULT_KEY_LENGTH_IN_BITS;
     }
 
     @Override
     int getBlockSizeInBytes() {
-        return 16;
+        return DEFAULT_BLOCK_SIZE_IN_BYTES;
     }
 
     @Override
     int getIVLengthInBytes() {
-        return 16;
+        return DEFAULT_IV_LENGTH_IN_BYTES;
     }
 
     @Override

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -41,6 +41,7 @@ public enum VoiceId {
     Justin("Justin"),
     Kendra("Kendra"),
     Kimberly("Kimberly"),
+    Matthew("Matthew"),
     Salli("Salli"),
     Conchita("Conchita"),
     Enrique("Enrique"),
@@ -69,7 +70,11 @@ public enum VoiceId {
     Maxim("Maxim"),
     Tatyana("Tatyana"),
     Astrid("Astrid"),
-    Filiz("Filiz");
+    Filiz("Filiz"),
+    Vicki("Vicki"),
+    Takumi("Takumi"),
+    Seoyeon("Seoyeon"),
+    Aditi("Aditi");
 
     private String value;
 
@@ -103,6 +108,7 @@ public enum VoiceId {
         enumMap.put("Justin", Justin);
         enumMap.put("Kendra", Kendra);
         enumMap.put("Kimberly", Kimberly);
+        enumMap.put("Matthew", Matthew);
         enumMap.put("Salli", Salli);
         enumMap.put("Conchita", Conchita);
         enumMap.put("Enrique", Enrique);
@@ -132,6 +138,10 @@ public enum VoiceId {
         enumMap.put("Tatyana", Tatyana);
         enumMap.put("Astrid", Astrid);
         enumMap.put("Filiz", Filiz);
+        enumMap.put("Vicki", Vicki);
+        enumMap.put("Takumi", Takumi);
+        enumMap.put("Seoyeon", Seoyeon);
+        enumMap.put("Aditi", Aditi);
     }
 
     /**

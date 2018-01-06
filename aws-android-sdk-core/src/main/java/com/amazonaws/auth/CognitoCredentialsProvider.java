@@ -19,6 +19,7 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.SDKGlobalConfiguration;
+import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity;
@@ -31,6 +32,8 @@ import com.amazonaws.services.securitytoken.AWSSecurityTokenServiceClient;
 import com.amazonaws.services.securitytoken.model.AssumeRoleWithWebIdentityRequest;
 import com.amazonaws.services.securitytoken.model.AssumeRoleWithWebIdentityResult;
 import com.amazonaws.services.securitytoken.model.Credentials;
+
+import org.json.JSONObject;
 
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.Date;
@@ -131,6 +134,60 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
                 (unauthRoleArn == null && authRoleArn == null) ? 
                         null : new AWSSecurityTokenServiceClient(new AnonymousAWSCredentials(), clientConfiguration));
         this.cib.setRegion(Region.getRegion(region));
+    }
+
+    /**
+     * Constructs a new {@link CognitoCredentialsProvider}, which will use the
+     * specified Amazon Cognito identity pool to make a request to Cognito,
+     * using the enhanced flow, to get short lived session credentials, which
+     * will then be returned by this class's {@link #getCredentials()} method.
+     * 
+     * Example json file:
+     * {
+     *     "CredentialsProvider": {
+     *         "CognitoIdentity": {
+     *             "Default": {
+     *                 "PoolId": "us-east-1:example-pool-id1234",
+     *                 "Region": "us-east-1"
+     *             }
+     *         }
+     *     }
+     * }
+     *
+     * @param awsConfiguration The configuration holding you identity pool id
+     *                         and the region to use when contacting
+     *                         Cognito Identity
+     */
+    public CognitoCredentialsProvider(AWSConfiguration awsConfiguration) {
+        this(null, getIdentityPoolId(awsConfiguration), null, null, getRegions(awsConfiguration), getClientConfiguration(awsConfiguration));
+    }
+
+    private static String getIdentityPoolId(AWSConfiguration awsConfiguration) {
+        try {
+            final JSONObject ccpConfig = awsConfiguration.optJsonObject("CredentialsProvider")
+                                                         .optJSONObject("CognitoIdentity")
+                                                         .getJSONObject(awsConfiguration.getConfiguration());
+            return ccpConfig.getString("PoolId");
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Failed to read CognitoIdentity please check your setup or awsconfiguration.json file", e);
+        }
+    }
+
+    private static Regions getRegions(AWSConfiguration awsConfiguration) {
+        try {
+            final JSONObject ccpConfig = awsConfiguration.optJsonObject("CredentialsProvider")
+                                                         .optJSONObject("CognitoIdentity")
+                                                         .getJSONObject(awsConfiguration.getConfiguration());
+            return Regions.fromName(ccpConfig.getString("Region"));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Failed to read CognitoIdentity please check your setup or awsconfiguration.json file", e);
+        }
+    }
+
+    private static ClientConfiguration getClientConfiguration(AWSConfiguration awsConfiguration) {
+        final ClientConfiguration clientConfig = new ClientConfiguration();
+        clientConfig.setUserAgent(awsConfiguration.getUserAgent());
+        return clientConfig;
     }
 
     /**

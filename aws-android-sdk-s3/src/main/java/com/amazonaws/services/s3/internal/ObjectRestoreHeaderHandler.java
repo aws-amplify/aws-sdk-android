@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
 
 /**
  * Header handler to pull the RESTORE header out of the response.
+ * @param <T> class type.
  */
 public class ObjectRestoreHeaderHandler<T extends ObjectRestoreResult>
         implements HeaderHandler<T> {
@@ -35,9 +36,9 @@ public class ObjectRestoreHeaderHandler<T extends ObjectRestoreResult>
      * ongoing-request="false", expiry-date="Fri, 23 Dec 2012 00:00:00 GMT"
      */
 
-    private static final Pattern datePattern =
+    private static final Pattern DATE_PATTERN =
             Pattern.compile("expiry-date=\"(.*?)\"");
-    private static final Pattern ongoingPattern =
+    private static final Pattern ONGOING_PATTERN =
             Pattern.compile("ongoing-request=\"(.*?)\"");
 
     private static final Log log =
@@ -62,7 +63,7 @@ public class ObjectRestoreHeaderHandler<T extends ObjectRestoreResult>
     }
 
     private Date parseDate(String restoreHeader) {
-        Matcher matcher = datePattern.matcher(restoreHeader);
+        Matcher matcher = DATE_PATTERN.matcher(restoreHeader);
         if (matcher.find()) {
             String date = matcher.group(1);
             try {
@@ -78,7 +79,7 @@ public class ObjectRestoreHeaderHandler<T extends ObjectRestoreResult>
     }
 
     private Boolean parseBoolean(String restoreHeader) {
-        Matcher matcher = ongoingPattern.matcher(restoreHeader);
+        Matcher matcher = ONGOING_PATTERN.matcher(restoreHeader);
         if (matcher.find()) {
             String ongoingRestore = matcher.group(1);
             return Boolean.parseBoolean(ongoingRestore);

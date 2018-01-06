@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Portions copyright 2006-2009 James Murty. Please see LICENSE.txt
  * for applicable license terms and NOTICE.txt for applicable notices.
@@ -27,6 +27,11 @@ import java.util.Arrays;
  * Utilities for encoding and decoding binary data to and from different forms.
  */
 public class BinaryUtils {
+
+    private static final int HEX_LENGTH_8 = 8;
+    private static final int HEX_PARSE_16 = 16;
+    private static final int FF_LOCATION = 6;
+
     /**
      * Converts byte data to a Hex-encoded string.
      *
@@ -40,9 +45,9 @@ public class BinaryUtils {
             if (hex.length() == 1) {
                 // Append leading zero.
                 sb.append("0");
-            } else if (hex.length() == 8) {
+            } else if (hex.length() == HEX_LENGTH_8) {
                 // Remove ff prefix from negative numbers.
-                hex = hex.substring(6);
+                hex = hex.substring(FF_LOCATION);
             }
             sb.append(hex);
         }
@@ -63,7 +68,7 @@ public class BinaryUtils {
         while (stringOffset < hexData.length()) {
             hexNumber = hexData.substring(stringOffset, stringOffset + 2);
             stringOffset += 2;
-            result[byteOffset++] = (byte) Integer.parseInt(hexNumber, 16);
+            result[byteOffset++] = (byte) Integer.parseInt(hexNumber, HEX_PARSE_16);
         }
         return result;
     }
@@ -101,7 +106,8 @@ public class BinaryUtils {
     }
 
     /**
-     * Returns a copy of all the bytes from the given <code>ByteBuffer</code>,
+     * @param bb the byte buffer.
+     * @return a copy of all the bytes from the given <code>ByteBuffer</code>,
      * from the beginning to the buffer's limit; or null if the input is null.
      * <p>
      * The internal states of the given byte buffer will be restored when this

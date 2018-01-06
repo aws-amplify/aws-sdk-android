@@ -1,5 +1,5 @@
 /**
- * Copyright 2013-2017 Amazon.com, 
+ * Copyright 2013-2018 Amazon.com, 
  * Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Amazon Software License (the "License"). 
@@ -25,10 +25,17 @@ public class DataAccessNotAuthorizedException extends DataStorageException {
 
     private static final long serialVersionUID = 5067700802587075978L;
 
+    /**
+     * @param detailMessage the exception message.
+     * @param throwable exception as throwable.
+     */
     public DataAccessNotAuthorizedException(String detailMessage, Throwable throwable) {
         super(detailMessage, throwable);
     }
 
+    /**
+     * @param detailMessage the exception message.
+     */
     public DataAccessNotAuthorizedException(String detailMessage) {
         super(detailMessage);
     }

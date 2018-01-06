@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ final class S3CryptoScheme {
     // http://docs.oracle.com/javase/7/docs/technotes/guides/security/crypto/CryptoSpec.html#Key
     static final String AES = "AES";
     static final String RSA = "RSA";
-    private static final SecureRandom srand = new SecureRandom();
+    private static final SecureRandom SRAND = new SecureRandom();
     private final S3KeyWrapScheme kwScheme;
 
     private final ContentCryptoScheme contentCryptoScheme;
@@ -45,7 +45,7 @@ final class S3CryptoScheme {
     }
 
     SecureRandom getSecureRandom() {
-        return srand;
+        return SRAND;
     }
 
     ContentCryptoScheme getContentCryptoScheme() {

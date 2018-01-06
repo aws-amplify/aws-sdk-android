@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,8 @@ package com.amazonaws.util;
  * @author Hanson Char
  */
 class Base32Codec extends AbstractBase32Codec {
-    private static final int OFFSET_OF_2 = '2' - 26;
+    private static final int OFFSET = 26;
+    private static final int OFFSET_OF_2 = '2' - OFFSET;
 
     private static class LazyHolder {
         private static final byte[] DECODED = decodeTable();
@@ -29,8 +30,7 @@ class Base32Codec extends AbstractBase32Codec {
         private static byte[] decodeTable() {
             final byte[] dest = new byte['z' + 1];
 
-            for (int i = 0; i <= 'z'; i++)
-            {
+            for (int i = 0; i <= 'z'; i++) {
                 if (i >= 'A' && i <= 'Z')
                     dest[i] = (byte) (i - 'A');
                 else if (i >= '2' && i <= '7')

@@ -1,11 +1,11 @@
 /**
- * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -55,8 +55,7 @@ public final class StringUtil {
      * @return a string containing the content of the input stream
      * @throws IOException upon a failure reading the input stream
      */
-    public static String convertStreamToString(final InputStream is, final Charset charset)
-            throws IOException {
+    public static String convertStreamToString(final InputStream is, final Charset charset) throws IOException {
         final BufferedReader br = new BufferedReader(new InputStreamReader(is, charset));
         final StringBuilder sb = new StringBuilder();
         String line = null;
@@ -87,16 +86,18 @@ public final class StringUtil {
      *            removed)
      * @return: the clipped string
      */
-    public static String clipString(String input, int numChars, boolean appendEllipses) {
+    public static String clipString(final String input, final int numChars, final boolean appendEllipses) {
         int end = Math.min(numChars, input.length());
         String output = input.substring(0, end);
         if (appendEllipses) {
-            output = (output.length() < input.length()) ? output + "..." : output;
+            output = (output.length() < input.length())
+                             ? output + "..."
+                             : output;
         }
         return output;
     }
 
-    public static String convertArrayToString(String[] stringArr) {
+    public static String convertArrayToString(final String[] stringArr) {
         if (stringArr == null) {
             return "";
         }
@@ -111,7 +112,7 @@ public final class StringUtil {
         return ret.toString();
     }
 
-    public static String convertSetToString(Set<String> stringSet) {
+    public static String convertSetToString(final Set<String> stringSet) {
         if (stringSet == null) {
             return "";
         }
@@ -134,7 +135,7 @@ public final class StringUtil {
      * @param len - length of desired string. (must be positive)
      * @param pad - character to pad with
      */
-    public static String trimOrPadString(String str, int len, char pad) {
+    public static String trimOrPadString(String str, int len, final char pad) {
         if (len < 0) {
             len = 0;
         }

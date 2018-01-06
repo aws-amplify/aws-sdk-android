@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -61,10 +61,25 @@ public class UpdateThingRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
+            if (updateThingRequest.getThingTypeName() != null) {
+                String thingTypeName = updateThingRequest.getThingTypeName();
+                jsonWriter.name("thingTypeName");
+                jsonWriter.value(thingTypeName);
+            }
             if (updateThingRequest.getAttributePayload() != null) {
                 AttributePayload attributePayload = updateThingRequest.getAttributePayload();
                 jsonWriter.name("attributePayload");
                 AttributePayloadJsonMarshaller.getInstance().marshall(attributePayload, jsonWriter);
+            }
+            if (updateThingRequest.getExpectedVersion() != null) {
+                Long expectedVersion = updateThingRequest.getExpectedVersion();
+                jsonWriter.name("expectedVersion");
+                jsonWriter.value(expectedVersion);
+            }
+            if (updateThingRequest.getRemoveThingType() != null) {
+                Boolean removeThingType = updateThingRequest.getRemoveThingType();
+                jsonWriter.name("removeThingType");
+                jsonWriter.value(removeThingType);
             }
 
             jsonWriter.endObject();

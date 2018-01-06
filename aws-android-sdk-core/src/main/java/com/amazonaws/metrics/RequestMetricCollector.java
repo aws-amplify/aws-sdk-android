@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ public abstract class RequestMetricCollector {
      */
     public static interface Factory {
         /**
-         * Returns an instance of the collector; or null if if failed to create
+         * @return an instance of the collector; or null if if failed to create
          * one.
          */
         public RequestMetricCollector getRequestMetricCollector();
@@ -38,11 +38,15 @@ public abstract class RequestMetricCollector {
 
     /**
      * Used to collect the metric at the end of a request/response cycle.
-     *
+     * @param request the request.
+     * @param response the response.
      * @see Request#getAWSRequestMetrics()
      */
     public abstract void collectMetrics(Request<?> request, Response<?> response);
 
+    /**
+     * @return true if this is enabled.
+     */
     public boolean isEnabled() {
         return true;
     }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2013-2017 Amazon.com, 
+ * Copyright 2013-2018 Amazon.com, 
  * Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Amazon Software License (the "License"). 
@@ -113,7 +113,7 @@ public class SyncConflict {
      * @return resolved record
      */
     public Record resolveWithValue(String newValue) {
-    	Date now = new Date();
+        Date now = new Date();
         return new Record.Builder(key)
                 .value(newValue)
                 .syncCount(remoteRecord.getSyncCount())

@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,6 +32,7 @@ import java.io.InputStream;
  */
 public class AWSS3V4Signer extends AWS4Signer {
     private static final String CONTENT_SHA_256 = "STREAMING-AWS4-HMAC-SHA256-PAYLOAD";
+    private static final int DEFAULT_BYTE_LENGTH = 4096;
 
     /**
      * Don't double-url-encode path elements; S3 expects path elements to be
@@ -138,7 +139,7 @@ public class AWSS3V4Signer extends AWS4Signer {
         }
 
         long contentLength = 0;
-        byte[] tmp = new byte[4096];
+        byte[] tmp = new byte[DEFAULT_BYTE_LENGTH];
         int read;
         content.mark(-1);
         while ((read = content.read(tmp)) != -1) {

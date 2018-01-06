@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon Technologies, Inc.
+ * Copyright 2011-2018 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,11 @@ public class ServiceClientHolderInputStream extends SdkFilterInputStream {
     @SuppressWarnings("unused")
     private AmazonWebServiceClient client;
 
+    /**
+     * Constructor.
+     * @param in the input stream.
+     * @param client the AmazonWebServiceClient.
+     */
     public ServiceClientHolderInputStream(InputStream in,
             AmazonWebServiceClient client) {
         super(in);

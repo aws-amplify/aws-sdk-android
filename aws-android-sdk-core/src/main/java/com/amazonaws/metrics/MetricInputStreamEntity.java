@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,9 +30,15 @@ import java.io.OutputStream;
  * not even be involved in the call stack to minimize runtime overhead.
  */
 public class MetricInputStreamEntity extends InputStreamEntity {
-    private final static int BUFFER_SIZE = 2048;
+    private static final int BUFFER_SIZE = 2048;
     private final ByteThroughputHelper helper;
 
+    /**
+     * Constructor.
+     * @param metricType the throughput metric type.
+     * @param instream the input stream.
+     * @param length the length.
+     */
     public MetricInputStreamEntity(ThroughputMetricType metricType,
             InputStream instream, long length) {
         super(instream, length);

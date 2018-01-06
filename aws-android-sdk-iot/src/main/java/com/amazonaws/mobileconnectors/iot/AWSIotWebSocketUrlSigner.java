@@ -216,7 +216,7 @@ class AWSIotWebSocketUrlSigner {
      * @return The hashed bytes from the specified string.
      * @throws AmazonClientException If the hash cannot be computed.
      */
-    byte[] hash(String text) throws AmazonClientException {
+    byte[] hash(String text) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update(text.getBytes(UTF8));
@@ -236,8 +236,7 @@ class AWSIotWebSocketUrlSigner {
      * @return a byte array containing the signed string.
      * @throws AmazonClientException in the case of a signature error.
      */
-    byte[] sign(String stringData, byte[] key, SigningAlgorithm algorithm)
-            throws AmazonClientException {
+    byte[] sign(String stringData, byte[] key, SigningAlgorithm algorithm) {
         try {
             byte[] data = stringData.getBytes(UTF8);
             return sign(data, key, algorithm);
@@ -256,8 +255,7 @@ class AWSIotWebSocketUrlSigner {
      * @return a byte array containing the signed string.
      * @throws AmazonClientException in the case of a signature error.
      */
-    byte[] sign(byte[] data, byte[] key, SigningAlgorithm algorithm)
-            throws AmazonClientException {
+    byte[] sign(byte[] data, byte[] key, SigningAlgorithm algorithm) {
         try {
             Mac mac = Mac.getInstance(algorithm.toString());
             mac.init(new SecretKeySpec(key, algorithm.toString()));

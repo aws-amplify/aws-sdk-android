@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -49,10 +49,10 @@ public class StaxResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
     private static final Log log = LogFactory.getLog("com.amazonaws.request");
 
     /** Shared factory for creating XML event readers */
-    private static final XmlPullParserFactory xmlPullParserFactory;
+    private static final XmlPullParserFactory XML_PULL_PARSER_FACTORY;
     static {
         try {
-            xmlPullParserFactory = XmlPullParserFactory.newInstance();
+            XML_PULL_PARSER_FACTORY = XmlPullParserFactory.newInstance();
         } catch (XmlPullParserException xppe) {
             throw new AmazonClientException("Couldn't initialize XmlPullParserFactory", xppe);
         }
@@ -90,7 +90,7 @@ public class StaxResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
         if (content == null)
             content = new ByteArrayInputStream("<eof/>".getBytes(StringUtils.UTF8));
 
-        XmlPullParser xpp = xmlPullParserFactory.newPullParser();
+        XmlPullParser xpp = XML_PULL_PARSER_FACTORY.newPullParser();
         xpp.setInput(content, null);
 
         AmazonWebServiceResponse<T> awsResponse = new AmazonWebServiceResponse<T>();

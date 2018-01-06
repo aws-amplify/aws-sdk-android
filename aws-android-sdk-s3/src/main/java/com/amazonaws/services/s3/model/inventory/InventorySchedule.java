@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ public class InventorySchedule implements Serializable {
     private String frequency;
 
     /**
-     * Returns the frequency for producing inventory results
+     * @return the frequency for producing inventory results
      * in {@link String} format.
      */
     public String getFrequency() {
@@ -33,34 +33,36 @@ public class InventorySchedule implements Serializable {
     }
 
     /**
-     * Sets the frequency for producing inventory results.
+     * @param frequency  the frequency for producing inventory results.
      */
     public void setFrequency(String frequency) {
         this.frequency = frequency;
     }
 
     /**
-     * Sets the frequency for producing inventory results.
+     * @param frequency  the frequency for producing inventory results.
      */
     public void setFrequency(InventoryFrequency frequency) {
         setFrequency(frequency == null ? (String) null : frequency.toString());
     }
 
     /**
-     * Sets the frequency for producing inventory results
-     * and returns {@link InventorySchedule} object
+     * @param frequency  the frequency for producing inventory results
+     * @return {@link InventorySchedule} object
      * for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public InventorySchedule withFrequency(String frequency) {
         setFrequency(frequency);
         return this;
     }
 
     /**
-     * Sets the frequency for producing inventory results
-     * and returns {@link InventorySchedule} object
+     * @param frequency  the frequency for producing inventory results
+     * @return  {@link InventorySchedule} object
      * for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public InventorySchedule withFrequency(InventoryFrequency frequency) {
         setFrequency(frequency);
         return this;

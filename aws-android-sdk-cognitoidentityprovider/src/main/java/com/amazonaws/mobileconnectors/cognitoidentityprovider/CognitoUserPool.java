@@ -23,15 +23,22 @@ import android.os.Handler;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AnonymousAWSCredentials;
+import com.amazonaws.cognito.clientcontext.data.UserContextDataProvider;
+import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoPinpointSharedContext;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoSecretHash;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
+import com.amazonaws.services.cognitoidentityprovider.model.AnalyticsMetadataType;
 import com.amazonaws.services.cognitoidentityprovider.model.AttributeType;
 import com.amazonaws.services.cognitoidentityprovider.model.SignUpRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.SignUpResult;
+import com.amazonaws.services.cognitoidentityprovider.model.UserContextDataType;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +81,7 @@ public class CognitoUserPool {
      * Client secret generated for this {@code clientId}, this may be {@code null} if a secret is not
      * generated for the {@code clientId}.
      */
-    private String clientSecret;
+    private final String clientSecret;
 
     /**
      * Application context.
@@ -92,9 +99,21 @@ public class CognitoUserPool {
     private String secretHash;
 
     /**
+     *
+     */
+    private String pinpointEndpointId;
+
+    /**
+     * This flag indicates if the data collection is allowed. This is enabled by default.
+     */
+    private boolean advancedSecurityDataCollectionFlag = true;
+
+    /**
+     * @deprecated use {@link CognitoUserPool#CognitoUserPool(Context, String, String, String, ClientConfiguration, Regions)}
+     * <p>
      * Constructs a user-pool with a developer specified {@link ClientConfiguration} and default AWS region {@link Regions}.
      * Region defaults to US-EAST-1.
-     *
+     * </p>
      * @param context               REQUIRED: Android application context
      * @param userPoolId            REQUIRED: User-pool-Id of the user-pool
      * @param clientId              REQUIRED: Client-Id generated for this app and user-pool at the
@@ -105,15 +124,18 @@ public class CognitoUserPool {
      *                              client connects to Cognito Identity Provider Service (e.g. proxy settings,
      *                              retry counts, etc.).
      */
+    @Deprecated()
     public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret,
                            ClientConfiguration clientConfiguration) {
         this(context, userPoolId, clientId, clientSecret, clientConfiguration, Regions.US_EAST_1);
     }
 
     /**
+     * @deprecated use {@link CognitoUserPool#CognitoUserPool(Context, String, String, String, ClientConfiguration, Regions)}
+     * <p>
      * Constructs a user-pool with default {@link ClientConfiguration} and default AWS region {@link Regions}.
      * Region defaults to US-EAST-1.
-     *
+     * </p>
      * @param context               REQUIRED: Android application context.
      * @param userPoolId            REQUIRED: User-pool-Id of the user-pool.
      * @param clientId              REQUIRED: Client-Id generated for this app and user-pool at the
@@ -121,8 +143,35 @@ public class CognitoUserPool {
      * @param clientSecret          REQUIRED: Client Secret generated for this app and user-pool at
      *                              the Cognito Identity Provider developer console.
      */
+    @Deprecated()
     public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret) {
         this(context, userPoolId, clientId, clientSecret, new ClientConfiguration(), Regions.US_EAST_1);
+    }
+
+    /**
+     * Constructs a user-pool with default {@link ClientConfiguration}.
+     *
+     * @param context               REQUIRED: Android application context.
+     * @param awsConfiguration      REQUIRED: Holds the configuration read from awsconfiguration.json
+     */
+    public CognitoUserPool(Context context, AWSConfiguration awsConfiguration) {
+        try {
+            final JSONObject userPoolConfiguration = awsConfiguration.optJsonObject("CognitoUserPool");
+            this.context = context;
+            this.userPoolId = userPoolConfiguration.getString("PoolId");
+            this.clientId = userPoolConfiguration.getString("AppClientId");
+            this.clientSecret = userPoolConfiguration.optString("AppClientSecret");
+            this.pinpointEndpointId = CognitoPinpointSharedContext.getPinpointEndpoint(context, userPoolConfiguration.optString("PinpointAppId"));
+
+            final ClientConfiguration clientConfig = new ClientConfiguration();
+            clientConfig.setUserAgent(awsConfiguration.getUserAgent());
+            this.client = new AmazonCognitoIdentityProviderClient(new AnonymousAWSCredentials(), clientConfig);
+            this.client.setRegion(com.amazonaws.regions.Region.getRegion(Regions.fromName(userPoolConfiguration.getString("Region"))));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Failed to read PoolId, AppClientId, "
+                    + "AppClientSecret, or Region from AWSConfiguration please check your setup "
+                    + "or awsconfiguration.json file", e);
+        }
     }
 
     /**
@@ -138,6 +187,22 @@ public class CognitoUserPool {
      */
     public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret, Regions region) {
         this(context, userPoolId, clientId, clientSecret, new ClientConfiguration(), region);
+    }
+    
+    /**
+     * Constructs a user-pool with default {@link ClientConfiguration}.
+     *
+     * @param context               REQUIRED: Android application context.
+     * @param userPoolId            REQUIRED: User-pool-Id of the user-pool.
+     * @param clientId              REQUIRED: Client-Id generated for this app and user-pool at the
+     *                              Cognito Identity Provider developer console.
+     * @param clientSecret          REQUIRED: Client Secret generated for this app and user-pool at
+     *                              the Cognito Identity Provider developer console.
+     * @param region                REQUIRED: AWS region {@link Regions}.
+     * @param pinpointAppId         REQUIRED: AWS Pinpoint App Id for analytics.
+     */
+    public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret, Regions region, String pinpointAppId) {
+        this(context, userPoolId, clientId, clientSecret, new ClientConfiguration(), region, pinpointAppId);
     }
 
     /**
@@ -155,13 +220,34 @@ public class CognitoUserPool {
      * @param region                REQUIRED: AWS region {@link Regions}.
      */
     public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret, ClientConfiguration clientConfiguration, Regions region) {
+        this(context, userPoolId, clientId, clientSecret, clientConfiguration, region, null);
+    }
+    
+    /**
+     * Constructs a user-pool with integrated Pinpoint analytics.
+     *
+     * @param context               REQUIRED: Android application context.
+     * @param userPoolId            REQUIRED: User-pool-Id of the user-pool.
+     * @param clientId              REQUIRED: Client-Id generated for this app and user-pool at the
+     *                              Cognito Identity Provider developer console.
+     * @param clientSecret          REQUIRED: Client Secret generated for this app and user-pool at
+     *                              the Cognito Identity Provider developer console.
+     * @param clientConfiguration   REQUIRED: The client configuration options controlling how this
+     *                              client connects to Cognito Identity Provider Service (e.g. proxy settings,
+     *                              retry counts, etc.).
+     * @param region                REQUIRED: AWS region {@link Regions}.
+     * @param pinpointAppId         REQUIRED: AWS Pinpoint App Id for analytics.
+     */
+    public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret, ClientConfiguration clientConfiguration, Regions region, String pinpointAppId) {
         this.context = context;
         this.userPoolId = userPoolId;
         this.clientId = clientId;
         this.clientSecret = clientSecret;
         this.client = new AmazonCognitoIdentityProviderClient(new AnonymousAWSCredentials(), clientConfiguration);
         this.client.setRegion(com.amazonaws.regions.Region.getRegion(region));
+        this.pinpointEndpointId = CognitoPinpointSharedContext.getPinpointEndpoint(context, pinpointAppId);
     }
+
 
     /**
      * Constructs a user-pool with default {@link ClientConfiguration}.
@@ -175,11 +261,28 @@ public class CognitoUserPool {
      * @param client                REQUIRED: AWS low-level Cognito Identity Provider Client.
      */
     public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret, AmazonCognitoIdentityProvider client) {
+        this(context, userPoolId, clientId, clientSecret, client, null);
+    }
+    
+    /**
+     * Constructs a user-pool with default {@link ClientConfiguration} and integrated analytics.
+     *
+     * @param context               REQUIRED: Android application context.
+     * @param userPoolId            REQUIRED: User-pool-Id of the user-pool.
+     * @param clientId              REQUIRED: Client-Id generated for this app and user-pool at the
+     *                              Cognito Identity Provider developer console.
+     * @param clientSecret          REQUIRED: Client Secret generated for this app and user-pool at
+     *                              the Cognito Identity Provider developer console.
+     * @param client                REQUIRED: AWS low-level Cognito Identity Provider Client.
+     * @param pinpointAppId         REQUIRED: AWS Pinpoint App Id for analytics.
+     */
+    public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret, AmazonCognitoIdentityProvider client, String pinpointAppId) {
         this.context = context;
         this.userPoolId = userPoolId;
         this.clientId = clientId;
         this.clientSecret = clientSecret;
         this.client = client;
+        this.pinpointEndpointId = CognitoPinpointSharedContext.getPinpointEndpoint(context, pinpointAppId);
     }
 
     /**
@@ -188,7 +291,7 @@ public class CognitoUserPool {
      * @return Client ID.
      */
     public String getClientId() {
-    	return  clientId;
+        return clientId;
     }
 
     /**
@@ -198,6 +301,17 @@ public class CognitoUserPool {
      */
     public String getUserPoolId() {
         return userPoolId;
+    }
+
+    /**
+     * This method sets context data collection for the user. This data is
+     * sent to the server for risk evaluation. By default data collection
+     * is enabled.
+     *
+     * @param isEnabled if the data collection is enabled.
+     */
+    public void setAdvancedSecurityDataCollectionFlag(boolean isEnabled) {
+        this.advancedSecurityDataCollectionFlag = isEnabled;
     }
 
     /**
@@ -216,20 +330,21 @@ public class CognitoUserPool {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Handler handler = new Handler(context.getMainLooper());
+                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
-                    final SignUpResult signUpResult =
-                            signUpInternal(userId, password, userAttributes, validationData);
+                    final SignUpResult signUpResult = signUpInternal(userId, password,
+                            userAttributes, validationData);
                     final CognitoUser user = getUser(userId);
                     returnCallback = new Runnable() {
                         @Override
                         public void run() {
                             callback.onSuccess(user, signUpResult.getUserConfirmed(),
-                                    new CognitoUserCodeDeliveryDetails(signUpResult.getCodeDeliveryDetails()));
+                                    new CognitoUserCodeDeliveryDetails(
+                                            signUpResult.getCodeDeliveryDetails()));
                         }
                     };
-                } catch(final Exception e) {
+                } catch (final Exception e) {
                     returnCallback = new Runnable() {
                         @Override
                         public void run() {
@@ -256,16 +371,16 @@ public class CognitoUserPool {
      * @param callback          REQUIRED: callback, must not be null
      */
     public void signUp(final String userId, final String password,
-                             final CognitoUserAttributes userAttributes,
-                             final Map<String, String> validationData,
-                             final SignUpHandler callback) {
+            final CognitoUserAttributes userAttributes,
+            final Map<String, String> validationData,
+            final SignUpHandler callback) {
         try {
-            SignUpResult signUpResult =
-                    signUpInternal(userId, password, userAttributes, validationData);
-            CognitoUser user = getUser(userId);
+            final SignUpResult signUpResult = signUpInternal(userId, password, userAttributes,
+                    validationData);
+            final CognitoUser user = getUser(userId);
             callback.onSuccess(user, signUpResult.getUserConfirmed(),
                     new CognitoUserCodeDeliveryDetails(signUpResult.getCodeDeliveryDetails()));
-        } catch(final Exception e) {
+        } catch (final Exception e) {
             callback.onFailure(e);
         }
     }
@@ -287,10 +402,10 @@ public class CognitoUserPool {
 
         // Create a list of {@link AttributeType} from {@code userAttributes}
         List<AttributeType> validationDataList = null;
-        if(validationData != null) {
+        if (validationData != null) {
             validationDataList = new ArrayList<AttributeType>();
-            for (Map.Entry<String, String> data : validationData.entrySet()) {
-                AttributeType validation = new AttributeType();
+            for (final Map.Entry<String, String> data : validationData.entrySet()) {
+                final AttributeType validation = new AttributeType();
                 validation.setName(data.getKey());
                 validation.setValue(data.getValue());
                 validationDataList.add(validation);
@@ -301,14 +416,20 @@ public class CognitoUserPool {
         secretHash = CognitoSecretHash.getSecretHash(userId, clientId, clientSecret);
 
         // Create User registration request
-        SignUpRequest signUpUserRequest = new SignUpRequest();
+        final SignUpRequest signUpUserRequest = new SignUpRequest();
         signUpUserRequest.setUsername(userId);
         signUpUserRequest.setPassword(password);
         signUpUserRequest.setClientId(clientId);
         signUpUserRequest.setSecretHash(secretHash);
         signUpUserRequest.setUserAttributes(userAttributes.getAttributesList());
         signUpUserRequest.setValidationData(validationDataList);
-
+        signUpUserRequest.setUserContextData(getUserContextData(userId));
+        String ppEndpoint = getPinpointEndpointId();
+        if (ppEndpoint != null) {
+            AnalyticsMetadataType amd = new AnalyticsMetadataType();
+            amd.setAnalyticsEndpointId(ppEndpoint);
+            signUpUserRequest.setAnalyticsMetadata(amd);
+        }
         return client.signUp(signUpUserRequest);
     }
 
@@ -318,14 +439,14 @@ public class CognitoUserPool {
      * @return An instance of the {@link CognitoUser} for last authenticated, cached on this device
      */
     public CognitoUser getCurrentUser() {
-        SharedPreferences csiCachedTokens = context.getSharedPreferences("CognitoIdentityProviderCache", 0);
+        final SharedPreferences csiCachedTokens = context
+                .getSharedPreferences("CognitoIdentityProviderCache", 0);
 
-        String csiLastUserKey = "CognitoIdentityProvider." + clientId + ".LastAuthUser";
+        final String csiLastUserKey = "CognitoIdentityProvider." + clientId + ".LastAuthUser";
 
-        if(csiCachedTokens.contains(csiLastUserKey)){
+        if (csiCachedTokens.contains(csiLastUserKey)) {
             return getUser(csiCachedTokens.getString(csiLastUserKey, null));
-        }
-        else {
+        } else {
             return getUser();
         }
     }
@@ -355,12 +476,37 @@ public class CognitoUserPool {
             return getUser();
         }
 
-        if(userId.isEmpty()) {
+        if (userId.isEmpty()) {
             return getUser();
         }
 
         return new CognitoUser(this, userId, clientId, clientSecret,
                 CognitoSecretHash.getSecretHash(userId, clientId, clientSecret),
                 client, context);
+    }
+
+    /**
+     * Returns the current Pinpoint endpoint id.
+     * @return current pinpoint endpoint id.
+     */
+    protected String getPinpointEndpointId() {
+        return pinpointEndpointId;
+    }
+
+    /**
+     * Generates user context data.
+     * @param userId Required: The current user.
+     * @return Encoded user context.
+     */
+    protected UserContextDataType getUserContextData(String userId) {
+        UserContextDataType contextData = null;
+        if (this.advancedSecurityDataCollectionFlag) {
+            UserContextDataProvider provider = UserContextDataProvider.getInstance();
+            String encodedData = provider.getEncodedContextData(context, userId, this.getUserPoolId(), clientId);
+
+            contextData = new UserContextDataType();
+            contextData.setEncodedData(encodedData);
+        }
+        return contextData;
     }
 }

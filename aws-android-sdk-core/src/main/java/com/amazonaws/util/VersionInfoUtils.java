@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,8 +22,11 @@ import org.apache.commons.logging.LogFactory;
  * Utility class for accessing AWS SDK versioning information.
  */
 public class VersionInfoUtils {
+
+    private static final int DEFAULT_STRING_LENGTH = 128;
+
     /** SDK version info */
-    private static volatile String version = "2.4.0";
+    private static volatile String version = "2.6.13";
                                                                 // changed build
                                                                 // logic
 
@@ -90,7 +93,7 @@ public class VersionInfoUtils {
     }
 
     static String userAgent() {
-        StringBuilder buffer = new StringBuilder(128);
+        StringBuilder buffer = new StringBuilder(DEFAULT_STRING_LENGTH);
 
         buffer.append("aws-sdk-");
         buffer.append(StringUtils.lowerCase(VersionInfoUtils.getPlatform()));

@@ -29,7 +29,7 @@ public interface DevicesHandler {
      * This method is called on successfully fetching devices for a user.
      * {@code device} contains all devices linked the user.
      *
-     * @param devices       REQUIRED: List of all devices linked to this user.
+     * @param devices REQUIRED: List of all devices linked to this user.
      */
     public void onSuccess(List<CognitoDevice> devices);
 
@@ -37,7 +37,7 @@ public interface DevicesHandler {
      * This method is called upon encountering errors during this operation.
      * Probe {@code exception} for the cause of this exception.
      *
-     * @param exception
+     * @param exception REQUIRED: Failure details.
      */
     public void onFailure(Exception exception);
 }

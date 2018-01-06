@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -57,11 +57,11 @@ class FileManager {
         return listFilesInDirectory(dir);
     }
 
-    public Set<File> listFilesInDirectory(final File directory) {
+    public Set<File> listFilesInDirectory(final File direc) {
         final Set<File> filesSet = new HashSet<File>();
-        if (directory.exists()) {
-            final File[] files = directory.listFiles();
-            for (File file : files) {
+        if (direc.exists()) {
+            final File[] files = direc.listFiles();
+            for (final File file : files) {
                 filesSet.add(file);
             }
         }

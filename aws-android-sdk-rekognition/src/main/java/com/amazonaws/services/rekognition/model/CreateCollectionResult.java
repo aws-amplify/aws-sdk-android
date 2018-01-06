@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,6 +35,14 @@ public class CreateCollectionResult implements Serializable {
      * </p>
      */
     private String collectionArn;
+
+    /**
+     * <p>
+     * Version number of the face detection model associated with the collection
+     * you are creating.
+     * </p>
+     */
+    private String faceModelVersion;
 
     /**
      * <p>
@@ -142,6 +150,57 @@ public class CreateCollectionResult implements Serializable {
     }
 
     /**
+     * <p>
+     * Version number of the face detection model associated with the collection
+     * you are creating.
+     * </p>
+     *
+     * @return <p>
+     *         Version number of the face detection model associated with the
+     *         collection you are creating.
+     *         </p>
+     */
+    public String getFaceModelVersion() {
+        return faceModelVersion;
+    }
+
+    /**
+     * <p>
+     * Version number of the face detection model associated with the collection
+     * you are creating.
+     * </p>
+     *
+     * @param faceModelVersion <p>
+     *            Version number of the face detection model associated with the
+     *            collection you are creating.
+     *            </p>
+     */
+    public void setFaceModelVersion(String faceModelVersion) {
+        this.faceModelVersion = faceModelVersion;
+    }
+
+    /**
+     * <p>
+     * Version number of the face detection model associated with the collection
+     * you are creating.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param faceModelVersion <p>
+     *            Version number of the face detection model associated with the
+     *            collection you are creating.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateCollectionResult withFaceModelVersion(String faceModelVersion) {
+        this.faceModelVersion = faceModelVersion;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -155,7 +214,9 @@ public class CreateCollectionResult implements Serializable {
         if (getStatusCode() != null)
             sb.append("StatusCode: " + getStatusCode() + ",");
         if (getCollectionArn() != null)
-            sb.append("CollectionArn: " + getCollectionArn());
+            sb.append("CollectionArn: " + getCollectionArn() + ",");
+        if (getFaceModelVersion() != null)
+            sb.append("FaceModelVersion: " + getFaceModelVersion());
         sb.append("}");
         return sb.toString();
     }
@@ -168,6 +229,8 @@ public class CreateCollectionResult implements Serializable {
         hashCode = prime * hashCode + ((getStatusCode() == null) ? 0 : getStatusCode().hashCode());
         hashCode = prime * hashCode
                 + ((getCollectionArn() == null) ? 0 : getCollectionArn().hashCode());
+        hashCode = prime * hashCode
+                + ((getFaceModelVersion() == null) ? 0 : getFaceModelVersion().hashCode());
         return hashCode;
     }
 
@@ -191,6 +254,11 @@ public class CreateCollectionResult implements Serializable {
             return false;
         if (other.getCollectionArn() != null
                 && other.getCollectionArn().equals(this.getCollectionArn()) == false)
+            return false;
+        if (other.getFaceModelVersion() == null ^ this.getFaceModelVersion() == null)
+            return false;
+        if (other.getFaceModelVersion() != null
+                && other.getFaceModelVersion().equals(this.getFaceModelVersion()) == false)
             return false;
         return true;
     }

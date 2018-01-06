@@ -30,7 +30,8 @@ public interface SignUpHandler {
      *
      * @param user {@link CognitoUser}
      * @param signUpConfirmationState will be {@code true} is the user has been confirmed,
-     *                                otherwise {@code false}
+     *                                otherwise {@code false}.
+     * @param cognitoUserCodeDeliveryDetails REQUIRED: Indicates the medium and destination of the confirmation code.
      */
     public void onSuccess(CognitoUser user, boolean signUpConfirmationState, CognitoUserCodeDeliveryDetails cognitoUserCodeDeliveryDetails);
 
@@ -38,7 +39,7 @@ public interface SignUpHandler {
      * This method is called when user registration has failed.
      * Probe {@code exception} for cause of the failure.
      *
-     * @param exception
+     * @param exception REQUIRED: Failure details.
      */
     public void onFailure(Exception exception);
 }

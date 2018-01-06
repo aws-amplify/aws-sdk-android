@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,30 +25,31 @@ public class MetricsConfiguration implements Serializable {
     private MetricsFilter filter;
 
     /**
-     * Returns the identifier used to represent a metrics configuration.
+     * @return the identifier used to represent a metrics configuration.
      */
     public String getId() {
         return id;
     }
 
     /**
-     * Sets the identifier used to represent a metrics configuration.
+     * @param id  the identifier used to represent a metrics configuration.
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * Sets the identifier used to represent a metrics configuration
-     * and return this object for method chaining.
+     * @param id  the identifier used to represent a metrics configuration
+     * @return  this object for method chaining.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public MetricsConfiguration withId(String id) {
         setId(id);
         return this;
     }
 
     /**
-     * Returns the metrics configuration filter. The metrics configuration will only
+     * @return  the metrics configuration filter. The metrics configuration will only
      * include objects that meet the filter's criteria.
      *
      * A null filter indicates that the metrics are computed for the entire bucket.
@@ -58,7 +59,7 @@ public class MetricsConfiguration implements Serializable {
     }
 
     /**
-     * Sets a metrics configuration filter. The metrics configuration will only
+     * @param filter  a metrics configuration filter. The metrics configuration will only
      * include objects that meet the filter's criteria.
      *
      * The filter may be omitted to get metrics for the entire bucket.
@@ -68,11 +69,13 @@ public class MetricsConfiguration implements Serializable {
     }
 
     /**
-     * Sets a metrics configuration filter and returns {@link MetricsConfiguration}
+     * @param filter  a metrics configuration filter
+     * @return the {@link MetricsConfiguration}
      * object for method chaining. The metrics configuration will only include objects that meet the filter's criteria.
      *
      * The filter may be omitted to get metrics for the entire bucket.
      */
+    @SuppressWarnings("checkstyle:hiddenfield")
     public MetricsConfiguration withFilter(MetricsFilter filter) {
         setFilter(filter);
         return this;

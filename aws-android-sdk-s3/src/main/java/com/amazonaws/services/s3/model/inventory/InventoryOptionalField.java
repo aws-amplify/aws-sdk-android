@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,19 +19,23 @@ package com.amazonaws.services.s3.model.inventory;
  */
 public enum InventoryOptionalField {
 
+    /** Size. */
     Size("Size"),
 
+    /** LastModifiedDate. */
     LastModifiedDate("LastModifiedDate"),
 
+    /** StorageClass. */
     StorageClass("StorageClass"),
 
+    /** ETag. */
     ETag("ETag"),
 
+    /** IsMultipartUploaded. */
     IsMultipartUploaded("IsMultipartUploaded"),
 
-    ReplicationStatus("ReplicationStatus"),
-
-    ;
+    /** ReplicationStatus. */
+    ReplicationStatus("ReplicationStatus");
 
     private final String field;
 

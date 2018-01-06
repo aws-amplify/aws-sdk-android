@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Returns metadata for faces in the specified collection. This metadata
  * includes information such as the bounding box coordinates, the confidence
  * (that the bounding box contains a face), and face ID. For an example, see
- * <a>example3</a>.
+ * <a>list-faces-in-collection-procedure</a>.
  * </p>
  * <p>
  * This operation requires permissions to perform the
@@ -64,6 +64,27 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Range: </b>0 - 4096<br/>
      */
     private Integer maxResults;
+
+    /**
+     * Default constructor for ListFacesRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
+     */
+    public ListFacesRequest() {
+    }
+
+    /**
+     * Constructs a new ListFacesRequest object. Callers should use the setter
+     * or fluent setter (with...) methods to initialize any additional object
+     * members.
+     * 
+     * @param collectionId <p>
+     *            ID of the collection from which to list the faces.
+     *            </p>
+     */
+    public ListFacesRequest(String collectionId) {
+        setCollectionId(collectionId);
+    }
 
     /**
      * <p>

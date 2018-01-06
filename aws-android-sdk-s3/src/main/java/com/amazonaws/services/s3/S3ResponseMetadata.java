@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,11 @@ import java.util.Map;
  * support when debugging an issue with Amazon S3.
  */
 public class S3ResponseMetadata extends ResponseMetadata {
+
+    /** Metadata for host ID */
     public static final String HOST_ID = "HOST_ID";
+
+    /** Metadata for CloudFront ID */
     public static final String CLOUD_FRONT_ID = "CLOUD_FRONT_ID";
 
     /**

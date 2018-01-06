@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,9 +23,18 @@ import com.amazonaws.http.ExecutionContext;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * The ExecutionContext.
+ */
 public class S3ExecutionContext extends ExecutionContext {
     private Signer signer;
 
+    /**
+     * Constructor.
+     * @param requestHandler2s list of RequestHandler2.
+     * @param isMetricEnabled indicator to see if metric is enabled.
+     * @param awsClient the AmazonWebServiceClient.
+     */
     public S3ExecutionContext(List<RequestHandler2> requestHandler2s,
             boolean isMetricEnabled, AmazonWebServiceClient awsClient) {
         super(requestHandler2s, isMetricEnabled, awsClient);

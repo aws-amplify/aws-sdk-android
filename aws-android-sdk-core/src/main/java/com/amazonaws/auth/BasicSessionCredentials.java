@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon Technologies, Inc.
+ * Copyright 2011-2018 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,12 @@ public class BasicSessionCredentials implements AWSSessionCredentials {
     private final String awsSecretKey;
     private final String sessionToken;
 
+    /**
+     * Constructor.
+     * @param awsAccessKey the AWS access key.
+     * @param awsSecretKey the AWS secret key.
+     * @param sessionToken the session token.
+     */
     public BasicSessionCredentials(String awsAccessKey, String awsSecretKey, String sessionToken) {
         this.awsAccessKey = awsAccessKey;
         this.awsSecretKey = awsSecretKey;

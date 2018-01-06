@@ -202,7 +202,7 @@ public class PolicyReaderTest {
                 .get(0).getConditionKey());
         assertEquals(1, statements.get(0).getConditions().get(0).getValues().size());
         assertEquals("10.1.2.0/24", statements.get(1).getConditions().get(0).getValues().get(0));
-        
+
         assertEquals(Effect.Allow, statements.get(2).getEffect());
         assertEquals("2", statements.get(2).getId());
         assertEquals(1, statements.get(2).getPrincipals().size());

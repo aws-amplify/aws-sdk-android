@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Portions copyright 2006-2009 James Murty. Please see LICENSE.txt
  * for applicable license terms and NOTICE.txt for applicable notices.
@@ -38,9 +38,9 @@ class SecuredCEK {
     private final String keyWrapAlgorithm;
 
     /** Unmodifiable material description. */
-    private final Map<String,String> matdesc;
+    private final Map<String, String> matdesc;
 
-    SecuredCEK(byte[] encryptedKey, String keyWrapAlgorithm, Map<String,String> matdesc) {
+    SecuredCEK(byte[] encryptedKey, String keyWrapAlgorithm, Map<String, String> matdesc) {
         this.encrypted = encryptedKey;
         this.keyWrapAlgorithm = keyWrapAlgorithm;
         this.matdesc = Collections.unmodifiableMap(new TreeMap<String, String>(matdesc));

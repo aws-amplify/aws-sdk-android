@@ -1,11 +1,11 @@
-/*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+/**
+ * Copyright 2016-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,15 +15,15 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.analytics.monetization;
 
-import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
 import org.apache.commons.logging.LogFactory;
+import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
 
 /**
  * Builds monetization events representing a Google Play purchase. This Builder
  * automatically sets the store attribute to "Google Play". This Builder will
  * return null if the ProductId, Currency, Item Price, Quantity, or
  * TransactionId are not set.
- * <p>
+ *
  * The example below demonstrates how to create a monetization event after you
  * receive the purchase <code>org.json.JSONObject</code> on the completion of a
  * purchase using Google's In App Billing API. Since Google does not give you
@@ -31,10 +31,9 @@ import org.apache.commons.logging.LogFactory;
  * your store inventory when the purchase is being finalized. In the example
  * below, we use a <code>org.json.JSONObject</code> that was returned by a
  * request to Google's In App Billing API for product skus.
- * </p>
+ *
  * Example:
  *
- * <pre class="prettyprint">
  * // create a builder that can record purchase events for Google Play IAP
  * GooglePlayMonetizationEventBuilder builder = GooglePlayMonetizationEventBuilder.create(pinpointManager.getAnalyticsClient());
  *
@@ -46,24 +45,35 @@ import org.apache.commons.logging.LogFactory;
  * // completion of a purchase
  * // Google IAP currently only supports a quantity of 1
  * Analytics Event purchaseEvent = builder.withProductId(sku).withFormattedItemPrice(price)
- *         .withTransactionId(purchase.getOrderId()).withQuantity(1).build();
+ * .withTransactionId(purchase.getOrderId()).withQuantity(1).build();
  *
  * // record the monetization event
  * pinpointManager.getAnalyticsClient().recordEvent(purchaseEvent);
- * </pre>
  */
-public class GooglePlayMonetizationEventBuilder extends MonetizationEventBuilder {
+public class GooglePlayMonetizationEventBuilder
+        extends MonetizationEventBuilder {
 
-    private static final org.apache.commons.logging.Log log =
-            LogFactory.getLog(GooglePlayMonetizationEventBuilder.class);
+    private static final org.apache.commons.logging.Log log = LogFactory.getLog(GooglePlayMonetizationEventBuilder.class);
+
+    /**
+     * Construct a GooglePlayMonetizationEventBuilder with the specified
+     * EventClient
+     *
+     * @param analyticsClient The EventClient to use when building the event
+     */
+    protected GooglePlayMonetizationEventBuilder(AnalyticsClient analyticsClient) {
+        super(analyticsClient);
+        setStore(GOOGLE_PLAY_STORE);
+    }
+
     /**
      * Create a GooglePlayMonetizationEventBuilder with the specified Event
      * client
      *
      * @param analyticsClient The event client to use when creating monetization
-     *            events
+     *                        events
      * @return a GooglePlayMonetizationEventBuilder to build monetization events
-     *         from the Google Play IAB API
+     * from the Google Play IAB API
      */
     public static GooglePlayMonetizationEventBuilder create(AnalyticsClient analyticsClient) {
         return new GooglePlayMonetizationEventBuilder(analyticsClient);
@@ -87,9 +97,8 @@ public class GooglePlayMonetizationEventBuilder extends MonetizationEventBuilder
      *
      * @param formattedItemPrice The localized formatted price of the item
      * @return this for chaining
-     *
-     * @deprecated  Will be removed. Please set Currency and Item Price. Replaced by
-     *    {@link #withCurrency(String)} and {@link #withItemPrice(Double)
+     * @deprecated Will be removed. Please set Currency and Item Price. Replaced by
+     * {@link #withCurrency(String)} and {@link #withItemPrice(Double)
      */
     @Deprecated
     public GooglePlayMonetizationEventBuilder withFormattedItemPrice(String formattedItemPrice) {
@@ -101,7 +110,7 @@ public class GooglePlayMonetizationEventBuilder extends MonetizationEventBuilder
      * Sets the quantity of the item purchased.
      *
      * @param quantity Currently, Google Play only supports purchasing 1 item at
-     *            a time.
+     *                 a time.
      * @return this for chaining
      */
     public GooglePlayMonetizationEventBuilder withQuantity(Double quantity) {
@@ -124,7 +133,7 @@ public class GooglePlayMonetizationEventBuilder extends MonetizationEventBuilder
      * Sets the currency of the item purchased.
      *
      * @param currency The currency code of the currency used to purchase this
-     *            item (i.e. "USD" or "$")
+     *                 item (i.e. "USD" or "$")
      * @return this for chaining
      */
     public GooglePlayMonetizationEventBuilder withCurrency(String currency) {
@@ -136,23 +145,12 @@ public class GooglePlayMonetizationEventBuilder extends MonetizationEventBuilder
      * The transaction identifier of the purchase.
      *
      * @param transactionId The orderId found in the INAPP_PURCHASE_DATA of a
-     *            purchase request
+     *                      purchase request
      * @return this for chaining
      */
     public GooglePlayMonetizationEventBuilder withTransactionId(String transactionId) {
         setTransactionId(transactionId);
         return this;
-    }
-
-    /**
-     * Construct a GooglePlayMonetizationEventBuilder with the specified
-     * EventClient
-     *
-     * @param analyticsClient The EventClient to use when building the event
-     */
-    protected GooglePlayMonetizationEventBuilder(AnalyticsClient analyticsClient) {
-        super(analyticsClient);
-        setStore(GOOGLE_PLAY_STORE);
     }
 
     /**

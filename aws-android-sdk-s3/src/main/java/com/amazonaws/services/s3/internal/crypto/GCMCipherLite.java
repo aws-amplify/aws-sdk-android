@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,8 +30,9 @@ import javax.crypto.SecretKey;
  * @see CipherLite
  */
 final class GCMCipherLite extends CipherLite {
+    private static final int BITS = 8;
     private static final int TAG_LENGTH = ContentCryptoScheme.AES_GCM
-            .getTagLengthInBits() / 8;
+            .getTagLengthInBits() / BITS;
     /** Applicable only for encryption; set to zero otherwise. */
     private final int tagLen;
     /**
@@ -47,7 +48,7 @@ final class GCMCipherLite extends CipherLite {
     private boolean invisiblyProcessed;
     /**
      * The current number of bytes since the beginning of the plaintext that
-     * have been re-encrypted and output so far. If {@link #currentCount} <
+     * have been re-encrypted and output so far. If {@link #currentCount} &lt;
      * {@link #outputByteCount}, it means re-processing using AES/CTR is in
      * progress. If {@link #currentCount} == {@link #outputByteCount}, it means
      * it is not re-processing and therefore the AES/GCM cipher should be used.
@@ -206,7 +207,8 @@ final class GCMCipherLite extends CipherLite {
 
     @Override
     long mark() {
-        return this.markedCount = aux == null ? outputByteCount : currentCount;
+        this.markedCount = aux == null ? outputByteCount : currentCount;
+        return this.markedCount;
     }
 
     @Override

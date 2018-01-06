@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -261,7 +261,7 @@ public class AmazonS3URI {
                 return (URLEncoder.encode(str, "UTF-8")
                         .replace("%3A", ":")
                         .replace("%2F", "/")
-                        .replace("+", "%20"));
+                        .replace("+", " "));
             } catch (UnsupportedEncodingException e) {
                 // This should never happen unless there is something
                 // fundamentally broken with the running JVM.

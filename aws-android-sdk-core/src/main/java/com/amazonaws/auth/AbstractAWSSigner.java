@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -52,8 +52,12 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public abstract class AbstractAWSSigner implements Signer {
 
+    /** Empty sha256 hex. */
     public static final String EMPTY_STRING_SHA256_HEX;
     private static final ThreadLocal<MessageDigest> SHA256_MESSAGE_DIGEST;
+    private static final int DEFAULT_BUFFER_SIZE = 1024;
+    private static final int BUFFER_SIZE_MULTIPLIER = 5;
+    private static final int TIME_MILLISEC = 1000;
 
     static {
         SHA256_MESSAGE_DIGEST = new ThreadLocal<MessageDigest>() {
@@ -77,7 +81,7 @@ public abstract class AbstractAWSSigner implements Signer {
      * Base64 encoded string.
      */
     protected String signAndBase64Encode(String data, String key,
-            SigningAlgorithm algorithm) throws AmazonClientException {
+            SigningAlgorithm algorithm) {
         return signAndBase64Encode(data.getBytes(UTF8),
                 key, algorithm);
     }
@@ -86,8 +90,7 @@ public abstract class AbstractAWSSigner implements Signer {
      * Computes an RFC 2104-compliant HMAC signature for an array of bytes and
      * returns the result as a Base64 encoded string.
      */
-    protected String signAndBase64Encode(byte[] data, String key, SigningAlgorithm algorithm)
-            throws AmazonClientException {
+    protected String signAndBase64Encode(byte[] data, String key, SigningAlgorithm algorithm) {
         try {
             final byte[] signature = sign(data, key.getBytes(UTF8), algorithm);
             return Base64.encodeAsString(signature);
@@ -97,8 +100,14 @@ public abstract class AbstractAWSSigner implements Signer {
         }
     }
 
-    public byte[] sign(String stringData, byte[] key, SigningAlgorithm algorithm)
-            throws AmazonClientException {
+    /**
+     * Signs using the given signing algorithm.
+     * @param stringData the data.
+     * @param key the key in bytes.
+     * @param algorithm the signing algorithm.
+     * @return signed result in bytes.
+     */
+    public byte[] sign(String stringData, byte[] key, SigningAlgorithm algorithm) {
         try {
             final byte[] data = stringData.getBytes(UTF8);
             return sign(data, key, algorithm);
@@ -108,8 +117,7 @@ public abstract class AbstractAWSSigner implements Signer {
         }
     }
 
-    protected byte[] sign(byte[] data, byte[] key, SigningAlgorithm algorithm)
-            throws AmazonClientException {
+    protected byte[] sign(byte[] data, byte[] key, SigningAlgorithm algorithm) {
         try {
             final Mac mac = Mac.getInstance(algorithm.toString());
             mac.init(new SecretKeySpec(key, algorithm.toString()));
@@ -126,13 +134,12 @@ public abstract class AbstractAWSSigner implements Signer {
      *
      * @param text The string to hash.
      * @return The hashed bytes from the specified string.
-     * @throws SdkClientException If the hash cannot be computed.
      */
-    public byte[] hash(String text) throws AmazonClientException {
+    public byte[] hash(String text) {
         return AbstractAWSSigner.doHash(text);
     }
 
-    private static byte[] doHash(String text) throws AmazonClientException {
+    private static byte[] doHash(String text) {
         try {
             final MessageDigest md = getMessageDigestInstance();
             md.update(text.getBytes(UTF8));
@@ -145,13 +152,13 @@ public abstract class AbstractAWSSigner implements Signer {
         }
     }
 
-    protected byte[] hash(InputStream input) throws AmazonClientException {
+    @SuppressWarnings("checkstyle:emptystatement")
+    protected byte[] hash(InputStream input) {
         try {
             final MessageDigest md = getMessageDigestInstance();
             @SuppressWarnings("resource")
-            final
-            DigestInputStream digestInputStream = new SdkDigestInputStream(input, md);
-            final byte[] buffer = new byte[1024];
+            final DigestInputStream digestInputStream = new SdkDigestInputStream(input, md);
+            final byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
             while (digestInputStream.read(buffer) > -1) {
                 ;
             }
@@ -169,7 +176,7 @@ public abstract class AbstractAWSSigner implements Signer {
      * @return The hashed bytes from the specified data.
      * @throws AmazonClientException If the hash cannot be computed.
      */
-    public byte[] hash(byte[] data) throws AmazonClientException {
+    public byte[] hash(byte[] data) {
         try {
             final MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update(data);
@@ -286,7 +293,7 @@ public abstract class AbstractAWSSigner implements Signer {
         try {
             content.mark(-1);
             final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            final byte[] buffer = new byte[1024 * 5];
+            final byte[] buffer = new byte[DEFAULT_BUFFER_SIZE * BUFFER_SIZE_MULTIPLIER];
             while (true) {
                 final int bytesRead = content.read(buffer);
                 if (bytesRead == -1) {
@@ -429,7 +436,7 @@ public abstract class AbstractAWSSigner implements Signer {
         Date dateValue = new Date();
         if (timeOffset != 0) {
             long epochMillis = dateValue.getTime();
-            epochMillis -= timeOffset * 1000;
+            epochMillis -= timeOffset * TIME_MILLISEC;
             dateValue = new Date(epochMillis);
         }
         return dateValue;

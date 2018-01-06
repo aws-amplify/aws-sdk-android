@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,6 +39,8 @@ public class StaxUnmarshallerContext {
     private int currentEventType;
     private final XmlPullParser xpp;
 
+    /** The deque stack. */
+    @SuppressWarnings("checkstyle:visibilitymodifier")
     public final Deque<String> stack = new LinkedList<String>();
     private String stackString = "";
 
@@ -142,7 +144,7 @@ public class StaxUnmarshallerContext {
      *         the XML document, starting from the specified depth.
      */
     public boolean testExpression(String expression, int startingStackDepth) {
-        if (expression.equals("."))
+        if (".".equals(expression))
             return true;
 
         int index = -1;
@@ -154,7 +156,7 @@ public class StaxUnmarshallerContext {
         }
 
         return (getCurrentDepth() == startingStackDepth
-        && stackString.endsWith("/" + expression));
+                && stackString.endsWith("/" + expression));
     }
 
     /**
@@ -236,7 +238,9 @@ public class StaxUnmarshallerContext {
      * Simple container for the details of a metadata expression this
      * unmarshaller context is looking for.
      */
+    @SuppressWarnings("checkstyle:visibilitymodifier")
     private static class MetadataExpression {
+
         public String expression;
         public int targetDepth;
         public String key;

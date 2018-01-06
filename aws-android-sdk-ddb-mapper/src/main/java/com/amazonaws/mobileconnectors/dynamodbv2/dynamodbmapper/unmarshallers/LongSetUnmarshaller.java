@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,11 +24,16 @@ import java.util.Set;
  * An unmarshaller that unmarshals DynamoDB NumberSets into sets of Java
  * {@code Long}s.
  */
-public class LongSetUnmarshaller extends NSUnmarshaller {
+public final class LongSetUnmarshaller extends NSUnmarshaller {
 
     private static final LongSetUnmarshaller INSTANCE =
             new LongSetUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link LongSetUnmarshaller}
+     */
     public static LongSetUnmarshaller instance() {
         return INSTANCE;
     }
@@ -38,8 +43,8 @@ public class LongSetUnmarshaller extends NSUnmarshaller {
 
     @Override
     public Object unmarshall(AttributeValue value) {
-        Set<Long> result = new HashSet<Long>();
-        for (String s : value.getNS()) {
+        final Set<Long> result = new HashSet<Long>();
+        for (final String s : value.getNS()) {
             result.add(Long.valueOf(s));
         }
         return result;

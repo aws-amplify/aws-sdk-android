@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,8 +29,7 @@ final class RequestHandler2Adaptor extends RequestHandler2 {
     @SuppressWarnings("deprecation")
     private final RequestHandler old;
 
-    RequestHandler2Adaptor(@SuppressWarnings("deprecation")
-    RequestHandler old) {
+    RequestHandler2Adaptor(@SuppressWarnings("deprecation") RequestHandler old) {
         if (old == null)
             throw new IllegalArgumentException();
         this.old = old;

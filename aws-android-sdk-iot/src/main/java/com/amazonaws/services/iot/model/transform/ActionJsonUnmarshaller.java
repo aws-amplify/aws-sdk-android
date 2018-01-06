@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -37,6 +37,9 @@ class ActionJsonUnmarshaller implements Unmarshaller<Action, JsonUnmarshallerCon
             String name = reader.nextName();
             if (name.equals("dynamoDB")) {
                 action.setDynamoDB(DynamoDBActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("dynamoDBv2")) {
+                action.setDynamoDBv2(DynamoDBv2ActionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("lambda")) {
                 action.setLambda(LambdaActionJsonUnmarshaller.getInstance()

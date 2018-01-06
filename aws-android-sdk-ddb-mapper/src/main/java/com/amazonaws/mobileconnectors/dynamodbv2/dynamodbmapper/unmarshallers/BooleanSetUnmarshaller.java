@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,11 +27,16 @@ import java.util.Set;
  * Retained only for backwards compatibility - DynamoDB does not have a
  * BooleanSet type, and sets of booleans aren't particularly useful anyways.
  */
-public class BooleanSetUnmarshaller extends NSUnmarshaller {
+public final class BooleanSetUnmarshaller extends NSUnmarshaller {
 
     private static final BooleanSetUnmarshaller INSTANCE =
             new BooleanSetUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link BooleanSetUnmarshaller}
+     */
     public static BooleanSetUnmarshaller instance() {
         return INSTANCE;
     }
@@ -41,10 +46,10 @@ public class BooleanSetUnmarshaller extends NSUnmarshaller {
 
     @Override
     public Object unmarshall(AttributeValue value) {
-        List<String> values = value.getNS();
-        Set<Boolean> result = new HashSet<Boolean>();
+        final List<String> values = value.getNS();
+        final Set<Boolean> result = new HashSet<Boolean>();
 
-        for (String s : values) {
+        for (final String s : values) {
             if ("1".equals(s)) {
                 result.add(Boolean.TRUE);
             } else if ("0".equals(s)) {

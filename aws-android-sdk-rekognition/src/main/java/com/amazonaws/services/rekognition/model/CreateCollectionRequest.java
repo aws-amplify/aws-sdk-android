@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a collection in an AWS region. You can add faces to the collection
+ * Creates a collection in an AWS Region. You can add faces to the collection
  * using the operation.
  * </p>
  * <p>
@@ -30,9 +30,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * operation and persist results in a specific collection. Then, a user can
  * search the collection for faces in the user-specific container.
  * </p>
+ * <note>
  * <p>
- * For an example, see <a>example1</a>.
+ * Collection names are case-sensitive.
  * </p>
+ * </note>
  * <p>
  * This operation requires permissions to perform the
  * <code>rekognition:CreateCollection</code> action.
@@ -49,6 +51,27 @@ public class CreateCollectionRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>[a-zA-Z0-9_.\-]+<br/>
      */
     private String collectionId;
+
+    /**
+     * Default constructor for CreateCollectionRequest object. Callers should
+     * use the setter or fluent setter (with...) methods to initialize any
+     * additional object members.
+     */
+    public CreateCollectionRequest() {
+    }
+
+    /**
+     * Constructs a new CreateCollectionRequest object. Callers should use the
+     * setter or fluent setter (with...) methods to initialize any additional
+     * object members.
+     * 
+     * @param collectionId <p>
+     *            ID for the collection that you are creating.
+     *            </p>
+     */
+    public CreateCollectionRequest(String collectionId) {
+        setCollectionId(collectionId);
+    }
 
     /**
      * <p>

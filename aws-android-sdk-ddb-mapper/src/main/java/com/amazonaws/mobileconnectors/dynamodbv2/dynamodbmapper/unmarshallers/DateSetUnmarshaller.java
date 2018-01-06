@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,11 +26,16 @@ import java.util.Set;
  * An unmarshaller that unmarshals sets of ISO-8601-formatted dates as sets of
  * Java {@code Date} objects.
  */
-public class DateSetUnmarshaller extends SSUnmarshaller {
+public final class DateSetUnmarshaller extends SSUnmarshaller {
 
     private static final DateSetUnmarshaller INSTANCE =
             new DateSetUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link DateSetUnmarshaller}
+     */
     public static DateSetUnmarshaller instance() {
         return INSTANCE;
     }
@@ -40,9 +45,9 @@ public class DateSetUnmarshaller extends SSUnmarshaller {
 
     @Override
     public Object unmarshall(AttributeValue value) {
-        Set<Date> result = new HashSet<Date>();
+        final Set<Date> result = new HashSet<Date>();
 
-        for (String s : value.getSS()) {
+        for (final String s : value.getSS()) {
             result.add(DateUtils.parseISO8601Date(s));
         }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,40 +21,54 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a thing in the Thing Registry.
+ * Creates a thing record in the thing registry.
  * </p>
  */
 public class CreateThingRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the thing.
+     * The name of the thing to create.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      */
     private String thingName;
 
     /**
      * <p>
-     * The attribute payload, which consists of up to 3 name/value pairs in a
-     * JSON document (for example, {\"attributes\":{\"string1\":\"string2\"}}).
+     * The name of the thing type associated with the new thing.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     */
+    private String thingTypeName;
+
+    /**
+     * <p>
+     * The attribute payload, which consists of up to three name/value pairs in
+     * a JSON document. For example:
+     * </p>
+     * <p>
+     * <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
      * </p>
      */
     private AttributePayload attributePayload;
 
     /**
      * <p>
-     * The name of the thing.
+     * The name of the thing to create.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @return <p>
-     *         The name of the thing.
+     *         The name of the thing to create.
      *         </p>
      */
     public String getThingName() {
@@ -63,15 +77,15 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The name of the thing.
+     * The name of the thing to create.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
-     *            The name of the thing.
+     *            The name of the thing to create.
      *            </p>
      */
     public void setThingName(String thingName) {
@@ -80,7 +94,7 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The name of the thing.
+     * The name of the thing to create.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -88,10 +102,10 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
-     *            The name of the thing.
+     *            The name of the thing to create.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -103,14 +117,76 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The attribute payload, which consists of up to 3 name/value pairs in a
-     * JSON document (for example, {\"attributes\":{\"string1\":\"string2\"}}).
+     * The name of the thing type associated with the new thing.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @return <p>
+     *         The name of the thing type associated with the new thing.
+     *         </p>
+     */
+    public String getThingTypeName() {
+        return thingTypeName;
+    }
+
+    /**
+     * <p>
+     * The name of the thing type associated with the new thing.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @param thingTypeName <p>
+     *            The name of the thing type associated with the new thing.
+     *            </p>
+     */
+    public void setThingTypeName(String thingTypeName) {
+        this.thingTypeName = thingTypeName;
+    }
+
+    /**
+     * <p>
+     * The name of the thing type associated with the new thing.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @param thingTypeName <p>
+     *            The name of the thing type associated with the new thing.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateThingRequest withThingTypeName(String thingTypeName) {
+        this.thingTypeName = thingTypeName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The attribute payload, which consists of up to three name/value pairs in
+     * a JSON document. For example:
+     * </p>
+     * <p>
+     * <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
      * </p>
      *
      * @return <p>
-     *         The attribute payload, which consists of up to 3 name/value pairs
-     *         in a JSON document (for example,
-     *         {\"attributes\":{\"string1\":\"string2\"}}).
+     *         The attribute payload, which consists of up to three name/value
+     *         pairs in a JSON document. For example:
+     *         </p>
+     *         <p>
+     *         <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
      *         </p>
      */
     public AttributePayload getAttributePayload() {
@@ -119,14 +195,19 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The attribute payload, which consists of up to 3 name/value pairs in a
-     * JSON document (for example, {\"attributes\":{\"string1\":\"string2\"}}).
+     * The attribute payload, which consists of up to three name/value pairs in
+     * a JSON document. For example:
+     * </p>
+     * <p>
+     * <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
      * </p>
      *
      * @param attributePayload <p>
-     *            The attribute payload, which consists of up to 3 name/value
-     *            pairs in a JSON document (for example,
-     *            {\"attributes\":{\"string1\":\"string2\"}}).
+     *            The attribute payload, which consists of up to three
+     *            name/value pairs in a JSON document. For example:
+     *            </p>
+     *            <p>
+     *            <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
      *            </p>
      */
     public void setAttributePayload(AttributePayload attributePayload) {
@@ -135,17 +216,22 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The attribute payload, which consists of up to 3 name/value pairs in a
-     * JSON document (for example, {\"attributes\":{\"string1\":\"string2\"}}).
+     * The attribute payload, which consists of up to three name/value pairs in
+     * a JSON document. For example:
+     * </p>
+     * <p>
+     * <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param attributePayload <p>
-     *            The attribute payload, which consists of up to 3 name/value
-     *            pairs in a JSON document (for example,
-     *            {\"attributes\":{\"string1\":\"string2\"}}).
+     *            The attribute payload, which consists of up to three
+     *            name/value pairs in a JSON document. For example:
+     *            </p>
+     *            <p>
+     *            <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -168,6 +254,8 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
         sb.append("{");
         if (getThingName() != null)
             sb.append("thingName: " + getThingName() + ",");
+        if (getThingTypeName() != null)
+            sb.append("thingTypeName: " + getThingTypeName() + ",");
         if (getAttributePayload() != null)
             sb.append("attributePayload: " + getAttributePayload());
         sb.append("}");
@@ -180,6 +268,8 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getThingName() == null) ? 0 : getThingName().hashCode());
+        hashCode = prime * hashCode
+                + ((getThingTypeName() == null) ? 0 : getThingTypeName().hashCode());
         hashCode = prime * hashCode
                 + ((getAttributePayload() == null) ? 0 : getAttributePayload().hashCode());
         return hashCode;
@@ -200,6 +290,11 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
             return false;
         if (other.getThingName() != null
                 && other.getThingName().equals(this.getThingName()) == false)
+            return false;
+        if (other.getThingTypeName() == null ^ this.getThingTypeName() == null)
+            return false;
+        if (other.getThingTypeName() != null
+                && other.getThingTypeName().equals(this.getThingTypeName()) == false)
             return false;
         if (other.getAttributePayload() == null ^ this.getAttributePayload() == null)
             return false;

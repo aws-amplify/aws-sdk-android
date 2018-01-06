@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,10 +19,18 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.S3ClientCache;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.S3Link;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
+/**
+ * An unmarshaller that unmarshals DynamoDB S3Links.
+ */
 public class S3LinkUnmarshaller extends SUnmarshaller {
 
     private static final S3LinkUnmarshaller INSTANCE = new S3LinkUnmarshaller();
 
+    /**
+     * returns a singleton instance.
+     *
+     * @return instance of {@link S3LinkUnmarshaller}
+     */
     public static S3LinkUnmarshaller instance() {
         return INSTANCE;
     }
@@ -33,6 +41,11 @@ public class S3LinkUnmarshaller extends SUnmarshaller {
         this(null);
     }
 
+    /**
+     * Constructor.
+     * 
+     * @param clientCache a {@link S3ClientCache}
+     */
     public S3LinkUnmarshaller(S3ClientCache clientCache) {
         this.clientCache = clientCache;
     }

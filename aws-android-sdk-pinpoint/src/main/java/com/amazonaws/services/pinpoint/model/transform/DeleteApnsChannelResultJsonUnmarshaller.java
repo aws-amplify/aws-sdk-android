@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,9 +29,6 @@ public class DeleteApnsChannelResultJsonUnmarshaller implements
     public DeleteApnsChannelResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         DeleteApnsChannelResult deleteApnsChannelResult = new DeleteApnsChannelResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            deleteApnsChannelResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return deleteApnsChannelResult;
     }
 

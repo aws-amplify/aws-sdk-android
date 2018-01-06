@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,7 +15,9 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
-import android.util.Log;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -100,20 +102,28 @@ public enum TransferState {
      */
     UNKNOWN;
 
-    private static final Map<String, TransferState> map;
+    private static final Map<String, TransferState> MAP;
     static {
-        map = new HashMap<String, TransferState>();
-        for (TransferState state : TransferState.values()) {
-            map.put(state.toString(), state);
+        MAP = new HashMap<String, TransferState>();
+        for (final TransferState state : TransferState.values()) {
+            MAP.put(state.toString(), state);
         }
     }
 
+    private static final Log LOGGER = LogFactory.getLog(TransferState.class);
+
+    /**
+     * Returns the transfer state from string
+     * 
+     * @param stateAsString state of the transfer represented as string.
+     * @return the {@link TransferState}
+     */
     public static TransferState getState(String stateAsString) {
-        if (map.containsKey(stateAsString)) {
-            return map.get(stateAsString);
+        if (MAP.containsKey(stateAsString)) {
+            return MAP.get(stateAsString);
         }
 
-        Log.e("TransferState", "Unknown state " + stateAsString
+        LOGGER.error("Unknown state " + stateAsString
                 + " transfer will be have state set to UNKNOWN.");
         return UNKNOWN;
     }

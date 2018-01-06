@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import com.amazonaws.services.s3.Headers;
 /**
  * Header handler to pull the S3_VERSION_ID header out of the response. This
  * header is required for the copyPart and copyObject api methods.
+ * @param <T> class type.
  */
 public class S3VersionHeaderHandler<T extends S3VersionResult> implements HeaderHandler<T> {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Portions copyright 2006-2009 James Murty. Please see LICENSE.txt
  * for applicable license terms and NOTICE.txt for applicable notices.
@@ -40,21 +40,29 @@ public class RestUtils {
      * string to sign.
      */
     private static final List<String> SIGNED_PARAMETERS = Arrays.asList(new String[] {
-            "acl", "torrent", "logging", "location", "policy", "requestPayment", "versioning",
-            "versions", "versionId", "notification", "uploadId", "uploads", "partNumber", "website",
-            "delete", "lifecycle", "tagging", "cors", "restore", "replication", "accelerate",
-            "inventory", "analytics", "metrics",
-            ResponseHeaderOverrides.RESPONSE_HEADER_CACHE_CONTROL,
-            ResponseHeaderOverrides.RESPONSE_HEADER_CONTENT_DISPOSITION,
-            ResponseHeaderOverrides.RESPONSE_HEADER_CONTENT_ENCODING,
-            ResponseHeaderOverrides.RESPONSE_HEADER_CONTENT_LANGUAGE,
-            ResponseHeaderOverrides.RESPONSE_HEADER_CONTENT_TYPE,
-            ResponseHeaderOverrides.RESPONSE_HEADER_EXPIRES,
+        "acl", "torrent", "logging", "location", "policy", "requestPayment", "versioning",
+        "versions", "versionId", "notification", "uploadId", "uploads", "partNumber", "website",
+        "delete", "lifecycle", "tagging", "cors", "restore", "replication", "accelerate",
+        "inventory", "analytics", "metrics",
+        ResponseHeaderOverrides.RESPONSE_HEADER_CACHE_CONTROL,
+        ResponseHeaderOverrides.RESPONSE_HEADER_CONTENT_DISPOSITION,
+        ResponseHeaderOverrides.RESPONSE_HEADER_CONTENT_ENCODING,
+        ResponseHeaderOverrides.RESPONSE_HEADER_CONTENT_LANGUAGE,
+        ResponseHeaderOverrides.RESPONSE_HEADER_CONTENT_TYPE,
+        ResponseHeaderOverrides.RESPONSE_HEADER_EXPIRES,
     });
 
     /**
      * Calculate the canonical string for a REST/HTTP request to S3. When
      * expires is non-null, it will be used instead of the Date header.
+     *
+     * @param method the HTTP verb.
+     * @param resource the HTTP-encoded resource path.
+     * @param request the request to be canonicalized.
+     * @param expires when expires is non-null,
+     *                it will be used instead of the Date header.
+     * @param <T> the class type of the request.
+     * @return The canonical string representation for the given S3 request.
      */
     public static <T> String makeS3CanonicalString(String method,
             String resource, Request<T> request, String expires) {
@@ -73,6 +81,7 @@ public class RestUtils {
      * @param expires
      *            When expires is non-null, it will be used instead of the Date
      *            header.
+     * @param <T> the class type of the request.
      * @param additionalQueryParamsToSign
      *            A collection of user-specified query parameters that should be
      *            included in the canonical request, in addition to those
@@ -103,9 +112,8 @@ public class RestUtils {
                 final String lk = StringUtils.lowerCase(key);
 
                 // Ignore any headers that are not particularly interesting.
-                if (lk.equals("content-type") || lk.equals("content-md5") || lk.equals("date") ||
-                        lk.startsWith(Headers.AMAZON_PREFIX))
-                {
+                if ("content-type".equals(lk) || "content-md5".equals(lk) || "date".equals(lk) ||
+                        lk.startsWith(Headers.AMAZON_PREFIX)) {
                     interestingHeaders.put(lk, value);
                 }
             }
@@ -141,7 +149,7 @@ public class RestUtils {
         }
 
         // Add all the interesting headers (i.e.: all that startwith x-amz- ;-))
-        for (final Iterator<Map.Entry<String, String>> i = interestingHeaders.entrySet().iterator(); i.hasNext(); ) {
+        for (final Iterator<Map.Entry<String, String>> i = interestingHeaders.entrySet().iterator(); i.hasNext();) {
             final Map.Entry<String, String> entry = i.next();
             final String key = entry.getKey();
             final String value = entry.getValue();
@@ -166,14 +174,14 @@ public class RestUtils {
         for (final String parameterName : parameterNames) {
             // Skip any parameters that aren't part of the canonical signed
             // string
-            if ( !SIGNED_PARAMETERS.contains(parameterName)
+            if (!SIGNED_PARAMETERS.contains(parameterName)
                  &&
                  (additionalQueryParamsToSign == null ||
                  !additionalQueryParamsToSign.contains(parameterName))
-               ) {
+            ) {
                 continue;
             }
-            if(buf.length() == 0 ) {
+            if (buf.length() == 0) {
                 buf.append(separator);
             }
 

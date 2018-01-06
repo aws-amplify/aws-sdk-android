@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,6 +21,8 @@ package com.amazonaws.util;
  * @author Hanson Char See http://www.ietf.org/rfc/rfc4648.txt
  */
 public enum EncodingSchemeEnum implements EncodingScheme {
+
+    /** Base 16. */
     BASE16 {
         @Override
         public String encodeAsString(byte[] bytes) {
@@ -32,6 +34,8 @@ public enum EncodingSchemeEnum implements EncodingScheme {
             return Base16.decode(encoded);
         }
     },
+
+    /** Base 32. */
     BASE32 {
         @Override
         public String encodeAsString(byte[] bytes) {
@@ -43,6 +47,8 @@ public enum EncodingSchemeEnum implements EncodingScheme {
             return Base32.decode(encoded);
         }
     },
+
+    /** Base 64. */
     BASE64 {
         @Override
         public String encodeAsString(byte[] bytes) {
@@ -53,8 +59,7 @@ public enum EncodingSchemeEnum implements EncodingScheme {
         public byte[] decode(String encoded) {
             return Base64.decode(encoded);
         }
-    },
-    ;
+    };
 
     @Override
     public abstract String encodeAsString(byte[] bytes);

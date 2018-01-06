@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -41,12 +41,24 @@ public class XmlWriter {
     List<String> tags = new ArrayList<String>();
     StringBuilder sb = new StringBuilder();
 
+    /**
+     * Begins writing with the specified name.
+     * @param name the name
+     * @return an instance of XmlWriter.
+     */
     public XmlWriter start(String name) {
         sb.append("<").append(name).append(">");
         tags.add(name);
         return this;
     }
 
+    /**
+     * Begins writing with the specified name, attr, and value.
+     * @param name the name
+     * @param attr the attr
+     * @param value the vaule
+     * @return an instance of XmlWriter.
+     */
     public XmlWriter start(String name, String attr, String value) {
         sb.append("<").append(name);
         writeAttr(attr, value);
@@ -55,6 +67,13 @@ public class XmlWriter {
         return this;
     }
 
+    /**
+     * Begins writing with the specified name, attr, and values
+     * @param name the name
+     * @param attrs String[] of attr
+     * @param values String[] of values
+     * @return an instance of XmlWriter.
+     */
     public XmlWriter start(String name, String[] attrs, String[] values) {
         sb.append("<").append(name);
         for (int i = 0; i < Math.min(attrs.length, values.length); i++) {
@@ -64,7 +83,10 @@ public class XmlWriter {
         tags.add(name);
         return this;
     }
-
+    /**
+     * Stops the writing process.
+     * @return an instance of XmlWriter.
+     */
     public XmlWriter end() {
         assert (tags.size() > 0);
         String name = tags.remove(tags.size() - 1);
@@ -72,6 +94,10 @@ public class XmlWriter {
         return this;
     }
 
+    /**
+     * Gets the byte.
+     * @return the byte[] of the XML.
+     */
     public byte[] getBytes() {
         assert (tags.size() == 0);
         return this.toString().getBytes(UTF8);
@@ -82,6 +108,11 @@ public class XmlWriter {
         return sb.toString();
     }
 
+    /**
+     * Appends the specified value.
+     * @param value value to be appended
+     * @return an instance of XmlWriter.
+     */
     public XmlWriter value(String value) {
         appendEscapedString(value, sb);
         return this;

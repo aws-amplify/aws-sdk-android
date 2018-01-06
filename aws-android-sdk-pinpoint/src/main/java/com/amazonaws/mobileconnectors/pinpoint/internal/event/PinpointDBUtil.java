@@ -1,11 +1,11 @@
 /**
- * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -15,11 +15,11 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.internal.event;
 
+import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
 
 import static com.amazonaws.mobileconnectors.pinpoint.internal.event.EventTable.COLUMN_ID;
 import static com.amazonaws.mobileconnectors.pinpoint.internal.event.EventTable.COLUMN_SIZE;
@@ -39,7 +39,7 @@ public class PinpointDBUtil {
      *
      * @param context An instance of Context.
      */
-    public PinpointDBUtil(Context context) {
+    public PinpointDBUtil(final Context context) {
         if (pinpointDBBase == null) {
             pinpointDBBase = new PinpointDBBase(context);
         }
@@ -60,11 +60,11 @@ public class PinpointDBUtil {
      * @param event The AnalyticsEvent to be saved.
      * @return An Uri of the record inserted.
      */
-    public Uri saveEvent(AnalyticsEvent event) {
+    public Uri saveEvent(final AnalyticsEvent event) {
         return pinpointDBBase.insert(pinpointDBBase.getContentUri(), generateContentValuesFromEvent(event));
     }
 
-    private ContentValues generateContentValuesFromEvent(AnalyticsEvent event) {
+    private ContentValues generateContentValuesFromEvent(final AnalyticsEvent event) {
         ContentValues values = new ContentValues();
         String json = event.toJSONObject().toString();
         values.put(EventTable.COLUMN_JSON, json);
@@ -86,9 +86,9 @@ public class PinpointDBUtil {
      *
      * @return A Cursor pointing to records in the database.
      */
-    public Cursor queryOldestEvents(int limit) {
-        return pinpointDBBase.query(pinpointDBBase.getContentUri(), new String[]{COLUMN_ID, COLUMN_SIZE},
-                null, null, null, Integer.toString(limit));
+    public Cursor queryOldestEvents(final int limit) {
+        return pinpointDBBase.query(pinpointDBBase.getContentUri(), new String[] { COLUMN_ID, COLUMN_SIZE }, null, null, null,
+                                    Integer.toString(limit));
     }
 
     /**
@@ -97,18 +97,18 @@ public class PinpointDBUtil {
      * @param id The id of the event.
      * @return The result Cursor of the query.
      */
-    public Cursor queryEventById(int id) {
+    public Cursor queryEventById(final int id) {
         return pinpointDBBase.query(getEventUri(id), null, null, null, null, null);
     }
 
     /**
      * Deletes the event with the given id.
      *
-     * @param id The id of the event to be deleted.
+     * @param id   The id of the event to be deleted.
      * @param size Known size of event.
      * @return Number of rows deleted.
      */
-    public int deleteEvent(int id, Integer size) {
+    public int deleteEvent(final int id, final Integer size) {
         return pinpointDBBase.delete(getEventUri(id), null, null, size);
     }
 
@@ -127,7 +127,7 @@ public class PinpointDBUtil {
      * @param id The id of the event.
      * @return The Uri of the event specified by the id.
      */
-    public Uri getEventUri(int id) {
+    public Uri getEventUri(final int id) {
         return Uri.parse(pinpointDBBase.getContentUri() + "/" + id);
     }
 

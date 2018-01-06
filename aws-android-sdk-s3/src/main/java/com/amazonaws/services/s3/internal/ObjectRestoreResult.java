@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2011-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ public interface ObjectRestoreResult {
     /**
      * Returns the expiration date when the Object is scheduled to move to
      * Amazon Glacier, or null if the object is not configured to expire.
+     * @return Date the restore expiration time.
      */
     public Date getRestoreExpirationTime();
 
@@ -43,13 +44,14 @@ public interface ObjectRestoreResult {
     /**
      * Sets a boolean value which indicates there is an ongoing restore request.
      *
-     * @param ongoingRestore
+     * @param ongoingRestore boolean which indicates if there is an ongoing restore.
      */
     public void setOngoingRestore(boolean ongoingRestore);
 
     /**
      * Returns then boolean value which indicates there is an ongoing restore
      * request.
+     * @return true if there is an ongoing restore
      */
     public Boolean getOngoingRestore();
 }

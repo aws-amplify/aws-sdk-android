@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,7 +32,8 @@ public class ListThingsResult implements Serializable {
 
     /**
      * <p>
-     * A token used to retrieve the next value.
+     * The token for the next set of results, or <b>null</b> if there are no
+     * additional results.
      * </p>
      */
     private String nextToken;
@@ -113,11 +114,13 @@ public class ListThingsResult implements Serializable {
 
     /**
      * <p>
-     * A token used to retrieve the next value.
+     * The token for the next set of results, or <b>null</b> if there are no
+     * additional results.
      * </p>
      *
      * @return <p>
-     *         A token used to retrieve the next value.
+     *         The token for the next set of results, or <b>null</b> if there
+     *         are no additional results.
      *         </p>
      */
     public String getNextToken() {
@@ -126,11 +129,13 @@ public class ListThingsResult implements Serializable {
 
     /**
      * <p>
-     * A token used to retrieve the next value.
+     * The token for the next set of results, or <b>null</b> if there are no
+     * additional results.
      * </p>
      *
      * @param nextToken <p>
-     *            A token used to retrieve the next value.
+     *            The token for the next set of results, or <b>null</b> if there
+     *            are no additional results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -139,14 +144,16 @@ public class ListThingsResult implements Serializable {
 
     /**
      * <p>
-     * A token used to retrieve the next value.
+     * The token for the next set of results, or <b>null</b> if there are no
+     * additional results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nextToken <p>
-     *            A token used to retrieve the next value.
+     *            The token for the next set of results, or <b>null</b> if there
+     *            are no additional results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

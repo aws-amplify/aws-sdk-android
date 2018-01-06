@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,15 +15,21 @@
 
 package com.amazonaws.services.polly;
 
-import com.amazonaws.AmazonClientException;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.polly.internal.AmazonPollyCustomPresigner;
+import com.amazonaws.services.polly.internal.AmazonPollyCustomRequest;
 import com.amazonaws.services.polly.model.OutputFormat;
 import com.amazonaws.services.polly.model.SynthesizeSpeechPresignRequest;
 import com.amazonaws.services.polly.model.TextType;
 import com.amazonaws.services.polly.model.VoiceId;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.junit.Assert;
@@ -32,9 +38,14 @@ import org.junit.Test;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.*;
-
-import static org.mockito.Mockito.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class AmazonPollyPresigningClientTest {
 
@@ -58,7 +69,7 @@ public class AmazonPollyPresigningClientTest {
     private static final String TEXT_TYPE_KEY = "TextType";
     private static final String VOICE_ID_KEY = "VoiceId";
     private static final String OUTPUT_FORMAT_KEY = "OutputFormat";
-    private static final String LEXICON_NAME_KEY = "LexiconName";
+    private static final String LEXICON_NAME_KEY = "LexiconNames";
     private static final String X_AMZN_ALGORITHM_KEY = "X-Amz-Algorithm";
     private static final String X_AMZN_DATE_KEY = "X-Amz-Date";
     private static final String X_AMZN_SIGNED_HEADERS_KEY = "X-Amz-SignedHeaders";
@@ -126,6 +137,13 @@ public class AmazonPollyPresigningClientTest {
         Assert.assertTrue("Missing expected parameters: " + expectedQueryParameterKeys.toString(),
                 expectedQueryParameterKeys.isEmpty());
     }
+    
+    @Test
+    public void testGetPresignedUrlEncodedParameters() throws URISyntaxException {
+        AmazonPollyCustomRequest<SynthesizeSpeechPresignRequest> req = new AmazonPollyCustomRequest("polly");
+        req.addParameter("test-key", "test-value");        
+        Assert.assertNotNull(AmazonPollyCustomPresigner.encodeParameters(req));
+    }
 
     @Test
     public void testGetPresignedUrlWithOneLexicon() throws URISyntaxException {
@@ -150,7 +168,7 @@ public class AmazonPollyPresigningClientTest {
                 lexiconsNamesExpected.isEmpty());
     }
 
-    @Test(expected=AmazonClientException.class)
+    @Test
     public void testGetPresignedUrlWithMultipleLexicons() throws URISyntaxException {
         List<String> lexiconsNamesExpected = new ArrayList<String>(
                 Arrays.asList(LEXICON_NAME_1, LEXICON_NAME_2));

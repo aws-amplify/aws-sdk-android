@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,8 +18,6 @@ package com.amazonaws.services.s3.internal.crypto;
 import static com.amazonaws.services.s3.model.CryptoMode.AuthenticatedEncryption;
 import static com.amazonaws.services.s3.model.CryptoMode.EncryptionOnly;
 
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.services.kms.AWSKMSClient;
 import com.amazonaws.services.s3.internal.S3Direct;
@@ -58,6 +56,15 @@ public class CryptoModuleDispatcher extends S3CryptoModule<MultipartUploadContex
     /** Authenticated encryption (AE) cryptographic module. */
     private final S3CryptoModuleAE ae;
 
+    /**
+     * Constructor.
+     * @param kms the AWSKMSClient.
+     * @param s3 the S3Direct.
+     * @param credentialsProvider the AWSCredentialsProvider.
+     * @param encryptionMaterialsProvider the EncryptionMaterialsProvider.
+     * @param cryptoConfig the crypto configuration..
+     */
+    @SuppressWarnings("checkstyle:emptyblock")
     public CryptoModuleDispatcher(AWSKMSClient kms, S3Direct s3,
             AWSCredentialsProvider credentialsProvider,
             EncryptionMaterialsProvider encryptionMaterialsProvider,
@@ -90,7 +97,7 @@ public class CryptoModuleDispatcher extends S3CryptoModule<MultipartUploadContex
                 final CryptoConfiguration aeConfig = cryptoConfig.clone();
                 try {
                     aeConfig.setCryptoMode(AuthenticatedEncryption);
-                } catch(final UnsupportedOperationException ex) {
+                } catch (final UnsupportedOperationException ex) {
                     // BC not available during runtime; but EO can still work.
                     // Hence ignoring.
                 }
@@ -107,8 +114,7 @@ public class CryptoModuleDispatcher extends S3CryptoModule<MultipartUploadContex
     public PutObjectResult putObjectSecurely(PutObjectRequest putObjectRequest) {
         return defaultCryptoMode == EncryptionOnly
              ? eo.putObjectSecurely(putObjectRequest)
-             : ae.putObjectSecurely(putObjectRequest)
-             ;
+             : ae.putObjectSecurely(putObjectRequest);
     }
 
     @Override
@@ -126,12 +132,10 @@ public class CryptoModuleDispatcher extends S3CryptoModule<MultipartUploadContex
 
     @Override
     public CompleteMultipartUploadResult completeMultipartUploadSecurely(
-            CompleteMultipartUploadRequest req)
-            throws AmazonClientException, AmazonServiceException {
+            CompleteMultipartUploadRequest req) {
         return defaultCryptoMode == EncryptionOnly
              ? eo.completeMultipartUploadSecurely(req)
-             : ae.completeMultipartUploadSecurely(req)
-             ;
+             : ae.completeMultipartUploadSecurely(req);
     }
 
     @Override
@@ -145,12 +149,10 @@ public class CryptoModuleDispatcher extends S3CryptoModule<MultipartUploadContex
 
     @Override
     public InitiateMultipartUploadResult initiateMultipartUploadSecurely(
-            InitiateMultipartUploadRequest req)
-            throws AmazonClientException, AmazonServiceException {
+            InitiateMultipartUploadRequest req) {
         return defaultCryptoMode == EncryptionOnly
              ? eo.initiateMultipartUploadSecurely(req)
-             : ae.initiateMultipartUploadSecurely(req)
-             ;
+             : ae.initiateMultipartUploadSecurely(req);
     }
 
     /**
@@ -164,20 +166,17 @@ public class CryptoModuleDispatcher extends S3CryptoModule<MultipartUploadContex
      * context isn't available to use when encrypting the current part.
      */
     @Override
-    public UploadPartResult uploadPartSecurely(UploadPartRequest req)
-            throws AmazonClientException, AmazonServiceException {
+    public UploadPartResult uploadPartSecurely(UploadPartRequest req) {
         return defaultCryptoMode == EncryptionOnly
              ? eo.uploadPartSecurely(req)
-             : ae.uploadPartSecurely(req)
-             ;
+             : ae.uploadPartSecurely(req);
     }
 
     @Override
     public CopyPartResult copyPartSecurely(CopyPartRequest req) {
         return defaultCryptoMode == EncryptionOnly
              ? eo.copyPartSecurely(req)
-             : ae.copyPartSecurely(req)
-             ;
+             : ae.copyPartSecurely(req);
     }
 
     @Override
@@ -185,8 +184,7 @@ public class CryptoModuleDispatcher extends S3CryptoModule<MultipartUploadContex
             PutInstructionFileRequest req) {
         return defaultCryptoMode == EncryptionOnly
             ? eo.putInstructionFileSecurely(req)
-            : ae.putInstructionFileSecurely(req)
-            ;
+            : ae.putInstructionFileSecurely(req);
     }
 
     @Override

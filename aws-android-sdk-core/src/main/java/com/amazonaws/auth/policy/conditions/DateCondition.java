@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,11 +32,23 @@ public class DateCondition extends Condition {
      * Enumeration of the supported ways a date comparison can be evaluated.
      */
     public static enum DateComparisonType {
+
+        /** Date equals. */
         DateEquals,
+
+        /** Date greater than. */
         DateGreaterThan,
+
+        /** Date greater than or equals. */
         DateGreaterThanEquals,
+
+        /** Date less than. */
         DateLessThan,
+
+        /** Date less than or equals. */
         DateLessThanEquals,
+
+        /** Date not equals. */
         DateNotEquals;
     };
 

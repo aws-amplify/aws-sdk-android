@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -53,6 +53,15 @@ public class RegisterCertificateRequest extends AmazonWebServiceRequest implemen
      * </p>
      */
     private Boolean setAsActive;
+
+    /**
+     * The new value for the status property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
+     */
+    private String status;
 
     /**
      * <p>
@@ -228,6 +237,88 @@ public class RegisterCertificateRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
+     * Returns the value of the status property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
+     *
+     * @return The value of the status property for this object.
+     * @see CertificateStatus
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * Sets the value of status
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
+     *
+     * @param status The new value for the status property for this object.
+     * @see CertificateStatus
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    /**
+     * Sets the value of the status property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
+     *
+     * @param status The new value for the status property for this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see CertificateStatus
+     */
+    public RegisterCertificateRequest withStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * Sets the value of status
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
+     *
+     * @param status The new value for the status property for this object.
+     * @see CertificateStatus
+     */
+    public void setStatus(CertificateStatus status) {
+        this.status = status.toString();
+    }
+
+    /**
+     * Sets the value of the status property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
+     *
+     * @param status The new value for the status property for this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see CertificateStatus
+     */
+    public RegisterCertificateRequest withStatus(CertificateStatus status) {
+        this.status = status.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -243,7 +334,9 @@ public class RegisterCertificateRequest extends AmazonWebServiceRequest implemen
         if (getCaCertificatePem() != null)
             sb.append("caCertificatePem: " + getCaCertificatePem() + ",");
         if (getSetAsActive() != null)
-            sb.append("setAsActive: " + getSetAsActive());
+            sb.append("setAsActive: " + getSetAsActive() + ",");
+        if (getStatus() != null)
+            sb.append("status: " + getStatus());
         sb.append("}");
         return sb.toString();
     }
@@ -259,6 +352,7 @@ public class RegisterCertificateRequest extends AmazonWebServiceRequest implemen
                 + ((getCaCertificatePem() == null) ? 0 : getCaCertificatePem().hashCode());
         hashCode = prime * hashCode
                 + ((getSetAsActive() == null) ? 0 : getSetAsActive().hashCode());
+        hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return hashCode;
     }
 
@@ -287,6 +381,10 @@ public class RegisterCertificateRequest extends AmazonWebServiceRequest implemen
             return false;
         if (other.getSetAsActive() != null
                 && other.getSetAsActive().equals(this.getSetAsActive()) == false)
+            return false;
+        if (other.getStatus() == null ^ this.getStatus() == null)
+            return false;
+        if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
             return false;
         return true;
     }

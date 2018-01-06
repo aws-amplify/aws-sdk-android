@@ -1,8 +1,6 @@
 
 package com.amazonaws.mobileconnectors.lambdainvoker;
 
-import android.util.Log;
-
 import com.amazonaws.mobileconnectors.util.ClientContext;
 import com.amazonaws.services.lambda.AWSLambda;
 import com.amazonaws.services.lambda.model.InvocationType;
@@ -11,6 +9,9 @@ import com.amazonaws.services.lambda.model.InvokeResult;
 import com.amazonaws.services.lambda.model.LogType;
 import com.amazonaws.util.Base64;
 import com.amazonaws.util.StringUtils;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
@@ -23,7 +24,7 @@ import java.nio.ByteBuffer;
  */
 class LambdaInvocationHandler implements InvocationHandler {
 
-    private static final String TAG = "LambdaInvocationHandler";
+    private static final Log LOGGER = LogFactory.getLog(LambdaInvocationHandler.class);
 
     // -------------------------------------------------------------
     // Variables - Private
@@ -58,8 +59,8 @@ class LambdaInvocationHandler implements InvocationHandler {
         // With Android version before Lollipop (API level 22), args can be an
         // empty array when the method takes no arguments.
         final Object buildArg = (args == null || args.length == 0) ? null : args[0];
-        InvokeRequest invokeRequest = buildInvokeRequest(method, buildArg);
-        InvokeResult invokeResult = lambda.invoke(invokeRequest);
+        final InvokeRequest invokeRequest = buildInvokeRequest(method, buildArg);
+        final InvokeResult invokeResult = lambda.invoke(invokeRequest);
 
         return processInvokeResult(method, invokeResult);
     }
@@ -80,9 +81,9 @@ class LambdaInvocationHandler implements InvocationHandler {
     }
 
     InvokeRequest buildInvokeRequest(Method method, Object object) throws IOException {
-        LambdaFunction lambdaFunction = method.getAnnotation(LambdaFunction.class);
+        final LambdaFunction lambdaFunction = method.getAnnotation(LambdaFunction.class);
 
-        InvokeRequest invokeRequest = new InvokeRequest();
+        final InvokeRequest invokeRequest = new InvokeRequest();
 
         if (lambdaFunction.functionName().isEmpty()) {
             invokeRequest.setFunctionName(method.getName());
@@ -116,7 +117,7 @@ class LambdaInvocationHandler implements InvocationHandler {
     Object processInvokeResult(Method method, InvokeResult invokeResult)
             throws IOException {
         if (invokeResult.getLogResult() != null) {
-            Log.d(TAG, method.getName() + " log: "
+            LOGGER.debug(method.getName() + " log: "
                     + new String(Base64.decode(invokeResult.getLogResult()), StringUtils.UTF8));
         }
 
@@ -127,7 +128,7 @@ class LambdaInvocationHandler implements InvocationHandler {
 
         // deserialize payload
         if (invokeResult.getStatusCode() == HttpURLConnection.HTTP_NO_CONTENT
-                || method.getReturnType().equals(void.class)) {
+                || void.class.equals(method.getReturnType())) {
             return null;
         }
 

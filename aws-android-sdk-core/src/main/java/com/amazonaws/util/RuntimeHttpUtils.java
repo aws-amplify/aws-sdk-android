@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,12 +25,17 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Map;
 
+/**
+ * RuntimeHttpUtils class.
+ */
 public class RuntimeHttpUtils {
     private static final String COMMA = ", ";
     private static final String SPACE = " ";
 
     /**
-     * Returns an URI for the given endpoint. Prefixes the protocol if the
+     * @param endpoint the endpoint.
+     * @param config the client configuration.
+     * @return an URI for the given endpoint. Prefixes the protocol if the
      * endpoint given does not have it.
      *
      * @throws IllegalArgumentException if the inputs are null.
@@ -44,7 +49,9 @@ public class RuntimeHttpUtils {
     }
 
     /**
-     * Returns an URI for the given endpoint. Prefixes the protocol if the
+     * @param endpoint the endpoint.
+     * @param protocol the protocol.
+     * @return an URI for the given endpoint. Prefixes the protocol if the
      * endpoint given does not have it.
      *
      * @throws IllegalArgumentException if the inputs are null.
@@ -80,8 +87,6 @@ public class RuntimeHttpUtils {
      *            endpoint.
      * @param urlEncode True if request resource path should be URL encoded
      * @return A new URL representing the specified request.
-     * @throws SdkClientException If the request cannot be converted to a well
-     *             formed URL.
      */
     public static URL convertRequestToUrl(Request<?> request,
             boolean removeLeadingSlashInResourcePath,

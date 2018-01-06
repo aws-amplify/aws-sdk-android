@@ -23,7 +23,7 @@ import android.os.Handler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserCodeDeliveryDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
-import com.amazonaws.services.cognitoidentityprovider.model.RespondToAuthChallengeRequest;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoServiceConstants;
 import com.amazonaws.services.cognitoidentityprovider.model.RespondToAuthChallengeResult;
 
 /**
@@ -32,14 +32,20 @@ import com.amazonaws.services.cognitoidentityprovider.model.RespondToAuthChallen
 public class MultiFactorAuthenticationContinuation implements CognitoIdentityProviderContinuation<CognitoUserCodeDeliveryDetails> {
 
     // Boolean constants used to indicate where this continuation will run.
-    final public static boolean RUN_IN_BACKGROUND = true;
-    final public static boolean RUN_IN_CURRENT = false;
+    /**
+     * Run in background.
+     */
+    public static final boolean RUN_IN_BACKGROUND = true;
+    /**
+     * Run on current thread.
+     */
+    public static final boolean RUN_IN_CURRENT = false;
 
-    final private CognitoUser user;
-    final private Context context;
-    final private RespondToAuthChallengeResult challenge;
-    final private boolean runInBackground;
-    final private AuthenticationHandler callback;
+    private final CognitoUser user;
+    private final Context context;
+    private final RespondToAuthChallengeResult challenge;
+    private final boolean runInBackground;
+    private final AuthenticationHandler callback;
     private String mfaCode = null;
 
     /**
@@ -49,6 +55,7 @@ public class MultiFactorAuthenticationContinuation implements CognitoIdentityPro
      * @param challenge             REQUIRED: Contains the MFA Challenge.
      * @param runInBackground       REQUIRED: Represents where this continuation has to run.
      * @param callback              REQUIRED: Callback to interact with the app.
+     * @param context               REQUIRED: The android context.
      */
     public MultiFactorAuthenticationContinuation(CognitoUser user,
                                                  Context context,
@@ -67,25 +74,38 @@ public class MultiFactorAuthenticationContinuation implements CognitoIdentityPro
      *
      * @return medium where the code was sent (e.g. email, sms).
      */
-    public CognitoUserCodeDeliveryDetails getParameters(){
-        return new CognitoUserCodeDeliveryDetails(challenge.getChallengeParameters().get("CODE_DELIVERY_DESTINATION"),
-                challenge.getChallengeParameters().get("CODE_DELIVERY_DELIVERY_MEDIUM"),
-                null);
+    @Override
+    public CognitoUserCodeDeliveryDetails getParameters() {
+        if (CognitoServiceConstants.CHLG_TYPE_SOFTWARE_TOKEN_MFA.equals(challenge.getChallengeName())) {
+            return new CognitoUserCodeDeliveryDetails(
+                    "Time-based One-time Password",
+                    challenge.getChallengeParameters().get("FRIENDLY_DEVICE_NAME"),
+                    null);
+        }
+        if (CognitoServiceConstants.CHLG_TYPE_SMS_MFA.equals(challenge.getChallengeName())) {
+            return new CognitoUserCodeDeliveryDetails(
+                    challenge.getChallengeParameters().get("CODE_DELIVERY_DESTINATION"),
+                    challenge.getChallengeParameters().get("CODE_DELIVERY_DELIVERY_MEDIUM"),
+                    null);
+        }
+        return new CognitoUserCodeDeliveryDetails("", "", "");
     }
 
     /**
      * Call this to continue with the authentication process.
      */
-    public void continueTask(){
+    @Override
+    public void continueTask() {
         if (runInBackground) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    Handler handler = new Handler(context.getMainLooper());
+                    final Handler handler = new Handler(context.getMainLooper());
                     Runnable nextStep;
                     try {
 
-                        nextStep = user.respondToMfaChallenge(mfaCode, challenge, callback, RUN_IN_BACKGROUND);
+                        nextStep = user.respondToMfaChallenge(mfaCode, challenge, callback,
+                                RUN_IN_BACKGROUND);
                     } catch (final Exception e) {
                         nextStep = new Runnable() {
                             @Override
@@ -116,7 +136,7 @@ public class MultiFactorAuthenticationContinuation implements CognitoIdentityPro
     /**
      * Add the multi-factor authentication code. This code will be used to complete the authentication.
      *
-     * @param mfaCode
+     * @param mfaCode REQIURED: The MFA code sent to the user.
      */
     public void setMfaCode(String mfaCode) {
         this.mfaCode = mfaCode;

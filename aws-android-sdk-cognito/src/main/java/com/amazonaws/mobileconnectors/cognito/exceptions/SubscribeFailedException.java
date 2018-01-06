@@ -1,5 +1,5 @@
 /**
- * Copyright 2013-2017 Amazon.com, 
+ * Copyright 2013-2018 Amazon.com, 
  * Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Amazon Software License (the "License"). 
@@ -26,10 +26,17 @@ import com.amazonaws.AmazonClientException;
 public class SubscribeFailedException extends AmazonClientException {
     private static final long serialVersionUID = 5706724903415180392L;
 
+    /**
+     * @param message the exception message.
+     * @param throwable exception as throwable.
+     */
     public SubscribeFailedException(String message, Throwable throwable) {
         super(message, throwable);
     }
 
+    /**
+     * @param message the exception message.
+     */
     public SubscribeFailedException(String message) {
         super(message);
     }

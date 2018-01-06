@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -51,9 +51,14 @@ public class UrlHttpClient implements HttpClient {
 
     private static final String TAG = "amazonaws";
     private static final Log log = LogFactory.getLog(UrlHttpClient.class);
-
+    private static final int DEFAULT_BUFFER_SIZE = 1024;
+    private static final int BUFFER_SIZE_MULTIPLIER = 8;
     private final ClientConfiguration config;
 
+    /**
+     * Constructor.
+     * @param config the client config.
+     */
     public UrlHttpClient(ClientConfiguration config) {
         this.config = config;
     }
@@ -80,6 +85,7 @@ public class UrlHttpClient implements HttpClient {
         return createHttpResponse(request, connection);
     }
 
+    @SuppressWarnings("checkstyle:emptyblock")
     HttpResponse createHttpResponse(final HttpRequest request, final HttpURLConnection connection)
             throws IOException {
         // connection.setDoOutput(true);
@@ -88,7 +94,7 @@ public class UrlHttpClient implements HttpClient {
         InputStream content = connection.getErrorStream();
         if (content == null) {
             // HEAD method doesn't have a body
-            if (!request.getMethod().equals("HEAD")) {
+            if (!"HEAD".equals(request.getMethod())) {
                 try {
                     content = connection.getInputStream();
                 } catch (final IOException ioe) {
@@ -182,6 +188,7 @@ public class UrlHttpClient implements HttpClient {
         return applyHeadersAndMethod(request, connection, null /* curlBuilder */);
     }
 
+    @SuppressWarnings("checkstyle:emptyblock")
     HttpURLConnection applyHeadersAndMethod(final HttpRequest request,
             final HttpURLConnection connection, final CurlBuilder curlBuilder)
             throws ProtocolException {
@@ -232,7 +239,7 @@ public class UrlHttpClient implements HttpClient {
 
     private void write(InputStream is, OutputStream os, CurlBuilder curlBuilder,
             ByteBuffer curlBuffer) throws IOException {
-        final byte[] buf = new byte[1024 * 8];
+        final byte[] buf = new byte[DEFAULT_BUFFER_SIZE * BUFFER_SIZE_MULTIPLIER];
         int len;
         while ((len = is.read(buf)) != -1) {
             try {
@@ -350,7 +357,7 @@ public class UrlHttpClient implements HttpClient {
     /**
      * Helper class to build a curl message.
      */
-    private final class CurlBuilder {
+    protected final class CurlBuilder {
 
         /** The {@link URL} of the operation. */
         private final URL url;
@@ -385,6 +392,7 @@ public class UrlHttpClient implements HttpClient {
          * @param method The method to use for the request.
          * @return This object for chaining.
          */
+        @SuppressWarnings("checkstyle:hiddenfield")
         public CurlBuilder setMethod(String method) {
             this.method = method;
             return this;
@@ -397,6 +405,7 @@ public class UrlHttpClient implements HttpClient {
          * @param headers The headers to use for the request.
          * @return This object for chaining.
          */
+        @SuppressWarnings("checkstyle:hiddenfield")
         public CurlBuilder setHeaders(Map<String, String> headers) {
             this.headers.clear();
             this.headers.putAll(headers);
@@ -410,6 +419,7 @@ public class UrlHttpClient implements HttpClient {
          * @param content The content to use for the request.
          * @return This object for chaining.
          */
+        @SuppressWarnings("checkstyle:hiddenfield")
         public CurlBuilder setContent(String content) {
             this.content = content;
             return this;
@@ -425,6 +435,7 @@ public class UrlHttpClient implements HttpClient {
          *            print.
          * @return This object for chaining.
          */
+        @SuppressWarnings("checkstyle:hiddenfield")
         public CurlBuilder setContentOverflow(boolean contentOverflow) {
             this.contentOverflow = contentOverflow;
             return this;

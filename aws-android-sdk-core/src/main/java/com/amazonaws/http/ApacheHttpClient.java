@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -45,6 +45,10 @@ public class ApacheHttpClient implements HttpClient {
 
     private final org.apache.http.client.HttpClient httpClient;
 
+    /**
+     * Constructor.
+     * @param config the client configuration.
+     */
     public ApacheHttpClient(ClientConfiguration config) {
         HttpClientFactory httpClientFactory = new HttpClientFactory();
         httpClient = httpClientFactory.createHttpClient(config);
@@ -91,25 +95,25 @@ public class ApacheHttpClient implements HttpClient {
     private HttpUriRequest createHttpRequest(HttpRequest request) {
         HttpUriRequest httpRequest;
         String method = request.getMethod();
-        if (method.equals("POST")) {
+        if ("POST".equals(method)) {
             HttpPost postRequest = new HttpPost(request.getUri());
             if (request.getContent() != null) {
                 postRequest.setEntity(new InputStreamEntity(request.getContent(),
                         request.getContentLength()));
             }
             httpRequest = postRequest;
-        } else if (method.equals("GET")) {
+        } else if ("GET".equals(method)) {
             httpRequest = new HttpGet(request.getUri());
-        } else if (method.equals("PUT")) {
+        } else if ("PUT".equals(method)) {
             HttpPut putRequest = new HttpPut(request.getUri());
             if (request.getContent() != null) {
                 putRequest.setEntity(new InputStreamEntity(request.getContent(),
                         request.getContentLength()));
             }
             httpRequest = putRequest;
-        } else if (method.equals("DELETE")) {
+        } else if ("DELETE".equals(method)) {
             httpRequest = new HttpDelete(request.getUri());
-        } else if (method.equals("HEAD")) {
+        } else if ("HEAD".equals(method)) {
             httpRequest = new HttpHead(request.getUri());
         } else {
             throw new UnsupportedOperationException("Unsupported method: " + method);
