@@ -1,5 +1,24 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.13](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.13)
+
+### Bug Fixes
+
+* **Amazon S3**
+  * Fix the upload method with CannedAccessControlList and TransferListener in TransferUtility. See [issue #388](https://github.com/aws/aws-sdk-android/issues/388)
+
+* **Amazon Cognito Auth**
+  * Fixes bug - "Unexpected char 0x0a at 82 in header value" error, when using App clients with an associated secret. See [pr #367](https://github.com/aws/aws-sdk-android/pull/367)
+  * Added `minSdkVersion` and `targetSdkVersion` in `AndroidManifest`
+
+* **AWS Mobile Client**
+  * Added `minSdkVersion` and `targetSdkVersion` in `AndroidManifest`
+
+### New Features
+
+* **AWS IoT**
+  * Starting from this release, AWS IoT SDK by default sends metrics indicating which language and version of the SDK is being used. However, user may disable this by calling `setMetricsEnabled(false)` before calling `connect` method, if they do not want metrics to be sent.
+
 ## [Release 2.6.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.12)
 
 ### New Features
