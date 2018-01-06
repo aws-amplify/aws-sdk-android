@@ -25,8 +25,8 @@ import java.security.SecureRandom;
 
 /**
  * Utility class to generate random string, hash, and encoding.
- *
  */
+
 public final class Pkce {
 
     /**
@@ -69,6 +69,6 @@ public final class Pkce {
             return null;
         }
         byte[] data = str.getBytes(Charset.forName("ISO-8859-1"));
-        return Base64.encodeToString(data, Base64.URL_SAFE | Base64.NO_WRAP | Base64.NO_PADDING);
+        return Base64.encodeToString(data, Base64.NO_PADDING | Base64.NO_WRAP);
     }
 }

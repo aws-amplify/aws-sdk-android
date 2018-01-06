@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -505,7 +505,7 @@ public class TransferUtility {
      */
     public TransferObserver upload(String key, File file, ObjectMetadata metadata,
             CannedAccessControlList cannedAcl, TransferListener listener) {
-        return upload(key, file, metadata, cannedAcl, listener);
+        return upload(getDefaultBucketOrThrow(), key, file, metadata, cannedAcl, listener);
     }
 
 

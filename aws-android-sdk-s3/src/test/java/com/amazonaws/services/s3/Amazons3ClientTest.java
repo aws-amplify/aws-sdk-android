@@ -19,6 +19,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import com.amazonaws.ClientConfiguration;
 import com.amazonaws.Request;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -139,5 +140,32 @@ public class Amazons3ClientTest {
         assertNotNull(authorization);
         final String regionName = authorization.split("/")[2];
         assertEquals(region.getName(), regionName);
+    }
+
+    @Test
+    public void testConstructorWithBasicAwsCredentials() {
+        creds = new BasicAWSCredentials("accessKey", "secretKey");
+        s3 = new AmazonS3Client(creds);
+    }
+
+    @Test
+    public void testDefaultConstructor() {
+        s3 = new AmazonS3Client();
+    }
+
+    @Test
+    public void testConstructorWithBasicAwsCredentialsAndClientConfiguration() {
+        creds = new BasicAWSCredentials("accessKey", "secretKey");
+        s3 = new AmazonS3Client(creds, new ClientConfiguration());
+    }
+
+    @Test
+    public void testConstructorWithClientConfiguration() {
+        s3 = new AmazonS3Client(new ClientConfiguration());
+    }
+
+    @Test
+    public void testSetNotificationThreshold() {
+        s3.setNotificationThreshold(8 * 1024);
     }
 }
