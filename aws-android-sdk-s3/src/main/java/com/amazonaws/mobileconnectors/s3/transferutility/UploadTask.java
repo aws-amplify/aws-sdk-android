@@ -19,7 +19,14 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.mobileconnectors.s3.receiver.NetworkInfoReceiver;
 import com.amazonaws.retry.RetryUtils;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.*;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.CompleteMultipartUploadRequest;
+import com.amazonaws.services.s3.model.InitiateMultipartUploadRequest;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PartETag;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.SSEAwsKeyManagementParams;
+import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.util.Mimetypes;
 
 import org.apache.commons.logging.Log;
