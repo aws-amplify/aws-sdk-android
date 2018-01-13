@@ -19,7 +19,6 @@ import com.amazonaws.services.lexrts.model.PostContentResult;
 
 import java.io.InputStream;
 import java.util.Map;
-
 /**
  * Encapsulates the response from the service and provides methods to read from the response.
  */

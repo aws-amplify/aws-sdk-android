@@ -21,7 +21,6 @@ public class DefaultInteractionListener implements InteractionListener {
     public void promptUserToRespond(TextResponse response,
                                     LexServiceContinuation continuation) {
         Log.d(TAG, "Prompting user to respond");
-        //continuation.continueWithTextInForTextOut();
     }
 
     @Override
