@@ -1,4 +1,4 @@
-package com.example.prakritibansal.posttextrequest.Listeners;
+package com.amazonaws.mobileconnectors.lex.interactionkit.PostText.Listeners;
 
 /**
  * Created by prakritibansal on 12/28/17.
@@ -6,8 +6,8 @@ package com.example.prakritibansal.posttextrequest.Listeners;
 
 import android.util.Log;
 
-import com.example.prakritibansal.posttextrequest.Continuations.LexServiceContinuation;
-import com.example.prakritibansal.posttextrequest.TextResponse;
+import com.amazonaws.mobileconnectors.lex.interactionkit.PostText.Continuations.LexServiceContinuation;
+import com.amazonaws.mobileconnectors.lex.interactionkit.PostText.TextResponse;
 
 public class DefaultInteractionListener implements InteractionListener {
     private static final String TAG = "DefaultInteractionLis";
@@ -21,6 +21,7 @@ public class DefaultInteractionListener implements InteractionListener {
     public void promptUserToRespond(TextResponse response,
                                     LexServiceContinuation continuation) {
         Log.d(TAG, "Prompting user to respond");
+        //continuation.continueWithTextInForTextOut();
     }
 
     @Override

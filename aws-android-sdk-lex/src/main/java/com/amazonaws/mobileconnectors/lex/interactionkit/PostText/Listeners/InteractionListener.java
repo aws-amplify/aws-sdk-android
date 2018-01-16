@@ -1,11 +1,11 @@
-package com.example.prakritibansal.posttextrequest.Listeners;
+package com.amazonaws.mobileconnectors.lex.interactionkit.PostText.Listeners;
 
 /**
  * Created by prakritibansal on 12/28/17.
  */
 
-import com.example.prakritibansal.posttextrequest.Continuations.LexServiceContinuation;
-import com.example.prakritibansal.posttextrequest.TextResponse;
+import com.amazonaws.mobileconnectors.lex.interactionkit.PostText.Continuations.LexServiceContinuation;
+import com.amazonaws.mobileconnectors.lex.interactionkit.PostText.TextResponse;
 
 /**
  * Interaction listener.

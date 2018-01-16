@@ -1,10 +1,10 @@
-package com.example.prakritibansal.posttextrequest.Continuations;
+package com.amazonaws.mobileconnectors.lex.interactionkit.PostText.Continuations;
 
 /**
  * Created by prakritibansal on 12/28/17.
  */
 
-import com.example.prakritibansal.posttextrequest.InteractionClient;
+import com.amazonaws.mobileconnectors.lex.interactionkit.PostText.InteractionClient;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -66,6 +66,30 @@ public final class LexServiceContinuation{
         sessionAttributes.put(attribute, value);
     }
 
+//    /**
+//     * Use this method if the users response is speech. The client will listen to user's input from
+//     * the device's microphone. The service will respond to this request with text.
+//     */
+//    public void continueWithAudioInForTextOut() {
+//        interactionClient.audioInForTextOut(sessionAttributes);
+//    }
+//
+//    /**
+//     * Use this method if the users response is speech. The client will listen to user's input from
+//     * the device's microphone. The service will respond to this request with audio.
+//     */
+//    public void continueWithAudioInForAudioOut() {
+//        interactionClient.audioInForAudioOut(sessionAttributes);
+//    }
+
+//    /**
+//     * Use this method to respond with text and expect service response with audio.
+//     * @param text the response to the prompt as a {@link String}.
+//     */
+//    public void continueWithTextInForAudioOut(String text) {
+//        interactionClient.textInForAudioOut(text, sessionAttributes);
+//    }
+
     /**
      * Use this method to respond with text and expect service response with text.
      * @param text the response to the prompt as a {@link String}.
@@ -73,6 +97,19 @@ public final class LexServiceContinuation{
     public void continueWithTextInForTextOut(String text) {
         interactionClient.textInForTextOut(text, sessionAttributes);
     }
+
+//    /**
+//     * Use this method to continue with the current input and output mode.
+//     */
+//    public void continueWithCurrentMode() {
+//        Log.d("SDK", " -- responseMode: " + responseMode + "; requestMode: " + requestMode);
+//        if (ResponseType.AUDIO_MPEG.equals(responseMode) && ResponseType.AUDIO_MPEG.equals(requestMode)) {
+//            continueWithAudioInForAudioOut();
+//        } else {
+//            throw new InvalidParameterException(
+//                    "Cannot continue with current mode, if request and response are not audio");
+//        }
+//    }
 
     /**
      * Use this method to cancel the current transaction.

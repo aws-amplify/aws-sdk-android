@@ -1,4 +1,4 @@
-package com.example.prakritibansal.posttextrequest.Utils;
+package com.amazonaws.mobileconnectors.lex.interactionkit.PostText.Utils;
 
 /**
  * Created by prakritibansal on 12/28/17.
@@ -7,7 +7,7 @@ package com.example.prakritibansal.posttextrequest.Utils;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.CognitoCredentialsProvider;
 import com.amazonaws.services.lexrts.model.PostTextRequest;
-import com.example.prakritibansal.posttextrequest.config.InteractionConfig;
+import com.amazonaws.mobileconnectors.lex.interactionkit.PostText.config.InteractionConfig;
 
 import java.util.HashMap;
 import java.util.Map;

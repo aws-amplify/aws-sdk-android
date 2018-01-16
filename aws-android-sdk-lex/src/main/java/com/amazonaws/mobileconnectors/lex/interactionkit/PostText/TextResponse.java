@@ -1,4 +1,4 @@
-package com.example.prakritibansal.posttextrequest;
+package com.amazonaws.mobileconnectors.lex.interactionkit.PostText;
 
 /**
  * Created by prakritibansal on 12/28/17.
