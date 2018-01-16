@@ -233,8 +233,7 @@ class TransferTable {
             + COLUMN_HEADER_CONTENT_DISPOSITION + " text, "
             + COLUMN_HEADER_CONTENT_ENCODING + " text, "
             + COLUMN_HEADER_CACHE_CONTROL + " text, "
-            + COLUMN_HEADER_EXPIRE + " text, "
-            + COLUMN_HEADER_STORAGE_CLASS + " text"
+            + COLUMN_HEADER_EXPIRE + " text"
             + ");";
 
     /**
