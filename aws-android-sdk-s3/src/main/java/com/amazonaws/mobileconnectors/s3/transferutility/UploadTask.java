@@ -301,6 +301,9 @@ class UploadTask implements Callable<Boolean> {
         } else {
             om.setContentType(Mimetypes.getInstance().getMimetype(file));
         }
+        if (upload.headerStorageClass != null) {
+            putObjectRequest.setStorageClass(upload.headerStorageClass);
+        }
         if (upload.expirationTimeRuleId != null) {
             om.setExpirationTimeRuleId(upload.expirationTimeRuleId);
         }
@@ -320,7 +323,6 @@ class UploadTask implements Callable<Boolean> {
             putObjectRequest
                     .setSSEAwsKeyManagementParams(new SSEAwsKeyManagementParams(upload.sseKMSKey));
         }
-
         putObjectRequest.setMetadata(om);
         putObjectRequest.setCannedAcl(getCannedAclFromString(upload.cannedAcl));
 

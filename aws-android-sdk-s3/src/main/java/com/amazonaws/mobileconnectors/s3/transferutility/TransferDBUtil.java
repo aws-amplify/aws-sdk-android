@@ -709,6 +709,9 @@ class TransferDBUtil {
             values.put(TransferTable.COLUMN_HTTP_EXPIRES_DATE,
                     String.valueOf(metadata.getHttpExpiresDate().getTime()));
         }
+        if (metadata.getStorageClass() != null) {
+            values.put(TransferTable.COLUMN_HEADER_STORAGE_CLASS, metadata.getStorageClass());
+        }
 
         return values;
     }

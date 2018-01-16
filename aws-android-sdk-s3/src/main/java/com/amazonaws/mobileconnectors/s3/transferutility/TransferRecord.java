@@ -21,6 +21,7 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferService.NetworkInfoReceiver;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
+import com.amazonaws.services.s3.model.StorageClass;
 import com.amazonaws.util.json.JsonUtils;
 
 import org.apache.commons.logging.Log;
@@ -68,6 +69,7 @@ class TransferRecord {
     public String headerContentEncoding;
     public String headerCacheControl;
     public String headerExpire;
+    public String headerStorageClass;
 
     /**
      * The following were added in 2.2.6 to support object metdata
@@ -147,6 +149,7 @@ class TransferRecord {
         this.sseKMSKey = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_SSE_KMS_KEY));
         this.md5 = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_CONTENT_MD5));
         this.cannedAcl = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_CANNED_ACL));
+        this.headerStorageClass = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_HEADER_STORAGE_CLASS));
     }
 
     /**
@@ -287,9 +290,9 @@ class TransferRecord {
                 .append("isLastPart:").append(isLastPart).append(",")
                 .append("partNumber:").append(partNumber).append(",")
                 .append("multipartId:").append(multipartId).append(",")
-                .append("eTag:").append(eTag)
+                .append("eTag:").append(eTag).append(",")
+                .append("storageClass:").append(headerStorageClass)
                 .append("]");
         return sb.toString();
     }
 }
-

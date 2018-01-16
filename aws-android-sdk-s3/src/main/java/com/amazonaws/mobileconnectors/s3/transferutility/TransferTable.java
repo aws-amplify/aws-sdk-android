@@ -152,6 +152,11 @@ class TransferTable {
      * User specified cache control
      */
     public static final String COLUMN_HEADER_CACHE_CONTROL = "header_cache_control";
+    
+    /**
+     * User specified storage class
+     */
+    public static final String COLUMN_HEADER_STORAGE_CLASS = "header_storage_class";
 
     /**
      * ============ Below added in 2.2.6 for support for metadata ============
@@ -228,7 +233,8 @@ class TransferTable {
             + COLUMN_HEADER_CONTENT_DISPOSITION + " text, "
             + COLUMN_HEADER_CONTENT_ENCODING + " text, "
             + COLUMN_HEADER_CACHE_CONTROL + " text, "
-            + COLUMN_HEADER_EXPIRE + " text"
+            + COLUMN_HEADER_EXPIRE + " text, "
+            + COLUMN_HEADER_STORAGE_CLASS + " text"
             + ");";
 
     /**
@@ -244,6 +250,7 @@ class TransferTable {
     private static final int TABLE_VERSION_2 = 2;
     private static final int TABLE_VERSION_3 = 3;
     private static final int TABLE_VERSION_4 = 4;
+    private static final int TABLE_VERSION_5 = 5;
 
     /**
      * Upgrades the database.
@@ -263,6 +270,9 @@ class TransferTable {
         }
         if (oldVersion < TABLE_VERSION_4 && newVersion >= TABLE_VERSION_4) {
             addVersion4Columns(database);
+        }
+        if (oldVersion < TABLE_VERSION_5 && newVersion >= TABLE_VERSION_5) {
+            addVersion5Columns(database);
         }
     }
 
@@ -302,6 +312,12 @@ class TransferTable {
     private static void addVersion4Columns(SQLiteDatabase database) {
         final String addCannedAcl = "ALTER TABLE " + TABLE_TRANSFER +
                 " ADD COLUMN " + COLUMN_CANNED_ACL + " text;";
+        database.execSQL(addCannedAcl);
+    }
+    
+    private static void addVersion5Columns(SQLiteDatabase database) {
+        final String addCannedAcl = "ALTER TABLE " + TABLE_TRANSFER +
+                " ADD COLUMN " + COLUMN_HEADER_STORAGE_CLASS + " text;";
         database.execSQL(addCannedAcl);
     }
 }
