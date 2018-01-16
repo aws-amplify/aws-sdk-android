@@ -1,9 +1,5 @@
 package com.amazonaws.mobileconnectors.lex.interactionkit.PostText.Utils;
 
-/**
- * Created by prakritibansal on 12/28/17.
- */
-
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.CognitoCredentialsProvider;
 import com.amazonaws.services.lexrts.model.PostTextRequest;

@@ -1,9 +1,5 @@
 package com.amazonaws.mobileconnectors.lex.interactionkit.PostText;
 
-/**
- * Created by prakritibansal on 12/28/17.
- */
-
 
 import com.amazonaws.services.lexrts.model.PostTextResult;
 import com.amazonaws.services.lexrts.model.ResponseCard;
@@ -60,7 +56,7 @@ public class TextResponse {
     }
 
     /**
-     *
+     * Returns the name of the intent invoked. 
      * @return
      */
     public String getIntentName() {

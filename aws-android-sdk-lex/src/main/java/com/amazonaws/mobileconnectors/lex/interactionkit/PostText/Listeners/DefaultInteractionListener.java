@@ -1,8 +1,6 @@
 package com.amazonaws.mobileconnectors.lex.interactionkit.PostText.Listeners;
 
-/**
- * Created by prakritibansal on 12/28/17.
- */
+
 
 import android.util.Log;
 
