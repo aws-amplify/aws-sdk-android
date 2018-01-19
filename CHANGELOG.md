@@ -1,5 +1,20 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.14](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.14)
+
+### Bug Fixes
+
+* **Amazon CloudWatch Logs**
+  * Allow `Amazon CloudWatch Logs` SDK to be fetched via maven. See [issue #392](https://github.com/aws/aws-sdk-android/issues/392)
+
+### Enhancements
+
+* **Amazon Cognito Identity Provider**
+  * Repackaged Amazon Cognito Identity Service Provider Android SDK to change dependency for ASF components.
+
+* **Amazon Cognito Auth**
+  * Repackaged Amazon Cognito Auth Android SDK to change dependency for ASF components. Use `{ transitive = true; }` while importing `aws-android-sdk-cognitoauth` via maven in gradle.
+
 ## [Release 2.6.13](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.13)
 
 ### Bug Fixes
