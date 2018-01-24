@@ -16,7 +16,7 @@
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
 
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferService.NetworkInfoReceiver;
+import com.amazonaws.mobileconnectors.s3.receiver.NetworkInfoReceiver;
 import com.amazonaws.retry.RetryUtils;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.UploadPartRequest;
@@ -35,15 +35,6 @@ class UploadPartTask implements Callable<Boolean> {
     private final AmazonS3 s3;
     private final TransferDBUtil dbUtil;
     private final NetworkInfoReceiver networkInfoReceiver;
-
-    public UploadPartTask(UploadPartRequest request,
-                          AmazonS3 s3,
-                          TransferDBUtil dbUtil) {
-        this.request = request;
-        this.s3 = s3;
-        this.dbUtil = dbUtil;
-        this.networkInfoReceiver = null;
-    }
 
     public UploadPartTask(UploadPartRequest request,
                           AmazonS3 s3,

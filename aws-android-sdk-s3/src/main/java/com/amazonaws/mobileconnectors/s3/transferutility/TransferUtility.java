@@ -15,9 +15,6 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
-import static com.amazonaws.services.s3.internal.Constants.MAXIMUM_UPLOAD_PARTS;
-import static com.amazonaws.services.s3.internal.Constants.MB;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +26,7 @@ import org.json.JSONObject;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.regions.Region;
+import com.amazonaws.mobileconnectors.s3.receiver.NetworkInfoReceiver;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -41,6 +39,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import static com.amazonaws.services.s3.internal.Constants.MAXIMUM_UPLOAD_PARTS;
+import static com.amazonaws.services.s3.internal.Constants.MB;
 
 /**
  * The transfer utility is a high-level class for applications to upload and
@@ -99,7 +100,7 @@ public class TransferUtility {
      * a single upload
      */
     static final int MINIMUM_UPLOAD_PART_SIZE = 5 * MB;
-    
+
     private static String userAgentFromConfig = "";
     private static void setUserAgentFromConfig(String userAgent) {
         synchronized (TransferUtility.userAgentFromConfig) {
@@ -120,6 +121,7 @@ public class TransferUtility {
     private final Context appContext;
     private final TransferDBUtil dbUtil;
     private final String defaultBucket;
+    private final TransferConfiguration transferConfiguration;
 
     /**
      * Builder class for TransferUtility
@@ -129,12 +131,13 @@ public class TransferUtility {
         private Context appContext;
         private String defaultBucket;
         private AWSConfiguration awsConfig;
-        
+        private TransferConfiguration transferConfiguration;
+
         protected Builder() { }
-        
+
         /**
          * Sets the underlying S3 client used for transfers.
-         * 
+         *
          * @param s3Client The S3 client.
          * @return builder
          */
@@ -142,10 +145,10 @@ public class TransferUtility {
             this.s3 = s3Client;
             return this;
         }
-        
+
         /**
          * Sets the context used.
-         * 
+         *
          * @param applicationContext The application context.
          * @return builder
          */
@@ -153,11 +156,11 @@ public class TransferUtility {
             this.appContext = applicationContext.getApplicationContext();
             return this;
         }
-        
+
         /**
          * Sets the default bucket used for uploads and downloads.
          * This allows you to use the corresponding methods that do not require the bucket name to be specified.
-         * 
+         *
          * @param bucket The bucket name.
          * @return builder
          */
@@ -165,12 +168,24 @@ public class TransferUtility {
             this.defaultBucket = bucket;
             return this;
         }
-        
+
+        /**
+         * Sets the network connection checking type.
+         *
+         * @param connectionCheckType The network connection check type.
+         * @return builder
+         */
+        public Builder connectionTypeCheck(final NetworkInfoReceiver.Type connectionCheckType) {
+            this.transferConfiguration = new TransferConfiguration()
+                    .withConnectionCheckType(connectionCheckType);
+            return this;
+        }
+
         /**
          * Sets the region of the underlying S3 client and the default bucket used for uploads and downloads.
          * This allows you to use the corresponding methods that do not require the bucket name to be specified.
          * These values are retrieved from the AWSConfiguration argument.
-         * 
+         *
          * Example awsconfiguration.json contents:
          * {
          *     "S3TransferUtility": {
@@ -180,7 +195,7 @@ public class TransferUtility {
          *         }
          *     }
          * }
-         * 
+         *
          * @param awsConfiguration The configuration.
          * @return builder
          */
@@ -188,9 +203,9 @@ public class TransferUtility {
             this.awsConfig = awsConfiguration;
             return this;
         }
-        
+
         /**
-         * 
+         *
          * @return TransferUtility
          */
         public TransferUtility build() {
@@ -199,42 +214,44 @@ public class TransferUtility {
             } else if (this.appContext == null) {
                 throw new IllegalArgumentException("Context is required please set using .context(applicationContext)");
             }
-            
+
             if (this.awsConfig != null) {
                 try {
                     final JSONObject tuConfig = this.awsConfig.optJsonObject("S3TransferUtility");
                     this.s3.setRegion(Region.getRegion(tuConfig.getString("Region")));
                     this.defaultBucket = tuConfig.getString("Bucket");
-                    
+
                     TransferUtility.setUserAgentFromConfig(this.awsConfig.getUserAgent());
                 } catch (Exception e) {
                     throw new IllegalArgumentException("Failed to read S3TransferUtility "
                             + "please check your setup or awsconfiguration.json file", e);
                 }
             }
-            
-            return new TransferUtility(this.s3, this.appContext, this.defaultBucket);
+
+            return new TransferUtility(this.s3, this.appContext, this.defaultBucket, this.transferConfiguration);
         }
     }
-    
+
     /**
      * Minimum calls required.
      * TransferUtility.builder().s3Client(s3).context(context).build()
-     * 
+     *
      * @return The builder object to construct a TransferUtility.
      */
     public static Builder builder() {
         return new Builder();
     }
-    
+
     private TransferUtility(
             final AmazonS3 s3,
             final Context context,
-            final String defaultBucket) {
+            final String defaultBucket,
+            final TransferConfiguration transferConfiguration) {
         this.s3 = s3;
         this.appContext = context.getApplicationContext();
         this.dbUtil = new TransferDBUtil(appContext);
         this.defaultBucket = defaultBucket;
+        this.transferConfiguration = transferConfiguration;
     }
 
     /**
@@ -244,14 +261,15 @@ public class TransferUtility {
      *
      * @param s3 The client to use when making requests to Amazon S3
      * @param context The current context
-     * 
+     *
      * @deprecated Please use TransferUtility.builder().s3Client(s3).context(context).build()
      */
     @Deprecated
-    public TransferUtility(AmazonS3 s3, Context context) {
+    public TransferUtility(final AmazonS3 s3, final Context context, final TransferConfiguration transferConfiguration) {
         this.s3 = s3;
         this.appContext = context.getApplicationContext();
         this.dbUtil = new TransferDBUtil(appContext);
+        this.transferConfiguration = transferConfiguration;
         this.defaultBucket = null;
     }
 
@@ -280,7 +298,7 @@ public class TransferUtility {
     public TransferObserver download(String bucket, String key, File file) {
         return download(bucket, key, file, null);
     }
-    
+
     /**
      * Starts downloading the S3 object specified by the <b>default</b> bucket
      * and the key to the given file. The file must be a valid file. Directory
@@ -319,8 +337,9 @@ public class TransferUtility {
             file.delete();
         }
 
-        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId);
-        return new TransferObserver(recordId, dbUtil, bucket, key, file, listener);
+        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId,
+                transferConfiguration.getConnectionCheckType());
+        return new TransferObserver(recordId, dbUtil, bucket, key, file);
     }
 
     /**
@@ -378,7 +397,7 @@ public class TransferUtility {
      * @return A TransferObserver used to track upload progress and state
      */
     public TransferObserver upload(String bucket, String key, File file,
-            CannedAccessControlList cannedAcl) {
+                                   CannedAccessControlList cannedAcl) {
         return upload(bucket, key, file, new ObjectMetadata(), cannedAcl);
     }
 
@@ -487,8 +506,8 @@ public class TransferUtility {
             recordId = Integer.parseInt(uri.getLastPathSegment());
         }
 
-        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId);
-        return new TransferObserver(recordId, dbUtil, bucket, key, file, listener);
+        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId, transferConfiguration.getConnectionCheckType());
+        return new TransferObserver(recordId, dbUtil, bucket, key, file);
     }
 
     /**
@@ -616,7 +635,6 @@ public class TransferUtility {
      * @param key The key in the specified bucket by which to store the new
      *            object.
      * @param file The file to upload.
-     * @param isUsingEncryption Whether the upload is encrypted.
      * @return Number of records created in database
      */
     private int createMultipartUploadRecords(String bucket, String key, File file,
@@ -751,13 +769,26 @@ public class TransferUtility {
      * @param action action to perform
      * @param id id of the transfer
      */
-    private synchronized void sendIntent(String action, int id) {
+    private void sendIntent(String action, int id) {
+        sendIntent(action, id, transferConfiguration.getConnectionCheckType());
+    }
+
+    /**
+     * Send an intent to {@link TransferService}
+     *
+     * @param action action to perform
+     * @param id id of the transfer
+     * @param networkCheckType Type of allowed network connection
+     */
+    private synchronized void sendIntent(final String action, final int id, final NetworkInfoReceiver.Type networkCheckType) {
         final String s3Key = UUID.randomUUID().toString();
         S3ClientReference.put(s3Key, s3);
         final Intent intent = new Intent(appContext, TransferService.class);
         intent.setAction(action);
         intent.putExtra(TransferService.INTENT_BUNDLE_TRANSFER_ID, id);
         intent.putExtra(TransferService.INTENT_BUNDLE_S3_REFERENCE_KEY, s3Key);
+        intent.putExtra(TransferService.INTENT_BUNDLE_CONNECTION_CHECK_TYPE,
+                networkCheckType.name());
         appContext.startService(intent);
     }
 
@@ -782,9 +813,5 @@ public class TransferUtility {
                 + VersionInfoUtils.getVersion());
         return request;
     }
-
-    TransferDBUtil getDbUtil() {
-        return dbUtil;
-    }
-
 }
+
