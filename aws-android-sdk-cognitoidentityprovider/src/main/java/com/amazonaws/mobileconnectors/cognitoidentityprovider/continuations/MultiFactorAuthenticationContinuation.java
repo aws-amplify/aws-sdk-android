@@ -17,9 +17,7 @@
 
 package com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations;
 
-import android.content.Context;
-import android.os.Handler;
-
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.extra.execution.CallbackExectorProvider;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserCodeDeliveryDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
@@ -42,7 +40,6 @@ public class MultiFactorAuthenticationContinuation implements CognitoIdentityPro
     public static final boolean RUN_IN_CURRENT = false;
 
     private final CognitoUser user;
-    private final Context context;
     private final RespondToAuthChallengeResult challenge;
     private final boolean runInBackground;
     private final AuthenticationHandler callback;
@@ -55,15 +52,12 @@ public class MultiFactorAuthenticationContinuation implements CognitoIdentityPro
      * @param challenge             REQUIRED: Contains the MFA Challenge.
      * @param runInBackground       REQUIRED: Represents where this continuation has to run.
      * @param callback              REQUIRED: Callback to interact with the app.
-     * @param context               REQUIRED: The android context.
      */
     public MultiFactorAuthenticationContinuation(CognitoUser user,
-                                                 Context context,
                                                  RespondToAuthChallengeResult challenge,
                                                  boolean runInBackground,
                                                  AuthenticationHandler callback) {
         this.user = user;
-        this.context = context;
         this.callback = callback;
         this.runInBackground = runInBackground;
         this.challenge = challenge;
@@ -100,7 +94,6 @@ public class MultiFactorAuthenticationContinuation implements CognitoIdentityPro
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    final Handler handler = new Handler(context.getMainLooper());
                     Runnable nextStep;
                     try {
 
@@ -114,7 +107,7 @@ public class MultiFactorAuthenticationContinuation implements CognitoIdentityPro
                             }
                         };
                     }
-                    handler.post(nextStep);
+                    CallbackExectorProvider.getExecutor().execute(nextStep);
                 }
             }).start();
         } else {

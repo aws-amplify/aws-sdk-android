@@ -15,11 +15,9 @@
 
 package com.amazonaws.auth;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
-
 import com.amazonaws.ClientConfiguration;
+import com.amazonaws.extra.persistence.Storage;
+import com.amazonaws.extra.persistence.StorageProvider;
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityClient;
@@ -27,12 +25,15 @@ import com.amazonaws.services.cognitoidentity.model.NotAuthorizedException;
 import com.amazonaws.services.securitytoken.AWSSecurityTokenService;
 import com.amazonaws.util.VersionInfoUtils;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.util.Date;
 import java.util.Map;
 
 /**
  * This credentials provider is intended for Android applications. It offers the
- * ability to persist the Cognito identity id in {@link SharedPreferences}.
+ * ability to persist the Cognito identity id.
  * Furthermore, it caches session credentials so as to reduce the number of
  * network requests. This is the provider to use with a custom identity
  * provider, which should be an extension of AWSAbstractCognitoIdentityProvider.
@@ -77,11 +78,11 @@ import java.util.Map;
 public class CognitoCachingCredentialsProvider
         extends CognitoCredentialsProvider {
 
-    private final String DEFAULT_SHAREDPREFERENCES_NAME = "com.amazonaws.android.auth";
+    private static final Log LOGGER = LogFactory.getLog(CognitoCachingCredentialsProvider.class);
     private static final String USER_AGENT = CognitoCachingCredentialsProvider.class.getName()
             + "/" + VersionInfoUtils.getVersion();
-    private final SharedPreferences prefs;
     private String identityId;
+    public static final String STORAGE_KEY = "com.amazonaws.android.auth";
 
     private static final String ID_KEY = "identityId";
     private static final String AK_KEY = "accessKey";
@@ -96,7 +97,7 @@ public class CognitoCachingCredentialsProvider
     private final IdentityChangedListener listener = new IdentityChangedListener() {
         @Override
         public void identityChanged(String oldIdentityId, String newIdentityId) {
-            Log.d(TAG, "Identity id is changed");
+            LOGGER.debug("Identity id is changed");
             saveIdentityId(newIdentityId);
             clearCredentials();
         }
@@ -109,7 +110,6 @@ public class CognitoCachingCredentialsProvider
      * request short-lived session credentials, which will then be returned by
      * this class's {@link #getCredentials()} method.
      *
-     * @param context The Android context to be used for the caching
      * @param accountId The AWS accountId for the account with Amazon Cognito
      * @param identityPoolId The Amazon Cogntio identity pool to use
      * @param unauthRoleArn The ARN of the IAM Role that will be assumed when
@@ -118,14 +118,9 @@ public class CognitoCachingCredentialsProvider
      *            authenticated
      * @param region The region to use when contacting Cognito Identity
      */
-    public CognitoCachingCredentialsProvider(Context context, String accountId,
-            String identityPoolId, String unauthRoleArn, String authRoleArn, Regions region) {
+    public CognitoCachingCredentialsProvider(String accountId,
+                                             String identityPoolId, String unauthRoleArn, String authRoleArn, Regions region) {
         super(accountId, identityPoolId, unauthRoleArn, authRoleArn, region);
-        if (context == null) {
-            throw new IllegalArgumentException("context can't be null");
-        }
-        this.prefs = context.getSharedPreferences(DEFAULT_SHAREDPREFERENCES_NAME,
-                Context.MODE_PRIVATE);
         initialize();
     }
 
@@ -140,7 +135,6 @@ public class CognitoCachingCredentialsProvider
      * configuration for the Amazon Cognito and STS clients.
      * </p>
      *
-     * @param context The Android context to be used for the caching
      * @param accountId The AWS accountId for the account with Amazon Cognito
      * @param identityPoolId The Amazon Cognito identity pool to use
      * @param unauthRoleArn The ARN of the IAM Role that will be assumed when
@@ -151,15 +145,10 @@ public class CognitoCachingCredentialsProvider
      * @param clientConfiguration Configuration to apply to service clients
      *            created
      */
-    public CognitoCachingCredentialsProvider(Context context, String accountId,
-            String identityPoolId, String unauthRoleArn, String authRoleArn, Regions region,
-            ClientConfiguration clientConfiguration) {
+    public CognitoCachingCredentialsProvider(String accountId,
+                                             String identityPoolId, String unauthRoleArn, String authRoleArn, Regions region,
+                                             ClientConfiguration clientConfiguration) {
         super(accountId, identityPoolId, unauthRoleArn, authRoleArn, region, clientConfiguration);
-        if (context == null) {
-            throw new IllegalArgumentException("context can't be null");
-        }
-        this.prefs = context.getSharedPreferences(DEFAULT_SHAREDPREFERENCES_NAME,
-                Context.MODE_PRIVATE);
         initialize();
     }
 
@@ -178,17 +167,11 @@ public class CognitoCachingCredentialsProvider
      * enhanced flow.
      * </p>
      *
-     * @param context The Android context to be used for the caching
      * @param identityPoolId The Amazon Cognito identity pool to use
      * @param region The region to use when contacting Cognito Identity
      */
-    public CognitoCachingCredentialsProvider(Context context, String identityPoolId, Regions region) {
+    public CognitoCachingCredentialsProvider(String identityPoolId, Regions region) {
         super(identityPoolId, region);
-        if (context == null) {
-            throw new IllegalArgumentException("context can't be null");
-        }
-        this.prefs = context.getSharedPreferences(DEFAULT_SHAREDPREFERENCES_NAME,
-                Context.MODE_PRIVATE);
         initialize();
     }
 
@@ -219,18 +202,12 @@ public class CognitoCachingCredentialsProvider
      *     }
      * }
      *
-     * @param context The Android context to be used for the caching
      * @param awsConfiguration The configuration holding you identity pool id
      *                         and the region to use when contacting
      *                         Cognito Identity
      */
-    public CognitoCachingCredentialsProvider(Context context, AWSConfiguration awsConfiguration) {
+    public CognitoCachingCredentialsProvider(AWSConfiguration awsConfiguration) {
         super(awsConfiguration);
-        if (context == null) {
-            throw new IllegalArgumentException("context can't be null");
-        }
-        this.prefs = context.getSharedPreferences(DEFAULT_SHAREDPREFERENCES_NAME,
-                Context.MODE_PRIVATE);
         initialize();
     }
 
@@ -253,20 +230,14 @@ public class CognitoCachingCredentialsProvider
      * enhanced flow.
      * </p>
      *
-     * @param context The Android context to be used for the caching
      * @param identityPoolId The Amazon Cognito identity pool to use
      * @param region The region to use when contacting Cognito Identity
      * @param clientConfiguration Configuration to apply to service clients
      *            created
      */
-    public CognitoCachingCredentialsProvider(Context context, String identityPoolId,
-            Regions region, ClientConfiguration clientConfiguration) {
+    public CognitoCachingCredentialsProvider(String identityPoolId,
+                                             Regions region, ClientConfiguration clientConfiguration) {
         super(identityPoolId, region, clientConfiguration);
-        if (context == null) {
-            throw new IllegalArgumentException("context can't be null");
-        }
-        this.prefs = context.getSharedPreferences(DEFAULT_SHAREDPREFERENCES_NAME,
-                Context.MODE_PRIVATE);
         initialize();
     }
 
@@ -285,26 +256,17 @@ public class CognitoCachingCredentialsProvider
      * flow, not contacting STS. Otherwise the basic flow will be used.
      * </p>
      *
-     * @param context The Android context to be used for the caching
      * @param accountId The AWS accountId for the account with Amazon Cognito
      * @param identityPoolId The Amazon Cogntio identity pool to use
-     * @param unauthRoleArn The ARN of the IAM Role that will be assumed when
-     *            unauthenticated
-     * @param authRoleArn The ARN of the IAM Role that will be assumed when
-     *            authenticated
      * @param cibClient Preconfigured CognitoIdentity client to make requests
      *            with
      * @param stsClient Preconfigured STS client to make requests with
      */
-    public CognitoCachingCredentialsProvider(Context context, String accountId,
-            String identityPoolId, String unauthArn, String authArn,
-            AmazonCognitoIdentityClient cibClient, AWSSecurityTokenService stsClient) {
+    public CognitoCachingCredentialsProvider(String accountId,
+                                             String identityPoolId, String unauthArn,
+                                             String authArn, AmazonCognitoIdentityClient cibClient,
+                                             AWSSecurityTokenService stsClient) {
         super(accountId, identityPoolId, unauthArn, authArn, cibClient, stsClient);
-        if (context == null) {
-            throw new IllegalArgumentException("context can't be null");
-        }
-        this.prefs = context.getSharedPreferences(DEFAULT_SHAREDPREFERENCES_NAME,
-                Context.MODE_PRIVATE);
         initialize();
     }
 
@@ -318,20 +280,14 @@ public class CognitoCachingCredentialsProvider
      * Provider class.
      * </p>
      *
-     * @param context The Android context to be used for the caching
      * @param provider a reference to the provider in question, including what's
      *            needed to interact with it to later connect with STS
      * @param unauthArn the unauthArn, for use with the STS call
      * @param authArn the authArn, for use with the STS call
      */
-    public CognitoCachingCredentialsProvider(Context context, AWSCognitoIdentityProvider provider,
-            String unauthArn, String authArn) {
+    public CognitoCachingCredentialsProvider(AWSCognitoIdentityProvider provider,
+                                             String unauthArn, String authArn) {
         super(provider, unauthArn, authArn);
-        if (context == null) {
-            throw new IllegalArgumentException("context can't be null");
-        }
-        this.prefs = context.getSharedPreferences(DEFAULT_SHAREDPREFERENCES_NAME,
-                Context.MODE_PRIVATE);
         initialize();
     }
 
@@ -345,21 +301,15 @@ public class CognitoCachingCredentialsProvider
      * Provider class, and the STS client to use.
      * </p>
      *
-     * @param context The Android context to be used for the caching
      * @param provider a reference to the provider in question, including what's
      *            needed to interact with it to later connect with STS
      * @param unauthArn the unauthArn, for use with the STS call
      * @param authArn the authArn, for use with the STS call
      * @param stsClient the sts endpoint to get session credentials from
      */
-    public CognitoCachingCredentialsProvider(Context context, AWSCognitoIdentityProvider provider,
-            String unauthArn, String authArn, AWSSecurityTokenService stsClient) {
+    public CognitoCachingCredentialsProvider(AWSCognitoIdentityProvider provider,
+                                             String unauthArn, String authArn, AWSSecurityTokenService stsClient) {
         super(provider, unauthArn, authArn, stsClient);
-        if (context == null) {
-            throw new IllegalArgumentException("context can't be null");
-        }
-        this.prefs = context.getSharedPreferences(DEFAULT_SHAREDPREFERENCES_NAME,
-                Context.MODE_PRIVATE);
         initialize();
     }
 
@@ -380,20 +330,14 @@ public class CognitoCachingCredentialsProvider
      * roles) will work without doing so, but will not use the enhanced flow.
      * </p>
      *
-     * @param context The Android context to be used for the caching
      * @param provider a reference to the provider in question, including what's
      *            needed to interact with it to later connect with Amazon
      *            Cognito
      * @param region The region to use when contacting Cognito
      */
-    public CognitoCachingCredentialsProvider(Context context, AWSCognitoIdentityProvider provider,
-            Regions region) {
+    public CognitoCachingCredentialsProvider(AWSCognitoIdentityProvider provider,
+                                             Regions region) {
         super(provider, region);
-        if (context == null) {
-            throw new IllegalArgumentException("context can't be null");
-        }
-        this.prefs = context.getSharedPreferences(DEFAULT_SHAREDPREFERENCES_NAME,
-                Context.MODE_PRIVATE);
         initialize();
     }
 
@@ -414,7 +358,6 @@ public class CognitoCachingCredentialsProvider
      * roles) will work without doing so, but will not use the enhanced flow.
      * </p>
      *
-     * @param context The Android context to be used for the caching
      * @param provider a reference to the provider in question, including what's
      *            needed to interact with it to later connect with Amazon
      *            Cognito
@@ -422,14 +365,9 @@ public class CognitoCachingCredentialsProvider
      *            created
      * @param region The region to use when contacting Cognito Identity
      */
-    public CognitoCachingCredentialsProvider(Context context, AWSCognitoIdentityProvider provider,
-            Regions region, ClientConfiguration clientConfiguration) {
+    public CognitoCachingCredentialsProvider(AWSCognitoIdentityProvider provider,
+                                             Regions region, ClientConfiguration clientConfiguration) {
         super(provider, region, clientConfiguration);
-        if (context == null) {
-            throw new IllegalArgumentException("context can't be null");
-        }
-        this.prefs = context.getSharedPreferences(DEFAULT_SHAREDPREFERENCES_NAME,
-                Context.MODE_PRIVATE);
         initialize();
     }
 
@@ -443,8 +381,7 @@ public class CognitoCachingCredentialsProvider
     /**
      * Gets the Cognito identity id of the user. The first time when this method
      * is called, a network request will be made to retrieve a new identity id.
-     * After that it's saved in {@link SharedPreferences}. Please don't call it
-     * in the main thread.
+     * After that it's saved. Please don't call it in the main thread.
      *
      * @return identity id of the user
      */
@@ -486,12 +423,12 @@ public class CognitoCachingCredentialsProvider
 
         	// null check before saving credentials
         	if (sessionCredentialsExpiration != null) {
-        		saveCredentials(sessionCredentials, 
+        		saveCredentials(sessionCredentials,
         				sessionCredentialsExpiration.getTime());
         	}
         	return sessionCredentials;
         } catch (NotAuthorizedException e) {
-            Log.e(TAG, "Failure to get credentials", e);
+            LOGGER.error("Failure to get credentials", e);
             if (getLogins() != null) {
                 // If the fetch failed then the credentials don't
                 // match the current id, so clear them
@@ -547,7 +484,7 @@ public class CognitoCachingCredentialsProvider
         super.clear();
 
         // clear cached identity id and credentials
-        prefs.edit().clear().apply();
+        StorageProvider.get(STORAGE_KEY).clear();
     }
 
     /*
@@ -560,13 +497,12 @@ public class CognitoCachingCredentialsProvider
     	credentialsLock.writeLock().lock();
     	try {
 	        super.clearCredentials();
-	        Log.d(TAG, "Clearing credentials from SharedPreferences");
-	        prefs.edit()
-	                .remove(namespace(AK_KEY))
-	                .remove(namespace(SK_KEY))
-	                .remove(namespace(ST_KEY))
-	                .remove(namespace(EXP_KEY))
-	                .apply();
+	        LOGGER.debug("Clearing credentials from SharedPreferences");
+            Storage storage = StorageProvider.get(STORAGE_KEY);
+            storage.remove(AK_KEY);
+            storage.remove(SK_KEY);
+            storage.remove(ST_KEY);
+            storage.remove(EXP_KEY);
     	} finally {
     		credentialsLock.writeLock().unlock();
     	}
@@ -578,7 +514,7 @@ public class CognitoCachingCredentialsProvider
      * @return cached identity id, null if it doesn't exist
      */
     public String getCachedIdentityId() {
-        String cachedIdentityId = prefs.getString(namespace(ID_KEY), null);
+        String cachedIdentityId = StorageProvider.get(STORAGE_KEY).getValue(namespace(ID_KEY), null);
         if (cachedIdentityId != null && identityId == null) {
             super.setIdentityId(cachedIdentityId);
         }
@@ -586,23 +522,25 @@ public class CognitoCachingCredentialsProvider
     }
 
     /**
-     * Load the credentials from prefs
+     * Load the credentials from storage
      */
     void loadCachedCredentials() {
-        Log.d(TAG, "Loading credentials from SharedPreferences");
-        sessionCredentialsExpiration = new Date(prefs.getLong(namespace(EXP_KEY), 0));
-        // make sure we have valid data in prefs
-        boolean hasAK = prefs.contains(namespace(AK_KEY));
-        boolean hasSK = prefs.contains(namespace(SK_KEY));
-        boolean hasST = prefs.contains(namespace(ST_KEY));
+        Storage storage = StorageProvider.get(STORAGE_KEY);
+        
+        LOGGER.debug("Loading credentials from SharedPreferences");
+        sessionCredentialsExpiration = new Date(Long.valueOf(storage.getValue(EXP_KEY, "0")));
+        // make sure we have valid data in storage
+        boolean hasAK = storage.contains(namespace(AK_KEY));
+        boolean hasSK = storage.contains(namespace(SK_KEY));
+        boolean hasST = storage.contains(namespace(ST_KEY));
         if (!hasAK || !hasSK || !hasST) {
-            Log.d(TAG, "No valid credentials found in SharedPreferences");
+            LOGGER.debug("No valid credentials found in SharedPreferences");
             sessionCredentialsExpiration = null;
             return;
         }
-        String AK = prefs.getString(namespace(AK_KEY), null);
-        String SK = prefs.getString(namespace(SK_KEY), null);
-        String ST = prefs.getString(namespace(ST_KEY), null);
+        String AK = storage.getValue(namespace(AK_KEY), null);
+        String SK = storage.getValue(namespace(SK_KEY), null);
+        String ST = storage.getValue(namespace(ST_KEY), null);
 
         sessionCredentials = new BasicSessionCredentials(AK, SK, ST);
     }
@@ -611,15 +549,14 @@ public class CognitoCachingCredentialsProvider
      * Save the credentials to SharedPreferences
      */
     private void saveCredentials(AWSSessionCredentials sessionCredentials,
-            long time) {
-        Log.d(TAG, "Saving credentials to SharedPreferences");
+                                 long time) {
+        LOGGER.debug("Saving credentials to SharedPreferences");
         if (sessionCredentials != null) {
-            prefs.edit()
-                    .putString(namespace(AK_KEY), sessionCredentials.getAWSAccessKeyId())
-                    .putString(namespace(SK_KEY), sessionCredentials.getAWSSecretKey())
-                    .putString(namespace(ST_KEY), sessionCredentials.getSessionToken())
-                    .putLong(namespace(EXP_KEY), time)
-                    .apply();
+            Storage storage = StorageProvider.get(STORAGE_KEY);
+            storage.put(namespace(AK_KEY), sessionCredentials.getAWSAccessKeyId());
+            storage.put(namespace(SK_KEY), sessionCredentials.getAWSSecretKey());
+            storage.put(namespace(ST_KEY), sessionCredentials.getSessionToken());
+            storage.put(namespace(EXP_KEY), String.valueOf(time));
         }
     }
 
@@ -628,12 +565,11 @@ public class CognitoCachingCredentialsProvider
      * Id to SharedPreferences
      */
     private void saveIdentityId(String identityId) {
-        Log.d(TAG, "Saving identity id to SharedPreferences");
+        LOGGER.debug("Saving identity id to SharedPreferences");
         this.identityId = identityId;
 
-        prefs.edit()
-                .putString(namespace(ID_KEY), identityId)
-                .apply();
+        Storage storage = StorageProvider.get(STORAGE_KEY);
+        storage.put(namespace(ID_KEY), identityId);
     }
 
     @Override
@@ -647,15 +583,15 @@ public class CognitoCachingCredentialsProvider
     // under the old key is performed. If there is one, save it under the new
     // namespace.
     private void checkUpgrade() {
+        Storage storage = StorageProvider.get(STORAGE_KEY);
+
         // check identity id without namespace
-        if (prefs.contains(ID_KEY)) {
-            Log.i(TAG,
-                    "Identity id without namespace is detected. It will be saved under new namespace.");
+        if (storage.contains(ID_KEY)) {
+            LOGGER.info("Identity id without namespace is detected. It will be saved under new namespace.");
             // save identity id
-            String identityId = prefs.getString(ID_KEY, null);
-            prefs.edit().clear() // clear old data
-                    .putString(namespace(ID_KEY), identityId)
-                    .apply();
+            String identityId = storage.getValue(ID_KEY, null);
+            storage.clear(); // clear old data
+            storage.put(namespace(ID_KEY), identityId);
         }
     }
 

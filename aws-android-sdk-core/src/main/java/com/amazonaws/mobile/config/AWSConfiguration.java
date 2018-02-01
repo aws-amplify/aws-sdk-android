@@ -14,19 +14,11 @@
  */
 package com.amazonaws.mobile.config;
 
-import android.content.Context;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.util.Scanner;
-
 /**
- * A container for the JSONObject representation of SDK configuration. Reads the
- * res/raw/awsconfiguration.json file in your project by default. This can be
- * specified in the constructor through the resource id, if you wish to read a
- * different resource as your configuration source.
+ * A container for the JSONObject representation of SDK configuration.
  */
 public class AWSConfiguration {
     private static final String DEFAULT = "Default";
@@ -35,72 +27,6 @@ public class AWSConfiguration {
     private JSONObject mJSONObject;
     private String configName; // "Default" or something else like "Backup"
 
-    /**
-     * Constructs an AWSConfiguration object
-     * 
-     * @param context application context, used to retrieve
-     *            awsconfiguration.json from resources
-     */
-    public AWSConfiguration(Context context) {
-        this(context, getConfigResourceId(context));
-    }
-    
-    private static int getConfigResourceId(Context context) {
-        try {
-            return context.getResources().getIdentifier(DEFAULT_IDENTIFIER,
-                    "raw", context.getPackageName());
-        } catch (Exception e) {
-            throw new RuntimeException(
-                    "Failed to read awsconfiguration.json"
-                    + " please check that it is correctly formed.",
-                    e);
-        }
-    }
-
-    /**
-     * Constructs an AWSConfiguration object
-     * 
-     * @param context application context, used to retrieve the resource
-     *            specified by configResourceId
-     * @param configResourceId resource id of the json file to be read
-     */
-    public AWSConfiguration(Context context, int configResourceId) {
-        this(context, configResourceId, DEFAULT);
-    }
-
-    /**
-     * Construct an AWSConfiguration object
-     * 
-     * @param context application context, used to retrieve the resource
-     *            specified by configResourceId
-     * @param configResourceId resource id of the json file to be read
-     * @param configName instructs the reader of this configuration to pick the
-     *            specified configName
-     */
-    public AWSConfiguration(Context context, int configResourceId,
-            String configName) {
-        this.configName = configName;
-        readInputJson(context, configResourceId);
-    }
-
-    private void readInputJson(Context context, int resourceId) {
-        try {
-            final InputStream inputStream = context.getResources().openRawResource(
-                    resourceId);
-            final Scanner in = new Scanner(inputStream);
-            final StringBuilder sb = new StringBuilder();
-            while (in.hasNextLine()) {
-                sb.append(in.nextLine());
-            }
-            in.close();
-
-            this.mJSONObject = new JSONObject(sb.toString());
-        } catch (Exception je) {
-            throw new RuntimeException(
-                    "Failed to read awsconfiguration.json please check that it is correctly formed.",
-                    je);
-        }
-    }
 
     /**
      * This method will search for the name provided in the json and unwrap the

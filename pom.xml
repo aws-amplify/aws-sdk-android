@@ -41,6 +41,7 @@
     <module>aws-android-sdk-autoscaling</module>
     <module>aws-android-sdk-cloudwatch</module>
     <module>aws-android-sdk-cognito</module>
+    <module>aws-android-sdk-cognitoidentityprovider-android</module>
     <module>aws-android-sdk-cognitoidentityprovider-asf</module>
     <module>aws-android-sdk-cognitoidentityprovider</module>
     <module>aws-android-sdk-cognitoauth</module>

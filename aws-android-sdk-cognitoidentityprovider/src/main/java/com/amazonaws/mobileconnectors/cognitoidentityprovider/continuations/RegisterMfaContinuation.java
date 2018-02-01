@@ -1,7 +1,5 @@
 package com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations;
 
-import android.content.Context;
-
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoParameterInvalidException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
@@ -31,7 +29,6 @@ public class RegisterMfaContinuation extends ChallengeContinuation {
     /**
      * Constructs a new continuation for multiple user MFA's.
      * @param user                  REQUIRED: Reference to the {@link CognitoUser} object.
-     * @param context               REQUIRED: The android context.
      * @param username              REQUIRED: The username.
      * @param clientId              REQUIRED: The clientId.
      * @param secretHash            REQUIRED: The secret hash.
@@ -41,15 +38,13 @@ public class RegisterMfaContinuation extends ChallengeContinuation {
      */
     public RegisterMfaContinuation(
             CognitoUser user,
-            Context context,
             String username,
             String clientId,
             String secretHash,
             RespondToAuthChallengeResult challengeResult,
             boolean runInBackground,
             AuthenticationHandler callback) {
-        super(user, context, username, clientId, secretHash, challengeResult, runInBackground,
-                callback);
+        super(user, username, clientId, secretHash, challengeResult, runInBackground, callback);
         mfaOptions = getListFromString(getParameters().get(CognitoServiceConstants.CHLG_PARAM_MFAS_CAN_SETUP));
     }
 

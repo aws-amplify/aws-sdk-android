@@ -17,9 +17,7 @@
 
 package com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations;
 
-import android.content.Context;
-import android.os.Handler;
-
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.extra.execution.CallbackExectorProvider;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 
@@ -41,7 +39,6 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
 
     // Data required to continue with the authentication process.
     private final CognitoUser user;
-    private final Context context;
     private final AuthenticationHandler callback;
     private final boolean runInBackground;
 
@@ -58,16 +55,13 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
      * Constructs a new continuation in the authentication process.
      *
      * @param user                  REQUIRED: Reference to the {@link CognitoUser} object.
-     * @param context               REQUIRED: Application context to manage threads.
      * @param runInBackground       REQUIRED: Represents where this continuation has to run.
      * @param callback              REQUIRED: Callback to interact with the app.
      */
     public AuthenticationContinuation(CognitoUser user,
-                                      Context context,
                                       boolean runInBackground,
                                       AuthenticationHandler callback) {
         this.user = user;
-        this.context = context;
         this.runInBackground = runInBackground;
         this.callback = callback;
     }
@@ -94,7 +88,6 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    final Handler handler = new Handler(context.getMainLooper());
                     Runnable nextStep;
                     try {
                         nextStep = user.initiateUserAuthentication(authenticationDetails, callback, RUN_IN_BACKGROUND);
@@ -106,7 +99,7 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
                             }
                         };
                     }
-                    handler.post(nextStep);
+                    CallbackExectorProvider.getExecutor().execute(nextStep);
                 }
             }).start();
         } else {

@@ -17,10 +17,9 @@
 
 package com.amazonaws.mobileconnectors.cognitoidentityprovider;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Handler;
 
+import com.amazonaws.extra.persistence.StorageProvider;
+import com.amazonaws.extra.persistence.Storage;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ChallengeContinuation;
@@ -33,6 +32,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.Veri
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoInternalErrorException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoNotAuthorizedException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoParameterInvalidException;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.extra.execution.CallbackExectorProvider;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.DevicesHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.ForgotPasswordHandler;
@@ -130,13 +130,10 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class CognitoUser {
     private static final Log LOGGER = LogFactory.getLog(CognitoUser.class);
+    
+    protected static final String COGNITO_IDENTITY_PROVIDER_CACHE_STORAGE_NAME = "cognito_identity_provider_cache_storage";
 
     private static final int SRP_RADIX = 16;
-
-    /**
-     * Application context.
-     */
-    private final Context context;
 
     /**
      * CIP low-level client.
@@ -199,13 +196,11 @@ public class CognitoUser {
      * @param clientSecret REQUIRED: Client secret assigned for this Client-Id.
      * @param secretHash REQUIRED: Secret-Hash, calculated for this android app.
      * @param client REQUIRED: Low level android client.
-     * @param context REQUIRED: Application context.
      */
-    protected CognitoUser(CognitoUserPool pool, String userId,
+    public CognitoUser(CognitoUserPool pool, String userId,
             String clientId, String clientSecret, String secretHash,
-            AmazonCognitoIdentityProvider client, Context context) {
+           AmazonCognitoIdentityProvider client) {
         this.pool = pool;
-        this.context = context;
         this.userId = userId;
         this.cognitoIdentityProviderClient = client;
         this.clientId = clientId;
@@ -267,7 +262,6 @@ public class CognitoUser {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     confirmSignUpInternal(confirmationCode, forcedAliasCreation);
@@ -285,7 +279,7 @@ public class CognitoUser {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -359,7 +353,6 @@ public class CognitoUser {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     final ResendConfirmationCodeResult resendConfirmationCodeResult = resendConfirmationCodeInternal();
@@ -378,7 +371,7 @@ public class CognitoUser {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -452,7 +445,6 @@ public class CognitoUser {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     final ForgotPasswordResult forgotPasswordResult = forgotPasswordInternal();
@@ -475,7 +467,7 @@ public class CognitoUser {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -562,7 +554,6 @@ public class CognitoUser {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     confirmPasswordInternal(verificationCode, newPassword);
@@ -580,7 +571,7 @@ public class CognitoUser {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -671,7 +662,6 @@ public class CognitoUser {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     getCachedSession();
@@ -686,8 +676,8 @@ public class CognitoUser {
                         @Override
                         public void run() {
                             final AuthenticationContinuation authenticationContinuation = new AuthenticationContinuation(
-                                    cognitoUser, context,
-                                    AuthenticationContinuation.RUN_IN_BACKGROUND, callback);
+                                    cognitoUser, AuthenticationContinuation.RUN_IN_BACKGROUND,
+                                    callback);
                             callback.getAuthenticationDetails(authenticationContinuation,
                                     cognitoUser.getUserId());
                         }
@@ -700,7 +690,7 @@ public class CognitoUser {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -732,7 +722,6 @@ public class CognitoUser {
         if (callback == null) {
             throw new InvalidParameterException("callback is null");
         }
-
         try {
             getCachedSession();
             callback.onSuccess(cipSession, null);
@@ -740,7 +729,7 @@ public class CognitoUser {
             callback.onFailure(e);
         } catch (final CognitoNotAuthorizedException e) {
             final AuthenticationContinuation authenticationContinuation = new AuthenticationContinuation(
-                    this, context, AuthenticationContinuation.RUN_IN_CURRENT, callback);
+                    this, AuthenticationContinuation.RUN_IN_CURRENT, callback);
             callback.getAuthenticationDetails(authenticationContinuation, getUserId());
         } catch (final Exception e) {
             callback.onFailure(e);
@@ -877,7 +866,6 @@ public class CognitoUser {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     final CognitoUserSession session = user.getCachedSession();
@@ -896,7 +884,7 @@ public class CognitoUser {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -968,7 +956,6 @@ public class CognitoUser {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     final CognitoUserSession session = user.getCachedSession();
@@ -987,7 +974,7 @@ public class CognitoUser {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -1062,7 +1049,6 @@ public class CognitoUser {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     final CognitoUserSession session = user.getCachedSession();
@@ -1084,7 +1070,7 @@ public class CognitoUser {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -1170,7 +1156,6 @@ public class CognitoUser {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     final CognitoUserSession session = user.getCachedSession();
@@ -1189,7 +1174,7 @@ public class CognitoUser {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -1262,7 +1247,6 @@ public class CognitoUser {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 boolean useSessionToken;
                 try {
@@ -1283,14 +1267,14 @@ public class CognitoUser {
                         returnCallback = new Runnable() {
                             @Override
                             public void run() {
-                                callback.onVerify(new VerifyMfaContinuation(context, clientId, user, callback, parameters, true, nextSessionToken, VerifyMfaContinuation.RUN_IN_BACKGROUND));
+                                callback.onVerify(new VerifyMfaContinuation(clientId, user, callback, parameters, true, nextSessionToken, VerifyMfaContinuation.RUN_IN_BACKGROUND));
                             }
                         };
                     } else {
                         returnCallback = new Runnable() {
                             @Override
                             public void run() {
-                                callback.onVerify(new VerifyMfaContinuation(context, clientId, user, callback, parameters, false, nextSessionToken, VerifyMfaContinuation.RUN_IN_BACKGROUND));
+                                callback.onVerify(new VerifyMfaContinuation(clientId, user, callback, parameters, false, nextSessionToken, VerifyMfaContinuation.RUN_IN_BACKGROUND));
                             }
                         };
                     }
@@ -1302,7 +1286,7 @@ public class CognitoUser {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -1332,7 +1316,7 @@ public class CognitoUser {
             final Map<String, String> parameters = new HashMap<String, String>();
             parameters.put("type", CognitoServiceConstants.CHLG_TYPE_SOFTWARE_TOKEN_MFA);
             parameters.put("secretKey", result.getSecretCode());
-            callback.onVerify(new VerifyMfaContinuation(context, clientId, user, callback, parameters, useSessionToken, nextSessionToken, VerifyMfaContinuation.RUN_IN_CURRENT));
+            callback.onVerify(new VerifyMfaContinuation(clientId, user, callback, parameters, useSessionToken, nextSessionToken, VerifyMfaContinuation.RUN_IN_CURRENT));
         } catch (Exception e) {
             callback.onFailure(e);
         }
@@ -1396,7 +1380,6 @@ public class CognitoUser {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     final CognitoUserSession cognitoTokens = user.getCachedSession();
@@ -1436,7 +1419,7 @@ public class CognitoUser {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -1548,7 +1531,6 @@ public class CognitoUser {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     final CognitoUserSession session = user.getCachedSession();
@@ -1578,7 +1560,7 @@ public class CognitoUser {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -1656,7 +1638,6 @@ public class CognitoUser {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     final CognitoUserSession session = user.getCachedSession();
@@ -1675,7 +1656,7 @@ public class CognitoUser {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -1764,7 +1745,6 @@ public class CognitoUser {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     final CognitoUserSession session = user.getCachedSession();
@@ -1784,7 +1764,7 @@ public class CognitoUser {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -1848,7 +1828,6 @@ public class CognitoUser {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     final CognitoUserSession session = user.getCachedSession();
@@ -1867,7 +1846,7 @@ public class CognitoUser {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -1934,7 +1913,6 @@ public class CognitoUser {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     setUserSettingsInternal(cognitoUserSettings, session);
@@ -1952,7 +1930,7 @@ public class CognitoUser {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -2021,7 +1999,6 @@ public class CognitoUser {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     setUserMfaSettingsInternal(mfaSettings, session);
@@ -2039,7 +2016,7 @@ public class CognitoUser {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -2084,8 +2061,8 @@ public class CognitoUser {
     private void clearCachedTokens() {
         try {
             // Clear all cached tokens.
-            final SharedPreferences csiCachedTokens = context
-                    .getSharedPreferences("CognitoIdentityProviderCache", 0);
+            final Storage csiCachedTokens =
+                    StorageProvider.get(COGNITO_IDENTITY_PROVIDER_CACHE_STORAGE_NAME);
 
             // Format "key" strings
             final String csiIdTokenKey = String.format("CognitoIdentityProvider.%s.%s.idToken",
@@ -2095,10 +2072,9 @@ public class CognitoUser {
             final String csiRefreshTokenKey = String
                     .format("CognitoIdentityProvider.%s.%s.refreshToken", clientId, userId);
 
-            final SharedPreferences.Editor cacheEdit = csiCachedTokens.edit();
-            cacheEdit.remove(csiIdTokenKey);
-            cacheEdit.remove(csiAccessTokenKey);
-            cacheEdit.remove(csiRefreshTokenKey).apply();
+            csiCachedTokens.remove(csiIdTokenKey);
+            csiCachedTokens.remove(csiAccessTokenKey);
+            csiCachedTokens.remove(csiRefreshTokenKey);
         } catch (final Exception e) {
             // Logging exception, this is not a fatal error
             LOGGER.error("Error while deleting from SharedPreferences", e);
@@ -2114,8 +2090,8 @@ public class CognitoUser {
         CognitoUserSession userSession = new CognitoUserSession(null, null, null);
 
         try {
-            final SharedPreferences csiCachedTokens = context
-                    .getSharedPreferences("CognitoIdentityProviderCache", 0);
+            final Storage csiCachedTokens =
+                    StorageProvider.get(COGNITO_IDENTITY_PROVIDER_CACHE_STORAGE_NAME);
 
             // Format "key" strings
             final String csiIdTokenKey = "CognitoIdentityProvider." + clientId + "." + userId
@@ -2127,11 +2103,11 @@ public class CognitoUser {
 
             if (csiCachedTokens.contains(csiIdTokenKey)) {
                 final CognitoIdToken csiCachedIdToken = new CognitoIdToken(
-                        csiCachedTokens.getString(csiIdTokenKey, null));
+                        csiCachedTokens.getValue(csiIdTokenKey, null));
                 final CognitoAccessToken csiCachedAccessToken = new CognitoAccessToken(
-                        csiCachedTokens.getString(csiAccessTokenKey, null));
+                        csiCachedTokens.getValue(csiAccessTokenKey, null));
                 final CognitoRefreshToken csiCachedRefreshToken = new CognitoRefreshToken(
-                        csiCachedTokens.getString(csiRefreshTokenKey, null));
+                        csiCachedTokens.getValue(csiRefreshTokenKey, null));
                 userSession = new CognitoUserSession(csiCachedIdToken, csiCachedAccessToken,
                         csiCachedRefreshToken);
             }
@@ -2149,8 +2125,8 @@ public class CognitoUser {
      */
     private void cacheTokens(CognitoUserSession session) {
         try {
-            final SharedPreferences csiCachedTokens = context
-                    .getSharedPreferences("CognitoIdentityProviderCache", 0);
+            final Storage csiCachedTokens =
+                    StorageProvider.get(COGNITO_IDENTITY_PROVIDER_CACHE_STORAGE_NAME);
 
             final String csiUserPoolId = pool.getUserPoolId();
 
@@ -2163,13 +2139,10 @@ public class CognitoUser {
                     + ".refreshToken";
             final String csiLastUserKey = "CognitoIdentityProvider." + clientId + ".LastAuthUser";
 
-            // Store the data in Shared Preferences
-            final SharedPreferences.Editor cacheEdit = csiCachedTokens.edit();
-            cacheEdit.putString(csiIdTokenKey, session.getIdToken().getJWTToken());
-            cacheEdit.putString(csiAccessTokenKey, session.getAccessToken().getJWTToken());
-            cacheEdit.putString(csiRefreshTokenKey, session.getRefreshToken().getToken());
-            cacheEdit.putString(csiLastUserKey, userId).apply();
-
+            csiCachedTokens.put(csiIdTokenKey, session.getIdToken().getJWTToken());
+            csiCachedTokens.put(csiAccessTokenKey, session.getAccessToken().getJWTToken());
+            csiCachedTokens.put(csiRefreshTokenKey, session.getRefreshToken().getToken());
+            csiCachedTokens.put(csiLastUserKey, userId);
         } catch (final Exception e) {
             // Logging exception, this is not a fatal error
             LOGGER.error("Error while writing to SharedPreferences.", e);
@@ -2265,13 +2238,12 @@ public class CognitoUser {
         } catch (final ResourceNotFoundException rna) {
             final CognitoUser cognitoUser = this;
             if (rna.getMessage().contains("Device")) {
-                CognitoDeviceHelper.clearCachedDevice(usernameInternal, pool.getUserPoolId(),
-                        context);
+                CognitoDeviceHelper.clearCachedDevice(usernameInternal, pool.getUserPoolId());
                 return new Runnable() {
                     @Override
                     public void run() {
                         final AuthenticationContinuation authenticationContinuation = new AuthenticationContinuation(
-                                cognitoUser, context, runInBackground, callback);
+                                cognitoUser, runInBackground, callback);
                         callback.getAuthenticationDetails(authenticationContinuation,
                                 cognitoUser.getUserId());
                     }
@@ -2328,13 +2300,12 @@ public class CognitoUser {
         } catch (final ResourceNotFoundException rna) {
             final CognitoUser cognitoUser = this;
             if (rna.getMessage().contains("Device")) {
-                CognitoDeviceHelper.clearCachedDevice(usernameInternal, pool.getUserPoolId(),
-                        context);
+                CognitoDeviceHelper.clearCachedDevice(usernameInternal, pool.getUserPoolId());
                 return new Runnable() {
                     @Override
                     public void run() {
                         final AuthenticationContinuation authenticationContinuation = new AuthenticationContinuation(
-                                cognitoUser, context, runInBackground, callback);
+                                cognitoUser, runInBackground, callback);
                         callback.getAuthenticationDetails(authenticationContinuation,
                                 cognitoUser.getUserId());
                     }
@@ -2443,8 +2414,7 @@ public class CognitoUser {
                 if (confirmDeviceResult != null
                         && confirmDeviceResult.isUserConfirmationNecessary()) {
                     final CognitoDevice newDevice = new CognitoDevice(
-                            newDeviceMetadata.getDeviceKey(), null, null, null, null, cognitoUser,
-                            context);
+                            newDeviceMetadata.getDeviceKey(), null, null, null, null, cognitoUser);
                     nextTask = new Runnable() {
                         @Override
                         public void run() {
@@ -2465,7 +2435,7 @@ public class CognitoUser {
         } else if (CognitoServiceConstants.CHLG_TYPE_SMS_MFA.equals(challengeName)
                 || CognitoServiceConstants.CHLG_TYPE_SOFTWARE_TOKEN_MFA.equals(challengeName)) {
             final MultiFactorAuthenticationContinuation multiFactorAuthenticationContinuation = new MultiFactorAuthenticationContinuation(
-                    cognitoUser, context, challenge, runInBackground, callback);
+                    cognitoUser, challenge, runInBackground, callback);
             nextTask = new Runnable() {
                 @Override
                 public void run() {
@@ -2474,7 +2444,7 @@ public class CognitoUser {
             };
         } else if (CognitoServiceConstants.CHLG_TYPE_SELECT_MFA_TYPE.equals(challengeName)) {
             final ChooseMfaContinuation continuation = new ChooseMfaContinuation(
-                    cognitoUser, context, usernameInternal, clientId, secretHash, challenge, runInBackground, callback);
+                    cognitoUser, usernameInternal, clientId, secretHash, challenge, runInBackground, callback);
             nextTask = new Runnable() {
                 @Override
                 public void run() {
@@ -2483,7 +2453,7 @@ public class CognitoUser {
             };
         } else if (CognitoServiceConstants.CHLG_TYPE_MFA_SETUP.equals(challengeName)) {
             final RegisterMfaContinuation continuation = new RegisterMfaContinuation(
-                    cognitoUser, context, usernameInternal, clientId, secretHash, challenge, runInBackground, callback);
+                    cognitoUser, usernameInternal, clientId, secretHash, challenge, runInBackground, callback);
             nextTask = new Runnable() {
                 @Override
                 public void run() {
@@ -2494,7 +2464,7 @@ public class CognitoUser {
             nextTask = deviceSrpAuthentication(challenge, callback, runInBackground);
         } else if (CognitoServiceConstants.CHLG_TYPE_NEW_PASSWORD_REQUIRED.equals(challengeName)) {
             final NewPasswordContinuation newPasswordContinuation = new NewPasswordContinuation(
-                    cognitoUser, context, usernameInternal, clientId, secretHash, challenge,
+                    cognitoUser, usernameInternal, clientId, secretHash, challenge,
                     runInBackground, callback);
             nextTask = new Runnable() {
                 @Override
@@ -2504,8 +2474,8 @@ public class CognitoUser {
             };
         } else {
             final ChallengeContinuation challengeContinuation = new ChallengeContinuation(
-                    cognitoUser, context, usernameInternal, clientId, secretHash, challenge,
-                    runInBackground, callback);
+                    cognitoUser, usernameInternal, clientId, secretHash, challenge, runInBackground,
+                    callback);
             nextTask = new Runnable() {
                 @Override
                 public void run() {
@@ -2563,9 +2533,9 @@ public class CognitoUser {
     private Runnable deviceSrpAuthentication(final RespondToAuthChallengeResult challenge,
             final AuthenticationHandler callback, final boolean runInBackground) {
         final String deviceSecret = CognitoDeviceHelper.getDeviceSecret(usernameInternal,
-                pool.getUserPoolId(), context);
+                pool.getUserPoolId());
         final String deviceGroupKey = CognitoDeviceHelper.getDeviceGroupKey(usernameInternal,
-                pool.getUserPoolId(), context);
+                pool.getUserPoolId());
         final AuthenticationHelper authenticationHelper = new AuthenticationHelper(deviceGroupKey);
         final RespondToAuthChallengeRequest devicesAuthRequest = initiateDevicesAuthRequest(
                 authenticationHelper);
@@ -2585,12 +2555,12 @@ public class CognitoUser {
             }
         } catch (final NotAuthorizedException na) {
             final CognitoUser cognitoUser = this;
-            CognitoDeviceHelper.clearCachedDevice(usernameInternal, pool.getUserPoolId(), context);
+            CognitoDeviceHelper.clearCachedDevice(usernameInternal, pool.getUserPoolId());
             return new Runnable() {
                 @Override
                 public void run() {
                     final AuthenticationContinuation authenticationContinuation = new AuthenticationContinuation(
-                            cognitoUser, context, runInBackground, callback);
+                            cognitoUser, runInBackground, callback);
                     callback.getAuthenticationDetails(authenticationContinuation,
                             cognitoUser.getUserId());
                 }
@@ -2632,7 +2602,7 @@ public class CognitoUser {
         if (deviceKey == null) {
             initiateAuthRequest.addAuthParametersEntry(
                     CognitoServiceConstants.AUTH_PARAM_DEVICE_KEY, CognitoDeviceHelper.getDeviceKey(
-                            authenticationDetails.getUserId(), pool.getUserPoolId(), context));
+                            authenticationDetails.getUserId(), pool.getUserPoolId()));
         } else {
             initiateAuthRequest.addAuthParametersEntry(
                     CognitoServiceConstants.AUTH_PARAM_DEVICE_KEY, deviceKey);
@@ -2724,11 +2694,11 @@ public class CognitoUser {
                 currSession.getRefreshToken().getToken());
         if (deviceKey == null) {
             if (usernameInternal != null) {
-                deviceKey = CognitoDeviceHelper.getDeviceKey(usernameInternal, pool.getUserPoolId(),
-                        context);
+                deviceKey = CognitoDeviceHelper.getDeviceKey(usernameInternal,
+                        pool.getUserPoolId());
             } else {
                 deviceKey = CognitoDeviceHelper.getDeviceKey(currSession.getUsername(), 
-                        pool.getUserPoolId(), context);
+                        pool.getUserPoolId());
             }
         }
         initiateAuthRequest.addAuthParametersEntry(CognitoServiceConstants.AUTH_PARAM_DEVICE_KEY,
@@ -2765,8 +2735,7 @@ public class CognitoUser {
                 .get(CognitoServiceConstants.CHLG_PARAM_USER_ID_FOR_SRP);
         this.usernameInternal = challenge.getChallengeParameters()
                 .get(CognitoServiceConstants.CHLG_PARAM_USERNAME);
-        this.deviceKey = CognitoDeviceHelper.getDeviceKey(usernameInternal, pool.getUserPoolId(),
-                context);
+        this.deviceKey = CognitoDeviceHelper.getDeviceKey(usernameInternal, pool.getUserPoolId());
         secretHash = CognitoSecretHash.getSecretHash(usernameInternal, clientId, clientSecret);
 
         final BigInteger srpB = new BigInteger(challenge.getChallengeParameters().get("SRP_B"), 16);
@@ -2921,14 +2890,13 @@ public class CognitoUser {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     final ListDevicesResult listDevicesResult = listDevicesInternal(
                             user.getCachedSession(), limit, paginationToken);
                     final List<CognitoDevice> devicesList = new ArrayList<CognitoDevice>();
                     for (final DeviceType device : listDevicesResult.getDevices()) {
-                        devicesList.add(new CognitoDevice(device, user, context));
+                        devicesList.add(new CognitoDevice(device, user));
                     }
                     returnCallback = new Runnable() {
                         @Override
@@ -2945,7 +2913,7 @@ public class CognitoUser {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -2969,7 +2937,7 @@ public class CognitoUser {
                     limit, paginationToken);
             final List<CognitoDevice> devicesList = new ArrayList<CognitoDevice>();
             for (final DeviceType device : listDevicesResult.getDevices()) {
-                devicesList.add(new CognitoDevice(device, this, context));
+                devicesList.add(new CognitoDevice(device, this));
             }
             callback.onSuccess(devicesList);
         } catch (final Exception e) {
@@ -2986,19 +2954,18 @@ public class CognitoUser {
     public CognitoDevice thisDevice() {
         if (deviceKey == null) {
             if (usernameInternal != null) {
-                deviceKey = CognitoDeviceHelper.getDeviceKey(usernameInternal, pool.getUserPoolId(),
-                        context);
+                deviceKey = CognitoDeviceHelper.getDeviceKey(usernameInternal, pool.getUserPoolId());
             } else if (userId != null) {
-                deviceKey = CognitoDeviceHelper.getDeviceKey(userId, pool.getUserPoolId(), context);
+                deviceKey = CognitoDeviceHelper.getDeviceKey(userId, pool.getUserPoolId());
                 if (deviceKey == null) {
                     CognitoUserSession currSession = this.readCachedTokens();
                     deviceKey = CognitoDeviceHelper.getDeviceKey(currSession.getUsername(), 
-                            this.pool.getUserPoolId(), this.context);
+                            this.pool.getUserPoolId());
                 }
             }
         }
         if (deviceKey != null) {
-            return new CognitoDevice(deviceKey, null, null, null, null, this, context);
+            return new CognitoDevice(deviceKey, null, null, null, null, this);
         } else {
             return null;
         }
@@ -3030,11 +2997,11 @@ public class CognitoUser {
             return null;
         }
         CognitoDeviceHelper.cacheDeviceKey(usernameInternal, pool.getUserPoolId(),
-                deviceMetadata.getDeviceKey(), context);
+                deviceMetadata.getDeviceKey());
         CognitoDeviceHelper.cacheDeviceVerifier(usernameInternal, pool.getUserPoolId(),
-                deviceSrpVerifiers.get("secret"), context);
+                deviceSrpVerifiers.get("secret"));
         CognitoDeviceHelper.cacheDeviceGroupKey(usernameInternal, pool.getUserPoolId(),
-                deviceMetadata.getDeviceGroupKey(), context);
+                deviceMetadata.getDeviceGroupKey());
         return confirmDeviceResult;
     }
 
@@ -3114,8 +3081,7 @@ public class CognitoUser {
                     .containsKey(CognitoServiceConstants.CHLG_PARAM_USERNAME)) {
                 usernameInternal = challengeParameters
                         .get(CognitoServiceConstants.CHLG_PARAM_USERNAME);
-                deviceKey = CognitoDeviceHelper.getDeviceKey(usernameInternal, pool.getUserPoolId(),
-                        context);
+                deviceKey = CognitoDeviceHelper.getDeviceKey(usernameInternal, pool.getUserPoolId());
                 if (secretHash == null) {
                     secretHash = CognitoSecretHash.getSecretHash(usernameInternal, clientId,
                             clientSecret);
