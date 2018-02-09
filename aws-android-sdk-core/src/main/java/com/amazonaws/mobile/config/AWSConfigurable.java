@@ -14,8 +14,6 @@
  */
 package com.amazonaws.mobile.config;
 
-import android.content.Context;
-
 import com.amazonaws.ClientConfiguration;
 
 /**
@@ -39,32 +37,27 @@ public interface AWSConfigurable {
      * {@link com.amazonaws.mobile.config.AWSConfiguration} will be
      * constructed based on awsconfiguration.json file.
      * 
-     * @param context               Reference to the application context.
      * @return the client instance that conforms to AWSConfigurable
      */
-    public AWSConfigurable initialize(Context context) throws Exception;
+    public AWSConfigurable initialize() throws Exception;
 
     /**
      * Initialize the SDK Client. This method will construct the instance
      * of the client and perform basic initialization.
      * 
-     * @param context               Reference to the application context.
      * @param configuration         Instance of {@link AWSConfiguration}
      * @return the client instance that conforms to AWSConfigurable
      */
-    public AWSConfigurable initialize(Context context,
-                                      AWSConfiguration configuration) throws Exception;
+    public AWSConfigurable initialize(AWSConfiguration configuration) throws Exception;
 
     /**
      * Initialize the SDK Client. This method will construct the instance
      * of the client and perform basic initialization.
      * 
-     * @param context               Reference to the application context.
      * @param configuration         Instance of {@link AWSConfiguration}
      * @param clientConfiguration   Instance of {@link com.amazonaws.ClientConfiguration}
      * @return the client instance that conforms to AWSConfigurable
      */
-    public AWSConfigurable initialize(Context context,
-                                      AWSConfiguration configuration,
+    public AWSConfigurable initialize(AWSConfiguration configuration,
                                       ClientConfiguration clientConfiguration) throws Exception;
 }

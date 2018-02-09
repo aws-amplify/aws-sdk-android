@@ -17,7 +17,7 @@
 
 package com.amazonaws.mobileconnectors.cognitoidentityprovider.util;
 
-import android.util.Base64;
+import com.amazonaws.android.util.Base64;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoParameterInvalidException;
 

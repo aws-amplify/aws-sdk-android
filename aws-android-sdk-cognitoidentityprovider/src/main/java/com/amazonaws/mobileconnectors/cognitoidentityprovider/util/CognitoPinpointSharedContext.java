@@ -1,7 +1,7 @@
 package com.amazonaws.mobileconnectors.cognitoidentityprovider.util;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import com.amazonaws.extra.persistence.StorageProvider;
+import com.amazonaws.extra.persistence.Storage;
 
 import java.util.UUID;
 
@@ -15,7 +15,7 @@ public class CognitoPinpointSharedContext {
     private static final Log LOGGER = LogFactory.getLog(CognitoPinpointSharedContext.class);
 
     /**
-     * Key to access Pinpoint endpoint id in {@link android.content.SharedPreferences}.
+     * Key to access Pinpoint endpoint id in @link android.content.SharedPreferences}.
      */
     private static final String UNIQUE_ID_KEY = "UniqueId";
 
@@ -27,13 +27,11 @@ public class CognitoPinpointSharedContext {
 
     /**
      * Returns the pinpoint endpoint id for the provided Pinpoint App Id.
-     * @param context Required, {@link Context}.
      * @param pinpointAppId Required, the pinpoint appId.
      * @return The pinpoint endpoint id as a string.
      */
-    public static String getPinpointEndpoint(Context context,
-                                             String pinpointAppId) {
-        return getPinpointEndpoint(context, pinpointAppId, UNIQUE_ID_KEY);
+    public static String getPinpointEndpoint(String pinpointAppId) {
+        return getPinpointEndpoint(pinpointAppId, UNIQUE_ID_KEY);
     }
 
     /**
@@ -43,27 +41,24 @@ public class CognitoPinpointSharedContext {
      *     Generates and stores a new pinpoint endpoint id if a pinpoint endpoint id is not available for this
      *     combination.
      * </p>
-     * @param context Required, {@link Context}.
      * @param pinpointAppId Required, the pinpoint appId.
      * @param pinpointEndpointIdentifier Required, the pinpoint user identifier.
      * @return The pinpoint endpoint id as a string.
      */
-    public static String getPinpointEndpoint(Context context,
-                                             String pinpointAppId,
+    public static String getPinpointEndpoint(String pinpointAppId,
                                              String pinpointEndpointIdentifier) {
-        if (context == null || pinpointAppId == null || pinpointEndpointIdentifier == null) {
+        if (pinpointAppId == null || pinpointEndpointIdentifier == null) {
             return null;
         }
 
         try {
-            final SharedPreferences pinpointPreferences =
-                    context.getSharedPreferences(pinpointAppId + PREFERENCES_AND_FILE_MANAGER_SUFFIX,
-                            Context.MODE_PRIVATE);
-            String pinpointEndpointId = pinpointPreferences.getString(pinpointEndpointIdentifier, null);
+            final Storage pinpointStorage =
+                    StorageProvider.get(pinpointAppId + PREFERENCES_AND_FILE_MANAGER_SUFFIX);
+
+            String pinpointEndpointId = pinpointStorage.getValue(pinpointEndpointIdentifier, null);
             if (pinpointEndpointId == null) {
                 pinpointEndpointId = UUID.randomUUID().toString();
-                final SharedPreferences.Editor pinpointSharedPrefsEditor = pinpointPreferences.edit();
-                pinpointSharedPrefsEditor.putString(pinpointEndpointIdentifier, pinpointEndpointId).apply();
+                pinpointStorage.put(pinpointEndpointIdentifier, pinpointEndpointId);
             }
             return pinpointEndpointId;
         } catch (Exception e) {

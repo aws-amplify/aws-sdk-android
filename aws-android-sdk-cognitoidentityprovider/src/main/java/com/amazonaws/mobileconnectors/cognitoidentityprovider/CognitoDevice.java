@@ -17,9 +17,7 @@
 
 package com.amazonaws.mobileconnectors.cognitoidentityprovider;
 
-import android.content.Context;
-import android.os.Handler;
-
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.extra.execution.CallbackExectorProvider;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoInternalErrorException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoNotAuthorizedException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoParameterInvalidException;
@@ -75,11 +73,6 @@ public class CognitoDevice {
     private final CognitoUser user;
 
     /**
-     * Required to access Android OS resources.
-     */
-    private final Context context;
-
-    /**
      * Constructs an object of type {@link CognitoDevice} with device details.
      *
      * @param deviceKey                 REQUIRED: The device key.
@@ -88,16 +81,14 @@ public class CognitoDevice {
      * @param lastModifiedDate          REQUIRED: The date on which the device attributes were last modified.
      * @param lastAccessedDate          REQUIRED: The date this device details were last read.
      * @param user                      REQUIRED: The {@link CognitoUser} this device is linked to.
-     * @param context                   REQUIRED: App context.
      */
-    public CognitoDevice(String deviceKey, CognitoUserAttributes deviceAttributes, Date createDate, Date lastModifiedDate, Date lastAccessedDate, CognitoUser user, Context context) {
+    public CognitoDevice(String deviceKey, CognitoUserAttributes deviceAttributes, Date createDate, Date lastModifiedDate, Date lastAccessedDate, CognitoUser user) {
         this.deviceKey = deviceKey;
         this.deviceAttributes = deviceAttributes;
         this.createDate = createDate;
         this.lastModifiedDate = lastModifiedDate;
         this.lastAccessedDate = lastAccessedDate;
         this.user = user;
-        this.context = context;
     }
 
     /**
@@ -105,16 +96,14 @@ public class CognitoDevice {
      *
      * @param device                    REQUIRED: A {@link DeviceType} object.
      * @param user                      REQUIRED: The {@link CognitoUser} this device is linked to.
-     * @param context                   REQUIRED: App context.
      */
-    public CognitoDevice(DeviceType device, CognitoUser user, Context context) {
+    public CognitoDevice(DeviceType device, CognitoUser user) {
         this.deviceKey = device.getDeviceKey();
         this.deviceAttributes = new CognitoUserAttributes(device.getDeviceAttributes());
         this.createDate = device.getDeviceCreateDate();
         this.lastModifiedDate = device.getDeviceLastModifiedDate();
         this.lastAccessedDate = device.getDeviceLastModifiedDate();
         this.user = user;
-        this.context = context;
     }
 
     /**
@@ -200,7 +189,6 @@ public class CognitoDevice {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     final GetDeviceResult getDeviceResult = getDeviceInternal(user.getCachedSession());
@@ -219,7 +207,7 @@ public class CognitoDevice {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -261,7 +249,6 @@ public class CognitoDevice {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     forgetDeviceInternal(user.getCachedSession());
@@ -279,7 +266,7 @@ public class CognitoDevice {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -317,7 +304,6 @@ public class CognitoDevice {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     updateDeviceStatusInternal(user.getCachedSession(), DEVICE_TYPE_REMEMBERED);
@@ -335,7 +321,7 @@ public class CognitoDevice {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }
@@ -374,7 +360,6 @@ public class CognitoDevice {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
                     updateDeviceStatusInternal(user.getCachedSession(), DEVICE_TYPE_NOT_REMEMBERED);
@@ -392,7 +377,7 @@ public class CognitoDevice {
                         }
                     };
                 }
-                handler.post(returnCallback);
+                CallbackExectorProvider.getExecutor().execute(returnCallback);
             }
         }).start();
     }

@@ -17,8 +17,6 @@
 
 package com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations;
 
-import android.content.Context;
-
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoParameterInvalidException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
@@ -62,22 +60,19 @@ public class NewPasswordContinuation extends ChallengeContinuation {
      * @param user                  REQUIRED: Reference to the {@link CognitoUser} object.
      * @param runInBackground       REQUIRED: Represents where this continuation has to run.
      * @param callback              REQUIRED: Callback to interact with the app.
-     * @param context               REQUIRED: The android context.
      * @param username              REQUIRED: the username.
      * @param clientId              REQUIRED: the clientId.
      * @param secretHash            REQUIRED: the secreth hash.
      * @param challengeResult       REQUIRED: The response to respond to the authentication challenge.
      */
     public NewPasswordContinuation(CognitoUser user,
-            Context context,
             String username,
             String clientId,
             String secretHash,
             RespondToAuthChallengeResult challengeResult,
             boolean runInBackground,
             AuthenticationHandler callback) {
-        super(user, context, username, clientId, secretHash, challengeResult, runInBackground,
-                callback);
+        super(user, username, clientId, secretHash, challengeResult, runInBackground, callback);
         this.callback = callback;
 
         // Parse required User Attributes and current values of user attributes.
