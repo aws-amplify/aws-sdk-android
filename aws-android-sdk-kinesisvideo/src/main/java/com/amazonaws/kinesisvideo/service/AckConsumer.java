@@ -1,5 +1,5 @@
 /**
- * Copyright 2017-2017 Amazon.com,
+ * Copyright 2017-2018 Amazon.com,
  * Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Amazon Software License (the "License").
@@ -38,11 +38,14 @@ class AckConsumer implements Consumer<InputStream> {
     private InputStream ackStream = null;
     private final CountDownLatch stoppedLatch;
     private final Log log;
+    private final long uploadHandle;
     private volatile boolean closed = false;
 
-    public AckConsumer(@NonNull final KinesisVideoProducerStream stream,
+    public AckConsumer(final long uploadHandle,
+                       @NonNull final KinesisVideoProducerStream stream,
                        @NonNull final Log log) {
         this.stream = Preconditions.checkNotNull(stream);
+        this.uploadHandle = uploadHandle;
         this.log = Preconditions.checkNotNull(log);
         this.stoppedLatch = new CountDownLatch(1);
     }
@@ -80,7 +83,7 @@ class AckConsumer implements Consumer<InputStream> {
                     final String bytesString = new String(buffer, 0, bytesRead, StandardCharsets.UTF_8);
                     log.debug("Received ACK bits: " + bytesString);
                     try {
-                        stream.parseFragmentAck(bytesString);
+                        stream.parseFragmentAck(uploadHandle, bytesString);
                     } catch (final ProducerException e) {
                         // Log the exception
                         log.exception(e, "Processing ACK threw an exception. Logging and continuing. ");

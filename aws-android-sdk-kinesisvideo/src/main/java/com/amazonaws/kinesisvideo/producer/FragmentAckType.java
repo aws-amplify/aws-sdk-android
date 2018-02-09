@@ -1,5 +1,5 @@
 /**
- * Copyright 2017-2017 Amazon.com,
+ * Copyright 2017-2018 Amazon.com,
  * Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Amazon Software License (the "License").
@@ -50,7 +50,7 @@ public class FragmentAckType {
     public static final int FRAGMENT_ACK_TYPE_ERROR = 4;
 
     /**
-     * Iddle ACK to keep alive
+     * Idle ACK to keep alive
      */
     public static final int FRAGMENT_ACK_TYPE_IDLE = 5;
 

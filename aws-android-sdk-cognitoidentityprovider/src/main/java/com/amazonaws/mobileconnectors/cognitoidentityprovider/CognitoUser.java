@@ -762,12 +762,15 @@ public class CognitoUser {
      */
     public Runnable initiateUserAuthentication(final AuthenticationDetails authenticationDetails,
             final AuthenticationHandler callback, final boolean runInBackground) {
-        if (CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD_VERIFIER
-                .equals(authenticationDetails.getAuthenticationType())) {
+        if (CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD_VERIFIER.equals(
+                            authenticationDetails.getAuthenticationType())) {
             return startWithUserSrpAuth(authenticationDetails, callback, runInBackground);
-        } else if (CognitoServiceConstants.CHLG_TYPE_CUSTOM_CHALLENGE
-                .equals(authenticationDetails.getAuthenticationType())) {
+        } else if (CognitoServiceConstants.CHLG_TYPE_CUSTOM_CHALLENGE.equals(
+                            authenticationDetails.getAuthenticationType())) {
             return startWithCustomAuth(authenticationDetails, callback, runInBackground);
+        } else if (CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD.equals(
+                            authenticationDetails.getAuthenticationType())) {
+            return startWithUserPasswordAuth(authenticationDetails, callback, runInBackground);
         } else {
             return new Runnable() {
                 @Override
@@ -2548,6 +2551,73 @@ public class CognitoUser {
             };
         }
     }
+
+    /**
+     * This method performs user authentication with username and password without using SRP.
+     *
+     * @param authenticationDetails REQUIRED: {@link AuthenticationDetails}
+     *            contains details about the custom authentication flow.
+     * @param callback REQUIRED: {@link AuthenticationHandler} callback.
+     * @param runInBackground REQUIRED: Boolean to indicate the current
+     *            threading.
+     * @return {@link Runnable} for the next step in user authentication.
+     */
+    private Runnable startWithUserPasswordAuth(final AuthenticationDetails authenticationDetails,
+            final AuthenticationHandler callback, final boolean runInBackground) {
+        try {
+            final InitiateAuthRequest initiateAuthRequest = initiateUserPasswordAuthRequest(
+                authenticationDetails);
+            final InitiateAuthResult initiateAuthResult = cognitoIdentityProviderClient
+                    .initiateAuth(initiateAuthRequest);
+            this.usernameInternal = initiateAuthResult.getChallengeParameters()
+                    .get(CognitoServiceConstants.CHLG_PARAM_USER_ID_FOR_SRP);
+            return handleChallenge(initiateAuthResult, callback, runInBackground);
+        } catch (final Exception e) {
+            return new Runnable() {
+                @Override
+                public void run() {
+                    callback.onFailure(e);
+                }
+            };
+        }
+    }
+
+    /**
+     * Creates a authentication request to start authentication with user-password authentication (without SRP) flow.
+     *
+     * @param authenticationDetails REQUIRED: {@link AuthenticationDetails},
+     *            contains details required to start authentication flow.
+     * @return {@link InitiateAuthRequest}, request to start the authentication.
+     */
+    private InitiateAuthRequest initiateUserPasswordAuthRequest(
+            AuthenticationDetails authenticationDetails) {
+
+        if (StringUtils.isBlank(authenticationDetails.getUserId()) 
+                || StringUtils.isBlank(authenticationDetails.getPassword())) {
+            throw new CognitoNotAuthorizedException("User name and password are required");
+        }
+
+        final InitiateAuthRequest authRequest = new InitiateAuthRequest();
+        authRequest.setAuthFlow(CognitoServiceConstants.AUTH_TYPE_INIT_USER_PASSWORD);
+        authRequest.setClientId(clientId);
+        authRequest.addAuthParametersEntry(CognitoServiceConstants.AUTH_PARAM_USERNAME,
+                authenticationDetails.getUserId());
+        authRequest.addAuthParametersEntry(CognitoServiceConstants.AUTH_PARAM_PASSWORD,
+                authenticationDetails.getPassword());
+
+        if (authenticationDetails.getValidationData() != null
+                && authenticationDetails.getValidationData().size() > 0) {
+            final Map<String, String> userValidationData = new HashMap<String, String>();
+            for (final AttributeType attribute : authenticationDetails.getValidationData()) {
+                userValidationData.put(attribute.getName(), attribute.getValue());
+            }
+            authRequest.setClientMetadata(userValidationData);
+        }
+
+        return authRequest;
+    }
+
+
 
     /**
      * Performs device SRP authentication to identify remembered devices.

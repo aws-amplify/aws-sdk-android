@@ -1,5 +1,36 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.15](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.15)
+
+### New Features
+
+* **Amazon Cognito Identity Provider**
+  * Support for user migration over lambda trigger in Cognito User Pools.
+
+### Enhancements
+
+* **Amazon Kinesis Video Streams**
+  * **Breaking API  Changes**: Added `uploadHandle` parameter to the following APIs.
+      * `KinesisVideoProducerStream.getDataStream()`
+      * `KinesisVideoProducerStream.fragmentAck()`
+      * `KinesisVideoProducerStream.streamTerminated()`
+      * `StremCallbacks.streamDataAvailable()`
+      * `StremCallbacks.streamClosed()`
+      * `NativeKinesisVideoProducerJni.streamClosed()`
+      * `NativeKinesisVideoProducerJni.fragmentAck()`
+      * `NativeKinesisVideoProducerJni.streamDataAvailable()`
+      * `NativeKinesisVideoProducerJni.streamTerminated()`
+      * `NativeKinesisVideoProducerStream.getDataStream()`
+      * `NativeKinesisVideoProducerStream.fragmentAck()`
+      * `NativeKinesisVideoProducerStream.parseFragmentAck()`
+      * `NativeKinesisVideoProducerStream.streamTerminated()`
+      * `NativeKinesisVideoProducerStream.streamDataAvailable()`
+      * `NativeKinesisVideoProducerStream.streamClosed()`
+      * `DefaultStreamCallbacks.streamDataAvailable()`
+      * `DefaultStreamCallbacks.streamClosed()`
+      * `AckConsumer.AckConsumer()`
+      * `DefaultServiceCallbacksImpl.CompletionCallback()`
+
 ## [Release 2.6.14](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.14)
 
 ### Bug Fixes
