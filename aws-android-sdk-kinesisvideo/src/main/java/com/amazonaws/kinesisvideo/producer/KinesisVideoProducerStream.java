@@ -1,5 +1,5 @@
 /**
- * Copyright 2017-2017 Amazon.com,
+ * Copyright 2017-2018 Amazon.com,
  * Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Amazon Software License (the "License").
@@ -47,11 +47,12 @@ public interface KinesisVideoProducerStream extends StreamCallbacks {
      * gets closed the stream returned by this function will also close.
      * The caller then should re-acquire a new stream by calling this API again.
      *
+     * @param uploadHandle Client stream upload handle.
      * @return {@link InputStream} for retrieving the data
      * @throws ProducerException
      */
     @NonNull
-    InputStream getDataStream() throws ProducerException;
+    InputStream getDataStream(final long uploadHandle) throws ProducerException;
 
     /**
      * Get stream data from the buffer.
@@ -75,15 +76,20 @@ public interface KinesisVideoProducerStream extends StreamCallbacks {
 
     /**
      * Reports an ACK for a fragment.
-     */
-    void fragmentAck(final @NonNull KinesisVideoFragmentAck kinesisVideoFragmentAck) throws ProducerException;
-
-    /**
-     * Parses and processes a response which can contain partial/multiple fragment ACK.
+     *
+     * @param uploadHandle Client stream upload handle.
      * @param kinesisVideoFragmentAck ACK string returned from the service.
      * @throws ProducerException
      */
-    void parseFragmentAck(final @NonNull String kinesisVideoFragmentAck) throws ProducerException;
+    void fragmentAck(final long uploadHandle, final @NonNull KinesisVideoFragmentAck kinesisVideoFragmentAck) throws ProducerException;
+
+    /**
+     * Parses and processes a response which can contain partial/multiple fragment ACK.
+     * @param uploadHandle Client stream upload handle.
+     * @param kinesisVideoFragmentAck ACK string returned from the service.
+     * @throws ProducerException
+     */
+    void parseFragmentAck(final long uploadHandle, final @NonNull String kinesisVideoFragmentAck) throws ProducerException;
 
     /**
      * Indicates that the stream format has changed.
@@ -112,10 +118,11 @@ public interface KinesisVideoProducerStream extends StreamCallbacks {
 
     /**
      * Reports an abnormal stream termination
+     * @param uploadHandle - Client stream upload handle.
      * @param statusCode - Status code of the termination.
      * @throws ProducerException
      */
-    void streamTerminated(int statusCode) throws ProducerException;
+    void streamTerminated(long uploadHandle, int statusCode) throws ProducerException;
 
     /**
      * Returns stream specific metrics.

@@ -389,7 +389,7 @@ public class TransferService extends Service {
         int count = 0;
 
         try {
-            // Query for the unfinshed transfers
+            // Query for the unfinished transfers
             c = dbUtil.queryTransfersWithTypeAndStates(TransferType.ANY, UNFINISHED_TRANSFER_STATES);
             while (c.moveToNext()) {
                 final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));

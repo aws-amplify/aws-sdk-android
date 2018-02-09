@@ -1,5 +1,5 @@
 /**
- * Copyright 2017-2017 Amazon.com,
+ * Copyright 2017-2018 Amazon.com,
  * Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Amazon Software License (the "License").
@@ -76,6 +76,7 @@ public final class PutMediaClient {
                 ParallelSimpleHttpClient.builder()
                         .uri(mBuilder.mUri)
                         .method(POST)
+                        .log(log)
                         .header(STREAM_NAME_HEADER, mBuilder.mStreamName)
                         .header(TRANSFER_ENCODING, CHUNKED)
                         .header(CONNECTION, KEEP_ALIVE);

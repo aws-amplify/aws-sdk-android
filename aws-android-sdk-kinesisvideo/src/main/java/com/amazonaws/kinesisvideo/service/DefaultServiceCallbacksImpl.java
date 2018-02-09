@@ -1,5 +1,5 @@
 /**
- * Copyright 2017-2017 Amazon.com,
+ * Copyright 2017-2018 Amazon.com,
  * Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Amazon Software License (the "License").
@@ -44,7 +44,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
     private static final int HTTP_OK = 200;
-    private static final int HTTP_TEAPOT = 418;
     private static final int HTTP_BAD_REQUEST = 400;
     private static final int HTTP_NOT_FOUND = 404;
     private static final int HTTP_RESOURCE_IN_USE = 10003;
@@ -55,10 +54,13 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
 
     private class CompletionCallback implements Consumer<Exception> {
         private final KinesisVideoProducerStream stream;
+        private final long uploadHandle;
 
-        public CompletionCallback(@NonNull final KinesisVideoProducerStream stream) {
+        public CompletionCallback(@NonNull final KinesisVideoProducerStream stream,
+                                  final long uploadHandle) {
 
             this.stream = Preconditions.checkNotNull(stream);
+            this.uploadHandle = uploadHandle;
         }
 
         @Override
@@ -80,7 +82,7 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
 
                 if (statusCode != HTTP_OK) {
                     try {
-                        stream.streamTerminated(statusCode);
+                        stream.streamTerminated(uploadHandle, statusCode);
                     } catch (final ProducerException e) {
                         log.exception(e, "Reporting stream termination threw an exception");
                     }
@@ -131,7 +133,7 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
     }
 
     private static class OngoingStreamList extends ArrayList<OngoingStream> {
-        public OngoingStream stopActiveStream(int index) throws IndexOutOfBoundsException {
+        public OngoingStream stopActiveStream(final int index) throws IndexOutOfBoundsException {
             final OngoingStream stream = super.remove(index);
             stream.stop();
 
@@ -144,7 +146,7 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
             return stream;
         }
 
-        public boolean addStream(OngoingStream stream) {
+        public boolean addStream(final OngoingStream stream) {
             if (size() == 0) {
                 // Mark as active if no other streams are in progress
                 stream.setActive();
@@ -235,6 +237,11 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
      */
     private final List<OngoingStreamingInfo> mStreams = new ArrayList<OngoingStreamingInfo>();
 
+    /**
+     * A monotonically increasing value serving as an upload handle
+     */
+    private long uploadHandle;
+
     public DefaultServiceCallbacksImpl(
             @NonNull final Log log,
             @NonNull final ScheduledExecutorService executor,
@@ -244,6 +251,8 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
         this.kinesisVideoServiceClient = Preconditions.checkNotNull(kinesisVideoServiceClient);
         this.log = Preconditions.checkNotNull(log);
         this.configuration = Preconditions.checkNotNull(configuration);
+
+        this.uploadHandle = 0;
 
         try {
             this.kinesisVideoServiceClient.initialize(configuration);
@@ -388,7 +397,7 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
                             apiName,
                             timeoutInMillis,
                             credentialsProvider);
-                } catch (KinesisVideoException e) {
+                } catch (final KinesisVideoException e) {
                     log.error("Kinesis Video service client returned an error " + e.getMessage() + " Reporting to Kinesis Video PIC.");
                     statusCode = getStatusCodeFromException(e);
                 }
@@ -514,11 +523,13 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
 
                 final KinesisVideoCredentialsProvider credentialsProvider = getCredentialsProvider(authData, log);
 
+                final long clientUploadHandle = getUploadHandle();
+
                 try {
-                    final BlockingInputStream dataStream = new BlockingInputStream(kinesisVideoProducerStream.getDataStream(), log);
-                    final AckConsumer ackConsumer = new AckConsumer(kinesisVideoProducerStream, log);
+                    final BlockingInputStream dataStream = new BlockingInputStream(kinesisVideoProducerStream.getDataStream(clientUploadHandle), log);
+                    final AckConsumer ackConsumer = new AckConsumer(clientUploadHandle, kinesisVideoProducerStream, log);
                     final BlockingAckConsumer blockingAckConsumer = new BlockingAckConsumer(ackConsumer);
-                    final CompletionCallback completionCallback = new CompletionCallback(kinesisVideoProducerStream);
+                    final CompletionCallback completionCallback = new CompletionCallback(kinesisVideoProducerStream, clientUploadHandle);
 
                     // Insert into the ongoing streams for book keeping
                     addOngoingStreams(dataStream, ackConsumer, completionCallback, kinesisVideoProducerStream);
@@ -544,9 +555,8 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
                 }
 
                 try {
-                    // TODO: think about what we need to identify the stream
-                    final long clientHandle = 0;
-                    kinesisVideoProducer.putStreamResult(customData, clientHandle, statusCode);
+                    log.info("putStreamResult uploadHandle " + clientUploadHandle + " status " + statusCode);
+                    kinesisVideoProducer.putStreamResult(customData, clientUploadHandle, statusCode);
                 } catch (final ProducerException e) {
                     throw new RuntimeException(e);
                 }
@@ -589,7 +599,7 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
                             tagsMap,
                             timeoutInMillis,
                             credentialsProvider);
-                } catch (KinesisVideoException e) {
+                } catch (final KinesisVideoException e) {
                     log.error("Kinesis Video service client returned an error " + e.getMessage() + " Reporting to Kinesis Video PIC.");
                     statusCode = getStatusCodeFromException(e);
                 }
@@ -671,6 +681,10 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
     private long calculateRelativeServiceCallAfter(final long absoluteCallAfter) {
         return Math.max(0, absoluteCallAfter * Time.NANOS_IN_A_TIME_UNIT -
                 System.currentTimeMillis() * Time.NANOS_IN_A_MILLISECOND);
+    }
+
+    private long getUploadHandle() {
+        return uploadHandle++;
     }
 
     /**

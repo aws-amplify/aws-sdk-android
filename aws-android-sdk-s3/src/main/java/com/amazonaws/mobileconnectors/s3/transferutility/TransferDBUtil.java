@@ -515,7 +515,7 @@ class TransferDBUtil {
     /**
      * Queries all the PartETags of completed parts from the multipart upload
      * specified by the mainUploadId. The list of PartETags is used to complete
-     * a multiart upload, so it's usually called after all partUpload tasks are
+     * a multipart upload, so it's usually called after all partUpload tasks are
      * finished.
      *
      * @param mainUploadId The mainUploadId of a multipart upload task

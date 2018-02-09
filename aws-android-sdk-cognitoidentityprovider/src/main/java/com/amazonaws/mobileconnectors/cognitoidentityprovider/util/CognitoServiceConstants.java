@@ -34,6 +34,10 @@ public class CognitoServiceConstants {
      */
     public static final String AUTH_TYPE_INIT_CUSTOM_AUTH = "CUSTOM_AUTH";
     /**
+     * Indicates user auth using username and password.
+     */
+    public static final String AUTH_TYPE_INIT_USER_PASSWORD = "USER_PASSWORD_AUTH";
+    /**
      * Indicates MFA SETUP challenge.
      */
     public static final String CHLG_TYPE_MFA_SETUP = "MFA_SETUP";
@@ -69,6 +73,11 @@ public class CognitoServiceConstants {
      * Indicates a challenge to set a new password.
      */
     public static final String CHLG_TYPE_NEW_PASSWORD_REQUIRED = "NEW_PASSWORD_REQUIRED";
+    /**
+     * Indicates a challenge for username and password authentication flow (without using SRP).
+     */
+    public static final String CHLG_TYPE_USER_PASSWORD = "USER_PASSWORD";
+
     /**
      * Indicates a refresh-token parameter. 
      */
