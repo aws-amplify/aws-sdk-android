@@ -152,7 +152,7 @@ class TransferTable {
      * User specified cache control
      */
     public static final String COLUMN_HEADER_CACHE_CONTROL = "header_cache_control";
-    
+
     /**
      * User specified storage class
      */
@@ -306,14 +306,17 @@ class TransferTable {
     }
 
     /**
-     * Adds columns that were introduced in version 3 to the database
+     * Adds columns that were introduced in version 4 to the database
      */
     private static void addVersion4Columns(SQLiteDatabase database) {
         final String addCannedAcl = "ALTER TABLE " + TABLE_TRANSFER +
                 " ADD COLUMN " + COLUMN_CANNED_ACL + " text;";
         database.execSQL(addCannedAcl);
     }
-    
+
+    /**
+     * Adds columns that were introduced in version 5 to the database
+     */
     private static void addVersion5Columns(SQLiteDatabase database) {
         final String addCannedAcl = "ALTER TABLE " + TABLE_TRANSFER +
                 " ADD COLUMN " + COLUMN_HEADER_STORAGE_CLASS + " text;";

@@ -15,7 +15,6 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
-
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferService.NetworkInfoReceiver;
 import com.amazonaws.retry.RetryUtils;
@@ -122,14 +121,16 @@ class UploadTask implements Callable<Boolean> {
         }
         updater.updateProgress(upload.id, bytesAlreadyTransferrd, upload.bytesTotal);
 
-        final List<UploadPartRequest> requestList = dbUtil.getNonCompletedPartRequestsFromDB(upload.id,
+        final List<UploadPartRequest> requestList = dbUtil.getNonCompletedPartRequestsFromDB(
+                upload.id,
                 upload.multipartId);
         LOGGER.debug("multipart upload " + upload.id + " in " + requestList.size() + " parts.");
         final ArrayList<Future<Boolean>> futures = new ArrayList<Future<Boolean>>();
         for (final UploadPartRequest request : requestList) {
             TransferUtility.appendMultipartTransferServiceUserAgentString(request);
             request.setGeneralProgressListener(updater.newProgressListener(upload.id));
-            futures.add(TransferThreadPool.submitTask(new UploadPartTask(request, s3, dbUtil, networkInfo)));
+            futures.add(TransferThreadPool
+                    .submitTask(new UploadPartTask(request, s3, dbUtil, networkInfo)));
         }
         try {
             boolean isSuccess = true;
@@ -161,10 +162,12 @@ class UploadTask implements Callable<Boolean> {
             // handle pause, cancel, etc
             boolean isNetworkInterrupted = false;
             if (ee.getCause() != null && ee.getCause() instanceof Exception) {
-                // check for network interruption and pause the transfer instead of failing them
+                // check for network interruption and pause the transfer instead
+                // of failing them
                 isNetworkInterrupted = dbUtil.checkWaitingForNetworkPartRequestsFromDB(upload.id);
                 if (isNetworkInterrupted) {
-                    LOGGER.debug("Network Connection Interrupted: Transfer " + upload.id + " waits for network");
+                    LOGGER.debug("Network Connection Interrupted: Transfer " + upload.id
+                            + " waits for network");
                     updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
                     return false;
                 }
@@ -225,8 +228,10 @@ class UploadTask implements Callable<Boolean> {
                 return false;
             } else if (e.getCause() != null && e.getCause() instanceof AmazonClientException
                     && !networkInfo.isNetworkConnected()) {
-                // check for network interruption and pause the transfer instead of failing them
-                LOGGER.debug("Network Connection Interrupted: Transfer " + upload.id + " waits for network");
+                // check for network interruption and pause the transfer instead
+                // of failing them
+                LOGGER.debug("Network Connection Interrupted: Transfer " + upload.id
+                        + " waits for network");
                 updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
                 return false;
             } else if (e.getCause() != null && e.getCause() instanceof IOException
@@ -245,7 +250,8 @@ class UploadTask implements Callable<Boolean> {
     private void completeMultiPartUpload(int mainUploadId, String bucket,
             String key, String multipartId) {
         final List<PartETag> partETags = dbUtil.queryPartETagsOfUpload(mainUploadId);
-        final CompleteMultipartUploadRequest completeRequest = new CompleteMultipartUploadRequest(bucket,
+        final CompleteMultipartUploadRequest completeRequest = new CompleteMultipartUploadRequest(
+                bucket,
                 key, multipartId, partETags);
         TransferUtility.appendMultipartTransferServiceUserAgentString(completeRequest);
         s3.completeMultipartUpload(completeRequest);
@@ -261,13 +267,14 @@ class UploadTask implements Callable<Boolean> {
         InitiateMultipartUploadRequest initiateMultipartUploadRequest = null;
         initiateMultipartUploadRequest = new InitiateMultipartUploadRequest(
                 putObjectRequest.getBucketName(), putObjectRequest.getKey())
-                .withCannedACL(putObjectRequest.getCannedAcl())
-                .withObjectMetadata(putObjectRequest.getMetadata())
-                .withSSEAwsKeyManagementParams(
+                        .withCannedACL(putObjectRequest.getCannedAcl())
+                        .withObjectMetadata(putObjectRequest.getMetadata())
+                        .withSSEAwsKeyManagementParams(
                                 putObjectRequest.getSSEAwsKeyManagementParams());
         TransferUtility
                 .appendMultipartTransferServiceUserAgentString(initiateMultipartUploadRequest);
-        final String uploadId = s3.initiateMultipartUpload(initiateMultipartUploadRequest).getUploadId();
+        final String uploadId = s3.initiateMultipartUpload(initiateMultipartUploadRequest)
+                .getUploadId();
         return uploadId;
     }
 
