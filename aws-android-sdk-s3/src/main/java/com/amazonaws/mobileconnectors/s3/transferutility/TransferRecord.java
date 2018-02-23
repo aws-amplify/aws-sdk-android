@@ -195,7 +195,7 @@ class TransferRecord {
 
     /**
      * Cancels a running transfer.
-     *
+     * 
      * @param s3 s3 instance
      * @param updater status updater
      * @return true if the transfer is running and is canceled successfully,
@@ -292,4 +292,3 @@ class TransferRecord {
         return sb.toString();
     }
 }
-

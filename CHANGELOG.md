@@ -1,5 +1,13 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.16](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.16)
+
+### Enhancements
+
+* **Amazon S3**
+  * Added `TransferUtilityOptions` to configure the size of the transfer thread pool and the time interval in `TransferService` to check for unfinished transfers and resume them.
+  * Fixed bugs and added some performance improvements.
+
 ## [Release 2.6.15](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.15)
 
 ### New Features

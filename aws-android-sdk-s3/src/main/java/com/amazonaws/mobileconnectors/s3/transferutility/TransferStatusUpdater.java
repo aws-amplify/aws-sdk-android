@@ -122,6 +122,16 @@ class TransferStatusUpdater {
         LISTENERS.remove(id);
         lastUpdateTime.remove(id);
     }
+    
+    /**
+     * Removes a transfer from the persistent store.
+     *
+     * @param id id of the transfer to remove
+     */
+    void removeTransferRecordFromDB(final int id) {
+        S3ClientReference.remove(id);
+        dbUtil.deleteTransferRecords(id);
+    }
 
     /**
      * Updates the state of an active transfer. If the transfer isn't tracked,
@@ -163,6 +173,9 @@ class TransferStatusUpdater {
         // invoke LISTENERS
         final List<TransferListener> list = LISTENERS.get(id);
         if (list == null || list.isEmpty()) {
+            if (TransferState.COMPLETED.equals(newState)) {
+                removeTransferRecordFromDB(id);
+            }
             return;
         }
 
@@ -174,11 +187,15 @@ class TransferStatusUpdater {
                     l.onStateChanged(id, newState);
                 }
                 // remove all LISTENERS when the transfer is in a final state so
-                // as to release resources asap.
+                // as to release resources ASAP.
                 if (TransferState.COMPLETED.equals(newState)
                         || TransferState.FAILED.equals(newState)
                         || TransferState.CANCELED.equals(newState)) {
                     list.clear();
+                }
+                
+                if (TransferState.COMPLETED.equals(newState)) {
+                    removeTransferRecordFromDB(id);
                 }
             }
         });

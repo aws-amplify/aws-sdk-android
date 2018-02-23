@@ -3241,6 +3241,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         // before generating the URL.
         final Request<GeneratePresignedUrlRequest> request = createRequest(bucketName, key,
                 generatePresignedUrlRequest, httpMethod);
+
+        addParameterIfNotNull(request, "versionId", generatePresignedUrlRequest.getVersionId());
+
         if (generatePresignedUrlRequest.isZeroByteContent()) {
             request.setContent(new ByteArrayInputStream(new byte[0]));
         }
@@ -3258,7 +3261,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             request.addHeader(Headers.CONTENT_MD5, generatePresignedUrlRequest.getContentMd5());
         }
 
-          // SSE-C
+        // SSE-C
         populateSSE_C(request, generatePresignedUrlRequest.getSSECustomerKey());
         // SSE
         addHeaderIfNotNull(request, Headers.SERVER_SIDE_ENCRYPTION,
@@ -3267,7 +3270,15 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         addHeaderIfNotNull(request,
                 Headers.SERVER_SIDE_ENCRYPTION_KMS_KEY_ID,
                 generatePresignedUrlRequest.getKmsCmkId());
-
+        
+        // Add custom query parameters
+        final Map<String, String> customQueryParameters = generatePresignedUrlRequest.getCustomQueryParameters();
+        if (customQueryParameters != null) {
+        	for (Map.Entry<String, String> e: customQueryParameters.entrySet()) {
+        		request.addParameter(e.getKey(), e.getValue());
+        	}
+        }
+        
         addResponseHeaderParameters(request, generatePresignedUrlRequest.getResponseHeaders());
 
         final Signer signer = createSigner(request, bucketName, key);
