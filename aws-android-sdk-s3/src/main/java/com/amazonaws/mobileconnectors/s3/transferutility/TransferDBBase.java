@@ -281,5 +281,3 @@ class TransferDBBase {
     }
 
 }
-
-

@@ -802,7 +802,7 @@ class TransferDBUtil {
         try {
             c = queryTransferById(id);
             if (c.moveToFirst()) {
-                transfer = new TransferRecord(0);
+                transfer = new TransferRecord(id);
                 transfer.updateFromDB(c);
             }
         } finally {
