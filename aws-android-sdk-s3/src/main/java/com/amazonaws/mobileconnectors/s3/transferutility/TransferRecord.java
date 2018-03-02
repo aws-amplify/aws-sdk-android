@@ -171,6 +171,10 @@ class TransferRecord {
             }
             return true;
         }
+        // if transfer is already completed when trying to start, we should update state and trigger a callback
+        if (TransferState.COMPLETED.equals(state)) {
+            updater.updateState(id, TransferState.COMPLETED);
+        }
         return false;
     }
 
