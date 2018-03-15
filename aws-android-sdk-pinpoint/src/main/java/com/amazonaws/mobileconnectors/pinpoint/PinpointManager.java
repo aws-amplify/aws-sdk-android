@@ -105,7 +105,12 @@ public class PinpointManager {
             }
 
             if (config.getEnableTargeting()) {
-                this.targetingClient = new TargetingClient(pinpointContext);
+                if (config.getExecutor() != null) {
+                    this.targetingClient = new TargetingClient(pinpointContext, config.getExecutor());
+                } else {
+                    this.targetingClient = new TargetingClient(pinpointContext);
+                }
+
                 this.pinpointContext.setTargetingClient(this.targetingClient);
                 this.notificationClient.addDeviceTokenRegisteredHandler(new DeviceTokenRegisteredHandler() {
 

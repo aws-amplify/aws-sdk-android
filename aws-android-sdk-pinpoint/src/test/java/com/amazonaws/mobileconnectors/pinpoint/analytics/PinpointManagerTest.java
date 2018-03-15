@@ -16,6 +16,10 @@
 package com.amazonaws.mobileconnectors.pinpoint.analytics;
 
 import java.util.Random;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -112,5 +116,16 @@ public class PinpointManagerTest {
         analyticsClient = new PinpointManager(config);
 
         assertNotNull(analyticsClient);
+    }
+
+    @Test
+    public void initWithCustomExecutor() {
+        PinpointConfiguration config = createConfig(uniqueAnalyticsTag1);
+        ThreadPoolExecutor customExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(1),
+                new ThreadPoolExecutor.DiscardPolicy());
+        analyticsClient = new PinpointManager(config.withExecutor(customExecutor));
+        assertNotNull(analyticsClient);
+        assertNotNull(analyticsClient.getTargetingClient());
+
     }
 }

@@ -25,6 +25,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.json.JSONArray;
@@ -72,7 +73,7 @@ public class TargetingClient {
      * @param executor A thread pool executor
      */
     public TargetingClient(final PinpointContext context,
-                           ThreadPoolExecutor executor) {
+                           ExecutorService executor) {
         checkNotNull(context, "A valid pinpointContext must be provided");
         this.endpointRunnableQueue = executor;
         this.context = context;
@@ -168,8 +169,13 @@ public class TargetingClient {
             .withRegion(endpointProfile.getLocation().getRegion())
             .withCountry(endpointProfile.getLocation().getCountry());
 
-        final EndpointUser user = new EndpointUser();
-        user.setUserId(endpointProfile.getUser().getUserId());
+        final EndpointUser user;
+        if (endpointProfile.getUser().getUserId() == null) {
+            user = null;
+        } else {
+            user = new EndpointUser();
+            user.setUserId(endpointProfile.getUser().getUserId());
+        }
 
         final EndpointRequest endpointRequest = new EndpointRequest().withChannelType(endpointProfile.getChannelType())
                                                                      .withAddress(endpointProfile.getAddress())
