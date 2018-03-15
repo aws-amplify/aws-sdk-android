@@ -16,15 +16,15 @@
 package com.amazonaws.mobileconnectors.pinpoint;
 
 import android.content.Context;
-
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.AppLevelOptOutProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.pinpoint.model.ChannelType;
-
 import org.json.JSONObject;
+
+import java.util.concurrent.ExecutorService;
 
 /**
  * The PinpointConfiguration class allows developers to configure the Pinpoint SDK.
@@ -42,6 +42,7 @@ public class PinpointConfiguration {
     private AWSCredentialsProvider credentialsProvider;
     private PinpointCallback<PinpointManager> initCompletionCallback;
     private AppLevelOptOutProvider appLevelOptOutProvider;
+    private ExecutorService executor;
 
     /**
      * Create an {@link PinpointConfiguration} object with the specified parameters.
@@ -348,6 +349,24 @@ public class PinpointConfiguration {
     @SuppressWarnings("checkstyle:hiddenfield")
     public PinpointConfiguration withPostNotificationsInForeground(final boolean shouldPostNotificationsInForeground) {
         this.shouldPostNotificationsInForeground = shouldPostNotificationsInForeground;
+        return this;
+    }
+
+    /**
+     * The custom executor used for handlers in the TargetingClient.
+     * @return The custom executor.
+     */
+    public ExecutorService getExecutor() {
+        return executor;
+    }
+
+    /**
+     * Custom executor to use for handlers in the TargetingClient.
+     * @param executorService the executor to use.
+     * @return the current PinpointConfiguration instance.
+     */
+    public PinpointConfiguration withExecutor(final ExecutorService executorService) {
+        this.executor = executorService;
         return this;
     }
 

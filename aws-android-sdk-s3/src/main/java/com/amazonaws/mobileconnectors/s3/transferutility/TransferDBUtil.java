@@ -431,9 +431,8 @@ class TransferDBUtil {
     /**
      * Queries all the records which have the given type and states.
      *
-     * @param projections The list of columns to be projected
-     * @param type The type of Transfer
-     * @param String[] The list of Transfer States whose Transfer Records are required.
+     * @param type   The type of Transfer
+     * @param states The list of Transfer States whose Transfer Records are required.
      * @return A Cursor pointing to records in the database in any of the given states.
      */
     public Cursor queryTransfersWithTypeAndStates(TransferType type,

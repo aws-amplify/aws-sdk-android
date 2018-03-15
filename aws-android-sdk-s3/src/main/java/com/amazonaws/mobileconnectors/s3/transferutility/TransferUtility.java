@@ -202,7 +202,7 @@ public class TransferUtility {
         /**
          * Sets the TransferUtilityOptions for this TransferUtility
          * instance. Currently, this includes the option to override the 
-         * time interval to periodically resume unfinished trnasfers by 
+         * time interval to periodically resume unfinished transfers by 
          * the TransferService and the size of the transfer thread pool
          * which is shared across the different transfers.
          *  
@@ -248,6 +248,10 @@ public class TransferUtility {
                     throw new IllegalArgumentException("Failed to read S3TransferUtility "
                             + "please check your setup or awsconfiguration.json file", e);
                 }
+            }
+            
+            if (this.transferUtilityOptions == null) {
+                this.transferUtilityOptions = new TransferUtilityOptions();
             }
             
             return new TransferUtility(this.s3,
@@ -302,7 +306,7 @@ public class TransferUtility {
         this.appContext = context.getApplicationContext();
         this.dbUtil = new TransferDBUtil(appContext);
         this.defaultBucket = null;
-        this.transferUtilityOptions = null;
+        this.transferUtilityOptions = new TransferUtilityOptions();
     }
 
     private String getDefaultBucketOrThrow() {
@@ -864,10 +868,8 @@ public class TransferUtility {
         final Intent intent = new Intent(appContext, TransferService.class);
         intent.setAction(action);
         intent.putExtra(TransferService.INTENT_BUNDLE_TRANSFER_ID, id);
-        if (this.transferUtilityOptions != null) {
-            intent.putExtra(TransferService.INTENT_BUNDLE_TRANSFER_UTILITY_OPTIONS,
-                            this.transferUtilityOptions);
-        }
+        intent.putExtra(TransferService.INTENT_BUNDLE_TRANSFER_UTILITY_OPTIONS,
+                        this.transferUtilityOptions);
         appContext.startService(intent);
     }
 

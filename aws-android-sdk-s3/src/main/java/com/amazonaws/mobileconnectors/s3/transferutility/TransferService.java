@@ -37,7 +37,9 @@ import org.apache.commons.logging.LogFactory;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -237,20 +239,14 @@ public class TransferService extends Service {
             LOGGER.error("TransferService can't get s3 client and not acting on the id.");
             return START_NOT_STICKY;
         }
-        
-        // If TransferUtilityOptions is passed by the user, apply it, else resort to the defaults.
+
         final TransferUtilityOptions tuOptions = (TransferUtilityOptions) 
             intent.getSerializableExtra(INTENT_BUNDLE_TRANSFER_UTILITY_OPTIONS);
         
-        if (tuOptions != null) {
-            TransferThreadPool.init(tuOptions.getTransferThreadPoolSize());
-            transferServiceCheckTimeInterval = tuOptions.getTransferServiceCheckTimeInterval();
-            LOGGER.debug("ThreadPoolSize: " + tuOptions.getTransferThreadPoolSize() 
-                + " transferServiceCheckTimeInterval: " + tuOptions.getTransferServiceCheckTimeInterval());
-        } else { 
-            TransferThreadPool.init(TransferUtilityOptions.getDefaultThreadPoolSize());
-            transferServiceCheckTimeInterval = TransferUtilityOptions.getDefaultCheckTimeInterval();
-        }
+        TransferThreadPool.init(tuOptions.getTransferThreadPoolSize());
+        transferServiceCheckTimeInterval = tuOptions.getTransferServiceCheckTimeInterval();
+        LOGGER.debug("ThreadPoolSize: " + tuOptions.getTransferThreadPoolSize()
+            + " transferServiceCheckTimeInterval: " + tuOptions.getTransferServiceCheckTimeInterval());
 
         updateHandler.sendMessage(updateHandler.obtainMessage(MSG_EXEC, intent));
         
@@ -451,46 +447,49 @@ public class TransferService extends Service {
         Cursor c = null;
         int count = 0;
 
+        // Read the transfer ids from the cursor and store in this list.
+        List<Integer> transferIds = new ArrayList<Integer>();
+
+        // Query for the unfinished transfers and store them in a list
         try {
-            // Query for the unfinished transfers
-            c = dbUtil.queryTransfersWithTypeAndStates(TransferType.ANY, transferStates);
+            c = dbUtil.queryTransfersWithTypeAndStates(TransferType.ANY,
+                                                       transferStates);
             while (c.moveToNext()) {
                 final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
-                final int partNumber = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM));
-                final AmazonS3 s3 = S3ClientReference.get(id);
-                if (s3 == null) {
-                    LOGGER.warn("Cannot find the S3 Client for the transfer: " + id + " Resume the transfer manually.");
-                    continue;
+                // If the transfer status updater doesn't track it, load the transfer record
+                // from the database and add it to the updater to track
+                if (updater.getTransfer(id) == null) {
+                    final TransferRecord transfer = new TransferRecord(id);
+                    transfer.updateFromDB(c);
+                    updater.addTransfer(transfer);
+                    count++;
                 }
-
-                // add unfinished transfers. start the unfinished main
-                // upload/download transfers (partNumber = 0)
-                if (partNumber == 0) {
-                    if (updater.getTransfer(id) == null) {
-                        // If the update doesn't track it, load the transfer record
-                        // from the database and start the transfer, add it to the updater 
-                        final TransferRecord transfer = new TransferRecord(id);
-                        transfer.updateFromDB(c);
-                        if (transfer.start(s3, dbUtil, updater, networkInfoReceiver)) {
-                            updater.addTransfer(transfer);
-                            count++;
-                        }
-                    } else {
-                        // If the updater already tracks the transfer, check if it's running.
-                        // If not, start the transfer.
-                        final TransferRecord transfer = updater.getTransfer(id);
-                        if (!transfer.isRunning()) {
-                            transfer.start(s3, dbUtil, updater, networkInfoReceiver);
-                        }
-                    }
-                }
+                transferIds.add(id);
             }
         } finally {
             if (c != null) {
+                LOGGER.debug("Closing the cursor for loadAndResumeTransfersFromDB");
                 c.close();
             }
         }
-        LOGGER.debug(count + " transfers are loaded from database");
+
+        // Iterate over each transfer id and resume them if it's not running.
+        try {
+            for (final Integer id: transferIds) {
+                final AmazonS3 s3 = S3ClientReference.get(id);
+                if (s3 != null) {
+                    // Check if it's running. If not, start the transfer.
+                    final TransferRecord transfer = updater.getTransfer(id);
+                    if (transfer != null && !transfer.isRunning()) {
+                        transfer.start(s3, dbUtil, updater, networkInfoReceiver);
+                    }
+                }
+            }
+        } catch (final Exception exception) {
+            LOGGER.error("Error in resuming the transfers." + exception.getMessage());
+        }
+
+        LOGGER.debug(count + " transfers are loaded from database.");
     }
     
     /**
