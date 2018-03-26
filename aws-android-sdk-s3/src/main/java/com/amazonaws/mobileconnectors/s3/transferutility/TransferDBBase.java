@@ -240,7 +240,7 @@ class TransferDBBase {
     /**
      * @param uri The Uri of a table.
      * @param valuesArray A array of values to insert.
-     * @return Number of rows inserted.
+     * @return The mainUploadId of the multipart transfer records
      */
     public int bulkInsert(Uri uri, ContentValues[] valuesArray) {
         final int uriType = uriMatcher.match(uri);
@@ -281,5 +281,3 @@ class TransferDBBase {
     }
 
 }
-
-

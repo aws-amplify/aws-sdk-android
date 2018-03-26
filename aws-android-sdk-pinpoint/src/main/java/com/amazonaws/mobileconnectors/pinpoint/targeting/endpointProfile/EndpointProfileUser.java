@@ -24,7 +24,7 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.JSONSerializab
  */
 public class EndpointProfileUser implements JSONSerializable {
 
-    private String userId = "";
+    private String userId;
 
     public String getUserId() {
         return this.userId;

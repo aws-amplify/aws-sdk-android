@@ -1,5 +1,72 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.17](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.17)
+
+### Bug Fixes
+
+* **Amazon Pinpoint**
+  * Issue with Android API level 23 causing crashes when generating notification icon from a bitmap. Updated SDK behavior to only generate icon from a bitmap on API level 24 and above.
+  * Fixed an issue when the userId was unset, registering for notifications would clobber the userId on the server. This overwrote any value set by `updateEndpointProfile`. Set user id to empty string to reset server user id, null to retain server value.
+  * Issue with ANRs (Application Not Responding) when downloading images for notifications. Updated SDK behavior to background download image tasks.
+  * Added an option to specify a custom ExecutorService through PinpointConfiguration for the TargetingClient. Use `PinpointConfiguration.withExecutor(ExecutorService)` to choose an Executor to register for Pinpoint notifications and to run handlers. Choosing a single thread Executor can be used when running handlers sequentially on the same thread after registration.
+
+* **Amazon S3**
+  * Optimized the `TransferService.loadAndResumeTransfersFromDB` to minimize the time holding the database connection.
+
+## [Release 2.6.16](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.16)
+
+### Enhancements
+
+* **Amazon S3**
+  * Added `TransferUtilityOptions` to configure the size of the transfer thread pool and the time interval in `TransferService` to check for unfinished transfers and resume them.
+  * Fixed bugs and added some performance improvements.
+
+## [Release 2.6.15](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.15)
+
+### New Features
+
+* **Amazon Cognito Identity Provider**
+  * Support for user migration over lambda trigger in Cognito User Pools.
+
+### Enhancements
+
+* **Amazon Kinesis Video Streams**
+  * **Breaking API  Changes**: Added `uploadHandle` parameter to the following APIs.
+      * `KinesisVideoProducerStream.getDataStream()`
+      * `KinesisVideoProducerStream.fragmentAck()`
+      * `KinesisVideoProducerStream.streamTerminated()`
+      * `StremCallbacks.streamDataAvailable()`
+      * `StremCallbacks.streamClosed()`
+      * `NativeKinesisVideoProducerJni.streamClosed()`
+      * `NativeKinesisVideoProducerJni.fragmentAck()`
+      * `NativeKinesisVideoProducerJni.streamDataAvailable()`
+      * `NativeKinesisVideoProducerJni.streamTerminated()`
+      * `NativeKinesisVideoProducerStream.getDataStream()`
+      * `NativeKinesisVideoProducerStream.fragmentAck()`
+      * `NativeKinesisVideoProducerStream.parseFragmentAck()`
+      * `NativeKinesisVideoProducerStream.streamTerminated()`
+      * `NativeKinesisVideoProducerStream.streamDataAvailable()`
+      * `NativeKinesisVideoProducerStream.streamClosed()`
+      * `DefaultStreamCallbacks.streamDataAvailable()`
+      * `DefaultStreamCallbacks.streamClosed()`
+      * `AckConsumer.AckConsumer()`
+      * `DefaultServiceCallbacksImpl.CompletionCallback()`
+
+## [Release 2.6.14](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.14)
+
+### Bug Fixes
+
+* **Amazon CloudWatch Logs**
+  * Allow `Amazon CloudWatch Logs` SDK to be fetched via maven. See [issue #392](https://github.com/aws/aws-sdk-android/issues/392)
+
+### Enhancements
+
+* **Amazon Cognito Identity Provider**
+  * Repackaged Amazon Cognito Identity Service Provider Android SDK to change dependency for ASF components.
+
+* **Amazon Cognito Auth**
+  * Repackaged Amazon Cognito Auth Android SDK to change dependency for ASF components. Use `{ transitive = true; }` while importing `aws-android-sdk-cognitoauth` via maven in gradle.
+
 ## [Release 2.6.13](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.13)
 
 ### Bug Fixes

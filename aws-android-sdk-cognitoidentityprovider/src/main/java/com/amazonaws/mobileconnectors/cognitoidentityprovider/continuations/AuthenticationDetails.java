@@ -82,8 +82,8 @@ public class AuthenticationDetails {
      */
     public void setAuthenticationType(String authenticationType) {
         this.authenticationType = authenticationType;
-        if (CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD_VERIFIER
-                .equals(this.authenticationType)) {
+        if (CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD_VERIFIER.equals(this.authenticationType)
+            || CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD.equals(this.authenticationType)) {
             this.authenticationParameters = null;
         } else if (CognitoServiceConstants.CHLG_TYPE_CUSTOM_CHALLENGE
                 .equals(this.authenticationType)) {
@@ -142,11 +142,10 @@ public class AuthenticationDetails {
      * @param customChallenge           REQUIRED: Custom challenge name.
      */
     public void setCustomChallenge(String customChallenge) {
-        if (CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD_VERIFIER
-                .equals(this.authenticationType)) {
+        if (CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD_VERIFIER.equals(this.authenticationType)
+            || CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD.equals(this.authenticationType)) {
             throw new CognitoParameterInvalidException(
-                    String.format("Cannot set custom challenge when the authentication type is %s.",
-                            CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD_VERIFIER));
+                    String.format("Cannot set custom challenge when the authentication type is %s.", this.authenticationType));
         }
         this.authenticationType = CognitoServiceConstants.CHLG_TYPE_CUSTOM_CHALLENGE;
         setAuthenticationParameter(CognitoServiceConstants.AUTH_PARAM_CHALLENGE_NAME,

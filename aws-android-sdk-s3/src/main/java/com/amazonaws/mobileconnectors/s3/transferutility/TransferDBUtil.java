@@ -434,12 +434,9 @@ class TransferDBUtil {
     /**
      * Queries all the records which have the given type and states.
      *
-     * @param projections The list of columns to be projected
-     * @param type The type of Transfer
-     * @param String[] The list of Transfer States whose Transfer Records are
-     *            required.
-     * @return A Cursor pointing to records in the database in any of the given
-     *         states.
+     * @param type   The type of Transfer
+     * @param states The list of Transfer States whose Transfer Records are required.
+     * @return A Cursor pointing to records in the database in any of the given states.
      */
     public Cursor queryTransfersWithTypeAndStates(TransferType type,
             TransferState[] states) {
@@ -521,7 +518,7 @@ class TransferDBUtil {
     /**
      * Queries all the PartETags of completed parts from the multipart upload
      * specified by the mainUploadId. The list of PartETags is used to complete
-     * a multiart upload, so it's usually called after all partUpload tasks are
+     * a multipart upload, so it's usually called after all partUpload tasks are
      * finished.
      *
      * @param mainUploadId The mainUploadId of a multipart upload task
@@ -816,7 +813,7 @@ class TransferDBUtil {
         try {
             c = queryTransferById(id);
             if (c.moveToFirst()) {
-                transfer = new TransferRecord(0);
+                transfer = new TransferRecord(id);
                 transfer.updateFromDB(c);
             }
         } finally {

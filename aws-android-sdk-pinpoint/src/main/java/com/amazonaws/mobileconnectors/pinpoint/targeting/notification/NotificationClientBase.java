@@ -101,6 +101,7 @@ abstract class NotificationClientBase {
     private static final int ANDROID_KITKAT = 19;
     private static final int ANDROID_LOLLIPOP = 21;
     private static final int ANDROID_MARSHMALLOW = 23;
+    private static final int ANDROID_NOUGAT = 24;
     private static final int ANDROID_OREO = 26;
     private static final int NOTIFICATION_CHANNEL_IMPORTANCE = 4; //IMPORTANCE_HIGH = 4. This corresponds to PRIORITY_HIGH (value 1) in NotificationBuilder. setPriority is deprecated in API 26
 
@@ -309,8 +310,8 @@ abstract class NotificationClientBase {
             notificationBigTextStyleClass = Class.forName("android.app.Notification$BigTextStyle"); //API Level 16
             notificationStyleClass = Class.forName("android.app.Notification$Style"); //API Level 16
             notificationBigPictureStyleClass = Class.forName("android.app.Notification$BigPictureStyle"); //API Level 16
-            if (android.os.Build.VERSION.SDK_INT >= ANDROID_MARSHMALLOW) {
-                iconClass = Class.forName("android.graphics.drawable.Icon"); //API Level 23
+            if (android.os.Build.VERSION.SDK_INT >= ANDROID_NOUGAT) {
+                iconClass = Class.forName("android.graphics.drawable.Icon"); //API Level 24
             }
             if (android.os.Build.VERSION.SDK_INT >= ANDROID_OREO) {
                 notificationChannelClass = Class.forName("android.app.NotificationChannel"); //API Level 26
@@ -346,7 +347,7 @@ abstract class NotificationClientBase {
             setSummaryMethod = notificationBigPictureStyleClass.getDeclaredMethod("setSummaryText", CharSequence.class);
             setLargeIconMethod = notificationBuilderClass.getDeclaredMethod("setLargeIcon", Bitmap.class);
 
-            if (android.os.Build.VERSION.SDK_INT >= ANDROID_MARSHMALLOW) {
+            if (android.os.Build.VERSION.SDK_INT >= ANDROID_NOUGAT) {
                 setSmallIconMethod = notificationBuilderClass.getDeclaredMethod("setSmallIcon", iconClass);
                 createWithBitmapMethod = iconClass.getDeclaredMethod("createWithBitmap", Bitmap.class);
             }
@@ -494,11 +495,12 @@ abstract class NotificationClientBase {
                     // we can set the large icon as the app icon, so that the small icon will be shown in the corner
                     // of the large icon, where it doesn't look as bad that it may be a grey box.
                     ((android.os.Build.VERSION.SDK_INT >= ANDROID_LOLLIPOP
-                        && android.os.Build.VERSION.SDK_INT < ANDROID_MARSHMALLOW)
+                        && android.os.Build.VERSION.SDK_INT < ANDROID_NOUGAT)
                     // For API level 23 and above when the small icon isn't set it makes sense to show the large icon
                     // also for the user experience (to make it easiest for the customer to quickly recognize the app
                     // that caused the notification) also if the large icon fails to load we can fall back to app icon.
-                     || (android.os.Build.VERSION.SDK_INT >= ANDROID_MARSHMALLOW
+                    // We were experiencing crashes using this behavior on API level 23 so only use on API level 24.
+                     || (android.os.Build.VERSION.SDK_INT >= ANDROID_NOUGAT
                         && (imageIconUrl != null || imageSmallIconUrl == null)))) {
                 largeIconBitmap = obtainBitmapFromResId(iconResId);
             }
@@ -511,8 +513,9 @@ abstract class NotificationClientBase {
             }
 
             // If we are able to use a bitmap to set the small icon.
-            if (iconClass != null && android.os.Build.VERSION.SDK_INT >= ANDROID_MARSHMALLOW) {
-                // Small icon cannot be set from a bitmap unless on SDK version 23 or above.
+            if (iconClass != null && android.os.Build.VERSION.SDK_INT >= ANDROID_NOUGAT) {
+                // Small icon cannot be set from a bitmap unless on API level 23 or above.
+                // We were experiencing crashes using this behavior on API level 23 so only use on API level 24.
                 Bitmap smallIconBitmap = null;
                 if (imageSmallIconUrl != null) {
                     try {
@@ -671,10 +674,15 @@ abstract class NotificationClientBase {
         return (campaignId + ":" + activityId).hashCode();
     }
 
-    private boolean displayNotification(final Bundle pushBundle, final Class<?> targetClass, String imageUrl,
-                                        String iconImageUrl, String iconSmallImageUrl,
-                                        Map<String, String> campaignAttributes, String intentAction) {
+    private boolean displayNotification(final Bundle pushBundle, final Class<?> targetClass, final String imageUrl,
+                                        final String iconImageUrl, final String iconSmallImageUrl,
+                                        final Map<String, String> campaignAttributes, final String intentAction) {
         log.info("Display Notification: " + pushBundle.toString());
+
+        final int iconResId = getNotificationIconResourceId(pushBundle.getString(NOTIFICATION_ICON_PUSH_KEY));
+        if (iconResId == 0) {
+            return false;
+        }
 
         final String title = pushBundle.getString(NOTIFICATION_TITLE_PUSH_KEY);
         final String message = pushBundle.getString(NOTIFICATION_BODY_PUSH_KEY);
@@ -684,53 +692,54 @@ abstract class NotificationClientBase {
 
         final int requestID = getNotificationRequestId(campaignId, activityId);
 
-        final int iconResId = getNotificationIconResourceId(pushBundle.getString(NOTIFICATION_ICON_PUSH_KEY));
-        if (iconResId == 0) {
-            return false;
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final Notification notification = createNotification(iconResId, title, message, imageUrl, iconImageUrl,
+                                                                     iconSmallImageUrl,
+                                                                     NotificationClientBase.this.createOpenAppPendingIntent(pushBundle, targetClass,
+                                                                                                     campaignId, requestID,
+                                                                                                     intentAction));
 
-        final Notification notification = createNotification(iconResId, title, message, imageUrl, iconImageUrl,
-                                                             iconSmallImageUrl,
-                                                             this.createOpenAppPendingIntent(pushBundle, targetClass,
-                                                                                             campaignId, requestID,
-                                                                                             intentAction));
+                notification.flags |= Notification.FLAG_AUTO_CANCEL;
+                notification.defaults |= Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE;
 
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-        notification.defaults |= Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE;
+                if (android.os.Build.VERSION.SDK_INT >= ANDROID_LOLLIPOP) {
+                    log.info("SDK greater than 21 detected: " + android.os.Build.VERSION.SDK_INT);
 
-        if (android.os.Build.VERSION.SDK_INT >= ANDROID_LOLLIPOP) {
-            log.info("SDK greater than 21 detected: " + android.os.Build.VERSION.SDK_INT);
-
-            final String colorString = pushBundle.getString(NOTIFICATION_COLOR_PUSH_KEY);
-            if (colorString != null) {
-                int color;
-                try {
-                    color = Color.parseColor(colorString);
-                } catch (final IllegalArgumentException ex) {
-                    log.warn("Couldn't parse campaign notification color.", ex);
-                    color = 0;
+                    final String colorString = pushBundle.getString(NOTIFICATION_COLOR_PUSH_KEY);
+                    if (colorString != null) {
+                        int color;
+                        try {
+                            color = Color.parseColor(colorString);
+                        } catch (final IllegalArgumentException ex) {
+                            log.warn("Couldn't parse campaign notification color.", ex);
+                            color = 0;
+                        }
+                        Exception exception = null;
+                        try {
+                            final Field colorField = notification.getClass().getDeclaredField("color");
+                            colorField.setAccessible(true);
+                            colorField.set(notification, color);
+                        } catch (final IllegalAccessException ex) {
+                            exception = ex;
+                        } catch (final NoSuchFieldException ex) {
+                            exception = ex;
+                        }
+                        if (exception != null) {
+                            log.error("Couldn't set campaign notification color : " + exception.getMessage(), exception);
+                        }
+                    }
                 }
-                Exception exception = null;
-                try {
-                    final Field colorField = notification.getClass().getDeclaredField("color");
-                    colorField.setAccessible(true);
-                    colorField.set(notification, color);
-                } catch (final IllegalAccessException ex) {
-                    exception = ex;
-                } catch (final NoSuchFieldException ex) {
-                    exception = ex;
-                }
-                if (exception != null) {
-                    log.error("Couldn't set campaign notification color : " + exception.getMessage(), exception);
-                }
+
+                final NotificationManager notificationManager = (NotificationManager) pinpointContext.getApplicationContext()
+                                                                                                     .getSystemService(
+                                                                                                         Context.NOTIFICATION_SERVICE);
+
+                notificationManager.notify(requestID, notification);
             }
-        }
+        }).start();
 
-        final NotificationManager notificationManager = (NotificationManager) pinpointContext.getApplicationContext()
-                                                                                             .getSystemService(
-                                                                                                 Context.NOTIFICATION_SERVICE);
-
-        notificationManager.notify(requestID, notification);
         return true;
     }
 

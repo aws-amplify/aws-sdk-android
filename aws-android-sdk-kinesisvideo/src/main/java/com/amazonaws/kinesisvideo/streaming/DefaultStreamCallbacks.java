@@ -1,5 +1,5 @@
 /**
- * Copyright 2017-2017 Amazon.com,
+ * Copyright 2017-2018 Amazon.com,
  * Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Amazon Software License (the "License").
@@ -17,8 +17,11 @@
 
 package com.amazonaws.kinesisvideo.streaming;
 
+import com.amazonaws.kinesisvideo.producer.KinesisVideoFragmentAck;
 import com.amazonaws.kinesisvideo.producer.ProducerException;
 import com.amazonaws.kinesisvideo.producer.StreamCallbacks;
+
+import android.support.annotation.NonNull;
 
 public class DefaultStreamCallbacks implements StreamCallbacks {
     @Override
@@ -32,7 +35,12 @@ public class DefaultStreamCallbacks implements StreamCallbacks {
     }
 
     @Override
-    public void streamConnectionStale(final long duration) throws ProducerException {
+    public void streamConnectionStale(final long lastAckDuration) throws ProducerException {
+        // no-op
+    }
+
+    @Override
+    public void fragmentAckReceived(@NonNull final KinesisVideoFragmentAck fragmentAck) throws ProducerException {
         // no-op
     }
 
@@ -52,7 +60,8 @@ public class DefaultStreamCallbacks implements StreamCallbacks {
     }
 
     @Override
-    public void streamDataAvailable(final long duration, final long availableSize) throws ProducerException {
+    public void streamDataAvailable(final long uploadHandle, final long duration, final long availableSize)
+            throws ProducerException {
         // no-op
     }
 
@@ -62,7 +71,7 @@ public class DefaultStreamCallbacks implements StreamCallbacks {
     }
 
     @Override
-    public void streamClosed() throws ProducerException {
+    public void streamClosed(final long uploadHandle) throws ProducerException {
         // no-op
     }
 }

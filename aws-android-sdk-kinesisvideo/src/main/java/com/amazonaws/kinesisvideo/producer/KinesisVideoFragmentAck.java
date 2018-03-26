@@ -1,5 +1,5 @@
 /**
- * Copyright 2017-2017 Amazon.com,
+ * Copyright 2017-2018 Amazon.com,
  * Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Amazon Software License (the "License").
@@ -52,7 +52,17 @@ public class KinesisVideoFragmentAck {
      */
     private final int mResult;
 
-    public KinesisVideoFragmentAck(@NonNull final FragmentAckType ackType, long timestamp, @NonNull final String sequenceNumber, int result) {
+    public KinesisVideoFragmentAck(int ackType,
+                                   long timestamp,
+                                   @NonNull final String sequenceNumber,
+                                   int result) {
+        this(new FragmentAckType(ackType), timestamp, sequenceNumber, result);
+    }
+
+    public KinesisVideoFragmentAck(@NonNull final FragmentAckType ackType,
+                                   long timestamp,
+                                   @NonNull final String sequenceNumber,
+                                   int result) {
         mAckType = ackType;
         mTimestamp = timestamp;
         mSequenceNumber = sequenceNumber;

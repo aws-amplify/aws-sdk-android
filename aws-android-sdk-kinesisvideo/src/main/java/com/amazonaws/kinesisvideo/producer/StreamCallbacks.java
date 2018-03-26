@@ -1,5 +1,5 @@
 /**
- * Copyright 2017-2017 Amazon.com,
+ * Copyright 2017-2018 Amazon.com,
  * Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Amazon Software License (the "License").
@@ -16,6 +16,8 @@
  */
 
 package com.amazonaws.kinesisvideo.producer;
+
+import android.support.annotation.NonNull;
 
 /**
  *
@@ -45,7 +47,14 @@ public interface StreamCallbacks
      * @param lastAckDuration The duration of time window when the last "buffering" ACK is received in 100ns.
      * @throws ProducerException
      */
-    void streamConnectionStale(long duration) throws ProducerException;
+    void streamConnectionStale(long lastAckDuration) throws ProducerException;
+
+    /**
+     * Reports the received ACK.
+     * @param fragmentAck The received fragment ACK.
+     * @throws ProducerException
+     */
+    void fragmentAckReceived(@NonNull final KinesisVideoFragmentAck fragmentAck) throws ProducerException;
 
     /**
      * Reports a dropped frame for the stream.
@@ -73,11 +82,12 @@ public interface StreamCallbacks
 
     /**
      * New data is available for the stream.
+     * @param uploadHandle The client stream upload handle.
      * @param duration The duration of content available in the stream.
      * @param availableSize The size of the content available in the stream.
      * @throws ProducerException
      */
-    void streamDataAvailable(long duration, long availableSize) throws ProducerException;
+    void streamDataAvailable(long uploadHandle, long duration, long availableSize) throws ProducerException;
 
     /**
      * Ready to stream data.
@@ -87,7 +97,8 @@ public interface StreamCallbacks
 
     /**
      * Stream has been closed.
+     * @param uploadHandle The client stream upload handle.
      * @throws ProducerException
      */
-    void streamClosed() throws ProducerException;
+    void streamClosed(long uploadHandle) throws ProducerException;
 }
