@@ -1,5 +1,19 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.18](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.18)
+
+### Enhancements
+
+* **Amazon Kinesis Video Streams**
+  * Add handling of token rotation, error recovery and the re-streaming in general.
+  * **Breaking API Changes**
+
+	|Class|2.6.17 API|2.6.18 API
+	|-----|----------|----------
+	| KinesisVideoProducerStream|getStreamData(byte[], int, int)<br />return type: int|getStreamData(byte[], int, int, ReadResult)<br />return type: void
+	| NativeKinesisVideoProducerJni|getStreamData(long, byte[], int, int)<br />return type: int|getStreamData(long, byte[], int, int , ReadResult)<br />return type: void
+	| NativeKinesisVideoProducerStream|getStreamData(@ byte[], int, int)<br />return type: int|getStreamData(@ byte[], int, int, ReadResult)<br />return type: void
+
 ## [Release 2.6.17](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.17)
 
 ### Bug Fixes

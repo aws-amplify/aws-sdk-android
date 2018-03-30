@@ -178,7 +178,8 @@ public class DefaultServiceCallbacksImpl implements ServiceCallbacks {
                 log.exception(e, "Stopping stream threw an exception.");
             }
 
-            for (final OngoingStream ongoingStream : ongoingStreams) {
+            while (ongoingStreams.size() > 0) {
+                final OngoingStream ongoingStream = ongoingStreams.get(0);
                 ongoingStream.stop();
             }
         }

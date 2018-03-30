@@ -94,6 +94,8 @@ public final class KinesisVideoApacheHttpClient implements HttpClient {
         try {
             builder.loadTrustMaterial(new TrustAllStrategy());
             final SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(builder.build(),
+                    new String[] {"TLSv1.2"}, // TLS protocol, use 1.2 only
+                    null, // TLS ciphers, use default
                     new NoOpHostNameVerifier());
             return HttpClients.custom()
                     .setSSLSocketFactory(sslSocketFactory)

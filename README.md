@@ -1,11 +1,11 @@
 # AWS SDK for Android 
 
 [![Build Status](https://travis-ci.org/aws/aws-sdk-android.png?branch=master)](https://travis-ci.org/aws/aws-sdk-android)
-[![GitHub release](https://img.shields.io/github/release/aws/aws-sdk-android.svg)]()
+[![GitHub release](https://img.shields.io/github/release/aws/aws-sdk-android.svg)](https://github.com/aws/aws-sdk-android/releases)
 [![Maven Central](https://img.shields.io/maven-central/v/com.amazonaws/aws-android-sdk-pom.svg)]()
 [![Twitter Follow](https://img.shields.io/twitter/follow/awsformobile.svg?style=social&label=Follow)]()
 
-The [AWS SDK for Android](http://aws.amazon.com/sdkforandroid) provides a library and documentation for developers to build connected mobile applications using AWS.
+The [AWS SDK for Android](https://aws.amazon.com/mobile/resources/) provides a library and documentation for developers to build connected mobile applications using AWS.
 
 
 
@@ -113,11 +113,19 @@ The SDK provides access to many AWS Services.  At the most basic level the SDK p
 
 ### Mobile Connectors  
 
-The SDK also provides a higher level experience for many service.
+The SDK also provides a higher level experience for many services.
 
-### S3 Transfer Manager 
+### S3 Transfer Utility
 
-The Transfer Manager adds convenience and reliability ontop of using the standard AmazonS3Client when uploading and downloading binary data to S3:
+The TransferUtility adds convenience and reliability on top of using the standard `AmazonS3Client` when uploading and downloading data to S3:
+
+* Enhances performance by automatically converting  upload transfers > 5MB to multi-part uploads, using multiple threads.
+* Provides the ability to pause/resume/cancel upload/download transfers, which is useful if the app is being killed or loses internet connectivity.
+* Automatically pauses/resumes upload/download transfers when network connectivity changes.
+
+### S3 Transfer Manager (Deprecated)
+
+The Transfer Manager adds convenience and reliability on top of using the standard `AmazonS3Client` when uploading and downloading binary data to S3:
 
 * Enhances performance by automatically converting large requests to multi-part uploads, using multiple threads.
 * Allows developers to pause/resume uploads/downloads, which is especially useful if the app is being killed or loses internet connectivity.
@@ -147,7 +155,7 @@ The Amazon Cognito mobile connector provides the ability to:
 * Synchronize user profile data, app preferences or game state across devices and across login providers.
 * Record and update user data while offline.
 
-Note:  The Cognito Identity classes are a part of core jar (as well as the core Maven package).  The Cognito Sync source code is in a separate repository, and can be found [here](https://github.com/aws/amazon-cognito-android).
+**Note**: The Amazon Cognito Federated Identities classes are part of `AWS SDK for Android - Core` (`aws-android-sdk-core` Maven package) and can be found [here](https://github.com/aws/aws-sdk-android/tree/master/aws-android-sdk-core). The Amazon Cognito Sync code can be found [here](https://github.com/aws/aws-sdk-android/tree/master/aws-android-sdk-cognito).
 
 
 ### Amazon Mobile Analytics

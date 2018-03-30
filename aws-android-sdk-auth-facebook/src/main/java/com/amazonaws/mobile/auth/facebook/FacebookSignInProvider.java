@@ -94,12 +94,12 @@ public class FacebookSignInProvider implements SignInProvider {
 
         // Read the awsconfiguration.json and apply the permissions.
         try {
-                FacebookSignInProvider.setPermissions(
-                    this.awsConfiguration
-                        .optJsonObject("FacebookSignIn")
-                        .getString("Permissions")
-                        .split(",")
-                );
+            FacebookSignInProvider.setPermissions(
+                this.awsConfiguration
+                    .optJsonObject("FacebookSignIn")
+                    .getString("Permissions")
+                    .split(",")
+            );
         } catch (final Exception exception) {
                 Log.e(LOG_TAG, "Failed to register the permissions with FacebookSignInProvider. "
                     + "Use FacebookSignInProvider.setPermissions() to register the permissions. "
