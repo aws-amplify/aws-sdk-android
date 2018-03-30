@@ -63,10 +63,11 @@ public interface KinesisVideoProducerStream extends StreamCallbacks {
      *         The start of the buffer
      * @param length
      *         The number of bytes to fill
-     * @return The number of bytes filled
+     * @param readResult
+     *         The result of the read
      * @throws ProducerException
      */
-    int getStreamData(final @NonNull byte[] fillBuffer, int offset, int length)
+    void getStreamData(final @NonNull byte[] fillBuffer, int offset, int length, @NonNull final ReadResult readResult)
             throws ProducerException;
 
     /**

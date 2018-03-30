@@ -121,6 +121,7 @@ public class SignInButton extends LinearLayout {
                 isSmallStyle = true;
             }
             buttonText = styledAttributes.getString(R.styleable.SignInButton_text);
+            styledAttributes.recycle();
         } else {
             buttonText = null;
         }

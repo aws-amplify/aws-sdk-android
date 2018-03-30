@@ -51,7 +51,7 @@ public class SocketFactory {
     }
 
     private Socket createSslSocket(final InetAddress address, final int port) throws Exception {
-        final SSLContext context = SSLContext.getInstance("TLSv1");
+        final SSLContext context = SSLContext.getInstance("TLSv1.2");
         context.init(NO_KEY_MANAGERS, trustAllCertificates(), new SecureRandom());
         return context.getSocketFactory().createSocket(address, port);
 

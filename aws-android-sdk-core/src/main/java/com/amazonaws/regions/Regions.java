@@ -32,7 +32,7 @@ public enum Regions {
     /** us-west-1. */
     US_WEST_1("us-west-1"),
 
-    /** eu-west-1. */
+    /** us-west-2. */
     US_WEST_2("us-west-2"),
 
     /** eu-west-1/ */

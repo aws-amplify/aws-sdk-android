@@ -33,7 +33,6 @@
     <string name="password_change_failed">Password change failed.</string>
     <string name="sign_up_success">Sign up succeeded.</string>
     <string name="sign_up_failed">Sign up failed.</string>
-    <string name="login_success">Login succeeded.</string>
     <string name="login_failed">Login failed.</string>
     <string name="sign_up_confirm_success">Sign up confirmation succeeded.</string>
     <string name="sign_up_confirm_failed">Sign up confirmation failed.</string>
