@@ -171,6 +171,7 @@ public class RestUtils {
                 new String[request.getParameters().size()]);
         Arrays.sort(parameterNames);
         char separator = '?';
+        boolean first = true;
         for (final String parameterName : parameterNames) {
             // Skip any parameters that aren't part of the canonical signed
             // string
@@ -180,11 +181,16 @@ public class RestUtils {
                  !additionalQueryParamsToSign.contains(parameterName))
             ) {
                 continue;
+            }      
+            
+            if(first) {
+            	buf.append(separator);
+            	first = false;
             }
-            if (buf.length() == 0) {
-                buf.append(separator);
+            else {
+                buf.append('&');
             }
-
+  
             buf.append(parameterName);
             final String parameterValue = request.getParameters().get(parameterName);
             if (parameterValue != null) {
