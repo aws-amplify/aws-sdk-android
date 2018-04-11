@@ -204,7 +204,7 @@ public class AuthClient {
     @SuppressWarnings("checkstyle:hiddenfield")
     public boolean isAuthenticated() {
         AuthUserSession session =
-                LocalDataManager.getCachedSession(context, pool.getAppWebDomain(), userId, pool.getScopes());
+                LocalDataManager.getCachedSession(context, pool.getAppId(), userId, pool.getScopes());
         return session.isValidForThreshold();
     }
 
