@@ -126,7 +126,7 @@ public class NativeKinesisVideoClient extends AbstractKinesisVideoClient {
                 defaultServiceCallbacks,
                 mLog);
 
-        kinesisVideoProducer.create(deviceInfo);
+        kinesisVideoProducer.createSync(deviceInfo);
 
         super.initialize(deviceInfo);
     }

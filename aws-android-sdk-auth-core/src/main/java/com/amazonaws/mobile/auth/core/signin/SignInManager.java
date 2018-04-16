@@ -20,6 +20,7 @@ package com.amazonaws.mobile.auth.core.signin;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 
@@ -28,6 +29,7 @@ import com.amazonaws.mobile.auth.core.IdentityProvider;
 import com.amazonaws.mobile.auth.core.SignInResultHandler;
 import com.amazonaws.mobile.auth.core.internal.util.ThreadUtils;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,7 +42,7 @@ public class SignInManager {
     /** Log Tag */
     private static final String LOG_TAG = SignInManager.class.getSimpleName();
 
-    /** This map holds the class and the object of the signin providers */
+    /** This map holds the class and the object of the sign-in providers */
     private final Map<Class<? extends SignInProvider>, SignInProvider> signInProviders 
         = new HashMap<Class<? extends SignInProvider>, SignInProvider>();
 
@@ -58,27 +60,25 @@ public class SignInManager {
      * Constructor.
      */
     private SignInManager(final Context context) {
-        if (singleton != null) {
-            throw new AssertionError();
-        }
 
         for (Class<? extends SignInProvider> providerClass : IdentityManager.getDefaultIdentityManager().getSignInProviderClasses()) {
             final SignInProvider provider;
             try {
-                provider = providerClass.newInstance();
+                provider = providerClass.newInstance();  
+                if (provider != null) {
+	                provider.initialize(context, IdentityManager.getDefaultIdentityManager().getConfiguration());
+	                signInProviders.put(providerClass, provider);
+	                if (provider instanceof SignInPermissionsHandler) {
+	                    final SignInPermissionsHandler handler = (SignInPermissionsHandler) provider;
+	                    providersHandlingPermissions.put(handler.getPermissionRequestCode(), handler);
+	                }
+                }
             } catch (final IllegalAccessException ex) {
-                throw new RuntimeException(ex);
+                Log.e(LOG_TAG, "Unable to instantiate " + providerClass.getSimpleName() + " . Skipping this provider.");       
             } catch (final InstantiationException ex) {
-                throw new RuntimeException(ex);
+            	Log.e(LOG_TAG, "Unable to instantiate " + providerClass.getSimpleName() + " . Skipping this provider.");
             }
-            provider.initialize(context, IdentityManager.getDefaultIdentityManager().getConfiguration());
-
-            this.signInProviders.put(providerClass, provider);
             
-            if (provider instanceof SignInPermissionsHandler) {
-                final SignInPermissionsHandler handler = (SignInPermissionsHandler) provider;
-                providersHandlingPermissions.put(handler.getPermissionRequestCode(), handler);
-            }
         }
 
         singleton = this;
@@ -140,11 +140,14 @@ public class SignInManager {
      * @return false if not already signed in, true if the user was signed in with a provider.
      */
     public SignInProvider getPreviouslySignedInProvider() {
+    	
+    	Log.d(LOG_TAG, "Providers: " + Collections.singletonList(signInProviders)); 
 
         for (final SignInProvider provider : signInProviders.values()) {
             // Note: This method may block. This loop could potentially be sped
             // up by running these calls in parallel using an executorService.
             if (provider.refreshUserSignInState()) {
+            	Log.d(LOG_TAG, "Refreshing provider: " + provider.getDisplayName());
                 return provider;
             }
         }
@@ -202,29 +205,34 @@ public class SignInManager {
     private SignInProviderResultAdapter resultsAdapter;
 
     /**
-     * Refresh Cognito credentials with a provider.  Results handlers are always called on the main
-     * thread.
-     *
+     * Federate the token in the Sign-in Provider with Amazon Cognito
+     * Federated Identities to get an identity that can be used to 
+     * access AWS resources.
+     * 
+     * This involves retrieving the token from the Sign-in Provider and putting
+     * into the loginsMap and setting it with the CredentialsProvider.
+     * After setting it, a refresh operation is made to get an identity from Cognito.
+     * 
      * @param activity the calling activity.
-     * @param provider the sign-in provider that was previously signed in.
+     * @param signInProvider the sign-in provider that was previously signed-in.
      * @param resultsHandler the handler to receive results for credential refresh.
      */
     public void refreshCredentialsWithProvider(final Activity activity,
-                                               final IdentityProvider provider,
+                                               final IdentityProvider signInProvider,
                                                final SignInProviderResultHandler resultsHandler) {
 
-        if (provider == null) {
+        if (signInProvider == null) {
             throw new IllegalArgumentException("The sign-in provider cannot be null.");
         }
 
-        if (provider.getToken() == null) {
-            resultsHandler.onError(provider,
+        if (signInProvider.getToken() == null) {
+            resultsHandler.onError(signInProvider,
                 new IllegalArgumentException("Given provider not previously logged in."));
         }
 
         resultsAdapter = new SignInProviderResultAdapter(activity, resultsHandler);
         IdentityManager.getDefaultIdentityManager().setProviderResultsHandler(resultsAdapter);
-        IdentityManager.getDefaultIdentityManager().federateWithProvider(provider);
+        IdentityManager.getDefaultIdentityManager().federateWithProvider(signInProvider);
     }
 
     /**

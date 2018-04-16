@@ -20,7 +20,6 @@ package com.amazonaws.kinesisvideo.producer.jni;
 import com.amazonaws.kinesisvideo.common.logging.Log;
 import com.amazonaws.kinesisvideo.common.preconditions.Preconditions;
 import com.amazonaws.kinesisvideo.producer.*;
-
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import java.io.IOException;
@@ -39,11 +38,6 @@ public class NativeKinesisVideoProducerStream implements KinesisVideoProducerStr
 {
     private class NativeDataInputStream extends InputStream {
         /**
-         * The MSB bit indicating the end of the stream
-         */
-        private static final int END_OF_STREAM_INDICATOR = 0x80000000;
-
-        /**
          * Whether the stream has been closed
          */
         private volatile boolean mStreamClosed = false;
@@ -52,10 +46,12 @@ public class NativeKinesisVideoProducerStream implements KinesisVideoProducerStr
         private final Object mMonitor = new Object();
         private boolean mDataAvailable = false;
         private long mAvailableDataSize = 0;
+        private final ReadResult mReadResult;
         final long mUploadHandle;
 
         public NativeDataInputStream(final long uploadHandle) {
             mUploadHandle = uploadHandle;
+            mReadResult = new ReadResult();
         }
 
         @Override
@@ -91,23 +87,36 @@ public class NativeKinesisVideoProducerStream implements KinesisVideoProducerStr
 
                     // Clear the availability indicator for now
                     mDataAvailable = false;
+                    if (mStreamClosed) {
+                        // Indicate the EOS
+                        bytesRead = -1;
+                        mLog.debug("Being notified to close stream %s with uploadHandle %d",
+                                mStreamInfo.getName(), mUploadHandle);
+                        return bytesRead;
+                    }
                 }
 
                 try {
-                    bytesRead = mKinesisVideoProducerJni.getStreamData(mStreamHandle, b, off, len);
+                    mKinesisVideoProducerJni.getStreamData(mStreamHandle, b, off, len, mReadResult);
+                    bytesRead = mReadResult.getReadBytes();
 
-                    if ((bytesRead & END_OF_STREAM_INDICATOR) == END_OF_STREAM_INDICATOR) {
-                        mLog.info("Received end-of-stream indicator for %s, uploadHandle %d",
-                                mStreamInfo.getName(), mUploadHandle);
-                        // Clear the indicator bit
-                        bytesRead &= ~END_OF_STREAM_INDICATOR;
+                    if (mReadResult.isEndOfStream()) {
+                        if (mReadResult.getUploadHandle() == mUploadHandle) {
+                            // EOS for current session
+                            mLog.info("Received end-of-stream indicator for %s, uploadHandle %d",
+                                    mStreamInfo.getName(), mUploadHandle);
 
-                        // Set the flag so the stream is not valid any longer
-                        mStreamClosed = true;
+                            // Set the flag so the stream is not valid any longer
+                            mStreamClosed = true;
 
-                        if (0 == bytesRead) {
-                            // Indicate the EOS
-                            bytesRead = -1;
+                            if (0 == bytesRead) {
+                                // Indicate the EOS
+                                bytesRead = -1;
+                            }
+                        } else {
+                            mLog.debug("Found end of stream for stream %s on uploadHandle %d for previous uploadHandle %d",
+                                    mStreamInfo.getName(), mUploadHandle, mReadResult.getUploadHandle());
+                            notifyEndOfStream(mReadResult.getUploadHandle());
                         }
                     }
 
@@ -118,6 +127,7 @@ public class NativeKinesisVideoProducerStream implements KinesisVideoProducerStr
                             if (bytesRead != -1 && mAvailableDataSize - bytesRead > 0) {
                                 mDataAvailable = true;
                             }
+
                             break;
                         }
                     }
@@ -167,6 +177,15 @@ public class NativeKinesisVideoProducerStream implements KinesisVideoProducerStr
                 mMonitor.notify();
             }
         }
+
+        protected void endOfReaderThread() {
+            // Unblock the awaiting reading code block
+            synchronized (mMonitor) {
+                mDataAvailable = true;
+                mStreamClosed = true;
+                mMonitor.notify();
+            }
+        }
     }
 
     private final NativeKinesisVideoProducerJni mKinesisVideoProducerJni;
@@ -204,8 +223,11 @@ public class NativeKinesisVideoProducerStream implements KinesisVideoProducerStr
     }
 
     @Override
-    public int getStreamData(@NonNull final byte[] fillBuffer, final int offset, final int length) throws ProducerException {
-        return mKinesisVideoProducerJni.getStreamData(mStreamHandle, fillBuffer, offset, length);
+    public void getStreamData(@NonNull final byte[] fillBuffer,
+                              final int offset,
+                              final int length,
+                              @NonNull final ReadResult readResult) throws ProducerException {
+        mKinesisVideoProducerJni.getStreamData(mStreamHandle, fillBuffer, offset, length, readResult);
     }
 
     @Override
@@ -427,6 +449,15 @@ public class NativeKinesisVideoProducerStream implements KinesisVideoProducerStr
             }
         } catch (final InterruptedException e) {
             throw new ProducerException(e);
+        }
+    }
+
+    private void notifyEndOfStream(final long uploadHandle) {
+        final NativeDataInputStream inputStream = mInputStreamMap.get(uploadHandle);
+        if (inputStream != null) {
+            inputStream.endOfReaderThread();
+        } else {
+            mLog.error("NativeDataInputStream corresponding to upload handle %d is not found.", uploadHandle);
         }
     }
 }

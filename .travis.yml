@@ -8,10 +8,16 @@ android:
     - build-tools-19.1.0
     - android-11
     - android-15
+    - android-21
 sudo: true
 script:
     - sudo rm -f /etc/mavenrc
     - export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m"
+    - export LINUX_21="${basedir}/../android-21-linux.jar"
+    - export ANDROID_21="/../../../../../../usr/local/android-sdk/platforms/android-21/android.jar"
+    - sed -i "s,$LINUX_21,$ANDROID_21," aws-android-sdk-kinesisvideo/pom.xml
+    - sed -i "s,$LINUX_21,$ANDROID_21," aws-android-sdk-pinpoint/pom.xml
+    - cat aws-android-sdk-kinesisvideo/pom.xml
     - mvn clean install -Dmaven.javadoc.skip=true cobertura:cobertura
 
 after_success:
