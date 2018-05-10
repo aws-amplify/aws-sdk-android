@@ -1,5 +1,20 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.19](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.19)
+
+### New Features
+
+* **Amazon Transcribe**
+  * Amazon Transcribe is an automatic speech recognition (ASR) service that makes it easy for developers to add speech to text capability to their applications.
+
+### Bug Fixes
+
+* **Amazon CloudWatch Logs**
+  * Fix signing issue for `AmazonCloudWatchLogsClient`.  See [issue #453](https://github.com/aws/aws-sdk-android/issues/453)
+  
+* **AWS IoT**
+  * Use `ConcurrentHashMap` to avoid `ConcurrentModificationException`. See [PR #330](https://github.com/aws/aws-sdk-android/issues/330)
+
 ## [Release 2.6.18](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.18)
 
 ### Enhancements

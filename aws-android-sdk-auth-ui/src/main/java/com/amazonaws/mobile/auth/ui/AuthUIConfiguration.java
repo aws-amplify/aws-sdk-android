@@ -161,14 +161,14 @@ public final class AuthUIConfiguration implements Serializable {
     }
 
     /**
-     * Class for building the AWSMobileAuthUIConfiguration object
+     * Class for building the AuthUIConfiguration object
      *
      * For example, create the config object with specific attributes.
      *
      *  AuthUIConfiguration config =
      *           new AuthUIConfiguration.Builder()
      *               .userPools(true)
-     *               .logoResId(R.drawable.logo_image)
+     *               .logoResId(logoResourceIdentifier)
      *               .signInButton(CustomSignInButton.class)
      *               .build();
      */

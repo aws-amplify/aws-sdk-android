@@ -382,12 +382,11 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
      *            Cognito
      * @param cibClient Preconfigured CognitoIdentity client to make requests
      *            with
-     * @param region The region to use when contacting Cognito Identity
      */
     public CognitoCredentialsProvider(AWSCognitoIdentityProvider provider,
-            AmazonCognitoIdentityClient cib) {
+            AmazonCognitoIdentityClient cibClient) {
 
-        this.cib = cib;
+        this.cib = cibClient;
         this.identityProvider = provider;
         this.unauthRoleArn = null;
         this.authRoleArn = null;
@@ -835,6 +834,8 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
     /**
      * Gets the user agent string to append to all requests made by this
      * provider. Default is an empty string.
+     * 
+     * @return the user agent string
      */
     protected String getUserAgent() {
         return "";

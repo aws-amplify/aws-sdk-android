@@ -56,6 +56,7 @@ The AWS SDK for Android supports the following AWS services:
 * [Amazon Simple Notification Service (SNS)](https://aws.amazon.com/sns/)
 * [Amazon Simple Queue Service (SQS)](https://aws.amazon.com/sqs/)
 * [Amazon SimpleDB](https://aws.amazon.com/simpledb/)
+* [Amazon Transcribe](https://aws.amazon.com/transcribe/)
 
 ### A Quick Code Example
 
@@ -221,6 +222,7 @@ Note: Cognito Identity authentication abilities are included in the aws-android-
 * ec2 (Amazon EC2),
 * sdb (Amazon Simple DB),
 * polly (Amazon Polly)
+* transcribe (Amazon Transcribe)
 
 #### Using Maven 
 

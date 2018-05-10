@@ -68,9 +68,8 @@ public class SignInUI implements AWSConfigurable {
      * Initiate the login flow and present the AuthUI.
      * Move the nextActivity if sign-in succeeded.
      * 
-     * @param context      The context of the current activity
-     * @param nextActivity The next activity to go when sign-in succeeded
-     * @param canCancel    Ability to cancel the SignIn flow, allow backPress or not.
+     * @param callingActivity The activity
+     * @param nextActivity    The next activity to go when sign-in succeeded
      */
     public LoginBuilder login(final Activity callingActivity,
                               final Class<? extends Activity> nextActivity) {
@@ -84,7 +83,6 @@ public class SignInUI implements AWSConfigurable {
      * Initiate the sign-in flow.
      * Resume any previously signed-in Auth session.
      * Check if the user is not signed in and present the AuthUI screen.
-     * 
      */
     private void presentAuthUI() {
         Log.d(LOG_TAG, "Presenting the SignIn UI.");
@@ -167,7 +165,7 @@ public class SignInUI implements AWSConfigurable {
         }
 
         /**
-         * Invoke {@link AWSMobileClient#initializeWithBuilder(InitializeBuilder)}.
+         * Invoke loginWithBuilder.
          */
         public void execute() {
             loginWithBuilder(this);

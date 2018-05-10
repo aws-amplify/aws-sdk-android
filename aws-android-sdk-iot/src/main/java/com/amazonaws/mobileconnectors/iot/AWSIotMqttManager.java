@@ -44,7 +44,7 @@ import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -540,7 +540,7 @@ public class AWSIotMqttManager {
             throw new IllegalArgumentException("mqttClientId is null or empty");
         }
 
-        this.topicListeners = new HashMap<String, AWSIotMqttTopic>();
+        this.topicListeners = new ConcurrentHashMap<String, AWSIotMqttTopic>();
         this.mqttMessageQueue = new LinkedList<AWSIotMqttQueueMessage>();
         this.accountEndpointPrefix = AwsIotEndpointUtility.getAccountPrefixFromEndpont(endpoint);
         this.mqttClientId = mqttClientId;
@@ -571,7 +571,7 @@ public class AWSIotMqttManager {
             throw new IllegalArgumentException("accountEndpointPrefix is null");
         }
 
-        this.topicListeners = new HashMap<String, AWSIotMqttTopic>();
+        this.topicListeners = new ConcurrentHashMap<String, AWSIotMqttTopic>();
         this.mqttMessageQueue = new LinkedList<AWSIotMqttQueueMessage>();
 
         this.accountEndpointPrefix = accountEndpointPrefix;

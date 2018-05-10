@@ -718,8 +718,9 @@ public class AmazonHttpClient {
                 throw (IOException) e;
             } else {
                 final String errorMessage = "Unable to unmarshall error response (" + e.getMessage()
-                        + "). Response Code: " +
-                        status + ", Response Text: " + response.getStatusText();
+                        + "). Response Code: " + status
+                        + ", Response Text: " + response.getStatusText()
+                        + ", Response Headers: " + response.getHeaders();
                 throw new AmazonClientException(errorMessage, e);
             }
         }
