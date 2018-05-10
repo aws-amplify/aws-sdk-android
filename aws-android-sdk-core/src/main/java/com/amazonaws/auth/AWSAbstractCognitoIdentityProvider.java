@@ -280,6 +280,8 @@ public abstract class AWSAbstractCognitoIdentityProvider implements AWSCognitoId
     /**
      * Gets the user agent string to append to all requests made by this
      * provider. Default is an empty string.
+     * 
+     * @return the user agent string
      */
     protected String getUserAgent() {
         return "";
