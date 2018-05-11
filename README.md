@@ -63,7 +63,7 @@ The AWS SDK for Android supports the following AWS services:
 **Uploading a File to Amazon S3, and then downloading it using Async Task**
 
 
-```
+```java
 
 private class S3Example extends AsyncTask<Void,Void,Void>{
         @Override
@@ -222,7 +222,6 @@ Note: Cognito Identity authentication abilities are included in the aws-android-
 * ec2 (Amazon EC2),
 * sdb (Amazon Simple DB),
 * polly (Amazon Polly)
-* transcribe (Amazon Transcribe)
 
 #### Using Maven 
 
@@ -232,22 +231,22 @@ The AWS Mobile SDK for Android (since version 2.1.3) supports Apache Maven. A Ma
 Here's an example pom.xm showing how you can add Amazon Cognito Identity, Amazon S3, and Amazon Pinpoint to your project:
 
 
-```
+```xml
 <dependencies>
     <dependency>
         <groupid>com.amazonaws</groupid>
         <artifactid>aws-android-sdk-core</artifactid>
-        <version>[2.2,3.0)</version>
+        <version>[2.6,3.0)</version>
     </dependency>
     <dependency>
         <groupid>com.amazonaws</groupid>
         <artifactid>aws-android-sdk-s3</artifactid>
-        <version>[2.2,3.0)</version>
+        <version>[2.6,3.0)</version>
     </dependency>
     <dependency>
         <groupid>com.amazonaws</groupid>
         <artifactid>aws-android-sdk-pinpoint</artifactid>
-        <version>[2.2,3.0)</version>
+        <version>[2.6,3.0)</version>
     </dependency>
 </dependencies>
 ```
