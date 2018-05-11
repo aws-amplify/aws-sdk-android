@@ -47,6 +47,7 @@ import java.security.UnrecoverableKeyException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.net.SocketFactory;
 
