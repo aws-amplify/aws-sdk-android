@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -240,7 +240,7 @@ class TransferDBBase {
     /**
      * @param uri The Uri of a table.
      * @param valuesArray A array of values to insert.
-     * @return Number of rows inserted.
+     * @return The mainUploadId of the multipart transfer records
      */
     public int bulkInsert(Uri uri, ContentValues[] valuesArray) {
         final int uriType = uriMatcher.match(uri);
@@ -281,5 +281,3 @@ class TransferDBBase {
     }
 
 }
-
-

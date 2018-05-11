@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,9 +30,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * operation and persist results in a specific collection. Then, a user can
  * search the collection for faces in the user-specific container.
  * </p>
+ * <note>
  * <p>
- * For an example, see <a>example1</a>.
+ * Collection names are case-sensitive.
  * </p>
+ * </note>
  * <p>
  * This operation requires permissions to perform the
  * <code>rekognition:CreateCollection</code> action.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ public class Gender implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>MALE, FEMALE
+     * <b>Allowed Values: </b>Male, Female
      */
     private String value;
 
@@ -49,7 +49,7 @@ public class Gender implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>MALE, FEMALE
+     * <b>Allowed Values: </b>Male, Female
      *
      * @return <p>
      *         Gender of the face.
@@ -66,7 +66,7 @@ public class Gender implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>MALE, FEMALE
+     * <b>Allowed Values: </b>Male, Female
      *
      * @param value <p>
      *            Gender of the face.
@@ -86,7 +86,7 @@ public class Gender implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>MALE, FEMALE
+     * <b>Allowed Values: </b>Male, Female
      *
      * @param value <p>
      *            Gender of the face.
@@ -106,7 +106,7 @@ public class Gender implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>MALE, FEMALE
+     * <b>Allowed Values: </b>Male, Female
      *
      * @param value <p>
      *            Gender of the face.
@@ -126,7 +126,7 @@ public class Gender implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>MALE, FEMALE
+     * <b>Allowed Values: </b>Male, Female
      *
      * @param value <p>
      *            Gender of the face.

@@ -174,4 +174,12 @@ public class ChallengeContinuation implements CognitoIdentityProviderContinuatio
             nextStep.run();
         }
     }
+
+    /**
+     * Over-write the current challenge session code.
+     * @param session REQUIRED: The new session code.
+     */
+    public void setResponseSessionCode(String session) {
+        challengeResult.setSession(session);
+    }
 }

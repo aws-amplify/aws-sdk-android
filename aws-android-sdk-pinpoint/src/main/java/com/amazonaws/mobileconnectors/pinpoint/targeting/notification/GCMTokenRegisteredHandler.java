@@ -1,5 +1,5 @@
 /**
- * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,11 +18,5 @@ package com.amazonaws.mobileconnectors.pinpoint.targeting.notification;
 /**
  * interface to handle the gcm token registration.
  */
-public interface GCMTokenRegisteredHandler {
-    /**
-     * callback when token is registered.
-     *
-     * @param deviceToken the gcm device token.
-     */
-    void tokenRegistered(final String deviceToken);
+public interface GCMTokenRegisteredHandler extends DeviceTokenRegisteredHandler {
 }

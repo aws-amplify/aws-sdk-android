@@ -27,12 +27,12 @@ public class RegionUtilsTest {
     @Test
     public void testGetRegionByEndpoint() {
 
-        Region usWest2 = RegionUtils.getRegionByEndpoint("s3-us-west-2.amazonaws.com");
+        Region usWest2 = RegionUtils.getRegionByEndpoint("s3.us-west-2.amazonaws.com");
         Region standard = RegionUtils.getRegionByEndpoint("s3.amazonaws.com");
 
         assertEquals(usWest2.getName(), "us-west-2");
         assertEquals(usWest2.getServiceEndpoint(ServiceAbbreviations.S3),
-                "s3-us-west-2.amazonaws.com");
+                "s3.us-west-2.amazonaws.com");
         assertEquals(standard.getName(), "us-east-1");
         assertEquals(standard.getServiceEndpoint(ServiceAbbreviations.S3), "s3.amazonaws.com");
     }

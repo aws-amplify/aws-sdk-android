@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,9 +29,6 @@ public class UpdateCampaignResultJsonUnmarshaller implements
     public UpdateCampaignResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         UpdateCampaignResult updateCampaignResult = new UpdateCampaignResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            updateCampaignResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return updateCampaignResult;
     }
 

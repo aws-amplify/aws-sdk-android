@@ -1,5 +1,5 @@
 /**
- * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -50,18 +50,12 @@ public class SessionClient {
      * The eventType recorded for session resume events
      */
     public static final String SESSION_RESUME_EVENT_TYPE = "_session.resume";
-    // - Session Timer Constants ------------------------=
-    protected static final long DEFAULT_RESUME_DELAY = (long) 5e3;
-    protected static final long DEFAULT_RESTART_DELAY = (long) 30e3;
-    protected static final String RESUME_DELAY_CONFIG_KEY = "sessionResumeDelay";
-    protected static final String RESTART_DELAY_CONFIG_KEY = "sessionRestartDelay";
     protected static final String NO_SESSION_ID = "00000000-00000000";
     protected static final String SHARED_PREFS_SESSION_KEY = "AWSPinpoint.Session";
     private static final Log log = LogFactory
         .getLog(SessionClient.class);
     protected final PinpointContext pinpointContext;
-    private final long resumeDelay;
-    private final long restartDelay;
+
     protected Session session;
 
     /**
@@ -88,9 +82,6 @@ public class SessionClient {
                 pinpointContext.getAnalyticsClient().setSessionStartTime(0);
             }
         }
-
-        this.restartDelay = pinpointContext.getConfiguration().optLong(RESTART_DELAY_CONFIG_KEY, DEFAULT_RESTART_DELAY);
-        this.resumeDelay = pinpointContext.getConfiguration().optLong(RESUME_DELAY_CONFIG_KEY, DEFAULT_RESUME_DELAY);
     }
 
     /**
@@ -253,14 +244,6 @@ public class SessionClient {
      */
     protected Session getSession() {
         return this.session;
-    }
-
-    public long getRestartDelay() {
-        return this.restartDelay;
-    }
-
-    public long getResumeDelay() {
-        return this.resumeDelay;
     }
 
     /**

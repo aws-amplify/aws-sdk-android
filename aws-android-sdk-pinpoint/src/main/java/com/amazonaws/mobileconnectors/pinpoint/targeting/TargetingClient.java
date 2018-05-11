@@ -1,5 +1,5 @@
 /**
- * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,12 +20,12 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.MissingResourceException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.json.JSONArray;
@@ -73,7 +73,7 @@ public class TargetingClient {
      * @param executor A thread pool executor
      */
     public TargetingClient(final PinpointContext context,
-                           ThreadPoolExecutor executor) {
+                           ExecutorService executor) {
         checkNotNull(context, "A valid pinpointContext must be provided");
         this.endpointRunnableQueue = executor;
         this.context = context;
@@ -152,17 +152,9 @@ public class TargetingClient {
             return;
         }
 
-        String locale;
-        try {
-            locale = endpointProfile.getDemographic().getLocale().getISO3Country();
-        } catch (final MissingResourceException exception) {
-            log.debug("Locale getISO3Country failed, falling back to getCountry.");
-            locale = endpointProfile.getDemographic().getLocale().getCountry();
-        }
-
         final EndpointDemographic demographic = new EndpointDemographic()
             .withAppVersion(endpointProfile.getDemographic().getAppVersion())
-            .withLocale(locale)
+            .withLocale(endpointProfile.getDemographic().getLocale().toString())
             .withTimezone(endpointProfile.getDemographic().getTimezone())
             .withMake(endpointProfile.getDemographic().getMake())
             .withModel(endpointProfile.getDemographic().getModel())
@@ -177,8 +169,13 @@ public class TargetingClient {
             .withRegion(endpointProfile.getLocation().getRegion())
             .withCountry(endpointProfile.getLocation().getCountry());
 
-        final EndpointUser user = new EndpointUser();
-        user.setUserId(endpointProfile.getUser().getUserId());
+        final EndpointUser user;
+        if (endpointProfile.getUser().getUserId() == null) {
+            user = null;
+        } else {
+            user = new EndpointUser();
+            user.setUserId(endpointProfile.getUser().getUserId());
+        }
 
         final EndpointRequest endpointRequest = new EndpointRequest().withChannelType(endpointProfile.getChannelType())
                                                                      .withAddress(endpointProfile.getAddress())

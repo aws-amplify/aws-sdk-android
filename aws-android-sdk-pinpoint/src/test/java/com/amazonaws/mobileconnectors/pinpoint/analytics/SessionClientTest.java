@@ -23,6 +23,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
@@ -31,10 +32,6 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.core.configuration.Andro
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.MockSystem;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
 
-import static com.amazonaws.mobileconnectors.pinpoint.analytics.SessionClient.DEFAULT_RESTART_DELAY;
-import static com.amazonaws.mobileconnectors.pinpoint.analytics.SessionClient.DEFAULT_RESUME_DELAY;
-import static com.amazonaws.mobileconnectors.pinpoint.analytics.SessionClient.RESTART_DELAY_CONFIG_KEY;
-import static com.amazonaws.mobileconnectors.pinpoint.analytics.SessionClient.RESUME_DELAY_CONFIG_KEY;
 import static com.amazonaws.mobileconnectors.pinpoint.analytics.SessionClient.SESSION_PAUSE_EVENT_TYPE;
 import static com.amazonaws.mobileconnectors.pinpoint.analytics.SessionClient.SESSION_RESUME_EVENT_TYPE;
 import static com.amazonaws.mobileconnectors.pinpoint.analytics.SessionClient.SESSION_START_EVENT_TYPE;
@@ -79,18 +76,11 @@ public class SessionClientTest extends MobileAnalyticsTestBase {
     public void setup() {
         MockitoAnnotations.initMocks(this);
 
-        when(mockConfiguration.optLong(eq(RESTART_DELAY_CONFIG_KEY),
-                                              eq(DEFAULT_RESTART_DELAY)))
-                .thenReturn(300l);
-        when(mockConfiguration.optLong(eq(RESUME_DELAY_CONFIG_KEY),
-                                              eq(DEFAULT_RESUME_DELAY)))
-                .thenReturn(100l);
-
         this.mockPinpointContext = new AnalyticsContextBuilder()
                                            .withSdkInfo(SDK_NAME, SDK_VERSION)
                                            .withUniqueIdValue(UNIQUE_ID)
                                            .withConfiguration(mockConfiguration)
-                                           .withContext(Robolectric.application
+                                           .withContext(RuntimeEnvironment.application
                                                                 .getApplicationContext())
                                            .withSystem(new MockSystem("SESSION_CLIENT.test"))
                                            .build();
@@ -127,29 +117,20 @@ public class SessionClientTest extends MobileAnalyticsTestBase {
         String firstSessionId = target.getSession().getSessionID();
         long firstStartTime = target.getSession().getStartTime();
         verify(mockAnalyticsClient, times(1)).setSessionId(firstSessionId);
-        verify(mockAnalyticsClient, times(1))
-                .setSessionStartTime(firstStartTime);
+        verify(mockAnalyticsClient, times(1)).setSessionStartTime(firstStartTime);
 
-        try {
-            Thread.sleep(target.getRestartDelay() + 50l);
-            long pTime = target.getSession().getStartTime();
-            target.startSession();
-            System.out.print(target.getRestartDelay() + "");
-            assertTrue(System.currentTimeMillis() - pTime >
-                               target.getRestartDelay());
+        target.getSession().getStartTime();
+        target.startSession();
 
-            String secondSessionId = target.getSession().getSessionID();
-            long secondStartTime = target.getSession().getStartTime();
+        String secondSessionId = target.getSession().getSessionID();
+        long secondStartTime = target.getSession().getStartTime();
 
-            assertNotEquals(firstSessionId, secondSessionId);
-            assertNotEquals(firstStartTime, secondStartTime);
+        assertNotEquals(firstSessionId, secondSessionId);
+        assertNotEquals(firstStartTime, secondStartTime);
 
-            verify(mockAnalyticsClient, times(1)).setSessionId(secondSessionId);
-            verify(mockAnalyticsClient, times(1))
-                    .setSessionStartTime(secondStartTime);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        verify(mockAnalyticsClient, times(1)).setSessionId(secondSessionId);
+        verify(mockAnalyticsClient, times(1)).setSessionStartTime(secondStartTime);
+
     }
 
     @Test
@@ -158,27 +139,23 @@ public class SessionClientTest extends MobileAnalyticsTestBase {
         target = new SessionClient(mockPinpointContext);
         target.startSession();
 
-        try {
-            Session session = target.getSession();
-            assertThat(session.isPaused(), is(false));
-            Thread.sleep(target.getRestartDelay() + 50l);
-            target.startSession();
+        Session session = target.getSession();
+        assertThat(session.isPaused(), is(false));
+        target.startSession();
 
-            // assert the old session was paused and the a new session is now
-            // active
-            assertThat(session.isPaused(), is(true));
-            assertThat(target.getSession(), is(not(session)));
+        // assert the old session was paused and the a new session is now
+        // active
+        assertThat(session.isPaused(), is(true));
+        assertThat(target.getSession(), is(not(session)));
 
-            verify(mockAnalyticsClient, times(2)).createEvent(
-                                                                     eq(SESSION_START_EVENT_TYPE));
-            verify(mockAnalyticsClient, times(1)).createEvent(
-                                                                     eq(SESSION_STOP_EVENT_TYPE),
-                                                                     any(Long.class),
-                                                                     any(Long.class),
-                                                                     any(Long.class));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        verify(mockAnalyticsClient, times(2)).createEvent(
+            eq(SESSION_START_EVENT_TYPE));
+        verify(mockAnalyticsClient, times(1)).createEvent(
+            eq(SESSION_STOP_EVENT_TYPE),
+            any(Long.class),
+            any(Long.class),
+            any(Long.class));
+
     }
 
     @Test
@@ -457,51 +434,5 @@ public class SessionClientTest extends MobileAnalyticsTestBase {
         target.resumeSession();
         assertEquals(target.getSessionState(),
                             SessionState.INACTIVE);
-    }
-
-    @Test
-    public void
-    resumeSession_sessionIsPaused_firesResumeEvent_ifWithinTimeInterval() {
-        target.startSession();
-        target.pauseSession();
-
-        long pTime = target.getSession().getStopTime();
-        target.resumeSession();
-
-        assertTrue(System.currentTimeMillis() - pTime <
-                           target.getResumeDelay());
-        verify(mockAnalyticsClient, times(1)).createEvent(
-                                                                 SESSION_RESUME_EVENT_TYPE);
-    }
-
-    @Test
-    public void
-    resumeSession_sessionIsPaused_stateIsChanged_ifWithinTimeInterval() {
-        target.startSession();
-        target.pauseSession();
-
-        long pTime = target.getSession().getStopTime();
-        target.resumeSession();
-
-        assertTrue(System.currentTimeMillis() - pTime <
-                           target.getResumeDelay());
-        assertEquals(target.getSessionState(),
-                            SessionState.ACTIVE);
-    }
-
-    @Test
-    public void
-    resumeSession_sessionIsPaused_doesNotStartNewSession_ifWithinTimeInterval() {
-        target.startSession();
-        target.pauseSession();
-
-        long pTime = target.getSession().getStopTime();
-        target.resumeSession();
-
-        assertTrue(System.currentTimeMillis() - pTime <
-                           target.getResumeDelay());
-        verify(mockAnalyticsClient, times(1)).createEvent(
-                                                                 eq(SESSION_START_EVENT_TYPE));
-
     }
 }

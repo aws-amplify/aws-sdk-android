@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -62,6 +62,12 @@ class ActivityResponseJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("SuccessfulEndpointCount")) {
                 activityResponse.setSuccessfulEndpointCount(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("TimezonesCompletedCount")) {
+                activityResponse.setTimezonesCompletedCount(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("TimezonesTotalCount")) {
+                activityResponse.setTimezonesTotalCount(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("TotalEndpointCount")) {
                 activityResponse.setTotalEndpointCount(IntegerJsonUnmarshaller.getInstance()

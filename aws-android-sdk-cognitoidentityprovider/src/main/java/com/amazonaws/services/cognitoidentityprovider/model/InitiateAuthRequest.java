@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -60,6 +60,20 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * <b>Pattern: </b>[\w+]+<br/>
      */
     private String clientId;
+
+    /**
+     * <p>
+     * Base64 encoded string for user context data collected for risk evaluation
+     * </p>
+     */
+    private UserContextDataType userContextData;
+
+    /**
+     * <p>
+     * The pinpoint installation id.
+     * </p>
+     */
+    private AnalyticsMetadataType analyticsMetadata;
 
     /**
      * <p>
@@ -385,6 +399,99 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
+     * <p>
+     * Base64 encoded string for user context data collected for risk evaluation
+     * </p>
+     *
+     * @return <p>
+     *         Base64 encoded string for user context data collected for risk
+     *         evaluation
+     *         </p>
+     */
+    public UserContextDataType getUserContextData() {
+        return userContextData;
+    }
+
+    /**
+     * <p>
+     * Base64 encoded string for user context data collected for risk evaluation
+     * </p>
+     *
+     * @param userContextData <p>
+     *            Base64 encoded string for user context data collected for risk
+     *            evaluation
+     *            </p>
+     */
+    public void setUserContextData(UserContextDataType userContextData) {
+        this.userContextData = userContextData;
+    }
+
+    /**
+     * <p>
+     * Base64 encoded string for user context data collected for risk evaluation
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param userContextData <p>
+     *            Base64 encoded string for user context data collected for risk
+     *            evaluation
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public InitiateAuthRequest withUserContextData(UserContextDataType userContextData) {
+        this.userContextData = userContextData;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The pinpoint installation id.
+     * </p>
+     *
+     * @return <p>
+     *         The pinpoint installation id.
+     *         </p>
+     */
+    public AnalyticsMetadataType getAnalyticsMetadata() {
+        return analyticsMetadata;
+    }
+
+    /**
+     * <p>
+     * The pinpoint installation id.
+     * </p>
+     *
+     * @param analyticsMetadata <p>
+     *            The pinpoint installation id.
+     *            </p>
+     */
+    public void setAnalyticsMetadata(AnalyticsMetadataType analyticsMetadata) {
+        this.analyticsMetadata = analyticsMetadata;
+    }
+
+    /**
+     * <p>
+     * The pinpoint installation id.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param analyticsMetadata <p>
+     *            The pinpoint installation id.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public InitiateAuthRequest withAnalyticsMetadata(AnalyticsMetadataType analyticsMetadata) {
+        this.analyticsMetadata = analyticsMetadata;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -402,7 +509,11 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
         if (getClientMetadata() != null)
             sb.append("ClientMetadata: " + getClientMetadata() + ",");
         if (getClientId() != null)
-            sb.append("ClientId: " + getClientId());
+            sb.append("ClientId: " + getClientId() + ",");
+        if (getUserContextData() != null)
+            sb.append("UserContextData: " + getUserContextData() + ",");
+        if (getAnalyticsMetadata() != null)
+            sb.append("AnalyticsMetadata: " + getAnalyticsMetadata());
         sb.append("}");
         return sb.toString();
     }
@@ -418,6 +529,10 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
         hashCode = prime * hashCode
                 + ((getClientMetadata() == null) ? 0 : getClientMetadata().hashCode());
         hashCode = prime * hashCode + ((getClientId() == null) ? 0 : getClientId().hashCode());
+        hashCode = prime * hashCode
+                + ((getUserContextData() == null) ? 0 : getUserContextData().hashCode());
+        hashCode = prime * hashCode
+                + ((getAnalyticsMetadata() == null) ? 0 : getAnalyticsMetadata().hashCode());
         return hashCode;
     }
 
@@ -449,6 +564,16 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
         if (other.getClientId() == null ^ this.getClientId() == null)
             return false;
         if (other.getClientId() != null && other.getClientId().equals(this.getClientId()) == false)
+            return false;
+        if (other.getUserContextData() == null ^ this.getUserContextData() == null)
+            return false;
+        if (other.getUserContextData() != null
+                && other.getUserContextData().equals(this.getUserContextData()) == false)
+            return false;
+        if (other.getAnalyticsMetadata() == null ^ this.getAnalyticsMetadata() == null)
+            return false;
+        if (other.getAnalyticsMetadata() != null
+                && other.getAnalyticsMetadata().equals(this.getAnalyticsMetadata()) == false)
             return false;
         return true;
     }

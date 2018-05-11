@@ -1,5 +1,5 @@
 /**
- * Copyright 2013-2017 Amazon.com,
+ * Copyright 2013-2018 Amazon.com,
  * Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Amazon Software License (the "License").
@@ -25,6 +25,7 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.auth.IdentityChangedListener;
+import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.cognito.exceptions.RegistrationFailedException;
 import com.amazonaws.mobileconnectors.cognito.exceptions.UnsubscribeFailedException;
 import com.amazonaws.mobileconnectors.cognito.internal.storage.CognitoSyncStorage;
@@ -43,6 +44,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.JSONObject;
 
 /**
  * This saves {@link Dataset} in SQLite database. Here is a sample usage:
@@ -140,6 +142,41 @@ public class CognitoSyncManager {
                 }
             }
         });
+    }
+
+    /**
+     * Constructs a CognitoSyncManager object.
+     *
+     * @param context a context of the app
+     * @param provider a credentials provider
+     * @param awsConfig holds the region of the client
+     */
+    public CognitoSyncManager(Context context,
+                              CognitoCachingCredentialsProvider provider,
+                              AWSConfiguration awsConfig) {
+        this(context, getRegionFromConfig(awsConfig), provider,
+                getClientConfigFromConfig(awsConfig));
+    }
+
+    private static Regions getRegionFromConfig(AWSConfiguration awsConfig) {
+        if (awsConfig != null) {
+            try {
+                final JSONObject cognitoConfig = awsConfig.optJsonObject("Cognito");
+                return Regions.fromName(cognitoConfig.getString("Region"));
+            } catch (Exception e) {
+                throw new IllegalArgumentException("Failed to read Cognito "
+                        + "please check your setup or awsconfiguration.json file", e);
+            }
+        }
+        throw new IllegalArgumentException("AWSConfiguration cannot be null");
+    }
+
+    private static ClientConfiguration getClientConfigFromConfig(AWSConfiguration awsConfig) {
+        ClientConfiguration clientConfig = new ClientConfiguration();
+        if (awsConfig != null) {
+            clientConfig.setUserAgent(awsConfig.getUserAgent());
+        }
+        return clientConfig;
     }
 
     /**

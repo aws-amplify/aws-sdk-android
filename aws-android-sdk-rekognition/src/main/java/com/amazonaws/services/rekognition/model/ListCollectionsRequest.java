@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * subsequent request to fetch the next set of collection IDs.
  * </p>
  * <p>
- * For an example, see <a>example1</a>.
+ * For an example, see <a>list-collection-procedure</a>.
  * </p>
  * <p>
  * This operation requires permissions to perform the

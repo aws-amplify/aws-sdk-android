@@ -20,6 +20,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.amazonaws.ClientConfiguration;
+import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityClient;
 import com.amazonaws.services.cognitoidentity.model.NotAuthorizedException;
@@ -31,7 +32,7 @@ import java.util.Map;
 
 /**
  * This credentials provider is intended for Android applications. It offers the
- * ability to persist the Cognito identity id in {@link SharedPreferences}.
+ * ability to persist the Cognito identity id in {@link android.content.SharedPreferences}.
  * Furthermore, it caches session credentials so as to reduce the number of
  * network requests. This is the provider to use with a custom identity
  * provider, which should be an extension of AWSAbstractCognitoIdentityProvider.
@@ -198,6 +199,48 @@ public class CognitoCachingCredentialsProvider
      * which will then be returned by this class's {@link #getCredentials()}
      * method.
      * <p>
+     * Note: if you haven't yet associated your IAM roles with your identity
+     * pool, please do so via the Cognito console before using this constructor.
+     * You will get an InvalidIdentityPoolConfigurationException if you use it
+     * and have not. The existing constructor (mirroring this one but with roles
+     * and an account id) will work without doing so, but will not use the
+     * enhanced flow.
+     * </p>
+     *
+     * Example json file:
+     * {
+     *     "CredentialsProvider": {
+     *         "CognitoIdentity": {
+     *             "Default": {
+     *                 "PoolId": "us-east-1:example-pool-id1234",
+     *                 "Region": "us-east-1"
+     *             }
+     *         }
+     *     }
+     * }
+     *
+     * @param context The Android context to be used for the caching
+     * @param awsConfiguration The configuration holding you identity pool id
+     *                         and the region to use when contacting
+     *                         Cognito Identity
+     */
+    public CognitoCachingCredentialsProvider(Context context, AWSConfiguration awsConfiguration) {
+        super(awsConfiguration);
+        if (context == null) {
+            throw new IllegalArgumentException("context can't be null");
+        }
+        this.prefs = context.getSharedPreferences(DEFAULT_SHAREDPREFERENCES_NAME,
+                Context.MODE_PRIVATE);
+        initialize();
+    }
+
+    /**
+     * Constructs a new {@link CognitoCachingCredentialsProvider}, which will
+     * use the specified Amazon Cognito identity pool to make a request to
+     * Cognito, using the enhanced flow, to get short lived session credentials,
+     * which will then be returned by this class's {@link #getCredentials()}
+     * method.
+     * <p>
      * This version of the constructor allows you to specify a client
      * configuration for the Amazon Cognito client.
      * </p>
@@ -245,9 +288,9 @@ public class CognitoCachingCredentialsProvider
      * @param context The Android context to be used for the caching
      * @param accountId The AWS accountId for the account with Amazon Cognito
      * @param identityPoolId The Amazon Cogntio identity pool to use
-     * @param unauthRoleArn The ARN of the IAM Role that will be assumed when
+     * @param unauthArn The ARN of the IAM Role that will be assumed when
      *            unauthenticated
-     * @param authRoleArn The ARN of the IAM Role that will be assumed when
+     * @param authArn The ARN of the IAM Role that will be assumed when
      *            authenticated
      * @param cibClient Preconfigured CognitoIdentity client to make requests
      *            with
@@ -400,7 +443,7 @@ public class CognitoCachingCredentialsProvider
     /**
      * Gets the Cognito identity id of the user. The first time when this method
      * is called, a network request will be made to retrieve a new identity id.
-     * After that it's saved in {@link SharedPreferences}. Please don't call it
+     * After that it's saved in {@link android.content.SharedPreferences}. Please don't call it
      * in the main thread.
      *
      * @return identity id of the user
@@ -565,7 +608,7 @@ public class CognitoCachingCredentialsProvider
     }
 
     /**
-     * Save the credentials to SharedPreferences
+     * Save the credentials to {@link android.content.SharedPreferences}.
      */
     private void saveCredentials(AWSSessionCredentials sessionCredentials,
             long time) {
@@ -582,7 +625,7 @@ public class CognitoCachingCredentialsProvider
 
     /**
      * clear cached identity id and credentials Save the Amazon Cognito Identity
-     * Id to SharedPreferences
+     * Id to {@link android.content.SharedPreferences}.
      */
     private void saveIdentityId(String identityId) {
         Log.d(TAG, "Saving identity id to SharedPreferences");

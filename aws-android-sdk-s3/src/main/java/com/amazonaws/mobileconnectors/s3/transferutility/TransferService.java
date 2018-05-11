@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ public class TransferService extends Service {
     static final int MSG_EXEC = 100;
     static final int MSG_CHECK = 200;
     static final int MSG_DISCONNECT = 300;
-    private static final int MINUTE_IN_MILLIS = 60 * 1000;
+    static final int MSG_CONNECT = 400;
 
     /*
      * Constants of intent action sent to the service.
@@ -68,21 +68,19 @@ public class TransferService extends Service {
     static final String INTENT_ACTION_TRANSFER_RESUME = "resume_transfer";
     static final String INTENT_ACTION_TRANSFER_CANCEL = "cancel_transfer";
     static final String INTENT_BUNDLE_TRANSFER_ID = "id";
-    static final String INTENT_BUNDLE_S3_REFERENCE_KEY = "s3_reference_key";
+    static final String INTENT_BUNDLE_TRANSFER_UTILITY_OPTIONS = "transfer_utility_options";
 
     /*
      * Create a list of the transfer states depicting the transfers that
      * are unfinished.
      */
-    static final TransferState[] UNFINISHED_TRANSFER_STATES = new TransferState[]{
+    static final TransferState[] UNFINISHED_TRANSFER_STATES = new TransferState[] {
         TransferState.WAITING,
         TransferState.WAITING_FOR_NETWORK,
         TransferState.IN_PROGRESS,
         TransferState.RESUMED_WAITING
     };
-
-    private AmazonS3 s3;
-
+    
     /*
      * updateHandler manages update requests in a queue. It updates transfers
      * from database and start/stop threads if needed.
@@ -95,24 +93,53 @@ public class TransferService extends Service {
      * will update transfer records in database directly.
      */
     private NetworkInfoReceiver networkInfoReceiver;
+    
     /*
      * A flag indicates whether a database scan is necessary. This is true when
      * service starts and when network is disconnected.
      */
     private boolean shouldScan = true;
+    
     /*
      * A flag indicates whether the service is started the first time.
      */
-    private boolean isFirst = true;
+    private boolean isReceiverNotRegistered = true;
+    
     /*
-     * A timestamp when the service is last known active. The service will stop
+     * A time-stamp when the service is last known active. The service will stop
      * after a minute of inactivity.
      */
     private volatile long lastActiveTime;
 
+    /**
+     * The identifier that identifies the invocation of onStartCommand.
+     * This is used while stopping the service.
+     */
     private volatile int startId;
+    
+    /**
+     * Reference to the transfer database utility.
+     */
     private TransferDBUtil dbUtil;
+    
+    /**
+     * The status updater that updates the state and the
+     * progress of the transfer in memory and persists to the
+     * database.
+     */
     TransferStatusUpdater updater;
+    
+    /**
+     * The time interval to wait before checking for the
+     * unfinished transfers that are not tracked in memory
+     * and start them.
+     * 
+     * Default is 1-minute. 
+     * Scan will be skipped if -1 is passed.
+     * Can be changed by passing in through the
+     * {@link TransferUtilityOptions}
+     */
+    private long transferServiceCheckTimeInterval;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -132,7 +159,7 @@ public class TransferService extends Service {
         super.onCreate();
 
         LOGGER.debug("Starting Transfer Service");
-        dbUtil = new TransferDBUtil(getApplicationContext());
+        dbUtil = new TransferDBUtil(this);
         updater = new TransferStatusUpdater(dbUtil);
 
         handlerThread = new HandlerThread(TAG + "-AWSTransferUpdateHandlerThread");
@@ -163,7 +190,7 @@ public class TransferService extends Service {
             if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
                 final boolean networkConnected = isNetworkConnected();
                 LOGGER.debug("Network connected: " + networkConnected);
-                handler.sendEmptyMessage(networkConnected ? MSG_CHECK : MSG_DISCONNECT);
+                handler.sendEmptyMessage(networkConnected ? MSG_CONNECT : MSG_DISCONNECT);
             }
         }
 
@@ -183,24 +210,46 @@ public class TransferService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         this.startId = startId;
 
+        if (isReceiverNotRegistered) {
+            try {
+                LOGGER.info("registering receiver");
+                this.registerReceiver(this.networkInfoReceiver,
+                    new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+            } catch (final IllegalArgumentException iae) {
+                LOGGER.warn("Ignoring the exception trying to register the receiver for connectivity change.");
+            } catch (final IllegalStateException ise) {
+                LOGGER.warn("Ignoring the leak in registering the receiver.");
+            } finally {
+                isReceiverNotRegistered = false;
+            }
+        }
+
         if (intent == null) {
             return START_REDELIVER_INTENT;
         }
 
-        final String keyForS3Client = intent.getStringExtra(INTENT_BUNDLE_S3_REFERENCE_KEY);
-        s3 = S3ClientReference.get(keyForS3Client);
+        final Integer id = intent.getIntExtra(INTENT_BUNDLE_TRANSFER_ID, -1);
+        if (id < 0) {
+            LOGGER.error("The intent sent by the TransferUtility doesn't have the id.");
+            return START_NOT_STICKY;
+        }
+        
+        final AmazonS3 s3 = S3ClientReference.get(id);
         if (s3 == null) {
-            LOGGER.warn("TransferService can't get s3 client, and it will stop.");
-            stopSelf(startId);
+            LOGGER.error("TransferService can't get s3 client and not acting on the id.");
             return START_NOT_STICKY;
         }
 
+        final TransferUtilityOptions tuOptions = (TransferUtilityOptions) 
+            intent.getSerializableExtra(INTENT_BUNDLE_TRANSFER_UTILITY_OPTIONS);
+        
+        TransferThreadPool.init(tuOptions.getTransferThreadPoolSize());
+        transferServiceCheckTimeInterval = tuOptions.getTransferServiceCheckTimeInterval();
+        LOGGER.debug("ThreadPoolSize: " + tuOptions.getTransferThreadPoolSize()
+            + " transferServiceCheckTimeInterval: " + tuOptions.getTransferServiceCheckTimeInterval());
+
         updateHandler.sendMessage(updateHandler.obtainMessage(MSG_EXEC, intent));
-        if (isFirst) {
-            registerReceiver(networkInfoReceiver, new IntentFilter(
-                    ConnectivityManager.CONNECTIVITY_ACTION));
-            isFirst = false;
-        }
+        
         /*
          * The service will not restart if it's killed by system.
          */
@@ -210,17 +259,25 @@ public class TransferService extends Service {
     @Override
     public void onDestroy() {
         try {
-            unregisterReceiver(networkInfoReceiver);
+            if (networkInfoReceiver != null) {
+                LOGGER.info("unregistering receiver");
+                this.unregisterReceiver(this.networkInfoReceiver);
+                isReceiverNotRegistered = true;
+            }
         } catch (final IllegalArgumentException iae) {
             /*
              * Ignore on purpose, just in case the service stops before
              * onStartCommand where the receiver is registered.
              */
-            LOGGER.warn("exception trying to destroy the service", iae);
+            LOGGER.warn("exception trying to destroy the service");
         }
+
+        pauseAll();
         handlerThread.quit();
         TransferThreadPool.closeThreadPool();
         S3ClientReference.clear();
+
+        LOGGER.info("Closing the database.");
         dbUtil.closeDB();
         super.onDestroy();
     }
@@ -240,6 +297,8 @@ public class TransferService extends Service {
                 execCommand((Intent) msg.obj);
             } else if (msg.what == MSG_DISCONNECT) {
                 pauseAllForNetwork();
+            } else if (msg.what == MSG_CONNECT) {
+                checkTransfersOnNetworkReconnect();
             } else {
                 LOGGER.error("Unknown command: " + msg.what);
             }
@@ -252,23 +311,36 @@ public class TransferService extends Service {
      */
     void checkTransfers() {
         // scan database for previously unfinished transfers
-        if (shouldScan && networkInfoReceiver.isNetworkConnected() && s3 != null) {
-            loadTransfersFromDB();
+        if (shouldScan && networkInfoReceiver.isNetworkConnected()) {
+            loadAndResumeTransfersFromDB(UNFINISHED_TRANSFER_STATES);
             shouldScan = false;
         }
-        removeCompletedTransfers();
 
         // update last active time if service is active
         if (isActive()) {
             lastActiveTime = System.currentTimeMillis();
-            // check after one minute
-            updateHandler.sendEmptyMessageDelayed(MSG_CHECK, MINUTE_IN_MILLIS);
+            
+            // check after transferServiceCheckTimeInterval milliseconds.
+            updateHandler.sendEmptyMessageDelayed(MSG_CHECK, transferServiceCheckTimeInterval);
         } else {
             /*
-             * Stop the service when it's been idled for more than a minute.
+             * Stop the service when it's been idled for more than the time interval supplied
+             * through {@link TransferUtilityConfiguration}. The default is 1-minute.
              */
             LOGGER.debug("Stop self");
             stopSelf(startId);
+        }
+    }
+
+    /**
+     * Check for the transfers that are in WAITING_FOR_NETWORK state
+     * and resume them to execution.
+     */
+    void checkTransfersOnNetworkReconnect() {
+        if (networkInfoReceiver.isNetworkConnected()) {
+            loadAndResumeTransfersFromDB(new TransferState[] {TransferState.WAITING_FOR_NETWORK});
+        } else {
+            LOGGER.error("Network Connect message received but not connected to network.");
         }
     }
 
@@ -282,11 +354,12 @@ public class TransferService extends Service {
         lastActiveTime = System.currentTimeMillis();
 
         final String action = intent.getAction();
-        final int id = intent.getIntExtra(INTENT_BUNDLE_TRANSFER_ID, 0);
+        final Integer id = intent.getIntExtra(INTENT_BUNDLE_TRANSFER_ID, 0);
+        final AmazonS3 s3 = S3ClientReference.get(id);
 
-        if (id == 0) {
-            LOGGER.error("Invalid id: " + id);
-            return;
+        if (!TransferDBUtil.getTransferDBBase().getDatabase().isOpen()) {
+            LOGGER.debug("Database is not open. Opening the database before proceeding.");
+            this.dbUtil = new TransferDBUtil(this);
         }
 
         if (INTENT_ACTION_TRANSFER_ADD.equals(action)) {
@@ -354,27 +427,7 @@ public class TransferService extends Service {
                 return true;
             }
         }
-        return System.currentTimeMillis() - lastActiveTime < MINUTE_IN_MILLIS;
-    }
-
-    /**
-     * Remove completed transfers from status updater.
-     */
-    private void removeCompletedTransfers() {
-        final List<Integer> ids = new ArrayList<Integer>();
-        for (final TransferRecord transfer : updater.getTransfers().values()) {
-            if (TransferState.COMPLETED.equals(transfer.state)) {
-                /*
-                 * Add completed transfers to remove. Removing transfers with
-                 * updater.removeTransfer(transfer.id) will result in
-                 * ConcurrentModificationException
-                 */
-                ids.add(transfer.id);
-            }
-        }
-        for (final Integer id : ids) {
-            updater.removeTransfer(id);
-        }
+        return System.currentTimeMillis() - lastActiveTime < transferServiceCheckTimeInterval;
     }
 
     /**
@@ -382,53 +435,83 @@ public class TransferService extends Service {
      * previous session or are new transfers waiting for network. It skips any
      * transfer that is already tracked by the status updater. Also starts
      * transfers whose states indicate running but aren't.
+     *
+     * The transfers would start only if the AmazonS3Client is present in the
+     * S3ClientReference map. If the AmazonS3Client is not present, this would
+     * skip starting the transfer.
+     *
+     * @param transferStates The list of the transfer states 
      */
-    void loadTransfersFromDB() {
-        LOGGER.debug("Loading transfers from database");
+    void loadAndResumeTransfersFromDB(final TransferState[] transferStates) {
+        LOGGER.debug("Loading transfers from database...");
         Cursor c = null;
         int count = 0;
 
+        // Read the transfer ids from the cursor and store in this list.
+        List<Integer> transferIds = new ArrayList<Integer>();
+
+        // Query for the unfinished transfers and store them in a list
         try {
-            // Query for the unfinshed transfers
-            c = dbUtil.queryTransfersWithTypeAndStates(TransferType.ANY, UNFINISHED_TRANSFER_STATES);
+            c = dbUtil.queryTransfersWithTypeAndStates(TransferType.ANY,
+                                                       transferStates);
             while (c.moveToNext()) {
                 final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
-                final TransferState state = TransferState.getState(c.getString(c
-                        .getColumnIndexOrThrow(TransferTable.COLUMN_STATE)));
-                final int partNumber = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM));
-                // add unfinished transfers
-                if (partNumber == 0) {
-                    if (updater.getTransfer(id) == null) {
-                        final TransferRecord transfer = new TransferRecord(id);
-                        transfer.updateFromDB(c);
-                        if (transfer.start(s3, dbUtil, updater, networkInfoReceiver)) {
-                            updater.addTransfer(transfer);
-                            count++;
-                        }
-                    } else {
-                        final TransferRecord transfer = updater.getTransfer(id);
-                        if (!transfer.isRunning()) {
-                            transfer.start(s3, dbUtil, updater, networkInfoReceiver);
-                        }
-                    }
+                // If the transfer status updater doesn't track it, load the transfer record
+                // from the database and add it to the updater to track
+                if (updater.getTransfer(id) == null) {
+                    final TransferRecord transfer = new TransferRecord(id);
+                    transfer.updateFromDB(c);
+                    updater.addTransfer(transfer);
+                    count++;
                 }
+                transferIds.add(id);
             }
         } finally {
             if (c != null) {
+                LOGGER.debug("Closing the cursor for loadAndResumeTransfersFromDB");
                 c.close();
             }
         }
-        LOGGER.debug(count + " transfers are loaded from database");
-    }
 
+        // Iterate over each transfer id and resume them if it's not running.
+        try {
+            for (final Integer id: transferIds) {
+                final AmazonS3 s3 = S3ClientReference.get(id);
+                if (s3 != null) {
+                    // Check if it's running. If not, start the transfer.
+                    final TransferRecord transfer = updater.getTransfer(id);
+                    if (transfer != null && !transfer.isRunning()) {
+                        transfer.start(s3, dbUtil, updater, networkInfoReceiver);
+                    }
+                }
+            }
+        } catch (final Exception exception) {
+            LOGGER.error("Error in resuming the transfers." + exception.getMessage());
+        }
+
+        LOGGER.debug(count + " transfers are loaded from database.");
+    }
+    
     /**
-     * Pause all running transfers and set state to WAITING_FOR_NETWORK.
+     * Pause all running transfers and set the state to WAITING_FOR_NETWORK.
+     */
+    void pauseAll() {
+        for (final TransferRecord transferRecord : updater.getTransfers().values()) {
+            final AmazonS3 s3 = S3ClientReference.get(transferRecord.id);
+            if (s3 != null && transferRecord != null) {
+                transferRecord.pause(s3, updater);
+            }
+        }
+    }
+    
+    /**
+     * Pause all running transfers and set the state to WAITING_FOR_NETWORK.
      */
     void pauseAllForNetwork() {
-        for (final TransferRecord transfer : updater.getTransfers().values()) {
-            if (s3 != null && transfer != null && transfer.pause(s3, updater)) {
-                // change status to waiting
-                updater.updateState(transfer.id, TransferState.WAITING_FOR_NETWORK);
+        for (final TransferRecord transferRecord : updater.getTransfers().values()) {
+            final AmazonS3 s3 = S3ClientReference.get(transferRecord.id);
+            if (s3 != null && transferRecord != null && transferRecord.pause(s3, updater)) {
+                updater.updateState(transferRecord.id, TransferState.WAITING_FOR_NETWORK);
             }
         }
         shouldScan = true;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -51,10 +51,6 @@ public class GetCampaignVersionRequestMarshaller implements
                 getCampaignVersionRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.GET);
 
-        if (getCampaignVersionRequest.getAccept() != null) {
-            request.addHeader("accept",
-                    StringUtils.fromString(getCampaignVersionRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/campaigns/{campaign-id}/versions/{version}";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

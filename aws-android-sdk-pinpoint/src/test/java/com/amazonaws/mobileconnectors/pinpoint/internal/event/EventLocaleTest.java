@@ -25,6 +25,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
@@ -61,7 +62,7 @@ public class EventLocaleTest {
                                               .withUniqueIdValue(UNIQUE_ID)
                                               .withConfiguration(mockConfiguration)
                                               .withDeviceDetails(mockDeviceDetails)
-                                              .withContext(Robolectric.application
+                                              .withContext(RuntimeEnvironment.application
                                                                    .getApplicationContext())
                                               .build();
         return mockContext;

@@ -23,6 +23,8 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.polly.internal.AmazonPollyCustomPresigner;
+import com.amazonaws.services.polly.internal.AmazonPollyCustomRequest;
 import com.amazonaws.services.polly.model.OutputFormat;
 import com.amazonaws.services.polly.model.SynthesizeSpeechPresignRequest;
 import com.amazonaws.services.polly.model.TextType;
@@ -134,6 +136,13 @@ public class AmazonPollyPresigningClientTest {
         }
         Assert.assertTrue("Missing expected parameters: " + expectedQueryParameterKeys.toString(),
                 expectedQueryParameterKeys.isEmpty());
+    }
+    
+    @Test
+    public void testGetPresignedUrlEncodedParameters() throws URISyntaxException {
+        AmazonPollyCustomRequest<SynthesizeSpeechPresignRequest> req = new AmazonPollyCustomRequest("polly");
+        req.addParameter("test-key", "test-value");        
+        Assert.assertNotNull(AmazonPollyCustomPresigner.encodeParameters(req));
     }
 
     @Test

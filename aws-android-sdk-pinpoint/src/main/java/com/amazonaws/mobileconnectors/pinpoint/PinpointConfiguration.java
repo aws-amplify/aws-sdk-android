@@ -1,5 +1,5 @@
 /**
- * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -16,11 +16,15 @@
 package com.amazonaws.mobileconnectors.pinpoint;
 
 import android.content.Context;
-
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.AppLevelOptOutProvider;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.pinpoint.model.ChannelType;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutorService;
 
 /**
  * The PinpointConfiguration class allows developers to configure the Pinpoint SDK.
@@ -30,12 +34,35 @@ public class PinpointConfiguration {
     private Context context;
     private String appId;
     private Regions region;
+    private ChannelType channelType;
     private boolean enableEvents = true;
     private boolean enableTargeting = true;
+    private boolean shouldPostNotificationsInForeground = false;
     private ClientConfiguration clientConfiguration;
     private AWSCredentialsProvider credentialsProvider;
     private PinpointCallback<PinpointManager> initCompletionCallback;
     private AppLevelOptOutProvider appLevelOptOutProvider;
+    private ExecutorService executor;
+
+    /**
+     * Create an {@link PinpointConfiguration} object with the specified parameters.
+     *
+     * @param context             the android context object.
+     * @param appId               the Pinpoint Application Id.
+     * @param region              the AWS {@link Regions} for the Pinpoint service.
+     * @param channelType         the Pinpoint Channel type.
+     * @param credentialsProvider The {@link AWSCredentialsProvider} to be used for the service.
+     */
+    public PinpointConfiguration(final Context context, final String appId,
+                                 final Regions region, final ChannelType channelType,
+                                 final AWSCredentialsProvider credentialsProvider) {
+        this.clientConfiguration = new ClientConfiguration();
+        this.context = context;
+        this.appId = appId;
+        this.credentialsProvider = credentialsProvider;
+        this.region = region;
+        this.channelType = channelType;
+    }
 
     /**
      * Create an {@link PinpointConfiguration} object with the specified parameters.
@@ -45,14 +72,56 @@ public class PinpointConfiguration {
      * @param region              the AWS {@link Regions} for the Pinpoint service.
      * @param credentialsProvider The {@link AWSCredentialsProvider} to be used for the service.
      */
+    @Deprecated
     public PinpointConfiguration(final Context context, final String appId,
-                                        final Regions region,
-                                        final AWSCredentialsProvider credentialsProvider) {
+                                 final Regions region,
+                                 final AWSCredentialsProvider credentialsProvider) {
         this.clientConfiguration = new ClientConfiguration();
         this.context = context;
         this.appId = appId;
         this.credentialsProvider = credentialsProvider;
         this.region = region;
+        this.channelType = ChannelType.GCM;
+    }
+
+    /**
+     * Create an {@link PinpointConfiguration} object with the specified parameters.
+     *
+     * @param context             the android context object.
+     * @param credentialsProvider The {@link AWSCredentialsProvider} to be used for the service.
+     * @param awsConfiguration    the aws configuration.
+     */
+    public PinpointConfiguration(final Context context,
+                                 final AWSCredentialsProvider credentialsProvider,
+                                 final AWSConfiguration awsConfiguration) {
+        this.clientConfiguration = new ClientConfiguration();
+        this.context = context;
+        try {
+            final JSONObject pinpointConfig = awsConfiguration.optJsonObject("PinpointAnalytics");
+            this.appId = pinpointConfig.getString("AppId");
+            this.channelType = convertToChannelType(pinpointConfig.optString("ChannelType"));
+            this.region = Regions.fromName(pinpointConfig.getString("Region"));
+
+            final String userAgent = awsConfiguration.getUserAgent();
+            String currentUserAgent = this.clientConfiguration.getUserAgent();
+            currentUserAgent = currentUserAgent != null ? currentUserAgent : "";
+
+            if (userAgent != null) {
+                this.clientConfiguration.setUserAgent(currentUserAgent.trim() + " " + userAgent);
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Failed to read AppId or Region"
+                    + " from AWSConfiguration please check your setup or "
+                    + "awsconfiguration.json file", e);
+        }
+        this.credentialsProvider = credentialsProvider;
+    }
+
+    private ChannelType convertToChannelType(String channel) {
+        if (channel.isEmpty())
+            return  ChannelType.GCM;
+
+        return ChannelType.fromValue(channel);
     }
 
     /**
@@ -111,7 +180,7 @@ public class PinpointConfiguration {
     /**
      * Enables pinpoint and endpoint registration.
      *
-     * @param enablePinpoint true if Pinpoint to be enabled. Defaults to false.
+     * @param enablePinpoint true if Pinpoint to be enabled. Defaults to true.
      * @return the current PinpointConfiguration instance
      */
     @SuppressWarnings("checkstyle:hiddenfield")
@@ -250,4 +319,61 @@ public class PinpointConfiguration {
         return this;
     }
 
+    /**
+     * The channel type supported by this configuration.
+     * @return The channel type.
+     */
+    public ChannelType getChannelType() {
+        return channelType;
+    }
+
+    /**
+     * The channel type configured.
+     *
+     * @param channelType The ChannelType for this service.
+     * @return the current PinpointConfiguration instance.
+     */
+    @SuppressWarnings("checkstyle:hiddenfield")
+    public PinpointConfiguration withChannelType(final ChannelType channelType) {
+        this.channelType = channelType;
+        return this;
+    }
+
+    /**
+     * Configuration option to post notifications even if the app is in the foreground. By default notifications are
+     * not posted when the app is in the foreground.
+     *
+     * @param shouldPostNotificationsInForeground true to indicate to post app notifications in the foreground.
+     * @return the current PinpointConfiguration instance.
+     */
+    @SuppressWarnings("checkstyle:hiddenfield")
+    public PinpointConfiguration withPostNotificationsInForeground(final boolean shouldPostNotificationsInForeground) {
+        this.shouldPostNotificationsInForeground = shouldPostNotificationsInForeground;
+        return this;
+    }
+
+    /**
+     * The custom executor used for handlers in the TargetingClient.
+     * @return The custom executor.
+     */
+    public ExecutorService getExecutor() {
+        return executor;
+    }
+
+    /**
+     * Custom executor to use for handlers in the TargetingClient.
+     * @param executorService the executor to use.
+     * @return the current PinpointConfiguration instance.
+     */
+    public PinpointConfiguration withExecutor(final ExecutorService executorService) {
+        this.executor = executorService;
+        return this;
+    }
+
+    /**
+     * @return true if notifications should be posted while the app is in the foreground, otherwise false.
+     */
+    public boolean getShouldPostNotificationsInForeground() {
+        return shouldPostNotificationsInForeground;
+    }
 }

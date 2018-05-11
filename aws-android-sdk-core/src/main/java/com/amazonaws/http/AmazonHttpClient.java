@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -718,8 +718,9 @@ public class AmazonHttpClient {
                 throw (IOException) e;
             } else {
                 final String errorMessage = "Unable to unmarshall error response (" + e.getMessage()
-                        + "). Response Code: " +
-                        status + ", Response Text: " + response.getStatusText();
+                        + "). Response Code: " + status
+                        + ", Response Text: " + response.getStatusText()
+                        + ", Response Headers: " + response.getHeaders();
                 throw new AmazonClientException(errorMessage, e);
             }
         }

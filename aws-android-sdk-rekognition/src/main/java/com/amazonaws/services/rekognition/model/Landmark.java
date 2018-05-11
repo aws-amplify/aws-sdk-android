@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,18 +29,17 @@ public class Landmark implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>EYE_LEFT, EYE_RIGHT, NOSE, MOUTH_LEFT,
-     * MOUTH_RIGHT, LEFT_EYEBROW_LEFT, LEFT_EYEBROW_RIGHT, LEFT_EYEBROW_UP,
-     * RIGHT_EYEBROW_LEFT, RIGHT_EYEBROW_RIGHT, RIGHT_EYEBROW_UP, LEFT_EYE_LEFT,
-     * LEFT_EYE_RIGHT, LEFT_EYE_UP, LEFT_EYE_DOWN, RIGHT_EYE_LEFT,
-     * RIGHT_EYE_RIGHT, RIGHT_EYE_UP, RIGHT_EYE_DOWN, NOSE_LEFT, NOSE_RIGHT,
-     * MOUTH_UP, MOUTH_DOWN, LEFT_PUPIL, RIGHT_PUPIL
+     * <b>Allowed Values: </b>eyeLeft, eyeRight, nose, mouthLeft, mouthRight,
+     * leftEyeBrowLeft, leftEyeBrowRight, leftEyeBrowUp, rightEyeBrowLeft,
+     * rightEyeBrowRight, rightEyeBrowUp, leftEyeLeft, leftEyeRight, leftEyeUp,
+     * leftEyeDown, rightEyeLeft, rightEyeRight, rightEyeUp, rightEyeDown,
+     * noseLeft, noseRight, mouthUp, mouthDown, leftPupil, rightPupil
      */
     private String type;
 
     /**
      * <p>
-     * x-coordinate from the top left of the landmark expressed as the ration of
+     * x-coordinate from the top left of the landmark expressed as the ratio of
      * the width of the image. For example, if the images is 700x200 and the
      * x-coordinate of the landmark is at 350 pixels, this value is 0.5.
      * </p>
@@ -49,7 +48,7 @@ public class Landmark implements Serializable {
 
     /**
      * <p>
-     * y-coordinate from the top left of the landmark expressed as the ration of
+     * y-coordinate from the top left of the landmark expressed as the ratio of
      * the height of the image. For example, if the images is 700x200 and the
      * y-coordinate of the landmark is at 100 pixels, this value is 0.5.
      * </p>
@@ -62,12 +61,11 @@ public class Landmark implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>EYE_LEFT, EYE_RIGHT, NOSE, MOUTH_LEFT,
-     * MOUTH_RIGHT, LEFT_EYEBROW_LEFT, LEFT_EYEBROW_RIGHT, LEFT_EYEBROW_UP,
-     * RIGHT_EYEBROW_LEFT, RIGHT_EYEBROW_RIGHT, RIGHT_EYEBROW_UP, LEFT_EYE_LEFT,
-     * LEFT_EYE_RIGHT, LEFT_EYE_UP, LEFT_EYE_DOWN, RIGHT_EYE_LEFT,
-     * RIGHT_EYE_RIGHT, RIGHT_EYE_UP, RIGHT_EYE_DOWN, NOSE_LEFT, NOSE_RIGHT,
-     * MOUTH_UP, MOUTH_DOWN, LEFT_PUPIL, RIGHT_PUPIL
+     * <b>Allowed Values: </b>eyeLeft, eyeRight, nose, mouthLeft, mouthRight,
+     * leftEyeBrowLeft, leftEyeBrowRight, leftEyeBrowUp, rightEyeBrowLeft,
+     * rightEyeBrowRight, rightEyeBrowUp, leftEyeLeft, leftEyeRight, leftEyeUp,
+     * leftEyeDown, rightEyeLeft, rightEyeRight, rightEyeUp, rightEyeDown,
+     * noseLeft, noseRight, mouthUp, mouthDown, leftPupil, rightPupil
      *
      * @return <p>
      *         Type of the landmark.
@@ -84,12 +82,11 @@ public class Landmark implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>EYE_LEFT, EYE_RIGHT, NOSE, MOUTH_LEFT,
-     * MOUTH_RIGHT, LEFT_EYEBROW_LEFT, LEFT_EYEBROW_RIGHT, LEFT_EYEBROW_UP,
-     * RIGHT_EYEBROW_LEFT, RIGHT_EYEBROW_RIGHT, RIGHT_EYEBROW_UP, LEFT_EYE_LEFT,
-     * LEFT_EYE_RIGHT, LEFT_EYE_UP, LEFT_EYE_DOWN, RIGHT_EYE_LEFT,
-     * RIGHT_EYE_RIGHT, RIGHT_EYE_UP, RIGHT_EYE_DOWN, NOSE_LEFT, NOSE_RIGHT,
-     * MOUTH_UP, MOUTH_DOWN, LEFT_PUPIL, RIGHT_PUPIL
+     * <b>Allowed Values: </b>eyeLeft, eyeRight, nose, mouthLeft, mouthRight,
+     * leftEyeBrowLeft, leftEyeBrowRight, leftEyeBrowUp, rightEyeBrowLeft,
+     * rightEyeBrowRight, rightEyeBrowUp, leftEyeLeft, leftEyeRight, leftEyeUp,
+     * leftEyeDown, rightEyeLeft, rightEyeRight, rightEyeUp, rightEyeDown,
+     * noseLeft, noseRight, mouthUp, mouthDown, leftPupil, rightPupil
      *
      * @param type <p>
      *            Type of the landmark.
@@ -109,12 +106,11 @@ public class Landmark implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>EYE_LEFT, EYE_RIGHT, NOSE, MOUTH_LEFT,
-     * MOUTH_RIGHT, LEFT_EYEBROW_LEFT, LEFT_EYEBROW_RIGHT, LEFT_EYEBROW_UP,
-     * RIGHT_EYEBROW_LEFT, RIGHT_EYEBROW_RIGHT, RIGHT_EYEBROW_UP, LEFT_EYE_LEFT,
-     * LEFT_EYE_RIGHT, LEFT_EYE_UP, LEFT_EYE_DOWN, RIGHT_EYE_LEFT,
-     * RIGHT_EYE_RIGHT, RIGHT_EYE_UP, RIGHT_EYE_DOWN, NOSE_LEFT, NOSE_RIGHT,
-     * MOUTH_UP, MOUTH_DOWN, LEFT_PUPIL, RIGHT_PUPIL
+     * <b>Allowed Values: </b>eyeLeft, eyeRight, nose, mouthLeft, mouthRight,
+     * leftEyeBrowLeft, leftEyeBrowRight, leftEyeBrowUp, rightEyeBrowLeft,
+     * rightEyeBrowRight, rightEyeBrowUp, leftEyeLeft, leftEyeRight, leftEyeUp,
+     * leftEyeDown, rightEyeLeft, rightEyeRight, rightEyeUp, rightEyeDown,
+     * noseLeft, noseRight, mouthUp, mouthDown, leftPupil, rightPupil
      *
      * @param type <p>
      *            Type of the landmark.
@@ -134,12 +130,11 @@ public class Landmark implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>EYE_LEFT, EYE_RIGHT, NOSE, MOUTH_LEFT,
-     * MOUTH_RIGHT, LEFT_EYEBROW_LEFT, LEFT_EYEBROW_RIGHT, LEFT_EYEBROW_UP,
-     * RIGHT_EYEBROW_LEFT, RIGHT_EYEBROW_RIGHT, RIGHT_EYEBROW_UP, LEFT_EYE_LEFT,
-     * LEFT_EYE_RIGHT, LEFT_EYE_UP, LEFT_EYE_DOWN, RIGHT_EYE_LEFT,
-     * RIGHT_EYE_RIGHT, RIGHT_EYE_UP, RIGHT_EYE_DOWN, NOSE_LEFT, NOSE_RIGHT,
-     * MOUTH_UP, MOUTH_DOWN, LEFT_PUPIL, RIGHT_PUPIL
+     * <b>Allowed Values: </b>eyeLeft, eyeRight, nose, mouthLeft, mouthRight,
+     * leftEyeBrowLeft, leftEyeBrowRight, leftEyeBrowUp, rightEyeBrowLeft,
+     * rightEyeBrowRight, rightEyeBrowUp, leftEyeLeft, leftEyeRight, leftEyeUp,
+     * leftEyeDown, rightEyeLeft, rightEyeRight, rightEyeUp, rightEyeDown,
+     * noseLeft, noseRight, mouthUp, mouthDown, leftPupil, rightPupil
      *
      * @param type <p>
      *            Type of the landmark.
@@ -159,12 +154,11 @@ public class Landmark implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>EYE_LEFT, EYE_RIGHT, NOSE, MOUTH_LEFT,
-     * MOUTH_RIGHT, LEFT_EYEBROW_LEFT, LEFT_EYEBROW_RIGHT, LEFT_EYEBROW_UP,
-     * RIGHT_EYEBROW_LEFT, RIGHT_EYEBROW_RIGHT, RIGHT_EYEBROW_UP, LEFT_EYE_LEFT,
-     * LEFT_EYE_RIGHT, LEFT_EYE_UP, LEFT_EYE_DOWN, RIGHT_EYE_LEFT,
-     * RIGHT_EYE_RIGHT, RIGHT_EYE_UP, RIGHT_EYE_DOWN, NOSE_LEFT, NOSE_RIGHT,
-     * MOUTH_UP, MOUTH_DOWN, LEFT_PUPIL, RIGHT_PUPIL
+     * <b>Allowed Values: </b>eyeLeft, eyeRight, nose, mouthLeft, mouthRight,
+     * leftEyeBrowLeft, leftEyeBrowRight, leftEyeBrowUp, rightEyeBrowLeft,
+     * rightEyeBrowRight, rightEyeBrowUp, leftEyeLeft, leftEyeRight, leftEyeUp,
+     * leftEyeDown, rightEyeLeft, rightEyeRight, rightEyeUp, rightEyeDown,
+     * noseLeft, noseRight, mouthUp, mouthDown, leftPupil, rightPupil
      *
      * @param type <p>
      *            Type of the landmark.
@@ -180,14 +174,14 @@ public class Landmark implements Serializable {
 
     /**
      * <p>
-     * x-coordinate from the top left of the landmark expressed as the ration of
+     * x-coordinate from the top left of the landmark expressed as the ratio of
      * the width of the image. For example, if the images is 700x200 and the
      * x-coordinate of the landmark is at 350 pixels, this value is 0.5.
      * </p>
      *
      * @return <p>
      *         x-coordinate from the top left of the landmark expressed as the
-     *         ration of the width of the image. For example, if the images is
+     *         ratio of the width of the image. For example, if the images is
      *         700x200 and the x-coordinate of the landmark is at 350 pixels,
      *         this value is 0.5.
      *         </p>
@@ -198,14 +192,14 @@ public class Landmark implements Serializable {
 
     /**
      * <p>
-     * x-coordinate from the top left of the landmark expressed as the ration of
+     * x-coordinate from the top left of the landmark expressed as the ratio of
      * the width of the image. For example, if the images is 700x200 and the
      * x-coordinate of the landmark is at 350 pixels, this value is 0.5.
      * </p>
      *
      * @param x <p>
      *            x-coordinate from the top left of the landmark expressed as
-     *            the ration of the width of the image. For example, if the
+     *            the ratio of the width of the image. For example, if the
      *            images is 700x200 and the x-coordinate of the landmark is at
      *            350 pixels, this value is 0.5.
      *            </p>
@@ -216,7 +210,7 @@ public class Landmark implements Serializable {
 
     /**
      * <p>
-     * x-coordinate from the top left of the landmark expressed as the ration of
+     * x-coordinate from the top left of the landmark expressed as the ratio of
      * the width of the image. For example, if the images is 700x200 and the
      * x-coordinate of the landmark is at 350 pixels, this value is 0.5.
      * </p>
@@ -226,7 +220,7 @@ public class Landmark implements Serializable {
      *
      * @param x <p>
      *            x-coordinate from the top left of the landmark expressed as
-     *            the ration of the width of the image. For example, if the
+     *            the ratio of the width of the image. For example, if the
      *            images is 700x200 and the x-coordinate of the landmark is at
      *            350 pixels, this value is 0.5.
      *            </p>
@@ -240,14 +234,14 @@ public class Landmark implements Serializable {
 
     /**
      * <p>
-     * y-coordinate from the top left of the landmark expressed as the ration of
+     * y-coordinate from the top left of the landmark expressed as the ratio of
      * the height of the image. For example, if the images is 700x200 and the
      * y-coordinate of the landmark is at 100 pixels, this value is 0.5.
      * </p>
      *
      * @return <p>
      *         y-coordinate from the top left of the landmark expressed as the
-     *         ration of the height of the image. For example, if the images is
+     *         ratio of the height of the image. For example, if the images is
      *         700x200 and the y-coordinate of the landmark is at 100 pixels,
      *         this value is 0.5.
      *         </p>
@@ -258,14 +252,14 @@ public class Landmark implements Serializable {
 
     /**
      * <p>
-     * y-coordinate from the top left of the landmark expressed as the ration of
+     * y-coordinate from the top left of the landmark expressed as the ratio of
      * the height of the image. For example, if the images is 700x200 and the
      * y-coordinate of the landmark is at 100 pixels, this value is 0.5.
      * </p>
      *
      * @param y <p>
      *            y-coordinate from the top left of the landmark expressed as
-     *            the ration of the height of the image. For example, if the
+     *            the ratio of the height of the image. For example, if the
      *            images is 700x200 and the y-coordinate of the landmark is at
      *            100 pixels, this value is 0.5.
      *            </p>
@@ -276,7 +270,7 @@ public class Landmark implements Serializable {
 
     /**
      * <p>
-     * y-coordinate from the top left of the landmark expressed as the ration of
+     * y-coordinate from the top left of the landmark expressed as the ratio of
      * the height of the image. For example, if the images is 700x200 and the
      * y-coordinate of the landmark is at 100 pixels, this value is 0.5.
      * </p>
@@ -286,7 +280,7 @@ public class Landmark implements Serializable {
      *
      * @param y <p>
      *            y-coordinate from the top left of the landmark expressed as
-     *            the ration of the height of the image. For example, if the
+     *            the ratio of the height of the image. For example, if the
      *            images is 700x200 and the y-coordinate of the landmark is at
      *            100 pixels, this value is 0.5.
      *            </p>

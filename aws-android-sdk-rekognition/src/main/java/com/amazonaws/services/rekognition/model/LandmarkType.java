@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,31 +23,31 @@ import java.util.Map;
  */
 public enum LandmarkType {
 
-    EYE_LEFT("EYE_LEFT"),
-    EYE_RIGHT("EYE_RIGHT"),
-    NOSE("NOSE"),
-    MOUTH_LEFT("MOUTH_LEFT"),
-    MOUTH_RIGHT("MOUTH_RIGHT"),
-    LEFT_EYEBROW_LEFT("LEFT_EYEBROW_LEFT"),
-    LEFT_EYEBROW_RIGHT("LEFT_EYEBROW_RIGHT"),
-    LEFT_EYEBROW_UP("LEFT_EYEBROW_UP"),
-    RIGHT_EYEBROW_LEFT("RIGHT_EYEBROW_LEFT"),
-    RIGHT_EYEBROW_RIGHT("RIGHT_EYEBROW_RIGHT"),
-    RIGHT_EYEBROW_UP("RIGHT_EYEBROW_UP"),
-    LEFT_EYE_LEFT("LEFT_EYE_LEFT"),
-    LEFT_EYE_RIGHT("LEFT_EYE_RIGHT"),
-    LEFT_EYE_UP("LEFT_EYE_UP"),
-    LEFT_EYE_DOWN("LEFT_EYE_DOWN"),
-    RIGHT_EYE_LEFT("RIGHT_EYE_LEFT"),
-    RIGHT_EYE_RIGHT("RIGHT_EYE_RIGHT"),
-    RIGHT_EYE_UP("RIGHT_EYE_UP"),
-    RIGHT_EYE_DOWN("RIGHT_EYE_DOWN"),
-    NOSE_LEFT("NOSE_LEFT"),
-    NOSE_RIGHT("NOSE_RIGHT"),
-    MOUTH_UP("MOUTH_UP"),
-    MOUTH_DOWN("MOUTH_DOWN"),
-    LEFT_PUPIL("LEFT_PUPIL"),
-    RIGHT_PUPIL("RIGHT_PUPIL");
+    EyeLeft("eyeLeft"),
+    EyeRight("eyeRight"),
+    Nose("nose"),
+    MouthLeft("mouthLeft"),
+    MouthRight("mouthRight"),
+    LeftEyeBrowLeft("leftEyeBrowLeft"),
+    LeftEyeBrowRight("leftEyeBrowRight"),
+    LeftEyeBrowUp("leftEyeBrowUp"),
+    RightEyeBrowLeft("rightEyeBrowLeft"),
+    RightEyeBrowRight("rightEyeBrowRight"),
+    RightEyeBrowUp("rightEyeBrowUp"),
+    LeftEyeLeft("leftEyeLeft"),
+    LeftEyeRight("leftEyeRight"),
+    LeftEyeUp("leftEyeUp"),
+    LeftEyeDown("leftEyeDown"),
+    RightEyeLeft("rightEyeLeft"),
+    RightEyeRight("rightEyeRight"),
+    RightEyeUp("rightEyeUp"),
+    RightEyeDown("rightEyeDown"),
+    NoseLeft("noseLeft"),
+    NoseRight("noseRight"),
+    MouthUp("mouthUp"),
+    MouthDown("mouthDown"),
+    LeftPupil("leftPupil"),
+    RightPupil("rightPupil");
 
     private String value;
 
@@ -63,31 +63,31 @@ public enum LandmarkType {
     private static final Map<String, LandmarkType> enumMap;
     static {
         enumMap = new HashMap<String, LandmarkType>();
-        enumMap.put("EYE_LEFT", EYE_LEFT);
-        enumMap.put("EYE_RIGHT", EYE_RIGHT);
-        enumMap.put("NOSE", NOSE);
-        enumMap.put("MOUTH_LEFT", MOUTH_LEFT);
-        enumMap.put("MOUTH_RIGHT", MOUTH_RIGHT);
-        enumMap.put("LEFT_EYEBROW_LEFT", LEFT_EYEBROW_LEFT);
-        enumMap.put("LEFT_EYEBROW_RIGHT", LEFT_EYEBROW_RIGHT);
-        enumMap.put("LEFT_EYEBROW_UP", LEFT_EYEBROW_UP);
-        enumMap.put("RIGHT_EYEBROW_LEFT", RIGHT_EYEBROW_LEFT);
-        enumMap.put("RIGHT_EYEBROW_RIGHT", RIGHT_EYEBROW_RIGHT);
-        enumMap.put("RIGHT_EYEBROW_UP", RIGHT_EYEBROW_UP);
-        enumMap.put("LEFT_EYE_LEFT", LEFT_EYE_LEFT);
-        enumMap.put("LEFT_EYE_RIGHT", LEFT_EYE_RIGHT);
-        enumMap.put("LEFT_EYE_UP", LEFT_EYE_UP);
-        enumMap.put("LEFT_EYE_DOWN", LEFT_EYE_DOWN);
-        enumMap.put("RIGHT_EYE_LEFT", RIGHT_EYE_LEFT);
-        enumMap.put("RIGHT_EYE_RIGHT", RIGHT_EYE_RIGHT);
-        enumMap.put("RIGHT_EYE_UP", RIGHT_EYE_UP);
-        enumMap.put("RIGHT_EYE_DOWN", RIGHT_EYE_DOWN);
-        enumMap.put("NOSE_LEFT", NOSE_LEFT);
-        enumMap.put("NOSE_RIGHT", NOSE_RIGHT);
-        enumMap.put("MOUTH_UP", MOUTH_UP);
-        enumMap.put("MOUTH_DOWN", MOUTH_DOWN);
-        enumMap.put("LEFT_PUPIL", LEFT_PUPIL);
-        enumMap.put("RIGHT_PUPIL", RIGHT_PUPIL);
+        enumMap.put("eyeLeft", EyeLeft);
+        enumMap.put("eyeRight", EyeRight);
+        enumMap.put("nose", Nose);
+        enumMap.put("mouthLeft", MouthLeft);
+        enumMap.put("mouthRight", MouthRight);
+        enumMap.put("leftEyeBrowLeft", LeftEyeBrowLeft);
+        enumMap.put("leftEyeBrowRight", LeftEyeBrowRight);
+        enumMap.put("leftEyeBrowUp", LeftEyeBrowUp);
+        enumMap.put("rightEyeBrowLeft", RightEyeBrowLeft);
+        enumMap.put("rightEyeBrowRight", RightEyeBrowRight);
+        enumMap.put("rightEyeBrowUp", RightEyeBrowUp);
+        enumMap.put("leftEyeLeft", LeftEyeLeft);
+        enumMap.put("leftEyeRight", LeftEyeRight);
+        enumMap.put("leftEyeUp", LeftEyeUp);
+        enumMap.put("leftEyeDown", LeftEyeDown);
+        enumMap.put("rightEyeLeft", RightEyeLeft);
+        enumMap.put("rightEyeRight", RightEyeRight);
+        enumMap.put("rightEyeUp", RightEyeUp);
+        enumMap.put("rightEyeDown", RightEyeDown);
+        enumMap.put("noseLeft", NoseLeft);
+        enumMap.put("noseRight", NoseRight);
+        enumMap.put("mouthUp", MouthUp);
+        enumMap.put("mouthDown", MouthDown);
+        enumMap.put("leftPupil", LeftPupil);
+        enumMap.put("rightPupil", RightPupil);
     }
 
     /**

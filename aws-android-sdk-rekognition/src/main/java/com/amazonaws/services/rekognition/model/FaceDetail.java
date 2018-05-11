@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -111,14 +111,14 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the landmark on the face.
+     * Indicates the location of landmarks on the face.
      * </p>
      */
     private java.util.List<Landmark> landmarks;
 
     /**
      * <p>
-     * Indicates the pose of the face as determined by pitch, roll, and the yaw.
+     * Indicates the pose of the face as determined by its pitch, roll, and yaw.
      * </p>
      */
     private Pose pose;
@@ -728,11 +728,11 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the landmark on the face.
+     * Indicates the location of landmarks on the face.
      * </p>
      *
      * @return <p>
-     *         Indicates the location of the landmark on the face.
+     *         Indicates the location of landmarks on the face.
      *         </p>
      */
     public java.util.List<Landmark> getLandmarks() {
@@ -741,11 +741,11 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the landmark on the face.
+     * Indicates the location of landmarks on the face.
      * </p>
      *
      * @param landmarks <p>
-     *            Indicates the location of the landmark on the face.
+     *            Indicates the location of landmarks on the face.
      *            </p>
      */
     public void setLandmarks(java.util.Collection<Landmark> landmarks) {
@@ -759,14 +759,14 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the landmark on the face.
+     * Indicates the location of landmarks on the face.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param landmarks <p>
-     *            Indicates the location of the landmark on the face.
+     *            Indicates the location of landmarks on the face.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -783,14 +783,14 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the landmark on the face.
+     * Indicates the location of landmarks on the face.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param landmarks <p>
-     *            Indicates the location of the landmark on the face.
+     *            Indicates the location of landmarks on the face.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -802,12 +802,12 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Indicates the pose of the face as determined by pitch, roll, and the yaw.
+     * Indicates the pose of the face as determined by its pitch, roll, and yaw.
      * </p>
      *
      * @return <p>
-     *         Indicates the pose of the face as determined by pitch, roll, and
-     *         the yaw.
+     *         Indicates the pose of the face as determined by its pitch, roll,
+     *         and yaw.
      *         </p>
      */
     public Pose getPose() {
@@ -816,12 +816,12 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Indicates the pose of the face as determined by pitch, roll, and the yaw.
+     * Indicates the pose of the face as determined by its pitch, roll, and yaw.
      * </p>
      *
      * @param pose <p>
-     *            Indicates the pose of the face as determined by pitch, roll,
-     *            and the yaw.
+     *            Indicates the pose of the face as determined by its pitch,
+     *            roll, and yaw.
      *            </p>
      */
     public void setPose(Pose pose) {
@@ -830,15 +830,15 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
-     * Indicates the pose of the face as determined by pitch, roll, and the yaw.
+     * Indicates the pose of the face as determined by its pitch, roll, and yaw.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param pose <p>
-     *            Indicates the pose of the face as determined by pitch, roll,
-     *            and the yaw.
+     *            Indicates the pose of the face as determined by its pitch,
+     *            roll, and yaw.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

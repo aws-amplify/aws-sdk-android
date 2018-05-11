@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -83,6 +83,19 @@ public class ConfirmSignUpRequestMarshaller implements
                 Boolean forceAliasCreation = confirmSignUpRequest.getForceAliasCreation();
                 jsonWriter.name("ForceAliasCreation");
                 jsonWriter.value(forceAliasCreation);
+            }
+            if (confirmSignUpRequest.getUserContextData() != null) {
+                UserContextDataType userContextData = confirmSignUpRequest.getUserContextData();
+                jsonWriter.name("UserContextData");
+                UserContextDataTypeJsonMarshaller.getInstance().marshall(userContextData,
+                        jsonWriter);
+            }
+            if (confirmSignUpRequest.getAnalyticsMetadata() != null) {
+                AnalyticsMetadataType analyticsMetadata = confirmSignUpRequest
+                        .getAnalyticsMetadata();
+                jsonWriter.name("AnalyticsMetadata");
+                AnalyticsMetadataTypeJsonMarshaller.getInstance().marshall(analyticsMetadata,
+                        jsonWriter);
             }
 
             jsonWriter.endObject();

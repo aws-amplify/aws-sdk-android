@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -44,6 +44,9 @@ class GCMChannelResponseJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("Credential")) {
                 gCMChannelResponse.setCredential(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Enabled")) {
+                gCMChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Id")) {
                 gCMChannelResponse.setId(StringJsonUnmarshaller.getInstance()

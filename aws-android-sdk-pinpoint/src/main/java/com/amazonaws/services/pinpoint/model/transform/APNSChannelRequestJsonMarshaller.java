@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,6 +30,11 @@ class APNSChannelRequestJsonMarshaller {
             String certificate = aPNSChannelRequest.getCertificate();
             jsonWriter.name("Certificate");
             jsonWriter.value(certificate);
+        }
+        if (aPNSChannelRequest.getEnabled() != null) {
+            Boolean enabled = aPNSChannelRequest.getEnabled();
+            jsonWriter.name("Enabled");
+            jsonWriter.value(enabled);
         }
         if (aPNSChannelRequest.getPrivateKey() != null) {
             String privateKey = aPNSChannelRequest.getPrivateKey();

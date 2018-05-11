@@ -44,6 +44,7 @@ public abstract class ClientConstants {
     public static final String DOMAIN_QUERY_PARAM_RESPONSE_TYPE = "response_type";
     public static final String DOMAIN_QUERY_PARAM_SCOPES = "scope";
     public static final String DOMAIN_QUERY_PARAM_STATE = "state";
+    public static final String DOMAIN_QUERY_PARAM_USERCONTEXTDATA = "userContextData";
     public static final String DOMAIN_SCHEME = "https";
     public static final String SESSION_TYPE_JWT = "JWT";
     public static final String TOKEN_AUTH_TYPE_CODE = "code";

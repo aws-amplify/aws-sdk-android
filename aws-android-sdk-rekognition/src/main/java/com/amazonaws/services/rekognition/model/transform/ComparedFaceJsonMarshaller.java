@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -34,6 +34,27 @@ class ComparedFaceJsonMarshaller {
             Float confidence = comparedFace.getConfidence();
             jsonWriter.name("Confidence");
             jsonWriter.value(confidence);
+        }
+        if (comparedFace.getLandmarks() != null) {
+            java.util.List<Landmark> landmarks = comparedFace.getLandmarks();
+            jsonWriter.name("Landmarks");
+            jsonWriter.beginArray();
+            for (Landmark landmarksItem : landmarks) {
+                if (landmarksItem != null) {
+                    LandmarkJsonMarshaller.getInstance().marshall(landmarksItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (comparedFace.getPose() != null) {
+            Pose pose = comparedFace.getPose();
+            jsonWriter.name("Pose");
+            PoseJsonMarshaller.getInstance().marshall(pose, jsonWriter);
+        }
+        if (comparedFace.getQuality() != null) {
+            ImageQuality quality = comparedFace.getQuality();
+            jsonWriter.name("Quality");
+            ImageQualityJsonMarshaller.getInstance().marshall(quality, jsonWriter);
         }
         jsonWriter.endObject();
     }

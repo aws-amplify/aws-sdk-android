@@ -1,5 +1,5 @@
 /*
- * Copyright 2013-2017 Amazon Technologies, Inc.
+ * Copyright 2013-2018 Amazon Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -60,6 +60,15 @@ public final class Region {
      */
     public static Region getRegion(Regions region) {
         return RegionUtils.getRegion(region.getName());
+    }
+
+    /**
+     * @param regionString the region represented as a string. i.e. us-east-1
+     * @return the region with the id given, or null if it cannot be found in
+     * the current regions.xml file.
+     */
+    public static Region getRegion(String regionString) {
+        return RegionUtils.getRegion(regionString);
     }
 
     /**

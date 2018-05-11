@@ -16,10 +16,15 @@
 package com.amazonaws.mobileconnectors.pinpoint.analytics;
 
 import java.util.Random;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import com.amazonaws.auth.AnonymousAWSCredentials;
 import com.amazonaws.internal.StaticCredentialsProvider;
@@ -28,6 +33,8 @@ import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.PinpointManager;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.ContextWithPermissions;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.pinpoint.model.ChannelType;
+
 import android.app.Activity;
 
 import static org.junit.Assert.assertNotNull;
@@ -44,11 +51,11 @@ public class PinpointManagerTest {
     private PinpointConfiguration createConfig(String appId) {
         provider = new StaticCredentialsProvider(new AnonymousAWSCredentials());
         return new PinpointConfiguration(new ContextWithPermissions(
-                                                                           new Activity()
-                                                                                   .getApplicationContext()),
-                                                appId,
-                                                Regions.US_EAST_1,
-                                                provider);
+                RuntimeEnvironment.application.getApplicationContext()),
+                appId,
+                Regions.US_EAST_1,
+                ChannelType.GCM,
+                provider);
     }
 
     /**
@@ -109,5 +116,16 @@ public class PinpointManagerTest {
         analyticsClient = new PinpointManager(config);
 
         assertNotNull(analyticsClient);
+    }
+
+    @Test
+    public void initWithCustomExecutor() {
+        PinpointConfiguration config = createConfig(uniqueAnalyticsTag1);
+        ThreadPoolExecutor customExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(1),
+                new ThreadPoolExecutor.DiscardPolicy());
+        analyticsClient = new PinpointManager(config.withExecutor(customExecutor));
+        assertNotNull(analyticsClient);
+        assertNotNull(analyticsClient.getTargetingClient());
+
     }
 }

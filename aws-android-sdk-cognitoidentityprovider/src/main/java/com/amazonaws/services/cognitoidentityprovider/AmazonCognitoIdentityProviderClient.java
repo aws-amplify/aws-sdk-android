@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -275,6 +275,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
         jsonErrorUnmarshallers.add(new AliasExistsExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new CodeDeliveryFailureExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new CodeMismatchExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new EnableSoftwareTokenMFAExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ExpiredCodeExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InternalErrorExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidEmailRoleAccessPolicyExceptionUnmarshaller());
@@ -290,6 +291,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
         jsonErrorUnmarshallers.add(new PasswordResetRequiredExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new PreconditionNotMetExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new SoftwareTokenMFANotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TooManyFailedAttemptsExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TooManyRequestsExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UnexpectedLambdaExceptionUnmarshaller());
@@ -942,6 +944,53 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
             }
             Unmarshaller<AdminUserGlobalSignOutResult, JsonUnmarshallerContext> unmarshaller = new AdminUserGlobalSignOutResultJsonUnmarshaller();
             JsonResponseHandler<AdminUserGlobalSignOutResult> responseHandler = new JsonResponseHandler<AdminUserGlobalSignOutResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * @param associateSoftwareTokenRequest
+     * @return associateSoftwareTokenResult The response from the
+     *         AssociateSoftwareToken service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws ResourceNotFoundException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public AssociateSoftwareTokenResult associateSoftwareToken(
+            AssociateSoftwareTokenRequest associateSoftwareTokenRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(associateSoftwareTokenRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AssociateSoftwareTokenRequest> request = null;
+        Response<AssociateSoftwareTokenResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AssociateSoftwareTokenRequestMarshaller()
+                        .marshall(associateSoftwareTokenRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AssociateSoftwareTokenResult, JsonUnmarshallerContext> unmarshaller = new AssociateSoftwareTokenResultJsonUnmarshaller();
+            JsonResponseHandler<AssociateSoftwareTokenResult> responseHandler = new JsonResponseHandler<AssociateSoftwareTokenResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -2402,6 +2451,56 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
     }
 
     /**
+     * @param setUserMFAPreferenceRequest
+     * @return setUserMFAPreferenceResult The response from the
+     *         SetUserMFAPreference service method, as returned by Amazon
+     *         Cognito Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws NotAuthorizedException
+     * @throws PasswordResetRequiredException
+     * @throws UserNotFoundException
+     * @throws UserNotConfirmedException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public SetUserMFAPreferenceResult setUserMFAPreference(
+            SetUserMFAPreferenceRequest setUserMFAPreferenceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(setUserMFAPreferenceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SetUserMFAPreferenceRequest> request = null;
+        Response<SetUserMFAPreferenceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new SetUserMFAPreferenceRequestMarshaller()
+                        .marshall(setUserMFAPreferenceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<SetUserMFAPreferenceResult, JsonUnmarshallerContext> unmarshaller = new SetUserMFAPreferenceResultJsonUnmarshaller();
+            JsonResponseHandler<SetUserMFAPreferenceResult> responseHandler = new JsonResponseHandler<SetUserMFAPreferenceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
      * <p>
      * Sets the user settings like multi-factor authentication (MFA). If MFA is
      * to be removed for a particular attribute pass the attribute with code
@@ -2794,6 +2893,63 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
             }
             Unmarshaller<UpdateUserPoolClientResult, JsonUnmarshallerContext> unmarshaller = new UpdateUserPoolClientResultJsonUnmarshaller();
             JsonResponseHandler<UpdateUserPoolClientResult> responseHandler = new JsonResponseHandler<UpdateUserPoolClientResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * @param verifySoftwareTokenRequest
+     * @return verifySoftwareTokenResult The response from the
+     *         VerifySoftwareToken service method, as returned by Amazon Cognito
+     *         Your User Pool.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws InvalidUserPoolConfigurationException
+     * @throws EnableSoftwareTokenMFAException
+     * @throws SoftwareTokenMFANotFoundException
+     * @throws CodeMismatchException
+     * @throws ExpiredCodeException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws LimitExceededException
+     * @throws PasswordResetRequiredException
+     * @throws UserNotFoundException
+     * @throws UserNotConfirmedException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public VerifySoftwareTokenResult verifySoftwareToken(
+            VerifySoftwareTokenRequest verifySoftwareTokenRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(verifySoftwareTokenRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<VerifySoftwareTokenRequest> request = null;
+        Response<VerifySoftwareTokenResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new VerifySoftwareTokenRequestMarshaller()
+                        .marshall(verifySoftwareTokenRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<VerifySoftwareTokenResult, JsonUnmarshallerContext> unmarshaller = new VerifySoftwareTokenResultJsonUnmarshaller();
+            JsonResponseHandler<VerifySoftwareTokenResult> responseHandler = new JsonResponseHandler<VerifySoftwareTokenResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Indicates the pose of the face as determined by pitch, roll, and the yaw.
+ * Indicates the pose of the face as determined by its pitch, roll, and yaw.
  * </p>
  */
 public class Pose implements Serializable {

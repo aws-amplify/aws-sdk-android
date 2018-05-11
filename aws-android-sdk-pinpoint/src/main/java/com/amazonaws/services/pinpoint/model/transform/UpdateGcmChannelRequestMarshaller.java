@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -50,9 +50,6 @@ public class UpdateGcmChannelRequestMarshaller implements
                 updateGcmChannelRequest, "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.PUT);
 
-        if (updateGcmChannelRequest.getAccept() != null) {
-            request.addHeader("accept", StringUtils.fromString(updateGcmChannelRequest.getAccept()));
-        }
         String uriResourcePath = "/v1/apps/{application-id}/channels/gcm";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",

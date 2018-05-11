@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,6 +40,11 @@ class GCMChannelResponseJsonMarshaller {
             String credential = gCMChannelResponse.getCredential();
             jsonWriter.name("Credential");
             jsonWriter.value(credential);
+        }
+        if (gCMChannelResponse.getEnabled() != null) {
+            Boolean enabled = gCMChannelResponse.getEnabled();
+            jsonWriter.name("Enabled");
+            jsonWriter.value(enabled);
         }
         if (gCMChannelResponse.getId() != null) {
             String id = gCMChannelResponse.getId();
