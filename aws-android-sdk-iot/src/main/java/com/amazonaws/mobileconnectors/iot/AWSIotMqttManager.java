@@ -1,5 +1,5 @@
 /**
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.util.StringUtils;
+import com.amazonaws.util.VersionInfoUtils;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -43,7 +44,7 @@ import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -82,7 +83,7 @@ public class AWSIotMqttManager {
     /** Default value for number of auto reconnect attempts before giving up. */
     public static final Integer DEFAULT_AUTO_RECONNECT_ATTEMPTS = 10;
     /** Default value for MQTT keep alive. */
-    public static final Integer DEFAULT_KEEP_ALIVE_SECONDS = 10;
+    public static final Integer DEFAULT_KEEP_ALIVE_SECONDS = 300;
     /** Default value for offline publish queue enabled. */
     public static final Boolean DEFAULT_OFFLINE_PUBLISH_QUEUE_ENABLED = true;
     /** Default value for offline publish queue bound. */
@@ -160,6 +161,30 @@ public class AWSIotMqttManager {
     private boolean userDisconnect;
     /** Do we need to resubscribe upon reconnecting? */
     private boolean needResubscribe;
+    /**
+     * Indicates whether metrics collection is enabled.
+     * When it is enabled, the sdk name and version is sent with the mqtt connect message to server.
+     */
+    private boolean metricsIsEnabled = true;
+    /**
+     * The SDK version that will be sent in the mqtt connect message if metrics collection is enabled.
+     */
+    private static final String SDK_VERSION = VersionInfoUtils.getVersion();
+
+    /**
+     * Turning on/off metrics collection. By default metrics collection is enabled.
+     * Client must call this to set metrics collection to false before calling connect in order to turn
+     * off metrics collection.
+     * @param enabled indicates whether metrics collection is enabled or disabled.
+     */
+    public void setMetricsIsEnabled(boolean enabled) {
+        metricsIsEnabled = enabled;
+        LOGGER.info("Metrics collection is " + (metricsIsEnabled ? "enabled" : "disabled"));
+    }
+
+    public boolean isMetricsEnabled() {
+        return metricsIsEnabled;
+    }
     /**
      * Holds client socket factory. Set upon initial connect then reused on
      * reconnect.
@@ -699,6 +724,7 @@ public class AWSIotMqttManager {
                         mqttClient = new MqttAsyncClient("wss://" + endpoint, mqttClientId,
                                 new MemoryPersistence());
                     }
+
                     mqttConnect(options, statusCallback);
 
                 } catch (final MqttException e) {
@@ -721,6 +747,11 @@ public class AWSIotMqttManager {
         // AWS IoT does not currently support persistent sessions
         options.setCleanSession(true);
         options.setKeepAliveInterval(userKeepAlive);
+
+        if (isMetricsEnabled()) {
+            options.setUserName("?SDK=Android&Version=" + SDK_VERSION);
+        }
+        LOGGER.info("metrics collection is " + (isMetricsEnabled() ? "enabled" : "disabled") + ", username: " + options.getUserName());
 
         topicListeners.clear();
         mqttMessageQueue.clear();

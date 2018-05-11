@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,8 +23,13 @@ import java.util.Map;
  */
 public enum ChannelType {
 
+    GCM("GCM"),
     APNS("APNS"),
-    GCM("GCM");
+    APNS_SANDBOX("APNS_SANDBOX"),
+    ADM("ADM"),
+    SMS("SMS"),
+    EMAIL("EMAIL"),
+    BAIDU("BAIDU");
 
     private String value;
 
@@ -40,8 +45,13 @@ public enum ChannelType {
     private static final Map<String, ChannelType> enumMap;
     static {
         enumMap = new HashMap<String, ChannelType>();
-        enumMap.put("APNS", APNS);
         enumMap.put("GCM", GCM);
+        enumMap.put("APNS", APNS);
+        enumMap.put("APNS_SANDBOX", APNS_SANDBOX);
+        enumMap.put("ADM", ADM);
+        enumMap.put("SMS", SMS);
+        enumMap.put("EMAIL", EMAIL);
+        enumMap.put("BAIDU", BAIDU);
     }
 
     /**

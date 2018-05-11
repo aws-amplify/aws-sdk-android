@@ -15,18 +15,30 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.internal.event;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
+
+import org.apache.commons.logging.Log;
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.robolectric.Robolectric;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.modules.junit4.PowerMockRunnerDelegate;
+import org.powermock.modules.junit4.rule.PowerMockRule;
+import org.powermock.reflect.Whitebox;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
@@ -41,10 +53,11 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-@RunWith(RobolectricTestRunner.class)
+@RunWith(PowerMockRunner.class)
+@PowerMockRunnerDelegate(RobolectricTestRunner.class)
+@PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*"})
 @Config(manifest = Config.NONE)
 public class EventRecorderTest {
-
     private static final String SDK_NAME = "AppIntelligenceSDK-Analytics";
     private static final String SDK_VERSION = "test";
     private static final String UNIQUE_ID = "abc123";
@@ -72,7 +85,7 @@ public class EventRecorderTest {
                               .withSdkInfo(SDK_NAME, SDK_VERSION)
                               .withUniqueIdValue(UNIQUE_ID)
                               .withDeviceDetails(testDeviceDetails)
-                              .withContext(Robolectric.application
+                              .withContext(RuntimeEnvironment.application
                                                    .getApplicationContext())
                               .build();
         analyticsEvent = AnalyticsEvent.newInstance(mockContext, SESSION_ID,
@@ -81,7 +94,7 @@ public class EventRecorderTest {
                                                            SESSION_DURATION,
                                                            TIME_STAMP,
                                                            EVENT_NAME);
-        dbUtil = new PinpointDBUtil(Robolectric.application
+        dbUtil = new PinpointDBUtil(RuntimeEnvironment.application
                                             .getApplicationContext());
         eventRecorder = new EventRecorder(mockContext, dbUtil,
                                                  submissionRunnable);
@@ -101,7 +114,7 @@ public class EventRecorderTest {
         assertNotNull(c);
         assertEquals(c.getCount(), 1);
         while (c.moveToNext()) {
-            final JSONObject obj = eventRecorder.translateFromCursor(c);
+            final JSONObject obj = eventRecorder.readEventFromCursor(c, null, null);
             assertEquals(obj.toString(),
                                 analyticsEvent.toJSONObject().toString());
             dbUtil.deleteEvent(c.getInt(EventTable.COLUMN_INDEX.ID.getValue()),
@@ -109,6 +122,28 @@ public class EventRecorderTest {
                                                        .getValue()));
         }
         c.close();
+    }
+
+    @Test (expected=IllegalStateException.class)
+    public void testReadEventFromCursorThrowsException() throws Exception {
+        final Log mockLog = Mockito.mock(Log.class);
+        Mockito.doThrow(new IllegalStateException()).when(mockLog)
+            .error(Mockito.anyObject(), Mockito.any(IllegalStateException.class));
+        // Set static field to mock log. equivalent to: Whitebox.setInternalState(EventRecorder.class, "log", mockLog);
+        final Field field = EventRecorder.class.getDeclaredField("log");
+        field.setAccessible(true);
+        Field modifiersField = Field.class.getDeclaredField("modifiers");
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+        field.set(null, mockLog);
+
+        final Cursor mockCursor = Mockito.mock(Cursor.class);
+        Mockito.when(mockCursor.getString(Mockito.anyInt()))
+            .thenThrow(new IllegalStateException(
+                "Couldn't read row 794, col 2 from CursorWindow. Make sure the Cursor" +
+                " is initialized correctly before accessing data from it."));
+        eventRecorder.readEventFromCursor(mockCursor, null, null);
+
     }
 
     @Test

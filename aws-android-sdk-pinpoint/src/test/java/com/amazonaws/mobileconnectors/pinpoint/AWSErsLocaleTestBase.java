@@ -21,6 +21,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
@@ -36,6 +37,8 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.core.configuration.Andro
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.MockSystem;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.pinpoint.model.ChannelType;
+
 import android.app.Activity;
 import android.content.Context;
 
@@ -49,15 +52,10 @@ public abstract class AWSErsLocaleTestBase
     protected static final String SDK_NAME = "AmazonAnalyticsSDK";
     protected static final String UNIQUE_ID = "BEEFBEEF-BEEF-BEEF-BEEF-BEEFBEEFBEEF";
     private static final Locale[] locales = new Locale[] {
-                                                                 new Locale("en",
-                                                                                   "US"),
-                                                                 new Locale("ar",
-                                                                                   "SA"),
-                                                                 new Locale("ja",
-                                                                                   "JP",
-                                                                                   "JP"),
-                                                                 new Locale("fr",
-                                                                                   "FR")
+                                                           new Locale("en", "US"),
+                                                           new Locale("ar", "SA"),
+                                                           new Locale("ja", "JP", "JP"),
+                                                           new Locale("fr", "FR")
     };
     @Rule
     public ApplyLocalesRule applyLocalesRule = new ApplyLocalesRule(locales);
@@ -89,11 +87,12 @@ public abstract class AWSErsLocaleTestBase
         PinpointConfiguration options = new PinpointConfiguration(mockAndroidContext,
                                                                          UNIQUE_ID,
                                                                          Regions.US_EAST_1,
+                                                                         ChannelType.GCM,
                                                                          provider);
         context = new AnalyticsContextBuilder()
                           .withSdkInfo(SDK_NAME, SDK_VERSION)
                           .withUniqueIdValue(UNIQUE_ID)
-                          .withContext(Robolectric.application
+                          .withContext(RuntimeEnvironment.application
                                                .getApplicationContext())
                           .withSystem(new MockSystem("HELLO.world"))
                           .withConfiguration(mockConfiguration)
@@ -107,6 +106,7 @@ public abstract class AWSErsLocaleTestBase
         PinpointConfiguration config = new PinpointConfiguration(mockAndroidContext,
                                                                         UNIQUE_ID,
                                                                         Regions.US_EAST_1,
+                                                                        ChannelType.GCM,
                                                                         provider);
 
         instance = new PinpointManager(config);

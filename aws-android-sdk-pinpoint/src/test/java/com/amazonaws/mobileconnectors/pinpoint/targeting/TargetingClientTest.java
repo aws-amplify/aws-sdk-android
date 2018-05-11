@@ -15,9 +15,14 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.targeting;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.ThreadPoolExecutor;
+import com.amazonaws.mobileconnectors.pinpoint.analytics.MobileAnalyticsTestBase;
+import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.MockDeviceDetails;
+import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfile;
+import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfileUser;
+import com.amazonaws.services.pinpoint.AmazonPinpointClient;
+import com.amazonaws.services.pinpoint.model.UpdateEndpointRequest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,19 +30,17 @@ import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
-import com.amazonaws.mobileconnectors.pinpoint.analytics.MobileAnalyticsTestBase;
-import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.MockDeviceDetails;
-import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfile;
-import com.amazonaws.services.pinpoint.AmazonPinpointClient;
-import com.amazonaws.services.pinpoint.model.UpdateEndpointRequest;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.ThreadPoolExecutor;
+
+import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -68,7 +71,7 @@ public class TargetingClientTest extends MobileAnalyticsTestBase {
                               .withUniqueIdValue(UNIQUE_ID)
                               .withDeviceDetails(testDeviceDetails)
                               .withPinpointServiceClient(mockPinpointServiceClient)
-                              .withContext(Robolectric.application
+                              .withContext(RuntimeEnvironment.application
                                                    .getApplicationContext())
                               .build();
 
@@ -153,6 +156,63 @@ public class TargetingClientTest extends MobileAnalyticsTestBase {
 
         for (final Runnable enqueueRunnable : runnableCaptor.getAllValues()) {
             enqueueRunnable.run();
+        }
+    }
+
+    @Test
+    public void updateEndpointCallNullSetters() {
+        //Verify null checks on setters should not throw a null pointer exception
+        EndpointProfile profile = new EndpointProfile(mockContext);
+        profile.getDemographic().setLocale(null);
+        profile.getDemographic().setAppVersion(null);
+        profile.getDemographic().setMake(null);
+        profile.getDemographic().setModel(null);
+        profile.getDemographic().setPlatform(null);
+        profile.getDemographic().setPlatformVersion(null);
+        profile.getDemographic().setTimezone(null);
+
+        profile.getLocation().setCountry(null);
+        profile.getLocation().setCity(null);
+        profile.getLocation().setLatitude(null);
+        profile.getLocation().setLongitude(null);
+        profile.getLocation().setPostalCode(null);
+        profile.getLocation().setRegion(null);
+
+        targetingClient.updateEndpointProfile(profile);
+    }
+
+    @Test
+    public void updateEndpointNullUserId() {
+        final ArgumentCaptor<UpdateEndpointRequest> requestArgumentCaptor = ArgumentCaptor.forClass(UpdateEndpointRequest.class);
+
+        targetingClient.updateEndpointProfile();
+
+        verifyAndRunExecutorService(1);
+        verify(mockPinpointServiceClient, times(1))
+                .updateEndpoint(requestArgumentCaptor.capture());
+
+        for (final UpdateEndpointRequest request : requestArgumentCaptor.getAllValues()) {
+            assertNull(request.getEndpointRequest().getUser());
+        }
+    }
+
+    @Test
+    public void updateEndpointEmptyUserId() {
+        final ArgumentCaptor<UpdateEndpointRequest> requestArgumentCaptor = ArgumentCaptor.forClass(UpdateEndpointRequest.class);
+
+        EndpointProfile endpointProfile = new EndpointProfile(mockContext);
+        EndpointProfileUser user = new EndpointProfileUser();
+        user.setUserId("");
+        endpointProfile.setUser(user);
+
+        targetingClient.updateEndpointProfile(endpointProfile);
+        verifyAndRunExecutorService(1);
+        verify(mockPinpointServiceClient, times(1))
+                .updateEndpoint(requestArgumentCaptor.capture());
+        
+        for (final UpdateEndpointRequest request : requestArgumentCaptor.getAllValues()) {
+            assertNotNull(request.getEndpointRequest().getUser());
+            assertEquals(request.getEndpointRequest().getUser().getUserId(), "");
         }
     }
 }

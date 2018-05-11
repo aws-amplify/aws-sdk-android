@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,9 +29,6 @@ public class CreateImportJobResultJsonUnmarshaller implements
     public CreateImportJobResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         CreateImportJobResult createImportJobResult = new CreateImportJobResult();
 
-        if (context.getHeader("Access-Control-Allow-Origin") != null)
-            createImportJobResult.setAccessControlAllowOrigin(context
-                    .getHeader("Access-Control-Allow-Origin"));
         return createImportJobResult;
     }
 

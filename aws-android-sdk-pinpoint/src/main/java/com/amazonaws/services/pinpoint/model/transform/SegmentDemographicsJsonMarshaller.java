@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,6 +30,11 @@ class SegmentDemographicsJsonMarshaller {
             SetDimension appVersion = segmentDemographics.getAppVersion();
             jsonWriter.name("AppVersion");
             SetDimensionJsonMarshaller.getInstance().marshall(appVersion, jsonWriter);
+        }
+        if (segmentDemographics.getChannel() != null) {
+            SetDimension channel = segmentDemographics.getChannel();
+            jsonWriter.name("Channel");
+            SetDimensionJsonMarshaller.getInstance().marshall(channel, jsonWriter);
         }
         if (segmentDemographics.getDeviceType() != null) {
             SetDimension deviceType = segmentDemographics.getDeviceType();

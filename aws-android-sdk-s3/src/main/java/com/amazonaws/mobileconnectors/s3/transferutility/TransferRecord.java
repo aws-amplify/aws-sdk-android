@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -195,7 +195,7 @@ class TransferRecord {
 
     /**
      * Cancels a running transfer.
-     *
+     * 
      * @param s3 s3 instance
      * @param updater status updater
      * @return true if the transfer is running and is canceled successfully,
@@ -292,4 +292,3 @@ class TransferRecord {
         return sb.toString();
     }
 }
-

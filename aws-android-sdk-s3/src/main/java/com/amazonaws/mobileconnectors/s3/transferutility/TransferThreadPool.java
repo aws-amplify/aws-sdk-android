@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,23 +22,31 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 class TransferThreadPool {
+    
+    private static final Log LOGGER = LogFactory.getLog(TransferService.class);
 
     private static ExecutorService executorMainTask;
     private static ExecutorService executorPartTask;
 
-    private static synchronized void init() {
-        final int processors = Runtime.getRuntime().availableProcessors();
+    static synchronized void init(final int transferThreadPoolSize) {
+        LOGGER.debug("Initializing the thread pool of size: " + transferThreadPoolSize);
+        
+        final int poolSize = Math.max((int) (Math.ceil((double) transferThreadPoolSize / 2)), 1);
+        
         if (executorMainTask == null) {
-            executorMainTask = buildExecutor(processors + 1);
+            executorMainTask = buildExecutor(poolSize);
         }
         if (executorPartTask == null) {
-            executorPartTask = buildExecutor(processors + 1);
+            executorPartTask = buildExecutor(poolSize);
         }
     }
 
     public static <T> Future<T> submitTask(Callable<T> c) {
-        init();
+        init(TransferUtilityOptions.getDefaultThreadPoolSize());
         if (c instanceof UploadPartTask) {
             return executorPartTask.submit(c);
         } else {
@@ -47,10 +55,14 @@ class TransferThreadPool {
     }
 
     public static void closeThreadPool() {
-        shutdown(executorPartTask);
-        executorPartTask = null;
-        shutdown(executorMainTask);
-        executorMainTask = null;
+        if (executorPartTask != null) {
+            shutdown(executorPartTask);
+            executorPartTask = null;
+        }
+        if (executorMainTask != null) {
+            shutdown(executorMainTask);
+            executorMainTask = null;
+        }
     }
 
     private static final int WAIT_TIME = 250;

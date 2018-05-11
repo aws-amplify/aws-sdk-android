@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -73,6 +73,19 @@ public class ForgotPasswordRequestMarshaller implements
                 String username = forgotPasswordRequest.getUsername();
                 jsonWriter.name("Username");
                 jsonWriter.value(username);
+            }
+            if (forgotPasswordRequest.getUserContextData() != null) {
+                UserContextDataType userContextData = forgotPasswordRequest.getUserContextData();
+                jsonWriter.name("UserContextData");
+                UserContextDataTypeJsonMarshaller.getInstance().marshall(userContextData,
+                        jsonWriter);
+            }
+            if (forgotPasswordRequest.getAnalyticsMetadata() != null) {
+                AnalyticsMetadataType analyticsMetadata = forgotPasswordRequest
+                        .getAnalyticsMetadata();
+                jsonWriter.name("AnalyticsMetadata");
+                AnalyticsMetadataTypeJsonMarshaller.getInstance().marshall(analyticsMetadata,
+                        jsonWriter);
             }
 
             jsonWriter.endObject();

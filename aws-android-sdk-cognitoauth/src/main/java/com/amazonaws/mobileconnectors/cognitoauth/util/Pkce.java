@@ -69,6 +69,6 @@ public final class Pkce {
             return null;
         }
         byte[] data = str.getBytes(Charset.forName("ISO-8859-1"));
-        return Base64.encodeToString(data, Base64.NO_PADDING);
+        return Base64.encodeToString(data, Base64.NO_PADDING | Base64.NO_WRAP);
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -212,6 +212,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * requests sent by this client.
      */
     volatile String clientRegion;
+
+    // Number of Kbytes that needs to be written before status updates are called
+    private int notificationThreshold = 1024;
 
     private static final int BUCKET_REGION_CACHE_SIZE = 300;
 
@@ -431,6 +434,20 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         requestHandler2s.addAll(chainFactory.newRequestHandler2Chain(
                 "/com/amazonaws/services/s3/request.handler2s"));
     }
+
+
+    /**
+     * Sets the number of Kbytes that need to be written before updates to the
+     * listener occur.
+     *
+     * @param threshold Number of Kbytes that needs to be written before
+     *            write update notification occurs.
+     */
+    public void setNotificationThreshold(final int threshold) {
+        this.notificationThreshold = threshold;
+    }
+
+
 
     @Override
     public void setEndpoint(String endpoint) {
@@ -1393,6 +1410,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 ProgressReportingInputStream progressReportingInputStream = new ProgressReportingInputStream(
                         input, progressListenerCallbackExecutor);
                 progressReportingInputStream.setFireCompletedEvent(true);
+                progressReportingInputStream.setNotificationThreshold(this.notificationThreshold);
                 input = progressReportingInputStream;
                 fireProgressEvent(progressListenerCallbackExecutor,
                         ProgressEvent.STARTED_EVENT_CODE);
@@ -1684,6 +1702,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
         if (progressListenerCallbackExecutor != null) {
             input = new ProgressReportingInputStream(input, progressListenerCallbackExecutor);
+            ((ProgressReportingInputStream)input).setNotificationThreshold(this.notificationThreshold);
             fireProgressEvent(progressListenerCallbackExecutor, ProgressEvent.STARTED_EVENT_CODE);
         }
 
@@ -3222,6 +3241,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         // before generating the URL.
         final Request<GeneratePresignedUrlRequest> request = createRequest(bucketName, key,
                 generatePresignedUrlRequest, httpMethod);
+
+        addParameterIfNotNull(request, "versionId", generatePresignedUrlRequest.getVersionId());
+
         if (generatePresignedUrlRequest.isZeroByteContent()) {
             request.setContent(new ByteArrayInputStream(new byte[0]));
         }
@@ -3239,7 +3261,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             request.addHeader(Headers.CONTENT_MD5, generatePresignedUrlRequest.getContentMd5());
         }
 
-          // SSE-C
+        // SSE-C
         populateSSE_C(request, generatePresignedUrlRequest.getSSECustomerKey());
         // SSE
         addHeaderIfNotNull(request, Headers.SERVER_SIDE_ENCRYPTION,
@@ -3248,7 +3270,15 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         addHeaderIfNotNull(request,
                 Headers.SERVER_SIDE_ENCRYPTION_KMS_KEY_ID,
                 generatePresignedUrlRequest.getKmsCmkId());
-
+        
+        // Add custom query parameters
+        final Map<String, String> customQueryParameters = generatePresignedUrlRequest.getCustomQueryParameters();
+        if (customQueryParameters != null) {
+        	for (Map.Entry<String, String> e: customQueryParameters.entrySet()) {
+        		request.addParameter(e.getKey(), e.getValue());
+        	}
+        }
+        
         addResponseHeaderParameters(request, generatePresignedUrlRequest.getResponseHeaders());
 
         final Signer signer = createSigner(request, bucketName, key);
@@ -3631,10 +3661,9 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 .wrapListener(progressListener);
 
         if (progressListenerCallbackExecutor != null) {
-            inputStream = new ProgressReportingInputStream(inputStream,
-                    progressListenerCallbackExecutor);
-            fireProgressEvent(progressListenerCallbackExecutor,
-                    ProgressEvent.PART_STARTED_EVENT_CODE);
+            inputStream = new ProgressReportingInputStream(inputStream, progressListenerCallbackExecutor);
+            ((ProgressReportingInputStream)inputStream).setNotificationThreshold(this.notificationThreshold);
+            fireProgressEvent(progressListenerCallbackExecutor, ProgressEvent.PART_STARTED_EVENT_CODE);
         }
 
         try {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -215,6 +215,7 @@ public abstract class AbstractKinesisRecorder {
         while (iterator.hasNext() && count < maxCount && size < maxSize) {
             final String line = iterator.peek();
             if (line == null || line.isEmpty()) {
+                iterator.next();
                 continue;
             }
             // parse a line. Skip in case of corrupted data
@@ -222,6 +223,7 @@ public abstract class AbstractKinesisRecorder {
                 frp.parse(line);
             } catch (final Exception e) {
                 LOGGER.warn("Failed to read line. Skip.", e);
+                iterator.next();
                 continue;
             }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,6 +29,16 @@ class CampaignLimitsJsonMarshaller {
             Integer daily = campaignLimits.getDaily();
             jsonWriter.name("Daily");
             jsonWriter.value(daily);
+        }
+        if (campaignLimits.getMaximumDuration() != null) {
+            Integer maximumDuration = campaignLimits.getMaximumDuration();
+            jsonWriter.name("MaximumDuration");
+            jsonWriter.value(maximumDuration);
+        }
+        if (campaignLimits.getMessagesPerSecond() != null) {
+            Integer messagesPerSecond = campaignLimits.getMessagesPerSecond();
+            jsonWriter.name("MessagesPerSecond");
+            jsonWriter.value(messagesPerSecond);
         }
         if (campaignLimits.getTotal() != null) {
             Integer total = campaignLimits.getTotal();

@@ -34,9 +34,11 @@ import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.NotificationClient;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.pinpoint.AmazonPinpointClient;
+import com.amazonaws.services.pinpoint.model.ChannelType;
 import com.amazonaws.services.pinpointanalytics.AmazonPinpointAnalyticsClient;
 import android.app.Activity;
 import android.content.Context;
+import org.robolectric.RuntimeEnvironment;
 
 public class MockPinpointContext extends PinpointContext {
 
@@ -77,8 +79,7 @@ public class MockPinpointContext extends PinpointContext {
                                       boolean initWifi,
                                       boolean initWAN, String networkType) {
 
-        final SharedPrefsUniqueIdService uniqueIdService = new SharedPrefsUniqueIdService(id,
-                                                                                                 new Activity());
+        final SharedPrefsUniqueIdService uniqueIdService = new SharedPrefsUniqueIdService(id, RuntimeEnvironment.application.getApplicationContext());
         this.uniqueId = uniqueIdService.getUniqueId(this);
 
         this.sdkInfo = sdkInfo;
@@ -102,6 +103,7 @@ public class MockPinpointContext extends PinpointContext {
                                                                                                   .getApplicationContext()),
                                                                       getUniqueId(),
                                                                       Regions.US_EAST_1,
+                                                                      ChannelType.GCM,
                                                                       provider);
         this.system = new MockSystem(id);
         this.system.getPreferences().putString("UniqueId", id);
@@ -120,7 +122,7 @@ public class MockPinpointContext extends PinpointContext {
 
         this.configuration = AndroidPreferencesConfiguration.newInstance(this);
 
-        this.notificationClient = new NotificationClient(this);
+        this.notificationClient = NotificationClient.createClient(this, ChannelType.GCM);
     }
 
     @Override

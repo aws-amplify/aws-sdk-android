@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,10 +19,10 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Identifies the bounding box around the object or face. The <code>left</code>
- * (x-coordinate) and <code>top</code> (y-coordinate) are coordinates
- * representing the top and left sides of the bounding box. Note that the
- * upper-left corner of the image is the origin (0,0).
+ * Identifies the bounding box around the object, face or text. The
+ * <code>left</code> (x-coordinate) and <code>top</code> (y-coordinate) are
+ * coordinates representing the top and left sides of the bounding box. Note
+ * that the upper-left corner of the image is the origin (0,0).
  * </p>
  * <p>
  * The <code>top</code> and <code>left</code> values returned are ratios of the

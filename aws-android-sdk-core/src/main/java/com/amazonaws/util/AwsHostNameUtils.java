@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2012-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -65,6 +65,11 @@ public class AwsHostNameUtils {
 
         if (host.endsWith(".amazonaws.com")) {
             int index = host.length() - ".amazonaws.com".length();
+            return parseStandardRegionName(host.substring(0, index));
+        }
+
+        if (host.endsWith(".amazonaws.com.cn")) {
+            int index = host.length() - ".amazonaws.com.cn".length();
             return parseStandardRegionName(host.substring(0, index));
         }
 

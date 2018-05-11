@@ -18,8 +18,12 @@ public final class AwsIotEndpointUtility {
     private static final int ENDPOINT_DOMAIN_OFFSET = 3;
     /** Constant for token offset of "com" in endpoint. */
     private static final int ENDPOINT_TLD_OFFSET = 4;
+    /** Constant for token offset of "cn" in endpoint*/
+    private static final int ENDPOINT_CN_TLD_OFFSET = 5;
     /** Constant for number of tokens in endpoint. */
     private static final int ENDPOINT_SPLIT_SIZE = 5;
+    /** Constant for number of tokens in China's endpoint. */
+    private static final int ENDPOINT_CN_SPLIT_SIZE = 6;
 
     /**
      * Helper class, no public constructor.
@@ -51,12 +55,16 @@ public final class AwsIotEndpointUtility {
      */
     private static void validateIotEndpoint(String endpoint) {
         String[] splits = splitEndpoint(endpoint);
-        if (splits.length != ENDPOINT_SPLIT_SIZE
+        if ((splits.length != ENDPOINT_SPLIT_SIZE) && (splits.length != ENDPOINT_CN_SPLIT_SIZE)) {
+            throw new IllegalArgumentException(
+                "Bad endpoint format.  Expected XXXXXX.iot.[region].amazonaws.com[.cn]");
+        }
+        if (((splits.length == ENDPOINT_CN_SPLIT_SIZE) && (!("cn").equalsIgnoreCase(splits[ENDPOINT_CN_TLD_OFFSET])))
                 || !("iot").equalsIgnoreCase(splits[ENDPOINT_IOT_OFFSET])
                 || !("amazonaws").equalsIgnoreCase(splits[ENDPOINT_DOMAIN_OFFSET])
                 || !("com").equalsIgnoreCase(splits[ENDPOINT_TLD_OFFSET])) {
             throw new IllegalArgumentException(
-                    "Bad endpoint format.  Expected XXXXXX.iot.[region].amazonaws.com.");
+                    "Bad endpoint format.  Expected XXXXXX.iot.[region].amazonaws.com[.cn]");
         }
     }
 

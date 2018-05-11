@@ -20,6 +20,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
@@ -28,6 +29,8 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidPreferences;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidSystem;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.pinpoint.model.ChannelType;
+
 import android.app.Activity;
 import android.content.Context;
 
@@ -48,7 +51,7 @@ public class SharedPrefsUniqueIdServiceTest extends MobileAnalyticsTestBase {
     private static final String appId = "TestAppId";
 
     private PinpointContext mockPinpointContext = Mockito.mock(PinpointContext.class);
-    private Context mockAppContext = new Activity();
+    private Context mockAppContext = RuntimeEnvironment.application.getApplicationContext();
     private AndroidSystem mockSystem = Mockito
                                                .mock(AndroidSystem.class);
     private AndroidPreferences mockPreferences = Mockito.mock(AndroidPreferences.class);
@@ -62,6 +65,7 @@ public class SharedPrefsUniqueIdServiceTest extends MobileAnalyticsTestBase {
         when(mockPinpointContext.getPinpointConfiguration())
                 .thenReturn(new PinpointConfiguration(mockAppContext, appId,
                                                              Regions.US_EAST_1,
+                                                             ChannelType.GCM,
                                                              credentialsProvider));
         when(mockSystem.getPreferences()).thenReturn(mockPreferences);
 

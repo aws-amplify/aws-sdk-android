@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -37,6 +37,7 @@ public enum LanguageCode {
     FrFR("fr-FR"),
     IsIS("is-IS"),
     ItIT("it-IT"),
+    KoKR("ko-KR"),
     JaJP("ja-JP"),
     NbNO("nb-NO"),
     NlNL("nl-NL"),
@@ -76,6 +77,7 @@ public enum LanguageCode {
         enumMap.put("fr-FR", FrFR);
         enumMap.put("is-IS", IsIS);
         enumMap.put("it-IT", ItIT);
+        enumMap.put("ko-KR", KoKR);
         enumMap.put("ja-JP", JaJP);
         enumMap.put("nb-NO", NbNO);
         enumMap.put("nl-NL", NlNL);

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -108,10 +108,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
+     * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
+     * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
      */
     private String voiceId;
 
@@ -713,10 +713,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
+     * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
+     * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
      *
      * @return <p>
      *         Voice ID to use for the synthesis. You can get a list of
@@ -741,10 +741,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
+     * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
+     * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -772,10 +772,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
+     * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
+     * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -803,10 +803,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
+     * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
+     * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -834,10 +834,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Geraint, Gwyneth, Mads, Naja, Hans, Marlene,
      * Nicole, Russell, Amy, Brian, Emma, Raveena, Ivy, Joanna, Joey, Justin,
-     * Kendra, Kimberly, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
-     * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
-     * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki
+     * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
+     * Chantal, Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte,
+     * Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen,
+     * Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of

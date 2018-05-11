@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,41 +19,15 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Provides face metadata (bounding box and confidence that the bounding box
- * actually contains a face).
+ * Provides face metadata for target image faces that are analysed by
+ * <code>CompareFaces</code> and <code>RecognizeCelebrities</code>.
  * </p>
  */
 public class ComparedFace implements Serializable {
     /**
      * <p>
-     * Identifies the bounding box around the object or face. The
-     * <code>left</code> (x-coordinate) and <code>top</code> (y-coordinate) are
-     * coordinates representing the top and left sides of the bounding box. Note
-     * that the upper-left corner of the image is the origin (0,0).
+     * Bounding box of the face.
      * </p>
-     * <p>
-     * The <code>top</code> and <code>left</code> values returned are ratios of
-     * the overall image size. For example, if the input image is 700x200
-     * pixels, and the top-left coordinate of the bounding box is 350x50 pixels,
-     * the API returns a <code>left</code> value of 0.5 (350/700) and a
-     * <code>top</code> value of 0.25 (50/200).
-     * </p>
-     * <p>
-     * The <code>width</code> and <code>height</code> values represent the
-     * dimensions of the bounding box as a ratio of the overall image dimension.
-     * For example, if the input image is 700x200 pixels, and the bounding box
-     * width is 70 pixels, the width returned is 0.1.
-     * </p>
-     * <note>
-     * <p>
-     * The bounding box coordinates can have negative values. For example, if
-     * Amazon Rekognition is able to detect a face that is at the image edge and
-     * is only partially visible, the service can return coordinates that are
-     * outside the image bounds and, depending on the image edge, you might get
-     * negative values or values greater than 1 for the <code>left</code> or
-     * <code>top</code> values.
-     * </p>
-     * </note>
      */
     private BoundingBox boundingBox;
 
@@ -69,67 +43,33 @@ public class ComparedFace implements Serializable {
 
     /**
      * <p>
-     * Identifies the bounding box around the object or face. The
-     * <code>left</code> (x-coordinate) and <code>top</code> (y-coordinate) are
-     * coordinates representing the top and left sides of the bounding box. Note
-     * that the upper-left corner of the image is the origin (0,0).
+     * An array of facial landmarks.
      * </p>
+     */
+    private java.util.List<Landmark> landmarks;
+
+    /**
      * <p>
-     * The <code>top</code> and <code>left</code> values returned are ratios of
-     * the overall image size. For example, if the input image is 700x200
-     * pixels, and the top-left coordinate of the bounding box is 350x50 pixels,
-     * the API returns a <code>left</code> value of 0.5 (350/700) and a
-     * <code>top</code> value of 0.25 (50/200).
+     * Indicates the pose of the face as determined by its pitch, roll, and yaw.
      * </p>
+     */
+    private Pose pose;
+
+    /**
      * <p>
-     * The <code>width</code> and <code>height</code> values represent the
-     * dimensions of the bounding box as a ratio of the overall image dimension.
-     * For example, if the input image is 700x200 pixels, and the bounding box
-     * width is 70 pixels, the width returned is 0.1.
+     * Identifies face image brightness and sharpness.
      * </p>
-     * <note>
+     */
+    private ImageQuality quality;
+
+    /**
      * <p>
-     * The bounding box coordinates can have negative values. For example, if
-     * Amazon Rekognition is able to detect a face that is at the image edge and
-     * is only partially visible, the service can return coordinates that are
-     * outside the image bounds and, depending on the image edge, you might get
-     * negative values or values greater than 1 for the <code>left</code> or
-     * <code>top</code> values.
+     * Bounding box of the face.
      * </p>
-     * </note>
      *
      * @return <p>
-     *         Identifies the bounding box around the object or face. The
-     *         <code>left</code> (x-coordinate) and <code>top</code>
-     *         (y-coordinate) are coordinates representing the top and left
-     *         sides of the bounding box. Note that the upper-left corner of the
-     *         image is the origin (0,0).
+     *         Bounding box of the face.
      *         </p>
-     *         <p>
-     *         The <code>top</code> and <code>left</code> values returned are
-     *         ratios of the overall image size. For example, if the input image
-     *         is 700x200 pixels, and the top-left coordinate of the bounding
-     *         box is 350x50 pixels, the API returns a <code>left</code> value
-     *         of 0.5 (350/700) and a <code>top</code> value of 0.25 (50/200).
-     *         </p>
-     *         <p>
-     *         The <code>width</code> and <code>height</code> values represent
-     *         the dimensions of the bounding box as a ratio of the overall
-     *         image dimension. For example, if the input image is 700x200
-     *         pixels, and the bounding box width is 70 pixels, the width
-     *         returned is 0.1.
-     *         </p>
-     *         <note>
-     *         <p>
-     *         The bounding box coordinates can have negative values. For
-     *         example, if Amazon Rekognition is able to detect a face that is
-     *         at the image edge and is only partially visible, the service can
-     *         return coordinates that are outside the image bounds and,
-     *         depending on the image edge, you might get negative values or
-     *         values greater than 1 for the <code>left</code> or
-     *         <code>top</code> values.
-     *         </p>
-     *         </note>
      */
     public BoundingBox getBoundingBox() {
         return boundingBox;
@@ -137,68 +77,12 @@ public class ComparedFace implements Serializable {
 
     /**
      * <p>
-     * Identifies the bounding box around the object or face. The
-     * <code>left</code> (x-coordinate) and <code>top</code> (y-coordinate) are
-     * coordinates representing the top and left sides of the bounding box. Note
-     * that the upper-left corner of the image is the origin (0,0).
+     * Bounding box of the face.
      * </p>
-     * <p>
-     * The <code>top</code> and <code>left</code> values returned are ratios of
-     * the overall image size. For example, if the input image is 700x200
-     * pixels, and the top-left coordinate of the bounding box is 350x50 pixels,
-     * the API returns a <code>left</code> value of 0.5 (350/700) and a
-     * <code>top</code> value of 0.25 (50/200).
-     * </p>
-     * <p>
-     * The <code>width</code> and <code>height</code> values represent the
-     * dimensions of the bounding box as a ratio of the overall image dimension.
-     * For example, if the input image is 700x200 pixels, and the bounding box
-     * width is 70 pixels, the width returned is 0.1.
-     * </p>
-     * <note>
-     * <p>
-     * The bounding box coordinates can have negative values. For example, if
-     * Amazon Rekognition is able to detect a face that is at the image edge and
-     * is only partially visible, the service can return coordinates that are
-     * outside the image bounds and, depending on the image edge, you might get
-     * negative values or values greater than 1 for the <code>left</code> or
-     * <code>top</code> values.
-     * </p>
-     * </note>
      *
      * @param boundingBox <p>
-     *            Identifies the bounding box around the object or face. The
-     *            <code>left</code> (x-coordinate) and <code>top</code>
-     *            (y-coordinate) are coordinates representing the top and left
-     *            sides of the bounding box. Note that the upper-left corner of
-     *            the image is the origin (0,0).
+     *            Bounding box of the face.
      *            </p>
-     *            <p>
-     *            The <code>top</code> and <code>left</code> values returned are
-     *            ratios of the overall image size. For example, if the input
-     *            image is 700x200 pixels, and the top-left coordinate of the
-     *            bounding box is 350x50 pixels, the API returns a
-     *            <code>left</code> value of 0.5 (350/700) and a
-     *            <code>top</code> value of 0.25 (50/200).
-     *            </p>
-     *            <p>
-     *            The <code>width</code> and <code>height</code> values
-     *            represent the dimensions of the bounding box as a ratio of the
-     *            overall image dimension. For example, if the input image is
-     *            700x200 pixels, and the bounding box width is 70 pixels, the
-     *            width returned is 0.1.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            The bounding box coordinates can have negative values. For
-     *            example, if Amazon Rekognition is able to detect a face that
-     *            is at the image edge and is only partially visible, the
-     *            service can return coordinates that are outside the image
-     *            bounds and, depending on the image edge, you might get
-     *            negative values or values greater than 1 for the
-     *            <code>left</code> or <code>top</code> values.
-     *            </p>
-     *            </note>
      */
     public void setBoundingBox(BoundingBox boundingBox) {
         this.boundingBox = boundingBox;
@@ -206,71 +90,15 @@ public class ComparedFace implements Serializable {
 
     /**
      * <p>
-     * Identifies the bounding box around the object or face. The
-     * <code>left</code> (x-coordinate) and <code>top</code> (y-coordinate) are
-     * coordinates representing the top and left sides of the bounding box. Note
-     * that the upper-left corner of the image is the origin (0,0).
+     * Bounding box of the face.
      * </p>
-     * <p>
-     * The <code>top</code> and <code>left</code> values returned are ratios of
-     * the overall image size. For example, if the input image is 700x200
-     * pixels, and the top-left coordinate of the bounding box is 350x50 pixels,
-     * the API returns a <code>left</code> value of 0.5 (350/700) and a
-     * <code>top</code> value of 0.25 (50/200).
-     * </p>
-     * <p>
-     * The <code>width</code> and <code>height</code> values represent the
-     * dimensions of the bounding box as a ratio of the overall image dimension.
-     * For example, if the input image is 700x200 pixels, and the bounding box
-     * width is 70 pixels, the width returned is 0.1.
-     * </p>
-     * <note>
-     * <p>
-     * The bounding box coordinates can have negative values. For example, if
-     * Amazon Rekognition is able to detect a face that is at the image edge and
-     * is only partially visible, the service can return coordinates that are
-     * outside the image bounds and, depending on the image edge, you might get
-     * negative values or values greater than 1 for the <code>left</code> or
-     * <code>top</code> values.
-     * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param boundingBox <p>
-     *            Identifies the bounding box around the object or face. The
-     *            <code>left</code> (x-coordinate) and <code>top</code>
-     *            (y-coordinate) are coordinates representing the top and left
-     *            sides of the bounding box. Note that the upper-left corner of
-     *            the image is the origin (0,0).
+     *            Bounding box of the face.
      *            </p>
-     *            <p>
-     *            The <code>top</code> and <code>left</code> values returned are
-     *            ratios of the overall image size. For example, if the input
-     *            image is 700x200 pixels, and the top-left coordinate of the
-     *            bounding box is 350x50 pixels, the API returns a
-     *            <code>left</code> value of 0.5 (350/700) and a
-     *            <code>top</code> value of 0.25 (50/200).
-     *            </p>
-     *            <p>
-     *            The <code>width</code> and <code>height</code> values
-     *            represent the dimensions of the bounding box as a ratio of the
-     *            overall image dimension. For example, if the input image is
-     *            700x200 pixels, and the bounding box width is 70 pixels, the
-     *            width returned is 0.1.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            The bounding box coordinates can have negative values. For
-     *            example, if Amazon Rekognition is able to detect a face that
-     *            is at the image edge and is only partially visible, the
-     *            service can return coordinates that are outside the image
-     *            bounds and, depending on the image edge, you might get
-     *            negative values or values greater than 1 for the
-     *            <code>left</code> or <code>top</code> values.
-     *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -337,6 +165,173 @@ public class ComparedFace implements Serializable {
     }
 
     /**
+     * <p>
+     * An array of facial landmarks.
+     * </p>
+     *
+     * @return <p>
+     *         An array of facial landmarks.
+     *         </p>
+     */
+    public java.util.List<Landmark> getLandmarks() {
+        return landmarks;
+    }
+
+    /**
+     * <p>
+     * An array of facial landmarks.
+     * </p>
+     *
+     * @param landmarks <p>
+     *            An array of facial landmarks.
+     *            </p>
+     */
+    public void setLandmarks(java.util.Collection<Landmark> landmarks) {
+        if (landmarks == null) {
+            this.landmarks = null;
+            return;
+        }
+
+        this.landmarks = new java.util.ArrayList<Landmark>(landmarks);
+    }
+
+    /**
+     * <p>
+     * An array of facial landmarks.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param landmarks <p>
+     *            An array of facial landmarks.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ComparedFace withLandmarks(Landmark... landmarks) {
+        if (getLandmarks() == null) {
+            this.landmarks = new java.util.ArrayList<Landmark>(landmarks.length);
+        }
+        for (Landmark value : landmarks) {
+            this.landmarks.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * An array of facial landmarks.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param landmarks <p>
+     *            An array of facial landmarks.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ComparedFace withLandmarks(java.util.Collection<Landmark> landmarks) {
+        setLandmarks(landmarks);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Indicates the pose of the face as determined by its pitch, roll, and yaw.
+     * </p>
+     *
+     * @return <p>
+     *         Indicates the pose of the face as determined by its pitch, roll,
+     *         and yaw.
+     *         </p>
+     */
+    public Pose getPose() {
+        return pose;
+    }
+
+    /**
+     * <p>
+     * Indicates the pose of the face as determined by its pitch, roll, and yaw.
+     * </p>
+     *
+     * @param pose <p>
+     *            Indicates the pose of the face as determined by its pitch,
+     *            roll, and yaw.
+     *            </p>
+     */
+    public void setPose(Pose pose) {
+        this.pose = pose;
+    }
+
+    /**
+     * <p>
+     * Indicates the pose of the face as determined by its pitch, roll, and yaw.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param pose <p>
+     *            Indicates the pose of the face as determined by its pitch,
+     *            roll, and yaw.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ComparedFace withPose(Pose pose) {
+        this.pose = pose;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Identifies face image brightness and sharpness.
+     * </p>
+     *
+     * @return <p>
+     *         Identifies face image brightness and sharpness.
+     *         </p>
+     */
+    public ImageQuality getQuality() {
+        return quality;
+    }
+
+    /**
+     * <p>
+     * Identifies face image brightness and sharpness.
+     * </p>
+     *
+     * @param quality <p>
+     *            Identifies face image brightness and sharpness.
+     *            </p>
+     */
+    public void setQuality(ImageQuality quality) {
+        this.quality = quality;
+    }
+
+    /**
+     * <p>
+     * Identifies face image brightness and sharpness.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param quality <p>
+     *            Identifies face image brightness and sharpness.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ComparedFace withQuality(ImageQuality quality) {
+        this.quality = quality;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -350,7 +345,13 @@ public class ComparedFace implements Serializable {
         if (getBoundingBox() != null)
             sb.append("BoundingBox: " + getBoundingBox() + ",");
         if (getConfidence() != null)
-            sb.append("Confidence: " + getConfidence());
+            sb.append("Confidence: " + getConfidence() + ",");
+        if (getLandmarks() != null)
+            sb.append("Landmarks: " + getLandmarks() + ",");
+        if (getPose() != null)
+            sb.append("Pose: " + getPose() + ",");
+        if (getQuality() != null)
+            sb.append("Quality: " + getQuality());
         sb.append("}");
         return sb.toString();
     }
@@ -363,6 +364,9 @@ public class ComparedFace implements Serializable {
         hashCode = prime * hashCode
                 + ((getBoundingBox() == null) ? 0 : getBoundingBox().hashCode());
         hashCode = prime * hashCode + ((getConfidence() == null) ? 0 : getConfidence().hashCode());
+        hashCode = prime * hashCode + ((getLandmarks() == null) ? 0 : getLandmarks().hashCode());
+        hashCode = prime * hashCode + ((getPose() == null) ? 0 : getPose().hashCode());
+        hashCode = prime * hashCode + ((getQuality() == null) ? 0 : getQuality().hashCode());
         return hashCode;
     }
 
@@ -386,6 +390,19 @@ public class ComparedFace implements Serializable {
             return false;
         if (other.getConfidence() != null
                 && other.getConfidence().equals(this.getConfidence()) == false)
+            return false;
+        if (other.getLandmarks() == null ^ this.getLandmarks() == null)
+            return false;
+        if (other.getLandmarks() != null
+                && other.getLandmarks().equals(this.getLandmarks()) == false)
+            return false;
+        if (other.getPose() == null ^ this.getPose() == null)
+            return false;
+        if (other.getPose() != null && other.getPose().equals(this.getPose()) == false)
+            return false;
+        if (other.getQuality() == null ^ this.getQuality() == null)
+            return false;
+        if (other.getQuality() != null && other.getQuality().equals(this.getQuality()) == false)
             return false;
         return true;
     }

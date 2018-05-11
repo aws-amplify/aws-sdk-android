@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,8 +20,11 @@ import com.amazonaws.HttpMethod;
 import com.amazonaws.services.s3.AmazonS3;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,6 +51,12 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest
 
     /** The key of the object involved in this request */
     private String key;
+    
+    /**		
+     * The version ID of the object, only present if versioning has been		
+     * enabled for the bucket.		
+     */		
+    private String versionId;	
 
     /** The optional Content-Type header that will be sent when the presigned URL is accessed */
     private String contentType;
@@ -76,6 +85,11 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest
      * object, or for specifying a version ID when accessing an object.
      */
     private final Map<String, String> requestParameters = new HashMap<String, String>();
+
+    /**
+     * Custom query parameters for the request.
+     */
+    private Map<String, String> customQueryParameters;
 
     /**
      * Optional field that overrides headers on the response.
@@ -325,6 +339,45 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest
         setKey(key);
         return this;
     }
+    
+    /**
+     * Returns the version ID of the object, only present if versioning has
+     * been enabled for the bucket.
+     *
+     * @return The version ID of the object, only present if versioning has
+     *         been enabled for the bucket.
+     */
+    public String getVersionId() {
+        return versionId;
+    }
+
+    /**
+     * Sets the version ID of the object, only present if versioning has
+     * been enabled for the bucket.
+     *
+     * @param versionId
+     *            The version ID of the object, only present if versioning
+     *            has been enabled for the bucket.
+     */
+    public void setVersionId(String versionId) {
+        this.versionId = versionId;
+    }
+
+    /**
+     * Sets the version ID of the object, only present if versioning has
+     * been enabled for the bucket. Returns the {@link GeneratePresignedUrlRequest}
+     * object for method chanining.
+     *
+     * @param versionId
+     *            The version ID of the object, only present if versioning
+     *            has been enabled for the bucket.
+     *
+     * @return This object for method chaining.
+     */
+    public GeneratePresignedUrlRequest withVersionId(String versionId) {
+        setVersionId(versionId);
+        return this;
+    }
 
     /**
      * The expiration date at which point the new pre-signed URL will no longer
@@ -395,6 +448,41 @@ public class GeneratePresignedUrlRequest extends AmazonWebServiceRequest
      */
     public Map<String, String> getRequestParameters() {
         return requestParameters;
+    }
+
+    /**
+     * @return the immutable map of custom query parameters. The parameter value is modeled as a
+     *         list of strings because multiple values can be specified for the same parameter name.
+     */
+    public Map<String, String> getCustomQueryParameters() {
+        if (customQueryParameters == null) {
+            return null;
+        }
+        return Collections.unmodifiableMap(customQueryParameters);
+    }
+
+    /**
+     * Add a custom query parameter for the request. Since multiple values are allowed for the same
+     * query parameter, this method does NOT overwrite any existing parameter values in the request.
+     * <p>
+     * Any custom query parameters that are defined are used in the HTTP request to the AWS service.
+     *
+     * @param name
+     *            The name of the query parameter
+     * @param value
+     *            The value of the query parameter. Only the parameter name will be added in the URI
+     *            if the value is set to null. For example, addCustomQueryParameter("param", null)
+     *            will be serialized to "?param", while addCustomQueryParameter("param", "") will be
+     *            serialized to "?param=".
+     */
+    public void addCustomQueryParameter(String name, String value) {
+        if (customQueryParameters == null) {
+            customQueryParameters = new HashMap<String, String>();
+        }
+        
+        if (customQueryParameters.get(name) == null) {
+            customQueryParameters.put(name, value);
+        }
     }
 
     /**

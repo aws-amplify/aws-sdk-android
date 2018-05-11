@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2015-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,8 +23,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import org.json.JSONObject;
 
 import com.amazonaws.AmazonWebServiceRequest;
+import com.amazonaws.mobile.config.AWSConfiguration;
+import com.amazonaws.regions.Region;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -36,7 +39,6 @@ import org.apache.commons.logging.LogFactory;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * The transfer utility is a high-level class for applications to upload and
@@ -71,16 +73,26 @@ import java.util.UUID;
  *
  * // Pauses the transfer.
  * transferUtility.pause(id);
+ * 
+ * // Pause all the transfers.
+ * transferUtility.pauseAllWithType(TransferType.ANY);
  *
  * // Resumes the transfer.
  * transferUtility.resume(id);
+ * 
+ * // Resume all the transfers.
+ * transferUtility.resumeAllWithType(TransferType.ANY);
+ * 
  * </pre>
- *
- * For cancelling and deleting tasks:
+ * 
+ * For canceling and deleting tasks:
  *
  * <pre>
  * // Cancels the transfer.
  * transferUtility.cancel(id);
+ * 
+ * // Cancel all the transfers.
+ * transferUtility.cancelAllWithType(TransferType.ANY);
  *
  * // Deletes the transfer.
  * transferUtility.delete(id);
@@ -95,10 +107,188 @@ public class TransferUtility {
      * a single upload
      */
     static final int MINIMUM_UPLOAD_PART_SIZE = 5 * MB;
+    
+    private static String userAgentFromConfig = "";
+    private static void setUserAgentFromConfig(String userAgent) {
+        synchronized (TransferUtility.userAgentFromConfig) {
+            TransferUtility.userAgentFromConfig = userAgent;
+        }
+    }
+    private static String getUserAgentFromConfig() {
+        synchronized (TransferUtility.userAgentFromConfig) {
+            if (TransferUtility.userAgentFromConfig == null
+                    || TransferUtility.userAgentFromConfig.trim().isEmpty()) {
+                return "";
+            }
+            return TransferUtility.userAgentFromConfig.trim() + "/";
+        }
+    }
 
     private final AmazonS3 s3;
     private final Context appContext;
     private final TransferDBUtil dbUtil;
+    private final String defaultBucket;
+    private final TransferUtilityOptions transferUtilityOptions;
+
+    /**
+     * Builder class for TransferUtility
+     */
+    public static class Builder {
+        private AmazonS3 s3;
+        private Context appContext;
+        private String defaultBucket;
+        private AWSConfiguration awsConfig;
+        private TransferUtilityOptions transferUtilityOptions;
+        
+        protected Builder() { }
+        
+        /**
+         * Sets the underlying S3 client used for transfers.
+         * 
+         * @param s3Client The S3 client.
+         * @return builder
+         */
+        public Builder s3Client(final AmazonS3 s3Client) {
+            this.s3 = s3Client;
+            return this;
+        }
+        
+        /**
+         * Sets the context used.
+         * 
+         * @param applicationContext The application context.
+         * @return builder
+         */
+        public Builder context(final Context applicationContext) {
+            this.appContext = applicationContext.getApplicationContext();
+            return this;
+        }
+        
+        /**
+         * Sets the default bucket used for uploads and downloads.
+         * This allows you to use the corresponding methods that do not require the bucket name to be specified.
+         * 
+         * @param bucket The bucket name.
+         * @return builder
+         */
+        public Builder defaultBucket(final String bucket) {
+            this.defaultBucket = bucket;
+            return this;
+        }
+        
+        /**
+         * Sets the region of the underlying S3 client and the default bucket used for uploads and downloads.
+         * This allows you to use the corresponding methods that do not require the bucket name to be specified.
+         * These values are retrieved from the AWSConfiguration argument.
+         * 
+         * Example awsconfiguration.json contents:
+         * {
+         *     "S3TransferUtility": {
+         *         "Default": {
+         *             "Bucket": "exampleBucket",
+         *             "Region": "us-east-1"
+         *         }
+         *     }
+         * }
+         * 
+         * @param awsConfiguration The configuration.
+         * @return builder
+         */
+        public Builder awsConfiguration(AWSConfiguration awsConfiguration) {
+            this.awsConfig = awsConfiguration;
+            return this;
+        }
+        
+        /**
+         * Sets the TransferUtilityOptions for this TransferUtility
+         * instance. Currently, this includes the option to override the 
+         * time interval to periodically resume unfinished transfers by 
+         * the TransferService and the size of the transfer thread pool
+         * which is shared across the different transfers.
+         *  
+         * Example:
+         * 
+         *   TransferUtilityOptions tuOptions 
+         *     = new TransferUtilityOptions();
+         *   tuConfig.setTransferServiceCheckTimeInterval(5);
+         *   tuConfig.setTransferThreadPoolSize(10);
+         *   
+         *   TransferUtility tu = TransferUtility
+         *       .builder()
+         *       .transferUtilityOptions(tuOptions)
+         *       .build();
+         *   
+         * @param tuOptions The TransferUtility Options object
+         * @return builder
+         */
+        public Builder transferUtilityOptions(final TransferUtilityOptions tuOptions) {
+            this.transferUtilityOptions = tuOptions;
+            return this;
+        }
+        
+        /**
+         * 
+         * @return TransferUtility
+         */
+        public TransferUtility build() {
+            if (this.s3 == null) {
+                throw new IllegalArgumentException("AmazonS3 client is required please set using .s3Client(yourClient)");
+            } else if (this.appContext == null) {
+                throw new IllegalArgumentException("Context is required please set using .context(applicationContext)");
+            }
+            
+            if (this.awsConfig != null) {
+                try {
+                    final JSONObject tuConfig = this.awsConfig.optJsonObject("S3TransferUtility");
+                    this.s3.setRegion(Region.getRegion(tuConfig.getString("Region")));
+                    this.defaultBucket = tuConfig.getString("Bucket");
+                    
+                    TransferUtility.setUserAgentFromConfig(this.awsConfig.getUserAgent());
+                } catch (Exception e) {
+                    throw new IllegalArgumentException("Failed to read S3TransferUtility "
+                            + "please check your setup or awsconfiguration.json file", e);
+                }
+            }
+            
+            if (this.transferUtilityOptions == null) {
+                this.transferUtilityOptions = new TransferUtilityOptions();
+            }
+            
+            return new TransferUtility(this.s3,
+                                    this.appContext,
+                                    this.defaultBucket,
+                                    this.transferUtilityOptions);
+        }
+    }
+    
+    /**
+     * Minimum calls required.
+     * TransferUtility.builder().s3Client(s3).context(context).build()
+     * 
+     * @return The builder object to construct a TransferUtility.
+     */
+    public static Builder builder() {
+        return new Builder();
+    }
+    
+    /**
+     * Constructor.
+     * 
+     * @param s3 The client to use when making requests to Amazon S3
+     * @param context The current context
+     * @param defaultBucket The name of the default S3 bucket
+     * @param tuOptions The TransferUtility Options object
+     */
+    private TransferUtility(AmazonS3 s3,
+                            Context context,
+                            String defaultBucket,
+                            TransferUtilityOptions tuOptions) {
+        this.s3 = s3;
+        this.appContext = context.getApplicationContext();
+        this.dbUtil = new TransferDBUtil(appContext);
+        this.defaultBucket = defaultBucket;
+        this.transferUtilityOptions = tuOptions;
+    }
 
     /**
      * Constructs a new TransferUtility specifying the client to use and
@@ -107,12 +297,30 @@ public class TransferUtility {
      *
      * @param s3 The client to use when making requests to Amazon S3
      * @param context The current context
+     * 
+     * @deprecated Please use TransferUtility.builder().s3Client(s3).context(context).build()
      */
+    @Deprecated
     public TransferUtility(AmazonS3 s3, Context context) {
         this.s3 = s3;
         this.appContext = context.getApplicationContext();
         this.dbUtil = new TransferDBUtil(appContext);
+        this.defaultBucket = null;
+        this.transferUtilityOptions = new TransferUtilityOptions();
     }
+
+    private String getDefaultBucketOrThrow() {
+        if (this.defaultBucket == null) {
+            throw new IllegalArgumentException("TransferUtility has not been "
+                    + "configured with a default bucket. Please use the "
+                    + "corresponding method that specifies bucket name or "
+                    + "configure the default bucket name in construction of "
+                    + "the object. See TransferUtility.builder().defaultBucket() "
+                    + "or TransferUtility.builder().awsConfiguration()");
+        }
+        return this.defaultBucket;
+    }
+
     /**
      * Starts downloading the S3 object specified by the bucket and the key to
      * the given file. The file must be a valid file. Directory isn't supported.
@@ -125,6 +333,20 @@ public class TransferUtility {
      */
     public TransferObserver download(String bucket, String key, File file) {
         return download(bucket, key, file, null);
+    }
+    
+    /**
+     * Starts downloading the S3 object specified by the <b>default</b> bucket
+     * and the key to the given file. The file must be a valid file. Directory
+     * isn't supported. Note that if the given file exists, it'll be
+     * overwritten.
+     *
+     * @param key The key under which the object to download is stored.
+     * @param file The file to download the object's data to.
+     * @return A TransferObserver used to track download progress and state
+     */
+    public TransferObserver download(String key, File file) {
+        return download(getDefaultBucketOrThrow(), key, file, null);
     }
 
     /**
@@ -156,6 +378,22 @@ public class TransferUtility {
     }
 
     /**
+     * Starts downloading the S3 object specified by the <b>default</b> bucket
+     * and the key to the given file. The file must be a valid file. Directory
+     * isn't supported. Note that if the given file exists, it'll be
+     * overwritten.
+     *
+     * @param key The key under which the object to download is stored.
+     * @param file The file to download the object's data to.
+     * @param listener a listener to attach to transfer observer.
+     * @return A TransferObserver used to track download progress and state
+     */
+    public TransferObserver download(String key, File file,
+            TransferListener listener) {
+        return download(getDefaultBucketOrThrow(), key, file, listener);
+    }
+
+    /**
      * Starts uploading the file to the given bucket, using the given key. The
      * file must be a valid file. Directory isn't supported.
      *
@@ -166,8 +404,20 @@ public class TransferUtility {
      * @return A TransferObserver used to track upload progress and state
      */
     public TransferObserver upload(String bucket, String key, File file) {
-
         return upload(bucket, key, file, new ObjectMetadata());
+    }
+
+    /**
+     * Starts uploading the file to the <b>default</b> bucket, using the given
+     * key. The file must be a valid file. Directory isn't supported.
+     *
+     * @param key The key in the specified bucket by which to store the new
+     *            object.
+     * @param file The file to upload.
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String key, File file) {
+        return upload(getDefaultBucketOrThrow(), key, file, new ObjectMetadata());
     }
 
     /**
@@ -183,8 +433,22 @@ public class TransferUtility {
      */
     public TransferObserver upload(String bucket, String key, File file,
             CannedAccessControlList cannedAcl) {
-
         return upload(bucket, key, file, new ObjectMetadata(), cannedAcl);
+    }
+
+    /**
+     * Starts uploading the file to the <b>default</b> bucket, using the given key. The
+     * file must be a valid file. Directory isn't supported.
+     *
+     * @param key The key in the specified bucket by which to store the new
+     *            object.
+     * @param file The file to upload.
+     * @param cannedAcl The canned ACL to associate with this object
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String key, File file,
+            CannedAccessControlList cannedAcl) {
+        return upload(getDefaultBucketOrThrow(), key, file, new ObjectMetadata(), cannedAcl);
     }
 
     /**
@@ -203,6 +467,20 @@ public class TransferUtility {
     }
 
     /**
+     * Starts uploading the file to the <b>default</b> bucket, using the given key. The
+     * file must be a valid file. Directory isn't supported.
+     *
+     * @param key The key in the specified bucket by which to store the new
+     *            object.
+     * @param file The file to upload.
+     * @param metadata The S3 metadata to associate with this object
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String key, File file, ObjectMetadata metadata) {
+        return upload(getDefaultBucketOrThrow(), key, file, metadata, null);
+    }
+
+    /**
      * Starts uploading the file to the given bucket, using the given key. The
      * file must be a valid file. Directory isn't supported.
      *
@@ -217,6 +495,22 @@ public class TransferUtility {
     public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata,
             CannedAccessControlList cannedAcl) {
         return upload(bucket, key, file, metadata, cannedAcl, null);
+    }
+
+    /**
+     * Starts uploading the file to the <b>default</b> bucket, using the given key. The
+     * file must be a valid file. Directory isn't supported.
+     *
+     * @param key The key in the specified bucket by which to store the new
+     *            object.
+     * @param file The file to upload.
+     * @param metadata The S3 metadata to associate with this object
+     * @param cannedAcl The canned ACL to associate with this object
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String key, File file, ObjectMetadata metadata,
+            CannedAccessControlList cannedAcl) {
+        return upload(getDefaultBucketOrThrow(), key, file, metadata, cannedAcl, null);
     }
 
     /**
@@ -249,6 +543,23 @@ public class TransferUtility {
 
         sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId);
         return new TransferObserver(recordId, dbUtil, bucket, key, file, listener);
+    }
+
+    /**
+     * Starts uploading the file to the <b>default</b> bucket, using the given key. The
+     * file must be a valid file. Directory isn't supported.
+     *
+     * @param key The key in the specified bucket by which to store the new
+     *            object.
+     * @param file The file to upload.
+     * @param metadata The S3 metadata to associate with this object
+     * @param cannedAcl The canned ACL to associate with this object
+     * @param listener a listener to attach to transfer observer.
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String key, File file, ObjectMetadata metadata,
+            CannedAccessControlList cannedAcl, TransferListener listener) {
+        return upload(getDefaultBucketOrThrow(), key, file, metadata, cannedAcl, listener);
     }
 
 
@@ -351,6 +662,37 @@ public class TransferUtility {
         }
         return transferObservers;
     }
+    
+    /**
+     * Gets a list of TransferObserver instances which are observing records
+     * with the given type.
+     *
+     * @param type The type of the transfer.
+     * @param states A list of the the transfer states.
+     * @return A list of transfer ids that identifies the transfer records
+     */
+    private List<Integer> getTransferIdsWithTypeAndStates(TransferType type,
+                                                          TransferState[] states) {
+        List<Integer> transferIds = new ArrayList<Integer>();
+        Cursor c = null;
+        try {
+            c = dbUtil.queryTransfersWithTypeAndStates(type, states);
+            while (c.moveToNext()) {
+                final int partNum = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM));
+                if (partNum != 0) {
+                    // skip parts of a multipart upload
+                    continue;
+                }
+                final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
+                transferIds.add(id);
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+        return transferIds;
+    }
 
     /**
      * Inserts a multipart summary record and actual part records into database
@@ -439,6 +781,33 @@ public class TransferUtility {
         sendIntent(TransferService.INTENT_ACTION_TRANSFER_RESUME, id);
         return getTransferById(id);
     }
+    
+    /**
+     * Resume all the transfers which are not finished. You can resume a transfer in
+     * paused, canceled or failed state. If a transfer is in waiting or in
+     * progress state but it isn't actually running, this operation will force
+     * it to run.
+     *
+     * @param type The type of transfers
+     * @return A list of TransferObserver objects of the resumed upload/download or 
+     *         null if the ID does not represent a paused transfer
+     */
+    public List<TransferObserver> resumeAllWithType(final TransferType type) {
+        List<TransferObserver> observers = new ArrayList<TransferObserver>();
+        final List<Integer> transferIds = getTransferIdsWithTypeAndStates(type, 
+            new TransferState[] {
+                TransferState.PAUSED,
+                TransferState.FAILED,
+                TransferState.CANCELED
+            }
+        );
+        
+        for (final Integer transferId: transferIds) {
+            observers.add(resume(transferId));
+        }
+        
+        return observers;
+    }
 
     /**
      * Sets a transfer to be canceled. Note the TransferState must be
@@ -495,24 +864,24 @@ public class TransferUtility {
      * @param id id of the transfer
      */
     private synchronized void sendIntent(String action, int id) {
-        final String s3Key = UUID.randomUUID().toString();
-        S3ClientReference.put(s3Key, s3);
+        S3ClientReference.put(id, s3);
         final Intent intent = new Intent(appContext, TransferService.class);
         intent.setAction(action);
         intent.putExtra(TransferService.INTENT_BUNDLE_TRANSFER_ID, id);
-        intent.putExtra(TransferService.INTENT_BUNDLE_S3_REFERENCE_KEY, s3Key);
+        intent.putExtra(TransferService.INTENT_BUNDLE_TRANSFER_UTILITY_OPTIONS,
+                        this.transferUtilityOptions);
         appContext.startService(intent);
     }
 
     private boolean shouldUploadInMultipart(File file) {
         return (file != null
                 && file.length() > MINIMUM_UPLOAD_PART_SIZE);
-
     }
 
     static <X extends AmazonWebServiceRequest> X appendTransferServiceUserAgentString(
             final X request) {
         request.getRequestClientOptions().appendUserAgent("TransferService/"
+                + TransferUtility.getUserAgentFromConfig()
                 + VersionInfoUtils.getVersion());
         return request;
     }
@@ -520,6 +889,7 @@ public class TransferUtility {
     static <X extends AmazonWebServiceRequest> X appendMultipartTransferServiceUserAgentString(
             final X request) {
         request.getRequestClientOptions().appendUserAgent("TransferService_multipart/"
+                + TransferUtility.getUserAgentFromConfig()
                 + VersionInfoUtils.getVersion());
         return request;
     }
@@ -529,5 +899,3 @@ public class TransferUtility {
     }
 
 }
-
-

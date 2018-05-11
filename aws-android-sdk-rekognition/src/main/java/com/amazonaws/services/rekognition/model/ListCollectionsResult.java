@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,6 +36,17 @@ public class ListCollectionsResult implements Serializable {
      * <b>Length: </b> - 255<br/>
      */
     private String nextToken;
+
+    /**
+     * <p>
+     * Version numbers of the face detection models associated with the
+     * collections in the array <code>CollectionIds</code>. For example, the
+     * value of <code>FaceModelVersions[2]</code> is the version number for the
+     * face detection model used by the collection in
+     * <code>CollectionId[2]</code>.
+     * </p>
+     */
+    private java.util.List<String> faceModelVersions;
 
     /**
      * <p>
@@ -178,6 +189,113 @@ public class ListCollectionsResult implements Serializable {
     }
 
     /**
+     * <p>
+     * Version numbers of the face detection models associated with the
+     * collections in the array <code>CollectionIds</code>. For example, the
+     * value of <code>FaceModelVersions[2]</code> is the version number for the
+     * face detection model used by the collection in
+     * <code>CollectionId[2]</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Version numbers of the face detection models associated with the
+     *         collections in the array <code>CollectionIds</code>. For example,
+     *         the value of <code>FaceModelVersions[2]</code> is the version
+     *         number for the face detection model used by the collection in
+     *         <code>CollectionId[2]</code>.
+     *         </p>
+     */
+    public java.util.List<String> getFaceModelVersions() {
+        return faceModelVersions;
+    }
+
+    /**
+     * <p>
+     * Version numbers of the face detection models associated with the
+     * collections in the array <code>CollectionIds</code>. For example, the
+     * value of <code>FaceModelVersions[2]</code> is the version number for the
+     * face detection model used by the collection in
+     * <code>CollectionId[2]</code>.
+     * </p>
+     *
+     * @param faceModelVersions <p>
+     *            Version numbers of the face detection models associated with
+     *            the collections in the array <code>CollectionIds</code>. For
+     *            example, the value of <code>FaceModelVersions[2]</code> is the
+     *            version number for the face detection model used by the
+     *            collection in <code>CollectionId[2]</code>.
+     *            </p>
+     */
+    public void setFaceModelVersions(java.util.Collection<String> faceModelVersions) {
+        if (faceModelVersions == null) {
+            this.faceModelVersions = null;
+            return;
+        }
+
+        this.faceModelVersions = new java.util.ArrayList<String>(faceModelVersions);
+    }
+
+    /**
+     * <p>
+     * Version numbers of the face detection models associated with the
+     * collections in the array <code>CollectionIds</code>. For example, the
+     * value of <code>FaceModelVersions[2]</code> is the version number for the
+     * face detection model used by the collection in
+     * <code>CollectionId[2]</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param faceModelVersions <p>
+     *            Version numbers of the face detection models associated with
+     *            the collections in the array <code>CollectionIds</code>. For
+     *            example, the value of <code>FaceModelVersions[2]</code> is the
+     *            version number for the face detection model used by the
+     *            collection in <code>CollectionId[2]</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListCollectionsResult withFaceModelVersions(String... faceModelVersions) {
+        if (getFaceModelVersions() == null) {
+            this.faceModelVersions = new java.util.ArrayList<String>(faceModelVersions.length);
+        }
+        for (String value : faceModelVersions) {
+            this.faceModelVersions.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Version numbers of the face detection models associated with the
+     * collections in the array <code>CollectionIds</code>. For example, the
+     * value of <code>FaceModelVersions[2]</code> is the version number for the
+     * face detection model used by the collection in
+     * <code>CollectionId[2]</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param faceModelVersions <p>
+     *            Version numbers of the face detection models associated with
+     *            the collections in the array <code>CollectionIds</code>. For
+     *            example, the value of <code>FaceModelVersions[2]</code> is the
+     *            version number for the face detection model used by the
+     *            collection in <code>CollectionId[2]</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListCollectionsResult withFaceModelVersions(
+            java.util.Collection<String> faceModelVersions) {
+        setFaceModelVersions(faceModelVersions);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -191,7 +309,9 @@ public class ListCollectionsResult implements Serializable {
         if (getCollectionIds() != null)
             sb.append("CollectionIds: " + getCollectionIds() + ",");
         if (getNextToken() != null)
-            sb.append("NextToken: " + getNextToken());
+            sb.append("NextToken: " + getNextToken() + ",");
+        if (getFaceModelVersions() != null)
+            sb.append("FaceModelVersions: " + getFaceModelVersions());
         sb.append("}");
         return sb.toString();
     }
@@ -204,6 +324,8 @@ public class ListCollectionsResult implements Serializable {
         hashCode = prime * hashCode
                 + ((getCollectionIds() == null) ? 0 : getCollectionIds().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
+        hashCode = prime * hashCode
+                + ((getFaceModelVersions() == null) ? 0 : getFaceModelVersions().hashCode());
         return hashCode;
     }
 
@@ -227,6 +349,11 @@ public class ListCollectionsResult implements Serializable {
             return false;
         if (other.getNextToken() != null
                 && other.getNextToken().equals(this.getNextToken()) == false)
+            return false;
+        if (other.getFaceModelVersions() == null ^ this.getFaceModelVersions() == null)
+            return false;
+        if (other.getFaceModelVersions() != null
+                && other.getFaceModelVersions().equals(this.getFaceModelVersions()) == false)
             return false;
         return true;
     }

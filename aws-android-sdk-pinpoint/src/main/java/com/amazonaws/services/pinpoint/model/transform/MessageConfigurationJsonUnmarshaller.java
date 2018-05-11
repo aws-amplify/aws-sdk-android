@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -42,8 +42,15 @@ class MessageConfigurationJsonUnmarshaller implements
             } else if (name.equals("DefaultMessage")) {
                 messageConfiguration.setDefaultMessage(MessageJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("EmailMessage")) {
+                messageConfiguration.setEmailMessage(CampaignEmailMessageJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("GCMMessage")) {
                 messageConfiguration.setGCMMessage(MessageJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("SMSMessage")) {
+                messageConfiguration.setSMSMessage(CampaignSmsMessageJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

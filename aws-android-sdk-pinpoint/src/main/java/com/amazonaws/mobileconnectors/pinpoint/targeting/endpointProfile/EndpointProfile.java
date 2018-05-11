@@ -1,5 +1,5 @@
 /**
- * Copyright 2016-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -70,7 +70,7 @@ public class EndpointProfile implements JSONSerializable {
         this.pinpointContext = pinpointContext;
         this.effectiveDate = DateUtil.getCorrectedDate().getTime();
         this.demographic = new EndpointProfileDemographic(this.pinpointContext);
-        this.location = new EndpointProfileLocation();
+        this.location = new EndpointProfileLocation(this.pinpointContext);
         this.user = new EndpointProfileUser();
     }
 
@@ -127,16 +127,16 @@ public class EndpointProfile implements JSONSerializable {
      * @return the channel type
      */
     public String getChannelType() {
-        return "GCM";
+        return this.pinpointContext.getNotificationClient().getChannelType();
     }
 
     /**
-     * Returns the Address of the endpoint. The token that is returned by GCM.
+     * Returns the Address of the endpoint. The token that is returned by the channel selected.
      *
      * @return the address
      */
     public String getAddress() {
-        return this.pinpointContext.getNotificationClient().getGCMDeviceToken();
+        return this.pinpointContext.getNotificationClient().getDeviceToken();
     }
 
     /**
@@ -200,7 +200,7 @@ public class EndpointProfile implements JSONSerializable {
      */
     public String getOptOut() {
         return (this.pinpointContext.getNotificationClient().areAppNotificationsEnabled() && !StringUtil.isBlank(
-            this.pinpointContext.getNotificationClient().getGCMDeviceToken())) ? "NONE" : "ALL";
+            this.pinpointContext.getNotificationClient().getDeviceToken())) ? "NONE" : "ALL";
     }
 
     /**
@@ -220,13 +220,18 @@ public class EndpointProfile implements JSONSerializable {
 
         if (null != values) {
             if (currentNumOfAttributesAndMetrics.get() < MAX_NUM_OF_METRICS_AND_ATTRIBUTES) {
-                attributes.put(this.processAttributeMetricKey(name), this.processAttributeValues(values));
-                currentNumOfAttributesAndMetrics.incrementAndGet();
+                final String key = processAttributeMetricKey(name);
+                if (!attributes.containsKey(key)) {
+                    currentNumOfAttributesAndMetrics.incrementAndGet();
+                }
+                attributes.put(key, processAttributeValues(values));
             } else {
                 log.warn("Max number of attributes/metrics reached(" + MAX_NUM_OF_METRICS_AND_ATTRIBUTES + ").");
             }
         } else {
-            attributes.remove(name);
+            if (attributes.remove(name) != null) {
+                currentNumOfAttributesAndMetrics.decrementAndGet();
+            }
         }
     }
 
@@ -304,15 +309,20 @@ public class EndpointProfile implements JSONSerializable {
         if (null != value) {
             if (currentNumOfAttributesAndMetrics.get() <
                 MAX_NUM_OF_METRICS_AND_ATTRIBUTES) {
-                metrics.put(this.processAttributeMetricKey(name), value);
-                currentNumOfAttributesAndMetrics.incrementAndGet();
+                final String key = processAttributeMetricKey(name);
+                if (!metrics.containsKey(key)) {
+                    currentNumOfAttributesAndMetrics.incrementAndGet();
+                }
+                metrics.put(key, value);
             } else {
                 log.warn("Max number of attributes/metrics reached(" +
                          MAX_NUM_OF_METRICS_AND_ATTRIBUTES +
                          ").");
             }
         } else {
-            metrics.remove(name);
+            if (metrics.remove(name) != null) {
+                currentNumOfAttributesAndMetrics.decrementAndGet();
+            }
         }
     }
 

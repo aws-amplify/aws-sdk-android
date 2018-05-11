@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -50,6 +50,11 @@ class SegmentDimensionsJsonUnmarshaller implements
             } else if (name.equals("Location")) {
                 segmentDimensions.setLocation(SegmentLocationJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("UserAttributes")) {
+                segmentDimensions.setUserAttributes(new MapUnmarshaller<AttributeDimension>(
+                        AttributeDimensionJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
