@@ -118,7 +118,7 @@ public class HttpMethodReleaseInputStream extends SdkInputStream {
      * Standard input stream read method, except it calls
      * {@link #releaseConnection} when the underlying input stream is consumed.
      *
-     * @see java.io.InputStream#read()
+     * @see InputStream#read()
      */
     @Override
     public int read() throws IOException {
@@ -147,7 +147,7 @@ public class HttpMethodReleaseInputStream extends SdkInputStream {
      * Standard input stream read method, except it calls
      * {@link #releaseConnection} when the underlying input stream is consumed.
      *
-     * @see java.io.InputStream#read(byte[], int, int)
+     * @see InputStream#read(byte[], int, int)
      */
     @Override
     public int read(byte[] b, int off, int len) throws IOException {
@@ -177,7 +177,7 @@ public class HttpMethodReleaseInputStream extends SdkInputStream {
      * {@link #releaseConnection()} is called if any errors are encountered from
      * the wrapped stream.
      *
-     * @see java.io.InputStream#available()
+     * @see InputStream#available()
      */
     @Override
     public int available() throws IOException {
@@ -196,7 +196,7 @@ public class HttpMethodReleaseInputStream extends SdkInputStream {
      * Standard input stream close method, except it ensures that
      * {@link #releaseConnection()} is called before the input stream is closed.
      *
-     * @see java.io.InputStream#close()
+     * @see InputStream#close()
      */
     @Override
     public void close() throws IOException {

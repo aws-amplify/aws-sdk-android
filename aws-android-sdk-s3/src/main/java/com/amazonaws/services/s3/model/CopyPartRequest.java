@@ -35,7 +35,7 @@ import java.util.List;
  * and key, along with a destination bucket and key. Beyond that, requests also
  * specify constraints controlling if the copy will be performed or not.</li>
  *
- * @see AmazonS3Client#copyObject(com.amazonaws.services.s3.model.CopyPartRequest)
+ * @see AmazonS3Client#copyObject(CopyPartRequest)
  * @see AmazonS3Client#initiateMultipartUpload(InitiateMultipartUploadRequest)
  * @see AmazonS3Client#uploadPart(UploadPartRequest)
  * @see CopyPartResult

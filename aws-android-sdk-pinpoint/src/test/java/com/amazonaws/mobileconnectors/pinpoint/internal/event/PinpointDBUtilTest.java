@@ -35,7 +35,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(manifest = Config.NONE)
+@Config(manifest = Config.NONE, sdk=23)
 public class PinpointDBUtilTest {
 
     private static final String SDK_NAME = "AppIntelligenceSDK-Analytics";

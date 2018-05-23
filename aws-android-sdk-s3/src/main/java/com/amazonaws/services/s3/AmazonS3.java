@@ -94,7 +94,7 @@ public interface AmazonS3 extends S3DirectSpi {
      * @param region The region this client will communicate with. See
      *            {@link com.amazonaws.regions.Region#getRegion(com.amazonaws.regions.Regions)}
      *            for accessing a given region.
-     * @throws java.lang.IllegalArgumentException If the given region is null,
+     * @throws IllegalArgumentException If the given region is null,
      *             or if this service isn't available in the given region. See
      *             {@link com.amazonaws.regions.Region#isServiceSupported(String)}
      * @see com.amazonaws.regions.Region#getRegion(com.amazonaws.regions.Regions)
@@ -641,7 +641,7 @@ public interface AmazonS3 extends S3DirectSpi {
      * @see AmazonS3Client#listNextBatchOfVersions(VersionListing)
      */
     public VersionListing listVersions(String bucketName, String prefix,
-            String keyMarker, String versionIdMarker, String delimiter, Integer maxResults)
+                                       String keyMarker, String versionIdMarker, String delimiter, Integer maxResults)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1093,7 +1093,7 @@ public interface AmazonS3 extends S3DirectSpi {
      *             while making the request or handling the response.
      * @throws AmazonServiceException If any errors occurred in Amazon S3 while
      *             processing the request.
-     * @see com.amazonaws.services.s3.model.Region
+     * @see Region
      */
     public Bucket createBucket(String bucketName, Region region)
             throws AmazonClientException, AmazonServiceException;
@@ -1157,7 +1157,7 @@ public interface AmazonS3 extends S3DirectSpi {
      *             while making the request or handling the response.
      * @throws AmazonServiceException If any errors occurred in Amazon S3 while
      *             processing the request.
-     * @see com.amazonaws.services.s3.model.Region
+     * @see Region
      */
     public Bucket createBucket(String bucketName, String region)
             throws AmazonClientException, AmazonServiceException;
@@ -1412,7 +1412,7 @@ public interface AmazonS3 extends S3DirectSpi {
      * @see AmazonS3#setObjectAcl(String, String, String, AccessControlList)
      */
     public void setObjectAcl(String bucketName, String key, String versionId,
-            CannedAccessControlList acl)
+                             CannedAccessControlList acl)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2180,7 +2180,7 @@ public interface AmazonS3 extends S3DirectSpi {
      * @see AmazonS3Client#copyObject(CopyObjectRequest)
      */
     public CopyObjectResult copyObject(String sourceBucketName, String sourceKey,
-            String destinationBucketName, String destinationKey) throws AmazonClientException,
+                                       String destinationBucketName, String destinationKey) throws AmazonClientException,
             AmazonServiceException;
 
     /**
@@ -2827,7 +2827,7 @@ public interface AmazonS3 extends S3DirectSpi {
      *            bucket, which completely replaces any existing configuration.
      */
     public void setBucketTaggingConfiguration(String bucketName,
-            BucketTaggingConfiguration bucketTaggingConfiguration);
+                                              BucketTaggingConfiguration bucketTaggingConfiguration);
 
     /**
      * Sets the tagging configuration for the specified bucket.
@@ -2973,7 +2973,7 @@ public interface AmazonS3 extends S3DirectSpi {
      *             processing the request.
      */
     public void setBucketNotificationConfiguration(String bucketName,
-            BucketNotificationConfiguration bucketNotificationConfiguration)
+                                                   BucketNotificationConfiguration bucketNotificationConfiguration)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -3084,7 +3084,7 @@ public interface AmazonS3 extends S3DirectSpi {
      *             processing the request.
      */
     public void setBucketWebsiteConfiguration(String bucketName,
-            BucketWebsiteConfiguration configuration)
+                                              BucketWebsiteConfiguration configuration)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -3444,7 +3444,7 @@ public interface AmazonS3 extends S3DirectSpi {
      * @see AmazonS3#generatePresignedUrl(GeneratePresignedUrlRequest)
      */
     public URL generatePresignedUrl(String bucketName, String key, Date expiration,
-            HttpMethod method)
+                                    HttpMethod method)
             throws AmazonClientException;
 
     /**
@@ -3852,7 +3852,7 @@ public interface AmazonS3 extends S3DirectSpi {
      * @see AmazonS3#deleteBucketReplicationConfiguration(String)
      */
     public void setBucketReplicationConfiguration(String bucketName,
-            BucketReplicationConfiguration configuration)
+                                                  BucketReplicationConfiguration configuration)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -3994,7 +3994,7 @@ public interface AmazonS3 extends S3DirectSpi {
      *            bucket, which completely replaces any existing configuration.
      */
     public void setBucketAccelerateConfiguration(String bucketName,
-            BucketAccelerateConfiguration accelerateConfiguration)
+                                                 BucketAccelerateConfiguration accelerateConfiguration)
             throws AmazonServiceException, AmazonClientException;
 
     /**

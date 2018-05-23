@@ -73,7 +73,7 @@ public class SessionCredentialsProviderFactory {
         }
     }
 
-    private static final Map<Key, STSSessionCredentialsProvider> cache = new HashMap<SessionCredentialsProviderFactory.Key, STSSessionCredentialsProvider>();
+    private static final Map<Key, STSSessionCredentialsProvider> cache = new HashMap<Key, STSSessionCredentialsProvider>();
 
     /**
      * Gets a session credentials provider for the long-term credentials and

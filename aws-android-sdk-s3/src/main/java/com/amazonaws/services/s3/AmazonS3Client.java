@@ -223,7 +223,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 private static final long serialVersionUID = 23453L;
 
                 @Override
-                protected boolean removeEldestEntry(Map.Entry<String, String> eldest) {
+                protected boolean removeEldestEntry(Entry<String, String> eldest) {
                     return size() > BUCKET_REGION_CACHE_SIZE;
                 }
             });
@@ -3274,7 +3274,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         // Add custom query parameters
         final Map<String, String> customQueryParameters = generatePresignedUrlRequest.getCustomQueryParameters();
         if (customQueryParameters != null) {
-        	for (Map.Entry<String, String> e: customQueryParameters.entrySet()) {
+        	for (Entry<String, String> e: customQueryParameters.entrySet()) {
         		request.addParameter(e.getKey(), e.getValue());
         	}
         }
@@ -3780,8 +3780,8 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      * (non-Javadoc)
      *
      * @see
-     *      com.amazonaws.services.s3.AmazonS3#copyGlacierObject((java.lang.String
-     *      , java.lang.String, int)
+     *      AmazonS3#copyGlacierObject((String
+     *      , String, int)
      */
     @Override
     public void restoreObject(String bucketName, String key, int expirationInDays)

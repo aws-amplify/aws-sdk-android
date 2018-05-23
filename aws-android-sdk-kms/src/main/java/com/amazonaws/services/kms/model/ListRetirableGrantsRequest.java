@@ -375,7 +375,7 @@ public class ListRetirableGrantsRequest extends AmazonWebServiceRequest implemen
      * debugging.
      *
      * @return A string representation of this object.
-     * @see java.lang.Object#toString()
+     * @see Object#toString()
      */
     @Override
     public String toString() {
