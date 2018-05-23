@@ -139,7 +139,7 @@ class RepeatableInputStreamRequestEntity extends BasicHttpEntity {
      * cause if we continue to encounter errors, rather than masking the
      * original error.
      *
-     * @see org.apache.commons.httpclient.methods.RequestEntity#writeRequest(java.io.OutputStream)
+     * @see org.apache.commons.httpclient.methods.RequestEntity#writeRequest(OutputStream)
      */
     @Override
     public void writeTo(OutputStream output) throws IOException {

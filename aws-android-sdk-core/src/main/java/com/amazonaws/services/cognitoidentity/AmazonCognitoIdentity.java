@@ -100,7 +100,7 @@ public interface AmazonCognitoIdentity {
      * @throws IllegalArgumentException If any problems are detected with the
      *             specified endpoint.
      */
-    public void setEndpoint(String endpoint) throws java.lang.IllegalArgumentException;
+    public void setEndpoint(String endpoint) throws IllegalArgumentException;
 
     /**
      * An alternative to {@link AmazonCognitoIdentity#setEndpoint(String)}, sets
@@ -117,16 +117,16 @@ public interface AmazonCognitoIdentity {
      * transit or retrying.</b>
      *
      * @param region The region this client will communicate with. See
-     *            {@link Region#getRegion(com.amazonaws.regions.Regions)} for
+     *            {@link Region#getRegion(Regions)} for
      *            accessing a given region.
-     * @throws java.lang.IllegalArgumentException If the given region is null,
+     * @throws IllegalArgumentException If the given region is null,
      *             or if this service isn't available in the given region. See
      *             {@link Region#isServiceSupported(String)}
-     * @see Region#getRegion(com.amazonaws.regions.Regions)
+     * @see Region#getRegion(Regions)
      * @see Region#createClient(Class,
      *      com.amazonaws.auth.AWSCredentialsProvider, ClientConfiguration)
      */
-    public void setRegion(Region region) throws java.lang.IllegalArgumentException;
+    public void setRegion(Region region) throws IllegalArgumentException;
 
     /**
      * <p>

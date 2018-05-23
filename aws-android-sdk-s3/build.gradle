@@ -1,0 +1,21 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile project(":aws-android-sdk-core")
+    compile project(":aws-android-sdk-kms")
+
+    testCompile "junit:junit:4.12"
+    testCompile "org.robolectric:robolectric:3.8"
+    testCompile "org.apache.commons:commons-io:1.3.2"
+    testCompile "commons-logging:commons-logging:1.1.1"
+    testCompile "org.mockito:mockito-all:1.10.5"
+    testCompile "joda-time:joda-time:2.0"
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'

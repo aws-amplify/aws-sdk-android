@@ -1,24 +1,27 @@
+before_install:
+# Allow executing of gradlew
+- chmod +x gradlew
+# Accept stubborn license
+- yes | sdkmanager "platforms;android-27"
+- android list target
+# Emulator Management: Create, Start and Wait
+- echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
+- emulator -avd test -no-skin -no-audio -no-window &
+- android-wait-for-emulator
+- adb shell input keyevent 82 &
 language: android
 android:
   components:
-    - tools # to get the new `repository-11.xml`
-    - tools # see https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943)
-    - platform-tools
-    - build-tools-24.0.2
-    - build-tools-19.1.0
-    - android-11
-    - android-15
-    - android-21
-sudo: true
+  - tools
+  - platform-tools
+  - tools
+  - build-tools-26.0.2
+  - android-26
+  - android-22
+  - android-23
+  - android-25
+  - sys-img-armeabi-v7a-android-22
 script:
-    - sudo rm -f /etc/mavenrc
-    - export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=512m"
-    - export LINUX_21="${basedir}/../android-21-linux.jar"
-    - export ANDROID_21="/../../../../../../usr/local/android-sdk/platforms/android-21/android.jar"
-    - sed -i "s,$LINUX_21,$ANDROID_21," aws-android-sdk-kinesisvideo/pom.xml
-    - sed -i "s,$LINUX_21,$ANDROID_21," aws-android-sdk-pinpoint/pom.xml
-    - cat aws-android-sdk-kinesisvideo/pom.xml
-    - mvn clean install -Dmaven.javadoc.skip=true cobertura:cobertura
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- android list target
+# TODO Fix builds for testing ./gradlew build connectedCheck
+- ./gradlew build

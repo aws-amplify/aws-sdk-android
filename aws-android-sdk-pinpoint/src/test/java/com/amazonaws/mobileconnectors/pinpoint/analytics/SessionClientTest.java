@@ -112,7 +112,7 @@ public class SessionClientTest extends MobileAnalyticsTestBase {
     // ~\\
     //
     @Test
-    public void startSession_sessionIsActive_SetsNewSession() {
+    public void startSession_sessionIsActive_SetsNewSession() throws InterruptedException {
         target.startSession();
         String firstSessionId = target.getSession().getSessionID();
         long firstStartTime = target.getSession().getStartTime();
@@ -120,6 +120,8 @@ public class SessionClientTest extends MobileAnalyticsTestBase {
         verify(mockAnalyticsClient, times(1)).setSessionStartTime(firstStartTime);
 
         target.getSession().getStartTime();
+        // TODO Add salt to session name to prevent same name
+        Thread.sleep(100);
         target.startSession();
 
         String secondSessionId = target.getSession().getSessionID();

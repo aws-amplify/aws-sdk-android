@@ -249,7 +249,7 @@ public class ServiceUtils {
 
     /**
      * Downloads an S3Object, as returned from
-     * {@link AmazonS3Client#getObject(com.amazonaws.services.s3.model.GetObjectRequest)}
+     * {@link AmazonS3Client#getObject(GetObjectRequest)}
      * , to the specified file.
      *
      * @param s3Object The S3Object containing a reference to an InputStream

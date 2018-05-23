@@ -50,7 +50,7 @@ public class StandardErrorUnmarshaller extends AbstractErrorUnmarshaller<Node> {
     }
 
     /**
-     * @see com.amazonaws.transform.Unmarshaller#unmarshall(java.lang.Object)
+     * @see Unmarshaller#unmarshall(Object)
      */
     @Override
     public AmazonServiceException unmarshall(Node in) throws Exception {

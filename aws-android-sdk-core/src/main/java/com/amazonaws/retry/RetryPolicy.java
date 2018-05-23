@@ -183,8 +183,8 @@ public final class RetryPolicy {
          * @return True if the failed request should be retried.
          */
         public boolean shouldRetry(AmazonWebServiceRequest originalRequest,
-                AmazonClientException exception,
-                int retriesAttempted);
+                                   AmazonClientException exception,
+                                   int retriesAttempted);
 
     }
 
@@ -197,7 +197,7 @@ public final class RetryPolicy {
         /**
          * Backoff strategy.
          */
-        RetryPolicy.BackoffStrategy NO_DELAY = new BackoffStrategy() {
+        BackoffStrategy NO_DELAY = new BackoffStrategy() {
             @Override
             public long delayBeforeNextRetry(AmazonWebServiceRequest originalRequest,
                     AmazonClientException exception,
@@ -231,7 +231,7 @@ public final class RetryPolicy {
          * @return The delay (in milliseconds) before next retry attempt.
          */
         public long delayBeforeNextRetry(AmazonWebServiceRequest originalRequest,
-                AmazonClientException exception,
-                int retriesAttempted);
+                                         AmazonClientException exception,
+                                         int retriesAttempted);
     }
 }

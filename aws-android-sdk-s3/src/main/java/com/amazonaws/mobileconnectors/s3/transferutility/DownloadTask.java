@@ -86,7 +86,7 @@ class DownloadTask implements Callable<Boolean> {
             LOGGER.debug(String.format("Resume transfer %d from %d bytes", download.id,
                     bytesCurrent));
             /*
-             * Setting the last byte position to －1 means downloading the object
+             * Setting the last byte position to -1 means downloading the object
              * from bytesCurrent to the end.
              */
             getObjectRequest.setRange(bytesCurrent, -1);

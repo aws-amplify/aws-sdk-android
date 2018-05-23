@@ -31,7 +31,7 @@ import java.util.List;
  */
 public class DeleteObjectsResult implements Serializable, S3RequesterChargedResult  {
 
-    private final List<DeletedObject> deletedObjects = new ArrayList<DeleteObjectsResult.DeletedObject>();
+    private final List<DeletedObject> deletedObjects = new ArrayList<DeletedObject>();
 
     /**
      * Indicate if the requester is charged for conducting this operation from

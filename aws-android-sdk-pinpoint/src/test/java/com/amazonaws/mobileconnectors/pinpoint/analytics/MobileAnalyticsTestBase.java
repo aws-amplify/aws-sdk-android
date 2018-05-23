@@ -16,12 +16,14 @@
 package com.amazonaws.mobileconnectors.pinpoint.analytics;
 
 import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowLog;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(manifest = Config.NONE)
+@PowerMockIgnore({ "org.mockito.*", "org.robolectric.*", "android.*" })
+@Config(manifest = Config.NONE, sdk=23)
 public abstract class MobileAnalyticsTestBase {
 
     static {
