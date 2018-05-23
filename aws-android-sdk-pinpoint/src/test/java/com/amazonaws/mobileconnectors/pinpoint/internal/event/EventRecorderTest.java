@@ -56,7 +56,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(PowerMockRunner.class)
 @PowerMockRunnerDelegate(RobolectricTestRunner.class)
 @PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*"})
-@Config(manifest = Config.NONE)
+@Config(manifest = Config.NONE, sdk=23)
 public class EventRecorderTest {
     private static final String SDK_NAME = "AppIntelligenceSDK-Analytics";
     private static final String SDK_VERSION = "test";

@@ -31,7 +31,7 @@ public class MultiObjectDeleteException extends AmazonS3Exception {
     private static final long serialVersionUID = -2004213552302446866L;
 
     private final List<DeleteError> errors = new ArrayList<DeleteError>();
-    private final List<DeletedObject> deletedObjects = new ArrayList<DeleteObjectsResult.DeletedObject>();
+    private final List<DeletedObject> deletedObjects = new ArrayList<DeletedObject>();
 
     public MultiObjectDeleteException(Collection<DeleteError> errors,
             Collection<DeletedObject> deletedObjects) {

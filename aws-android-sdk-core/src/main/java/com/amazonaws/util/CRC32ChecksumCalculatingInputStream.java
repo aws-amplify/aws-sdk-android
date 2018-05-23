@@ -46,7 +46,7 @@ public class CRC32ChecksumCalculatingInputStream extends SdkFilterInputStream {
     /**
      * Resets the wrapped input stream and the CRC32 computation.
      *
-     * @see java.io.InputStream#reset()
+     * @see InputStream#reset()
      */
     @Override
     public synchronized void reset() throws IOException {
@@ -56,7 +56,7 @@ public class CRC32ChecksumCalculatingInputStream extends SdkFilterInputStream {
     }
 
     /**
-     * @see java.io.InputStream#read()
+     * @see InputStream#read()
      */
     @Override
     public int read() throws IOException {
@@ -69,7 +69,7 @@ public class CRC32ChecksumCalculatingInputStream extends SdkFilterInputStream {
     }
 
     /**
-     * @see java.io.InputStream#read(byte[], int, int)
+     * @see InputStream#read(byte[], int, int)
      */
     @Override
     public int read(byte[] b, int off, int len) throws IOException {

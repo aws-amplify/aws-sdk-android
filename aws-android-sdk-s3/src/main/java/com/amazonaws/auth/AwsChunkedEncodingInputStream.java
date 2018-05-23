@@ -203,7 +203,7 @@ public final class AwsChunkedEncodingInputStream extends SdkInputStream {
     }
 
     /**
-     * @see java.io.InputStream#markSupported()
+     * @see InputStream#markSupported()
      */
     @Override
     public boolean markSupported() {

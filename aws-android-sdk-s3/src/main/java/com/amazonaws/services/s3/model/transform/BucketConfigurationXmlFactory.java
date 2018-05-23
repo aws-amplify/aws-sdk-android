@@ -792,11 +792,11 @@ public class BucketConfigurationXmlFactory {
 
     /**
      * Converts the specified
-     * {@link com.amazonaws.services.s3.model.analytics.AnalyticsConfiguration}
+     * {@link AnalyticsConfiguration}
      * object to an XML fragment that can be sent to Amazon S3.
      *
      * @param config The
-     *            {@link com.amazonaws.services.s3.model.analytics.AnalyticsConfiguration}
+     *            {@link AnalyticsConfiguration}
      */
     /*
      * <AnalyticsConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
@@ -915,11 +915,11 @@ public class BucketConfigurationXmlFactory {
 
     /**
      * Converts the specified
-     * {@link com.amazonaws.services.s3.model.metrics.MetricsConfiguration}
+     * {@link MetricsConfiguration}
      * object to an XML fragment that can be sent to Amazon S3.
      *
      * @param config The
-     *            {@link com.amazonaws.services.s3.model.metrics.MetricsConfiguration}
+     *            {@link MetricsConfiguration}
      *            .
      */
     /*

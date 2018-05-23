@@ -41,7 +41,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(manifest = Config.NONE)
+@Config(manifest = Config.NONE, sdk=23)
 public class PinpointManagerTest {
 
     public static final String uniqueAnalyticsTag1 = "dd0fe530-edca-11e3-ac10-0800200c9a66+TEST";

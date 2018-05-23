@@ -525,7 +525,7 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * debugging.
      *
      * @return A string representation of this object.
-     * @see java.lang.Object#toString()
+     * @see Object#toString()
      */
     @Override
     public String toString() {

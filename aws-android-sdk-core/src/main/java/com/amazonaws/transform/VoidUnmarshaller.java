@@ -22,7 +22,7 @@ import org.w3c.dom.Node;
  */
 public class VoidUnmarshaller implements Unmarshaller<Void, Node> {
     /**
-     * @see com.amazonaws.transform.Unmarshaller#unmarshall(java.lang.Object)
+     * @see Unmarshaller#unmarshall(Object)
      */
     @Override
     public Void unmarshall(Node in) throws Exception {

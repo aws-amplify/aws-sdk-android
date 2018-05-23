@@ -39,7 +39,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(manifest = Config.NONE)
+@Config(manifest = Config.NONE, sdk=23)
 public class EventLocaleTest {
 
     private static final String SDK_NAME = "AppIntelligenceSDK-Analytics";

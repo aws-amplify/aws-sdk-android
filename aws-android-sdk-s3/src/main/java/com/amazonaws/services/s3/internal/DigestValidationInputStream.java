@@ -47,7 +47,7 @@ public class DigestValidationInputStream extends SdkDigestInputStream {
     }
 
     /**
-     * @see java.io.InputStream#read()
+     * @see InputStream#read()
      */
     @Override
     public int read() throws IOException {
@@ -59,7 +59,7 @@ public class DigestValidationInputStream extends SdkDigestInputStream {
     }
 
     /**
-     * @see java.io.InputStream#read(byte[], int, int)
+     * @see InputStream#read(byte[], int, int)
      */
     @Override
     public int read(byte[] b, int off, int len) throws IOException {
