@@ -23,6 +23,7 @@ import com.amazonaws.http.HttpResponse;
 import com.amazonaws.services.s3.Headers;
 import com.amazonaws.services.s3.S3ResponseMetadata;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.StorageClass;
 
 import org.junit.Test;
 
@@ -43,6 +44,7 @@ public class S3MetadataResponseHandlerTest {
                 .header(Headers.RESTORE,
                         "ongoing-request=\"false\", expiry-date=\"Wed, 07 Nov 2012 00:00:00 GMT\"")
                 .header("UndefinedKey", "UndefinedValue")
+                .header(Headers.STORAGE_CLASS, "STANDARD_IA")
                 .build();
 
         S3MetadataResponseHandler handler = new S3MetadataResponseHandler();
@@ -62,6 +64,7 @@ public class S3MetadataResponseHandlerTest {
         assertEquals(1136116800000L, om.getHttpExpiresDate().getTime());
         assertEquals("Rule for testfile.txt", om.getExpirationTimeRuleId());
         assertEquals(1352246400000L, om.getRestoreExpirationTime().getTime());
+        assertEquals(om.getStorageClass(), StorageClass.StandardInfrequentAccess.toString());
         assertFalse(om.getOngoingRestore());
     }
 

@@ -119,7 +119,8 @@ class TransferDBUtil {
      */
     public Uri insertSingleTransferRecord(TransferType type, String bucket, String key, File file,
             ObjectMetadata metadata, CannedAccessControlList cannedAcl) {
-        final ContentValues values = generateContentValuesForSinglePartTransfer(type, bucket, key, file,
+        final ContentValues values = generateContentValuesForSinglePartTransfer(type, bucket, key,
+                file,
                 metadata, cannedAcl);
         return transferDBBase.insert(transferDBBase.getContentUri(), values);
     }
@@ -195,9 +196,9 @@ class TransferDBUtil {
      * Updates the state but do not notify TransferService to refresh its
      * transfer record list. Therefore, only TransferObserver knows the state
      * change of the transfer record. If the new state is STATE_FAILED, we need
-     * to check the original state, because "pause", "cancel" and
-     * "disconnect network" actions may also cause failure message of the
-     * threads, but these are not actual failure of transfers.
+     * to check the original state, because "pause", "cancel" and "disconnect
+     * network" actions may also cause failure message of the threads, but these
+     * are not actual failure of transfers.
      *
      * @param id The id of the transfer.
      * @param state The new state of the transfer.
@@ -209,12 +210,12 @@ class TransferDBUtil {
         if (TransferState.FAILED.equals(state)) {
             return transferDBBase.update(getRecordUri(id), values, TransferTable.COLUMN_STATE
                     + " not in (?,?,?,?,?) ", new String[] {
-                    TransferState.COMPLETED.toString(),
-                    TransferState.PENDING_NETWORK_DISCONNECT.toString(),
-                    TransferState.PAUSED.toString(),
-                    TransferState.CANCELED.toString(),
-                    TransferState.WAITING_FOR_NETWORK.toString()
-                    });
+                            TransferState.COMPLETED.toString(),
+                            TransferState.PENDING_NETWORK_DISCONNECT.toString(),
+                            TransferState.PAUSED.toString(),
+                            TransferState.CANCELED.toString(),
+                            TransferState.WAITING_FOR_NETWORK.toString()
+            });
         } else {
             return transferDBBase.update(getRecordUri(id), values, null, null);
         }
@@ -275,11 +276,12 @@ class TransferDBUtil {
                 TransferState.PENDING_NETWORK_DISCONNECT.toString());
         return transferDBBase.update(transferDBBase.getContentUri(), values,
                 TransferTable.COLUMN_STATE
-                        + " in (?,?,?)", new String[] {
+                        + " in (?,?,?)",
+                new String[] {
                         TransferState.IN_PROGRESS.toString(),
                         TransferState.RESUMED_WAITING.toString(),
                         TransferState.WAITING.toString()
-                        });
+                });
     }
 
     /**
@@ -293,10 +295,11 @@ class TransferDBUtil {
         values.put(TransferTable.COLUMN_STATE, TransferState.RESUMED_WAITING.toString());
         return transferDBBase.update(transferDBBase.getContentUri(), values,
                 TransferTable.COLUMN_STATE
-                        + " in (?,?)", new String[] {
+                        + " in (?,?)",
+                new String[] {
                         TransferState.PENDING_NETWORK_DISCONNECT.toString(),
                         TransferState.WAITING_FOR_NETWORK.toString()
-                        });
+                });
     }
 
     /**
@@ -318,7 +321,7 @@ class TransferDBUtil {
                         TransferState.PENDING_PAUSE.toString(),
                         TransferState.RESUMED_WAITING.toString(),
                         TransferState.WAITING.toString()
-                    });
+                });
     }
 
     /**
@@ -403,7 +406,7 @@ class TransferDBUtil {
         } else {
             return transferDBBase.query(transferDBBase.getContentUri(), null,
                     TransferTable.COLUMN_TYPE + "=?", new String[] {
-                        type.toString()
+                            type.toString()
                     }, null);
         }
     }
@@ -423,7 +426,7 @@ class TransferDBUtil {
         } else {
             return transferDBBase.query(getStateUri(state), null, TransferTable.COLUMN_TYPE + "=?",
                     new String[] {
-                        type.toString()
+                            type.toString()
                     }, null);
         }
     }
@@ -436,7 +439,7 @@ class TransferDBUtil {
      * @return A Cursor pointing to records in the database in any of the given states.
      */
     public Cursor queryTransfersWithTypeAndStates(TransferType type,
-                                                  TransferState[] states) {
+            TransferState[] states) {
         final String selection;
         final String[] selectionArgs;
         int index = 0;
@@ -487,7 +490,8 @@ class TransferDBUtil {
         try {
             c = transferDBBase.query(getPartUri(mainUploadId), null, null, null, null);
             while (c.moveToNext()) {
-                final String state = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_STATE));
+                final String state = c
+                        .getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_STATE));
                 if (TransferState.PART_COMPLETED.equals(TransferState.getState(state))) {
                     bytesTotal += c.getLong(c
                             .getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_TOTAL));
@@ -564,7 +568,8 @@ class TransferDBUtil {
                         .withId(c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID)))
                         .withMainUploadId(
                                 c.getInt(c
-                                        .getColumnIndexOrThrow(TransferTable.COLUMN_MAIN_UPLOAD_ID)))
+                                        .getColumnIndexOrThrow(
+                                                TransferTable.COLUMN_MAIN_UPLOAD_ID)))
                         .withBucketName(
                                 c.getString(c
                                         .getColumnIndexOrThrow(TransferTable.COLUMN_BUCKET_NAME)))
@@ -573,11 +578,13 @@ class TransferDBUtil {
                         .withFile(new File(
                                 c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_FILE))))
                         .withFileOffset(
-                                c.getLong(c.getColumnIndexOrThrow(TransferTable.COLUMN_FILE_OFFSET)))
+                                c.getLong(
+                                        c.getColumnIndexOrThrow(TransferTable.COLUMN_FILE_OFFSET)))
                         .withPartNumber(
                                 c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_PART_NUM)))
                         .withPartSize(
-                                c.getLong(c.getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_TOTAL)))
+                                c.getLong(
+                                        c.getColumnIndexOrThrow(TransferTable.COLUMN_BYTES_TOTAL)))
                         .withLastPart(1 == c.getInt(c
                                 .getColumnIndexOrThrow(TransferTable.COLUMN_IS_LAST_PART)));
                 list.add(putPartRequest);
@@ -591,8 +598,8 @@ class TransferDBUtil {
     }
 
     /**
-     * Queries waiting for network partUpload tasks of a multipart upload and returns
-     * true if one such partUpload tasks
+     * Queries waiting for network partUpload tasks of a multipart upload and
+     * returns true if one such partUpload tasks
      *
      * @param mainUploadId The mainUploadId of a multipart upload task
      * @return If a partUpload task waiting for network exist
@@ -602,7 +609,8 @@ class TransferDBUtil {
         Cursor c = null;
 
         try {
-            c = transferDBBase.query(getPartUri(mainUploadId), null, TransferTable.COLUMN_STATE + "=?",
+            c = transferDBBase.query(getPartUri(mainUploadId), null,
+                    TransferTable.COLUMN_STATE + "=?",
                     new String[] {
                             TransferState.WAITING_FOR_NETWORK.toString()
                     }, null);
@@ -703,10 +711,14 @@ class TransferDBUtil {
                 metadata.getContentDisposition());
         values.put(TransferTable.COLUMN_SSE_ALGORITHM, metadata.getSSEAlgorithm());
         values.put(TransferTable.COLUMN_SSE_KMS_KEY, metadata.getSSEAwsKmsKeyId());
-        values.put(TransferTable.COLUMN_EXPIRATION_TIME_RULE_ID, metadata.getExpirationTimeRuleId());
+        values.put(TransferTable.COLUMN_EXPIRATION_TIME_RULE_ID,
+                metadata.getExpirationTimeRuleId());
         if (metadata.getHttpExpiresDate() != null) {
             values.put(TransferTable.COLUMN_HTTP_EXPIRES_DATE,
                     String.valueOf(metadata.getHttpExpiresDate().getTime()));
+        }
+        if (metadata.getStorageClass() != null) {
+            values.put(TransferTable.COLUMN_HEADER_STORAGE_CLASS, metadata.getStorageClass());
         }
 
         return values;
@@ -816,4 +828,3 @@ class TransferDBUtil {
         return transferDBBase;
     }
 }
-
