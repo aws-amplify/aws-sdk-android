@@ -200,7 +200,7 @@ public class BucketNotificationConfiguration implements Serializable {
 
     /**
      * <p>
-     * Sets the {@link TopicConfiguration}
+     * Sets the {@link BucketNotificationConfiguration.TopicConfiguration}
      * <code>TopicConfigurations</code> and returns this object, enabling
      * additional method calls to be chained together.
      * </p>
@@ -224,7 +224,7 @@ public class BucketNotificationConfiguration implements Serializable {
 
     /**
      * <p>
-     * Sets the {@link TopicConfiguration}.
+     * Sets the {@link BucketNotificationConfiguration.TopicConfiguration}.
      * </p>
      * <p>
      * Calling this method will overwrite any previously set
@@ -250,7 +250,7 @@ public class BucketNotificationConfiguration implements Serializable {
     /**
      * <p>
      * Gets the list of
-     * {@link TopicConfiguration} objects
+     * {@link BucketNotificationConfiguration.TopicConfiguration} objects
      * contained in this object. This method may return an empty list if no
      * <code>TopicConfiguration</code> objects are present.
      * </p>
@@ -268,7 +268,7 @@ public class BucketNotificationConfiguration implements Serializable {
      */
     @Deprecated
     public List<TopicConfiguration> getTopicConfigurations() {
-        final List<TopicConfiguration> topicConfigs = new ArrayList<TopicConfiguration>();
+        final List<TopicConfiguration> topicConfigs = new ArrayList<BucketNotificationConfiguration.TopicConfiguration>();
         for (final Map.Entry<String, NotificationConfiguration> entry : configurations
                 .entrySet()) {
             if (entry.getValue() instanceof TopicConfiguration) {
@@ -300,7 +300,7 @@ public class BucketNotificationConfiguration implements Serializable {
         /**
          * <p>
          * Creates a new
-         * {@link TopicConfiguration}.
+         * {@link BucketNotificationConfiguration.TopicConfiguration}.
          * </p>
          *
          * @param topic The SNS Topic ARN (Amazon Resource Name) to publish

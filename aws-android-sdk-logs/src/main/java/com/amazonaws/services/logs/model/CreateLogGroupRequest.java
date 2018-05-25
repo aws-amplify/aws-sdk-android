@@ -47,6 +47,18 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </li>
  * </ul>
+ * <p>
+ * If you associate a AWS Key Management Service (AWS KMS) customer master key
+ * (CMK) with the log group, ingested data is encrypted using the CMK. This
+ * association is stored as long as the data encrypted with the CMK is still
+ * within Amazon CloudWatch Logs. This enables Amazon CloudWatch Logs to decrypt
+ * this data whenever it is requested.
+ * </p>
+ * <p>
+ * If you attempt to associate a CMK with the log group but the CMK does not
+ * exist or the CMK is disabled, you will receive an
+ * <code>InvalidParameterException</code> error.
+ * </p>
  */
 public class CreateLogGroupRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -59,6 +71,19 @@ public class CreateLogGroupRequest extends AmazonWebServiceRequest implements Se
      * <b>Pattern: </b>[\.\-_/#A-Za-z0-9]+<br/>
      */
     private String logGroupName;
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the CMK to use when encrypting log
+     * data. For more information, see <a href=
+     * "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
+     * >Amazon Resource Names - AWS Key Management Service (AWS KMS)</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     */
+    private String kmsKeyId;
 
     /**
      * <p>
@@ -142,6 +167,81 @@ public class CreateLogGroupRequest extends AmazonWebServiceRequest implements Se
      */
     public CreateLogGroupRequest withLogGroupName(String logGroupName) {
         this.logGroupName = logGroupName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the CMK to use when encrypting log
+     * data. For more information, see <a href=
+     * "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
+     * >Amazon Resource Names - AWS Key Management Service (AWS KMS)</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the CMK to use when encrypting
+     *         log data. For more information, see <a href=
+     *         "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
+     *         >Amazon Resource Names - AWS Key Management Service (AWS
+     *         KMS)</a>.
+     *         </p>
+     */
+    public String getKmsKeyId() {
+        return kmsKeyId;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the CMK to use when encrypting log
+     * data. For more information, see <a href=
+     * "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
+     * >Amazon Resource Names - AWS Key Management Service (AWS KMS)</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     *
+     * @param kmsKeyId <p>
+     *            The Amazon Resource Name (ARN) of the CMK to use when
+     *            encrypting log data. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
+     *            >Amazon Resource Names - AWS Key Management Service (AWS
+     *            KMS)</a>.
+     *            </p>
+     */
+    public void setKmsKeyId(String kmsKeyId) {
+        this.kmsKeyId = kmsKeyId;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the CMK to use when encrypting log
+     * data. For more information, see <a href=
+     * "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
+     * >Amazon Resource Names - AWS Key Management Service (AWS KMS)</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     *
+     * @param kmsKeyId <p>
+     *            The Amazon Resource Name (ARN) of the CMK to use when
+     *            encrypting log data. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms"
+     *            >Amazon Resource Names - AWS Key Management Service (AWS
+     *            KMS)</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateLogGroupRequest withKmsKeyId(String kmsKeyId) {
+        this.kmsKeyId = kmsKeyId;
         return this;
     }
 
@@ -238,6 +338,8 @@ public class CreateLogGroupRequest extends AmazonWebServiceRequest implements Se
         sb.append("{");
         if (getLogGroupName() != null)
             sb.append("logGroupName: " + getLogGroupName() + ",");
+        if (getKmsKeyId() != null)
+            sb.append("kmsKeyId: " + getKmsKeyId() + ",");
         if (getTags() != null)
             sb.append("tags: " + getTags());
         sb.append("}");
@@ -251,6 +353,7 @@ public class CreateLogGroupRequest extends AmazonWebServiceRequest implements Se
 
         hashCode = prime * hashCode
                 + ((getLogGroupName() == null) ? 0 : getLogGroupName().hashCode());
+        hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
@@ -270,6 +373,10 @@ public class CreateLogGroupRequest extends AmazonWebServiceRequest implements Se
             return false;
         if (other.getLogGroupName() != null
                 && other.getLogGroupName().equals(this.getLogGroupName()) == false)
+            return false;
+        if (other.getKmsKeyId() == null ^ this.getKmsKeyId() == null)
+            return false;
+        if (other.getKmsKeyId() != null && other.getKmsKeyId().equals(this.getKmsKeyId()) == false)
             return false;
         if (other.getTags() == null ^ this.getTags() == null)
             return false;

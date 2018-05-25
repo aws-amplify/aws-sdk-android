@@ -18,7 +18,9 @@ package com.amazonaws.services.cognitoidentity.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
+ * <p>
  * Thrown when a request is throttled.
+ * </p>
  */
 public class TooManyRequestsException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

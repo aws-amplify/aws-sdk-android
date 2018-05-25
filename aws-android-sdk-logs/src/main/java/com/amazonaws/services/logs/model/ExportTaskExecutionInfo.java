@@ -25,7 +25,8 @@ import java.io.Serializable;
 public class ExportTaskExecutionInfo implements Serializable {
     /**
      * <p>
-     * The creation time of the export task.
+     * The creation time of the export task, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -35,7 +36,8 @@ public class ExportTaskExecutionInfo implements Serializable {
 
     /**
      * <p>
-     * The completion time of the export task.
+     * The completion time of the export task, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,14 +47,16 @@ public class ExportTaskExecutionInfo implements Serializable {
 
     /**
      * <p>
-     * The creation time of the export task.
+     * The creation time of the export task, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The creation time of the export task.
+     *         The creation time of the export task, expressed as the number of
+     *         milliseconds after Jan 1, 1970 00:00:00 UTC.
      *         </p>
      */
     public Long getCreationTime() {
@@ -61,14 +65,16 @@ public class ExportTaskExecutionInfo implements Serializable {
 
     /**
      * <p>
-     * The creation time of the export task.
+     * The creation time of the export task, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @param creationTime <p>
-     *            The creation time of the export task.
+     *            The creation time of the export task, expressed as the number
+     *            of milliseconds after Jan 1, 1970 00:00:00 UTC.
      *            </p>
      */
     public void setCreationTime(Long creationTime) {
@@ -77,7 +83,8 @@ public class ExportTaskExecutionInfo implements Serializable {
 
     /**
      * <p>
-     * The creation time of the export task.
+     * The creation time of the export task, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -87,7 +94,8 @@ public class ExportTaskExecutionInfo implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param creationTime <p>
-     *            The creation time of the export task.
+     *            The creation time of the export task, expressed as the number
+     *            of milliseconds after Jan 1, 1970 00:00:00 UTC.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -99,14 +107,16 @@ public class ExportTaskExecutionInfo implements Serializable {
 
     /**
      * <p>
-     * The completion time of the export task.
+     * The completion time of the export task, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The completion time of the export task.
+     *         The completion time of the export task, expressed as the number
+     *         of milliseconds after Jan 1, 1970 00:00:00 UTC.
      *         </p>
      */
     public Long getCompletionTime() {
@@ -115,14 +125,16 @@ public class ExportTaskExecutionInfo implements Serializable {
 
     /**
      * <p>
-     * The completion time of the export task.
+     * The completion time of the export task, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @param completionTime <p>
-     *            The completion time of the export task.
+     *            The completion time of the export task, expressed as the
+     *            number of milliseconds after Jan 1, 1970 00:00:00 UTC.
      *            </p>
      */
     public void setCompletionTime(Long completionTime) {
@@ -131,7 +143,8 @@ public class ExportTaskExecutionInfo implements Serializable {
 
     /**
      * <p>
-     * The completion time of the export task.
+     * The completion time of the export task, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -141,7 +154,8 @@ public class ExportTaskExecutionInfo implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param completionTime <p>
-     *            The completion time of the export task.
+     *            The completion time of the export task, expressed as the
+     *            number of milliseconds after Jan 1, 1970 00:00:00 UTC.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

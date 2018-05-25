@@ -284,3 +284,4 @@ The AWS SDK for Android supports the following AWS services:
 * [Amazon Simple Queue Service (SQS)](https://aws.amazon.com/sqs/)
 * [Amazon SimpleDB](https://aws.amazon.com/simpledb/)
 * [Amazon Transcribe](https://aws.amazon.com/transcribe/)
+* [Amazon Comprehend](https://aws.amazon.com/comprehend)

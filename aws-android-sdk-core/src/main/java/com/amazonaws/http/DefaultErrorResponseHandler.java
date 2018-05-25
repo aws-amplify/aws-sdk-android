@@ -121,7 +121,7 @@ public class DefaultErrorResponseHandler
      * underlying HTTP connection during the handle method, we don't need to
      * keep the HTTP connection open.
      *
-     * @see HttpResponseHandler#needsConnectionLeftOpen()
+     * @see com.amazonaws.http.HttpResponseHandler#needsConnectionLeftOpen()
      */
     @Override
     public boolean needsConnectionLeftOpen() {

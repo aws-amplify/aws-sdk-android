@@ -11,7 +11,7 @@ public class RegionTest {
 
     @Test
     public void bogusRegion() {
-        Matcher m = Region.S3_REGIONAL_ENDPOINT_PATTERN
+        Matcher m = com.amazonaws.services.s3.model.Region.S3_REGIONAL_ENDPOINT_PATTERN
                 .matcher("s3-bucket.amazonaws.com.s3-us-west-2.amazonaws.com");
         Assert.assertFalse(m.matches());
     }

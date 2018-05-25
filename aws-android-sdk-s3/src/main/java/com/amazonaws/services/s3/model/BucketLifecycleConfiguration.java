@@ -433,7 +433,7 @@ public class BucketLifecycleConfiguration implements Serializable {
             }
 
             if (transitions == null) {
-                transitions = new ArrayList<Transition>();
+                transitions = new ArrayList<BucketLifecycleConfiguration.Transition>();
             }
             transitions.add(transition);
             return this;
@@ -478,7 +478,7 @@ public class BucketLifecycleConfiguration implements Serializable {
             }
 
             if (noncurrentVersionTransitions == null) {
-                noncurrentVersionTransitions = new ArrayList<NoncurrentVersionTransition>();
+                noncurrentVersionTransitions = new ArrayList<BucketLifecycleConfiguration.NoncurrentVersionTransition>();
             }
             noncurrentVersionTransitions.add(noncurrentVersionTransition);
             return this;

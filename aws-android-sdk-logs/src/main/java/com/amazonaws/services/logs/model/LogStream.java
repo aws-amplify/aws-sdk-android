@@ -37,7 +37,8 @@ public class LogStream implements Serializable {
 
     /**
      * <p>
-     * The creation time of the stream.
+     * The creation time of the stream, expressed as the number of milliseconds
+     * after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -48,7 +49,7 @@ public class LogStream implements Serializable {
     /**
      * <p>
      * The time of the first event, expressed as the number of milliseconds
-     * since Jan 1, 1970 00:00:00 UTC.
+     * after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -58,8 +59,11 @@ public class LogStream implements Serializable {
 
     /**
      * <p>
-     * The time of the last event, expressed as the number of milliseconds since
-     * Jan 1, 1970 00:00:00 UTC.
+     * the time of the most recent log event in the log stream in CloudWatch
+     * Logs. This number is expressed as the number of milliseconds after Jan 1,
+     * 1970 00:00:00 UTC. lastEventTime updates on an eventual consistency
+     * basis. It typically updates in less than an hour from ingestion, but may
+     * take longer in some rare situations.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -69,7 +73,8 @@ public class LogStream implements Serializable {
 
     /**
      * <p>
-     * The ingestion time.
+     * The ingestion time, expressed as the number of milliseconds after Jan 1,
+     * 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -163,14 +168,16 @@ public class LogStream implements Serializable {
 
     /**
      * <p>
-     * The creation time of the stream.
+     * The creation time of the stream, expressed as the number of milliseconds
+     * after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The creation time of the stream.
+     *         The creation time of the stream, expressed as the number of
+     *         milliseconds after Jan 1, 1970 00:00:00 UTC.
      *         </p>
      */
     public Long getCreationTime() {
@@ -179,14 +186,16 @@ public class LogStream implements Serializable {
 
     /**
      * <p>
-     * The creation time of the stream.
+     * The creation time of the stream, expressed as the number of milliseconds
+     * after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @param creationTime <p>
-     *            The creation time of the stream.
+     *            The creation time of the stream, expressed as the number of
+     *            milliseconds after Jan 1, 1970 00:00:00 UTC.
      *            </p>
      */
     public void setCreationTime(Long creationTime) {
@@ -195,7 +204,8 @@ public class LogStream implements Serializable {
 
     /**
      * <p>
-     * The creation time of the stream.
+     * The creation time of the stream, expressed as the number of milliseconds
+     * after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -205,7 +215,8 @@ public class LogStream implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param creationTime <p>
-     *            The creation time of the stream.
+     *            The creation time of the stream, expressed as the number of
+     *            milliseconds after Jan 1, 1970 00:00:00 UTC.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -218,7 +229,7 @@ public class LogStream implements Serializable {
     /**
      * <p>
      * The time of the first event, expressed as the number of milliseconds
-     * since Jan 1, 1970 00:00:00 UTC.
+     * after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -226,7 +237,7 @@ public class LogStream implements Serializable {
      *
      * @return <p>
      *         The time of the first event, expressed as the number of
-     *         milliseconds since Jan 1, 1970 00:00:00 UTC.
+     *         milliseconds after Jan 1, 1970 00:00:00 UTC.
      *         </p>
      */
     public Long getFirstEventTimestamp() {
@@ -236,7 +247,7 @@ public class LogStream implements Serializable {
     /**
      * <p>
      * The time of the first event, expressed as the number of milliseconds
-     * since Jan 1, 1970 00:00:00 UTC.
+     * after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -244,7 +255,7 @@ public class LogStream implements Serializable {
      *
      * @param firstEventTimestamp <p>
      *            The time of the first event, expressed as the number of
-     *            milliseconds since Jan 1, 1970 00:00:00 UTC.
+     *            milliseconds after Jan 1, 1970 00:00:00 UTC.
      *            </p>
      */
     public void setFirstEventTimestamp(Long firstEventTimestamp) {
@@ -254,7 +265,7 @@ public class LogStream implements Serializable {
     /**
      * <p>
      * The time of the first event, expressed as the number of milliseconds
-     * since Jan 1, 1970 00:00:00 UTC.
+     * after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -265,7 +276,7 @@ public class LogStream implements Serializable {
      *
      * @param firstEventTimestamp <p>
      *            The time of the first event, expressed as the number of
-     *            milliseconds since Jan 1, 1970 00:00:00 UTC.
+     *            milliseconds after Jan 1, 1970 00:00:00 UTC.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -277,16 +288,23 @@ public class LogStream implements Serializable {
 
     /**
      * <p>
-     * The time of the last event, expressed as the number of milliseconds since
-     * Jan 1, 1970 00:00:00 UTC.
+     * the time of the most recent log event in the log stream in CloudWatch
+     * Logs. This number is expressed as the number of milliseconds after Jan 1,
+     * 1970 00:00:00 UTC. lastEventTime updates on an eventual consistency
+     * basis. It typically updates in less than an hour from ingestion, but may
+     * take longer in some rare situations.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The time of the last event, expressed as the number of
-     *         milliseconds since Jan 1, 1970 00:00:00 UTC.
+     *         the time of the most recent log event in the log stream in
+     *         CloudWatch Logs. This number is expressed as the number of
+     *         milliseconds after Jan 1, 1970 00:00:00 UTC. lastEventTime
+     *         updates on an eventual consistency basis. It typically updates in
+     *         less than an hour from ingestion, but may take longer in some
+     *         rare situations.
      *         </p>
      */
     public Long getLastEventTimestamp() {
@@ -295,16 +313,23 @@ public class LogStream implements Serializable {
 
     /**
      * <p>
-     * The time of the last event, expressed as the number of milliseconds since
-     * Jan 1, 1970 00:00:00 UTC.
+     * the time of the most recent log event in the log stream in CloudWatch
+     * Logs. This number is expressed as the number of milliseconds after Jan 1,
+     * 1970 00:00:00 UTC. lastEventTime updates on an eventual consistency
+     * basis. It typically updates in less than an hour from ingestion, but may
+     * take longer in some rare situations.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @param lastEventTimestamp <p>
-     *            The time of the last event, expressed as the number of
-     *            milliseconds since Jan 1, 1970 00:00:00 UTC.
+     *            the time of the most recent log event in the log stream in
+     *            CloudWatch Logs. This number is expressed as the number of
+     *            milliseconds after Jan 1, 1970 00:00:00 UTC. lastEventTime
+     *            updates on an eventual consistency basis. It typically updates
+     *            in less than an hour from ingestion, but may take longer in
+     *            some rare situations.
      *            </p>
      */
     public void setLastEventTimestamp(Long lastEventTimestamp) {
@@ -313,8 +338,11 @@ public class LogStream implements Serializable {
 
     /**
      * <p>
-     * The time of the last event, expressed as the number of milliseconds since
-     * Jan 1, 1970 00:00:00 UTC.
+     * the time of the most recent log event in the log stream in CloudWatch
+     * Logs. This number is expressed as the number of milliseconds after Jan 1,
+     * 1970 00:00:00 UTC. lastEventTime updates on an eventual consistency
+     * basis. It typically updates in less than an hour from ingestion, but may
+     * take longer in some rare situations.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -324,8 +352,12 @@ public class LogStream implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param lastEventTimestamp <p>
-     *            The time of the last event, expressed as the number of
-     *            milliseconds since Jan 1, 1970 00:00:00 UTC.
+     *            the time of the most recent log event in the log stream in
+     *            CloudWatch Logs. This number is expressed as the number of
+     *            milliseconds after Jan 1, 1970 00:00:00 UTC. lastEventTime
+     *            updates on an eventual consistency basis. It typically updates
+     *            in less than an hour from ingestion, but may take longer in
+     *            some rare situations.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -337,14 +369,16 @@ public class LogStream implements Serializable {
 
     /**
      * <p>
-     * The ingestion time.
+     * The ingestion time, expressed as the number of milliseconds after Jan 1,
+     * 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The ingestion time.
+     *         The ingestion time, expressed as the number of milliseconds after
+     *         Jan 1, 1970 00:00:00 UTC.
      *         </p>
      */
     public Long getLastIngestionTime() {
@@ -353,14 +387,16 @@ public class LogStream implements Serializable {
 
     /**
      * <p>
-     * The ingestion time.
+     * The ingestion time, expressed as the number of milliseconds after Jan 1,
+     * 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @param lastIngestionTime <p>
-     *            The ingestion time.
+     *            The ingestion time, expressed as the number of milliseconds
+     *            after Jan 1, 1970 00:00:00 UTC.
      *            </p>
      */
     public void setLastIngestionTime(Long lastIngestionTime) {
@@ -369,7 +405,8 @@ public class LogStream implements Serializable {
 
     /**
      * <p>
-     * The ingestion time.
+     * The ingestion time, expressed as the number of milliseconds after Jan 1,
+     * 1970 00:00:00 UTC.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -379,7 +416,8 @@ public class LogStream implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param lastIngestionTime <p>
-     *            The ingestion time.
+     *            The ingestion time, expressed as the number of milliseconds
+     *            after Jan 1, 1970 00:00:00 UTC.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -34,7 +34,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  */
 public class GetOpenIdTokenRequest extends AmazonWebServiceRequest implements Serializable {
     /**
+     * <p>
      * A unique identifier in the format REGION:GUID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
@@ -43,42 +45,54 @@ public class GetOpenIdTokenRequest extends AmazonWebServiceRequest implements Se
     private String identityId;
 
     /**
+     * <p>
      * A set of optional name-value pairs that map provider names to provider
      * tokens. When using graph.facebook.com and www.amazon.com, supply the
      * access_token returned from the provider's authflow. For
-     * accounts.google.com or any other OpenId Connect provider, always include
-     * the id_token.
+     * accounts.google.com, an Amazon Cognito Identity Provider, or any other
+     * OpenId Connect provider, always include the <code>id_token</code>.
+     * </p>
      */
     private java.util.Map<String, String> logins;
 
     /**
+     * <p>
      * A unique identifier in the format REGION:GUID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @return A unique identifier in the format REGION:GUID.
+     * @return <p>
+     *         A unique identifier in the format REGION:GUID.
+     *         </p>
      */
     public String getIdentityId() {
         return identityId;
     }
 
     /**
+     * <p>
      * A unique identifier in the format REGION:GUID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @param identityId A unique identifier in the format REGION:GUID.
+     * @param identityId <p>
+     *            A unique identifier in the format REGION:GUID.
+     *            </p>
      */
     public void setIdentityId(String identityId) {
         this.identityId = identityId;
     }
 
     /**
+     * <p>
      * A unique identifier in the format REGION:GUID.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -87,7 +101,9 @@ public class GetOpenIdTokenRequest extends AmazonWebServiceRequest implements Se
      * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @param identityId A unique identifier in the format REGION:GUID.
+     * @param identityId <p>
+     *            A unique identifier in the format REGION:GUID.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -97,54 +113,69 @@ public class GetOpenIdTokenRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p>
      * A set of optional name-value pairs that map provider names to provider
      * tokens. When using graph.facebook.com and www.amazon.com, supply the
      * access_token returned from the provider's authflow. For
-     * accounts.google.com or any other OpenId Connect provider, always include
-     * the id_token.
+     * accounts.google.com, an Amazon Cognito Identity Provider, or any other
+     * OpenId Connect provider, always include the <code>id_token</code>.
+     * </p>
      *
-     * @return A set of optional name-value pairs that map provider names to
+     * @return <p>
+     *         A set of optional name-value pairs that map provider names to
      *         provider tokens. When using graph.facebook.com and
      *         www.amazon.com, supply the access_token returned from the
-     *         provider's authflow. For accounts.google.com or any other OpenId
-     *         Connect provider, always include the id_token.
+     *         provider's authflow. For accounts.google.com, an Amazon Cognito
+     *         Identity Provider, or any other OpenId Connect provider, always
+     *         include the <code>id_token</code>.
+     *         </p>
      */
     public java.util.Map<String, String> getLogins() {
         return logins;
     }
 
     /**
+     * <p>
      * A set of optional name-value pairs that map provider names to provider
      * tokens. When using graph.facebook.com and www.amazon.com, supply the
      * access_token returned from the provider's authflow. For
-     * accounts.google.com or any other OpenId Connect provider, always include
-     * the id_token.
+     * accounts.google.com, an Amazon Cognito Identity Provider, or any other
+     * OpenId Connect provider, always include the <code>id_token</code>.
+     * </p>
      *
-     * @param logins A set of optional name-value pairs that map provider names
-     *            to provider tokens. When using graph.facebook.com and
+     * @param logins <p>
+     *            A set of optional name-value pairs that map provider names to
+     *            provider tokens. When using graph.facebook.com and
      *            www.amazon.com, supply the access_token returned from the
-     *            provider's authflow. For accounts.google.com or any other
-     *            OpenId Connect provider, always include the id_token.
+     *            provider's authflow. For accounts.google.com, an Amazon
+     *            Cognito Identity Provider, or any other OpenId Connect
+     *            provider, always include the <code>id_token</code>.
+     *            </p>
      */
     public void setLogins(java.util.Map<String, String> logins) {
         this.logins = logins;
     }
 
     /**
+     * <p>
      * A set of optional name-value pairs that map provider names to provider
      * tokens. When using graph.facebook.com and www.amazon.com, supply the
      * access_token returned from the provider's authflow. For
-     * accounts.google.com or any other OpenId Connect provider, always include
-     * the id_token.
+     * accounts.google.com, an Amazon Cognito Identity Provider, or any other
+     * OpenId Connect provider, always include the <code>id_token</code>.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param logins A set of optional name-value pairs that map provider names
-     *            to provider tokens. When using graph.facebook.com and
+     * @param logins <p>
+     *            A set of optional name-value pairs that map provider names to
+     *            provider tokens. When using graph.facebook.com and
      *            www.amazon.com, supply the access_token returned from the
-     *            provider's authflow. For accounts.google.com or any other
-     *            OpenId Connect provider, always include the id_token.
+     *            provider's authflow. For accounts.google.com, an Amazon
+     *            Cognito Identity Provider, or any other OpenId Connect
+     *            provider, always include the <code>id_token</code>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -154,11 +185,13 @@ public class GetOpenIdTokenRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p>
      * A set of optional name-value pairs that map provider names to provider
      * tokens. When using graph.facebook.com and www.amazon.com, supply the
      * access_token returned from the provider's authflow. For
-     * accounts.google.com or any other OpenId Connect provider, always include
-     * the id_token.
+     * accounts.google.com, an Amazon Cognito Identity Provider, or any other
+     * OpenId Connect provider, always include the <code>id_token</code>.
+     * </p>
      * <p>
      * The method adds a new key-value pair into Logins parameter, and returns a
      * reference to this object so that method calls can be chained together.
@@ -196,7 +229,7 @@ public class GetOpenIdTokenRequest extends AmazonWebServiceRequest implements Se
      * debugging.
      *
      * @return A string representation of this object.
-     * @see Object#toString()
+     * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {

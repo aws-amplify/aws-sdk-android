@@ -100,7 +100,7 @@ public interface AmazonCognitoIdentity {
      * @throws IllegalArgumentException If any problems are detected with the
      *             specified endpoint.
      */
-    public void setEndpoint(String endpoint) throws IllegalArgumentException;
+    public void setEndpoint(String endpoint) throws java.lang.IllegalArgumentException;
 
     /**
      * An alternative to {@link AmazonCognitoIdentity#setEndpoint(String)}, sets
@@ -117,16 +117,16 @@ public interface AmazonCognitoIdentity {
      * transit or retrying.</b>
      *
      * @param region The region this client will communicate with. See
-     *            {@link Region#getRegion(Regions)} for
+     *            {@link Region#getRegion(com.amazonaws.regions.Regions)} for
      *            accessing a given region.
-     * @throws IllegalArgumentException If the given region is null,
+     * @throws java.lang.IllegalArgumentException If the given region is null,
      *             or if this service isn't available in the given region. See
      *             {@link Region#isServiceSupported(String)}
-     * @see Region#getRegion(Regions)
+     * @see Region#getRegion(com.amazonaws.regions.Regions)
      * @see Region#createClient(Class,
      *      com.amazonaws.auth.AWSCredentialsProvider, ClientConfiguration)
      */
-    public void setRegion(Region region) throws IllegalArgumentException;
+    public void setRegion(Region region) throws java.lang.IllegalArgumentException;
 
     /**
      * <p>
@@ -174,7 +174,9 @@ public interface AmazonCognitoIdentity {
      * This is a public API. You do not need any credentials to call this API.
      * </p>
      * 
-     * @param getIdRequest Input to the GetId action.
+     * @param getIdRequest <p>
+     *            Input to the GetId action.
+     *            </p>
      * @return getIdResult The response from the GetId service method, as
      *         returned by Amazon Cognito Identity.
      * @throws InvalidParameterException
@@ -209,7 +211,9 @@ public interface AmazonCognitoIdentity {
      * This is a public API. You do not need any credentials to call this API.
      * </p>
      * 
-     * @param getOpenIdTokenRequest Input to the GetOpenIdToken action.
+     * @param getOpenIdTokenRequest <p>
+     *            Input to the GetOpenIdToken action.
+     *            </p>
      * @return getOpenIdTokenResult The response from the GetOpenIdToken service
      *         method, as returned by Amazon Cognito Identity.
      * @throws InvalidParameterException

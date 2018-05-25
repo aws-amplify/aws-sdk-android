@@ -37,7 +37,8 @@ import java.util.TreeMap;
  * Amazon S3 sends and receives (Content-Length, ETag, Content-MD5, etc.).
  */
 public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterChargedResult,
-        ObjectExpirationResult, ObjectRestoreResult, Cloneable, Serializable {
+        ObjectExpirationResult, ObjectRestoreResult, Cloneable, Serializable
+{
     /*
      * TODO: Might be nice to get as many of the internal use only methods out
      * of here so users never even see them. Example: we could set the ETag
@@ -49,17 +50,16 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
      * Custom user metadata, represented in responses with the x-amz-meta-
      * header prefix
      */
-    private Map<String, String> userMetadata = new TreeMap<String, String>(
-            String.CASE_INSENSITIVE_ORDER);
+    private Map<String, String> userMetadata = new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
 
     /**
      * All other (non user custom) headers such as Content-Length, Content-Type,
      * etc.
      */
-    private Map<String, Object> metadata = new TreeMap<String, Object>(
-            String.CASE_INSENSITIVE_ORDER);
+    private Map<String, Object> metadata = new TreeMap<String, Object>(String.CASE_INSENSITIVE_ORDER);
 
-    public static final String AES_256_SERVER_SIDE_ENCRYPTION = SSEAlgorithm.AES256.getAlgorithm();
+    public static final String AES_256_SERVER_SIDE_ENCRYPTION =
+            SSEAlgorithm.AES256.getAlgorithm();
 
     public static final String KMS_SERVER_SIDE_ENCRYPTION = SSEAlgorithm.KMS.getAlgorithm();
 
@@ -94,18 +94,16 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
      * accessed. Null if this object has not been restored from Glacier.
      */
     private Date restoreExpirationTime;
-
-    public ObjectMetadata() {
-    }
+    public ObjectMetadata() {}
 
     private ObjectMetadata(ObjectMetadata from) {
         this.userMetadata = from.userMetadata == null
-                ? null
-                : new TreeMap<String, String>(from.userMetadata);
+            ? null
+            : new TreeMap<String,String>(from.userMetadata);
         // shallow clone the metadata data
         this.metadata = from.metadata == null
-                ? null
-                : new TreeMap<String, Object>(from.metadata);
+            ? null
+            : new TreeMap<String, Object>(from.metadata);
         this.expirationTime = cloneDate(from.expirationTime);
         this.expirationTimeRuleId = from.expirationTimeRuleId;
         this.httpExpiresDate = cloneDate(from.httpExpiresDate);
@@ -138,6 +136,7 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
      * </p>
      *
      * @return The custom user metadata for the associated object.
+     *
      * @see ObjectMetadata#setUserMetadata(Map)
      * @see ObjectMetadata#addUserMetadata(String, String)
      */
@@ -228,7 +227,7 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
      * @return A map of the raw metadata/headers for the associated object.
      */
     public Map<String, Object> getRawMetadata() {
-        final Map<String, Object> copy = new TreeMap<String, Object>(String.CASE_INSENSITIVE_ORDER);
+        final Map<String,Object> copy = new TreeMap<String,Object>(String.CASE_INSENSITIVE_ORDER);
         copy.putAll(metadata);
         return Collections.unmodifiableMap(copy);
     }
@@ -278,8 +277,8 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
      * content length before sending the data to Amazon S3.
      * </p>
      * <p>
-     * For more information on the Content-Length HTTP header, see <a href=
-     * "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.13">
+     * For more information on the Content-Length HTTP header, see <a
+     * href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.13">
      * http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.13</a>
      * </p>
      *
@@ -327,8 +326,8 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
      * content length before sending the data to Amazon S3.
      * </p>
      * <p>
-     * For more information on the Content-Length HTTP header, see <a href=
-     * "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.13">
+     * For more information on the Content-Length HTTP header, see <a
+     * href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.13">
      * http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.13</a>
      * </p>
      *
@@ -355,8 +354,8 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
      * used.
      * </p>
      * <p>
-     * For more information on the Content-Type header, see <a href=
-     * "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">
+     * For more information on the Content-Type header, see <a
+     * href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">
      * http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17</a>
      * </p>
      *
@@ -384,8 +383,8 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
      * used.
      * </p>
      * <p>
-     * For more information on the Content-Type header, see <a href=
-     * "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">
+     * For more information on the Content-Type header, see <a
+     * href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">
      * http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17</a>
      * </p>
      *
@@ -399,38 +398,40 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
 
     /**
      * <p>
-     * Gets the Content-Language HTTP header, which describes the natural
-     * language(s) of the intended audience for the enclosed entity.
+     * Gets the Content-Language HTTP header, which describes the natural language(s) of the
+     * intended audience for the enclosed entity.
      * </p>
      * <p>
-     * For more information on the Content-Type header, see <a href=
-     * "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">
+     * For more information on the Content-Type header, see <a
+     * href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">
      * http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17</a>
      * </p>
      *
-     * @return The HTTP Content-Language header, which describes the natural
-     *         language(s) of the intended audience for the enclosed entity.
-     *         Returns <code>null</code> if it hasn't been set.
+     * @return The HTTP Content-Language header, which describes the natural language(s) of the
+     * intended audience for the enclosed entity. Returns <code>null</code>
+     *         if it hasn't been set.
+     *
      * @see ObjectMetadata#setContentLanguage(String)
      */
     public String getContentLanguage() {
-        return (String) metadata.get(Headers.CONTENT_LANGUAGE);
+        return (String)metadata.get(Headers.CONTENT_LANGUAGE);
     }
 
     /**
      * <p>
-     * Sets the Content-Language HTTP header which describes the natural
-     * language(s) of the intended audience for the enclosed entity.
+     * Sets the Content-Language HTTP header which describes the natural language(s) of the
+     * intended audience for the enclosed entity.
      * </p>
      * <p>
-     * For more information on the Content-Type header, see <a href=
-     * "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">
+     * For more information on the Content-Type header, see <a
+     * href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">
      * http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17</a>
      * </p>
      *
-     * @param contentLanguage The HTTP Content-Language header which describes
-     *            the natural language(s) of the intended audience for the
-     *            enclosed entity.
+     * @param contentLanguage
+     *            The HTTP Content-Language header which describes the natural language(s) of the
+     * intended audience for the enclosed entity.
+     *
      * @see ObjectMetadata#getContentLanguage()
      */
     public void setContentLanguage(String contentLanguage) {
@@ -446,8 +447,8 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
      * </p>
      * <p>
      * For more information on how the Content-Encoding HTTP header works, see
-     * <a href=
-     * "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11">
+     * <a
+     * href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11">
      * http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11</a>
      * </p>
      *
@@ -468,14 +469,14 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
      * </p>
      * <p>
      * For more information on how the Content-Encoding HTTP header works, see
-     * <a href=
-     * "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11">
+     * <a
+     * href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11">
      * http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11</a>
      * </p>
      *
      * @param encoding The HTTP Content-Encoding header, as defined in RFC 2616.
-     * @see <a href=
-     *      "http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11"
+     * @see <a
+     *      href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11"
      *      >http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11</a>
      * @see ObjectMetadata#getContentType()
      */
@@ -490,8 +491,8 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
      * </p>
      * <p>
      * For more information on how the Cache-Control HTTP header affects HTTP
-     * requests and responses, see
-     * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9">
+     * requests and responses, see <a
+     * href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9">
      * http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9</a>
      * </p>
      *
@@ -510,8 +511,8 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
      * </p>
      * <p>
      * For more information on how the Cache-Control HTTP header affects HTTP
-     * requests and responses see
-     * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9">
+     * requests and responses see <a
+     * href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9">
      * http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9</a>
      * </p>
      *
@@ -589,8 +590,8 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
      * </p>
      * <p>
      * For more information on how the Content-Disposition header affects HTTP
-     * client behavior, see <a href=
-     * "http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1">
+     * client behavior, see <a
+     * href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1">
      * http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1</a>
      * </p>
      *
@@ -609,16 +610,16 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
      * </p>
      * <p>
      * For more information on how the Content-Disposition header affects HTTP
-     * client behavior, see <a href=
-     * "http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1">
+     * client behavior, see <a
+     * href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1">
      * http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1</a>
      * </p>
      *
      * @return The value of the Content-Disposition header. Returns
      *         <code>null</code> if the Content-Disposition header hasn't been
      *         set.
-     * @see <a href=
-     *      "http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1"
+     * @see <a
+     *      href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1"
      *      >http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1</a>
      * @see ObjectMetadata#setCacheControl(String)
      */
@@ -826,10 +827,19 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
     public Date getHttpExpiresDate() {
         return cloneDate(httpExpiresDate);
     }
+    
+    /**
+     * Sets the Amazon S3 storage class for the stored objects.
+     * 
+     * @param storageClass The Amazon S3 storage class for the stored objects.
+     */
+    public void setStorageClass(StorageClass storageClass) {
+    	    metadata.put(Headers.STORAGE_CLASS, storageClass);
+    }
 
     /**
-     * @return The storage class of the object. Returns null if the object is in
-     *         STANDARD storage. See {@link StorageClass} for possible values
+     * @return The storage class of the object. Returns null if the object is in STANDARD storage.
+     *         See {@link StorageClass} for possible values
      */
     public String getStorageClass() {
         final Object storageClass = metadata.get(Headers.STORAGE_CLASS);
@@ -837,15 +847,6 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
             return null;
         }
         return storageClass.toString();
-    }
-
-    /**
-     * Sets the Amazon S3 storage class for the stored objects.
-     * 
-     * @param storageClass The Amazon S3 storage class for the stored objects.
-     */
-    public void setStorageClass(StorageClass storageClass) {
-        metadata.put(Headers.STORAGE_CLASS, storageClass);
     }
 
     /**
@@ -892,14 +893,13 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
      * Returns the value of x-amz-mp-parts-count header.
      * </p>
      * <p>
-     * The x-amz-mp-parts-count header is returned in the response only when a
-     * valid partNumber is specified in the request and the object has more than
-     * 1 part.
+     * The x-amz-mp-parts-count header is returned in the response only when
+     * a valid partNumber is specified in the request and the object has more than 1 part.
      * </p>
      * <p>
-     * To find the part count of an object, set the partNumber to 1 in
-     * GetObjectRequest. If the object has more than 1 part then part count will
-     * be returned, otherwise null is returned.
+     * To find the part count of an object, set the partNumber to 1 in GetObjectRequest.
+     * If the object has more than 1 part then part count will be returned,
+     * otherwise null is returned.
      * </p>
      */
     public Integer getPartCount() {
@@ -908,17 +908,15 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
 
     /**
      * <p>
-     * Returns the content range of the object if response contains the
-     * Content-Range header.
+     * Returns the content range of the object if response contains the Content-Range header.
      * </p>
      * <p>
-     * If the request specifies a range or part number, then response returns
-     * the Content-Range range header. Otherwise, the response does not return
-     * Content-Range header.
+     * If the request specifies a range or part number, then response returns the Content-Range range header.
+     * Otherwise, the response does not return Content-Range header.
      * </p>
-     * 
-     * @return Returns content range if the object is requested with specific
-     *         range or part number, null otherwise.
+     * @return
+     * 		Returns content range if the object is requested with specific range or part number,
+     * 		null otherwise.
      */
     public Long[] getContentRange() {
         final String contentRange = (String) metadata.get(Headers.CONTENT_RANGE);
@@ -926,13 +924,10 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
         if (contentRange != null) {
             final String[] tokens = contentRange.split("[ -/]+");
             try {
-                range = new Long[] {
-                        Long.parseLong(tokens[1]), Long.parseLong(tokens[2])
-                };
+                range = new Long[] { Long.parseLong(tokens[1]), Long.parseLong(tokens[2]) };
             } catch (final NumberFormatException nfe) {
                 throw new AmazonClientException(
-                        "Unable to parse content range. Header 'Content-Range' has corrupted data"
-                                + nfe.getMessage(),
+                        "Unable to parse content range. Header 'Content-Range' has corrupted data" + nfe.getMessage(),
                         nfe);
             }
         }
@@ -941,7 +936,7 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
 
     /**
      * @return The replication status of the object if it is from a bucket that
-     *         is the source or destination in a cross-region replication.
+     * is the source or destination in a cross-region replication.
      */
     public String getReplicationStatus() {
         return (String) metadata.get(Headers.OBJECT_REPLICATION_STATUS);

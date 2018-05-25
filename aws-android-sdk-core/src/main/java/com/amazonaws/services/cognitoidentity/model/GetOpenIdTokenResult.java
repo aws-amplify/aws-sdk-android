@@ -18,12 +18,16 @@ package com.amazonaws.services.cognitoidentity.model;
 import java.io.Serializable;
 
 /**
+ * <p>
  * Returned in response to a successful GetOpenIdToken request.
+ * </p>
  */
 public class GetOpenIdTokenResult implements Serializable {
     /**
+     * <p>
      * A unique identifier in the format REGION:GUID. Note that the IdentityId
      * returned may not match the one passed on input.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
@@ -32,44 +36,55 @@ public class GetOpenIdTokenResult implements Serializable {
     private String identityId;
 
     /**
+     * <p>
      * An OpenID token, valid for 15 minutes.
+     * </p>
      */
     private String token;
 
     /**
+     * <p>
      * A unique identifier in the format REGION:GUID. Note that the IdentityId
      * returned may not match the one passed on input.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @return A unique identifier in the format REGION:GUID. Note that the
+     * @return <p>
+     *         A unique identifier in the format REGION:GUID. Note that the
      *         IdentityId returned may not match the one passed on input.
+     *         </p>
      */
     public String getIdentityId() {
         return identityId;
     }
 
     /**
+     * <p>
      * A unique identifier in the format REGION:GUID. Note that the IdentityId
      * returned may not match the one passed on input.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @param identityId A unique identifier in the format REGION:GUID. Note
-     *            that the IdentityId returned may not match the one passed on
-     *            input.
+     * @param identityId <p>
+     *            A unique identifier in the format REGION:GUID. Note that the
+     *            IdentityId returned may not match the one passed on input.
+     *            </p>
      */
     public void setIdentityId(String identityId) {
         this.identityId = identityId;
     }
 
     /**
+     * <p>
      * A unique identifier in the format REGION:GUID. Note that the IdentityId
      * returned may not match the one passed on input.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -78,9 +93,10 @@ public class GetOpenIdTokenResult implements Serializable {
      * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @param identityId A unique identifier in the format REGION:GUID. Note
-     *            that the IdentityId returned may not match the one passed on
-     *            input.
+     * @param identityId <p>
+     *            A unique identifier in the format REGION:GUID. Note that the
+     *            IdentityId returned may not match the one passed on input.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -90,30 +106,42 @@ public class GetOpenIdTokenResult implements Serializable {
     }
 
     /**
+     * <p>
      * An OpenID token, valid for 15 minutes.
+     * </p>
      *
-     * @return An OpenID token, valid for 15 minutes.
+     * @return <p>
+     *         An OpenID token, valid for 15 minutes.
+     *         </p>
      */
     public String getToken() {
         return token;
     }
 
     /**
+     * <p>
      * An OpenID token, valid for 15 minutes.
+     * </p>
      *
-     * @param token An OpenID token, valid for 15 minutes.
+     * @param token <p>
+     *            An OpenID token, valid for 15 minutes.
+     *            </p>
      */
     public void setToken(String token) {
         this.token = token;
     }
 
     /**
+     * <p>
      * An OpenID token, valid for 15 minutes.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param token An OpenID token, valid for 15 minutes.
+     * @param token <p>
+     *            An OpenID token, valid for 15 minutes.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -127,7 +155,7 @@ public class GetOpenIdTokenResult implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     * @see Object#toString()
+     * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {

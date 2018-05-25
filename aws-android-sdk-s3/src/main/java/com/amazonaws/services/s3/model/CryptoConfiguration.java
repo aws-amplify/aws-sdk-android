@@ -287,7 +287,7 @@ public class CryptoConfiguration implements Cloneable,Serializable {
         if (isReadOnly()) {
             return this;
         }
-        return copyTo(new ReadOnly());
+        return copyTo(new CryptoConfiguration.ReadOnly());
     }
 
     @Override

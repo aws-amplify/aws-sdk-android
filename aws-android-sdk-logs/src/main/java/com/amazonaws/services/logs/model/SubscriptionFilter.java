@@ -48,7 +48,7 @@ public class SubscriptionFilter implements Serializable {
     /**
      * <p>
      * A symbolic description of how CloudWatch Logs should interpret the data
-     * in each log event. For example, a log event may contain timestamps, IP
+     * in each log event. For example, a log event may contain time stamps, IP
      * addresses, strings, and so on. You use the filter pattern to specify what
      * to look for in the log event message.
      * </p>
@@ -78,8 +78,8 @@ public class SubscriptionFilter implements Serializable {
 
     /**
      * <p>
-     * The method used to distribute log data to the destination, when the
-     * destination is an Amazon Kinesis stream.
+     * The method used to distribute log data to the destination, which can be
+     * either random or grouped by log stream.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -89,7 +89,8 @@ public class SubscriptionFilter implements Serializable {
 
     /**
      * <p>
-     * The creation time of the subscription filter.
+     * The creation time of the subscription filter, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -214,7 +215,7 @@ public class SubscriptionFilter implements Serializable {
     /**
      * <p>
      * A symbolic description of how CloudWatch Logs should interpret the data
-     * in each log event. For example, a log event may contain timestamps, IP
+     * in each log event. For example, a log event may contain time stamps, IP
      * addresses, strings, and so on. You use the filter pattern to specify what
      * to look for in the log event message.
      * </p>
@@ -225,7 +226,7 @@ public class SubscriptionFilter implements Serializable {
      * @return <p>
      *         A symbolic description of how CloudWatch Logs should interpret
      *         the data in each log event. For example, a log event may contain
-     *         timestamps, IP addresses, strings, and so on. You use the filter
+     *         time stamps, IP addresses, strings, and so on. You use the filter
      *         pattern to specify what to look for in the log event message.
      *         </p>
      */
@@ -236,7 +237,7 @@ public class SubscriptionFilter implements Serializable {
     /**
      * <p>
      * A symbolic description of how CloudWatch Logs should interpret the data
-     * in each log event. For example, a log event may contain timestamps, IP
+     * in each log event. For example, a log event may contain time stamps, IP
      * addresses, strings, and so on. You use the filter pattern to specify what
      * to look for in the log event message.
      * </p>
@@ -247,7 +248,7 @@ public class SubscriptionFilter implements Serializable {
      * @param filterPattern <p>
      *            A symbolic description of how CloudWatch Logs should interpret
      *            the data in each log event. For example, a log event may
-     *            contain timestamps, IP addresses, strings, and so on. You use
+     *            contain time stamps, IP addresses, strings, and so on. You use
      *            the filter pattern to specify what to look for in the log
      *            event message.
      *            </p>
@@ -259,7 +260,7 @@ public class SubscriptionFilter implements Serializable {
     /**
      * <p>
      * A symbolic description of how CloudWatch Logs should interpret the data
-     * in each log event. For example, a log event may contain timestamps, IP
+     * in each log event. For example, a log event may contain time stamps, IP
      * addresses, strings, and so on. You use the filter pattern to specify what
      * to look for in the log event message.
      * </p>
@@ -273,7 +274,7 @@ public class SubscriptionFilter implements Serializable {
      * @param filterPattern <p>
      *            A symbolic description of how CloudWatch Logs should interpret
      *            the data in each log event. For example, a log event may
-     *            contain timestamps, IP addresses, strings, and so on. You use
+     *            contain time stamps, IP addresses, strings, and so on. You use
      *            the filter pattern to specify what to look for in the log
      *            event message.
      *            </p>
@@ -383,16 +384,16 @@ public class SubscriptionFilter implements Serializable {
 
     /**
      * <p>
-     * The method used to distribute log data to the destination, when the
-     * destination is an Amazon Kinesis stream.
+     * The method used to distribute log data to the destination, which can be
+     * either random or grouped by log stream.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Random, ByLogStream
      *
      * @return <p>
-     *         The method used to distribute log data to the destination, when
-     *         the destination is an Amazon Kinesis stream.
+     *         The method used to distribute log data to the destination, which
+     *         can be either random or grouped by log stream.
      *         </p>
      * @see Distribution
      */
@@ -402,8 +403,8 @@ public class SubscriptionFilter implements Serializable {
 
     /**
      * <p>
-     * The method used to distribute log data to the destination, when the
-     * destination is an Amazon Kinesis stream.
+     * The method used to distribute log data to the destination, which can be
+     * either random or grouped by log stream.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -411,7 +412,7 @@ public class SubscriptionFilter implements Serializable {
      *
      * @param distribution <p>
      *            The method used to distribute log data to the destination,
-     *            when the destination is an Amazon Kinesis stream.
+     *            which can be either random or grouped by log stream.
      *            </p>
      * @see Distribution
      */
@@ -421,8 +422,8 @@ public class SubscriptionFilter implements Serializable {
 
     /**
      * <p>
-     * The method used to distribute log data to the destination, when the
-     * destination is an Amazon Kinesis stream.
+     * The method used to distribute log data to the destination, which can be
+     * either random or grouped by log stream.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -433,7 +434,7 @@ public class SubscriptionFilter implements Serializable {
      *
      * @param distribution <p>
      *            The method used to distribute log data to the destination,
-     *            when the destination is an Amazon Kinesis stream.
+     *            which can be either random or grouped by log stream.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -446,8 +447,8 @@ public class SubscriptionFilter implements Serializable {
 
     /**
      * <p>
-     * The method used to distribute log data to the destination, when the
-     * destination is an Amazon Kinesis stream.
+     * The method used to distribute log data to the destination, which can be
+     * either random or grouped by log stream.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -455,7 +456,7 @@ public class SubscriptionFilter implements Serializable {
      *
      * @param distribution <p>
      *            The method used to distribute log data to the destination,
-     *            when the destination is an Amazon Kinesis stream.
+     *            which can be either random or grouped by log stream.
      *            </p>
      * @see Distribution
      */
@@ -465,8 +466,8 @@ public class SubscriptionFilter implements Serializable {
 
     /**
      * <p>
-     * The method used to distribute log data to the destination, when the
-     * destination is an Amazon Kinesis stream.
+     * The method used to distribute log data to the destination, which can be
+     * either random or grouped by log stream.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -477,7 +478,7 @@ public class SubscriptionFilter implements Serializable {
      *
      * @param distribution <p>
      *            The method used to distribute log data to the destination,
-     *            when the destination is an Amazon Kinesis stream.
+     *            which can be either random or grouped by log stream.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -490,14 +491,16 @@ public class SubscriptionFilter implements Serializable {
 
     /**
      * <p>
-     * The creation time of the subscription filter.
+     * The creation time of the subscription filter, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The creation time of the subscription filter.
+     *         The creation time of the subscription filter, expressed as the
+     *         number of milliseconds after Jan 1, 1970 00:00:00 UTC.
      *         </p>
      */
     public Long getCreationTime() {
@@ -506,14 +509,16 @@ public class SubscriptionFilter implements Serializable {
 
     /**
      * <p>
-     * The creation time of the subscription filter.
+     * The creation time of the subscription filter, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @param creationTime <p>
-     *            The creation time of the subscription filter.
+     *            The creation time of the subscription filter, expressed as the
+     *            number of milliseconds after Jan 1, 1970 00:00:00 UTC.
      *            </p>
      */
     public void setCreationTime(Long creationTime) {
@@ -522,7 +527,8 @@ public class SubscriptionFilter implements Serializable {
 
     /**
      * <p>
-     * The creation time of the subscription filter.
+     * The creation time of the subscription filter, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -532,7 +538,8 @@ public class SubscriptionFilter implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param creationTime <p>
-     *            The creation time of the subscription filter.
+     *            The creation time of the subscription filter, expressed as the
+     *            number of milliseconds after Jan 1, 1970 00:00:00 UTC.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -56,9 +56,8 @@ public class ExportTask implements Serializable {
 
     /**
      * <p>
-     * The start time, expressed as the number of milliseconds since Jan 1, 1970
-     * 00:00:00 UTC. Events with a timestamp prior to this time are not
-     * exported.
+     * The start time, expressed as the number of milliseconds after Jan 1, 1970
+     * 00:00:00 UTC. Events with a time stamp before this time are not exported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,8 +67,8 @@ public class ExportTask implements Serializable {
 
     /**
      * <p>
-     * The end time, expressed as the number of milliseconds since Jan 1, 1970
-     * 00:00:00 UTC. Events with a timestamp later than this time are not
+     * The end time, expressed as the number of milliseconds after Jan 1, 1970
+     * 00:00:00 UTC. Events with a time stamp later than this time are not
      * exported.
      * </p>
      * <p>
@@ -277,17 +276,16 @@ public class ExportTask implements Serializable {
 
     /**
      * <p>
-     * The start time, expressed as the number of milliseconds since Jan 1, 1970
-     * 00:00:00 UTC. Events with a timestamp prior to this time are not
-     * exported.
+     * The start time, expressed as the number of milliseconds after Jan 1, 1970
+     * 00:00:00 UTC. Events with a time stamp before this time are not exported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The start time, expressed as the number of milliseconds since Jan
-     *         1, 1970 00:00:00 UTC. Events with a timestamp prior to this time
+     *         The start time, expressed as the number of milliseconds after Jan
+     *         1, 1970 00:00:00 UTC. Events with a time stamp before this time
      *         are not exported.
      *         </p>
      */
@@ -297,18 +295,17 @@ public class ExportTask implements Serializable {
 
     /**
      * <p>
-     * The start time, expressed as the number of milliseconds since Jan 1, 1970
-     * 00:00:00 UTC. Events with a timestamp prior to this time are not
-     * exported.
+     * The start time, expressed as the number of milliseconds after Jan 1, 1970
+     * 00:00:00 UTC. Events with a time stamp before this time are not exported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @param from <p>
-     *            The start time, expressed as the number of milliseconds since
-     *            Jan 1, 1970 00:00:00 UTC. Events with a timestamp prior to
-     *            this time are not exported.
+     *            The start time, expressed as the number of milliseconds after
+     *            Jan 1, 1970 00:00:00 UTC. Events with a time stamp before this
+     *            time are not exported.
      *            </p>
      */
     public void setFrom(Long from) {
@@ -317,9 +314,8 @@ public class ExportTask implements Serializable {
 
     /**
      * <p>
-     * The start time, expressed as the number of milliseconds since Jan 1, 1970
-     * 00:00:00 UTC. Events with a timestamp prior to this time are not
-     * exported.
+     * The start time, expressed as the number of milliseconds after Jan 1, 1970
+     * 00:00:00 UTC. Events with a time stamp before this time are not exported.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -329,9 +325,9 @@ public class ExportTask implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param from <p>
-     *            The start time, expressed as the number of milliseconds since
-     *            Jan 1, 1970 00:00:00 UTC. Events with a timestamp prior to
-     *            this time are not exported.
+     *            The start time, expressed as the number of milliseconds after
+     *            Jan 1, 1970 00:00:00 UTC. Events with a time stamp before this
+     *            time are not exported.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -343,8 +339,8 @@ public class ExportTask implements Serializable {
 
     /**
      * <p>
-     * The end time, expressed as the number of milliseconds since Jan 1, 1970
-     * 00:00:00 UTC. Events with a timestamp later than this time are not
+     * The end time, expressed as the number of milliseconds after Jan 1, 1970
+     * 00:00:00 UTC. Events with a time stamp later than this time are not
      * exported.
      * </p>
      * <p>
@@ -352,8 +348,8 @@ public class ExportTask implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The end time, expressed as the number of milliseconds since Jan
-     *         1, 1970 00:00:00 UTC. Events with a timestamp later than this
+     *         The end time, expressed as the number of milliseconds after Jan
+     *         1, 1970 00:00:00 UTC. Events with a time stamp later than this
      *         time are not exported.
      *         </p>
      */
@@ -363,8 +359,8 @@ public class ExportTask implements Serializable {
 
     /**
      * <p>
-     * The end time, expressed as the number of milliseconds since Jan 1, 1970
-     * 00:00:00 UTC. Events with a timestamp later than this time are not
+     * The end time, expressed as the number of milliseconds after Jan 1, 1970
+     * 00:00:00 UTC. Events with a time stamp later than this time are not
      * exported.
      * </p>
      * <p>
@@ -372,8 +368,8 @@ public class ExportTask implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param to <p>
-     *            The end time, expressed as the number of milliseconds since
-     *            Jan 1, 1970 00:00:00 UTC. Events with a timestamp later than
+     *            The end time, expressed as the number of milliseconds after
+     *            Jan 1, 1970 00:00:00 UTC. Events with a time stamp later than
      *            this time are not exported.
      *            </p>
      */
@@ -383,8 +379,8 @@ public class ExportTask implements Serializable {
 
     /**
      * <p>
-     * The end time, expressed as the number of milliseconds since Jan 1, 1970
-     * 00:00:00 UTC. Events with a timestamp later than this time are not
+     * The end time, expressed as the number of milliseconds after Jan 1, 1970
+     * 00:00:00 UTC. Events with a time stamp later than this time are not
      * exported.
      * </p>
      * <p>
@@ -395,8 +391,8 @@ public class ExportTask implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param to <p>
-     *            The end time, expressed as the number of milliseconds since
-     *            Jan 1, 1970 00:00:00 UTC. Events with a timestamp later than
+     *            The end time, expressed as the number of milliseconds after
+     *            Jan 1, 1970 00:00:00 UTC. Events with a time stamp later than
      *            this time are not exported.
      *            </p>
      * @return A reference to this updated object so that method calls can be

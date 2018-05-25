@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Indicates how to transform ingested log events into metric data in a
+ * Indicates how to transform ingested log events in to metric data in a
  * CloudWatch metric.
  * </p>
  */

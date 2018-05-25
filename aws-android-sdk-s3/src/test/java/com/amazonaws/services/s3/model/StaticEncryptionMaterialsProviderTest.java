@@ -49,7 +49,7 @@ public class StaticEncryptionMaterialsProviderTest {
         map.put("Foo", "Bar");
         EncryptionMaterials m = new EncryptionMaterials((KeyPair) null) {
             @Override
-            public Map<String, String> getMaterialsDescription() {
+            public java.util.Map<String, String> getMaterialsDescription() {
                 return map;
             };
         };

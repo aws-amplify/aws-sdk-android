@@ -22,8 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Lists the specified metric filters. You can list all the metric filters or
- * filter the results by log name, prefix, metric name, and metric namespace.
- * The results are ASCII-sorted by filter name.
+ * filter the results by log name, prefix, metric name, or metric namespace. The
+ * results are ASCII-sorted by filter name.
  * </p>
  */
 public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implements Serializable {
@@ -73,7 +73,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the CloudWatch metric.
+     * The name of the CloudWatch metric to which the monitored log information
+     * should be published. For example, you may publish to a metric called
+     * ErrorCount.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -350,7 +352,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the CloudWatch metric.
+     * The name of the CloudWatch metric to which the monitored log information
+     * should be published. For example, you may publish to a metric called
+     * ErrorCount.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -358,7 +362,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>[^:*$]*<br/>
      *
      * @return <p>
-     *         The name of the CloudWatch metric.
+     *         The name of the CloudWatch metric to which the monitored log
+     *         information should be published. For example, you may publish to
+     *         a metric called ErrorCount.
      *         </p>
      */
     public String getMetricName() {
@@ -367,7 +373,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the CloudWatch metric.
+     * The name of the CloudWatch metric to which the monitored log information
+     * should be published. For example, you may publish to a metric called
+     * ErrorCount.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -375,7 +383,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>[^:*$]*<br/>
      *
      * @param metricName <p>
-     *            The name of the CloudWatch metric.
+     *            The name of the CloudWatch metric to which the monitored log
+     *            information should be published. For example, you may publish
+     *            to a metric called ErrorCount.
      *            </p>
      */
     public void setMetricName(String metricName) {
@@ -384,7 +394,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the CloudWatch metric.
+     * The name of the CloudWatch metric to which the monitored log information
+     * should be published. For example, you may publish to a metric called
+     * ErrorCount.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -395,7 +407,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>[^:*$]*<br/>
      *
      * @param metricName <p>
-     *            The name of the CloudWatch metric.
+     *            The name of the CloudWatch metric to which the monitored log
+     *            information should be published. For example, you may publish
+     *            to a metric called ErrorCount.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

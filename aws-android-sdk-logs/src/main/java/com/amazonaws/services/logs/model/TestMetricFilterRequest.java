@@ -30,7 +30,7 @@ public class TestMetricFilterRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * A symbolic description of how CloudWatch Logs should interpret the data
-     * in each log event. For example, a log event may contain timestamps, IP
+     * in each log event. For example, a log event may contain time stamps, IP
      * addresses, strings, and so on. You use the filter pattern to specify what
      * to look for in the log event message.
      * </p>
@@ -50,7 +50,7 @@ public class TestMetricFilterRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * A symbolic description of how CloudWatch Logs should interpret the data
-     * in each log event. For example, a log event may contain timestamps, IP
+     * in each log event. For example, a log event may contain time stamps, IP
      * addresses, strings, and so on. You use the filter pattern to specify what
      * to look for in the log event message.
      * </p>
@@ -61,7 +61,7 @@ public class TestMetricFilterRequest extends AmazonWebServiceRequest implements 
      * @return <p>
      *         A symbolic description of how CloudWatch Logs should interpret
      *         the data in each log event. For example, a log event may contain
-     *         timestamps, IP addresses, strings, and so on. You use the filter
+     *         time stamps, IP addresses, strings, and so on. You use the filter
      *         pattern to specify what to look for in the log event message.
      *         </p>
      */
@@ -72,7 +72,7 @@ public class TestMetricFilterRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * A symbolic description of how CloudWatch Logs should interpret the data
-     * in each log event. For example, a log event may contain timestamps, IP
+     * in each log event. For example, a log event may contain time stamps, IP
      * addresses, strings, and so on. You use the filter pattern to specify what
      * to look for in the log event message.
      * </p>
@@ -83,7 +83,7 @@ public class TestMetricFilterRequest extends AmazonWebServiceRequest implements 
      * @param filterPattern <p>
      *            A symbolic description of how CloudWatch Logs should interpret
      *            the data in each log event. For example, a log event may
-     *            contain timestamps, IP addresses, strings, and so on. You use
+     *            contain time stamps, IP addresses, strings, and so on. You use
      *            the filter pattern to specify what to look for in the log
      *            event message.
      *            </p>
@@ -95,7 +95,7 @@ public class TestMetricFilterRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * A symbolic description of how CloudWatch Logs should interpret the data
-     * in each log event. For example, a log event may contain timestamps, IP
+     * in each log event. For example, a log event may contain time stamps, IP
      * addresses, strings, and so on. You use the filter pattern to specify what
      * to look for in the log event message.
      * </p>
@@ -109,7 +109,7 @@ public class TestMetricFilterRequest extends AmazonWebServiceRequest implements 
      * @param filterPattern <p>
      *            A symbolic description of how CloudWatch Logs should interpret
      *            the data in each log event. For example, a log event may
-     *            contain timestamps, IP addresses, strings, and so on. You use
+     *            contain time stamps, IP addresses, strings, and so on. You use
      *            the filter pattern to specify what to look for in the log
      *            event message.
      *            </p>

@@ -26,8 +26,8 @@ import java.io.Serializable;
 public class InputLogEvent implements Serializable {
     /**
      * <p>
-     * The time the event occurred, expressed as the number of milliseconds
-     * since Jan 1, 1970 00:00:00 UTC.
+     * The time the event occurred, expressed as the number of milliseconds fter
+     * Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,8 +47,8 @@ public class InputLogEvent implements Serializable {
 
     /**
      * <p>
-     * The time the event occurred, expressed as the number of milliseconds
-     * since Jan 1, 1970 00:00:00 UTC.
+     * The time the event occurred, expressed as the number of milliseconds fter
+     * Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -56,7 +56,7 @@ public class InputLogEvent implements Serializable {
      *
      * @return <p>
      *         The time the event occurred, expressed as the number of
-     *         milliseconds since Jan 1, 1970 00:00:00 UTC.
+     *         milliseconds fter Jan 1, 1970 00:00:00 UTC.
      *         </p>
      */
     public Long getTimestamp() {
@@ -65,8 +65,8 @@ public class InputLogEvent implements Serializable {
 
     /**
      * <p>
-     * The time the event occurred, expressed as the number of milliseconds
-     * since Jan 1, 1970 00:00:00 UTC.
+     * The time the event occurred, expressed as the number of milliseconds fter
+     * Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -74,7 +74,7 @@ public class InputLogEvent implements Serializable {
      *
      * @param timestamp <p>
      *            The time the event occurred, expressed as the number of
-     *            milliseconds since Jan 1, 1970 00:00:00 UTC.
+     *            milliseconds fter Jan 1, 1970 00:00:00 UTC.
      *            </p>
      */
     public void setTimestamp(Long timestamp) {
@@ -83,8 +83,8 @@ public class InputLogEvent implements Serializable {
 
     /**
      * <p>
-     * The time the event occurred, expressed as the number of milliseconds
-     * since Jan 1, 1970 00:00:00 UTC.
+     * The time the event occurred, expressed as the number of milliseconds fter
+     * Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -95,7 +95,7 @@ public class InputLogEvent implements Serializable {
      *
      * @param timestamp <p>
      *            The time the event occurred, expressed as the number of
-     *            milliseconds since Jan 1, 1970 00:00:00 UTC.
+     *            milliseconds fter Jan 1, 1970 00:00:00 UTC.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

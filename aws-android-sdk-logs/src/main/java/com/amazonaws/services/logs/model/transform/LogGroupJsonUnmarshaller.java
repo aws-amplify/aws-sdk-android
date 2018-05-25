@@ -53,6 +53,9 @@ class LogGroupJsonUnmarshaller implements Unmarshaller<LogGroup, JsonUnmarshalle
             } else if (name.equals("storedBytes")) {
                 logGroup.setStoredBytes(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("kmsKeyId")) {
+                logGroup.setKmsKeyId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

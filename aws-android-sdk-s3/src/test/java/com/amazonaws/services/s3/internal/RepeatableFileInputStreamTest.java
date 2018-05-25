@@ -24,15 +24,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class RepeatableFileInputStreamTest {
 
     @Test
     public void testRead() throws IOException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
-        File tmp = File.createTempFile("test" + dateFormat.format(new Date()), null);
+        File tmp = File.createTempFile("test" + new Date(), null);
         try {
             FileWriter writer = new FileWriter(tmp);
             writer.write("content");

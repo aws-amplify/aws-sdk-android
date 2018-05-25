@@ -64,6 +64,11 @@ public class CreateLogGroupRequestMarshaller implements
                 jsonWriter.name("logGroupName");
                 jsonWriter.value(logGroupName);
             }
+            if (createLogGroupRequest.getKmsKeyId() != null) {
+                String kmsKeyId = createLogGroupRequest.getKmsKeyId();
+                jsonWriter.name("kmsKeyId");
+                jsonWriter.value(kmsKeyId);
+            }
             if (createLogGroupRequest.getTags() != null) {
                 java.util.Map<String, String> tags = createLogGroupRequest.getTags();
                 jsonWriter.name("tags");

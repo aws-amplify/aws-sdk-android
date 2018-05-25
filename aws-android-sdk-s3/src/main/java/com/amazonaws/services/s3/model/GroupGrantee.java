@@ -87,7 +87,7 @@ public enum GroupGrantee implements Grantee {
     }
 
     /**
-     * @see Enum#toString()
+     * @see java.lang.Enum#toString()
      */
     @Override
     public String toString() {

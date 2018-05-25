@@ -23,10 +23,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Lists the tags for the specified log group.
  * </p>
- * <p>
- * To add tags, use <a>TagLogGroup</a>. To remove tags, use
- * <a>UntagLogGroup</a>.
- * </p>
  */
 public class ListTagsLogGroupRequest extends AmazonWebServiceRequest implements Serializable {
     /**

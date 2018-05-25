@@ -18,7 +18,9 @@ package com.amazonaws.services.cognitoidentity.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
+ * <p>
  * Thrown for missing or bad input parameter(s).
+ * </p>
  */
 public class InvalidParameterException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
