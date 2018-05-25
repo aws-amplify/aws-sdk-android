@@ -19,7 +19,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Distribution
+ * <p>
+ * The method used to distribute log data to the destination, which can be
+ * either random or grouped by log stream.
+ * </p>
  */
 public enum Distribution {
 

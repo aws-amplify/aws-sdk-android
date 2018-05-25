@@ -1749,7 +1749,7 @@ public class XmlResponsesSaxParser {
         }
 
         /**
-         * @see com.amazonaws.services.s3.model.CompleteMultipartUploadResult#setExpirationTime(Date)
+         * @see com.amazonaws.services.s3.model.CompleteMultipartUploadResult#setExpirationTime(java.util.Date)
          */
         @Override
         public void setExpirationTime(Date expirationTime) {
@@ -1767,7 +1767,7 @@ public class XmlResponsesSaxParser {
         }
 
         /**
-         * @see com.amazonaws.services.s3.model.CompleteMultipartUploadResult#setExpirationTimeRuleId(String)
+         * @see com.amazonaws.services.s3.model.CompleteMultipartUploadResult#setExpirationTimeRuleId(java.lang.String)
          */
         @Override
         public void setExpirationTimeRuleId(String expirationTimeRuleId) {

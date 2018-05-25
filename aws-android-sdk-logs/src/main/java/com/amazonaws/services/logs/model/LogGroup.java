@@ -36,7 +36,8 @@ public class LogGroup implements Serializable {
 
     /**
      * <p>
-     * The creation time of the log group.
+     * The creation time of the log group, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,6 +77,17 @@ public class LogGroup implements Serializable {
      * <b>Range: </b>0 - <br/>
      */
     private Long storedBytes;
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the CMK to use when encrypting log
+     * data.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     */
+    private String kmsKeyId;
 
     /**
      * <p>
@@ -136,14 +148,16 @@ public class LogGroup implements Serializable {
 
     /**
      * <p>
-     * The creation time of the log group.
+     * The creation time of the log group, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The creation time of the log group.
+     *         The creation time of the log group, expressed as the number of
+     *         milliseconds after Jan 1, 1970 00:00:00 UTC.
      *         </p>
      */
     public Long getCreationTime() {
@@ -152,14 +166,16 @@ public class LogGroup implements Serializable {
 
     /**
      * <p>
-     * The creation time of the log group.
+     * The creation time of the log group, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @param creationTime <p>
-     *            The creation time of the log group.
+     *            The creation time of the log group, expressed as the number of
+     *            milliseconds after Jan 1, 1970 00:00:00 UTC.
      *            </p>
      */
     public void setCreationTime(Long creationTime) {
@@ -168,7 +184,8 @@ public class LogGroup implements Serializable {
 
     /**
      * <p>
-     * The creation time of the log group.
+     * The creation time of the log group, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -178,7 +195,8 @@ public class LogGroup implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param creationTime <p>
-     *            The creation time of the log group.
+     *            The creation time of the log group, expressed as the number of
+     *            milliseconds after Jan 1, 1970 00:00:00 UTC.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -390,6 +408,66 @@ public class LogGroup implements Serializable {
     }
 
     /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the CMK to use when encrypting log
+     * data.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the CMK to use when encrypting
+     *         log data.
+     *         </p>
+     */
+    public String getKmsKeyId() {
+        return kmsKeyId;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the CMK to use when encrypting log
+     * data.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     *
+     * @param kmsKeyId <p>
+     *            The Amazon Resource Name (ARN) of the CMK to use when
+     *            encrypting log data.
+     *            </p>
+     */
+    public void setKmsKeyId(String kmsKeyId) {
+        this.kmsKeyId = kmsKeyId;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the CMK to use when encrypting log
+     * data.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     *
+     * @param kmsKeyId <p>
+     *            The Amazon Resource Name (ARN) of the CMK to use when
+     *            encrypting log data.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public LogGroup withKmsKeyId(String kmsKeyId) {
+        this.kmsKeyId = kmsKeyId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -411,7 +489,9 @@ public class LogGroup implements Serializable {
         if (getArn() != null)
             sb.append("arn: " + getArn() + ",");
         if (getStoredBytes() != null)
-            sb.append("storedBytes: " + getStoredBytes());
+            sb.append("storedBytes: " + getStoredBytes() + ",");
+        if (getKmsKeyId() != null)
+            sb.append("kmsKeyId: " + getKmsKeyId());
         sb.append("}");
         return sb.toString();
     }
@@ -432,6 +512,7 @@ public class LogGroup implements Serializable {
         hashCode = prime * hashCode + ((getArn() == null) ? 0 : getArn().hashCode());
         hashCode = prime * hashCode
                 + ((getStoredBytes() == null) ? 0 : getStoredBytes().hashCode());
+        hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode());
         return hashCode;
     }
 
@@ -474,6 +555,10 @@ public class LogGroup implements Serializable {
             return false;
         if (other.getStoredBytes() != null
                 && other.getStoredBytes().equals(this.getStoredBytes()) == false)
+            return false;
+        if (other.getKmsKeyId() == null ^ this.getKmsKeyId() == null)
+            return false;
+        if (other.getKmsKeyId() != null && other.getKmsKeyId().equals(this.getKmsKeyId()) == false)
             return false;
         return true;
     }

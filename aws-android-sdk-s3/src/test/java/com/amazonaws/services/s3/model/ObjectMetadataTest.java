@@ -1,4 +1,3 @@
-
 package com.amazonaws.services.s3.model;
 
 import static org.junit.Assert.assertEquals;
@@ -6,13 +5,13 @@ import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import com.amazonaws.services.s3.Headers;
-
-import org.junit.Test;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.Test;
+
+import com.amazonaws.services.s3.Headers;
 
 public class ObjectMetadataTest {
 
@@ -79,7 +78,7 @@ public class ObjectMetadataTest {
         from.setHeader(Headers.CONTENT_RANGE, "/9999");
         from.setHeader(Headers.S3_VERSION_ID, "versionid");
         from.setHeader(Headers.ETAG, "etag");
-        from.setStorageClass(StorageClass.ReducedRedundancy);
+        from.setHeader(Headers.STORAGE_CLASS, StorageClass.ReducedRedundancy.toString());
 
         assertEquals("cachecontrol", from.getCacheControl());
         assertEquals("contentDisposition", from.getContentDisposition());
@@ -127,10 +126,10 @@ public class ObjectMetadataTest {
         assertTrue(9999 == to.getInstanceLength());
         assertEquals(lastModified, to.getLastModified());
         assertTrue(to.getOngoingRestore());
-
+        
         assertEquals(from.getRawMetadata(), to.getRawMetadata());
         assertNotSame(from.getRawMetadata(), to.getRawMetadata());
-
+        
         assertEquals(restoreExpirationTime, to.getRestoreExpirationTime());
         assertEquals("ssealgo", to.getSSEAlgorithm());
         assertEquals("SSECustomerAlgorithm", to.getSSECustomerAlgorithm());
@@ -138,7 +137,7 @@ public class ObjectMetadataTest {
 
         assertEquals(from.getUserMetadata(), to.getUserMetadata());
         assertNotSame(from.getUserMetadata(), to.getUserMetadata());
-
+        
         assertEquals("versionid", to.getVersionId());
         assertEquals(from.getStorageClass(), to.getStorageClass());
     }

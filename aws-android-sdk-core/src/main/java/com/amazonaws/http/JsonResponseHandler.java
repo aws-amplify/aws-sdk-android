@@ -79,7 +79,7 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
     }
 
     /**
-     * @see HttpResponseHandler#handle(HttpResponse)
+     * @see com.amazonaws.http.HttpResponseHandler#handle(com.amazonaws.http.HttpResponse)
      */
     @Override
     public AmazonWebServiceResponse<T> handle(HttpResponse response) throws Exception {
@@ -163,7 +163,7 @@ public class JsonResponseHandler<T> implements HttpResponseHandler<AmazonWebServ
      * underlying HTTP connection during the handle method, we don't need to
      * keep the HTTP connection open.
      *
-     * @see HttpResponseHandler#needsConnectionLeftOpen()
+     * @see com.amazonaws.http.HttpResponseHandler#needsConnectionLeftOpen()
      */
     @Override
     public boolean needsConnectionLeftOpen() {

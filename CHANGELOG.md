@@ -1,5 +1,31 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.20](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.20)
+
+### New Features
+
+ * **Amazon Comprehend**
+  * Amazon Comprehend is a natural language processing (NLP) service that uses machine learning to find insights and relationships in text.
+
+* **Amazon Translate**
+  * Amazon Translate is a neural machine translation service that delivers fast, high-quality, and affordable language translation.
+
+### Misc. Updates
+
+* **Amazon CloudWatch Logs**
+  * Update Amazon CloudWatch Logs client to the latest service model.
+
+* **Amazon Cognito Identity**
+  * Update Amazon Cognito Identity client to the latest service model.
+
+* **Amazon Lex**
+  * Update Amazon Lex client to the latest service model.
+
+### Bug Fixes
+
+* **Amazon S3**
+  * Support Storage Class in `TransferUtility`. See [pr #398](https://github.com/aws/aws-sdk-android/pull/398/)
+
 ## [Release 2.6.19](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.19)
 
 ### New Features

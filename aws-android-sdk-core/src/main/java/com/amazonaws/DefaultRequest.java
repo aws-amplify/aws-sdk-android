@@ -25,7 +25,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Default implementation of the {@linkplain Request} interface.
+ * Default implementation of the {@linkplain com.amazonaws.Request} interface.
  * <p>
  * This class is only intended for internal use inside the AWS client libraries.
  * Callers shouldn't ever interact directly with objects of this class.
@@ -111,7 +111,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#addHeader(String, String)
+     * @see com.amazonaws.Request#addHeader(java.lang.String, java.lang.String)
      */
     @Override
     public void addHeader(String name, String value) {
@@ -119,7 +119,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#getHeaders()
+     * @see com.amazonaws.Request#getHeaders()
      */
     @Override
     public Map<String, String> getHeaders() {
@@ -127,7 +127,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#setResourcePath(String)
+     * @see com.amazonaws.Request#setResourcePath(java.lang.String)
      */
     @Override
     public void setResourcePath(String resourcePath) {
@@ -135,7 +135,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#getResourcePath()
+     * @see com.amazonaws.Request#getResourcePath()
      */
     @Override
     public String getResourcePath() {
@@ -143,8 +143,8 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#addParameter(String,
-     *      String)
+     * @see com.amazonaws.Request#addParameter(java.lang.String,
+     *      java.lang.String)
      */
     @Override
     public void addParameter(String name, String value) {
@@ -152,7 +152,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#getParameters()
+     * @see com.amazonaws.Request#getParameters()
      */
     @Override
     public Map<String, String> getParameters() {
@@ -160,8 +160,8 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#withParameter(String,
-     *      String)
+     * @see com.amazonaws.Request#withParameter(java.lang.String,
+     *      java.lang.String)
      */
     @Override
     public Request<T> withParameter(String name, String value) {
@@ -170,7 +170,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#getHttpMethod()
+     * @see com.amazonaws.Request#getHttpMethod()
      */
     @Override
     public HttpMethodName getHttpMethod() {
@@ -178,7 +178,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#setHttpMethod(HttpMethodName)
+     * @see com.amazonaws.Request#setHttpMethod(com.amazonaws.http.HttpMethodName)
      */
     @Override
     public void setHttpMethod(HttpMethodName httpMethod) {
@@ -186,7 +186,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#setEndpoint(URI)
+     * @see com.amazonaws.Request#setEndpoint(java.net.URI)
      */
     @Override
     public void setEndpoint(URI endpoint) {
@@ -194,7 +194,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#getEndpoint()
+     * @see com.amazonaws.Request#getEndpoint()
      */
     @Override
     public URI getEndpoint() {
@@ -202,7 +202,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#getServiceName()
+     * @see com.amazonaws.Request#getServiceName()
      */
     @Override
     public String getServiceName() {
@@ -210,7 +210,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#getContent()
+     * @see com.amazonaws.Request#getContent()
      */
     @Override
     public InputStream getContent() {
@@ -218,7 +218,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#setContent(InputStream)
+     * @see com.amazonaws.Request#setContent(java.io.InputStream)
      */
     @Override
     public void setContent(InputStream content) {
@@ -226,7 +226,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#setHeaders(Map)
+     * @see com.amazonaws.Request#setHeaders(java.util.Map)
      */
     @Override
     public void setHeaders(Map<String, String> headers) {
@@ -235,7 +235,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#setParameters(Map)
+     * @see com.amazonaws.Request#setParameters(java.util.Map)
      */
     @Override
     public void setParameters(Map<String, String> parameters) {
@@ -244,7 +244,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#getTimeOffset
+     * @see com.amazonaws.Request#getTimeOffset
      */
     @Override
     public int getTimeOffset() {

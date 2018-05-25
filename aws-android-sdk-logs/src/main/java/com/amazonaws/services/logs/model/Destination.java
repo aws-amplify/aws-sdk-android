@@ -36,8 +36,8 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the physical target where the log
-     * events will be delivered (for example, a Kinesis stream).
+     * The Amazon Resource Name (ARN) of the physical target to where the log
+     * events are delivered (for example, a Kinesis stream).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -75,7 +75,8 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The creation time of the destination.
+     * The creation time of the destination, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -142,16 +143,16 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the physical target where the log
-     * events will be delivered (for example, a Kinesis stream).
+     * The Amazon Resource Name (ARN) of the physical target to where the log
+     * events are delivered (for example, a Kinesis stream).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the physical target where the
-     *         log events will be delivered (for example, a Kinesis stream).
+     *         The Amazon Resource Name (ARN) of the physical target to where
+     *         the log events are delivered (for example, a Kinesis stream).
      *         </p>
      */
     public String getTargetArn() {
@@ -160,17 +161,16 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the physical target where the log
-     * events will be delivered (for example, a Kinesis stream).
+     * The Amazon Resource Name (ARN) of the physical target to where the log
+     * events are delivered (for example, a Kinesis stream).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param targetArn <p>
-     *            The Amazon Resource Name (ARN) of the physical target where
-     *            the log events will be delivered (for example, a Kinesis
-     *            stream).
+     *            The Amazon Resource Name (ARN) of the physical target to where
+     *            the log events are delivered (for example, a Kinesis stream).
      *            </p>
      */
     public void setTargetArn(String targetArn) {
@@ -179,8 +179,8 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the physical target where the log
-     * events will be delivered (for example, a Kinesis stream).
+     * The Amazon Resource Name (ARN) of the physical target to where the log
+     * events are delivered (for example, a Kinesis stream).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -190,9 +190,8 @@ public class Destination implements Serializable {
      * <b>Length: </b>1 - <br/>
      *
      * @param targetArn <p>
-     *            The Amazon Resource Name (ARN) of the physical target where
-     *            the log events will be delivered (for example, a Kinesis
-     *            stream).
+     *            The Amazon Resource Name (ARN) of the physical target to where
+     *            the log events are delivered (for example, a Kinesis stream).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -366,14 +365,16 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The creation time of the destination.
+     * The creation time of the destination, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The creation time of the destination.
+     *         The creation time of the destination, expressed as the number of
+     *         milliseconds after Jan 1, 1970 00:00:00 UTC.
      *         </p>
      */
     public Long getCreationTime() {
@@ -382,14 +383,16 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The creation time of the destination.
+     * The creation time of the destination, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @param creationTime <p>
-     *            The creation time of the destination.
+     *            The creation time of the destination, expressed as the number
+     *            of milliseconds after Jan 1, 1970 00:00:00 UTC.
      *            </p>
      */
     public void setCreationTime(Long creationTime) {
@@ -398,7 +401,8 @@ public class Destination implements Serializable {
 
     /**
      * <p>
-     * The creation time of the destination.
+     * The creation time of the destination, expressed as the number of
+     * milliseconds after Jan 1, 1970 00:00:00 UTC.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -408,7 +412,8 @@ public class Destination implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param creationTime <p>
-     *            The creation time of the destination.
+     *            The creation time of the destination, expressed as the number
+     *            of milliseconds after Jan 1, 1970 00:00:00 UTC.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

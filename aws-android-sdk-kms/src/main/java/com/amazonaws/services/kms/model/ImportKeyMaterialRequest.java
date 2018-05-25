@@ -649,7 +649,7 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * debugging.
      *
      * @return A string representation of this object.
-     * @see Object#toString()
+     * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {

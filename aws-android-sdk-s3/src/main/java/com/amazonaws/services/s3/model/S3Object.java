@@ -203,7 +203,7 @@ public class S3Object implements Closeable, Serializable, S3RequesterChargedResu
     }
 
     /**
-     * @see Object#toString()
+     * @see java.lang.Object#toString()
      */
     public String toString() {
         return "S3Object [key=" + getKey()

@@ -34,6 +34,6 @@ public interface Presigner {
      * @param expiration The time when this presigned URL will expire.
      */
     public void presignRequest(Request<?> request,
-                               AWSCredentials credentials,
-                               Date expiration);
+            AWSCredentials credentials,
+            Date expiration);
 }

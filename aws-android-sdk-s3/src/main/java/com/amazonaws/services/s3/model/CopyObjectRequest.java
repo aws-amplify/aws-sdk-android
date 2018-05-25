@@ -41,7 +41,7 @@ import java.util.List;
  * </ul>
  *
  * @see AmazonS3Client#copyObject(String, String, String, String)
- * @see AmazonS3Client#copyObject(CopyObjectRequest)
+ * @see AmazonS3Client#copyObject(com.amazonaws.services.s3.model.CopyObjectRequest)
  * @see CopyObjectResult
  */
 public class CopyObjectRequest extends AmazonWebServiceRequest implements

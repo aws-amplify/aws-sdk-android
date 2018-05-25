@@ -20,18 +20,18 @@ import java.io.Serializable;
 public class ListTagsLogGroupResult implements Serializable {
     /**
      * <p>
-     * The tags.
+     * The tags for the log group.
      * </p>
      */
     private java.util.Map<String, String> tags;
 
     /**
      * <p>
-     * The tags.
+     * The tags for the log group.
      * </p>
      *
      * @return <p>
-     *         The tags.
+     *         The tags for the log group.
      *         </p>
      */
     public java.util.Map<String, String> getTags() {
@@ -40,11 +40,11 @@ public class ListTagsLogGroupResult implements Serializable {
 
     /**
      * <p>
-     * The tags.
+     * The tags for the log group.
      * </p>
      *
      * @param tags <p>
-     *            The tags.
+     *            The tags for the log group.
      *            </p>
      */
     public void setTags(java.util.Map<String, String> tags) {
@@ -53,14 +53,14 @@ public class ListTagsLogGroupResult implements Serializable {
 
     /**
      * <p>
-     * The tags.
+     * The tags for the log group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            The tags.
+     *            The tags for the log group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -72,7 +72,7 @@ public class ListTagsLogGroupResult implements Serializable {
 
     /**
      * <p>
-     * The tags.
+     * The tags for the log group.
      * </p>
      * <p>
      * The method adds a new key-value pair into tags parameter, and returns a

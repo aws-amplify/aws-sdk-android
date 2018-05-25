@@ -18,11 +18,15 @@ package com.amazonaws.services.cognitoidentity.model;
 import java.io.Serializable;
 
 /**
+ * <p>
  * Returned in response to a GetId request.
+ * </p>
  */
 public class GetIdResult implements Serializable {
     /**
+     * <p>
      * A unique identifier in the format REGION:GUID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
@@ -31,33 +35,43 @@ public class GetIdResult implements Serializable {
     private String identityId;
 
     /**
+     * <p>
      * A unique identifier in the format REGION:GUID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @return A unique identifier in the format REGION:GUID.
+     * @return <p>
+     *         A unique identifier in the format REGION:GUID.
+     *         </p>
      */
     public String getIdentityId() {
         return identityId;
     }
 
     /**
+     * <p>
      * A unique identifier in the format REGION:GUID.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @param identityId A unique identifier in the format REGION:GUID.
+     * @param identityId <p>
+     *            A unique identifier in the format REGION:GUID.
+     *            </p>
      */
     public void setIdentityId(String identityId) {
         this.identityId = identityId;
     }
 
     /**
+     * <p>
      * A unique identifier in the format REGION:GUID.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -66,7 +80,9 @@ public class GetIdResult implements Serializable {
      * <b>Length: </b>1 - 55<br/>
      * <b>Pattern: </b>[\w-]+:[0-9a-f-]+<br/>
      *
-     * @param identityId A unique identifier in the format REGION:GUID.
+     * @param identityId <p>
+     *            A unique identifier in the format REGION:GUID.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -80,7 +96,7 @@ public class GetIdResult implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     * @see Object#toString()
+     * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {

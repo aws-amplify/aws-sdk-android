@@ -55,6 +55,11 @@ class LogGroupJsonMarshaller {
             jsonWriter.name("storedBytes");
             jsonWriter.value(storedBytes);
         }
+        if (logGroup.getKmsKeyId() != null) {
+            String kmsKeyId = logGroup.getKmsKeyId();
+            jsonWriter.name("kmsKeyId");
+            jsonWriter.value(kmsKeyId);
+        }
         jsonWriter.endObject();
     }
 

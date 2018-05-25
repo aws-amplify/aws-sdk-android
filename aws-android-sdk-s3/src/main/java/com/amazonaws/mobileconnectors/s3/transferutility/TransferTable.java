@@ -318,8 +318,8 @@ class TransferTable {
      * Adds columns that were introduced in version 5 to the database
      */
     private static void addVersion5Columns(SQLiteDatabase database) {
-        final String addCannedAcl = "ALTER TABLE " + TABLE_TRANSFER +
+        final String addStorageClass = "ALTER TABLE " + TABLE_TRANSFER +
                 " ADD COLUMN " + COLUMN_HEADER_STORAGE_CLASS + " text;";
-        database.execSQL(addCannedAcl);
+        database.execSQL(addStorageClass);
     }
 }
