@@ -21,17 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Verifies an email address. This action causes a confirmation email message to
- * be sent to the specified address.
- * </p>
- * <important>
- * <p>
- * The VerifyEmailAddress action is deprecated as of the May 15, 2012 release of
- * Domain Verification. The VerifyEmailIdentity action is now preferred.
- * </p>
- * </important>
- * <p>
- * This action is throttled at one request per second.
+ * Deprecated. Use the <code>VerifyEmailIdentity</code> operation to verify a
+ * new email address.
  * </p>
  */
 public class VerifyEmailAddressRequest extends AmazonWebServiceRequest implements Serializable {

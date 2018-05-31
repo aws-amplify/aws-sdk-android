@@ -25,6 +25,11 @@ import com.amazonaws.AmazonServiceException;
 public class RuleDoesNotExistException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * <p>
+     * Indicates that the named receipt rule does not exist.
+     * </p>
+     */
     private String name;
 
     /**
@@ -38,18 +43,26 @@ public class RuleDoesNotExistException extends AmazonServiceException {
     }
 
     /**
-     * Returns the value of the name property for this object.
+     * <p>
+     * Indicates that the named receipt rule does not exist.
+     * </p>
      *
-     * @return The value of the name property for this object.
+     * @return <p>
+     *         Indicates that the named receipt rule does not exist.
+     *         </p>
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Sets the value of name
+     * <p>
+     * Indicates that the named receipt rule does not exist.
+     * </p>
      *
-     * @param name The new value for the name property for this object.
+     * @param name <p>
+     *            Indicates that the named receipt rule does not exist.
+     *            </p>
      */
     public void setName(String name) {
         this.name = name;

@@ -18,7 +18,9 @@ package com.amazonaws.services.kinesisvideo.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * The stream is currently not available for this operation.
+ * </p>
  */
 public class ResourceInUseException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

@@ -21,10 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns the user's current sending limits.
+ * Provides the sending limits for the Amazon SES account.
  * </p>
  * <p>
- * This action is throttled at one request per second.
+ * You can execute this operation no more than once per second.
  * </p>
  */
 public class GetSendQuotaRequest extends AmazonWebServiceRequest implements Serializable {

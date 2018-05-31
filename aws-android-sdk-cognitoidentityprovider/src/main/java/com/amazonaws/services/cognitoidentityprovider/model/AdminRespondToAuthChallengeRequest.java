@@ -23,6 +23,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Responds to an authentication challenge, as an administrator.
  * </p>
+ * <p>
+ * Requires developer credentials.
+ * </p>
  */
 public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest implements
         Serializable {
@@ -39,7 +42,7 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The client ID.
+     * The app client ID.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -50,32 +53,94 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The name of the challenge.
+     * The challenge name. For more information, see .
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
-     * NEW_PASSWORD_REQUIRED
+     * <b>Allowed Values: </b>SMS_MFA, SOFTWARE_TOKEN_MFA, SELECT_MFA_TYPE,
+     * MFA_SETUP, PASSWORD_VERIFIER, CUSTOM_CHALLENGE, DEVICE_SRP_AUTH,
+     * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      */
     private String challengeName;
 
     /**
      * <p>
-     * The challenge response.
+     * The challenge responses. These are inputs corresponding to the value of
+     * <code>ChallengeName</code>, for example:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SMS_MFA</code>: <code>SMS_MFA_CODE</code>, <code>USERNAME</code>,
+     * <code>SECRET_HASH</code> (if app client is configured with client
+     * secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>PASSWORD_VERIFIER</code>: <code>PASSWORD_CLAIM_SIGNATURE</code>,
+     * <code>PASSWORD_CLAIM_SECRET_BLOCK</code>, <code>TIMESTAMP</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ADMIN_NO_SRP_AUTH</code>: <code>PASSWORD</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
+     * required attributes, <code>USERNAME</code>, <code>SECRET_HASH</code> (if
+     * app client is configured with client secret).
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The value of the <code>USERNAME</code> attribute must be the user's
+     * actual username, not an alias (such as email address or phone number). To
+     * make this easier, the <code>AdminInitiateAuth</code> response includes
+     * the actual username value in the <code>USERNAMEUSER_ID_FOR_SRP</code>
+     * attribute, even if you specified an alias in your call to
+     * <code>AdminInitiateAuth</code>.
      * </p>
      */
     private java.util.Map<String, String> challengeResponses;
 
     /**
      * <p>
-     * The session.
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. If <code>InitiateAuth</code> or
+     * <code>RespondToAuthChallenge</code> API call determines that the caller
+     * needs to go through another challenge, they return a session with other
+     * challenge parameters. This session should be passed as it is to the next
+     * <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      */
     private String session;
+
+    /**
+     * <p>
+     * The analytics metadata for collecting Amazon Pinpoint metrics for
+     * <code>AdminRespondToAuthChallenge</code> calls.
+     * </p>
+     */
+    private AnalyticsMetadataType analyticsMetadata;
+
+    /**
+     * <p>
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
+     * </p>
+     */
+    private ContextDataType contextData;
 
     /**
      * <p>
@@ -136,7 +201,7 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The client ID.
+     * The app client ID.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -144,7 +209,7 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>[\w+]+<br/>
      *
      * @return <p>
-     *         The client ID.
+     *         The app client ID.
      *         </p>
      */
     public String getClientId() {
@@ -153,7 +218,7 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The client ID.
+     * The app client ID.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -161,7 +226,7 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>[\w+]+<br/>
      *
      * @param clientId <p>
-     *            The client ID.
+     *            The app client ID.
      *            </p>
      */
     public void setClientId(String clientId) {
@@ -170,7 +235,7 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The client ID.
+     * The app client ID.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -181,7 +246,7 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>[\w+]+<br/>
      *
      * @param clientId <p>
-     *            The client ID.
+     *            The app client ID.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -193,16 +258,16 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The name of the challenge.
+     * The challenge name. For more information, see .
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
-     * NEW_PASSWORD_REQUIRED
+     * <b>Allowed Values: </b>SMS_MFA, SOFTWARE_TOKEN_MFA, SELECT_MFA_TYPE,
+     * MFA_SETUP, PASSWORD_VERIFIER, CUSTOM_CHALLENGE, DEVICE_SRP_AUTH,
+     * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @return <p>
-     *         The name of the challenge.
+     *         The challenge name. For more information, see .
      *         </p>
      * @see ChallengeNameType
      */
@@ -212,16 +277,16 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The name of the challenge.
+     * The challenge name. For more information, see .
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
-     * NEW_PASSWORD_REQUIRED
+     * <b>Allowed Values: </b>SMS_MFA, SOFTWARE_TOKEN_MFA, SELECT_MFA_TYPE,
+     * MFA_SETUP, PASSWORD_VERIFIER, CUSTOM_CHALLENGE, DEVICE_SRP_AUTH,
+     * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The name of the challenge.
+     *            The challenge name. For more information, see .
      *            </p>
      * @see ChallengeNameType
      */
@@ -231,19 +296,19 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The name of the challenge.
+     * The challenge name. For more information, see .
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
-     * NEW_PASSWORD_REQUIRED
+     * <b>Allowed Values: </b>SMS_MFA, SOFTWARE_TOKEN_MFA, SELECT_MFA_TYPE,
+     * MFA_SETUP, PASSWORD_VERIFIER, CUSTOM_CHALLENGE, DEVICE_SRP_AUTH,
+     * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The name of the challenge.
+     *            The challenge name. For more information, see .
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -256,16 +321,16 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The name of the challenge.
+     * The challenge name. For more information, see .
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
-     * NEW_PASSWORD_REQUIRED
+     * <b>Allowed Values: </b>SMS_MFA, SOFTWARE_TOKEN_MFA, SELECT_MFA_TYPE,
+     * MFA_SETUP, PASSWORD_VERIFIER, CUSTOM_CHALLENGE, DEVICE_SRP_AUTH,
+     * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The name of the challenge.
+     *            The challenge name. For more information, see .
      *            </p>
      * @see ChallengeNameType
      */
@@ -275,19 +340,19 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The name of the challenge.
+     * The challenge name. For more information, see .
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
-     * NEW_PASSWORD_REQUIRED
+     * <b>Allowed Values: </b>SMS_MFA, SOFTWARE_TOKEN_MFA, SELECT_MFA_TYPE,
+     * MFA_SETUP, PASSWORD_VERIFIER, CUSTOM_CHALLENGE, DEVICE_SRP_AUTH,
+     * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The name of the challenge.
+     *            The challenge name. For more information, see .
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -300,11 +365,94 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The challenge response.
+     * The challenge responses. These are inputs corresponding to the value of
+     * <code>ChallengeName</code>, for example:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SMS_MFA</code>: <code>SMS_MFA_CODE</code>, <code>USERNAME</code>,
+     * <code>SECRET_HASH</code> (if app client is configured with client
+     * secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>PASSWORD_VERIFIER</code>: <code>PASSWORD_CLAIM_SIGNATURE</code>,
+     * <code>PASSWORD_CLAIM_SECRET_BLOCK</code>, <code>TIMESTAMP</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ADMIN_NO_SRP_AUTH</code>: <code>PASSWORD</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
+     * required attributes, <code>USERNAME</code>, <code>SECRET_HASH</code> (if
+     * app client is configured with client secret).
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The value of the <code>USERNAME</code> attribute must be the user's
+     * actual username, not an alias (such as email address or phone number). To
+     * make this easier, the <code>AdminInitiateAuth</code> response includes
+     * the actual username value in the <code>USERNAMEUSER_ID_FOR_SRP</code>
+     * attribute, even if you specified an alias in your call to
+     * <code>AdminInitiateAuth</code>.
      * </p>
      *
      * @return <p>
-     *         The challenge response.
+     *         The challenge responses. These are inputs corresponding to the
+     *         value of <code>ChallengeName</code>, for example:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>SMS_MFA</code>: <code>SMS_MFA_CODE</code>,
+     *         <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     *         configured with client secret).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>PASSWORD_VERIFIER</code>:
+     *         <code>PASSWORD_CLAIM_SIGNATURE</code>,
+     *         <code>PASSWORD_CLAIM_SECRET_BLOCK</code>, <code>TIMESTAMP</code>,
+     *         <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     *         configured with client secret).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>ADMIN_NO_SRP_AUTH</code>: <code>PASSWORD</code>,
+     *         <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     *         configured with client secret).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>,
+     *         any other required attributes, <code>USERNAME</code>,
+     *         <code>SECRET_HASH</code> (if app client is configured with client
+     *         secret).
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         The value of the <code>USERNAME</code> attribute must be the
+     *         user's actual username, not an alias (such as email address or
+     *         phone number). To make this easier, the
+     *         <code>AdminInitiateAuth</code> response includes the actual
+     *         username value in the <code>USERNAMEUSER_ID_FOR_SRP</code>
+     *         attribute, even if you specified an alias in your call to
+     *         <code>AdminInitiateAuth</code>.
      *         </p>
      */
     public java.util.Map<String, String> getChallengeResponses() {
@@ -313,11 +461,95 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The challenge response.
+     * The challenge responses. These are inputs corresponding to the value of
+     * <code>ChallengeName</code>, for example:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SMS_MFA</code>: <code>SMS_MFA_CODE</code>, <code>USERNAME</code>,
+     * <code>SECRET_HASH</code> (if app client is configured with client
+     * secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>PASSWORD_VERIFIER</code>: <code>PASSWORD_CLAIM_SIGNATURE</code>,
+     * <code>PASSWORD_CLAIM_SECRET_BLOCK</code>, <code>TIMESTAMP</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ADMIN_NO_SRP_AUTH</code>: <code>PASSWORD</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
+     * required attributes, <code>USERNAME</code>, <code>SECRET_HASH</code> (if
+     * app client is configured with client secret).
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The value of the <code>USERNAME</code> attribute must be the user's
+     * actual username, not an alias (such as email address or phone number). To
+     * make this easier, the <code>AdminInitiateAuth</code> response includes
+     * the actual username value in the <code>USERNAMEUSER_ID_FOR_SRP</code>
+     * attribute, even if you specified an alias in your call to
+     * <code>AdminInitiateAuth</code>.
      * </p>
      *
      * @param challengeResponses <p>
-     *            The challenge response.
+     *            The challenge responses. These are inputs corresponding to the
+     *            value of <code>ChallengeName</code>, for example:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>SMS_MFA</code>: <code>SMS_MFA_CODE</code>,
+     *            <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client
+     *            is configured with client secret).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>PASSWORD_VERIFIER</code>:
+     *            <code>PASSWORD_CLAIM_SIGNATURE</code>,
+     *            <code>PASSWORD_CLAIM_SECRET_BLOCK</code>,
+     *            <code>TIMESTAMP</code>, <code>USERNAME</code>,
+     *            <code>SECRET_HASH</code> (if app client is configured with
+     *            client secret).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ADMIN_NO_SRP_AUTH</code>: <code>PASSWORD</code>,
+     *            <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client
+     *            is configured with client secret).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>,
+     *            any other required attributes, <code>USERNAME</code>,
+     *            <code>SECRET_HASH</code> (if app client is configured with
+     *            client secret).
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The value of the <code>USERNAME</code> attribute must be the
+     *            user's actual username, not an alias (such as email address or
+     *            phone number). To make this easier, the
+     *            <code>AdminInitiateAuth</code> response includes the actual
+     *            username value in the <code>USERNAMEUSER_ID_FOR_SRP</code>
+     *            attribute, even if you specified an alias in your call to
+     *            <code>AdminInitiateAuth</code>.
      *            </p>
      */
     public void setChallengeResponses(java.util.Map<String, String> challengeResponses) {
@@ -326,14 +558,98 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The challenge response.
+     * The challenge responses. These are inputs corresponding to the value of
+     * <code>ChallengeName</code>, for example:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SMS_MFA</code>: <code>SMS_MFA_CODE</code>, <code>USERNAME</code>,
+     * <code>SECRET_HASH</code> (if app client is configured with client
+     * secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>PASSWORD_VERIFIER</code>: <code>PASSWORD_CLAIM_SIGNATURE</code>,
+     * <code>PASSWORD_CLAIM_SECRET_BLOCK</code>, <code>TIMESTAMP</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ADMIN_NO_SRP_AUTH</code>: <code>PASSWORD</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
+     * required attributes, <code>USERNAME</code>, <code>SECRET_HASH</code> (if
+     * app client is configured with client secret).
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The value of the <code>USERNAME</code> attribute must be the user's
+     * actual username, not an alias (such as email address or phone number). To
+     * make this easier, the <code>AdminInitiateAuth</code> response includes
+     * the actual username value in the <code>USERNAMEUSER_ID_FOR_SRP</code>
+     * attribute, even if you specified an alias in your call to
+     * <code>AdminInitiateAuth</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param challengeResponses <p>
-     *            The challenge response.
+     *            The challenge responses. These are inputs corresponding to the
+     *            value of <code>ChallengeName</code>, for example:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>SMS_MFA</code>: <code>SMS_MFA_CODE</code>,
+     *            <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client
+     *            is configured with client secret).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>PASSWORD_VERIFIER</code>:
+     *            <code>PASSWORD_CLAIM_SIGNATURE</code>,
+     *            <code>PASSWORD_CLAIM_SECRET_BLOCK</code>,
+     *            <code>TIMESTAMP</code>, <code>USERNAME</code>,
+     *            <code>SECRET_HASH</code> (if app client is configured with
+     *            client secret).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ADMIN_NO_SRP_AUTH</code>: <code>PASSWORD</code>,
+     *            <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client
+     *            is configured with client secret).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>,
+     *            any other required attributes, <code>USERNAME</code>,
+     *            <code>SECRET_HASH</code> (if app client is configured with
+     *            client secret).
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The value of the <code>USERNAME</code> attribute must be the
+     *            user's actual username, not an alias (such as email address or
+     *            phone number). To make this easier, the
+     *            <code>AdminInitiateAuth</code> response includes the actual
+     *            username value in the <code>USERNAMEUSER_ID_FOR_SRP</code>
+     *            attribute, even if you specified an alias in your call to
+     *            <code>AdminInitiateAuth</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -346,7 +662,47 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The challenge response.
+     * The challenge responses. These are inputs corresponding to the value of
+     * <code>ChallengeName</code>, for example:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SMS_MFA</code>: <code>SMS_MFA_CODE</code>, <code>USERNAME</code>,
+     * <code>SECRET_HASH</code> (if app client is configured with client
+     * secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>PASSWORD_VERIFIER</code>: <code>PASSWORD_CLAIM_SIGNATURE</code>,
+     * <code>PASSWORD_CLAIM_SECRET_BLOCK</code>, <code>TIMESTAMP</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ADMIN_NO_SRP_AUTH</code>: <code>PASSWORD</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
+     * required attributes, <code>USERNAME</code>, <code>SECRET_HASH</code> (if
+     * app client is configured with client secret).
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The value of the <code>USERNAME</code> attribute must be the user's
+     * actual username, not an alias (such as email address or phone number). To
+     * make this easier, the <code>AdminInitiateAuth</code> response includes
+     * the actual username value in the <code>USERNAMEUSER_ID_FOR_SRP</code>
+     * attribute, even if you specified an alias in your call to
+     * <code>AdminInitiateAuth</code>.
      * </p>
      * <p>
      * The method adds a new key-value pair into ChallengeResponses parameter,
@@ -383,14 +739,25 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The session.
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. If <code>InitiateAuth</code> or
+     * <code>RespondToAuthChallenge</code> API call determines that the caller
+     * needs to go through another challenge, they return a session with other
+     * challenge parameters. This session should be passed as it is to the next
+     * <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         The session.
+     *         The session which should be passed both ways in
+     *         challenge-response calls to the service. If
+     *         <code>InitiateAuth</code> or <code>RespondToAuthChallenge</code>
+     *         API call determines that the caller needs to go through another
+     *         challenge, they return a session with other challenge parameters.
+     *         This session should be passed as it is to the next
+     *         <code>RespondToAuthChallenge</code> API call.
      *         </p>
      */
     public String getSession() {
@@ -399,14 +766,26 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The session.
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. If <code>InitiateAuth</code> or
+     * <code>RespondToAuthChallenge</code> API call determines that the caller
+     * needs to go through another challenge, they return a session with other
+     * challenge parameters. This session should be passed as it is to the next
+     * <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param session <p>
-     *            The session.
+     *            The session which should be passed both ways in
+     *            challenge-response calls to the service. If
+     *            <code>InitiateAuth</code> or
+     *            <code>RespondToAuthChallenge</code> API call determines that
+     *            the caller needs to go through another challenge, they return
+     *            a session with other challenge parameters. This session should
+     *            be passed as it is to the next
+     *            <code>RespondToAuthChallenge</code> API call.
      *            </p>
      */
     public void setSession(String session) {
@@ -415,7 +794,12 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The session.
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. If <code>InitiateAuth</code> or
+     * <code>RespondToAuthChallenge</code> API call determines that the caller
+     * needs to go through another challenge, they return a session with other
+     * challenge parameters. This session should be passed as it is to the next
+     * <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -425,13 +809,129 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param session <p>
-     *            The session.
+     *            The session which should be passed both ways in
+     *            challenge-response calls to the service. If
+     *            <code>InitiateAuth</code> or
+     *            <code>RespondToAuthChallenge</code> API call determines that
+     *            the caller needs to go through another challenge, they return
+     *            a session with other challenge parameters. This session should
+     *            be passed as it is to the next
+     *            <code>RespondToAuthChallenge</code> API call.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public AdminRespondToAuthChallengeRequest withSession(String session) {
         this.session = session;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The analytics metadata for collecting Amazon Pinpoint metrics for
+     * <code>AdminRespondToAuthChallenge</code> calls.
+     * </p>
+     *
+     * @return <p>
+     *         The analytics metadata for collecting Amazon Pinpoint metrics for
+     *         <code>AdminRespondToAuthChallenge</code> calls.
+     *         </p>
+     */
+    public AnalyticsMetadataType getAnalyticsMetadata() {
+        return analyticsMetadata;
+    }
+
+    /**
+     * <p>
+     * The analytics metadata for collecting Amazon Pinpoint metrics for
+     * <code>AdminRespondToAuthChallenge</code> calls.
+     * </p>
+     *
+     * @param analyticsMetadata <p>
+     *            The analytics metadata for collecting Amazon Pinpoint metrics
+     *            for <code>AdminRespondToAuthChallenge</code> calls.
+     *            </p>
+     */
+    public void setAnalyticsMetadata(AnalyticsMetadataType analyticsMetadata) {
+        this.analyticsMetadata = analyticsMetadata;
+    }
+
+    /**
+     * <p>
+     * The analytics metadata for collecting Amazon Pinpoint metrics for
+     * <code>AdminRespondToAuthChallenge</code> calls.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param analyticsMetadata <p>
+     *            The analytics metadata for collecting Amazon Pinpoint metrics
+     *            for <code>AdminRespondToAuthChallenge</code> calls.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AdminRespondToAuthChallengeRequest withAnalyticsMetadata(
+            AnalyticsMetadataType analyticsMetadata) {
+        this.analyticsMetadata = analyticsMetadata;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
+     * </p>
+     *
+     * @return <p>
+     *         Contextual data such as the user's device fingerprint, IP
+     *         address, or location used for evaluating the risk of an
+     *         unexpected event by Amazon Cognito advanced security.
+     *         </p>
+     */
+    public ContextDataType getContextData() {
+        return contextData;
+    }
+
+    /**
+     * <p>
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
+     * </p>
+     *
+     * @param contextData <p>
+     *            Contextual data such as the user's device fingerprint, IP
+     *            address, or location used for evaluating the risk of an
+     *            unexpected event by Amazon Cognito advanced security.
+     *            </p>
+     */
+    public void setContextData(ContextDataType contextData) {
+        this.contextData = contextData;
+    }
+
+    /**
+     * <p>
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param contextData <p>
+     *            Contextual data such as the user's device fingerprint, IP
+     *            address, or location used for evaluating the risk of an
+     *            unexpected event by Amazon Cognito advanced security.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AdminRespondToAuthChallengeRequest withContextData(ContextDataType contextData) {
+        this.contextData = contextData;
         return this;
     }
 
@@ -455,7 +955,11 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
         if (getChallengeResponses() != null)
             sb.append("ChallengeResponses: " + getChallengeResponses() + ",");
         if (getSession() != null)
-            sb.append("Session: " + getSession());
+            sb.append("Session: " + getSession() + ",");
+        if (getAnalyticsMetadata() != null)
+            sb.append("AnalyticsMetadata: " + getAnalyticsMetadata() + ",");
+        if (getContextData() != null)
+            sb.append("ContextData: " + getContextData());
         sb.append("}");
         return sb.toString();
     }
@@ -472,6 +976,10 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
         hashCode = prime * hashCode
                 + ((getChallengeResponses() == null) ? 0 : getChallengeResponses().hashCode());
         hashCode = prime * hashCode + ((getSession() == null) ? 0 : getSession().hashCode());
+        hashCode = prime * hashCode
+                + ((getAnalyticsMetadata() == null) ? 0 : getAnalyticsMetadata().hashCode());
+        hashCode = prime * hashCode
+                + ((getContextData() == null) ? 0 : getContextData().hashCode());
         return hashCode;
     }
 
@@ -508,6 +1016,16 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
         if (other.getSession() == null ^ this.getSession() == null)
             return false;
         if (other.getSession() != null && other.getSession().equals(this.getSession()) == false)
+            return false;
+        if (other.getAnalyticsMetadata() == null ^ this.getAnalyticsMetadata() == null)
+            return false;
+        if (other.getAnalyticsMetadata() != null
+                && other.getAnalyticsMetadata().equals(this.getAnalyticsMetadata()) == false)
+            return false;
+        if (other.getContextData() == null ^ this.getContextData() == null)
+            return false;
+        if (other.getContextData() != null
+                && other.getContextData().equals(this.getContextData()) == false)
             return false;
         return true;
     }

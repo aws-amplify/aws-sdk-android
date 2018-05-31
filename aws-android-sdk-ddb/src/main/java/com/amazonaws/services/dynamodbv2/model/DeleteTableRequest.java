@@ -21,20 +21,20 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * The <i>DeleteTable</i> operation deletes a table and all of its items. After
- * a <i>DeleteTable</i> request, the specified table is in the
+ * The <code>DeleteTable</code> operation deletes a table and all of its items.
+ * After a <code>DeleteTable</code> request, the specified table is in the
  * <code>DELETING</code> state until DynamoDB completes the deletion. If the
  * table is in the <code>ACTIVE</code> state, you can delete it. If a table is
  * in <code>CREATING</code> or <code>UPDATING</code> states, then DynamoDB
- * returns a <i>ResourceInUseException</i>. If the specified table does not
- * exist, DynamoDB returns a <i>ResourceNotFoundException</i>. If table is
- * already in the <code>DELETING</code> state, no error is returned.
+ * returns a <code>ResourceInUseException</code>. If the specified table does
+ * not exist, DynamoDB returns a <code>ResourceNotFoundException</code>. If
+ * table is already in the <code>DELETING</code> state, no error is returned.
  * </p>
  * <note>
  * <p>
  * DynamoDB might continue to accept data read and write operations, such as
- * <i>GetItem</i> and <i>PutItem</i>, on a table in the <code>DELETING</code>
- * state until the table deletion is complete.
+ * <code>GetItem</code> and <code>PutItem</code>, on a table in the
+ * <code>DELETING</code> state until the table deletion is complete.
  * </p>
  * </note>
  * <p>
@@ -46,7 +46,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * stream is automatically deleted after 24 hours.
  * </p>
  * <p>
- * Use the <i>DescribeTable</i> API to check the status of the table.
+ * Use the <code>DescribeTable</code> action to check the status of the table.
  * </p>
  */
 public class DeleteTableRequest extends AmazonWebServiceRequest implements Serializable {

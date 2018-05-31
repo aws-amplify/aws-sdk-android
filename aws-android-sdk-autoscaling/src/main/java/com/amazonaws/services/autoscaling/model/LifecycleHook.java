@@ -20,17 +20,12 @@ import java.io.Serializable;
 /**
  * <p>
  * Describes a lifecycle hook, which tells Auto Scaling that you want to perform
- * an action when an instance launches or terminates. When you have a lifecycle
- * hook in place, the Auto Scaling group will either:
+ * an action whenever it launches instances or whenever it terminates instances.
  * </p>
- * <ul>
- * <li>Pause the instance after it launches, but before it is put into service</li>
- * <li>Pause the instance as it terminates, but before it is fully terminated</li>
- * </ul>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html"
- * >Auto Scaling Lifecycle</a> in the <i>Auto Scaling Developer Guide</i>.
+ * "http://docs.aws.amazon.com/autoscaling/latest/userguide/lifecycle-hooks.html"
+ * >Auto Scaling Lifecycle Hooks</a> in the <i>Auto Scaling User Guide</i>.
  * </p>
  */
 public class LifecycleHook implements Serializable {
@@ -68,20 +63,10 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * The ARN of the notification target that Auto Scaling uses to notify you
-     * when an instance is in the transition state for the lifecycle hook. This
-     * ARN target can be either an SQS queue or an SNS topic. The notification
-     * message sent to the target includes the following:
+     * The ARN of the target that Auto Scaling sends notifications to when an
+     * instance is in the transition state for the lifecycle hook. The
+     * notification target can be either an SQS queue or an SNS topic.
      * </p>
-     * <ul>
-     * <li>Lifecycle action token</li>
-     * <li>User account ID</li>
-     * <li>Name of the Auto Scaling group</li>
-     * <li>Lifecycle hook name</li>
-     * <li>EC2 instance ID</li>
-     * <li>Lifecycle transition</li>
-     * <li>Notification metadata</li>
-     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
@@ -119,10 +104,9 @@ public class LifecycleHook implements Serializable {
     /**
      * <p>
      * The maximum time, in seconds, that can elapse before the lifecycle hook
-     * times out. The default is 3600 seconds (1 hour). When the lifecycle hook
-     * times out, Auto Scaling performs the default action. You can prevent the
-     * lifecycle hook from timing out by calling
-     * <a>RecordLifecycleActionHeartbeat</a>.
+     * times out. If the lifecycle hook times out, Auto Scaling performs the
+     * default action. You can prevent the lifecycle hook from timing out by
+     * calling <a>RecordLifecycleActionHeartbeat</a>.
      * </p>
      */
     private Integer heartbeatTimeout;
@@ -131,7 +115,8 @@ public class LifecycleHook implements Serializable {
      * <p>
      * The maximum time, in seconds, that an instance can remain in a
      * <code>Pending:Wait</code> or <code>Terminating:Wait</code> state. The
-     * default is 172800 seconds (48 hours).
+     * maximum is 172800 seconds (48 hours) or 100 times
+     * <code>HeartbeatTimeout</code>, whichever is smaller.
      * </p>
      */
     private Integer globalTimeout;
@@ -322,20 +307,10 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * The ARN of the notification target that Auto Scaling uses to notify you
-     * when an instance is in the transition state for the lifecycle hook. This
-     * ARN target can be either an SQS queue or an SNS topic. The notification
-     * message sent to the target includes the following:
+     * The ARN of the target that Auto Scaling sends notifications to when an
+     * instance is in the transition state for the lifecycle hook. The
+     * notification target can be either an SQS queue or an SNS topic.
      * </p>
-     * <ul>
-     * <li>Lifecycle action token</li>
-     * <li>User account ID</li>
-     * <li>Name of the Auto Scaling group</li>
-     * <li>Lifecycle hook name</li>
-     * <li>EC2 instance ID</li>
-     * <li>Lifecycle transition</li>
-     * <li>Notification metadata</li>
-     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
@@ -343,21 +318,11 @@ public class LifecycleHook implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The ARN of the notification target that Auto Scaling uses to
-     *         notify you when an instance is in the transition state for the
-     *         lifecycle hook. This ARN target can be either an SQS queue or an
-     *         SNS topic. The notification message sent to the target includes
-     *         the following:
+     *         The ARN of the target that Auto Scaling sends notifications to
+     *         when an instance is in the transition state for the lifecycle
+     *         hook. The notification target can be either an SQS queue or an
+     *         SNS topic.
      *         </p>
-     *         <ul>
-     *         <li>Lifecycle action token</li>
-     *         <li>User account ID</li>
-     *         <li>Name of the Auto Scaling group</li>
-     *         <li>Lifecycle hook name</li>
-     *         <li>EC2 instance ID</li>
-     *         <li>Lifecycle transition</li>
-     *         <li>Notification metadata</li>
-     *         </ul>
      */
     public String getNotificationTargetARN() {
         return notificationTargetARN;
@@ -365,20 +330,10 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * The ARN of the notification target that Auto Scaling uses to notify you
-     * when an instance is in the transition state for the lifecycle hook. This
-     * ARN target can be either an SQS queue or an SNS topic. The notification
-     * message sent to the target includes the following:
+     * The ARN of the target that Auto Scaling sends notifications to when an
+     * instance is in the transition state for the lifecycle hook. The
+     * notification target can be either an SQS queue or an SNS topic.
      * </p>
-     * <ul>
-     * <li>Lifecycle action token</li>
-     * <li>User account ID</li>
-     * <li>Name of the Auto Scaling group</li>
-     * <li>Lifecycle hook name</li>
-     * <li>EC2 instance ID</li>
-     * <li>Lifecycle transition</li>
-     * <li>Notification metadata</li>
-     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1600<br/>
@@ -386,21 +341,11 @@ public class LifecycleHook implements Serializable {
      * <br/>
      *
      * @param notificationTargetARN <p>
-     *            The ARN of the notification target that Auto Scaling uses to
-     *            notify you when an instance is in the transition state for the
-     *            lifecycle hook. This ARN target can be either an SQS queue or
-     *            an SNS topic. The notification message sent to the target
-     *            includes the following:
+     *            The ARN of the target that Auto Scaling sends notifications to
+     *            when an instance is in the transition state for the lifecycle
+     *            hook. The notification target can be either an SQS queue or an
+     *            SNS topic.
      *            </p>
-     *            <ul>
-     *            <li>Lifecycle action token</li>
-     *            <li>User account ID</li>
-     *            <li>Name of the Auto Scaling group</li>
-     *            <li>Lifecycle hook name</li>
-     *            <li>EC2 instance ID</li>
-     *            <li>Lifecycle transition</li>
-     *            <li>Notification metadata</li>
-     *            </ul>
      */
     public void setNotificationTargetARN(String notificationTargetARN) {
         this.notificationTargetARN = notificationTargetARN;
@@ -408,20 +353,10 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * The ARN of the notification target that Auto Scaling uses to notify you
-     * when an instance is in the transition state for the lifecycle hook. This
-     * ARN target can be either an SQS queue or an SNS topic. The notification
-     * message sent to the target includes the following:
+     * The ARN of the target that Auto Scaling sends notifications to when an
+     * instance is in the transition state for the lifecycle hook. The
+     * notification target can be either an SQS queue or an SNS topic.
      * </p>
-     * <ul>
-     * <li>Lifecycle action token</li>
-     * <li>User account ID</li>
-     * <li>Name of the Auto Scaling group</li>
-     * <li>Lifecycle hook name</li>
-     * <li>EC2 instance ID</li>
-     * <li>Lifecycle transition</li>
-     * <li>Notification metadata</li>
-     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -432,21 +367,11 @@ public class LifecycleHook implements Serializable {
      * <br/>
      *
      * @param notificationTargetARN <p>
-     *            The ARN of the notification target that Auto Scaling uses to
-     *            notify you when an instance is in the transition state for the
-     *            lifecycle hook. This ARN target can be either an SQS queue or
-     *            an SNS topic. The notification message sent to the target
-     *            includes the following:
+     *            The ARN of the target that Auto Scaling sends notifications to
+     *            when an instance is in the transition state for the lifecycle
+     *            hook. The notification target can be either an SQS queue or an
+     *            SNS topic.
      *            </p>
-     *            <ul>
-     *            <li>Lifecycle action token</li>
-     *            <li>User account ID</li>
-     *            <li>Name of the Auto Scaling group</li>
-     *            <li>Lifecycle hook name</li>
-     *            <li>EC2 instance ID</li>
-     *            <li>Lifecycle transition</li>
-     *            <li>Notification metadata</li>
-     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -590,18 +515,17 @@ public class LifecycleHook implements Serializable {
     /**
      * <p>
      * The maximum time, in seconds, that can elapse before the lifecycle hook
-     * times out. The default is 3600 seconds (1 hour). When the lifecycle hook
-     * times out, Auto Scaling performs the default action. You can prevent the
-     * lifecycle hook from timing out by calling
-     * <a>RecordLifecycleActionHeartbeat</a>.
+     * times out. If the lifecycle hook times out, Auto Scaling performs the
+     * default action. You can prevent the lifecycle hook from timing out by
+     * calling <a>RecordLifecycleActionHeartbeat</a>.
      * </p>
      *
      * @return <p>
      *         The maximum time, in seconds, that can elapse before the
-     *         lifecycle hook times out. The default is 3600 seconds (1 hour).
-     *         When the lifecycle hook times out, Auto Scaling performs the
-     *         default action. You can prevent the lifecycle hook from timing
-     *         out by calling <a>RecordLifecycleActionHeartbeat</a>.
+     *         lifecycle hook times out. If the lifecycle hook times out, Auto
+     *         Scaling performs the default action. You can prevent the
+     *         lifecycle hook from timing out by calling
+     *         <a>RecordLifecycleActionHeartbeat</a>.
      *         </p>
      */
     public Integer getHeartbeatTimeout() {
@@ -611,18 +535,16 @@ public class LifecycleHook implements Serializable {
     /**
      * <p>
      * The maximum time, in seconds, that can elapse before the lifecycle hook
-     * times out. The default is 3600 seconds (1 hour). When the lifecycle hook
-     * times out, Auto Scaling performs the default action. You can prevent the
-     * lifecycle hook from timing out by calling
-     * <a>RecordLifecycleActionHeartbeat</a>.
+     * times out. If the lifecycle hook times out, Auto Scaling performs the
+     * default action. You can prevent the lifecycle hook from timing out by
+     * calling <a>RecordLifecycleActionHeartbeat</a>.
      * </p>
      *
      * @param heartbeatTimeout <p>
      *            The maximum time, in seconds, that can elapse before the
-     *            lifecycle hook times out. The default is 3600 seconds (1
-     *            hour). When the lifecycle hook times out, Auto Scaling
-     *            performs the default action. You can prevent the lifecycle
-     *            hook from timing out by calling
+     *            lifecycle hook times out. If the lifecycle hook times out,
+     *            Auto Scaling performs the default action. You can prevent the
+     *            lifecycle hook from timing out by calling
      *            <a>RecordLifecycleActionHeartbeat</a>.
      *            </p>
      */
@@ -633,10 +555,9 @@ public class LifecycleHook implements Serializable {
     /**
      * <p>
      * The maximum time, in seconds, that can elapse before the lifecycle hook
-     * times out. The default is 3600 seconds (1 hour). When the lifecycle hook
-     * times out, Auto Scaling performs the default action. You can prevent the
-     * lifecycle hook from timing out by calling
-     * <a>RecordLifecycleActionHeartbeat</a>.
+     * times out. If the lifecycle hook times out, Auto Scaling performs the
+     * default action. You can prevent the lifecycle hook from timing out by
+     * calling <a>RecordLifecycleActionHeartbeat</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -644,10 +565,9 @@ public class LifecycleHook implements Serializable {
      *
      * @param heartbeatTimeout <p>
      *            The maximum time, in seconds, that can elapse before the
-     *            lifecycle hook times out. The default is 3600 seconds (1
-     *            hour). When the lifecycle hook times out, Auto Scaling
-     *            performs the default action. You can prevent the lifecycle
-     *            hook from timing out by calling
+     *            lifecycle hook times out. If the lifecycle hook times out,
+     *            Auto Scaling performs the default action. You can prevent the
+     *            lifecycle hook from timing out by calling
      *            <a>RecordLifecycleActionHeartbeat</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -662,13 +582,15 @@ public class LifecycleHook implements Serializable {
      * <p>
      * The maximum time, in seconds, that an instance can remain in a
      * <code>Pending:Wait</code> or <code>Terminating:Wait</code> state. The
-     * default is 172800 seconds (48 hours).
+     * maximum is 172800 seconds (48 hours) or 100 times
+     * <code>HeartbeatTimeout</code>, whichever is smaller.
      * </p>
      *
      * @return <p>
      *         The maximum time, in seconds, that an instance can remain in a
      *         <code>Pending:Wait</code> or <code>Terminating:Wait</code> state.
-     *         The default is 172800 seconds (48 hours).
+     *         The maximum is 172800 seconds (48 hours) or 100 times
+     *         <code>HeartbeatTimeout</code>, whichever is smaller.
      *         </p>
      */
     public Integer getGlobalTimeout() {
@@ -679,13 +601,15 @@ public class LifecycleHook implements Serializable {
      * <p>
      * The maximum time, in seconds, that an instance can remain in a
      * <code>Pending:Wait</code> or <code>Terminating:Wait</code> state. The
-     * default is 172800 seconds (48 hours).
+     * maximum is 172800 seconds (48 hours) or 100 times
+     * <code>HeartbeatTimeout</code>, whichever is smaller.
      * </p>
      *
      * @param globalTimeout <p>
      *            The maximum time, in seconds, that an instance can remain in a
      *            <code>Pending:Wait</code> or <code>Terminating:Wait</code>
-     *            state. The default is 172800 seconds (48 hours).
+     *            state. The maximum is 172800 seconds (48 hours) or 100 times
+     *            <code>HeartbeatTimeout</code>, whichever is smaller.
      *            </p>
      */
     public void setGlobalTimeout(Integer globalTimeout) {
@@ -696,7 +620,8 @@ public class LifecycleHook implements Serializable {
      * <p>
      * The maximum time, in seconds, that an instance can remain in a
      * <code>Pending:Wait</code> or <code>Terminating:Wait</code> state. The
-     * default is 172800 seconds (48 hours).
+     * maximum is 172800 seconds (48 hours) or 100 times
+     * <code>HeartbeatTimeout</code>, whichever is smaller.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -705,7 +630,8 @@ public class LifecycleHook implements Serializable {
      * @param globalTimeout <p>
      *            The maximum time, in seconds, that an instance can remain in a
      *            <code>Pending:Wait</code> or <code>Terminating:Wait</code>
-     *            state. The default is 172800 seconds (48 hours).
+     *            state. The maximum is 172800 seconds (48 hours) or 100 times
+     *            <code>HeartbeatTimeout</code>, whichever is smaller.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

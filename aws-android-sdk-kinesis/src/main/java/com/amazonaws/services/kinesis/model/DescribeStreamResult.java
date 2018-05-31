@@ -25,24 +25,24 @@ import java.io.Serializable;
 public class DescribeStreamResult implements Serializable {
     /**
      * <p>
-     * The current status of the stream, the stream ARN, an array of shard
-     * objects that comprise the stream, and states whether there are more
-     * shards available.
+     * The current status of the stream, the stream Amazon Resource Name (ARN),
+     * an array of shard objects that comprise the stream, and whether there are
+     * more shards available.
      * </p>
      */
     private StreamDescription streamDescription;
 
     /**
      * <p>
-     * The current status of the stream, the stream ARN, an array of shard
-     * objects that comprise the stream, and states whether there are more
-     * shards available.
+     * The current status of the stream, the stream Amazon Resource Name (ARN),
+     * an array of shard objects that comprise the stream, and whether there are
+     * more shards available.
      * </p>
      *
      * @return <p>
-     *         The current status of the stream, the stream ARN, an array of
-     *         shard objects that comprise the stream, and states whether there
-     *         are more shards available.
+     *         The current status of the stream, the stream Amazon Resource Name
+     *         (ARN), an array of shard objects that comprise the stream, and
+     *         whether there are more shards available.
      *         </p>
      */
     public StreamDescription getStreamDescription() {
@@ -51,15 +51,15 @@ public class DescribeStreamResult implements Serializable {
 
     /**
      * <p>
-     * The current status of the stream, the stream ARN, an array of shard
-     * objects that comprise the stream, and states whether there are more
-     * shards available.
+     * The current status of the stream, the stream Amazon Resource Name (ARN),
+     * an array of shard objects that comprise the stream, and whether there are
+     * more shards available.
      * </p>
      *
      * @param streamDescription <p>
-     *            The current status of the stream, the stream ARN, an array of
-     *            shard objects that comprise the stream, and states whether
-     *            there are more shards available.
+     *            The current status of the stream, the stream Amazon Resource
+     *            Name (ARN), an array of shard objects that comprise the
+     *            stream, and whether there are more shards available.
      *            </p>
      */
     public void setStreamDescription(StreamDescription streamDescription) {
@@ -68,18 +68,18 @@ public class DescribeStreamResult implements Serializable {
 
     /**
      * <p>
-     * The current status of the stream, the stream ARN, an array of shard
-     * objects that comprise the stream, and states whether there are more
-     * shards available.
+     * The current status of the stream, the stream Amazon Resource Name (ARN),
+     * an array of shard objects that comprise the stream, and whether there are
+     * more shards available.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param streamDescription <p>
-     *            The current status of the stream, the stream ARN, an array of
-     *            shard objects that comprise the stream, and states whether
-     *            there are more shards available.
+     *            The current status of the stream, the stream Amazon Resource
+     *            Name (ARN), an array of shard objects that comprise the
+     *            stream, and whether there are more shards available.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -71,6 +71,9 @@ class KeyMetadataJsonUnmarshaller implements Unmarshaller<KeyMetadata, JsonUnmar
             } else if (name.equals("ExpirationModel")) {
                 keyMetadata.setExpirationModel(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("KeyManager")) {
+                keyMetadata.setKeyManager(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

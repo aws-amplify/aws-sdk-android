@@ -18,7 +18,9 @@ package com.amazonaws.services.kinesisvideo.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * Amazon Kinesis Video Streams can't find the stream that you specified.
+ * </p>
  */
 public class ResourceNotFoundException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

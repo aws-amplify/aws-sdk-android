@@ -111,6 +111,20 @@ public class Action implements Serializable {
 
     /**
      * <p>
+     * Send a message to a Salesforce IoT Cloud Input Stream.
+     * </p>
+     */
+    private SalesforceAction salesforce;
+
+    /**
+     * <p>
+     * Sends message data to an AWS IoT Analytics channel.
+     * </p>
+     */
+    private IotAnalyticsAction iotAnalytics;
+
+    /**
+     * <p>
      * Write to a DynamoDB table.
      * </p>
      *
@@ -662,6 +676,96 @@ public class Action implements Serializable {
     }
 
     /**
+     * <p>
+     * Send a message to a Salesforce IoT Cloud Input Stream.
+     * </p>
+     *
+     * @return <p>
+     *         Send a message to a Salesforce IoT Cloud Input Stream.
+     *         </p>
+     */
+    public SalesforceAction getSalesforce() {
+        return salesforce;
+    }
+
+    /**
+     * <p>
+     * Send a message to a Salesforce IoT Cloud Input Stream.
+     * </p>
+     *
+     * @param salesforce <p>
+     *            Send a message to a Salesforce IoT Cloud Input Stream.
+     *            </p>
+     */
+    public void setSalesforce(SalesforceAction salesforce) {
+        this.salesforce = salesforce;
+    }
+
+    /**
+     * <p>
+     * Send a message to a Salesforce IoT Cloud Input Stream.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param salesforce <p>
+     *            Send a message to a Salesforce IoT Cloud Input Stream.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Action withSalesforce(SalesforceAction salesforce) {
+        this.salesforce = salesforce;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Sends message data to an AWS IoT Analytics channel.
+     * </p>
+     *
+     * @return <p>
+     *         Sends message data to an AWS IoT Analytics channel.
+     *         </p>
+     */
+    public IotAnalyticsAction getIotAnalytics() {
+        return iotAnalytics;
+    }
+
+    /**
+     * <p>
+     * Sends message data to an AWS IoT Analytics channel.
+     * </p>
+     *
+     * @param iotAnalytics <p>
+     *            Sends message data to an AWS IoT Analytics channel.
+     *            </p>
+     */
+    public void setIotAnalytics(IotAnalyticsAction iotAnalytics) {
+        this.iotAnalytics = iotAnalytics;
+    }
+
+    /**
+     * <p>
+     * Sends message data to an AWS IoT Analytics channel.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param iotAnalytics <p>
+     *            Sends message data to an AWS IoT Analytics channel.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Action withIotAnalytics(IotAnalyticsAction iotAnalytics) {
+        this.iotAnalytics = iotAnalytics;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -695,7 +799,11 @@ public class Action implements Serializable {
         if (getCloudwatchAlarm() != null)
             sb.append("cloudwatchAlarm: " + getCloudwatchAlarm() + ",");
         if (getElasticsearch() != null)
-            sb.append("elasticsearch: " + getElasticsearch());
+            sb.append("elasticsearch: " + getElasticsearch() + ",");
+        if (getSalesforce() != null)
+            sb.append("salesforce: " + getSalesforce() + ",");
+        if (getIotAnalytics() != null)
+            sb.append("iotAnalytics: " + getIotAnalytics());
         sb.append("}");
         return sb.toString();
     }
@@ -720,6 +828,9 @@ public class Action implements Serializable {
                 + ((getCloudwatchAlarm() == null) ? 0 : getCloudwatchAlarm().hashCode());
         hashCode = prime * hashCode
                 + ((getElasticsearch() == null) ? 0 : getElasticsearch().hashCode());
+        hashCode = prime * hashCode + ((getSalesforce() == null) ? 0 : getSalesforce().hashCode());
+        hashCode = prime * hashCode
+                + ((getIotAnalytics() == null) ? 0 : getIotAnalytics().hashCode());
         return hashCode;
     }
 
@@ -786,6 +897,16 @@ public class Action implements Serializable {
             return false;
         if (other.getElasticsearch() != null
                 && other.getElasticsearch().equals(this.getElasticsearch()) == false)
+            return false;
+        if (other.getSalesforce() == null ^ this.getSalesforce() == null)
+            return false;
+        if (other.getSalesforce() != null
+                && other.getSalesforce().equals(this.getSalesforce()) == false)
+            return false;
+        if (other.getIotAnalytics() == null ^ this.getIotAnalytics() == null)
+            return false;
+        if (other.getIotAnalytics() != null
+                && other.getIotAnalytics().equals(this.getIotAnalytics()) == false)
             return false;
         return true;
     }

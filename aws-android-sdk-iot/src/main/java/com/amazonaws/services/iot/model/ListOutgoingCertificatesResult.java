@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class ListOutgoingCertificatesResult implements Serializable {
     /**
      * <p>
-     * The certificates that are being transfered but not yet accepted.
+     * The certificates that are being transferred but not yet accepted.
      * </p>
      */
     private java.util.List<OutgoingCertificate> outgoingCertificates;
@@ -34,16 +34,19 @@ public class ListOutgoingCertificatesResult implements Serializable {
      * <p>
      * The marker for the next set of results.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      */
     private String nextMarker;
 
     /**
      * <p>
-     * The certificates that are being transfered but not yet accepted.
+     * The certificates that are being transferred but not yet accepted.
      * </p>
      *
      * @return <p>
-     *         The certificates that are being transfered but not yet accepted.
+     *         The certificates that are being transferred but not yet accepted.
      *         </p>
      */
     public java.util.List<OutgoingCertificate> getOutgoingCertificates() {
@@ -52,11 +55,11 @@ public class ListOutgoingCertificatesResult implements Serializable {
 
     /**
      * <p>
-     * The certificates that are being transfered but not yet accepted.
+     * The certificates that are being transferred but not yet accepted.
      * </p>
      *
      * @param outgoingCertificates <p>
-     *            The certificates that are being transfered but not yet
+     *            The certificates that are being transferred but not yet
      *            accepted.
      *            </p>
      */
@@ -73,14 +76,14 @@ public class ListOutgoingCertificatesResult implements Serializable {
 
     /**
      * <p>
-     * The certificates that are being transfered but not yet accepted.
+     * The certificates that are being transferred but not yet accepted.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param outgoingCertificates <p>
-     *            The certificates that are being transfered but not yet
+     *            The certificates that are being transferred but not yet
      *            accepted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -100,14 +103,14 @@ public class ListOutgoingCertificatesResult implements Serializable {
 
     /**
      * <p>
-     * The certificates that are being transfered but not yet accepted.
+     * The certificates that are being transferred but not yet accepted.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param outgoingCertificates <p>
-     *            The certificates that are being transfered but not yet
+     *            The certificates that are being transferred but not yet
      *            accepted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -123,6 +126,9 @@ public class ListOutgoingCertificatesResult implements Serializable {
      * <p>
      * The marker for the next set of results.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @return <p>
      *         The marker for the next set of results.
@@ -136,6 +142,9 @@ public class ListOutgoingCertificatesResult implements Serializable {
      * <p>
      * The marker for the next set of results.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @param nextMarker <p>
      *            The marker for the next set of results.
@@ -152,6 +161,9 @@ public class ListOutgoingCertificatesResult implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @param nextMarker <p>
      *            The marker for the next set of results.

@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class AutoScalingGroup implements Serializable {
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -37,7 +37,7 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the group.
+     * The Amazon Resource Name (ARN) of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -58,6 +58,13 @@ public class AutoScalingGroup implements Serializable {
      * <br/>
      */
     private String launchConfigurationName;
+
+    /**
+     * <p>
+     * The launch template for the group.
+     * </p>
+     */
+    private LaunchTemplateSpecification launchTemplate;
 
     /**
      * <p>
@@ -101,6 +108,14 @@ public class AutoScalingGroup implements Serializable {
      * </p>
      */
     private java.util.List<String> loadBalancerNames = new java.util.ArrayList<String>();
+
+    /**
+     * <p>
+     * The Amazon Resource Names (ARN) of the target groups for your load
+     * balancer.
+     * </p>
+     */
+    private java.util.List<String> targetGroupARNs = new java.util.ArrayList<String>();
 
     /**
      * <p>
@@ -171,7 +186,7 @@ public class AutoScalingGroup implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 2047<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
      * <br/>
      */
@@ -221,7 +236,20 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The name of the group.
+     * The Amazon Resource Name (ARN) of the service-linked role that the Auto
+     * Scaling group uses to call other AWS services on your behalf.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1600<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
+     */
+    private String serviceLinkedRoleARN;
+
+    /**
+     * <p>
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -230,7 +258,7 @@ public class AutoScalingGroup implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The name of the group.
+     *         The name of the Auto Scaling group.
      *         </p>
      */
     public String getAutoScalingGroupName() {
@@ -239,7 +267,7 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -248,7 +276,7 @@ public class AutoScalingGroup implements Serializable {
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      */
     public void setAutoScalingGroupName(String autoScalingGroupName) {
@@ -257,7 +285,7 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -269,7 +297,7 @@ public class AutoScalingGroup implements Serializable {
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -281,7 +309,7 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the group.
+     * The Amazon Resource Name (ARN) of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -290,7 +318,7 @@ public class AutoScalingGroup implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the group.
+     *         The Amazon Resource Name (ARN) of the Auto Scaling group.
      *         </p>
      */
     public String getAutoScalingGroupARN() {
@@ -299,7 +327,7 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the group.
+     * The Amazon Resource Name (ARN) of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -308,7 +336,7 @@ public class AutoScalingGroup implements Serializable {
      * <br/>
      *
      * @param autoScalingGroupARN <p>
-     *            The Amazon Resource Name (ARN) of the group.
+     *            The Amazon Resource Name (ARN) of the Auto Scaling group.
      *            </p>
      */
     public void setAutoScalingGroupARN(String autoScalingGroupARN) {
@@ -317,7 +345,7 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the group.
+     * The Amazon Resource Name (ARN) of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -329,7 +357,7 @@ public class AutoScalingGroup implements Serializable {
      * <br/>
      *
      * @param autoScalingGroupARN <p>
-     *            The Amazon Resource Name (ARN) of the group.
+     *            The Amazon Resource Name (ARN) of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -396,6 +424,51 @@ public class AutoScalingGroup implements Serializable {
      */
     public AutoScalingGroup withLaunchConfigurationName(String launchConfigurationName) {
         this.launchConfigurationName = launchConfigurationName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The launch template for the group.
+     * </p>
+     *
+     * @return <p>
+     *         The launch template for the group.
+     *         </p>
+     */
+    public LaunchTemplateSpecification getLaunchTemplate() {
+        return launchTemplate;
+    }
+
+    /**
+     * <p>
+     * The launch template for the group.
+     * </p>
+     *
+     * @param launchTemplate <p>
+     *            The launch template for the group.
+     *            </p>
+     */
+    public void setLaunchTemplate(LaunchTemplateSpecification launchTemplate) {
+        this.launchTemplate = launchTemplate;
+    }
+
+    /**
+     * <p>
+     * The launch template for the group.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param launchTemplate <p>
+     *            The launch template for the group.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AutoScalingGroup withLaunchTemplate(LaunchTemplateSpecification launchTemplate) {
+        this.launchTemplate = launchTemplate;
         return this;
     }
 
@@ -730,6 +803,88 @@ public class AutoScalingGroup implements Serializable {
      */
     public AutoScalingGroup withLoadBalancerNames(java.util.Collection<String> loadBalancerNames) {
         setLoadBalancerNames(loadBalancerNames);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Names (ARN) of the target groups for your load
+     * balancer.
+     * </p>
+     *
+     * @return <p>
+     *         The Amazon Resource Names (ARN) of the target groups for your
+     *         load balancer.
+     *         </p>
+     */
+    public java.util.List<String> getTargetGroupARNs() {
+        return targetGroupARNs;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Names (ARN) of the target groups for your load
+     * balancer.
+     * </p>
+     *
+     * @param targetGroupARNs <p>
+     *            The Amazon Resource Names (ARN) of the target groups for your
+     *            load balancer.
+     *            </p>
+     */
+    public void setTargetGroupARNs(java.util.Collection<String> targetGroupARNs) {
+        if (targetGroupARNs == null) {
+            this.targetGroupARNs = null;
+            return;
+        }
+
+        this.targetGroupARNs = new java.util.ArrayList<String>(targetGroupARNs);
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Names (ARN) of the target groups for your load
+     * balancer.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param targetGroupARNs <p>
+     *            The Amazon Resource Names (ARN) of the target groups for your
+     *            load balancer.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AutoScalingGroup withTargetGroupARNs(String... targetGroupARNs) {
+        if (getTargetGroupARNs() == null) {
+            this.targetGroupARNs = new java.util.ArrayList<String>(targetGroupARNs.length);
+        }
+        for (String value : targetGroupARNs) {
+            this.targetGroupARNs.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Names (ARN) of the target groups for your load
+     * balancer.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param targetGroupARNs <p>
+     *            The Amazon Resource Names (ARN) of the target groups for your
+     *            load balancer.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AutoScalingGroup withTargetGroupARNs(java.util.Collection<String> targetGroupARNs) {
+        setTargetGroupARNs(targetGroupARNs);
         return this;
     }
 
@@ -1143,7 +1298,7 @@ public class AutoScalingGroup implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 2047<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
      * <br/>
      *
@@ -1172,7 +1327,7 @@ public class AutoScalingGroup implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 2047<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
      * <br/>
      *
@@ -1204,7 +1359,7 @@ public class AutoScalingGroup implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 2047<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
      * <br/>
      *
@@ -1581,6 +1736,75 @@ public class AutoScalingGroup implements Serializable {
     }
 
     /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the service-linked role that the Auto
+     * Scaling group uses to call other AWS services on your behalf.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1600<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the service-linked role that
+     *         the Auto Scaling group uses to call other AWS services on your
+     *         behalf.
+     *         </p>
+     */
+    public String getServiceLinkedRoleARN() {
+        return serviceLinkedRoleARN;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the service-linked role that the Auto
+     * Scaling group uses to call other AWS services on your behalf.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1600<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
+     *
+     * @param serviceLinkedRoleARN <p>
+     *            The Amazon Resource Name (ARN) of the service-linked role that
+     *            the Auto Scaling group uses to call other AWS services on your
+     *            behalf.
+     *            </p>
+     */
+    public void setServiceLinkedRoleARN(String serviceLinkedRoleARN) {
+        this.serviceLinkedRoleARN = serviceLinkedRoleARN;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the service-linked role that the Auto
+     * Scaling group uses to call other AWS services on your behalf.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1600<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
+     *
+     * @param serviceLinkedRoleARN <p>
+     *            The Amazon Resource Name (ARN) of the service-linked role that
+     *            the Auto Scaling group uses to call other AWS services on your
+     *            behalf.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AutoScalingGroup withServiceLinkedRoleARN(String serviceLinkedRoleARN) {
+        this.serviceLinkedRoleARN = serviceLinkedRoleARN;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1597,6 +1821,8 @@ public class AutoScalingGroup implements Serializable {
             sb.append("AutoScalingGroupARN: " + getAutoScalingGroupARN() + ",");
         if (getLaunchConfigurationName() != null)
             sb.append("LaunchConfigurationName: " + getLaunchConfigurationName() + ",");
+        if (getLaunchTemplate() != null)
+            sb.append("LaunchTemplate: " + getLaunchTemplate() + ",");
         if (getMinSize() != null)
             sb.append("MinSize: " + getMinSize() + ",");
         if (getMaxSize() != null)
@@ -1609,6 +1835,8 @@ public class AutoScalingGroup implements Serializable {
             sb.append("AvailabilityZones: " + getAvailabilityZones() + ",");
         if (getLoadBalancerNames() != null)
             sb.append("LoadBalancerNames: " + getLoadBalancerNames() + ",");
+        if (getTargetGroupARNs() != null)
+            sb.append("TargetGroupARNs: " + getTargetGroupARNs() + ",");
         if (getHealthCheckType() != null)
             sb.append("HealthCheckType: " + getHealthCheckType() + ",");
         if (getHealthCheckGracePeriod() != null)
@@ -1632,7 +1860,10 @@ public class AutoScalingGroup implements Serializable {
         if (getTerminationPolicies() != null)
             sb.append("TerminationPolicies: " + getTerminationPolicies() + ",");
         if (getNewInstancesProtectedFromScaleIn() != null)
-            sb.append("NewInstancesProtectedFromScaleIn: " + getNewInstancesProtectedFromScaleIn());
+            sb.append("NewInstancesProtectedFromScaleIn: " + getNewInstancesProtectedFromScaleIn()
+                    + ",");
+        if (getServiceLinkedRoleARN() != null)
+            sb.append("ServiceLinkedRoleARN: " + getServiceLinkedRoleARN());
         sb.append("}");
         return sb.toString();
     }
@@ -1650,6 +1881,8 @@ public class AutoScalingGroup implements Serializable {
                 * hashCode
                 + ((getLaunchConfigurationName() == null) ? 0 : getLaunchConfigurationName()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getLaunchTemplate() == null) ? 0 : getLaunchTemplate().hashCode());
         hashCode = prime * hashCode + ((getMinSize() == null) ? 0 : getMinSize().hashCode());
         hashCode = prime * hashCode + ((getMaxSize() == null) ? 0 : getMaxSize().hashCode());
         hashCode = prime * hashCode
@@ -1660,6 +1893,8 @@ public class AutoScalingGroup implements Serializable {
                 + ((getAvailabilityZones() == null) ? 0 : getAvailabilityZones().hashCode());
         hashCode = prime * hashCode
                 + ((getLoadBalancerNames() == null) ? 0 : getLoadBalancerNames().hashCode());
+        hashCode = prime * hashCode
+                + ((getTargetGroupARNs() == null) ? 0 : getTargetGroupARNs().hashCode());
         hashCode = prime * hashCode
                 + ((getHealthCheckType() == null) ? 0 : getHealthCheckType().hashCode());
         hashCode = prime
@@ -1685,6 +1920,8 @@ public class AutoScalingGroup implements Serializable {
                 * hashCode
                 + ((getNewInstancesProtectedFromScaleIn() == null) ? 0
                         : getNewInstancesProtectedFromScaleIn().hashCode());
+        hashCode = prime * hashCode
+                + ((getServiceLinkedRoleARN() == null) ? 0 : getServiceLinkedRoleARN().hashCode());
         return hashCode;
     }
 
@@ -1714,6 +1951,11 @@ public class AutoScalingGroup implements Serializable {
         if (other.getLaunchConfigurationName() != null
                 && other.getLaunchConfigurationName().equals(this.getLaunchConfigurationName()) == false)
             return false;
+        if (other.getLaunchTemplate() == null ^ this.getLaunchTemplate() == null)
+            return false;
+        if (other.getLaunchTemplate() != null
+                && other.getLaunchTemplate().equals(this.getLaunchTemplate()) == false)
+            return false;
         if (other.getMinSize() == null ^ this.getMinSize() == null)
             return false;
         if (other.getMinSize() != null && other.getMinSize().equals(this.getMinSize()) == false)
@@ -1741,6 +1983,11 @@ public class AutoScalingGroup implements Serializable {
             return false;
         if (other.getLoadBalancerNames() != null
                 && other.getLoadBalancerNames().equals(this.getLoadBalancerNames()) == false)
+            return false;
+        if (other.getTargetGroupARNs() == null ^ this.getTargetGroupARNs() == null)
+            return false;
+        if (other.getTargetGroupARNs() != null
+                && other.getTargetGroupARNs().equals(this.getTargetGroupARNs()) == false)
             return false;
         if (other.getHealthCheckType() == null ^ this.getHealthCheckType() == null)
             return false;
@@ -1801,6 +2048,11 @@ public class AutoScalingGroup implements Serializable {
         if (other.getNewInstancesProtectedFromScaleIn() != null
                 && other.getNewInstancesProtectedFromScaleIn().equals(
                         this.getNewInstancesProtectedFromScaleIn()) == false)
+            return false;
+        if (other.getServiceLinkedRoleARN() == null ^ this.getServiceLinkedRoleARN() == null)
+            return false;
+        if (other.getServiceLinkedRoleARN() != null
+                && other.getServiceLinkedRoleARN().equals(this.getServiceLinkedRoleARN()) == false)
             return false;
         return true;
     }

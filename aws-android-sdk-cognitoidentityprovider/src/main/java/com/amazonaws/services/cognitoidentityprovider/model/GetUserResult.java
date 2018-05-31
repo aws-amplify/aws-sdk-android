@@ -39,6 +39,10 @@ public class GetUserResult implements Serializable {
      * <p>
      * An array of name-value pairs representing user attributes.
      * </p>
+     * <p>
+     * For custom attributes, you must prepend the <code>custom:</code> prefix
+     * to the attribute name.
+     * </p>
      */
     private java.util.List<AttributeType> userAttributes;
 
@@ -48,6 +52,20 @@ public class GetUserResult implements Serializable {
      * </p>
      */
     private java.util.List<MFAOptionType> mFAOptions;
+
+    /**
+     * <p>
+     * The user's preferred MFA setting.
+     * </p>
+     */
+    private String preferredMfaSetting;
+
+    /**
+     * <p>
+     * The list of the user's MFA settings.
+     * </p>
+     */
+    private java.util.List<String> userMFASettingList;
 
     /**
      * <p>
@@ -113,9 +131,17 @@ public class GetUserResult implements Serializable {
      * <p>
      * An array of name-value pairs representing user attributes.
      * </p>
+     * <p>
+     * For custom attributes, you must prepend the <code>custom:</code> prefix
+     * to the attribute name.
+     * </p>
      *
      * @return <p>
      *         An array of name-value pairs representing user attributes.
+     *         </p>
+     *         <p>
+     *         For custom attributes, you must prepend the <code>custom:</code>
+     *         prefix to the attribute name.
      *         </p>
      */
     public java.util.List<AttributeType> getUserAttributes() {
@@ -126,9 +152,17 @@ public class GetUserResult implements Serializable {
      * <p>
      * An array of name-value pairs representing user attributes.
      * </p>
+     * <p>
+     * For custom attributes, you must prepend the <code>custom:</code> prefix
+     * to the attribute name.
+     * </p>
      *
      * @param userAttributes <p>
      *            An array of name-value pairs representing user attributes.
+     *            </p>
+     *            <p>
+     *            For custom attributes, you must prepend the
+     *            <code>custom:</code> prefix to the attribute name.
      *            </p>
      */
     public void setUserAttributes(java.util.Collection<AttributeType> userAttributes) {
@@ -145,11 +179,19 @@ public class GetUserResult implements Serializable {
      * An array of name-value pairs representing user attributes.
      * </p>
      * <p>
+     * For custom attributes, you must prepend the <code>custom:</code> prefix
+     * to the attribute name.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param userAttributes <p>
      *            An array of name-value pairs representing user attributes.
+     *            </p>
+     *            <p>
+     *            For custom attributes, you must prepend the
+     *            <code>custom:</code> prefix to the attribute name.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -169,11 +211,19 @@ public class GetUserResult implements Serializable {
      * An array of name-value pairs representing user attributes.
      * </p>
      * <p>
+     * For custom attributes, you must prepend the <code>custom:</code> prefix
+     * to the attribute name.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param userAttributes <p>
      *            An array of name-value pairs representing user attributes.
+     *            </p>
+     *            <p>
+     *            For custom attributes, you must prepend the
+     *            <code>custom:</code> prefix to the attribute name.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -258,6 +308,125 @@ public class GetUserResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The user's preferred MFA setting.
+     * </p>
+     *
+     * @return <p>
+     *         The user's preferred MFA setting.
+     *         </p>
+     */
+    public String getPreferredMfaSetting() {
+        return preferredMfaSetting;
+    }
+
+    /**
+     * <p>
+     * The user's preferred MFA setting.
+     * </p>
+     *
+     * @param preferredMfaSetting <p>
+     *            The user's preferred MFA setting.
+     *            </p>
+     */
+    public void setPreferredMfaSetting(String preferredMfaSetting) {
+        this.preferredMfaSetting = preferredMfaSetting;
+    }
+
+    /**
+     * <p>
+     * The user's preferred MFA setting.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param preferredMfaSetting <p>
+     *            The user's preferred MFA setting.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetUserResult withPreferredMfaSetting(String preferredMfaSetting) {
+        this.preferredMfaSetting = preferredMfaSetting;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The list of the user's MFA settings.
+     * </p>
+     *
+     * @return <p>
+     *         The list of the user's MFA settings.
+     *         </p>
+     */
+    public java.util.List<String> getUserMFASettingList() {
+        return userMFASettingList;
+    }
+
+    /**
+     * <p>
+     * The list of the user's MFA settings.
+     * </p>
+     *
+     * @param userMFASettingList <p>
+     *            The list of the user's MFA settings.
+     *            </p>
+     */
+    public void setUserMFASettingList(java.util.Collection<String> userMFASettingList) {
+        if (userMFASettingList == null) {
+            this.userMFASettingList = null;
+            return;
+        }
+
+        this.userMFASettingList = new java.util.ArrayList<String>(userMFASettingList);
+    }
+
+    /**
+     * <p>
+     * The list of the user's MFA settings.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param userMFASettingList <p>
+     *            The list of the user's MFA settings.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetUserResult withUserMFASettingList(String... userMFASettingList) {
+        if (getUserMFASettingList() == null) {
+            this.userMFASettingList = new java.util.ArrayList<String>(userMFASettingList.length);
+        }
+        for (String value : userMFASettingList) {
+            this.userMFASettingList.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The list of the user's MFA settings.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param userMFASettingList <p>
+     *            The list of the user's MFA settings.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetUserResult withUserMFASettingList(java.util.Collection<String> userMFASettingList) {
+        setUserMFASettingList(userMFASettingList);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -273,7 +442,11 @@ public class GetUserResult implements Serializable {
         if (getUserAttributes() != null)
             sb.append("UserAttributes: " + getUserAttributes() + ",");
         if (getMFAOptions() != null)
-            sb.append("MFAOptions: " + getMFAOptions());
+            sb.append("MFAOptions: " + getMFAOptions() + ",");
+        if (getPreferredMfaSetting() != null)
+            sb.append("PreferredMfaSetting: " + getPreferredMfaSetting() + ",");
+        if (getUserMFASettingList() != null)
+            sb.append("UserMFASettingList: " + getUserMFASettingList());
         sb.append("}");
         return sb.toString();
     }
@@ -287,6 +460,10 @@ public class GetUserResult implements Serializable {
         hashCode = prime * hashCode
                 + ((getUserAttributes() == null) ? 0 : getUserAttributes().hashCode());
         hashCode = prime * hashCode + ((getMFAOptions() == null) ? 0 : getMFAOptions().hashCode());
+        hashCode = prime * hashCode
+                + ((getPreferredMfaSetting() == null) ? 0 : getPreferredMfaSetting().hashCode());
+        hashCode = prime * hashCode
+                + ((getUserMFASettingList() == null) ? 0 : getUserMFASettingList().hashCode());
         return hashCode;
     }
 
@@ -314,6 +491,16 @@ public class GetUserResult implements Serializable {
             return false;
         if (other.getMFAOptions() != null
                 && other.getMFAOptions().equals(this.getMFAOptions()) == false)
+            return false;
+        if (other.getPreferredMfaSetting() == null ^ this.getPreferredMfaSetting() == null)
+            return false;
+        if (other.getPreferredMfaSetting() != null
+                && other.getPreferredMfaSetting().equals(this.getPreferredMfaSetting()) == false)
+            return false;
+        if (other.getUserMFASettingList() == null ^ this.getUserMFASettingList() == null)
+            return false;
+        if (other.getUserMFASettingList() != null
+                && other.getUserMFASettingList().equals(this.getUserMFASettingList()) == false)
             return false;
         return true;
     }

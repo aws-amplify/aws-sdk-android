@@ -24,6 +24,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Attaches the specified policy to the specified principal (certificate or
  * other credential).
  * </p>
+ * <p>
+ * <b>Note:</b> This API is deprecated. Please use <a>AttachPolicy</a> instead.
+ * </p>
  */
 public class AttachPrincipalPolicyRequest extends AmazonWebServiceRequest implements Serializable {
     /**

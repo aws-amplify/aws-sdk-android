@@ -21,10 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists the receipt rule sets that exist under your AWS account. If there are
- * additional receipt rule sets to be retrieved, you will receive a
- * <code>NextToken</code> that you can provide to the next call to
- * <code>ListReceiptRuleSets</code> to retrieve the additional entries.
+ * Lists the receipt rule sets that exist under your AWS account in the current
+ * AWS Region. If there are additional receipt rule sets to be retrieved, you
+ * will receive a <code>NextToken</code> that you can provide to the next call
+ * to <code>ListReceiptRuleSets</code> to retrieve the additional entries.
  * </p>
  * <p>
  * For information about managing receipt rule sets, see the <a href=
@@ -32,7 +32,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>
- * This action is throttled at one request per second.
+ * You can execute this operation no more than once per second.
  * </p>
  */
 public class ListReceiptRuleSetsRequest extends AmazonWebServiceRequest implements Serializable {

@@ -61,7 +61,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * You cannot call any STS API <i>except</i> <code>AssumeRole</code>.
+ * You cannot call any STS API <i>except</i> <code>AssumeRole</code> or
+ * <code>GetCallerIdentity</code>.
  * </p>
  * </li>
  * </ul>
@@ -119,10 +120,10 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * and viewing the user's security credentials.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
-     * characters: =,.@-
+     * The regex used to validated this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
+     * characters: =,.@:/-
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -250,10 +251,10 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * and viewing the user's security credentials.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
-     * characters: =,.@-
+     * The regex used to validated this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
+     * characters: =,.@:/-
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -272,10 +273,10 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      *         and viewing the user's security credentials.
      *         </p>
      *         <p>
-     *         The format for this parameter, as described by its regex pattern,
-     *         is a string of characters consisting of upper- and lower-case
-     *         alphanumeric characters with no spaces. You can also include any
-     *         of the following characters: =,.@-
+     *         The regex used to validated this parameter is a string of
+     *         characters consisting of upper- and lower-case alphanumeric
+     *         characters with no spaces. You can also include underscores or
+     *         any of the following characters: =,.@:/-
      *         </p>
      */
     public String getSerialNumber() {
@@ -294,10 +295,10 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * and viewing the user's security credentials.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
-     * characters: =,.@-
+     * The regex used to validated this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
+     * characters: =,.@:/-
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -317,10 +318,10 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      *            Console and viewing the user's security credentials.
      *            </p>
      *            <p>
-     *            The format for this parameter, as described by its regex
-     *            pattern, is a string of characters consisting of upper- and
-     *            lower-case alphanumeric characters with no spaces. You can
-     *            also include any of the following characters: =,.@-
+     *            The regex used to validated this parameter is a string of
+     *            characters consisting of upper- and lower-case alphanumeric
+     *            characters with no spaces. You can also include underscores or
+     *            any of the following characters: =,.@:/-
      *            </p>
      */
     public void setSerialNumber(String serialNumber) {
@@ -339,10 +340,10 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * and viewing the user's security credentials.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
-     * characters: =,.@-
+     * The regex used to validated this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
+     * characters: =,.@:/-
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -365,10 +366,10 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      *            Console and viewing the user's security credentials.
      *            </p>
      *            <p>
-     *            The format for this parameter, as described by its regex
-     *            pattern, is a string of characters consisting of upper- and
-     *            lower-case alphanumeric characters with no spaces. You can
-     *            also include any of the following characters: =,.@-
+     *            The regex used to validated this parameter is a string of
+     *            characters consisting of upper- and lower-case alphanumeric
+     *            characters with no spaces. You can also include underscores or
+     *            any of the following characters: =,.@:/-
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

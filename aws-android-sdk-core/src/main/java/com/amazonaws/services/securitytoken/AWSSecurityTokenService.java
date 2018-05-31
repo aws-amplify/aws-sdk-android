@@ -196,10 +196,21 @@ public interface AWSSecurityTokenService {
      * Guide</i>.
      * </p>
      * <p>
-     * The temporary security credentials are valid for the duration that you
-     * specified when calling <code>AssumeRole</code>, which can be from 900
-     * seconds (15 minutes) to a maximum of 3600 seconds (1 hour). The default
-     * is 1 hour.
+     * By default, the temporary security credentials created by
+     * <code>AssumeRole</code> last for one hour. However, you can use the
+     * optional <code>DurationSeconds</code> parameter to specify the duration
+     * of your session. You can provide a value from 900 seconds (15 minutes) up
+     * to the maximum session duration setting for the role. This setting can
+     * have a value from 1 hour to 12 hours. To learn how to view the maximum
+     * value for your role, see <a href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     * >View the Maximum Session Duration Setting for a Role</a> in the <i>IAM
+     * User Guide</i>. The maximum session duration limit applies when you use
+     * the <code>AssumeRole*</code> API operations or the
+     * <code>assume-role*</code> CLI operations but does not apply when you use
+     * those operations to create a console URL. For more information, see <a
+     * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html">
+     * Using IAM Roles</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
      * The temporary security credentials created by <code>AssumeRole</code> can
@@ -238,7 +249,13 @@ public interface AWSSecurityTokenService {
      * other account. If the user is in the same account as the role, then you
      * can either attach a policy to the user (identical to the previous
      * different account user), or you can add the user as a principal directly
-     * in the role's trust policy
+     * in the role's trust policy. In this case, the trust policy acts as the
+     * only resource-based policy in IAM, and users in the same account as the
+     * role do not need explicit permission to assume the role. For more
+     * information about trust policies and resource-based policies, see <a
+     * href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html"
+     * >IAM Policies</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
      * <b>Using MFA with AssumeRole</b>
@@ -336,10 +353,21 @@ public interface AWSSecurityTokenService {
      * APIs.
      * </p>
      * <p>
-     * The credentials are valid for the duration that you specified when
-     * calling <code>AssumeRoleWithWebIdentity</code>, which can be from 900
-     * seconds (15 minutes) to a maximum of 3600 seconds (1 hour). The default
-     * is 1 hour.
+     * By default, the temporary security credentials created by
+     * <code>AssumeRoleWithWebIdentity</code> last for one hour. However, you
+     * can use the optional <code>DurationSeconds</code> parameter to specify
+     * the duration of your session. You can provide a value from 900 seconds
+     * (15 minutes) up to the maximum session duration setting for the role.
+     * This setting can have a value from 1 hour to 12 hours. To learn how to
+     * view the maximum value for your role, see <a href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     * >View the Maximum Session Duration Setting for a Role</a> in the <i>IAM
+     * User Guide</i>. The maximum session duration limit applies when you use
+     * the <code>AssumeRole*</code> API operations or the
+     * <code>assume-role*</code> CLI operations but does not apply when you use
+     * those operations to create a console URL. For more information, see <a
+     * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html">
+     * Using IAM Roles</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
      * The temporary security credentials created by
@@ -394,7 +422,7 @@ public interface AWSSecurityTokenService {
      * <li>
      * <p>
      * <a href=
-     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc_manual"
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc_manual.html"
      * >Using Web Identity Federation APIs for Mobile Apps</a> and <a href=
      * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_assumerolewithwebidentity"
      * >Federation Through a Web-based Identity Provider</a>.
@@ -421,10 +449,11 @@ public interface AWSSecurityTokenService {
      * </li>
      * <li>
      * <p>
-     * <a href="http://aws.amazon.com/articles/4617974389850313">Web Identity
-     * Federation with Mobile Applications</a>. This article discusses web
-     * identity federation and shows an example of how to use web identity
-     * federation to get access to content in Amazon S3.
+     * <a href=
+     * "http://aws.amazon.com/articles/web-identity-federation-with-mobile-applications"
+     * >Web Identity Federation with Mobile Applications</a>. This article
+     * discusses web identity federation and shows an example of how to use web
+     * identity federation to get access to content in Amazon S3.
      * </p>
      * </li>
      * </ul>
@@ -534,7 +563,7 @@ public interface AWSSecurityTokenService {
      * </li>
      * <li>
      * <p>
-     * You cannot call any STS APIs.
+     * You cannot call any STS APIs except <code>GetCallerIdentity</code>.
      * </p>
      * </li>
      * </ul>
@@ -657,7 +686,8 @@ public interface AWSSecurityTokenService {
      * </li>
      * <li>
      * <p>
-     * You cannot call any STS API <i>except</i> <code>AssumeRole</code>.
+     * You cannot call any STS API <i>except</i> <code>AssumeRole</code> or
+     * <code>GetCallerIdentity</code>.
      * </p>
      * </li>
      * </ul>
@@ -747,7 +777,8 @@ public interface AWSSecurityTokenService {
      * </li>
      * <li>
      * <p>
-     * You cannot call any STS API <i>except</i> <code>AssumeRole</code>.
+     * You cannot call any STS API <i>except</i> <code>AssumeRole</code> or
+     * <code>GetCallerIdentity</code>.
      * </p>
      * </li>
      * </ul>

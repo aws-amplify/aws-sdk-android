@@ -67,6 +67,27 @@ public class GetPolicyVersionResult implements Serializable {
 
     /**
      * <p>
+     * The date the policy version was created.
+     * </p>
+     */
+    private java.util.Date creationDate;
+
+    /**
+     * <p>
+     * The date the policy version was last modified.
+     * </p>
+     */
+    private java.util.Date lastModifiedDate;
+
+    /**
+     * <p>
+     * The generation ID of the policy version.
+     * </p>
+     */
+    private String generationId;
+
+    /**
+     * <p>
      * The policy ARN.
      * </p>
      *
@@ -325,6 +346,141 @@ public class GetPolicyVersionResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The date the policy version was created.
+     * </p>
+     *
+     * @return <p>
+     *         The date the policy version was created.
+     *         </p>
+     */
+    public java.util.Date getCreationDate() {
+        return creationDate;
+    }
+
+    /**
+     * <p>
+     * The date the policy version was created.
+     * </p>
+     *
+     * @param creationDate <p>
+     *            The date the policy version was created.
+     *            </p>
+     */
+    public void setCreationDate(java.util.Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    /**
+     * <p>
+     * The date the policy version was created.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param creationDate <p>
+     *            The date the policy version was created.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetPolicyVersionResult withCreationDate(java.util.Date creationDate) {
+        this.creationDate = creationDate;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The date the policy version was last modified.
+     * </p>
+     *
+     * @return <p>
+     *         The date the policy version was last modified.
+     *         </p>
+     */
+    public java.util.Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    /**
+     * <p>
+     * The date the policy version was last modified.
+     * </p>
+     *
+     * @param lastModifiedDate <p>
+     *            The date the policy version was last modified.
+     *            </p>
+     */
+    public void setLastModifiedDate(java.util.Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    /**
+     * <p>
+     * The date the policy version was last modified.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param lastModifiedDate <p>
+     *            The date the policy version was last modified.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetPolicyVersionResult withLastModifiedDate(java.util.Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The generation ID of the policy version.
+     * </p>
+     *
+     * @return <p>
+     *         The generation ID of the policy version.
+     *         </p>
+     */
+    public String getGenerationId() {
+        return generationId;
+    }
+
+    /**
+     * <p>
+     * The generation ID of the policy version.
+     * </p>
+     *
+     * @param generationId <p>
+     *            The generation ID of the policy version.
+     *            </p>
+     */
+    public void setGenerationId(String generationId) {
+        this.generationId = generationId;
+    }
+
+    /**
+     * <p>
+     * The generation ID of the policy version.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param generationId <p>
+     *            The generation ID of the policy version.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetPolicyVersionResult withGenerationId(String generationId) {
+        this.generationId = generationId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -344,7 +500,13 @@ public class GetPolicyVersionResult implements Serializable {
         if (getPolicyVersionId() != null)
             sb.append("policyVersionId: " + getPolicyVersionId() + ",");
         if (getIsDefaultVersion() != null)
-            sb.append("isDefaultVersion: " + getIsDefaultVersion());
+            sb.append("isDefaultVersion: " + getIsDefaultVersion() + ",");
+        if (getCreationDate() != null)
+            sb.append("creationDate: " + getCreationDate() + ",");
+        if (getLastModifiedDate() != null)
+            sb.append("lastModifiedDate: " + getLastModifiedDate() + ",");
+        if (getGenerationId() != null)
+            sb.append("generationId: " + getGenerationId());
         sb.append("}");
         return sb.toString();
     }
@@ -362,6 +524,12 @@ public class GetPolicyVersionResult implements Serializable {
                 + ((getPolicyVersionId() == null) ? 0 : getPolicyVersionId().hashCode());
         hashCode = prime * hashCode
                 + ((getIsDefaultVersion() == null) ? 0 : getIsDefaultVersion().hashCode());
+        hashCode = prime * hashCode
+                + ((getCreationDate() == null) ? 0 : getCreationDate().hashCode());
+        hashCode = prime * hashCode
+                + ((getLastModifiedDate() == null) ? 0 : getLastModifiedDate().hashCode());
+        hashCode = prime * hashCode
+                + ((getGenerationId() == null) ? 0 : getGenerationId().hashCode());
         return hashCode;
     }
 
@@ -400,6 +568,21 @@ public class GetPolicyVersionResult implements Serializable {
             return false;
         if (other.getIsDefaultVersion() != null
                 && other.getIsDefaultVersion().equals(this.getIsDefaultVersion()) == false)
+            return false;
+        if (other.getCreationDate() == null ^ this.getCreationDate() == null)
+            return false;
+        if (other.getCreationDate() != null
+                && other.getCreationDate().equals(this.getCreationDate()) == false)
+            return false;
+        if (other.getLastModifiedDate() == null ^ this.getLastModifiedDate() == null)
+            return false;
+        if (other.getLastModifiedDate() != null
+                && other.getLastModifiedDate().equals(this.getLastModifiedDate()) == false)
+            return false;
+        if (other.getGenerationId() == null ^ this.getGenerationId() == null)
+            return false;
+        if (other.getGenerationId() != null
+                && other.getGenerationId().equals(this.getGenerationId()) == false)
             return false;
         return true;
     }

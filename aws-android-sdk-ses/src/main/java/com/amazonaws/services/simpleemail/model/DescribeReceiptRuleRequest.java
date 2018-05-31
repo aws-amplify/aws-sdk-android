@@ -29,13 +29,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>
- * This action is throttled at one request per second.
+ * You can execute this operation no more than once per second.
  * </p>
  */
 public class DescribeReceiptRuleRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the receipt rule set to which the receipt rule belongs.
+     * The name of the receipt rule set that the receipt rule belongs to.
      * </p>
      */
     private String ruleSetName;
@@ -49,12 +49,12 @@ public class DescribeReceiptRuleRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of the receipt rule set to which the receipt rule belongs.
+     * The name of the receipt rule set that the receipt rule belongs to.
      * </p>
      *
      * @return <p>
-     *         The name of the receipt rule set to which the receipt rule
-     *         belongs.
+     *         The name of the receipt rule set that the receipt rule belongs
+     *         to.
      *         </p>
      */
     public String getRuleSetName() {
@@ -63,12 +63,12 @@ public class DescribeReceiptRuleRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of the receipt rule set to which the receipt rule belongs.
+     * The name of the receipt rule set that the receipt rule belongs to.
      * </p>
      *
      * @param ruleSetName <p>
-     *            The name of the receipt rule set to which the receipt rule
-     *            belongs.
+     *            The name of the receipt rule set that the receipt rule belongs
+     *            to.
      *            </p>
      */
     public void setRuleSetName(String ruleSetName) {
@@ -77,15 +77,15 @@ public class DescribeReceiptRuleRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of the receipt rule set to which the receipt rule belongs.
+     * The name of the receipt rule set that the receipt rule belongs to.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param ruleSetName <p>
-     *            The name of the receipt rule set to which the receipt rule
-     *            belongs.
+     *            The name of the receipt rule set that the receipt rule belongs
+     *            to.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

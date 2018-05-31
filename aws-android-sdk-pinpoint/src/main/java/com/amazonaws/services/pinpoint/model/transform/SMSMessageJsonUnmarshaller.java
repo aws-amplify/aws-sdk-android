@@ -41,6 +41,9 @@ class SMSMessageJsonUnmarshaller implements Unmarshaller<SMSMessage, JsonUnmarsh
             } else if (name.equals("MessageType")) {
                 sMSMessage.setMessageType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("OriginationNumber")) {
+                sMSMessage.setOriginationNumber(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SenderId")) {
                 sMSMessage.setSenderId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

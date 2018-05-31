@@ -19,9 +19,17 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Returns the most current information about the specified stream. You must
+ * specify either the <code>StreamName</code> or the <code>StreamARN</code>.
+ * </p>
+ */
 public class DescribeStreamRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the streamName property for this object.
+     * <p>
+     * The name of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -30,7 +38,9 @@ public class DescribeStreamRequest extends AmazonWebServiceRequest implements Se
     private String streamName;
 
     /**
-     * The new value for the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -41,34 +51,43 @@ public class DescribeStreamRequest extends AmazonWebServiceRequest implements Se
     private String streamARN;
 
     /**
-     * Returns the value of the streamName property for this object.
+     * <p>
+     * The name of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @return The value of the streamName property for this object.
+     * @return <p>
+     *         The name of the stream.
+     *         </p>
      */
     public String getStreamName() {
         return streamName;
     }
 
     /**
-     * Sets the value of streamName
+     * <p>
+     * The name of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param streamName The new value for the streamName property for this
-     *            object.
+     * @param streamName <p>
+     *            The name of the stream.
+     *            </p>
      */
     public void setStreamName(String streamName) {
         this.streamName = streamName;
     }
 
     /**
-     * Sets the value of the streamName property for this object.
+     * <p>
+     * The name of the stream.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -77,8 +96,9 @@ public class DescribeStreamRequest extends AmazonWebServiceRequest implements Se
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param streamName The new value for the streamName property for this
-     *            object.
+     * @param streamName <p>
+     *            The name of the stream.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -88,7 +108,9 @@ public class DescribeStreamRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * Returns the value of the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -96,14 +118,18 @@ public class DescribeStreamRequest extends AmazonWebServiceRequest implements Se
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @return The value of the streamARN property for this object.
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the stream.
+     *         </p>
      */
     public String getStreamARN() {
         return streamARN;
     }
 
     /**
-     * Sets the value of streamARN
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -111,15 +137,18 @@ public class DescribeStreamRequest extends AmazonWebServiceRequest implements Se
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @param streamARN The new value for the streamARN property for this
-     *            object.
+     * @param streamARN <p>
+     *            The Amazon Resource Name (ARN) of the stream.
+     *            </p>
      */
     public void setStreamARN(String streamARN) {
         this.streamARN = streamARN;
     }
 
     /**
-     * Sets the value of the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -130,8 +159,9 @@ public class DescribeStreamRequest extends AmazonWebServiceRequest implements Se
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @param streamARN The new value for the streamARN property for this
-     *            object.
+     * @param streamARN <p>
+     *            The Amazon Resource Name (ARN) of the stream.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

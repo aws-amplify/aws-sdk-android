@@ -19,83 +19,125 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Represents the data for an attribute. You can set one, and only one, of the
- * elements.
+ * Represents the data for an attribute.
  * </p>
  * <p>
- * Each attribute in an item is a name-value pair. An attribute can be
- * single-valued or multi-valued set. For example, a book item can have title
- * and authors attributes. Each book has one title but can have many authors.
- * The multi-valued attribute is a set; duplicate values are not allowed.
+ * Each attribute value is described as a name-value pair. The name is the data
+ * type, and the value is the data itself.
+ * </p>
+ * <p>
+ * For more information, see <a href=
+ * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html#HowItWorks.DataTypes"
+ * >Data Types</a> in the <i>Amazon DynamoDB Developer Guide</i>.
  * </p>
  */
 public class AttributeValue implements Serializable {
     /**
      * <p>
-     * A String data type.
+     * An attribute of type String. For example:
+     * </p>
+     * <p>
+     * <code>"S": "Hello"</code>
      * </p>
      */
     private String s;
 
     /**
      * <p>
-     * A Number data type.
+     * An attribute of type Number. For example:
+     * </p>
+     * <p>
+     * <code>"N": "123.45"</code>
+     * </p>
+     * <p>
+     * Numbers are sent across the network to DynamoDB as strings, to maximize
+     * compatibility across languages and libraries. However, DynamoDB treats
+     * them as number type attributes for mathematical operations.
      * </p>
      */
     private String n;
 
     /**
      * <p>
-     * A Binary data type.
+     * An attribute of type Binary. For example:
+     * </p>
+     * <p>
+     * <code>"B": "dGhpcyB0ZXh0IGlzIGJhc2U2NC1lbmNvZGVk"</code>
      * </p>
      */
     private java.nio.ByteBuffer b;
 
     /**
      * <p>
-     * A String Set data type.
+     * An attribute of type String Set. For example:
+     * </p>
+     * <p>
+     * <code>"SS": ["Giraffe", "Hippo" ,"Zebra"]</code>
      * </p>
      */
     private java.util.List<String> sS;
 
     /**
      * <p>
-     * A Number Set data type.
+     * An attribute of type Number Set. For example:
+     * </p>
+     * <p>
+     * <code>"NS": ["42.2", "-19", "7.5", "3.14"]</code>
+     * </p>
+     * <p>
+     * Numbers are sent across the network to DynamoDB as strings, to maximize
+     * compatibility across languages and libraries. However, DynamoDB treats
+     * them as number type attributes for mathematical operations.
      * </p>
      */
     private java.util.List<String> nS;
 
     /**
      * <p>
-     * A Binary Set data type.
+     * An attribute of type Binary Set. For example:
+     * </p>
+     * <p>
+     * <code>"BS": ["U3Vubnk=", "UmFpbnk=", "U25vd3k="]</code>
      * </p>
      */
     private java.util.List<java.nio.ByteBuffer> bS;
 
     /**
      * <p>
-     * A Map of attribute values.
+     * An attribute of type Map. For example:
+     * </p>
+     * <p>
+     * <code>"M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}</code>
      * </p>
      */
     private java.util.Map<String, AttributeValue> m;
 
     /**
      * <p>
-     * A List of attribute values.
+     * An attribute of type List. For example:
+     * </p>
+     * <p>
+     * <code>"L": ["Cookies", "Coffee", 3.14159]</code>
      * </p>
      */
     private java.util.List<AttributeValue> l;
 
     /**
      * <p>
-     * A Null data type.
+     * An attribute of type Null. For example:
+     * </p>
+     * <p>
+     * <code>"NULL": true</code>
      * </p>
      */
     private Boolean nULL;
 
     /**
      * <p>
-     * A Boolean data type.
+     * An attribute of type Boolean. For example:
+     * </p>
+     * <p>
+     * <code>"BOOL": true</code>
      * </p>
      */
     private Boolean bOOL;
@@ -114,7 +156,10 @@ public class AttributeValue implements Serializable {
      * members.
      * 
      * @param s <p>
-     *            A String data type.
+     *            An attribute of type String. For example:
+     *            </p>
+     *            <p>
+     *            <code>"S": "Hello"</code>
      *            </p>
      */
     public AttributeValue(String s) {
@@ -127,7 +172,10 @@ public class AttributeValue implements Serializable {
      * members.
      * 
      * @param sS <p>
-     *            A String Set data type.
+     *            An attribute of type String Set. For example:
+     *            </p>
+     *            <p>
+     *            <code>"SS": ["Giraffe", "Hippo" ,"Zebra"]</code>
      *            </p>
      */
     public AttributeValue(java.util.List<String> sS) {
@@ -136,11 +184,17 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A String data type.
+     * An attribute of type String. For example:
+     * </p>
+     * <p>
+     * <code>"S": "Hello"</code>
      * </p>
      *
      * @return <p>
-     *         A String data type.
+     *         An attribute of type String. For example:
+     *         </p>
+     *         <p>
+     *         <code>"S": "Hello"</code>
      *         </p>
      */
     public String getS() {
@@ -149,11 +203,17 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A String data type.
+     * An attribute of type String. For example:
+     * </p>
+     * <p>
+     * <code>"S": "Hello"</code>
      * </p>
      *
      * @param s <p>
-     *            A String data type.
+     *            An attribute of type String. For example:
+     *            </p>
+     *            <p>
+     *            <code>"S": "Hello"</code>
      *            </p>
      */
     public void setS(String s) {
@@ -162,14 +222,20 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A String data type.
+     * An attribute of type String. For example:
+     * </p>
+     * <p>
+     * <code>"S": "Hello"</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param s <p>
-     *            A String data type.
+     *            An attribute of type String. For example:
+     *            </p>
+     *            <p>
+     *            <code>"S": "Hello"</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -181,11 +247,28 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Number data type.
+     * An attribute of type Number. For example:
+     * </p>
+     * <p>
+     * <code>"N": "123.45"</code>
+     * </p>
+     * <p>
+     * Numbers are sent across the network to DynamoDB as strings, to maximize
+     * compatibility across languages and libraries. However, DynamoDB treats
+     * them as number type attributes for mathematical operations.
      * </p>
      *
      * @return <p>
-     *         A Number data type.
+     *         An attribute of type Number. For example:
+     *         </p>
+     *         <p>
+     *         <code>"N": "123.45"</code>
+     *         </p>
+     *         <p>
+     *         Numbers are sent across the network to DynamoDB as strings, to
+     *         maximize compatibility across languages and libraries. However,
+     *         DynamoDB treats them as number type attributes for mathematical
+     *         operations.
      *         </p>
      */
     public String getN() {
@@ -194,11 +277,28 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Number data type.
+     * An attribute of type Number. For example:
+     * </p>
+     * <p>
+     * <code>"N": "123.45"</code>
+     * </p>
+     * <p>
+     * Numbers are sent across the network to DynamoDB as strings, to maximize
+     * compatibility across languages and libraries. However, DynamoDB treats
+     * them as number type attributes for mathematical operations.
      * </p>
      *
      * @param n <p>
-     *            A Number data type.
+     *            An attribute of type Number. For example:
+     *            </p>
+     *            <p>
+     *            <code>"N": "123.45"</code>
+     *            </p>
+     *            <p>
+     *            Numbers are sent across the network to DynamoDB as strings, to
+     *            maximize compatibility across languages and libraries.
+     *            However, DynamoDB treats them as number type attributes for
+     *            mathematical operations.
      *            </p>
      */
     public void setN(String n) {
@@ -207,14 +307,31 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Number data type.
+     * An attribute of type Number. For example:
+     * </p>
+     * <p>
+     * <code>"N": "123.45"</code>
+     * </p>
+     * <p>
+     * Numbers are sent across the network to DynamoDB as strings, to maximize
+     * compatibility across languages and libraries. However, DynamoDB treats
+     * them as number type attributes for mathematical operations.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param n <p>
-     *            A Number data type.
+     *            An attribute of type Number. For example:
+     *            </p>
+     *            <p>
+     *            <code>"N": "123.45"</code>
+     *            </p>
+     *            <p>
+     *            Numbers are sent across the network to DynamoDB as strings, to
+     *            maximize compatibility across languages and libraries.
+     *            However, DynamoDB treats them as number type attributes for
+     *            mathematical operations.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -226,11 +343,17 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Binary data type.
+     * An attribute of type Binary. For example:
+     * </p>
+     * <p>
+     * <code>"B": "dGhpcyB0ZXh0IGlzIGJhc2U2NC1lbmNvZGVk"</code>
      * </p>
      *
      * @return <p>
-     *         A Binary data type.
+     *         An attribute of type Binary. For example:
+     *         </p>
+     *         <p>
+     *         <code>"B": "dGhpcyB0ZXh0IGlzIGJhc2U2NC1lbmNvZGVk"</code>
      *         </p>
      */
     public java.nio.ByteBuffer getB() {
@@ -239,11 +362,17 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Binary data type.
+     * An attribute of type Binary. For example:
+     * </p>
+     * <p>
+     * <code>"B": "dGhpcyB0ZXh0IGlzIGJhc2U2NC1lbmNvZGVk"</code>
      * </p>
      *
      * @param b <p>
-     *            A Binary data type.
+     *            An attribute of type Binary. For example:
+     *            </p>
+     *            <p>
+     *            <code>"B": "dGhpcyB0ZXh0IGlzIGJhc2U2NC1lbmNvZGVk"</code>
      *            </p>
      */
     public void setB(java.nio.ByteBuffer b) {
@@ -252,14 +381,20 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Binary data type.
+     * An attribute of type Binary. For example:
+     * </p>
+     * <p>
+     * <code>"B": "dGhpcyB0ZXh0IGlzIGJhc2U2NC1lbmNvZGVk"</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param b <p>
-     *            A Binary data type.
+     *            An attribute of type Binary. For example:
+     *            </p>
+     *            <p>
+     *            <code>"B": "dGhpcyB0ZXh0IGlzIGJhc2U2NC1lbmNvZGVk"</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -271,11 +406,17 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A String Set data type.
+     * An attribute of type String Set. For example:
+     * </p>
+     * <p>
+     * <code>"SS": ["Giraffe", "Hippo" ,"Zebra"]</code>
      * </p>
      *
      * @return <p>
-     *         A String Set data type.
+     *         An attribute of type String Set. For example:
+     *         </p>
+     *         <p>
+     *         <code>"SS": ["Giraffe", "Hippo" ,"Zebra"]</code>
      *         </p>
      */
     public java.util.List<String> getSS() {
@@ -284,11 +425,17 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A String Set data type.
+     * An attribute of type String Set. For example:
+     * </p>
+     * <p>
+     * <code>"SS": ["Giraffe", "Hippo" ,"Zebra"]</code>
      * </p>
      *
      * @param sS <p>
-     *            A String Set data type.
+     *            An attribute of type String Set. For example:
+     *            </p>
+     *            <p>
+     *            <code>"SS": ["Giraffe", "Hippo" ,"Zebra"]</code>
      *            </p>
      */
     public void setSS(java.util.Collection<String> sS) {
@@ -302,14 +449,20 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A String Set data type.
+     * An attribute of type String Set. For example:
+     * </p>
+     * <p>
+     * <code>"SS": ["Giraffe", "Hippo" ,"Zebra"]</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param sS <p>
-     *            A String Set data type.
+     *            An attribute of type String Set. For example:
+     *            </p>
+     *            <p>
+     *            <code>"SS": ["Giraffe", "Hippo" ,"Zebra"]</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -326,14 +479,20 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A String Set data type.
+     * An attribute of type String Set. For example:
+     * </p>
+     * <p>
+     * <code>"SS": ["Giraffe", "Hippo" ,"Zebra"]</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param sS <p>
-     *            A String Set data type.
+     *            An attribute of type String Set. For example:
+     *            </p>
+     *            <p>
+     *            <code>"SS": ["Giraffe", "Hippo" ,"Zebra"]</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -345,11 +504,28 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Number Set data type.
+     * An attribute of type Number Set. For example:
+     * </p>
+     * <p>
+     * <code>"NS": ["42.2", "-19", "7.5", "3.14"]</code>
+     * </p>
+     * <p>
+     * Numbers are sent across the network to DynamoDB as strings, to maximize
+     * compatibility across languages and libraries. However, DynamoDB treats
+     * them as number type attributes for mathematical operations.
      * </p>
      *
      * @return <p>
-     *         A Number Set data type.
+     *         An attribute of type Number Set. For example:
+     *         </p>
+     *         <p>
+     *         <code>"NS": ["42.2", "-19", "7.5", "3.14"]</code>
+     *         </p>
+     *         <p>
+     *         Numbers are sent across the network to DynamoDB as strings, to
+     *         maximize compatibility across languages and libraries. However,
+     *         DynamoDB treats them as number type attributes for mathematical
+     *         operations.
      *         </p>
      */
     public java.util.List<String> getNS() {
@@ -358,11 +534,28 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Number Set data type.
+     * An attribute of type Number Set. For example:
+     * </p>
+     * <p>
+     * <code>"NS": ["42.2", "-19", "7.5", "3.14"]</code>
+     * </p>
+     * <p>
+     * Numbers are sent across the network to DynamoDB as strings, to maximize
+     * compatibility across languages and libraries. However, DynamoDB treats
+     * them as number type attributes for mathematical operations.
      * </p>
      *
      * @param nS <p>
-     *            A Number Set data type.
+     *            An attribute of type Number Set. For example:
+     *            </p>
+     *            <p>
+     *            <code>"NS": ["42.2", "-19", "7.5", "3.14"]</code>
+     *            </p>
+     *            <p>
+     *            Numbers are sent across the network to DynamoDB as strings, to
+     *            maximize compatibility across languages and libraries.
+     *            However, DynamoDB treats them as number type attributes for
+     *            mathematical operations.
      *            </p>
      */
     public void setNS(java.util.Collection<String> nS) {
@@ -376,14 +569,31 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Number Set data type.
+     * An attribute of type Number Set. For example:
+     * </p>
+     * <p>
+     * <code>"NS": ["42.2", "-19", "7.5", "3.14"]</code>
+     * </p>
+     * <p>
+     * Numbers are sent across the network to DynamoDB as strings, to maximize
+     * compatibility across languages and libraries. However, DynamoDB treats
+     * them as number type attributes for mathematical operations.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nS <p>
-     *            A Number Set data type.
+     *            An attribute of type Number Set. For example:
+     *            </p>
+     *            <p>
+     *            <code>"NS": ["42.2", "-19", "7.5", "3.14"]</code>
+     *            </p>
+     *            <p>
+     *            Numbers are sent across the network to DynamoDB as strings, to
+     *            maximize compatibility across languages and libraries.
+     *            However, DynamoDB treats them as number type attributes for
+     *            mathematical operations.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -400,14 +610,31 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Number Set data type.
+     * An attribute of type Number Set. For example:
+     * </p>
+     * <p>
+     * <code>"NS": ["42.2", "-19", "7.5", "3.14"]</code>
+     * </p>
+     * <p>
+     * Numbers are sent across the network to DynamoDB as strings, to maximize
+     * compatibility across languages and libraries. However, DynamoDB treats
+     * them as number type attributes for mathematical operations.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nS <p>
-     *            A Number Set data type.
+     *            An attribute of type Number Set. For example:
+     *            </p>
+     *            <p>
+     *            <code>"NS": ["42.2", "-19", "7.5", "3.14"]</code>
+     *            </p>
+     *            <p>
+     *            Numbers are sent across the network to DynamoDB as strings, to
+     *            maximize compatibility across languages and libraries.
+     *            However, DynamoDB treats them as number type attributes for
+     *            mathematical operations.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -419,11 +646,17 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Binary Set data type.
+     * An attribute of type Binary Set. For example:
+     * </p>
+     * <p>
+     * <code>"BS": ["U3Vubnk=", "UmFpbnk=", "U25vd3k="]</code>
      * </p>
      *
      * @return <p>
-     *         A Binary Set data type.
+     *         An attribute of type Binary Set. For example:
+     *         </p>
+     *         <p>
+     *         <code>"BS": ["U3Vubnk=", "UmFpbnk=", "U25vd3k="]</code>
      *         </p>
      */
     public java.util.List<java.nio.ByteBuffer> getBS() {
@@ -432,11 +665,17 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Binary Set data type.
+     * An attribute of type Binary Set. For example:
+     * </p>
+     * <p>
+     * <code>"BS": ["U3Vubnk=", "UmFpbnk=", "U25vd3k="]</code>
      * </p>
      *
      * @param bS <p>
-     *            A Binary Set data type.
+     *            An attribute of type Binary Set. For example:
+     *            </p>
+     *            <p>
+     *            <code>"BS": ["U3Vubnk=", "UmFpbnk=", "U25vd3k="]</code>
      *            </p>
      */
     public void setBS(java.util.Collection<java.nio.ByteBuffer> bS) {
@@ -450,14 +689,20 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Binary Set data type.
+     * An attribute of type Binary Set. For example:
+     * </p>
+     * <p>
+     * <code>"BS": ["U3Vubnk=", "UmFpbnk=", "U25vd3k="]</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param bS <p>
-     *            A Binary Set data type.
+     *            An attribute of type Binary Set. For example:
+     *            </p>
+     *            <p>
+     *            <code>"BS": ["U3Vubnk=", "UmFpbnk=", "U25vd3k="]</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -474,14 +719,20 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Binary Set data type.
+     * An attribute of type Binary Set. For example:
+     * </p>
+     * <p>
+     * <code>"BS": ["U3Vubnk=", "UmFpbnk=", "U25vd3k="]</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param bS <p>
-     *            A Binary Set data type.
+     *            An attribute of type Binary Set. For example:
+     *            </p>
+     *            <p>
+     *            <code>"BS": ["U3Vubnk=", "UmFpbnk=", "U25vd3k="]</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -493,11 +744,17 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Map of attribute values.
+     * An attribute of type Map. For example:
+     * </p>
+     * <p>
+     * <code>"M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}</code>
      * </p>
      *
      * @return <p>
-     *         A Map of attribute values.
+     *         An attribute of type Map. For example:
+     *         </p>
+     *         <p>
+     *         <code>"M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}</code>
      *         </p>
      */
     public java.util.Map<String, AttributeValue> getM() {
@@ -506,11 +763,17 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Map of attribute values.
+     * An attribute of type Map. For example:
+     * </p>
+     * <p>
+     * <code>"M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}</code>
      * </p>
      *
      * @param m <p>
-     *            A Map of attribute values.
+     *            An attribute of type Map. For example:
+     *            </p>
+     *            <p>
+     *            <code>"M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}</code>
      *            </p>
      */
     public void setM(java.util.Map<String, AttributeValue> m) {
@@ -519,14 +782,20 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Map of attribute values.
+     * An attribute of type Map. For example:
+     * </p>
+     * <p>
+     * <code>"M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param m <p>
-     *            A Map of attribute values.
+     *            An attribute of type Map. For example:
+     *            </p>
+     *            <p>
+     *            <code>"M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -538,7 +807,10 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Map of attribute values.
+     * An attribute of type Map. For example:
+     * </p>
+     * <p>
+     * <code>"M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}</code>
      * </p>
      * <p>
      * The method adds a new key-value pair into M parameter, and returns a
@@ -573,11 +845,17 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A List of attribute values.
+     * An attribute of type List. For example:
+     * </p>
+     * <p>
+     * <code>"L": ["Cookies", "Coffee", 3.14159]</code>
      * </p>
      *
      * @return <p>
-     *         A List of attribute values.
+     *         An attribute of type List. For example:
+     *         </p>
+     *         <p>
+     *         <code>"L": ["Cookies", "Coffee", 3.14159]</code>
      *         </p>
      */
     public java.util.List<AttributeValue> getL() {
@@ -586,11 +864,17 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A List of attribute values.
+     * An attribute of type List. For example:
+     * </p>
+     * <p>
+     * <code>"L": ["Cookies", "Coffee", 3.14159]</code>
      * </p>
      *
      * @param l <p>
-     *            A List of attribute values.
+     *            An attribute of type List. For example:
+     *            </p>
+     *            <p>
+     *            <code>"L": ["Cookies", "Coffee", 3.14159]</code>
      *            </p>
      */
     public void setL(java.util.Collection<AttributeValue> l) {
@@ -604,14 +888,20 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A List of attribute values.
+     * An attribute of type List. For example:
+     * </p>
+     * <p>
+     * <code>"L": ["Cookies", "Coffee", 3.14159]</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param l <p>
-     *            A List of attribute values.
+     *            An attribute of type List. For example:
+     *            </p>
+     *            <p>
+     *            <code>"L": ["Cookies", "Coffee", 3.14159]</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -628,14 +918,20 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A List of attribute values.
+     * An attribute of type List. For example:
+     * </p>
+     * <p>
+     * <code>"L": ["Cookies", "Coffee", 3.14159]</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param l <p>
-     *            A List of attribute values.
+     *            An attribute of type List. For example:
+     *            </p>
+     *            <p>
+     *            <code>"L": ["Cookies", "Coffee", 3.14159]</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -647,11 +943,17 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Null data type.
+     * An attribute of type Null. For example:
+     * </p>
+     * <p>
+     * <code>"NULL": true</code>
      * </p>
      *
      * @return <p>
-     *         A Null data type.
+     *         An attribute of type Null. For example:
+     *         </p>
+     *         <p>
+     *         <code>"NULL": true</code>
      *         </p>
      */
     public Boolean isNULL() {
@@ -660,11 +962,17 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Null data type.
+     * An attribute of type Null. For example:
+     * </p>
+     * <p>
+     * <code>"NULL": true</code>
      * </p>
      *
      * @return <p>
-     *         A Null data type.
+     *         An attribute of type Null. For example:
+     *         </p>
+     *         <p>
+     *         <code>"NULL": true</code>
      *         </p>
      */
     public Boolean getNULL() {
@@ -673,11 +981,17 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Null data type.
+     * An attribute of type Null. For example:
+     * </p>
+     * <p>
+     * <code>"NULL": true</code>
      * </p>
      *
      * @param nULL <p>
-     *            A Null data type.
+     *            An attribute of type Null. For example:
+     *            </p>
+     *            <p>
+     *            <code>"NULL": true</code>
      *            </p>
      */
     public void setNULL(Boolean nULL) {
@@ -686,14 +1000,20 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Null data type.
+     * An attribute of type Null. For example:
+     * </p>
+     * <p>
+     * <code>"NULL": true</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nULL <p>
-     *            A Null data type.
+     *            An attribute of type Null. For example:
+     *            </p>
+     *            <p>
+     *            <code>"NULL": true</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -705,11 +1025,17 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Boolean data type.
+     * An attribute of type Boolean. For example:
+     * </p>
+     * <p>
+     * <code>"BOOL": true</code>
      * </p>
      *
      * @return <p>
-     *         A Boolean data type.
+     *         An attribute of type Boolean. For example:
+     *         </p>
+     *         <p>
+     *         <code>"BOOL": true</code>
      *         </p>
      */
     public Boolean isBOOL() {
@@ -718,11 +1044,17 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Boolean data type.
+     * An attribute of type Boolean. For example:
+     * </p>
+     * <p>
+     * <code>"BOOL": true</code>
      * </p>
      *
      * @return <p>
-     *         A Boolean data type.
+     *         An attribute of type Boolean. For example:
+     *         </p>
+     *         <p>
+     *         <code>"BOOL": true</code>
      *         </p>
      */
     public Boolean getBOOL() {
@@ -731,11 +1063,17 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Boolean data type.
+     * An attribute of type Boolean. For example:
+     * </p>
+     * <p>
+     * <code>"BOOL": true</code>
      * </p>
      *
      * @param bOOL <p>
-     *            A Boolean data type.
+     *            An attribute of type Boolean. For example:
+     *            </p>
+     *            <p>
+     *            <code>"BOOL": true</code>
      *            </p>
      */
     public void setBOOL(Boolean bOOL) {
@@ -744,14 +1082,20 @@ public class AttributeValue implements Serializable {
 
     /**
      * <p>
-     * A Boolean data type.
+     * An attribute of type Boolean. For example:
+     * </p>
+     * <p>
+     * <code>"BOOL": true</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param bOOL <p>
-     *            A Boolean data type.
+     *            An attribute of type Boolean. For example:
+     *            </p>
+     *            <p>
+     *            <code>"BOOL": true</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

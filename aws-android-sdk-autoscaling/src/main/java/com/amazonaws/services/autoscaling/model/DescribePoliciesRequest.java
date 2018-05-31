@@ -27,7 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DescribePoliciesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -39,10 +39,10 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * One or more policy names or policy ARNs to be described. If you omit this
-     * list, all policy names are described. If an group name is provided, the
-     * results are limited to that group. This list is limited to 50 items. If
-     * you specify an unknown policy name, it is ignored with no error.
+     * The names of one or more policies. If you omit this parameter, all
+     * policies are described. If an group name is provided, the results are
+     * limited to that group. This list is limited to 50 items. If you specify
+     * an unknown policy name, it is ignored with no error.
      * </p>
      */
     private java.util.List<String> policyNames = new java.util.ArrayList<String>();
@@ -69,14 +69,15 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The maximum number of items to be returned with each call.
+     * The maximum number of items to be returned with each call. The default
+     * value is 50 and the maximum value is 100.
      * </p>
      */
     private Integer maxRecords;
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -85,7 +86,7 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
      * <br/>
      *
      * @return <p>
-     *         The name of the group.
+     *         The name of the Auto Scaling group.
      *         </p>
      */
     public String getAutoScalingGroupName() {
@@ -94,7 +95,7 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -103,7 +104,7 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      */
     public void setAutoScalingGroupName(String autoScalingGroupName) {
@@ -112,7 +113,7 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -124,7 +125,7 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -136,18 +137,18 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * One or more policy names or policy ARNs to be described. If you omit this
-     * list, all policy names are described. If an group name is provided, the
-     * results are limited to that group. This list is limited to 50 items. If
-     * you specify an unknown policy name, it is ignored with no error.
+     * The names of one or more policies. If you omit this parameter, all
+     * policies are described. If an group name is provided, the results are
+     * limited to that group. This list is limited to 50 items. If you specify
+     * an unknown policy name, it is ignored with no error.
      * </p>
      *
      * @return <p>
-     *         One or more policy names or policy ARNs to be described. If you
-     *         omit this list, all policy names are described. If an group name
-     *         is provided, the results are limited to that group. This list is
-     *         limited to 50 items. If you specify an unknown policy name, it is
-     *         ignored with no error.
+     *         The names of one or more policies. If you omit this parameter,
+     *         all policies are described. If an group name is provided, the
+     *         results are limited to that group. This list is limited to 50
+     *         items. If you specify an unknown policy name, it is ignored with
+     *         no error.
      *         </p>
      */
     public java.util.List<String> getPolicyNames() {
@@ -156,18 +157,18 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * One or more policy names or policy ARNs to be described. If you omit this
-     * list, all policy names are described. If an group name is provided, the
-     * results are limited to that group. This list is limited to 50 items. If
-     * you specify an unknown policy name, it is ignored with no error.
+     * The names of one or more policies. If you omit this parameter, all
+     * policies are described. If an group name is provided, the results are
+     * limited to that group. This list is limited to 50 items. If you specify
+     * an unknown policy name, it is ignored with no error.
      * </p>
      *
      * @param policyNames <p>
-     *            One or more policy names or policy ARNs to be described. If
-     *            you omit this list, all policy names are described. If an
-     *            group name is provided, the results are limited to that group.
-     *            This list is limited to 50 items. If you specify an unknown
-     *            policy name, it is ignored with no error.
+     *            The names of one or more policies. If you omit this parameter,
+     *            all policies are described. If an group name is provided, the
+     *            results are limited to that group. This list is limited to 50
+     *            items. If you specify an unknown policy name, it is ignored
+     *            with no error.
      *            </p>
      */
     public void setPolicyNames(java.util.Collection<String> policyNames) {
@@ -181,21 +182,21 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * One or more policy names or policy ARNs to be described. If you omit this
-     * list, all policy names are described. If an group name is provided, the
-     * results are limited to that group. This list is limited to 50 items. If
-     * you specify an unknown policy name, it is ignored with no error.
+     * The names of one or more policies. If you omit this parameter, all
+     * policies are described. If an group name is provided, the results are
+     * limited to that group. This list is limited to 50 items. If you specify
+     * an unknown policy name, it is ignored with no error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param policyNames <p>
-     *            One or more policy names or policy ARNs to be described. If
-     *            you omit this list, all policy names are described. If an
-     *            group name is provided, the results are limited to that group.
-     *            This list is limited to 50 items. If you specify an unknown
-     *            policy name, it is ignored with no error.
+     *            The names of one or more policies. If you omit this parameter,
+     *            all policies are described. If an group name is provided, the
+     *            results are limited to that group. This list is limited to 50
+     *            items. If you specify an unknown policy name, it is ignored
+     *            with no error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -212,21 +213,21 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * One or more policy names or policy ARNs to be described. If you omit this
-     * list, all policy names are described. If an group name is provided, the
-     * results are limited to that group. This list is limited to 50 items. If
-     * you specify an unknown policy name, it is ignored with no error.
+     * The names of one or more policies. If you omit this parameter, all
+     * policies are described. If an group name is provided, the results are
+     * limited to that group. This list is limited to 50 items. If you specify
+     * an unknown policy name, it is ignored with no error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param policyNames <p>
-     *            One or more policy names or policy ARNs to be described. If
-     *            you omit this list, all policy names are described. If an
-     *            group name is provided, the results are limited to that group.
-     *            This list is limited to 50 items. If you specify an unknown
-     *            policy name, it is ignored with no error.
+     *            The names of one or more policies. If you omit this parameter,
+     *            all policies are described. If an group name is provided, the
+     *            results are limited to that group. This list is limited to 50
+     *            items. If you specify an unknown policy name, it is ignored
+     *            with no error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -383,11 +384,13 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The maximum number of items to be returned with each call.
+     * The maximum number of items to be returned with each call. The default
+     * value is 50 and the maximum value is 100.
      * </p>
      *
      * @return <p>
-     *         The maximum number of items to be returned with each call.
+     *         The maximum number of items to be returned with each call. The
+     *         default value is 50 and the maximum value is 100.
      *         </p>
      */
     public Integer getMaxRecords() {
@@ -396,11 +399,13 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The maximum number of items to be returned with each call.
+     * The maximum number of items to be returned with each call. The default
+     * value is 50 and the maximum value is 100.
      * </p>
      *
      * @param maxRecords <p>
-     *            The maximum number of items to be returned with each call.
+     *            The maximum number of items to be returned with each call. The
+     *            default value is 50 and the maximum value is 100.
      *            </p>
      */
     public void setMaxRecords(Integer maxRecords) {
@@ -409,14 +414,16 @@ public class DescribePoliciesRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The maximum number of items to be returned with each call.
+     * The maximum number of items to be returned with each call. The default
+     * value is 50 and the maximum value is 100.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param maxRecords <p>
-     *            The maximum number of items to be returned with each call.
+     *            The maximum number of items to be returned with each call. The
+     *            default value is 50 and the maximum value is 100.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

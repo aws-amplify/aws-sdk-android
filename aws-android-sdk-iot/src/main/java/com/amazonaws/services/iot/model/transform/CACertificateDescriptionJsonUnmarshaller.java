@@ -58,6 +58,15 @@ class CACertificateDescriptionJsonUnmarshaller implements
                 cACertificateDescription.setAutoRegistrationStatus(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("lastModifiedDate")) {
+                cACertificateDescription.setLastModifiedDate(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("customerVersion")) {
+                cACertificateDescription.setCustomerVersion(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("generationId")) {
+                cACertificateDescription.setGenerationId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

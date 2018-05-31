@@ -25,6 +25,12 @@ import com.amazonaws.AmazonServiceException;
 public class CannotDeleteException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * <p>
+     * Indicates that a resource could not be deleted because no resource with
+     * the specified name exists.
+     * </p>
+     */
     private String name;
 
     /**
@@ -37,18 +43,30 @@ public class CannotDeleteException extends AmazonServiceException {
     }
 
     /**
-     * Returns the value of the name property for this object.
+     * <p>
+     * Indicates that a resource could not be deleted because no resource with
+     * the specified name exists.
+     * </p>
      *
-     * @return The value of the name property for this object.
+     * @return <p>
+     *         Indicates that a resource could not be deleted because no
+     *         resource with the specified name exists.
+     *         </p>
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Sets the value of name
+     * <p>
+     * Indicates that a resource could not be deleted because no resource with
+     * the specified name exists.
+     * </p>
      *
-     * @param name The new value for the name property for this object.
+     * @param name <p>
+     *            Indicates that a resource could not be deleted because no
+     *            resource with the specified name exists.
+     *            </p>
      */
     public void setName(String name) {
         this.name = name;

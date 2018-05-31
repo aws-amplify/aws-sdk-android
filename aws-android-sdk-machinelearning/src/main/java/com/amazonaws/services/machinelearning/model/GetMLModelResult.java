@@ -268,6 +268,36 @@ public class GetMLModelResult implements Serializable {
 
     /**
      * <p>
+     * The approximate CPU time in milliseconds that Amazon Machine Learning
+     * spent processing the <code>MLModel</code>, normalized and scaled on
+     * computation resources. <code>ComputeTime</code> is only available if the
+     * <code>MLModel</code> is in the <code>COMPLETED</code> state.
+     * </p>
+     */
+    private Long computeTime;
+
+    /**
+     * <p>
+     * The epoch time when Amazon Machine Learning marked the
+     * <code>MLModel</code> as <code>COMPLETED</code> or <code>FAILED</code>.
+     * <code>FinishedAt</code> is only available when the <code>MLModel</code>
+     * is in the <code>COMPLETED</code> or <code>FAILED</code> state.
+     * </p>
+     */
+    private java.util.Date finishedAt;
+
+    /**
+     * <p>
+     * The epoch time when Amazon Machine Learning marked the
+     * <code>MLModel</code> as <code>INPROGRESS</code>. <code>StartedAt</code>
+     * isn't available if the <code>MLModel</code> is in the
+     * <code>PENDING</code> state.
+     * </p>
+     */
+    private java.util.Date startedAt;
+
+    /**
+     * <p>
      * The recipe to use when training the <code>MLModel</code>. The
      * <code>Recipe</code> provides detailed information about the observation
      * data to use during training, and manipulations to perform on the
@@ -2014,6 +2044,201 @@ public class GetMLModelResult implements Serializable {
 
     /**
      * <p>
+     * The approximate CPU time in milliseconds that Amazon Machine Learning
+     * spent processing the <code>MLModel</code>, normalized and scaled on
+     * computation resources. <code>ComputeTime</code> is only available if the
+     * <code>MLModel</code> is in the <code>COMPLETED</code> state.
+     * </p>
+     *
+     * @return <p>
+     *         The approximate CPU time in milliseconds that Amazon Machine
+     *         Learning spent processing the <code>MLModel</code>, normalized
+     *         and scaled on computation resources. <code>ComputeTime</code> is
+     *         only available if the <code>MLModel</code> is in the
+     *         <code>COMPLETED</code> state.
+     *         </p>
+     */
+    public Long getComputeTime() {
+        return computeTime;
+    }
+
+    /**
+     * <p>
+     * The approximate CPU time in milliseconds that Amazon Machine Learning
+     * spent processing the <code>MLModel</code>, normalized and scaled on
+     * computation resources. <code>ComputeTime</code> is only available if the
+     * <code>MLModel</code> is in the <code>COMPLETED</code> state.
+     * </p>
+     *
+     * @param computeTime <p>
+     *            The approximate CPU time in milliseconds that Amazon Machine
+     *            Learning spent processing the <code>MLModel</code>, normalized
+     *            and scaled on computation resources. <code>ComputeTime</code>
+     *            is only available if the <code>MLModel</code> is in the
+     *            <code>COMPLETED</code> state.
+     *            </p>
+     */
+    public void setComputeTime(Long computeTime) {
+        this.computeTime = computeTime;
+    }
+
+    /**
+     * <p>
+     * The approximate CPU time in milliseconds that Amazon Machine Learning
+     * spent processing the <code>MLModel</code>, normalized and scaled on
+     * computation resources. <code>ComputeTime</code> is only available if the
+     * <code>MLModel</code> is in the <code>COMPLETED</code> state.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param computeTime <p>
+     *            The approximate CPU time in milliseconds that Amazon Machine
+     *            Learning spent processing the <code>MLModel</code>, normalized
+     *            and scaled on computation resources. <code>ComputeTime</code>
+     *            is only available if the <code>MLModel</code> is in the
+     *            <code>COMPLETED</code> state.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetMLModelResult withComputeTime(Long computeTime) {
+        this.computeTime = computeTime;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The epoch time when Amazon Machine Learning marked the
+     * <code>MLModel</code> as <code>COMPLETED</code> or <code>FAILED</code>.
+     * <code>FinishedAt</code> is only available when the <code>MLModel</code>
+     * is in the <code>COMPLETED</code> or <code>FAILED</code> state.
+     * </p>
+     *
+     * @return <p>
+     *         The epoch time when Amazon Machine Learning marked the
+     *         <code>MLModel</code> as <code>COMPLETED</code> or
+     *         <code>FAILED</code>. <code>FinishedAt</code> is only available
+     *         when the <code>MLModel</code> is in the <code>COMPLETED</code> or
+     *         <code>FAILED</code> state.
+     *         </p>
+     */
+    public java.util.Date getFinishedAt() {
+        return finishedAt;
+    }
+
+    /**
+     * <p>
+     * The epoch time when Amazon Machine Learning marked the
+     * <code>MLModel</code> as <code>COMPLETED</code> or <code>FAILED</code>.
+     * <code>FinishedAt</code> is only available when the <code>MLModel</code>
+     * is in the <code>COMPLETED</code> or <code>FAILED</code> state.
+     * </p>
+     *
+     * @param finishedAt <p>
+     *            The epoch time when Amazon Machine Learning marked the
+     *            <code>MLModel</code> as <code>COMPLETED</code> or
+     *            <code>FAILED</code>. <code>FinishedAt</code> is only available
+     *            when the <code>MLModel</code> is in the <code>COMPLETED</code>
+     *            or <code>FAILED</code> state.
+     *            </p>
+     */
+    public void setFinishedAt(java.util.Date finishedAt) {
+        this.finishedAt = finishedAt;
+    }
+
+    /**
+     * <p>
+     * The epoch time when Amazon Machine Learning marked the
+     * <code>MLModel</code> as <code>COMPLETED</code> or <code>FAILED</code>.
+     * <code>FinishedAt</code> is only available when the <code>MLModel</code>
+     * is in the <code>COMPLETED</code> or <code>FAILED</code> state.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param finishedAt <p>
+     *            The epoch time when Amazon Machine Learning marked the
+     *            <code>MLModel</code> as <code>COMPLETED</code> or
+     *            <code>FAILED</code>. <code>FinishedAt</code> is only available
+     *            when the <code>MLModel</code> is in the <code>COMPLETED</code>
+     *            or <code>FAILED</code> state.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetMLModelResult withFinishedAt(java.util.Date finishedAt) {
+        this.finishedAt = finishedAt;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The epoch time when Amazon Machine Learning marked the
+     * <code>MLModel</code> as <code>INPROGRESS</code>. <code>StartedAt</code>
+     * isn't available if the <code>MLModel</code> is in the
+     * <code>PENDING</code> state.
+     * </p>
+     *
+     * @return <p>
+     *         The epoch time when Amazon Machine Learning marked the
+     *         <code>MLModel</code> as <code>INPROGRESS</code>.
+     *         <code>StartedAt</code> isn't available if the
+     *         <code>MLModel</code> is in the <code>PENDING</code> state.
+     *         </p>
+     */
+    public java.util.Date getStartedAt() {
+        return startedAt;
+    }
+
+    /**
+     * <p>
+     * The epoch time when Amazon Machine Learning marked the
+     * <code>MLModel</code> as <code>INPROGRESS</code>. <code>StartedAt</code>
+     * isn't available if the <code>MLModel</code> is in the
+     * <code>PENDING</code> state.
+     * </p>
+     *
+     * @param startedAt <p>
+     *            The epoch time when Amazon Machine Learning marked the
+     *            <code>MLModel</code> as <code>INPROGRESS</code>.
+     *            <code>StartedAt</code> isn't available if the
+     *            <code>MLModel</code> is in the <code>PENDING</code> state.
+     *            </p>
+     */
+    public void setStartedAt(java.util.Date startedAt) {
+        this.startedAt = startedAt;
+    }
+
+    /**
+     * <p>
+     * The epoch time when Amazon Machine Learning marked the
+     * <code>MLModel</code> as <code>INPROGRESS</code>. <code>StartedAt</code>
+     * isn't available if the <code>MLModel</code> is in the
+     * <code>PENDING</code> state.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param startedAt <p>
+     *            The epoch time when Amazon Machine Learning marked the
+     *            <code>MLModel</code> as <code>INPROGRESS</code>.
+     *            <code>StartedAt</code> isn't available if the
+     *            <code>MLModel</code> is in the <code>PENDING</code> state.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetMLModelResult withStartedAt(java.util.Date startedAt) {
+        this.startedAt = startedAt;
+        return this;
+    }
+
+    /**
+     * <p>
      * The recipe to use when training the <code>MLModel</code>. The
      * <code>Recipe</code> provides detailed information about the observation
      * data to use during training, and manipulations to perform on the
@@ -2247,6 +2472,12 @@ public class GetMLModelResult implements Serializable {
             sb.append("LogUri: " + getLogUri() + ",");
         if (getMessage() != null)
             sb.append("Message: " + getMessage() + ",");
+        if (getComputeTime() != null)
+            sb.append("ComputeTime: " + getComputeTime() + ",");
+        if (getFinishedAt() != null)
+            sb.append("FinishedAt: " + getFinishedAt() + ",");
+        if (getStartedAt() != null)
+            sb.append("StartedAt: " + getStartedAt() + ",");
         if (getRecipe() != null)
             sb.append("Recipe: " + getRecipe() + ",");
         if (getSchema() != null)
@@ -2288,6 +2519,10 @@ public class GetMLModelResult implements Serializable {
                         : getScoreThresholdLastUpdatedAt().hashCode());
         hashCode = prime * hashCode + ((getLogUri() == null) ? 0 : getLogUri().hashCode());
         hashCode = prime * hashCode + ((getMessage() == null) ? 0 : getMessage().hashCode());
+        hashCode = prime * hashCode
+                + ((getComputeTime() == null) ? 0 : getComputeTime().hashCode());
+        hashCode = prime * hashCode + ((getFinishedAt() == null) ? 0 : getFinishedAt().hashCode());
+        hashCode = prime * hashCode + ((getStartedAt() == null) ? 0 : getStartedAt().hashCode());
         hashCode = prime * hashCode + ((getRecipe() == null) ? 0 : getRecipe().hashCode());
         hashCode = prime * hashCode + ((getSchema() == null) ? 0 : getSchema().hashCode());
         return hashCode;
@@ -2381,6 +2616,21 @@ public class GetMLModelResult implements Serializable {
         if (other.getMessage() == null ^ this.getMessage() == null)
             return false;
         if (other.getMessage() != null && other.getMessage().equals(this.getMessage()) == false)
+            return false;
+        if (other.getComputeTime() == null ^ this.getComputeTime() == null)
+            return false;
+        if (other.getComputeTime() != null
+                && other.getComputeTime().equals(this.getComputeTime()) == false)
+            return false;
+        if (other.getFinishedAt() == null ^ this.getFinishedAt() == null)
+            return false;
+        if (other.getFinishedAt() != null
+                && other.getFinishedAt().equals(this.getFinishedAt()) == false)
+            return false;
+        if (other.getStartedAt() == null ^ this.getStartedAt() == null)
+            return false;
+        if (other.getStartedAt() != null
+                && other.getStartedAt().equals(this.getStartedAt()) == false)
             return false;
         if (other.getRecipe() == null ^ this.getRecipe() == null)
             return false;

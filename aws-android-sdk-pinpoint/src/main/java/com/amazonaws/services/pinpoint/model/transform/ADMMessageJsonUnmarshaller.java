@@ -60,9 +60,6 @@ class ADMMessageJsonUnmarshaller implements Unmarshaller<ADMMessage, JsonUnmarsh
             } else if (name.equals("ImageUrl")) {
                 aDMMessage.setImageUrl(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("JsonData")) {
-                aDMMessage.setJsonData(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
             } else if (name.equals("MD5")) {
                 aDMMessage.setMD5(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

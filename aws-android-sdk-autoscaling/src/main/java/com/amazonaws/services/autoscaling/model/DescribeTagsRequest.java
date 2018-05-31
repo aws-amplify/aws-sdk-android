@@ -57,7 +57,8 @@ public class DescribeTagsRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The maximum number of items to return with this call.
+     * The maximum number of items to return with this call. The default value
+     * is 50 and the maximum value is 100.
      * </p>
      */
     private Integer maxRecords;
@@ -201,11 +202,13 @@ public class DescribeTagsRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The maximum number of items to return with this call.
+     * The maximum number of items to return with this call. The default value
+     * is 50 and the maximum value is 100.
      * </p>
      *
      * @return <p>
-     *         The maximum number of items to return with this call.
+     *         The maximum number of items to return with this call. The default
+     *         value is 50 and the maximum value is 100.
      *         </p>
      */
     public Integer getMaxRecords() {
@@ -214,11 +217,13 @@ public class DescribeTagsRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The maximum number of items to return with this call.
+     * The maximum number of items to return with this call. The default value
+     * is 50 and the maximum value is 100.
      * </p>
      *
      * @param maxRecords <p>
-     *            The maximum number of items to return with this call.
+     *            The maximum number of items to return with this call. The
+     *            default value is 50 and the maximum value is 100.
      *            </p>
      */
     public void setMaxRecords(Integer maxRecords) {
@@ -227,14 +232,16 @@ public class DescribeTagsRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The maximum number of items to return with this call.
+     * The maximum number of items to return with this call. The default value
+     * is 50 and the maximum value is 100.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param maxRecords <p>
-     *            The maximum number of items to return with this call.
+     *            The maximum number of items to return with this call. The
+     *            default value is 50 and the maximum value is 100.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

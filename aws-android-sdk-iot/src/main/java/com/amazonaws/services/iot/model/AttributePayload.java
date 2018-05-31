@@ -29,7 +29,7 @@ public class AttributePayload implements Serializable {
      * example:
      * </p>
      * <p>
-     * <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
+     * <code>{\"attributes\":{\"string1\":\"string2\"}}</code>
      * </p>
      */
     private java.util.Map<String, String> attributes;
@@ -59,7 +59,7 @@ public class AttributePayload implements Serializable {
      * example:
      * </p>
      * <p>
-     * <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
+     * <code>{\"attributes\":{\"string1\":\"string2\"}}</code>
      * </p>
      *
      * @return <p>
@@ -67,7 +67,7 @@ public class AttributePayload implements Serializable {
      *         format. For example:
      *         </p>
      *         <p>
-     *         <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
+     *         <code>{\"attributes\":{\"string1\":\"string2\"}}</code>
      *         </p>
      */
     public java.util.Map<String, String> getAttributes() {
@@ -80,7 +80,7 @@ public class AttributePayload implements Serializable {
      * example:
      * </p>
      * <p>
-     * <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
+     * <code>{\"attributes\":{\"string1\":\"string2\"}}</code>
      * </p>
      *
      * @param attributes <p>
@@ -88,7 +88,7 @@ public class AttributePayload implements Serializable {
      *            format. For example:
      *            </p>
      *            <p>
-     *            <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
+     *            <code>{\"attributes\":{\"string1\":\"string2\"}}</code>
      *            </p>
      */
     public void setAttributes(java.util.Map<String, String> attributes) {
@@ -101,7 +101,7 @@ public class AttributePayload implements Serializable {
      * example:
      * </p>
      * <p>
-     * <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
+     * <code>{\"attributes\":{\"string1\":\"string2\"}}</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -112,7 +112,7 @@ public class AttributePayload implements Serializable {
      *            format. For example:
      *            </p>
      *            <p>
-     *            <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
+     *            <code>{\"attributes\":{\"string1\":\"string2\"}}</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -128,7 +128,7 @@ public class AttributePayload implements Serializable {
      * example:
      * </p>
      * <p>
-     * <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
+     * <code>{\"attributes\":{\"string1\":\"string2\"}}</code>
      * </p>
      * <p>
      * The method adds a new key-value pair into attributes parameter, and

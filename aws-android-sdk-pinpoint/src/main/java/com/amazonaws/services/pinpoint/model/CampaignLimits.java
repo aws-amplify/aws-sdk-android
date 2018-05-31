@@ -28,15 +28,15 @@ public class CampaignLimits implements Serializable {
     private Integer daily;
 
     /**
-     * The maximum duration of a campaign from the scheduled start. Must be a
-     * minimum of 60 seconds.
+     * The length of time (in seconds) that the campaign can run before it ends
+     * and message deliveries stop. This duration begins at the scheduled start
+     * time for the campaign. The minimum value is 60.
      */
     private Integer maximumDuration;
 
     /**
-     * The maximum number of messages per second that the campaign will send.
-     * This is a best effort maximum cap and can go as high as 20000 and as low
-     * as 50
+     * The number of messages that the campaign can send per second. The minimum
+     * value is 50, and the maximum is 20000.
      */
     private Integer messagesPerSecond;
 
@@ -81,36 +81,44 @@ public class CampaignLimits implements Serializable {
     }
 
     /**
-     * The maximum duration of a campaign from the scheduled start. Must be a
-     * minimum of 60 seconds.
+     * The length of time (in seconds) that the campaign can run before it ends
+     * and message deliveries stop. This duration begins at the scheduled start
+     * time for the campaign. The minimum value is 60.
      *
-     * @return The maximum duration of a campaign from the scheduled start. Must
-     *         be a minimum of 60 seconds.
+     * @return The length of time (in seconds) that the campaign can run before
+     *         it ends and message deliveries stop. This duration begins at the
+     *         scheduled start time for the campaign. The minimum value is 60.
      */
     public Integer getMaximumDuration() {
         return maximumDuration;
     }
 
     /**
-     * The maximum duration of a campaign from the scheduled start. Must be a
-     * minimum of 60 seconds.
+     * The length of time (in seconds) that the campaign can run before it ends
+     * and message deliveries stop. This duration begins at the scheduled start
+     * time for the campaign. The minimum value is 60.
      *
-     * @param maximumDuration The maximum duration of a campaign from the
-     *            scheduled start. Must be a minimum of 60 seconds.
+     * @param maximumDuration The length of time (in seconds) that the campaign
+     *            can run before it ends and message deliveries stop. This
+     *            duration begins at the scheduled start time for the campaign.
+     *            The minimum value is 60.
      */
     public void setMaximumDuration(Integer maximumDuration) {
         this.maximumDuration = maximumDuration;
     }
 
     /**
-     * The maximum duration of a campaign from the scheduled start. Must be a
-     * minimum of 60 seconds.
+     * The length of time (in seconds) that the campaign can run before it ends
+     * and message deliveries stop. This duration begins at the scheduled start
+     * time for the campaign. The minimum value is 60.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param maximumDuration The maximum duration of a campaign from the
-     *            scheduled start. Must be a minimum of 60 seconds.
+     * @param maximumDuration The length of time (in seconds) that the campaign
+     *            can run before it ends and message deliveries stop. This
+     *            duration begins at the scheduled start time for the campaign.
+     *            The minimum value is 60.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -120,42 +128,38 @@ public class CampaignLimits implements Serializable {
     }
 
     /**
-     * The maximum number of messages per second that the campaign will send.
-     * This is a best effort maximum cap and can go as high as 20000 and as low
-     * as 50
+     * The number of messages that the campaign can send per second. The minimum
+     * value is 50, and the maximum is 20000.
      *
-     * @return The maximum number of messages per second that the campaign will
-     *         send. This is a best effort maximum cap and can go as high as
-     *         20000 and as low as 50
+     * @return The number of messages that the campaign can send per second. The
+     *         minimum value is 50, and the maximum is 20000.
      */
     public Integer getMessagesPerSecond() {
         return messagesPerSecond;
     }
 
     /**
-     * The maximum number of messages per second that the campaign will send.
-     * This is a best effort maximum cap and can go as high as 20000 and as low
-     * as 50
+     * The number of messages that the campaign can send per second. The minimum
+     * value is 50, and the maximum is 20000.
      *
-     * @param messagesPerSecond The maximum number of messages per second that
-     *            the campaign will send. This is a best effort maximum cap and
-     *            can go as high as 20000 and as low as 50
+     * @param messagesPerSecond The number of messages that the campaign can
+     *            send per second. The minimum value is 50, and the maximum is
+     *            20000.
      */
     public void setMessagesPerSecond(Integer messagesPerSecond) {
         this.messagesPerSecond = messagesPerSecond;
     }
 
     /**
-     * The maximum number of messages per second that the campaign will send.
-     * This is a best effort maximum cap and can go as high as 20000 and as low
-     * as 50
+     * The number of messages that the campaign can send per second. The minimum
+     * value is 50, and the maximum is 20000.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param messagesPerSecond The maximum number of messages per second that
-     *            the campaign will send. This is a best effort maximum cap and
-     *            can go as high as 20000 and as low as 50
+     * @param messagesPerSecond The number of messages that the campaign can
+     *            send per second. The minimum value is 50, and the maximum is
+     *            20000.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

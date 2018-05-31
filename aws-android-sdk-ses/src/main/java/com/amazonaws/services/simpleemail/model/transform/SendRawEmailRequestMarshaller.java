@@ -79,6 +79,26 @@ public class SendRawEmailRequestMarshaller implements
             String returnPathArn = sendRawEmailRequest.getReturnPathArn();
             request.addParameter(prefix, StringUtils.fromString(returnPathArn));
         }
+        if (sendRawEmailRequest.getTags() != null) {
+            prefix = "Tags";
+            java.util.List<MessageTag> tags = sendRawEmailRequest.getTags();
+            int tagsIndex = 1;
+            String tagsPrefix = prefix;
+            for (MessageTag tagsItem : tags) {
+                prefix = tagsPrefix + ".member." + tagsIndex;
+                if (tagsItem != null) {
+                    MessageTagStaxMarshaller.getInstance()
+                            .marshall(tagsItem, request, prefix + ".");
+                }
+                tagsIndex++;
+            }
+            prefix = tagsPrefix;
+        }
+        if (sendRawEmailRequest.getConfigurationSetName() != null) {
+            prefix = "ConfigurationSetName";
+            String configurationSetName = sendRawEmailRequest.getConfigurationSetName();
+            request.addParameter(prefix, StringUtils.fromString(configurationSetName));
+        }
 
         return request;
     }

@@ -21,12 +21,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes key material that you previously imported and makes the specified
- * customer master key (CMK) unusable. For more information about importing key
- * material into AWS KMS, see <a href=
+ * Deletes key material that you previously imported. This operation makes the
+ * specified customer master key (CMK) unusable. For more information about
+ * importing key material into AWS KMS, see <a href=
  * "http://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
  * >Importing Key Material</a> in the <i>AWS Key Management Service Developer
- * Guide</i>.
+ * Guide</i>. You cannot perform this operation on a CMK in a different AWS
+ * account.
  * </p>
  * <p>
  * When the specified CMK is in the <code>PendingDeletion</code> state, this
@@ -46,13 +47,15 @@ public class DeleteImportedKeyMaterialRequest extends AmazonWebServiceRequest im
      * <code>Origin</code> must be <code>EXTERNAL</code>.
      * </p>
      * <p>
-     * A valid identifier is the unique key ID or the Amazon Resource Name (ARN)
-     * of the CMK. Examples:
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Unique key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
@@ -63,8 +66,12 @@ public class DeleteImportedKeyMaterialRequest extends AmazonWebServiceRequest im
      * </li>
      * </ul>
      * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      */
     private String keyId;
 
@@ -74,13 +81,15 @@ public class DeleteImportedKeyMaterialRequest extends AmazonWebServiceRequest im
      * <code>Origin</code> must be <code>EXTERNAL</code>.
      * </p>
      * <p>
-     * A valid identifier is the unique key ID or the Amazon Resource Name (ARN)
-     * of the CMK. Examples:
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Unique key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
@@ -91,21 +100,27 @@ public class DeleteImportedKeyMaterialRequest extends AmazonWebServiceRequest im
      * </li>
      * </ul>
      * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
      *         The identifier of the CMK whose key material to delete. The CMK's
      *         <code>Origin</code> must be <code>EXTERNAL</code>.
      *         </p>
      *         <p>
-     *         A valid identifier is the unique key ID or the Amazon Resource
-     *         Name (ARN) of the CMK. Examples:
+     *         Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     *         </p>
+     *         <p>
+     *         For example:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         Unique key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     *         Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *         </p>
      *         </li>
      *         <li>
@@ -115,6 +130,10 @@ public class DeleteImportedKeyMaterialRequest extends AmazonWebServiceRequest im
      *         </p>
      *         </li>
      *         </ul>
+     *         <p>
+     *         To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     *         <a>DescribeKey</a>.
+     *         </p>
      */
     public String getKeyId() {
         return keyId;
@@ -126,13 +145,15 @@ public class DeleteImportedKeyMaterialRequest extends AmazonWebServiceRequest im
      * <code>Origin</code> must be <code>EXTERNAL</code>.
      * </p>
      * <p>
-     * A valid identifier is the unique key ID or the Amazon Resource Name (ARN)
-     * of the CMK. Examples:
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Unique key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
@@ -143,22 +164,28 @@ public class DeleteImportedKeyMaterialRequest extends AmazonWebServiceRequest im
      * </li>
      * </ul>
      * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            The identifier of the CMK whose key material to delete. The
      *            CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
      *            </p>
      *            <p>
-     *            A valid identifier is the unique key ID or the Amazon Resource
-     *            Name (ARN) of the CMK. Examples:
+     *            Specify the key ID or the Amazon Resource Name (ARN) of the
+     *            CMK.
+     *            </p>
+     *            <p>
+     *            For example:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Unique key ID:
-     *            <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     *            Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *            </p>
      *            </li>
      *            <li>
@@ -168,6 +195,10 @@ public class DeleteImportedKeyMaterialRequest extends AmazonWebServiceRequest im
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
+     *            or <a>DescribeKey</a>.
+     *            </p>
      */
     public void setKeyId(String keyId) {
         this.keyId = keyId;
@@ -179,13 +210,15 @@ public class DeleteImportedKeyMaterialRequest extends AmazonWebServiceRequest im
      * <code>Origin</code> must be <code>EXTERNAL</code>.
      * </p>
      * <p>
-     * A valid identifier is the unique key ID or the Amazon Resource Name (ARN)
-     * of the CMK. Examples:
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Unique key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
@@ -196,25 +229,31 @@ public class DeleteImportedKeyMaterialRequest extends AmazonWebServiceRequest im
      * </li>
      * </ul>
      * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            The identifier of the CMK whose key material to delete. The
      *            CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
      *            </p>
      *            <p>
-     *            A valid identifier is the unique key ID or the Amazon Resource
-     *            Name (ARN) of the CMK. Examples:
+     *            Specify the key ID or the Amazon Resource Name (ARN) of the
+     *            CMK.
+     *            </p>
+     *            <p>
+     *            For example:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Unique key ID:
-     *            <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     *            Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *            </p>
      *            </li>
      *            <li>
@@ -224,6 +263,10 @@ public class DeleteImportedKeyMaterialRequest extends AmazonWebServiceRequest im
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
+     *            or <a>DescribeKey</a>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

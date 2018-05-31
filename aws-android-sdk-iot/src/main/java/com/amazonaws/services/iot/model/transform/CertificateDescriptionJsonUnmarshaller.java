@@ -63,8 +63,14 @@ class CertificateDescriptionJsonUnmarshaller implements
             } else if (name.equals("lastModifiedDate")) {
                 certificateDescription.setLastModifiedDate(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("customerVersion")) {
+                certificateDescription.setCustomerVersion(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("transferData")) {
                 certificateDescription.setTransferData(TransferDataJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("generationId")) {
+                certificateDescription.setGenerationId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

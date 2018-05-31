@@ -22,7 +22,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Decrypts ciphertext. Ciphertext is plaintext that has been previously
- * encrypted by using any of the following functions:
+ * encrypted by using any of the following operations:
  * </p>
  * <ul>
  * <li>

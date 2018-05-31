@@ -36,6 +36,20 @@ public class DescribeThingTypeResult implements Serializable {
 
     /**
      * <p>
+     * The thing type ID.
+     * </p>
+     */
+    private String thingTypeId;
+
+    /**
+     * <p>
+     * The thing type ARN.
+     * </p>
+     */
+    private String thingTypeArn;
+
+    /**
+     * <p>
      * The ThingTypeProperties contains information about the thing type
      * including description, and a list of searchable thing attribute names.
      * </p>
@@ -46,7 +60,7 @@ public class DescribeThingTypeResult implements Serializable {
      * <p>
      * The ThingTypeMetadata contains additional information about the thing
      * type including: creation date and time, a value indicating whether the
-     * thing type is deprecated, and a date and time when time was deprecated.
+     * thing type is deprecated, and a date and time when it was deprecated.
      * </p>
      */
     private ThingTypeMetadata thingTypeMetadata;
@@ -110,6 +124,96 @@ public class DescribeThingTypeResult implements Serializable {
 
     /**
      * <p>
+     * The thing type ID.
+     * </p>
+     *
+     * @return <p>
+     *         The thing type ID.
+     *         </p>
+     */
+    public String getThingTypeId() {
+        return thingTypeId;
+    }
+
+    /**
+     * <p>
+     * The thing type ID.
+     * </p>
+     *
+     * @param thingTypeId <p>
+     *            The thing type ID.
+     *            </p>
+     */
+    public void setThingTypeId(String thingTypeId) {
+        this.thingTypeId = thingTypeId;
+    }
+
+    /**
+     * <p>
+     * The thing type ID.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param thingTypeId <p>
+     *            The thing type ID.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeThingTypeResult withThingTypeId(String thingTypeId) {
+        this.thingTypeId = thingTypeId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The thing type ARN.
+     * </p>
+     *
+     * @return <p>
+     *         The thing type ARN.
+     *         </p>
+     */
+    public String getThingTypeArn() {
+        return thingTypeArn;
+    }
+
+    /**
+     * <p>
+     * The thing type ARN.
+     * </p>
+     *
+     * @param thingTypeArn <p>
+     *            The thing type ARN.
+     *            </p>
+     */
+    public void setThingTypeArn(String thingTypeArn) {
+        this.thingTypeArn = thingTypeArn;
+    }
+
+    /**
+     * <p>
+     * The thing type ARN.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param thingTypeArn <p>
+     *            The thing type ARN.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeThingTypeResult withThingTypeArn(String thingTypeArn) {
+        this.thingTypeArn = thingTypeArn;
+        return this;
+    }
+
+    /**
+     * <p>
      * The ThingTypeProperties contains information about the thing type
      * including description, and a list of searchable thing attribute names.
      * </p>
@@ -166,14 +270,14 @@ public class DescribeThingTypeResult implements Serializable {
      * <p>
      * The ThingTypeMetadata contains additional information about the thing
      * type including: creation date and time, a value indicating whether the
-     * thing type is deprecated, and a date and time when time was deprecated.
+     * thing type is deprecated, and a date and time when it was deprecated.
      * </p>
      *
      * @return <p>
      *         The ThingTypeMetadata contains additional information about the
      *         thing type including: creation date and time, a value indicating
-     *         whether the thing type is deprecated, and a date and time when
-     *         time was deprecated.
+     *         whether the thing type is deprecated, and a date and time when it
+     *         was deprecated.
      *         </p>
      */
     public ThingTypeMetadata getThingTypeMetadata() {
@@ -184,14 +288,14 @@ public class DescribeThingTypeResult implements Serializable {
      * <p>
      * The ThingTypeMetadata contains additional information about the thing
      * type including: creation date and time, a value indicating whether the
-     * thing type is deprecated, and a date and time when time was deprecated.
+     * thing type is deprecated, and a date and time when it was deprecated.
      * </p>
      *
      * @param thingTypeMetadata <p>
      *            The ThingTypeMetadata contains additional information about
      *            the thing type including: creation date and time, a value
      *            indicating whether the thing type is deprecated, and a date
-     *            and time when time was deprecated.
+     *            and time when it was deprecated.
      *            </p>
      */
     public void setThingTypeMetadata(ThingTypeMetadata thingTypeMetadata) {
@@ -202,7 +306,7 @@ public class DescribeThingTypeResult implements Serializable {
      * <p>
      * The ThingTypeMetadata contains additional information about the thing
      * type including: creation date and time, a value indicating whether the
-     * thing type is deprecated, and a date and time when time was deprecated.
+     * thing type is deprecated, and a date and time when it was deprecated.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -212,7 +316,7 @@ public class DescribeThingTypeResult implements Serializable {
      *            The ThingTypeMetadata contains additional information about
      *            the thing type including: creation date and time, a value
      *            indicating whether the thing type is deprecated, and a date
-     *            and time when time was deprecated.
+     *            and time when it was deprecated.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -235,6 +339,10 @@ public class DescribeThingTypeResult implements Serializable {
         sb.append("{");
         if (getThingTypeName() != null)
             sb.append("thingTypeName: " + getThingTypeName() + ",");
+        if (getThingTypeId() != null)
+            sb.append("thingTypeId: " + getThingTypeId() + ",");
+        if (getThingTypeArn() != null)
+            sb.append("thingTypeArn: " + getThingTypeArn() + ",");
         if (getThingTypeProperties() != null)
             sb.append("thingTypeProperties: " + getThingTypeProperties() + ",");
         if (getThingTypeMetadata() != null)
@@ -250,6 +358,10 @@ public class DescribeThingTypeResult implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getThingTypeName() == null) ? 0 : getThingTypeName().hashCode());
+        hashCode = prime * hashCode
+                + ((getThingTypeId() == null) ? 0 : getThingTypeId().hashCode());
+        hashCode = prime * hashCode
+                + ((getThingTypeArn() == null) ? 0 : getThingTypeArn().hashCode());
         hashCode = prime * hashCode
                 + ((getThingTypeProperties() == null) ? 0 : getThingTypeProperties().hashCode());
         hashCode = prime * hashCode
@@ -272,6 +384,16 @@ public class DescribeThingTypeResult implements Serializable {
             return false;
         if (other.getThingTypeName() != null
                 && other.getThingTypeName().equals(this.getThingTypeName()) == false)
+            return false;
+        if (other.getThingTypeId() == null ^ this.getThingTypeId() == null)
+            return false;
+        if (other.getThingTypeId() != null
+                && other.getThingTypeId().equals(this.getThingTypeId()) == false)
+            return false;
+        if (other.getThingTypeArn() == null ^ this.getThingTypeArn() == null)
+            return false;
+        if (other.getThingTypeArn() != null
+                && other.getThingTypeArn().equals(this.getThingTypeArn()) == false)
             return false;
         if (other.getThingTypeProperties() == null ^ this.getThingTypeProperties() == null)
             return false;

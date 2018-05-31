@@ -28,7 +28,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * settings. The DNS name associated with a deleted load balancer are no longer
  * usable. The name and associated DNS record of the deleted load balancer no
  * longer exist and traffic sent to any of its IP addresses is no longer
- * delivered to back-end instances.
+ * delivered to your instances.
  * </p>
  * <p>
  * If the load balancer does not exist or has already been deleted, the call to

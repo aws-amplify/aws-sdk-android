@@ -20,8 +20,8 @@ import java.io.Serializable;
 public class EncryptResult implements Serializable {
     /**
      * <p>
-     * The encrypted plaintext. If you are using the CLI, the value is Base64
-     * encoded. Otherwise, it is not encoded.
+     * The encrypted plaintext. When you use the HTTP API or the AWS CLI, the
+     * value is Base64-encoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -35,22 +35,22 @@ public class EncryptResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      */
     private String keyId;
 
     /**
      * <p>
-     * The encrypted plaintext. If you are using the CLI, the value is Base64
-     * encoded. Otherwise, it is not encoded.
+     * The encrypted plaintext. When you use the HTTP API or the AWS CLI, the
+     * value is Base64-encoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
      *
      * @return <p>
-     *         The encrypted plaintext. If you are using the CLI, the value is
-     *         Base64 encoded. Otherwise, it is not encoded.
+     *         The encrypted plaintext. When you use the HTTP API or the AWS
+     *         CLI, the value is Base64-encoded. Otherwise, it is not encoded.
      *         </p>
      */
     public java.nio.ByteBuffer getCiphertextBlob() {
@@ -59,16 +59,17 @@ public class EncryptResult implements Serializable {
 
     /**
      * <p>
-     * The encrypted plaintext. If you are using the CLI, the value is Base64
-     * encoded. Otherwise, it is not encoded.
+     * The encrypted plaintext. When you use the HTTP API or the AWS CLI, the
+     * value is Base64-encoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
      *
      * @param ciphertextBlob <p>
-     *            The encrypted plaintext. If you are using the CLI, the value
-     *            is Base64 encoded. Otherwise, it is not encoded.
+     *            The encrypted plaintext. When you use the HTTP API or the AWS
+     *            CLI, the value is Base64-encoded. Otherwise, it is not
+     *            encoded.
      *            </p>
      */
     public void setCiphertextBlob(java.nio.ByteBuffer ciphertextBlob) {
@@ -77,8 +78,8 @@ public class EncryptResult implements Serializable {
 
     /**
      * <p>
-     * The encrypted plaintext. If you are using the CLI, the value is Base64
-     * encoded. Otherwise, it is not encoded.
+     * The encrypted plaintext. When you use the HTTP API or the AWS CLI, the
+     * value is Base64-encoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -88,8 +89,9 @@ public class EncryptResult implements Serializable {
      * <b>Length: </b>1 - 6144<br/>
      *
      * @param ciphertextBlob <p>
-     *            The encrypted plaintext. If you are using the CLI, the value
-     *            is Base64 encoded. Otherwise, it is not encoded.
+     *            The encrypted plaintext. When you use the HTTP API or the AWS
+     *            CLI, the value is Base64-encoded. Otherwise, it is not
+     *            encoded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -105,7 +107,7 @@ public class EncryptResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
      *         The ID of the key used during encryption.
@@ -121,7 +123,7 @@ public class EncryptResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            The ID of the key used during encryption.
@@ -140,7 +142,7 @@ public class EncryptResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            The ID of the key used during encryption.

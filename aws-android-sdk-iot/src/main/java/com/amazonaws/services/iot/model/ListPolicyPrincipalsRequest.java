@@ -23,6 +23,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Lists the principals associated with the specified policy.
  * </p>
+ * <p>
+ * <b>Note:</b> This API is deprecated. Please use <a>ListTargetsForPolicy</a>
+ * instead.
+ * </p>
  */
 public class ListPolicyPrincipalsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -40,6 +44,9 @@ public class ListPolicyPrincipalsRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The marker for the next set of results.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      */
     private String marker;
 
@@ -122,6 +129,9 @@ public class ListPolicyPrincipalsRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The marker for the next set of results.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @return <p>
      *         The marker for the next set of results.
@@ -135,6 +145,9 @@ public class ListPolicyPrincipalsRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The marker for the next set of results.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @param marker <p>
      *            The marker for the next set of results.
@@ -151,6 +164,9 @@ public class ListPolicyPrincipalsRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @param marker <p>
      *            The marker for the next set of results.

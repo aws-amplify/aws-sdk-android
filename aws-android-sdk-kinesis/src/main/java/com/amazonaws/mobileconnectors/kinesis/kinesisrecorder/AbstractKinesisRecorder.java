@@ -123,6 +123,7 @@ public abstract class AbstractKinesisRecorder {
         final List<byte[]> data = new ArrayList<byte[]>(MAX_RECORDS_PER_BATCH);
         int retry = 0;
         int count = 0;
+        boolean unknownErrorRetried = false;
         try {
             while (iterator.hasNext() && retry < MAX_RETRY_COUNT) {
                 final String streamName = nextBatch(iterator, data, MAX_RECORDS_PER_BATCH,
@@ -133,7 +134,21 @@ public abstract class AbstractKinesisRecorder {
 
                 try {
 
-                    final List<byte[]> failures = sender.sendBatch(streamName, data);
+                    List<byte[]> failures = null;
+                    try {
+                        failures = sender.sendBatch(streamName, data);
+                    } catch (AmazonClientException ace) {
+                        if (!unknownErrorRetried
+                                && ace.getMessage() != null
+                                && ace.getMessage().contains("Unable to unmarshall error response")) {
+                            // Retry once for unforeseen error, possible kinesis error without shape
+                            unknownErrorRetried = true;
+                            failures = data;
+                        } else {
+                            throw ace;
+                        }
+                    }
+
                     final int successCount = data.size() - failures.size();
                     count += successCount;
 
@@ -167,6 +182,14 @@ public abstract class AbstractKinesisRecorder {
                                 "ServiceException in submit all, the values of the data inside the requests appears valid.  The request will be kept",
                                 ace);
                     } else {
+
+                        // Data is dead and should be added to dead letter queue
+                        try {
+                            this.config.getDeadLetterListener().onRecordsDropped(streamName, data);
+                        } catch (Exception e) {
+                            LOGGER.error("DeadLetterListener onRecordsDropped has thrown an exception (user code)", e);
+                        }
+
                         try {
                             iterator.removeReadRecords();
                         } catch (final IOException e) {

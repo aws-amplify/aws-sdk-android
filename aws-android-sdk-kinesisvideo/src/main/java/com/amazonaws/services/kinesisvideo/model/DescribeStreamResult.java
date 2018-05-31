@@ -19,37 +19,49 @@ import java.io.Serializable;
 
 public class DescribeStreamResult implements Serializable {
     /**
-     * The new value for the streamInfo property for this object.
+     * <p>
+     * An object that describes the stream.
+     * </p>
      */
     private StreamInfo streamInfo;
 
     /**
-     * Returns the value of the streamInfo property for this object.
+     * <p>
+     * An object that describes the stream.
+     * </p>
      *
-     * @return The value of the streamInfo property for this object.
+     * @return <p>
+     *         An object that describes the stream.
+     *         </p>
      */
     public StreamInfo getStreamInfo() {
         return streamInfo;
     }
 
     /**
-     * Sets the value of streamInfo
+     * <p>
+     * An object that describes the stream.
+     * </p>
      *
-     * @param streamInfo The new value for the streamInfo property for this
-     *            object.
+     * @param streamInfo <p>
+     *            An object that describes the stream.
+     *            </p>
      */
     public void setStreamInfo(StreamInfo streamInfo) {
         this.streamInfo = streamInfo;
     }
 
     /**
-     * Sets the value of the streamInfo property for this object.
+     * <p>
+     * An object that describes the stream.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param streamInfo The new value for the streamInfo property for this
-     *            object.
+     * @param streamInfo <p>
+     *            An object that describes the stream.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

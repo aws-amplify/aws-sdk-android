@@ -42,8 +42,18 @@ class APNSSandboxChannelResponseJsonUnmarshaller implements
             } else if (name.equals("CreationDate")) {
                 aPNSSandboxChannelResponse.setCreationDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("DefaultAuthenticationMethod")) {
+                aPNSSandboxChannelResponse.setDefaultAuthenticationMethod(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Enabled")) {
                 aPNSSandboxChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("HasCredential")) {
+                aPNSSandboxChannelResponse.setHasCredential(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("HasTokenKey")) {
+                aPNSSandboxChannelResponse.setHasTokenKey(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Id")) {
                 aPNSSandboxChannelResponse.setId(StringJsonUnmarshaller.getInstance()

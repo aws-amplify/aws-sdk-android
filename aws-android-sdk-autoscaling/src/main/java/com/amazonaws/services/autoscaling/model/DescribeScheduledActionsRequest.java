@@ -30,7 +30,7 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
         Serializable {
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -42,9 +42,9 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Describes one or more scheduled actions. If you omit this list, the call
-     * describes all scheduled actions. If you specify an unknown scheduled
-     * action it is ignored with no error.
+     * Describes one or more scheduled actions. If you omit this parameter, all
+     * scheduled actions are described. If you specify an unknown scheduled
+     * action, it is ignored with no error.
      * </p>
      * <p>
      * You can describe up to a maximum of 50 instances with a single call. If
@@ -84,14 +84,15 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The maximum number of items to return with this call.
+     * The maximum number of items to return with this call. The default value
+     * is 50 and the maximum value is 100.
      * </p>
      */
     private Integer maxRecords;
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -100,7 +101,7 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
      * <br/>
      *
      * @return <p>
-     *         The name of the group.
+     *         The name of the Auto Scaling group.
      *         </p>
      */
     public String getAutoScalingGroupName() {
@@ -109,7 +110,7 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -118,7 +119,7 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      */
     public void setAutoScalingGroupName(String autoScalingGroupName) {
@@ -127,7 +128,7 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -139,7 +140,7 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -151,9 +152,9 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Describes one or more scheduled actions. If you omit this list, the call
-     * describes all scheduled actions. If you specify an unknown scheduled
-     * action it is ignored with no error.
+     * Describes one or more scheduled actions. If you omit this parameter, all
+     * scheduled actions are described. If you specify an unknown scheduled
+     * action, it is ignored with no error.
      * </p>
      * <p>
      * You can describe up to a maximum of 50 instances with a single call. If
@@ -162,9 +163,9 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
      * </p>
      *
      * @return <p>
-     *         Describes one or more scheduled actions. If you omit this list,
-     *         the call describes all scheduled actions. If you specify an
-     *         unknown scheduled action it is ignored with no error.
+     *         Describes one or more scheduled actions. If you omit this
+     *         parameter, all scheduled actions are described. If you specify an
+     *         unknown scheduled action, it is ignored with no error.
      *         </p>
      *         <p>
      *         You can describe up to a maximum of 50 instances with a single
@@ -179,9 +180,9 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Describes one or more scheduled actions. If you omit this list, the call
-     * describes all scheduled actions. If you specify an unknown scheduled
-     * action it is ignored with no error.
+     * Describes one or more scheduled actions. If you omit this parameter, all
+     * scheduled actions are described. If you specify an unknown scheduled
+     * action, it is ignored with no error.
      * </p>
      * <p>
      * You can describe up to a maximum of 50 instances with a single call. If
@@ -191,8 +192,8 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
      *
      * @param scheduledActionNames <p>
      *            Describes one or more scheduled actions. If you omit this
-     *            list, the call describes all scheduled actions. If you specify
-     *            an unknown scheduled action it is ignored with no error.
+     *            parameter, all scheduled actions are described. If you specify
+     *            an unknown scheduled action, it is ignored with no error.
      *            </p>
      *            <p>
      *            You can describe up to a maximum of 50 instances with a single
@@ -212,9 +213,9 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Describes one or more scheduled actions. If you omit this list, the call
-     * describes all scheduled actions. If you specify an unknown scheduled
-     * action it is ignored with no error.
+     * Describes one or more scheduled actions. If you omit this parameter, all
+     * scheduled actions are described. If you specify an unknown scheduled
+     * action, it is ignored with no error.
      * </p>
      * <p>
      * You can describe up to a maximum of 50 instances with a single call. If
@@ -227,8 +228,8 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
      *
      * @param scheduledActionNames <p>
      *            Describes one or more scheduled actions. If you omit this
-     *            list, the call describes all scheduled actions. If you specify
-     *            an unknown scheduled action it is ignored with no error.
+     *            parameter, all scheduled actions are described. If you specify
+     *            an unknown scheduled action, it is ignored with no error.
      *            </p>
      *            <p>
      *            You can describe up to a maximum of 50 instances with a single
@@ -251,9 +252,9 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Describes one or more scheduled actions. If you omit this list, the call
-     * describes all scheduled actions. If you specify an unknown scheduled
-     * action it is ignored with no error.
+     * Describes one or more scheduled actions. If you omit this parameter, all
+     * scheduled actions are described. If you specify an unknown scheduled
+     * action, it is ignored with no error.
      * </p>
      * <p>
      * You can describe up to a maximum of 50 instances with a single call. If
@@ -266,8 +267,8 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
      *
      * @param scheduledActionNames <p>
      *            Describes one or more scheduled actions. If you omit this
-     *            list, the call describes all scheduled actions. If you specify
-     *            an unknown scheduled action it is ignored with no error.
+     *            parameter, all scheduled actions are described. If you specify
+     *            an unknown scheduled action, it is ignored with no error.
      *            </p>
      *            <p>
      *            You can describe up to a maximum of 50 instances with a single
@@ -451,11 +452,13 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The maximum number of items to return with this call.
+     * The maximum number of items to return with this call. The default value
+     * is 50 and the maximum value is 100.
      * </p>
      *
      * @return <p>
-     *         The maximum number of items to return with this call.
+     *         The maximum number of items to return with this call. The default
+     *         value is 50 and the maximum value is 100.
      *         </p>
      */
     public Integer getMaxRecords() {
@@ -464,11 +467,13 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The maximum number of items to return with this call.
+     * The maximum number of items to return with this call. The default value
+     * is 50 and the maximum value is 100.
      * </p>
      *
      * @param maxRecords <p>
-     *            The maximum number of items to return with this call.
+     *            The maximum number of items to return with this call. The
+     *            default value is 50 and the maximum value is 100.
      *            </p>
      */
     public void setMaxRecords(Integer maxRecords) {
@@ -477,14 +482,16 @@ public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The maximum number of items to return with this call.
+     * The maximum number of items to return with this call. The default value
+     * is 50 and the maximum value is 100.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param maxRecords <p>
-     *            The maximum number of items to return with this call.
+     *            The maximum number of items to return with this call. The
+     *            default value is 50 and the maximum value is 100.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

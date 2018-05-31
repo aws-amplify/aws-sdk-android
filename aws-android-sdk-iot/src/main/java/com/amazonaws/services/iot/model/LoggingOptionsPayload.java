@@ -32,7 +32,7 @@ public class LoggingOptionsPayload implements Serializable {
 
     /**
      * <p>
-     * The logging level.
+     * The log level.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -87,14 +87,14 @@ public class LoggingOptionsPayload implements Serializable {
 
     /**
      * <p>
-     * The logging level.
+     * The log level.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEBUG, INFO, ERROR, WARN, DISABLED
      *
      * @return <p>
-     *         The logging level.
+     *         The log level.
      *         </p>
      * @see LogLevel
      */
@@ -104,14 +104,14 @@ public class LoggingOptionsPayload implements Serializable {
 
     /**
      * <p>
-     * The logging level.
+     * The log level.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEBUG, INFO, ERROR, WARN, DISABLED
      *
      * @param logLevel <p>
-     *            The logging level.
+     *            The log level.
      *            </p>
      * @see LogLevel
      */
@@ -121,7 +121,7 @@ public class LoggingOptionsPayload implements Serializable {
 
     /**
      * <p>
-     * The logging level.
+     * The log level.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -131,7 +131,7 @@ public class LoggingOptionsPayload implements Serializable {
      * <b>Allowed Values: </b>DEBUG, INFO, ERROR, WARN, DISABLED
      *
      * @param logLevel <p>
-     *            The logging level.
+     *            The log level.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -144,14 +144,14 @@ public class LoggingOptionsPayload implements Serializable {
 
     /**
      * <p>
-     * The logging level.
+     * The log level.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEBUG, INFO, ERROR, WARN, DISABLED
      *
      * @param logLevel <p>
-     *            The logging level.
+     *            The log level.
      *            </p>
      * @see LogLevel
      */
@@ -161,7 +161,7 @@ public class LoggingOptionsPayload implements Serializable {
 
     /**
      * <p>
-     * The logging level.
+     * The log level.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -171,7 +171,7 @@ public class LoggingOptionsPayload implements Serializable {
      * <b>Allowed Values: </b>DEBUG, INFO, ERROR, WARN, DISABLED
      *
      * @param logLevel <p>
-     *            The logging level.
+     *            The log level.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

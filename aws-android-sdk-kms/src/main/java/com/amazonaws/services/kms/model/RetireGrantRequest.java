@@ -64,19 +64,15 @@ public class RetireGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The Amazon Resource Name of the CMK associated with the grant. Example:
+     * The Amazon Resource Name (ARN) of the CMK associated with the grant.
      * </p>
-     * <ul>
-     * <li>
      * <p>
-     * arn:aws:kms:us-east-2:444455556666:key/1234abcd-12ab-34cd-
-     * 56ef-1234567890ab
+     * For example:
+     * <code>arn:aws:kms:us-east-2:444455556666:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
-     * </li>
-     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      */
     private String keyId;
 
@@ -155,32 +151,24 @@ public class RetireGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The Amazon Resource Name of the CMK associated with the grant. Example:
+     * The Amazon Resource Name (ARN) of the CMK associated with the grant.
      * </p>
-     * <ul>
-     * <li>
      * <p>
-     * arn:aws:kms:us-east-2:444455556666:key/1234abcd-12ab-34cd-
-     * 56ef-1234567890ab
+     * For example:
+     * <code>arn:aws:kms:us-east-2:444455556666:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
-     * </li>
-     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name of the CMK associated with the grant.
-     *         Example:
+     *         The Amazon Resource Name (ARN) of the CMK associated with the
+     *         grant.
      *         </p>
-     *         <ul>
-     *         <li>
      *         <p>
-     *         arn:aws:kms:us-east-2:444455556666:key/1234abcd-12ab-34cd-
-     *         56ef-1234567890ab
+     *         For example:
+     *         <code>arn:aws:kms:us-east-2:444455556666:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *         </p>
-     *         </li>
-     *         </ul>
      */
     public String getKeyId() {
         return keyId;
@@ -188,32 +176,24 @@ public class RetireGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The Amazon Resource Name of the CMK associated with the grant. Example:
+     * The Amazon Resource Name (ARN) of the CMK associated with the grant.
      * </p>
-     * <ul>
-     * <li>
      * <p>
-     * arn:aws:kms:us-east-2:444455556666:key/1234abcd-12ab-34cd-
-     * 56ef-1234567890ab
+     * For example:
+     * <code>arn:aws:kms:us-east-2:444455556666:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
-     * </li>
-     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The Amazon Resource Name of the CMK associated with the grant.
-     *            Example:
+     *            The Amazon Resource Name (ARN) of the CMK associated with the
+     *            grant.
      *            </p>
-     *            <ul>
-     *            <li>
      *            <p>
-     *            arn:aws:kms:us-east-2:444455556666:key/1234abcd-12ab-34cd-
-     *            56ef-1234567890ab
+     *            For example:
+     *            <code>arn:aws:kms:us-east-2:444455556666:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *            </p>
-     *            </li>
-     *            </ul>
      */
     public void setKeyId(String keyId) {
         this.keyId = keyId;
@@ -221,35 +201,27 @@ public class RetireGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The Amazon Resource Name of the CMK associated with the grant. Example:
+     * The Amazon Resource Name (ARN) of the CMK associated with the grant.
      * </p>
-     * <ul>
-     * <li>
      * <p>
-     * arn:aws:kms:us-east-2:444455556666:key/1234abcd-12ab-34cd-
-     * 56ef-1234567890ab
+     * For example:
+     * <code>arn:aws:kms:us-east-2:444455556666:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
-     * </li>
-     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The Amazon Resource Name of the CMK associated with the grant.
-     *            Example:
+     *            The Amazon Resource Name (ARN) of the CMK associated with the
+     *            grant.
      *            </p>
-     *            <ul>
-     *            <li>
      *            <p>
-     *            arn:aws:kms:us-east-2:444455556666:key/1234abcd-12ab-34cd-
-     *            56ef-1234567890ab
+     *            For example:
+     *            <code>arn:aws:kms:us-east-2:444455556666:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *            </p>
-     *            </li>
-     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

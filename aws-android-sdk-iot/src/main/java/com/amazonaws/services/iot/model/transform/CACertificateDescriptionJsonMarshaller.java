@@ -61,6 +61,21 @@ class CACertificateDescriptionJsonMarshaller {
             jsonWriter.name("autoRegistrationStatus");
             jsonWriter.value(autoRegistrationStatus);
         }
+        if (cACertificateDescription.getLastModifiedDate() != null) {
+            java.util.Date lastModifiedDate = cACertificateDescription.getLastModifiedDate();
+            jsonWriter.name("lastModifiedDate");
+            jsonWriter.value(lastModifiedDate);
+        }
+        if (cACertificateDescription.getCustomerVersion() != null) {
+            Integer customerVersion = cACertificateDescription.getCustomerVersion();
+            jsonWriter.name("customerVersion");
+            jsonWriter.value(customerVersion);
+        }
+        if (cACertificateDescription.getGenerationId() != null) {
+            String generationId = cACertificateDescription.getGenerationId();
+            jsonWriter.name("generationId");
+            jsonWriter.value(generationId);
+        }
         jsonWriter.endObject();
     }
 

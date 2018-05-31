@@ -71,18 +71,17 @@ public class GlobalSecondaryIndex implements Serializable {
 
     /**
      * <p>
-     * Represents attributes that are copied (projected) from the table into an
-     * index. These are in addition to the primary key attributes and index key
-     * attributes, which are automatically projected.
+     * Represents attributes that are copied (projected) from the table into the
+     * global secondary index. These are in addition to the primary key
+     * attributes and index key attributes, which are automatically projected.
      * </p>
      */
     private Projection projection;
 
     /**
      * <p>
-     * Represents the provisioned throughput settings for a specified table or
-     * index. The settings can be modified using the <i>UpdateTable</i>
-     * operation.
+     * Represents the provisioned throughput settings for the specified global
+     * secondary index.
      * </p>
      * <p>
      * For current minimum and maximum provisioned throughput values, see <a
@@ -454,16 +453,16 @@ public class GlobalSecondaryIndex implements Serializable {
 
     /**
      * <p>
-     * Represents attributes that are copied (projected) from the table into an
-     * index. These are in addition to the primary key attributes and index key
-     * attributes, which are automatically projected.
+     * Represents attributes that are copied (projected) from the table into the
+     * global secondary index. These are in addition to the primary key
+     * attributes and index key attributes, which are automatically projected.
      * </p>
      *
      * @return <p>
      *         Represents attributes that are copied (projected) from the table
-     *         into an index. These are in addition to the primary key
-     *         attributes and index key attributes, which are automatically
-     *         projected.
+     *         into the global secondary index. These are in addition to the
+     *         primary key attributes and index key attributes, which are
+     *         automatically projected.
      *         </p>
      */
     public Projection getProjection() {
@@ -472,16 +471,16 @@ public class GlobalSecondaryIndex implements Serializable {
 
     /**
      * <p>
-     * Represents attributes that are copied (projected) from the table into an
-     * index. These are in addition to the primary key attributes and index key
-     * attributes, which are automatically projected.
+     * Represents attributes that are copied (projected) from the table into the
+     * global secondary index. These are in addition to the primary key
+     * attributes and index key attributes, which are automatically projected.
      * </p>
      *
      * @param projection <p>
      *            Represents attributes that are copied (projected) from the
-     *            table into an index. These are in addition to the primary key
-     *            attributes and index key attributes, which are automatically
-     *            projected.
+     *            table into the global secondary index. These are in addition
+     *            to the primary key attributes and index key attributes, which
+     *            are automatically projected.
      *            </p>
      */
     public void setProjection(Projection projection) {
@@ -490,9 +489,9 @@ public class GlobalSecondaryIndex implements Serializable {
 
     /**
      * <p>
-     * Represents attributes that are copied (projected) from the table into an
-     * index. These are in addition to the primary key attributes and index key
-     * attributes, which are automatically projected.
+     * Represents attributes that are copied (projected) from the table into the
+     * global secondary index. These are in addition to the primary key
+     * attributes and index key attributes, which are automatically projected.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -500,9 +499,9 @@ public class GlobalSecondaryIndex implements Serializable {
      *
      * @param projection <p>
      *            Represents attributes that are copied (projected) from the
-     *            table into an index. These are in addition to the primary key
-     *            attributes and index key attributes, which are automatically
-     *            projected.
+     *            table into the global secondary index. These are in addition
+     *            to the primary key attributes and index key attributes, which
+     *            are automatically projected.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -514,9 +513,8 @@ public class GlobalSecondaryIndex implements Serializable {
 
     /**
      * <p>
-     * Represents the provisioned throughput settings for a specified table or
-     * index. The settings can be modified using the <i>UpdateTable</i>
-     * operation.
+     * Represents the provisioned throughput settings for the specified global
+     * secondary index.
      * </p>
      * <p>
      * For current minimum and maximum provisioned throughput values, see <a
@@ -526,9 +524,8 @@ public class GlobalSecondaryIndex implements Serializable {
      * </p>
      *
      * @return <p>
-     *         Represents the provisioned throughput settings for a specified
-     *         table or index. The settings can be modified using the
-     *         <i>UpdateTable</i> operation.
+     *         Represents the provisioned throughput settings for the specified
+     *         global secondary index.
      *         </p>
      *         <p>
      *         For current minimum and maximum provisioned throughput values,
@@ -543,9 +540,8 @@ public class GlobalSecondaryIndex implements Serializable {
 
     /**
      * <p>
-     * Represents the provisioned throughput settings for a specified table or
-     * index. The settings can be modified using the <i>UpdateTable</i>
-     * operation.
+     * Represents the provisioned throughput settings for the specified global
+     * secondary index.
      * </p>
      * <p>
      * For current minimum and maximum provisioned throughput values, see <a
@@ -555,9 +551,8 @@ public class GlobalSecondaryIndex implements Serializable {
      * </p>
      *
      * @param provisionedThroughput <p>
-     *            Represents the provisioned throughput settings for a specified
-     *            table or index. The settings can be modified using the
-     *            <i>UpdateTable</i> operation.
+     *            Represents the provisioned throughput settings for the
+     *            specified global secondary index.
      *            </p>
      *            <p>
      *            For current minimum and maximum provisioned throughput values,
@@ -572,9 +567,8 @@ public class GlobalSecondaryIndex implements Serializable {
 
     /**
      * <p>
-     * Represents the provisioned throughput settings for a specified table or
-     * index. The settings can be modified using the <i>UpdateTable</i>
-     * operation.
+     * Represents the provisioned throughput settings for the specified global
+     * secondary index.
      * </p>
      * <p>
      * For current minimum and maximum provisioned throughput values, see <a
@@ -587,9 +581,8 @@ public class GlobalSecondaryIndex implements Serializable {
      * together.
      *
      * @param provisionedThroughput <p>
-     *            Represents the provisioned throughput settings for a specified
-     *            table or index. The settings can be modified using the
-     *            <i>UpdateTable</i> operation.
+     *            Represents the provisioned throughput settings for the
+     *            specified global secondary index.
      *            </p>
      *            <p>
      *            For current minimum and maximum provisioned throughput values,

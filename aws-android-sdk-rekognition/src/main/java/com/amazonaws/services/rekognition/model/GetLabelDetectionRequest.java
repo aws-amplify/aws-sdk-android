@@ -71,8 +71,9 @@ public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Maximum number of labels you want Amazon Rekognition to return in the
-     * response. The default is 1000.
+     * Maximum number of results to return per paginated call. The largest value
+     * you can specify is 1000. If you specify a value greater than 1000, a
+     * maximum of 1000 results is returned. The default value is 1000.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -177,16 +178,19 @@ public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Maximum number of labels you want Amazon Rekognition to return in the
-     * response. The default is 1000.
+     * Maximum number of results to return per paginated call. The largest value
+     * you can specify is 1000. If you specify a value greater than 1000, a
+     * maximum of 1000 results is returned. The default value is 1000.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
      * @return <p>
-     *         Maximum number of labels you want Amazon Rekognition to return in
-     *         the response. The default is 1000.
+     *         Maximum number of results to return per paginated call. The
+     *         largest value you can specify is 1000. If you specify a value
+     *         greater than 1000, a maximum of 1000 results is returned. The
+     *         default value is 1000.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -195,16 +199,19 @@ public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Maximum number of labels you want Amazon Rekognition to return in the
-     * response. The default is 1000.
+     * Maximum number of results to return per paginated call. The largest value
+     * you can specify is 1000. If you specify a value greater than 1000, a
+     * maximum of 1000 results is returned. The default value is 1000.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
      * @param maxResults <p>
-     *            Maximum number of labels you want Amazon Rekognition to return
-     *            in the response. The default is 1000.
+     *            Maximum number of results to return per paginated call. The
+     *            largest value you can specify is 1000. If you specify a value
+     *            greater than 1000, a maximum of 1000 results is returned. The
+     *            default value is 1000.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -213,8 +220,9 @@ public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Maximum number of labels you want Amazon Rekognition to return in the
-     * response. The default is 1000.
+     * Maximum number of results to return per paginated call. The largest value
+     * you can specify is 1000. If you specify a value greater than 1000, a
+     * maximum of 1000 results is returned. The default value is 1000.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -224,8 +232,10 @@ public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements
      * <b>Range: </b>1 - <br/>
      *
      * @param maxResults <p>
-     *            Maximum number of labels you want Amazon Rekognition to return
-     *            in the response. The default is 1000.
+     *            Maximum number of results to return per paginated call. The
+     *            largest value you can specify is 1000. If you specify a value
+     *            greater than 1000, a maximum of 1000 results is returned. The
+     *            default value is 1000.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -21,18 +21,19 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Moves the specified instances out of <code>Standby</code> mode.
+ * Moves the specified instances out of the standby state.
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html"
- * >Auto Scaling Lifecycle</a> in the <i>Auto Scaling Developer Guide</i>.
+ * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-enter-exit-standby.html"
+ * >Temporarily Removing Instances from Your Auto Scaling Group</a> in the
+ * <i>Auto Scaling User Guide</i>.
  * </p>
  */
 public class ExitStandbyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * One or more instance IDs. You must specify at least one instance ID.
+     * The IDs of the instances. You can specify up to 20 instances.
      * </p>
      */
     private java.util.List<String> instanceIds = new java.util.ArrayList<String>();
@@ -51,12 +52,11 @@ public class ExitStandbyRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * One or more instance IDs. You must specify at least one instance ID.
+     * The IDs of the instances. You can specify up to 20 instances.
      * </p>
      *
      * @return <p>
-     *         One or more instance IDs. You must specify at least one instance
-     *         ID.
+     *         The IDs of the instances. You can specify up to 20 instances.
      *         </p>
      */
     public java.util.List<String> getInstanceIds() {
@@ -65,12 +65,11 @@ public class ExitStandbyRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * One or more instance IDs. You must specify at least one instance ID.
+     * The IDs of the instances. You can specify up to 20 instances.
      * </p>
      *
      * @param instanceIds <p>
-     *            One or more instance IDs. You must specify at least one
-     *            instance ID.
+     *            The IDs of the instances. You can specify up to 20 instances.
      *            </p>
      */
     public void setInstanceIds(java.util.Collection<String> instanceIds) {
@@ -84,15 +83,14 @@ public class ExitStandbyRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * One or more instance IDs. You must specify at least one instance ID.
+     * The IDs of the instances. You can specify up to 20 instances.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param instanceIds <p>
-     *            One or more instance IDs. You must specify at least one
-     *            instance ID.
+     *            The IDs of the instances. You can specify up to 20 instances.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -109,15 +107,14 @@ public class ExitStandbyRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * One or more instance IDs. You must specify at least one instance ID.
+     * The IDs of the instances. You can specify up to 20 instances.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param instanceIds <p>
-     *            One or more instance IDs. You must specify at least one
-     *            instance ID.
+     *            The IDs of the instances. You can specify up to 20 instances.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

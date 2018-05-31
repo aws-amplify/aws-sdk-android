@@ -26,10 +26,13 @@ public enum ChannelType {
     GCM("GCM"),
     APNS("APNS"),
     APNS_SANDBOX("APNS_SANDBOX"),
+    APNS_VOIP("APNS_VOIP"),
+    APNS_VOIP_SANDBOX("APNS_VOIP_SANDBOX"),
     ADM("ADM"),
     SMS("SMS"),
     EMAIL("EMAIL"),
-    BAIDU("BAIDU");
+    BAIDU("BAIDU"),
+    CUSTOM("CUSTOM");
 
     private String value;
 
@@ -48,10 +51,13 @@ public enum ChannelType {
         enumMap.put("GCM", GCM);
         enumMap.put("APNS", APNS);
         enumMap.put("APNS_SANDBOX", APNS_SANDBOX);
+        enumMap.put("APNS_VOIP", APNS_VOIP);
+        enumMap.put("APNS_VOIP_SANDBOX", APNS_VOIP_SANDBOX);
         enumMap.put("ADM", ADM);
         enumMap.put("SMS", SMS);
         enumMap.put("EMAIL", EMAIL);
         enumMap.put("BAIDU", BAIDU);
+        enumMap.put("CUSTOM", CUSTOM);
     }
 
     /**

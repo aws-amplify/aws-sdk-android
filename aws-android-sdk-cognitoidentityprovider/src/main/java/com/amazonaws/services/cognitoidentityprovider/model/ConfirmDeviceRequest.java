@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Confirms tracking of the device. This API call is the call that beings device
+ * Confirms tracking of the device. This API call is the call that begins device
  * tracking.
  * </p>
  */

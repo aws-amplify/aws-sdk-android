@@ -21,7 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Attaches one or more load balancers to the specified Auto Scaling group.
+ * Attaches one or more Classic Load Balancers to the specified Auto Scaling
+ * group.
+ * </p>
+ * <p>
+ * To attach an Application Load Balancer instead, see
+ * <a>AttachLoadBalancerTargetGroups</a>.
  * </p>
  * <p>
  * To describe the load balancers for an Auto Scaling group, use
@@ -30,15 +35,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/attach-load-balancer-asg.html"
+ * "http://docs.aws.amazon.com/autoscaling/latest/userguide/attach-load-balancer-asg.html"
  * >Attach a Load Balancer to Your Auto Scaling Group</a> in the <i>Auto Scaling
- * Developer Guide</i>.
+ * User Guide</i>.
  * </p>
  */
 public class AttachLoadBalancersRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -50,14 +55,14 @@ public class AttachLoadBalancersRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * One or more load balancer names.
+     * The names of the load balancers. You can specify up to 10 load balancers.
      * </p>
      */
     private java.util.List<String> loadBalancerNames = new java.util.ArrayList<String>();
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -66,7 +71,7 @@ public class AttachLoadBalancersRequest extends AmazonWebServiceRequest implemen
      * <br/>
      *
      * @return <p>
-     *         The name of the group.
+     *         The name of the Auto Scaling group.
      *         </p>
      */
     public String getAutoScalingGroupName() {
@@ -75,7 +80,7 @@ public class AttachLoadBalancersRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -84,7 +89,7 @@ public class AttachLoadBalancersRequest extends AmazonWebServiceRequest implemen
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      */
     public void setAutoScalingGroupName(String autoScalingGroupName) {
@@ -93,7 +98,7 @@ public class AttachLoadBalancersRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -105,7 +110,7 @@ public class AttachLoadBalancersRequest extends AmazonWebServiceRequest implemen
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -117,11 +122,12 @@ public class AttachLoadBalancersRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * One or more load balancer names.
+     * The names of the load balancers. You can specify up to 10 load balancers.
      * </p>
      *
      * @return <p>
-     *         One or more load balancer names.
+     *         The names of the load balancers. You can specify up to 10 load
+     *         balancers.
      *         </p>
      */
     public java.util.List<String> getLoadBalancerNames() {
@@ -130,11 +136,12 @@ public class AttachLoadBalancersRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * One or more load balancer names.
+     * The names of the load balancers. You can specify up to 10 load balancers.
      * </p>
      *
      * @param loadBalancerNames <p>
-     *            One or more load balancer names.
+     *            The names of the load balancers. You can specify up to 10 load
+     *            balancers.
      *            </p>
      */
     public void setLoadBalancerNames(java.util.Collection<String> loadBalancerNames) {
@@ -148,14 +155,15 @@ public class AttachLoadBalancersRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * One or more load balancer names.
+     * The names of the load balancers. You can specify up to 10 load balancers.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param loadBalancerNames <p>
-     *            One or more load balancer names.
+     *            The names of the load balancers. You can specify up to 10 load
+     *            balancers.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -172,14 +180,15 @@ public class AttachLoadBalancersRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * One or more load balancer names.
+     * The names of the load balancers. You can specify up to 10 load balancers.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param loadBalancerNames <p>
-     *            One or more load balancer names.
+     *            The names of the load balancers. You can specify up to 10 load
+     *            balancers.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

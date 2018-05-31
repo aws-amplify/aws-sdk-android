@@ -31,7 +31,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>
- * This action is throttled at one request per second.
+ * You can execute this operation no more than once per second.
  * </p>
  */
 public class CloneReceiptRuleSetRequest extends AmazonWebServiceRequest implements Serializable {
@@ -42,7 +42,7 @@ public class CloneReceiptRuleSetRequest extends AmazonWebServiceRequest implemen
      * <ul>
      * <li>
      * <p>
-     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.),
+     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
      * underscores (_), or dashes (-).
      * </p>
      * </li>
@@ -74,7 +74,7 @@ public class CloneReceiptRuleSetRequest extends AmazonWebServiceRequest implemen
      * <ul>
      * <li>
      * <p>
-     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.),
+     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
      * underscores (_), or dashes (-).
      * </p>
      * </li>
@@ -96,8 +96,8 @@ public class CloneReceiptRuleSetRequest extends AmazonWebServiceRequest implemen
      *         <ul>
      *         <li>
      *         <p>
-     *         Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods
-     *         (.), underscores (_), or dashes (-).
+     *         This value can only contain ASCII letters (a-z, A-Z), numbers
+     *         (0-9), underscores (_), or dashes (-).
      *         </p>
      *         </li>
      *         <li>
@@ -123,7 +123,7 @@ public class CloneReceiptRuleSetRequest extends AmazonWebServiceRequest implemen
      * <ul>
      * <li>
      * <p>
-     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.),
+     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
      * underscores (_), or dashes (-).
      * </p>
      * </li>
@@ -145,8 +145,8 @@ public class CloneReceiptRuleSetRequest extends AmazonWebServiceRequest implemen
      *            <ul>
      *            <li>
      *            <p>
-     *            Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods
-     *            (.), underscores (_), or dashes (-).
+     *            This value can only contain ASCII letters (a-z, A-Z), numbers
+     *            (0-9), underscores (_), or dashes (-).
      *            </p>
      *            </li>
      *            <li>
@@ -172,7 +172,7 @@ public class CloneReceiptRuleSetRequest extends AmazonWebServiceRequest implemen
      * <ul>
      * <li>
      * <p>
-     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.),
+     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
      * underscores (_), or dashes (-).
      * </p>
      * </li>
@@ -197,8 +197,8 @@ public class CloneReceiptRuleSetRequest extends AmazonWebServiceRequest implemen
      *            <ul>
      *            <li>
      *            <p>
-     *            Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods
-     *            (.), underscores (_), or dashes (-).
+     *            This value can only contain ASCII letters (a-z, A-Z), numbers
+     *            (0-9), underscores (_), or dashes (-).
      *            </p>
      *            </li>
      *            <li>

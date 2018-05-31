@@ -39,6 +39,9 @@ public class CreateThingTypeResultJsonUnmarshaller implements
             } else if (name.equals("thingTypeArn")) {
                 createThingTypeResult.setThingTypeArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("thingTypeId")) {
+                createThingTypeResult.setThingTypeId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

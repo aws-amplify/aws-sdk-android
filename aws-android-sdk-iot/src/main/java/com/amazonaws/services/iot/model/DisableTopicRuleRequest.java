@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Disables the specified rule.
+ * Disables the rule.
  * </p>
  */
 public class DisableTopicRuleRequest extends AmazonWebServiceRequest implements Serializable {

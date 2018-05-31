@@ -38,13 +38,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>
- * This action is throttled at one request per second.
+ * You can execute this operation no more than once per second.
  * </p>
  */
 public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identity to which the policy will apply. You can specify an identity
+     * The identity that the policy will apply to. You can specify an identity
      * by using its name or by using its Amazon Resource Name (ARN). Examples:
      * <code>user@example.com</code>, <code>example.com</code>,
      * <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
@@ -87,7 +87,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The identity to which the policy will apply. You can specify an identity
+     * The identity that the policy will apply to. You can specify an identity
      * by using its name or by using its Amazon Resource Name (ARN). Examples:
      * <code>user@example.com</code>, <code>example.com</code>,
      * <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
@@ -97,7 +97,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
      * </p>
      *
      * @return <p>
-     *         The identity to which the policy will apply. You can specify an
+     *         The identity that the policy will apply to. You can specify an
      *         identity by using its name or by using its Amazon Resource Name
      *         (ARN). Examples: <code>user@example.com</code>,
      *         <code>example.com</code>,
@@ -114,7 +114,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The identity to which the policy will apply. You can specify an identity
+     * The identity that the policy will apply to. You can specify an identity
      * by using its name or by using its Amazon Resource Name (ARN). Examples:
      * <code>user@example.com</code>, <code>example.com</code>,
      * <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
@@ -124,8 +124,8 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
      * </p>
      *
      * @param identity <p>
-     *            The identity to which the policy will apply. You can specify
-     *            an identity by using its name or by using its Amazon Resource
+     *            The identity that the policy will apply to. You can specify an
+     *            identity by using its name or by using its Amazon Resource
      *            Name (ARN). Examples: <code>user@example.com</code>,
      *            <code>example.com</code>,
      *            <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>
@@ -141,7 +141,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The identity to which the policy will apply. You can specify an identity
+     * The identity that the policy will apply to. You can specify an identity
      * by using its name or by using its Amazon Resource Name (ARN). Examples:
      * <code>user@example.com</code>, <code>example.com</code>,
      * <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
@@ -154,8 +154,8 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
      * together.
      *
      * @param identity <p>
-     *            The identity to which the policy will apply. You can specify
-     *            an identity by using its name or by using its Amazon Resource
+     *            The identity that the policy will apply to. You can specify an
+     *            identity by using its name or by using its Amazon Resource
      *            Name (ARN). Examples: <code>user@example.com</code>,
      *            <code>example.com</code>,
      *            <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>

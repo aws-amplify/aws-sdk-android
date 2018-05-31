@@ -20,7 +20,7 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * The resource is not available for this operation. For successful operation,
- * the resource needs to be in the <code>ACTIVE</code> state.
+ * the resource must be in the <code>ACTIVE</code> state.
  * </p>
  */
 public class ResourceInUseException extends AmazonServiceException {

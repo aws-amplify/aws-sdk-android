@@ -19,9 +19,39 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Creates a new Kinesis video stream.
+ * </p>
+ * <p>
+ * When you create a new stream, Kinesis Video Streams assigns it a version
+ * number. When you change the stream's metadata, Kinesis Video Streams updates
+ * the version.
+ * </p>
+ * <p>
+ * <code>CreateStream</code> is an asynchronous operation.
+ * </p>
+ * <p>
+ * For information about how the service works, see <a href=
+ * "http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/how-it-works.html"
+ * >How it Works</a>.
+ * </p>
+ * <p>
+ * You must have permissions for the <code>KinesisVideo:CreateStream</code>
+ * action.
+ * </p>
+ */
 public class CreateStreamRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the deviceName property for this object.
+     * <p>
+     * The name of the device that is writing to the stream.
+     * </p>
+     * <note>
+     * <p>
+     * In the current implementation, Kinesis Video Streams does not use this
+     * name.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -30,7 +60,13 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
     private String deviceName;
 
     /**
-     * The new value for the streamName property for this object.
+     * <p>
+     * A name for the stream that you are creating.
+     * </p>
+     * <p>
+     * The stream name is an identifier for the stream, and must be unique for
+     * each account and region.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -39,7 +75,24 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
     private String streamName;
 
     /**
-     * The new value for the mediaType property for this object.
+     * <p>
+     * The media type of the stream. Consumers of the stream can use this
+     * information when processing the stream. For more information about media
+     * types, see <a
+     * href="http://www.iana.org/assignments/media-types/media-types.xhtml"
+     * >Media Types</a>. If you choose to specify the <code>MediaType</code>,
+     * see <a href="https://tools.ietf.org/html/rfc6838#section-4.2">Naming
+     * Requirements</a> for guidelines.
+     * </p>
+     * <p>
+     * To play video on the console, the media must be H.264 encoded, and you
+     * need to specify this video type in this parameter as
+     * <code>video/h264</code>.
+     * </p>
+     * <p>
+     * This parameter is optional; the default value is <code>null</code> (or
+     * empty in JSON).
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -48,7 +101,19 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
     private String mediaType;
 
     /**
-     * The new value for the kmsKeyId property for this object.
+     * <p>
+     * The ID of the AWS Key Management Service (AWS KMS) key that you want
+     * Kinesis Video Streams to use to encrypt stream data.
+     * </p>
+     * <p>
+     * If no key ID is specified, the default, Kinesis Video-managed key (
+     * <code>aws/kinesisvideo</code>) is used.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
+     * >DescribeKey</a>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
@@ -56,7 +121,14 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
     private String kmsKeyId;
 
     /**
-     * The new value for the dataRetentionInHours property for this object.
+     * <p>
+     * The number of hours that you want to retain the data in the stream.
+     * Kinesis Video Streams retains the data in a data store that is associated
+     * with the stream.
+     * </p>
+     * <p>
+     * The default value is 0, indicating that the stream does not persist data.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
@@ -64,34 +136,73 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
     private Integer dataRetentionInHours;
 
     /**
-     * Returns the value of the deviceName property for this object.
+     * <p>
+     * The name of the device that is writing to the stream.
+     * </p>
+     * <note>
+     * <p>
+     * In the current implementation, Kinesis Video Streams does not use this
+     * name.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @return The value of the deviceName property for this object.
+     * @return <p>
+     *         The name of the device that is writing to the stream.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         In the current implementation, Kinesis Video Streams does not use
+     *         this name.
+     *         </p>
+     *         </note>
      */
     public String getDeviceName() {
         return deviceName;
     }
 
     /**
-     * Sets the value of deviceName
+     * <p>
+     * The name of the device that is writing to the stream.
+     * </p>
+     * <note>
+     * <p>
+     * In the current implementation, Kinesis Video Streams does not use this
+     * name.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param deviceName The new value for the deviceName property for this
-     *            object.
+     * @param deviceName <p>
+     *            The name of the device that is writing to the stream.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            In the current implementation, Kinesis Video Streams does not
+     *            use this name.
+     *            </p>
+     *            </note>
      */
     public void setDeviceName(String deviceName) {
         this.deviceName = deviceName;
     }
 
     /**
-     * Sets the value of the deviceName property for this object.
+     * <p>
+     * The name of the device that is writing to the stream.
+     * </p>
+     * <note>
+     * <p>
+     * In the current implementation, Kinesis Video Streams does not use this
+     * name.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -100,8 +211,15 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param deviceName The new value for the deviceName property for this
-     *            object.
+     * @param deviceName <p>
+     *            The name of the device that is writing to the stream.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            In the current implementation, Kinesis Video Streams does not
+     *            use this name.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -111,34 +229,63 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Returns the value of the streamName property for this object.
+     * <p>
+     * A name for the stream that you are creating.
+     * </p>
+     * <p>
+     * The stream name is an identifier for the stream, and must be unique for
+     * each account and region.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @return The value of the streamName property for this object.
+     * @return <p>
+     *         A name for the stream that you are creating.
+     *         </p>
+     *         <p>
+     *         The stream name is an identifier for the stream, and must be
+     *         unique for each account and region.
+     *         </p>
      */
     public String getStreamName() {
         return streamName;
     }
 
     /**
-     * Sets the value of streamName
+     * <p>
+     * A name for the stream that you are creating.
+     * </p>
+     * <p>
+     * The stream name is an identifier for the stream, and must be unique for
+     * each account and region.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param streamName The new value for the streamName property for this
-     *            object.
+     * @param streamName <p>
+     *            A name for the stream that you are creating.
+     *            </p>
+     *            <p>
+     *            The stream name is an identifier for the stream, and must be
+     *            unique for each account and region.
+     *            </p>
      */
     public void setStreamName(String streamName) {
         this.streamName = streamName;
     }
 
     /**
-     * Sets the value of the streamName property for this object.
+     * <p>
+     * A name for the stream that you are creating.
+     * </p>
+     * <p>
+     * The stream name is an identifier for the stream, and must be unique for
+     * each account and region.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -147,8 +294,13 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param streamName The new value for the streamName property for this
-     *            object.
+     * @param streamName <p>
+     *            A name for the stream that you are creating.
+     *            </p>
+     *            <p>
+     *            The stream name is an identifier for the stream, and must be
+     *            unique for each account and region.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -158,34 +310,120 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Returns the value of the mediaType property for this object.
+     * <p>
+     * The media type of the stream. Consumers of the stream can use this
+     * information when processing the stream. For more information about media
+     * types, see <a
+     * href="http://www.iana.org/assignments/media-types/media-types.xhtml"
+     * >Media Types</a>. If you choose to specify the <code>MediaType</code>,
+     * see <a href="https://tools.ietf.org/html/rfc6838#section-4.2">Naming
+     * Requirements</a> for guidelines.
+     * </p>
+     * <p>
+     * To play video on the console, the media must be H.264 encoded, and you
+     * need to specify this video type in this parameter as
+     * <code>video/h264</code>.
+     * </p>
+     * <p>
+     * This parameter is optional; the default value is <code>null</code> (or
+     * empty in JSON).
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+<br/>
      *
-     * @return The value of the mediaType property for this object.
+     * @return <p>
+     *         The media type of the stream. Consumers of the stream can use
+     *         this information when processing the stream. For more information
+     *         about media types, see <a href=
+     *         "http://www.iana.org/assignments/media-types/media-types.xhtml"
+     *         >Media Types</a>. If you choose to specify the
+     *         <code>MediaType</code>, see <a
+     *         href="https://tools.ietf.org/html/rfc6838#section-4.2">Naming
+     *         Requirements</a> for guidelines.
+     *         </p>
+     *         <p>
+     *         To play video on the console, the media must be H.264 encoded,
+     *         and you need to specify this video type in this parameter as
+     *         <code>video/h264</code>.
+     *         </p>
+     *         <p>
+     *         This parameter is optional; the default value is
+     *         <code>null</code> (or empty in JSON).
+     *         </p>
      */
     public String getMediaType() {
         return mediaType;
     }
 
     /**
-     * Sets the value of mediaType
+     * <p>
+     * The media type of the stream. Consumers of the stream can use this
+     * information when processing the stream. For more information about media
+     * types, see <a
+     * href="http://www.iana.org/assignments/media-types/media-types.xhtml"
+     * >Media Types</a>. If you choose to specify the <code>MediaType</code>,
+     * see <a href="https://tools.ietf.org/html/rfc6838#section-4.2">Naming
+     * Requirements</a> for guidelines.
+     * </p>
+     * <p>
+     * To play video on the console, the media must be H.264 encoded, and you
+     * need to specify this video type in this parameter as
+     * <code>video/h264</code>.
+     * </p>
+     * <p>
+     * This parameter is optional; the default value is <code>null</code> (or
+     * empty in JSON).
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+<br/>
      *
-     * @param mediaType The new value for the mediaType property for this
-     *            object.
+     * @param mediaType <p>
+     *            The media type of the stream. Consumers of the stream can use
+     *            this information when processing the stream. For more
+     *            information about media types, see <a href=
+     *            "http://www.iana.org/assignments/media-types/media-types.xhtml"
+     *            >Media Types</a>. If you choose to specify the
+     *            <code>MediaType</code>, see <a
+     *            href="https://tools.ietf.org/html/rfc6838#section-4.2">Naming
+     *            Requirements</a> for guidelines.
+     *            </p>
+     *            <p>
+     *            To play video on the console, the media must be H.264 encoded,
+     *            and you need to specify this video type in this parameter as
+     *            <code>video/h264</code>.
+     *            </p>
+     *            <p>
+     *            This parameter is optional; the default value is
+     *            <code>null</code> (or empty in JSON).
+     *            </p>
      */
     public void setMediaType(String mediaType) {
         this.mediaType = mediaType;
     }
 
     /**
-     * Sets the value of the mediaType property for this object.
+     * <p>
+     * The media type of the stream. Consumers of the stream can use this
+     * information when processing the stream. For more information about media
+     * types, see <a
+     * href="http://www.iana.org/assignments/media-types/media-types.xhtml"
+     * >Media Types</a>. If you choose to specify the <code>MediaType</code>,
+     * see <a href="https://tools.ietf.org/html/rfc6838#section-4.2">Naming
+     * Requirements</a> for guidelines.
+     * </p>
+     * <p>
+     * To play video on the console, the media must be H.264 encoded, and you
+     * need to specify this video type in this parameter as
+     * <code>video/h264</code>.
+     * </p>
+     * <p>
+     * This parameter is optional; the default value is <code>null</code> (or
+     * empty in JSON).
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -194,8 +432,25 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+<br/>
      *
-     * @param mediaType The new value for the mediaType property for this
-     *            object.
+     * @param mediaType <p>
+     *            The media type of the stream. Consumers of the stream can use
+     *            this information when processing the stream. For more
+     *            information about media types, see <a href=
+     *            "http://www.iana.org/assignments/media-types/media-types.xhtml"
+     *            >Media Types</a>. If you choose to specify the
+     *            <code>MediaType</code>, see <a
+     *            href="https://tools.ietf.org/html/rfc6838#section-4.2">Naming
+     *            Requirements</a> for guidelines.
+     *            </p>
+     *            <p>
+     *            To play video on the console, the media must be H.264 encoded,
+     *            and you need to specify this video type in this parameter as
+     *            <code>video/h264</code>.
+     *            </p>
+     *            <p>
+     *            This parameter is optional; the default value is
+     *            <code>null</code> (or empty in JSON).
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -205,31 +460,91 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Returns the value of the kmsKeyId property for this object.
+     * <p>
+     * The ID of the AWS Key Management Service (AWS KMS) key that you want
+     * Kinesis Video Streams to use to encrypt stream data.
+     * </p>
+     * <p>
+     * If no key ID is specified, the default, Kinesis Video-managed key (
+     * <code>aws/kinesisvideo</code>) is used.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
+     * >DescribeKey</a>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
-     * @return The value of the kmsKeyId property for this object.
+     * @return <p>
+     *         The ID of the AWS Key Management Service (AWS KMS) key that you
+     *         want Kinesis Video Streams to use to encrypt stream data.
+     *         </p>
+     *         <p>
+     *         If no key ID is specified, the default, Kinesis Video-managed key
+     *         (<code>aws/kinesisvideo</code>) is used.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "http://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
+     *         >DescribeKey</a>.
+     *         </p>
      */
     public String getKmsKeyId() {
         return kmsKeyId;
     }
 
     /**
-     * Sets the value of kmsKeyId
+     * <p>
+     * The ID of the AWS Key Management Service (AWS KMS) key that you want
+     * Kinesis Video Streams to use to encrypt stream data.
+     * </p>
+     * <p>
+     * If no key ID is specified, the default, Kinesis Video-managed key (
+     * <code>aws/kinesisvideo</code>) is used.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
+     * >DescribeKey</a>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
-     * @param kmsKeyId The new value for the kmsKeyId property for this object.
+     * @param kmsKeyId <p>
+     *            The ID of the AWS Key Management Service (AWS KMS) key that
+     *            you want Kinesis Video Streams to use to encrypt stream data.
+     *            </p>
+     *            <p>
+     *            If no key ID is specified, the default, Kinesis Video-managed
+     *            key (<code>aws/kinesisvideo</code>) is used.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
+     *            >DescribeKey</a>.
+     *            </p>
      */
     public void setKmsKeyId(String kmsKeyId) {
         this.kmsKeyId = kmsKeyId;
     }
 
     /**
-     * Sets the value of the kmsKeyId property for this object.
+     * <p>
+     * The ID of the AWS Key Management Service (AWS KMS) key that you want
+     * Kinesis Video Streams to use to encrypt stream data.
+     * </p>
+     * <p>
+     * If no key ID is specified, the default, Kinesis Video-managed key (
+     * <code>aws/kinesisvideo</code>) is used.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
+     * >DescribeKey</a>.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -237,7 +552,19 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
-     * @param kmsKeyId The new value for the kmsKeyId property for this object.
+     * @param kmsKeyId <p>
+     *            The ID of the AWS Key Management Service (AWS KMS) key that
+     *            you want Kinesis Video Streams to use to encrypt stream data.
+     *            </p>
+     *            <p>
+     *            If no key ID is specified, the default, Kinesis Video-managed
+     *            key (<code>aws/kinesisvideo</code>) is used.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "http://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
+     *            >DescribeKey</a>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -247,32 +574,68 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Returns the value of the dataRetentionInHours property for this object.
+     * <p>
+     * The number of hours that you want to retain the data in the stream.
+     * Kinesis Video Streams retains the data in a data store that is associated
+     * with the stream.
+     * </p>
+     * <p>
+     * The default value is 0, indicating that the stream does not persist data.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
-     * @return The value of the dataRetentionInHours property for this object.
+     * @return <p>
+     *         The number of hours that you want to retain the data in the
+     *         stream. Kinesis Video Streams retains the data in a data store
+     *         that is associated with the stream.
+     *         </p>
+     *         <p>
+     *         The default value is 0, indicating that the stream does not
+     *         persist data.
+     *         </p>
      */
     public Integer getDataRetentionInHours() {
         return dataRetentionInHours;
     }
 
     /**
-     * Sets the value of dataRetentionInHours
+     * <p>
+     * The number of hours that you want to retain the data in the stream.
+     * Kinesis Video Streams retains the data in a data store that is associated
+     * with the stream.
+     * </p>
+     * <p>
+     * The default value is 0, indicating that the stream does not persist data.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
-     * @param dataRetentionInHours The new value for the dataRetentionInHours
-     *            property for this object.
+     * @param dataRetentionInHours <p>
+     *            The number of hours that you want to retain the data in the
+     *            stream. Kinesis Video Streams retains the data in a data store
+     *            that is associated with the stream.
+     *            </p>
+     *            <p>
+     *            The default value is 0, indicating that the stream does not
+     *            persist data.
+     *            </p>
      */
     public void setDataRetentionInHours(Integer dataRetentionInHours) {
         this.dataRetentionInHours = dataRetentionInHours;
     }
 
     /**
-     * Sets the value of the dataRetentionInHours property for this object.
+     * <p>
+     * The number of hours that you want to retain the data in the stream.
+     * Kinesis Video Streams retains the data in a data store that is associated
+     * with the stream.
+     * </p>
+     * <p>
+     * The default value is 0, indicating that the stream does not persist data.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -280,8 +643,15 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
-     * @param dataRetentionInHours The new value for the dataRetentionInHours
-     *            property for this object.
+     * @param dataRetentionInHours <p>
+     *            The number of hours that you want to retain the data in the
+     *            stream. Kinesis Video Streams retains the data in a data store
+     *            that is associated with the stream.
+     *            </p>
+     *            <p>
+     *            The default value is 0, indicating that the stream does not
+     *            persist data.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

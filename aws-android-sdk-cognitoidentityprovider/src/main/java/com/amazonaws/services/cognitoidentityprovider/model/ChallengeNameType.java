@@ -24,6 +24,9 @@ import java.util.Map;
 public enum ChallengeNameType {
 
     SMS_MFA("SMS_MFA"),
+    SOFTWARE_TOKEN_MFA("SOFTWARE_TOKEN_MFA"),
+    SELECT_MFA_TYPE("SELECT_MFA_TYPE"),
+    MFA_SETUP("MFA_SETUP"),
     PASSWORD_VERIFIER("PASSWORD_VERIFIER"),
     CUSTOM_CHALLENGE("CUSTOM_CHALLENGE"),
     DEVICE_SRP_AUTH("DEVICE_SRP_AUTH"),
@@ -46,6 +49,9 @@ public enum ChallengeNameType {
     static {
         enumMap = new HashMap<String, ChallengeNameType>();
         enumMap.put("SMS_MFA", SMS_MFA);
+        enumMap.put("SOFTWARE_TOKEN_MFA", SOFTWARE_TOKEN_MFA);
+        enumMap.put("SELECT_MFA_TYPE", SELECT_MFA_TYPE);
+        enumMap.put("MFA_SETUP", MFA_SETUP);
         enumMap.put("PASSWORD_VERIFIER", PASSWORD_VERIFIER);
         enumMap.put("CUSTOM_CHALLENGE", CUSTOM_CHALLENGE);
         enumMap.put("DEVICE_SRP_AUTH", DEVICE_SRP_AUTH);

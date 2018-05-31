@@ -22,10 +22,11 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Returns a list containing all of the identities (email addresses and domains)
- * for your AWS account, regardless of verification status.
+ * for your AWS account in the current AWS Region, regardless of verification
+ * status.
  * </p>
  * <p>
- * This action is throttled at one request per second.
+ * You can execute this operation no more than once per second.
  * </p>
  */
 public class ListIdentitiesRequest extends AmazonWebServiceRequest implements Serializable {

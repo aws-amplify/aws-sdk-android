@@ -129,6 +129,11 @@ public class CreateTableRequestMarshaller implements
                 StreamSpecificationJsonMarshaller.getInstance().marshall(streamSpecification,
                         jsonWriter);
             }
+            if (createTableRequest.getSSESpecification() != null) {
+                SSESpecification sSESpecification = createTableRequest.getSSESpecification();
+                jsonWriter.name("SSESpecification");
+                SSESpecificationJsonMarshaller.getInstance().marshall(sSESpecification, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -21,14 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns the user's sending statistics. The result is a list of data points,
- * representing the last two weeks of sending activity.
+ * Provides sending statistics for the current AWS Region. The result is a list
+ * of data points, representing the last two weeks of sending activity. Each
+ * data point in the list contains statistics for a 15-minute period of time.
  * </p>
  * <p>
- * Each data point in the list contains statistics for a 15-minute interval.
- * </p>
- * <p>
- * This action is throttled at one request per second.
+ * You can execute this operation no more than once per second.
  * </p>
  */
 public class GetSendStatisticsRequest extends AmazonWebServiceRequest implements Serializable {

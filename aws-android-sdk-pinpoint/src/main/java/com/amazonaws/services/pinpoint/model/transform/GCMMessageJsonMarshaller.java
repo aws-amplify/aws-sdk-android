@@ -68,10 +68,10 @@ class GCMMessageJsonMarshaller {
             jsonWriter.name("ImageUrl");
             jsonWriter.value(imageUrl);
         }
-        if (gCMMessage.getJsonData() != null) {
-            String jsonData = gCMMessage.getJsonData();
-            jsonWriter.name("JsonData");
-            jsonWriter.value(jsonData);
+        if (gCMMessage.getPriority() != null) {
+            String priority = gCMMessage.getPriority();
+            jsonWriter.name("Priority");
+            jsonWriter.value(priority);
         }
         if (gCMMessage.getRawContent() != null) {
             String rawContent = gCMMessage.getRawContent();
@@ -118,6 +118,11 @@ class GCMMessageJsonMarshaller {
                 }
             }
             jsonWriter.endObject();
+        }
+        if (gCMMessage.getTimeToLive() != null) {
+            Integer timeToLive = gCMMessage.getTimeToLive();
+            jsonWriter.name("TimeToLive");
+            jsonWriter.value(timeToLive);
         }
         if (gCMMessage.getTitle() != null) {
             String title = gCMMessage.getTitle();

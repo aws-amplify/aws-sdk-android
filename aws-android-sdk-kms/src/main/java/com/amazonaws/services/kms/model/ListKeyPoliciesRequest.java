@@ -21,19 +21,28 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Retrieves a list of policies attached to a key.
+ * Gets the names of the key policies that are attached to a customer master key
+ * (CMK). This operation is designed to get policy names that you can use in a
+ * <a>GetKeyPolicy</a> operation. However, the only valid policy name is
+ * <code>default</code>. You cannot perform this operation on a CMK in a
+ * different AWS account.
  * </p>
  */
 public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK). You can use the
-     * unique key ID or the Amazon Resource Name (ARN) of the CMK. Examples:
+     * A unique identifier for the customer master key (CMK).
+     * </p>
+     * <p>
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Unique key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
@@ -44,16 +53,20 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * </li>
      * </ul>
      * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      */
     private String keyId;
 
     /**
      * <p>
-     * When paginating results, specify the maximum number of items to return in
-     * the response. If additional items exist beyond the number you specify,
-     * the <code>Truncated</code> element in the response is set to true.
+     * Use this parameter to specify the maximum number of items to return. When
+     * this value is present, AWS KMS does not return more than the specified
+     * number of items, but it might return fewer.
      * </p>
      * <p>
      * This value is optional. If you include a value, it must be between 1 and
@@ -70,26 +83,31 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * Use this parameter only when paginating results and only in a subsequent
-     * request after you receive a response with truncated results. Set it to
-     * the value of <code>NextMarker</code> from the response you just received.
+     * Use this parameter in a subsequent request after you receive a response
+     * with truncated results. Set it to the value of <code>NextMarker</code>
+     * from the truncated response you just received.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 320<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>[ -\u00FF]*<br/>
      */
     private String marker;
 
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK). You can use the
-     * unique key ID or the Amazon Resource Name (ARN) of the CMK. Examples:
+     * A unique identifier for the customer master key (CMK).
+     * </p>
+     * <p>
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Unique key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
@@ -100,18 +118,26 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * </li>
      * </ul>
      * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         A unique identifier for the customer master key (CMK). You can
-     *         use the unique key ID or the Amazon Resource Name (ARN) of the
-     *         CMK. Examples:
+     *         A unique identifier for the customer master key (CMK).
+     *         </p>
+     *         <p>
+     *         Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     *         </p>
+     *         <p>
+     *         For example:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         Unique key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     *         Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *         </p>
      *         </li>
      *         <li>
@@ -121,6 +147,10 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      *         </p>
      *         </li>
      *         </ul>
+     *         <p>
+     *         To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     *         <a>DescribeKey</a>.
+     *         </p>
      */
     public String getKeyId() {
         return keyId;
@@ -128,13 +158,18 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK). You can use the
-     * unique key ID or the Amazon Resource Name (ARN) of the CMK. Examples:
+     * A unique identifier for the customer master key (CMK).
+     * </p>
+     * <p>
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Unique key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
@@ -145,19 +180,27 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * </li>
      * </ul>
      * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            A unique identifier for the customer master key (CMK). You can
-     *            use the unique key ID or the Amazon Resource Name (ARN) of the
-     *            CMK. Examples:
+     *            A unique identifier for the customer master key (CMK).
+     *            </p>
+     *            <p>
+     *            Specify the key ID or the Amazon Resource Name (ARN) of the
+     *            CMK.
+     *            </p>
+     *            <p>
+     *            For example:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Unique key ID:
-     *            <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     *            Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *            </p>
      *            </li>
      *            <li>
@@ -167,6 +210,10 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
+     *            or <a>DescribeKey</a>.
+     *            </p>
      */
     public void setKeyId(String keyId) {
         this.keyId = keyId;
@@ -174,13 +221,18 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK). You can use the
-     * unique key ID or the Amazon Resource Name (ARN) of the CMK. Examples:
+     * A unique identifier for the customer master key (CMK).
+     * </p>
+     * <p>
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Unique key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
@@ -191,22 +243,30 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * </li>
      * </ul>
      * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            A unique identifier for the customer master key (CMK). You can
-     *            use the unique key ID or the Amazon Resource Name (ARN) of the
-     *            CMK. Examples:
+     *            A unique identifier for the customer master key (CMK).
+     *            </p>
+     *            <p>
+     *            Specify the key ID or the Amazon Resource Name (ARN) of the
+     *            CMK.
+     *            </p>
+     *            <p>
+     *            For example:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Unique key ID:
-     *            <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     *            Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *            </p>
      *            </li>
      *            <li>
@@ -216,6 +276,10 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
+     *            or <a>DescribeKey</a>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -226,9 +290,9 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * When paginating results, specify the maximum number of items to return in
-     * the response. If additional items exist beyond the number you specify,
-     * the <code>Truncated</code> element in the response is set to true.
+     * Use this parameter to specify the maximum number of items to return. When
+     * this value is present, AWS KMS does not return more than the specified
+     * number of items, but it might return fewer.
      * </p>
      * <p>
      * This value is optional. If you include a value, it must be between 1 and
@@ -242,10 +306,9 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * <b>Range: </b>1 - 1000<br/>
      *
      * @return <p>
-     *         When paginating results, specify the maximum number of items to
-     *         return in the response. If additional items exist beyond the
-     *         number you specify, the <code>Truncated</code> element in the
-     *         response is set to true.
+     *         Use this parameter to specify the maximum number of items to
+     *         return. When this value is present, AWS KMS does not return more
+     *         than the specified number of items, but it might return fewer.
      *         </p>
      *         <p>
      *         This value is optional. If you include a value, it must be
@@ -262,9 +325,9 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * When paginating results, specify the maximum number of items to return in
-     * the response. If additional items exist beyond the number you specify,
-     * the <code>Truncated</code> element in the response is set to true.
+     * Use this parameter to specify the maximum number of items to return. When
+     * this value is present, AWS KMS does not return more than the specified
+     * number of items, but it might return fewer.
      * </p>
      * <p>
      * This value is optional. If you include a value, it must be between 1 and
@@ -278,10 +341,10 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * <b>Range: </b>1 - 1000<br/>
      *
      * @param limit <p>
-     *            When paginating results, specify the maximum number of items
-     *            to return in the response. If additional items exist beyond
-     *            the number you specify, the <code>Truncated</code> element in
-     *            the response is set to true.
+     *            Use this parameter to specify the maximum number of items to
+     *            return. When this value is present, AWS KMS does not return
+     *            more than the specified number of items, but it might return
+     *            fewer.
      *            </p>
      *            <p>
      *            This value is optional. If you include a value, it must be
@@ -298,9 +361,9 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * When paginating results, specify the maximum number of items to return in
-     * the response. If additional items exist beyond the number you specify,
-     * the <code>Truncated</code> element in the response is set to true.
+     * Use this parameter to specify the maximum number of items to return. When
+     * this value is present, AWS KMS does not return more than the specified
+     * number of items, but it might return fewer.
      * </p>
      * <p>
      * This value is optional. If you include a value, it must be between 1 and
@@ -317,10 +380,10 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * <b>Range: </b>1 - 1000<br/>
      *
      * @param limit <p>
-     *            When paginating results, specify the maximum number of items
-     *            to return in the response. If additional items exist beyond
-     *            the number you specify, the <code>Truncated</code> element in
-     *            the response is set to true.
+     *            Use this parameter to specify the maximum number of items to
+     *            return. When this value is present, AWS KMS does not return
+     *            more than the specified number of items, but it might return
+     *            fewer.
      *            </p>
      *            <p>
      *            This value is optional. If you include a value, it must be
@@ -340,20 +403,20 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * Use this parameter only when paginating results and only in a subsequent
-     * request after you receive a response with truncated results. Set it to
-     * the value of <code>NextMarker</code> from the response you just received.
+     * Use this parameter in a subsequent request after you receive a response
+     * with truncated results. Set it to the value of <code>NextMarker</code>
+     * from the truncated response you just received.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 320<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>[ -\u00FF]*<br/>
      *
      * @return <p>
-     *         Use this parameter only when paginating results and only in a
-     *         subsequent request after you receive a response with truncated
-     *         results. Set it to the value of <code>NextMarker</code> from the
-     *         response you just received.
+     *         Use this parameter in a subsequent request after you receive a
+     *         response with truncated results. Set it to the value of
+     *         <code>NextMarker</code> from the truncated response you just
+     *         received.
      *         </p>
      */
     public String getMarker() {
@@ -362,20 +425,20 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * Use this parameter only when paginating results and only in a subsequent
-     * request after you receive a response with truncated results. Set it to
-     * the value of <code>NextMarker</code> from the response you just received.
+     * Use this parameter in a subsequent request after you receive a response
+     * with truncated results. Set it to the value of <code>NextMarker</code>
+     * from the truncated response you just received.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 320<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>[ -\u00FF]*<br/>
      *
      * @param marker <p>
-     *            Use this parameter only when paginating results and only in a
-     *            subsequent request after you receive a response with truncated
-     *            results. Set it to the value of <code>NextMarker</code> from
-     *            the response you just received.
+     *            Use this parameter in a subsequent request after you receive a
+     *            response with truncated results. Set it to the value of
+     *            <code>NextMarker</code> from the truncated response you just
+     *            received.
      *            </p>
      */
     public void setMarker(String marker) {
@@ -384,23 +447,23 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * Use this parameter only when paginating results and only in a subsequent
-     * request after you receive a response with truncated results. Set it to
-     * the value of <code>NextMarker</code> from the response you just received.
+     * Use this parameter in a subsequent request after you receive a response
+     * with truncated results. Set it to the value of <code>NextMarker</code>
+     * from the truncated response you just received.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 320<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>[ -\u00FF]*<br/>
      *
      * @param marker <p>
-     *            Use this parameter only when paginating results and only in a
-     *            subsequent request after you receive a response with truncated
-     *            results. Set it to the value of <code>NextMarker</code> from
-     *            the response you just received.
+     *            Use this parameter in a subsequent request after you receive a
+     *            response with truncated results. Set it to the value of
+     *            <code>NextMarker</code> from the truncated response you just
+     *            received.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

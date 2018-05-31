@@ -29,7 +29,7 @@ public class KeyListEntry implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      */
     private String keyId;
 
@@ -49,7 +49,7 @@ public class KeyListEntry implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
      *         Unique identifier of the key.
@@ -65,7 +65,7 @@ public class KeyListEntry implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            Unique identifier of the key.
@@ -84,7 +84,7 @@ public class KeyListEntry implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            Unique identifier of the key.

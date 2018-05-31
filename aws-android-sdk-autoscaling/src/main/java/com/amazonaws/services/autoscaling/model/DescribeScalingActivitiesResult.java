@@ -20,7 +20,8 @@ import java.io.Serializable;
 public class DescribeScalingActivitiesResult implements Serializable {
     /**
      * <p>
-     * The scaling activities.
+     * The scaling activities. Activities are sorted by start time. Activities
+     * still in progress are described first.
      * </p>
      */
     private java.util.List<Activity> activities = new java.util.ArrayList<Activity>();
@@ -39,11 +40,13 @@ public class DescribeScalingActivitiesResult implements Serializable {
 
     /**
      * <p>
-     * The scaling activities.
+     * The scaling activities. Activities are sorted by start time. Activities
+     * still in progress are described first.
      * </p>
      *
      * @return <p>
-     *         The scaling activities.
+     *         The scaling activities. Activities are sorted by start time.
+     *         Activities still in progress are described first.
      *         </p>
      */
     public java.util.List<Activity> getActivities() {
@@ -52,11 +55,13 @@ public class DescribeScalingActivitiesResult implements Serializable {
 
     /**
      * <p>
-     * The scaling activities.
+     * The scaling activities. Activities are sorted by start time. Activities
+     * still in progress are described first.
      * </p>
      *
      * @param activities <p>
-     *            The scaling activities.
+     *            The scaling activities. Activities are sorted by start time.
+     *            Activities still in progress are described first.
      *            </p>
      */
     public void setActivities(java.util.Collection<Activity> activities) {
@@ -70,14 +75,16 @@ public class DescribeScalingActivitiesResult implements Serializable {
 
     /**
      * <p>
-     * The scaling activities.
+     * The scaling activities. Activities are sorted by start time. Activities
+     * still in progress are described first.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param activities <p>
-     *            The scaling activities.
+     *            The scaling activities. Activities are sorted by start time.
+     *            Activities still in progress are described first.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -94,14 +101,16 @@ public class DescribeScalingActivitiesResult implements Serializable {
 
     /**
      * <p>
-     * The scaling activities.
+     * The scaling activities. Activities are sorted by start time. Activities
+     * still in progress are described first.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param activities <p>
-     *            The scaling activities.
+     *            The scaling activities. Activities are sorted by start time.
+     *            Activities still in progress are described first.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

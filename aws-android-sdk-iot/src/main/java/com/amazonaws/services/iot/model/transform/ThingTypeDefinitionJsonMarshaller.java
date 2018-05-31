@@ -31,6 +31,11 @@ class ThingTypeDefinitionJsonMarshaller {
             jsonWriter.name("thingTypeName");
             jsonWriter.value(thingTypeName);
         }
+        if (thingTypeDefinition.getThingTypeArn() != null) {
+            String thingTypeArn = thingTypeDefinition.getThingTypeArn();
+            jsonWriter.name("thingTypeArn");
+            jsonWriter.value(thingTypeArn);
+        }
         if (thingTypeDefinition.getThingTypeProperties() != null) {
             ThingTypeProperties thingTypeProperties = thingTypeDefinition.getThingTypeProperties();
             jsonWriter.name("thingTypeProperties");

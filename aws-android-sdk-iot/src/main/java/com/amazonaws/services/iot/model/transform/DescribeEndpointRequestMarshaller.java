@@ -51,6 +51,10 @@ public class DescribeEndpointRequestMarshaller implements
         request.setHttpMethod(HttpMethodName.GET);
 
         String uriResourcePath = "/endpoint";
+        if (describeEndpointRequest.getEndpointType() != null) {
+            request.addParameter("endpointType",
+                    StringUtils.fromString(describeEndpointRequest.getEndpointType()));
+        }
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.0");

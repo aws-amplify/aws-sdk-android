@@ -111,6 +111,12 @@ class ScalingPolicyStaxUnmarshaller implements Unmarshaller<ScalingPolicy, StaxU
                             .unmarshall(context));
                     continue;
                 }
+                if (context.testExpression("TargetTrackingConfiguration", targetDepth)) {
+                    scalingPolicy
+                            .setTargetTrackingConfiguration(TargetTrackingConfigurationStaxUnmarshaller
+                                    .getInstance().unmarshall(context));
+                    continue;
+                }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
                     break;

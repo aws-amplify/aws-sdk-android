@@ -30,11 +30,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * from that domain.
  * </p>
  * <p>
- * This action is throttled at one request per second.
+ * You can execute this operation no more than once per second.
  * </p>
  * <p>
  * To enable or disable Easy DKIM signing for a domain, use the
- * <code>SetIdentityDkimEnabled</code> action.
+ * <code>SetIdentityDkimEnabled</code> operation.
  * </p>
  * <p>
  * For more information about creating DNS records using DKIM tokens, go to the

@@ -19,18 +19,18 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Represents a request to perform a <i>PutItem</i> operation on an item.
+ * Represents a request to perform a <code>PutItem</code> operation on an item.
  * </p>
  */
 public class PutRequest implements Serializable {
     /**
      * <p>
      * A map of attribute name to attribute values, representing the primary key
-     * of an item to be processed by <i>PutItem</i>. All of the table's primary
-     * key attributes must be specified, and their data types must match those
-     * of the table's key schema. If any attributes are present in the item
-     * which are part of an index key schema for the table, their types must
-     * match the index key schema.
+     * of an item to be processed by <code>PutItem</code>. All of the table's
+     * primary key attributes must be specified, and their data types must match
+     * those of the table's key schema. If any attributes are present in the
+     * item which are part of an index key schema for the table, their types
+     * must match the index key schema.
      * </p>
      */
     private java.util.Map<String, AttributeValue> item;
@@ -50,12 +50,12 @@ public class PutRequest implements Serializable {
      * 
      * @param item <p>
      *            A map of attribute name to attribute values, representing the
-     *            primary key of an item to be processed by <i>PutItem</i>. All
-     *            of the table's primary key attributes must be specified, and
-     *            their data types must match those of the table's key schema.
-     *            If any attributes are present in the item which are part of an
-     *            index key schema for the table, their types must match the
-     *            index key schema.
+     *            primary key of an item to be processed by <code>PutItem</code>
+     *            . All of the table's primary key attributes must be specified,
+     *            and their data types must match those of the table's key
+     *            schema. If any attributes are present in the item which are
+     *            part of an index key schema for the table, their types must
+     *            match the index key schema.
      *            </p>
      */
     public PutRequest(java.util.Map<String, AttributeValue> item) {
@@ -65,20 +65,20 @@ public class PutRequest implements Serializable {
     /**
      * <p>
      * A map of attribute name to attribute values, representing the primary key
-     * of an item to be processed by <i>PutItem</i>. All of the table's primary
-     * key attributes must be specified, and their data types must match those
-     * of the table's key schema. If any attributes are present in the item
-     * which are part of an index key schema for the table, their types must
-     * match the index key schema.
+     * of an item to be processed by <code>PutItem</code>. All of the table's
+     * primary key attributes must be specified, and their data types must match
+     * those of the table's key schema. If any attributes are present in the
+     * item which are part of an index key schema for the table, their types
+     * must match the index key schema.
      * </p>
      *
      * @return <p>
      *         A map of attribute name to attribute values, representing the
-     *         primary key of an item to be processed by <i>PutItem</i>. All of
-     *         the table's primary key attributes must be specified, and their
-     *         data types must match those of the table's key schema. If any
-     *         attributes are present in the item which are part of an index key
-     *         schema for the table, their types must match the index key
+     *         primary key of an item to be processed by <code>PutItem</code>.
+     *         All of the table's primary key attributes must be specified, and
+     *         their data types must match those of the table's key schema. If
+     *         any attributes are present in the item which are part of an index
+     *         key schema for the table, their types must match the index key
      *         schema.
      *         </p>
      */
@@ -89,21 +89,21 @@ public class PutRequest implements Serializable {
     /**
      * <p>
      * A map of attribute name to attribute values, representing the primary key
-     * of an item to be processed by <i>PutItem</i>. All of the table's primary
-     * key attributes must be specified, and their data types must match those
-     * of the table's key schema. If any attributes are present in the item
-     * which are part of an index key schema for the table, their types must
-     * match the index key schema.
+     * of an item to be processed by <code>PutItem</code>. All of the table's
+     * primary key attributes must be specified, and their data types must match
+     * those of the table's key schema. If any attributes are present in the
+     * item which are part of an index key schema for the table, their types
+     * must match the index key schema.
      * </p>
      *
      * @param item <p>
      *            A map of attribute name to attribute values, representing the
-     *            primary key of an item to be processed by <i>PutItem</i>. All
-     *            of the table's primary key attributes must be specified, and
-     *            their data types must match those of the table's key schema.
-     *            If any attributes are present in the item which are part of an
-     *            index key schema for the table, their types must match the
-     *            index key schema.
+     *            primary key of an item to be processed by <code>PutItem</code>
+     *            . All of the table's primary key attributes must be specified,
+     *            and their data types must match those of the table's key
+     *            schema. If any attributes are present in the item which are
+     *            part of an index key schema for the table, their types must
+     *            match the index key schema.
      *            </p>
      */
     public void setItem(java.util.Map<String, AttributeValue> item) {
@@ -113,11 +113,11 @@ public class PutRequest implements Serializable {
     /**
      * <p>
      * A map of attribute name to attribute values, representing the primary key
-     * of an item to be processed by <i>PutItem</i>. All of the table's primary
-     * key attributes must be specified, and their data types must match those
-     * of the table's key schema. If any attributes are present in the item
-     * which are part of an index key schema for the table, their types must
-     * match the index key schema.
+     * of an item to be processed by <code>PutItem</code>. All of the table's
+     * primary key attributes must be specified, and their data types must match
+     * those of the table's key schema. If any attributes are present in the
+     * item which are part of an index key schema for the table, their types
+     * must match the index key schema.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -125,12 +125,12 @@ public class PutRequest implements Serializable {
      *
      * @param item <p>
      *            A map of attribute name to attribute values, representing the
-     *            primary key of an item to be processed by <i>PutItem</i>. All
-     *            of the table's primary key attributes must be specified, and
-     *            their data types must match those of the table's key schema.
-     *            If any attributes are present in the item which are part of an
-     *            index key schema for the table, their types must match the
-     *            index key schema.
+     *            primary key of an item to be processed by <code>PutItem</code>
+     *            . All of the table's primary key attributes must be specified,
+     *            and their data types must match those of the table's key
+     *            schema. If any attributes are present in the item which are
+     *            part of an index key schema for the table, their types must
+     *            match the index key schema.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -143,11 +143,11 @@ public class PutRequest implements Serializable {
     /**
      * <p>
      * A map of attribute name to attribute values, representing the primary key
-     * of an item to be processed by <i>PutItem</i>. All of the table's primary
-     * key attributes must be specified, and their data types must match those
-     * of the table's key schema. If any attributes are present in the item
-     * which are part of an index key schema for the table, their types must
-     * match the index key schema.
+     * of an item to be processed by <code>PutItem</code>. All of the table's
+     * primary key attributes must be specified, and their data types must match
+     * those of the table's key schema. If any attributes are present in the
+     * item which are part of an index key schema for the table, their types
+     * must match the index key schema.
      * </p>
      * <p>
      * The method adds a new key-value pair into Item parameter, and returns a

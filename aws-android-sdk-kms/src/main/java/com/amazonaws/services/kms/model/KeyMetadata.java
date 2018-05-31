@@ -40,7 +40,7 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      */
     private String keyId;
 
@@ -158,6 +158,20 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
+     * The CMK's manager. CMKs are either customer-managed or AWS-managed. For
+     * more information about the difference, see <a href=
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     * >Customer Master Keys</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AWS, CUSTOMER
+     */
+    private String keyManager;
+
+    /**
+     * <p>
      * The twelve-digit account ID of the AWS account that owns the CMK.
      * </p>
      *
@@ -209,7 +223,7 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
      *         The globally unique identifier for the CMK.
@@ -225,7 +239,7 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            The globally unique identifier for the CMK.
@@ -244,7 +258,7 @@ public class KeyMetadata implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            The globally unique identifier for the CMK.
@@ -1171,6 +1185,148 @@ public class KeyMetadata implements Serializable {
     }
 
     /**
+     * <p>
+     * The CMK's manager. CMKs are either customer-managed or AWS-managed. For
+     * more information about the difference, see <a href=
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     * >Customer Master Keys</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AWS, CUSTOMER
+     *
+     * @return <p>
+     *         The CMK's manager. CMKs are either customer-managed or
+     *         AWS-managed. For more information about the difference, see <a
+     *         href=
+     *         "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     *         >Customer Master Keys</a> in the <i>AWS Key Management Service
+     *         Developer Guide</i>.
+     *         </p>
+     * @see KeyManagerType
+     */
+    public String getKeyManager() {
+        return keyManager;
+    }
+
+    /**
+     * <p>
+     * The CMK's manager. CMKs are either customer-managed or AWS-managed. For
+     * more information about the difference, see <a href=
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     * >Customer Master Keys</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AWS, CUSTOMER
+     *
+     * @param keyManager <p>
+     *            The CMK's manager. CMKs are either customer-managed or
+     *            AWS-managed. For more information about the difference, see <a
+     *            href=
+     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     *            >Customer Master Keys</a> in the <i>AWS Key Management Service
+     *            Developer Guide</i>.
+     *            </p>
+     * @see KeyManagerType
+     */
+    public void setKeyManager(String keyManager) {
+        this.keyManager = keyManager;
+    }
+
+    /**
+     * <p>
+     * The CMK's manager. CMKs are either customer-managed or AWS-managed. For
+     * more information about the difference, see <a href=
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     * >Customer Master Keys</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AWS, CUSTOMER
+     *
+     * @param keyManager <p>
+     *            The CMK's manager. CMKs are either customer-managed or
+     *            AWS-managed. For more information about the difference, see <a
+     *            href=
+     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     *            >Customer Master Keys</a> in the <i>AWS Key Management Service
+     *            Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see KeyManagerType
+     */
+    public KeyMetadata withKeyManager(String keyManager) {
+        this.keyManager = keyManager;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The CMK's manager. CMKs are either customer-managed or AWS-managed. For
+     * more information about the difference, see <a href=
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     * >Customer Master Keys</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AWS, CUSTOMER
+     *
+     * @param keyManager <p>
+     *            The CMK's manager. CMKs are either customer-managed or
+     *            AWS-managed. For more information about the difference, see <a
+     *            href=
+     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     *            >Customer Master Keys</a> in the <i>AWS Key Management Service
+     *            Developer Guide</i>.
+     *            </p>
+     * @see KeyManagerType
+     */
+    public void setKeyManager(KeyManagerType keyManager) {
+        this.keyManager = keyManager.toString();
+    }
+
+    /**
+     * <p>
+     * The CMK's manager. CMKs are either customer-managed or AWS-managed. For
+     * more information about the difference, see <a href=
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     * >Customer Master Keys</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AWS, CUSTOMER
+     *
+     * @param keyManager <p>
+     *            The CMK's manager. CMKs are either customer-managed or
+     *            AWS-managed. For more information about the difference, see <a
+     *            href=
+     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     *            >Customer Master Keys</a> in the <i>AWS Key Management Service
+     *            Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see KeyManagerType
+     */
+    public KeyMetadata withKeyManager(KeyManagerType keyManager) {
+        this.keyManager = keyManager.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1204,7 +1360,9 @@ public class KeyMetadata implements Serializable {
         if (getOrigin() != null)
             sb.append("Origin: " + getOrigin() + ",");
         if (getExpirationModel() != null)
-            sb.append("ExpirationModel: " + getExpirationModel());
+            sb.append("ExpirationModel: " + getExpirationModel() + ",");
+        if (getKeyManager() != null)
+            sb.append("KeyManager: " + getKeyManager());
         sb.append("}");
         return sb.toString();
     }
@@ -1231,6 +1389,7 @@ public class KeyMetadata implements Serializable {
         hashCode = prime * hashCode + ((getOrigin() == null) ? 0 : getOrigin().hashCode());
         hashCode = prime * hashCode
                 + ((getExpirationModel() == null) ? 0 : getExpirationModel().hashCode());
+        hashCode = prime * hashCode + ((getKeyManager() == null) ? 0 : getKeyManager().hashCode());
         return hashCode;
     }
 
@@ -1297,6 +1456,11 @@ public class KeyMetadata implements Serializable {
             return false;
         if (other.getExpirationModel() != null
                 && other.getExpirationModel().equals(this.getExpirationModel()) == false)
+            return false;
+        if (other.getKeyManager() == null ^ this.getKeyManager() == null)
+            return false;
+        if (other.getKeyManager() != null
+                && other.getKeyManager().equals(this.getKeyManager()) == false)
             return false;
         return true;
     }

@@ -17,21 +17,30 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * An Amazon Pinpoint analytics endpoint.
+ * </p>
+ * <p>
+ * An endpoint uniquely identifies a mobile device, email address, or phone
+ * number that can receive messages from Amazon Pinpoint analytics.
+ * </p>
+ */
 public class AnalyticsMetadataType implements Serializable {
     /**
      * <p>
-     * A
+     * The endpoint ID.
      * </p>
      */
     private String analyticsEndpointId;
 
     /**
      * <p>
-     * A
+     * The endpoint ID.
      * </p>
      *
      * @return <p>
-     *         A
+     *         The endpoint ID.
      *         </p>
      */
     public String getAnalyticsEndpointId() {
@@ -40,11 +49,11 @@ public class AnalyticsMetadataType implements Serializable {
 
     /**
      * <p>
-     * A
+     * The endpoint ID.
      * </p>
      *
      * @param analyticsEndpointId <p>
-     *            A
+     *            The endpoint ID.
      *            </p>
      */
     public void setAnalyticsEndpointId(String analyticsEndpointId) {
@@ -53,14 +62,14 @@ public class AnalyticsMetadataType implements Serializable {
 
     /**
      * <p>
-     * A
+     * The endpoint ID.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param analyticsEndpointId <p>
-     *            A
+     *            The endpoint ID.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

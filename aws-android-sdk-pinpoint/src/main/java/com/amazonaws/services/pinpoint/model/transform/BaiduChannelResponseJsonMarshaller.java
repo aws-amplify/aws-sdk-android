@@ -46,6 +46,11 @@ class BaiduChannelResponseJsonMarshaller {
             jsonWriter.name("Enabled");
             jsonWriter.value(enabled);
         }
+        if (baiduChannelResponse.getHasCredential() != null) {
+            Boolean hasCredential = baiduChannelResponse.getHasCredential();
+            jsonWriter.name("HasCredential");
+            jsonWriter.value(hasCredential);
+        }
         if (baiduChannelResponse.getId() != null) {
             String id = baiduChannelResponse.getId();
             jsonWriter.name("Id");

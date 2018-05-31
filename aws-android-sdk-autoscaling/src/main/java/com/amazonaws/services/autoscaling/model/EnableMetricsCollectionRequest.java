@@ -21,18 +21,17 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Enables monitoring of the specified metrics for the specified Auto Scaling
- * group.
- * </p>
- * <p>
- * You can only enable metrics collection if <code>InstanceMonitoring</code> in
- * the launch configuration for the group is set to <code>True</code>.
+ * Enables group metrics for the specified Auto Scaling group. For more
+ * information, see <a href=
+ * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-monitoring.html"
+ * >Monitoring Your Auto Scaling Groups and Instances</a> in the <i>Auto Scaling
+ * User Guide</i>.
  * </p>
  */
 public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name or ARN of the Auto Scaling group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -89,10 +88,6 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      * </p>
      * </li>
      * </ul>
-     * <p>
-     * Note that the <code>GroupStandbyInstances</code> metric is not enabled by
-     * default. You must explicitly request this metric.
-     * </p>
      */
     private java.util.List<String> metrics = new java.util.ArrayList<String>();
 
@@ -111,7 +106,7 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name or ARN of the Auto Scaling group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -120,7 +115,7 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      * <br/>
      *
      * @return <p>
-     *         The name or ARN of the Auto Scaling group.
+     *         The name of the Auto Scaling group.
      *         </p>
      */
     public String getAutoScalingGroupName() {
@@ -129,7 +124,7 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name or ARN of the Auto Scaling group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -138,7 +133,7 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name or ARN of the Auto Scaling group.
+     *            The name of the Auto Scaling group.
      *            </p>
      */
     public void setAutoScalingGroupName(String autoScalingGroupName) {
@@ -147,7 +142,7 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name or ARN of the Auto Scaling group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -159,7 +154,7 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name or ARN of the Auto Scaling group.
+     *            The name of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -216,10 +211,6 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      * </p>
      * </li>
      * </ul>
-     * <p>
-     * Note that the <code>GroupStandbyInstances</code> metric is not enabled by
-     * default. You must explicitly request this metric.
-     * </p>
      *
      * @return <p>
      *         One or more of the following metrics. If you omit this parameter,
@@ -267,10 +258,6 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      *         </p>
      *         </li>
      *         </ul>
-     *         <p>
-     *         Note that the <code>GroupStandbyInstances</code> metric is not
-     *         enabled by default. You must explicitly request this metric.
-     *         </p>
      */
     public java.util.List<String> getMetrics() {
         return metrics;
@@ -323,10 +310,6 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      * </p>
      * </li>
      * </ul>
-     * <p>
-     * Note that the <code>GroupStandbyInstances</code> metric is not enabled by
-     * default. You must explicitly request this metric.
-     * </p>
      *
      * @param metrics <p>
      *            One or more of the following metrics. If you omit this
@@ -374,10 +357,6 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      *            </p>
      *            </li>
      *            </ul>
-     *            <p>
-     *            Note that the <code>GroupStandbyInstances</code> metric is not
-     *            enabled by default. You must explicitly request this metric.
-     *            </p>
      */
     public void setMetrics(java.util.Collection<String> metrics) {
         if (metrics == null) {
@@ -436,10 +415,6 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      * </li>
      * </ul>
      * <p>
-     * Note that the <code>GroupStandbyInstances</code> metric is not enabled by
-     * default. You must explicitly request this metric.
-     * </p>
-     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -489,10 +464,6 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      *            </p>
      *            </li>
      *            </ul>
-     *            <p>
-     *            Note that the <code>GroupStandbyInstances</code> metric is not
-     *            enabled by default. You must explicitly request this metric.
-     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -554,10 +525,6 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      * </li>
      * </ul>
      * <p>
-     * Note that the <code>GroupStandbyInstances</code> metric is not enabled by
-     * default. You must explicitly request this metric.
-     * </p>
-     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -607,10 +574,6 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      *            </p>
      *            </li>
      *            </ul>
-     *            <p>
-     *            Note that the <code>GroupStandbyInstances</code> metric is not
-     *            enabled by default. You must explicitly request this metric.
-     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

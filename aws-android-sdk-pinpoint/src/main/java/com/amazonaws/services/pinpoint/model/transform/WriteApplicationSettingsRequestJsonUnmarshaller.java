@@ -37,7 +37,11 @@ class WriteApplicationSettingsRequestJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Limits")) {
+            if (name.equals("CampaignHook")) {
+                writeApplicationSettingsRequest.setCampaignHook(CampaignHookJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Limits")) {
                 writeApplicationSettingsRequest.setLimits(CampaignLimitsJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));

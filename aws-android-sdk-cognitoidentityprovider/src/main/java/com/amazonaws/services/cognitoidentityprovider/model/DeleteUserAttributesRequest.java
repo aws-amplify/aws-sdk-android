@@ -30,6 +30,10 @@ public class DeleteUserAttributesRequest extends AmazonWebServiceRequest impleme
      * An array of strings representing the user attribute names you wish to
      * delete.
      * </p>
+     * <p>
+     * For custom attributes, you must prepend the <code>custom:</code> prefix
+     * to the attribute name.
+     * </p>
      */
     private java.util.List<String> userAttributeNames;
 
@@ -48,10 +52,18 @@ public class DeleteUserAttributesRequest extends AmazonWebServiceRequest impleme
      * An array of strings representing the user attribute names you wish to
      * delete.
      * </p>
+     * <p>
+     * For custom attributes, you must prepend the <code>custom:</code> prefix
+     * to the attribute name.
+     * </p>
      *
      * @return <p>
      *         An array of strings representing the user attribute names you
      *         wish to delete.
+     *         </p>
+     *         <p>
+     *         For custom attributes, you must prepend the <code>custom:</code>
+     *         prefix to the attribute name.
      *         </p>
      */
     public java.util.List<String> getUserAttributeNames() {
@@ -63,10 +75,18 @@ public class DeleteUserAttributesRequest extends AmazonWebServiceRequest impleme
      * An array of strings representing the user attribute names you wish to
      * delete.
      * </p>
+     * <p>
+     * For custom attributes, you must prepend the <code>custom:</code> prefix
+     * to the attribute name.
+     * </p>
      *
      * @param userAttributeNames <p>
      *            An array of strings representing the user attribute names you
      *            wish to delete.
+     *            </p>
+     *            <p>
+     *            For custom attributes, you must prepend the
+     *            <code>custom:</code> prefix to the attribute name.
      *            </p>
      */
     public void setUserAttributeNames(java.util.Collection<String> userAttributeNames) {
@@ -84,12 +104,20 @@ public class DeleteUserAttributesRequest extends AmazonWebServiceRequest impleme
      * delete.
      * </p>
      * <p>
+     * For custom attributes, you must prepend the <code>custom:</code> prefix
+     * to the attribute name.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param userAttributeNames <p>
      *            An array of strings representing the user attribute names you
      *            wish to delete.
+     *            </p>
+     *            <p>
+     *            For custom attributes, you must prepend the
+     *            <code>custom:</code> prefix to the attribute name.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -110,12 +138,20 @@ public class DeleteUserAttributesRequest extends AmazonWebServiceRequest impleme
      * delete.
      * </p>
      * <p>
+     * For custom attributes, you must prepend the <code>custom:</code> prefix
+     * to the attribute name.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param userAttributeNames <p>
      *            An array of strings representing the user attribute names you
      *            wish to delete.
+     *            </p>
+     *            <p>
+     *            For custom attributes, you must prepend the
+     *            <code>custom:</code> prefix to the attribute name.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -95,6 +95,18 @@ public class AdminRespondToAuthChallengeRequestMarshaller implements
                 jsonWriter.name("Session");
                 jsonWriter.value(session);
             }
+            if (adminRespondToAuthChallengeRequest.getAnalyticsMetadata() != null) {
+                AnalyticsMetadataType analyticsMetadata = adminRespondToAuthChallengeRequest
+                        .getAnalyticsMetadata();
+                jsonWriter.name("AnalyticsMetadata");
+                AnalyticsMetadataTypeJsonMarshaller.getInstance().marshall(analyticsMetadata,
+                        jsonWriter);
+            }
+            if (adminRespondToAuthChallengeRequest.getContextData() != null) {
+                ContextDataType contextData = adminRespondToAuthChallengeRequest.getContextData();
+                jsonWriter.name("ContextData");
+                ContextDataTypeJsonMarshaller.getInstance().marshall(contextData, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

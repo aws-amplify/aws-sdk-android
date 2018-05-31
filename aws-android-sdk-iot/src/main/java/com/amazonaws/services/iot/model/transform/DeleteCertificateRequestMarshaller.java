@@ -56,6 +56,10 @@ public class DeleteCertificateRequestMarshaller implements
                 "{certificateId}",
                 (deleteCertificateRequest.getCertificateId() == null) ? "" : StringUtils
                         .fromString(deleteCertificateRequest.getCertificateId()));
+        if (deleteCertificateRequest.getForceDelete() != null) {
+            request.addParameter("forceDelete",
+                    StringUtils.fromBoolean(deleteCertificateRequest.getForceDelete()));
+        }
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.0");

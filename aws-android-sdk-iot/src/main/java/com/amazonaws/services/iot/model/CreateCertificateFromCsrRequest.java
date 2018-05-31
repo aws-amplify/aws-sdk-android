@@ -24,7 +24,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Creates an X.509 certificate using the specified certificate signing request.
  * </p>
  * <p>
- * <b>Note</b> Reusing the same certificate signing request (CSR) results in a
+ * <b>Note:</b> The CSR must include a public key that is either an RSA key with
+ * a length of at least 2048 bits or an ECC key from NIST P-256 or NIST P-384
+ * curves.
+ * </p>
+ * <p>
+ * <b>Note:</b> Reusing the same certificate signing request (CSR) results in a
  * distinct certificate.
  * </p>
  * <p>

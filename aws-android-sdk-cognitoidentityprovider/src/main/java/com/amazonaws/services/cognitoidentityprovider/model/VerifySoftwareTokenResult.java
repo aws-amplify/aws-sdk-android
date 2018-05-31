@@ -19,7 +19,9 @@ import java.io.Serializable;
 
 public class VerifySoftwareTokenResult implements Serializable {
     /**
-     * The new value for the status property for this object.
+     * <p>
+     * The status of the verify software token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUCCESS, ERROR
@@ -27,7 +29,10 @@ public class VerifySoftwareTokenResult implements Serializable {
     private String status;
 
     /**
-     * The new value for the session property for this object.
+     * <p>
+     * The session which should be passed both ways in challenge-response calls
+     * to the service.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
@@ -35,12 +40,16 @@ public class VerifySoftwareTokenResult implements Serializable {
     private String session;
 
     /**
-     * Returns the value of the status property for this object.
+     * <p>
+     * The status of the verify software token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUCCESS, ERROR
      *
-     * @return The value of the status property for this object.
+     * @return <p>
+     *         The status of the verify software token.
+     *         </p>
      * @see VerifySoftwareTokenResponseType
      */
     public String getStatus() {
@@ -48,12 +57,16 @@ public class VerifySoftwareTokenResult implements Serializable {
     }
 
     /**
-     * Sets the value of status
+     * <p>
+     * The status of the verify software token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUCCESS, ERROR
      *
-     * @param status The new value for the status property for this object.
+     * @param status <p>
+     *            The status of the verify software token.
+     *            </p>
      * @see VerifySoftwareTokenResponseType
      */
     public void setStatus(String status) {
@@ -61,7 +74,9 @@ public class VerifySoftwareTokenResult implements Serializable {
     }
 
     /**
-     * Sets the value of the status property for this object.
+     * <p>
+     * The status of the verify software token.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -69,7 +84,9 @@ public class VerifySoftwareTokenResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUCCESS, ERROR
      *
-     * @param status The new value for the status property for this object.
+     * @param status <p>
+     *            The status of the verify software token.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see VerifySoftwareTokenResponseType
@@ -80,12 +97,16 @@ public class VerifySoftwareTokenResult implements Serializable {
     }
 
     /**
-     * Sets the value of status
+     * <p>
+     * The status of the verify software token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUCCESS, ERROR
      *
-     * @param status The new value for the status property for this object.
+     * @param status <p>
+     *            The status of the verify software token.
+     *            </p>
      * @see VerifySoftwareTokenResponseType
      */
     public void setStatus(VerifySoftwareTokenResponseType status) {
@@ -93,7 +114,9 @@ public class VerifySoftwareTokenResult implements Serializable {
     }
 
     /**
-     * Sets the value of the status property for this object.
+     * <p>
+     * The status of the verify software token.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -101,7 +124,9 @@ public class VerifySoftwareTokenResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUCCESS, ERROR
      *
-     * @param status The new value for the status property for this object.
+     * @param status <p>
+     *            The status of the verify software token.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see VerifySoftwareTokenResponseType
@@ -112,31 +137,46 @@ public class VerifySoftwareTokenResult implements Serializable {
     }
 
     /**
-     * Returns the value of the session property for this object.
+     * <p>
+     * The session which should be passed both ways in challenge-response calls
+     * to the service.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @return The value of the session property for this object.
+     * @return <p>
+     *         The session which should be passed both ways in
+     *         challenge-response calls to the service.
+     *         </p>
      */
     public String getSession() {
         return session;
     }
 
     /**
-     * Sets the value of session
+     * <p>
+     * The session which should be passed both ways in challenge-response calls
+     * to the service.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @param session The new value for the session property for this object.
+     * @param session <p>
+     *            The session which should be passed both ways in
+     *            challenge-response calls to the service.
+     *            </p>
      */
     public void setSession(String session) {
         this.session = session;
     }
 
     /**
-     * Sets the value of the session property for this object.
+     * <p>
+     * The session which should be passed both ways in challenge-response calls
+     * to the service.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -144,7 +184,10 @@ public class VerifySoftwareTokenResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @param session The new value for the session property for this object.
+     * @param session <p>
+     *            The session which should be passed both ways in
+     *            challenge-response calls to the service.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

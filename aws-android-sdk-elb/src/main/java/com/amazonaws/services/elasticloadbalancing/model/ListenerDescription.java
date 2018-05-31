@@ -25,14 +25,7 @@ import java.io.Serializable;
 public class ListenerDescription implements Serializable {
     /**
      * <p>
-     * Information about a listener.
-     * </p>
-     * <p>
-     * For information about the protocols and the ports supported by Elastic
-     * Load Balancing, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html"
-     * >Listener Configurations for Elastic Load Balancing</a> in the <i>Elastic
-     * Load Balancing Developer Guide</i>.
+     * The listener.
      * </p>
      */
     private Listener listener;
@@ -46,25 +39,11 @@ public class ListenerDescription implements Serializable {
 
     /**
      * <p>
-     * Information about a listener.
-     * </p>
-     * <p>
-     * For information about the protocols and the ports supported by Elastic
-     * Load Balancing, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html"
-     * >Listener Configurations for Elastic Load Balancing</a> in the <i>Elastic
-     * Load Balancing Developer Guide</i>.
+     * The listener.
      * </p>
      *
      * @return <p>
-     *         Information about a listener.
-     *         </p>
-     *         <p>
-     *         For information about the protocols and the ports supported by
-     *         Elastic Load Balancing, see <a href=
-     *         "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html"
-     *         >Listener Configurations for Elastic Load Balancing</a> in the
-     *         <i>Elastic Load Balancing Developer Guide</i>.
+     *         The listener.
      *         </p>
      */
     public Listener getListener() {
@@ -73,25 +52,11 @@ public class ListenerDescription implements Serializable {
 
     /**
      * <p>
-     * Information about a listener.
-     * </p>
-     * <p>
-     * For information about the protocols and the ports supported by Elastic
-     * Load Balancing, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html"
-     * >Listener Configurations for Elastic Load Balancing</a> in the <i>Elastic
-     * Load Balancing Developer Guide</i>.
+     * The listener.
      * </p>
      *
      * @param listener <p>
-     *            Information about a listener.
-     *            </p>
-     *            <p>
-     *            For information about the protocols and the ports supported by
-     *            Elastic Load Balancing, see <a href=
-     *            "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html"
-     *            >Listener Configurations for Elastic Load Balancing</a> in the
-     *            <i>Elastic Load Balancing Developer Guide</i>.
+     *            The listener.
      *            </p>
      */
     public void setListener(Listener listener) {
@@ -100,28 +65,14 @@ public class ListenerDescription implements Serializable {
 
     /**
      * <p>
-     * Information about a listener.
-     * </p>
-     * <p>
-     * For information about the protocols and the ports supported by Elastic
-     * Load Balancing, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html"
-     * >Listener Configurations for Elastic Load Balancing</a> in the <i>Elastic
-     * Load Balancing Developer Guide</i>.
+     * The listener.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param listener <p>
-     *            Information about a listener.
-     *            </p>
-     *            <p>
-     *            For information about the protocols and the ports supported by
-     *            Elastic Load Balancing, see <a href=
-     *            "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html"
-     *            >Listener Configurations for Elastic Load Balancing</a> in the
-     *            <i>Elastic Load Balancing Developer Guide</i>.
+     *            The listener.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

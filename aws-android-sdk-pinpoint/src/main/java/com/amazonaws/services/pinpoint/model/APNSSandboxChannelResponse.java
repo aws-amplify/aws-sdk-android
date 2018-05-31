@@ -22,7 +22,7 @@ import java.io.Serializable;
  */
 public class APNSSandboxChannelResponse implements Serializable {
     /**
-     * Application id
+     * The ID of the application to which the channel applies.
      */
     private String applicationId;
 
@@ -32,9 +32,29 @@ public class APNSSandboxChannelResponse implements Serializable {
     private String creationDate;
 
     /**
+     * The default authentication method used for APNs.
+     */
+    private String defaultAuthenticationMethod;
+
+    /**
      * If the channel is enabled for sending messages.
      */
     private Boolean enabled;
+
+    /**
+     * Indicates whether the channel is configured with APNs credentials. Amazon
+     * Pinpoint uses your credentials to authenticate push notifications with
+     * APNs. To use APNs token authentication, set the BundleId, TeamId,
+     * TokenKey, and TokenKeyId attributes. To use certificate authentication,
+     * set the Certificate and PrivateKey attributes.
+     */
+    private Boolean hasCredential;
+
+    /**
+     * Indicates whether the channel is configured with a key for APNs token
+     * authentication. Provide a token key by setting the TokenKey attribute.
+     */
+    private Boolean hasTokenKey;
 
     /**
      * Channel ID. Not used, only for backwards compatibility.
@@ -67,30 +87,32 @@ public class APNSSandboxChannelResponse implements Serializable {
     private Integer version;
 
     /**
-     * Application id
+     * The ID of the application to which the channel applies.
      *
-     * @return Application id
+     * @return The ID of the application to which the channel applies.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * Application id
+     * The ID of the application to which the channel applies.
      *
-     * @param applicationId Application id
+     * @param applicationId The ID of the application to which the channel
+     *            applies.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * Application id
+     * The ID of the application to which the channel applies.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId Application id
+     * @param applicationId The ID of the application to which the channel
+     *            applies.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -133,6 +155,42 @@ public class APNSSandboxChannelResponse implements Serializable {
     }
 
     /**
+     * The default authentication method used for APNs.
+     *
+     * @return The default authentication method used for APNs.
+     */
+    public String getDefaultAuthenticationMethod() {
+        return defaultAuthenticationMethod;
+    }
+
+    /**
+     * The default authentication method used for APNs.
+     *
+     * @param defaultAuthenticationMethod The default authentication method used
+     *            for APNs.
+     */
+    public void setDefaultAuthenticationMethod(String defaultAuthenticationMethod) {
+        this.defaultAuthenticationMethod = defaultAuthenticationMethod;
+    }
+
+    /**
+     * The default authentication method used for APNs.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param defaultAuthenticationMethod The default authentication method used
+     *            for APNs.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public APNSSandboxChannelResponse withDefaultAuthenticationMethod(
+            String defaultAuthenticationMethod) {
+        this.defaultAuthenticationMethod = defaultAuthenticationMethod;
+        return this;
+    }
+
+    /**
      * If the channel is enabled for sending messages.
      *
      * @return If the channel is enabled for sending messages.
@@ -171,6 +229,138 @@ public class APNSSandboxChannelResponse implements Serializable {
      */
     public APNSSandboxChannelResponse withEnabled(Boolean enabled) {
         this.enabled = enabled;
+        return this;
+    }
+
+    /**
+     * Indicates whether the channel is configured with APNs credentials. Amazon
+     * Pinpoint uses your credentials to authenticate push notifications with
+     * APNs. To use APNs token authentication, set the BundleId, TeamId,
+     * TokenKey, and TokenKeyId attributes. To use certificate authentication,
+     * set the Certificate and PrivateKey attributes.
+     *
+     * @return Indicates whether the channel is configured with APNs
+     *         credentials. Amazon Pinpoint uses your credentials to
+     *         authenticate push notifications with APNs. To use APNs token
+     *         authentication, set the BundleId, TeamId, TokenKey, and
+     *         TokenKeyId attributes. To use certificate authentication, set the
+     *         Certificate and PrivateKey attributes.
+     */
+    public Boolean isHasCredential() {
+        return hasCredential;
+    }
+
+    /**
+     * Indicates whether the channel is configured with APNs credentials. Amazon
+     * Pinpoint uses your credentials to authenticate push notifications with
+     * APNs. To use APNs token authentication, set the BundleId, TeamId,
+     * TokenKey, and TokenKeyId attributes. To use certificate authentication,
+     * set the Certificate and PrivateKey attributes.
+     *
+     * @return Indicates whether the channel is configured with APNs
+     *         credentials. Amazon Pinpoint uses your credentials to
+     *         authenticate push notifications with APNs. To use APNs token
+     *         authentication, set the BundleId, TeamId, TokenKey, and
+     *         TokenKeyId attributes. To use certificate authentication, set the
+     *         Certificate and PrivateKey attributes.
+     */
+    public Boolean getHasCredential() {
+        return hasCredential;
+    }
+
+    /**
+     * Indicates whether the channel is configured with APNs credentials. Amazon
+     * Pinpoint uses your credentials to authenticate push notifications with
+     * APNs. To use APNs token authentication, set the BundleId, TeamId,
+     * TokenKey, and TokenKeyId attributes. To use certificate authentication,
+     * set the Certificate and PrivateKey attributes.
+     *
+     * @param hasCredential Indicates whether the channel is configured with
+     *            APNs credentials. Amazon Pinpoint uses your credentials to
+     *            authenticate push notifications with APNs. To use APNs token
+     *            authentication, set the BundleId, TeamId, TokenKey, and
+     *            TokenKeyId attributes. To use certificate authentication, set
+     *            the Certificate and PrivateKey attributes.
+     */
+    public void setHasCredential(Boolean hasCredential) {
+        this.hasCredential = hasCredential;
+    }
+
+    /**
+     * Indicates whether the channel is configured with APNs credentials. Amazon
+     * Pinpoint uses your credentials to authenticate push notifications with
+     * APNs. To use APNs token authentication, set the BundleId, TeamId,
+     * TokenKey, and TokenKeyId attributes. To use certificate authentication,
+     * set the Certificate and PrivateKey attributes.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param hasCredential Indicates whether the channel is configured with
+     *            APNs credentials. Amazon Pinpoint uses your credentials to
+     *            authenticate push notifications with APNs. To use APNs token
+     *            authentication, set the BundleId, TeamId, TokenKey, and
+     *            TokenKeyId attributes. To use certificate authentication, set
+     *            the Certificate and PrivateKey attributes.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public APNSSandboxChannelResponse withHasCredential(Boolean hasCredential) {
+        this.hasCredential = hasCredential;
+        return this;
+    }
+
+    /**
+     * Indicates whether the channel is configured with a key for APNs token
+     * authentication. Provide a token key by setting the TokenKey attribute.
+     *
+     * @return Indicates whether the channel is configured with a key for APNs
+     *         token authentication. Provide a token key by setting the TokenKey
+     *         attribute.
+     */
+    public Boolean isHasTokenKey() {
+        return hasTokenKey;
+    }
+
+    /**
+     * Indicates whether the channel is configured with a key for APNs token
+     * authentication. Provide a token key by setting the TokenKey attribute.
+     *
+     * @return Indicates whether the channel is configured with a key for APNs
+     *         token authentication. Provide a token key by setting the TokenKey
+     *         attribute.
+     */
+    public Boolean getHasTokenKey() {
+        return hasTokenKey;
+    }
+
+    /**
+     * Indicates whether the channel is configured with a key for APNs token
+     * authentication. Provide a token key by setting the TokenKey attribute.
+     *
+     * @param hasTokenKey Indicates whether the channel is configured with a key
+     *            for APNs token authentication. Provide a token key by setting
+     *            the TokenKey attribute.
+     */
+    public void setHasTokenKey(Boolean hasTokenKey) {
+        this.hasTokenKey = hasTokenKey;
+    }
+
+    /**
+     * Indicates whether the channel is configured with a key for APNs token
+     * authentication. Provide a token key by setting the TokenKey attribute.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param hasTokenKey Indicates whether the channel is configured with a key
+     *            for APNs token authentication. Provide a token key by setting
+     *            the TokenKey attribute.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public APNSSandboxChannelResponse withHasTokenKey(Boolean hasTokenKey) {
+        this.hasTokenKey = hasTokenKey;
         return this;
     }
 
@@ -396,8 +586,14 @@ public class APNSSandboxChannelResponse implements Serializable {
             sb.append("ApplicationId: " + getApplicationId() + ",");
         if (getCreationDate() != null)
             sb.append("CreationDate: " + getCreationDate() + ",");
+        if (getDefaultAuthenticationMethod() != null)
+            sb.append("DefaultAuthenticationMethod: " + getDefaultAuthenticationMethod() + ",");
         if (getEnabled() != null)
             sb.append("Enabled: " + getEnabled() + ",");
+        if (getHasCredential() != null)
+            sb.append("HasCredential: " + getHasCredential() + ",");
+        if (getHasTokenKey() != null)
+            sb.append("HasTokenKey: " + getHasTokenKey() + ",");
         if (getId() != null)
             sb.append("Id: " + getId() + ",");
         if (getIsArchived() != null)
@@ -423,7 +619,15 @@ public class APNSSandboxChannelResponse implements Serializable {
                 + ((getApplicationId() == null) ? 0 : getApplicationId().hashCode());
         hashCode = prime * hashCode
                 + ((getCreationDate() == null) ? 0 : getCreationDate().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getDefaultAuthenticationMethod() == null) ? 0
+                        : getDefaultAuthenticationMethod().hashCode());
         hashCode = prime * hashCode + ((getEnabled() == null) ? 0 : getEnabled().hashCode());
+        hashCode = prime * hashCode
+                + ((getHasCredential() == null) ? 0 : getHasCredential().hashCode());
+        hashCode = prime * hashCode
+                + ((getHasTokenKey() == null) ? 0 : getHasTokenKey().hashCode());
         hashCode = prime * hashCode + ((getId() == null) ? 0 : getId().hashCode());
         hashCode = prime * hashCode + ((getIsArchived() == null) ? 0 : getIsArchived().hashCode());
         hashCode = prime * hashCode
@@ -456,9 +660,26 @@ public class APNSSandboxChannelResponse implements Serializable {
         if (other.getCreationDate() != null
                 && other.getCreationDate().equals(this.getCreationDate()) == false)
             return false;
+        if (other.getDefaultAuthenticationMethod() == null
+                ^ this.getDefaultAuthenticationMethod() == null)
+            return false;
+        if (other.getDefaultAuthenticationMethod() != null
+                && other.getDefaultAuthenticationMethod().equals(
+                        this.getDefaultAuthenticationMethod()) == false)
+            return false;
         if (other.getEnabled() == null ^ this.getEnabled() == null)
             return false;
         if (other.getEnabled() != null && other.getEnabled().equals(this.getEnabled()) == false)
+            return false;
+        if (other.getHasCredential() == null ^ this.getHasCredential() == null)
+            return false;
+        if (other.getHasCredential() != null
+                && other.getHasCredential().equals(this.getHasCredential()) == false)
+            return false;
+        if (other.getHasTokenKey() == null ^ this.getHasTokenKey() == null)
+            return false;
+        if (other.getHasTokenKey() != null
+                && other.getHasTokenKey().equals(this.getHasTokenKey()) == false)
             return false;
         if (other.getId() == null ^ this.getId() == null)
             return false;

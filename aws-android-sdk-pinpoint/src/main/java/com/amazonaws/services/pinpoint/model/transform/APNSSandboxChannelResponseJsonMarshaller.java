@@ -36,10 +36,26 @@ class APNSSandboxChannelResponseJsonMarshaller {
             jsonWriter.name("CreationDate");
             jsonWriter.value(creationDate);
         }
+        if (aPNSSandboxChannelResponse.getDefaultAuthenticationMethod() != null) {
+            String defaultAuthenticationMethod = aPNSSandboxChannelResponse
+                    .getDefaultAuthenticationMethod();
+            jsonWriter.name("DefaultAuthenticationMethod");
+            jsonWriter.value(defaultAuthenticationMethod);
+        }
         if (aPNSSandboxChannelResponse.getEnabled() != null) {
             Boolean enabled = aPNSSandboxChannelResponse.getEnabled();
             jsonWriter.name("Enabled");
             jsonWriter.value(enabled);
+        }
+        if (aPNSSandboxChannelResponse.getHasCredential() != null) {
+            Boolean hasCredential = aPNSSandboxChannelResponse.getHasCredential();
+            jsonWriter.name("HasCredential");
+            jsonWriter.value(hasCredential);
+        }
+        if (aPNSSandboxChannelResponse.getHasTokenKey() != null) {
+            Boolean hasTokenKey = aPNSSandboxChannelResponse.getHasTokenKey();
+            jsonWriter.name("HasTokenKey");
+            jsonWriter.value(hasTokenKey);
         }
         if (aPNSSandboxChannelResponse.getId() != null) {
             String id = aPNSSandboxChannelResponse.getId();

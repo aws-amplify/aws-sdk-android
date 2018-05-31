@@ -43,6 +43,13 @@ public class CreateThingResult implements Serializable {
 
     /**
      * <p>
+     * The thing ID.
+     * </p>
+     */
+    private String thingId;
+
+    /**
+     * <p>
      * The name of the new thing.
      * </p>
      * <p>
@@ -144,6 +151,51 @@ public class CreateThingResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The thing ID.
+     * </p>
+     *
+     * @return <p>
+     *         The thing ID.
+     *         </p>
+     */
+    public String getThingId() {
+        return thingId;
+    }
+
+    /**
+     * <p>
+     * The thing ID.
+     * </p>
+     *
+     * @param thingId <p>
+     *            The thing ID.
+     *            </p>
+     */
+    public void setThingId(String thingId) {
+        this.thingId = thingId;
+    }
+
+    /**
+     * <p>
+     * The thing ID.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param thingId <p>
+     *            The thing ID.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateThingResult withThingId(String thingId) {
+        this.thingId = thingId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -157,7 +209,9 @@ public class CreateThingResult implements Serializable {
         if (getThingName() != null)
             sb.append("thingName: " + getThingName() + ",");
         if (getThingArn() != null)
-            sb.append("thingArn: " + getThingArn());
+            sb.append("thingArn: " + getThingArn() + ",");
+        if (getThingId() != null)
+            sb.append("thingId: " + getThingId());
         sb.append("}");
         return sb.toString();
     }
@@ -169,6 +223,7 @@ public class CreateThingResult implements Serializable {
 
         hashCode = prime * hashCode + ((getThingName() == null) ? 0 : getThingName().hashCode());
         hashCode = prime * hashCode + ((getThingArn() == null) ? 0 : getThingArn().hashCode());
+        hashCode = prime * hashCode + ((getThingId() == null) ? 0 : getThingId().hashCode());
         return hashCode;
     }
 
@@ -191,6 +246,10 @@ public class CreateThingResult implements Serializable {
         if (other.getThingArn() == null ^ this.getThingArn() == null)
             return false;
         if (other.getThingArn() != null && other.getThingArn().equals(this.getThingArn()) == false)
+            return false;
+        if (other.getThingId() == null ^ this.getThingId() == null)
+            return false;
+        if (other.getThingId() != null && other.getThingId().equals(this.getThingId()) == false)
             return false;
         return true;
     }

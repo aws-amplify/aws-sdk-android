@@ -90,18 +90,18 @@ public class RespondToAuthChallengeRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
-            if (respondToAuthChallengeRequest.getUserContextData() != null) {
-                UserContextDataType userContextData = respondToAuthChallengeRequest
-                        .getUserContextData();
-                jsonWriter.name("UserContextData");
-                UserContextDataTypeJsonMarshaller.getInstance().marshall(userContextData,
-                        jsonWriter);
-            }
             if (respondToAuthChallengeRequest.getAnalyticsMetadata() != null) {
                 AnalyticsMetadataType analyticsMetadata = respondToAuthChallengeRequest
                         .getAnalyticsMetadata();
                 jsonWriter.name("AnalyticsMetadata");
                 AnalyticsMetadataTypeJsonMarshaller.getInstance().marshall(analyticsMetadata,
+                        jsonWriter);
+            }
+            if (respondToAuthChallengeRequest.getUserContextData() != null) {
+                UserContextDataType userContextData = respondToAuthChallengeRequest
+                        .getUserContextData();
+                jsonWriter.name("UserContextData");
+                UserContextDataTypeJsonMarshaller.getInstance().marshall(userContextData,
                         jsonWriter);
             }
 

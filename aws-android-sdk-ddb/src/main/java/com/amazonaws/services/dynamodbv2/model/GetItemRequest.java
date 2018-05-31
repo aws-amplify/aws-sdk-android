@@ -21,15 +21,17 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * The <i>GetItem</i> operation returns a set of attributes for the item with
- * the given primary key. If there is no matching item, <i>GetItem</i> does not
- * return any data.
+ * The <code>GetItem</code> operation returns a set of attributes for the item
+ * with the given primary key. If there is no matching item,
+ * <code>GetItem</code> does not return any data and there will be no
+ * <code>Item</code> element in the response.
  * </p>
  * <p>
- * <i>GetItem</i> provides an eventually consistent read by default. If your
- * application requires a strongly consistent read, set <i>ConsistentRead</i> to
- * <code>true</code>. Although a strongly consistent read might take more time
- * than an eventually consistent read, it always returns the last updated value.
+ * <code>GetItem</code> provides an eventually consistent read by default. If
+ * your application requires a strongly consistent read, set
+ * <code>ConsistentRead</code> to <code>true</code>. Although a strongly
+ * consistent read might take more time than an eventually consistent read, it
+ * always returns the last updated value.
  * </p>
  */
 public class GetItemRequest extends AmazonWebServiceRequest implements Serializable {
@@ -46,8 +48,8 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * A map of attribute names to <i>AttributeValue</i> objects, representing
-     * the primary key of the item to retrieve.
+     * A map of attribute names to <code>AttributeValue</code> objects,
+     * representing the primary key of the item to retrieve.
      * </p>
      * <p>
      * For the primary key, you must provide all of the attributes. For example,
@@ -59,27 +61,11 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     private java.util.Map<String, AttributeValue> key;
 
     /**
-     * <important>
      * <p>
-     * This is a legacy parameter, for backward compatibility. New applications
-     * should use <i>ProjectionExpression</i> instead. Do not combine legacy
-     * parameters and expression parameters in a single API call; otherwise,
-     * DynamoDB will return a <i>ValidationException</i> exception.
-     * </p>
-     * <p>
-     * This parameter allows you to retrieve attributes of type List or Map;
-     * however, it cannot retrieve individual elements within a List or a Map.
-     * </p>
-     * </important>
-     * <p>
-     * The names of one or more attributes to retrieve. If no attribute names
-     * are provided, then all attributes will be returned. If any of the
-     * requested attributes are not found, they will not appear in the result.
-     * </p>
-     * <p>
-     * Note that <i>AttributesToGet</i> has no effect on provisioned throughput
-     * consumption. DynamoDB determines capacity units consumed based on item
-     * size, not on the amount of data that is returned to an application.
+     * This is a legacy parameter. Use <code>ProjectionExpression</code>
+     * instead. For more information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html"
+     * >AttributesToGet</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * </p>
      */
     private java.util.List<String> attributesToGet;
@@ -101,28 +87,28 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * <ul>
      * <li>
      * <p>
-     * <i>INDEXES</i> - The response includes the aggregate
-     * <i>ConsumedCapacity</i> for the operation, together with
-     * <i>ConsumedCapacity</i> for each table and secondary index that was
+     * <code>INDEXES</code> - The response includes the aggregate
+     * <code>ConsumedCapacity</code> for the operation, together with
+     * <code>ConsumedCapacity</code> for each table and secondary index that was
      * accessed.
      * </p>
      * <p>
-     * Note that some operations, such as <i>GetItem</i> and
-     * <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
-     * specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
-     * information for table(s).
+     * Note that some operations, such as <code>GetItem</code> and
+     * <code>BatchGetItem</code>, do not access any indexes at all. In these
+     * cases, specifying <code>INDEXES</code> will only return
+     * <code>ConsumedCapacity</code> information for table(s).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>TOTAL</i> - The response includes only the aggregate
-     * <i>ConsumedCapacity</i> for the operation.
+     * <code>TOTAL</code> - The response includes only the aggregate
+     * <code>ConsumedCapacity</code> for the operation.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>NONE</i> - No <i>ConsumedCapacity</i> details are included in the
-     * response.
+     * <code>NONE</code> - No <code>ConsumedCapacity</code> details are included
+     * in the response.
      * </p>
      * </li>
      * </ul>
@@ -149,19 +135,14 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * >Accessing Item Attributes</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
      * </p>
-     * <note>
-     * <p>
-     * <i>ProjectionExpression</i> replaces the legacy <i>AttributesToGet</i>
-     * parameter.
-     * </p>
-     * </note>
      */
     private String projectionExpression;
 
     /**
      * <p>
      * One or more substitution tokens for attribute names in an expression. The
-     * following are some use cases for using <i>ExpressionAttributeNames</i>:
+     * following are some use cases for using
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>
@@ -201,7 +182,7 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html"
      * >Reserved Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To
      * work around this, you could specify the following for
-     * <i>ExpressionAttributeNames</i>:
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>
@@ -253,8 +234,8 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      *            The name of the table containing the requested item.
      *            </p>
      * @param key <p>
-     *            A map of attribute names to <i>AttributeValue</i> objects,
-     *            representing the primary key of the item to retrieve.
+     *            A map of attribute names to <code>AttributeValue</code>
+     *            objects, representing the primary key of the item to retrieve.
      *            </p>
      *            <p>
      *            For the primary key, you must provide all of the attributes.
@@ -278,8 +259,8 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      *            The name of the table containing the requested item.
      *            </p>
      * @param key <p>
-     *            A map of attribute names to <i>AttributeValue</i> objects,
-     *            representing the primary key of the item to retrieve.
+     *            A map of attribute names to <code>AttributeValue</code>
+     *            objects, representing the primary key of the item to retrieve.
      *            </p>
      *            <p>
      *            For the primary key, you must provide all of the attributes.
@@ -361,8 +342,8 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * A map of attribute names to <i>AttributeValue</i> objects, representing
-     * the primary key of the item to retrieve.
+     * A map of attribute names to <code>AttributeValue</code> objects,
+     * representing the primary key of the item to retrieve.
      * </p>
      * <p>
      * For the primary key, you must provide all of the attributes. For example,
@@ -372,7 +353,7 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * </p>
      *
      * @return <p>
-     *         A map of attribute names to <i>AttributeValue</i> objects,
+     *         A map of attribute names to <code>AttributeValue</code> objects,
      *         representing the primary key of the item to retrieve.
      *         </p>
      *         <p>
@@ -388,8 +369,8 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * A map of attribute names to <i>AttributeValue</i> objects, representing
-     * the primary key of the item to retrieve.
+     * A map of attribute names to <code>AttributeValue</code> objects,
+     * representing the primary key of the item to retrieve.
      * </p>
      * <p>
      * For the primary key, you must provide all of the attributes. For example,
@@ -399,8 +380,8 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * </p>
      *
      * @param key <p>
-     *            A map of attribute names to <i>AttributeValue</i> objects,
-     *            representing the primary key of the item to retrieve.
+     *            A map of attribute names to <code>AttributeValue</code>
+     *            objects, representing the primary key of the item to retrieve.
      *            </p>
      *            <p>
      *            For the primary key, you must provide all of the attributes.
@@ -416,8 +397,8 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * A map of attribute names to <i>AttributeValue</i> objects, representing
-     * the primary key of the item to retrieve.
+     * A map of attribute names to <code>AttributeValue</code> objects,
+     * representing the primary key of the item to retrieve.
      * </p>
      * <p>
      * For the primary key, you must provide all of the attributes. For example,
@@ -430,8 +411,8 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * together.
      *
      * @param key <p>
-     *            A map of attribute names to <i>AttributeValue</i> objects,
-     *            representing the primary key of the item to retrieve.
+     *            A map of attribute names to <code>AttributeValue</code>
+     *            objects, representing the primary key of the item to retrieve.
      *            </p>
      *            <p>
      *            For the primary key, you must provide all of the attributes.
@@ -450,8 +431,8 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * A map of attribute names to <i>AttributeValue</i> objects, representing
-     * the primary key of the item to retrieve.
+     * A map of attribute names to <code>AttributeValue</code> objects,
+     * representing the primary key of the item to retrieve.
      * </p>
      * <p>
      * For the primary key, you must provide all of the attributes. For example,
@@ -491,54 +472,19 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
-     * <important>
      * <p>
-     * This is a legacy parameter, for backward compatibility. New applications
-     * should use <i>ProjectionExpression</i> instead. Do not combine legacy
-     * parameters and expression parameters in a single API call; otherwise,
-     * DynamoDB will return a <i>ValidationException</i> exception.
-     * </p>
-     * <p>
-     * This parameter allows you to retrieve attributes of type List or Map;
-     * however, it cannot retrieve individual elements within a List or a Map.
-     * </p>
-     * </important>
-     * <p>
-     * The names of one or more attributes to retrieve. If no attribute names
-     * are provided, then all attributes will be returned. If any of the
-     * requested attributes are not found, they will not appear in the result.
-     * </p>
-     * <p>
-     * Note that <i>AttributesToGet</i> has no effect on provisioned throughput
-     * consumption. DynamoDB determines capacity units consumed based on item
-     * size, not on the amount of data that is returned to an application.
+     * This is a legacy parameter. Use <code>ProjectionExpression</code>
+     * instead. For more information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html"
+     * >AttributesToGet</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * </p>
      *
-     * @return <important>
-     *         <p>
-     *         This is a legacy parameter, for backward compatibility. New
-     *         applications should use <i>ProjectionExpression</i> instead. Do
-     *         not combine legacy parameters and expression parameters in a
-     *         single API call; otherwise, DynamoDB will return a
-     *         <i>ValidationException</i> exception.
-     *         </p>
-     *         <p>
-     *         This parameter allows you to retrieve attributes of type List or
-     *         Map; however, it cannot retrieve individual elements within a
-     *         List or a Map.
-     *         </p>
-     *         </important>
-     *         <p>
-     *         The names of one or more attributes to retrieve. If no attribute
-     *         names are provided, then all attributes will be returned. If any
-     *         of the requested attributes are not found, they will not appear
-     *         in the result.
-     *         </p>
-     *         <p>
-     *         Note that <i>AttributesToGet</i> has no effect on provisioned
-     *         throughput consumption. DynamoDB determines capacity units
-     *         consumed based on item size, not on the amount of data that is
-     *         returned to an application.
+     * @return <p>
+     *         This is a legacy parameter. Use <code>ProjectionExpression</code>
+     *         instead. For more information, see <a href=
+     *         "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html"
+     *         >AttributesToGet</a> in the <i>Amazon DynamoDB Developer
+     *         Guide</i>.
      *         </p>
      */
     public java.util.List<String> getAttributesToGet() {
@@ -546,54 +492,20 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
-     * <important>
      * <p>
-     * This is a legacy parameter, for backward compatibility. New applications
-     * should use <i>ProjectionExpression</i> instead. Do not combine legacy
-     * parameters and expression parameters in a single API call; otherwise,
-     * DynamoDB will return a <i>ValidationException</i> exception.
-     * </p>
-     * <p>
-     * This parameter allows you to retrieve attributes of type List or Map;
-     * however, it cannot retrieve individual elements within a List or a Map.
-     * </p>
-     * </important>
-     * <p>
-     * The names of one or more attributes to retrieve. If no attribute names
-     * are provided, then all attributes will be returned. If any of the
-     * requested attributes are not found, they will not appear in the result.
-     * </p>
-     * <p>
-     * Note that <i>AttributesToGet</i> has no effect on provisioned throughput
-     * consumption. DynamoDB determines capacity units consumed based on item
-     * size, not on the amount of data that is returned to an application.
+     * This is a legacy parameter. Use <code>ProjectionExpression</code>
+     * instead. For more information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html"
+     * >AttributesToGet</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * </p>
      *
-     * @param attributesToGet <important>
-     *            <p>
-     *            This is a legacy parameter, for backward compatibility. New
-     *            applications should use <i>ProjectionExpression</i> instead.
-     *            Do not combine legacy parameters and expression parameters in
-     *            a single API call; otherwise, DynamoDB will return a
-     *            <i>ValidationException</i> exception.
-     *            </p>
-     *            <p>
-     *            This parameter allows you to retrieve attributes of type List
-     *            or Map; however, it cannot retrieve individual elements within
-     *            a List or a Map.
-     *            </p>
-     *            </important>
-     *            <p>
-     *            The names of one or more attributes to retrieve. If no
-     *            attribute names are provided, then all attributes will be
-     *            returned. If any of the requested attributes are not found,
-     *            they will not appear in the result.
-     *            </p>
-     *            <p>
-     *            Note that <i>AttributesToGet</i> has no effect on provisioned
-     *            throughput consumption. DynamoDB determines capacity units
-     *            consumed based on item size, not on the amount of data that is
-     *            returned to an application.
+     * @param attributesToGet <p>
+     *            This is a legacy parameter. Use
+     *            <code>ProjectionExpression</code> instead. For more
+     *            information, see <a href=
+     *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html"
+     *            >AttributesToGet</a> in the <i>Amazon DynamoDB Developer
+     *            Guide</i>.
      *            </p>
      */
     public void setAttributesToGet(java.util.Collection<String> attributesToGet) {
@@ -606,57 +518,23 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
-     * <important>
      * <p>
-     * This is a legacy parameter, for backward compatibility. New applications
-     * should use <i>ProjectionExpression</i> instead. Do not combine legacy
-     * parameters and expression parameters in a single API call; otherwise,
-     * DynamoDB will return a <i>ValidationException</i> exception.
-     * </p>
-     * <p>
-     * This parameter allows you to retrieve attributes of type List or Map;
-     * however, it cannot retrieve individual elements within a List or a Map.
-     * </p>
-     * </important>
-     * <p>
-     * The names of one or more attributes to retrieve. If no attribute names
-     * are provided, then all attributes will be returned. If any of the
-     * requested attributes are not found, they will not appear in the result.
-     * </p>
-     * <p>
-     * Note that <i>AttributesToGet</i> has no effect on provisioned throughput
-     * consumption. DynamoDB determines capacity units consumed based on item
-     * size, not on the amount of data that is returned to an application.
+     * This is a legacy parameter. Use <code>ProjectionExpression</code>
+     * instead. For more information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html"
+     * >AttributesToGet</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param attributesToGet <important>
-     *            <p>
-     *            This is a legacy parameter, for backward compatibility. New
-     *            applications should use <i>ProjectionExpression</i> instead.
-     *            Do not combine legacy parameters and expression parameters in
-     *            a single API call; otherwise, DynamoDB will return a
-     *            <i>ValidationException</i> exception.
-     *            </p>
-     *            <p>
-     *            This parameter allows you to retrieve attributes of type List
-     *            or Map; however, it cannot retrieve individual elements within
-     *            a List or a Map.
-     *            </p>
-     *            </important>
-     *            <p>
-     *            The names of one or more attributes to retrieve. If no
-     *            attribute names are provided, then all attributes will be
-     *            returned. If any of the requested attributes are not found,
-     *            they will not appear in the result.
-     *            </p>
-     *            <p>
-     *            Note that <i>AttributesToGet</i> has no effect on provisioned
-     *            throughput consumption. DynamoDB determines capacity units
-     *            consumed based on item size, not on the amount of data that is
-     *            returned to an application.
+     * @param attributesToGet <p>
+     *            This is a legacy parameter. Use
+     *            <code>ProjectionExpression</code> instead. For more
+     *            information, see <a href=
+     *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html"
+     *            >AttributesToGet</a> in the <i>Amazon DynamoDB Developer
+     *            Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -672,57 +550,23 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
-     * <important>
      * <p>
-     * This is a legacy parameter, for backward compatibility. New applications
-     * should use <i>ProjectionExpression</i> instead. Do not combine legacy
-     * parameters and expression parameters in a single API call; otherwise,
-     * DynamoDB will return a <i>ValidationException</i> exception.
-     * </p>
-     * <p>
-     * This parameter allows you to retrieve attributes of type List or Map;
-     * however, it cannot retrieve individual elements within a List or a Map.
-     * </p>
-     * </important>
-     * <p>
-     * The names of one or more attributes to retrieve. If no attribute names
-     * are provided, then all attributes will be returned. If any of the
-     * requested attributes are not found, they will not appear in the result.
-     * </p>
-     * <p>
-     * Note that <i>AttributesToGet</i> has no effect on provisioned throughput
-     * consumption. DynamoDB determines capacity units consumed based on item
-     * size, not on the amount of data that is returned to an application.
+     * This is a legacy parameter. Use <code>ProjectionExpression</code>
+     * instead. For more information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html"
+     * >AttributesToGet</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param attributesToGet <important>
-     *            <p>
-     *            This is a legacy parameter, for backward compatibility. New
-     *            applications should use <i>ProjectionExpression</i> instead.
-     *            Do not combine legacy parameters and expression parameters in
-     *            a single API call; otherwise, DynamoDB will return a
-     *            <i>ValidationException</i> exception.
-     *            </p>
-     *            <p>
-     *            This parameter allows you to retrieve attributes of type List
-     *            or Map; however, it cannot retrieve individual elements within
-     *            a List or a Map.
-     *            </p>
-     *            </important>
-     *            <p>
-     *            The names of one or more attributes to retrieve. If no
-     *            attribute names are provided, then all attributes will be
-     *            returned. If any of the requested attributes are not found,
-     *            they will not appear in the result.
-     *            </p>
-     *            <p>
-     *            Note that <i>AttributesToGet</i> has no effect on provisioned
-     *            throughput consumption. DynamoDB determines capacity units
-     *            consumed based on item size, not on the amount of data that is
-     *            returned to an application.
+     * @param attributesToGet <p>
+     *            This is a legacy parameter. Use
+     *            <code>ProjectionExpression</code> instead. For more
+     *            information, see <a href=
+     *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html"
+     *            >AttributesToGet</a> in the <i>Amazon DynamoDB Developer
+     *            Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -816,28 +660,28 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * <ul>
      * <li>
      * <p>
-     * <i>INDEXES</i> - The response includes the aggregate
-     * <i>ConsumedCapacity</i> for the operation, together with
-     * <i>ConsumedCapacity</i> for each table and secondary index that was
+     * <code>INDEXES</code> - The response includes the aggregate
+     * <code>ConsumedCapacity</code> for the operation, together with
+     * <code>ConsumedCapacity</code> for each table and secondary index that was
      * accessed.
      * </p>
      * <p>
-     * Note that some operations, such as <i>GetItem</i> and
-     * <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
-     * specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
-     * information for table(s).
+     * Note that some operations, such as <code>GetItem</code> and
+     * <code>BatchGetItem</code>, do not access any indexes at all. In these
+     * cases, specifying <code>INDEXES</code> will only return
+     * <code>ConsumedCapacity</code> information for table(s).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>TOTAL</i> - The response includes only the aggregate
-     * <i>ConsumedCapacity</i> for the operation.
+     * <code>TOTAL</code> - The response includes only the aggregate
+     * <code>ConsumedCapacity</code> for the operation.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>NONE</i> - No <i>ConsumedCapacity</i> details are included in the
-     * response.
+     * <code>NONE</code> - No <code>ConsumedCapacity</code> details are included
+     * in the response.
      * </p>
      * </li>
      * </ul>
@@ -852,28 +696,28 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      *         <ul>
      *         <li>
      *         <p>
-     *         <i>INDEXES</i> - The response includes the aggregate
-     *         <i>ConsumedCapacity</i> for the operation, together with
-     *         <i>ConsumedCapacity</i> for each table and secondary index that
-     *         was accessed.
+     *         <code>INDEXES</code> - The response includes the aggregate
+     *         <code>ConsumedCapacity</code> for the operation, together with
+     *         <code>ConsumedCapacity</code> for each table and secondary index
+     *         that was accessed.
      *         </p>
      *         <p>
-     *         Note that some operations, such as <i>GetItem</i> and
-     *         <i>BatchGetItem</i>, do not access any indexes at all. In these
-     *         cases, specifying <i>INDEXES</i> will only return
-     *         <i>ConsumedCapacity</i> information for table(s).
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         <i>TOTAL</i> - The response includes only the aggregate
-     *         <i>ConsumedCapacity</i> for the operation.
+     *         Note that some operations, such as <code>GetItem</code> and
+     *         <code>BatchGetItem</code>, do not access any indexes at all. In
+     *         these cases, specifying <code>INDEXES</code> will only return
+     *         <code>ConsumedCapacity</code> information for table(s).
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <i>NONE</i> - No <i>ConsumedCapacity</i> details are included in
-     *         the response.
+     *         <code>TOTAL</code> - The response includes only the aggregate
+     *         <code>ConsumedCapacity</code> for the operation.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>NONE</code> - No <code>ConsumedCapacity</code> details are
+     *         included in the response.
      *         </p>
      *         </li>
      *         </ul>
@@ -891,28 +735,28 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * <ul>
      * <li>
      * <p>
-     * <i>INDEXES</i> - The response includes the aggregate
-     * <i>ConsumedCapacity</i> for the operation, together with
-     * <i>ConsumedCapacity</i> for each table and secondary index that was
+     * <code>INDEXES</code> - The response includes the aggregate
+     * <code>ConsumedCapacity</code> for the operation, together with
+     * <code>ConsumedCapacity</code> for each table and secondary index that was
      * accessed.
      * </p>
      * <p>
-     * Note that some operations, such as <i>GetItem</i> and
-     * <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
-     * specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
-     * information for table(s).
+     * Note that some operations, such as <code>GetItem</code> and
+     * <code>BatchGetItem</code>, do not access any indexes at all. In these
+     * cases, specifying <code>INDEXES</code> will only return
+     * <code>ConsumedCapacity</code> information for table(s).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>TOTAL</i> - The response includes only the aggregate
-     * <i>ConsumedCapacity</i> for the operation.
+     * <code>TOTAL</code> - The response includes only the aggregate
+     * <code>ConsumedCapacity</code> for the operation.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>NONE</i> - No <i>ConsumedCapacity</i> details are included in the
-     * response.
+     * <code>NONE</code> - No <code>ConsumedCapacity</code> details are included
+     * in the response.
      * </p>
      * </li>
      * </ul>
@@ -927,28 +771,28 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>INDEXES</i> - The response includes the aggregate
-     *            <i>ConsumedCapacity</i> for the operation, together with
-     *            <i>ConsumedCapacity</i> for each table and secondary index
-     *            that was accessed.
+     *            <code>INDEXES</code> - The response includes the aggregate
+     *            <code>ConsumedCapacity</code> for the operation, together with
+     *            <code>ConsumedCapacity</code> for each table and secondary
+     *            index that was accessed.
      *            </p>
      *            <p>
-     *            Note that some operations, such as <i>GetItem</i> and
-     *            <i>BatchGetItem</i>, do not access any indexes at all. In
-     *            these cases, specifying <i>INDEXES</i> will only return
-     *            <i>ConsumedCapacity</i> information for table(s).
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <i>TOTAL</i> - The response includes only the aggregate
-     *            <i>ConsumedCapacity</i> for the operation.
+     *            Note that some operations, such as <code>GetItem</code> and
+     *            <code>BatchGetItem</code>, do not access any indexes at all.
+     *            In these cases, specifying <code>INDEXES</code> will only
+     *            return <code>ConsumedCapacity</code> information for table(s).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>NONE</i> - No <i>ConsumedCapacity</i> details are included
-     *            in the response.
+     *            <code>TOTAL</code> - The response includes only the aggregate
+     *            <code>ConsumedCapacity</code> for the operation.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>NONE</code> - No <code>ConsumedCapacity</code> details
+     *            are included in the response.
      *            </p>
      *            </li>
      *            </ul>
@@ -966,28 +810,28 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * <ul>
      * <li>
      * <p>
-     * <i>INDEXES</i> - The response includes the aggregate
-     * <i>ConsumedCapacity</i> for the operation, together with
-     * <i>ConsumedCapacity</i> for each table and secondary index that was
+     * <code>INDEXES</code> - The response includes the aggregate
+     * <code>ConsumedCapacity</code> for the operation, together with
+     * <code>ConsumedCapacity</code> for each table and secondary index that was
      * accessed.
      * </p>
      * <p>
-     * Note that some operations, such as <i>GetItem</i> and
-     * <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
-     * specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
-     * information for table(s).
+     * Note that some operations, such as <code>GetItem</code> and
+     * <code>BatchGetItem</code>, do not access any indexes at all. In these
+     * cases, specifying <code>INDEXES</code> will only return
+     * <code>ConsumedCapacity</code> information for table(s).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>TOTAL</i> - The response includes only the aggregate
-     * <i>ConsumedCapacity</i> for the operation.
+     * <code>TOTAL</code> - The response includes only the aggregate
+     * <code>ConsumedCapacity</code> for the operation.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>NONE</i> - No <i>ConsumedCapacity</i> details are included in the
-     * response.
+     * <code>NONE</code> - No <code>ConsumedCapacity</code> details are included
+     * in the response.
      * </p>
      * </li>
      * </ul>
@@ -1005,28 +849,28 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>INDEXES</i> - The response includes the aggregate
-     *            <i>ConsumedCapacity</i> for the operation, together with
-     *            <i>ConsumedCapacity</i> for each table and secondary index
-     *            that was accessed.
+     *            <code>INDEXES</code> - The response includes the aggregate
+     *            <code>ConsumedCapacity</code> for the operation, together with
+     *            <code>ConsumedCapacity</code> for each table and secondary
+     *            index that was accessed.
      *            </p>
      *            <p>
-     *            Note that some operations, such as <i>GetItem</i> and
-     *            <i>BatchGetItem</i>, do not access any indexes at all. In
-     *            these cases, specifying <i>INDEXES</i> will only return
-     *            <i>ConsumedCapacity</i> information for table(s).
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <i>TOTAL</i> - The response includes only the aggregate
-     *            <i>ConsumedCapacity</i> for the operation.
+     *            Note that some operations, such as <code>GetItem</code> and
+     *            <code>BatchGetItem</code>, do not access any indexes at all.
+     *            In these cases, specifying <code>INDEXES</code> will only
+     *            return <code>ConsumedCapacity</code> information for table(s).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>NONE</i> - No <i>ConsumedCapacity</i> details are included
-     *            in the response.
+     *            <code>TOTAL</code> - The response includes only the aggregate
+     *            <code>ConsumedCapacity</code> for the operation.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>NONE</code> - No <code>ConsumedCapacity</code> details
+     *            are included in the response.
      *            </p>
      *            </li>
      *            </ul>
@@ -1047,28 +891,28 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * <ul>
      * <li>
      * <p>
-     * <i>INDEXES</i> - The response includes the aggregate
-     * <i>ConsumedCapacity</i> for the operation, together with
-     * <i>ConsumedCapacity</i> for each table and secondary index that was
+     * <code>INDEXES</code> - The response includes the aggregate
+     * <code>ConsumedCapacity</code> for the operation, together with
+     * <code>ConsumedCapacity</code> for each table and secondary index that was
      * accessed.
      * </p>
      * <p>
-     * Note that some operations, such as <i>GetItem</i> and
-     * <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
-     * specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
-     * information for table(s).
+     * Note that some operations, such as <code>GetItem</code> and
+     * <code>BatchGetItem</code>, do not access any indexes at all. In these
+     * cases, specifying <code>INDEXES</code> will only return
+     * <code>ConsumedCapacity</code> information for table(s).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>TOTAL</i> - The response includes only the aggregate
-     * <i>ConsumedCapacity</i> for the operation.
+     * <code>TOTAL</code> - The response includes only the aggregate
+     * <code>ConsumedCapacity</code> for the operation.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>NONE</i> - No <i>ConsumedCapacity</i> details are included in the
-     * response.
+     * <code>NONE</code> - No <code>ConsumedCapacity</code> details are included
+     * in the response.
      * </p>
      * </li>
      * </ul>
@@ -1083,28 +927,28 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>INDEXES</i> - The response includes the aggregate
-     *            <i>ConsumedCapacity</i> for the operation, together with
-     *            <i>ConsumedCapacity</i> for each table and secondary index
-     *            that was accessed.
+     *            <code>INDEXES</code> - The response includes the aggregate
+     *            <code>ConsumedCapacity</code> for the operation, together with
+     *            <code>ConsumedCapacity</code> for each table and secondary
+     *            index that was accessed.
      *            </p>
      *            <p>
-     *            Note that some operations, such as <i>GetItem</i> and
-     *            <i>BatchGetItem</i>, do not access any indexes at all. In
-     *            these cases, specifying <i>INDEXES</i> will only return
-     *            <i>ConsumedCapacity</i> information for table(s).
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <i>TOTAL</i> - The response includes only the aggregate
-     *            <i>ConsumedCapacity</i> for the operation.
+     *            Note that some operations, such as <code>GetItem</code> and
+     *            <code>BatchGetItem</code>, do not access any indexes at all.
+     *            In these cases, specifying <code>INDEXES</code> will only
+     *            return <code>ConsumedCapacity</code> information for table(s).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>NONE</i> - No <i>ConsumedCapacity</i> details are included
-     *            in the response.
+     *            <code>TOTAL</code> - The response includes only the aggregate
+     *            <code>ConsumedCapacity</code> for the operation.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>NONE</code> - No <code>ConsumedCapacity</code> details
+     *            are included in the response.
      *            </p>
      *            </li>
      *            </ul>
@@ -1122,28 +966,28 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * <ul>
      * <li>
      * <p>
-     * <i>INDEXES</i> - The response includes the aggregate
-     * <i>ConsumedCapacity</i> for the operation, together with
-     * <i>ConsumedCapacity</i> for each table and secondary index that was
+     * <code>INDEXES</code> - The response includes the aggregate
+     * <code>ConsumedCapacity</code> for the operation, together with
+     * <code>ConsumedCapacity</code> for each table and secondary index that was
      * accessed.
      * </p>
      * <p>
-     * Note that some operations, such as <i>GetItem</i> and
-     * <i>BatchGetItem</i>, do not access any indexes at all. In these cases,
-     * specifying <i>INDEXES</i> will only return <i>ConsumedCapacity</i>
-     * information for table(s).
+     * Note that some operations, such as <code>GetItem</code> and
+     * <code>BatchGetItem</code>, do not access any indexes at all. In these
+     * cases, specifying <code>INDEXES</code> will only return
+     * <code>ConsumedCapacity</code> information for table(s).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>TOTAL</i> - The response includes only the aggregate
-     * <i>ConsumedCapacity</i> for the operation.
+     * <code>TOTAL</code> - The response includes only the aggregate
+     * <code>ConsumedCapacity</code> for the operation.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>NONE</i> - No <i>ConsumedCapacity</i> details are included in the
-     * response.
+     * <code>NONE</code> - No <code>ConsumedCapacity</code> details are included
+     * in the response.
      * </p>
      * </li>
      * </ul>
@@ -1161,28 +1005,28 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>INDEXES</i> - The response includes the aggregate
-     *            <i>ConsumedCapacity</i> for the operation, together with
-     *            <i>ConsumedCapacity</i> for each table and secondary index
-     *            that was accessed.
+     *            <code>INDEXES</code> - The response includes the aggregate
+     *            <code>ConsumedCapacity</code> for the operation, together with
+     *            <code>ConsumedCapacity</code> for each table and secondary
+     *            index that was accessed.
      *            </p>
      *            <p>
-     *            Note that some operations, such as <i>GetItem</i> and
-     *            <i>BatchGetItem</i>, do not access any indexes at all. In
-     *            these cases, specifying <i>INDEXES</i> will only return
-     *            <i>ConsumedCapacity</i> information for table(s).
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <i>TOTAL</i> - The response includes only the aggregate
-     *            <i>ConsumedCapacity</i> for the operation.
+     *            Note that some operations, such as <code>GetItem</code> and
+     *            <code>BatchGetItem</code>, do not access any indexes at all.
+     *            In these cases, specifying <code>INDEXES</code> will only
+     *            return <code>ConsumedCapacity</code> information for table(s).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>NONE</i> - No <i>ConsumedCapacity</i> details are included
-     *            in the response.
+     *            <code>TOTAL</code> - The response includes only the aggregate
+     *            <code>ConsumedCapacity</code> for the operation.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>NONE</code> - No <code>ConsumedCapacity</code> details
+     *            are included in the response.
      *            </p>
      *            </li>
      *            </ul>
@@ -1212,12 +1056,6 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * >Accessing Item Attributes</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
      * </p>
-     * <note>
-     * <p>
-     * <i>ProjectionExpression</i> replaces the legacy <i>AttributesToGet</i>
-     * parameter.
-     * </p>
-     * </note>
      *
      * @return <p>
      *         A string that identifies one or more attributes to retrieve from
@@ -1236,12 +1074,6 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      *         >Accessing Item Attributes</a> in the <i>Amazon DynamoDB
      *         Developer Guide</i>.
      *         </p>
-     *         <note>
-     *         <p>
-     *         <i>ProjectionExpression</i> replaces the legacy
-     *         <i>AttributesToGet</i> parameter.
-     *         </p>
-     *         </note>
      */
     public String getProjectionExpression() {
         return projectionExpression;
@@ -1264,12 +1096,6 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * >Accessing Item Attributes</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
      * </p>
-     * <note>
-     * <p>
-     * <i>ProjectionExpression</i> replaces the legacy <i>AttributesToGet</i>
-     * parameter.
-     * </p>
-     * </note>
      *
      * @param projectionExpression <p>
      *            A string that identifies one or more attributes to retrieve
@@ -1288,12 +1114,6 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      *            >Accessing Item Attributes</a> in the <i>Amazon DynamoDB
      *            Developer Guide</i>.
      *            </p>
-     *            <note>
-     *            <p>
-     *            <i>ProjectionExpression</i> replaces the legacy
-     *            <i>AttributesToGet</i> parameter.
-     *            </p>
-     *            </note>
      */
     public void setProjectionExpression(String projectionExpression) {
         this.projectionExpression = projectionExpression;
@@ -1316,12 +1136,6 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * >Accessing Item Attributes</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
      * </p>
-     * <note>
-     * <p>
-     * <i>ProjectionExpression</i> replaces the legacy <i>AttributesToGet</i>
-     * parameter.
-     * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -1343,12 +1157,6 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      *            >Accessing Item Attributes</a> in the <i>Amazon DynamoDB
      *            Developer Guide</i>.
      *            </p>
-     *            <note>
-     *            <p>
-     *            <i>ProjectionExpression</i> replaces the legacy
-     *            <i>AttributesToGet</i> parameter.
-     *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -1360,7 +1168,8 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     /**
      * <p>
      * One or more substitution tokens for attribute names in an expression. The
-     * following are some use cases for using <i>ExpressionAttributeNames</i>:
+     * following are some use cases for using
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>
@@ -1400,7 +1209,7 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html"
      * >Reserved Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To
      * work around this, you could specify the following for
-     * <i>ExpressionAttributeNames</i>:
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>
@@ -1436,7 +1245,7 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * @return <p>
      *         One or more substitution tokens for attribute names in an
      *         expression. The following are some use cases for using
-     *         <i>ExpressionAttributeNames</i>:
+     *         <code>ExpressionAttributeNames</code>:
      *         </p>
      *         <ul>
      *         <li>
@@ -1477,7 +1286,7 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      *         "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html"
      *         >Reserved Words</a> in the <i>Amazon DynamoDB Developer
      *         Guide</i>). To work around this, you could specify the following
-     *         for <i>ExpressionAttributeNames</i>:
+     *         for <code>ExpressionAttributeNames</code>:
      *         </p>
      *         <ul>
      *         <li>
@@ -1518,7 +1327,8 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     /**
      * <p>
      * One or more substitution tokens for attribute names in an expression. The
-     * following are some use cases for using <i>ExpressionAttributeNames</i>:
+     * following are some use cases for using
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>
@@ -1558,7 +1368,7 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html"
      * >Reserved Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To
      * work around this, you could specify the following for
-     * <i>ExpressionAttributeNames</i>:
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>
@@ -1594,7 +1404,7 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * @param expressionAttributeNames <p>
      *            One or more substitution tokens for attribute names in an
      *            expression. The following are some use cases for using
-     *            <i>ExpressionAttributeNames</i>:
+     *            <code>ExpressionAttributeNames</code>:
      *            </p>
      *            <ul>
      *            <li>
@@ -1635,7 +1445,7 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html"
      *            >Reserved Words</a> in the <i>Amazon DynamoDB Developer
      *            Guide</i>). To work around this, you could specify the
-     *            following for <i>ExpressionAttributeNames</i>:
+     *            following for <code>ExpressionAttributeNames</code>:
      *            </p>
      *            <ul>
      *            <li>
@@ -1677,7 +1487,8 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     /**
      * <p>
      * One or more substitution tokens for attribute names in an expression. The
-     * following are some use cases for using <i>ExpressionAttributeNames</i>:
+     * following are some use cases for using
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>
@@ -1717,7 +1528,7 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html"
      * >Reserved Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To
      * work around this, you could specify the following for
-     * <i>ExpressionAttributeNames</i>:
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>
@@ -1756,7 +1567,7 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * @param expressionAttributeNames <p>
      *            One or more substitution tokens for attribute names in an
      *            expression. The following are some use cases for using
-     *            <i>ExpressionAttributeNames</i>:
+     *            <code>ExpressionAttributeNames</code>:
      *            </p>
      *            <ul>
      *            <li>
@@ -1797,7 +1608,7 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html"
      *            >Reserved Words</a> in the <i>Amazon DynamoDB Developer
      *            Guide</i>). To work around this, you could specify the
-     *            following for <i>ExpressionAttributeNames</i>:
+     *            following for <code>ExpressionAttributeNames</code>:
      *            </p>
      *            <ul>
      *            <li>
@@ -1843,7 +1654,8 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
     /**
      * <p>
      * One or more substitution tokens for attribute names in an expression. The
-     * following are some use cases for using <i>ExpressionAttributeNames</i>:
+     * following are some use cases for using
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>
@@ -1883,7 +1695,7 @@ public class GetItemRequest extends AmazonWebServiceRequest implements Serializa
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html"
      * >Reserved Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To
      * work around this, you could specify the following for
-     * <i>ExpressionAttributeNames</i>:
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>

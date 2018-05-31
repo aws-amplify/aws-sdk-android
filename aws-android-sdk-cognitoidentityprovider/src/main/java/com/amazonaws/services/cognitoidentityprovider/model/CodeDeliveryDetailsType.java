@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The type of code delivery details being returned from the server.
+ * The code delivery details being returned from the server.
  * </p>
  */
 public class CodeDeliveryDetailsType implements Serializable {
@@ -42,7 +42,7 @@ public class CodeDeliveryDetailsType implements Serializable {
 
     /**
      * <p>
-     * The name of the attribute in the code delivery details type.
+     * The attribute name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -195,7 +195,7 @@ public class CodeDeliveryDetailsType implements Serializable {
 
     /**
      * <p>
-     * The name of the attribute in the code delivery details type.
+     * The attribute name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -203,7 +203,7 @@ public class CodeDeliveryDetailsType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The name of the attribute in the code delivery details type.
+     *         The attribute name.
      *         </p>
      */
     public String getAttributeName() {
@@ -212,7 +212,7 @@ public class CodeDeliveryDetailsType implements Serializable {
 
     /**
      * <p>
-     * The name of the attribute in the code delivery details type.
+     * The attribute name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -220,7 +220,7 @@ public class CodeDeliveryDetailsType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param attributeName <p>
-     *            The name of the attribute in the code delivery details type.
+     *            The attribute name.
      *            </p>
      */
     public void setAttributeName(String attributeName) {
@@ -229,7 +229,7 @@ public class CodeDeliveryDetailsType implements Serializable {
 
     /**
      * <p>
-     * The name of the attribute in the code delivery details type.
+     * The attribute name.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -240,7 +240,7 @@ public class CodeDeliveryDetailsType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param attributeName <p>
-     *            The name of the attribute in the code delivery details type.
+     *            The attribute name.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

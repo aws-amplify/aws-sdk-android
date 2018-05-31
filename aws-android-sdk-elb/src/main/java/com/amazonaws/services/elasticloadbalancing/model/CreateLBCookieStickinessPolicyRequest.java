@@ -27,11 +27,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * When a load balancer implements this policy, the load balancer uses a special
- * cookie to track the back-end server instance for each request. When the load
- * balancer receives a request, it first checks to see if this cookie is present
- * in the request. If so, the load balancer sends the request to the application
- * server specified in the cookie. If not, the load balancer sends the request
- * to a server that is chosen based on the existing load-balancing algorithm.
+ * cookie to track the instance for each request. When the load balancer
+ * receives a request, it first checks to see if this cookie is present in the
+ * request. If so, the load balancer sends the request to the application server
+ * specified in the cookie. If not, the load balancer sends the request to a
+ * server that is chosen based on the existing load-balancing algorithm.
  * </p>
  * <p>
  * A cookie is inserted into the response for binding subsequent requests from
@@ -40,9 +40,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-sticky-sessions.html#enable-sticky-sessions-duration"
- * >Duration-Based Session Stickiness</a> in the <i>Elastic Load Balancing
- * Developer Guide</i>.
+ * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration"
+ * >Duration-Based Session Stickiness</a> in the <i>Classic Load Balancer
+ * Guide</i>.
  * </p>
  */
 public class CreateLBCookieStickinessPolicyRequest extends AmazonWebServiceRequest implements
@@ -66,8 +66,9 @@ public class CreateLBCookieStickinessPolicyRequest extends AmazonWebServiceReque
     /**
      * <p>
      * The time period, in seconds, after which the cookie should be considered
-     * stale. If you do not specify this parameter, the sticky session lasts for
-     * the duration of the browser session.
+     * stale. If you do not specify this parameter, the default value is 0,
+     * which indicates that the sticky session should last for the duration of
+     * the browser session.
      * </p>
      */
     private Long cookieExpirationPeriod;
@@ -207,14 +208,16 @@ public class CreateLBCookieStickinessPolicyRequest extends AmazonWebServiceReque
     /**
      * <p>
      * The time period, in seconds, after which the cookie should be considered
-     * stale. If you do not specify this parameter, the sticky session lasts for
-     * the duration of the browser session.
+     * stale. If you do not specify this parameter, the default value is 0,
+     * which indicates that the sticky session should last for the duration of
+     * the browser session.
      * </p>
      *
      * @return <p>
      *         The time period, in seconds, after which the cookie should be
      *         considered stale. If you do not specify this parameter, the
-     *         sticky session lasts for the duration of the browser session.
+     *         default value is 0, which indicates that the sticky session
+     *         should last for the duration of the browser session.
      *         </p>
      */
     public Long getCookieExpirationPeriod() {
@@ -224,14 +227,16 @@ public class CreateLBCookieStickinessPolicyRequest extends AmazonWebServiceReque
     /**
      * <p>
      * The time period, in seconds, after which the cookie should be considered
-     * stale. If you do not specify this parameter, the sticky session lasts for
-     * the duration of the browser session.
+     * stale. If you do not specify this parameter, the default value is 0,
+     * which indicates that the sticky session should last for the duration of
+     * the browser session.
      * </p>
      *
      * @param cookieExpirationPeriod <p>
      *            The time period, in seconds, after which the cookie should be
      *            considered stale. If you do not specify this parameter, the
-     *            sticky session lasts for the duration of the browser session.
+     *            default value is 0, which indicates that the sticky session
+     *            should last for the duration of the browser session.
      *            </p>
      */
     public void setCookieExpirationPeriod(Long cookieExpirationPeriod) {
@@ -241,8 +246,9 @@ public class CreateLBCookieStickinessPolicyRequest extends AmazonWebServiceReque
     /**
      * <p>
      * The time period, in seconds, after which the cookie should be considered
-     * stale. If you do not specify this parameter, the sticky session lasts for
-     * the duration of the browser session.
+     * stale. If you do not specify this parameter, the default value is 0,
+     * which indicates that the sticky session should last for the duration of
+     * the browser session.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -251,7 +257,8 @@ public class CreateLBCookieStickinessPolicyRequest extends AmazonWebServiceReque
      * @param cookieExpirationPeriod <p>
      *            The time period, in seconds, after which the cookie should be
      *            considered stale. If you do not specify this parameter, the
-     *            sticky session lasts for the duration of the browser session.
+     *            default value is 0, which indicates that the sticky session
+     *            should last for the duration of the browser session.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

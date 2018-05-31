@@ -106,6 +106,13 @@ public class PutScalingPolicyRequestMarshaller implements
             Integer estimatedInstanceWarmup = putScalingPolicyRequest.getEstimatedInstanceWarmup();
             request.addParameter(prefix, StringUtils.fromInteger(estimatedInstanceWarmup));
         }
+        if (putScalingPolicyRequest.getTargetTrackingConfiguration() != null) {
+            prefix = "TargetTrackingConfiguration";
+            TargetTrackingConfiguration targetTrackingConfiguration = putScalingPolicyRequest
+                    .getTargetTrackingConfiguration();
+            TargetTrackingConfigurationStaxMarshaller.getInstance().marshall(
+                    targetTrackingConfiguration, request, prefix + ".");
+        }
 
         return request;
     }

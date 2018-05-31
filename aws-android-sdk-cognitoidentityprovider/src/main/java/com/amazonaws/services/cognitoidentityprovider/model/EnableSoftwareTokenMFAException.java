@@ -18,7 +18,10 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * This exception is thrown when there is a code mismatch and the service fails
+ * to configure the software token TOTP multi-factor authentication (MFA).
+ * </p>
  */
 public class EnableSoftwareTokenMFAException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

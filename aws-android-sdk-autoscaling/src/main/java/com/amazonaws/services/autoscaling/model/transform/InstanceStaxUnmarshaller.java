@@ -70,6 +70,11 @@ class InstanceStaxUnmarshaller implements Unmarshaller<Instance, StaxUnmarshalle
                             .unmarshall(context));
                     continue;
                 }
+                if (context.testExpression("LaunchTemplate", targetDepth)) {
+                    instance.setLaunchTemplate(LaunchTemplateSpecificationStaxUnmarshaller
+                            .getInstance().unmarshall(context));
+                    continue;
+                }
                 if (context.testExpression("ProtectedFromScaleIn", targetDepth)) {
                     instance.setProtectedFromScaleIn(BooleanStaxUnmarshaller.getInstance()
                             .unmarshall(context));

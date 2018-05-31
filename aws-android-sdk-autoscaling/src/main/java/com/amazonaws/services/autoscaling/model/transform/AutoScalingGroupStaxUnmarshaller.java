@@ -62,6 +62,11 @@ class AutoScalingGroupStaxUnmarshaller implements
                             .getInstance().unmarshall(context));
                     continue;
                 }
+                if (context.testExpression("LaunchTemplate", targetDepth)) {
+                    autoScalingGroup.setLaunchTemplate(LaunchTemplateSpecificationStaxUnmarshaller
+                            .getInstance().unmarshall(context));
+                    continue;
+                }
                 if (context.testExpression("MinSize", targetDepth)) {
                     autoScalingGroup.setMinSize(IntegerStaxUnmarshaller.getInstance().unmarshall(
                             context));
@@ -89,6 +94,11 @@ class AutoScalingGroupStaxUnmarshaller implements
                 }
                 if (context.testExpression("LoadBalancerNames/member", targetDepth)) {
                     autoScalingGroup.withLoadBalancerNames(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("TargetGroupARNs/member", targetDepth)) {
+                    autoScalingGroup.withTargetGroupARNs(StringStaxUnmarshaller.getInstance()
                             .unmarshall(context));
                     continue;
                 }
@@ -150,6 +160,11 @@ class AutoScalingGroupStaxUnmarshaller implements
                 if (context.testExpression("NewInstancesProtectedFromScaleIn", targetDepth)) {
                     autoScalingGroup.setNewInstancesProtectedFromScaleIn(BooleanStaxUnmarshaller
                             .getInstance().unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("ServiceLinkedRoleARN", targetDepth)) {
+                    autoScalingGroup.setServiceLinkedRoleARN(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
                     continue;
                 }
             } else if (xmlEvent == XmlPullParser.END_TAG) {

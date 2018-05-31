@@ -45,6 +45,11 @@ class APNSMessageJsonMarshaller {
             jsonWriter.name("Category");
             jsonWriter.value(category);
         }
+        if (aPNSMessage.getCollapseId() != null) {
+            String collapseId = aPNSMessage.getCollapseId();
+            jsonWriter.name("CollapseId");
+            jsonWriter.value(collapseId);
+        }
         if (aPNSMessage.getData() != null) {
             java.util.Map<String, String> data = aPNSMessage.getData();
             jsonWriter.name("Data");
@@ -58,15 +63,20 @@ class APNSMessageJsonMarshaller {
             }
             jsonWriter.endObject();
         }
-        if (aPNSMessage.getJsonData() != null) {
-            String jsonData = aPNSMessage.getJsonData();
-            jsonWriter.name("JsonData");
-            jsonWriter.value(jsonData);
-        }
         if (aPNSMessage.getMediaUrl() != null) {
             String mediaUrl = aPNSMessage.getMediaUrl();
             jsonWriter.name("MediaUrl");
             jsonWriter.value(mediaUrl);
+        }
+        if (aPNSMessage.getPreferredAuthenticationMethod() != null) {
+            String preferredAuthenticationMethod = aPNSMessage.getPreferredAuthenticationMethod();
+            jsonWriter.name("PreferredAuthenticationMethod");
+            jsonWriter.value(preferredAuthenticationMethod);
+        }
+        if (aPNSMessage.getPriority() != null) {
+            String priority = aPNSMessage.getPriority();
+            jsonWriter.name("Priority");
+            jsonWriter.value(priority);
         }
         if (aPNSMessage.getRawContent() != null) {
             String rawContent = aPNSMessage.getRawContent();
@@ -108,6 +118,11 @@ class APNSMessageJsonMarshaller {
             String threadId = aPNSMessage.getThreadId();
             jsonWriter.name("ThreadId");
             jsonWriter.value(threadId);
+        }
+        if (aPNSMessage.getTimeToLive() != null) {
+            Integer timeToLive = aPNSMessage.getTimeToLive();
+            jsonWriter.name("TimeToLive");
+            jsonWriter.value(timeToLive);
         }
         if (aPNSMessage.getTitle() != null) {
             String title = aPNSMessage.getTitle();

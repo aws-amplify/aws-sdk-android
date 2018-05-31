@@ -71,6 +71,12 @@ class ActionJsonUnmarshaller implements Unmarshaller<Action, JsonUnmarshallerCon
             } else if (name.equals("elasticsearch")) {
                 action.setElasticsearch(ElasticsearchActionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("salesforce")) {
+                action.setSalesforce(SalesforceActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("iotAnalytics")) {
+                action.setIotAnalytics(IotAnalyticsActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

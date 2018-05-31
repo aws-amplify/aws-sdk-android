@@ -17,9 +17,22 @@ package com.amazonaws.services.kinesisvideo.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * Specifies the condition that streams must satisfy to be returned when you
+ * list streams (see the <code>ListStreams</code> API). A condition has a
+ * comparison operation and a value. Currently, you can specify only the
+ * <code>BEGINS_WITH</code> operator, which finds streams whose names start with
+ * a given prefix.
+ * </p>
+ */
 public class StreamNameCondition implements Serializable {
     /**
-     * The new value for the comparisonOperator property for this object.
+     * <p>
+     * A comparison operator. Currently, you can specify only the
+     * <code>BEGINS_WITH</code> operator, which finds streams whose names start
+     * with a given prefix.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>BEGINS_WITH
@@ -27,7 +40,9 @@ public class StreamNameCondition implements Serializable {
     private String comparisonOperator;
 
     /**
-     * The new value for the comparisonValue property for this object.
+     * <p>
+     * A value to compare.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -36,12 +51,20 @@ public class StreamNameCondition implements Serializable {
     private String comparisonValue;
 
     /**
-     * Returns the value of the comparisonOperator property for this object.
+     * <p>
+     * A comparison operator. Currently, you can specify only the
+     * <code>BEGINS_WITH</code> operator, which finds streams whose names start
+     * with a given prefix.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>BEGINS_WITH
      *
-     * @return The value of the comparisonOperator property for this object.
+     * @return <p>
+     *         A comparison operator. Currently, you can specify only the
+     *         <code>BEGINS_WITH</code> operator, which finds streams whose
+     *         names start with a given prefix.
+     *         </p>
      * @see ComparisonOperator
      */
     public String getComparisonOperator() {
@@ -49,13 +72,20 @@ public class StreamNameCondition implements Serializable {
     }
 
     /**
-     * Sets the value of comparisonOperator
+     * <p>
+     * A comparison operator. Currently, you can specify only the
+     * <code>BEGINS_WITH</code> operator, which finds streams whose names start
+     * with a given prefix.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>BEGINS_WITH
      *
-     * @param comparisonOperator The new value for the comparisonOperator
-     *            property for this object.
+     * @param comparisonOperator <p>
+     *            A comparison operator. Currently, you can specify only the
+     *            <code>BEGINS_WITH</code> operator, which finds streams whose
+     *            names start with a given prefix.
+     *            </p>
      * @see ComparisonOperator
      */
     public void setComparisonOperator(String comparisonOperator) {
@@ -63,7 +93,11 @@ public class StreamNameCondition implements Serializable {
     }
 
     /**
-     * Sets the value of the comparisonOperator property for this object.
+     * <p>
+     * A comparison operator. Currently, you can specify only the
+     * <code>BEGINS_WITH</code> operator, which finds streams whose names start
+     * with a given prefix.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -71,8 +105,11 @@ public class StreamNameCondition implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>BEGINS_WITH
      *
-     * @param comparisonOperator The new value for the comparisonOperator
-     *            property for this object.
+     * @param comparisonOperator <p>
+     *            A comparison operator. Currently, you can specify only the
+     *            <code>BEGINS_WITH</code> operator, which finds streams whose
+     *            names start with a given prefix.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ComparisonOperator
@@ -83,13 +120,20 @@ public class StreamNameCondition implements Serializable {
     }
 
     /**
-     * Sets the value of comparisonOperator
+     * <p>
+     * A comparison operator. Currently, you can specify only the
+     * <code>BEGINS_WITH</code> operator, which finds streams whose names start
+     * with a given prefix.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>BEGINS_WITH
      *
-     * @param comparisonOperator The new value for the comparisonOperator
-     *            property for this object.
+     * @param comparisonOperator <p>
+     *            A comparison operator. Currently, you can specify only the
+     *            <code>BEGINS_WITH</code> operator, which finds streams whose
+     *            names start with a given prefix.
+     *            </p>
      * @see ComparisonOperator
      */
     public void setComparisonOperator(ComparisonOperator comparisonOperator) {
@@ -97,7 +141,11 @@ public class StreamNameCondition implements Serializable {
     }
 
     /**
-     * Sets the value of the comparisonOperator property for this object.
+     * <p>
+     * A comparison operator. Currently, you can specify only the
+     * <code>BEGINS_WITH</code> operator, which finds streams whose names start
+     * with a given prefix.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -105,8 +153,11 @@ public class StreamNameCondition implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>BEGINS_WITH
      *
-     * @param comparisonOperator The new value for the comparisonOperator
-     *            property for this object.
+     * @param comparisonOperator <p>
+     *            A comparison operator. Currently, you can specify only the
+     *            <code>BEGINS_WITH</code> operator, which finds streams whose
+     *            names start with a given prefix.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ComparisonOperator
@@ -117,34 +168,43 @@ public class StreamNameCondition implements Serializable {
     }
 
     /**
-     * Returns the value of the comparisonValue property for this object.
+     * <p>
+     * A value to compare.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @return The value of the comparisonValue property for this object.
+     * @return <p>
+     *         A value to compare.
+     *         </p>
      */
     public String getComparisonValue() {
         return comparisonValue;
     }
 
     /**
-     * Sets the value of comparisonValue
+     * <p>
+     * A value to compare.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param comparisonValue The new value for the comparisonValue property for
-     *            this object.
+     * @param comparisonValue <p>
+     *            A value to compare.
+     *            </p>
      */
     public void setComparisonValue(String comparisonValue) {
         this.comparisonValue = comparisonValue;
     }
 
     /**
-     * Sets the value of the comparisonValue property for this object.
+     * <p>
+     * A value to compare.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -153,8 +213,9 @@ public class StreamNameCondition implements Serializable {
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param comparisonValue The new value for the comparisonValue property for
-     *            this object.
+     * @param comparisonValue <p>
+     *            A value to compare.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

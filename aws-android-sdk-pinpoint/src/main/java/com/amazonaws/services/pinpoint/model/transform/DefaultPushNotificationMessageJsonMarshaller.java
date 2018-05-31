@@ -49,11 +49,6 @@ class DefaultPushNotificationMessageJsonMarshaller {
             }
             jsonWriter.endObject();
         }
-        if (defaultPushNotificationMessage.getJsonData() != null) {
-            String jsonData = defaultPushNotificationMessage.getJsonData();
-            jsonWriter.name("JsonData");
-            jsonWriter.value(jsonData);
-        }
         if (defaultPushNotificationMessage.getSilentPush() != null) {
             Boolean silentPush = defaultPushNotificationMessage.getSilentPush();
             jsonWriter.name("SilentPush");

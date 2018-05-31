@@ -37,9 +37,8 @@ public class UpdateGlobalSecondaryIndexAction implements Serializable {
 
     /**
      * <p>
-     * Represents the provisioned throughput settings for a specified table or
-     * index. The settings can be modified using the <i>UpdateTable</i>
-     * operation.
+     * Represents the provisioned throughput settings for the specified global
+     * secondary index.
      * </p>
      * <p>
      * For current minimum and maximum provisioned throughput values, see <a
@@ -109,9 +108,8 @@ public class UpdateGlobalSecondaryIndexAction implements Serializable {
 
     /**
      * <p>
-     * Represents the provisioned throughput settings for a specified table or
-     * index. The settings can be modified using the <i>UpdateTable</i>
-     * operation.
+     * Represents the provisioned throughput settings for the specified global
+     * secondary index.
      * </p>
      * <p>
      * For current minimum and maximum provisioned throughput values, see <a
@@ -121,9 +119,8 @@ public class UpdateGlobalSecondaryIndexAction implements Serializable {
      * </p>
      *
      * @return <p>
-     *         Represents the provisioned throughput settings for a specified
-     *         table or index. The settings can be modified using the
-     *         <i>UpdateTable</i> operation.
+     *         Represents the provisioned throughput settings for the specified
+     *         global secondary index.
      *         </p>
      *         <p>
      *         For current minimum and maximum provisioned throughput values,
@@ -138,9 +135,8 @@ public class UpdateGlobalSecondaryIndexAction implements Serializable {
 
     /**
      * <p>
-     * Represents the provisioned throughput settings for a specified table or
-     * index. The settings can be modified using the <i>UpdateTable</i>
-     * operation.
+     * Represents the provisioned throughput settings for the specified global
+     * secondary index.
      * </p>
      * <p>
      * For current minimum and maximum provisioned throughput values, see <a
@@ -150,9 +146,8 @@ public class UpdateGlobalSecondaryIndexAction implements Serializable {
      * </p>
      *
      * @param provisionedThroughput <p>
-     *            Represents the provisioned throughput settings for a specified
-     *            table or index. The settings can be modified using the
-     *            <i>UpdateTable</i> operation.
+     *            Represents the provisioned throughput settings for the
+     *            specified global secondary index.
      *            </p>
      *            <p>
      *            For current minimum and maximum provisioned throughput values,
@@ -167,9 +162,8 @@ public class UpdateGlobalSecondaryIndexAction implements Serializable {
 
     /**
      * <p>
-     * Represents the provisioned throughput settings for a specified table or
-     * index. The settings can be modified using the <i>UpdateTable</i>
-     * operation.
+     * Represents the provisioned throughput settings for the specified global
+     * secondary index.
      * </p>
      * <p>
      * For current minimum and maximum provisioned throughput values, see <a
@@ -182,9 +176,8 @@ public class UpdateGlobalSecondaryIndexAction implements Serializable {
      * together.
      *
      * @param provisionedThroughput <p>
-     *            Represents the provisioned throughput settings for a specified
-     *            table or index. The settings can be modified using the
-     *            <i>UpdateTable</i> operation.
+     *            Represents the provisioned throughput settings for the
+     *            specified global secondary index.
      *            </p>
      *            <p>
      *            For current minimum and maximum provisioned throughput values,

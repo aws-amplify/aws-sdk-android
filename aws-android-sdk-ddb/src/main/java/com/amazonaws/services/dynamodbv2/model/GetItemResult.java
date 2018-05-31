@@ -19,25 +19,26 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Represents the output of a <i>GetItem</i> operation.
+ * Represents the output of a <code>GetItem</code> operation.
  * </p>
  */
 public class GetItemResult implements Serializable {
     /**
      * <p>
-     * A map of attribute names to <i>AttributeValue</i> objects, as specified
-     * by <i>AttributesToGet</i>.
+     * A map of attribute names to <code>AttributeValue</code> objects, as
+     * specified by <code>ProjectionExpression</code>.
      * </p>
      */
     private java.util.Map<String, AttributeValue> item;
 
     /**
      * <p>
-     * The capacity units consumed by an operation. The data returned includes
-     * the total provisioned throughput consumed, along with statistics for the
-     * table and any indexes involved in the operation. <i>ConsumedCapacity</i>
-     * is only returned if the request asked for it. For more information, see
-     * <a href=
+     * The capacity units consumed by the <code>GetItem</code> operation. The
+     * data returned includes the total provisioned throughput consumed, along
+     * with statistics for the table and any indexes involved in the operation.
+     * <code>ConsumedCapacity</code> is only returned if the
+     * <code>ReturnConsumedCapacity</code> parameter was specified. For more
+     * information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      * >Provisioned Throughput</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
@@ -47,13 +48,13 @@ public class GetItemResult implements Serializable {
 
     /**
      * <p>
-     * A map of attribute names to <i>AttributeValue</i> objects, as specified
-     * by <i>AttributesToGet</i>.
+     * A map of attribute names to <code>AttributeValue</code> objects, as
+     * specified by <code>ProjectionExpression</code>.
      * </p>
      *
      * @return <p>
-     *         A map of attribute names to <i>AttributeValue</i> objects, as
-     *         specified by <i>AttributesToGet</i>.
+     *         A map of attribute names to <code>AttributeValue</code> objects,
+     *         as specified by <code>ProjectionExpression</code>.
      *         </p>
      */
     public java.util.Map<String, AttributeValue> getItem() {
@@ -62,13 +63,13 @@ public class GetItemResult implements Serializable {
 
     /**
      * <p>
-     * A map of attribute names to <i>AttributeValue</i> objects, as specified
-     * by <i>AttributesToGet</i>.
+     * A map of attribute names to <code>AttributeValue</code> objects, as
+     * specified by <code>ProjectionExpression</code>.
      * </p>
      *
      * @param item <p>
-     *            A map of attribute names to <i>AttributeValue</i> objects, as
-     *            specified by <i>AttributesToGet</i>.
+     *            A map of attribute names to <code>AttributeValue</code>
+     *            objects, as specified by <code>ProjectionExpression</code>.
      *            </p>
      */
     public void setItem(java.util.Map<String, AttributeValue> item) {
@@ -77,16 +78,16 @@ public class GetItemResult implements Serializable {
 
     /**
      * <p>
-     * A map of attribute names to <i>AttributeValue</i> objects, as specified
-     * by <i>AttributesToGet</i>.
+     * A map of attribute names to <code>AttributeValue</code> objects, as
+     * specified by <code>ProjectionExpression</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param item <p>
-     *            A map of attribute names to <i>AttributeValue</i> objects, as
-     *            specified by <i>AttributesToGet</i>.
+     *            A map of attribute names to <code>AttributeValue</code>
+     *            objects, as specified by <code>ProjectionExpression</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -98,8 +99,8 @@ public class GetItemResult implements Serializable {
 
     /**
      * <p>
-     * A map of attribute names to <i>AttributeValue</i> objects, as specified
-     * by <i>AttributesToGet</i>.
+     * A map of attribute names to <code>AttributeValue</code> objects, as
+     * specified by <code>ProjectionExpression</code>.
      * </p>
      * <p>
      * The method adds a new key-value pair into Item parameter, and returns a
@@ -134,22 +135,24 @@ public class GetItemResult implements Serializable {
 
     /**
      * <p>
-     * The capacity units consumed by an operation. The data returned includes
-     * the total provisioned throughput consumed, along with statistics for the
-     * table and any indexes involved in the operation. <i>ConsumedCapacity</i>
-     * is only returned if the request asked for it. For more information, see
-     * <a href=
+     * The capacity units consumed by the <code>GetItem</code> operation. The
+     * data returned includes the total provisioned throughput consumed, along
+     * with statistics for the table and any indexes involved in the operation.
+     * <code>ConsumedCapacity</code> is only returned if the
+     * <code>ReturnConsumedCapacity</code> parameter was specified. For more
+     * information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      * >Provisioned Throughput</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
      * </p>
      *
      * @return <p>
-     *         The capacity units consumed by an operation. The data returned
-     *         includes the total provisioned throughput consumed, along with
-     *         statistics for the table and any indexes involved in the
-     *         operation. <i>ConsumedCapacity</i> is only returned if the
-     *         request asked for it. For more information, see <a href=
+     *         The capacity units consumed by the <code>GetItem</code>
+     *         operation. The data returned includes the total provisioned
+     *         throughput consumed, along with statistics for the table and any
+     *         indexes involved in the operation. <code>ConsumedCapacity</code>
+     *         is only returned if the <code>ReturnConsumedCapacity</code>
+     *         parameter was specified. For more information, see <a href=
      *         "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      *         >Provisioned Throughput</a> in the <i>Amazon DynamoDB Developer
      *         Guide</i>.
@@ -161,22 +164,25 @@ public class GetItemResult implements Serializable {
 
     /**
      * <p>
-     * The capacity units consumed by an operation. The data returned includes
-     * the total provisioned throughput consumed, along with statistics for the
-     * table and any indexes involved in the operation. <i>ConsumedCapacity</i>
-     * is only returned if the request asked for it. For more information, see
-     * <a href=
+     * The capacity units consumed by the <code>GetItem</code> operation. The
+     * data returned includes the total provisioned throughput consumed, along
+     * with statistics for the table and any indexes involved in the operation.
+     * <code>ConsumedCapacity</code> is only returned if the
+     * <code>ReturnConsumedCapacity</code> parameter was specified. For more
+     * information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      * >Provisioned Throughput</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
      * </p>
      *
      * @param consumedCapacity <p>
-     *            The capacity units consumed by an operation. The data returned
-     *            includes the total provisioned throughput consumed, along with
-     *            statistics for the table and any indexes involved in the
-     *            operation. <i>ConsumedCapacity</i> is only returned if the
-     *            request asked for it. For more information, see <a href=
+     *            The capacity units consumed by the <code>GetItem</code>
+     *            operation. The data returned includes the total provisioned
+     *            throughput consumed, along with statistics for the table and
+     *            any indexes involved in the operation.
+     *            <code>ConsumedCapacity</code> is only returned if the
+     *            <code>ReturnConsumedCapacity</code> parameter was specified.
+     *            For more information, see <a href=
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      *            >Provisioned Throughput</a> in the <i>Amazon DynamoDB
      *            Developer Guide</i>.
@@ -188,11 +194,12 @@ public class GetItemResult implements Serializable {
 
     /**
      * <p>
-     * The capacity units consumed by an operation. The data returned includes
-     * the total provisioned throughput consumed, along with statistics for the
-     * table and any indexes involved in the operation. <i>ConsumedCapacity</i>
-     * is only returned if the request asked for it. For more information, see
-     * <a href=
+     * The capacity units consumed by the <code>GetItem</code> operation. The
+     * data returned includes the total provisioned throughput consumed, along
+     * with statistics for the table and any indexes involved in the operation.
+     * <code>ConsumedCapacity</code> is only returned if the
+     * <code>ReturnConsumedCapacity</code> parameter was specified. For more
+     * information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      * >Provisioned Throughput</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
@@ -202,11 +209,13 @@ public class GetItemResult implements Serializable {
      * together.
      *
      * @param consumedCapacity <p>
-     *            The capacity units consumed by an operation. The data returned
-     *            includes the total provisioned throughput consumed, along with
-     *            statistics for the table and any indexes involved in the
-     *            operation. <i>ConsumedCapacity</i> is only returned if the
-     *            request asked for it. For more information, see <a href=
+     *            The capacity units consumed by the <code>GetItem</code>
+     *            operation. The data returned includes the total provisioned
+     *            throughput consumed, along with statistics for the table and
+     *            any indexes involved in the operation.
+     *            <code>ConsumedCapacity</code> is only returned if the
+     *            <code>ReturnConsumedCapacity</code> parameter was specified.
+     *            For more information, see <a href=
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      *            >Provisioned Throughput</a> in the <i>Amazon DynamoDB
      *            Developer Guide</i>.

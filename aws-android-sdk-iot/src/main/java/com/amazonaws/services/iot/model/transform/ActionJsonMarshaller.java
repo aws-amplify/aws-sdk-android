@@ -86,6 +86,16 @@ class ActionJsonMarshaller {
             jsonWriter.name("elasticsearch");
             ElasticsearchActionJsonMarshaller.getInstance().marshall(elasticsearch, jsonWriter);
         }
+        if (action.getSalesforce() != null) {
+            SalesforceAction salesforce = action.getSalesforce();
+            jsonWriter.name("salesforce");
+            SalesforceActionJsonMarshaller.getInstance().marshall(salesforce, jsonWriter);
+        }
+        if (action.getIotAnalytics() != null) {
+            IotAnalyticsAction iotAnalytics = action.getIotAnalytics();
+            jsonWriter.name("iotAnalytics");
+            IotAnalyticsActionJsonMarshaller.getInstance().marshall(iotAnalytics, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

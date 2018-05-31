@@ -64,9 +64,21 @@ import com.amazonaws.AmazonWebServiceRequest;
  * temporary security credentials to sign calls to AWS service APIs.
  * </p>
  * <p>
- * The credentials are valid for the duration that you specified when calling
- * <code>AssumeRoleWithWebIdentity</code>, which can be from 900 seconds (15
- * minutes) to a maximum of 3600 seconds (1 hour). The default is 1 hour.
+ * By default, the temporary security credentials created by
+ * <code>AssumeRoleWithWebIdentity</code> last for one hour. However, you can
+ * use the optional <code>DurationSeconds</code> parameter to specify the
+ * duration of your session. You can provide a value from 900 seconds (15
+ * minutes) up to the maximum session duration setting for the role. This
+ * setting can have a value from 1 hour to 12 hours. To learn how to view the
+ * maximum value for your role, see <a href=
+ * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+ * >View the Maximum Session Duration Setting for a Role</a> in the <i>IAM User
+ * Guide</i>. The maximum session duration limit applies when you use the
+ * <code>AssumeRole*</code> API operations or the <code>assume-role*</code> CLI
+ * operations but does not apply when you use those operations to create a
+ * console URL. For more information, see <a
+ * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html"
+ * >Using IAM Roles</a> in the <i>IAM User Guide</i>.
  * </p>
  * <p>
  * The temporary security credentials created by
@@ -118,7 +130,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <li>
  * <p>
  * <a href=
- * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc_manual"
+ * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc_manual.html"
  * >Using Web Identity Federation APIs for Mobile Apps</a> and <a href=
  * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#api_assumerolewithwebidentity"
  * >Federation Through a Web-based Identity Provider</a>.
@@ -145,10 +157,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * <a href="http://aws.amazon.com/articles/4617974389850313">Web Identity
- * Federation with Mobile Applications</a>. This article discusses web identity
- * federation and shows an example of how to use web identity federation to get
- * access to content in Amazon S3.
+ * <a href=
+ * "http://aws.amazon.com/articles/web-identity-federation-with-mobile-applications"
+ * >Web Identity Federation with Mobile Applications</a>. This article discusses
+ * web identity federation and shows an example of how to use web identity
+ * federation to get access to content in Amazon S3.
  * </p>
  * </li>
  * </ul>
@@ -177,9 +190,9 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * <code>AssumedRoleUser</code> response element.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
      * characters: =,.@-
      * </p>
      * <p>
@@ -266,12 +279,34 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The duration, in seconds, of the role session. The value can range from
-     * 900 seconds (15 minutes) to 3600 seconds (1 hour). By default, the value
-     * is set to 3600 seconds.
+     * 900 seconds (15 minutes) up to the maximum session duration setting for
+     * the role. This setting can have a value from 1 hour to 12 hours. If you
+     * specify a value higher than this setting, the operation fails. For
+     * example, if you specify a session duration of 12 hours, but your
+     * administrator set the maximum session duration to 6 hours, your operation
+     * fails. To learn how to view the maximum value for your role, see <a href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     * >View the Maximum Session Duration Setting for a Role</a> in the <i>IAM
+     * User Guide</i>.
      * </p>
      * <p>
+     * By default, the value is set to 3600 seconds.
+     * </p>
+     * <note>
+     * <p>
+     * The <code>DurationSeconds</code> parameter is separate from the duration
+     * of a console session that you might request using the returned
+     * credentials. The request to the federation endpoint for a console sign-in
+     * token takes a <code>SessionDuration</code> parameter that specifies the
+     * maximum length of the console session. For more information, see <a href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     * >Creating a URL that Enables Federated Users to Access the AWS Management
+     * Console</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * </note>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>900 - 3600<br/>
+     * <b>Range: </b>900 - 43200<br/>
      */
     private Integer durationSeconds;
 
@@ -348,9 +383,9 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * <code>AssumedRoleUser</code> response element.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
      * characters: =,.@-
      * </p>
      * <p>
@@ -368,10 +403,10 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      *         element.
      *         </p>
      *         <p>
-     *         The format for this parameter, as described by its regex pattern,
-     *         is a string of characters consisting of upper- and lower-case
-     *         alphanumeric characters with no spaces. You can also include any
-     *         of the following characters: =,.@-
+     *         The regex used to validate this parameter is a string of
+     *         characters consisting of upper- and lower-case alphanumeric
+     *         characters with no spaces. You can also include underscores or
+     *         any of the following characters: =,.@-
      *         </p>
      */
     public String getRoleSessionName() {
@@ -388,9 +423,9 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * <code>AssumedRoleUser</code> response element.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
      * characters: =,.@-
      * </p>
      * <p>
@@ -408,10 +443,10 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      *            <code>AssumedRoleUser</code> response element.
      *            </p>
      *            <p>
-     *            The format for this parameter, as described by its regex
-     *            pattern, is a string of characters consisting of upper- and
-     *            lower-case alphanumeric characters with no spaces. You can
-     *            also include any of the following characters: =,.@-
+     *            The regex used to validate this parameter is a string of
+     *            characters consisting of upper- and lower-case alphanumeric
+     *            characters with no spaces. You can also include underscores or
+     *            any of the following characters: =,.@-
      *            </p>
      */
     public void setRoleSessionName(String roleSessionName) {
@@ -428,9 +463,9 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * <code>AssumedRoleUser</code> response element.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
      * characters: =,.@-
      * </p>
      * <p>
@@ -451,10 +486,10 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      *            <code>AssumedRoleUser</code> response element.
      *            </p>
      *            <p>
-     *            The format for this parameter, as described by its regex
-     *            pattern, is a string of characters consisting of upper- and
-     *            lower-case alphanumeric characters with no spaces. You can
-     *            also include any of the following characters: =,.@-
+     *            The regex used to validate this parameter is a string of
+     *            characters consisting of upper- and lower-case alphanumeric
+     *            characters with no spaces. You can also include underscores or
+     *            any of the following characters: =,.@-
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -904,18 +939,64 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The duration, in seconds, of the role session. The value can range from
-     * 900 seconds (15 minutes) to 3600 seconds (1 hour). By default, the value
-     * is set to 3600 seconds.
+     * 900 seconds (15 minutes) up to the maximum session duration setting for
+     * the role. This setting can have a value from 1 hour to 12 hours. If you
+     * specify a value higher than this setting, the operation fails. For
+     * example, if you specify a session duration of 12 hours, but your
+     * administrator set the maximum session duration to 6 hours, your operation
+     * fails. To learn how to view the maximum value for your role, see <a href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     * >View the Maximum Session Duration Setting for a Role</a> in the <i>IAM
+     * User Guide</i>.
      * </p>
      * <p>
+     * By default, the value is set to 3600 seconds.
+     * </p>
+     * <note>
+     * <p>
+     * The <code>DurationSeconds</code> parameter is separate from the duration
+     * of a console session that you might request using the returned
+     * credentials. The request to the federation endpoint for a console sign-in
+     * token takes a <code>SessionDuration</code> parameter that specifies the
+     * maximum length of the console session. For more information, see <a href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     * >Creating a URL that Enables Federated Users to Access the AWS Management
+     * Console</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * </note>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>900 - 3600<br/>
+     * <b>Range: </b>900 - 43200<br/>
      *
      * @return <p>
      *         The duration, in seconds, of the role session. The value can
-     *         range from 900 seconds (15 minutes) to 3600 seconds (1 hour). By
-     *         default, the value is set to 3600 seconds.
+     *         range from 900 seconds (15 minutes) up to the maximum session
+     *         duration setting for the role. This setting can have a value from
+     *         1 hour to 12 hours. If you specify a value higher than this
+     *         setting, the operation fails. For example, if you specify a
+     *         session duration of 12 hours, but your administrator set the
+     *         maximum session duration to 6 hours, your operation fails. To
+     *         learn how to view the maximum value for your role, see <a href=
+     *         "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     *         >View the Maximum Session Duration Setting for a Role</a> in the
+     *         <i>IAM User Guide</i>.
      *         </p>
+     *         <p>
+     *         By default, the value is set to 3600 seconds.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         The <code>DurationSeconds</code> parameter is separate from the
+     *         duration of a console session that you might request using the
+     *         returned credentials. The request to the federation endpoint for
+     *         a console sign-in token takes a <code>SessionDuration</code>
+     *         parameter that specifies the maximum length of the console
+     *         session. For more information, see <a href=
+     *         "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     *         >Creating a URL that Enables Federated Users to Access the AWS
+     *         Management Console</a> in the <i>IAM User Guide</i>.
+     *         </p>
+     *         </note>
      */
     public Integer getDurationSeconds() {
         return durationSeconds;
@@ -924,18 +1005,66 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The duration, in seconds, of the role session. The value can range from
-     * 900 seconds (15 minutes) to 3600 seconds (1 hour). By default, the value
-     * is set to 3600 seconds.
+     * 900 seconds (15 minutes) up to the maximum session duration setting for
+     * the role. This setting can have a value from 1 hour to 12 hours. If you
+     * specify a value higher than this setting, the operation fails. For
+     * example, if you specify a session duration of 12 hours, but your
+     * administrator set the maximum session duration to 6 hours, your operation
+     * fails. To learn how to view the maximum value for your role, see <a href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     * >View the Maximum Session Duration Setting for a Role</a> in the <i>IAM
+     * User Guide</i>.
      * </p>
      * <p>
+     * By default, the value is set to 3600 seconds.
+     * </p>
+     * <note>
+     * <p>
+     * The <code>DurationSeconds</code> parameter is separate from the duration
+     * of a console session that you might request using the returned
+     * credentials. The request to the federation endpoint for a console sign-in
+     * token takes a <code>SessionDuration</code> parameter that specifies the
+     * maximum length of the console session. For more information, see <a href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     * >Creating a URL that Enables Federated Users to Access the AWS Management
+     * Console</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * </note>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>900 - 3600<br/>
+     * <b>Range: </b>900 - 43200<br/>
      *
      * @param durationSeconds <p>
      *            The duration, in seconds, of the role session. The value can
-     *            range from 900 seconds (15 minutes) to 3600 seconds (1 hour).
+     *            range from 900 seconds (15 minutes) up to the maximum session
+     *            duration setting for the role. This setting can have a value
+     *            from 1 hour to 12 hours. If you specify a value higher than
+     *            this setting, the operation fails. For example, if you specify
+     *            a session duration of 12 hours, but your administrator set the
+     *            maximum session duration to 6 hours, your operation fails. To
+     *            learn how to view the maximum value for your role, see <a
+     *            href=
+     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     *            >View the Maximum Session Duration Setting for a Role</a> in
+     *            the <i>IAM User Guide</i>.
+     *            </p>
+     *            <p>
      *            By default, the value is set to 3600 seconds.
      *            </p>
+     *            <note>
+     *            <p>
+     *            The <code>DurationSeconds</code> parameter is separate from
+     *            the duration of a console session that you might request using
+     *            the returned credentials. The request to the federation
+     *            endpoint for a console sign-in token takes a
+     *            <code>SessionDuration</code> parameter that specifies the
+     *            maximum length of the console session. For more information,
+     *            see <a href=
+     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     *            >Creating a URL that Enables Federated Users to Access the AWS
+     *            Management Console</a> in the <i>IAM User Guide</i>.
+     *            </p>
+     *            </note>
      */
     public void setDurationSeconds(Integer durationSeconds) {
         this.durationSeconds = durationSeconds;
@@ -944,21 +1073,69 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The duration, in seconds, of the role session. The value can range from
-     * 900 seconds (15 minutes) to 3600 seconds (1 hour). By default, the value
-     * is set to 3600 seconds.
+     * 900 seconds (15 minutes) up to the maximum session duration setting for
+     * the role. This setting can have a value from 1 hour to 12 hours. If you
+     * specify a value higher than this setting, the operation fails. For
+     * example, if you specify a session duration of 12 hours, but your
+     * administrator set the maximum session duration to 6 hours, your operation
+     * fails. To learn how to view the maximum value for your role, see <a href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     * >View the Maximum Session Duration Setting for a Role</a> in the <i>IAM
+     * User Guide</i>.
      * </p>
+     * <p>
+     * By default, the value is set to 3600 seconds.
+     * </p>
+     * <note>
+     * <p>
+     * The <code>DurationSeconds</code> parameter is separate from the duration
+     * of a console session that you might request using the returned
+     * credentials. The request to the federation endpoint for a console sign-in
+     * token takes a <code>SessionDuration</code> parameter that specifies the
+     * maximum length of the console session. For more information, see <a href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     * >Creating a URL that Enables Federated Users to Access the AWS Management
+     * Console</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>900 - 3600<br/>
+     * <b>Range: </b>900 - 43200<br/>
      *
      * @param durationSeconds <p>
      *            The duration, in seconds, of the role session. The value can
-     *            range from 900 seconds (15 minutes) to 3600 seconds (1 hour).
+     *            range from 900 seconds (15 minutes) up to the maximum session
+     *            duration setting for the role. This setting can have a value
+     *            from 1 hour to 12 hours. If you specify a value higher than
+     *            this setting, the operation fails. For example, if you specify
+     *            a session duration of 12 hours, but your administrator set the
+     *            maximum session duration to 6 hours, your operation fails. To
+     *            learn how to view the maximum value for your role, see <a
+     *            href=
+     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     *            >View the Maximum Session Duration Setting for a Role</a> in
+     *            the <i>IAM User Guide</i>.
+     *            </p>
+     *            <p>
      *            By default, the value is set to 3600 seconds.
      *            </p>
+     *            <note>
+     *            <p>
+     *            The <code>DurationSeconds</code> parameter is separate from
+     *            the duration of a console session that you might request using
+     *            the returned credentials. The request to the federation
+     *            endpoint for a console sign-in token takes a
+     *            <code>SessionDuration</code> parameter that specifies the
+     *            maximum length of the console session. For more information,
+     *            see <a href=
+     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     *            >Creating a URL that Enables Federated Users to Access the AWS
+     *            Management Console</a> in the <i>IAM User Guide</i>.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

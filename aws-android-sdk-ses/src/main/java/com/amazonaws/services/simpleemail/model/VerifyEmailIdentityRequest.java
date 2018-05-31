@@ -21,11 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Verifies an email address. This action causes a confirmation email message to
- * be sent to the specified address.
+ * Adds an email address to the list of identities for your Amazon SES account
+ * in the current AWS region and attempts to verify it. As a result of executing
+ * this operation, a verification email is sent to the specified address.
  * </p>
  * <p>
- * This action is throttled at one request per second.
+ * You can execute this operation no more than once per second.
  * </p>
  */
 public class VerifyEmailIdentityRequest extends AmazonWebServiceRequest implements Serializable {

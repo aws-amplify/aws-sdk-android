@@ -23,11 +23,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Updates the device status as an administrator.
  * </p>
+ * <p>
+ * Requires developer credentials.
+ * </p>
  */
 public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The user pool ID&gt;
+     * The user pool ID.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -70,7 +73,7 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The user pool ID&gt;
+     * The user pool ID.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -78,7 +81,7 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
      * @return <p>
-     *         The user pool ID&gt;
+     *         The user pool ID.
      *         </p>
      */
     public String getUserPoolId() {
@@ -87,7 +90,7 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The user pool ID&gt;
+     * The user pool ID.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -95,7 +98,7 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
      * @param userPoolId <p>
-     *            The user pool ID&gt;
+     *            The user pool ID.
      *            </p>
      */
     public void setUserPoolId(String userPoolId) {
@@ -104,7 +107,7 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The user pool ID&gt;
+     * The user pool ID.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -115,7 +118,7 @@ public class AdminUpdateDeviceStatusRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
      * @param userPoolId <p>
-     *            The user pool ID&gt;
+     *            The user pool ID.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

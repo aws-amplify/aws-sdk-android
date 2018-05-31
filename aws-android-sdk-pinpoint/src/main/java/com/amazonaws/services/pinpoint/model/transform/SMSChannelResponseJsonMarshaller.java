@@ -41,6 +41,11 @@ class SMSChannelResponseJsonMarshaller {
             jsonWriter.name("Enabled");
             jsonWriter.value(enabled);
         }
+        if (sMSChannelResponse.getHasCredential() != null) {
+            Boolean hasCredential = sMSChannelResponse.getHasCredential();
+            jsonWriter.name("HasCredential");
+            jsonWriter.value(hasCredential);
+        }
         if (sMSChannelResponse.getId() != null) {
             String id = sMSChannelResponse.getId();
             jsonWriter.name("Id");

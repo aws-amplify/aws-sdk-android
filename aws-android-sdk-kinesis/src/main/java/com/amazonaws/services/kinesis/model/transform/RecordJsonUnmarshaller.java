@@ -47,6 +47,9 @@ class RecordJsonUnmarshaller implements Unmarshaller<Record, JsonUnmarshallerCon
             } else if (name.equals("PartitionKey")) {
                 record.setPartitionKey(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("EncryptionType")) {
+                record.setEncryptionType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

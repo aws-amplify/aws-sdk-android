@@ -47,18 +47,34 @@ public class StreamDescription implements Serializable {
      * one of the following states:
      * </p>
      * <ul>
-     * <li><code>CREATING</code> - The stream is being created. Amazon Kinesis
+     * <li>
+     * <p>
+     * <code>CREATING</code> - The stream is being created. Kinesis Data Streams
      * immediately returns and sets <code>StreamStatus</code> to
-     * <code>CREATING</code>.</li>
-     * <li><code>DELETING</code> - The stream is being deleted. The specified
-     * stream is in the <code>DELETING</code> state until Amazon Kinesis
-     * completes the deletion.</li>
-     * <li><code>ACTIVE</code> - The stream exists and is ready for read and
-     * write operations or deletion. You should perform read and write
-     * operations only on an <code>ACTIVE</code> stream.</li>
-     * <li><code>UPDATING</code> - Shards in the stream are being merged or
-     * split. Read and write operations continue to work while the stream is in
-     * the <code>UPDATING</code> state.</li>
+     * <code>CREATING</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DELETING</code> - The stream is being deleted. The specified stream
+     * is in the <code>DELETING</code> state until Kinesis Data Streams
+     * completes the deletion.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ACTIVE</code> - The stream exists and is ready for read and write
+     * operations or deletion. You should perform read and write operations only
+     * on an <code>ACTIVE</code> stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>UPDATING</code> - Shards in the stream are being merged or split.
+     * Read and write operations continue to work while the stream is in the
+     * <code>UPDATING</code> state.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -87,9 +103,16 @@ public class StreamDescription implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>24 - 168<br/>
+     * <b>Range: </b>1 - 168<br/>
      */
     private Integer retentionPeriodHours;
+
+    /**
+     * <p>
+     * The approximate time that the stream was created.
+     * </p>
+     */
+    private java.util.Date streamCreationTimestamp;
 
     /**
      * <p>
@@ -97,6 +120,74 @@ public class StreamDescription implements Serializable {
      * </p>
      */
     private java.util.List<EnhancedMetrics> enhancedMonitoring = new java.util.ArrayList<EnhancedMetrics>();
+
+    /**
+     * <p>
+     * The server-side encryption type used on the stream. This parameter can be
+     * one of the following values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>NONE</code>: Do not encrypt the records in the stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KMS</code>: Use server-side encryption on the records in the stream
+     * using a customer-managed AWS KMS key.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>NONE, KMS
+     */
+    private String encryptionType;
+
+    /**
+     * <p>
+     * The GUID for the customer-managed AWS KMS key to use for encryption. This
+     * value can be a globally unique identifier, a fully specified ARN to
+     * either an alias or a key, or an alias name prefixed by "alias/".You can
+     * also use a master key owned by Kinesis Data Streams by specifying the
+     * alias <code>aws/kinesis</code>.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Key ARN example:
+     * <code>arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Alias ARN example:
+     * <code>arn:aws:kms:us-east-1:123456789012:alias/MyAliasName</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Globally unique key ID example:
+     * <code>12345678-1234-1234-1234-123456789012</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Alias name example: <code>alias/MyAliasName</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Master key owned by Kinesis Data Streams: <code>alias/aws/kinesis</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     */
+    private String keyId;
 
     /**
      * <p>
@@ -206,18 +297,34 @@ public class StreamDescription implements Serializable {
      * one of the following states:
      * </p>
      * <ul>
-     * <li><code>CREATING</code> - The stream is being created. Amazon Kinesis
+     * <li>
+     * <p>
+     * <code>CREATING</code> - The stream is being created. Kinesis Data Streams
      * immediately returns and sets <code>StreamStatus</code> to
-     * <code>CREATING</code>.</li>
-     * <li><code>DELETING</code> - The stream is being deleted. The specified
-     * stream is in the <code>DELETING</code> state until Amazon Kinesis
-     * completes the deletion.</li>
-     * <li><code>ACTIVE</code> - The stream exists and is ready for read and
-     * write operations or deletion. You should perform read and write
-     * operations only on an <code>ACTIVE</code> stream.</li>
-     * <li><code>UPDATING</code> - Shards in the stream are being merged or
-     * split. Read and write operations continue to work while the stream is in
-     * the <code>UPDATING</code> state.</li>
+     * <code>CREATING</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DELETING</code> - The stream is being deleted. The specified stream
+     * is in the <code>DELETING</code> state until Kinesis Data Streams
+     * completes the deletion.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ACTIVE</code> - The stream exists and is ready for read and write
+     * operations or deletion. You should perform read and write operations only
+     * on an <code>ACTIVE</code> stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>UPDATING</code> - Shards in the stream are being merged or split.
+     * Read and write operations continue to work while the stream is in the
+     * <code>UPDATING</code> state.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -228,18 +335,34 @@ public class StreamDescription implements Serializable {
      *         status is one of the following states:
      *         </p>
      *         <ul>
-     *         <li><code>CREATING</code> - The stream is being created. Amazon
-     *         Kinesis immediately returns and sets <code>StreamStatus</code> to
-     *         <code>CREATING</code>.</li>
-     *         <li><code>DELETING</code> - The stream is being deleted. The
+     *         <li>
+     *         <p>
+     *         <code>CREATING</code> - The stream is being created. Kinesis Data
+     *         Streams immediately returns and sets <code>StreamStatus</code> to
+     *         <code>CREATING</code>.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>DELETING</code> - The stream is being deleted. The
      *         specified stream is in the <code>DELETING</code> state until
-     *         Amazon Kinesis completes the deletion.</li>
-     *         <li><code>ACTIVE</code> - The stream exists and is ready for read
-     *         and write operations or deletion. You should perform read and
-     *         write operations only on an <code>ACTIVE</code> stream.</li>
-     *         <li><code>UPDATING</code> - Shards in the stream are being merged
-     *         or split. Read and write operations continue to work while the
-     *         stream is in the <code>UPDATING</code> state.</li>
+     *         Kinesis Data Streams completes the deletion.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>ACTIVE</code> - The stream exists and is ready for read and
+     *         write operations or deletion. You should perform read and write
+     *         operations only on an <code>ACTIVE</code> stream.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>UPDATING</code> - Shards in the stream are being merged or
+     *         split. Read and write operations continue to work while the
+     *         stream is in the <code>UPDATING</code> state.
+     *         </p>
+     *         </li>
      *         </ul>
      * @see StreamStatus
      */
@@ -253,18 +376,34 @@ public class StreamDescription implements Serializable {
      * one of the following states:
      * </p>
      * <ul>
-     * <li><code>CREATING</code> - The stream is being created. Amazon Kinesis
+     * <li>
+     * <p>
+     * <code>CREATING</code> - The stream is being created. Kinesis Data Streams
      * immediately returns and sets <code>StreamStatus</code> to
-     * <code>CREATING</code>.</li>
-     * <li><code>DELETING</code> - The stream is being deleted. The specified
-     * stream is in the <code>DELETING</code> state until Amazon Kinesis
-     * completes the deletion.</li>
-     * <li><code>ACTIVE</code> - The stream exists and is ready for read and
-     * write operations or deletion. You should perform read and write
-     * operations only on an <code>ACTIVE</code> stream.</li>
-     * <li><code>UPDATING</code> - Shards in the stream are being merged or
-     * split. Read and write operations continue to work while the stream is in
-     * the <code>UPDATING</code> state.</li>
+     * <code>CREATING</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DELETING</code> - The stream is being deleted. The specified stream
+     * is in the <code>DELETING</code> state until Kinesis Data Streams
+     * completes the deletion.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ACTIVE</code> - The stream exists and is ready for read and write
+     * operations or deletion. You should perform read and write operations only
+     * on an <code>ACTIVE</code> stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>UPDATING</code> - Shards in the stream are being merged or split.
+     * Read and write operations continue to work while the stream is in the
+     * <code>UPDATING</code> state.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -275,18 +414,34 @@ public class StreamDescription implements Serializable {
      *            status is one of the following states:
      *            </p>
      *            <ul>
-     *            <li><code>CREATING</code> - The stream is being created.
-     *            Amazon Kinesis immediately returns and sets
-     *            <code>StreamStatus</code> to <code>CREATING</code>.</li>
-     *            <li><code>DELETING</code> - The stream is being deleted. The
+     *            <li>
+     *            <p>
+     *            <code>CREATING</code> - The stream is being created. Kinesis
+     *            Data Streams immediately returns and sets
+     *            <code>StreamStatus</code> to <code>CREATING</code>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DELETING</code> - The stream is being deleted. The
      *            specified stream is in the <code>DELETING</code> state until
-     *            Amazon Kinesis completes the deletion.</li>
-     *            <li><code>ACTIVE</code> - The stream exists and is ready for
-     *            read and write operations or deletion. You should perform read
-     *            and write operations only on an <code>ACTIVE</code> stream.</li>
-     *            <li><code>UPDATING</code> - Shards in the stream are being
-     *            merged or split. Read and write operations continue to work
-     *            while the stream is in the <code>UPDATING</code> state.</li>
+     *            Kinesis Data Streams completes the deletion.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ACTIVE</code> - The stream exists and is ready for read
+     *            and write operations or deletion. You should perform read and
+     *            write operations only on an <code>ACTIVE</code> stream.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>UPDATING</code> - Shards in the stream are being merged
+     *            or split. Read and write operations continue to work while the
+     *            stream is in the <code>UPDATING</code> state.
+     *            </p>
+     *            </li>
      *            </ul>
      * @see StreamStatus
      */
@@ -300,18 +455,34 @@ public class StreamDescription implements Serializable {
      * one of the following states:
      * </p>
      * <ul>
-     * <li><code>CREATING</code> - The stream is being created. Amazon Kinesis
+     * <li>
+     * <p>
+     * <code>CREATING</code> - The stream is being created. Kinesis Data Streams
      * immediately returns and sets <code>StreamStatus</code> to
-     * <code>CREATING</code>.</li>
-     * <li><code>DELETING</code> - The stream is being deleted. The specified
-     * stream is in the <code>DELETING</code> state until Amazon Kinesis
-     * completes the deletion.</li>
-     * <li><code>ACTIVE</code> - The stream exists and is ready for read and
-     * write operations or deletion. You should perform read and write
-     * operations only on an <code>ACTIVE</code> stream.</li>
-     * <li><code>UPDATING</code> - Shards in the stream are being merged or
-     * split. Read and write operations continue to work while the stream is in
-     * the <code>UPDATING</code> state.</li>
+     * <code>CREATING</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DELETING</code> - The stream is being deleted. The specified stream
+     * is in the <code>DELETING</code> state until Kinesis Data Streams
+     * completes the deletion.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ACTIVE</code> - The stream exists and is ready for read and write
+     * operations or deletion. You should perform read and write operations only
+     * on an <code>ACTIVE</code> stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>UPDATING</code> - Shards in the stream are being merged or split.
+     * Read and write operations continue to work while the stream is in the
+     * <code>UPDATING</code> state.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -325,18 +496,34 @@ public class StreamDescription implements Serializable {
      *            status is one of the following states:
      *            </p>
      *            <ul>
-     *            <li><code>CREATING</code> - The stream is being created.
-     *            Amazon Kinesis immediately returns and sets
-     *            <code>StreamStatus</code> to <code>CREATING</code>.</li>
-     *            <li><code>DELETING</code> - The stream is being deleted. The
+     *            <li>
+     *            <p>
+     *            <code>CREATING</code> - The stream is being created. Kinesis
+     *            Data Streams immediately returns and sets
+     *            <code>StreamStatus</code> to <code>CREATING</code>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DELETING</code> - The stream is being deleted. The
      *            specified stream is in the <code>DELETING</code> state until
-     *            Amazon Kinesis completes the deletion.</li>
-     *            <li><code>ACTIVE</code> - The stream exists and is ready for
-     *            read and write operations or deletion. You should perform read
-     *            and write operations only on an <code>ACTIVE</code> stream.</li>
-     *            <li><code>UPDATING</code> - Shards in the stream are being
-     *            merged or split. Read and write operations continue to work
-     *            while the stream is in the <code>UPDATING</code> state.</li>
+     *            Kinesis Data Streams completes the deletion.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ACTIVE</code> - The stream exists and is ready for read
+     *            and write operations or deletion. You should perform read and
+     *            write operations only on an <code>ACTIVE</code> stream.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>UPDATING</code> - Shards in the stream are being merged
+     *            or split. Read and write operations continue to work while the
+     *            stream is in the <code>UPDATING</code> state.
+     *            </p>
+     *            </li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -353,18 +540,34 @@ public class StreamDescription implements Serializable {
      * one of the following states:
      * </p>
      * <ul>
-     * <li><code>CREATING</code> - The stream is being created. Amazon Kinesis
+     * <li>
+     * <p>
+     * <code>CREATING</code> - The stream is being created. Kinesis Data Streams
      * immediately returns and sets <code>StreamStatus</code> to
-     * <code>CREATING</code>.</li>
-     * <li><code>DELETING</code> - The stream is being deleted. The specified
-     * stream is in the <code>DELETING</code> state until Amazon Kinesis
-     * completes the deletion.</li>
-     * <li><code>ACTIVE</code> - The stream exists and is ready for read and
-     * write operations or deletion. You should perform read and write
-     * operations only on an <code>ACTIVE</code> stream.</li>
-     * <li><code>UPDATING</code> - Shards in the stream are being merged or
-     * split. Read and write operations continue to work while the stream is in
-     * the <code>UPDATING</code> state.</li>
+     * <code>CREATING</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DELETING</code> - The stream is being deleted. The specified stream
+     * is in the <code>DELETING</code> state until Kinesis Data Streams
+     * completes the deletion.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ACTIVE</code> - The stream exists and is ready for read and write
+     * operations or deletion. You should perform read and write operations only
+     * on an <code>ACTIVE</code> stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>UPDATING</code> - Shards in the stream are being merged or split.
+     * Read and write operations continue to work while the stream is in the
+     * <code>UPDATING</code> state.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -375,18 +578,34 @@ public class StreamDescription implements Serializable {
      *            status is one of the following states:
      *            </p>
      *            <ul>
-     *            <li><code>CREATING</code> - The stream is being created.
-     *            Amazon Kinesis immediately returns and sets
-     *            <code>StreamStatus</code> to <code>CREATING</code>.</li>
-     *            <li><code>DELETING</code> - The stream is being deleted. The
+     *            <li>
+     *            <p>
+     *            <code>CREATING</code> - The stream is being created. Kinesis
+     *            Data Streams immediately returns and sets
+     *            <code>StreamStatus</code> to <code>CREATING</code>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DELETING</code> - The stream is being deleted. The
      *            specified stream is in the <code>DELETING</code> state until
-     *            Amazon Kinesis completes the deletion.</li>
-     *            <li><code>ACTIVE</code> - The stream exists and is ready for
-     *            read and write operations or deletion. You should perform read
-     *            and write operations only on an <code>ACTIVE</code> stream.</li>
-     *            <li><code>UPDATING</code> - Shards in the stream are being
-     *            merged or split. Read and write operations continue to work
-     *            while the stream is in the <code>UPDATING</code> state.</li>
+     *            Kinesis Data Streams completes the deletion.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ACTIVE</code> - The stream exists and is ready for read
+     *            and write operations or deletion. You should perform read and
+     *            write operations only on an <code>ACTIVE</code> stream.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>UPDATING</code> - Shards in the stream are being merged
+     *            or split. Read and write operations continue to work while the
+     *            stream is in the <code>UPDATING</code> state.
+     *            </p>
+     *            </li>
      *            </ul>
      * @see StreamStatus
      */
@@ -400,18 +619,34 @@ public class StreamDescription implements Serializable {
      * one of the following states:
      * </p>
      * <ul>
-     * <li><code>CREATING</code> - The stream is being created. Amazon Kinesis
+     * <li>
+     * <p>
+     * <code>CREATING</code> - The stream is being created. Kinesis Data Streams
      * immediately returns and sets <code>StreamStatus</code> to
-     * <code>CREATING</code>.</li>
-     * <li><code>DELETING</code> - The stream is being deleted. The specified
-     * stream is in the <code>DELETING</code> state until Amazon Kinesis
-     * completes the deletion.</li>
-     * <li><code>ACTIVE</code> - The stream exists and is ready for read and
-     * write operations or deletion. You should perform read and write
-     * operations only on an <code>ACTIVE</code> stream.</li>
-     * <li><code>UPDATING</code> - Shards in the stream are being merged or
-     * split. Read and write operations continue to work while the stream is in
-     * the <code>UPDATING</code> state.</li>
+     * <code>CREATING</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DELETING</code> - The stream is being deleted. The specified stream
+     * is in the <code>DELETING</code> state until Kinesis Data Streams
+     * completes the deletion.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ACTIVE</code> - The stream exists and is ready for read and write
+     * operations or deletion. You should perform read and write operations only
+     * on an <code>ACTIVE</code> stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>UPDATING</code> - Shards in the stream are being merged or split.
+     * Read and write operations continue to work while the stream is in the
+     * <code>UPDATING</code> state.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -425,18 +660,34 @@ public class StreamDescription implements Serializable {
      *            status is one of the following states:
      *            </p>
      *            <ul>
-     *            <li><code>CREATING</code> - The stream is being created.
-     *            Amazon Kinesis immediately returns and sets
-     *            <code>StreamStatus</code> to <code>CREATING</code>.</li>
-     *            <li><code>DELETING</code> - The stream is being deleted. The
+     *            <li>
+     *            <p>
+     *            <code>CREATING</code> - The stream is being created. Kinesis
+     *            Data Streams immediately returns and sets
+     *            <code>StreamStatus</code> to <code>CREATING</code>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DELETING</code> - The stream is being deleted. The
      *            specified stream is in the <code>DELETING</code> state until
-     *            Amazon Kinesis completes the deletion.</li>
-     *            <li><code>ACTIVE</code> - The stream exists and is ready for
-     *            read and write operations or deletion. You should perform read
-     *            and write operations only on an <code>ACTIVE</code> stream.</li>
-     *            <li><code>UPDATING</code> - Shards in the stream are being
-     *            merged or split. Read and write operations continue to work
-     *            while the stream is in the <code>UPDATING</code> state.</li>
+     *            Kinesis Data Streams completes the deletion.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ACTIVE</code> - The stream exists and is ready for read
+     *            and write operations or deletion. You should perform read and
+     *            write operations only on an <code>ACTIVE</code> stream.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>UPDATING</code> - Shards in the stream are being merged
+     *            or split. Read and write operations continue to work while the
+     *            stream is in the <code>UPDATING</code> state.
+     *            </p>
+     *            </li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -593,7 +844,7 @@ public class StreamDescription implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>24 - 168<br/>
+     * <b>Range: </b>1 - 168<br/>
      *
      * @return <p>
      *         The current retention period, in hours.
@@ -609,7 +860,7 @@ public class StreamDescription implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>24 - 168<br/>
+     * <b>Range: </b>1 - 168<br/>
      *
      * @param retentionPeriodHours <p>
      *            The current retention period, in hours.
@@ -628,7 +879,7 @@ public class StreamDescription implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>24 - 168<br/>
+     * <b>Range: </b>1 - 168<br/>
      *
      * @param retentionPeriodHours <p>
      *            The current retention period, in hours.
@@ -638,6 +889,51 @@ public class StreamDescription implements Serializable {
      */
     public StreamDescription withRetentionPeriodHours(Integer retentionPeriodHours) {
         this.retentionPeriodHours = retentionPeriodHours;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The approximate time that the stream was created.
+     * </p>
+     *
+     * @return <p>
+     *         The approximate time that the stream was created.
+     *         </p>
+     */
+    public java.util.Date getStreamCreationTimestamp() {
+        return streamCreationTimestamp;
+    }
+
+    /**
+     * <p>
+     * The approximate time that the stream was created.
+     * </p>
+     *
+     * @param streamCreationTimestamp <p>
+     *            The approximate time that the stream was created.
+     *            </p>
+     */
+    public void setStreamCreationTimestamp(java.util.Date streamCreationTimestamp) {
+        this.streamCreationTimestamp = streamCreationTimestamp;
+    }
+
+    /**
+     * <p>
+     * The approximate time that the stream was created.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param streamCreationTimestamp <p>
+     *            The approximate time that the stream was created.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StreamDescription withStreamCreationTimestamp(java.util.Date streamCreationTimestamp) {
+        this.streamCreationTimestamp = streamCreationTimestamp;
         return this;
     }
 
@@ -722,6 +1018,507 @@ public class StreamDescription implements Serializable {
     }
 
     /**
+     * <p>
+     * The server-side encryption type used on the stream. This parameter can be
+     * one of the following values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>NONE</code>: Do not encrypt the records in the stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KMS</code>: Use server-side encryption on the records in the stream
+     * using a customer-managed AWS KMS key.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>NONE, KMS
+     *
+     * @return <p>
+     *         The server-side encryption type used on the stream. This
+     *         parameter can be one of the following values:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>NONE</code>: Do not encrypt the records in the stream.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>KMS</code>: Use server-side encryption on the records in
+     *         the stream using a customer-managed AWS KMS key.
+     *         </p>
+     *         </li>
+     *         </ul>
+     * @see EncryptionType
+     */
+    public String getEncryptionType() {
+        return encryptionType;
+    }
+
+    /**
+     * <p>
+     * The server-side encryption type used on the stream. This parameter can be
+     * one of the following values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>NONE</code>: Do not encrypt the records in the stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KMS</code>: Use server-side encryption on the records in the stream
+     * using a customer-managed AWS KMS key.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>NONE, KMS
+     *
+     * @param encryptionType <p>
+     *            The server-side encryption type used on the stream. This
+     *            parameter can be one of the following values:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>NONE</code>: Do not encrypt the records in the stream.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>KMS</code>: Use server-side encryption on the records in
+     *            the stream using a customer-managed AWS KMS key.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @see EncryptionType
+     */
+    public void setEncryptionType(String encryptionType) {
+        this.encryptionType = encryptionType;
+    }
+
+    /**
+     * <p>
+     * The server-side encryption type used on the stream. This parameter can be
+     * one of the following values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>NONE</code>: Do not encrypt the records in the stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KMS</code>: Use server-side encryption on the records in the stream
+     * using a customer-managed AWS KMS key.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>NONE, KMS
+     *
+     * @param encryptionType <p>
+     *            The server-side encryption type used on the stream. This
+     *            parameter can be one of the following values:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>NONE</code>: Do not encrypt the records in the stream.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>KMS</code>: Use server-side encryption on the records in
+     *            the stream using a customer-managed AWS KMS key.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see EncryptionType
+     */
+    public StreamDescription withEncryptionType(String encryptionType) {
+        this.encryptionType = encryptionType;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The server-side encryption type used on the stream. This parameter can be
+     * one of the following values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>NONE</code>: Do not encrypt the records in the stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KMS</code>: Use server-side encryption on the records in the stream
+     * using a customer-managed AWS KMS key.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>NONE, KMS
+     *
+     * @param encryptionType <p>
+     *            The server-side encryption type used on the stream. This
+     *            parameter can be one of the following values:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>NONE</code>: Do not encrypt the records in the stream.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>KMS</code>: Use server-side encryption on the records in
+     *            the stream using a customer-managed AWS KMS key.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @see EncryptionType
+     */
+    public void setEncryptionType(EncryptionType encryptionType) {
+        this.encryptionType = encryptionType.toString();
+    }
+
+    /**
+     * <p>
+     * The server-side encryption type used on the stream. This parameter can be
+     * one of the following values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>NONE</code>: Do not encrypt the records in the stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KMS</code>: Use server-side encryption on the records in the stream
+     * using a customer-managed AWS KMS key.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>NONE, KMS
+     *
+     * @param encryptionType <p>
+     *            The server-side encryption type used on the stream. This
+     *            parameter can be one of the following values:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>NONE</code>: Do not encrypt the records in the stream.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>KMS</code>: Use server-side encryption on the records in
+     *            the stream using a customer-managed AWS KMS key.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see EncryptionType
+     */
+    public StreamDescription withEncryptionType(EncryptionType encryptionType) {
+        this.encryptionType = encryptionType.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The GUID for the customer-managed AWS KMS key to use for encryption. This
+     * value can be a globally unique identifier, a fully specified ARN to
+     * either an alias or a key, or an alias name prefixed by "alias/".You can
+     * also use a master key owned by Kinesis Data Streams by specifying the
+     * alias <code>aws/kinesis</code>.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Key ARN example:
+     * <code>arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Alias ARN example:
+     * <code>arn:aws:kms:us-east-1:123456789012:alias/MyAliasName</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Globally unique key ID example:
+     * <code>12345678-1234-1234-1234-123456789012</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Alias name example: <code>alias/MyAliasName</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Master key owned by Kinesis Data Streams: <code>alias/aws/kinesis</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     *
+     * @return <p>
+     *         The GUID for the customer-managed AWS KMS key to use for
+     *         encryption. This value can be a globally unique identifier, a
+     *         fully specified ARN to either an alias or a key, or an alias name
+     *         prefixed by "alias/".You can also use a master key owned by
+     *         Kinesis Data Streams by specifying the alias
+     *         <code>aws/kinesis</code>.
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Key ARN example:
+     *         <code>arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Alias ARN example:
+     *         <code>arn:aws:kms:us-east-1:123456789012:alias/MyAliasName</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Globally unique key ID example:
+     *         <code>12345678-1234-1234-1234-123456789012</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Alias name example: <code>alias/MyAliasName</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Master key owned by Kinesis Data Streams:
+     *         <code>alias/aws/kinesis</code>
+     *         </p>
+     *         </li>
+     *         </ul>
+     */
+    public String getKeyId() {
+        return keyId;
+    }
+
+    /**
+     * <p>
+     * The GUID for the customer-managed AWS KMS key to use for encryption. This
+     * value can be a globally unique identifier, a fully specified ARN to
+     * either an alias or a key, or an alias name prefixed by "alias/".You can
+     * also use a master key owned by Kinesis Data Streams by specifying the
+     * alias <code>aws/kinesis</code>.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Key ARN example:
+     * <code>arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Alias ARN example:
+     * <code>arn:aws:kms:us-east-1:123456789012:alias/MyAliasName</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Globally unique key ID example:
+     * <code>12345678-1234-1234-1234-123456789012</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Alias name example: <code>alias/MyAliasName</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Master key owned by Kinesis Data Streams: <code>alias/aws/kinesis</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     *
+     * @param keyId <p>
+     *            The GUID for the customer-managed AWS KMS key to use for
+     *            encryption. This value can be a globally unique identifier, a
+     *            fully specified ARN to either an alias or a key, or an alias
+     *            name prefixed by "alias/".You can also use a master key owned
+     *            by Kinesis Data Streams by specifying the alias
+     *            <code>aws/kinesis</code>.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Key ARN example:
+     *            <code>arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Alias ARN example:
+     *            <code>arn:aws:kms:us-east-1:123456789012:alias/MyAliasName</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Globally unique key ID example:
+     *            <code>12345678-1234-1234-1234-123456789012</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Alias name example: <code>alias/MyAliasName</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Master key owned by Kinesis Data Streams:
+     *            <code>alias/aws/kinesis</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     */
+    public void setKeyId(String keyId) {
+        this.keyId = keyId;
+    }
+
+    /**
+     * <p>
+     * The GUID for the customer-managed AWS KMS key to use for encryption. This
+     * value can be a globally unique identifier, a fully specified ARN to
+     * either an alias or a key, or an alias name prefixed by "alias/".You can
+     * also use a master key owned by Kinesis Data Streams by specifying the
+     * alias <code>aws/kinesis</code>.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Key ARN example:
+     * <code>arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Alias ARN example:
+     * <code>arn:aws:kms:us-east-1:123456789012:alias/MyAliasName</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Globally unique key ID example:
+     * <code>12345678-1234-1234-1234-123456789012</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Alias name example: <code>alias/MyAliasName</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Master key owned by Kinesis Data Streams: <code>alias/aws/kinesis</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     *
+     * @param keyId <p>
+     *            The GUID for the customer-managed AWS KMS key to use for
+     *            encryption. This value can be a globally unique identifier, a
+     *            fully specified ARN to either an alias or a key, or an alias
+     *            name prefixed by "alias/".You can also use a master key owned
+     *            by Kinesis Data Streams by specifying the alias
+     *            <code>aws/kinesis</code>.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Key ARN example:
+     *            <code>arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Alias ARN example:
+     *            <code>arn:aws:kms:us-east-1:123456789012:alias/MyAliasName</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Globally unique key ID example:
+     *            <code>12345678-1234-1234-1234-123456789012</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Alias name example: <code>alias/MyAliasName</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Master key owned by Kinesis Data Streams:
+     *            <code>alias/aws/kinesis</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StreamDescription withKeyId(String keyId) {
+        this.keyId = keyId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -744,8 +1541,14 @@ public class StreamDescription implements Serializable {
             sb.append("HasMoreShards: " + getHasMoreShards() + ",");
         if (getRetentionPeriodHours() != null)
             sb.append("RetentionPeriodHours: " + getRetentionPeriodHours() + ",");
+        if (getStreamCreationTimestamp() != null)
+            sb.append("StreamCreationTimestamp: " + getStreamCreationTimestamp() + ",");
         if (getEnhancedMonitoring() != null)
-            sb.append("EnhancedMonitoring: " + getEnhancedMonitoring());
+            sb.append("EnhancedMonitoring: " + getEnhancedMonitoring() + ",");
+        if (getEncryptionType() != null)
+            sb.append("EncryptionType: " + getEncryptionType() + ",");
+        if (getKeyId() != null)
+            sb.append("KeyId: " + getKeyId());
         sb.append("}");
         return sb.toString();
     }
@@ -764,8 +1567,15 @@ public class StreamDescription implements Serializable {
                 + ((getHasMoreShards() == null) ? 0 : getHasMoreShards().hashCode());
         hashCode = prime * hashCode
                 + ((getRetentionPeriodHours() == null) ? 0 : getRetentionPeriodHours().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getStreamCreationTimestamp() == null) ? 0 : getStreamCreationTimestamp()
+                        .hashCode());
         hashCode = prime * hashCode
                 + ((getEnhancedMonitoring() == null) ? 0 : getEnhancedMonitoring().hashCode());
+        hashCode = prime * hashCode
+                + ((getEncryptionType() == null) ? 0 : getEncryptionType().hashCode());
+        hashCode = prime * hashCode + ((getKeyId() == null) ? 0 : getKeyId().hashCode());
         return hashCode;
     }
 
@@ -809,10 +1619,24 @@ public class StreamDescription implements Serializable {
         if (other.getRetentionPeriodHours() != null
                 && other.getRetentionPeriodHours().equals(this.getRetentionPeriodHours()) == false)
             return false;
+        if (other.getStreamCreationTimestamp() == null ^ this.getStreamCreationTimestamp() == null)
+            return false;
+        if (other.getStreamCreationTimestamp() != null
+                && other.getStreamCreationTimestamp().equals(this.getStreamCreationTimestamp()) == false)
+            return false;
         if (other.getEnhancedMonitoring() == null ^ this.getEnhancedMonitoring() == null)
             return false;
         if (other.getEnhancedMonitoring() != null
                 && other.getEnhancedMonitoring().equals(this.getEnhancedMonitoring()) == false)
+            return false;
+        if (other.getEncryptionType() == null ^ this.getEncryptionType() == null)
+            return false;
+        if (other.getEncryptionType() != null
+                && other.getEncryptionType().equals(this.getEncryptionType()) == false)
+            return false;
+        if (other.getKeyId() == null ^ this.getKeyId() == null)
+            return false;
+        if (other.getKeyId() != null && other.getKeyId().equals(this.getKeyId()) == false)
             return false;
         return true;
     }

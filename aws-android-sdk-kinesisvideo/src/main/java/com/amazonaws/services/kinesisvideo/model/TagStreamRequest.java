@@ -19,9 +19,34 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Adds one or more tags to a stream. A <i>tag</i> is a key-value pair (the
+ * value is optional) that you can define and assign to AWS resources. If you
+ * specify a tag that already exists, the tag value is replaced with the value
+ * that you specify in the request. For more information, see <a href=
+ * "http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html"
+ * >Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management
+ * User Guide</i>.
+ * </p>
+ * <p>
+ * You must provide either the <code>StreamName</code> or the
+ * <code>StreamARN</code>.
+ * </p>
+ * <p>
+ * This operation requires permission for the
+ * <code>KinesisVideo:TagStream</code> action.
+ * </p>
+ * <p>
+ * Kinesis video streams support up to 50 tags.
+ * </p>
+ */
 public class TagStreamRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the resource that you want to add the
+     * tag or tags to.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -32,7 +57,9 @@ public class TagStreamRequest extends AmazonWebServiceRequest implements Seriali
     private String streamARN;
 
     /**
-     * The new value for the streamName property for this object.
+     * <p>
+     * The name of the stream that you want to add the tag or tags to.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -41,12 +68,18 @@ public class TagStreamRequest extends AmazonWebServiceRequest implements Seriali
     private String streamName;
 
     /**
-     * The new value for the tags property for this object.
+     * <p>
+     * A list of tags to associate with the specified stream. Each tag is a
+     * key-value pair (the value is optional).
+     * </p>
      */
     private java.util.Map<String, String> tags = new java.util.HashMap<String, String>();
 
     /**
-     * Returns the value of the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the resource that you want to add the
+     * tag or tags to.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -54,14 +87,20 @@ public class TagStreamRequest extends AmazonWebServiceRequest implements Seriali
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @return The value of the streamARN property for this object.
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the resource that you want to
+     *         add the tag or tags to.
+     *         </p>
      */
     public String getStreamARN() {
         return streamARN;
     }
 
     /**
-     * Sets the value of streamARN
+     * <p>
+     * The Amazon Resource Name (ARN) of the resource that you want to add the
+     * tag or tags to.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -69,15 +108,20 @@ public class TagStreamRequest extends AmazonWebServiceRequest implements Seriali
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @param streamARN The new value for the streamARN property for this
-     *            object.
+     * @param streamARN <p>
+     *            The Amazon Resource Name (ARN) of the resource that you want
+     *            to add the tag or tags to.
+     *            </p>
      */
     public void setStreamARN(String streamARN) {
         this.streamARN = streamARN;
     }
 
     /**
-     * Sets the value of the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the resource that you want to add the
+     * tag or tags to.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -88,8 +132,10 @@ public class TagStreamRequest extends AmazonWebServiceRequest implements Seriali
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @param streamARN The new value for the streamARN property for this
-     *            object.
+     * @param streamARN <p>
+     *            The Amazon Resource Name (ARN) of the resource that you want
+     *            to add the tag or tags to.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -99,34 +145,44 @@ public class TagStreamRequest extends AmazonWebServiceRequest implements Seriali
     }
 
     /**
-     * Returns the value of the streamName property for this object.
+     * <p>
+     * The name of the stream that you want to add the tag or tags to.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @return The value of the streamName property for this object.
+     * @return <p>
+     *         The name of the stream that you want to add the tag or tags to.
+     *         </p>
      */
     public String getStreamName() {
         return streamName;
     }
 
     /**
-     * Sets the value of streamName
+     * <p>
+     * The name of the stream that you want to add the tag or tags to.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param streamName The new value for the streamName property for this
-     *            object.
+     * @param streamName <p>
+     *            The name of the stream that you want to add the tag or tags
+     *            to.
+     *            </p>
      */
     public void setStreamName(String streamName) {
         this.streamName = streamName;
     }
 
     /**
-     * Sets the value of the streamName property for this object.
+     * <p>
+     * The name of the stream that you want to add the tag or tags to.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -135,8 +191,10 @@ public class TagStreamRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param streamName The new value for the streamName property for this
-     *            object.
+     * @param streamName <p>
+     *            The name of the stream that you want to add the tag or tags
+     *            to.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -146,30 +204,48 @@ public class TagStreamRequest extends AmazonWebServiceRequest implements Seriali
     }
 
     /**
-     * Returns the value of the tags property for this object.
+     * <p>
+     * A list of tags to associate with the specified stream. Each tag is a
+     * key-value pair (the value is optional).
+     * </p>
      *
-     * @return The value of the tags property for this object.
+     * @return <p>
+     *         A list of tags to associate with the specified stream. Each tag
+     *         is a key-value pair (the value is optional).
+     *         </p>
      */
     public java.util.Map<String, String> getTags() {
         return tags;
     }
 
     /**
-     * Sets the value of tags
+     * <p>
+     * A list of tags to associate with the specified stream. Each tag is a
+     * key-value pair (the value is optional).
+     * </p>
      *
-     * @param tags The new value for the tags property for this object.
+     * @param tags <p>
+     *            A list of tags to associate with the specified stream. Each
+     *            tag is a key-value pair (the value is optional).
+     *            </p>
      */
     public void setTags(java.util.Map<String, String> tags) {
         this.tags = tags;
     }
 
     /**
-     * Sets the value of the tags property for this object.
+     * <p>
+     * A list of tags to associate with the specified stream. Each tag is a
+     * key-value pair (the value is optional).
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param tags The new value for the tags property for this object.
+     * @param tags <p>
+     *            A list of tags to associate with the specified stream. Each
+     *            tag is a key-value pair (the value is optional).
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -179,7 +255,10 @@ public class TagStreamRequest extends AmazonWebServiceRequest implements Seriali
     }
 
     /**
-     * Sets the value of the tags property for this object.
+     * <p>
+     * A list of tags to associate with the specified stream. Each tag is a
+     * key-value pair (the value is optional).
+     * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a
      * reference to this object so that method calls can be chained together.

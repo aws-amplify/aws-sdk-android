@@ -25,7 +25,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * of verified identities.
  * </p>
  * <p>
- * This action is throttled at one request per second.
+ * You can execute this operation no more than once per second.
  * </p>
  */
 public class DeleteIdentityRequest extends AmazonWebServiceRequest implements Serializable {

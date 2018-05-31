@@ -32,6 +32,13 @@ public class DescribeCACertificateResult implements Serializable {
 
     /**
      * <p>
+     * Information about the registration configuration.
+     * </p>
+     */
+    private RegistrationConfig registrationConfig;
+
+    /**
+     * <p>
      * The CA certificate description.
      * </p>
      *
@@ -77,6 +84,51 @@ public class DescribeCACertificateResult implements Serializable {
     }
 
     /**
+     * <p>
+     * Information about the registration configuration.
+     * </p>
+     *
+     * @return <p>
+     *         Information about the registration configuration.
+     *         </p>
+     */
+    public RegistrationConfig getRegistrationConfig() {
+        return registrationConfig;
+    }
+
+    /**
+     * <p>
+     * Information about the registration configuration.
+     * </p>
+     *
+     * @param registrationConfig <p>
+     *            Information about the registration configuration.
+     *            </p>
+     */
+    public void setRegistrationConfig(RegistrationConfig registrationConfig) {
+        this.registrationConfig = registrationConfig;
+    }
+
+    /**
+     * <p>
+     * Information about the registration configuration.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param registrationConfig <p>
+     *            Information about the registration configuration.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeCACertificateResult withRegistrationConfig(RegistrationConfig registrationConfig) {
+        this.registrationConfig = registrationConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -88,7 +140,9 @@ public class DescribeCACertificateResult implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getCertificateDescription() != null)
-            sb.append("certificateDescription: " + getCertificateDescription());
+            sb.append("certificateDescription: " + getCertificateDescription() + ",");
+        if (getRegistrationConfig() != null)
+            sb.append("registrationConfig: " + getRegistrationConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -102,6 +156,8 @@ public class DescribeCACertificateResult implements Serializable {
                 * hashCode
                 + ((getCertificateDescription() == null) ? 0 : getCertificateDescription()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getRegistrationConfig() == null) ? 0 : getRegistrationConfig().hashCode());
         return hashCode;
     }
 
@@ -120,6 +176,11 @@ public class DescribeCACertificateResult implements Serializable {
             return false;
         if (other.getCertificateDescription() != null
                 && other.getCertificateDescription().equals(this.getCertificateDescription()) == false)
+            return false;
+        if (other.getRegistrationConfig() == null ^ this.getRegistrationConfig() == null)
+            return false;
+        if (other.getRegistrationConfig() != null
+                && other.getRegistrationConfig().equals(this.getRegistrationConfig()) == false)
             return false;
         return true;
     }

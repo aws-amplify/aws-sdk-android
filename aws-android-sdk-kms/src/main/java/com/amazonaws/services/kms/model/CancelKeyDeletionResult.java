@@ -24,7 +24,7 @@ public class CancelKeyDeletionResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      */
     private String keyId;
 
@@ -34,7 +34,7 @@ public class CancelKeyDeletionResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
      *         The unique identifier of the master key for which deletion is
@@ -51,7 +51,7 @@ public class CancelKeyDeletionResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            The unique identifier of the master key for which deletion is
@@ -71,7 +71,7 @@ public class CancelKeyDeletionResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            The unique identifier of the master key for which deletion is

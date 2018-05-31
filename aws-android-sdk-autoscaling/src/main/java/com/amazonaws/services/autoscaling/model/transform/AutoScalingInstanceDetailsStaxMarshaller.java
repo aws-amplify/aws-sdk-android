@@ -58,6 +58,13 @@ class AutoScalingInstanceDetailsStaxMarshaller {
                     .getLaunchConfigurationName();
             request.addParameter(prefix, StringUtils.fromString(launchConfigurationName));
         }
+        if (_autoScalingInstanceDetails.getLaunchTemplate() != null) {
+            prefix = _prefix + "LaunchTemplate";
+            LaunchTemplateSpecification launchTemplate = _autoScalingInstanceDetails
+                    .getLaunchTemplate();
+            LaunchTemplateSpecificationStaxMarshaller.getInstance().marshall(launchTemplate,
+                    request, prefix + ".");
+        }
         if (_autoScalingInstanceDetails.getProtectedFromScaleIn() != null) {
             prefix = _prefix + "ProtectedFromScaleIn";
             Boolean protectedFromScaleIn = _autoScalingInstanceDetails.getProtectedFromScaleIn();

@@ -17,51 +17,76 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * The type used for enabling software token MFA at the user level.
+ * </p>
+ */
 public class SoftwareTokenMfaSettingsType implements Serializable {
     /**
-     * The new value for the enabled property for this object.
+     * <p>
+     * Specifies whether software token MFA is enabled.
+     * </p>
      */
     private Boolean enabled;
 
     /**
-     * The new value for the preferredMfa property for this object.
+     * <p>
+     * The preferred MFA method.
+     * </p>
      */
     private Boolean preferredMfa;
 
     /**
-     * Returns the value of the enabled property for this object.
+     * <p>
+     * Specifies whether software token MFA is enabled.
+     * </p>
      *
-     * @return The value of the enabled property for this object.
+     * @return <p>
+     *         Specifies whether software token MFA is enabled.
+     *         </p>
      */
     public Boolean isEnabled() {
         return enabled;
     }
 
     /**
-     * Returns the value of the enabled property for this object.
+     * <p>
+     * Specifies whether software token MFA is enabled.
+     * </p>
      *
-     * @return The value of the enabled property for this object.
+     * @return <p>
+     *         Specifies whether software token MFA is enabled.
+     *         </p>
      */
     public Boolean getEnabled() {
         return enabled;
     }
 
     /**
-     * Sets the value of enabled
+     * <p>
+     * Specifies whether software token MFA is enabled.
+     * </p>
      *
-     * @param enabled The new value for the enabled property for this object.
+     * @param enabled <p>
+     *            Specifies whether software token MFA is enabled.
+     *            </p>
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
     /**
-     * Sets the value of the enabled property for this object.
+     * <p>
+     * Specifies whether software token MFA is enabled.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param enabled The new value for the enabled property for this object.
+     * @param enabled <p>
+     *            Specifies whether software token MFA is enabled.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -71,41 +96,55 @@ public class SoftwareTokenMfaSettingsType implements Serializable {
     }
 
     /**
-     * Returns the value of the preferredMfa property for this object.
+     * <p>
+     * The preferred MFA method.
+     * </p>
      *
-     * @return The value of the preferredMfa property for this object.
+     * @return <p>
+     *         The preferred MFA method.
+     *         </p>
      */
     public Boolean isPreferredMfa() {
         return preferredMfa;
     }
 
     /**
-     * Returns the value of the preferredMfa property for this object.
+     * <p>
+     * The preferred MFA method.
+     * </p>
      *
-     * @return The value of the preferredMfa property for this object.
+     * @return <p>
+     *         The preferred MFA method.
+     *         </p>
      */
     public Boolean getPreferredMfa() {
         return preferredMfa;
     }
 
     /**
-     * Sets the value of preferredMfa
+     * <p>
+     * The preferred MFA method.
+     * </p>
      *
-     * @param preferredMfa The new value for the preferredMfa property for this
-     *            object.
+     * @param preferredMfa <p>
+     *            The preferred MFA method.
+     *            </p>
      */
     public void setPreferredMfa(Boolean preferredMfa) {
         this.preferredMfa = preferredMfa;
     }
 
     /**
-     * Sets the value of the preferredMfa property for this object.
+     * <p>
+     * The preferred MFA method.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param preferredMfa The new value for the preferredMfa property for this
-     *            object.
+     * @param preferredMfa <p>
+     *            The preferred MFA method.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

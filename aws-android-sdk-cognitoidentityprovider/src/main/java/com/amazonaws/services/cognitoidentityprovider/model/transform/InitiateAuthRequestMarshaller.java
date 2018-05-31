@@ -99,17 +99,17 @@ public class InitiateAuthRequestMarshaller implements
                 jsonWriter.name("ClientId");
                 jsonWriter.value(clientId);
             }
-            if (initiateAuthRequest.getUserContextData() != null) {
-                UserContextDataType userContextData = initiateAuthRequest.getUserContextData();
-                jsonWriter.name("UserContextData");
-                UserContextDataTypeJsonMarshaller.getInstance().marshall(userContextData,
-                        jsonWriter);
-            }
             if (initiateAuthRequest.getAnalyticsMetadata() != null) {
                 AnalyticsMetadataType analyticsMetadata = initiateAuthRequest
                         .getAnalyticsMetadata();
                 jsonWriter.name("AnalyticsMetadata");
                 AnalyticsMetadataTypeJsonMarshaller.getInstance().marshall(analyticsMetadata,
+                        jsonWriter);
+            }
+            if (initiateAuthRequest.getUserContextData() != null) {
+                UserContextDataType userContextData = initiateAuthRequest.getUserContextData();
+                jsonWriter.name("UserContextData");
+                UserContextDataTypeJsonMarshaller.getInstance().marshall(userContextData,
                         jsonWriter);
             }
 

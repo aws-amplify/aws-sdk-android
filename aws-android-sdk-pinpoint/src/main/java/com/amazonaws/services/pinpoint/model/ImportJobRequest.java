@@ -24,8 +24,10 @@ public class ImportJobRequest implements Serializable {
     private Boolean defineSegment;
 
     /**
-     * A unique, custom ID assigned to the IAM role that restricts who can
-     * assume the role.
+     * DEPRECATED. Your AWS account ID, which you assigned to the ExternalID key
+     * in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM role.
+     * This requirement is removed, and external IDs are not recommended for IAM
+     * roles assumed by Amazon Pinpoint.
      */
     private String externalId;
 
@@ -118,36 +120,50 @@ public class ImportJobRequest implements Serializable {
     }
 
     /**
-     * A unique, custom ID assigned to the IAM role that restricts who can
-     * assume the role.
+     * DEPRECATED. Your AWS account ID, which you assigned to the ExternalID key
+     * in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM role.
+     * This requirement is removed, and external IDs are not recommended for IAM
+     * roles assumed by Amazon Pinpoint.
      *
-     * @return A unique, custom ID assigned to the IAM role that restricts who
-     *         can assume the role.
+     * @return DEPRECATED. Your AWS account ID, which you assigned to the
+     *         ExternalID key in an IAM trust policy. Used by Amazon Pinpoint to
+     *         assume an IAM role. This requirement is removed, and external IDs
+     *         are not recommended for IAM roles assumed by Amazon Pinpoint.
      */
     public String getExternalId() {
         return externalId;
     }
 
     /**
-     * A unique, custom ID assigned to the IAM role that restricts who can
-     * assume the role.
+     * DEPRECATED. Your AWS account ID, which you assigned to the ExternalID key
+     * in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM role.
+     * This requirement is removed, and external IDs are not recommended for IAM
+     * roles assumed by Amazon Pinpoint.
      *
-     * @param externalId A unique, custom ID assigned to the IAM role that
-     *            restricts who can assume the role.
+     * @param externalId DEPRECATED. Your AWS account ID, which you assigned to
+     *            the ExternalID key in an IAM trust policy. Used by Amazon
+     *            Pinpoint to assume an IAM role. This requirement is removed,
+     *            and external IDs are not recommended for IAM roles assumed by
+     *            Amazon Pinpoint.
      */
     public void setExternalId(String externalId) {
         this.externalId = externalId;
     }
 
     /**
-     * A unique, custom ID assigned to the IAM role that restricts who can
-     * assume the role.
+     * DEPRECATED. Your AWS account ID, which you assigned to the ExternalID key
+     * in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM role.
+     * This requirement is removed, and external IDs are not recommended for IAM
+     * roles assumed by Amazon Pinpoint.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param externalId A unique, custom ID assigned to the IAM role that
-     *            restricts who can assume the role.
+     * @param externalId DEPRECATED. Your AWS account ID, which you assigned to
+     *            the ExternalID key in an IAM trust policy. Used by Amazon
+     *            Pinpoint to assume an IAM role. This requirement is removed,
+     *            and external IDs are not recommended for IAM roles assumed by
+     *            Amazon Pinpoint.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

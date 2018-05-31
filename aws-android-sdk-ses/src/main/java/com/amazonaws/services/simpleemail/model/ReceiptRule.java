@@ -24,10 +24,10 @@ import java.io.Serializable;
  * own.
  * </p>
  * <p>
- * Each receipt rule defines a set of email addresses or domains to which it
- * applies. If the email addresses or domains match at least one recipient
- * address of the message, Amazon SES executes all of the receipt rule's actions
- * on the message.
+ * Each receipt rule defines a set of email addresses or domains that it applies
+ * to. If the email addresses or domains match at least one recipient address of
+ * the message, Amazon SES executes all of the receipt rule's actions on the
+ * message.
  * </p>
  * <p>
  * For information about setting up receipt rules, see the <a href=
@@ -43,7 +43,7 @@ public class ReceiptRule implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.),
+     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
      * underscores (_), or dashes (-).
      * </p>
      * </li>
@@ -85,9 +85,9 @@ public class ReceiptRule implements Serializable {
 
     /**
      * <p>
-     * The recipient domains and email addresses to which the receipt rule
-     * applies. If this field is not specified, this rule will match all
-     * recipients under all verified domains.
+     * The recipient domains and email addresses that the receipt rule applies
+     * to. If this field is not specified, this rule will match all recipients
+     * under all verified domains.
      * </p>
      */
     private java.util.List<String> recipients = new java.util.ArrayList<String>();
@@ -103,9 +103,8 @@ public class ReceiptRule implements Serializable {
 
     /**
      * <p>
-     * If <code>true</code>, then messages to which this receipt rule applies
-     * are scanned for spam and viruses. The default value is <code>false</code>
-     * .
+     * If <code>true</code>, then messages that this receipt rule applies to are
+     * scanned for spam and viruses. The default value is <code>false</code>.
      * </p>
      */
     private Boolean scanEnabled;
@@ -117,7 +116,7 @@ public class ReceiptRule implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.),
+     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
      * underscores (_), or dashes (-).
      * </p>
      * </li>
@@ -139,8 +138,8 @@ public class ReceiptRule implements Serializable {
      *         <ul>
      *         <li>
      *         <p>
-     *         Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods
-     *         (.), underscores (_), or dashes (-).
+     *         This value can only contain ASCII letters (a-z, A-Z), numbers
+     *         (0-9), underscores (_), or dashes (-).
      *         </p>
      *         </li>
      *         <li>
@@ -166,7 +165,7 @@ public class ReceiptRule implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.),
+     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
      * underscores (_), or dashes (-).
      * </p>
      * </li>
@@ -188,8 +187,8 @@ public class ReceiptRule implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods
-     *            (.), underscores (_), or dashes (-).
+     *            This value can only contain ASCII letters (a-z, A-Z), numbers
+     *            (0-9), underscores (_), or dashes (-).
      *            </p>
      *            </li>
      *            <li>
@@ -215,7 +214,7 @@ public class ReceiptRule implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.),
+     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
      * underscores (_), or dashes (-).
      * </p>
      * </li>
@@ -240,8 +239,8 @@ public class ReceiptRule implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods
-     *            (.), underscores (_), or dashes (-).
+     *            This value can only contain ASCII letters (a-z, A-Z), numbers
+     *            (0-9), underscores (_), or dashes (-).
      *            </p>
      *            </li>
      *            <li>
@@ -468,15 +467,15 @@ public class ReceiptRule implements Serializable {
 
     /**
      * <p>
-     * The recipient domains and email addresses to which the receipt rule
-     * applies. If this field is not specified, this rule will match all
-     * recipients under all verified domains.
+     * The recipient domains and email addresses that the receipt rule applies
+     * to. If this field is not specified, this rule will match all recipients
+     * under all verified domains.
      * </p>
      *
      * @return <p>
-     *         The recipient domains and email addresses to which the receipt
-     *         rule applies. If this field is not specified, this rule will
-     *         match all recipients under all verified domains.
+     *         The recipient domains and email addresses that the receipt rule
+     *         applies to. If this field is not specified, this rule will match
+     *         all recipients under all verified domains.
      *         </p>
      */
     public java.util.List<String> getRecipients() {
@@ -485,15 +484,15 @@ public class ReceiptRule implements Serializable {
 
     /**
      * <p>
-     * The recipient domains and email addresses to which the receipt rule
-     * applies. If this field is not specified, this rule will match all
-     * recipients under all verified domains.
+     * The recipient domains and email addresses that the receipt rule applies
+     * to. If this field is not specified, this rule will match all recipients
+     * under all verified domains.
      * </p>
      *
      * @param recipients <p>
-     *            The recipient domains and email addresses to which the receipt
-     *            rule applies. If this field is not specified, this rule will
-     *            match all recipients under all verified domains.
+     *            The recipient domains and email addresses that the receipt
+     *            rule applies to. If this field is not specified, this rule
+     *            will match all recipients under all verified domains.
      *            </p>
      */
     public void setRecipients(java.util.Collection<String> recipients) {
@@ -507,18 +506,18 @@ public class ReceiptRule implements Serializable {
 
     /**
      * <p>
-     * The recipient domains and email addresses to which the receipt rule
-     * applies. If this field is not specified, this rule will match all
-     * recipients under all verified domains.
+     * The recipient domains and email addresses that the receipt rule applies
+     * to. If this field is not specified, this rule will match all recipients
+     * under all verified domains.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param recipients <p>
-     *            The recipient domains and email addresses to which the receipt
-     *            rule applies. If this field is not specified, this rule will
-     *            match all recipients under all verified domains.
+     *            The recipient domains and email addresses that the receipt
+     *            rule applies to. If this field is not specified, this rule
+     *            will match all recipients under all verified domains.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -535,18 +534,18 @@ public class ReceiptRule implements Serializable {
 
     /**
      * <p>
-     * The recipient domains and email addresses to which the receipt rule
-     * applies. If this field is not specified, this rule will match all
-     * recipients under all verified domains.
+     * The recipient domains and email addresses that the receipt rule applies
+     * to. If this field is not specified, this rule will match all recipients
+     * under all verified domains.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param recipients <p>
-     *            The recipient domains and email addresses to which the receipt
-     *            rule applies. If this field is not specified, this rule will
-     *            match all recipients under all verified domains.
+     *            The recipient domains and email addresses that the receipt
+     *            rule applies to. If this field is not specified, this rule
+     *            will match all recipients under all verified domains.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -648,14 +647,13 @@ public class ReceiptRule implements Serializable {
 
     /**
      * <p>
-     * If <code>true</code>, then messages to which this receipt rule applies
-     * are scanned for spam and viruses. The default value is <code>false</code>
-     * .
+     * If <code>true</code>, then messages that this receipt rule applies to are
+     * scanned for spam and viruses. The default value is <code>false</code>.
      * </p>
      *
      * @return <p>
-     *         If <code>true</code>, then messages to which this receipt rule
-     *         applies are scanned for spam and viruses. The default value is
+     *         If <code>true</code>, then messages that this receipt rule
+     *         applies to are scanned for spam and viruses. The default value is
      *         <code>false</code>.
      *         </p>
      */
@@ -665,14 +663,13 @@ public class ReceiptRule implements Serializable {
 
     /**
      * <p>
-     * If <code>true</code>, then messages to which this receipt rule applies
-     * are scanned for spam and viruses. The default value is <code>false</code>
-     * .
+     * If <code>true</code>, then messages that this receipt rule applies to are
+     * scanned for spam and viruses. The default value is <code>false</code>.
      * </p>
      *
      * @return <p>
-     *         If <code>true</code>, then messages to which this receipt rule
-     *         applies are scanned for spam and viruses. The default value is
+     *         If <code>true</code>, then messages that this receipt rule
+     *         applies to are scanned for spam and viruses. The default value is
      *         <code>false</code>.
      *         </p>
      */
@@ -682,15 +679,14 @@ public class ReceiptRule implements Serializable {
 
     /**
      * <p>
-     * If <code>true</code>, then messages to which this receipt rule applies
-     * are scanned for spam and viruses. The default value is <code>false</code>
-     * .
+     * If <code>true</code>, then messages that this receipt rule applies to are
+     * scanned for spam and viruses. The default value is <code>false</code>.
      * </p>
      *
      * @param scanEnabled <p>
-     *            If <code>true</code>, then messages to which this receipt rule
-     *            applies are scanned for spam and viruses. The default value is
-     *            <code>false</code>.
+     *            If <code>true</code>, then messages that this receipt rule
+     *            applies to are scanned for spam and viruses. The default value
+     *            is <code>false</code>.
      *            </p>
      */
     public void setScanEnabled(Boolean scanEnabled) {
@@ -699,18 +695,17 @@ public class ReceiptRule implements Serializable {
 
     /**
      * <p>
-     * If <code>true</code>, then messages to which this receipt rule applies
-     * are scanned for spam and viruses. The default value is <code>false</code>
-     * .
+     * If <code>true</code>, then messages that this receipt rule applies to are
+     * scanned for spam and viruses. The default value is <code>false</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param scanEnabled <p>
-     *            If <code>true</code>, then messages to which this receipt rule
-     *            applies are scanned for spam and viruses. The default value is
-     *            <code>false</code>.
+     *            If <code>true</code>, then messages that this receipt rule
+     *            applies to are scanned for spam and viruses. The default value
+     *            is <code>false</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

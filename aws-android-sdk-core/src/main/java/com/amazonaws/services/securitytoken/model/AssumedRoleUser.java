@@ -32,7 +32,7 @@ public class AssumedRoleUser implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>2 - 96<br/>
+     * <b>Length: </b>2 - 193<br/>
      * <b>Pattern: </b>[\w+=,.@:-]*<br/>
      */
     private String assumedRoleId;
@@ -61,7 +61,7 @@ public class AssumedRoleUser implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>2 - 96<br/>
+     * <b>Length: </b>2 - 193<br/>
      * <b>Pattern: </b>[\w+=,.@:-]*<br/>
      *
      * @return <p>
@@ -82,7 +82,7 @@ public class AssumedRoleUser implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>2 - 96<br/>
+     * <b>Length: </b>2 - 193<br/>
      * <b>Pattern: </b>[\w+=,.@:-]*<br/>
      *
      * @param assumedRoleId <p>
@@ -106,7 +106,7 @@ public class AssumedRoleUser implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>2 - 96<br/>
+     * <b>Length: </b>2 - 193<br/>
      * <b>Pattern: </b>[\w+=,.@:-]*<br/>
      *
      * @param assumedRoleId <p>

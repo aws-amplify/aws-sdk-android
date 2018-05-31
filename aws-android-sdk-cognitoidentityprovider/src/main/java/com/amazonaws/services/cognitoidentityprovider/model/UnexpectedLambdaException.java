@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * This exception gets thrown when the Amazon Cognito service encounters an
+ * This exception is thrown when the Amazon Cognito service encounters an
  * unexpected exception with the AWS Lambda service.
  * </p>
  */

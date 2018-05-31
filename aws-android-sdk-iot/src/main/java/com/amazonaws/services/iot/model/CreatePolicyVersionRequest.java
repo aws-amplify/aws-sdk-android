@@ -47,7 +47,7 @@ public class CreatePolicyVersionRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * The JSON document that describes the policy. Minimum length of 1. Maximum
-     * length of 2048, excluding whitespaces
+     * length of 2048, excluding whitespace.
      * </p>
      */
     private String policyDocument;
@@ -122,12 +122,12 @@ public class CreatePolicyVersionRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * The JSON document that describes the policy. Minimum length of 1. Maximum
-     * length of 2048, excluding whitespaces
+     * length of 2048, excluding whitespace.
      * </p>
      *
      * @return <p>
      *         The JSON document that describes the policy. Minimum length of 1.
-     *         Maximum length of 2048, excluding whitespaces
+     *         Maximum length of 2048, excluding whitespace.
      *         </p>
      */
     public String getPolicyDocument() {
@@ -137,12 +137,12 @@ public class CreatePolicyVersionRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * The JSON document that describes the policy. Minimum length of 1. Maximum
-     * length of 2048, excluding whitespaces
+     * length of 2048, excluding whitespace.
      * </p>
      *
      * @param policyDocument <p>
      *            The JSON document that describes the policy. Minimum length of
-     *            1. Maximum length of 2048, excluding whitespaces
+     *            1. Maximum length of 2048, excluding whitespace.
      *            </p>
      */
     public void setPolicyDocument(String policyDocument) {
@@ -152,7 +152,7 @@ public class CreatePolicyVersionRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * The JSON document that describes the policy. Minimum length of 1. Maximum
-     * length of 2048, excluding whitespaces
+     * length of 2048, excluding whitespace.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -160,7 +160,7 @@ public class CreatePolicyVersionRequest extends AmazonWebServiceRequest implemen
      *
      * @param policyDocument <p>
      *            The JSON document that describes the policy. Minimum length of
-     *            1. Maximum length of 2048, excluding whitespaces
+     *            1. Maximum length of 2048, excluding whitespace.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

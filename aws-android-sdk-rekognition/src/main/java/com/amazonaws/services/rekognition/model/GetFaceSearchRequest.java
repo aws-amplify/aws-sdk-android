@@ -40,9 +40,19 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * The search results are retured in an array, <code>Persons</code>, of objects.
  * Each<code>PersonMatch</code> element contains details about the matching
- * faces in the input collection, person information for the matched person, and
- * the time the person was matched in the video.
+ * faces in the input collection, person information (facial attributes,
+ * bounding boxes, and person identifer) for the matched person, and the time
+ * the person was matched in the video.
  * </p>
+ * <note>
+ * <p>
+ * <code>GetFaceSearch</code> only returns the default facial attributes (
+ * <code>BoundingBox</code>, <code>Confidence</code>, <code>Landmarks</code>,
+ * <code>Pose</code>, and <code>Quality</code>). The other facial attributes
+ * listed in the <code>Face</code> object of the following response syntax are
+ * not returned. For more information, see .
+ * </p>
+ * </note>
  * <p>
  * By default, the <code>Persons</code> array is sorted by the time, in
  * milliseconds from the start of the video, persons are matched. You can also
@@ -65,8 +75,9 @@ public class GetFaceSearchRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Maximum number of search results you want Rekognition Video to return in
-     * the response. The default is 1000.
+     * Maximum number of results to return per paginated call. The largest value
+     * you can specify is 1000. If you specify a value greater than 1000, a
+     * maximum of 1000 results is returned. The default value is 1000.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -166,16 +177,19 @@ public class GetFaceSearchRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Maximum number of search results you want Rekognition Video to return in
-     * the response. The default is 1000.
+     * Maximum number of results to return per paginated call. The largest value
+     * you can specify is 1000. If you specify a value greater than 1000, a
+     * maximum of 1000 results is returned. The default value is 1000.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
      * @return <p>
-     *         Maximum number of search results you want Rekognition Video to
-     *         return in the response. The default is 1000.
+     *         Maximum number of results to return per paginated call. The
+     *         largest value you can specify is 1000. If you specify a value
+     *         greater than 1000, a maximum of 1000 results is returned. The
+     *         default value is 1000.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -184,16 +198,19 @@ public class GetFaceSearchRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Maximum number of search results you want Rekognition Video to return in
-     * the response. The default is 1000.
+     * Maximum number of results to return per paginated call. The largest value
+     * you can specify is 1000. If you specify a value greater than 1000, a
+     * maximum of 1000 results is returned. The default value is 1000.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
      * @param maxResults <p>
-     *            Maximum number of search results you want Rekognition Video to
-     *            return in the response. The default is 1000.
+     *            Maximum number of results to return per paginated call. The
+     *            largest value you can specify is 1000. If you specify a value
+     *            greater than 1000, a maximum of 1000 results is returned. The
+     *            default value is 1000.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -202,8 +219,9 @@ public class GetFaceSearchRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Maximum number of search results you want Rekognition Video to return in
-     * the response. The default is 1000.
+     * Maximum number of results to return per paginated call. The largest value
+     * you can specify is 1000. If you specify a value greater than 1000, a
+     * maximum of 1000 results is returned. The default value is 1000.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -213,8 +231,10 @@ public class GetFaceSearchRequest extends AmazonWebServiceRequest implements Ser
      * <b>Range: </b>1 - <br/>
      *
      * @param maxResults <p>
-     *            Maximum number of search results you want Rekognition Video to
-     *            return in the response. The default is 1000.
+     *            Maximum number of results to return per paginated call. The
+     *            largest value you can specify is 1000. If you specify a value
+     *            greater than 1000, a maximum of 1000 results is returned. The
+     *            default value is 1000.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

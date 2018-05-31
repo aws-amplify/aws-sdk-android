@@ -42,6 +42,14 @@ public class BaiduChannelResponse implements Serializable {
     private Boolean enabled;
 
     /**
+     * Indicates whether the channel is configured with Baidu Cloud Push
+     * credentials. Amazon Pinpoint uses your credentials to authenticate push
+     * notifications with Baidu Cloud Push. Provide your credentials by setting
+     * the ApiKey and SecretKey attributes.
+     */
+    private Boolean hasCredential;
+
+    /**
      * Channel ID. Not used, only for backwards compatibility.
      */
     private String id;
@@ -209,6 +217,74 @@ public class BaiduChannelResponse implements Serializable {
      */
     public BaiduChannelResponse withEnabled(Boolean enabled) {
         this.enabled = enabled;
+        return this;
+    }
+
+    /**
+     * Indicates whether the channel is configured with Baidu Cloud Push
+     * credentials. Amazon Pinpoint uses your credentials to authenticate push
+     * notifications with Baidu Cloud Push. Provide your credentials by setting
+     * the ApiKey and SecretKey attributes.
+     *
+     * @return Indicates whether the channel is configured with Baidu Cloud Push
+     *         credentials. Amazon Pinpoint uses your credentials to
+     *         authenticate push notifications with Baidu Cloud Push. Provide
+     *         your credentials by setting the ApiKey and SecretKey attributes.
+     */
+    public Boolean isHasCredential() {
+        return hasCredential;
+    }
+
+    /**
+     * Indicates whether the channel is configured with Baidu Cloud Push
+     * credentials. Amazon Pinpoint uses your credentials to authenticate push
+     * notifications with Baidu Cloud Push. Provide your credentials by setting
+     * the ApiKey and SecretKey attributes.
+     *
+     * @return Indicates whether the channel is configured with Baidu Cloud Push
+     *         credentials. Amazon Pinpoint uses your credentials to
+     *         authenticate push notifications with Baidu Cloud Push. Provide
+     *         your credentials by setting the ApiKey and SecretKey attributes.
+     */
+    public Boolean getHasCredential() {
+        return hasCredential;
+    }
+
+    /**
+     * Indicates whether the channel is configured with Baidu Cloud Push
+     * credentials. Amazon Pinpoint uses your credentials to authenticate push
+     * notifications with Baidu Cloud Push. Provide your credentials by setting
+     * the ApiKey and SecretKey attributes.
+     *
+     * @param hasCredential Indicates whether the channel is configured with
+     *            Baidu Cloud Push credentials. Amazon Pinpoint uses your
+     *            credentials to authenticate push notifications with Baidu
+     *            Cloud Push. Provide your credentials by setting the ApiKey and
+     *            SecretKey attributes.
+     */
+    public void setHasCredential(Boolean hasCredential) {
+        this.hasCredential = hasCredential;
+    }
+
+    /**
+     * Indicates whether the channel is configured with Baidu Cloud Push
+     * credentials. Amazon Pinpoint uses your credentials to authenticate push
+     * notifications with Baidu Cloud Push. Provide your credentials by setting
+     * the ApiKey and SecretKey attributes.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param hasCredential Indicates whether the channel is configured with
+     *            Baidu Cloud Push credentials. Amazon Pinpoint uses your
+     *            credentials to authenticate push notifications with Baidu
+     *            Cloud Push. Provide your credentials by setting the ApiKey and
+     *            SecretKey attributes.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public BaiduChannelResponse withHasCredential(Boolean hasCredential) {
+        this.hasCredential = hasCredential;
         return this;
     }
 
@@ -438,6 +514,8 @@ public class BaiduChannelResponse implements Serializable {
             sb.append("Credential: " + getCredential() + ",");
         if (getEnabled() != null)
             sb.append("Enabled: " + getEnabled() + ",");
+        if (getHasCredential() != null)
+            sb.append("HasCredential: " + getHasCredential() + ",");
         if (getId() != null)
             sb.append("Id: " + getId() + ",");
         if (getIsArchived() != null)
@@ -465,6 +543,8 @@ public class BaiduChannelResponse implements Serializable {
                 + ((getCreationDate() == null) ? 0 : getCreationDate().hashCode());
         hashCode = prime * hashCode + ((getCredential() == null) ? 0 : getCredential().hashCode());
         hashCode = prime * hashCode + ((getEnabled() == null) ? 0 : getEnabled().hashCode());
+        hashCode = prime * hashCode
+                + ((getHasCredential() == null) ? 0 : getHasCredential().hashCode());
         hashCode = prime * hashCode + ((getId() == null) ? 0 : getId().hashCode());
         hashCode = prime * hashCode + ((getIsArchived() == null) ? 0 : getIsArchived().hashCode());
         hashCode = prime * hashCode
@@ -505,6 +585,11 @@ public class BaiduChannelResponse implements Serializable {
         if (other.getEnabled() == null ^ this.getEnabled() == null)
             return false;
         if (other.getEnabled() != null && other.getEnabled().equals(this.getEnabled()) == false)
+            return false;
+        if (other.getHasCredential() == null ^ this.getHasCredential() == null)
+            return false;
+        if (other.getHasCredential() != null
+                && other.getHasCredential().equals(this.getHasCredential()) == false)
             return false;
         if (other.getId() == null ^ this.getId() == null)
             return false;

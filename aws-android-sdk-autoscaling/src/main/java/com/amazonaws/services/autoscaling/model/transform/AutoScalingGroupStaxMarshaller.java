@@ -41,6 +41,12 @@ class AutoScalingGroupStaxMarshaller {
             String launchConfigurationName = _autoScalingGroup.getLaunchConfigurationName();
             request.addParameter(prefix, StringUtils.fromString(launchConfigurationName));
         }
+        if (_autoScalingGroup.getLaunchTemplate() != null) {
+            prefix = _prefix + "LaunchTemplate";
+            LaunchTemplateSpecification launchTemplate = _autoScalingGroup.getLaunchTemplate();
+            LaunchTemplateSpecificationStaxMarshaller.getInstance().marshall(launchTemplate,
+                    request, prefix + ".");
+        }
         if (_autoScalingGroup.getMinSize() != null) {
             prefix = _prefix + "MinSize";
             Integer minSize = _autoScalingGroup.getMinSize();
@@ -88,6 +94,20 @@ class AutoScalingGroupStaxMarshaller {
                 loadBalancerNamesIndex++;
             }
             prefix = loadBalancerNamesPrefix;
+        }
+        if (_autoScalingGroup.getTargetGroupARNs() != null) {
+            prefix = _prefix + "TargetGroupARNs";
+            java.util.List<String> targetGroupARNs = _autoScalingGroup.getTargetGroupARNs();
+            int targetGroupARNsIndex = 1;
+            String targetGroupARNsPrefix = prefix;
+            for (String targetGroupARNsItem : targetGroupARNs) {
+                prefix = targetGroupARNsPrefix + ".member." + targetGroupARNsIndex;
+                if (targetGroupARNsItem != null) {
+                    request.addParameter(prefix, StringUtils.fromString(targetGroupARNsItem));
+                }
+                targetGroupARNsIndex++;
+            }
+            prefix = targetGroupARNsPrefix;
         }
         if (_autoScalingGroup.getHealthCheckType() != null) {
             prefix = _prefix + "HealthCheckType";
@@ -199,6 +219,11 @@ class AutoScalingGroupStaxMarshaller {
             Boolean newInstancesProtectedFromScaleIn = _autoScalingGroup
                     .getNewInstancesProtectedFromScaleIn();
             request.addParameter(prefix, StringUtils.fromBoolean(newInstancesProtectedFromScaleIn));
+        }
+        if (_autoScalingGroup.getServiceLinkedRoleARN() != null) {
+            prefix = _prefix + "ServiceLinkedRoleARN";
+            String serviceLinkedRoleARN = _autoScalingGroup.getServiceLinkedRoleARN();
+            request.addParameter(prefix, StringUtils.fromString(serviceLinkedRoleARN));
         }
     }
 

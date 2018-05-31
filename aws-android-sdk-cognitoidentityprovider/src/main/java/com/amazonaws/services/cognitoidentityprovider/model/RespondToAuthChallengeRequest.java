@@ -27,7 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The client ID.
+     * The app client ID.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -38,19 +38,27 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the challenge.
+     * The challenge name. For more information, see .
+     * </p>
+     * <p>
+     * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
-     * NEW_PASSWORD_REQUIRED
+     * <b>Allowed Values: </b>SMS_MFA, SOFTWARE_TOKEN_MFA, SELECT_MFA_TYPE,
+     * MFA_SETUP, PASSWORD_VERIFIER, CUSTOM_CHALLENGE, DEVICE_SRP_AUTH,
+     * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      */
     private String challengeName;
 
     /**
      * <p>
-     * The session.
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. If <code>InitiateAuth</code> or
+     * <code>RespondToAuthChallenge</code> API call determines that the caller
+     * needs to go through another challenge, they return a session with other
+     * challenge parameters. This session should be passed as it is to the next
+     * <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -60,28 +68,56 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The responses to the authentication challenge.
+     * The challenge responses. These are inputs corresponding to the value of
+     * <code>ChallengeName</code>, for example:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SMS_MFA</code>: <code>SMS_MFA_CODE</code>, <code>USERNAME</code>,
+     * <code>SECRET_HASH</code> (if app client is configured with client
+     * secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>PASSWORD_VERIFIER</code>: <code>PASSWORD_CLAIM_SIGNATURE</code>,
+     * <code>PASSWORD_CLAIM_SECRET_BLOCK</code>, <code>TIMESTAMP</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
+     * required attributes, <code>USERNAME</code>, <code>SECRET_HASH</code> (if
+     * app client is configured with client secret).
+     * </p>
+     * </li>
+     * </ul>
      */
     private java.util.Map<String, String> challengeResponses;
 
     /**
      * <p>
-     * Base64 encoded string for user context data collected for risk evaluation
-     * </p>
-     */
-    private UserContextDataType userContextData;
-
-    /**
-     * <p>
-     * The pinpoint installation id.
+     * The Amazon Pinpoint analytics metadata for collecting metrics for
+     * <code>RespondToAuthChallenge</code> calls.
      * </p>
      */
     private AnalyticsMetadataType analyticsMetadata;
 
     /**
      * <p>
-     * The client ID.
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
+     * </p>
+     */
+    private UserContextDataType userContextData;
+
+    /**
+     * <p>
+     * The app client ID.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -89,7 +125,7 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\w+]+<br/>
      *
      * @return <p>
-     *         The client ID.
+     *         The app client ID.
      *         </p>
      */
     public String getClientId() {
@@ -98,7 +134,7 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The client ID.
+     * The app client ID.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -106,7 +142,7 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\w+]+<br/>
      *
      * @param clientId <p>
-     *            The client ID.
+     *            The app client ID.
      *            </p>
      */
     public void setClientId(String clientId) {
@@ -115,7 +151,7 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The client ID.
+     * The app client ID.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -126,7 +162,7 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\w+]+<br/>
      *
      * @param clientId <p>
-     *            The client ID.
+     *            The app client ID.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -138,16 +174,22 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the challenge.
+     * The challenge name. For more information, see .
+     * </p>
+     * <p>
+     * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
-     * NEW_PASSWORD_REQUIRED
+     * <b>Allowed Values: </b>SMS_MFA, SOFTWARE_TOKEN_MFA, SELECT_MFA_TYPE,
+     * MFA_SETUP, PASSWORD_VERIFIER, CUSTOM_CHALLENGE, DEVICE_SRP_AUTH,
+     * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @return <p>
-     *         The name of the challenge.
+     *         The challenge name. For more information, see .
+     *         </p>
+     *         <p>
+     *         <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
      *         </p>
      * @see ChallengeNameType
      */
@@ -157,16 +199,22 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the challenge.
+     * The challenge name. For more information, see .
+     * </p>
+     * <p>
+     * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
-     * NEW_PASSWORD_REQUIRED
+     * <b>Allowed Values: </b>SMS_MFA, SOFTWARE_TOKEN_MFA, SELECT_MFA_TYPE,
+     * MFA_SETUP, PASSWORD_VERIFIER, CUSTOM_CHALLENGE, DEVICE_SRP_AUTH,
+     * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The name of the challenge.
+     *            The challenge name. For more information, see .
+     *            </p>
+     *            <p>
+     *            <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
      *            </p>
      * @see ChallengeNameType
      */
@@ -176,19 +224,25 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the challenge.
+     * The challenge name. For more information, see .
+     * </p>
+     * <p>
+     * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
-     * NEW_PASSWORD_REQUIRED
+     * <b>Allowed Values: </b>SMS_MFA, SOFTWARE_TOKEN_MFA, SELECT_MFA_TYPE,
+     * MFA_SETUP, PASSWORD_VERIFIER, CUSTOM_CHALLENGE, DEVICE_SRP_AUTH,
+     * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The name of the challenge.
+     *            The challenge name. For more information, see .
+     *            </p>
+     *            <p>
+     *            <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -201,16 +255,22 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the challenge.
+     * The challenge name. For more information, see .
+     * </p>
+     * <p>
+     * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
-     * NEW_PASSWORD_REQUIRED
+     * <b>Allowed Values: </b>SMS_MFA, SOFTWARE_TOKEN_MFA, SELECT_MFA_TYPE,
+     * MFA_SETUP, PASSWORD_VERIFIER, CUSTOM_CHALLENGE, DEVICE_SRP_AUTH,
+     * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The name of the challenge.
+     *            The challenge name. For more information, see .
+     *            </p>
+     *            <p>
+     *            <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
      *            </p>
      * @see ChallengeNameType
      */
@@ -220,19 +280,25 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the challenge.
+     * The challenge name. For more information, see .
+     * </p>
+     * <p>
+     * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
-     * NEW_PASSWORD_REQUIRED
+     * <b>Allowed Values: </b>SMS_MFA, SOFTWARE_TOKEN_MFA, SELECT_MFA_TYPE,
+     * MFA_SETUP, PASSWORD_VERIFIER, CUSTOM_CHALLENGE, DEVICE_SRP_AUTH,
+     * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The name of the challenge.
+     *            The challenge name. For more information, see .
+     *            </p>
+     *            <p>
+     *            <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -245,14 +311,25 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The session.
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. If <code>InitiateAuth</code> or
+     * <code>RespondToAuthChallenge</code> API call determines that the caller
+     * needs to go through another challenge, they return a session with other
+     * challenge parameters. This session should be passed as it is to the next
+     * <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         The session.
+     *         The session which should be passed both ways in
+     *         challenge-response calls to the service. If
+     *         <code>InitiateAuth</code> or <code>RespondToAuthChallenge</code>
+     *         API call determines that the caller needs to go through another
+     *         challenge, they return a session with other challenge parameters.
+     *         This session should be passed as it is to the next
+     *         <code>RespondToAuthChallenge</code> API call.
      *         </p>
      */
     public String getSession() {
@@ -261,14 +338,26 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The session.
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. If <code>InitiateAuth</code> or
+     * <code>RespondToAuthChallenge</code> API call determines that the caller
+     * needs to go through another challenge, they return a session with other
+     * challenge parameters. This session should be passed as it is to the next
+     * <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param session <p>
-     *            The session.
+     *            The session which should be passed both ways in
+     *            challenge-response calls to the service. If
+     *            <code>InitiateAuth</code> or
+     *            <code>RespondToAuthChallenge</code> API call determines that
+     *            the caller needs to go through another challenge, they return
+     *            a session with other challenge parameters. This session should
+     *            be passed as it is to the next
+     *            <code>RespondToAuthChallenge</code> API call.
      *            </p>
      */
     public void setSession(String session) {
@@ -277,7 +366,12 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The session.
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. If <code>InitiateAuth</code> or
+     * <code>RespondToAuthChallenge</code> API call determines that the caller
+     * needs to go through another challenge, they return a session with other
+     * challenge parameters. This session should be passed as it is to the next
+     * <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -287,7 +381,14 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param session <p>
-     *            The session.
+     *            The session which should be passed both ways in
+     *            challenge-response calls to the service. If
+     *            <code>InitiateAuth</code> or
+     *            <code>RespondToAuthChallenge</code> API call determines that
+     *            the caller needs to go through another challenge, they return
+     *            a session with other challenge parameters. This session should
+     *            be passed as it is to the next
+     *            <code>RespondToAuthChallenge</code> API call.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -299,12 +400,64 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The responses to the authentication challenge.
+     * The challenge responses. These are inputs corresponding to the value of
+     * <code>ChallengeName</code>, for example:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SMS_MFA</code>: <code>SMS_MFA_CODE</code>, <code>USERNAME</code>,
+     * <code>SECRET_HASH</code> (if app client is configured with client
+     * secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>PASSWORD_VERIFIER</code>: <code>PASSWORD_CLAIM_SIGNATURE</code>,
+     * <code>PASSWORD_CLAIM_SECRET_BLOCK</code>, <code>TIMESTAMP</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
+     * required attributes, <code>USERNAME</code>, <code>SECRET_HASH</code> (if
+     * app client is configured with client secret).
+     * </p>
+     * </li>
+     * </ul>
      *
      * @return <p>
-     *         The responses to the authentication challenge.
+     *         The challenge responses. These are inputs corresponding to the
+     *         value of <code>ChallengeName</code>, for example:
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>SMS_MFA</code>: <code>SMS_MFA_CODE</code>,
+     *         <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     *         configured with client secret).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>PASSWORD_VERIFIER</code>:
+     *         <code>PASSWORD_CLAIM_SIGNATURE</code>,
+     *         <code>PASSWORD_CLAIM_SECRET_BLOCK</code>, <code>TIMESTAMP</code>,
+     *         <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     *         configured with client secret).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>,
+     *         any other required attributes, <code>USERNAME</code>,
+     *         <code>SECRET_HASH</code> (if app client is configured with client
+     *         secret).
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public java.util.Map<String, String> getChallengeResponses() {
         return challengeResponses;
@@ -312,12 +465,65 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The responses to the authentication challenge.
+     * The challenge responses. These are inputs corresponding to the value of
+     * <code>ChallengeName</code>, for example:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SMS_MFA</code>: <code>SMS_MFA_CODE</code>, <code>USERNAME</code>,
+     * <code>SECRET_HASH</code> (if app client is configured with client
+     * secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>PASSWORD_VERIFIER</code>: <code>PASSWORD_CLAIM_SIGNATURE</code>,
+     * <code>PASSWORD_CLAIM_SECRET_BLOCK</code>, <code>TIMESTAMP</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
+     * required attributes, <code>USERNAME</code>, <code>SECRET_HASH</code> (if
+     * app client is configured with client secret).
+     * </p>
+     * </li>
+     * </ul>
      *
      * @param challengeResponses <p>
-     *            The responses to the authentication challenge.
+     *            The challenge responses. These are inputs corresponding to the
+     *            value of <code>ChallengeName</code>, for example:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>SMS_MFA</code>: <code>SMS_MFA_CODE</code>,
+     *            <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client
+     *            is configured with client secret).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>PASSWORD_VERIFIER</code>:
+     *            <code>PASSWORD_CLAIM_SIGNATURE</code>,
+     *            <code>PASSWORD_CLAIM_SECRET_BLOCK</code>,
+     *            <code>TIMESTAMP</code>, <code>USERNAME</code>,
+     *            <code>SECRET_HASH</code> (if app client is configured with
+     *            client secret).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>,
+     *            any other required attributes, <code>USERNAME</code>,
+     *            <code>SECRET_HASH</code> (if app client is configured with
+     *            client secret).
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setChallengeResponses(java.util.Map<String, String> challengeResponses) {
         this.challengeResponses = challengeResponses;
@@ -325,15 +531,68 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The responses to the authentication challenge.
+     * The challenge responses. These are inputs corresponding to the value of
+     * <code>ChallengeName</code>, for example:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SMS_MFA</code>: <code>SMS_MFA_CODE</code>, <code>USERNAME</code>,
+     * <code>SECRET_HASH</code> (if app client is configured with client
+     * secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>PASSWORD_VERIFIER</code>: <code>PASSWORD_CLAIM_SIGNATURE</code>,
+     * <code>PASSWORD_CLAIM_SECRET_BLOCK</code>, <code>TIMESTAMP</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
+     * required attributes, <code>USERNAME</code>, <code>SECRET_HASH</code> (if
+     * app client is configured with client secret).
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param challengeResponses <p>
-     *            The responses to the authentication challenge.
+     *            The challenge responses. These are inputs corresponding to the
+     *            value of <code>ChallengeName</code>, for example:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>SMS_MFA</code>: <code>SMS_MFA_CODE</code>,
+     *            <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client
+     *            is configured with client secret).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>PASSWORD_VERIFIER</code>:
+     *            <code>PASSWORD_CLAIM_SIGNATURE</code>,
+     *            <code>PASSWORD_CLAIM_SECRET_BLOCK</code>,
+     *            <code>TIMESTAMP</code>, <code>USERNAME</code>,
+     *            <code>SECRET_HASH</code> (if app client is configured with
+     *            client secret).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>,
+     *            any other required attributes, <code>USERNAME</code>,
+     *            <code>SECRET_HASH</code> (if app client is configured with
+     *            client secret).
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -345,8 +604,33 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The responses to the authentication challenge.
+     * The challenge responses. These are inputs corresponding to the value of
+     * <code>ChallengeName</code>, for example:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SMS_MFA</code>: <code>SMS_MFA_CODE</code>, <code>USERNAME</code>,
+     * <code>SECRET_HASH</code> (if app client is configured with client
+     * secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>PASSWORD_VERIFIER</code>: <code>PASSWORD_CLAIM_SIGNATURE</code>,
+     * <code>PASSWORD_CLAIM_SECRET_BLOCK</code>, <code>TIMESTAMP</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
+     * required attributes, <code>USERNAME</code>, <code>SECRET_HASH</code> (if
+     * app client is configured with client secret).
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * The method adds a new key-value pair into ChallengeResponses parameter,
      * and returns a reference to this object so that method calls can be
@@ -382,59 +666,13 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Base64 encoded string for user context data collected for risk evaluation
+     * The Amazon Pinpoint analytics metadata for collecting metrics for
+     * <code>RespondToAuthChallenge</code> calls.
      * </p>
      *
      * @return <p>
-     *         Base64 encoded string for user context data collected for risk
-     *         evaluation
-     *         </p>
-     */
-    public UserContextDataType getUserContextData() {
-        return userContextData;
-    }
-
-    /**
-     * <p>
-     * Base64 encoded string for user context data collected for risk evaluation
-     * </p>
-     *
-     * @param userContextData <p>
-     *            Base64 encoded string for user context data collected for risk
-     *            evaluation
-     *            </p>
-     */
-    public void setUserContextData(UserContextDataType userContextData) {
-        this.userContextData = userContextData;
-    }
-
-    /**
-     * <p>
-     * Base64 encoded string for user context data collected for risk evaluation
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param userContextData <p>
-     *            Base64 encoded string for user context data collected for risk
-     *            evaluation
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public RespondToAuthChallengeRequest withUserContextData(UserContextDataType userContextData) {
-        this.userContextData = userContextData;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The pinpoint installation id.
-     * </p>
-     *
-     * @return <p>
-     *         The pinpoint installation id.
+     *         The Amazon Pinpoint analytics metadata for collecting metrics for
+     *         <code>RespondToAuthChallenge</code> calls.
      *         </p>
      */
     public AnalyticsMetadataType getAnalyticsMetadata() {
@@ -443,11 +681,13 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The pinpoint installation id.
+     * The Amazon Pinpoint analytics metadata for collecting metrics for
+     * <code>RespondToAuthChallenge</code> calls.
      * </p>
      *
      * @param analyticsMetadata <p>
-     *            The pinpoint installation id.
+     *            The Amazon Pinpoint analytics metadata for collecting metrics
+     *            for <code>RespondToAuthChallenge</code> calls.
      *            </p>
      */
     public void setAnalyticsMetadata(AnalyticsMetadataType analyticsMetadata) {
@@ -456,14 +696,16 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The pinpoint installation id.
+     * The Amazon Pinpoint analytics metadata for collecting metrics for
+     * <code>RespondToAuthChallenge</code> calls.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param analyticsMetadata <p>
-     *            The pinpoint installation id.
+     *            The Amazon Pinpoint analytics metadata for collecting metrics
+     *            for <code>RespondToAuthChallenge</code> calls.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -471,6 +713,63 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
     public RespondToAuthChallengeRequest withAnalyticsMetadata(
             AnalyticsMetadataType analyticsMetadata) {
         this.analyticsMetadata = analyticsMetadata;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
+     * </p>
+     *
+     * @return <p>
+     *         Contextual data such as the user's device fingerprint, IP
+     *         address, or location used for evaluating the risk of an
+     *         unexpected event by Amazon Cognito advanced security.
+     *         </p>
+     */
+    public UserContextDataType getUserContextData() {
+        return userContextData;
+    }
+
+    /**
+     * <p>
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
+     * </p>
+     *
+     * @param userContextData <p>
+     *            Contextual data such as the user's device fingerprint, IP
+     *            address, or location used for evaluating the risk of an
+     *            unexpected event by Amazon Cognito advanced security.
+     *            </p>
+     */
+    public void setUserContextData(UserContextDataType userContextData) {
+        this.userContextData = userContextData;
+    }
+
+    /**
+     * <p>
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param userContextData <p>
+     *            Contextual data such as the user's device fingerprint, IP
+     *            address, or location used for evaluating the risk of an
+     *            unexpected event by Amazon Cognito advanced security.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public RespondToAuthChallengeRequest withUserContextData(UserContextDataType userContextData) {
+        this.userContextData = userContextData;
         return this;
     }
 
@@ -493,10 +792,10 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
             sb.append("Session: " + getSession() + ",");
         if (getChallengeResponses() != null)
             sb.append("ChallengeResponses: " + getChallengeResponses() + ",");
-        if (getUserContextData() != null)
-            sb.append("UserContextData: " + getUserContextData() + ",");
         if (getAnalyticsMetadata() != null)
-            sb.append("AnalyticsMetadata: " + getAnalyticsMetadata());
+            sb.append("AnalyticsMetadata: " + getAnalyticsMetadata() + ",");
+        if (getUserContextData() != null)
+            sb.append("UserContextData: " + getUserContextData());
         sb.append("}");
         return sb.toString();
     }
@@ -513,9 +812,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
         hashCode = prime * hashCode
                 + ((getChallengeResponses() == null) ? 0 : getChallengeResponses().hashCode());
         hashCode = prime * hashCode
-                + ((getUserContextData() == null) ? 0 : getUserContextData().hashCode());
-        hashCode = prime * hashCode
                 + ((getAnalyticsMetadata() == null) ? 0 : getAnalyticsMetadata().hashCode());
+        hashCode = prime * hashCode
+                + ((getUserContextData() == null) ? 0 : getUserContextData().hashCode());
         return hashCode;
     }
 
@@ -548,15 +847,15 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
         if (other.getChallengeResponses() != null
                 && other.getChallengeResponses().equals(this.getChallengeResponses()) == false)
             return false;
-        if (other.getUserContextData() == null ^ this.getUserContextData() == null)
-            return false;
-        if (other.getUserContextData() != null
-                && other.getUserContextData().equals(this.getUserContextData()) == false)
-            return false;
         if (other.getAnalyticsMetadata() == null ^ this.getAnalyticsMetadata() == null)
             return false;
         if (other.getAnalyticsMetadata() != null
                 && other.getAnalyticsMetadata().equals(this.getAnalyticsMetadata()) == false)
+            return false;
+        if (other.getUserContextData() == null ^ this.getUserContextData() == null)
+            return false;
+        if (other.getUserContextData() != null
+                && other.getUserContextData().equals(this.getUserContextData()) == false)
             return false;
         return true;
     }

@@ -21,7 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists the tags for the specified Amazon Kinesis stream.
+ * Lists the tags for the specified Kinesis data stream. This operation has a
+ * limit of five transactions per second per account.
  * </p>
  */
 public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements Serializable {

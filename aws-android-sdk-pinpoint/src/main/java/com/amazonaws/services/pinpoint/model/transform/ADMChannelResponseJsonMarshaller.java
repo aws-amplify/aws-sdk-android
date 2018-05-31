@@ -41,6 +41,11 @@ class ADMChannelResponseJsonMarshaller {
             jsonWriter.name("Enabled");
             jsonWriter.value(enabled);
         }
+        if (aDMChannelResponse.getHasCredential() != null) {
+            Boolean hasCredential = aDMChannelResponse.getHasCredential();
+            jsonWriter.name("HasCredential");
+            jsonWriter.value(hasCredential);
+        }
         if (aDMChannelResponse.getId() != null) {
             String id = aDMChannelResponse.getId();
             jsonWriter.name("Id");

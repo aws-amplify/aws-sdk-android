@@ -26,6 +26,58 @@ import com.amazonaws.AmazonWebServiceRequest;
  */
 public class DescribeEndpointRequest extends AmazonWebServiceRequest implements Serializable {
     /**
+     * <p>
+     * The endpoint type.
+     * </p>
+     */
+    private String endpointType;
+
+    /**
+     * <p>
+     * The endpoint type.
+     * </p>
+     *
+     * @return <p>
+     *         The endpoint type.
+     *         </p>
+     */
+    public String getEndpointType() {
+        return endpointType;
+    }
+
+    /**
+     * <p>
+     * The endpoint type.
+     * </p>
+     *
+     * @param endpointType <p>
+     *            The endpoint type.
+     *            </p>
+     */
+    public void setEndpointType(String endpointType) {
+        this.endpointType = endpointType;
+    }
+
+    /**
+     * <p>
+     * The endpoint type.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param endpointType <p>
+     *            The endpoint type.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeEndpointRequest withEndpointType(String endpointType) {
+        this.endpointType = endpointType;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -36,6 +88,8 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getEndpointType() != null)
+            sb.append("endpointType: " + getEndpointType());
         sb.append("}");
         return sb.toString();
     }
@@ -45,6 +99,8 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode
+                + ((getEndpointType() == null) ? 0 : getEndpointType().hashCode());
         return hashCode;
     }
 
@@ -59,6 +115,11 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
             return false;
         DescribeEndpointRequest other = (DescribeEndpointRequest) obj;
 
+        if (other.getEndpointType() == null ^ this.getEndpointType() == null)
+            return false;
+        if (other.getEndpointType() != null
+                && other.getEndpointType().equals(this.getEndpointType()) == false)
+            return false;
         return true;
     }
 }

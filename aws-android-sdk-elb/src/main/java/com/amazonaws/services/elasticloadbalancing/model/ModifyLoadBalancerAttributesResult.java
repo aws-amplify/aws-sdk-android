@@ -17,6 +17,11 @@ package com.amazonaws.services.elasticloadbalancing.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * Contains the output of ModifyLoadBalancerAttributes.
+ * </p>
+ */
 public class ModifyLoadBalancerAttributesResult implements Serializable {
     /**
      * <p>
@@ -27,7 +32,7 @@ public class ModifyLoadBalancerAttributesResult implements Serializable {
 
     /**
      * <p>
-     * The attributes for a load balancer.
+     * Information about the load balancer attributes.
      * </p>
      */
     private LoadBalancerAttributes loadBalancerAttributes;
@@ -79,11 +84,11 @@ public class ModifyLoadBalancerAttributesResult implements Serializable {
 
     /**
      * <p>
-     * The attributes for a load balancer.
+     * Information about the load balancer attributes.
      * </p>
      *
      * @return <p>
-     *         The attributes for a load balancer.
+     *         Information about the load balancer attributes.
      *         </p>
      */
     public LoadBalancerAttributes getLoadBalancerAttributes() {
@@ -92,11 +97,11 @@ public class ModifyLoadBalancerAttributesResult implements Serializable {
 
     /**
      * <p>
-     * The attributes for a load balancer.
+     * Information about the load balancer attributes.
      * </p>
      *
      * @param loadBalancerAttributes <p>
-     *            The attributes for a load balancer.
+     *            Information about the load balancer attributes.
      *            </p>
      */
     public void setLoadBalancerAttributes(LoadBalancerAttributes loadBalancerAttributes) {
@@ -105,14 +110,14 @@ public class ModifyLoadBalancerAttributesResult implements Serializable {
 
     /**
      * <p>
-     * The attributes for a load balancer.
+     * Information about the load balancer attributes.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param loadBalancerAttributes <p>
-     *            The attributes for a load balancer.
+     *            Information about the load balancer attributes.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

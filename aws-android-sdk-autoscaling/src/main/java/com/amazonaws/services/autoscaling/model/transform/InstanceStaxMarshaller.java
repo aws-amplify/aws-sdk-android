@@ -51,6 +51,12 @@ class InstanceStaxMarshaller {
             String launchConfigurationName = _instance.getLaunchConfigurationName();
             request.addParameter(prefix, StringUtils.fromString(launchConfigurationName));
         }
+        if (_instance.getLaunchTemplate() != null) {
+            prefix = _prefix + "LaunchTemplate";
+            LaunchTemplateSpecification launchTemplate = _instance.getLaunchTemplate();
+            LaunchTemplateSpecificationStaxMarshaller.getInstance().marshall(launchTemplate,
+                    request, prefix + ".");
+        }
         if (_instance.getProtectedFromScaleIn() != null) {
             prefix = _prefix + "ProtectedFromScaleIn";
             Boolean protectedFromScaleIn = _instance.getProtectedFromScaleIn();

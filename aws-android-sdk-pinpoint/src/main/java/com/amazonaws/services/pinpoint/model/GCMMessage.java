@@ -73,10 +73,17 @@ public class GCMMessage implements Serializable {
     private String imageUrl;
 
     /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
+     * The message priority. Amazon Pinpoint uses this value to set the FCM or
+     * GCM priority parameter when it sends the message. Accepts the following
+     * values: "Normal" - Messages might be delayed. Delivery is optimized for
+     * battery usage on the receiving device. Use normal priority unless
+     * immediate delivery is required. "High" - Messages are sent immediately
+     * and might wake a sleeping device. The equivalent values for APNs messages
+     * are "5" and "10". Amazon Pinpoint accepts these values here and converts
+     * them. For more information, see About FCM Messages in the Firebase
+     * documentation.
      */
-    private String jsonData;
+    private String priority;
 
     /**
      * The Raw JSON formatted string to be used as the payload. This value
@@ -115,6 +122,14 @@ public class GCMMessage implements Serializable {
      * substitutions.
      */
     private java.util.Map<String, java.util.List<String>> substitutions;
+
+    /**
+     * The length of time (in seconds) that FCM or GCM stores and attempts to
+     * deliver the message. If unspecified, the value defaults to the maximum,
+     * which is 2,419,200 seconds (28 days). Amazon Pinpoint uses this value to
+     * set the FCM or GCM time_to_live parameter.
+     */
+    private Integer timeToLive;
 
     /**
      * The message title that displays above the message on the user's device.
@@ -557,41 +572,86 @@ public class GCMMessage implements Serializable {
     }
 
     /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
+     * The message priority. Amazon Pinpoint uses this value to set the FCM or
+     * GCM priority parameter when it sends the message. Accepts the following
+     * values: "Normal" - Messages might be delayed. Delivery is optimized for
+     * battery usage on the receiving device. Use normal priority unless
+     * immediate delivery is required. "High" - Messages are sent immediately
+     * and might wake a sleeping device. The equivalent values for APNs messages
+     * are "5" and "10". Amazon Pinpoint accepts these values here and converts
+     * them. For more information, see About FCM Messages in the Firebase
+     * documentation.
      *
-     * @return The data payload used for a silent push. This payload is added to
-     *         the notifications' data.pinpoint.jsonBody' object
+     * @return The message priority. Amazon Pinpoint uses this value to set the
+     *         FCM or GCM priority parameter when it sends the message. Accepts
+     *         the following values: "Normal" - Messages might be delayed.
+     *         Delivery is optimized for battery usage on the receiving device.
+     *         Use normal priority unless immediate delivery is required. "High"
+     *         - Messages are sent immediately and might wake a sleeping device.
+     *         The equivalent values for APNs messages are "5" and "10". Amazon
+     *         Pinpoint accepts these values here and converts them. For more
+     *         information, see About FCM Messages in the Firebase
+     *         documentation.
      */
-    public String getJsonData() {
-        return jsonData;
+    public String getPriority() {
+        return priority;
     }
 
     /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
+     * The message priority. Amazon Pinpoint uses this value to set the FCM or
+     * GCM priority parameter when it sends the message. Accepts the following
+     * values: "Normal" - Messages might be delayed. Delivery is optimized for
+     * battery usage on the receiving device. Use normal priority unless
+     * immediate delivery is required. "High" - Messages are sent immediately
+     * and might wake a sleeping device. The equivalent values for APNs messages
+     * are "5" and "10". Amazon Pinpoint accepts these values here and converts
+     * them. For more information, see About FCM Messages in the Firebase
+     * documentation.
      *
-     * @param jsonData The data payload used for a silent push. This payload is
-     *            added to the notifications' data.pinpoint.jsonBody' object
+     * @param priority The message priority. Amazon Pinpoint uses this value to
+     *            set the FCM or GCM priority parameter when it sends the
+     *            message. Accepts the following values: "Normal" - Messages
+     *            might be delayed. Delivery is optimized for battery usage on
+     *            the receiving device. Use normal priority unless immediate
+     *            delivery is required. "High" - Messages are sent immediately
+     *            and might wake a sleeping device. The equivalent values for
+     *            APNs messages are "5" and "10". Amazon Pinpoint accepts these
+     *            values here and converts them. For more information, see About
+     *            FCM Messages in the Firebase documentation.
      */
-    public void setJsonData(String jsonData) {
-        this.jsonData = jsonData;
+    public void setPriority(String priority) {
+        this.priority = priority;
     }
 
     /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
+     * The message priority. Amazon Pinpoint uses this value to set the FCM or
+     * GCM priority parameter when it sends the message. Accepts the following
+     * values: "Normal" - Messages might be delayed. Delivery is optimized for
+     * battery usage on the receiving device. Use normal priority unless
+     * immediate delivery is required. "High" - Messages are sent immediately
+     * and might wake a sleeping device. The equivalent values for APNs messages
+     * are "5" and "10". Amazon Pinpoint accepts these values here and converts
+     * them. For more information, see About FCM Messages in the Firebase
+     * documentation.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param jsonData The data payload used for a silent push. This payload is
-     *            added to the notifications' data.pinpoint.jsonBody' object
+     * @param priority The message priority. Amazon Pinpoint uses this value to
+     *            set the FCM or GCM priority parameter when it sends the
+     *            message. Accepts the following values: "Normal" - Messages
+     *            might be delayed. Delivery is optimized for battery usage on
+     *            the receiving device. Use normal priority unless immediate
+     *            delivery is required. "High" - Messages are sent immediately
+     *            and might wake a sleeping device. The equivalent values for
+     *            APNs messages are "5" and "10". Amazon Pinpoint accepts these
+     *            values here and converts them. For more information, see About
+     *            FCM Messages in the Firebase documentation.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GCMMessage withJsonData(String jsonData) {
-        this.jsonData = jsonData;
+    public GCMMessage withPriority(String priority) {
+        this.priority = priority;
         return this;
     }
 
@@ -899,6 +959,60 @@ public class GCMMessage implements Serializable {
     }
 
     /**
+     * The length of time (in seconds) that FCM or GCM stores and attempts to
+     * deliver the message. If unspecified, the value defaults to the maximum,
+     * which is 2,419,200 seconds (28 days). Amazon Pinpoint uses this value to
+     * set the FCM or GCM time_to_live parameter.
+     *
+     * @return The length of time (in seconds) that FCM or GCM stores and
+     *         attempts to deliver the message. If unspecified, the value
+     *         defaults to the maximum, which is 2,419,200 seconds (28 days).
+     *         Amazon Pinpoint uses this value to set the FCM or GCM
+     *         time_to_live parameter.
+     */
+    public Integer getTimeToLive() {
+        return timeToLive;
+    }
+
+    /**
+     * The length of time (in seconds) that FCM or GCM stores and attempts to
+     * deliver the message. If unspecified, the value defaults to the maximum,
+     * which is 2,419,200 seconds (28 days). Amazon Pinpoint uses this value to
+     * set the FCM or GCM time_to_live parameter.
+     *
+     * @param timeToLive The length of time (in seconds) that FCM or GCM stores
+     *            and attempts to deliver the message. If unspecified, the value
+     *            defaults to the maximum, which is 2,419,200 seconds (28 days).
+     *            Amazon Pinpoint uses this value to set the FCM or GCM
+     *            time_to_live parameter.
+     */
+    public void setTimeToLive(Integer timeToLive) {
+        this.timeToLive = timeToLive;
+    }
+
+    /**
+     * The length of time (in seconds) that FCM or GCM stores and attempts to
+     * deliver the message. If unspecified, the value defaults to the maximum,
+     * which is 2,419,200 seconds (28 days). Amazon Pinpoint uses this value to
+     * set the FCM or GCM time_to_live parameter.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param timeToLive The length of time (in seconds) that FCM or GCM stores
+     *            and attempts to deliver the message. If unspecified, the value
+     *            defaults to the maximum, which is 2,419,200 seconds (28 days).
+     *            Amazon Pinpoint uses this value to set the FCM or GCM
+     *            time_to_live parameter.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GCMMessage withTimeToLive(Integer timeToLive) {
+        this.timeToLive = timeToLive;
+        return this;
+    }
+
+    /**
      * The message title that displays above the message on the user's device.
      *
      * @return The message title that displays above the message on the user's
@@ -998,8 +1112,8 @@ public class GCMMessage implements Serializable {
             sb.append("ImageIconUrl: " + getImageIconUrl() + ",");
         if (getImageUrl() != null)
             sb.append("ImageUrl: " + getImageUrl() + ",");
-        if (getJsonData() != null)
-            sb.append("JsonData: " + getJsonData() + ",");
+        if (getPriority() != null)
+            sb.append("Priority: " + getPriority() + ",");
         if (getRawContent() != null)
             sb.append("RawContent: " + getRawContent() + ",");
         if (getRestrictedPackageName() != null)
@@ -1012,6 +1126,8 @@ public class GCMMessage implements Serializable {
             sb.append("Sound: " + getSound() + ",");
         if (getSubstitutions() != null)
             sb.append("Substitutions: " + getSubstitutions() + ",");
+        if (getTimeToLive() != null)
+            sb.append("TimeToLive: " + getTimeToLive() + ",");
         if (getTitle() != null)
             sb.append("Title: " + getTitle() + ",");
         if (getUrl() != null)
@@ -1035,7 +1151,7 @@ public class GCMMessage implements Serializable {
         hashCode = prime * hashCode
                 + ((getImageIconUrl() == null) ? 0 : getImageIconUrl().hashCode());
         hashCode = prime * hashCode + ((getImageUrl() == null) ? 0 : getImageUrl().hashCode());
-        hashCode = prime * hashCode + ((getJsonData() == null) ? 0 : getJsonData().hashCode());
+        hashCode = prime * hashCode + ((getPriority() == null) ? 0 : getPriority().hashCode());
         hashCode = prime * hashCode + ((getRawContent() == null) ? 0 : getRawContent().hashCode());
         hashCode = prime
                 * hashCode
@@ -1046,6 +1162,7 @@ public class GCMMessage implements Serializable {
         hashCode = prime * hashCode + ((getSound() == null) ? 0 : getSound().hashCode());
         hashCode = prime * hashCode
                 + ((getSubstitutions() == null) ? 0 : getSubstitutions().hashCode());
+        hashCode = prime * hashCode + ((getTimeToLive() == null) ? 0 : getTimeToLive().hashCode());
         hashCode = prime * hashCode + ((getTitle() == null) ? 0 : getTitle().hashCode());
         hashCode = prime * hashCode + ((getUrl() == null) ? 0 : getUrl().hashCode());
         return hashCode;
@@ -1093,9 +1210,9 @@ public class GCMMessage implements Serializable {
             return false;
         if (other.getImageUrl() != null && other.getImageUrl().equals(this.getImageUrl()) == false)
             return false;
-        if (other.getJsonData() == null ^ this.getJsonData() == null)
+        if (other.getPriority() == null ^ this.getPriority() == null)
             return false;
-        if (other.getJsonData() != null && other.getJsonData().equals(this.getJsonData()) == false)
+        if (other.getPriority() != null && other.getPriority().equals(this.getPriority()) == false)
             return false;
         if (other.getRawContent() == null ^ this.getRawContent() == null)
             return false;
@@ -1125,6 +1242,11 @@ public class GCMMessage implements Serializable {
             return false;
         if (other.getSubstitutions() != null
                 && other.getSubstitutions().equals(this.getSubstitutions()) == false)
+            return false;
+        if (other.getTimeToLive() == null ^ this.getTimeToLive() == null)
+            return false;
+        if (other.getTimeToLive() != null
+                && other.getTimeToLive().equals(this.getTimeToLive()) == false)
             return false;
         if (other.getTitle() == null ^ this.getTitle() == null)
             return false;

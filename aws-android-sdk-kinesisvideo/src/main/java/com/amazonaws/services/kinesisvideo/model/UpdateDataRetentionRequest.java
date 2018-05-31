@@ -19,9 +19,49 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Increases or decreases the stream's data retention period by the value that
+ * you specify. To indicate whether you want to increase or decrease the data
+ * retention period, specify the <code>Operation</code> parameter in the request
+ * body. In the request, you must specify either the <code>StreamName</code> or
+ * the <code>StreamARN</code>.
+ * </p>
+ * <note>
+ * <p>
+ * The retention period that you specify replaces the current value.
+ * </p>
+ * </note>
+ * <p>
+ * This operation requires permission for the
+ * <code>KinesisVideo:UpdateDataRetention</code> action.
+ * </p>
+ * <p>
+ * Changing the data retention period affects the data in the stream as follows:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * If the data retention period is increased, existing data is retained for the
+ * new retention period. For example, if the data retention period is increased
+ * from one hour to seven hours, all existing data is retained for seven hours.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * If the data retention period is decreased, existing data is retained for the
+ * new retention period. For example, if the data retention period is decreased
+ * from seven hours to one hour, all existing data is retained for one hour, and
+ * any data older than one hour is deleted immediately.
+ * </p>
+ * </li>
+ * </ul>
+ */
 public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the streamName property for this object.
+     * <p>
+     * The name of the stream whose retention period you want to change.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -30,7 +70,10 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
     private String streamName;
 
     /**
-     * The new value for the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream whose retention period you
+     * want to change.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -41,7 +84,11 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
     private String streamARN;
 
     /**
-     * The new value for the currentVersion property for this object.
+     * <p>
+     * The version of the stream whose retention period you want to change. To
+     * get the version, call either the <code>DescribeStream</code> or the
+     * <code>ListStreams</code> API.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
@@ -50,7 +97,9 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
     private String currentVersion;
 
     /**
-     * The new value for the operation property for this object.
+     * <p>
+     * Indicates whether you want to increase or decrease the retention period.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCREASE_DATA_RETENTION, DECREASE_DATA_RETENTION
@@ -58,8 +107,10 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
     private String operation;
 
     /**
-     * The new value for the dataRetentionChangeInHours property for this
-     * object.
+     * <p>
+     * The retention period, in hours. The value you specify replaces the
+     * current value.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
@@ -67,34 +118,44 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
     private Integer dataRetentionChangeInHours;
 
     /**
-     * Returns the value of the streamName property for this object.
+     * <p>
+     * The name of the stream whose retention period you want to change.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @return The value of the streamName property for this object.
+     * @return <p>
+     *         The name of the stream whose retention period you want to change.
+     *         </p>
      */
     public String getStreamName() {
         return streamName;
     }
 
     /**
-     * Sets the value of streamName
+     * <p>
+     * The name of the stream whose retention period you want to change.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param streamName The new value for the streamName property for this
-     *            object.
+     * @param streamName <p>
+     *            The name of the stream whose retention period you want to
+     *            change.
+     *            </p>
      */
     public void setStreamName(String streamName) {
         this.streamName = streamName;
     }
 
     /**
-     * Sets the value of the streamName property for this object.
+     * <p>
+     * The name of the stream whose retention period you want to change.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -103,8 +164,10 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param streamName The new value for the streamName property for this
-     *            object.
+     * @param streamName <p>
+     *            The name of the stream whose retention period you want to
+     *            change.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -114,7 +177,10 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * Returns the value of the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream whose retention period you
+     * want to change.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -122,14 +188,20 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @return The value of the streamARN property for this object.
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the stream whose retention
+     *         period you want to change.
+     *         </p>
      */
     public String getStreamARN() {
         return streamARN;
     }
 
     /**
-     * Sets the value of streamARN
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream whose retention period you
+     * want to change.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -137,15 +209,20 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @param streamARN The new value for the streamARN property for this
-     *            object.
+     * @param streamARN <p>
+     *            The Amazon Resource Name (ARN) of the stream whose retention
+     *            period you want to change.
+     *            </p>
      */
     public void setStreamARN(String streamARN) {
         this.streamARN = streamARN;
     }
 
     /**
-     * Sets the value of the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream whose retention period you
+     * want to change.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -156,8 +233,10 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @param streamARN The new value for the streamARN property for this
-     *            object.
+     * @param streamARN <p>
+     *            The Amazon Resource Name (ARN) of the stream whose retention
+     *            period you want to change.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -167,34 +246,54 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * Returns the value of the currentVersion property for this object.
+     * <p>
+     * The version of the stream whose retention period you want to change. To
+     * get the version, call either the <code>DescribeStream</code> or the
+     * <code>ListStreams</code> API.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9]+<br/>
      *
-     * @return The value of the currentVersion property for this object.
+     * @return <p>
+     *         The version of the stream whose retention period you want to
+     *         change. To get the version, call either the
+     *         <code>DescribeStream</code> or the <code>ListStreams</code> API.
+     *         </p>
      */
     public String getCurrentVersion() {
         return currentVersion;
     }
 
     /**
-     * Sets the value of currentVersion
+     * <p>
+     * The version of the stream whose retention period you want to change. To
+     * get the version, call either the <code>DescribeStream</code> or the
+     * <code>ListStreams</code> API.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9]+<br/>
      *
-     * @param currentVersion The new value for the currentVersion property for
-     *            this object.
+     * @param currentVersion <p>
+     *            The version of the stream whose retention period you want to
+     *            change. To get the version, call either the
+     *            <code>DescribeStream</code> or the <code>ListStreams</code>
+     *            API.
+     *            </p>
      */
     public void setCurrentVersion(String currentVersion) {
         this.currentVersion = currentVersion;
     }
 
     /**
-     * Sets the value of the currentVersion property for this object.
+     * <p>
+     * The version of the stream whose retention period you want to change. To
+     * get the version, call either the <code>DescribeStream</code> or the
+     * <code>ListStreams</code> API.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -203,8 +302,12 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9]+<br/>
      *
-     * @param currentVersion The new value for the currentVersion property for
-     *            this object.
+     * @param currentVersion <p>
+     *            The version of the stream whose retention period you want to
+     *            change. To get the version, call either the
+     *            <code>DescribeStream</code> or the <code>ListStreams</code>
+     *            API.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -214,12 +317,17 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * Returns the value of the operation property for this object.
+     * <p>
+     * Indicates whether you want to increase or decrease the retention period.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCREASE_DATA_RETENTION, DECREASE_DATA_RETENTION
      *
-     * @return The value of the operation property for this object.
+     * @return <p>
+     *         Indicates whether you want to increase or decrease the retention
+     *         period.
+     *         </p>
      * @see UpdateDataRetentionOperation
      */
     public String getOperation() {
@@ -227,13 +335,17 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * Sets the value of operation
+     * <p>
+     * Indicates whether you want to increase or decrease the retention period.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCREASE_DATA_RETENTION, DECREASE_DATA_RETENTION
      *
-     * @param operation The new value for the operation property for this
-     *            object.
+     * @param operation <p>
+     *            Indicates whether you want to increase or decrease the
+     *            retention period.
+     *            </p>
      * @see UpdateDataRetentionOperation
      */
     public void setOperation(String operation) {
@@ -241,7 +353,9 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * Sets the value of the operation property for this object.
+     * <p>
+     * Indicates whether you want to increase or decrease the retention period.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -249,8 +363,10 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCREASE_DATA_RETENTION, DECREASE_DATA_RETENTION
      *
-     * @param operation The new value for the operation property for this
-     *            object.
+     * @param operation <p>
+     *            Indicates whether you want to increase or decrease the
+     *            retention period.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see UpdateDataRetentionOperation
@@ -261,13 +377,17 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * Sets the value of operation
+     * <p>
+     * Indicates whether you want to increase or decrease the retention period.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCREASE_DATA_RETENTION, DECREASE_DATA_RETENTION
      *
-     * @param operation The new value for the operation property for this
-     *            object.
+     * @param operation <p>
+     *            Indicates whether you want to increase or decrease the
+     *            retention period.
+     *            </p>
      * @see UpdateDataRetentionOperation
      */
     public void setOperation(UpdateDataRetentionOperation operation) {
@@ -275,7 +395,9 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * Sets the value of the operation property for this object.
+     * <p>
+     * Indicates whether you want to increase or decrease the retention period.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -283,8 +405,10 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INCREASE_DATA_RETENTION, DECREASE_DATA_RETENTION
      *
-     * @param operation The new value for the operation property for this
-     *            object.
+     * @param operation <p>
+     *            Indicates whether you want to increase or decrease the
+     *            retention period.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see UpdateDataRetentionOperation
@@ -295,35 +419,46 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * Returns the value of the dataRetentionChangeInHours property for this
-     * object.
+     * <p>
+     * The retention period, in hours. The value you specify replaces the
+     * current value.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
-     * @return The value of the dataRetentionChangeInHours property for this
-     *         object.
+     * @return <p>
+     *         The retention period, in hours. The value you specify replaces
+     *         the current value.
+     *         </p>
      */
     public Integer getDataRetentionChangeInHours() {
         return dataRetentionChangeInHours;
     }
 
     /**
-     * Sets the value of dataRetentionChangeInHours
+     * <p>
+     * The retention period, in hours. The value you specify replaces the
+     * current value.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
-     * @param dataRetentionChangeInHours The new value for the
-     *            dataRetentionChangeInHours property for this object.
+     * @param dataRetentionChangeInHours <p>
+     *            The retention period, in hours. The value you specify replaces
+     *            the current value.
+     *            </p>
      */
     public void setDataRetentionChangeInHours(Integer dataRetentionChangeInHours) {
         this.dataRetentionChangeInHours = dataRetentionChangeInHours;
     }
 
     /**
-     * Sets the value of the dataRetentionChangeInHours property for this
-     * object.
+     * <p>
+     * The retention period, in hours. The value you specify replaces the
+     * current value.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -331,8 +466,10 @@ public class UpdateDataRetentionRequest extends AmazonWebServiceRequest implemen
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
-     * @param dataRetentionChangeInHours The new value for the
-     *            dataRetentionChangeInHours property for this object.
+     * @param dataRetentionChangeInHours <p>
+     *            The retention period, in hours. The value you specify replaces
+     *            the current value.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

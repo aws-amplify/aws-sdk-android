@@ -48,6 +48,9 @@ class WriteCampaignRequestJsonUnmarshaller implements
             } else if (name.equals("HoldoutPercent")) {
                 writeCampaignRequest.setHoldoutPercent(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Hook")) {
+                writeCampaignRequest.setHook(CampaignHookJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("IsPaused")) {
                 writeCampaignRequest.setIsPaused(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -69,9 +72,6 @@ class WriteCampaignRequestJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("SegmentVersion")) {
                 writeCampaignRequest.setSegmentVersion(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Trace")) {
-                writeCampaignRequest.setTrace(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("TreatmentDescription")) {
                 writeCampaignRequest.setTreatmentDescription(StringJsonUnmarshaller.getInstance()

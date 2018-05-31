@@ -19,42 +19,70 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Base64 encoded string for user context data collected for risk evaluation
+ * Contextual data such as the user's device fingerprint, IP address, or
+ * location used for evaluating the risk of an unexpected event by Amazon
+ * Cognito advanced security.
  * </p>
  */
 public class UserContextDataType implements Serializable {
     /**
-     * The new value for the encodedData property for this object.
+     * <p>
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
+     * </p>
      */
     private String encodedData;
 
     /**
-     * Returns the value of the encodedData property for this object.
+     * <p>
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
+     * </p>
      *
-     * @return The value of the encodedData property for this object.
+     * @return <p>
+     *         Contextual data such as the user's device fingerprint, IP
+     *         address, or location used for evaluating the risk of an
+     *         unexpected event by Amazon Cognito advanced security.
+     *         </p>
      */
     public String getEncodedData() {
         return encodedData;
     }
 
     /**
-     * Sets the value of encodedData
+     * <p>
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
+     * </p>
      *
-     * @param encodedData The new value for the encodedData property for this
-     *            object.
+     * @param encodedData <p>
+     *            Contextual data such as the user's device fingerprint, IP
+     *            address, or location used for evaluating the risk of an
+     *            unexpected event by Amazon Cognito advanced security.
+     *            </p>
      */
     public void setEncodedData(String encodedData) {
         this.encodedData = encodedData;
     }
 
     /**
-     * Sets the value of the encodedData property for this object.
+     * <p>
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param encodedData The new value for the encodedData property for this
-     *            object.
+     * @param encodedData <p>
+     *            Contextual data such as the user's device fingerprint, IP
+     *            address, or location used for evaluating the risk of an
+     *            unexpected event by Amazon Cognito advanced security.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

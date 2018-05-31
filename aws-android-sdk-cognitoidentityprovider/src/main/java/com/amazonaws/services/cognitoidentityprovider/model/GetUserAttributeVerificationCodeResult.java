@@ -26,21 +26,21 @@ import java.io.Serializable;
 public class GetUserAttributeVerificationCodeResult implements Serializable {
     /**
      * <p>
-     * The code delivery details returned by the server response to get the user
-     * attribute verification code.
+     * The code delivery details returned by the server in response to the
+     * request to get the user attribute verification code.
      * </p>
      */
     private CodeDeliveryDetailsType codeDeliveryDetails;
 
     /**
      * <p>
-     * The code delivery details returned by the server response to get the user
-     * attribute verification code.
+     * The code delivery details returned by the server in response to the
+     * request to get the user attribute verification code.
      * </p>
      *
      * @return <p>
-     *         The code delivery details returned by the server response to get
-     *         the user attribute verification code.
+     *         The code delivery details returned by the server in response to
+     *         the request to get the user attribute verification code.
      *         </p>
      */
     public CodeDeliveryDetailsType getCodeDeliveryDetails() {
@@ -49,13 +49,13 @@ public class GetUserAttributeVerificationCodeResult implements Serializable {
 
     /**
      * <p>
-     * The code delivery details returned by the server response to get the user
-     * attribute verification code.
+     * The code delivery details returned by the server in response to the
+     * request to get the user attribute verification code.
      * </p>
      *
      * @param codeDeliveryDetails <p>
-     *            The code delivery details returned by the server response to
-     *            get the user attribute verification code.
+     *            The code delivery details returned by the server in response
+     *            to the request to get the user attribute verification code.
      *            </p>
      */
     public void setCodeDeliveryDetails(CodeDeliveryDetailsType codeDeliveryDetails) {
@@ -64,16 +64,16 @@ public class GetUserAttributeVerificationCodeResult implements Serializable {
 
     /**
      * <p>
-     * The code delivery details returned by the server response to get the user
-     * attribute verification code.
+     * The code delivery details returned by the server in response to the
+     * request to get the user attribute verification code.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param codeDeliveryDetails <p>
-     *            The code delivery details returned by the server response to
-     *            get the user attribute verification code.
+     *            The code delivery details returned by the server in response
+     *            to the request to get the user attribute verification code.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

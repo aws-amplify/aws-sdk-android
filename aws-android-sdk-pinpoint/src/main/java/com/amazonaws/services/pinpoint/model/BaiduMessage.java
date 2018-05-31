@@ -64,12 +64,6 @@ public class BaiduMessage implements Serializable {
     private String imageUrl;
 
     /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
-     */
-    private String jsonData;
-
-    /**
      * The Raw JSON formatted string to be used as the payload. This value
      * overrides the message.
      */
@@ -483,45 +477,6 @@ public class BaiduMessage implements Serializable {
     }
 
     /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
-     *
-     * @return The data payload used for a silent push. This payload is added to
-     *         the notifications' data.pinpoint.jsonBody' object
-     */
-    public String getJsonData() {
-        return jsonData;
-    }
-
-    /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
-     *
-     * @param jsonData The data payload used for a silent push. This payload is
-     *            added to the notifications' data.pinpoint.jsonBody' object
-     */
-    public void setJsonData(String jsonData) {
-        this.jsonData = jsonData;
-    }
-
-    /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param jsonData The data payload used for a silent push. This payload is
-     *            added to the notifications' data.pinpoint.jsonBody' object
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public BaiduMessage withJsonData(String jsonData) {
-        this.jsonData = jsonData;
-        return this;
-    }
-
-    /**
      * The Raw JSON formatted string to be used as the payload. This value
      * overrides the message.
      *
@@ -881,8 +836,6 @@ public class BaiduMessage implements Serializable {
             sb.append("ImageIconUrl: " + getImageIconUrl() + ",");
         if (getImageUrl() != null)
             sb.append("ImageUrl: " + getImageUrl() + ",");
-        if (getJsonData() != null)
-            sb.append("JsonData: " + getJsonData() + ",");
         if (getRawContent() != null)
             sb.append("RawContent: " + getRawContent() + ",");
         if (getSilentPush() != null)
@@ -914,7 +867,6 @@ public class BaiduMessage implements Serializable {
         hashCode = prime * hashCode
                 + ((getImageIconUrl() == null) ? 0 : getImageIconUrl().hashCode());
         hashCode = prime * hashCode + ((getImageUrl() == null) ? 0 : getImageUrl().hashCode());
-        hashCode = prime * hashCode + ((getJsonData() == null) ? 0 : getJsonData().hashCode());
         hashCode = prime * hashCode + ((getRawContent() == null) ? 0 : getRawContent().hashCode());
         hashCode = prime * hashCode + ((getSilentPush() == null) ? 0 : getSilentPush().hashCode());
         hashCode = prime * hashCode
@@ -963,10 +915,6 @@ public class BaiduMessage implements Serializable {
         if (other.getImageUrl() == null ^ this.getImageUrl() == null)
             return false;
         if (other.getImageUrl() != null && other.getImageUrl().equals(this.getImageUrl()) == false)
-            return false;
-        if (other.getJsonData() == null ^ this.getJsonData() == null)
-            return false;
-        if (other.getJsonData() != null && other.getJsonData().equals(this.getJsonData()) == false)
             return false;
         if (other.getRawContent() == null ^ this.getRawContent() == null)
             return false;

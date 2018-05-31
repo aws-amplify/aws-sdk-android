@@ -19,27 +19,29 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Represents the output of a <i>DeleteItem</i> operation.
+ * Represents the output of a <code>DeleteItem</code> operation.
  * </p>
  */
 public class DeleteItemResult implements Serializable {
     /**
      * <p>
-     * A map of attribute names to <i>AttributeValue</i> objects, representing
-     * the item as it appeared before the <i>DeleteItem</i> operation. This map
-     * appears in the response only if <i>ReturnValues</i> was specified as
-     * <code>ALL_OLD</code> in the request.
+     * A map of attribute names to <code>AttributeValue</code> objects,
+     * representing the item as it appeared before the <code>DeleteItem</code>
+     * operation. This map appears in the response only if
+     * <code>ReturnValues</code> was specified as <code>ALL_OLD</code> in the
+     * request.
      * </p>
      */
     private java.util.Map<String, AttributeValue> attributes;
 
     /**
      * <p>
-     * The capacity units consumed by an operation. The data returned includes
-     * the total provisioned throughput consumed, along with statistics for the
-     * table and any indexes involved in the operation. <i>ConsumedCapacity</i>
-     * is only returned if the request asked for it. For more information, see
-     * <a href=
+     * The capacity units consumed by the <code>DeleteItem</code> operation. The
+     * data returned includes the total provisioned throughput consumed, along
+     * with statistics for the table and any indexes involved in the operation.
+     * <code>ConsumedCapacity</code> is only returned if the
+     * <code>ReturnConsumedCapacity</code> parameter was specified. For more
+     * information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      * >Provisioned Throughput</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
@@ -50,29 +52,30 @@ public class DeleteItemResult implements Serializable {
     /**
      * <p>
      * Information about item collections, if any, that were affected by the
-     * operation. <i>ItemCollectionMetrics</i> is only returned if the request
-     * asked for it. If the table does not have any local secondary indexes,
+     * <code>DeleteItem</code> operation. <code>ItemCollectionMetrics</code> is
+     * only returned if the <code>ReturnItemCollectionMetrics</code> parameter
+     * was specified. If the table does not have any local secondary indexes,
      * this information is not returned in the response.
      * </p>
      * <p>
-     * Each <i>ItemCollectionMetrics</i> element consists of:
+     * Each <code>ItemCollectionMetrics</code> element consists of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>ItemCollectionKey</i> - The partition key value of the item
+     * <code>ItemCollectionKey</code> - The partition key value of the item
      * collection. This is the same as the partition key value of the item
      * itself.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>SizeEstimateRange</i> - An estimate of item collection size, in
-     * gigabytes. This value is a two-element array containing a lower bound and
-     * an upper bound for the estimate. The estimate includes the size of all
-     * the items in the table, plus the size of all attributes projected into
-     * all of the local secondary indexes on that table. Use this estimate to
-     * measure whether a local secondary index is approaching its size limit.
+     * <code>SizeEstimateRangeGB</code> - An estimate of item collection size,
+     * in gigabytes. This value is a two-element array containing a lower bound
+     * and an upper bound for the estimate. The estimate includes the size of
+     * all the items in the table, plus the size of all attributes projected
+     * into all of the local secondary indexes on that table. Use this estimate
+     * to measure whether a local secondary index is approaching its size limit.
      * </p>
      * <p>
      * The estimate is subject to change over time; therefore, do not rely on
@@ -85,18 +88,19 @@ public class DeleteItemResult implements Serializable {
 
     /**
      * <p>
-     * A map of attribute names to <i>AttributeValue</i> objects, representing
-     * the item as it appeared before the <i>DeleteItem</i> operation. This map
-     * appears in the response only if <i>ReturnValues</i> was specified as
-     * <code>ALL_OLD</code> in the request.
+     * A map of attribute names to <code>AttributeValue</code> objects,
+     * representing the item as it appeared before the <code>DeleteItem</code>
+     * operation. This map appears in the response only if
+     * <code>ReturnValues</code> was specified as <code>ALL_OLD</code> in the
+     * request.
      * </p>
      *
      * @return <p>
-     *         A map of attribute names to <i>AttributeValue</i> objects,
-     *         representing the item as it appeared before the <i>DeleteItem</i>
-     *         operation. This map appears in the response only if
-     *         <i>ReturnValues</i> was specified as <code>ALL_OLD</code> in the
-     *         request.
+     *         A map of attribute names to <code>AttributeValue</code> objects,
+     *         representing the item as it appeared before the
+     *         <code>DeleteItem</code> operation. This map appears in the
+     *         response only if <code>ReturnValues</code> was specified as
+     *         <code>ALL_OLD</code> in the request.
      *         </p>
      */
     public java.util.Map<String, AttributeValue> getAttributes() {
@@ -105,17 +109,18 @@ public class DeleteItemResult implements Serializable {
 
     /**
      * <p>
-     * A map of attribute names to <i>AttributeValue</i> objects, representing
-     * the item as it appeared before the <i>DeleteItem</i> operation. This map
-     * appears in the response only if <i>ReturnValues</i> was specified as
-     * <code>ALL_OLD</code> in the request.
+     * A map of attribute names to <code>AttributeValue</code> objects,
+     * representing the item as it appeared before the <code>DeleteItem</code>
+     * operation. This map appears in the response only if
+     * <code>ReturnValues</code> was specified as <code>ALL_OLD</code> in the
+     * request.
      * </p>
      *
      * @param attributes <p>
-     *            A map of attribute names to <i>AttributeValue</i> objects,
-     *            representing the item as it appeared before the
-     *            <i>DeleteItem</i> operation. This map appears in the response
-     *            only if <i>ReturnValues</i> was specified as
+     *            A map of attribute names to <code>AttributeValue</code>
+     *            objects, representing the item as it appeared before the
+     *            <code>DeleteItem</code> operation. This map appears in the
+     *            response only if <code>ReturnValues</code> was specified as
      *            <code>ALL_OLD</code> in the request.
      *            </p>
      */
@@ -125,20 +130,21 @@ public class DeleteItemResult implements Serializable {
 
     /**
      * <p>
-     * A map of attribute names to <i>AttributeValue</i> objects, representing
-     * the item as it appeared before the <i>DeleteItem</i> operation. This map
-     * appears in the response only if <i>ReturnValues</i> was specified as
-     * <code>ALL_OLD</code> in the request.
+     * A map of attribute names to <code>AttributeValue</code> objects,
+     * representing the item as it appeared before the <code>DeleteItem</code>
+     * operation. This map appears in the response only if
+     * <code>ReturnValues</code> was specified as <code>ALL_OLD</code> in the
+     * request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param attributes <p>
-     *            A map of attribute names to <i>AttributeValue</i> objects,
-     *            representing the item as it appeared before the
-     *            <i>DeleteItem</i> operation. This map appears in the response
-     *            only if <i>ReturnValues</i> was specified as
+     *            A map of attribute names to <code>AttributeValue</code>
+     *            objects, representing the item as it appeared before the
+     *            <code>DeleteItem</code> operation. This map appears in the
+     *            response only if <code>ReturnValues</code> was specified as
      *            <code>ALL_OLD</code> in the request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -151,10 +157,11 @@ public class DeleteItemResult implements Serializable {
 
     /**
      * <p>
-     * A map of attribute names to <i>AttributeValue</i> objects, representing
-     * the item as it appeared before the <i>DeleteItem</i> operation. This map
-     * appears in the response only if <i>ReturnValues</i> was specified as
-     * <code>ALL_OLD</code> in the request.
+     * A map of attribute names to <code>AttributeValue</code> objects,
+     * representing the item as it appeared before the <code>DeleteItem</code>
+     * operation. This map appears in the response only if
+     * <code>ReturnValues</code> was specified as <code>ALL_OLD</code> in the
+     * request.
      * </p>
      * <p>
      * The method adds a new key-value pair into Attributes parameter, and
@@ -191,22 +198,24 @@ public class DeleteItemResult implements Serializable {
 
     /**
      * <p>
-     * The capacity units consumed by an operation. The data returned includes
-     * the total provisioned throughput consumed, along with statistics for the
-     * table and any indexes involved in the operation. <i>ConsumedCapacity</i>
-     * is only returned if the request asked for it. For more information, see
-     * <a href=
+     * The capacity units consumed by the <code>DeleteItem</code> operation. The
+     * data returned includes the total provisioned throughput consumed, along
+     * with statistics for the table and any indexes involved in the operation.
+     * <code>ConsumedCapacity</code> is only returned if the
+     * <code>ReturnConsumedCapacity</code> parameter was specified. For more
+     * information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      * >Provisioned Throughput</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
      * </p>
      *
      * @return <p>
-     *         The capacity units consumed by an operation. The data returned
-     *         includes the total provisioned throughput consumed, along with
-     *         statistics for the table and any indexes involved in the
-     *         operation. <i>ConsumedCapacity</i> is only returned if the
-     *         request asked for it. For more information, see <a href=
+     *         The capacity units consumed by the <code>DeleteItem</code>
+     *         operation. The data returned includes the total provisioned
+     *         throughput consumed, along with statistics for the table and any
+     *         indexes involved in the operation. <code>ConsumedCapacity</code>
+     *         is only returned if the <code>ReturnConsumedCapacity</code>
+     *         parameter was specified. For more information, see <a href=
      *         "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      *         >Provisioned Throughput</a> in the <i>Amazon DynamoDB Developer
      *         Guide</i>.
@@ -218,22 +227,25 @@ public class DeleteItemResult implements Serializable {
 
     /**
      * <p>
-     * The capacity units consumed by an operation. The data returned includes
-     * the total provisioned throughput consumed, along with statistics for the
-     * table and any indexes involved in the operation. <i>ConsumedCapacity</i>
-     * is only returned if the request asked for it. For more information, see
-     * <a href=
+     * The capacity units consumed by the <code>DeleteItem</code> operation. The
+     * data returned includes the total provisioned throughput consumed, along
+     * with statistics for the table and any indexes involved in the operation.
+     * <code>ConsumedCapacity</code> is only returned if the
+     * <code>ReturnConsumedCapacity</code> parameter was specified. For more
+     * information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      * >Provisioned Throughput</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
      * </p>
      *
      * @param consumedCapacity <p>
-     *            The capacity units consumed by an operation. The data returned
-     *            includes the total provisioned throughput consumed, along with
-     *            statistics for the table and any indexes involved in the
-     *            operation. <i>ConsumedCapacity</i> is only returned if the
-     *            request asked for it. For more information, see <a href=
+     *            The capacity units consumed by the <code>DeleteItem</code>
+     *            operation. The data returned includes the total provisioned
+     *            throughput consumed, along with statistics for the table and
+     *            any indexes involved in the operation.
+     *            <code>ConsumedCapacity</code> is only returned if the
+     *            <code>ReturnConsumedCapacity</code> parameter was specified.
+     *            For more information, see <a href=
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      *            >Provisioned Throughput</a> in the <i>Amazon DynamoDB
      *            Developer Guide</i>.
@@ -245,11 +257,12 @@ public class DeleteItemResult implements Serializable {
 
     /**
      * <p>
-     * The capacity units consumed by an operation. The data returned includes
-     * the total provisioned throughput consumed, along with statistics for the
-     * table and any indexes involved in the operation. <i>ConsumedCapacity</i>
-     * is only returned if the request asked for it. For more information, see
-     * <a href=
+     * The capacity units consumed by the <code>DeleteItem</code> operation. The
+     * data returned includes the total provisioned throughput consumed, along
+     * with statistics for the table and any indexes involved in the operation.
+     * <code>ConsumedCapacity</code> is only returned if the
+     * <code>ReturnConsumedCapacity</code> parameter was specified. For more
+     * information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      * >Provisioned Throughput</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
@@ -259,11 +272,13 @@ public class DeleteItemResult implements Serializable {
      * together.
      *
      * @param consumedCapacity <p>
-     *            The capacity units consumed by an operation. The data returned
-     *            includes the total provisioned throughput consumed, along with
-     *            statistics for the table and any indexes involved in the
-     *            operation. <i>ConsumedCapacity</i> is only returned if the
-     *            request asked for it. For more information, see <a href=
+     *            The capacity units consumed by the <code>DeleteItem</code>
+     *            operation. The data returned includes the total provisioned
+     *            throughput consumed, along with statistics for the table and
+     *            any indexes involved in the operation.
+     *            <code>ConsumedCapacity</code> is only returned if the
+     *            <code>ReturnConsumedCapacity</code> parameter was specified.
+     *            For more information, see <a href=
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      *            >Provisioned Throughput</a> in the <i>Amazon DynamoDB
      *            Developer Guide</i>.
@@ -279,29 +294,30 @@ public class DeleteItemResult implements Serializable {
     /**
      * <p>
      * Information about item collections, if any, that were affected by the
-     * operation. <i>ItemCollectionMetrics</i> is only returned if the request
-     * asked for it. If the table does not have any local secondary indexes,
+     * <code>DeleteItem</code> operation. <code>ItemCollectionMetrics</code> is
+     * only returned if the <code>ReturnItemCollectionMetrics</code> parameter
+     * was specified. If the table does not have any local secondary indexes,
      * this information is not returned in the response.
      * </p>
      * <p>
-     * Each <i>ItemCollectionMetrics</i> element consists of:
+     * Each <code>ItemCollectionMetrics</code> element consists of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>ItemCollectionKey</i> - The partition key value of the item
+     * <code>ItemCollectionKey</code> - The partition key value of the item
      * collection. This is the same as the partition key value of the item
      * itself.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>SizeEstimateRange</i> - An estimate of item collection size, in
-     * gigabytes. This value is a two-element array containing a lower bound and
-     * an upper bound for the estimate. The estimate includes the size of all
-     * the items in the table, plus the size of all attributes projected into
-     * all of the local secondary indexes on that table. Use this estimate to
-     * measure whether a local secondary index is approaching its size limit.
+     * <code>SizeEstimateRangeGB</code> - An estimate of item collection size,
+     * in gigabytes. This value is a two-element array containing a lower bound
+     * and an upper bound for the estimate. The estimate includes the size of
+     * all the items in the table, plus the size of all attributes projected
+     * into all of the local secondary indexes on that table. Use this estimate
+     * to measure whether a local secondary index is approaching its size limit.
      * </p>
      * <p>
      * The estimate is subject to change over time; therefore, do not rely on
@@ -312,27 +328,28 @@ public class DeleteItemResult implements Serializable {
      *
      * @return <p>
      *         Information about item collections, if any, that were affected by
-     *         the operation. <i>ItemCollectionMetrics</i> is only returned if
-     *         the request asked for it. If the table does not have any local
-     *         secondary indexes, this information is not returned in the
-     *         response.
+     *         the <code>DeleteItem</code> operation.
+     *         <code>ItemCollectionMetrics</code> is only returned if the
+     *         <code>ReturnItemCollectionMetrics</code> parameter was specified.
+     *         If the table does not have any local secondary indexes, this
+     *         information is not returned in the response.
      *         </p>
      *         <p>
-     *         Each <i>ItemCollectionMetrics</i> element consists of:
+     *         Each <code>ItemCollectionMetrics</code> element consists of:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         <i>ItemCollectionKey</i> - The partition key value of the item
-     *         collection. This is the same as the partition key value of the
-     *         item itself.
+     *         <code>ItemCollectionKey</code> - The partition key value of the
+     *         item collection. This is the same as the partition key value of
+     *         the item itself.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <i>SizeEstimateRange</i> - An estimate of item collection size,
-     *         in gigabytes. This value is a two-element array containing a
-     *         lower bound and an upper bound for the estimate. The estimate
+     *         <code>SizeEstimateRangeGB</code> - An estimate of item collection
+     *         size, in gigabytes. This value is a two-element array containing
+     *         a lower bound and an upper bound for the estimate. The estimate
      *         includes the size of all the items in the table, plus the size of
      *         all attributes projected into all of the local secondary indexes
      *         on that table. Use this estimate to measure whether a local
@@ -352,29 +369,30 @@ public class DeleteItemResult implements Serializable {
     /**
      * <p>
      * Information about item collections, if any, that were affected by the
-     * operation. <i>ItemCollectionMetrics</i> is only returned if the request
-     * asked for it. If the table does not have any local secondary indexes,
+     * <code>DeleteItem</code> operation. <code>ItemCollectionMetrics</code> is
+     * only returned if the <code>ReturnItemCollectionMetrics</code> parameter
+     * was specified. If the table does not have any local secondary indexes,
      * this information is not returned in the response.
      * </p>
      * <p>
-     * Each <i>ItemCollectionMetrics</i> element consists of:
+     * Each <code>ItemCollectionMetrics</code> element consists of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>ItemCollectionKey</i> - The partition key value of the item
+     * <code>ItemCollectionKey</code> - The partition key value of the item
      * collection. This is the same as the partition key value of the item
      * itself.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>SizeEstimateRange</i> - An estimate of item collection size, in
-     * gigabytes. This value is a two-element array containing a lower bound and
-     * an upper bound for the estimate. The estimate includes the size of all
-     * the items in the table, plus the size of all attributes projected into
-     * all of the local secondary indexes on that table. Use this estimate to
-     * measure whether a local secondary index is approaching its size limit.
+     * <code>SizeEstimateRangeGB</code> - An estimate of item collection size,
+     * in gigabytes. This value is a two-element array containing a lower bound
+     * and an upper bound for the estimate. The estimate includes the size of
+     * all the items in the table, plus the size of all attributes projected
+     * into all of the local secondary indexes on that table. Use this estimate
+     * to measure whether a local secondary index is approaching its size limit.
      * </p>
      * <p>
      * The estimate is subject to change over time; therefore, do not rely on
@@ -385,32 +403,33 @@ public class DeleteItemResult implements Serializable {
      *
      * @param itemCollectionMetrics <p>
      *            Information about item collections, if any, that were affected
-     *            by the operation. <i>ItemCollectionMetrics</i> is only
-     *            returned if the request asked for it. If the table does not
-     *            have any local secondary indexes, this information is not
-     *            returned in the response.
+     *            by the <code>DeleteItem</code> operation.
+     *            <code>ItemCollectionMetrics</code> is only returned if the
+     *            <code>ReturnItemCollectionMetrics</code> parameter was
+     *            specified. If the table does not have any local secondary
+     *            indexes, this information is not returned in the response.
      *            </p>
      *            <p>
-     *            Each <i>ItemCollectionMetrics</i> element consists of:
+     *            Each <code>ItemCollectionMetrics</code> element consists of:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>ItemCollectionKey</i> - The partition key value of the item
-     *            collection. This is the same as the partition key value of the
-     *            item itself.
+     *            <code>ItemCollectionKey</code> - The partition key value of
+     *            the item collection. This is the same as the partition key
+     *            value of the item itself.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>SizeEstimateRange</i> - An estimate of item collection
-     *            size, in gigabytes. This value is a two-element array
-     *            containing a lower bound and an upper bound for the estimate.
-     *            The estimate includes the size of all the items in the table,
-     *            plus the size of all attributes projected into all of the
-     *            local secondary indexes on that table. Use this estimate to
-     *            measure whether a local secondary index is approaching its
-     *            size limit.
+     *            <code>SizeEstimateRangeGB</code> - An estimate of item
+     *            collection size, in gigabytes. This value is a two-element
+     *            array containing a lower bound and an upper bound for the
+     *            estimate. The estimate includes the size of all the items in
+     *            the table, plus the size of all attributes projected into all
+     *            of the local secondary indexes on that table. Use this
+     *            estimate to measure whether a local secondary index is
+     *            approaching its size limit.
      *            </p>
      *            <p>
      *            The estimate is subject to change over time; therefore, do not
@@ -426,29 +445,30 @@ public class DeleteItemResult implements Serializable {
     /**
      * <p>
      * Information about item collections, if any, that were affected by the
-     * operation. <i>ItemCollectionMetrics</i> is only returned if the request
-     * asked for it. If the table does not have any local secondary indexes,
+     * <code>DeleteItem</code> operation. <code>ItemCollectionMetrics</code> is
+     * only returned if the <code>ReturnItemCollectionMetrics</code> parameter
+     * was specified. If the table does not have any local secondary indexes,
      * this information is not returned in the response.
      * </p>
      * <p>
-     * Each <i>ItemCollectionMetrics</i> element consists of:
+     * Each <code>ItemCollectionMetrics</code> element consists of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>ItemCollectionKey</i> - The partition key value of the item
+     * <code>ItemCollectionKey</code> - The partition key value of the item
      * collection. This is the same as the partition key value of the item
      * itself.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>SizeEstimateRange</i> - An estimate of item collection size, in
-     * gigabytes. This value is a two-element array containing a lower bound and
-     * an upper bound for the estimate. The estimate includes the size of all
-     * the items in the table, plus the size of all attributes projected into
-     * all of the local secondary indexes on that table. Use this estimate to
-     * measure whether a local secondary index is approaching its size limit.
+     * <code>SizeEstimateRangeGB</code> - An estimate of item collection size,
+     * in gigabytes. This value is a two-element array containing a lower bound
+     * and an upper bound for the estimate. The estimate includes the size of
+     * all the items in the table, plus the size of all attributes projected
+     * into all of the local secondary indexes on that table. Use this estimate
+     * to measure whether a local secondary index is approaching its size limit.
      * </p>
      * <p>
      * The estimate is subject to change over time; therefore, do not rely on
@@ -462,32 +482,33 @@ public class DeleteItemResult implements Serializable {
      *
      * @param itemCollectionMetrics <p>
      *            Information about item collections, if any, that were affected
-     *            by the operation. <i>ItemCollectionMetrics</i> is only
-     *            returned if the request asked for it. If the table does not
-     *            have any local secondary indexes, this information is not
-     *            returned in the response.
+     *            by the <code>DeleteItem</code> operation.
+     *            <code>ItemCollectionMetrics</code> is only returned if the
+     *            <code>ReturnItemCollectionMetrics</code> parameter was
+     *            specified. If the table does not have any local secondary
+     *            indexes, this information is not returned in the response.
      *            </p>
      *            <p>
-     *            Each <i>ItemCollectionMetrics</i> element consists of:
+     *            Each <code>ItemCollectionMetrics</code> element consists of:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>ItemCollectionKey</i> - The partition key value of the item
-     *            collection. This is the same as the partition key value of the
-     *            item itself.
+     *            <code>ItemCollectionKey</code> - The partition key value of
+     *            the item collection. This is the same as the partition key
+     *            value of the item itself.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>SizeEstimateRange</i> - An estimate of item collection
-     *            size, in gigabytes. This value is a two-element array
-     *            containing a lower bound and an upper bound for the estimate.
-     *            The estimate includes the size of all the items in the table,
-     *            plus the size of all attributes projected into all of the
-     *            local secondary indexes on that table. Use this estimate to
-     *            measure whether a local secondary index is approaching its
-     *            size limit.
+     *            <code>SizeEstimateRangeGB</code> - An estimate of item
+     *            collection size, in gigabytes. This value is a two-element
+     *            array containing a lower bound and an upper bound for the
+     *            estimate. The estimate includes the size of all the items in
+     *            the table, plus the size of all attributes projected into all
+     *            of the local secondary indexes on that table. Use this
+     *            estimate to measure whether a local secondary index is
+     *            approaching its size limit.
      *            </p>
      *            <p>
      *            The estimate is subject to change over time; therefore, do not

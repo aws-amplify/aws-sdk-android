@@ -28,7 +28,7 @@ public class DisableEnhancedMonitoringRequest extends AmazonWebServiceRequest im
         Serializable {
     /**
      * <p>
-     * The name of the Amazon Kinesis stream for which to disable enhanced
+     * The name of the Kinesis data stream for which to disable enhanced
      * monitoring.
      * </p>
      * <p>
@@ -47,27 +47,59 @@ public class DisableEnhancedMonitoringRequest extends AmazonWebServiceRequest im
      * <code>ALL</code>" disables every metric.
      * </p>
      * <ul>
-     * <li> <code>IncomingBytes</code></li>
-     * <li> <code>IncomingRecords</code></li>
-     * <li> <code>OutgoingBytes</code></li>
-     * <li> <code>OutgoingRecords</code></li>
-     * <li> <code>WriteProvisionedThroughputExceeded</code></li>
-     * <li> <code>ReadProvisionedThroughputExceeded</code></li>
-     * <li> <code>IteratorAgeMilliseconds</code></li>
-     * <li> <code>ALL</code></li>
+     * <li>
+     * <p>
+     * <code>IncomingBytes</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>IncomingRecords</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>OutgoingBytes</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>OutgoingRecords</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>WriteProvisionedThroughputExceeded</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ReadProvisionedThroughputExceeded</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>IteratorAgeMilliseconds</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ALL</code>
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * For more information, see <a href=
      * "http://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html"
-     * >Monitoring the Amazon Kinesis Streams Service with Amazon CloudWatch</a>
-     * in the <i>Amazon Kinesis Streams Developer Guide</i>.
+     * >Monitoring the Amazon Kinesis Data Streams Service with Amazon
+     * CloudWatch</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.
      * </p>
      */
     private java.util.List<String> shardLevelMetrics = new java.util.ArrayList<String>();
 
     /**
      * <p>
-     * The name of the Amazon Kinesis stream for which to disable enhanced
+     * The name of the Kinesis data stream for which to disable enhanced
      * monitoring.
      * </p>
      * <p>
@@ -76,8 +108,8 @@ public class DisableEnhancedMonitoringRequest extends AmazonWebServiceRequest im
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
      * @return <p>
-     *         The name of the Amazon Kinesis stream for which to disable
-     *         enhanced monitoring.
+     *         The name of the Kinesis data stream for which to disable enhanced
+     *         monitoring.
      *         </p>
      */
     public String getStreamName() {
@@ -86,7 +118,7 @@ public class DisableEnhancedMonitoringRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The name of the Amazon Kinesis stream for which to disable enhanced
+     * The name of the Kinesis data stream for which to disable enhanced
      * monitoring.
      * </p>
      * <p>
@@ -95,7 +127,7 @@ public class DisableEnhancedMonitoringRequest extends AmazonWebServiceRequest im
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
      * @param streamName <p>
-     *            The name of the Amazon Kinesis stream for which to disable
+     *            The name of the Kinesis data stream for which to disable
      *            enhanced monitoring.
      *            </p>
      */
@@ -105,7 +137,7 @@ public class DisableEnhancedMonitoringRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The name of the Amazon Kinesis stream for which to disable enhanced
+     * The name of the Kinesis data stream for which to disable enhanced
      * monitoring.
      * </p>
      * <p>
@@ -117,7 +149,7 @@ public class DisableEnhancedMonitoringRequest extends AmazonWebServiceRequest im
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
      * @param streamName <p>
-     *            The name of the Amazon Kinesis stream for which to disable
+     *            The name of the Kinesis data stream for which to disable
      *            enhanced monitoring.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -137,20 +169,52 @@ public class DisableEnhancedMonitoringRequest extends AmazonWebServiceRequest im
      * <code>ALL</code>" disables every metric.
      * </p>
      * <ul>
-     * <li> <code>IncomingBytes</code></li>
-     * <li> <code>IncomingRecords</code></li>
-     * <li> <code>OutgoingBytes</code></li>
-     * <li> <code>OutgoingRecords</code></li>
-     * <li> <code>WriteProvisionedThroughputExceeded</code></li>
-     * <li> <code>ReadProvisionedThroughputExceeded</code></li>
-     * <li> <code>IteratorAgeMilliseconds</code></li>
-     * <li> <code>ALL</code></li>
+     * <li>
+     * <p>
+     * <code>IncomingBytes</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>IncomingRecords</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>OutgoingBytes</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>OutgoingRecords</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>WriteProvisionedThroughputExceeded</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ReadProvisionedThroughputExceeded</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>IteratorAgeMilliseconds</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ALL</code>
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * For more information, see <a href=
      * "http://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html"
-     * >Monitoring the Amazon Kinesis Streams Service with Amazon CloudWatch</a>
-     * in the <i>Amazon Kinesis Streams Developer Guide</i>.
+     * >Monitoring the Amazon Kinesis Data Streams Service with Amazon
+     * CloudWatch</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.
      * </p>
      *
      * @return <p>
@@ -161,20 +225,52 @@ public class DisableEnhancedMonitoringRequest extends AmazonWebServiceRequest im
      *         <code>ALL</code>" disables every metric.
      *         </p>
      *         <ul>
-     *         <li> <code>IncomingBytes</code></li>
-     *         <li> <code>IncomingRecords</code></li>
-     *         <li> <code>OutgoingBytes</code></li>
-     *         <li> <code>OutgoingRecords</code></li>
-     *         <li> <code>WriteProvisionedThroughputExceeded</code></li>
-     *         <li> <code>ReadProvisionedThroughputExceeded</code></li>
-     *         <li> <code>IteratorAgeMilliseconds</code></li>
-     *         <li> <code>ALL</code></li>
+     *         <li>
+     *         <p>
+     *         <code>IncomingBytes</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>IncomingRecords</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>OutgoingBytes</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>OutgoingRecords</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>WriteProvisionedThroughputExceeded</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>ReadProvisionedThroughputExceeded</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>IteratorAgeMilliseconds</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>ALL</code>
+     *         </p>
+     *         </li>
      *         </ul>
      *         <p>
      *         For more information, see <a href=
      *         "http://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html"
-     *         >Monitoring the Amazon Kinesis Streams Service with Amazon
-     *         CloudWatch</a> in the <i>Amazon Kinesis Streams Developer
+     *         >Monitoring the Amazon Kinesis Data Streams Service with Amazon
+     *         CloudWatch</a> in the <i>Amazon Kinesis Data Streams Developer
      *         Guide</i>.
      *         </p>
      */
@@ -191,20 +287,52 @@ public class DisableEnhancedMonitoringRequest extends AmazonWebServiceRequest im
      * <code>ALL</code>" disables every metric.
      * </p>
      * <ul>
-     * <li> <code>IncomingBytes</code></li>
-     * <li> <code>IncomingRecords</code></li>
-     * <li> <code>OutgoingBytes</code></li>
-     * <li> <code>OutgoingRecords</code></li>
-     * <li> <code>WriteProvisionedThroughputExceeded</code></li>
-     * <li> <code>ReadProvisionedThroughputExceeded</code></li>
-     * <li> <code>IteratorAgeMilliseconds</code></li>
-     * <li> <code>ALL</code></li>
+     * <li>
+     * <p>
+     * <code>IncomingBytes</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>IncomingRecords</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>OutgoingBytes</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>OutgoingRecords</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>WriteProvisionedThroughputExceeded</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ReadProvisionedThroughputExceeded</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>IteratorAgeMilliseconds</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ALL</code>
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * For more information, see <a href=
      * "http://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html"
-     * >Monitoring the Amazon Kinesis Streams Service with Amazon CloudWatch</a>
-     * in the <i>Amazon Kinesis Streams Developer Guide</i>.
+     * >Monitoring the Amazon Kinesis Data Streams Service with Amazon
+     * CloudWatch</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.
      * </p>
      *
      * @param shardLevelMetrics <p>
@@ -215,21 +343,53 @@ public class DisableEnhancedMonitoringRequest extends AmazonWebServiceRequest im
      *            <code>ALL</code>" disables every metric.
      *            </p>
      *            <ul>
-     *            <li> <code>IncomingBytes</code></li>
-     *            <li> <code>IncomingRecords</code></li>
-     *            <li> <code>OutgoingBytes</code></li>
-     *            <li> <code>OutgoingRecords</code></li>
-     *            <li> <code>WriteProvisionedThroughputExceeded</code></li>
-     *            <li> <code>ReadProvisionedThroughputExceeded</code></li>
-     *            <li> <code>IteratorAgeMilliseconds</code></li>
-     *            <li> <code>ALL</code></li>
+     *            <li>
+     *            <p>
+     *            <code>IncomingBytes</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>IncomingRecords</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>OutgoingBytes</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>OutgoingRecords</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>WriteProvisionedThroughputExceeded</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ReadProvisionedThroughputExceeded</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>IteratorAgeMilliseconds</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ALL</code>
+     *            </p>
+     *            </li>
      *            </ul>
      *            <p>
      *            For more information, see <a href=
      *            "http://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html"
-     *            >Monitoring the Amazon Kinesis Streams Service with Amazon
-     *            CloudWatch</a> in the <i>Amazon Kinesis Streams Developer
-     *            Guide</i>.
+     *            >Monitoring the Amazon Kinesis Data Streams Service with
+     *            Amazon CloudWatch</a> in the <i>Amazon Kinesis Data Streams
+     *            Developer Guide</i>.
      *            </p>
      */
     public void setShardLevelMetrics(java.util.Collection<String> shardLevelMetrics) {
@@ -250,20 +410,52 @@ public class DisableEnhancedMonitoringRequest extends AmazonWebServiceRequest im
      * <code>ALL</code>" disables every metric.
      * </p>
      * <ul>
-     * <li> <code>IncomingBytes</code></li>
-     * <li> <code>IncomingRecords</code></li>
-     * <li> <code>OutgoingBytes</code></li>
-     * <li> <code>OutgoingRecords</code></li>
-     * <li> <code>WriteProvisionedThroughputExceeded</code></li>
-     * <li> <code>ReadProvisionedThroughputExceeded</code></li>
-     * <li> <code>IteratorAgeMilliseconds</code></li>
-     * <li> <code>ALL</code></li>
+     * <li>
+     * <p>
+     * <code>IncomingBytes</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>IncomingRecords</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>OutgoingBytes</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>OutgoingRecords</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>WriteProvisionedThroughputExceeded</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ReadProvisionedThroughputExceeded</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>IteratorAgeMilliseconds</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ALL</code>
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * For more information, see <a href=
      * "http://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html"
-     * >Monitoring the Amazon Kinesis Streams Service with Amazon CloudWatch</a>
-     * in the <i>Amazon Kinesis Streams Developer Guide</i>.
+     * >Monitoring the Amazon Kinesis Data Streams Service with Amazon
+     * CloudWatch</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -277,21 +469,53 @@ public class DisableEnhancedMonitoringRequest extends AmazonWebServiceRequest im
      *            <code>ALL</code>" disables every metric.
      *            </p>
      *            <ul>
-     *            <li> <code>IncomingBytes</code></li>
-     *            <li> <code>IncomingRecords</code></li>
-     *            <li> <code>OutgoingBytes</code></li>
-     *            <li> <code>OutgoingRecords</code></li>
-     *            <li> <code>WriteProvisionedThroughputExceeded</code></li>
-     *            <li> <code>ReadProvisionedThroughputExceeded</code></li>
-     *            <li> <code>IteratorAgeMilliseconds</code></li>
-     *            <li> <code>ALL</code></li>
+     *            <li>
+     *            <p>
+     *            <code>IncomingBytes</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>IncomingRecords</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>OutgoingBytes</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>OutgoingRecords</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>WriteProvisionedThroughputExceeded</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ReadProvisionedThroughputExceeded</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>IteratorAgeMilliseconds</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ALL</code>
+     *            </p>
+     *            </li>
      *            </ul>
      *            <p>
      *            For more information, see <a href=
      *            "http://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html"
-     *            >Monitoring the Amazon Kinesis Streams Service with Amazon
-     *            CloudWatch</a> in the <i>Amazon Kinesis Streams Developer
-     *            Guide</i>.
+     *            >Monitoring the Amazon Kinesis Data Streams Service with
+     *            Amazon CloudWatch</a> in the <i>Amazon Kinesis Data Streams
+     *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -315,20 +539,52 @@ public class DisableEnhancedMonitoringRequest extends AmazonWebServiceRequest im
      * <code>ALL</code>" disables every metric.
      * </p>
      * <ul>
-     * <li> <code>IncomingBytes</code></li>
-     * <li> <code>IncomingRecords</code></li>
-     * <li> <code>OutgoingBytes</code></li>
-     * <li> <code>OutgoingRecords</code></li>
-     * <li> <code>WriteProvisionedThroughputExceeded</code></li>
-     * <li> <code>ReadProvisionedThroughputExceeded</code></li>
-     * <li> <code>IteratorAgeMilliseconds</code></li>
-     * <li> <code>ALL</code></li>
+     * <li>
+     * <p>
+     * <code>IncomingBytes</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>IncomingRecords</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>OutgoingBytes</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>OutgoingRecords</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>WriteProvisionedThroughputExceeded</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ReadProvisionedThroughputExceeded</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>IteratorAgeMilliseconds</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ALL</code>
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * For more information, see <a href=
      * "http://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html"
-     * >Monitoring the Amazon Kinesis Streams Service with Amazon CloudWatch</a>
-     * in the <i>Amazon Kinesis Streams Developer Guide</i>.
+     * >Monitoring the Amazon Kinesis Data Streams Service with Amazon
+     * CloudWatch</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -342,21 +598,53 @@ public class DisableEnhancedMonitoringRequest extends AmazonWebServiceRequest im
      *            <code>ALL</code>" disables every metric.
      *            </p>
      *            <ul>
-     *            <li> <code>IncomingBytes</code></li>
-     *            <li> <code>IncomingRecords</code></li>
-     *            <li> <code>OutgoingBytes</code></li>
-     *            <li> <code>OutgoingRecords</code></li>
-     *            <li> <code>WriteProvisionedThroughputExceeded</code></li>
-     *            <li> <code>ReadProvisionedThroughputExceeded</code></li>
-     *            <li> <code>IteratorAgeMilliseconds</code></li>
-     *            <li> <code>ALL</code></li>
+     *            <li>
+     *            <p>
+     *            <code>IncomingBytes</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>IncomingRecords</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>OutgoingBytes</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>OutgoingRecords</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>WriteProvisionedThroughputExceeded</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ReadProvisionedThroughputExceeded</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>IteratorAgeMilliseconds</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ALL</code>
+     *            </p>
+     *            </li>
      *            </ul>
      *            <p>
      *            For more information, see <a href=
      *            "http://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html"
-     *            >Monitoring the Amazon Kinesis Streams Service with Amazon
-     *            CloudWatch</a> in the <i>Amazon Kinesis Streams Developer
-     *            Guide</i>.
+     *            >Monitoring the Amazon Kinesis Data Streams Service with
+     *            Amazon CloudWatch</a> in the <i>Amazon Kinesis Data Streams
+     *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

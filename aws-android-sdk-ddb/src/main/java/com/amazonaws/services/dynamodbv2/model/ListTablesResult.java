@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Represents the output of a <i>ListTables</i> operation.
+ * Represents the output of a <code>ListTables</code> operation.
  * </p>
  */
 public class ListTablesResult implements Serializable {
@@ -29,9 +29,10 @@ public class ListTablesResult implements Serializable {
      * current endpoint. The maximum size of this array is 100.
      * </p>
      * <p>
-     * If <i>LastEvaluatedTableName</i> also appears in the output, you can use
-     * this value as the <i>ExclusiveStartTableName</i> parameter in a
-     * subsequent <i>ListTables</i> request and obtain the next page of results.
+     * If <code>LastEvaluatedTableName</code> also appears in the output, you
+     * can use this value as the <code>ExclusiveStartTableName</code> parameter
+     * in a subsequent <code>ListTables</code> request and obtain the next page
+     * of results.
      * </p>
      */
     private java.util.List<String> tableNames;
@@ -39,11 +40,11 @@ public class ListTablesResult implements Serializable {
     /**
      * <p>
      * The name of the last table in the current page of results. Use this value
-     * as the <i>ExclusiveStartTableName</i> in a new request to obtain the next
-     * page of results, until all the table names are returned.
+     * as the <code>ExclusiveStartTableName</code> in a new request to obtain
+     * the next page of results, until all the table names are returned.
      * </p>
      * <p>
-     * If you do not receive a <i>LastEvaluatedTableName</i> value in the
+     * If you do not receive a <code>LastEvaluatedTableName</code> value in the
      * response, this means that there are no more table names to be retrieved.
      * </p>
      * <p>
@@ -59,9 +60,10 @@ public class ListTablesResult implements Serializable {
      * current endpoint. The maximum size of this array is 100.
      * </p>
      * <p>
-     * If <i>LastEvaluatedTableName</i> also appears in the output, you can use
-     * this value as the <i>ExclusiveStartTableName</i> parameter in a
-     * subsequent <i>ListTables</i> request and obtain the next page of results.
+     * If <code>LastEvaluatedTableName</code> also appears in the output, you
+     * can use this value as the <code>ExclusiveStartTableName</code> parameter
+     * in a subsequent <code>ListTables</code> request and obtain the next page
+     * of results.
      * </p>
      *
      * @return <p>
@@ -69,10 +71,11 @@ public class ListTablesResult implements Serializable {
      *         the current endpoint. The maximum size of this array is 100.
      *         </p>
      *         <p>
-     *         If <i>LastEvaluatedTableName</i> also appears in the output, you
-     *         can use this value as the <i>ExclusiveStartTableName</i>
-     *         parameter in a subsequent <i>ListTables</i> request and obtain
-     *         the next page of results.
+     *         If <code>LastEvaluatedTableName</code> also appears in the
+     *         output, you can use this value as the
+     *         <code>ExclusiveStartTableName</code> parameter in a subsequent
+     *         <code>ListTables</code> request and obtain the next page of
+     *         results.
      *         </p>
      */
     public java.util.List<String> getTableNames() {
@@ -85,9 +88,10 @@ public class ListTablesResult implements Serializable {
      * current endpoint. The maximum size of this array is 100.
      * </p>
      * <p>
-     * If <i>LastEvaluatedTableName</i> also appears in the output, you can use
-     * this value as the <i>ExclusiveStartTableName</i> parameter in a
-     * subsequent <i>ListTables</i> request and obtain the next page of results.
+     * If <code>LastEvaluatedTableName</code> also appears in the output, you
+     * can use this value as the <code>ExclusiveStartTableName</code> parameter
+     * in a subsequent <code>ListTables</code> request and obtain the next page
+     * of results.
      * </p>
      *
      * @param tableNames <p>
@@ -95,10 +99,11 @@ public class ListTablesResult implements Serializable {
      *            the current endpoint. The maximum size of this array is 100.
      *            </p>
      *            <p>
-     *            If <i>LastEvaluatedTableName</i> also appears in the output,
-     *            you can use this value as the <i>ExclusiveStartTableName</i>
-     *            parameter in a subsequent <i>ListTables</i> request and obtain
-     *            the next page of results.
+     *            If <code>LastEvaluatedTableName</code> also appears in the
+     *            output, you can use this value as the
+     *            <code>ExclusiveStartTableName</code> parameter in a subsequent
+     *            <code>ListTables</code> request and obtain the next page of
+     *            results.
      *            </p>
      */
     public void setTableNames(java.util.Collection<String> tableNames) {
@@ -116,9 +121,10 @@ public class ListTablesResult implements Serializable {
      * current endpoint. The maximum size of this array is 100.
      * </p>
      * <p>
-     * If <i>LastEvaluatedTableName</i> also appears in the output, you can use
-     * this value as the <i>ExclusiveStartTableName</i> parameter in a
-     * subsequent <i>ListTables</i> request and obtain the next page of results.
+     * If <code>LastEvaluatedTableName</code> also appears in the output, you
+     * can use this value as the <code>ExclusiveStartTableName</code> parameter
+     * in a subsequent <code>ListTables</code> request and obtain the next page
+     * of results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -129,10 +135,11 @@ public class ListTablesResult implements Serializable {
      *            the current endpoint. The maximum size of this array is 100.
      *            </p>
      *            <p>
-     *            If <i>LastEvaluatedTableName</i> also appears in the output,
-     *            you can use this value as the <i>ExclusiveStartTableName</i>
-     *            parameter in a subsequent <i>ListTables</i> request and obtain
-     *            the next page of results.
+     *            If <code>LastEvaluatedTableName</code> also appears in the
+     *            output, you can use this value as the
+     *            <code>ExclusiveStartTableName</code> parameter in a subsequent
+     *            <code>ListTables</code> request and obtain the next page of
+     *            results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -153,9 +160,10 @@ public class ListTablesResult implements Serializable {
      * current endpoint. The maximum size of this array is 100.
      * </p>
      * <p>
-     * If <i>LastEvaluatedTableName</i> also appears in the output, you can use
-     * this value as the <i>ExclusiveStartTableName</i> parameter in a
-     * subsequent <i>ListTables</i> request and obtain the next page of results.
+     * If <code>LastEvaluatedTableName</code> also appears in the output, you
+     * can use this value as the <code>ExclusiveStartTableName</code> parameter
+     * in a subsequent <code>ListTables</code> request and obtain the next page
+     * of results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -166,10 +174,11 @@ public class ListTablesResult implements Serializable {
      *            the current endpoint. The maximum size of this array is 100.
      *            </p>
      *            <p>
-     *            If <i>LastEvaluatedTableName</i> also appears in the output,
-     *            you can use this value as the <i>ExclusiveStartTableName</i>
-     *            parameter in a subsequent <i>ListTables</i> request and obtain
-     *            the next page of results.
+     *            If <code>LastEvaluatedTableName</code> also appears in the
+     *            output, you can use this value as the
+     *            <code>ExclusiveStartTableName</code> parameter in a subsequent
+     *            <code>ListTables</code> request and obtain the next page of
+     *            results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -182,11 +191,11 @@ public class ListTablesResult implements Serializable {
     /**
      * <p>
      * The name of the last table in the current page of results. Use this value
-     * as the <i>ExclusiveStartTableName</i> in a new request to obtain the next
-     * page of results, until all the table names are returned.
+     * as the <code>ExclusiveStartTableName</code> in a new request to obtain
+     * the next page of results, until all the table names are returned.
      * </p>
      * <p>
-     * If you do not receive a <i>LastEvaluatedTableName</i> value in the
+     * If you do not receive a <code>LastEvaluatedTableName</code> value in the
      * response, this means that there are no more table names to be retrieved.
      * </p>
      * <p>
@@ -196,14 +205,14 @@ public class ListTablesResult implements Serializable {
      *
      * @return <p>
      *         The name of the last table in the current page of results. Use
-     *         this value as the <i>ExclusiveStartTableName</i> in a new request
-     *         to obtain the next page of results, until all the table names are
-     *         returned.
+     *         this value as the <code>ExclusiveStartTableName</code> in a new
+     *         request to obtain the next page of results, until all the table
+     *         names are returned.
      *         </p>
      *         <p>
-     *         If you do not receive a <i>LastEvaluatedTableName</i> value in
-     *         the response, this means that there are no more table names to be
-     *         retrieved.
+     *         If you do not receive a <code>LastEvaluatedTableName</code> value
+     *         in the response, this means that there are no more table names to
+     *         be retrieved.
      *         </p>
      */
     public String getLastEvaluatedTableName() {
@@ -213,11 +222,11 @@ public class ListTablesResult implements Serializable {
     /**
      * <p>
      * The name of the last table in the current page of results. Use this value
-     * as the <i>ExclusiveStartTableName</i> in a new request to obtain the next
-     * page of results, until all the table names are returned.
+     * as the <code>ExclusiveStartTableName</code> in a new request to obtain
+     * the next page of results, until all the table names are returned.
      * </p>
      * <p>
-     * If you do not receive a <i>LastEvaluatedTableName</i> value in the
+     * If you do not receive a <code>LastEvaluatedTableName</code> value in the
      * response, this means that there are no more table names to be retrieved.
      * </p>
      * <p>
@@ -227,14 +236,14 @@ public class ListTablesResult implements Serializable {
      *
      * @param lastEvaluatedTableName <p>
      *            The name of the last table in the current page of results. Use
-     *            this value as the <i>ExclusiveStartTableName</i> in a new
-     *            request to obtain the next page of results, until all the
+     *            this value as the <code>ExclusiveStartTableName</code> in a
+     *            new request to obtain the next page of results, until all the
      *            table names are returned.
      *            </p>
      *            <p>
-     *            If you do not receive a <i>LastEvaluatedTableName</i> value in
-     *            the response, this means that there are no more table names to
-     *            be retrieved.
+     *            If you do not receive a <code>LastEvaluatedTableName</code>
+     *            value in the response, this means that there are no more table
+     *            names to be retrieved.
      *            </p>
      */
     public void setLastEvaluatedTableName(String lastEvaluatedTableName) {
@@ -244,11 +253,11 @@ public class ListTablesResult implements Serializable {
     /**
      * <p>
      * The name of the last table in the current page of results. Use this value
-     * as the <i>ExclusiveStartTableName</i> in a new request to obtain the next
-     * page of results, until all the table names are returned.
+     * as the <code>ExclusiveStartTableName</code> in a new request to obtain
+     * the next page of results, until all the table names are returned.
      * </p>
      * <p>
-     * If you do not receive a <i>LastEvaluatedTableName</i> value in the
+     * If you do not receive a <code>LastEvaluatedTableName</code> value in the
      * response, this means that there are no more table names to be retrieved.
      * </p>
      * <p>
@@ -261,14 +270,14 @@ public class ListTablesResult implements Serializable {
      *
      * @param lastEvaluatedTableName <p>
      *            The name of the last table in the current page of results. Use
-     *            this value as the <i>ExclusiveStartTableName</i> in a new
-     *            request to obtain the next page of results, until all the
+     *            this value as the <code>ExclusiveStartTableName</code> in a
+     *            new request to obtain the next page of results, until all the
      *            table names are returned.
      *            </p>
      *            <p>
-     *            If you do not receive a <i>LastEvaluatedTableName</i> value in
-     *            the response, this means that there are no more table names to
-     *            be retrieved.
+     *            If you do not receive a <code>LastEvaluatedTableName</code>
+     *            value in the response, this means that there are no more table
+     *            names to be retrieved.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

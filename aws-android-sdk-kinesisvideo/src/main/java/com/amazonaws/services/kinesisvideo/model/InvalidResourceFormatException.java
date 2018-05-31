@@ -18,7 +18,9 @@ package com.amazonaws.services.kinesisvideo.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * The format of the <code>StreamARN</code> is invalid.
+ * </p>
  */
 public class InvalidResourceFormatException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

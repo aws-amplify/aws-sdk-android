@@ -36,14 +36,30 @@ class APNSSandboxChannelRequestJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Certificate")) {
+            if (name.equals("BundleId")) {
+                aPNSSandboxChannelRequest.setBundleId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Certificate")) {
                 aPNSSandboxChannelRequest.setCertificate(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("DefaultAuthenticationMethod")) {
+                aPNSSandboxChannelRequest.setDefaultAuthenticationMethod(StringJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
             } else if (name.equals("Enabled")) {
                 aPNSSandboxChannelRequest.setEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("PrivateKey")) {
                 aPNSSandboxChannelRequest.setPrivateKey(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("TeamId")) {
+                aPNSSandboxChannelRequest.setTeamId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("TokenKey")) {
+                aPNSSandboxChannelRequest.setTokenKey(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("TokenKeyId")) {
+                aPNSSandboxChannelRequest.setTokenKeyId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

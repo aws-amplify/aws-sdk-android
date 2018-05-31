@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class ScheduledUpdateGroupAction implements Serializable {
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -122,7 +122,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -131,7 +131,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The name of the group.
+     *         The name of the Auto Scaling group.
      *         </p>
      */
     public String getAutoScalingGroupName() {
@@ -140,7 +140,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -149,7 +149,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      */
     public void setAutoScalingGroupName(String autoScalingGroupName) {
@@ -158,7 +158,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -170,7 +170,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

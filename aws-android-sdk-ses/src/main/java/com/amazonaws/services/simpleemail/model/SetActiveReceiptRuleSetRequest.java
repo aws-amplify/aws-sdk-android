@@ -35,7 +35,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>
- * This action is throttled at one request per second.
+ * You can execute this operation no more than once per second.
  * </p>
  */
 public class SetActiveReceiptRuleSetRequest extends AmazonWebServiceRequest implements Serializable {

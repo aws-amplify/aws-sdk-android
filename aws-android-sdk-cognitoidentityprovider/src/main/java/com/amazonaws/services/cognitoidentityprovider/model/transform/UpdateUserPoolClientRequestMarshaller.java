@@ -117,6 +117,82 @@ public class UpdateUserPoolClientRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (updateUserPoolClientRequest.getSupportedIdentityProviders() != null) {
+                java.util.List<String> supportedIdentityProviders = updateUserPoolClientRequest
+                        .getSupportedIdentityProviders();
+                jsonWriter.name("SupportedIdentityProviders");
+                jsonWriter.beginArray();
+                for (String supportedIdentityProvidersItem : supportedIdentityProviders) {
+                    if (supportedIdentityProvidersItem != null) {
+                        jsonWriter.value(supportedIdentityProvidersItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (updateUserPoolClientRequest.getCallbackURLs() != null) {
+                java.util.List<String> callbackURLs = updateUserPoolClientRequest.getCallbackURLs();
+                jsonWriter.name("CallbackURLs");
+                jsonWriter.beginArray();
+                for (String callbackURLsItem : callbackURLs) {
+                    if (callbackURLsItem != null) {
+                        jsonWriter.value(callbackURLsItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (updateUserPoolClientRequest.getLogoutURLs() != null) {
+                java.util.List<String> logoutURLs = updateUserPoolClientRequest.getLogoutURLs();
+                jsonWriter.name("LogoutURLs");
+                jsonWriter.beginArray();
+                for (String logoutURLsItem : logoutURLs) {
+                    if (logoutURLsItem != null) {
+                        jsonWriter.value(logoutURLsItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (updateUserPoolClientRequest.getDefaultRedirectURI() != null) {
+                String defaultRedirectURI = updateUserPoolClientRequest.getDefaultRedirectURI();
+                jsonWriter.name("DefaultRedirectURI");
+                jsonWriter.value(defaultRedirectURI);
+            }
+            if (updateUserPoolClientRequest.getAllowedOAuthFlows() != null) {
+                java.util.List<String> allowedOAuthFlows = updateUserPoolClientRequest
+                        .getAllowedOAuthFlows();
+                jsonWriter.name("AllowedOAuthFlows");
+                jsonWriter.beginArray();
+                for (String allowedOAuthFlowsItem : allowedOAuthFlows) {
+                    if (allowedOAuthFlowsItem != null) {
+                        jsonWriter.value(allowedOAuthFlowsItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (updateUserPoolClientRequest.getAllowedOAuthScopes() != null) {
+                java.util.List<String> allowedOAuthScopes = updateUserPoolClientRequest
+                        .getAllowedOAuthScopes();
+                jsonWriter.name("AllowedOAuthScopes");
+                jsonWriter.beginArray();
+                for (String allowedOAuthScopesItem : allowedOAuthScopes) {
+                    if (allowedOAuthScopesItem != null) {
+                        jsonWriter.value(allowedOAuthScopesItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (updateUserPoolClientRequest.getAllowedOAuthFlowsUserPoolClient() != null) {
+                Boolean allowedOAuthFlowsUserPoolClient = updateUserPoolClientRequest
+                        .getAllowedOAuthFlowsUserPoolClient();
+                jsonWriter.name("AllowedOAuthFlowsUserPoolClient");
+                jsonWriter.value(allowedOAuthFlowsUserPoolClient);
+            }
+            if (updateUserPoolClientRequest.getAnalyticsConfiguration() != null) {
+                AnalyticsConfigurationType analyticsConfiguration = updateUserPoolClientRequest
+                        .getAnalyticsConfiguration();
+                jsonWriter.name("AnalyticsConfiguration");
+                AnalyticsConfigurationTypeJsonMarshaller.getInstance().marshall(
+                        analyticsConfiguration, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

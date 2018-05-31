@@ -20,7 +20,8 @@ import java.io.Serializable;
 public class ReEncryptResult implements Serializable {
     /**
      * <p>
-     * The reencrypted data.
+     * The reencrypted data. When you use the HTTP API or the AWS CLI, the value
+     * is Base64-encoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -34,7 +35,7 @@ public class ReEncryptResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      */
     private String sourceKeyId;
 
@@ -44,20 +45,22 @@ public class ReEncryptResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      */
     private String keyId;
 
     /**
      * <p>
-     * The reencrypted data.
+     * The reencrypted data. When you use the HTTP API or the AWS CLI, the value
+     * is Base64-encoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
      *
      * @return <p>
-     *         The reencrypted data.
+     *         The reencrypted data. When you use the HTTP API or the AWS CLI,
+     *         the value is Base64-encoded. Otherwise, it is not encoded.
      *         </p>
      */
     public java.nio.ByteBuffer getCiphertextBlob() {
@@ -66,14 +69,17 @@ public class ReEncryptResult implements Serializable {
 
     /**
      * <p>
-     * The reencrypted data.
+     * The reencrypted data. When you use the HTTP API or the AWS CLI, the value
+     * is Base64-encoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
      *
      * @param ciphertextBlob <p>
-     *            The reencrypted data.
+     *            The reencrypted data. When you use the HTTP API or the AWS
+     *            CLI, the value is Base64-encoded. Otherwise, it is not
+     *            encoded.
      *            </p>
      */
     public void setCiphertextBlob(java.nio.ByteBuffer ciphertextBlob) {
@@ -82,7 +88,8 @@ public class ReEncryptResult implements Serializable {
 
     /**
      * <p>
-     * The reencrypted data.
+     * The reencrypted data. When you use the HTTP API or the AWS CLI, the value
+     * is Base64-encoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -92,7 +99,9 @@ public class ReEncryptResult implements Serializable {
      * <b>Length: </b>1 - 6144<br/>
      *
      * @param ciphertextBlob <p>
-     *            The reencrypted data.
+     *            The reencrypted data. When you use the HTTP API or the AWS
+     *            CLI, the value is Base64-encoded. Otherwise, it is not
+     *            encoded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -108,7 +117,7 @@ public class ReEncryptResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
      *         Unique identifier of the CMK used to originally encrypt the data.
@@ -124,7 +133,7 @@ public class ReEncryptResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param sourceKeyId <p>
      *            Unique identifier of the CMK used to originally encrypt the
@@ -144,7 +153,7 @@ public class ReEncryptResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param sourceKeyId <p>
      *            Unique identifier of the CMK used to originally encrypt the
@@ -164,7 +173,7 @@ public class ReEncryptResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
      *         Unique identifier of the CMK used to reencrypt the data.
@@ -180,7 +189,7 @@ public class ReEncryptResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            Unique identifier of the CMK used to reencrypt the data.
@@ -199,7 +208,7 @@ public class ReEncryptResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            Unique identifier of the CMK used to reencrypt the data.

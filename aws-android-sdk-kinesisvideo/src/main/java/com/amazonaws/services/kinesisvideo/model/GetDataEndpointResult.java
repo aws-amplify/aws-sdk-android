@@ -19,37 +19,56 @@ import java.io.Serializable;
 
 public class GetDataEndpointResult implements Serializable {
     /**
-     * The new value for the dataEndpoint property for this object.
+     * <p>
+     * The endpoint value. To read data from the stream or to write data to it,
+     * specify this endpoint in your application.
+     * </p>
      */
     private String dataEndpoint;
 
     /**
-     * Returns the value of the dataEndpoint property for this object.
+     * <p>
+     * The endpoint value. To read data from the stream or to write data to it,
+     * specify this endpoint in your application.
+     * </p>
      *
-     * @return The value of the dataEndpoint property for this object.
+     * @return <p>
+     *         The endpoint value. To read data from the stream or to write data
+     *         to it, specify this endpoint in your application.
+     *         </p>
      */
     public String getDataEndpoint() {
         return dataEndpoint;
     }
 
     /**
-     * Sets the value of dataEndpoint
+     * <p>
+     * The endpoint value. To read data from the stream or to write data to it,
+     * specify this endpoint in your application.
+     * </p>
      *
-     * @param dataEndpoint The new value for the dataEndpoint property for this
-     *            object.
+     * @param dataEndpoint <p>
+     *            The endpoint value. To read data from the stream or to write
+     *            data to it, specify this endpoint in your application.
+     *            </p>
      */
     public void setDataEndpoint(String dataEndpoint) {
         this.dataEndpoint = dataEndpoint;
     }
 
     /**
-     * Sets the value of the dataEndpoint property for this object.
+     * <p>
+     * The endpoint value. To read data from the stream or to write data to it,
+     * specify this endpoint in your application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param dataEndpoint The new value for the dataEndpoint property for this
-     *            object.
+     * @param dataEndpoint <p>
+     *            The endpoint value. To read data from the stream or to write
+     *            data to it, specify this endpoint in your application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

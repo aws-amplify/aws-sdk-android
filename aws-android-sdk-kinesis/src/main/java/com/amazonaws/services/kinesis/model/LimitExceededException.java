@@ -20,7 +20,7 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * The requested resource exceeds the maximum number allowed, or the number of
- * concurrent stream requests exceeds the maximum number allowed (5).
+ * concurrent stream requests exceeds the maximum number allowed.
  * </p>
  */
 public class LimitExceededException extends AmazonServiceException {

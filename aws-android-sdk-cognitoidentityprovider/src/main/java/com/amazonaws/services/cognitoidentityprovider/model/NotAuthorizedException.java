@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * This exception gets thrown when a user is not authorized.
+ * This exception is thrown when a user is not authorized.
  * </p>
  */
 public class NotAuthorizedException extends AmazonServiceException {

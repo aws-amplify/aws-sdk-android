@@ -19,13 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Information about the configuration of a back-end server.
+ * Information about the configuration of an EC2 instance.
  * </p>
  */
 public class BackendServerDescription implements Serializable {
     /**
      * <p>
-     * The port on which the back-end server is listening.
+     * The port on which the EC2 instance is listening.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -35,21 +35,21 @@ public class BackendServerDescription implements Serializable {
 
     /**
      * <p>
-     * The names of the policies enabled for the back-end server.
+     * The names of the policies enabled for the EC2 instance.
      * </p>
      */
     private java.util.List<String> policyNames = new java.util.ArrayList<String>();
 
     /**
      * <p>
-     * The port on which the back-end server is listening.
+     * The port on which the EC2 instance is listening.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 65535<br/>
      *
      * @return <p>
-     *         The port on which the back-end server is listening.
+     *         The port on which the EC2 instance is listening.
      *         </p>
      */
     public Integer getInstancePort() {
@@ -58,14 +58,14 @@ public class BackendServerDescription implements Serializable {
 
     /**
      * <p>
-     * The port on which the back-end server is listening.
+     * The port on which the EC2 instance is listening.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 65535<br/>
      *
      * @param instancePort <p>
-     *            The port on which the back-end server is listening.
+     *            The port on which the EC2 instance is listening.
      *            </p>
      */
     public void setInstancePort(Integer instancePort) {
@@ -74,7 +74,7 @@ public class BackendServerDescription implements Serializable {
 
     /**
      * <p>
-     * The port on which the back-end server is listening.
+     * The port on which the EC2 instance is listening.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -84,7 +84,7 @@ public class BackendServerDescription implements Serializable {
      * <b>Range: </b>1 - 65535<br/>
      *
      * @param instancePort <p>
-     *            The port on which the back-end server is listening.
+     *            The port on which the EC2 instance is listening.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -96,11 +96,11 @@ public class BackendServerDescription implements Serializable {
 
     /**
      * <p>
-     * The names of the policies enabled for the back-end server.
+     * The names of the policies enabled for the EC2 instance.
      * </p>
      *
      * @return <p>
-     *         The names of the policies enabled for the back-end server.
+     *         The names of the policies enabled for the EC2 instance.
      *         </p>
      */
     public java.util.List<String> getPolicyNames() {
@@ -109,11 +109,11 @@ public class BackendServerDescription implements Serializable {
 
     /**
      * <p>
-     * The names of the policies enabled for the back-end server.
+     * The names of the policies enabled for the EC2 instance.
      * </p>
      *
      * @param policyNames <p>
-     *            The names of the policies enabled for the back-end server.
+     *            The names of the policies enabled for the EC2 instance.
      *            </p>
      */
     public void setPolicyNames(java.util.Collection<String> policyNames) {
@@ -127,14 +127,14 @@ public class BackendServerDescription implements Serializable {
 
     /**
      * <p>
-     * The names of the policies enabled for the back-end server.
+     * The names of the policies enabled for the EC2 instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param policyNames <p>
-     *            The names of the policies enabled for the back-end server.
+     *            The names of the policies enabled for the EC2 instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -151,14 +151,14 @@ public class BackendServerDescription implements Serializable {
 
     /**
      * <p>
-     * The names of the policies enabled for the back-end server.
+     * The names of the policies enabled for the EC2 instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param policyNames <p>
-     *            The names of the policies enabled for the back-end server.
+     *            The names of the policies enabled for the EC2 instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -42,8 +42,18 @@ class APNSChannelResponseJsonUnmarshaller implements
             } else if (name.equals("CreationDate")) {
                 aPNSChannelResponse.setCreationDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("DefaultAuthenticationMethod")) {
+                aPNSChannelResponse.setDefaultAuthenticationMethod(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Enabled")) {
                 aPNSChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("HasCredential")) {
+                aPNSChannelResponse.setHasCredential(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("HasTokenKey")) {
+                aPNSChannelResponse.setHasTokenKey(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Id")) {
                 aPNSChannelResponse.setId(StringJsonUnmarshaller.getInstance()

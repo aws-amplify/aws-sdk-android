@@ -33,7 +33,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </note>
  * <p>
- * This action is throttled at one request per second.
+ * You can execute this operation no more than once per second.
  * </p>
  * <p>
  * For more information about using notifications with Amazon SES, see the <a

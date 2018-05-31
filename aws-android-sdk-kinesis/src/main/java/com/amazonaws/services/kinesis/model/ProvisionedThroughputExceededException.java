@@ -23,8 +23,9 @@ import com.amazonaws.AmazonServiceException;
  * large for the available throughput. Reduce the frequency or size of your
  * requests. For more information, see <a href=
  * "http://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html"
- * >Streams Limits</a> in the <i>Amazon Kinesis Streams Developer Guide</i>, and
- * <a href="http://docs.aws.amazon.com/general/latest/gr/api-retries.html">Error
+ * >Streams Limits</a> in the <i>Amazon Kinesis Data Streams Developer
+ * Guide</i>, and <a
+ * href="http://docs.aws.amazon.com/general/latest/gr/api-retries.html">Error
  * Retries and Exponential Backoff in AWS</a> in the <i>AWS General
  * Reference</i>.
  * </p>

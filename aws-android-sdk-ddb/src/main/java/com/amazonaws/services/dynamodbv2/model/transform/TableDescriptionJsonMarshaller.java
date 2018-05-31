@@ -88,6 +88,11 @@ class TableDescriptionJsonMarshaller {
             jsonWriter.name("TableArn");
             jsonWriter.value(tableArn);
         }
+        if (tableDescription.getTableId() != null) {
+            String tableId = tableDescription.getTableId();
+            jsonWriter.name("TableId");
+            jsonWriter.value(tableId);
+        }
         if (tableDescription.getLocalSecondaryIndexes() != null) {
             java.util.List<LocalSecondaryIndexDescription> localSecondaryIndexes = tableDescription
                     .getLocalSecondaryIndexes();
@@ -129,6 +134,16 @@ class TableDescriptionJsonMarshaller {
             String latestStreamArn = tableDescription.getLatestStreamArn();
             jsonWriter.name("LatestStreamArn");
             jsonWriter.value(latestStreamArn);
+        }
+        if (tableDescription.getRestoreSummary() != null) {
+            RestoreSummary restoreSummary = tableDescription.getRestoreSummary();
+            jsonWriter.name("RestoreSummary");
+            RestoreSummaryJsonMarshaller.getInstance().marshall(restoreSummary, jsonWriter);
+        }
+        if (tableDescription.getSSEDescription() != null) {
+            SSEDescription sSEDescription = tableDescription.getSSEDescription();
+            jsonWriter.name("SSEDescription");
+            SSEDescriptionJsonMarshaller.getInstance().marshall(sSEDescription, jsonWriter);
         }
         jsonWriter.endObject();
     }

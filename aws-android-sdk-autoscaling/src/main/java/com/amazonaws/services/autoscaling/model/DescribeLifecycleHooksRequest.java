@@ -27,7 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DescribeLifecycleHooksRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -39,14 +39,15 @@ public class DescribeLifecycleHooksRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The names of one or more lifecycle hooks.
+     * The names of one or more lifecycle hooks. If you omit this parameter, all
+     * lifecycle hooks are described.
      * </p>
      */
     private java.util.List<String> lifecycleHookNames = new java.util.ArrayList<String>();
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -55,7 +56,7 @@ public class DescribeLifecycleHooksRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @return <p>
-     *         The name of the group.
+     *         The name of the Auto Scaling group.
      *         </p>
      */
     public String getAutoScalingGroupName() {
@@ -64,7 +65,7 @@ public class DescribeLifecycleHooksRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -73,7 +74,7 @@ public class DescribeLifecycleHooksRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      */
     public void setAutoScalingGroupName(String autoScalingGroupName) {
@@ -82,7 +83,7 @@ public class DescribeLifecycleHooksRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -94,7 +95,7 @@ public class DescribeLifecycleHooksRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -106,11 +107,13 @@ public class DescribeLifecycleHooksRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The names of one or more lifecycle hooks.
+     * The names of one or more lifecycle hooks. If you omit this parameter, all
+     * lifecycle hooks are described.
      * </p>
      *
      * @return <p>
-     *         The names of one or more lifecycle hooks.
+     *         The names of one or more lifecycle hooks. If you omit this
+     *         parameter, all lifecycle hooks are described.
      *         </p>
      */
     public java.util.List<String> getLifecycleHookNames() {
@@ -119,11 +122,13 @@ public class DescribeLifecycleHooksRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The names of one or more lifecycle hooks.
+     * The names of one or more lifecycle hooks. If you omit this parameter, all
+     * lifecycle hooks are described.
      * </p>
      *
      * @param lifecycleHookNames <p>
-     *            The names of one or more lifecycle hooks.
+     *            The names of one or more lifecycle hooks. If you omit this
+     *            parameter, all lifecycle hooks are described.
      *            </p>
      */
     public void setLifecycleHookNames(java.util.Collection<String> lifecycleHookNames) {
@@ -137,14 +142,16 @@ public class DescribeLifecycleHooksRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The names of one or more lifecycle hooks.
+     * The names of one or more lifecycle hooks. If you omit this parameter, all
+     * lifecycle hooks are described.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lifecycleHookNames <p>
-     *            The names of one or more lifecycle hooks.
+     *            The names of one or more lifecycle hooks. If you omit this
+     *            parameter, all lifecycle hooks are described.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -161,14 +168,16 @@ public class DescribeLifecycleHooksRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The names of one or more lifecycle hooks.
+     * The names of one or more lifecycle hooks. If you omit this parameter, all
+     * lifecycle hooks are described.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lifecycleHookNames <p>
-     *            The names of one or more lifecycle hooks.
+     *            The names of one or more lifecycle hooks. If you omit this
+     *            parameter, all lifecycle hooks are described.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

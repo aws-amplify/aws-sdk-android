@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The specified input parameter has an value that is not valid.
+ * The specified input parameter has a value that is not valid.
  * </p>
  */
 public class InvalidArgumentException extends AmazonServiceException {

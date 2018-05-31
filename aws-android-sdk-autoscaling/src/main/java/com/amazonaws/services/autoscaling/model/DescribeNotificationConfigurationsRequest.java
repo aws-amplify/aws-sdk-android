@@ -29,7 +29,7 @@ public class DescribeNotificationConfigurationsRequest extends AmazonWebServiceR
         Serializable {
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      */
     private java.util.List<String> autoScalingGroupNames = new java.util.ArrayList<String>();
@@ -48,18 +48,19 @@ public class DescribeNotificationConfigurationsRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The maximum number of items to return with this call.
+     * The maximum number of items to return with this call. The default value
+     * is 50 and the maximum value is 100.
      * </p>
      */
     private Integer maxRecords;
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      *
      * @return <p>
-     *         The name of the group.
+     *         The name of the Auto Scaling group.
      *         </p>
      */
     public java.util.List<String> getAutoScalingGroupNames() {
@@ -68,11 +69,11 @@ public class DescribeNotificationConfigurationsRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      *
      * @param autoScalingGroupNames <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      */
     public void setAutoScalingGroupNames(java.util.Collection<String> autoScalingGroupNames) {
@@ -86,14 +87,14 @@ public class DescribeNotificationConfigurationsRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param autoScalingGroupNames <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -112,14 +113,14 @@ public class DescribeNotificationConfigurationsRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param autoScalingGroupNames <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -195,11 +196,13 @@ public class DescribeNotificationConfigurationsRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The maximum number of items to return with this call.
+     * The maximum number of items to return with this call. The default value
+     * is 50 and the maximum value is 100.
      * </p>
      *
      * @return <p>
-     *         The maximum number of items to return with this call.
+     *         The maximum number of items to return with this call. The default
+     *         value is 50 and the maximum value is 100.
      *         </p>
      */
     public Integer getMaxRecords() {
@@ -208,11 +211,13 @@ public class DescribeNotificationConfigurationsRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The maximum number of items to return with this call.
+     * The maximum number of items to return with this call. The default value
+     * is 50 and the maximum value is 100.
      * </p>
      *
      * @param maxRecords <p>
-     *            The maximum number of items to return with this call.
+     *            The maximum number of items to return with this call. The
+     *            default value is 50 and the maximum value is 100.
      *            </p>
      */
     public void setMaxRecords(Integer maxRecords) {
@@ -221,14 +226,16 @@ public class DescribeNotificationConfigurationsRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The maximum number of items to return with this call.
+     * The maximum number of items to return with this call. The default value
+     * is 50 and the maximum value is 100.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param maxRecords <p>
-     *            The maximum number of items to return with this call.
+     *            The maximum number of items to return with this call. The
+     *            default value is 50 and the maximum value is 100.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

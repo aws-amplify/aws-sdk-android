@@ -26,10 +26,21 @@ class APNSSandboxChannelRequestJsonMarshaller {
     public void marshall(APNSSandboxChannelRequest aPNSSandboxChannelRequest,
             AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
+        if (aPNSSandboxChannelRequest.getBundleId() != null) {
+            String bundleId = aPNSSandboxChannelRequest.getBundleId();
+            jsonWriter.name("BundleId");
+            jsonWriter.value(bundleId);
+        }
         if (aPNSSandboxChannelRequest.getCertificate() != null) {
             String certificate = aPNSSandboxChannelRequest.getCertificate();
             jsonWriter.name("Certificate");
             jsonWriter.value(certificate);
+        }
+        if (aPNSSandboxChannelRequest.getDefaultAuthenticationMethod() != null) {
+            String defaultAuthenticationMethod = aPNSSandboxChannelRequest
+                    .getDefaultAuthenticationMethod();
+            jsonWriter.name("DefaultAuthenticationMethod");
+            jsonWriter.value(defaultAuthenticationMethod);
         }
         if (aPNSSandboxChannelRequest.getEnabled() != null) {
             Boolean enabled = aPNSSandboxChannelRequest.getEnabled();
@@ -40,6 +51,21 @@ class APNSSandboxChannelRequestJsonMarshaller {
             String privateKey = aPNSSandboxChannelRequest.getPrivateKey();
             jsonWriter.name("PrivateKey");
             jsonWriter.value(privateKey);
+        }
+        if (aPNSSandboxChannelRequest.getTeamId() != null) {
+            String teamId = aPNSSandboxChannelRequest.getTeamId();
+            jsonWriter.name("TeamId");
+            jsonWriter.value(teamId);
+        }
+        if (aPNSSandboxChannelRequest.getTokenKey() != null) {
+            String tokenKey = aPNSSandboxChannelRequest.getTokenKey();
+            jsonWriter.name("TokenKey");
+            jsonWriter.value(tokenKey);
+        }
+        if (aPNSSandboxChannelRequest.getTokenKeyId() != null) {
+            String tokenKeyId = aPNSSandboxChannelRequest.getTokenKeyId();
+            jsonWriter.name("TokenKeyId");
+            jsonWriter.value(tokenKeyId);
         }
         jsonWriter.endObject();
     }

@@ -45,6 +45,9 @@ class SMSChannelResponseJsonUnmarshaller implements
             } else if (name.equals("Enabled")) {
                 sMSChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("HasCredential")) {
+                sMSChannelResponse.setHasCredential(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Id")) {
                 sMSChannelResponse.setId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

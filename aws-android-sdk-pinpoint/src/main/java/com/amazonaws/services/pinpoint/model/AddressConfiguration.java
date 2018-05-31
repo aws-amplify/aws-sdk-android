@@ -27,10 +27,12 @@ public class AddressConfiguration implements Serializable {
     private String bodyOverride;
 
     /**
-     * The channel type. Valid values: GCM | APNS | SMS | EMAIL
+     * The channel type. Valid values: GCM | APNS | APNS_SANDBOX | APNS_VOIP |
+     * APNS_VOIP_SANDBOX | ADM | SMS | EMAIL | BAIDU
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, ADM, SMS, EMAIL, BAIDU
+     * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
+     * APNS_VOIP_SANDBOX, ADM, SMS, EMAIL, BAIDU, CUSTOM
      */
     private String channelType;
 
@@ -96,12 +98,15 @@ public class AddressConfiguration implements Serializable {
     }
 
     /**
-     * The channel type. Valid values: GCM | APNS | SMS | EMAIL
+     * The channel type. Valid values: GCM | APNS | APNS_SANDBOX | APNS_VOIP |
+     * APNS_VOIP_SANDBOX | ADM | SMS | EMAIL | BAIDU
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, ADM, SMS, EMAIL, BAIDU
+     * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
+     * APNS_VOIP_SANDBOX, ADM, SMS, EMAIL, BAIDU, CUSTOM
      *
-     * @return The channel type. Valid values: GCM | APNS | SMS | EMAIL
+     * @return The channel type. Valid values: GCM | APNS | APNS_SANDBOX |
+     *         APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS | EMAIL | BAIDU
      * @see ChannelType
      */
     public String getChannelType() {
@@ -109,13 +114,16 @@ public class AddressConfiguration implements Serializable {
     }
 
     /**
-     * The channel type. Valid values: GCM | APNS | SMS | EMAIL
+     * The channel type. Valid values: GCM | APNS | APNS_SANDBOX | APNS_VOIP |
+     * APNS_VOIP_SANDBOX | ADM | SMS | EMAIL | BAIDU
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, ADM, SMS, EMAIL, BAIDU
+     * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
+     * APNS_VOIP_SANDBOX, ADM, SMS, EMAIL, BAIDU, CUSTOM
      *
-     * @param channelType The channel type. Valid values: GCM | APNS | SMS |
-     *            EMAIL
+     * @param channelType The channel type. Valid values: GCM | APNS |
+     *            APNS_SANDBOX | APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS |
+     *            EMAIL | BAIDU
      * @see ChannelType
      */
     public void setChannelType(String channelType) {
@@ -123,16 +131,19 @@ public class AddressConfiguration implements Serializable {
     }
 
     /**
-     * The channel type. Valid values: GCM | APNS | SMS | EMAIL
+     * The channel type. Valid values: GCM | APNS | APNS_SANDBOX | APNS_VOIP |
+     * APNS_VOIP_SANDBOX | ADM | SMS | EMAIL | BAIDU
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, ADM, SMS, EMAIL, BAIDU
+     * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
+     * APNS_VOIP_SANDBOX, ADM, SMS, EMAIL, BAIDU, CUSTOM
      *
-     * @param channelType The channel type. Valid values: GCM | APNS | SMS |
-     *            EMAIL
+     * @param channelType The channel type. Valid values: GCM | APNS |
+     *            APNS_SANDBOX | APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS |
+     *            EMAIL | BAIDU
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ChannelType
@@ -143,13 +154,16 @@ public class AddressConfiguration implements Serializable {
     }
 
     /**
-     * The channel type. Valid values: GCM | APNS | SMS | EMAIL
+     * The channel type. Valid values: GCM | APNS | APNS_SANDBOX | APNS_VOIP |
+     * APNS_VOIP_SANDBOX | ADM | SMS | EMAIL | BAIDU
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, ADM, SMS, EMAIL, BAIDU
+     * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
+     * APNS_VOIP_SANDBOX, ADM, SMS, EMAIL, BAIDU, CUSTOM
      *
-     * @param channelType The channel type. Valid values: GCM | APNS | SMS |
-     *            EMAIL
+     * @param channelType The channel type. Valid values: GCM | APNS |
+     *            APNS_SANDBOX | APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS |
+     *            EMAIL | BAIDU
      * @see ChannelType
      */
     public void setChannelType(ChannelType channelType) {
@@ -157,16 +171,19 @@ public class AddressConfiguration implements Serializable {
     }
 
     /**
-     * The channel type. Valid values: GCM | APNS | SMS | EMAIL
+     * The channel type. Valid values: GCM | APNS | APNS_SANDBOX | APNS_VOIP |
+     * APNS_VOIP_SANDBOX | ADM | SMS | EMAIL | BAIDU
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, ADM, SMS, EMAIL, BAIDU
+     * <b>Allowed Values: </b>GCM, APNS, APNS_SANDBOX, APNS_VOIP,
+     * APNS_VOIP_SANDBOX, ADM, SMS, EMAIL, BAIDU, CUSTOM
      *
-     * @param channelType The channel type. Valid values: GCM | APNS | SMS |
-     *            EMAIL
+     * @param channelType The channel type. Valid values: GCM | APNS |
+     *            APNS_SANDBOX | APNS_VOIP | APNS_VOIP_SANDBOX | ADM | SMS |
+     *            EMAIL | BAIDU
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ChannelType

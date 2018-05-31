@@ -52,6 +52,13 @@ public class CreateAutoScalingGroupRequestMarshaller implements
                     .getLaunchConfigurationName();
             request.addParameter(prefix, StringUtils.fromString(launchConfigurationName));
         }
+        if (createAutoScalingGroupRequest.getLaunchTemplate() != null) {
+            prefix = "LaunchTemplate";
+            LaunchTemplateSpecification launchTemplate = createAutoScalingGroupRequest
+                    .getLaunchTemplate();
+            LaunchTemplateSpecificationStaxMarshaller.getInstance().marshall(launchTemplate,
+                    request, prefix + ".");
+        }
         if (createAutoScalingGroupRequest.getInstanceId() != null) {
             prefix = "InstanceId";
             String instanceId = createAutoScalingGroupRequest.getInstanceId();
@@ -107,6 +114,21 @@ public class CreateAutoScalingGroupRequestMarshaller implements
             }
             prefix = loadBalancerNamesPrefix;
         }
+        if (createAutoScalingGroupRequest.getTargetGroupARNs() != null) {
+            prefix = "TargetGroupARNs";
+            java.util.List<String> targetGroupARNs = createAutoScalingGroupRequest
+                    .getTargetGroupARNs();
+            int targetGroupARNsIndex = 1;
+            String targetGroupARNsPrefix = prefix;
+            for (String targetGroupARNsItem : targetGroupARNs) {
+                prefix = targetGroupARNsPrefix + ".member." + targetGroupARNsIndex;
+                if (targetGroupARNsItem != null) {
+                    request.addParameter(prefix, StringUtils.fromString(targetGroupARNsItem));
+                }
+                targetGroupARNsIndex++;
+            }
+            prefix = targetGroupARNsPrefix;
+        }
         if (createAutoScalingGroupRequest.getHealthCheckType() != null) {
             prefix = "HealthCheckType";
             String healthCheckType = createAutoScalingGroupRequest.getHealthCheckType();
@@ -149,6 +171,23 @@ public class CreateAutoScalingGroupRequestMarshaller implements
                     .getNewInstancesProtectedFromScaleIn();
             request.addParameter(prefix, StringUtils.fromBoolean(newInstancesProtectedFromScaleIn));
         }
+        if (createAutoScalingGroupRequest.getLifecycleHookSpecificationList() != null) {
+            prefix = "LifecycleHookSpecificationList";
+            java.util.List<LifecycleHookSpecification> lifecycleHookSpecificationList = createAutoScalingGroupRequest
+                    .getLifecycleHookSpecificationList();
+            int lifecycleHookSpecificationListIndex = 1;
+            String lifecycleHookSpecificationListPrefix = prefix;
+            for (LifecycleHookSpecification lifecycleHookSpecificationListItem : lifecycleHookSpecificationList) {
+                prefix = lifecycleHookSpecificationListPrefix + ".member."
+                        + lifecycleHookSpecificationListIndex;
+                if (lifecycleHookSpecificationListItem != null) {
+                    LifecycleHookSpecificationStaxMarshaller.getInstance().marshall(
+                            lifecycleHookSpecificationListItem, request, prefix + ".");
+                }
+                lifecycleHookSpecificationListIndex++;
+            }
+            prefix = lifecycleHookSpecificationListPrefix;
+        }
         if (createAutoScalingGroupRequest.getTags() != null) {
             prefix = "Tags";
             java.util.List<Tag> tags = createAutoScalingGroupRequest.getTags();
@@ -162,6 +201,11 @@ public class CreateAutoScalingGroupRequestMarshaller implements
                 tagsIndex++;
             }
             prefix = tagsPrefix;
+        }
+        if (createAutoScalingGroupRequest.getServiceLinkedRoleARN() != null) {
+            prefix = "ServiceLinkedRoleARN";
+            String serviceLinkedRoleARN = createAutoScalingGroupRequest.getServiceLinkedRoleARN();
+            request.addParameter(prefix, StringUtils.fromString(serviceLinkedRoleARN));
         }
 
         return request;

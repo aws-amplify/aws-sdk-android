@@ -25,8 +25,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"
- * >Health Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+ * "http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html"
+ * >Health Checks</a> in the <i>Auto Scaling User Guide</i>.
  * </p>
  */
 public class SetInstanceHealthRequest extends AmazonWebServiceRequest implements Serializable {

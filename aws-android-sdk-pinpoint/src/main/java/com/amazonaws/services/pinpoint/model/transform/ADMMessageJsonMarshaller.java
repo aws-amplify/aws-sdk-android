@@ -73,11 +73,6 @@ class ADMMessageJsonMarshaller {
             jsonWriter.name("ImageUrl");
             jsonWriter.value(imageUrl);
         }
-        if (aDMMessage.getJsonData() != null) {
-            String jsonData = aDMMessage.getJsonData();
-            jsonWriter.name("JsonData");
-            jsonWriter.value(jsonData);
-        }
         if (aDMMessage.getMD5() != null) {
             String mD5 = aDMMessage.getMD5();
             jsonWriter.name("MD5");

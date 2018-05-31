@@ -26,8 +26,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * Policies are settings that are saved for your load balancer and that can be
- * applied to the front-end listener or the back-end application server,
- * depending on the policy type.
+ * applied to the listener or the application server, depending on the policy
+ * type.
  * </p>
  */
 public class CreateLoadBalancerPolicyRequest extends AmazonWebServiceRequest implements
@@ -57,7 +57,7 @@ public class CreateLoadBalancerPolicyRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The attributes for the policy.
+     * The policy attributes.
      * </p>
      */
     private java.util.List<PolicyAttribute> policyAttributes = new java.util.ArrayList<PolicyAttribute>();
@@ -213,11 +213,11 @@ public class CreateLoadBalancerPolicyRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The attributes for the policy.
+     * The policy attributes.
      * </p>
      *
      * @return <p>
-     *         The attributes for the policy.
+     *         The policy attributes.
      *         </p>
      */
     public java.util.List<PolicyAttribute> getPolicyAttributes() {
@@ -226,11 +226,11 @@ public class CreateLoadBalancerPolicyRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The attributes for the policy.
+     * The policy attributes.
      * </p>
      *
      * @param policyAttributes <p>
-     *            The attributes for the policy.
+     *            The policy attributes.
      *            </p>
      */
     public void setPolicyAttributes(java.util.Collection<PolicyAttribute> policyAttributes) {
@@ -244,14 +244,14 @@ public class CreateLoadBalancerPolicyRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The attributes for the policy.
+     * The policy attributes.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param policyAttributes <p>
-     *            The attributes for the policy.
+     *            The policy attributes.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -269,14 +269,14 @@ public class CreateLoadBalancerPolicyRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The attributes for the policy.
+     * The policy attributes.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param policyAttributes <p>
-     *            The attributes for the policy.
+     *            The policy attributes.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

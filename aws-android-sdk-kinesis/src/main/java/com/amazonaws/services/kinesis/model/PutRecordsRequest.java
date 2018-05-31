@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Writes multiple data records into an Amazon Kinesis stream in a single call
+ * Writes multiple data records into a Kinesis data stream in a single call
  * (also referred to as a <code>PutRecords</code> request). Use this operation
  * to send data into the stream for data ingestion and processing.
  * </p>
@@ -43,14 +43,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * file, geographic/location data, website clickstream data, and so on.
  * </p>
  * <p>
- * The partition key is used by Amazon Kinesis as input to a hash function that
- * maps the partition key and associated data to a specific shard. An MD5 hash
- * function is used to map partition keys to 128-bit integer values and to map
- * associated data records to shards. As a result of this hashing mechanism, all
- * data records with the same partition key map to the same shard within the
+ * The partition key is used by Kinesis Data Streams as input to a hash function
+ * that maps the partition key and associated data to a specific shard. An MD5
+ * hash function is used to map partition keys to 128-bit integer values and to
+ * map associated data records to shards. As a result of this hashing mechanism,
+ * all data records with the same partition key map to the same shard within the
  * stream. For more information, see <a href=
  * "http://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-add-data-to-stream"
- * >Adding Data to a Stream</a> in the <i>Amazon Kinesis Streams Developer
+ * >Adding Data to a Stream</a> in the <i>Amazon Kinesis Data Streams Developer
  * Guide</i>.
  * </p>
  * <p>
@@ -59,8 +59,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * shard mapping. This parameter allows a data producer to determine explicitly
  * the shard where the record is stored. For more information, see <a href=
  * "http://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-putrecords"
- * >Adding Multiple Records with PutRecords</a> in the <i>Amazon Kinesis Streams
- * Developer Guide</i>.
+ * >Adding Multiple Records with PutRecords</a> in the <i>Amazon Kinesis Data
+ * Streams Developer Guide</i>.
  * </p>
  * <p>
  * The <code>PutRecords</code> response includes an array of response
@@ -71,19 +71,19 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * The response <code>Records</code> array includes both successfully and
- * unsuccessfully processed records. Amazon Kinesis attempts to process all
- * records in each <code>PutRecords</code> request. A single record failure does
- * not stop the processing of subsequent records.
+ * unsuccessfully processed records. Kinesis Data Streams attempts to process
+ * all records in each <code>PutRecords</code> request. A single record failure
+ * does not stop the processing of subsequent records.
  * </p>
  * <p>
- * A successfully-processed record includes <code>ShardId</code> and
+ * A successfully processed record includes <code>ShardId</code> and
  * <code>SequenceNumber</code> values. The <code>ShardId</code> parameter
  * identifies the shard in the stream where the record is stored. The
  * <code>SequenceNumber</code> parameter is an identifier assigned to the put
  * record, unique to all records in the stream.
  * </p>
  * <p>
- * An unsuccessfully-processed record includes <code>ErrorCode</code> and
+ * An unsuccessfully processed record includes <code>ErrorCode</code> and
  * <code>ErrorMessage</code> values. <code>ErrorCode</code> reflects the type of
  * error and can be one of the following values:
  * <code>ProvisionedThroughputExceededException</code> or
@@ -93,14 +93,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * account ID, stream name, and shard ID of the record that was throttled. For
  * more information about partially successful responses, see <a href=
  * "http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-add-data-to-stream.html#kinesis-using-sdk-java-putrecords"
- * >Adding Multiple Records with PutRecords</a> in the <i>Amazon Kinesis Streams
- * Developer Guide</i>.
+ * >Adding Multiple Records with PutRecords</a> in the <i>Amazon Kinesis Data
+ * Streams Developer Guide</i>.
  * </p>
  * <p>
- * By default, data records are accessible for only 24 hours from the time that
- * they are added to an Amazon Kinesis stream. This retention period can be
- * modified using the <a>DecreaseStreamRetentionPeriod</a> and
- * <a>IncreaseStreamRetentionPeriod</a> operations.
+ * By default, data records are accessible for 24 hours from the time that they
+ * are added to a stream. You can use <a>IncreaseStreamRetentionPeriod</a> or
+ * <a>DecreaseStreamRetentionPeriod</a> to modify this retention period.
  * </p>
  */
 public class PutRecordsRequest extends AmazonWebServiceRequest implements Serializable {

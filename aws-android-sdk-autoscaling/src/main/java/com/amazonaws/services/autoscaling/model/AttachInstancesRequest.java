@@ -30,23 +30,29 @@ import com.amazonaws.AmazonWebServiceRequest;
  * size of the group, the operation fails.
  * </p>
  * <p>
+ * If there is a Classic Load Balancer attached to your Auto Scaling group, the
+ * instances are also registered with the load balancer. If there are target
+ * groups attached to your Auto Scaling group, the instances are also registered
+ * with the target groups.
+ * </p>
+ * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/attach-instance-asg.html"
+ * "http://docs.aws.amazon.com/autoscaling/latest/userguide/attach-instance-asg.html"
  * >Attach EC2 Instances to Your Auto Scaling Group</a> in the <i>Auto Scaling
- * Developer Guide</i>.
+ * User Guide</i>.
  * </p>
  */
 public class AttachInstancesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * One or more instance IDs.
+     * The IDs of the instances. You can specify up to 20 instances.
      * </p>
      */
     private java.util.List<String> instanceIds = new java.util.ArrayList<String>();
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -58,11 +64,11 @@ public class AttachInstancesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * One or more instance IDs.
+     * The IDs of the instances. You can specify up to 20 instances.
      * </p>
      *
      * @return <p>
-     *         One or more instance IDs.
+     *         The IDs of the instances. You can specify up to 20 instances.
      *         </p>
      */
     public java.util.List<String> getInstanceIds() {
@@ -71,11 +77,11 @@ public class AttachInstancesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * One or more instance IDs.
+     * The IDs of the instances. You can specify up to 20 instances.
      * </p>
      *
      * @param instanceIds <p>
-     *            One or more instance IDs.
+     *            The IDs of the instances. You can specify up to 20 instances.
      *            </p>
      */
     public void setInstanceIds(java.util.Collection<String> instanceIds) {
@@ -89,14 +95,14 @@ public class AttachInstancesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * One or more instance IDs.
+     * The IDs of the instances. You can specify up to 20 instances.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param instanceIds <p>
-     *            One or more instance IDs.
+     *            The IDs of the instances. You can specify up to 20 instances.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -113,14 +119,14 @@ public class AttachInstancesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * One or more instance IDs.
+     * The IDs of the instances. You can specify up to 20 instances.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param instanceIds <p>
-     *            One or more instance IDs.
+     *            The IDs of the instances. You can specify up to 20 instances.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -132,7 +138,7 @@ public class AttachInstancesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -141,7 +147,7 @@ public class AttachInstancesRequest extends AmazonWebServiceRequest implements S
      * <br/>
      *
      * @return <p>
-     *         The name of the group.
+     *         The name of the Auto Scaling group.
      *         </p>
      */
     public String getAutoScalingGroupName() {
@@ -150,7 +156,7 @@ public class AttachInstancesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -159,7 +165,7 @@ public class AttachInstancesRequest extends AmazonWebServiceRequest implements S
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      */
     public void setAutoScalingGroupName(String autoScalingGroupName) {
@@ -168,7 +174,7 @@ public class AttachInstancesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -180,7 +186,7 @@ public class AttachInstancesRequest extends AmazonWebServiceRequest implements S
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

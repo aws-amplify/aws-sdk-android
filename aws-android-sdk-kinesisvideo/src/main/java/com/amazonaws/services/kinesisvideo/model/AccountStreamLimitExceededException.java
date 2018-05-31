@@ -18,7 +18,9 @@ package com.amazonaws.services.kinesisvideo.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * The number of streams created for the account is too high.
+ * </p>
  */
 public class AccountStreamLimitExceededException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

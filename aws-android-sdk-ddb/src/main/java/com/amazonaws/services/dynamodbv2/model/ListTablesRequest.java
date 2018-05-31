@@ -22,15 +22,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Returns an array of table names associated with the current account and
- * endpoint. The output from <i>ListTables</i> is paginated, with each page
- * returning a maximum of 100 table names.
+ * endpoint. The output from <code>ListTables</code> is paginated, with each
+ * page returning a maximum of 100 table names.
  * </p>
  */
 public class ListTablesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
      * The first table name that this operation will evaluate. Use the value
-     * that was returned for <i>LastEvaluatedTableName</i> in a previous
+     * that was returned for <code>LastEvaluatedTableName</code> in a previous
      * operation, so that you can obtain the next page of results.
      * </p>
      * <p>
@@ -66,9 +66,9 @@ public class ListTablesRequest extends AmazonWebServiceRequest implements Serial
      * 
      * @param exclusiveStartTableName <p>
      *            The first table name that this operation will evaluate. Use
-     *            the value that was returned for <i>LastEvaluatedTableName</i>
-     *            in a previous operation, so that you can obtain the next page
-     *            of results.
+     *            the value that was returned for
+     *            <code>LastEvaluatedTableName</code> in a previous operation,
+     *            so that you can obtain the next page of results.
      *            </p>
      */
     public ListTablesRequest(String exclusiveStartTableName) {
@@ -82,9 +82,9 @@ public class ListTablesRequest extends AmazonWebServiceRequest implements Serial
      * 
      * @param exclusiveStartTableName <p>
      *            The first table name that this operation will evaluate. Use
-     *            the value that was returned for <i>LastEvaluatedTableName</i>
-     *            in a previous operation, so that you can obtain the next page
-     *            of results.
+     *            the value that was returned for
+     *            <code>LastEvaluatedTableName</code> in a previous operation,
+     *            so that you can obtain the next page of results.
      *            </p>
      * @param limit <p>
      *            A maximum number of table names to return. If this parameter
@@ -99,7 +99,7 @@ public class ListTablesRequest extends AmazonWebServiceRequest implements Serial
     /**
      * <p>
      * The first table name that this operation will evaluate. Use the value
-     * that was returned for <i>LastEvaluatedTableName</i> in a previous
+     * that was returned for <code>LastEvaluatedTableName</code> in a previous
      * operation, so that you can obtain the next page of results.
      * </p>
      * <p>
@@ -109,8 +109,8 @@ public class ListTablesRequest extends AmazonWebServiceRequest implements Serial
      *
      * @return <p>
      *         The first table name that this operation will evaluate. Use the
-     *         value that was returned for <i>LastEvaluatedTableName</i> in a
-     *         previous operation, so that you can obtain the next page of
+     *         value that was returned for <code>LastEvaluatedTableName</code>
+     *         in a previous operation, so that you can obtain the next page of
      *         results.
      *         </p>
      */
@@ -121,7 +121,7 @@ public class ListTablesRequest extends AmazonWebServiceRequest implements Serial
     /**
      * <p>
      * The first table name that this operation will evaluate. Use the value
-     * that was returned for <i>LastEvaluatedTableName</i> in a previous
+     * that was returned for <code>LastEvaluatedTableName</code> in a previous
      * operation, so that you can obtain the next page of results.
      * </p>
      * <p>
@@ -131,9 +131,9 @@ public class ListTablesRequest extends AmazonWebServiceRequest implements Serial
      *
      * @param exclusiveStartTableName <p>
      *            The first table name that this operation will evaluate. Use
-     *            the value that was returned for <i>LastEvaluatedTableName</i>
-     *            in a previous operation, so that you can obtain the next page
-     *            of results.
+     *            the value that was returned for
+     *            <code>LastEvaluatedTableName</code> in a previous operation,
+     *            so that you can obtain the next page of results.
      *            </p>
      */
     public void setExclusiveStartTableName(String exclusiveStartTableName) {
@@ -143,7 +143,7 @@ public class ListTablesRequest extends AmazonWebServiceRequest implements Serial
     /**
      * <p>
      * The first table name that this operation will evaluate. Use the value
-     * that was returned for <i>LastEvaluatedTableName</i> in a previous
+     * that was returned for <code>LastEvaluatedTableName</code> in a previous
      * operation, so that you can obtain the next page of results.
      * </p>
      * <p>
@@ -156,9 +156,9 @@ public class ListTablesRequest extends AmazonWebServiceRequest implements Serial
      *
      * @param exclusiveStartTableName <p>
      *            The first table name that this operation will evaluate. Use
-     *            the value that was returned for <i>LastEvaluatedTableName</i>
-     *            in a previous operation, so that you can obtain the next page
-     *            of results.
+     *            the value that was returned for
+     *            <code>LastEvaluatedTableName</code> in a previous operation,
+     *            so that you can obtain the next page of results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

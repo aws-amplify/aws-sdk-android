@@ -30,23 +30,42 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Scaling group:
  * </p>
  * <ol>
- * <li>(Optional) Create a Lambda function and a rule that allows CloudWatch
- * Events to invoke your Lambda function when Auto Scaling launches or
- * terminates instances.</li>
- * <li>(Optional) Create a notification target and an IAM role. The target can
- * be either an Amazon SQS queue or an Amazon SNS topic. The role allows Auto
- * Scaling to publish lifecycle notifications to the target.</li>
- * <li>Create the lifecycle hook. Specify whether the hook is used when the
- * instances launch or terminate.</li>
- * <li><b>If you need more time, record the lifecycle action heartbeat to keep
- * the instance in a pending state.</b></li>
- * <li>If you finish before the timeout period ends, complete the lifecycle
- * action.</li>
+ * <li>
+ * <p>
+ * (Optional) Create a Lambda function and a rule that allows CloudWatch Events
+ * to invoke your Lambda function when Auto Scaling launches or terminates
+ * instances.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * (Optional) Create a notification target and an IAM role. The target can be
+ * either an Amazon SQS queue or an Amazon SNS topic. The role allows Auto
+ * Scaling to publish lifecycle notifications to the target.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Create the lifecycle hook. Specify whether the hook is used when the
+ * instances launch or terminate.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <b>If you need more time, record the lifecycle action heartbeat to keep the
+ * instance in a pending state.</b>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * If you finish before the timeout period ends, complete the lifecycle action.
+ * </p>
+ * </li>
  * </ol>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html"
- * >Auto Scaling Lifecycle</a> in the <i>Auto Scaling Developer Guide</i>.
+ * "http://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroupLifecycle.html"
+ * >Auto Scaling Lifecycle</a> in the <i>Auto Scaling User Guide</i>.
  * </p>
  */
 public class RecordLifecycleActionHeartbeatRequest extends AmazonWebServiceRequest implements
@@ -64,7 +83,7 @@ public class RecordLifecycleActionHeartbeatRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The name of the Auto Scaling group for the hook.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -157,7 +176,7 @@ public class RecordLifecycleActionHeartbeatRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The name of the Auto Scaling group for the hook.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -166,7 +185,7 @@ public class RecordLifecycleActionHeartbeatRequest extends AmazonWebServiceReque
      * <br/>
      *
      * @return <p>
-     *         The name of the Auto Scaling group for the hook.
+     *         The name of the Auto Scaling group.
      *         </p>
      */
     public String getAutoScalingGroupName() {
@@ -175,7 +194,7 @@ public class RecordLifecycleActionHeartbeatRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The name of the Auto Scaling group for the hook.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -184,7 +203,7 @@ public class RecordLifecycleActionHeartbeatRequest extends AmazonWebServiceReque
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the Auto Scaling group for the hook.
+     *            The name of the Auto Scaling group.
      *            </p>
      */
     public void setAutoScalingGroupName(String autoScalingGroupName) {
@@ -193,7 +212,7 @@ public class RecordLifecycleActionHeartbeatRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The name of the Auto Scaling group for the hook.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -205,7 +224,7 @@ public class RecordLifecycleActionHeartbeatRequest extends AmazonWebServiceReque
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the Auto Scaling group for the hook.
+     *            The name of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

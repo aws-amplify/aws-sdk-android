@@ -21,46 +21,55 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates an Amazon Kinesis stream. A stream captures and transports data
- * records that are continuously emitted from different data sources or
+ * Creates a Kinesis data stream. A stream captures and transports data records
+ * that are continuously emitted from different data sources or
  * <i>producers</i>. Scale-out within a stream is explicitly supported by means
  * of shards, which are uniquely identified groups of data records in a stream.
  * </p>
  * <p>
  * You specify and control the number of shards that a stream is composed of.
- * Each shard can support reads up to 5 transactions per second, up to a maximum
- * data read total of 2 MB per second. Each shard can support writes up to 1,000
- * records per second, up to a maximum data write total of 1 MB per second. You
- * can add shards to a stream if the amount of data input increases and you can
- * remove shards if the amount of data input decreases.
+ * Each shard can support reads up to five transactions per second, up to a
+ * maximum data read total of 2 MB per second. Each shard can support writes up
+ * to 1,000 records per second, up to a maximum data write total of 1 MB per
+ * second. If the amount of data input increases or decreases, you can add or
+ * remove shards.
  * </p>
  * <p>
  * The stream name identifies the stream. The name is scoped to the AWS account
- * used by the application. It is also scoped by region. That is, two streams in
- * two different accounts can have the same name, and two streams in the same
- * account, but in two different regions, can have the same name.
+ * used by the application. It is also scoped by AWS Region. That is, two
+ * streams in two different accounts can have the same name, and two streams in
+ * the same account, but in two different Regions, can have the same name.
  * </p>
  * <p>
  * <code>CreateStream</code> is an asynchronous operation. Upon receiving a
- * <code>CreateStream</code> request, Amazon Kinesis immediately returns and
- * sets the stream status to <code>CREATING</code>. After the stream is created,
- * Amazon Kinesis sets the stream status to <code>ACTIVE</code>. You should
- * perform read and write operations only on an <code>ACTIVE</code> stream.
+ * <code>CreateStream</code> request, Kinesis Data Streams immediately returns
+ * and sets the stream status to <code>CREATING</code>. After the stream is
+ * created, Kinesis Data Streams sets the stream status to <code>ACTIVE</code>.
+ * You should perform read and write operations only on an <code>ACTIVE</code>
+ * stream.
  * </p>
  * <p>
  * You receive a <code>LimitExceededException</code> when making a
- * <code>CreateStream</code> request if you try to do one of the following:
+ * <code>CreateStream</code> request when you try to do one of the following:
  * </p>
  * <ul>
- * <li>Have more than five streams in the <code>CREATING</code> state at any
- * point in time.</li>
- * <li>Create more shards than are authorized for your account.</li>
+ * <li>
+ * <p>
+ * Have more than five streams in the <code>CREATING</code> state at any point
+ * in time.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Create more shards than are authorized for your account.
+ * </p>
+ * </li>
  * </ul>
  * <p>
  * For the default shard limit for an AWS account, see <a href=
  * "http://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html"
- * >Streams Limits</a> in the <i>Amazon Kinesis Streams Developer Guide</i>. If
- * you need to increase this limit, <a
+ * >Amazon Kinesis Data Streams Limits</a> in the <i>Amazon Kinesis Data Streams
+ * Developer Guide</i>. To increase this limit, <a
  * href="http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html"
  * >contact AWS Support</a>.
  * </p>
@@ -69,7 +78,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * returned in <code>StreamStatus</code>.
  * </p>
  * <p>
- * <a>CreateStream</a> has a limit of 5 transactions per second per account.
+ * <a>CreateStream</a> has a limit of five transactions per second per account.
  * </p>
  */
 public class CreateStreamRequest extends AmazonWebServiceRequest implements Serializable {
@@ -77,9 +86,9 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * A name to identify the stream. The stream name is scoped to the AWS
      * account used by the application that creates the stream. It is also
-     * scoped by region. That is, two streams in two different AWS accounts can
-     * have the same name, and two streams in the same AWS account but in two
-     * different regions can have the same name.
+     * scoped by AWS Region. That is, two streams in two different AWS accounts
+     * can have the same name. Two streams in the same AWS account but in two
+     * different Regions can also have the same name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -107,9 +116,9 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * A name to identify the stream. The stream name is scoped to the AWS
      * account used by the application that creates the stream. It is also
-     * scoped by region. That is, two streams in two different AWS accounts can
-     * have the same name, and two streams in the same AWS account but in two
-     * different regions can have the same name.
+     * scoped by AWS Region. That is, two streams in two different AWS accounts
+     * can have the same name. Two streams in the same AWS account but in two
+     * different Regions can also have the same name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -119,9 +128,10 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * @return <p>
      *         A name to identify the stream. The stream name is scoped to the
      *         AWS account used by the application that creates the stream. It
-     *         is also scoped by region. That is, two streams in two different
-     *         AWS accounts can have the same name, and two streams in the same
-     *         AWS account but in two different regions can have the same name.
+     *         is also scoped by AWS Region. That is, two streams in two
+     *         different AWS accounts can have the same name. Two streams in the
+     *         same AWS account but in two different Regions can also have the
+     *         same name.
      *         </p>
      */
     public String getStreamName() {
@@ -132,9 +142,9 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * A name to identify the stream. The stream name is scoped to the AWS
      * account used by the application that creates the stream. It is also
-     * scoped by region. That is, two streams in two different AWS accounts can
-     * have the same name, and two streams in the same AWS account but in two
-     * different regions can have the same name.
+     * scoped by AWS Region. That is, two streams in two different AWS accounts
+     * can have the same name. Two streams in the same AWS account but in two
+     * different Regions can also have the same name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -144,10 +154,10 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * @param streamName <p>
      *            A name to identify the stream. The stream name is scoped to
      *            the AWS account used by the application that creates the
-     *            stream. It is also scoped by region. That is, two streams in
-     *            two different AWS accounts can have the same name, and two
-     *            streams in the same AWS account but in two different regions
-     *            can have the same name.
+     *            stream. It is also scoped by AWS Region. That is, two streams
+     *            in two different AWS accounts can have the same name. Two
+     *            streams in the same AWS account but in two different Regions
+     *            can also have the same name.
      *            </p>
      */
     public void setStreamName(String streamName) {
@@ -158,9 +168,9 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * A name to identify the stream. The stream name is scoped to the AWS
      * account used by the application that creates the stream. It is also
-     * scoped by region. That is, two streams in two different AWS accounts can
-     * have the same name, and two streams in the same AWS account but in two
-     * different regions can have the same name.
+     * scoped by AWS Region. That is, two streams in two different AWS accounts
+     * can have the same name. Two streams in the same AWS account but in two
+     * different Regions can also have the same name.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -173,10 +183,10 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * @param streamName <p>
      *            A name to identify the stream. The stream name is scoped to
      *            the AWS account used by the application that creates the
-     *            stream. It is also scoped by region. That is, two streams in
-     *            two different AWS accounts can have the same name, and two
-     *            streams in the same AWS account but in two different regions
-     *            can have the same name.
+     *            stream. It is also scoped by AWS Region. That is, two streams
+     *            in two different AWS accounts can have the same name. Two
+     *            streams in the same AWS account but in two different Regions
+     *            can also have the same name.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

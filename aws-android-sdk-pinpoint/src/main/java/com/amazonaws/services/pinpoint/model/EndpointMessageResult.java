@@ -31,7 +31,7 @@ public class EndpointMessageResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUCCESSFUL, THROTTLED, TEMPORARY_FAILURE,
-     * PERMANENT_FAILURE
+     * PERMANENT_FAILURE, UNKNOWN_FAILURE, OPT_OUT, DUPLICATE
      */
     private String deliveryStatus;
 
@@ -88,7 +88,7 @@ public class EndpointMessageResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUCCESSFUL, THROTTLED, TEMPORARY_FAILURE,
-     * PERMANENT_FAILURE
+     * PERMANENT_FAILURE, UNKNOWN_FAILURE, OPT_OUT, DUPLICATE
      *
      * @return Delivery status of message.
      * @see DeliveryStatus
@@ -102,7 +102,7 @@ public class EndpointMessageResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUCCESSFUL, THROTTLED, TEMPORARY_FAILURE,
-     * PERMANENT_FAILURE
+     * PERMANENT_FAILURE, UNKNOWN_FAILURE, OPT_OUT, DUPLICATE
      *
      * @param deliveryStatus Delivery status of message.
      * @see DeliveryStatus
@@ -119,7 +119,7 @@ public class EndpointMessageResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUCCESSFUL, THROTTLED, TEMPORARY_FAILURE,
-     * PERMANENT_FAILURE
+     * PERMANENT_FAILURE, UNKNOWN_FAILURE, OPT_OUT, DUPLICATE
      *
      * @param deliveryStatus Delivery status of message.
      * @return A reference to this updated object so that method calls can be
@@ -136,7 +136,7 @@ public class EndpointMessageResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUCCESSFUL, THROTTLED, TEMPORARY_FAILURE,
-     * PERMANENT_FAILURE
+     * PERMANENT_FAILURE, UNKNOWN_FAILURE, OPT_OUT, DUPLICATE
      *
      * @param deliveryStatus Delivery status of message.
      * @see DeliveryStatus
@@ -153,7 +153,7 @@ public class EndpointMessageResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUCCESSFUL, THROTTLED, TEMPORARY_FAILURE,
-     * PERMANENT_FAILURE
+     * PERMANENT_FAILURE, UNKNOWN_FAILURE, OPT_OUT, DUPLICATE
      *
      * @param deliveryStatus Delivery status of message.
      * @return A reference to this updated object so that method calls can be

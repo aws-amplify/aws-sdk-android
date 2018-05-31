@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class AccessLog implements Serializable {
     /**
      * <p>
-     * Specifies whether access log is enabled for the load balancer.
+     * Specifies whether access logs are enabled for the load balancer.
      * </p>
      */
     private Boolean enabled;
@@ -59,11 +59,11 @@ public class AccessLog implements Serializable {
 
     /**
      * <p>
-     * Specifies whether access log is enabled for the load balancer.
+     * Specifies whether access logs are enabled for the load balancer.
      * </p>
      *
      * @return <p>
-     *         Specifies whether access log is enabled for the load balancer.
+     *         Specifies whether access logs are enabled for the load balancer.
      *         </p>
      */
     public Boolean isEnabled() {
@@ -72,11 +72,11 @@ public class AccessLog implements Serializable {
 
     /**
      * <p>
-     * Specifies whether access log is enabled for the load balancer.
+     * Specifies whether access logs are enabled for the load balancer.
      * </p>
      *
      * @return <p>
-     *         Specifies whether access log is enabled for the load balancer.
+     *         Specifies whether access logs are enabled for the load balancer.
      *         </p>
      */
     public Boolean getEnabled() {
@@ -85,11 +85,12 @@ public class AccessLog implements Serializable {
 
     /**
      * <p>
-     * Specifies whether access log is enabled for the load balancer.
+     * Specifies whether access logs are enabled for the load balancer.
      * </p>
      *
      * @param enabled <p>
-     *            Specifies whether access log is enabled for the load balancer.
+     *            Specifies whether access logs are enabled for the load
+     *            balancer.
      *            </p>
      */
     public void setEnabled(Boolean enabled) {
@@ -98,14 +99,15 @@ public class AccessLog implements Serializable {
 
     /**
      * <p>
-     * Specifies whether access log is enabled for the load balancer.
+     * Specifies whether access logs are enabled for the load balancer.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param enabled <p>
-     *            Specifies whether access log is enabled for the load balancer.
+     *            Specifies whether access logs are enabled for the load
+     *            balancer.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

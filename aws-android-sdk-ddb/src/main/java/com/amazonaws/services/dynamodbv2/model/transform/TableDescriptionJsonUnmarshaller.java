@@ -69,6 +69,9 @@ class TableDescriptionJsonUnmarshaller implements
             } else if (name.equals("TableArn")) {
                 tableDescription.setTableArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("TableId")) {
+                tableDescription.setTableId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LocalSecondaryIndexes")) {
                 tableDescription
                         .setLocalSecondaryIndexes(new ListUnmarshaller<LocalSecondaryIndexDescription>(
@@ -90,6 +93,12 @@ class TableDescriptionJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("LatestStreamArn")) {
                 tableDescription.setLatestStreamArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("RestoreSummary")) {
+                tableDescription.setRestoreSummary(RestoreSummaryJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("SSEDescription")) {
+                tableDescription.setSSEDescription(SSEDescriptionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

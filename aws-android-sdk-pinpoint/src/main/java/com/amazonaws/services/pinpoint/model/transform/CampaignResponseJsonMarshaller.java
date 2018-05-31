@@ -64,6 +64,11 @@ class CampaignResponseJsonMarshaller {
             jsonWriter.name("HoldoutPercent");
             jsonWriter.value(holdoutPercent);
         }
+        if (campaignResponse.getHook() != null) {
+            CampaignHook hook = campaignResponse.getHook();
+            jsonWriter.name("Hook");
+            CampaignHookJsonMarshaller.getInstance().marshall(hook, jsonWriter);
+        }
         if (campaignResponse.getId() != null) {
             String id = campaignResponse.getId();
             jsonWriter.name("Id");

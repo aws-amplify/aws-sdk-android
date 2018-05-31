@@ -56,6 +56,9 @@ class CampaignResponseJsonUnmarshaller implements
             } else if (name.equals("HoldoutPercent")) {
                 campaignResponse.setHoldoutPercent(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Hook")) {
+                campaignResponse.setHook(CampaignHookJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Id")) {
                 campaignResponse.setId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

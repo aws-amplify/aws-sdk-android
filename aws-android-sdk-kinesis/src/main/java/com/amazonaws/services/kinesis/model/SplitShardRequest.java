@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Splits a shard into two new shards in the Amazon Kinesis stream to increase
+ * Splits a shard into two new shards in the Kinesis data stream, to increase
  * the stream's capacity to ingest and transport data. <code>SplitShard</code>
  * is called when there is a need to increase the overall capacity of a stream
  * because of an expected increase in the volume of data records being ingested.
@@ -31,17 +31,17 @@ import com.amazonaws.AmazonWebServiceRequest;
  * approaching its maximum utilization; for example, the producers sending data
  * into the specific shard are suddenly sending more than previously
  * anticipated. You can also call <code>SplitShard</code> to increase stream
- * capacity, so that more Amazon Kinesis applications can simultaneously read
- * data from the stream for real-time processing.
+ * capacity, so that more Kinesis Data Streams applications can simultaneously
+ * read data from the stream for real-time processing.
  * </p>
  * <p>
  * You must specify the shard to be split and the new hash key, which is the
  * position in the shard where the shard gets split in two. In many cases, the
- * new hash key might simply be the average of the beginning and ending hash
- * key, but it can be any hash key value in the range being mapped into the
- * shard. For more information about splitting shards, see <a href=
+ * new hash key might be the average of the beginning and ending hash key, but
+ * it can be any hash key value in the range being mapped into the shard. For
+ * more information, see <a href=
  * "http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-resharding-split.html"
- * >Split a Shard</a> in the <i>Amazon Kinesis Streams Developer Guide</i>.
+ * >Split a Shard</a> in the <i>Amazon Kinesis Data Streams Developer Guide</i>.
  * </p>
  * <p>
  * You can use <a>DescribeStream</a> to determine the shard ID and hash key
@@ -50,9 +50,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * <code>SplitShard</code> is an asynchronous operation. Upon receiving a
- * <code>SplitShard</code> request, Amazon Kinesis immediately returns a
+ * <code>SplitShard</code> request, Kinesis Data Streams immediately returns a
  * response and sets the stream status to <code>UPDATING</code>. After the
- * operation is completed, Amazon Kinesis sets the stream status to
+ * operation is completed, Kinesis Data Streams sets the stream status to
  * <code>ACTIVE</code>. Read and write operations continue to work while the
  * stream is in the <code>UPDATING</code> state.
  * </p>
@@ -73,8 +73,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * For the default shard limit for an AWS account, see <a href=
  * "http://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html"
- * >Streams Limits</a> in the <i>Amazon Kinesis Streams Developer Guide</i>. If
- * you need to increase this limit, <a
+ * >Streams Limits</a> in the <i>Amazon Kinesis Data Streams Developer
+ * Guide</i>. To increase this limit, <a
  * href="http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html"
  * >contact AWS Support</a>.
  * </p>
@@ -84,7 +84,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <a>SplitShard</a>, you receive a <code>LimitExceededException</code>.
  * </p>
  * <p>
- * <code>SplitShard</code> has limit of 5 transactions per second per account.
+ * <code>SplitShard</code> has a limit of five transactions per second per
+ * account.
  * </p>
  */
 public class SplitShardRequest extends AmazonWebServiceRequest implements Serializable {

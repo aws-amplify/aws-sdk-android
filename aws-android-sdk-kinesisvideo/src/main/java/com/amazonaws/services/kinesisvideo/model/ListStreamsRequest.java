@@ -19,9 +19,19 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Returns an array of <code>StreamInfo</code> objects. Each object describes a
+ * stream. To retrieve only streams that satisfy a specific condition, you can
+ * specify a <code>StreamNameCondition</code>.
+ * </p>
+ */
 public class ListStreamsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the maxResults property for this object.
+     * <p>
+     * The maximum number of streams to return in the response. The default is
+     * 10,000.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 10000<br/>
@@ -29,7 +39,12 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
     private Integer maxResults;
 
     /**
-     * The new value for the nextToken property for this object.
+     * <p>
+     * If you specify this parameter, when the result of a
+     * <code>ListStreams</code> operation is truncated, the call returns the
+     * <code>NextToken</code> in the response. To get another batch of streams,
+     * provide this token in your next request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
@@ -37,37 +52,55 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
     private String nextToken;
 
     /**
-     * The new value for the streamNameCondition property for this object.
+     * <p>
+     * Optional: Returns only streams that satisfy a specific condition.
+     * Currently, you can specify only the prefix of a stream name as a
+     * condition.
+     * </p>
      */
     private StreamNameCondition streamNameCondition;
 
     /**
-     * Returns the value of the maxResults property for this object.
+     * <p>
+     * The maximum number of streams to return in the response. The default is
+     * 10,000.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 10000<br/>
      *
-     * @return The value of the maxResults property for this object.
+     * @return <p>
+     *         The maximum number of streams to return in the response. The
+     *         default is 10,000.
+     *         </p>
      */
     public Integer getMaxResults() {
         return maxResults;
     }
 
     /**
-     * Sets the value of maxResults
+     * <p>
+     * The maximum number of streams to return in the response. The default is
+     * 10,000.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 10000<br/>
      *
-     * @param maxResults The new value for the maxResults property for this
-     *            object.
+     * @param maxResults <p>
+     *            The maximum number of streams to return in the response. The
+     *            default is 10,000.
+     *            </p>
      */
     public void setMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
     }
 
     /**
-     * Sets the value of the maxResults property for this object.
+     * <p>
+     * The maximum number of streams to return in the response. The default is
+     * 10,000.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -75,8 +108,10 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 10000<br/>
      *
-     * @param maxResults The new value for the maxResults property for this
-     *            object.
+     * @param maxResults <p>
+     *            The maximum number of streams to return in the response. The
+     *            default is 10,000.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -86,32 +121,57 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
-     * Returns the value of the nextToken property for this object.
+     * <p>
+     * If you specify this parameter, when the result of a
+     * <code>ListStreams</code> operation is truncated, the call returns the
+     * <code>NextToken</code> in the response. To get another batch of streams,
+     * provide this token in your next request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
      *
-     * @return The value of the nextToken property for this object.
+     * @return <p>
+     *         If you specify this parameter, when the result of a
+     *         <code>ListStreams</code> operation is truncated, the call returns
+     *         the <code>NextToken</code> in the response. To get another batch
+     *         of streams, provide this token in your next request.
+     *         </p>
      */
     public String getNextToken() {
         return nextToken;
     }
 
     /**
-     * Sets the value of nextToken
+     * <p>
+     * If you specify this parameter, when the result of a
+     * <code>ListStreams</code> operation is truncated, the call returns the
+     * <code>NextToken</code> in the response. To get another batch of streams,
+     * provide this token in your next request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
      *
-     * @param nextToken The new value for the nextToken property for this
-     *            object.
+     * @param nextToken <p>
+     *            If you specify this parameter, when the result of a
+     *            <code>ListStreams</code> operation is truncated, the call
+     *            returns the <code>NextToken</code> in the response. To get
+     *            another batch of streams, provide this token in your next
+     *            request.
+     *            </p>
      */
     public void setNextToken(String nextToken) {
         this.nextToken = nextToken;
     }
 
     /**
-     * Sets the value of the nextToken property for this object.
+     * <p>
+     * If you specify this parameter, when the result of a
+     * <code>ListStreams</code> operation is truncated, the call returns the
+     * <code>NextToken</code> in the response. To get another batch of streams,
+     * provide this token in your next request.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -119,8 +179,13 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
      *
-     * @param nextToken The new value for the nextToken property for this
-     *            object.
+     * @param nextToken <p>
+     *            If you specify this parameter, when the result of a
+     *            <code>ListStreams</code> operation is truncated, the call
+     *            returns the <code>NextToken</code> in the response. To get
+     *            another batch of streams, provide this token in your next
+     *            request.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -130,32 +195,54 @@ public class ListStreamsRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
-     * Returns the value of the streamNameCondition property for this object.
+     * <p>
+     * Optional: Returns only streams that satisfy a specific condition.
+     * Currently, you can specify only the prefix of a stream name as a
+     * condition.
+     * </p>
      *
-     * @return The value of the streamNameCondition property for this object.
+     * @return <p>
+     *         Optional: Returns only streams that satisfy a specific condition.
+     *         Currently, you can specify only the prefix of a stream name as a
+     *         condition.
+     *         </p>
      */
     public StreamNameCondition getStreamNameCondition() {
         return streamNameCondition;
     }
 
     /**
-     * Sets the value of streamNameCondition
+     * <p>
+     * Optional: Returns only streams that satisfy a specific condition.
+     * Currently, you can specify only the prefix of a stream name as a
+     * condition.
+     * </p>
      *
-     * @param streamNameCondition The new value for the streamNameCondition
-     *            property for this object.
+     * @param streamNameCondition <p>
+     *            Optional: Returns only streams that satisfy a specific
+     *            condition. Currently, you can specify only the prefix of a
+     *            stream name as a condition.
+     *            </p>
      */
     public void setStreamNameCondition(StreamNameCondition streamNameCondition) {
         this.streamNameCondition = streamNameCondition;
     }
 
     /**
-     * Sets the value of the streamNameCondition property for this object.
+     * <p>
+     * Optional: Returns only streams that satisfy a specific condition.
+     * Currently, you can specify only the prefix of a stream name as a
+     * condition.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param streamNameCondition The new value for the streamNameCondition
-     *            property for this object.
+     * @param streamNameCondition <p>
+     *            Optional: Returns only streams that satisfy a specific
+     *            condition. Currently, you can specify only the prefix of a
+     *            stream name as a condition.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

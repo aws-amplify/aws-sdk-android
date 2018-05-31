@@ -40,6 +40,18 @@ import com.amazonaws.AmazonWebServiceRequest;
  * This operation requires permission for the <code>lambda:InvokeFunction</code>
  * action.
  * </p>
+ * <note>
+ * <p>
+ * The <code>TooManyRequestsException</code> noted below will return the
+ * following: <code>ConcurrentInvocationLimitExceeded</code> will be returned if
+ * you have no functions with reserved concurrency and have exceeded your
+ * account concurrent limit or if a function without reserved concurrency
+ * exceeds the account's unreserved concurrency limit.
+ * <code>ReservedFunctionConcurrentInvocationLimitExceeded</code> will be
+ * returned when a function with reserved concurrency exceeds its configured
+ * concurrency limit.
+ * </p>
+ * </note>
  */
 public class InvokeRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -53,14 +65,14 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * Lambda also allows you to specify a partial ARN (for example,
      * <code>account-id:Thumbnail</code>). Note that the length constraint
      * applies only to the ARN. If you specify only the function name, it is
-     * limited to 64 character in length.
+     * limited to 64 characters in length.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 140<br/>
+     * <b>Length: </b>1 - 170<br/>
      * <b>Pattern:
      * </b>(arn:aws:lambda:)?([a-z]{2}-[a-z]+-\d{1}:)?(\d{12}:)?(function
-     * :)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?<br/>
+     * :)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?<br/>
      */
     private String functionName;
 
@@ -108,7 +120,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * Guide</i>.
      * </p>
      * <p>
-     * The ClientContext JSON must be base64-encoded.
+     * The ClientContext JSON must be base64-encoded and has a maximum size of
+     * 3583 bytes.
      * </p>
      */
     private String clientContext;
@@ -151,14 +164,14 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * Lambda also allows you to specify a partial ARN (for example,
      * <code>account-id:Thumbnail</code>). Note that the length constraint
      * applies only to the ARN. If you specify only the function name, it is
-     * limited to 64 character in length.
+     * limited to 64 characters in length.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 140<br/>
+     * <b>Length: </b>1 - 170<br/>
      * <b>Pattern:
      * </b>(arn:aws:lambda:)?([a-z]{2}-[a-z]+-\d{1}:)?(\d{12}:)?(function
-     * :)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?<br/>
+     * :)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?<br/>
      *
      * @return <p>
      *         The Lambda function name.
@@ -171,7 +184,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *         ). AWS Lambda also allows you to specify a partial ARN (for
      *         example, <code>account-id:Thumbnail</code>). Note that the length
      *         constraint applies only to the ARN. If you specify only the
-     *         function name, it is limited to 64 character in length.
+     *         function name, it is limited to 64 characters in length.
      *         </p>
      */
     public String getFunctionName() {
@@ -189,14 +202,14 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * Lambda also allows you to specify a partial ARN (for example,
      * <code>account-id:Thumbnail</code>). Note that the length constraint
      * applies only to the ARN. If you specify only the function name, it is
-     * limited to 64 character in length.
+     * limited to 64 characters in length.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 140<br/>
+     * <b>Length: </b>1 - 170<br/>
      * <b>Pattern:
      * </b>(arn:aws:lambda:)?([a-z]{2}-[a-z]+-\d{1}:)?(\d{12}:)?(function
-     * :)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?<br/>
+     * :)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?<br/>
      *
      * @param functionName <p>
      *            The Lambda function name.
@@ -209,7 +222,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            ). AWS Lambda also allows you to specify a partial ARN (for
      *            example, <code>account-id:Thumbnail</code>). Note that the
      *            length constraint applies only to the ARN. If you specify only
-     *            the function name, it is limited to 64 character in length.
+     *            the function name, it is limited to 64 characters in length.
      *            </p>
      */
     public void setFunctionName(String functionName) {
@@ -227,17 +240,17 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * Lambda also allows you to specify a partial ARN (for example,
      * <code>account-id:Thumbnail</code>). Note that the length constraint
      * applies only to the ARN. If you specify only the function name, it is
-     * limited to 64 character in length.
+     * limited to 64 characters in length.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 140<br/>
+     * <b>Length: </b>1 - 170<br/>
      * <b>Pattern:
      * </b>(arn:aws:lambda:)?([a-z]{2}-[a-z]+-\d{1}:)?(\d{12}:)?(function
-     * :)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?<br/>
+     * :)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?<br/>
      *
      * @param functionName <p>
      *            The Lambda function name.
@@ -250,7 +263,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            ). AWS Lambda also allows you to specify a partial ARN (for
      *            example, <code>account-id:Thumbnail</code>). Note that the
      *            length constraint applies only to the ARN. If you specify only
-     *            the function name, it is limited to 64 character in length.
+     *            the function name, it is limited to 64 characters in length.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -601,7 +614,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * Guide</i>.
      * </p>
      * <p>
-     * The ClientContext JSON must be base64-encoded.
+     * The ClientContext JSON must be base64-encoded and has a maximum size of
+     * 3583 bytes.
      * </p>
      *
      * @return <p>
@@ -615,7 +629,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *         and User Guide</i>.
      *         </p>
      *         <p>
-     *         The ClientContext JSON must be base64-encoded.
+     *         The ClientContext JSON must be base64-encoded and has a maximum
+     *         size of 3583 bytes.
      *         </p>
      */
     public String getClientContext() {
@@ -634,7 +649,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * Guide</i>.
      * </p>
      * <p>
-     * The ClientContext JSON must be base64-encoded.
+     * The ClientContext JSON must be base64-encoded and has a maximum size of
+     * 3583 bytes.
      * </p>
      *
      * @param clientContext <p>
@@ -649,7 +665,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            and User Guide</i>.
      *            </p>
      *            <p>
-     *            The ClientContext JSON must be base64-encoded.
+     *            The ClientContext JSON must be base64-encoded and has a
+     *            maximum size of 3583 bytes.
      *            </p>
      */
     public void setClientContext(String clientContext) {
@@ -668,7 +685,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * Guide</i>.
      * </p>
      * <p>
-     * The ClientContext JSON must be base64-encoded.
+     * The ClientContext JSON must be base64-encoded and has a maximum size of
+     * 3583 bytes.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -686,7 +704,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            and User Guide</i>.
      *            </p>
      *            <p>
-     *            The ClientContext JSON must be base64-encoded.
+     *            The ClientContext JSON must be base64-encoded and has a
+     *            maximum size of 3583 bytes.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -45,6 +45,11 @@ class RecordJsonMarshaller {
             jsonWriter.name("PartitionKey");
             jsonWriter.value(partitionKey);
         }
+        if (record.getEncryptionType() != null) {
+            String encryptionType = record.getEncryptionType();
+            jsonWriter.name("EncryptionType");
+            jsonWriter.value(encryptionType);
+        }
         jsonWriter.endObject();
     }
 

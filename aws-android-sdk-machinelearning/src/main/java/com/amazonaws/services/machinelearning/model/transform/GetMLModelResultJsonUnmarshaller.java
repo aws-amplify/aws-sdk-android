@@ -83,6 +83,15 @@ public class GetMLModelResultJsonUnmarshaller implements
             } else if (name.equals("Message")) {
                 getMLModelResult.setMessage(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ComputeTime")) {
+                getMLModelResult.setComputeTime(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("FinishedAt")) {
+                getMLModelResult.setFinishedAt(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("StartedAt")) {
+                getMLModelResult.setStartedAt(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Recipe")) {
                 getMLModelResult.setRecipe(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -43,6 +43,20 @@ public class DescribeThingResult implements Serializable {
 
     /**
      * <p>
+     * The ID of the thing to describe.
+     * </p>
+     */
+    private String thingId;
+
+    /**
+     * <p>
+     * The ARN of the thing to describe.
+     * </p>
+     */
+    private String thingArn;
+
+    /**
+     * <p>
      * The thing type name.
      * </p>
      * <p>
@@ -173,6 +187,96 @@ public class DescribeThingResult implements Serializable {
      */
     public DescribeThingResult withThingName(String thingName) {
         this.thingName = thingName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The ID of the thing to describe.
+     * </p>
+     *
+     * @return <p>
+     *         The ID of the thing to describe.
+     *         </p>
+     */
+    public String getThingId() {
+        return thingId;
+    }
+
+    /**
+     * <p>
+     * The ID of the thing to describe.
+     * </p>
+     *
+     * @param thingId <p>
+     *            The ID of the thing to describe.
+     *            </p>
+     */
+    public void setThingId(String thingId) {
+        this.thingId = thingId;
+    }
+
+    /**
+     * <p>
+     * The ID of the thing to describe.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param thingId <p>
+     *            The ID of the thing to describe.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeThingResult withThingId(String thingId) {
+        this.thingId = thingId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The ARN of the thing to describe.
+     * </p>
+     *
+     * @return <p>
+     *         The ARN of the thing to describe.
+     *         </p>
+     */
+    public String getThingArn() {
+        return thingArn;
+    }
+
+    /**
+     * <p>
+     * The ARN of the thing to describe.
+     * </p>
+     *
+     * @param thingArn <p>
+     *            The ARN of the thing to describe.
+     *            </p>
+     */
+    public void setThingArn(String thingArn) {
+        this.thingArn = thingArn;
+    }
+
+    /**
+     * <p>
+     * The ARN of the thing to describe.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param thingArn <p>
+     *            The ARN of the thing to describe.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeThingResult withThingArn(String thingArn) {
+        this.thingArn = thingArn;
         return this;
     }
 
@@ -423,6 +527,10 @@ public class DescribeThingResult implements Serializable {
             sb.append("defaultClientId: " + getDefaultClientId() + ",");
         if (getThingName() != null)
             sb.append("thingName: " + getThingName() + ",");
+        if (getThingId() != null)
+            sb.append("thingId: " + getThingId() + ",");
+        if (getThingArn() != null)
+            sb.append("thingArn: " + getThingArn() + ",");
         if (getThingTypeName() != null)
             sb.append("thingTypeName: " + getThingTypeName() + ",");
         if (getAttributes() != null)
@@ -441,6 +549,8 @@ public class DescribeThingResult implements Serializable {
         hashCode = prime * hashCode
                 + ((getDefaultClientId() == null) ? 0 : getDefaultClientId().hashCode());
         hashCode = prime * hashCode + ((getThingName() == null) ? 0 : getThingName().hashCode());
+        hashCode = prime * hashCode + ((getThingId() == null) ? 0 : getThingId().hashCode());
+        hashCode = prime * hashCode + ((getThingArn() == null) ? 0 : getThingArn().hashCode());
         hashCode = prime * hashCode
                 + ((getThingTypeName() == null) ? 0 : getThingTypeName().hashCode());
         hashCode = prime * hashCode + ((getAttributes() == null) ? 0 : getAttributes().hashCode());
@@ -468,6 +578,14 @@ public class DescribeThingResult implements Serializable {
             return false;
         if (other.getThingName() != null
                 && other.getThingName().equals(this.getThingName()) == false)
+            return false;
+        if (other.getThingId() == null ^ this.getThingId() == null)
+            return false;
+        if (other.getThingId() != null && other.getThingId().equals(this.getThingId()) == false)
+            return false;
+        if (other.getThingArn() == null ^ this.getThingArn() == null)
+            return false;
+        if (other.getThingArn() != null && other.getThingArn().equals(this.getThingArn()) == false)
             return false;
         if (other.getThingTypeName() == null ^ this.getThingTypeName() == null)
             return false;

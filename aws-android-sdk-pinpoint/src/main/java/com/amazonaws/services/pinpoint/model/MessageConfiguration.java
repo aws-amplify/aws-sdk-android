@@ -22,10 +22,22 @@ import java.io.Serializable;
  */
 public class MessageConfiguration implements Serializable {
     /**
+     * The message that the campaign delivers to ADM channels. Overrides the
+     * default message.
+     */
+    private Message aDMMessage;
+
+    /**
      * The message that the campaign delivers to APNS channels. Overrides the
      * default message.
      */
     private Message aPNSMessage;
+
+    /**
+     * The message that the campaign delivers to Baidu channels. Overrides the
+     * default message.
+     */
+    private Message baiduMessage;
 
     /**
      * The default message for all channels.
@@ -47,6 +59,45 @@ public class MessageConfiguration implements Serializable {
      * The SMS message configuration.
      */
     private CampaignSmsMessage sMSMessage;
+
+    /**
+     * The message that the campaign delivers to ADM channels. Overrides the
+     * default message.
+     *
+     * @return The message that the campaign delivers to ADM channels. Overrides
+     *         the default message.
+     */
+    public Message getADMMessage() {
+        return aDMMessage;
+    }
+
+    /**
+     * The message that the campaign delivers to ADM channels. Overrides the
+     * default message.
+     *
+     * @param aDMMessage The message that the campaign delivers to ADM channels.
+     *            Overrides the default message.
+     */
+    public void setADMMessage(Message aDMMessage) {
+        this.aDMMessage = aDMMessage;
+    }
+
+    /**
+     * The message that the campaign delivers to ADM channels. Overrides the
+     * default message.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param aDMMessage The message that the campaign delivers to ADM channels.
+     *            Overrides the default message.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public MessageConfiguration withADMMessage(Message aDMMessage) {
+        this.aDMMessage = aDMMessage;
+        return this;
+    }
 
     /**
      * The message that the campaign delivers to APNS channels. Overrides the
@@ -84,6 +135,45 @@ public class MessageConfiguration implements Serializable {
      */
     public MessageConfiguration withAPNSMessage(Message aPNSMessage) {
         this.aPNSMessage = aPNSMessage;
+        return this;
+    }
+
+    /**
+     * The message that the campaign delivers to Baidu channels. Overrides the
+     * default message.
+     *
+     * @return The message that the campaign delivers to Baidu channels.
+     *         Overrides the default message.
+     */
+    public Message getBaiduMessage() {
+        return baiduMessage;
+    }
+
+    /**
+     * The message that the campaign delivers to Baidu channels. Overrides the
+     * default message.
+     *
+     * @param baiduMessage The message that the campaign delivers to Baidu
+     *            channels. Overrides the default message.
+     */
+    public void setBaiduMessage(Message baiduMessage) {
+        this.baiduMessage = baiduMessage;
+    }
+
+    /**
+     * The message that the campaign delivers to Baidu channels. Overrides the
+     * default message.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param baiduMessage The message that the campaign delivers to Baidu
+     *            channels. Overrides the default message.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public MessageConfiguration withBaiduMessage(Message baiduMessage) {
+        this.baiduMessage = baiduMessage;
         return this;
     }
 
@@ -236,8 +326,12 @@ public class MessageConfiguration implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getADMMessage() != null)
+            sb.append("ADMMessage: " + getADMMessage() + ",");
         if (getAPNSMessage() != null)
             sb.append("APNSMessage: " + getAPNSMessage() + ",");
+        if (getBaiduMessage() != null)
+            sb.append("BaiduMessage: " + getBaiduMessage() + ",");
         if (getDefaultMessage() != null)
             sb.append("DefaultMessage: " + getDefaultMessage() + ",");
         if (getEmailMessage() != null)
@@ -255,8 +349,11 @@ public class MessageConfiguration implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getADMMessage() == null) ? 0 : getADMMessage().hashCode());
         hashCode = prime * hashCode
                 + ((getAPNSMessage() == null) ? 0 : getAPNSMessage().hashCode());
+        hashCode = prime * hashCode
+                + ((getBaiduMessage() == null) ? 0 : getBaiduMessage().hashCode());
         hashCode = prime * hashCode
                 + ((getDefaultMessage() == null) ? 0 : getDefaultMessage().hashCode());
         hashCode = prime * hashCode
@@ -277,10 +374,20 @@ public class MessageConfiguration implements Serializable {
             return false;
         MessageConfiguration other = (MessageConfiguration) obj;
 
+        if (other.getADMMessage() == null ^ this.getADMMessage() == null)
+            return false;
+        if (other.getADMMessage() != null
+                && other.getADMMessage().equals(this.getADMMessage()) == false)
+            return false;
         if (other.getAPNSMessage() == null ^ this.getAPNSMessage() == null)
             return false;
         if (other.getAPNSMessage() != null
                 && other.getAPNSMessage().equals(this.getAPNSMessage()) == false)
+            return false;
+        if (other.getBaiduMessage() == null ^ this.getBaiduMessage() == null)
+            return false;
+        if (other.getBaiduMessage() != null
+                && other.getBaiduMessage().equals(this.getBaiduMessage()) == false)
             return false;
         if (other.getDefaultMessage() == null ^ this.getDefaultMessage() == null)
             return false;

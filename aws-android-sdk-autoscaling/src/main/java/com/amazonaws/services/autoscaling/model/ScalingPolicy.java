@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class ScalingPolicy implements Serializable {
     /**
      * <p>
-     * The name of the Auto Scaling group associated with this scaling policy.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -117,7 +117,7 @@ public class ScalingPolicy implements Serializable {
     /**
      * <p>
      * The amount of time, in seconds, after a scaling activity completes before
-     * any further trigger-related scaling activities can start.
+     * any further dynamic scaling activities can start.
      * </p>
      */
     private Integer cooldown;
@@ -160,7 +160,14 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The name of the Auto Scaling group associated with this scaling policy.
+     * A target tracking policy.
+     * </p>
+     */
+    private TargetTrackingConfiguration targetTrackingConfiguration;
+
+    /**
+     * <p>
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -169,8 +176,7 @@ public class ScalingPolicy implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The name of the Auto Scaling group associated with this scaling
-     *         policy.
+     *         The name of the Auto Scaling group.
      *         </p>
      */
     public String getAutoScalingGroupName() {
@@ -179,7 +185,7 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The name of the Auto Scaling group associated with this scaling policy.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -188,8 +194,7 @@ public class ScalingPolicy implements Serializable {
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the Auto Scaling group associated with this
-     *            scaling policy.
+     *            The name of the Auto Scaling group.
      *            </p>
      */
     public void setAutoScalingGroupName(String autoScalingGroupName) {
@@ -198,7 +203,7 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The name of the Auto Scaling group associated with this scaling policy.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -210,8 +215,7 @@ public class ScalingPolicy implements Serializable {
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the Auto Scaling group associated with this
-     *            scaling policy.
+     *            The name of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -665,13 +669,13 @@ public class ScalingPolicy implements Serializable {
     /**
      * <p>
      * The amount of time, in seconds, after a scaling activity completes before
-     * any further trigger-related scaling activities can start.
+     * any further dynamic scaling activities can start.
      * </p>
      *
      * @return <p>
      *         The amount of time, in seconds, after a scaling activity
-     *         completes before any further trigger-related scaling activities
-     *         can start.
+     *         completes before any further dynamic scaling activities can
+     *         start.
      *         </p>
      */
     public Integer getCooldown() {
@@ -681,13 +685,13 @@ public class ScalingPolicy implements Serializable {
     /**
      * <p>
      * The amount of time, in seconds, after a scaling activity completes before
-     * any further trigger-related scaling activities can start.
+     * any further dynamic scaling activities can start.
      * </p>
      *
      * @param cooldown <p>
      *            The amount of time, in seconds, after a scaling activity
-     *            completes before any further trigger-related scaling
-     *            activities can start.
+     *            completes before any further dynamic scaling activities can
+     *            start.
      *            </p>
      */
     public void setCooldown(Integer cooldown) {
@@ -697,7 +701,7 @@ public class ScalingPolicy implements Serializable {
     /**
      * <p>
      * The amount of time, in seconds, after a scaling activity completes before
-     * any further trigger-related scaling activities can start.
+     * any further dynamic scaling activities can start.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -705,8 +709,8 @@ public class ScalingPolicy implements Serializable {
      *
      * @param cooldown <p>
      *            The amount of time, in seconds, after a scaling activity
-     *            completes before any further trigger-related scaling
-     *            activities can start.
+     *            completes before any further dynamic scaling activities can
+     *            start.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -993,6 +997,53 @@ public class ScalingPolicy implements Serializable {
     }
 
     /**
+     * <p>
+     * A target tracking policy.
+     * </p>
+     *
+     * @return <p>
+     *         A target tracking policy.
+     *         </p>
+     */
+    public TargetTrackingConfiguration getTargetTrackingConfiguration() {
+        return targetTrackingConfiguration;
+    }
+
+    /**
+     * <p>
+     * A target tracking policy.
+     * </p>
+     *
+     * @param targetTrackingConfiguration <p>
+     *            A target tracking policy.
+     *            </p>
+     */
+    public void setTargetTrackingConfiguration(
+            TargetTrackingConfiguration targetTrackingConfiguration) {
+        this.targetTrackingConfiguration = targetTrackingConfiguration;
+    }
+
+    /**
+     * <p>
+     * A target tracking policy.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param targetTrackingConfiguration <p>
+     *            A target tracking policy.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ScalingPolicy withTargetTrackingConfiguration(
+            TargetTrackingConfiguration targetTrackingConfiguration) {
+        this.targetTrackingConfiguration = targetTrackingConfiguration;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1028,7 +1079,9 @@ public class ScalingPolicy implements Serializable {
         if (getEstimatedInstanceWarmup() != null)
             sb.append("EstimatedInstanceWarmup: " + getEstimatedInstanceWarmup() + ",");
         if (getAlarms() != null)
-            sb.append("Alarms: " + getAlarms());
+            sb.append("Alarms: " + getAlarms() + ",");
+        if (getTargetTrackingConfiguration() != null)
+            sb.append("TargetTrackingConfiguration: " + getTargetTrackingConfiguration());
         sb.append("}");
         return sb.toString();
     }
@@ -1064,6 +1117,10 @@ public class ScalingPolicy implements Serializable {
                 + ((getEstimatedInstanceWarmup() == null) ? 0 : getEstimatedInstanceWarmup()
                         .hashCode());
         hashCode = prime * hashCode + ((getAlarms() == null) ? 0 : getAlarms().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getTargetTrackingConfiguration() == null) ? 0
+                        : getTargetTrackingConfiguration().hashCode());
         return hashCode;
     }
 
@@ -1140,6 +1197,13 @@ public class ScalingPolicy implements Serializable {
         if (other.getAlarms() == null ^ this.getAlarms() == null)
             return false;
         if (other.getAlarms() != null && other.getAlarms().equals(this.getAlarms()) == false)
+            return false;
+        if (other.getTargetTrackingConfiguration() == null
+                ^ this.getTargetTrackingConfiguration() == null)
+            return false;
+        if (other.getTargetTrackingConfiguration() != null
+                && other.getTargetTrackingConfiguration().equals(
+                        this.getTargetTrackingConfiguration()) == false)
             return false;
         return true;
     }

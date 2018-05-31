@@ -39,6 +39,9 @@ public class PutRecordResultJsonUnmarshaller implements
             } else if (name.equals("SequenceNumber")) {
                 putRecordResult.setSequenceNumber(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("EncryptionType")) {
+                putRecordResult.setEncryptionType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -17,6 +17,11 @@ package com.amazonaws.services.elasticloadbalancing.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * Contains the parameters for DescribeLoadBalancers.
+ * </p>
+ */
 public class DescribeLoadBalancersResult implements Serializable {
     /**
      * <p>

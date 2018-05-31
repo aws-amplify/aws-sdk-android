@@ -19,12 +19,18 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Indicates that a resource could not be created due to a naming conflict.
+ * Indicates that a resource could not be created because of a naming conflict.
  * </p>
  */
 public class AlreadyExistsException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * <p>
+     * Indicates that a resource could not be created because the resource name
+     * already exists.
+     * </p>
+     */
     private String name;
 
     /**
@@ -37,18 +43,30 @@ public class AlreadyExistsException extends AmazonServiceException {
     }
 
     /**
-     * Returns the value of the name property for this object.
+     * <p>
+     * Indicates that a resource could not be created because the resource name
+     * already exists.
+     * </p>
      *
-     * @return The value of the name property for this object.
+     * @return <p>
+     *         Indicates that a resource could not be created because the
+     *         resource name already exists.
+     *         </p>
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Sets the value of name
+     * <p>
+     * Indicates that a resource could not be created because the resource name
+     * already exists.
+     * </p>
      *
-     * @param name The new value for the name property for this object.
+     * @param name <p>
+     *            Indicates that a resource could not be created because the
+     *            resource name already exists.
+     *            </p>
      */
     public void setName(String name) {
         this.name = name;

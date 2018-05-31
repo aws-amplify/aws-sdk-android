@@ -19,13 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The result type of the authentication result.
+ * The authentication result.
  * </p>
  */
 public class AuthenticationResultType implements Serializable {
     /**
      * <p>
-     * The access token of the authentication result.
+     * The access token.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -35,21 +35,21 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The expiration period of the authentication result.
+     * The expiration period of the authentication result in seconds.
      * </p>
      */
     private Integer expiresIn;
 
     /**
      * <p>
-     * The token type of the authentication result.
+     * The token type.
      * </p>
      */
     private String tokenType;
 
     /**
      * <p>
-     * The refresh token of the authentication result.
+     * The refresh token.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,7 +59,7 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The ID token of the authentication result.
+     * The ID token.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,14 +76,14 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The access token of the authentication result.
+     * The access token.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
-     *         The access token of the authentication result.
+     *         The access token.
      *         </p>
      */
     public String getAccessToken() {
@@ -92,14 +92,14 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The access token of the authentication result.
+     * The access token.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token of the authentication result.
+     *            The access token.
      *            </p>
      */
     public void setAccessToken(String accessToken) {
@@ -108,7 +108,7 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The access token of the authentication result.
+     * The access token.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -118,7 +118,7 @@ public class AuthenticationResultType implements Serializable {
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token of the authentication result.
+     *            The access token.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -130,11 +130,11 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The expiration period of the authentication result.
+     * The expiration period of the authentication result in seconds.
      * </p>
      *
      * @return <p>
-     *         The expiration period of the authentication result.
+     *         The expiration period of the authentication result in seconds.
      *         </p>
      */
     public Integer getExpiresIn() {
@@ -143,11 +143,11 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The expiration period of the authentication result.
+     * The expiration period of the authentication result in seconds.
      * </p>
      *
      * @param expiresIn <p>
-     *            The expiration period of the authentication result.
+     *            The expiration period of the authentication result in seconds.
      *            </p>
      */
     public void setExpiresIn(Integer expiresIn) {
@@ -156,14 +156,14 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The expiration period of the authentication result.
+     * The expiration period of the authentication result in seconds.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param expiresIn <p>
-     *            The expiration period of the authentication result.
+     *            The expiration period of the authentication result in seconds.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -175,11 +175,11 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The token type of the authentication result.
+     * The token type.
      * </p>
      *
      * @return <p>
-     *         The token type of the authentication result.
+     *         The token type.
      *         </p>
      */
     public String getTokenType() {
@@ -188,11 +188,11 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The token type of the authentication result.
+     * The token type.
      * </p>
      *
      * @param tokenType <p>
-     *            The token type of the authentication result.
+     *            The token type.
      *            </p>
      */
     public void setTokenType(String tokenType) {
@@ -201,14 +201,14 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The token type of the authentication result.
+     * The token type.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tokenType <p>
-     *            The token type of the authentication result.
+     *            The token type.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -220,14 +220,14 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The refresh token of the authentication result.
+     * The refresh token.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
-     *         The refresh token of the authentication result.
+     *         The refresh token.
      *         </p>
      */
     public String getRefreshToken() {
@@ -236,14 +236,14 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The refresh token of the authentication result.
+     * The refresh token.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param refreshToken <p>
-     *            The refresh token of the authentication result.
+     *            The refresh token.
      *            </p>
      */
     public void setRefreshToken(String refreshToken) {
@@ -252,7 +252,7 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The refresh token of the authentication result.
+     * The refresh token.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -262,7 +262,7 @@ public class AuthenticationResultType implements Serializable {
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param refreshToken <p>
-     *            The refresh token of the authentication result.
+     *            The refresh token.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -274,14 +274,14 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The ID token of the authentication result.
+     * The ID token.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
-     *         The ID token of the authentication result.
+     *         The ID token.
      *         </p>
      */
     public String getIdToken() {
@@ -290,14 +290,14 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The ID token of the authentication result.
+     * The ID token.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param idToken <p>
-     *            The ID token of the authentication result.
+     *            The ID token.
      *            </p>
      */
     public void setIdToken(String idToken) {
@@ -306,7 +306,7 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The ID token of the authentication result.
+     * The ID token.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -316,7 +316,7 @@ public class AuthenticationResultType implements Serializable {
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param idToken <p>
-     *            The ID token of the authentication result.
+     *            The ID token.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

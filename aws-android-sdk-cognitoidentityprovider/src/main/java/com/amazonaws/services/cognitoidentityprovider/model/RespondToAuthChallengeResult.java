@@ -25,19 +25,23 @@ import java.io.Serializable;
 public class RespondToAuthChallengeResult implements Serializable {
     /**
      * <p>
-     * The challenge name.
+     * The challenge name. For more information, see .
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
-     * NEW_PASSWORD_REQUIRED
+     * <b>Allowed Values: </b>SMS_MFA, SOFTWARE_TOKEN_MFA, SELECT_MFA_TYPE,
+     * MFA_SETUP, PASSWORD_VERIFIER, CUSTOM_CHALLENGE, DEVICE_SRP_AUTH,
+     * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      */
     private String challengeName;
 
     /**
      * <p>
-     * The session.
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. If the or API call determines that the caller needs to go
+     * through another challenge, they return a session with other challenge
+     * parameters. This session should be passed as it is to the next
+     * <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,30 +51,31 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The challenge parameters.
+     * The challenge parameters. For more information, see .
      * </p>
      */
     private java.util.Map<String, String> challengeParameters;
 
     /**
      * <p>
-     * The result type of the authentication result.
+     * The result returned by the server in response to the request to respond
+     * to the authentication challenge.
      * </p>
      */
     private AuthenticationResultType authenticationResult;
 
     /**
      * <p>
-     * The challenge name.
+     * The challenge name. For more information, see .
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
-     * NEW_PASSWORD_REQUIRED
+     * <b>Allowed Values: </b>SMS_MFA, SOFTWARE_TOKEN_MFA, SELECT_MFA_TYPE,
+     * MFA_SETUP, PASSWORD_VERIFIER, CUSTOM_CHALLENGE, DEVICE_SRP_AUTH,
+     * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @return <p>
-     *         The challenge name.
+     *         The challenge name. For more information, see .
      *         </p>
      * @see ChallengeNameType
      */
@@ -80,16 +85,16 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The challenge name.
+     * The challenge name. For more information, see .
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
-     * NEW_PASSWORD_REQUIRED
+     * <b>Allowed Values: </b>SMS_MFA, SOFTWARE_TOKEN_MFA, SELECT_MFA_TYPE,
+     * MFA_SETUP, PASSWORD_VERIFIER, CUSTOM_CHALLENGE, DEVICE_SRP_AUTH,
+     * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The challenge name.
+     *            The challenge name. For more information, see .
      *            </p>
      * @see ChallengeNameType
      */
@@ -99,19 +104,19 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The challenge name.
+     * The challenge name. For more information, see .
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
-     * NEW_PASSWORD_REQUIRED
+     * <b>Allowed Values: </b>SMS_MFA, SOFTWARE_TOKEN_MFA, SELECT_MFA_TYPE,
+     * MFA_SETUP, PASSWORD_VERIFIER, CUSTOM_CHALLENGE, DEVICE_SRP_AUTH,
+     * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The challenge name.
+     *            The challenge name. For more information, see .
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -124,16 +129,16 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The challenge name.
+     * The challenge name. For more information, see .
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
-     * NEW_PASSWORD_REQUIRED
+     * <b>Allowed Values: </b>SMS_MFA, SOFTWARE_TOKEN_MFA, SELECT_MFA_TYPE,
+     * MFA_SETUP, PASSWORD_VERIFIER, CUSTOM_CHALLENGE, DEVICE_SRP_AUTH,
+     * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The challenge name.
+     *            The challenge name. For more information, see .
      *            </p>
      * @see ChallengeNameType
      */
@@ -143,19 +148,19 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The challenge name.
+     * The challenge name. For more information, see .
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SMS_MFA, PASSWORD_VERIFIER, CUSTOM_CHALLENGE,
-     * DEVICE_SRP_AUTH, DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH,
-     * NEW_PASSWORD_REQUIRED
+     * <b>Allowed Values: </b>SMS_MFA, SOFTWARE_TOKEN_MFA, SELECT_MFA_TYPE,
+     * MFA_SETUP, PASSWORD_VERIFIER, CUSTOM_CHALLENGE, DEVICE_SRP_AUTH,
+     * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The challenge name.
+     *            The challenge name. For more information, see .
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -168,14 +173,23 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The session.
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. If the or API call determines that the caller needs to go
+     * through another challenge, they return a session with other challenge
+     * parameters. This session should be passed as it is to the next
+     * <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         The session.
+     *         The session which should be passed both ways in
+     *         challenge-response calls to the service. If the or API call
+     *         determines that the caller needs to go through another challenge,
+     *         they return a session with other challenge parameters. This
+     *         session should be passed as it is to the next
+     *         <code>RespondToAuthChallenge</code> API call.
      *         </p>
      */
     public String getSession() {
@@ -184,14 +198,23 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The session.
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. If the or API call determines that the caller needs to go
+     * through another challenge, they return a session with other challenge
+     * parameters. This session should be passed as it is to the next
+     * <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param session <p>
-     *            The session.
+     *            The session which should be passed both ways in
+     *            challenge-response calls to the service. If the or API call
+     *            determines that the caller needs to go through another
+     *            challenge, they return a session with other challenge
+     *            parameters. This session should be passed as it is to the next
+     *            <code>RespondToAuthChallenge</code> API call.
      *            </p>
      */
     public void setSession(String session) {
@@ -200,7 +223,11 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The session.
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. If the or API call determines that the caller needs to go
+     * through another challenge, they return a session with other challenge
+     * parameters. This session should be passed as it is to the next
+     * <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -210,7 +237,12 @@ public class RespondToAuthChallengeResult implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param session <p>
-     *            The session.
+     *            The session which should be passed both ways in
+     *            challenge-response calls to the service. If the or API call
+     *            determines that the caller needs to go through another
+     *            challenge, they return a session with other challenge
+     *            parameters. This session should be passed as it is to the next
+     *            <code>RespondToAuthChallenge</code> API call.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -222,11 +254,11 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The challenge parameters.
+     * The challenge parameters. For more information, see .
      * </p>
      *
      * @return <p>
-     *         The challenge parameters.
+     *         The challenge parameters. For more information, see .
      *         </p>
      */
     public java.util.Map<String, String> getChallengeParameters() {
@@ -235,11 +267,11 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The challenge parameters.
+     * The challenge parameters. For more information, see .
      * </p>
      *
      * @param challengeParameters <p>
-     *            The challenge parameters.
+     *            The challenge parameters. For more information, see .
      *            </p>
      */
     public void setChallengeParameters(java.util.Map<String, String> challengeParameters) {
@@ -248,14 +280,14 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The challenge parameters.
+     * The challenge parameters. For more information, see .
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param challengeParameters <p>
-     *            The challenge parameters.
+     *            The challenge parameters. For more information, see .
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -268,7 +300,7 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The challenge parameters.
+     * The challenge parameters. For more information, see .
      * </p>
      * <p>
      * The method adds a new key-value pair into ChallengeParameters parameter,
@@ -305,11 +337,13 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The result type of the authentication result.
+     * The result returned by the server in response to the request to respond
+     * to the authentication challenge.
      * </p>
      *
      * @return <p>
-     *         The result type of the authentication result.
+     *         The result returned by the server in response to the request to
+     *         respond to the authentication challenge.
      *         </p>
      */
     public AuthenticationResultType getAuthenticationResult() {
@@ -318,11 +352,13 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The result type of the authentication result.
+     * The result returned by the server in response to the request to respond
+     * to the authentication challenge.
      * </p>
      *
      * @param authenticationResult <p>
-     *            The result type of the authentication result.
+     *            The result returned by the server in response to the request
+     *            to respond to the authentication challenge.
      *            </p>
      */
     public void setAuthenticationResult(AuthenticationResultType authenticationResult) {
@@ -331,14 +367,16 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The result type of the authentication result.
+     * The result returned by the server in response to the request to respond
+     * to the authentication challenge.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param authenticationResult <p>
-     *            The result type of the authentication result.
+     *            The result returned by the server in response to the request
+     *            to respond to the authentication challenge.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

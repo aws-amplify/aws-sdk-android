@@ -71,10 +71,20 @@ class CertificateDescriptionJsonMarshaller {
             jsonWriter.name("lastModifiedDate");
             jsonWriter.value(lastModifiedDate);
         }
+        if (certificateDescription.getCustomerVersion() != null) {
+            Integer customerVersion = certificateDescription.getCustomerVersion();
+            jsonWriter.name("customerVersion");
+            jsonWriter.value(customerVersion);
+        }
         if (certificateDescription.getTransferData() != null) {
             TransferData transferData = certificateDescription.getTransferData();
             jsonWriter.name("transferData");
             TransferDataJsonMarshaller.getInstance().marshall(transferData, jsonWriter);
+        }
+        if (certificateDescription.getGenerationId() != null) {
+            String generationId = certificateDescription.getGenerationId();
+            jsonWriter.name("generationId");
+            jsonWriter.value(generationId);
         }
         jsonWriter.endObject();
     }

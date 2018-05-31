@@ -29,13 +29,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>
- * This action is throttled at one request per second.
+ * You can execute this operation no more than once per second.
  * </p>
  */
 public class CreateReceiptRuleRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the rule set to which to add the rule.
+     * The name of the rule set that the receipt rule will be added to.
      * </p>
      */
     private String ruleSetName;
@@ -59,11 +59,11 @@ public class CreateReceiptRuleRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The name of the rule set to which to add the rule.
+     * The name of the rule set that the receipt rule will be added to.
      * </p>
      *
      * @return <p>
-     *         The name of the rule set to which to add the rule.
+     *         The name of the rule set that the receipt rule will be added to.
      *         </p>
      */
     public String getRuleSetName() {
@@ -72,11 +72,12 @@ public class CreateReceiptRuleRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The name of the rule set to which to add the rule.
+     * The name of the rule set that the receipt rule will be added to.
      * </p>
      *
      * @param ruleSetName <p>
-     *            The name of the rule set to which to add the rule.
+     *            The name of the rule set that the receipt rule will be added
+     *            to.
      *            </p>
      */
     public void setRuleSetName(String ruleSetName) {
@@ -85,14 +86,15 @@ public class CreateReceiptRuleRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The name of the rule set to which to add the rule.
+     * The name of the rule set that the receipt rule will be added to.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param ruleSetName <p>
-     *            The name of the rule set to which to add the rule.
+     *            The name of the rule set that the receipt rule will be added
+     *            to.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

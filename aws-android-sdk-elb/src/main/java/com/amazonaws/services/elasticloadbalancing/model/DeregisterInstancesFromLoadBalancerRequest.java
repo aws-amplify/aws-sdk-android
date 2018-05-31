@@ -31,9 +31,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_DeReg_Reg_Instances.html"
- * >Deregister and Register Amazon EC2 Instances</a> in the <i>Elastic Load
- * Balancing Developer Guide</i>.
+ * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html"
+ * >Register or De-Register EC2 Instances</a> in the <i>Classic Load Balancer
+ * Guide</i>.
  * </p>
  */
 public class DeregisterInstancesFromLoadBalancerRequest extends AmazonWebServiceRequest implements

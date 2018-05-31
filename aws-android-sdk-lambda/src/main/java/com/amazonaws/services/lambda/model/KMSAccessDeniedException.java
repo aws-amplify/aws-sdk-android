@@ -20,7 +20,7 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * Lambda was unable to decrypt the environment variables because KMS access was
- * denied. Please check the Lambda function's KMS permissions.
+ * denied. Check the Lambda function's KMS permissions.
  * </p>
  */
 public class KMSAccessDeniedException extends AmazonServiceException {

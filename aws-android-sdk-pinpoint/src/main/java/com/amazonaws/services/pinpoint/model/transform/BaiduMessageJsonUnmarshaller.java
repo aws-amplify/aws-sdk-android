@@ -55,9 +55,6 @@ class BaiduMessageJsonUnmarshaller implements Unmarshaller<BaiduMessage, JsonUnm
             } else if (name.equals("ImageUrl")) {
                 baiduMessage.setImageUrl(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("JsonData")) {
-                baiduMessage.setJsonData(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
             } else if (name.equals("RawContent")) {
                 baiduMessage.setRawContent(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

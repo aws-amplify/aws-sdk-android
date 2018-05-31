@@ -18,7 +18,10 @@ package com.amazonaws.services.kinesisvideo.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * You have exceeded the limit of tags that you can associate with the resource.
+ * Kinesis video streams support up to 50 tags.
+ * </p>
  */
 public class TagsPerResourceExceededLimitException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

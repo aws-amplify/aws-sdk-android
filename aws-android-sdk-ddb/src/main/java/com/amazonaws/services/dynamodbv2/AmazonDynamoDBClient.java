@@ -36,195 +36,26 @@ import com.amazonaws.services.dynamodbv2.model.transform.*;
  * <p>
  * <fullname>Amazon DynamoDB</fullname>
  * <p>
- * This is the Amazon DynamoDB API Reference. This guide provides descriptions
- * of the low-level DynamoDB API.
+ * Amazon DynamoDB is a fully managed NoSQL database service that provides fast
+ * and predictable performance with seamless scalability. DynamoDB lets you
+ * offload the administrative burdens of operating and scaling a distributed
+ * database, so that you don't have to worry about hardware provisioning, setup
+ * and configuration, replication, software patching, or cluster scaling.
  * </p>
  * <p>
- * This guide is intended for use with the following DynamoDB documentation:
- * </p>
- * <ul>
- * <li>
- * <p>
- * <a href=
- * "http://docs.aws.amazon.com/amazondynamodb/latest/gettingstartedguide/"
- * >Amazon DynamoDB Getting Started Guide</a> - provides hands-on exercises that
- * help you learn the basics of working with DynamoDB. <i>If you are new to
- * DynamoDB, we recommend that you begin with the Getting Started Guide.</i>
- * </p>
- * </li>
- * <li>
- * <p>
- * <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/">
- * Amazon DynamoDB Developer Guide</a> - contains detailed information about
- * DynamoDB concepts, usage, and best practices.
- * </p>
- * </li>
- * <li>
- * <p>
- * <a href="http://docs.aws.amazon.com/dynamodbstreams/latest/APIReference/">
- * Amazon DynamoDB Streams API Reference</a> - provides descriptions and samples
- * of the DynamoDB Streams API. (For more information, see <a href=
- * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html"
- * >Capturing Table Activity with DynamoDB Streams</a> in the Amazon DynamoDB
- * Developer Guide.)
- * </p>
- * </li>
- * </ul>
- * <p>
- * Instead of making the requests to the low-level DynamoDB API directly from
- * your application, we recommend that you use the AWS Software Development Kits
- * (SDKs). The easy-to-use libraries in the AWS SDKs make it unnecessary to call
- * the low-level DynamoDB API directly from your application. The libraries take
- * care of request authentication, serialization, and connection management. For
- * more information, see <a href=
- * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/UsingAWSSDK.html"
- * >Using the AWS SDKs with DynamoDB</a> in the Amazon DynamoDB Developer Guide.
+ * With DynamoDB, you can create database tables that can store and retrieve any
+ * amount of data, and serve any level of request traffic. You can scale up or
+ * scale down your tables' throughput capacity without downtime or performance
+ * degradation, and use the AWS Management Console to monitor resource
+ * utilization and performance metrics.
  * </p>
  * <p>
- * If you decide to code against the low-level DynamoDB API directly, you will
- * need to write the necessary code to authenticate your requests. For more
- * information on signing your requests, see <a href=
- * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/API.html"
- * >Using the DynamoDB API</a> in the <i>Amazon DynamoDB Developer Guide</i>.
- * </p>
- * <p>
- * The following are short descriptions of each low-level API action, organized
- * by function.
- * </p>
- * <p>
- * <b>Managing Tables</b>
- * </p>
- * <ul>
- * <li>
- * <p>
- * <i>CreateTable</i> - Creates a table with user-specified provisioned
- * throughput settings. You must define a primary key for the table - either a
- * simple primary key (partition key), or a composite primary key (partition key
- * and sort key). Optionally, you can create one or more secondary indexes,
- * which provide fast data access using non-key attributes.
- * </p>
- * </li>
- * <li>
- * <p>
- * <i>DescribeTable</i> - Returns metadata for a table, such as table size,
- * status, and index information.
- * </p>
- * </li>
- * <li>
- * <p>
- * <i>UpdateTable</i> - Modifies the provisioned throughput settings for a
- * table. Optionally, you can modify the provisioned throughput settings for
- * global secondary indexes on the table.
- * </p>
- * </li>
- * <li>
- * <p>
- * <i>ListTables</i> - Returns a list of all tables associated with the current
- * AWS account and endpoint.
- * </p>
- * </li>
- * <li>
- * <p>
- * <i>DeleteTable</i> - Deletes a table and all of its indexes.
- * </p>
- * </li>
- * </ul>
- * <p>
- * For conceptual information about managing tables, see <a href=
- * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html"
- * >Working with Tables</a> in the <i>Amazon DynamoDB Developer Guide</i>.
- * </p>
- * <p>
- * <b>Reading Data</b>
- * </p>
- * <ul>
- * <li>
- * <p>
- * <i>GetItem</i> - Returns a set of attributes for the item that has a given
- * primary key. By default, <i>GetItem</i> performs an eventually consistent
- * read; however, applications can request a strongly consistent read instead.
- * </p>
- * </li>
- * <li>
- * <p>
- * <i>BatchGetItem</i> - Performs multiple <i>GetItem</i> requests for data
- * items using their primary keys, from one table or multiple tables. The
- * response from <i>BatchGetItem</i> has a size limit of 16 MB and returns a
- * maximum of 100 items. Both eventually consistent and strongly consistent
- * reads can be used.
- * </p>
- * </li>
- * <li>
- * <p>
- * <i>Query</i> - Returns one or more items from a table or a secondary index.
- * You must provide a specific value for the partition key. You can narrow the
- * scope of the query using comparison operators against a sort key value, or on
- * the index key. <i>Query</i> supports either eventual or strong consistency. A
- * single response has a size limit of 1 MB.
- * </p>
- * </li>
- * <li>
- * <p>
- * <i>Scan</i> - Reads every item in a table; the result set is eventually
- * consistent. You can limit the number of items returned by filtering the data
- * attributes, using conditional expressions. <i>Scan</i> can be used to enable
- * ad-hoc querying of a table against non-key attributes; however, since this is
- * a full table scan without using an index, <i>Scan</i> should not be used for
- * any application query use case that requires predictable performance.
- * </p>
- * </li>
- * </ul>
- * <p>
- * For conceptual information about reading data, see <a href=
- * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html"
- * >Working with Items</a> and <a href=
- * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html"
- * >Query and Scan Operations</a> in the <i>Amazon DynamoDB Developer Guide</i>.
- * </p>
- * <p>
- * <b>Modifying Data</b>
- * </p>
- * <ul>
- * <li>
- * <p>
- * <i>PutItem</i> - Creates a new item, or replaces an existing item with a new
- * item (including all the attributes). By default, if an item in the table
- * already exists with the same primary key, the new item completely replaces
- * the existing item. You can use conditional operators to replace an item only
- * if its attribute values match certain conditions, or to insert a new item
- * only if that item doesn't already exist.
- * </p>
- * </li>
- * <li>
- * <p>
- * <i>UpdateItem</i> - Modifies the attributes of an existing item. You can also
- * use conditional operators to perform an update only if the item's attribute
- * values match certain conditions.
- * </p>
- * </li>
- * <li>
- * <p>
- * <i>DeleteItem</i> - Deletes an item in a table by primary key. You can use
- * conditional operators to perform a delete an item only if the item's
- * attribute values match certain conditions.
- * </p>
- * </li>
- * <li>
- * <p>
- * <i>BatchWriteItem</i> - Performs multiple <i>PutItem</i> and
- * <i>DeleteItem</i> requests across multiple tables in a single request. A
- * failure of any request(s) in the batch will not cause the entire
- * <i>BatchWriteItem</i> operation to fail. Supports batches of up to 25 items
- * to put or delete, with a maximum total request size of 16 MB.
- * </p>
- * </li>
- * </ul>
- * <p>
- * For conceptual information about modifying data, see <a href=
- * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html"
- * >Working with Items</a> and <a href=
- * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html"
- * >Query and Scan Operations</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+ * DynamoDB automatically spreads the data and traffic for your tables over a
+ * sufficient number of servers to handle your throughput and storage
+ * requirements, while maintaining consistent and fast performance. All of your
+ * data is stored on solid state disks (SSDs) and automatically replicated
+ * across multiple Availability Zones in an AWS region, providing built-in high
+ * availability and data durability.
  * </p>
  */
 public class AmazonDynamoDBClient extends AmazonWebServiceClient implements AmazonDynamoDB {
@@ -446,13 +277,26 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     private void init() {
         jsonErrorUnmarshallers = new ArrayList<JsonErrorUnmarshaller>();
+        jsonErrorUnmarshallers.add(new BackupInUseExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new BackupNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ConditionalCheckFailedExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ContinuousBackupsUnavailableExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new GlobalTableAlreadyExistsExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new GlobalTableNotFoundExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new IndexNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InternalServerErrorExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidRestoreTimeExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ItemCollectionSizeLimitExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new LimitExceededExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new PointInTimeRecoveryUnavailableExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ProvisionedThroughputExceededExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ReplicaAlreadyExistsExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ReplicaNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceInUseExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new TableAlreadyExistsExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new TableInUseExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new TableNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
@@ -478,41 +322,42 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * The <i>BatchGetItem</i> operation returns the attributes of one or more
-     * items from one or more tables. You identify requested items by primary
-     * key.
+     * The <code>BatchGetItem</code> operation returns the attributes of one or
+     * more items from one or more tables. You identify requested items by
+     * primary key.
      * </p>
      * <p>
      * A single operation can retrieve up to 16 MB of data, which can contain as
-     * many as 100 items. <i>BatchGetItem</i> will return a partial result if
-     * the response size limit is exceeded, the table's provisioned throughput
-     * is exceeded, or an internal processing failure occurs. If a partial
-     * result is returned, the operation returns a value for
-     * <i>UnprocessedKeys</i>. You can use this value to retry the operation
-     * starting with the next item to get.
+     * many as 100 items. <code>BatchGetItem</code> will return a partial result
+     * if the response size limit is exceeded, the table's provisioned
+     * throughput is exceeded, or an internal processing failure occurs. If a
+     * partial result is returned, the operation returns a value for
+     * <code>UnprocessedKeys</code>. You can use this value to retry the
+     * operation starting with the next item to get.
      * </p>
      * <important>
      * <p>
-     * If you request more than 100 items <i>BatchGetItem</i> will return a
-     * <i>ValidationException</i> with the message
+     * If you request more than 100 items <code>BatchGetItem</code> will return
+     * a <code>ValidationException</code> with the message
      * "Too many items requested for the BatchGetItem call".
      * </p>
      * </important>
      * <p>
      * For example, if you ask to retrieve 100 items, but each individual item
      * is 300 KB in size, the system returns 52 items (so as not to exceed the
-     * 16 MB limit). It also returns an appropriate <i>UnprocessedKeys</i> value
-     * so you can get the next page of results. If desired, your application can
-     * include its own logic to assemble the pages of results into one data set.
+     * 16 MB limit). It also returns an appropriate <code>UnprocessedKeys</code>
+     * value so you can get the next page of results. If desired, your
+     * application can include its own logic to assemble the pages of results
+     * into one data set.
      * </p>
      * <p>
      * If <i>none</i> of the items can be processed due to insufficient
      * provisioned throughput on all of the tables in the request, then
-     * <i>BatchGetItem</i> will return a
-     * <i>ProvisionedThroughputExceededException</i>. If <i>at least one</i> of
-     * the items is successfully processed, then <i>BatchGetItem</i> completes
-     * successfully, while returning the keys of the unread items in
-     * <i>UnprocessedKeys</i>.
+     * <code>BatchGetItem</code> will return a
+     * <code>ProvisionedThroughputExceededException</code>. If <i>at least
+     * one</i> of the items is successfully processed, then
+     * <code>BatchGetItem</code> completes successfully, while returning the
+     * keys of the unread items in <code>UnprocessedKeys</code>.
      * </p>
      * <important>
      * <p>
@@ -532,20 +377,20 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * </important>
      * <p>
-     * By default, <i>BatchGetItem</i> performs eventually consistent reads on
-     * every table in the request. If you want strongly consistent reads
-     * instead, you can set <i>ConsistentRead</i> to <code>true</code> for any
-     * or all tables.
+     * By default, <code>BatchGetItem</code> performs eventually consistent
+     * reads on every table in the request. If you want strongly consistent
+     * reads instead, you can set <code>ConsistentRead</code> to
+     * <code>true</code> for any or all tables.
      * </p>
      * <p>
-     * In order to minimize response latency, <i>BatchGetItem</i> retrieves
-     * items in parallel.
+     * In order to minimize response latency, <code>BatchGetItem</code>
+     * retrieves items in parallel.
      * </p>
      * <p>
      * When designing your application, keep in mind that DynamoDB does not
      * return items in any particular order. To help parse the response by item,
      * include the primary key values for the items in your request in the
-     * <i>AttributesToGet</i> parameter.
+     * <code>ProjectionExpression</code> parameter.
      * </p>
      * <p>
      * If a requested item does not exist, it is not returned in the result.
@@ -557,7 +402,7 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * 
      * @param batchGetItemRequest <p>
-     *            Represents the input of a <i>BatchGetItem</i> operation.
+     *            Represents the input of a <code>BatchGetItem</code> operation.
      *            </p>
      * @return batchGetItemResult The response from the BatchGetItem service
      *         method, as returned by Amazon DynamoDB.
@@ -602,34 +447,34 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * The <i>BatchWriteItem</i> operation puts or deletes multiple items in one
-     * or more tables. A single call to <i>BatchWriteItem</i> can write up to 16
-     * MB of data, which can comprise as many as 25 put or delete requests.
-     * Individual items to be written can be as large as 400 KB.
+     * The <code>BatchWriteItem</code> operation puts or deletes multiple items
+     * in one or more tables. A single call to <code>BatchWriteItem</code> can
+     * write up to 16 MB of data, which can comprise as many as 25 put or delete
+     * requests. Individual items to be written can be as large as 400 KB.
      * </p>
      * <note>
      * <p>
-     * <i>BatchWriteItem</i> cannot update items. To update items, use the
-     * <i>UpdateItem</i> API.
+     * <code>BatchWriteItem</code> cannot update items. To update items, use the
+     * <code>UpdateItem</code> action.
      * </p>
      * </note>
      * <p>
-     * The individual <i>PutItem</i> and <i>DeleteItem</i> operations specified
-     * in <i>BatchWriteItem</i> are atomic; however <i>BatchWriteItem</i> as a
-     * whole is not. If any requested operations fail because the table's
-     * provisioned throughput is exceeded or an internal processing failure
-     * occurs, the failed operations are returned in the <i>UnprocessedItems</i>
-     * response parameter. You can investigate and optionally resend the
-     * requests. Typically, you would call <i>BatchWriteItem</i> in a loop. Each
-     * iteration would check for unprocessed items and submit a new
-     * <i>BatchWriteItem</i> request with those unprocessed items until all
-     * items have been processed.
+     * The individual <code>PutItem</code> and <code>DeleteItem</code>
+     * operations specified in <code>BatchWriteItem</code> are atomic; however
+     * <code>BatchWriteItem</code> as a whole is not. If any requested
+     * operations fail because the table's provisioned throughput is exceeded or
+     * an internal processing failure occurs, the failed operations are returned
+     * in the <code>UnprocessedItems</code> response parameter. You can
+     * investigate and optionally resend the requests. Typically, you would call
+     * <code>BatchWriteItem</code> in a loop. Each iteration would check for
+     * unprocessed items and submit a new <code>BatchWriteItem</code> request
+     * with those unprocessed items until all items have been processed.
      * </p>
      * <p>
      * Note that if <i>none</i> of the items can be processed due to
      * insufficient provisioned throughput on all of the tables in the request,
-     * then <i>BatchWriteItem</i> will return a
-     * <i>ProvisionedThroughputExceededException</i>.
+     * then <code>BatchWriteItem</code> will return a
+     * <code>ProvisionedThroughputExceededException</code>.
      * </p>
      * <important>
      * <p>
@@ -649,13 +494,14 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * </important>
      * <p>
-     * With <i>BatchWriteItem</i>, you can efficiently write or delete large
-     * amounts of data, such as from Amazon Elastic MapReduce (EMR), or copy
-     * data from another database into DynamoDB. In order to improve performance
-     * with these large-scale operations, <i>BatchWriteItem</i> does not behave
-     * in the same way as individual <i>PutItem</i> and <i>DeleteItem</i> calls
-     * would. For example, you cannot specify conditions on individual put and
-     * delete requests, and <i>BatchWriteItem</i> does not return deleted items
+     * With <code>BatchWriteItem</code>, you can efficiently write or delete
+     * large amounts of data, such as from Amazon Elastic MapReduce (EMR), or
+     * copy data from another database into DynamoDB. In order to improve
+     * performance with these large-scale operations,
+     * <code>BatchWriteItem</code> does not behave in the same way as individual
+     * <code>PutItem</code> and <code>DeleteItem</code> calls would. For
+     * example, you cannot specify conditions on individual put and delete
+     * requests, and <code>BatchWriteItem</code> does not return deleted items
      * in the response.
      * </p>
      * <p>
@@ -663,10 +509,10 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * threads to write items in parallel. Your application must include the
      * necessary logic to manage the threads. With languages that don't support
      * threading, you must update or delete the specified items one at a time.
-     * In both situations, <i>BatchWriteItem</i> provides an alternative where
-     * the API performs the specified put and delete operations in parallel,
-     * giving you the power of the thread pool approach without having to
-     * introduce complexity into your application.
+     * In both situations, <code>BatchWriteItem</code> performs the specified
+     * put and delete operations in parallel, giving you the power of the thread
+     * pool approach without having to introduce complexity into your
+     * application.
      * </p>
      * <p>
      * Parallel processing reduces latency, but each specified put and delete
@@ -681,8 +527,8 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * <ul>
      * <li>
      * <p>
-     * One or more tables specified in the <i>BatchWriteItem</i> request does
-     * not exist.
+     * One or more tables specified in the <code>BatchWriteItem</code> request
+     * does not exist.
      * </p>
      * </li>
      * <li>
@@ -694,8 +540,14 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * <li>
      * <p>
      * You try to perform multiple operations on the same item in the same
-     * <i>BatchWriteItem</i> request. For example, you cannot put and delete the
-     * same item in the same <i>BatchWriteItem</i> request.
+     * <code>BatchWriteItem</code> request. For example, you cannot put and
+     * delete the same item in the same <code>BatchWriteItem</code> request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Your request contains at least two items with identical hash and range
+     * keys (which essentially is two put operations).
      * </p>
      * </li>
      * <li>
@@ -716,7 +568,8 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </ul>
      * 
      * @param batchWriteItemRequest <p>
-     *            Represents the input of a <i>BatchWriteItem</i> operation.
+     *            Represents the input of a <code>BatchWriteItem</code>
+     *            operation.
      *            </p>
      * @return batchWriteItemResult The response from the BatchWriteItem service
      *         method, as returned by Amazon DynamoDB.
@@ -762,32 +615,241 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * The <i>CreateTable</i> operation adds a new table to your account. In an
-     * AWS account, table names must be unique within each region. That is, you
-     * can have two tables with same name if you create the tables in different
-     * regions.
+     * Creates a backup for an existing table.
      * </p>
      * <p>
-     * <i>CreateTable</i> is an asynchronous operation. Upon receiving a
-     * <i>CreateTable</i> request, DynamoDB immediately returns a response with
-     * a <i>TableStatus</i> of <code>CREATING</code>. After the table is
-     * created, DynamoDB sets the <i>TableStatus</i> to <code>ACTIVE</code>. You
-     * can perform read and write operations only on an <code>ACTIVE</code>
-     * table.
+     * Each time you create an On-Demand Backup, the entire table data is backed
+     * up. There is no limit to the number of on-demand backups that can be
+     * taken.
+     * </p>
+     * <p>
+     * When you create an On-Demand Backup, a time marker of the request is
+     * cataloged, and the backup is created asynchronously, by applying all
+     * changes until the time of the request to the last full table snapshot.
+     * Backup requests are processed instantaneously and become available for
+     * restore within minutes.
+     * </p>
+     * <p>
+     * You can call <code>CreateBackup</code> at a maximum rate of 50 times per
+     * second.
+     * </p>
+     * <p>
+     * All backups in DynamoDB work without consuming any provisioned throughput
+     * on the table.
+     * </p>
+     * <p>
+     * If you submit a backup request on 2018-12-14 at 14:25:00, the backup is
+     * guaranteed to contain all data committed to the table up to 14:24:00, and
+     * data committed after 14:26:00 will not be. The backup may or may not
+     * contain data modifications made between 14:24:00 and 14:26:00. On-Demand
+     * Backup does not support causal consistency.
+     * </p>
+     * <p>
+     * Along with data, the following are also included on the backups:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Global secondary indexes (GSIs)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Local secondary indexes (LSIs)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Streams
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Provisioned read and write capacity
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param createBackupRequest
+     * @return createBackupResult The response from the CreateBackup service
+     *         method, as returned by Amazon DynamoDB.
+     * @throws TableNotFoundException
+     * @throws TableInUseException
+     * @throws ContinuousBackupsUnavailableException
+     * @throws BackupInUseException
+     * @throws LimitExceededException
+     * @throws InternalServerErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateBackupResult createBackup(CreateBackupRequest createBackupRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createBackupRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateBackupRequest> request = null;
+        Response<CreateBackupResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateBackupRequestMarshaller().marshall(createBackupRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateBackupResult, JsonUnmarshallerContext> unmarshaller = new CreateBackupResultJsonUnmarshaller();
+            JsonResponseHandler<CreateBackupResult> responseHandler = new JsonResponseHandler<CreateBackupResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a global table from an existing table. A global table creates a
+     * replication relationship between two or more DynamoDB tables with the
+     * same table name in the provided regions.
+     * </p>
+     * <p>
+     * Tables can only be added as the replicas of a global table group under
+     * the following conditions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The tables must have the same name.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The tables must contain no items.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The tables must have the same hash key and sort key (if present).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The tables must have DynamoDB Streams enabled (NEW_AND_OLD_IMAGES).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The tables must have same provisioned and maximum write capacity units.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If global secondary indexes are specified, then the following conditions
+     * must also be met:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The global secondary indexes must have the same name.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The global secondary indexes must have the same hash key and sort key (if
+     * present).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The global secondary indexes must have the same provisioned and maximum
+     * write capacity units.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param createGlobalTableRequest
+     * @return createGlobalTableResult The response from the CreateGlobalTable
+     *         service method, as returned by Amazon DynamoDB.
+     * @throws LimitExceededException
+     * @throws InternalServerErrorException
+     * @throws GlobalTableAlreadyExistsException
+     * @throws TableNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateGlobalTableResult createGlobalTable(
+            CreateGlobalTableRequest createGlobalTableRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createGlobalTableRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateGlobalTableRequest> request = null;
+        Response<CreateGlobalTableResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateGlobalTableRequestMarshaller()
+                        .marshall(createGlobalTableRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateGlobalTableResult, JsonUnmarshallerContext> unmarshaller = new CreateGlobalTableResultJsonUnmarshaller();
+            JsonResponseHandler<CreateGlobalTableResult> responseHandler = new JsonResponseHandler<CreateGlobalTableResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * The <code>CreateTable</code> operation adds a new table to your account.
+     * In an AWS account, table names must be unique within each region. That
+     * is, you can have two tables with same name if you create the tables in
+     * different regions.
+     * </p>
+     * <p>
+     * <code>CreateTable</code> is an asynchronous operation. Upon receiving a
+     * <code>CreateTable</code> request, DynamoDB immediately returns a response
+     * with a <code>TableStatus</code> of <code>CREATING</code>. After the table
+     * is created, DynamoDB sets the <code>TableStatus</code> to
+     * <code>ACTIVE</code>. You can perform read and write operations only on an
+     * <code>ACTIVE</code> table.
      * </p>
      * <p>
      * You can optionally define secondary indexes on the new table, as part of
-     * the <i>CreateTable</i> operation. If you want to create multiple tables
-     * with secondary indexes on them, you must create the tables sequentially.
-     * Only one table with secondary indexes can be in the <code>CREATING</code>
-     * state at any given time.
+     * the <code>CreateTable</code> operation. If you want to create multiple
+     * tables with secondary indexes on them, you must create the tables
+     * sequentially. Only one table with secondary indexes can be in the
+     * <code>CREATING</code> state at any given time.
      * </p>
      * <p>
-     * You can use the <i>DescribeTable</i> API to check the table status.
+     * You can use the <code>DescribeTable</code> action to check the table
+     * status.
      * </p>
      * 
      * @param createTableRequest <p>
-     *            Represents the input of a <i>CreateTable</i> operation.
+     *            Represents the input of a <code>CreateTable</code> operation.
      *            </p>
      * @return createTableResult The response from the CreateTable service
      *         method, as returned by Amazon DynamoDB.
@@ -832,18 +894,71 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
+     * Deletes an existing backup of a table.
+     * </p>
+     * <p>
+     * You can call <code>DeleteBackup</code> at a maximum rate of 10 times per
+     * second.
+     * </p>
+     * 
+     * @param deleteBackupRequest
+     * @return deleteBackupResult The response from the DeleteBackup service
+     *         method, as returned by Amazon DynamoDB.
+     * @throws BackupNotFoundException
+     * @throws BackupInUseException
+     * @throws LimitExceededException
+     * @throws InternalServerErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DeleteBackupResult deleteBackup(DeleteBackupRequest deleteBackupRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteBackupRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteBackupRequest> request = null;
+        Response<DeleteBackupResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteBackupRequestMarshaller().marshall(deleteBackupRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteBackupResult, JsonUnmarshallerContext> unmarshaller = new DeleteBackupResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteBackupResult> responseHandler = new JsonResponseHandler<DeleteBackupResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Deletes a single item in a table by primary key. You can perform a
      * conditional delete operation that deletes the item if it exists, or if it
      * has an expected attribute value.
      * </p>
      * <p>
      * In addition to deleting an item, you can also return the item's attribute
-     * values in the same operation, using the <i>ReturnValues</i> parameter.
+     * values in the same operation, using the <code>ReturnValues</code>
+     * parameter.
      * </p>
      * <p>
-     * Unless you specify conditions, the <i>DeleteItem</i> is an idempotent
-     * operation; running it multiple times on the same item or attribute does
-     * <i>not</i> result in an error response.
+     * Unless you specify conditions, the <code>DeleteItem</code> is an
+     * idempotent operation; running it multiple times on the same item or
+     * attribute does <i>not</i> result in an error response.
      * </p>
      * <p>
      * Conditional deletes are useful for deleting items only if specific
@@ -852,7 +967,7 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * 
      * @param deleteItemRequest <p>
-     *            Represents the input of a <i>DeleteItem</i> operation.
+     *            Represents the input of a <code>DeleteItem</code> operation.
      *            </p>
      * @return deleteItemResult The response from the DeleteItem service method,
      *         as returned by Amazon DynamoDB.
@@ -899,20 +1014,20 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * The <i>DeleteTable</i> operation deletes a table and all of its items.
-     * After a <i>DeleteTable</i> request, the specified table is in the
-     * <code>DELETING</code> state until DynamoDB completes the deletion. If the
-     * table is in the <code>ACTIVE</code> state, you can delete it. If a table
-     * is in <code>CREATING</code> or <code>UPDATING</code> states, then
-     * DynamoDB returns a <i>ResourceInUseException</i>. If the specified table
-     * does not exist, DynamoDB returns a <i>ResourceNotFoundException</i>. If
-     * table is already in the <code>DELETING</code> state, no error is
-     * returned.
+     * The <code>DeleteTable</code> operation deletes a table and all of its
+     * items. After a <code>DeleteTable</code> request, the specified table is
+     * in the <code>DELETING</code> state until DynamoDB completes the deletion.
+     * If the table is in the <code>ACTIVE</code> state, you can delete it. If a
+     * table is in <code>CREATING</code> or <code>UPDATING</code> states, then
+     * DynamoDB returns a <code>ResourceInUseException</code>. If the specified
+     * table does not exist, DynamoDB returns a
+     * <code>ResourceNotFoundException</code>. If table is already in the
+     * <code>DELETING</code> state, no error is returned.
      * </p>
      * <note>
      * <p>
      * DynamoDB might continue to accept data read and write operations, such as
-     * <i>GetItem</i> and <i>PutItem</i>, on a table in the
+     * <code>GetItem</code> and <code>PutItem</code>, on a table in the
      * <code>DELETING</code> state until the table deletion is complete.
      * </p>
      * </note>
@@ -925,11 +1040,12 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * stream is automatically deleted after 24 hours.
      * </p>
      * <p>
-     * Use the <i>DescribeTable</i> API to check the status of the table.
+     * Use the <code>DescribeTable</code> action to check the status of the
+     * table.
      * </p>
      * 
      * @param deleteTableRequest <p>
-     *            Represents the input of a <i>DeleteTable</i> operation.
+     *            Represents the input of a <code>DeleteTable</code> operation.
      *            </p>
      * @return deleteTableResult The response from the DeleteTable service
      *         method, as returned by Amazon DynamoDB.
@@ -975,6 +1091,221 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
+     * Describes an existing backup of a table.
+     * </p>
+     * <p>
+     * You can call <code>DescribeBackup</code> at a maximum rate of 10 times
+     * per second.
+     * </p>
+     * 
+     * @param describeBackupRequest
+     * @return describeBackupResult The response from the DescribeBackup service
+     *         method, as returned by Amazon DynamoDB.
+     * @throws BackupNotFoundException
+     * @throws InternalServerErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeBackupResult describeBackup(DescribeBackupRequest describeBackupRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeBackupRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeBackupRequest> request = null;
+        Response<DescribeBackupResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeBackupRequestMarshaller().marshall(describeBackupRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeBackupResult, JsonUnmarshallerContext> unmarshaller = new DescribeBackupResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeBackupResult> responseHandler = new JsonResponseHandler<DescribeBackupResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Checks the status of continuous backups and point in time recovery on the
+     * specified table. Continuous backups are <code>ENABLED</code> on all
+     * tables at table creation. If point in time recovery is enabled,
+     * <code>PointInTimeRecoveryStatus</code> will be set to ENABLED.
+     * </p>
+     * <p>
+     * Once continuous backups and point in time recovery are enabled, you can
+     * restore to any point in time within
+     * <code>EarliestRestorableDateTime</code> and
+     * <code>LatestRestorableDateTime</code>.
+     * </p>
+     * <p>
+     * <code>LatestRestorableDateTime</code> is typically 5 minutes before the
+     * current time. You can restore your table to any point in time during the
+     * last 35 days.
+     * </p>
+     * <p>
+     * You can call <code>DescribeContinuousBackups</code> at a maximum rate of
+     * 10 times per second.
+     * </p>
+     * 
+     * @param describeContinuousBackupsRequest
+     * @return describeContinuousBackupsResult The response from the
+     *         DescribeContinuousBackups service method, as returned by Amazon
+     *         DynamoDB.
+     * @throws TableNotFoundException
+     * @throws InternalServerErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeContinuousBackupsResult describeContinuousBackups(
+            DescribeContinuousBackupsRequest describeContinuousBackupsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeContinuousBackupsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeContinuousBackupsRequest> request = null;
+        Response<DescribeContinuousBackupsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeContinuousBackupsRequestMarshaller()
+                        .marshall(describeContinuousBackupsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeContinuousBackupsResult, JsonUnmarshallerContext> unmarshaller = new DescribeContinuousBackupsResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeContinuousBackupsResult> responseHandler = new JsonResponseHandler<DescribeContinuousBackupsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns information about the specified global table.
+     * </p>
+     * 
+     * @param describeGlobalTableRequest
+     * @return describeGlobalTableResult The response from the
+     *         DescribeGlobalTable service method, as returned by Amazon
+     *         DynamoDB.
+     * @throws InternalServerErrorException
+     * @throws GlobalTableNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeGlobalTableResult describeGlobalTable(
+            DescribeGlobalTableRequest describeGlobalTableRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeGlobalTableRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeGlobalTableRequest> request = null;
+        Response<DescribeGlobalTableResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeGlobalTableRequestMarshaller()
+                        .marshall(describeGlobalTableRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeGlobalTableResult, JsonUnmarshallerContext> unmarshaller = new DescribeGlobalTableResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeGlobalTableResult> responseHandler = new JsonResponseHandler<DescribeGlobalTableResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes region specific settings for a global table.
+     * </p>
+     * 
+     * @param describeGlobalTableSettingsRequest
+     * @return describeGlobalTableSettingsResult The response from the
+     *         DescribeGlobalTableSettings service method, as returned by Amazon
+     *         DynamoDB.
+     * @throws GlobalTableNotFoundException
+     * @throws InternalServerErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeGlobalTableSettingsResult describeGlobalTableSettings(
+            DescribeGlobalTableSettingsRequest describeGlobalTableSettingsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeGlobalTableSettingsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeGlobalTableSettingsRequest> request = null;
+        Response<DescribeGlobalTableSettingsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeGlobalTableSettingsRequestMarshaller()
+                        .marshall(describeGlobalTableSettingsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeGlobalTableSettingsResult, JsonUnmarshallerContext> unmarshaller = new DescribeGlobalTableSettingsResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeGlobalTableSettingsResult> responseHandler = new JsonResponseHandler<DescribeGlobalTableSettingsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Returns the current provisioned-capacity limits for your AWS account in a
      * region, both for the region as a whole and for any one DynamoDB table
      * that you create there.
@@ -992,9 +1323,10 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * Although you can increase these limits by filing a case at <a
      * href="https://console.aws.amazon.com/support/home#/">AWS Support
      * Center</a>, obtaining the increase is not instantaneous. The
-     * <i>DescribeLimits</i> API lets you write code to compare the capacity you
-     * are currently using to those limits imposed by your account so that you
-     * have enough time to apply for an increase before you hit a limit.
+     * <code>DescribeLimits</code> action lets you write code to compare the
+     * capacity you are currently using to those limits imposed by your account
+     * so that you have enough time to apply for an increase before you hit a
+     * limit.
      * </p>
      * <p>
      * For example, you could use one of the AWS SDKs to do the following:
@@ -1002,8 +1334,8 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * <ol>
      * <li>
      * <p>
-     * Call <i>DescribeLimits</i> for a particular region to obtain your current
-     * account limits on provisioned capacity there.
+     * Call <code>DescribeLimits</code> for a particular region to obtain your
+     * current account limits on provisioned capacity there.
      * </p>
      * </li>
      * <li>
@@ -1015,24 +1347,25 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </li>
      * <li>
      * <p>
-     * Call <i>ListTables</i> to obtain a list of all your DynamoDB tables.
+     * Call <code>ListTables</code> to obtain a list of all your DynamoDB
+     * tables.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For each table name listed by <i>ListTables</i>, do the following:
+     * For each table name listed by <code>ListTables</code>, do the following:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Call <i>DescribeTable</i> with the table name.
+     * Call <code>DescribeTable</code> with the table name.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Use the data returned by <i>DescribeTable</i> to add the read capacity
-     * units and write capacity units provisioned for the table itself to your
-     * variables.
+     * Use the data returned by <code>DescribeTable</code> to add the read
+     * capacity units and write capacity units provisioned for the table itself
+     * to your variables.
      * </p>
      * </li>
      * <li>
@@ -1047,8 +1380,8 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * <li>
      * <p>
      * Report the account limits for that region returned by
-     * <i>DescribeLimits</i>, along with the total current provisioned capacity
-     * levels you have calculated.
+     * <code>DescribeLimits</code>, along with the total current provisioned
+     * capacity levels you have calculated.
      * </p>
      * </li>
      * </ol>
@@ -1069,17 +1402,17 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <note>
      * <p>
-     * <i>DescribeLimits</i> should only be called periodically. You can expect
-     * throttling errors if you call it more than once in a minute.
+     * <code>DescribeLimits</code> should only be called periodically. You can
+     * expect throttling errors if you call it more than once in a minute.
      * </p>
      * </note>
      * <p>
-     * The <i>DescribeLimits</i> Request element has no content.
+     * The <code>DescribeLimits</code> Request element has no content.
      * </p>
      * 
      * @param describeLimitsRequest <p>
-     *            Represents the input of a <i>DescribeLimits</i> operation. Has
-     *            no content.
+     *            Represents the input of a <code>DescribeLimits</code>
+     *            operation. Has no content.
      *            </p>
      * @return describeLimitsResult The response from the DescribeLimits service
      *         method, as returned by Amazon DynamoDB.
@@ -1128,17 +1461,18 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <note>
      * <p>
-     * If you issue a <i>DescribeTable</i> request immediately after a
-     * <i>CreateTable</i> request, DynamoDB might return a
-     * <i>ResourceNotFoundException</i>. This is because <i>DescribeTable</i>
-     * uses an eventually consistent query, and the metadata for your table
-     * might not be available at that moment. Wait for a few seconds, and then
-     * try the <i>DescribeTable</i> request again.
+     * If you issue a <code>DescribeTable</code> request immediately after a
+     * <code>CreateTable</code> request, DynamoDB might return a
+     * <code>ResourceNotFoundException</code>. This is because
+     * <code>DescribeTable</code> uses an eventually consistent query, and the
+     * metadata for your table might not be available at that moment. Wait for a
+     * few seconds, and then try the <code>DescribeTable</code> request again.
      * </p>
      * </note>
      * 
      * @param describeTableRequest <p>
-     *            Represents the input of a <i>DescribeTable</i> operation.
+     *            Represents the input of a <code>DescribeTable</code>
+     *            operation.
      *            </p>
      * @return describeTableResult The response from the DescribeTable service
      *         method, as returned by Amazon DynamoDB.
@@ -1182,20 +1516,70 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * The <i>GetItem</i> operation returns a set of attributes for the item
-     * with the given primary key. If there is no matching item, <i>GetItem</i>
-     * does not return any data.
+     * Gives a description of the Time to Live (TTL) status on the specified
+     * table.
+     * </p>
+     * 
+     * @param describeTimeToLiveRequest
+     * @return describeTimeToLiveResult The response from the DescribeTimeToLive
+     *         service method, as returned by Amazon DynamoDB.
+     * @throws ResourceNotFoundException
+     * @throws InternalServerErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeTimeToLiveResult describeTimeToLive(
+            DescribeTimeToLiveRequest describeTimeToLiveRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeTimeToLiveRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeTimeToLiveRequest> request = null;
+        Response<DescribeTimeToLiveResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeTimeToLiveRequestMarshaller()
+                        .marshall(describeTimeToLiveRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeTimeToLiveResult, JsonUnmarshallerContext> unmarshaller = new DescribeTimeToLiveResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeTimeToLiveResult> responseHandler = new JsonResponseHandler<DescribeTimeToLiveResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * The <code>GetItem</code> operation returns a set of attributes for the
+     * item with the given primary key. If there is no matching item,
+     * <code>GetItem</code> does not return any data and there will be no
+     * <code>Item</code> element in the response.
      * </p>
      * <p>
-     * <i>GetItem</i> provides an eventually consistent read by default. If your
-     * application requires a strongly consistent read, set
-     * <i>ConsistentRead</i> to <code>true</code>. Although a strongly
+     * <code>GetItem</code> provides an eventually consistent read by default.
+     * If your application requires a strongly consistent read, set
+     * <code>ConsistentRead</code> to <code>true</code>. Although a strongly
      * consistent read might take more time than an eventually consistent read,
      * it always returns the last updated value.
      * </p>
      * 
      * @param getItemRequest <p>
-     *            Represents the input of a <i>GetItem</i> operation.
+     *            Represents the input of a <code>GetItem</code> operation.
      *            </p>
      * @return getItemResult The response from the GetItem service method, as
      *         returned by Amazon DynamoDB.
@@ -1240,13 +1624,115 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
+     * List backups associated with an AWS account. To list backups for a given
+     * table, specify <code>TableName</code>. <code>ListBackups</code> returns a
+     * paginated list of results with at most 1MB worth of items in a page. You
+     * can also specify a limit for the maximum number of entries to be returned
+     * in a page.
+     * </p>
+     * <p>
+     * In the request, start time is inclusive but end time is exclusive. Note
+     * that these limits are for the time at which the original backup was
+     * requested.
+     * </p>
+     * <p>
+     * You can call <code>ListBackups</code> a maximum of 5 times per second.
+     * </p>
+     * 
+     * @param listBackupsRequest
+     * @return listBackupsResult The response from the ListBackups service
+     *         method, as returned by Amazon DynamoDB.
+     * @throws InternalServerErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListBackupsResult listBackups(ListBackupsRequest listBackupsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listBackupsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListBackupsRequest> request = null;
+        Response<ListBackupsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListBackupsRequestMarshaller().marshall(listBackupsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListBackupsResult, JsonUnmarshallerContext> unmarshaller = new ListBackupsResultJsonUnmarshaller();
+            JsonResponseHandler<ListBackupsResult> responseHandler = new JsonResponseHandler<ListBackupsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists all global tables that have a replica in the specified region.
+     * </p>
+     * 
+     * @param listGlobalTablesRequest
+     * @return listGlobalTablesResult The response from the ListGlobalTables
+     *         service method, as returned by Amazon DynamoDB.
+     * @throws InternalServerErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListGlobalTablesResult listGlobalTables(ListGlobalTablesRequest listGlobalTablesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listGlobalTablesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListGlobalTablesRequest> request = null;
+        Response<ListGlobalTablesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListGlobalTablesRequestMarshaller().marshall(listGlobalTablesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListGlobalTablesResult, JsonUnmarshallerContext> unmarshaller = new ListGlobalTablesResultJsonUnmarshaller();
+            JsonResponseHandler<ListGlobalTablesResult> responseHandler = new JsonResponseHandler<ListGlobalTablesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Returns an array of table names associated with the current account and
-     * endpoint. The output from <i>ListTables</i> is paginated, with each page
-     * returning a maximum of 100 table names.
+     * endpoint. The output from <code>ListTables</code> is paginated, with each
+     * page returning a maximum of 100 table names.
      * </p>
      * 
      * @param listTablesRequest <p>
-     *            Represents the input of a <i>ListTables</i> operation.
+     *            Represents the input of a <code>ListTables</code> operation.
      *            </p>
      * @return listTablesResult The response from the ListTables service method,
      *         as returned by Amazon DynamoDB.
@@ -1289,29 +1775,149 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
+     * List all tags on an Amazon DynamoDB resource. You can call
+     * ListTagsOfResource up to 10 times per second, per account.
+     * </p>
+     * <p>
+     * For an overview on tagging DynamoDB resources, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html"
+     * >Tagging for DynamoDB</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     * </p>
+     * 
+     * @param listTagsOfResourceRequest
+     * @return listTagsOfResourceResult The response from the ListTagsOfResource
+     *         service method, as returned by Amazon DynamoDB.
+     * @throws ResourceNotFoundException
+     * @throws InternalServerErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListTagsOfResourceResult listTagsOfResource(
+            ListTagsOfResourceRequest listTagsOfResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listTagsOfResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListTagsOfResourceRequest> request = null;
+        Response<ListTagsOfResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListTagsOfResourceRequestMarshaller()
+                        .marshall(listTagsOfResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListTagsOfResourceResult, JsonUnmarshallerContext> unmarshaller = new ListTagsOfResourceResultJsonUnmarshaller();
+            JsonResponseHandler<ListTagsOfResourceResult> responseHandler = new JsonResponseHandler<ListTagsOfResourceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Creates a new item, or replaces an old item with a new item. If an item
      * that has the same primary key as the new item already exists in the
      * specified table, the new item completely replaces the existing item. You
      * can perform a conditional put operation (add a new item if one with the
      * specified primary key doesn't exist), or replace an existing item if it
-     * has certain attribute values.
+     * has certain attribute values. You can return the item's attribute values
+     * in the same operation, using the <code>ReturnValues</code> parameter.
+     * </p>
+     * <important>
+     * <p>
+     * This topic provides general information about the <code>PutItem</code>
+     * API.
      * </p>
      * <p>
-     * In addition to putting an item, you can also return the item's attribute
-     * values in the same operation, using the <i>ReturnValues</i> parameter.
+     * For information on how to call the <code>PutItem</code> API using the AWS
+     * SDK in specific languages, see the following:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/aws-cli/dynamodb-2012-08-10/PutItem">
+     * PutItem in the AWS Command Line Interface </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/DotNetSDKV3/dynamodb-2012-08-10/PutItem"
+     * > PutItem in the AWS SDK for .NET </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/SdkForCpp/dynamodb-2012-08-10/PutItem">
+     * PutItem in the AWS SDK for C++ </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/SdkForGoV1/dynamodb-2012-08-10/PutItem">
+     * PutItem in the AWS SDK for Go </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/SdkForJava/dynamodb-2012-08-10/PutItem">
+     * PutItem in the AWS SDK for Java </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/dynamodb-2012-08-10/PutItem"
+     * > PutItem in the AWS SDK for JavaScript </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/SdkForPHPV3/dynamodb-2012-08-10/PutItem"
+     * > PutItem in the AWS SDK for PHP V3 </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/boto3/dynamodb-2012-08-10/PutItem">
+     * PutItem in the AWS SDK for Python </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/SdkForRubyV2/dynamodb-2012-08-10/PutItem"
+     * > PutItem in the AWS SDK for Ruby V2 </a>
+     * </p>
+     * </li>
+     * </ul>
+     * </important>
      * <p>
      * When you add an item, the primary key attribute(s) are the only required
      * attributes. Attribute values cannot be null. String and Binary type
      * attributes must have lengths greater than zero. Set type attributes
      * cannot be empty. Requests with empty values will be rejected with a
-     * <i>ValidationException</i> exception.
-     * </p>
-     * <p>
-     * You can request that <i>PutItem</i> return either a copy of the original
-     * item (before the update) or a copy of the updated item (after the
-     * update). For more information, see the <i>ReturnValues</i> description
-     * below.
+     * <code>ValidationException</code> exception.
      * </p>
      * <note>
      * <p>
@@ -1324,13 +1930,13 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * </note>
      * <p>
-     * For more information about using this API, see <a href=
+     * For more information about <code>PutItem</code>, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html"
      * >Working with Items</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * </p>
      * 
      * @param putItemRequest <p>
-     *            Represents the input of a <i>PutItem</i> operation.
+     *            Represents the input of a <code>PutItem</code> operation.
      *            </p>
      * @return putItemResult The response from the PutItem service method, as
      *         returned by Amazon DynamoDB.
@@ -1377,43 +1983,81 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * A <i>Query</i> operation uses the primary key of a table or a secondary
-     * index to directly access items from that table or index.
+     * The <code>Query</code> operation finds items based on primary key values.
+     * You can query any table or secondary index that has a composite primary
+     * key (a partition key and a sort key).
      * </p>
      * <p>
-     * Use the <i>KeyConditionExpression</i> parameter to provide a specific
-     * value for the partition key. The <i>Query</i> operation will return all
-     * of the items from the table or index with that partition key value. You
-     * can optionally narrow the scope of the <i>Query</i> operation by
-     * specifying a sort key value and a comparison operator in
-     * <i>KeyConditionExpression</i>. You can use the <i>ScanIndexForward</i>
-     * parameter to get results in forward or reverse order, by sort key.
+     * Use the <code>KeyConditionExpression</code> parameter to provide a
+     * specific value for the partition key. The <code>Query</code> operation
+     * will return all of the items from the table or index with that partition
+     * key value. You can optionally narrow the scope of the <code>Query</code>
+     * operation by specifying a sort key value and a comparison operator in
+     * <code>KeyConditionExpression</code>. To further refine the
+     * <code>Query</code> results, you can optionally provide a
+     * <code>FilterExpression</code>. A <code>FilterExpression</code> determines
+     * which items within the results should be returned to you. All of the
+     * other results are discarded.
      * </p>
      * <p>
-     * Queries that do not return results consume the minimum number of read
-     * capacity units for that type of read operation.
+     * A <code>Query</code> operation always returns a result set. If no
+     * matching items are found, the result set will be empty. Queries that do
+     * not return results consume the minimum number of read capacity units for
+     * that type of read operation.
+     * </p>
+     * <note>
+     * <p>
+     * DynamoDB calculates the number of read capacity units consumed based on
+     * item size, not on the amount of data that is returned to an application.
+     * The number of capacity units consumed will be the same whether you
+     * request all of the attributes (the default behavior) or just some of them
+     * (using a projection expression). The number will also be the same whether
+     * or not you use a <code>FilterExpression</code>.
+     * </p>
+     * </note>
+     * <p>
+     * <code>Query</code> results are always sorted by the sort key value. If
+     * the data type of the sort key is Number, the results are returned in
+     * numeric order; otherwise, the results are returned in order of UTF-8
+     * bytes. By default, the sort order is ascending. To reverse the order, set
+     * the <code>ScanIndexForward</code> parameter to false.
      * </p>
      * <p>
-     * If the total number of items meeting the query criteria exceeds the
-     * result set size limit of 1 MB, the query stops and results are returned
-     * to the user with the <i>LastEvaluatedKey</i> element to continue the
-     * query in a subsequent operation. Unlike a <i>Scan</i> operation, a
-     * <i>Query</i> operation never returns both an empty result set and a
-     * <i>LastEvaluatedKey</i> value. <i>LastEvaluatedKey</i> is only provided
-     * if you have used the <i>Limit</i> parameter, or if the result set exceeds
-     * 1 MB (prior to applying a filter).
+     * A single <code>Query</code> operation will read up to the maximum number
+     * of items set (if using the <code>Limit</code> parameter) or a maximum of
+     * 1 MB of data and then apply any filtering to the results using
+     * <code>FilterExpression</code>. If <code>LastEvaluatedKey</code> is
+     * present in the response, you will need to paginate the result set. For
+     * more information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.Pagination"
+     * >Paginating the Results</a> in the <i>Amazon DynamoDB Developer
+     * Guide</i>.
      * </p>
+     * <p>
+     * <code>FilterExpression</code> is applied after a <code>Query</code>
+     * finishes, but before the results are returned. A
+     * <code>FilterExpression</code> cannot contain partition key or sort key
+     * attributes. You need to specify those attributes in the
+     * <code>KeyConditionExpression</code>.
+     * </p>
+     * <note>
+     * <p>
+     * A <code>Query</code> operation can return an empty result set and a
+     * <code>LastEvaluatedKey</code> if all the items read for the page of
+     * results are filtered out.
+     * </p>
+     * </note>
      * <p>
      * You can query a table, a local secondary index, or a global secondary
      * index. For a query on a table or on a local secondary index, you can set
-     * the <i>ConsistentRead</i> parameter to <code>true</code> and obtain a
-     * strongly consistent result. Global secondary indexes support eventually
-     * consistent reads only, so do not specify <i>ConsistentRead</i> when
+     * the <code>ConsistentRead</code> parameter to <code>true</code> and obtain
+     * a strongly consistent result. Global secondary indexes support eventually
+     * consistent reads only, so do not specify <code>ConsistentRead</code> when
      * querying a global secondary index.
      * </p>
      * 
      * @param queryRequest <p>
-     *            Represents the input of a <i>Query</i> operation.
+     *            Represents the input of a <code>Query</code> operation.
      *            </p>
      * @return queryResult The response from the Query service method, as
      *         returned by Amazon DynamoDB.
@@ -1458,35 +2102,277 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * The <i>Scan</i> operation returns one or more items and item attributes
-     * by accessing every item in a table or a secondary index. To have DynamoDB
-     * return fewer items, you can provide a <i>ScanFilter</i> operation.
+     * Creates a new table from an existing backup. Any number of users can
+     * execute up to 4 concurrent restores (any type of restore) in a given
+     * account.
+     * </p>
+     * <p>
+     * You can call <code>RestoreTableFromBackup</code> at a maximum rate of 10
+     * times per second.
+     * </p>
+     * <p>
+     * You must manually set up the following on the restored table:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Auto scaling policies
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * IAM policies
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Cloudwatch metrics and alarms
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Tags
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Stream settings
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Time to Live (TTL) settings
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param restoreTableFromBackupRequest
+     * @return restoreTableFromBackupResult The response from the
+     *         RestoreTableFromBackup service method, as returned by Amazon
+     *         DynamoDB.
+     * @throws TableAlreadyExistsException
+     * @throws TableInUseException
+     * @throws BackupNotFoundException
+     * @throws BackupInUseException
+     * @throws LimitExceededException
+     * @throws InternalServerErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public RestoreTableFromBackupResult restoreTableFromBackup(
+            RestoreTableFromBackupRequest restoreTableFromBackupRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(restoreTableFromBackupRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<RestoreTableFromBackupRequest> request = null;
+        Response<RestoreTableFromBackupResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new RestoreTableFromBackupRequestMarshaller()
+                        .marshall(restoreTableFromBackupRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<RestoreTableFromBackupResult, JsonUnmarshallerContext> unmarshaller = new RestoreTableFromBackupResultJsonUnmarshaller();
+            JsonResponseHandler<RestoreTableFromBackupResult> responseHandler = new JsonResponseHandler<RestoreTableFromBackupResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Restores the specified table to the specified point in time within
+     * <code>EarliestRestorableDateTime</code> and
+     * <code>LatestRestorableDateTime</code>. You can restore your table to any
+     * point in time during the last 35 days. Any number of users can execute up
+     * to 4 concurrent restores (any type of restore) in a given account.
+     * </p>
+     * <p>
+     * When you restore using point in time recovery, DynamoDB restores your
+     * table data to the state based on the selected date and time
+     * (day:hour:minute:second) to a new table.
+     * </p>
+     * <p>
+     * Along with data, the following are also included on the new restored
+     * table using point in time recovery:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Global secondary indexes (GSIs)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Local secondary indexes (LSIs)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Provisioned read and write capacity
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Encryption settings
+     * </p>
+     * <important>
+     * <p>
+     * All these settings come from the current settings of the source table at
+     * the time of restore.
+     * </p>
+     * </important></li>
+     * </ul>
+     * <p>
+     * You must manually set up the following on the restored table:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Auto scaling policies
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * IAM policies
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Cloudwatch metrics and alarms
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Tags
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Stream settings
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Time to Live (TTL) settings
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Point in time recovery settings
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param restoreTableToPointInTimeRequest
+     * @return restoreTableToPointInTimeResult The response from the
+     *         RestoreTableToPointInTime service method, as returned by Amazon
+     *         DynamoDB.
+     * @throws TableAlreadyExistsException
+     * @throws TableNotFoundException
+     * @throws TableInUseException
+     * @throws LimitExceededException
+     * @throws InvalidRestoreTimeException
+     * @throws PointInTimeRecoveryUnavailableException
+     * @throws InternalServerErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public RestoreTableToPointInTimeResult restoreTableToPointInTime(
+            RestoreTableToPointInTimeRequest restoreTableToPointInTimeRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(restoreTableToPointInTimeRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<RestoreTableToPointInTimeRequest> request = null;
+        Response<RestoreTableToPointInTimeResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new RestoreTableToPointInTimeRequestMarshaller()
+                        .marshall(restoreTableToPointInTimeRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<RestoreTableToPointInTimeResult, JsonUnmarshallerContext> unmarshaller = new RestoreTableToPointInTimeResultJsonUnmarshaller();
+            JsonResponseHandler<RestoreTableToPointInTimeResult> responseHandler = new JsonResponseHandler<RestoreTableToPointInTimeResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * The <code>Scan</code> operation returns one or more items and item
+     * attributes by accessing every item in a table or a secondary index. To
+     * have DynamoDB return fewer items, you can provide a
+     * <code>FilterExpression</code> operation.
      * </p>
      * <p>
      * If the total number of scanned items exceeds the maximum data set size
      * limit of 1 MB, the scan stops and results are returned to the user as a
-     * <i>LastEvaluatedKey</i> value to continue the scan in a subsequent
+     * <code>LastEvaluatedKey</code> value to continue the scan in a subsequent
      * operation. The results also include the number of items exceeding the
      * limit. A scan can result in no table data meeting the filter criteria.
      * </p>
      * <p>
-     * By default, <i>Scan</i> operations proceed sequentially; however, for
-     * faster performance on a large table or secondary index, applications can
-     * request a parallel <i>Scan</i> operation by providing the <i>Segment</i>
-     * and <i>TotalSegments</i> parameters. For more information, see <a href=
-     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#QueryAndScanParallelScan"
+     * A single <code>Scan</code> operation will read up to the maximum number
+     * of items set (if using the <code>Limit</code> parameter) or a maximum of
+     * 1 MB of data and then apply any filtering to the results using
+     * <code>FilterExpression</code>. If <code>LastEvaluatedKey</code> is
+     * present in the response, you will need to paginate the result set. For
+     * more information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.Pagination"
+     * >Paginating the Results</a> in the <i>Amazon DynamoDB Developer
+     * Guide</i>.
+     * </p>
+     * <p>
+     * <code>Scan</code> operations proceed sequentially; however, for faster
+     * performance on a large table or secondary index, applications can request
+     * a parallel <code>Scan</code> operation by providing the
+     * <code>Segment</code> and <code>TotalSegments</code> parameters. For more
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.ParallelScan"
      * >Parallel Scan</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * </p>
      * <p>
-     * By default, <i>Scan</i> uses eventually consistent reads when accessing
-     * the data in a table; therefore, the result set might not include the
-     * changes to data in the table immediately before the operation began. If
-     * you need a consistent copy of the data, as of the time that the Scan
-     * begins, you can set the <i>ConsistentRead</i> parameter to <i>true</i>.
+     * <code>Scan</code> uses eventually consistent reads when accessing the
+     * data in a table; therefore, the result set might not include the changes
+     * to data in the table immediately before the operation began. If you need
+     * a consistent copy of the data, as of the time that the <code>Scan</code>
+     * begins, you can set the <code>ConsistentRead</code> parameter to
+     * <code>true</code>.
      * </p>
      * 
      * @param scanRequest <p>
-     *            Represents the input of a <i>Scan</i> operation.
+     *            Represents the input of a <code>Scan</code> operation.
      *            </p>
      * @return scanResult The response from the Scan service method, as returned
      *         by Amazon DynamoDB.
@@ -1531,6 +2417,307 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
+     * Associate a set of tags with an Amazon DynamoDB resource. You can then
+     * activate these user-defined tags so that they appear on the Billing and
+     * Cost Management console for cost allocation tracking. You can call
+     * TagResource up to 5 times per second, per account.
+     * </p>
+     * <p>
+     * For an overview on tagging DynamoDB resources, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html"
+     * >Tagging for DynamoDB</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @throws LimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerErrorException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void tagResource(TagResourceRequest tagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(tagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<TagResourceRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new TagResourceRequestMarshaller().marshall(tagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Removes the association of tags from an Amazon DynamoDB resource. You can
+     * call UntagResource up to 5 times per second, per account.
+     * </p>
+     * <p>
+     * For an overview on tagging DynamoDB resources, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html"
+     * >Tagging for DynamoDB</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @throws LimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerErrorException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void untagResource(UntagResourceRequest untagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(untagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UntagResourceRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UntagResourceRequestMarshaller().marshall(untagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * <code>UpdateContinuousBackups</code> enables or disables point in time
+     * recovery for the specified table. A successful
+     * <code>UpdateContinuousBackups</code> call returns the current
+     * <code>ContinuousBackupsDescription</code>. Continuous backups are
+     * <code>ENABLED</code> on all tables at table creation. If point in time
+     * recovery is enabled, <code>PointInTimeRecoveryStatus</code> will be set
+     * to ENABLED.
+     * </p>
+     * <p>
+     * Once continuous backups and point in time recovery are enabled, you can
+     * restore to any point in time within
+     * <code>EarliestRestorableDateTime</code> and
+     * <code>LatestRestorableDateTime</code>.
+     * </p>
+     * <p>
+     * <code>LatestRestorableDateTime</code> is typically 5 minutes before the
+     * current time. You can restore your table to any point in time during the
+     * last 35 days..
+     * </p>
+     * 
+     * @param updateContinuousBackupsRequest
+     * @return updateContinuousBackupsResult The response from the
+     *         UpdateContinuousBackups service method, as returned by Amazon
+     *         DynamoDB.
+     * @throws TableNotFoundException
+     * @throws ContinuousBackupsUnavailableException
+     * @throws InternalServerErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UpdateContinuousBackupsResult updateContinuousBackups(
+            UpdateContinuousBackupsRequest updateContinuousBackupsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateContinuousBackupsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateContinuousBackupsRequest> request = null;
+        Response<UpdateContinuousBackupsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateContinuousBackupsRequestMarshaller()
+                        .marshall(updateContinuousBackupsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateContinuousBackupsResult, JsonUnmarshallerContext> unmarshaller = new UpdateContinuousBackupsResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateContinuousBackupsResult> responseHandler = new JsonResponseHandler<UpdateContinuousBackupsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Adds or removes replicas in the specified global table. The global table
+     * must already exist to be able to use this operation. Any replica to be
+     * added must be empty, must have the same name as the global table, must
+     * have the same key schema, and must have DynamoDB Streams enabled and must
+     * have same provisioned and maximum write capacity units.
+     * </p>
+     * <note>
+     * <p>
+     * Although you can use <code>UpdateGlobalTable</code> to add replicas and
+     * remove replicas in a single request, for simplicity we recommend that you
+     * issue separate requests for adding or removing replicas.
+     * </p>
+     * </note>
+     * <p>
+     * If global secondary indexes are specified, then the following conditions
+     * must also be met:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The global secondary indexes must have the same name.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The global secondary indexes must have the same hash key and sort key (if
+     * present).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The global secondary indexes must have the same provisioned and maximum
+     * write capacity units.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param updateGlobalTableRequest
+     * @return updateGlobalTableResult The response from the UpdateGlobalTable
+     *         service method, as returned by Amazon DynamoDB.
+     * @throws InternalServerErrorException
+     * @throws GlobalTableNotFoundException
+     * @throws ReplicaAlreadyExistsException
+     * @throws ReplicaNotFoundException
+     * @throws TableNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UpdateGlobalTableResult updateGlobalTable(
+            UpdateGlobalTableRequest updateGlobalTableRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateGlobalTableRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateGlobalTableRequest> request = null;
+        Response<UpdateGlobalTableResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateGlobalTableRequestMarshaller()
+                        .marshall(updateGlobalTableRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateGlobalTableResult, JsonUnmarshallerContext> unmarshaller = new UpdateGlobalTableResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateGlobalTableResult> responseHandler = new JsonResponseHandler<UpdateGlobalTableResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates settings for a global table.
+     * </p>
+     * 
+     * @param updateGlobalTableSettingsRequest
+     * @return updateGlobalTableSettingsResult The response from the
+     *         UpdateGlobalTableSettings service method, as returned by Amazon
+     *         DynamoDB.
+     * @throws GlobalTableNotFoundException
+     * @throws ReplicaNotFoundException
+     * @throws IndexNotFoundException
+     * @throws LimitExceededException
+     * @throws ResourceInUseException
+     * @throws InternalServerErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UpdateGlobalTableSettingsResult updateGlobalTableSettings(
+            UpdateGlobalTableSettingsRequest updateGlobalTableSettingsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateGlobalTableSettingsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateGlobalTableSettingsRequest> request = null;
+        Response<UpdateGlobalTableSettingsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateGlobalTableSettingsRequestMarshaller()
+                        .marshall(updateGlobalTableSettingsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateGlobalTableSettingsResult, JsonUnmarshallerContext> unmarshaller = new UpdateGlobalTableSettingsResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateGlobalTableSettingsResult> responseHandler = new JsonResponseHandler<UpdateGlobalTableSettingsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Edits an existing item's attributes, or adds a new item to the table if
      * it does not already exist. You can put, delete, or add attribute values.
      * You can also perform a conditional update on an existing item (insert a
@@ -1539,11 +2726,12 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <p>
      * You can also return the item's attribute values in the same
-     * <i>UpdateItem</i> operation using the <i>ReturnValues</i> parameter.
+     * <code>UpdateItem</code> operation using the <code>ReturnValues</code>
+     * parameter.
      * </p>
      * 
      * @param updateItemRequest <p>
-     *            Represents the input of an <i>UpdateItem</i> operation.
+     *            Represents the input of an <code>UpdateItem</code> operation.
      *            </p>
      * @return updateItemResult The response from the UpdateItem service method,
      *         as returned by Amazon DynamoDB.
@@ -1615,20 +2803,22 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * <li>
      * <p>
      * Create a new global secondary index on the table. Once the index begins
-     * backfilling, you can use <i>UpdateTable</i> to perform other operations.
+     * backfilling, you can use <code>UpdateTable</code> to perform other
+     * operations.
      * </p>
      * </li>
      * </ul>
      * <p>
-     * <i>UpdateTable</i> is an asynchronous operation; while it is executing,
-     * the table status changes from <code>ACTIVE</code> to
+     * <code>UpdateTable</code> is an asynchronous operation; while it is
+     * executing, the table status changes from <code>ACTIVE</code> to
      * <code>UPDATING</code>. While it is <code>UPDATING</code>, you cannot
-     * issue another <i>UpdateTable</i> request. When the table returns to the
-     * <code>ACTIVE</code> state, the <i>UpdateTable</i> operation is complete.
+     * issue another <code>UpdateTable</code> request. When the table returns to
+     * the <code>ACTIVE</code> state, the <code>UpdateTable</code> operation is
+     * complete.
      * </p>
      * 
      * @param updateTableRequest <p>
-     *            Represents the input of an <i>UpdateTable</i> operation.
+     *            Represents the input of an <code>UpdateTable</code> operation.
      *            </p>
      * @return updateTableResult The response from the UpdateTable service
      *         method, as returned by Amazon DynamoDB.
@@ -1674,29 +2864,185 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
+     * The UpdateTimeToLive method will enable or disable TTL for the specified
+     * table. A successful <code>UpdateTimeToLive</code> call returns the
+     * current <code>TimeToLiveSpecification</code>; it may take up to one hour
+     * for the change to fully process. Any additional
+     * <code>UpdateTimeToLive</code> calls for the same table during this one
+     * hour duration result in a <code>ValidationException</code>.
+     * </p>
+     * <p>
+     * TTL compares the current time in epoch time format to the time stored in
+     * the TTL attribute of an item. If the epoch time value stored in the
+     * attribute is less than the current time, the item is marked as expired
+     * and subsequently deleted.
+     * </p>
+     * <note>
+     * <p>
+     * The epoch time format is the number of seconds elapsed since 12:00:00 AM
+     * January 1st, 1970 UTC.
+     * </p>
+     * </note>
+     * <p>
+     * DynamoDB deletes expired items on a best-effort basis to ensure
+     * availability of throughput for other data operations.
+     * </p>
+     * <important>
+     * <p>
+     * DynamoDB typically deletes expired items within two days of expiration.
+     * The exact duration within which an item gets deleted after expiration is
+     * specific to the nature of the workload. Items that have expired and not
+     * been deleted will still show up in reads, queries, and scans.
+     * </p>
+     * </important>
+     * <p>
+     * As items are deleted, they are removed from any Local Secondary Index and
+     * Global Secondary Index immediately in the same eventually consistent way
+     * as a standard delete operation.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html"
+     * >Time To Live</a> in the Amazon DynamoDB Developer Guide.
+     * </p>
+     * 
+     * @param updateTimeToLiveRequest <p>
+     *            Represents the input of an <code>UpdateTimeToLive</code>
+     *            operation.
+     *            </p>
+     * @return updateTimeToLiveResult The response from the UpdateTimeToLive
+     *         service method, as returned by Amazon DynamoDB.
+     * @throws ResourceInUseException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws InternalServerErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UpdateTimeToLiveResult updateTimeToLive(UpdateTimeToLiveRequest updateTimeToLiveRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateTimeToLiveRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateTimeToLiveRequest> request = null;
+        Response<UpdateTimeToLiveResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateTimeToLiveRequestMarshaller().marshall(updateTimeToLiveRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateTimeToLiveResult, JsonUnmarshallerContext> unmarshaller = new UpdateTimeToLiveResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateTimeToLiveResult> responseHandler = new JsonResponseHandler<UpdateTimeToLiveResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Creates a new item, or replaces an old item with a new item. If an item
      * that has the same primary key as the new item already exists in the
      * specified table, the new item completely replaces the existing item. You
      * can perform a conditional put operation (add a new item if one with the
      * specified primary key doesn't exist), or replace an existing item if it
-     * has certain attribute values.
+     * has certain attribute values. You can return the item's attribute values
+     * in the same operation, using the <code>ReturnValues</code> parameter.
+     * </p>
+     * <important>
+     * <p>
+     * This topic provides general information about the <code>PutItem</code>
+     * API.
      * </p>
      * <p>
-     * In addition to putting an item, you can also return the item's attribute
-     * values in the same operation, using the <i>ReturnValues</i> parameter.
+     * For information on how to call the <code>PutItem</code> API using the AWS
+     * SDK in specific languages, see the following:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/aws-cli/dynamodb-2012-08-10/PutItem">
+     * PutItem in the AWS Command Line Interface </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/DotNetSDKV3/dynamodb-2012-08-10/PutItem"
+     * > PutItem in the AWS SDK for .NET </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/SdkForCpp/dynamodb-2012-08-10/PutItem">
+     * PutItem in the AWS SDK for C++ </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/SdkForGoV1/dynamodb-2012-08-10/PutItem">
+     * PutItem in the AWS SDK for Go </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/SdkForJava/dynamodb-2012-08-10/PutItem">
+     * PutItem in the AWS SDK for Java </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/dynamodb-2012-08-10/PutItem"
+     * > PutItem in the AWS SDK for JavaScript </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/SdkForPHPV3/dynamodb-2012-08-10/PutItem"
+     * > PutItem in the AWS SDK for PHP V3 </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/boto3/dynamodb-2012-08-10/PutItem">
+     * PutItem in the AWS SDK for Python </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/SdkForRubyV2/dynamodb-2012-08-10/PutItem"
+     * > PutItem in the AWS SDK for Ruby V2 </a>
+     * </p>
+     * </li>
+     * </ul>
+     * </important>
      * <p>
      * When you add an item, the primary key attribute(s) are the only required
      * attributes. Attribute values cannot be null. String and Binary type
      * attributes must have lengths greater than zero. Set type attributes
      * cannot be empty. Requests with empty values will be rejected with a
-     * <i>ValidationException</i> exception.
-     * </p>
-     * <p>
-     * You can request that <i>PutItem</i> return either a copy of the original
-     * item (before the update) or a copy of the updated item (after the
-     * update). For more information, see the <i>ReturnValues</i> description
-     * below.
+     * <code>ValidationException</code> exception.
      * </p>
      * <note>
      * <p>
@@ -1709,7 +3055,7 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * </note>
      * <p>
-     * For more information about using this API, see <a href=
+     * For more information about <code>PutItem</code>, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html"
      * >Working with Items</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * </p>
@@ -1742,8 +3088,8 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            Guide</i>.
      *            </p>
      *            <p>
-     *            Each element in the <i>Item</i> map is an
-     *            <i>AttributeValue</i> object.
+     *            Each element in the <code>Item</code> map is an
+     *            <code>AttributeValue</code> object.
      *            </p>
      * @return putItemResult The response from the PutItem service method, as
      *         returned by Amazon DynamoDB.
@@ -1775,24 +3121,90 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * specified table, the new item completely replaces the existing item. You
      * can perform a conditional put operation (add a new item if one with the
      * specified primary key doesn't exist), or replace an existing item if it
-     * has certain attribute values.
+     * has certain attribute values. You can return the item's attribute values
+     * in the same operation, using the <code>ReturnValues</code> parameter.
+     * </p>
+     * <important>
+     * <p>
+     * This topic provides general information about the <code>PutItem</code>
+     * API.
      * </p>
      * <p>
-     * In addition to putting an item, you can also return the item's attribute
-     * values in the same operation, using the <i>ReturnValues</i> parameter.
+     * For information on how to call the <code>PutItem</code> API using the AWS
+     * SDK in specific languages, see the following:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/aws-cli/dynamodb-2012-08-10/PutItem">
+     * PutItem in the AWS Command Line Interface </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/DotNetSDKV3/dynamodb-2012-08-10/PutItem"
+     * > PutItem in the AWS SDK for .NET </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/SdkForCpp/dynamodb-2012-08-10/PutItem">
+     * PutItem in the AWS SDK for C++ </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/SdkForGoV1/dynamodb-2012-08-10/PutItem">
+     * PutItem in the AWS SDK for Go </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/SdkForJava/dynamodb-2012-08-10/PutItem">
+     * PutItem in the AWS SDK for Java </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/dynamodb-2012-08-10/PutItem"
+     * > PutItem in the AWS SDK for JavaScript </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/SdkForPHPV3/dynamodb-2012-08-10/PutItem"
+     * > PutItem in the AWS SDK for PHP V3 </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/boto3/dynamodb-2012-08-10/PutItem">
+     * PutItem in the AWS SDK for Python </a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/goto/SdkForRubyV2/dynamodb-2012-08-10/PutItem"
+     * > PutItem in the AWS SDK for Ruby V2 </a>
+     * </p>
+     * </li>
+     * </ul>
+     * </important>
      * <p>
      * When you add an item, the primary key attribute(s) are the only required
      * attributes. Attribute values cannot be null. String and Binary type
      * attributes must have lengths greater than zero. Set type attributes
      * cannot be empty. Requests with empty values will be rejected with a
-     * <i>ValidationException</i> exception.
-     * </p>
-     * <p>
-     * You can request that <i>PutItem</i> return either a copy of the original
-     * item (before the update) or a copy of the updated item (after the
-     * update). For more information, see the <i>ReturnValues</i> description
-     * below.
+     * <code>ValidationException</code> exception.
      * </p>
      * <note>
      * <p>
@@ -1805,7 +3217,7 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * </note>
      * <p>
-     * For more information about using this API, see <a href=
+     * For more information about <code>PutItem</code>, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html"
      * >Working with Items</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * </p>
@@ -1838,27 +3250,27 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            Guide</i>.
      *            </p>
      *            <p>
-     *            Each element in the <i>Item</i> map is an
-     *            <i>AttributeValue</i> object.
+     *            Each element in the <code>Item</code> map is an
+     *            <code>AttributeValue</code> object.
      *            </p>
      * @param returnValues <p>
-     *            Use <i>ReturnValues</i> if you want to get the item attributes
-     *            as they appeared before they were updated with the
-     *            <i>PutItem</i> request. For <i>PutItem</i>, the valid values
-     *            are:
+     *            Use <code>ReturnValues</code> if you want to get the item
+     *            attributes as they appeared before they were updated with the
+     *            <code>PutItem</code> request. For <code>PutItem</code>, the
+     *            valid values are:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>NONE</code> - If <i>ReturnValues</i> is not specified,
-     *            or if its value is <code>NONE</code>, then nothing is
-     *            returned. (This setting is the default for
-     *            <i>ReturnValues</i>.)
+     *            <code>NONE</code> - If <code>ReturnValues</code> is not
+     *            specified, or if its value is <code>NONE</code>, then nothing
+     *            is returned. (This setting is the default for
+     *            <code>ReturnValues</code>.)
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ALL_OLD</code> - If <i>PutItem</i> overwrote an
+     *            <code>ALL_OLD</code> - If <code>PutItem</code> overwrote an
      *            attribute name-value pair, then the content of the old item is
      *            returned.
      *            </p>
@@ -1866,9 +3278,10 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            </ul>
      *            <note>
      *            <p>
-     *            The <i>ReturnValues</i> parameter is used by several DynamoDB
-     *            operations; however, <i>PutItem</i> does not recognize any
-     *            values other than <code>NONE</code> or <code>ALL_OLD</code>.
+     *            The <code>ReturnValues</code> parameter is used by several
+     *            DynamoDB operations; however, <code>PutItem</code> does not
+     *            recognize any values other than <code>NONE</code> or
+     *            <code>ALL_OLD</code>.
      *            </p>
      *            </note>
      * @return putItemResult The response from the PutItem service method, as
@@ -1906,7 +3319,8 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <p>
      * You can also return the item's attribute values in the same
-     * <i>UpdateItem</i> operation using the <i>ReturnValues</i> parameter.
+     * <code>UpdateItem</code> operation using the <code>ReturnValues</code>
+     * parameter.
      * </p>
      * 
      * @param tableName <p>
@@ -1923,167 +3337,12 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            key, you must provide values for both the partition key and
      *            the sort key.
      *            </p>
-     * @param attributeUpdates <important>
-     *            <p>
-     *            This is a legacy parameter, for backward compatibility. New
-     *            applications should use <i>UpdateExpression</i> instead. Do
-     *            not combine legacy parameters and expression parameters in a
-     *            single API call; otherwise, DynamoDB will return a
-     *            <i>ValidationException</i> exception.
-     *            </p>
-     *            <p>
-     *            This parameter can be used for modifying top-level attributes;
-     *            however, it does not support individual list or map elements.
-     *            </p>
-     *            </important>
-     *            <p>
-     *            The names of attributes to be modified, the action to perform
-     *            on each, and the new value for each. If you are updating an
-     *            attribute that is an index key attribute for any indexes on
-     *            that table, the attribute type must match the index key type
-     *            defined in the <i>AttributesDefinition</i> of the table
-     *            description. You can use <i>UpdateItem</i> to update any
-     *            non-key attributes.
-     *            </p>
-     *            <p>
-     *            Attribute values cannot be null. String and Binary type
-     *            attributes must have lengths greater than zero. Set type
-     *            attributes must not be empty. Requests with empty values will
-     *            be rejected with a <i>ValidationException</i> exception.
-     *            </p>
-     *            <p>
-     *            Each <i>AttributeUpdates</i> element consists of an attribute
-     *            name to modify, along with the following:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <i>Value</i> - The new value, if applicable, for this
-     *            attribute.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <i>Action</i> - A value that specifies how to perform the
-     *            update. This action is only valid for an existing attribute
-     *            whose data type is Number or is a set; do not use
-     *            <code>ADD</code> for other data types.
-     *            </p>
-     *            <p>
-     *            If an item with the specified primary key is found in the
-     *            table, the following values perform the following actions:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>PUT</code> - Adds the specified attribute to the item.
-     *            If the attribute already exists, it is replaced by the new
-     *            value.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>DELETE</code> - Removes the attribute and its value, if
-     *            no value is specified for <code>DELETE</code>. The data type
-     *            of the specified value must match the existing value's data
-     *            type.
-     *            </p>
-     *            <p>
-     *            If a set of values is specified, then those values are
-     *            subtracted from the old set. For example, if the attribute
-     *            value was the set <code>[a,b,c]</code> and the
-     *            <code>DELETE</code> action specifies <code>[a,c]</code>, then
-     *            the final attribute value is <code>[b]</code>. Specifying an
-     *            empty set is an error.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>ADD</code> - Adds the specified value to the item, if
-     *            the attribute does not already exist. If the attribute does
-     *            exist, then the behavior of <code>ADD</code> depends on the
-     *            data type of the attribute:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            If the existing attribute is a number, and if <i>Value</i> is
-     *            also a number, then <i>Value</i> is mathematically added to
-     *            the existing attribute. If <i>Value</i> is a negative number,
-     *            then it is subtracted from the existing attribute.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            If you use <code>ADD</code> to increment or decrement a number
-     *            value for an item that doesn't exist before the update,
-     *            DynamoDB uses 0 as the initial value.
-     *            </p>
-     *            <p>
-     *            Similarly, if you use <code>ADD</code> for an existing item to
-     *            increment or decrement an attribute value that doesn't exist
-     *            before the update, DynamoDB uses <code>0</code> as the initial
-     *            value. For example, suppose that the item you want to update
-     *            doesn't have an attribute named <i>itemcount</i>, but you
-     *            decide to <code>ADD</code> the number <code>3</code> to this
-     *            attribute anyway. DynamoDB will create the <i>itemcount</i>
-     *            attribute, set its initial value to <code>0</code>, and
-     *            finally add <code>3</code> to it. The result will be a new
-     *            <i>itemcount</i> attribute, with a value of <code>3</code>.
-     *            </p>
-     *            </note></li>
-     *            <li>
-     *            <p>
-     *            If the existing data type is a set, and if <i>Value</i> is
-     *            also a set, then <i>Value</i> is appended to the existing set.
-     *            For example, if the attribute value is the set
-     *            <code>[1,2]</code>, and the <code>ADD</code> action specified
-     *            <code>[3]</code>, then the final attribute value is
-     *            <code>[1,2,3]</code>. An error occurs if an <code>ADD</code>
-     *            action is specified for a set attribute and the attribute type
-     *            specified does not match the existing set type.
-     *            </p>
-     *            <p>
-     *            Both sets must have the same primitive data type. For example,
-     *            if the existing data type is a set of strings, <i>Value</i>
-     *            must also be a set of strings.
-     *            </p>
-     *            </li>
-     *            </ul>
-     *            </li>
-     *            </ul>
-     *            <p>
-     *            If no item with the specified key is found in the table, the
-     *            following values perform the following actions:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>PUT</code> - Causes DynamoDB to create a new item with
-     *            the specified primary key, and then adds the attribute.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>DELETE</code> - Nothing happens, because attributes
-     *            cannot be deleted from a nonexistent item. The operation
-     *            succeeds, but DynamoDB does not create a new item.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>ADD</code> - Causes DynamoDB to create an item with the
-     *            supplied primary key and number (or set of numbers) for the
-     *            attribute value. The only data types allowed are Number and
-     *            Number Set.
-     *            </p>
-     *            </li>
-     *            </ul>
-     *            </li>
-     *            </ul>
-     *            <p>
-     *            If you provide any attributes that are part of an index key,
-     *            then the data types for those attributes must match those of
-     *            the schema in the table's attribute definition.
+     * @param attributeUpdates <p>
+     *            This is a legacy parameter. Use <code>UpdateExpression</code>
+     *            instead. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributeUpdates.html"
+     *            >AttributeUpdates</a> in the <i>Amazon DynamoDB Developer
+     *            Guide</i>.
      *            </p>
      * @return updateItemResult The response from the UpdateItem service method,
      *         as returned by Amazon DynamoDB.
@@ -2120,7 +3379,8 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <p>
      * You can also return the item's attribute values in the same
-     * <i>UpdateItem</i> operation using the <i>ReturnValues</i> parameter.
+     * <code>UpdateItem</code> operation using the <code>ReturnValues</code>
+     * parameter.
      * </p>
      * 
      * @param tableName <p>
@@ -2137,216 +3397,60 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            key, you must provide values for both the partition key and
      *            the sort key.
      *            </p>
-     * @param attributeUpdates <important>
-     *            <p>
-     *            This is a legacy parameter, for backward compatibility. New
-     *            applications should use <i>UpdateExpression</i> instead. Do
-     *            not combine legacy parameters and expression parameters in a
-     *            single API call; otherwise, DynamoDB will return a
-     *            <i>ValidationException</i> exception.
-     *            </p>
-     *            <p>
-     *            This parameter can be used for modifying top-level attributes;
-     *            however, it does not support individual list or map elements.
-     *            </p>
-     *            </important>
-     *            <p>
-     *            The names of attributes to be modified, the action to perform
-     *            on each, and the new value for each. If you are updating an
-     *            attribute that is an index key attribute for any indexes on
-     *            that table, the attribute type must match the index key type
-     *            defined in the <i>AttributesDefinition</i> of the table
-     *            description. You can use <i>UpdateItem</i> to update any
-     *            non-key attributes.
-     *            </p>
-     *            <p>
-     *            Attribute values cannot be null. String and Binary type
-     *            attributes must have lengths greater than zero. Set type
-     *            attributes must not be empty. Requests with empty values will
-     *            be rejected with a <i>ValidationException</i> exception.
-     *            </p>
-     *            <p>
-     *            Each <i>AttributeUpdates</i> element consists of an attribute
-     *            name to modify, along with the following:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <i>Value</i> - The new value, if applicable, for this
-     *            attribute.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <i>Action</i> - A value that specifies how to perform the
-     *            update. This action is only valid for an existing attribute
-     *            whose data type is Number or is a set; do not use
-     *            <code>ADD</code> for other data types.
-     *            </p>
-     *            <p>
-     *            If an item with the specified primary key is found in the
-     *            table, the following values perform the following actions:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>PUT</code> - Adds the specified attribute to the item.
-     *            If the attribute already exists, it is replaced by the new
-     *            value.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>DELETE</code> - Removes the attribute and its value, if
-     *            no value is specified for <code>DELETE</code>. The data type
-     *            of the specified value must match the existing value's data
-     *            type.
-     *            </p>
-     *            <p>
-     *            If a set of values is specified, then those values are
-     *            subtracted from the old set. For example, if the attribute
-     *            value was the set <code>[a,b,c]</code> and the
-     *            <code>DELETE</code> action specifies <code>[a,c]</code>, then
-     *            the final attribute value is <code>[b]</code>. Specifying an
-     *            empty set is an error.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>ADD</code> - Adds the specified value to the item, if
-     *            the attribute does not already exist. If the attribute does
-     *            exist, then the behavior of <code>ADD</code> depends on the
-     *            data type of the attribute:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            If the existing attribute is a number, and if <i>Value</i> is
-     *            also a number, then <i>Value</i> is mathematically added to
-     *            the existing attribute. If <i>Value</i> is a negative number,
-     *            then it is subtracted from the existing attribute.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            If you use <code>ADD</code> to increment or decrement a number
-     *            value for an item that doesn't exist before the update,
-     *            DynamoDB uses 0 as the initial value.
-     *            </p>
-     *            <p>
-     *            Similarly, if you use <code>ADD</code> for an existing item to
-     *            increment or decrement an attribute value that doesn't exist
-     *            before the update, DynamoDB uses <code>0</code> as the initial
-     *            value. For example, suppose that the item you want to update
-     *            doesn't have an attribute named <i>itemcount</i>, but you
-     *            decide to <code>ADD</code> the number <code>3</code> to this
-     *            attribute anyway. DynamoDB will create the <i>itemcount</i>
-     *            attribute, set its initial value to <code>0</code>, and
-     *            finally add <code>3</code> to it. The result will be a new
-     *            <i>itemcount</i> attribute, with a value of <code>3</code>.
-     *            </p>
-     *            </note></li>
-     *            <li>
-     *            <p>
-     *            If the existing data type is a set, and if <i>Value</i> is
-     *            also a set, then <i>Value</i> is appended to the existing set.
-     *            For example, if the attribute value is the set
-     *            <code>[1,2]</code>, and the <code>ADD</code> action specified
-     *            <code>[3]</code>, then the final attribute value is
-     *            <code>[1,2,3]</code>. An error occurs if an <code>ADD</code>
-     *            action is specified for a set attribute and the attribute type
-     *            specified does not match the existing set type.
-     *            </p>
-     *            <p>
-     *            Both sets must have the same primitive data type. For example,
-     *            if the existing data type is a set of strings, <i>Value</i>
-     *            must also be a set of strings.
-     *            </p>
-     *            </li>
-     *            </ul>
-     *            </li>
-     *            </ul>
-     *            <p>
-     *            If no item with the specified key is found in the table, the
-     *            following values perform the following actions:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>PUT</code> - Causes DynamoDB to create a new item with
-     *            the specified primary key, and then adds the attribute.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>DELETE</code> - Nothing happens, because attributes
-     *            cannot be deleted from a nonexistent item. The operation
-     *            succeeds, but DynamoDB does not create a new item.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>ADD</code> - Causes DynamoDB to create an item with the
-     *            supplied primary key and number (or set of numbers) for the
-     *            attribute value. The only data types allowed are Number and
-     *            Number Set.
-     *            </p>
-     *            </li>
-     *            </ul>
-     *            </li>
-     *            </ul>
-     *            <p>
-     *            If you provide any attributes that are part of an index key,
-     *            then the data types for those attributes must match those of
-     *            the schema in the table's attribute definition.
+     * @param attributeUpdates <p>
+     *            This is a legacy parameter. Use <code>UpdateExpression</code>
+     *            instead. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributeUpdates.html"
+     *            >AttributeUpdates</a> in the <i>Amazon DynamoDB Developer
+     *            Guide</i>.
      *            </p>
      * @param returnValues <p>
-     *            Use <i>ReturnValues</i> if you want to get the item attributes
-     *            as they appeared either before or after they were updated. For
-     *            <i>UpdateItem</i>, the valid values are:
+     *            Use <code>ReturnValues</code> if you want to get the item
+     *            attributes as they appear before or after they are updated.
+     *            For <code>UpdateItem</code>, the valid values are:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>NONE</code> - If <i>ReturnValues</i> is not specified,
-     *            or if its value is <code>NONE</code>, then nothing is
-     *            returned. (This setting is the default for
-     *            <i>ReturnValues</i>.)
+     *            <code>NONE</code> - If <code>ReturnValues</code> is not
+     *            specified, or if its value is <code>NONE</code>, then nothing
+     *            is returned. (This setting is the default for
+     *            <code>ReturnValues</code>.)
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ALL_OLD</code> - If <i>UpdateItem</i> overwrote an
-     *            attribute name-value pair, then the content of the old item is
-     *            returned.
+     *            <code>ALL_OLD</code> - Returns all of the attributes of the
+     *            item, as they appeared before the UpdateItem operation.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>UPDATED_OLD</code> - The old versions of only the
-     *            updated attributes are returned.
+     *            <code>UPDATED_OLD</code> - Returns only the updated
+     *            attributes, as they appeared before the UpdateItem operation.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ALL_NEW</code> - All of the attributes of the new
-     *            version of the item are returned.
+     *            <code>ALL_NEW</code> - Returns all of the attributes of the
+     *            item, as they appear after the UpdateItem operation.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>UPDATED_NEW</code> - The new versions of only the
-     *            updated attributes are returned.
+     *            <code>UPDATED_NEW</code> - Returns only the updated
+     *            attributes, as they appear after the UpdateItem operation.
      *            </p>
      *            </li>
      *            </ul>
      *            <p>
      *            There is no additional cost associated with requesting a
      *            return value aside from the small network and processing
-     *            overhead of receiving a larger response. No Read Capacity
-     *            Units are consumed.
+     *            overhead of receiving a larger response. No read capacity
+     *            units are consumed.
      *            </p>
      *            <p>
-     *            Values returned are strongly consistent
+     *            The values returned are strongly consistent.
      *            </p>
      * @return updateItemResult The response from the UpdateItem service method,
      *         as returned by Amazon DynamoDB.
@@ -2382,12 +3486,12 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <note>
      * <p>
-     * If you issue a <i>DescribeTable</i> request immediately after a
-     * <i>CreateTable</i> request, DynamoDB might return a
-     * <i>ResourceNotFoundException</i>. This is because <i>DescribeTable</i>
-     * uses an eventually consistent query, and the metadata for your table
-     * might not be available at that moment. Wait for a few seconds, and then
-     * try the <i>DescribeTable</i> request again.
+     * If you issue a <code>DescribeTable</code> request immediately after a
+     * <code>CreateTable</code> request, DynamoDB might return a
+     * <code>ResourceNotFoundException</code>. This is because
+     * <code>DescribeTable</code> uses an eventually consistent query, and the
+     * metadata for your table might not be available at that moment. Wait for a
+     * few seconds, and then try the <code>DescribeTable</code> request again.
      * </p>
      * </note>
      * 
@@ -2415,31 +3519,45 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * The <i>Scan</i> operation returns one or more items and item attributes
-     * by accessing every item in a table or a secondary index. To have DynamoDB
-     * return fewer items, you can provide a <i>ScanFilter</i> operation.
+     * The <code>Scan</code> operation returns one or more items and item
+     * attributes by accessing every item in a table or a secondary index. To
+     * have DynamoDB return fewer items, you can provide a
+     * <code>FilterExpression</code> operation.
      * </p>
      * <p>
      * If the total number of scanned items exceeds the maximum data set size
      * limit of 1 MB, the scan stops and results are returned to the user as a
-     * <i>LastEvaluatedKey</i> value to continue the scan in a subsequent
+     * <code>LastEvaluatedKey</code> value to continue the scan in a subsequent
      * operation. The results also include the number of items exceeding the
      * limit. A scan can result in no table data meeting the filter criteria.
      * </p>
      * <p>
-     * By default, <i>Scan</i> operations proceed sequentially; however, for
-     * faster performance on a large table or secondary index, applications can
-     * request a parallel <i>Scan</i> operation by providing the <i>Segment</i>
-     * and <i>TotalSegments</i> parameters. For more information, see <a href=
-     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#QueryAndScanParallelScan"
+     * A single <code>Scan</code> operation will read up to the maximum number
+     * of items set (if using the <code>Limit</code> parameter) or a maximum of
+     * 1 MB of data and then apply any filtering to the results using
+     * <code>FilterExpression</code>. If <code>LastEvaluatedKey</code> is
+     * present in the response, you will need to paginate the result set. For
+     * more information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.Pagination"
+     * >Paginating the Results</a> in the <i>Amazon DynamoDB Developer
+     * Guide</i>.
+     * </p>
+     * <p>
+     * <code>Scan</code> operations proceed sequentially; however, for faster
+     * performance on a large table or secondary index, applications can request
+     * a parallel <code>Scan</code> operation by providing the
+     * <code>Segment</code> and <code>TotalSegments</code> parameters. For more
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.ParallelScan"
      * >Parallel Scan</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * </p>
      * <p>
-     * By default, <i>Scan</i> uses eventually consistent reads when accessing
-     * the data in a table; therefore, the result set might not include the
-     * changes to data in the table immediately before the operation began. If
-     * you need a consistent copy of the data, as of the time that the Scan
-     * begins, you can set the <i>ConsistentRead</i> parameter to <i>true</i>.
+     * <code>Scan</code> uses eventually consistent reads when accessing the
+     * data in a table; therefore, the result set might not include the changes
+     * to data in the table immediately before the operation began. If you need
+     * a consistent copy of the data, as of the time that the <code>Scan</code>
+     * begins, you can set the <code>ConsistentRead</code> parameter to
+     * <code>true</code>.
      * </p>
      * 
      * @param tableName <p>
@@ -2447,31 +3565,13 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            you provide <code>IndexName</code>, the name of the table to
      *            which that index belongs.
      *            </p>
-     * @param attributesToGet <important>
-     *            <p>
-     *            This is a legacy parameter, for backward compatibility. New
-     *            applications should use <i>ProjectionExpression</i> instead.
-     *            Do not combine legacy parameters and expression parameters in
-     *            a single API call; otherwise, DynamoDB will return a
-     *            <i>ValidationException</i> exception.
-     *            </p>
-     *            <p>
-     *            This parameter allows you to retrieve attributes of type List
-     *            or Map; however, it cannot retrieve individual elements within
-     *            a List or a Map.
-     *            </p>
-     *            </important>
-     *            <p>
-     *            The names of one or more attributes to retrieve. If no
-     *            attribute names are provided, then all attributes will be
-     *            returned. If any of the requested attributes are not found,
-     *            they will not appear in the result.
-     *            </p>
-     *            <p>
-     *            Note that <i>AttributesToGet</i> has no effect on provisioned
-     *            throughput consumption. DynamoDB determines capacity units
-     *            consumed based on item size, not on the amount of data that is
-     *            returned to an application.
+     * @param attributesToGet <p>
+     *            This is a legacy parameter. Use
+     *            <code>ProjectionExpression</code> instead. For more
+     *            information, see <a href=
+     *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html"
+     *            >AttributesToGet</a> in the <i>Amazon DynamoDB Developer
+     *            Guide</i>.
      *            </p>
      * @return scanResult The response from the Scan service method, as returned
      *         by Amazon DynamoDB.
@@ -2496,31 +3596,45 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * The <i>Scan</i> operation returns one or more items and item attributes
-     * by accessing every item in a table or a secondary index. To have DynamoDB
-     * return fewer items, you can provide a <i>ScanFilter</i> operation.
+     * The <code>Scan</code> operation returns one or more items and item
+     * attributes by accessing every item in a table or a secondary index. To
+     * have DynamoDB return fewer items, you can provide a
+     * <code>FilterExpression</code> operation.
      * </p>
      * <p>
      * If the total number of scanned items exceeds the maximum data set size
      * limit of 1 MB, the scan stops and results are returned to the user as a
-     * <i>LastEvaluatedKey</i> value to continue the scan in a subsequent
+     * <code>LastEvaluatedKey</code> value to continue the scan in a subsequent
      * operation. The results also include the number of items exceeding the
      * limit. A scan can result in no table data meeting the filter criteria.
      * </p>
      * <p>
-     * By default, <i>Scan</i> operations proceed sequentially; however, for
-     * faster performance on a large table or secondary index, applications can
-     * request a parallel <i>Scan</i> operation by providing the <i>Segment</i>
-     * and <i>TotalSegments</i> parameters. For more information, see <a href=
-     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#QueryAndScanParallelScan"
+     * A single <code>Scan</code> operation will read up to the maximum number
+     * of items set (if using the <code>Limit</code> parameter) or a maximum of
+     * 1 MB of data and then apply any filtering to the results using
+     * <code>FilterExpression</code>. If <code>LastEvaluatedKey</code> is
+     * present in the response, you will need to paginate the result set. For
+     * more information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.Pagination"
+     * >Paginating the Results</a> in the <i>Amazon DynamoDB Developer
+     * Guide</i>.
+     * </p>
+     * <p>
+     * <code>Scan</code> operations proceed sequentially; however, for faster
+     * performance on a large table or secondary index, applications can request
+     * a parallel <code>Scan</code> operation by providing the
+     * <code>Segment</code> and <code>TotalSegments</code> parameters. For more
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.ParallelScan"
      * >Parallel Scan</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * </p>
      * <p>
-     * By default, <i>Scan</i> uses eventually consistent reads when accessing
-     * the data in a table; therefore, the result set might not include the
-     * changes to data in the table immediately before the operation began. If
-     * you need a consistent copy of the data, as of the time that the Scan
-     * begins, you can set the <i>ConsistentRead</i> parameter to <i>true</i>.
+     * <code>Scan</code> uses eventually consistent reads when accessing the
+     * data in a table; therefore, the result set might not include the changes
+     * to data in the table immediately before the operation began. If you need
+     * a consistent copy of the data, as of the time that the <code>Scan</code>
+     * begins, you can set the <code>ConsistentRead</code> parameter to
+     * <code>true</code>.
      * </p>
      * 
      * @param tableName <p>
@@ -2528,89 +3642,12 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            you provide <code>IndexName</code>, the name of the table to
      *            which that index belongs.
      *            </p>
-     * @param scanFilter <important>
-     *            <p>
-     *            This is a legacy parameter, for backward compatibility. New
-     *            applications should use <i>FilterExpression</i> instead. Do
-     *            not combine legacy parameters and expression parameters in a
-     *            single API call; otherwise, DynamoDB will return a
-     *            <i>ValidationException</i> exception.
+     * @param scanFilter <p>
+     *            This is a legacy parameter. Use <code>FilterExpression</code>
+     *            instead. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ScanFilter.html"
+     *            >ScanFilter</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *            </p>
-     *            </important>
-     *            <p>
-     *            A condition that evaluates the scan results and returns only
-     *            the desired values.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            This parameter does not support attributes of type List or
-     *            Map.
-     *            </p>
-     *            </note>
-     *            <p>
-     *            If you specify more than one condition in the
-     *            <i>ScanFilter</i> map, then by default all of the conditions
-     *            must evaluate to true. In other words, the conditions are
-     *            ANDed together. (You can use the <i>ConditionalOperator</i>
-     *            parameter to OR the conditions instead. If you do this, then
-     *            at least one of the conditions must evaluate to true, rather
-     *            than all of them.)
-     *            </p>
-     *            <p>
-     *            Each <i>ScanFilter</i> element consists of an attribute name
-     *            to compare, along with the following:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <i>AttributeValueList</i> - One or more values to evaluate
-     *            against the supplied attribute. The number of values in the
-     *            list depends on the operator specified in
-     *            <i>ComparisonOperator</i> .
-     *            </p>
-     *            <p>
-     *            For type Number, value comparisons are numeric.
-     *            </p>
-     *            <p>
-     *            String value comparisons for greater than, equals, or less
-     *            than are based on ASCII character code values. For example,
-     *            <code>a</code> is greater than <code>A</code>, and
-     *            <code>a</code> is greater than <code>B</code>. For a list of
-     *            code values, see <a href=
-     *            "http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
-     *            >http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters
-     *            </a>.
-     *            </p>
-     *            <p>
-     *            For Binary, DynamoDB treats each byte of the binary data as
-     *            unsigned when it compares binary values.
-     *            </p>
-     *            <p>
-     *            For information on specifying data types in JSON, see <a href=
-     *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataFormat.html"
-     *            >JSON Data Format</a> in the <i>Amazon DynamoDB Developer
-     *            Guide</i>.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <i>ComparisonOperator</i> - A comparator for evaluating
-     *            attributes. For example, equals, greater than, less than, etc.
-     *            </p>
-     *            <p>
-     *            The following comparison operators are available:
-     *            </p>
-     *            <p>
-     *            <code>EQ | NE | LE | LT | GE | GT | NOT_NULL | NULL | CONTAINS | NOT_CONTAINS | BEGINS_WITH | IN | BETWEEN</code>
-     *            </p>
-     *            <p>
-     *            For complete descriptions of all comparison operators, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Condition.html"
-     *            >Condition</a>.
-     *            </p>
-     *            </li>
-     *            </ul>
      * @return scanResult The response from the Scan service method, as returned
      *         by Amazon DynamoDB.
      * @throws ProvisionedThroughputExceededException
@@ -2634,31 +3671,45 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * The <i>Scan</i> operation returns one or more items and item attributes
-     * by accessing every item in a table or a secondary index. To have DynamoDB
-     * return fewer items, you can provide a <i>ScanFilter</i> operation.
+     * The <code>Scan</code> operation returns one or more items and item
+     * attributes by accessing every item in a table or a secondary index. To
+     * have DynamoDB return fewer items, you can provide a
+     * <code>FilterExpression</code> operation.
      * </p>
      * <p>
      * If the total number of scanned items exceeds the maximum data set size
      * limit of 1 MB, the scan stops and results are returned to the user as a
-     * <i>LastEvaluatedKey</i> value to continue the scan in a subsequent
+     * <code>LastEvaluatedKey</code> value to continue the scan in a subsequent
      * operation. The results also include the number of items exceeding the
      * limit. A scan can result in no table data meeting the filter criteria.
      * </p>
      * <p>
-     * By default, <i>Scan</i> operations proceed sequentially; however, for
-     * faster performance on a large table or secondary index, applications can
-     * request a parallel <i>Scan</i> operation by providing the <i>Segment</i>
-     * and <i>TotalSegments</i> parameters. For more information, see <a href=
-     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#QueryAndScanParallelScan"
+     * A single <code>Scan</code> operation will read up to the maximum number
+     * of items set (if using the <code>Limit</code> parameter) or a maximum of
+     * 1 MB of data and then apply any filtering to the results using
+     * <code>FilterExpression</code>. If <code>LastEvaluatedKey</code> is
+     * present in the response, you will need to paginate the result set. For
+     * more information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.Pagination"
+     * >Paginating the Results</a> in the <i>Amazon DynamoDB Developer
+     * Guide</i>.
+     * </p>
+     * <p>
+     * <code>Scan</code> operations proceed sequentially; however, for faster
+     * performance on a large table or secondary index, applications can request
+     * a parallel <code>Scan</code> operation by providing the
+     * <code>Segment</code> and <code>TotalSegments</code> parameters. For more
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.ParallelScan"
      * >Parallel Scan</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * </p>
      * <p>
-     * By default, <i>Scan</i> uses eventually consistent reads when accessing
-     * the data in a table; therefore, the result set might not include the
-     * changes to data in the table immediately before the operation began. If
-     * you need a consistent copy of the data, as of the time that the Scan
-     * begins, you can set the <i>ConsistentRead</i> parameter to <i>true</i>.
+     * <code>Scan</code> uses eventually consistent reads when accessing the
+     * data in a table; therefore, the result set might not include the changes
+     * to data in the table immediately before the operation began. If you need
+     * a consistent copy of the data, as of the time that the <code>Scan</code>
+     * begins, you can set the <code>ConsistentRead</code> parameter to
+     * <code>true</code>.
      * </p>
      * 
      * @param tableName <p>
@@ -2666,115 +3717,20 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            you provide <code>IndexName</code>, the name of the table to
      *            which that index belongs.
      *            </p>
-     * @param attributesToGet <important>
-     *            <p>
-     *            This is a legacy parameter, for backward compatibility. New
-     *            applications should use <i>ProjectionExpression</i> instead.
-     *            Do not combine legacy parameters and expression parameters in
-     *            a single API call; otherwise, DynamoDB will return a
-     *            <i>ValidationException</i> exception.
-     *            </p>
-     *            <p>
-     *            This parameter allows you to retrieve attributes of type List
-     *            or Map; however, it cannot retrieve individual elements within
-     *            a List or a Map.
-     *            </p>
-     *            </important>
-     *            <p>
-     *            The names of one or more attributes to retrieve. If no
-     *            attribute names are provided, then all attributes will be
-     *            returned. If any of the requested attributes are not found,
-     *            they will not appear in the result.
-     *            </p>
-     *            <p>
-     *            Note that <i>AttributesToGet</i> has no effect on provisioned
-     *            throughput consumption. DynamoDB determines capacity units
-     *            consumed based on item size, not on the amount of data that is
-     *            returned to an application.
-     *            </p>
-     * @param scanFilter <important>
-     *            <p>
-     *            This is a legacy parameter, for backward compatibility. New
-     *            applications should use <i>FilterExpression</i> instead. Do
-     *            not combine legacy parameters and expression parameters in a
-     *            single API call; otherwise, DynamoDB will return a
-     *            <i>ValidationException</i> exception.
-     *            </p>
-     *            </important>
-     *            <p>
-     *            A condition that evaluates the scan results and returns only
-     *            the desired values.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            This parameter does not support attributes of type List or
-     *            Map.
-     *            </p>
-     *            </note>
-     *            <p>
-     *            If you specify more than one condition in the
-     *            <i>ScanFilter</i> map, then by default all of the conditions
-     *            must evaluate to true. In other words, the conditions are
-     *            ANDed together. (You can use the <i>ConditionalOperator</i>
-     *            parameter to OR the conditions instead. If you do this, then
-     *            at least one of the conditions must evaluate to true, rather
-     *            than all of them.)
-     *            </p>
-     *            <p>
-     *            Each <i>ScanFilter</i> element consists of an attribute name
-     *            to compare, along with the following:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <i>AttributeValueList</i> - One or more values to evaluate
-     *            against the supplied attribute. The number of values in the
-     *            list depends on the operator specified in
-     *            <i>ComparisonOperator</i> .
-     *            </p>
-     *            <p>
-     *            For type Number, value comparisons are numeric.
-     *            </p>
-     *            <p>
-     *            String value comparisons for greater than, equals, or less
-     *            than are based on ASCII character code values. For example,
-     *            <code>a</code> is greater than <code>A</code>, and
-     *            <code>a</code> is greater than <code>B</code>. For a list of
-     *            code values, see <a href=
-     *            "http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
-     *            >http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters
-     *            </a>.
-     *            </p>
-     *            <p>
-     *            For Binary, DynamoDB treats each byte of the binary data as
-     *            unsigned when it compares binary values.
-     *            </p>
-     *            <p>
-     *            For information on specifying data types in JSON, see <a href=
-     *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataFormat.html"
-     *            >JSON Data Format</a> in the <i>Amazon DynamoDB Developer
+     * @param attributesToGet <p>
+     *            This is a legacy parameter. Use
+     *            <code>ProjectionExpression</code> instead. For more
+     *            information, see <a href=
+     *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html"
+     *            >AttributesToGet</a> in the <i>Amazon DynamoDB Developer
      *            Guide</i>.
      *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <i>ComparisonOperator</i> - A comparator for evaluating
-     *            attributes. For example, equals, greater than, less than, etc.
+     * @param scanFilter <p>
+     *            This is a legacy parameter. Use <code>FilterExpression</code>
+     *            instead. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ScanFilter.html"
+     *            >ScanFilter</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *            </p>
-     *            <p>
-     *            The following comparison operators are available:
-     *            </p>
-     *            <p>
-     *            <code>EQ | NE | LE | LT | GE | GT | NOT_NULL | NULL | CONTAINS | NOT_CONTAINS | BEGINS_WITH | IN | BETWEEN</code>
-     *            </p>
-     *            <p>
-     *            For complete descriptions of all comparison operators, see <a
-     *            href=
-     *            "http://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Condition.html"
-     *            >Condition</a>.
-     *            </p>
-     *            </li>
-     *            </ul>
      * @return scanResult The response from the Scan service method, as returned
      *         by Amazon DynamoDB.
      * @throws ProvisionedThroughputExceededException
@@ -2806,12 +3762,13 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <p>
      * In addition to deleting an item, you can also return the item's attribute
-     * values in the same operation, using the <i>ReturnValues</i> parameter.
+     * values in the same operation, using the <code>ReturnValues</code>
+     * parameter.
      * </p>
      * <p>
-     * Unless you specify conditions, the <i>DeleteItem</i> is an idempotent
-     * operation; running it multiple times on the same item or attribute does
-     * <i>not</i> result in an error response.
+     * Unless you specify conditions, the <code>DeleteItem</code> is an
+     * idempotent operation; running it multiple times on the same item or
+     * attribute does <i>not</i> result in an error response.
      * </p>
      * <p>
      * Conditional deletes are useful for deleting items only if specific
@@ -2823,8 +3780,8 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            The name of the table from which to delete the item.
      *            </p>
      * @param key <p>
-     *            A map of attribute names to <i>AttributeValue</i> objects,
-     *            representing the primary key of the item to delete.
+     *            A map of attribute names to <code>AttributeValue</code>
+     *            objects, representing the primary key of the item to delete.
      *            </p>
      *            <p>
      *            For the primary key, you must provide all of the attributes.
@@ -2864,12 +3821,13 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <p>
      * In addition to deleting an item, you can also return the item's attribute
-     * values in the same operation, using the <i>ReturnValues</i> parameter.
+     * values in the same operation, using the <code>ReturnValues</code>
+     * parameter.
      * </p>
      * <p>
-     * Unless you specify conditions, the <i>DeleteItem</i> is an idempotent
-     * operation; running it multiple times on the same item or attribute does
-     * <i>not</i> result in an error response.
+     * Unless you specify conditions, the <code>DeleteItem</code> is an
+     * idempotent operation; running it multiple times on the same item or
+     * attribute does <i>not</i> result in an error response.
      * </p>
      * <p>
      * Conditional deletes are useful for deleting items only if specific
@@ -2881,8 +3839,8 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            The name of the table from which to delete the item.
      *            </p>
      * @param key <p>
-     *            A map of attribute names to <i>AttributeValue</i> objects,
-     *            representing the primary key of the item to delete.
+     *            A map of attribute names to <code>AttributeValue</code>
+     *            objects, representing the primary key of the item to delete.
      *            </p>
      *            <p>
      *            For the primary key, you must provide all of the attributes.
@@ -2892,17 +3850,17 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            the sort key.
      *            </p>
      * @param returnValues <p>
-     *            Use <i>ReturnValues</i> if you want to get the item attributes
-     *            as they appeared before they were deleted. For
-     *            <i>DeleteItem</i>, the valid values are:
+     *            Use <code>ReturnValues</code> if you want to get the item
+     *            attributes as they appeared before they were deleted. For
+     *            <code>DeleteItem</code>, the valid values are:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>NONE</code> - If <i>ReturnValues</i> is not specified,
-     *            or if its value is <code>NONE</code>, then nothing is
-     *            returned. (This setting is the default for
-     *            <i>ReturnValues</i>.)
+     *            <code>NONE</code> - If <code>ReturnValues</code> is not
+     *            specified, or if its value is <code>NONE</code>, then nothing
+     *            is returned. (This setting is the default for
+     *            <code>ReturnValues</code>.)
      *            </p>
      *            </li>
      *            <li>
@@ -2914,9 +3872,10 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            </ul>
      *            <note>
      *            <p>
-     *            The <i>ReturnValues</i> parameter is used by several DynamoDB
-     *            operations; however, <i>DeleteItem</i> does not recognize any
-     *            values other than <code>NONE</code> or <code>ALL_OLD</code>.
+     *            The <code>ReturnValues</code> parameter is used by several
+     *            DynamoDB operations; however, <code>DeleteItem</code> does not
+     *            recognize any values other than <code>NONE</code> or
+     *            <code>ALL_OLD</code>.
      *            </p>
      *            </note>
      * @return deleteItemResult The response from the DeleteItem service method,
@@ -2946,20 +3905,20 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * The <i>DeleteTable</i> operation deletes a table and all of its items.
-     * After a <i>DeleteTable</i> request, the specified table is in the
-     * <code>DELETING</code> state until DynamoDB completes the deletion. If the
-     * table is in the <code>ACTIVE</code> state, you can delete it. If a table
-     * is in <code>CREATING</code> or <code>UPDATING</code> states, then
-     * DynamoDB returns a <i>ResourceInUseException</i>. If the specified table
-     * does not exist, DynamoDB returns a <i>ResourceNotFoundException</i>. If
-     * table is already in the <code>DELETING</code> state, no error is
-     * returned.
+     * The <code>DeleteTable</code> operation deletes a table and all of its
+     * items. After a <code>DeleteTable</code> request, the specified table is
+     * in the <code>DELETING</code> state until DynamoDB completes the deletion.
+     * If the table is in the <code>ACTIVE</code> state, you can delete it. If a
+     * table is in <code>CREATING</code> or <code>UPDATING</code> states, then
+     * DynamoDB returns a <code>ResourceInUseException</code>. If the specified
+     * table does not exist, DynamoDB returns a
+     * <code>ResourceNotFoundException</code>. If table is already in the
+     * <code>DELETING</code> state, no error is returned.
      * </p>
      * <note>
      * <p>
      * DynamoDB might continue to accept data read and write operations, such as
-     * <i>GetItem</i> and <i>PutItem</i>, on a table in the
+     * <code>GetItem</code> and <code>PutItem</code>, on a table in the
      * <code>DELETING</code> state until the table deletion is complete.
      * </p>
      * </note>
@@ -2972,7 +3931,8 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * stream is automatically deleted after 24 hours.
      * </p>
      * <p>
-     * Use the <i>DescribeTable</i> API to check the status of the table.
+     * Use the <code>DescribeTable</code> action to check the status of the
+     * table.
      * </p>
      * 
      * @param tableName <p>
@@ -3001,28 +3961,29 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * The <i>CreateTable</i> operation adds a new table to your account. In an
-     * AWS account, table names must be unique within each region. That is, you
-     * can have two tables with same name if you create the tables in different
-     * regions.
+     * The <code>CreateTable</code> operation adds a new table to your account.
+     * In an AWS account, table names must be unique within each region. That
+     * is, you can have two tables with same name if you create the tables in
+     * different regions.
      * </p>
      * <p>
-     * <i>CreateTable</i> is an asynchronous operation. Upon receiving a
-     * <i>CreateTable</i> request, DynamoDB immediately returns a response with
-     * a <i>TableStatus</i> of <code>CREATING</code>. After the table is
-     * created, DynamoDB sets the <i>TableStatus</i> to <code>ACTIVE</code>. You
-     * can perform read and write operations only on an <code>ACTIVE</code>
-     * table.
+     * <code>CreateTable</code> is an asynchronous operation. Upon receiving a
+     * <code>CreateTable</code> request, DynamoDB immediately returns a response
+     * with a <code>TableStatus</code> of <code>CREATING</code>. After the table
+     * is created, DynamoDB sets the <code>TableStatus</code> to
+     * <code>ACTIVE</code>. You can perform read and write operations only on an
+     * <code>ACTIVE</code> table.
      * </p>
      * <p>
      * You can optionally define secondary indexes on the new table, as part of
-     * the <i>CreateTable</i> operation. If you want to create multiple tables
-     * with secondary indexes on them, you must create the tables sequentially.
-     * Only one table with secondary indexes can be in the <code>CREATING</code>
-     * state at any given time.
+     * the <code>CreateTable</code> operation. If you want to create multiple
+     * tables with secondary indexes on them, you must create the tables
+     * sequentially. Only one table with secondary indexes can be in the
+     * <code>CREATING</code> state at any given time.
      * </p>
      * <p>
-     * You can use the <i>DescribeTable</i> API to check the table status.
+     * You can use the <code>DescribeTable</code> action to check the table
+     * status.
      * </p>
      * 
      * @param attributeDefinitions <p>
@@ -3034,24 +3995,26 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            </p>
      * @param keySchema <p>
      *            Specifies the attributes that make up the primary key for a
-     *            table or an index. The attributes in <i>KeySchema</i> must
-     *            also be defined in the <i>AttributeDefinitions</i> array. For
-     *            more information, see <a href=
+     *            table or an index. The attributes in <code>KeySchema</code>
+     *            must also be defined in the <code>AttributeDefinitions</code>
+     *            array. For more information, see <a href=
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html"
      *            >Data Model</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *            </p>
      *            <p>
-     *            Each <i>KeySchemaElement</i> in the array is composed of:
+     *            Each <code>KeySchemaElement</code> in the array is composed
+     *            of:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>AttributeName</i> - The name of this key attribute.
+     *            <code>AttributeName</code> - The name of this key attribute.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>KeyType</i> - The role that the key attribute will assume:
+     *            <code>KeyType</code> - The role that the key attribute will
+     *            assume:
      *            </p>
      *            <ul>
      *            <li>
@@ -3084,14 +4047,14 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            </note>
      *            <p>
      *            For a simple primary key (partition key), you must provide
-     *            exactly one element with a <i>KeyType</i> of <code>HASH</code>
-     *            .
+     *            exactly one element with a <code>KeyType</code> of
+     *            <code>HASH</code>.
      *            </p>
      *            <p>
      *            For a composite primary key (partition key and sort key), you
      *            must provide exactly two elements, in this order: The first
-     *            element must have a <i>KeyType</i> of <code>HASH</code>, and
-     *            the second element must have a <i>KeyType</i> of
+     *            element must have a <code>KeyType</code> of <code>HASH</code>,
+     *            and the second element must have a <code>KeyType</code> of
      *            <code>RANGE</code>.
      *            </p>
      *            <p>
@@ -3100,7 +4063,17 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            >Specifying the Primary Key</a> in the <i>Amazon DynamoDB
      *            Developer Guide</i>.
      *            </p>
-     * @param provisionedThroughput
+     * @param provisionedThroughput <p>
+     *            Represents the provisioned throughput settings for a specified
+     *            table or index. The settings can be modified using the
+     *            <code>UpdateTable</code> operation.
+     *            </p>
+     *            <p>
+     *            For current minimum and maximum provisioned throughput values,
+     *            see <a href=
+     *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html"
+     *            >Limits</a> in the <i>Amazon DynamoDB Developer Guide</i>.
+     *            </p>
      * @return createTableResult The response from the CreateTable service
      *         method, as returned by Amazon DynamoDB.
      * @throws ResourceInUseException
@@ -3128,14 +4101,15 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * The <i>GetItem</i> operation returns a set of attributes for the item
-     * with the given primary key. If there is no matching item, <i>GetItem</i>
-     * does not return any data.
+     * The <code>GetItem</code> operation returns a set of attributes for the
+     * item with the given primary key. If there is no matching item,
+     * <code>GetItem</code> does not return any data and there will be no
+     * <code>Item</code> element in the response.
      * </p>
      * <p>
-     * <i>GetItem</i> provides an eventually consistent read by default. If your
-     * application requires a strongly consistent read, set
-     * <i>ConsistentRead</i> to <code>true</code>. Although a strongly
+     * <code>GetItem</code> provides an eventually consistent read by default.
+     * If your application requires a strongly consistent read, set
+     * <code>ConsistentRead</code> to <code>true</code>. Although a strongly
      * consistent read might take more time than an eventually consistent read,
      * it always returns the last updated value.
      * </p>
@@ -3144,8 +4118,8 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            The name of the table containing the requested item.
      *            </p>
      * @param key <p>
-     *            A map of attribute names to <i>AttributeValue</i> objects,
-     *            representing the primary key of the item to retrieve.
+     *            A map of attribute names to <code>AttributeValue</code>
+     *            objects, representing the primary key of the item to retrieve.
      *            </p>
      *            <p>
      *            For the primary key, you must provide all of the attributes.
@@ -3177,14 +4151,15 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * The <i>GetItem</i> operation returns a set of attributes for the item
-     * with the given primary key. If there is no matching item, <i>GetItem</i>
-     * does not return any data.
+     * The <code>GetItem</code> operation returns a set of attributes for the
+     * item with the given primary key. If there is no matching item,
+     * <code>GetItem</code> does not return any data and there will be no
+     * <code>Item</code> element in the response.
      * </p>
      * <p>
-     * <i>GetItem</i> provides an eventually consistent read by default. If your
-     * application requires a strongly consistent read, set
-     * <i>ConsistentRead</i> to <code>true</code>. Although a strongly
+     * <code>GetItem</code> provides an eventually consistent read by default.
+     * If your application requires a strongly consistent read, set
+     * <code>ConsistentRead</code> to <code>true</code>. Although a strongly
      * consistent read might take more time than an eventually consistent read,
      * it always returns the last updated value.
      * </p>
@@ -3193,8 +4168,8 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            The name of the table containing the requested item.
      *            </p>
      * @param key <p>
-     *            A map of attribute names to <i>AttributeValue</i> objects,
-     *            representing the primary key of the item to retrieve.
+     *            A map of attribute names to <code>AttributeValue</code>
+     *            objects, representing the primary key of the item to retrieve.
      *            </p>
      *            <p>
      *            For the primary key, you must provide all of the attributes.
@@ -3235,8 +4210,8 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
     /**
      * <p>
      * Returns an array of table names associated with the current account and
-     * endpoint. The output from <i>ListTables</i> is paginated, with each page
-     * returning a maximum of 100 table names.
+     * endpoint. The output from <code>ListTables</code> is paginated, with each
+     * page returning a maximum of 100 table names.
      * </p>
      * 
      * @return listTablesResult The response from the ListTables service method,
@@ -3259,15 +4234,15 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
     /**
      * <p>
      * Returns an array of table names associated with the current account and
-     * endpoint. The output from <i>ListTables</i> is paginated, with each page
-     * returning a maximum of 100 table names.
+     * endpoint. The output from <code>ListTables</code> is paginated, with each
+     * page returning a maximum of 100 table names.
      * </p>
      * 
      * @param exclusiveStartTableName <p>
      *            The first table name that this operation will evaluate. Use
-     *            the value that was returned for <i>LastEvaluatedTableName</i>
-     *            in a previous operation, so that you can obtain the next page
-     *            of results.
+     *            the value that was returned for
+     *            <code>LastEvaluatedTableName</code> in a previous operation,
+     *            so that you can obtain the next page of results.
      *            </p>
      * @return listTablesResult The response from the ListTables service method,
      *         as returned by Amazon DynamoDB.
@@ -3290,15 +4265,15 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
     /**
      * <p>
      * Returns an array of table names associated with the current account and
-     * endpoint. The output from <i>ListTables</i> is paginated, with each page
-     * returning a maximum of 100 table names.
+     * endpoint. The output from <code>ListTables</code> is paginated, with each
+     * page returning a maximum of 100 table names.
      * </p>
      * 
      * @param exclusiveStartTableName <p>
      *            The first table name that this operation will evaluate. Use
-     *            the value that was returned for <i>LastEvaluatedTableName</i>
-     *            in a previous operation, so that you can obtain the next page
-     *            of results.
+     *            the value that was returned for
+     *            <code>LastEvaluatedTableName</code> in a previous operation,
+     *            so that you can obtain the next page of results.
      *            </p>
      * @param limit <p>
      *            A maximum number of table names to return. If this parameter
@@ -3326,8 +4301,8 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
     /**
      * <p>
      * Returns an array of table names associated with the current account and
-     * endpoint. The output from <i>ListTables</i> is paginated, with each page
-     * returning a maximum of 100 table names.
+     * endpoint. The output from <code>ListTables</code> is paginated, with each
+     * page returning a maximum of 100 table names.
      * </p>
      * 
      * @param limit <p>
@@ -3379,22 +4354,27 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * <li>
      * <p>
      * Create a new global secondary index on the table. Once the index begins
-     * backfilling, you can use <i>UpdateTable</i> to perform other operations.
+     * backfilling, you can use <code>UpdateTable</code> to perform other
+     * operations.
      * </p>
      * </li>
      * </ul>
      * <p>
-     * <i>UpdateTable</i> is an asynchronous operation; while it is executing,
-     * the table status changes from <code>ACTIVE</code> to
+     * <code>UpdateTable</code> is an asynchronous operation; while it is
+     * executing, the table status changes from <code>ACTIVE</code> to
      * <code>UPDATING</code>. While it is <code>UPDATING</code>, you cannot
-     * issue another <i>UpdateTable</i> request. When the table returns to the
-     * <code>ACTIVE</code> state, the <i>UpdateTable</i> operation is complete.
+     * issue another <code>UpdateTable</code> request. When the table returns to
+     * the <code>ACTIVE</code> state, the <code>UpdateTable</code> operation is
+     * complete.
      * </p>
      * 
      * @param tableName <p>
      *            The name of the table to be updated.
      *            </p>
-     * @param provisionedThroughput
+     * @param provisionedThroughput <p>
+     *            The new provisioned throughput settings for the specified
+     *            table or index.
+     *            </p>
      * @return updateTableResult The response from the UpdateTable service
      *         method, as returned by Amazon DynamoDB.
      * @throws ResourceInUseException
@@ -3420,41 +4400,42 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * The <i>BatchGetItem</i> operation returns the attributes of one or more
-     * items from one or more tables. You identify requested items by primary
-     * key.
+     * The <code>BatchGetItem</code> operation returns the attributes of one or
+     * more items from one or more tables. You identify requested items by
+     * primary key.
      * </p>
      * <p>
      * A single operation can retrieve up to 16 MB of data, which can contain as
-     * many as 100 items. <i>BatchGetItem</i> will return a partial result if
-     * the response size limit is exceeded, the table's provisioned throughput
-     * is exceeded, or an internal processing failure occurs. If a partial
-     * result is returned, the operation returns a value for
-     * <i>UnprocessedKeys</i>. You can use this value to retry the operation
-     * starting with the next item to get.
+     * many as 100 items. <code>BatchGetItem</code> will return a partial result
+     * if the response size limit is exceeded, the table's provisioned
+     * throughput is exceeded, or an internal processing failure occurs. If a
+     * partial result is returned, the operation returns a value for
+     * <code>UnprocessedKeys</code>. You can use this value to retry the
+     * operation starting with the next item to get.
      * </p>
      * <important>
      * <p>
-     * If you request more than 100 items <i>BatchGetItem</i> will return a
-     * <i>ValidationException</i> with the message
+     * If you request more than 100 items <code>BatchGetItem</code> will return
+     * a <code>ValidationException</code> with the message
      * "Too many items requested for the BatchGetItem call".
      * </p>
      * </important>
      * <p>
      * For example, if you ask to retrieve 100 items, but each individual item
      * is 300 KB in size, the system returns 52 items (so as not to exceed the
-     * 16 MB limit). It also returns an appropriate <i>UnprocessedKeys</i> value
-     * so you can get the next page of results. If desired, your application can
-     * include its own logic to assemble the pages of results into one data set.
+     * 16 MB limit). It also returns an appropriate <code>UnprocessedKeys</code>
+     * value so you can get the next page of results. If desired, your
+     * application can include its own logic to assemble the pages of results
+     * into one data set.
      * </p>
      * <p>
      * If <i>none</i> of the items can be processed due to insufficient
      * provisioned throughput on all of the tables in the request, then
-     * <i>BatchGetItem</i> will return a
-     * <i>ProvisionedThroughputExceededException</i>. If <i>at least one</i> of
-     * the items is successfully processed, then <i>BatchGetItem</i> completes
-     * successfully, while returning the keys of the unread items in
-     * <i>UnprocessedKeys</i>.
+     * <code>BatchGetItem</code> will return a
+     * <code>ProvisionedThroughputExceededException</code>. If <i>at least
+     * one</i> of the items is successfully processed, then
+     * <code>BatchGetItem</code> completes successfully, while returning the
+     * keys of the unread items in <code>UnprocessedKeys</code>.
      * </p>
      * <important>
      * <p>
@@ -3474,20 +4455,20 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * </important>
      * <p>
-     * By default, <i>BatchGetItem</i> performs eventually consistent reads on
-     * every table in the request. If you want strongly consistent reads
-     * instead, you can set <i>ConsistentRead</i> to <code>true</code> for any
-     * or all tables.
+     * By default, <code>BatchGetItem</code> performs eventually consistent
+     * reads on every table in the request. If you want strongly consistent
+     * reads instead, you can set <code>ConsistentRead</code> to
+     * <code>true</code> for any or all tables.
      * </p>
      * <p>
-     * In order to minimize response latency, <i>BatchGetItem</i> retrieves
-     * items in parallel.
+     * In order to minimize response latency, <code>BatchGetItem</code>
+     * retrieves items in parallel.
      * </p>
      * <p>
      * When designing your application, keep in mind that DynamoDB does not
      * return items in any particular order. To help parse the response by item,
      * include the primary key values for the items in your request in the
-     * <i>AttributesToGet</i> parameter.
+     * <code>ProjectionExpression</code> parameter.
      * </p>
      * <p>
      * If a requested item does not exist, it is not returned in the result.
@@ -3501,8 +4482,8 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * @param requestItems <p>
      *            A map of one or more table names and, for each table, a map
      *            that describes one or more items to retrieve from that table.
-     *            Each table name can be used only once per <i>BatchGetItem</i>
-     *            request.
+     *            Each table name can be used only once per
+     *            <code>BatchGetItem</code> request.
      *            </p>
      *            <p>
      *            Each element in the map of items to retrieve consists of the
@@ -3511,17 +4492,18 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>ConsistentRead</i> - If <code>true</code>, a strongly
+     *            <code>ConsistentRead</code> - If <code>true</code>, a strongly
      *            consistent read is used; if <code>false</code> (the default),
      *            an eventually consistent read is used.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>ExpressionAttributeNames</i> - One or more substitution
-     *            tokens for attribute names in the <i>ProjectionExpression</i>
-     *            parameter. The following are some use cases for using
-     *            <i>ExpressionAttributeNames</i>:
+     *            <code>ExpressionAttributeNames</code> - One or more
+     *            substitution tokens for attribute names in the
+     *            <code>ProjectionExpression</code> parameter. The following are
+     *            some use cases for using <code>ExpressionAttributeNames</code>
+     *            :
      *            </p>
      *            <ul>
      *            <li>
@@ -3562,7 +4544,7 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html"
      *            >Reserved Words</a> in the <i>Amazon DynamoDB Developer
      *            Guide</i>). To work around this, you could specify the
-     *            following for <i>ExpressionAttributeNames</i>:
+     *            following for <code>ExpressionAttributeNames</code>:
      *            </p>
      *            <ul>
      *            <li>
@@ -3599,20 +4581,21 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            </li>
      *            <li>
      *            <p>
-     *            <i>Keys</i> - An array of primary key attribute values that
-     *            define specific items in the table. For each primary key, you
-     *            must provide <i>all</i> of the key attributes. For example,
-     *            with a simple primary key, you only need to provide the
-     *            partition key value. For a composite key, you must provide
+     *            <code>Keys</code> - An array of primary key attribute values
+     *            that define specific items in the table. For each primary key,
+     *            you must provide <i>all</i> of the key attributes. For
+     *            example, with a simple primary key, you only need to provide
+     *            the partition key value. For a composite key, you must provide
      *            <i>both</i> the partition key value and the sort key value.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>ProjectionExpression</i> - A string that identifies one or
-     *            more attributes to retrieve from the table. These attributes
-     *            can include scalars, sets, or elements of a JSON document. The
-     *            attributes in the expression must be separated by commas.
+     *            <code>ProjectionExpression</code> - A string that identifies
+     *            one or more attributes to retrieve from the table. These
+     *            attributes can include scalars, sets, or elements of a JSON
+     *            document. The attributes in the expression must be separated
+     *            by commas.
      *            </p>
      *            <p>
      *            If no attribute names are specified, then all attributes will
@@ -3628,33 +4611,12 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            </li>
      *            <li>
      *            <p>
-     *            <i>AttributesToGet</i> -
-     *            </p>
-     *            <important>
-     *            <p>
-     *            This is a legacy parameter, for backward compatibility. New
-     *            applications should use <i>ProjectionExpression</i> instead.
-     *            Do not combine legacy parameters and expression parameters in
-     *            a single API call; otherwise, DynamoDB will return a
-     *            <i>ValidationException</i> exception.
-     *            </p>
-     *            <p>
-     *            This parameter allows you to retrieve attributes of type List
-     *            or Map; however, it cannot retrieve individual elements within
-     *            a List or a Map.
-     *            </p>
-     *            </important>
-     *            <p>
-     *            The names of one or more attributes to retrieve. If no
-     *            attribute names are provided, then all attributes will be
-     *            returned. If any of the requested attributes are not found,
-     *            they will not appear in the result.
-     *            </p>
-     *            <p>
-     *            Note that <i>AttributesToGet</i> has no effect on provisioned
-     *            throughput consumption. DynamoDB determines capacity units
-     *            consumed based on item size, not on the amount of data that is
-     *            returned to an application.
+     *            <code>AttributesToGet</code> - This is a legacy parameter. Use
+     *            <code>ProjectionExpression</code> instead. For more
+     *            information, see <a href=
+     *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html"
+     *            >AttributesToGet</a> in the <i>Amazon DynamoDB Developer
+     *            Guide</i>.
      *            </p>
      *            </li>
      *            </ul>
@@ -3683,41 +4645,42 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * The <i>BatchGetItem</i> operation returns the attributes of one or more
-     * items from one or more tables. You identify requested items by primary
-     * key.
+     * The <code>BatchGetItem</code> operation returns the attributes of one or
+     * more items from one or more tables. You identify requested items by
+     * primary key.
      * </p>
      * <p>
      * A single operation can retrieve up to 16 MB of data, which can contain as
-     * many as 100 items. <i>BatchGetItem</i> will return a partial result if
-     * the response size limit is exceeded, the table's provisioned throughput
-     * is exceeded, or an internal processing failure occurs. If a partial
-     * result is returned, the operation returns a value for
-     * <i>UnprocessedKeys</i>. You can use this value to retry the operation
-     * starting with the next item to get.
+     * many as 100 items. <code>BatchGetItem</code> will return a partial result
+     * if the response size limit is exceeded, the table's provisioned
+     * throughput is exceeded, or an internal processing failure occurs. If a
+     * partial result is returned, the operation returns a value for
+     * <code>UnprocessedKeys</code>. You can use this value to retry the
+     * operation starting with the next item to get.
      * </p>
      * <important>
      * <p>
-     * If you request more than 100 items <i>BatchGetItem</i> will return a
-     * <i>ValidationException</i> with the message
+     * If you request more than 100 items <code>BatchGetItem</code> will return
+     * a <code>ValidationException</code> with the message
      * "Too many items requested for the BatchGetItem call".
      * </p>
      * </important>
      * <p>
      * For example, if you ask to retrieve 100 items, but each individual item
      * is 300 KB in size, the system returns 52 items (so as not to exceed the
-     * 16 MB limit). It also returns an appropriate <i>UnprocessedKeys</i> value
-     * so you can get the next page of results. If desired, your application can
-     * include its own logic to assemble the pages of results into one data set.
+     * 16 MB limit). It also returns an appropriate <code>UnprocessedKeys</code>
+     * value so you can get the next page of results. If desired, your
+     * application can include its own logic to assemble the pages of results
+     * into one data set.
      * </p>
      * <p>
      * If <i>none</i> of the items can be processed due to insufficient
      * provisioned throughput on all of the tables in the request, then
-     * <i>BatchGetItem</i> will return a
-     * <i>ProvisionedThroughputExceededException</i>. If <i>at least one</i> of
-     * the items is successfully processed, then <i>BatchGetItem</i> completes
-     * successfully, while returning the keys of the unread items in
-     * <i>UnprocessedKeys</i>.
+     * <code>BatchGetItem</code> will return a
+     * <code>ProvisionedThroughputExceededException</code>. If <i>at least
+     * one</i> of the items is successfully processed, then
+     * <code>BatchGetItem</code> completes successfully, while returning the
+     * keys of the unread items in <code>UnprocessedKeys</code>.
      * </p>
      * <important>
      * <p>
@@ -3737,20 +4700,20 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * </important>
      * <p>
-     * By default, <i>BatchGetItem</i> performs eventually consistent reads on
-     * every table in the request. If you want strongly consistent reads
-     * instead, you can set <i>ConsistentRead</i> to <code>true</code> for any
-     * or all tables.
+     * By default, <code>BatchGetItem</code> performs eventually consistent
+     * reads on every table in the request. If you want strongly consistent
+     * reads instead, you can set <code>ConsistentRead</code> to
+     * <code>true</code> for any or all tables.
      * </p>
      * <p>
-     * In order to minimize response latency, <i>BatchGetItem</i> retrieves
-     * items in parallel.
+     * In order to minimize response latency, <code>BatchGetItem</code>
+     * retrieves items in parallel.
      * </p>
      * <p>
      * When designing your application, keep in mind that DynamoDB does not
      * return items in any particular order. To help parse the response by item,
      * include the primary key values for the items in your request in the
-     * <i>AttributesToGet</i> parameter.
+     * <code>ProjectionExpression</code> parameter.
      * </p>
      * <p>
      * If a requested item does not exist, it is not returned in the result.
@@ -3764,8 +4727,8 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * @param requestItems <p>
      *            A map of one or more table names and, for each table, a map
      *            that describes one or more items to retrieve from that table.
-     *            Each table name can be used only once per <i>BatchGetItem</i>
-     *            request.
+     *            Each table name can be used only once per
+     *            <code>BatchGetItem</code> request.
      *            </p>
      *            <p>
      *            Each element in the map of items to retrieve consists of the
@@ -3774,17 +4737,18 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>ConsistentRead</i> - If <code>true</code>, a strongly
+     *            <code>ConsistentRead</code> - If <code>true</code>, a strongly
      *            consistent read is used; if <code>false</code> (the default),
      *            an eventually consistent read is used.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>ExpressionAttributeNames</i> - One or more substitution
-     *            tokens for attribute names in the <i>ProjectionExpression</i>
-     *            parameter. The following are some use cases for using
-     *            <i>ExpressionAttributeNames</i>:
+     *            <code>ExpressionAttributeNames</code> - One or more
+     *            substitution tokens for attribute names in the
+     *            <code>ProjectionExpression</code> parameter. The following are
+     *            some use cases for using <code>ExpressionAttributeNames</code>
+     *            :
      *            </p>
      *            <ul>
      *            <li>
@@ -3825,7 +4789,7 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html"
      *            >Reserved Words</a> in the <i>Amazon DynamoDB Developer
      *            Guide</i>). To work around this, you could specify the
-     *            following for <i>ExpressionAttributeNames</i>:
+     *            following for <code>ExpressionAttributeNames</code>:
      *            </p>
      *            <ul>
      *            <li>
@@ -3862,20 +4826,21 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            </li>
      *            <li>
      *            <p>
-     *            <i>Keys</i> - An array of primary key attribute values that
-     *            define specific items in the table. For each primary key, you
-     *            must provide <i>all</i> of the key attributes. For example,
-     *            with a simple primary key, you only need to provide the
-     *            partition key value. For a composite key, you must provide
+     *            <code>Keys</code> - An array of primary key attribute values
+     *            that define specific items in the table. For each primary key,
+     *            you must provide <i>all</i> of the key attributes. For
+     *            example, with a simple primary key, you only need to provide
+     *            the partition key value. For a composite key, you must provide
      *            <i>both</i> the partition key value and the sort key value.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>ProjectionExpression</i> - A string that identifies one or
-     *            more attributes to retrieve from the table. These attributes
-     *            can include scalars, sets, or elements of a JSON document. The
-     *            attributes in the expression must be separated by commas.
+     *            <code>ProjectionExpression</code> - A string that identifies
+     *            one or more attributes to retrieve from the table. These
+     *            attributes can include scalars, sets, or elements of a JSON
+     *            document. The attributes in the expression must be separated
+     *            by commas.
      *            </p>
      *            <p>
      *            If no attribute names are specified, then all attributes will
@@ -3891,33 +4856,12 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            </li>
      *            <li>
      *            <p>
-     *            <i>AttributesToGet</i> -
-     *            </p>
-     *            <important>
-     *            <p>
-     *            This is a legacy parameter, for backward compatibility. New
-     *            applications should use <i>ProjectionExpression</i> instead.
-     *            Do not combine legacy parameters and expression parameters in
-     *            a single API call; otherwise, DynamoDB will return a
-     *            <i>ValidationException</i> exception.
-     *            </p>
-     *            <p>
-     *            This parameter allows you to retrieve attributes of type List
-     *            or Map; however, it cannot retrieve individual elements within
-     *            a List or a Map.
-     *            </p>
-     *            </important>
-     *            <p>
-     *            The names of one or more attributes to retrieve. If no
-     *            attribute names are provided, then all attributes will be
-     *            returned. If any of the requested attributes are not found,
-     *            they will not appear in the result.
-     *            </p>
-     *            <p>
-     *            Note that <i>AttributesToGet</i> has no effect on provisioned
-     *            throughput consumption. DynamoDB determines capacity units
-     *            consumed based on item size, not on the amount of data that is
-     *            returned to an application.
+     *            <code>AttributesToGet</code> - This is a legacy parameter. Use
+     *            <code>ProjectionExpression</code> instead. For more
+     *            information, see <a href=
+     *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html"
+     *            >AttributesToGet</a> in the <i>Amazon DynamoDB Developer
+     *            Guide</i>.
      *            </p>
      *            </li>
      *            </ul>
@@ -3943,34 +4887,34 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * The <i>BatchWriteItem</i> operation puts or deletes multiple items in one
-     * or more tables. A single call to <i>BatchWriteItem</i> can write up to 16
-     * MB of data, which can comprise as many as 25 put or delete requests.
-     * Individual items to be written can be as large as 400 KB.
+     * The <code>BatchWriteItem</code> operation puts or deletes multiple items
+     * in one or more tables. A single call to <code>BatchWriteItem</code> can
+     * write up to 16 MB of data, which can comprise as many as 25 put or delete
+     * requests. Individual items to be written can be as large as 400 KB.
      * </p>
      * <note>
      * <p>
-     * <i>BatchWriteItem</i> cannot update items. To update items, use the
-     * <i>UpdateItem</i> API.
+     * <code>BatchWriteItem</code> cannot update items. To update items, use the
+     * <code>UpdateItem</code> action.
      * </p>
      * </note>
      * <p>
-     * The individual <i>PutItem</i> and <i>DeleteItem</i> operations specified
-     * in <i>BatchWriteItem</i> are atomic; however <i>BatchWriteItem</i> as a
-     * whole is not. If any requested operations fail because the table's
-     * provisioned throughput is exceeded or an internal processing failure
-     * occurs, the failed operations are returned in the <i>UnprocessedItems</i>
-     * response parameter. You can investigate and optionally resend the
-     * requests. Typically, you would call <i>BatchWriteItem</i> in a loop. Each
-     * iteration would check for unprocessed items and submit a new
-     * <i>BatchWriteItem</i> request with those unprocessed items until all
-     * items have been processed.
+     * The individual <code>PutItem</code> and <code>DeleteItem</code>
+     * operations specified in <code>BatchWriteItem</code> are atomic; however
+     * <code>BatchWriteItem</code> as a whole is not. If any requested
+     * operations fail because the table's provisioned throughput is exceeded or
+     * an internal processing failure occurs, the failed operations are returned
+     * in the <code>UnprocessedItems</code> response parameter. You can
+     * investigate and optionally resend the requests. Typically, you would call
+     * <code>BatchWriteItem</code> in a loop. Each iteration would check for
+     * unprocessed items and submit a new <code>BatchWriteItem</code> request
+     * with those unprocessed items until all items have been processed.
      * </p>
      * <p>
      * Note that if <i>none</i> of the items can be processed due to
      * insufficient provisioned throughput on all of the tables in the request,
-     * then <i>BatchWriteItem</i> will return a
-     * <i>ProvisionedThroughputExceededException</i>.
+     * then <code>BatchWriteItem</code> will return a
+     * <code>ProvisionedThroughputExceededException</code>.
      * </p>
      * <important>
      * <p>
@@ -3990,13 +4934,14 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * </important>
      * <p>
-     * With <i>BatchWriteItem</i>, you can efficiently write or delete large
-     * amounts of data, such as from Amazon Elastic MapReduce (EMR), or copy
-     * data from another database into DynamoDB. In order to improve performance
-     * with these large-scale operations, <i>BatchWriteItem</i> does not behave
-     * in the same way as individual <i>PutItem</i> and <i>DeleteItem</i> calls
-     * would. For example, you cannot specify conditions on individual put and
-     * delete requests, and <i>BatchWriteItem</i> does not return deleted items
+     * With <code>BatchWriteItem</code>, you can efficiently write or delete
+     * large amounts of data, such as from Amazon Elastic MapReduce (EMR), or
+     * copy data from another database into DynamoDB. In order to improve
+     * performance with these large-scale operations,
+     * <code>BatchWriteItem</code> does not behave in the same way as individual
+     * <code>PutItem</code> and <code>DeleteItem</code> calls would. For
+     * example, you cannot specify conditions on individual put and delete
+     * requests, and <code>BatchWriteItem</code> does not return deleted items
      * in the response.
      * </p>
      * <p>
@@ -4004,10 +4949,10 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * threads to write items in parallel. Your application must include the
      * necessary logic to manage the threads. With languages that don't support
      * threading, you must update or delete the specified items one at a time.
-     * In both situations, <i>BatchWriteItem</i> provides an alternative where
-     * the API performs the specified put and delete operations in parallel,
-     * giving you the power of the thread pool approach without having to
-     * introduce complexity into your application.
+     * In both situations, <code>BatchWriteItem</code> performs the specified
+     * put and delete operations in parallel, giving you the power of the thread
+     * pool approach without having to introduce complexity into your
+     * application.
      * </p>
      * <p>
      * Parallel processing reduces latency, but each specified put and delete
@@ -4022,8 +4967,8 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * <ul>
      * <li>
      * <p>
-     * One or more tables specified in the <i>BatchWriteItem</i> request does
-     * not exist.
+     * One or more tables specified in the <code>BatchWriteItem</code> request
+     * does not exist.
      * </p>
      * </li>
      * <li>
@@ -4035,8 +4980,14 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * <li>
      * <p>
      * You try to perform multiple operations on the same item in the same
-     * <i>BatchWriteItem</i> request. For example, you cannot put and delete the
-     * same item in the same <i>BatchWriteItem</i> request.
+     * <code>BatchWriteItem</code> request. For example, you cannot put and
+     * delete the same item in the same <code>BatchWriteItem</code> request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Your request contains at least two items with identical hash and range
+     * keys (which essentially is two put operations).
      * </p>
      * </li>
      * <li>
@@ -4058,23 +5009,23 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      * 
      * @param requestItems <p>
      *            A map of one or more table names and, for each table, a list
-     *            of operations to be performed (<i>DeleteRequest</i> or
-     *            <i>PutRequest</i>). Each element in the map consists of the
-     *            following:
+     *            of operations to be performed (<code>DeleteRequest</code> or
+     *            <code>PutRequest</code>). Each element in the map consists of
+     *            the following:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>DeleteRequest</i> - Perform a <i>DeleteItem</i> operation
-     *            on the specified item. The item to be deleted is identified by
-     *            a <i>Key</i> subelement:
+     *            <code>DeleteRequest</code> - Perform a <code>DeleteItem</code>
+     *            operation on the specified item. The item to be deleted is
+     *            identified by a <code>Key</code> subelement:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>Key</i> - A map of primary key attribute values that
-     *            uniquely identify the ! item. Each entry in this map consists
-     *            of an attribute name and an attribute value. For each primary
+     *            <code>Key</code> - A map of primary key attribute values that
+     *            uniquely identify the item. Each entry in this map consists of
+     *            an attribute name and an attribute value. For each primary
      *            key, you must provide <i>all</i> of the key attributes. For
      *            example, with a simple primary key, you only need to provide a
      *            value for the partition key. For a composite primary key, you
@@ -4086,20 +5037,20 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
      *            </li>
      *            <li>
      *            <p>
-     *            <i>PutRequest</i> - Perform a <i>PutItem</i> operation on the
-     *            specified item. The item to be put is identified by an
-     *            <i>Item</i> subelement:
+     *            <code>PutRequest</code> - Perform a <code>PutItem</code>
+     *            operation on the specified item. The item to be put is
+     *            identified by an <code>Item</code> subelement:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>Item</i> - A map of attributes and their values. Each entry
-     *            in this map consists of an attribute name and an attribute
-     *            value. Attribute values must not be null; string and binary
-     *            type attributes must have lengths greater than zero; and set
-     *            type attributes must not be empty. Requests that contain empty
-     *            values will be rejected with a <i>ValidationException</i>
-     *            exception.
+     *            <code>Item</code> - A map of attributes and their values. Each
+     *            entry in this map consists of an attribute name and an
+     *            attribute value. Attribute values must not be null; string and
+     *            binary type attributes must have lengths greater than zero;
+     *            and set type attributes must not be empty. Requests that
+     *            contain empty values will be rejected with a
+     *            <code>ValidationException</code> exception.
      *            </p>
      *            <p>
      *            If you specify any attributes that are part of an index key,

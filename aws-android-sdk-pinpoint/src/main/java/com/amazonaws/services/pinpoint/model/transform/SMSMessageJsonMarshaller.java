@@ -35,6 +35,11 @@ class SMSMessageJsonMarshaller {
             jsonWriter.name("MessageType");
             jsonWriter.value(messageType);
         }
+        if (sMSMessage.getOriginationNumber() != null) {
+            String originationNumber = sMSMessage.getOriginationNumber();
+            jsonWriter.name("OriginationNumber");
+            jsonWriter.value(originationNumber);
+        }
         if (sMSMessage.getSenderId() != null) {
             String senderId = sMSMessage.getSenderId();
             jsonWriter.name("SenderId");

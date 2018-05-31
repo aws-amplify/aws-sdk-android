@@ -50,11 +50,6 @@ public class DirectMessageConfiguration implements Serializable {
     private DefaultPushNotificationMessage defaultPushNotificationMessage;
 
     /**
-     * The message to Email channels. Overrides the default message.
-     */
-    private EmailMessage emailMessage;
-
-    /**
      * The message to GCM channels. Overrides the default push notification
      * message.
      */
@@ -253,41 +248,6 @@ public class DirectMessageConfiguration implements Serializable {
     }
 
     /**
-     * The message to Email channels. Overrides the default message.
-     *
-     * @return The message to Email channels. Overrides the default message.
-     */
-    public EmailMessage getEmailMessage() {
-        return emailMessage;
-    }
-
-    /**
-     * The message to Email channels. Overrides the default message.
-     *
-     * @param emailMessage The message to Email channels. Overrides the default
-     *            message.
-     */
-    public void setEmailMessage(EmailMessage emailMessage) {
-        this.emailMessage = emailMessage;
-    }
-
-    /**
-     * The message to Email channels. Overrides the default message.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param emailMessage The message to Email channels. Overrides the default
-     *            message.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public DirectMessageConfiguration withEmailMessage(EmailMessage emailMessage) {
-        this.emailMessage = emailMessage;
-        return this;
-    }
-
-    /**
      * The message to GCM channels. Overrides the default push notification
      * message.
      *
@@ -383,8 +343,6 @@ public class DirectMessageConfiguration implements Serializable {
         if (getDefaultPushNotificationMessage() != null)
             sb.append("DefaultPushNotificationMessage: " + getDefaultPushNotificationMessage()
                     + ",");
-        if (getEmailMessage() != null)
-            sb.append("EmailMessage: " + getEmailMessage() + ",");
         if (getGCMMessage() != null)
             sb.append("GCMMessage: " + getGCMMessage() + ",");
         if (getSMSMessage() != null)
@@ -409,8 +367,6 @@ public class DirectMessageConfiguration implements Serializable {
                 * hashCode
                 + ((getDefaultPushNotificationMessage() == null) ? 0
                         : getDefaultPushNotificationMessage().hashCode());
-        hashCode = prime * hashCode
-                + ((getEmailMessage() == null) ? 0 : getEmailMessage().hashCode());
         hashCode = prime * hashCode + ((getGCMMessage() == null) ? 0 : getGCMMessage().hashCode());
         hashCode = prime * hashCode + ((getSMSMessage() == null) ? 0 : getSMSMessage().hashCode());
         return hashCode;
@@ -453,11 +409,6 @@ public class DirectMessageConfiguration implements Serializable {
         if (other.getDefaultPushNotificationMessage() != null
                 && other.getDefaultPushNotificationMessage().equals(
                         this.getDefaultPushNotificationMessage()) == false)
-            return false;
-        if (other.getEmailMessage() == null ^ this.getEmailMessage() == null)
-            return false;
-        if (other.getEmailMessage() != null
-                && other.getEmailMessage().equals(this.getEmailMessage()) == false)
             return false;
         if (other.getGCMMessage() == null ^ this.getGCMMessage() == null)
             return false;

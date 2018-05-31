@@ -19,9 +19,23 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Returns a list of tags associated with the specified stream.
+ * </p>
+ * <p>
+ * In the request, you must specify either the <code>StreamName</code> or the
+ * <code>StreamARN</code>.
+ * </p>
+ */
 public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the nextToken property for this object.
+     * <p>
+     * If you specify this parameter and the result of a
+     * <code>ListTagsForStream</code> call is truncated, the response includes a
+     * token that you can use in the next request to fetch the next batch of
+     * tags.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
@@ -29,7 +43,10 @@ public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements
     private String nextToken;
 
     /**
-     * The new value for the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream that you want to list tags
+     * for.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -40,7 +57,9 @@ public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements
     private String streamARN;
 
     /**
-     * The new value for the streamName property for this object.
+     * <p>
+     * The name of the stream that you want to list tags for.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -49,32 +68,56 @@ public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements
     private String streamName;
 
     /**
-     * Returns the value of the nextToken property for this object.
+     * <p>
+     * If you specify this parameter and the result of a
+     * <code>ListTagsForStream</code> call is truncated, the response includes a
+     * token that you can use in the next request to fetch the next batch of
+     * tags.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
      *
-     * @return The value of the nextToken property for this object.
+     * @return <p>
+     *         If you specify this parameter and the result of a
+     *         <code>ListTagsForStream</code> call is truncated, the response
+     *         includes a token that you can use in the next request to fetch
+     *         the next batch of tags.
+     *         </p>
      */
     public String getNextToken() {
         return nextToken;
     }
 
     /**
-     * Sets the value of nextToken
+     * <p>
+     * If you specify this parameter and the result of a
+     * <code>ListTagsForStream</code> call is truncated, the response includes a
+     * token that you can use in the next request to fetch the next batch of
+     * tags.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
      *
-     * @param nextToken The new value for the nextToken property for this
-     *            object.
+     * @param nextToken <p>
+     *            If you specify this parameter and the result of a
+     *            <code>ListTagsForStream</code> call is truncated, the response
+     *            includes a token that you can use in the next request to fetch
+     *            the next batch of tags.
+     *            </p>
      */
     public void setNextToken(String nextToken) {
         this.nextToken = nextToken;
     }
 
     /**
-     * Sets the value of the nextToken property for this object.
+     * <p>
+     * If you specify this parameter and the result of a
+     * <code>ListTagsForStream</code> call is truncated, the response includes a
+     * token that you can use in the next request to fetch the next batch of
+     * tags.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -82,8 +125,12 @@ public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
      *
-     * @param nextToken The new value for the nextToken property for this
-     *            object.
+     * @param nextToken <p>
+     *            If you specify this parameter and the result of a
+     *            <code>ListTagsForStream</code> call is truncated, the response
+     *            includes a token that you can use in the next request to fetch
+     *            the next batch of tags.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -93,7 +140,10 @@ public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * Returns the value of the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream that you want to list tags
+     * for.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -101,14 +151,20 @@ public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @return The value of the streamARN property for this object.
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the stream that you want to
+     *         list tags for.
+     *         </p>
      */
     public String getStreamARN() {
         return streamARN;
     }
 
     /**
-     * Sets the value of streamARN
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream that you want to list tags
+     * for.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -116,15 +172,20 @@ public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @param streamARN The new value for the streamARN property for this
-     *            object.
+     * @param streamARN <p>
+     *            The Amazon Resource Name (ARN) of the stream that you want to
+     *            list tags for.
+     *            </p>
      */
     public void setStreamARN(String streamARN) {
         this.streamARN = streamARN;
     }
 
     /**
-     * Sets the value of the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream that you want to list tags
+     * for.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -135,8 +196,10 @@ public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @param streamARN The new value for the streamARN property for this
-     *            object.
+     * @param streamARN <p>
+     *            The Amazon Resource Name (ARN) of the stream that you want to
+     *            list tags for.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -146,34 +209,43 @@ public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * Returns the value of the streamName property for this object.
+     * <p>
+     * The name of the stream that you want to list tags for.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @return The value of the streamName property for this object.
+     * @return <p>
+     *         The name of the stream that you want to list tags for.
+     *         </p>
      */
     public String getStreamName() {
         return streamName;
     }
 
     /**
-     * Sets the value of streamName
+     * <p>
+     * The name of the stream that you want to list tags for.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param streamName The new value for the streamName property for this
-     *            object.
+     * @param streamName <p>
+     *            The name of the stream that you want to list tags for.
+     *            </p>
      */
     public void setStreamName(String streamName) {
         this.streamName = streamName;
     }
 
     /**
-     * Sets the value of the streamName property for this object.
+     * <p>
+     * The name of the stream that you want to list tags for.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -182,8 +254,9 @@ public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param streamName The new value for the streamName property for this
-     *            object.
+     * @param streamName <p>
+     *            The name of the stream that you want to list tags for.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

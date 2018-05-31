@@ -57,8 +57,8 @@ class GCMMessageJsonUnmarshaller implements Unmarshaller<GCMMessage, JsonUnmarsh
             } else if (name.equals("ImageUrl")) {
                 gCMMessage.setImageUrl(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("JsonData")) {
-                gCMMessage.setJsonData(StringJsonUnmarshaller.getInstance()
+            } else if (name.equals("Priority")) {
+                gCMMessage.setPriority(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("RawContent")) {
                 gCMMessage.setRawContent(StringJsonUnmarshaller.getInstance()
@@ -81,6 +81,9 @@ class GCMMessageJsonUnmarshaller implements Unmarshaller<GCMMessage, JsonUnmarsh
                         )
                         )
                                 .unmarshall(context));
+            } else if (name.equals("TimeToLive")) {
+                gCMMessage.setTimeToLive(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Title")) {
                 gCMMessage.setTitle(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
