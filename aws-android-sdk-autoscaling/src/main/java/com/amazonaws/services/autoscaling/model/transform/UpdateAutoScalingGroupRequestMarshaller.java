@@ -52,6 +52,13 @@ public class UpdateAutoScalingGroupRequestMarshaller implements
                     .getLaunchConfigurationName();
             request.addParameter(prefix, StringUtils.fromString(launchConfigurationName));
         }
+        if (updateAutoScalingGroupRequest.getLaunchTemplate() != null) {
+            prefix = "LaunchTemplate";
+            LaunchTemplateSpecification launchTemplate = updateAutoScalingGroupRequest
+                    .getLaunchTemplate();
+            LaunchTemplateSpecificationStaxMarshaller.getInstance().marshall(launchTemplate,
+                    request, prefix + ".");
+        }
         if (updateAutoScalingGroupRequest.getMinSize() != null) {
             prefix = "MinSize";
             Integer minSize = updateAutoScalingGroupRequest.getMinSize();
@@ -128,6 +135,11 @@ public class UpdateAutoScalingGroupRequestMarshaller implements
             Boolean newInstancesProtectedFromScaleIn = updateAutoScalingGroupRequest
                     .getNewInstancesProtectedFromScaleIn();
             request.addParameter(prefix, StringUtils.fromBoolean(newInstancesProtectedFromScaleIn));
+        }
+        if (updateAutoScalingGroupRequest.getServiceLinkedRoleARN() != null) {
+            prefix = "ServiceLinkedRoleARN";
+            String serviceLinkedRoleARN = updateAutoScalingGroupRequest.getServiceLinkedRoleARN();
+            request.addParameter(prefix, StringUtils.fromString(serviceLinkedRoleARN));
         }
 
         return request;

@@ -22,6 +22,11 @@ import java.io.Serializable;
  */
 public class WriteApplicationSettingsRequest implements Serializable {
     /**
+     * Default campaign hook information.
+     */
+    private CampaignHook campaignHook;
+
+    /**
      * The default campaign limits for the app. These limits apply to each
      * campaign for the app, unless the campaign overrides the default with
      * limits of its own.
@@ -34,6 +39,39 @@ public class WriteApplicationSettingsRequest implements Serializable {
      * a quiet time of its own.
      */
     private QuietTime quietTime;
+
+    /**
+     * Default campaign hook information.
+     *
+     * @return Default campaign hook information.
+     */
+    public CampaignHook getCampaignHook() {
+        return campaignHook;
+    }
+
+    /**
+     * Default campaign hook information.
+     *
+     * @param campaignHook Default campaign hook information.
+     */
+    public void setCampaignHook(CampaignHook campaignHook) {
+        this.campaignHook = campaignHook;
+    }
+
+    /**
+     * Default campaign hook information.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param campaignHook Default campaign hook information.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public WriteApplicationSettingsRequest withCampaignHook(CampaignHook campaignHook) {
+        this.campaignHook = campaignHook;
+        return this;
+    }
 
     /**
      * The default campaign limits for the app. These limits apply to each
@@ -136,6 +174,8 @@ public class WriteApplicationSettingsRequest implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getCampaignHook() != null)
+            sb.append("CampaignHook: " + getCampaignHook() + ",");
         if (getLimits() != null)
             sb.append("Limits: " + getLimits() + ",");
         if (getQuietTime() != null)
@@ -149,6 +189,8 @@ public class WriteApplicationSettingsRequest implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode
+                + ((getCampaignHook() == null) ? 0 : getCampaignHook().hashCode());
         hashCode = prime * hashCode + ((getLimits() == null) ? 0 : getLimits().hashCode());
         hashCode = prime * hashCode + ((getQuietTime() == null) ? 0 : getQuietTime().hashCode());
         return hashCode;
@@ -165,6 +207,11 @@ public class WriteApplicationSettingsRequest implements Serializable {
             return false;
         WriteApplicationSettingsRequest other = (WriteApplicationSettingsRequest) obj;
 
+        if (other.getCampaignHook() == null ^ this.getCampaignHook() == null)
+            return false;
+        if (other.getCampaignHook() != null
+                && other.getCampaignHook().equals(this.getCampaignHook()) == false)
+            return false;
         if (other.getLimits() == null ^ this.getLimits() == null)
             return false;
         if (other.getLimits() != null && other.getLimits().equals(this.getLimits()) == false)

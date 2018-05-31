@@ -18,7 +18,9 @@ package com.amazonaws.services.kinesisvideo.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * Not implemented.
+ * </p>
  */
 public class DeviceStreamLimitExceededException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

@@ -30,7 +30,7 @@ public class FederatedUser implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>2 - 96<br/>
+     * <b>Length: </b>2 - 193<br/>
      * <b>Pattern: </b>[\w+=,.@\:-]*<br/>
      */
     private String federatedUserId;
@@ -88,7 +88,7 @@ public class FederatedUser implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>2 - 96<br/>
+     * <b>Length: </b>2 - 193<br/>
      * <b>Pattern: </b>[\w+=,.@\:-]*<br/>
      *
      * @return <p>
@@ -107,7 +107,7 @@ public class FederatedUser implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>2 - 96<br/>
+     * <b>Length: </b>2 - 193<br/>
      * <b>Pattern: </b>[\w+=,.@\:-]*<br/>
      *
      * @param federatedUserId <p>
@@ -129,7 +129,7 @@ public class FederatedUser implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>2 - 96<br/>
+     * <b>Length: </b>2 - 193<br/>
      * <b>Pattern: </b>[\w+=,.@\:-]*<br/>
      *
      * @param federatedUserId <p>

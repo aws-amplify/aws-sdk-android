@@ -19,7 +19,11 @@ import java.io.Serializable;
 
 public class ListTagsForStreamResult implements Serializable {
     /**
-     * The new value for the nextToken property for this object.
+     * <p>
+     * If you specify this parameter and the result of a <code>ListTags</code>
+     * call is truncated, the response includes a token that you can use in the
+     * next request to fetch the next set of tags.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
@@ -27,37 +31,60 @@ public class ListTagsForStreamResult implements Serializable {
     private String nextToken;
 
     /**
-     * The new value for the tags property for this object.
+     * <p>
+     * A map of tag keys and values associated with the specified stream.
+     * </p>
      */
     private java.util.Map<String, String> tags = new java.util.HashMap<String, String>();
 
     /**
-     * Returns the value of the nextToken property for this object.
+     * <p>
+     * If you specify this parameter and the result of a <code>ListTags</code>
+     * call is truncated, the response includes a token that you can use in the
+     * next request to fetch the next set of tags.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
      *
-     * @return The value of the nextToken property for this object.
+     * @return <p>
+     *         If you specify this parameter and the result of a
+     *         <code>ListTags</code> call is truncated, the response includes a
+     *         token that you can use in the next request to fetch the next set
+     *         of tags.
+     *         </p>
      */
     public String getNextToken() {
         return nextToken;
     }
 
     /**
-     * Sets the value of nextToken
+     * <p>
+     * If you specify this parameter and the result of a <code>ListTags</code>
+     * call is truncated, the response includes a token that you can use in the
+     * next request to fetch the next set of tags.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
      *
-     * @param nextToken The new value for the nextToken property for this
-     *            object.
+     * @param nextToken <p>
+     *            If you specify this parameter and the result of a
+     *            <code>ListTags</code> call is truncated, the response includes
+     *            a token that you can use in the next request to fetch the next
+     *            set of tags.
+     *            </p>
      */
     public void setNextToken(String nextToken) {
         this.nextToken = nextToken;
     }
 
     /**
-     * Sets the value of the nextToken property for this object.
+     * <p>
+     * If you specify this parameter and the result of a <code>ListTags</code>
+     * call is truncated, the response includes a token that you can use in the
+     * next request to fetch the next set of tags.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -65,8 +92,12 @@ public class ListTagsForStreamResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
      *
-     * @param nextToken The new value for the nextToken property for this
-     *            object.
+     * @param nextToken <p>
+     *            If you specify this parameter and the result of a
+     *            <code>ListTags</code> call is truncated, the response includes
+     *            a token that you can use in the next request to fetch the next
+     *            set of tags.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -76,30 +107,45 @@ public class ListTagsForStreamResult implements Serializable {
     }
 
     /**
-     * Returns the value of the tags property for this object.
+     * <p>
+     * A map of tag keys and values associated with the specified stream.
+     * </p>
      *
-     * @return The value of the tags property for this object.
+     * @return <p>
+     *         A map of tag keys and values associated with the specified
+     *         stream.
+     *         </p>
      */
     public java.util.Map<String, String> getTags() {
         return tags;
     }
 
     /**
-     * Sets the value of tags
+     * <p>
+     * A map of tag keys and values associated with the specified stream.
+     * </p>
      *
-     * @param tags The new value for the tags property for this object.
+     * @param tags <p>
+     *            A map of tag keys and values associated with the specified
+     *            stream.
+     *            </p>
      */
     public void setTags(java.util.Map<String, String> tags) {
         this.tags = tags;
     }
 
     /**
-     * Sets the value of the tags property for this object.
+     * <p>
+     * A map of tag keys and values associated with the specified stream.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param tags The new value for the tags property for this object.
+     * @param tags <p>
+     *            A map of tag keys and values associated with the specified
+     *            stream.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -109,7 +155,9 @@ public class ListTagsForStreamResult implements Serializable {
     }
 
     /**
-     * Sets the value of the tags property for this object.
+     * <p>
+     * A map of tag keys and values associated with the specified stream.
+     * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a
      * reference to this object so that method calls can be chained together.

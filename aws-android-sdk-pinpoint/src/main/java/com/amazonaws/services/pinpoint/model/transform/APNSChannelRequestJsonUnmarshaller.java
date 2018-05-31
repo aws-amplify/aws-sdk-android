@@ -36,14 +36,30 @@ class APNSChannelRequestJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Certificate")) {
+            if (name.equals("BundleId")) {
+                aPNSChannelRequest.setBundleId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Certificate")) {
                 aPNSChannelRequest.setCertificate(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("DefaultAuthenticationMethod")) {
+                aPNSChannelRequest.setDefaultAuthenticationMethod(StringJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
             } else if (name.equals("Enabled")) {
                 aPNSChannelRequest.setEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("PrivateKey")) {
                 aPNSChannelRequest.setPrivateKey(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("TeamId")) {
+                aPNSChannelRequest.setTeamId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("TokenKey")) {
+                aPNSChannelRequest.setTokenKey(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("TokenKeyId")) {
+                aPNSChannelRequest.setTokenKeyId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

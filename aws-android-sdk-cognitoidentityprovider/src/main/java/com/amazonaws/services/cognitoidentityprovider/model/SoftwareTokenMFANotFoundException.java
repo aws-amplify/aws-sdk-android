@@ -18,7 +18,10 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * This exception is thrown when the software token TOTP multi-factor
+ * authentication (MFA) is not enabled for the user pool.
+ * </p>
  */
 public class SoftwareTokenMFANotFoundException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

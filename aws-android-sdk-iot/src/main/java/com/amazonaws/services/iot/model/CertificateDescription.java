@@ -109,10 +109,27 @@ public class CertificateDescription implements Serializable {
 
     /**
      * <p>
+     * The customer version of the certificate.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - <br/>
+     */
+    private Integer customerVersion;
+
+    /**
+     * <p>
      * The transfer data.
      * </p>
      */
     private TransferData transferData;
+
+    /**
+     * <p>
+     * The generation ID of the certificate.
+     * </p>
+     */
+    private String generationId;
 
     /**
      * <p>
@@ -635,6 +652,60 @@ public class CertificateDescription implements Serializable {
 
     /**
      * <p>
+     * The customer version of the certificate.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - <br/>
+     *
+     * @return <p>
+     *         The customer version of the certificate.
+     *         </p>
+     */
+    public Integer getCustomerVersion() {
+        return customerVersion;
+    }
+
+    /**
+     * <p>
+     * The customer version of the certificate.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - <br/>
+     *
+     * @param customerVersion <p>
+     *            The customer version of the certificate.
+     *            </p>
+     */
+    public void setCustomerVersion(Integer customerVersion) {
+        this.customerVersion = customerVersion;
+    }
+
+    /**
+     * <p>
+     * The customer version of the certificate.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - <br/>
+     *
+     * @param customerVersion <p>
+     *            The customer version of the certificate.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CertificateDescription withCustomerVersion(Integer customerVersion) {
+        this.customerVersion = customerVersion;
+        return this;
+    }
+
+    /**
+     * <p>
      * The transfer data.
      * </p>
      *
@@ -679,6 +750,51 @@ public class CertificateDescription implements Serializable {
     }
 
     /**
+     * <p>
+     * The generation ID of the certificate.
+     * </p>
+     *
+     * @return <p>
+     *         The generation ID of the certificate.
+     *         </p>
+     */
+    public String getGenerationId() {
+        return generationId;
+    }
+
+    /**
+     * <p>
+     * The generation ID of the certificate.
+     * </p>
+     *
+     * @param generationId <p>
+     *            The generation ID of the certificate.
+     *            </p>
+     */
+    public void setGenerationId(String generationId) {
+        this.generationId = generationId;
+    }
+
+    /**
+     * <p>
+     * The generation ID of the certificate.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param generationId <p>
+     *            The generation ID of the certificate.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CertificateDescription withGenerationId(String generationId) {
+        this.generationId = generationId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -707,8 +823,12 @@ public class CertificateDescription implements Serializable {
             sb.append("creationDate: " + getCreationDate() + ",");
         if (getLastModifiedDate() != null)
             sb.append("lastModifiedDate: " + getLastModifiedDate() + ",");
+        if (getCustomerVersion() != null)
+            sb.append("customerVersion: " + getCustomerVersion() + ",");
         if (getTransferData() != null)
-            sb.append("transferData: " + getTransferData());
+            sb.append("transferData: " + getTransferData() + ",");
+        if (getGenerationId() != null)
+            sb.append("generationId: " + getGenerationId());
         sb.append("}");
         return sb.toString();
     }
@@ -735,7 +855,11 @@ public class CertificateDescription implements Serializable {
         hashCode = prime * hashCode
                 + ((getLastModifiedDate() == null) ? 0 : getLastModifiedDate().hashCode());
         hashCode = prime * hashCode
+                + ((getCustomerVersion() == null) ? 0 : getCustomerVersion().hashCode());
+        hashCode = prime * hashCode
                 + ((getTransferData() == null) ? 0 : getTransferData().hashCode());
+        hashCode = prime * hashCode
+                + ((getGenerationId() == null) ? 0 : getGenerationId().hashCode());
         return hashCode;
     }
 
@@ -793,10 +917,20 @@ public class CertificateDescription implements Serializable {
         if (other.getLastModifiedDate() != null
                 && other.getLastModifiedDate().equals(this.getLastModifiedDate()) == false)
             return false;
+        if (other.getCustomerVersion() == null ^ this.getCustomerVersion() == null)
+            return false;
+        if (other.getCustomerVersion() != null
+                && other.getCustomerVersion().equals(this.getCustomerVersion()) == false)
+            return false;
         if (other.getTransferData() == null ^ this.getTransferData() == null)
             return false;
         if (other.getTransferData() != null
                 && other.getTransferData().equals(this.getTransferData()) == false)
+            return false;
+        if (other.getGenerationId() == null ^ this.getGenerationId() == null)
+            return false;
+        if (other.getGenerationId() != null
+                && other.getGenerationId().equals(this.getGenerationId()) == false)
             return false;
         return true;
     }

@@ -19,19 +19,30 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Set the user's multi-factor authentication (MFA) method preference.
+ * </p>
+ */
 public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the sMSMfaSettings property for this object.
+     * <p>
+     * The SMS text message multi-factor authentication (MFA) settings.
+     * </p>
      */
     private SMSMfaSettingsType sMSMfaSettings;
 
     /**
-     * The new value for the softwareTokenMfaSettings property for this object.
+     * <p>
+     * The time-based one-time password software token MFA settings.
+     * </p>
      */
     private SoftwareTokenMfaSettingsType softwareTokenMfaSettings;
 
     /**
-     * The new value for the accessToken property for this object.
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
@@ -39,32 +50,44 @@ public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest impleme
     private String accessToken;
 
     /**
-     * Returns the value of the sMSMfaSettings property for this object.
+     * <p>
+     * The SMS text message multi-factor authentication (MFA) settings.
+     * </p>
      *
-     * @return The value of the sMSMfaSettings property for this object.
+     * @return <p>
+     *         The SMS text message multi-factor authentication (MFA) settings.
+     *         </p>
      */
     public SMSMfaSettingsType getSMSMfaSettings() {
         return sMSMfaSettings;
     }
 
     /**
-     * Sets the value of sMSMfaSettings
+     * <p>
+     * The SMS text message multi-factor authentication (MFA) settings.
+     * </p>
      *
-     * @param sMSMfaSettings The new value for the sMSMfaSettings property for
-     *            this object.
+     * @param sMSMfaSettings <p>
+     *            The SMS text message multi-factor authentication (MFA)
+     *            settings.
+     *            </p>
      */
     public void setSMSMfaSettings(SMSMfaSettingsType sMSMfaSettings) {
         this.sMSMfaSettings = sMSMfaSettings;
     }
 
     /**
-     * Sets the value of the sMSMfaSettings property for this object.
+     * <p>
+     * The SMS text message multi-factor authentication (MFA) settings.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param sMSMfaSettings The new value for the sMSMfaSettings property for
-     *            this object.
+     * @param sMSMfaSettings <p>
+     *            The SMS text message multi-factor authentication (MFA)
+     *            settings.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -74,34 +97,42 @@ public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
-     * Returns the value of the softwareTokenMfaSettings property for this
-     * object.
+     * <p>
+     * The time-based one-time password software token MFA settings.
+     * </p>
      *
-     * @return The value of the softwareTokenMfaSettings property for this
-     *         object.
+     * @return <p>
+     *         The time-based one-time password software token MFA settings.
+     *         </p>
      */
     public SoftwareTokenMfaSettingsType getSoftwareTokenMfaSettings() {
         return softwareTokenMfaSettings;
     }
 
     /**
-     * Sets the value of softwareTokenMfaSettings
+     * <p>
+     * The time-based one-time password software token MFA settings.
+     * </p>
      *
-     * @param softwareTokenMfaSettings The new value for the
-     *            softwareTokenMfaSettings property for this object.
+     * @param softwareTokenMfaSettings <p>
+     *            The time-based one-time password software token MFA settings.
+     *            </p>
      */
     public void setSoftwareTokenMfaSettings(SoftwareTokenMfaSettingsType softwareTokenMfaSettings) {
         this.softwareTokenMfaSettings = softwareTokenMfaSettings;
     }
 
     /**
-     * Sets the value of the softwareTokenMfaSettings property for this object.
+     * <p>
+     * The time-based one-time password software token MFA settings.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param softwareTokenMfaSettings The new value for the
-     *            softwareTokenMfaSettings property for this object.
+     * @param softwareTokenMfaSettings <p>
+     *            The time-based one-time password software token MFA settings.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -112,32 +143,41 @@ public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
-     * Returns the value of the accessToken property for this object.
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
-     * @return The value of the accessToken property for this object.
+     * @return <p>
+     *         The access token.
+     *         </p>
      */
     public String getAccessToken() {
         return accessToken;
     }
 
     /**
-     * Sets the value of accessToken
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
-     * @param accessToken The new value for the accessToken property for this
-     *            object.
+     * @param accessToken <p>
+     *            The access token.
+     *            </p>
      */
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
 
     /**
-     * Sets the value of the accessToken property for this object.
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -145,8 +185,9 @@ public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest impleme
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
-     * @param accessToken The new value for the accessToken property for this
-     *            object.
+     * @param accessToken <p>
+     *            The access token.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

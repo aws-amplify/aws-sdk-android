@@ -33,7 +33,7 @@ public class SendDataPoint implements Serializable {
 
     /**
      * <p>
-     * Number of emails that have been enqueued for sending.
+     * Number of emails that have been sent.
      * </p>
      */
     private Long deliveryAttempts;
@@ -106,11 +106,11 @@ public class SendDataPoint implements Serializable {
 
     /**
      * <p>
-     * Number of emails that have been enqueued for sending.
+     * Number of emails that have been sent.
      * </p>
      *
      * @return <p>
-     *         Number of emails that have been enqueued for sending.
+     *         Number of emails that have been sent.
      *         </p>
      */
     public Long getDeliveryAttempts() {
@@ -119,11 +119,11 @@ public class SendDataPoint implements Serializable {
 
     /**
      * <p>
-     * Number of emails that have been enqueued for sending.
+     * Number of emails that have been sent.
      * </p>
      *
      * @param deliveryAttempts <p>
-     *            Number of emails that have been enqueued for sending.
+     *            Number of emails that have been sent.
      *            </p>
      */
     public void setDeliveryAttempts(Long deliveryAttempts) {
@@ -132,14 +132,14 @@ public class SendDataPoint implements Serializable {
 
     /**
      * <p>
-     * Number of emails that have been enqueued for sending.
+     * Number of emails that have been sent.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param deliveryAttempts <p>
-     *            Number of emails that have been enqueued for sending.
+     *            Number of emails that have been sent.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

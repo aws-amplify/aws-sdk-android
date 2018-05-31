@@ -17,6 +17,11 @@ package com.amazonaws.services.elasticloadbalancing.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * Contains the output of DetachLoadBalancerFromSubnets.
+ * </p>
+ */
 public class DetachLoadBalancerFromSubnetsResult implements Serializable {
     /**
      * <p>

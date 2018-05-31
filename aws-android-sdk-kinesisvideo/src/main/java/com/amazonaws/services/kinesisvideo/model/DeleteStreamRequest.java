@@ -19,9 +19,33 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Deletes a Kinesis video stream and the data contained in the stream.
+ * </p>
+ * <p>
+ * This method marks the stream for deletion, and makes the data in the stream
+ * inaccessible immediately.
+ * </p>
+ * <p>
+ * </p>
+ * <p>
+ * To ensure that you have the latest version of the stream before deleting it,
+ * you can specify the stream version. Kinesis Video Streams assigns a version
+ * to each stream. When you update a stream, Kinesis Video Streams assigns a new
+ * version number. To get the latest stream version, use the
+ * <code>DescribeStream</code> API.
+ * </p>
+ * <p>
+ * This operation requires permission for the
+ * <code>KinesisVideo:DeleteStream</code> action.
+ * </p>
+ */
 public class DeleteStreamRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream that you want to delete.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -32,7 +56,18 @@ public class DeleteStreamRequest extends AmazonWebServiceRequest implements Seri
     private String streamARN;
 
     /**
-     * The new value for the currentVersion property for this object.
+     * <p>
+     * Optional: The version of the stream that you want to delete.
+     * </p>
+     * <p>
+     * Specify the version as a safeguard to ensure that your are deleting the
+     * correct stream. To get the stream version, use the
+     * <code>DescribeStream</code> API.
+     * </p>
+     * <p>
+     * If not specified, only the <code>CreationTime</code> is checked before
+     * deleting the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
@@ -41,7 +76,9 @@ public class DeleteStreamRequest extends AmazonWebServiceRequest implements Seri
     private String currentVersion;
 
     /**
-     * Returns the value of the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream that you want to delete.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -49,14 +86,19 @@ public class DeleteStreamRequest extends AmazonWebServiceRequest implements Seri
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @return The value of the streamARN property for this object.
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the stream that you want to
+     *         delete.
+     *         </p>
      */
     public String getStreamARN() {
         return streamARN;
     }
 
     /**
-     * Sets the value of streamARN
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream that you want to delete.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -64,15 +106,19 @@ public class DeleteStreamRequest extends AmazonWebServiceRequest implements Seri
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @param streamARN The new value for the streamARN property for this
-     *            object.
+     * @param streamARN <p>
+     *            The Amazon Resource Name (ARN) of the stream that you want to
+     *            delete.
+     *            </p>
      */
     public void setStreamARN(String streamARN) {
         this.streamARN = streamARN;
     }
 
     /**
-     * Sets the value of the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream that you want to delete.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -83,8 +129,10 @@ public class DeleteStreamRequest extends AmazonWebServiceRequest implements Seri
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @param streamARN The new value for the streamARN property for this
-     *            object.
+     * @param streamARN <p>
+     *            The Amazon Resource Name (ARN) of the stream that you want to
+     *            delete.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -94,34 +142,88 @@ public class DeleteStreamRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Returns the value of the currentVersion property for this object.
+     * <p>
+     * Optional: The version of the stream that you want to delete.
+     * </p>
+     * <p>
+     * Specify the version as a safeguard to ensure that your are deleting the
+     * correct stream. To get the stream version, use the
+     * <code>DescribeStream</code> API.
+     * </p>
+     * <p>
+     * If not specified, only the <code>CreationTime</code> is checked before
+     * deleting the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9]+<br/>
      *
-     * @return The value of the currentVersion property for this object.
+     * @return <p>
+     *         Optional: The version of the stream that you want to delete.
+     *         </p>
+     *         <p>
+     *         Specify the version as a safeguard to ensure that your are
+     *         deleting the correct stream. To get the stream version, use the
+     *         <code>DescribeStream</code> API.
+     *         </p>
+     *         <p>
+     *         If not specified, only the <code>CreationTime</code> is checked
+     *         before deleting the stream.
+     *         </p>
      */
     public String getCurrentVersion() {
         return currentVersion;
     }
 
     /**
-     * Sets the value of currentVersion
+     * <p>
+     * Optional: The version of the stream that you want to delete.
+     * </p>
+     * <p>
+     * Specify the version as a safeguard to ensure that your are deleting the
+     * correct stream. To get the stream version, use the
+     * <code>DescribeStream</code> API.
+     * </p>
+     * <p>
+     * If not specified, only the <code>CreationTime</code> is checked before
+     * deleting the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9]+<br/>
      *
-     * @param currentVersion The new value for the currentVersion property for
-     *            this object.
+     * @param currentVersion <p>
+     *            Optional: The version of the stream that you want to delete.
+     *            </p>
+     *            <p>
+     *            Specify the version as a safeguard to ensure that your are
+     *            deleting the correct stream. To get the stream version, use
+     *            the <code>DescribeStream</code> API.
+     *            </p>
+     *            <p>
+     *            If not specified, only the <code>CreationTime</code> is
+     *            checked before deleting the stream.
+     *            </p>
      */
     public void setCurrentVersion(String currentVersion) {
         this.currentVersion = currentVersion;
     }
 
     /**
-     * Sets the value of the currentVersion property for this object.
+     * <p>
+     * Optional: The version of the stream that you want to delete.
+     * </p>
+     * <p>
+     * Specify the version as a safeguard to ensure that your are deleting the
+     * correct stream. To get the stream version, use the
+     * <code>DescribeStream</code> API.
+     * </p>
+     * <p>
+     * If not specified, only the <code>CreationTime</code> is checked before
+     * deleting the stream.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -130,8 +232,18 @@ public class DeleteStreamRequest extends AmazonWebServiceRequest implements Seri
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9]+<br/>
      *
-     * @param currentVersion The new value for the currentVersion property for
-     *            this object.
+     * @param currentVersion <p>
+     *            Optional: The version of the stream that you want to delete.
+     *            </p>
+     *            <p>
+     *            Specify the version as a safeguard to ensure that your are
+     *            deleting the correct stream. To get the stream version, use
+     *            the <code>DescribeStream</code> API.
+     *            </p>
+     *            <p>
+     *            If not specified, only the <code>CreationTime</code> is
+     *            checked before deleting the stream.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

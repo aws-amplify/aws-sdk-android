@@ -59,7 +59,7 @@ public class S3Action implements Serializable {
 
     /**
      * <p>
-     * The name of the Amazon S3 bucket to which to save the received email.
+     * The name of the Amazon S3 bucket that incoming email will be saved to.
      * </p>
      */
     private String bucketName;
@@ -117,11 +117,11 @@ public class S3Action implements Serializable {
      * must use the Amazon S3 encryption client to decrypt the email after
      * retrieving it from Amazon S3, as the service has no access to use your
      * AWS KMS keys for decryption. This encryption client is currently
-     * available with the <a href="http://aws.amazon.com/sdk-for-java/">AWS Java
-     * SDK</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS Ruby
-     * SDK</a> only. For more information about client-side encryption using AWS
-     * KMS master keys, see the <a href=
-     * "http://alpha-docs-aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
+     * available with the <a href="http://aws.amazon.com/sdk-for-java/">AWS SDK
+     * for Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS SDK
+     * for Ruby</a> only. For more information about client-side encryption
+     * using AWS KMS master keys, see the <a href=
+     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      * >Amazon S3 Developer Guide</a>.
      * </p>
      * </important>
@@ -207,12 +207,12 @@ public class S3Action implements Serializable {
 
     /**
      * <p>
-     * The name of the Amazon S3 bucket to which to save the received email.
+     * The name of the Amazon S3 bucket that incoming email will be saved to.
      * </p>
      *
      * @return <p>
-     *         The name of the Amazon S3 bucket to which to save the received
-     *         email.
+     *         The name of the Amazon S3 bucket that incoming email will be
+     *         saved to.
      *         </p>
      */
     public String getBucketName() {
@@ -221,12 +221,12 @@ public class S3Action implements Serializable {
 
     /**
      * <p>
-     * The name of the Amazon S3 bucket to which to save the received email.
+     * The name of the Amazon S3 bucket that incoming email will be saved to.
      * </p>
      *
      * @param bucketName <p>
-     *            The name of the Amazon S3 bucket to which to save the received
-     *            email.
+     *            The name of the Amazon S3 bucket that incoming email will be
+     *            saved to.
      *            </p>
      */
     public void setBucketName(String bucketName) {
@@ -235,15 +235,15 @@ public class S3Action implements Serializable {
 
     /**
      * <p>
-     * The name of the Amazon S3 bucket to which to save the received email.
+     * The name of the Amazon S3 bucket that incoming email will be saved to.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param bucketName <p>
-     *            The name of the Amazon S3 bucket to which to save the received
-     *            email.
+     *            The name of the Amazon S3 bucket that incoming email will be
+     *            saved to.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -354,11 +354,11 @@ public class S3Action implements Serializable {
      * must use the Amazon S3 encryption client to decrypt the email after
      * retrieving it from Amazon S3, as the service has no access to use your
      * AWS KMS keys for decryption. This encryption client is currently
-     * available with the <a href="http://aws.amazon.com/sdk-for-java/">AWS Java
-     * SDK</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS Ruby
-     * SDK</a> only. For more information about client-side encryption using AWS
-     * KMS master keys, see the <a href=
-     * "http://alpha-docs-aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
+     * available with the <a href="http://aws.amazon.com/sdk-for-java/">AWS SDK
+     * for Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS SDK
+     * for Ruby</a> only. For more information about client-side encryption
+     * using AWS KMS master keys, see the <a href=
+     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      * >Amazon S3 Developer Guide</a>.
      * </p>
      * </important>
@@ -408,11 +408,11 @@ public class S3Action implements Serializable {
      *         client to decrypt the email after retrieving it from Amazon S3,
      *         as the service has no access to use your AWS KMS keys for
      *         decryption. This encryption client is currently available with
-     *         the <a href="http://aws.amazon.com/sdk-for-java/">AWS Java
-     *         SDK</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS
-     *         Ruby SDK</a> only. For more information about client-side
+     *         the <a href="http://aws.amazon.com/sdk-for-java/">AWS SDK for
+     *         Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS
+     *         SDK for Ruby</a> only. For more information about client-side
      *         encryption using AWS KMS master keys, see the <a href=
-     *         "http://alpha-docs-aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
+     *         "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      *         >Amazon S3 Developer Guide</a>.
      *         </p>
      *         </important>
@@ -465,11 +465,11 @@ public class S3Action implements Serializable {
      * must use the Amazon S3 encryption client to decrypt the email after
      * retrieving it from Amazon S3, as the service has no access to use your
      * AWS KMS keys for decryption. This encryption client is currently
-     * available with the <a href="http://aws.amazon.com/sdk-for-java/">AWS Java
-     * SDK</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS Ruby
-     * SDK</a> only. For more information about client-side encryption using AWS
-     * KMS master keys, see the <a href=
-     * "http://alpha-docs-aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
+     * available with the <a href="http://aws.amazon.com/sdk-for-java/">AWS SDK
+     * for Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS SDK
+     * for Ruby</a> only. For more information about client-side encryption
+     * using AWS KMS master keys, see the <a href=
+     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      * >Amazon S3 Developer Guide</a>.
      * </p>
      * </important>
@@ -520,11 +520,11 @@ public class S3Action implements Serializable {
      *            from Amazon S3, as the service has no access to use your AWS
      *            KMS keys for decryption. This encryption client is currently
      *            available with the <a
-     *            href="http://aws.amazon.com/sdk-for-java/">AWS Java SDK</a>
-     *            and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS Ruby
-     *            SDK</a> only. For more information about client-side
+     *            href="http://aws.amazon.com/sdk-for-java/">AWS SDK for
+     *            Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS
+     *            SDK for Ruby</a> only. For more information about client-side
      *            encryption using AWS KMS master keys, see the <a href=
-     *            "http://alpha-docs-aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
+     *            "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      *            >Amazon S3 Developer Guide</a>.
      *            </p>
      *            </important>
@@ -577,11 +577,11 @@ public class S3Action implements Serializable {
      * must use the Amazon S3 encryption client to decrypt the email after
      * retrieving it from Amazon S3, as the service has no access to use your
      * AWS KMS keys for decryption. This encryption client is currently
-     * available with the <a href="http://aws.amazon.com/sdk-for-java/">AWS Java
-     * SDK</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS Ruby
-     * SDK</a> only. For more information about client-side encryption using AWS
-     * KMS master keys, see the <a href=
-     * "http://alpha-docs-aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
+     * available with the <a href="http://aws.amazon.com/sdk-for-java/">AWS SDK
+     * for Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS SDK
+     * for Ruby</a> only. For more information about client-side encryption
+     * using AWS KMS master keys, see the <a href=
+     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      * >Amazon S3 Developer Guide</a>.
      * </p>
      * </important>
@@ -635,11 +635,11 @@ public class S3Action implements Serializable {
      *            from Amazon S3, as the service has no access to use your AWS
      *            KMS keys for decryption. This encryption client is currently
      *            available with the <a
-     *            href="http://aws.amazon.com/sdk-for-java/">AWS Java SDK</a>
-     *            and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS Ruby
-     *            SDK</a> only. For more information about client-side
+     *            href="http://aws.amazon.com/sdk-for-java/">AWS SDK for
+     *            Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS
+     *            SDK for Ruby</a> only. For more information about client-side
      *            encryption using AWS KMS master keys, see the <a href=
-     *            "http://alpha-docs-aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
+     *            "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      *            >Amazon S3 Developer Guide</a>.
      *            </p>
      *            </important>

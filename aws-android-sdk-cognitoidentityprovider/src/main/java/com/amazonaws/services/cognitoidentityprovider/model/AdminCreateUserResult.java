@@ -25,18 +25,18 @@ import java.io.Serializable;
 public class AdminCreateUserResult implements Serializable {
     /**
      * <p>
-     * The user returned in the request to create a new user.
+     * The newly created user.
      * </p>
      */
     private UserType user;
 
     /**
      * <p>
-     * The user returned in the request to create a new user.
+     * The newly created user.
      * </p>
      *
      * @return <p>
-     *         The user returned in the request to create a new user.
+     *         The newly created user.
      *         </p>
      */
     public UserType getUser() {
@@ -45,11 +45,11 @@ public class AdminCreateUserResult implements Serializable {
 
     /**
      * <p>
-     * The user returned in the request to create a new user.
+     * The newly created user.
      * </p>
      *
      * @param user <p>
-     *            The user returned in the request to create a new user.
+     *            The newly created user.
      *            </p>
      */
     public void setUser(UserType user) {
@@ -58,14 +58,14 @@ public class AdminCreateUserResult implements Serializable {
 
     /**
      * <p>
-     * The user returned in the request to create a new user.
+     * The newly created user.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param user <p>
-     *            The user returned in the request to create a new user.
+     *            The newly created user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -47,16 +47,22 @@ class APNSMessageJsonUnmarshaller implements Unmarshaller<APNSMessage, JsonUnmar
             } else if (name.equals("Category")) {
                 aPNSMessage.setCategory(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("CollapseId")) {
+                aPNSMessage.setCollapseId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Data")) {
                 aPNSMessage.setData(new MapUnmarshaller<String>(StringJsonUnmarshaller
                         .getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("JsonData")) {
-                aPNSMessage.setJsonData(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
             } else if (name.equals("MediaUrl")) {
                 aPNSMessage.setMediaUrl(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("PreferredAuthenticationMethod")) {
+                aPNSMessage.setPreferredAuthenticationMethod(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Priority")) {
+                aPNSMessage.setPriority(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("RawContent")) {
                 aPNSMessage.setRawContent(StringJsonUnmarshaller.getInstance()
@@ -75,6 +81,9 @@ class APNSMessageJsonUnmarshaller implements Unmarshaller<APNSMessage, JsonUnmar
                                 .unmarshall(context));
             } else if (name.equals("ThreadId")) {
                 aPNSMessage.setThreadId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("TimeToLive")) {
+                aPNSMessage.setTimeToLive(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Title")) {
                 aPNSMessage.setTitle(StringJsonUnmarshaller.getInstance()

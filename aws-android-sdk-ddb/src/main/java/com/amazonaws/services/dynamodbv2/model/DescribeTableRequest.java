@@ -27,12 +27,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <note>
  * <p>
- * If you issue a <i>DescribeTable</i> request immediately after a
- * <i>CreateTable</i> request, DynamoDB might return a
- * <i>ResourceNotFoundException</i>. This is because <i>DescribeTable</i> uses
- * an eventually consistent query, and the metadata for your table might not be
- * available at that moment. Wait for a few seconds, and then try the
- * <i>DescribeTable</i> request again.
+ * If you issue a <code>DescribeTable</code> request immediately after a
+ * <code>CreateTable</code> request, DynamoDB might return a
+ * <code>ResourceNotFoundException</code>. This is because
+ * <code>DescribeTable</code> uses an eventually consistent query, and the
+ * metadata for your table might not be available at that moment. Wait for a few
+ * seconds, and then try the <code>DescribeTable</code> request again.
  * </p>
  * </note>
  */

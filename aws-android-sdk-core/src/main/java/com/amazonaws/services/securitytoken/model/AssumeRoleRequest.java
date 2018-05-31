@@ -63,9 +63,21 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >Common Scenarios for Temporary Credentials</a> in the <i>IAM User Guide</i>.
  * </p>
  * <p>
- * The temporary security credentials are valid for the duration that you
- * specified when calling <code>AssumeRole</code>, which can be from 900 seconds
- * (15 minutes) to a maximum of 3600 seconds (1 hour). The default is 1 hour.
+ * By default, the temporary security credentials created by
+ * <code>AssumeRole</code> last for one hour. However, you can use the optional
+ * <code>DurationSeconds</code> parameter to specify the duration of your
+ * session. You can provide a value from 900 seconds (15 minutes) up to the
+ * maximum session duration setting for the role. This setting can have a value
+ * from 1 hour to 12 hours. To learn how to view the maximum value for your
+ * role, see <a href=
+ * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+ * >View the Maximum Session Duration Setting for a Role</a> in the <i>IAM User
+ * Guide</i>. The maximum session duration limit applies when you use the
+ * <code>AssumeRole*</code> API operations or the <code>assume-role*</code> CLI
+ * operations but does not apply when you use those operations to create a
+ * console URL. For more information, see <a
+ * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html"
+ * >Using IAM Roles</a> in the <i>IAM User Guide</i>.
  * </p>
  * <p>
  * The temporary security credentials created by <code>AssumeRole</code> can be
@@ -102,7 +114,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * to call AssumeRole on the ARN of the role in the other account. If the user
  * is in the same account as the role, then you can either attach a policy to
  * the user (identical to the previous different account user), or you can add
- * the user as a principal directly in the role's trust policy
+ * the user as a principal directly in the role's trust policy. In this case,
+ * the trust policy acts as the only resource-based policy in IAM, and users in
+ * the same account as the role do not need explicit permission to assume the
+ * role. For more information about trust policies and resource-based policies,
+ * see <a
+ * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html"
+ * >IAM Policies</a> in the <i>IAM User Guide</i>.
  * </p>
  * <p>
  * <b>Using MFA with AssumeRole</b>
@@ -161,9 +179,9 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * logs.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
      * characters: =,.@-
      * </p>
      * <p>
@@ -216,12 +234,34 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
     /**
      * <p>
      * The duration, in seconds, of the role session. The value can range from
-     * 900 seconds (15 minutes) to 3600 seconds (1 hour). By default, the value
-     * is set to 3600 seconds.
+     * 900 seconds (15 minutes) up to the maximum session duration setting for
+     * the role. This setting can have a value from 1 hour to 12 hours. If you
+     * specify a value higher than this setting, the operation fails. For
+     * example, if you specify a session duration of 12 hours, but your
+     * administrator set the maximum session duration to 6 hours, your operation
+     * fails. To learn how to view the maximum value for your role, see <a href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     * >View the Maximum Session Duration Setting for a Role</a> in the <i>IAM
+     * User Guide</i>.
      * </p>
      * <p>
+     * By default, the value is set to 3600 seconds.
+     * </p>
+     * <note>
+     * <p>
+     * The <code>DurationSeconds</code> parameter is separate from the duration
+     * of a console session that you might request using the returned
+     * credentials. The request to the federation endpoint for a console sign-in
+     * token takes a <code>SessionDuration</code> parameter that specifies the
+     * maximum length of the console session. For more information, see <a href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     * >Creating a URL that Enables Federated Users to Access the AWS Management
+     * Console</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * </note>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>900 - 3600<br/>
+     * <b>Range: </b>900 - 43200<br/>
      */
     private Integer durationSeconds;
 
@@ -240,10 +280,10 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * a Third Party</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
-     * characters: =,.@:\/-
+     * The regex used to validated this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
+     * characters: =,.@:/-
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -263,9 +303,9 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * <code>arn:aws:iam::123456789012:mfa/user</code>).
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
      * characters: =,.@-
      * </p>
      * <p>
@@ -369,9 +409,9 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * logs.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
      * characters: =,.@-
      * </p>
      * <p>
@@ -393,10 +433,10 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      *         session name to the external account in their CloudTrail logs.
      *         </p>
      *         <p>
-     *         The format for this parameter, as described by its regex pattern,
-     *         is a string of characters consisting of upper- and lower-case
-     *         alphanumeric characters with no spaces. You can also include any
-     *         of the following characters: =,.@-
+     *         The regex used to validate this parameter is a string of
+     *         characters consisting of upper- and lower-case alphanumeric
+     *         characters with no spaces. You can also include underscores or
+     *         any of the following characters: =,.@-
      *         </p>
      */
     public String getRoleSessionName() {
@@ -418,9 +458,9 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * logs.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
      * characters: =,.@-
      * </p>
      * <p>
@@ -443,10 +483,10 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      *            account in their CloudTrail logs.
      *            </p>
      *            <p>
-     *            The format for this parameter, as described by its regex
-     *            pattern, is a string of characters consisting of upper- and
-     *            lower-case alphanumeric characters with no spaces. You can
-     *            also include any of the following characters: =,.@-
+     *            The regex used to validate this parameter is a string of
+     *            characters consisting of upper- and lower-case alphanumeric
+     *            characters with no spaces. You can also include underscores or
+     *            any of the following characters: =,.@-
      *            </p>
      */
     public void setRoleSessionName(String roleSessionName) {
@@ -468,9 +508,9 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * logs.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
      * characters: =,.@-
      * </p>
      * <p>
@@ -496,10 +536,10 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      *            account in their CloudTrail logs.
      *            </p>
      *            <p>
-     *            The format for this parameter, as described by its regex
-     *            pattern, is a string of characters consisting of upper- and
-     *            lower-case alphanumeric characters with no spaces. You can
-     *            also include any of the following characters: =,.@-
+     *            The regex used to validate this parameter is a string of
+     *            characters consisting of upper- and lower-case alphanumeric
+     *            characters with no spaces. You can also include underscores or
+     *            any of the following characters: =,.@-
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -753,18 +793,64 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
     /**
      * <p>
      * The duration, in seconds, of the role session. The value can range from
-     * 900 seconds (15 minutes) to 3600 seconds (1 hour). By default, the value
-     * is set to 3600 seconds.
+     * 900 seconds (15 minutes) up to the maximum session duration setting for
+     * the role. This setting can have a value from 1 hour to 12 hours. If you
+     * specify a value higher than this setting, the operation fails. For
+     * example, if you specify a session duration of 12 hours, but your
+     * administrator set the maximum session duration to 6 hours, your operation
+     * fails. To learn how to view the maximum value for your role, see <a href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     * >View the Maximum Session Duration Setting for a Role</a> in the <i>IAM
+     * User Guide</i>.
      * </p>
      * <p>
+     * By default, the value is set to 3600 seconds.
+     * </p>
+     * <note>
+     * <p>
+     * The <code>DurationSeconds</code> parameter is separate from the duration
+     * of a console session that you might request using the returned
+     * credentials. The request to the federation endpoint for a console sign-in
+     * token takes a <code>SessionDuration</code> parameter that specifies the
+     * maximum length of the console session. For more information, see <a href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     * >Creating a URL that Enables Federated Users to Access the AWS Management
+     * Console</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * </note>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>900 - 3600<br/>
+     * <b>Range: </b>900 - 43200<br/>
      *
      * @return <p>
      *         The duration, in seconds, of the role session. The value can
-     *         range from 900 seconds (15 minutes) to 3600 seconds (1 hour). By
-     *         default, the value is set to 3600 seconds.
+     *         range from 900 seconds (15 minutes) up to the maximum session
+     *         duration setting for the role. This setting can have a value from
+     *         1 hour to 12 hours. If you specify a value higher than this
+     *         setting, the operation fails. For example, if you specify a
+     *         session duration of 12 hours, but your administrator set the
+     *         maximum session duration to 6 hours, your operation fails. To
+     *         learn how to view the maximum value for your role, see <a href=
+     *         "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     *         >View the Maximum Session Duration Setting for a Role</a> in the
+     *         <i>IAM User Guide</i>.
      *         </p>
+     *         <p>
+     *         By default, the value is set to 3600 seconds.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         The <code>DurationSeconds</code> parameter is separate from the
+     *         duration of a console session that you might request using the
+     *         returned credentials. The request to the federation endpoint for
+     *         a console sign-in token takes a <code>SessionDuration</code>
+     *         parameter that specifies the maximum length of the console
+     *         session. For more information, see <a href=
+     *         "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     *         >Creating a URL that Enables Federated Users to Access the AWS
+     *         Management Console</a> in the <i>IAM User Guide</i>.
+     *         </p>
+     *         </note>
      */
     public Integer getDurationSeconds() {
         return durationSeconds;
@@ -773,18 +859,66 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
     /**
      * <p>
      * The duration, in seconds, of the role session. The value can range from
-     * 900 seconds (15 minutes) to 3600 seconds (1 hour). By default, the value
-     * is set to 3600 seconds.
+     * 900 seconds (15 minutes) up to the maximum session duration setting for
+     * the role. This setting can have a value from 1 hour to 12 hours. If you
+     * specify a value higher than this setting, the operation fails. For
+     * example, if you specify a session duration of 12 hours, but your
+     * administrator set the maximum session duration to 6 hours, your operation
+     * fails. To learn how to view the maximum value for your role, see <a href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     * >View the Maximum Session Duration Setting for a Role</a> in the <i>IAM
+     * User Guide</i>.
      * </p>
      * <p>
+     * By default, the value is set to 3600 seconds.
+     * </p>
+     * <note>
+     * <p>
+     * The <code>DurationSeconds</code> parameter is separate from the duration
+     * of a console session that you might request using the returned
+     * credentials. The request to the federation endpoint for a console sign-in
+     * token takes a <code>SessionDuration</code> parameter that specifies the
+     * maximum length of the console session. For more information, see <a href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     * >Creating a URL that Enables Federated Users to Access the AWS Management
+     * Console</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * </note>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>900 - 3600<br/>
+     * <b>Range: </b>900 - 43200<br/>
      *
      * @param durationSeconds <p>
      *            The duration, in seconds, of the role session. The value can
-     *            range from 900 seconds (15 minutes) to 3600 seconds (1 hour).
+     *            range from 900 seconds (15 minutes) up to the maximum session
+     *            duration setting for the role. This setting can have a value
+     *            from 1 hour to 12 hours. If you specify a value higher than
+     *            this setting, the operation fails. For example, if you specify
+     *            a session duration of 12 hours, but your administrator set the
+     *            maximum session duration to 6 hours, your operation fails. To
+     *            learn how to view the maximum value for your role, see <a
+     *            href=
+     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     *            >View the Maximum Session Duration Setting for a Role</a> in
+     *            the <i>IAM User Guide</i>.
+     *            </p>
+     *            <p>
      *            By default, the value is set to 3600 seconds.
      *            </p>
+     *            <note>
+     *            <p>
+     *            The <code>DurationSeconds</code> parameter is separate from
+     *            the duration of a console session that you might request using
+     *            the returned credentials. The request to the federation
+     *            endpoint for a console sign-in token takes a
+     *            <code>SessionDuration</code> parameter that specifies the
+     *            maximum length of the console session. For more information,
+     *            see <a href=
+     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     *            >Creating a URL that Enables Federated Users to Access the AWS
+     *            Management Console</a> in the <i>IAM User Guide</i>.
+     *            </p>
+     *            </note>
      */
     public void setDurationSeconds(Integer durationSeconds) {
         this.durationSeconds = durationSeconds;
@@ -793,21 +927,69 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
     /**
      * <p>
      * The duration, in seconds, of the role session. The value can range from
-     * 900 seconds (15 minutes) to 3600 seconds (1 hour). By default, the value
-     * is set to 3600 seconds.
+     * 900 seconds (15 minutes) up to the maximum session duration setting for
+     * the role. This setting can have a value from 1 hour to 12 hours. If you
+     * specify a value higher than this setting, the operation fails. For
+     * example, if you specify a session duration of 12 hours, but your
+     * administrator set the maximum session duration to 6 hours, your operation
+     * fails. To learn how to view the maximum value for your role, see <a href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     * >View the Maximum Session Duration Setting for a Role</a> in the <i>IAM
+     * User Guide</i>.
      * </p>
+     * <p>
+     * By default, the value is set to 3600 seconds.
+     * </p>
+     * <note>
+     * <p>
+     * The <code>DurationSeconds</code> parameter is separate from the duration
+     * of a console session that you might request using the returned
+     * credentials. The request to the federation endpoint for a console sign-in
+     * token takes a <code>SessionDuration</code> parameter that specifies the
+     * maximum length of the console session. For more information, see <a href=
+     * "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     * >Creating a URL that Enables Federated Users to Access the AWS Management
+     * Console</a> in the <i>IAM User Guide</i>.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>900 - 3600<br/>
+     * <b>Range: </b>900 - 43200<br/>
      *
      * @param durationSeconds <p>
      *            The duration, in seconds, of the role session. The value can
-     *            range from 900 seconds (15 minutes) to 3600 seconds (1 hour).
+     *            range from 900 seconds (15 minutes) up to the maximum session
+     *            duration setting for the role. This setting can have a value
+     *            from 1 hour to 12 hours. If you specify a value higher than
+     *            this setting, the operation fails. For example, if you specify
+     *            a session duration of 12 hours, but your administrator set the
+     *            maximum session duration to 6 hours, your operation fails. To
+     *            learn how to view the maximum value for your role, see <a
+     *            href=
+     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session"
+     *            >View the Maximum Session Duration Setting for a Role</a> in
+     *            the <i>IAM User Guide</i>.
+     *            </p>
+     *            <p>
      *            By default, the value is set to 3600 seconds.
      *            </p>
+     *            <note>
+     *            <p>
+     *            The <code>DurationSeconds</code> parameter is separate from
+     *            the duration of a console session that you might request using
+     *            the returned credentials. The request to the federation
+     *            endpoint for a console sign-in token takes a
+     *            <code>SessionDuration</code> parameter that specifies the
+     *            maximum length of the console session. For more information,
+     *            see <a href=
+     *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html"
+     *            >Creating a URL that Enables Federated Users to Access the AWS
+     *            Management Console</a> in the <i>IAM User Guide</i>.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -831,10 +1013,10 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * a Third Party</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
-     * characters: =,.@:\/-
+     * The regex used to validated this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
+     * characters: =,.@:/-
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -856,10 +1038,10 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      *         Resources to a Third Party</a> in the <i>IAM User Guide</i>.
      *         </p>
      *         <p>
-     *         The format for this parameter, as described by its regex pattern,
-     *         is a string of characters consisting of upper- and lower-case
-     *         alphanumeric characters with no spaces. You can also include any
-     *         of the following characters: =,.@:\/-
+     *         The regex used to validated this parameter is a string of
+     *         characters consisting of upper- and lower-case alphanumeric
+     *         characters with no spaces. You can also include underscores or
+     *         any of the following characters: =,.@:/-
      *         </p>
      */
     public String getExternalId() {
@@ -881,10 +1063,10 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * a Third Party</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
-     * characters: =,.@:\/-
+     * The regex used to validated this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
+     * characters: =,.@:/-
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -906,10 +1088,10 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      *            Resources to a Third Party</a> in the <i>IAM User Guide</i>.
      *            </p>
      *            <p>
-     *            The format for this parameter, as described by its regex
-     *            pattern, is a string of characters consisting of upper- and
-     *            lower-case alphanumeric characters with no spaces. You can
-     *            also include any of the following characters: =,.@:\/-
+     *            The regex used to validated this parameter is a string of
+     *            characters consisting of upper- and lower-case alphanumeric
+     *            characters with no spaces. You can also include underscores or
+     *            any of the following characters: =,.@:/-
      *            </p>
      */
     public void setExternalId(String externalId) {
@@ -931,10 +1113,10 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * a Third Party</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
-     * characters: =,.@:\/-
+     * The regex used to validated this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
+     * characters: =,.@:/-
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -959,10 +1141,10 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      *            Resources to a Third Party</a> in the <i>IAM User Guide</i>.
      *            </p>
      *            <p>
-     *            The format for this parameter, as described by its regex
-     *            pattern, is a string of characters consisting of upper- and
-     *            lower-case alphanumeric characters with no spaces. You can
-     *            also include any of the following characters: =,.@:\/-
+     *            The regex used to validated this parameter is a string of
+     *            characters consisting of upper- and lower-case alphanumeric
+     *            characters with no spaces. You can also include underscores or
+     *            any of the following characters: =,.@:/-
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -983,9 +1165,9 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * <code>arn:aws:iam::123456789012:mfa/user</code>).
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
      * characters: =,.@-
      * </p>
      * <p>
@@ -1004,10 +1186,10 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      *         <code>arn:aws:iam::123456789012:mfa/user</code>).
      *         </p>
      *         <p>
-     *         The format for this parameter, as described by its regex pattern,
-     *         is a string of characters consisting of upper- and lower-case
-     *         alphanumeric characters with no spaces. You can also include any
-     *         of the following characters: =,.@-
+     *         The regex used to validate this parameter is a string of
+     *         characters consisting of upper- and lower-case alphanumeric
+     *         characters with no spaces. You can also include underscores or
+     *         any of the following characters: =,.@-
      *         </p>
      */
     public String getSerialNumber() {
@@ -1025,9 +1207,9 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * <code>arn:aws:iam::123456789012:mfa/user</code>).
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
      * characters: =,.@-
      * </p>
      * <p>
@@ -1046,10 +1228,10 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      *            <code>arn:aws:iam::123456789012:mfa/user</code>).
      *            </p>
      *            <p>
-     *            The format for this parameter, as described by its regex
-     *            pattern, is a string of characters consisting of upper- and
-     *            lower-case alphanumeric characters with no spaces. You can
-     *            also include any of the following characters: =,.@-
+     *            The regex used to validate this parameter is a string of
+     *            characters consisting of upper- and lower-case alphanumeric
+     *            characters with no spaces. You can also include underscores or
+     *            any of the following characters: =,.@-
      *            </p>
      */
     public void setSerialNumber(String serialNumber) {
@@ -1067,9 +1249,9 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * <code>arn:aws:iam::123456789012:mfa/user</code>).
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
      * characters: =,.@-
      * </p>
      * <p>
@@ -1091,10 +1273,10 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      *            <code>arn:aws:iam::123456789012:mfa/user</code>).
      *            </p>
      *            <p>
-     *            The format for this parameter, as described by its regex
-     *            pattern, is a string of characters consisting of upper- and
-     *            lower-case alphanumeric characters with no spaces. You can
-     *            also include any of the following characters: =,.@-
+     *            The regex used to validate this parameter is a string of
+     *            characters consisting of upper- and lower-case alphanumeric
+     *            characters with no spaces. You can also include underscores or
+     *            any of the following characters: =,.@-
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

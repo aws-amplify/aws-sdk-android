@@ -33,8 +33,7 @@ import java.io.Serializable;
 public class StopAction implements Serializable {
     /**
      * <p>
-     * The scope to which the Stop action applies. That is, what is being
-     * stopped.
+     * The name of the RuleSet that is being stopped.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -56,16 +55,14 @@ public class StopAction implements Serializable {
 
     /**
      * <p>
-     * The scope to which the Stop action applies. That is, what is being
-     * stopped.
+     * The name of the RuleSet that is being stopped.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RuleSet
      *
      * @return <p>
-     *         The scope to which the Stop action applies. That is, what is
-     *         being stopped.
+     *         The name of the RuleSet that is being stopped.
      *         </p>
      * @see StopScope
      */
@@ -75,16 +72,14 @@ public class StopAction implements Serializable {
 
     /**
      * <p>
-     * The scope to which the Stop action applies. That is, what is being
-     * stopped.
+     * The name of the RuleSet that is being stopped.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RuleSet
      *
      * @param scope <p>
-     *            The scope to which the Stop action applies. That is, what is
-     *            being stopped.
+     *            The name of the RuleSet that is being stopped.
      *            </p>
      * @see StopScope
      */
@@ -94,8 +89,7 @@ public class StopAction implements Serializable {
 
     /**
      * <p>
-     * The scope to which the Stop action applies. That is, what is being
-     * stopped.
+     * The name of the RuleSet that is being stopped.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -105,8 +99,7 @@ public class StopAction implements Serializable {
      * <b>Allowed Values: </b>RuleSet
      *
      * @param scope <p>
-     *            The scope to which the Stop action applies. That is, what is
-     *            being stopped.
+     *            The name of the RuleSet that is being stopped.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -119,16 +112,14 @@ public class StopAction implements Serializable {
 
     /**
      * <p>
-     * The scope to which the Stop action applies. That is, what is being
-     * stopped.
+     * The name of the RuleSet that is being stopped.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RuleSet
      *
      * @param scope <p>
-     *            The scope to which the Stop action applies. That is, what is
-     *            being stopped.
+     *            The name of the RuleSet that is being stopped.
      *            </p>
      * @see StopScope
      */
@@ -138,8 +129,7 @@ public class StopAction implements Serializable {
 
     /**
      * <p>
-     * The scope to which the Stop action applies. That is, what is being
-     * stopped.
+     * The name of the RuleSet that is being stopped.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -149,8 +139,7 @@ public class StopAction implements Serializable {
      * <b>Allowed Values: </b>RuleSet
      *
      * @param scope <p>
-     *            The scope to which the Stop action applies. That is, what is
-     *            being stopped.
+     *            The name of the RuleSet that is being stopped.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

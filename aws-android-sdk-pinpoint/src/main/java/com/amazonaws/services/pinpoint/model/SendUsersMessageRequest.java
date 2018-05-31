@@ -34,11 +34,6 @@ public class SendUsersMessageRequest implements Serializable {
     private DirectMessageConfiguration messageConfiguration;
 
     /**
-     * Original request Id for which this message is delivered.
-     */
-    private String requestId;
-
-    /**
      * A map of destination endpoints, with the EndpointId as the key Endpoint
      * Message Configuration as the value.
      */
@@ -163,39 +158,6 @@ public class SendUsersMessageRequest implements Serializable {
     }
 
     /**
-     * Original request Id for which this message is delivered.
-     *
-     * @return Original request Id for which this message is delivered.
-     */
-    public String getRequestId() {
-        return requestId;
-    }
-
-    /**
-     * Original request Id for which this message is delivered.
-     *
-     * @param requestId Original request Id for which this message is delivered.
-     */
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
-    /**
-     * Original request Id for which this message is delivered.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param requestId Original request Id for which this message is delivered.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SendUsersMessageRequest withRequestId(String requestId) {
-        this.requestId = requestId;
-        return this;
-    }
-
-    /**
      * A map of destination endpoints, with the EndpointId as the key Endpoint
      * Message Configuration as the value.
      *
@@ -283,8 +245,6 @@ public class SendUsersMessageRequest implements Serializable {
             sb.append("Context: " + getContext() + ",");
         if (getMessageConfiguration() != null)
             sb.append("MessageConfiguration: " + getMessageConfiguration() + ",");
-        if (getRequestId() != null)
-            sb.append("RequestId: " + getRequestId() + ",");
         if (getUsers() != null)
             sb.append("Users: " + getUsers());
         sb.append("}");
@@ -299,7 +259,6 @@ public class SendUsersMessageRequest implements Serializable {
         hashCode = prime * hashCode + ((getContext() == null) ? 0 : getContext().hashCode());
         hashCode = prime * hashCode
                 + ((getMessageConfiguration() == null) ? 0 : getMessageConfiguration().hashCode());
-        hashCode = prime * hashCode + ((getRequestId() == null) ? 0 : getRequestId().hashCode());
         hashCode = prime * hashCode + ((getUsers() == null) ? 0 : getUsers().hashCode());
         return hashCode;
     }
@@ -323,11 +282,6 @@ public class SendUsersMessageRequest implements Serializable {
             return false;
         if (other.getMessageConfiguration() != null
                 && other.getMessageConfiguration().equals(this.getMessageConfiguration()) == false)
-            return false;
-        if (other.getRequestId() == null ^ this.getRequestId() == null)
-            return false;
-        if (other.getRequestId() != null
-                && other.getRequestId().equals(this.getRequestId()) == false)
             return false;
         if (other.getUsers() == null ^ this.getUsers() == null)
             return false;

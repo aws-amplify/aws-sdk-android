@@ -38,6 +38,11 @@ public class WriteCampaignRequest implements Serializable {
     private Integer holdoutPercent;
 
     /**
+     * Campaign hook information.
+     */
+    private CampaignHook hook;
+
+    /**
      * Indicates whether the campaign is paused. A paused campaign does not send
      * messages unless you resume it by setting IsPaused to false.
      */
@@ -72,11 +77,6 @@ public class WriteCampaignRequest implements Serializable {
      * The version of the segment to which the campaign sends messages.
      */
     private Integer segmentVersion;
-
-    /**
-     * Whether or not to enable trace logging for the campaign. Undocumented
-     */
-    private Boolean trace;
 
     /**
      * A custom description for the treatment.
@@ -223,6 +223,39 @@ public class WriteCampaignRequest implements Serializable {
      */
     public WriteCampaignRequest withHoldoutPercent(Integer holdoutPercent) {
         this.holdoutPercent = holdoutPercent;
+        return this;
+    }
+
+    /**
+     * Campaign hook information.
+     *
+     * @return Campaign hook information.
+     */
+    public CampaignHook getHook() {
+        return hook;
+    }
+
+    /**
+     * Campaign hook information.
+     *
+     * @param hook Campaign hook information.
+     */
+    public void setHook(CampaignHook hook) {
+        this.hook = hook;
+    }
+
+    /**
+     * Campaign hook information.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param hook Campaign hook information.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public WriteCampaignRequest withHook(CampaignHook hook) {
+        this.hook = hook;
         return this;
     }
 
@@ -483,52 +516,6 @@ public class WriteCampaignRequest implements Serializable {
     }
 
     /**
-     * Whether or not to enable trace logging for the campaign. Undocumented
-     *
-     * @return Whether or not to enable trace logging for the campaign.
-     *         Undocumented
-     */
-    public Boolean isTrace() {
-        return trace;
-    }
-
-    /**
-     * Whether or not to enable trace logging for the campaign. Undocumented
-     *
-     * @return Whether or not to enable trace logging for the campaign.
-     *         Undocumented
-     */
-    public Boolean getTrace() {
-        return trace;
-    }
-
-    /**
-     * Whether or not to enable trace logging for the campaign. Undocumented
-     *
-     * @param trace Whether or not to enable trace logging for the campaign.
-     *            Undocumented
-     */
-    public void setTrace(Boolean trace) {
-        this.trace = trace;
-    }
-
-    /**
-     * Whether or not to enable trace logging for the campaign. Undocumented
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param trace Whether or not to enable trace logging for the campaign.
-     *            Undocumented
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public WriteCampaignRequest withTrace(Boolean trace) {
-        this.trace = trace;
-        return this;
-    }
-
-    /**
      * A custom description for the treatment.
      *
      * @return A custom description for the treatment.
@@ -614,6 +601,8 @@ public class WriteCampaignRequest implements Serializable {
             sb.append("Description: " + getDescription() + ",");
         if (getHoldoutPercent() != null)
             sb.append("HoldoutPercent: " + getHoldoutPercent() + ",");
+        if (getHook() != null)
+            sb.append("Hook: " + getHook() + ",");
         if (getIsPaused() != null)
             sb.append("IsPaused: " + getIsPaused() + ",");
         if (getLimits() != null)
@@ -628,8 +617,6 @@ public class WriteCampaignRequest implements Serializable {
             sb.append("SegmentId: " + getSegmentId() + ",");
         if (getSegmentVersion() != null)
             sb.append("SegmentVersion: " + getSegmentVersion() + ",");
-        if (getTrace() != null)
-            sb.append("Trace: " + getTrace() + ",");
         if (getTreatmentDescription() != null)
             sb.append("TreatmentDescription: " + getTreatmentDescription() + ",");
         if (getTreatmentName() != null)
@@ -649,6 +636,7 @@ public class WriteCampaignRequest implements Serializable {
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode
                 + ((getHoldoutPercent() == null) ? 0 : getHoldoutPercent().hashCode());
+        hashCode = prime * hashCode + ((getHook() == null) ? 0 : getHook().hashCode());
         hashCode = prime * hashCode + ((getIsPaused() == null) ? 0 : getIsPaused().hashCode());
         hashCode = prime * hashCode + ((getLimits() == null) ? 0 : getLimits().hashCode());
         hashCode = prime * hashCode
@@ -658,7 +646,6 @@ public class WriteCampaignRequest implements Serializable {
         hashCode = prime * hashCode + ((getSegmentId() == null) ? 0 : getSegmentId().hashCode());
         hashCode = prime * hashCode
                 + ((getSegmentVersion() == null) ? 0 : getSegmentVersion().hashCode());
-        hashCode = prime * hashCode + ((getTrace() == null) ? 0 : getTrace().hashCode());
         hashCode = prime * hashCode
                 + ((getTreatmentDescription() == null) ? 0 : getTreatmentDescription().hashCode());
         hashCode = prime * hashCode
@@ -692,6 +679,10 @@ public class WriteCampaignRequest implements Serializable {
         if (other.getHoldoutPercent() != null
                 && other.getHoldoutPercent().equals(this.getHoldoutPercent()) == false)
             return false;
+        if (other.getHook() == null ^ this.getHook() == null)
+            return false;
+        if (other.getHook() != null && other.getHook().equals(this.getHook()) == false)
+            return false;
         if (other.getIsPaused() == null ^ this.getIsPaused() == null)
             return false;
         if (other.getIsPaused() != null && other.getIsPaused().equals(this.getIsPaused()) == false)
@@ -722,10 +713,6 @@ public class WriteCampaignRequest implements Serializable {
             return false;
         if (other.getSegmentVersion() != null
                 && other.getSegmentVersion().equals(this.getSegmentVersion()) == false)
-            return false;
-        if (other.getTrace() == null ^ this.getTrace() == null)
-            return false;
-        if (other.getTrace() != null && other.getTrace().equals(this.getTrace()) == false)
             return false;
         if (other.getTreatmentDescription() == null ^ this.getTreatmentDescription() == null)
             return false;

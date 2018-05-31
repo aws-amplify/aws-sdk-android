@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists certificates that are being transfered but not yet accepted.
+ * Lists certificates that are being transferred but not yet accepted.
  * </p>
  */
 public class ListOutgoingCertificatesRequest extends AmazonWebServiceRequest implements
@@ -40,6 +40,9 @@ public class ListOutgoingCertificatesRequest extends AmazonWebServiceRequest imp
      * <p>
      * The marker for the next set of results.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      */
     private String marker;
 
@@ -109,6 +112,9 @@ public class ListOutgoingCertificatesRequest extends AmazonWebServiceRequest imp
      * <p>
      * The marker for the next set of results.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @return <p>
      *         The marker for the next set of results.
@@ -122,6 +128,9 @@ public class ListOutgoingCertificatesRequest extends AmazonWebServiceRequest imp
      * <p>
      * The marker for the next set of results.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @param marker <p>
      *            The marker for the next set of results.
@@ -138,6 +147,9 @@ public class ListOutgoingCertificatesRequest extends AmazonWebServiceRequest imp
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @param marker <p>
      *            The marker for the next set of results.

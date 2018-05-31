@@ -22,13 +22,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Specifies the health check settings to use when evaluating the health state
- * of your back-end instances.
+ * of your EC2 instances.
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-healthchecks.html"
- * >Configure Health Checks</a> in the <i>Elastic Load Balancing Developer
- * Guide</i>.
+ * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-healthchecks.html"
+ * >Configure Health Checks for Your Load Balancer</a> in the <i>Classic Load
+ * Balancer Guide</i>.
  * </p>
  */
 public class ConfigureHealthCheckRequest extends AmazonWebServiceRequest implements Serializable {
@@ -41,7 +41,7 @@ public class ConfigureHealthCheckRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The configuration information for the new health check.
+     * The configuration information.
      * </p>
      */
     private HealthCheck healthCheck;
@@ -63,7 +63,7 @@ public class ConfigureHealthCheckRequest extends AmazonWebServiceRequest impleme
      *            The name of the load balancer.
      *            </p>
      * @param healthCheck <p>
-     *            The configuration information for the new health check.
+     *            The configuration information.
      *            </p>
      */
     public ConfigureHealthCheckRequest(String loadBalancerName, HealthCheck healthCheck) {
@@ -118,11 +118,11 @@ public class ConfigureHealthCheckRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The configuration information for the new health check.
+     * The configuration information.
      * </p>
      *
      * @return <p>
-     *         The configuration information for the new health check.
+     *         The configuration information.
      *         </p>
      */
     public HealthCheck getHealthCheck() {
@@ -131,11 +131,11 @@ public class ConfigureHealthCheckRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The configuration information for the new health check.
+     * The configuration information.
      * </p>
      *
      * @param healthCheck <p>
-     *            The configuration information for the new health check.
+     *            The configuration information.
      *            </p>
      */
     public void setHealthCheck(HealthCheck healthCheck) {
@@ -144,14 +144,14 @@ public class ConfigureHealthCheckRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The configuration information for the new health check.
+     * The configuration information.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param healthCheck <p>
-     *            The configuration information for the new health check.
+     *            The configuration information.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

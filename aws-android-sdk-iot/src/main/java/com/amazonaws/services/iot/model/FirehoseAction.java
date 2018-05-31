@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class FirehoseAction implements Serializable {
     /**
      * <p>
-     * The IAM role that grants access to the Amazon Kinesis Firehost stream.
+     * The IAM role that grants access to the Amazon Kinesis Firehose stream.
      * </p>
      */
     private String roleArn;
@@ -51,11 +51,11 @@ public class FirehoseAction implements Serializable {
 
     /**
      * <p>
-     * The IAM role that grants access to the Amazon Kinesis Firehost stream.
+     * The IAM role that grants access to the Amazon Kinesis Firehose stream.
      * </p>
      *
      * @return <p>
-     *         The IAM role that grants access to the Amazon Kinesis Firehost
+     *         The IAM role that grants access to the Amazon Kinesis Firehose
      *         stream.
      *         </p>
      */
@@ -65,11 +65,11 @@ public class FirehoseAction implements Serializable {
 
     /**
      * <p>
-     * The IAM role that grants access to the Amazon Kinesis Firehost stream.
+     * The IAM role that grants access to the Amazon Kinesis Firehose stream.
      * </p>
      *
      * @param roleArn <p>
-     *            The IAM role that grants access to the Amazon Kinesis Firehost
+     *            The IAM role that grants access to the Amazon Kinesis Firehose
      *            stream.
      *            </p>
      */
@@ -79,14 +79,14 @@ public class FirehoseAction implements Serializable {
 
     /**
      * <p>
-     * The IAM role that grants access to the Amazon Kinesis Firehost stream.
+     * The IAM role that grants access to the Amazon Kinesis Firehose stream.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param roleArn <p>
-     *            The IAM role that grants access to the Amazon Kinesis Firehost
+     *            The IAM role that grants access to the Amazon Kinesis Firehose
      *            stream.
      *            </p>
      * @return A reference to this updated object so that method calls can be

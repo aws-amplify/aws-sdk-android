@@ -46,11 +46,6 @@ class SendUsersMessageRequestJsonMarshaller {
             DirectMessageConfigurationJsonMarshaller.getInstance().marshall(messageConfiguration,
                     jsonWriter);
         }
-        if (sendUsersMessageRequest.getRequestId() != null) {
-            String requestId = sendUsersMessageRequest.getRequestId();
-            jsonWriter.name("RequestId");
-            jsonWriter.value(requestId);
-        }
         if (sendUsersMessageRequest.getUsers() != null) {
             java.util.Map<String, EndpointSendConfiguration> users = sendUsersMessageRequest
                     .getUsers();

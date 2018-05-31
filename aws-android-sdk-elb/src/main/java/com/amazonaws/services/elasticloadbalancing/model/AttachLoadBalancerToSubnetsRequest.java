@@ -27,9 +27,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * The load balancer evenly distributes requests across all registered subnets.
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-manage-subnets.html"
- * >Add or Remove Subnets for Your Load Balancer in a VPC</a> in the <i>Elastic
- * Load Balancing Developer Guide</i>.
+ * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-manage-subnets.html"
+ * >Add or Remove Subnets for Your Load Balancer in a VPC</a> in the <i>Classic
+ * Load Balancer Guide</i>.
  * </p>
  */
 public class AttachLoadBalancerToSubnetsRequest extends AmazonWebServiceRequest implements
@@ -43,8 +43,8 @@ public class AttachLoadBalancerToSubnetsRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The IDs of the subnets to add for the load balancer. You can add only one
-     * subnet per Availability Zone.
+     * The IDs of the subnets to add. You can add only one subnet per
+     * Availability Zone.
      * </p>
      */
     private java.util.List<String> subnets = new java.util.ArrayList<String>();
@@ -96,13 +96,13 @@ public class AttachLoadBalancerToSubnetsRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The IDs of the subnets to add for the load balancer. You can add only one
-     * subnet per Availability Zone.
+     * The IDs of the subnets to add. You can add only one subnet per
+     * Availability Zone.
      * </p>
      *
      * @return <p>
-     *         The IDs of the subnets to add for the load balancer. You can add
-     *         only one subnet per Availability Zone.
+     *         The IDs of the subnets to add. You can add only one subnet per
+     *         Availability Zone.
      *         </p>
      */
     public java.util.List<String> getSubnets() {
@@ -111,13 +111,13 @@ public class AttachLoadBalancerToSubnetsRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The IDs of the subnets to add for the load balancer. You can add only one
-     * subnet per Availability Zone.
+     * The IDs of the subnets to add. You can add only one subnet per
+     * Availability Zone.
      * </p>
      *
      * @param subnets <p>
-     *            The IDs of the subnets to add for the load balancer. You can
-     *            add only one subnet per Availability Zone.
+     *            The IDs of the subnets to add. You can add only one subnet per
+     *            Availability Zone.
      *            </p>
      */
     public void setSubnets(java.util.Collection<String> subnets) {
@@ -131,16 +131,16 @@ public class AttachLoadBalancerToSubnetsRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The IDs of the subnets to add for the load balancer. You can add only one
-     * subnet per Availability Zone.
+     * The IDs of the subnets to add. You can add only one subnet per
+     * Availability Zone.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param subnets <p>
-     *            The IDs of the subnets to add for the load balancer. You can
-     *            add only one subnet per Availability Zone.
+     *            The IDs of the subnets to add. You can add only one subnet per
+     *            Availability Zone.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -157,16 +157,16 @@ public class AttachLoadBalancerToSubnetsRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The IDs of the subnets to add for the load balancer. You can add only one
-     * subnet per Availability Zone.
+     * The IDs of the subnets to add. You can add only one subnet per
+     * Availability Zone.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param subnets <p>
-     *            The IDs of the subnets to add for the load balancer. You can
-     *            add only one subnet per Availability Zone.
+     *            The IDs of the subnets to add. You can add only one subnet per
+     *            Availability Zone.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

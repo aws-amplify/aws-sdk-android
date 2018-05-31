@@ -41,6 +41,9 @@ public class PutRecordsResultJsonUnmarshaller implements
                         PutRecordsResultEntryJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("EncryptionType")) {
+                putRecordsResult.setEncryptionType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

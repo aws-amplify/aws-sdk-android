@@ -43,6 +43,13 @@ public class CreateThingTypeResult implements Serializable {
 
     /**
      * <p>
+     * The thing type ID.
+     * </p>
+     */
+    private String thingTypeId;
+
+    /**
+     * <p>
      * The name of the thing type.
      * </p>
      * <p>
@@ -144,6 +151,51 @@ public class CreateThingTypeResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The thing type ID.
+     * </p>
+     *
+     * @return <p>
+     *         The thing type ID.
+     *         </p>
+     */
+    public String getThingTypeId() {
+        return thingTypeId;
+    }
+
+    /**
+     * <p>
+     * The thing type ID.
+     * </p>
+     *
+     * @param thingTypeId <p>
+     *            The thing type ID.
+     *            </p>
+     */
+    public void setThingTypeId(String thingTypeId) {
+        this.thingTypeId = thingTypeId;
+    }
+
+    /**
+     * <p>
+     * The thing type ID.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param thingTypeId <p>
+     *            The thing type ID.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateThingTypeResult withThingTypeId(String thingTypeId) {
+        this.thingTypeId = thingTypeId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -157,7 +209,9 @@ public class CreateThingTypeResult implements Serializable {
         if (getThingTypeName() != null)
             sb.append("thingTypeName: " + getThingTypeName() + ",");
         if (getThingTypeArn() != null)
-            sb.append("thingTypeArn: " + getThingTypeArn());
+            sb.append("thingTypeArn: " + getThingTypeArn() + ",");
+        if (getThingTypeId() != null)
+            sb.append("thingTypeId: " + getThingTypeId());
         sb.append("}");
         return sb.toString();
     }
@@ -171,6 +225,8 @@ public class CreateThingTypeResult implements Serializable {
                 + ((getThingTypeName() == null) ? 0 : getThingTypeName().hashCode());
         hashCode = prime * hashCode
                 + ((getThingTypeArn() == null) ? 0 : getThingTypeArn().hashCode());
+        hashCode = prime * hashCode
+                + ((getThingTypeId() == null) ? 0 : getThingTypeId().hashCode());
         return hashCode;
     }
 
@@ -194,6 +250,11 @@ public class CreateThingTypeResult implements Serializable {
             return false;
         if (other.getThingTypeArn() != null
                 && other.getThingTypeArn().equals(this.getThingTypeArn()) == false)
+            return false;
+        if (other.getThingTypeId() == null ^ this.getThingTypeId() == null)
+            return false;
+        if (other.getThingTypeId() != null
+                && other.getThingTypeId().equals(this.getThingTypeId()) == false)
             return false;
         return true;
     }

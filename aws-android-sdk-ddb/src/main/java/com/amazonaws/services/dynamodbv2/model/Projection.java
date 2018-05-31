@@ -40,7 +40,7 @@ public class Projection implements Serializable {
      * <p>
      * <code>INCLUDE</code> - Only the specified table attributes are projected
      * into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>.
+     * <code>NonKeyAttributes</code>.
      * </p>
      * </li>
      * <li>
@@ -62,10 +62,11 @@ public class Projection implements Serializable {
      * index.
      * </p>
      * <p>
-     * For local secondary indexes, the total count of <i>NonKeyAttributes</i>
-     * summed across all of the local secondary indexes, must not exceed 20. If
-     * you project the same attribute into two different indexes, this counts as
-     * two distinct attributes when determining the total.
+     * For local secondary indexes, the total count of
+     * <code>NonKeyAttributes</code> summed across all of the local secondary
+     * indexes, must not exceed 20. If you project the same attribute into two
+     * different indexes, this counts as two distinct attributes when
+     * determining the total.
      * </p>
      */
     private java.util.List<String> nonKeyAttributes;
@@ -85,7 +86,7 @@ public class Projection implements Serializable {
      * <p>
      * <code>INCLUDE</code> - Only the specified table attributes are projected
      * into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>.
+     * <code>NonKeyAttributes</code>.
      * </p>
      * </li>
      * <li>
@@ -113,7 +114,7 @@ public class Projection implements Serializable {
      *         <p>
      *         <code>INCLUDE</code> - Only the specified table attributes are
      *         projected into the index. The list of projected attributes are in
-     *         <i>NonKeyAttributes</i>.
+     *         <code>NonKeyAttributes</code>.
      *         </p>
      *         </li>
      *         <li>
@@ -144,7 +145,7 @@ public class Projection implements Serializable {
      * <p>
      * <code>INCLUDE</code> - Only the specified table attributes are projected
      * into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>.
+     * <code>NonKeyAttributes</code>.
      * </p>
      * </li>
      * <li>
@@ -172,7 +173,7 @@ public class Projection implements Serializable {
      *            <p>
      *            <code>INCLUDE</code> - Only the specified table attributes are
      *            projected into the index. The list of projected attributes are
-     *            in <i>NonKeyAttributes</i>.
+     *            in <code>NonKeyAttributes</code>.
      *            </p>
      *            </li>
      *            <li>
@@ -203,7 +204,7 @@ public class Projection implements Serializable {
      * <p>
      * <code>INCLUDE</code> - Only the specified table attributes are projected
      * into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>.
+     * <code>NonKeyAttributes</code>.
      * </p>
      * </li>
      * <li>
@@ -234,7 +235,7 @@ public class Projection implements Serializable {
      *            <p>
      *            <code>INCLUDE</code> - Only the specified table attributes are
      *            projected into the index. The list of projected attributes are
-     *            in <i>NonKeyAttributes</i>.
+     *            in <code>NonKeyAttributes</code>.
      *            </p>
      *            </li>
      *            <li>
@@ -268,7 +269,7 @@ public class Projection implements Serializable {
      * <p>
      * <code>INCLUDE</code> - Only the specified table attributes are projected
      * into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>.
+     * <code>NonKeyAttributes</code>.
      * </p>
      * </li>
      * <li>
@@ -296,7 +297,7 @@ public class Projection implements Serializable {
      *            <p>
      *            <code>INCLUDE</code> - Only the specified table attributes are
      *            projected into the index. The list of projected attributes are
-     *            in <i>NonKeyAttributes</i>.
+     *            in <code>NonKeyAttributes</code>.
      *            </p>
      *            </li>
      *            <li>
@@ -327,7 +328,7 @@ public class Projection implements Serializable {
      * <p>
      * <code>INCLUDE</code> - Only the specified table attributes are projected
      * into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>.
+     * <code>NonKeyAttributes</code>.
      * </p>
      * </li>
      * <li>
@@ -358,7 +359,7 @@ public class Projection implements Serializable {
      *            <p>
      *            <code>INCLUDE</code> - Only the specified table attributes are
      *            projected into the index. The list of projected attributes are
-     *            in <i>NonKeyAttributes</i>.
+     *            in <code>NonKeyAttributes</code>.
      *            </p>
      *            </li>
      *            <li>
@@ -383,10 +384,11 @@ public class Projection implements Serializable {
      * index.
      * </p>
      * <p>
-     * For local secondary indexes, the total count of <i>NonKeyAttributes</i>
-     * summed across all of the local secondary indexes, must not exceed 20. If
-     * you project the same attribute into two different indexes, this counts as
-     * two distinct attributes when determining the total.
+     * For local secondary indexes, the total count of
+     * <code>NonKeyAttributes</code> summed across all of the local secondary
+     * indexes, must not exceed 20. If you project the same attribute into two
+     * different indexes, this counts as two distinct attributes when
+     * determining the total.
      * </p>
      *
      * @return <p>
@@ -395,9 +397,9 @@ public class Projection implements Serializable {
      *         </p>
      *         <p>
      *         For local secondary indexes, the total count of
-     *         <i>NonKeyAttributes</i> summed across all of the local secondary
-     *         indexes, must not exceed 20. If you project the same attribute
-     *         into two different indexes, this counts as two distinct
+     *         <code>NonKeyAttributes</code> summed across all of the local
+     *         secondary indexes, must not exceed 20. If you project the same
+     *         attribute into two different indexes, this counts as two distinct
      *         attributes when determining the total.
      *         </p>
      */
@@ -411,10 +413,11 @@ public class Projection implements Serializable {
      * index.
      * </p>
      * <p>
-     * For local secondary indexes, the total count of <i>NonKeyAttributes</i>
-     * summed across all of the local secondary indexes, must not exceed 20. If
-     * you project the same attribute into two different indexes, this counts as
-     * two distinct attributes when determining the total.
+     * For local secondary indexes, the total count of
+     * <code>NonKeyAttributes</code> summed across all of the local secondary
+     * indexes, must not exceed 20. If you project the same attribute into two
+     * different indexes, this counts as two distinct attributes when
+     * determining the total.
      * </p>
      *
      * @param nonKeyAttributes <p>
@@ -423,7 +426,7 @@ public class Projection implements Serializable {
      *            </p>
      *            <p>
      *            For local secondary indexes, the total count of
-     *            <i>NonKeyAttributes</i> summed across all of the local
+     *            <code>NonKeyAttributes</code> summed across all of the local
      *            secondary indexes, must not exceed 20. If you project the same
      *            attribute into two different indexes, this counts as two
      *            distinct attributes when determining the total.
@@ -444,10 +447,11 @@ public class Projection implements Serializable {
      * index.
      * </p>
      * <p>
-     * For local secondary indexes, the total count of <i>NonKeyAttributes</i>
-     * summed across all of the local secondary indexes, must not exceed 20. If
-     * you project the same attribute into two different indexes, this counts as
-     * two distinct attributes when determining the total.
+     * For local secondary indexes, the total count of
+     * <code>NonKeyAttributes</code> summed across all of the local secondary
+     * indexes, must not exceed 20. If you project the same attribute into two
+     * different indexes, this counts as two distinct attributes when
+     * determining the total.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -459,7 +463,7 @@ public class Projection implements Serializable {
      *            </p>
      *            <p>
      *            For local secondary indexes, the total count of
-     *            <i>NonKeyAttributes</i> summed across all of the local
+     *            <code>NonKeyAttributes</code> summed across all of the local
      *            secondary indexes, must not exceed 20. If you project the same
      *            attribute into two different indexes, this counts as two
      *            distinct attributes when determining the total.
@@ -483,10 +487,11 @@ public class Projection implements Serializable {
      * index.
      * </p>
      * <p>
-     * For local secondary indexes, the total count of <i>NonKeyAttributes</i>
-     * summed across all of the local secondary indexes, must not exceed 20. If
-     * you project the same attribute into two different indexes, this counts as
-     * two distinct attributes when determining the total.
+     * For local secondary indexes, the total count of
+     * <code>NonKeyAttributes</code> summed across all of the local secondary
+     * indexes, must not exceed 20. If you project the same attribute into two
+     * different indexes, this counts as two distinct attributes when
+     * determining the total.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -498,7 +503,7 @@ public class Projection implements Serializable {
      *            </p>
      *            <p>
      *            For local secondary indexes, the total count of
-     *            <i>NonKeyAttributes</i> summed across all of the local
+     *            <code>NonKeyAttributes</code> summed across all of the local
      *            secondary indexes, must not exceed 20. If you project the same
      *            attribute into two different indexes, this counts as two
      *            distinct attributes when determining the total.

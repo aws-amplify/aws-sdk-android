@@ -37,7 +37,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name or ARN of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -61,9 +61,9 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The policy type. Valid values are <code>SimpleScaling</code> and
-     * <code>StepScaling</code>. If the policy type is null, the value is
-     * treated as <code>SimpleScaling</code>.
+     * The policy type. The valid values are <code>SimpleScaling</code>,
+     * <code>StepScaling</code>, and <code>TargetTrackingScaling</code>. If the
+     * policy type is null, the value is treated as <code>SimpleScaling</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -75,13 +75,17 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The adjustment type. Valid values are <code>ChangeInCapacity</code>,
+     * The adjustment type. The valid values are <code>ChangeInCapacity</code>,
      * <code>ExactCapacity</code>, and <code>PercentChangeInCapacity</code>.
      * </p>
      * <p>
+     * This parameter is supported if the policy type is
+     * <code>SimpleScaling</code> or <code>StepScaling</code>.
+     * </p>
+     * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-scale-based-on-demand.html"
-     * >Dynamic Scaling</a> in the <i>Auto Scaling Developer Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-scale-based-on-demand.html"
+     * >Dynamic Scaling</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -107,6 +111,10 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * Scaling group by at least this many instances. Otherwise, the error is
      * <code>ValidationError</code>.
      * </p>
+     * <p>
+     * This parameter is supported if the policy type is
+     * <code>SimpleScaling</code> or <code>StepScaling</code>.
+     * </p>
      */
     private Integer minAdjustmentMagnitude;
 
@@ -130,27 +138,27 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * specified, the default cooldown period for the group applies.
      * </p>
      * <p>
-     * This parameter is not supported unless the policy type is
+     * This parameter is supported if the policy type is
      * <code>SimpleScaling</code>.
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
-     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      */
     private Integer cooldown;
 
     /**
      * <p>
-     * The aggregation type for the CloudWatch metrics. Valid values are
+     * The aggregation type for the CloudWatch metrics. The valid values are
      * <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code>. If
      * the aggregation type is null, the value is treated as
      * <code>Average</code>.
      * </p>
      * <p>
-     * This parameter is not supported if the policy type is
-     * <code>SimpleScaling</code>.
+     * This parameter is supported if the policy type is
+     * <code>StepScaling</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -179,15 +187,26 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * specified for the default cooldown period for the group.
      * </p>
      * <p>
-     * This parameter is not supported if the policy type is
-     * <code>SimpleScaling</code>.
+     * This parameter is supported if the policy type is
+     * <code>StepScaling</code> or <code>TargetTrackingScaling</code>.
      * </p>
      */
     private Integer estimatedInstanceWarmup;
 
     /**
      * <p>
-     * The name or ARN of the group.
+     * A target tracking policy.
+     * </p>
+     * <p>
+     * This parameter is required if the policy type is
+     * <code>TargetTrackingScaling</code> and not supported otherwise.
+     * </p>
+     */
+    private TargetTrackingConfiguration targetTrackingConfiguration;
+
+    /**
+     * <p>
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -196,7 +215,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * <br/>
      *
      * @return <p>
-     *         The name or ARN of the group.
+     *         The name of the Auto Scaling group.
      *         </p>
      */
     public String getAutoScalingGroupName() {
@@ -205,7 +224,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name or ARN of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -214,7 +233,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name or ARN of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      */
     public void setAutoScalingGroupName(String autoScalingGroupName) {
@@ -223,7 +242,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name or ARN of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -235,7 +254,7 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name or ARN of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -307,9 +326,9 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The policy type. Valid values are <code>SimpleScaling</code> and
-     * <code>StepScaling</code>. If the policy type is null, the value is
-     * treated as <code>SimpleScaling</code>.
+     * The policy type. The valid values are <code>SimpleScaling</code>,
+     * <code>StepScaling</code>, and <code>TargetTrackingScaling</code>. If the
+     * policy type is null, the value is treated as <code>SimpleScaling</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -318,9 +337,10 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * <br/>
      *
      * @return <p>
-     *         The policy type. Valid values are <code>SimpleScaling</code> and
-     *         <code>StepScaling</code>. If the policy type is null, the value
-     *         is treated as <code>SimpleScaling</code>.
+     *         The policy type. The valid values are <code>SimpleScaling</code>,
+     *         <code>StepScaling</code>, and <code>TargetTrackingScaling</code>.
+     *         If the policy type is null, the value is treated as
+     *         <code>SimpleScaling</code>.
      *         </p>
      */
     public String getPolicyType() {
@@ -329,9 +349,9 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The policy type. Valid values are <code>SimpleScaling</code> and
-     * <code>StepScaling</code>. If the policy type is null, the value is
-     * treated as <code>SimpleScaling</code>.
+     * The policy type. The valid values are <code>SimpleScaling</code>,
+     * <code>StepScaling</code>, and <code>TargetTrackingScaling</code>. If the
+     * policy type is null, the value is treated as <code>SimpleScaling</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -340,9 +360,10 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * <br/>
      *
      * @param policyType <p>
-     *            The policy type. Valid values are <code>SimpleScaling</code>
-     *            and <code>StepScaling</code>. If the policy type is null, the
-     *            value is treated as <code>SimpleScaling</code>.
+     *            The policy type. The valid values are
+     *            <code>SimpleScaling</code>, <code>StepScaling</code>, and
+     *            <code>TargetTrackingScaling</code>. If the policy type is
+     *            null, the value is treated as <code>SimpleScaling</code>.
      *            </p>
      */
     public void setPolicyType(String policyType) {
@@ -351,9 +372,9 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The policy type. Valid values are <code>SimpleScaling</code> and
-     * <code>StepScaling</code>. If the policy type is null, the value is
-     * treated as <code>SimpleScaling</code>.
+     * The policy type. The valid values are <code>SimpleScaling</code>,
+     * <code>StepScaling</code>, and <code>TargetTrackingScaling</code>. If the
+     * policy type is null, the value is treated as <code>SimpleScaling</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -365,9 +386,10 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * <br/>
      *
      * @param policyType <p>
-     *            The policy type. Valid values are <code>SimpleScaling</code>
-     *            and <code>StepScaling</code>. If the policy type is null, the
-     *            value is treated as <code>SimpleScaling</code>.
+     *            The policy type. The valid values are
+     *            <code>SimpleScaling</code>, <code>StepScaling</code>, and
+     *            <code>TargetTrackingScaling</code>. If the policy type is
+     *            null, the value is treated as <code>SimpleScaling</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -379,13 +401,17 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The adjustment type. Valid values are <code>ChangeInCapacity</code>,
+     * The adjustment type. The valid values are <code>ChangeInCapacity</code>,
      * <code>ExactCapacity</code>, and <code>PercentChangeInCapacity</code>.
      * </p>
      * <p>
+     * This parameter is supported if the policy type is
+     * <code>SimpleScaling</code> or <code>StepScaling</code>.
+     * </p>
+     * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-scale-based-on-demand.html"
-     * >Dynamic Scaling</a> in the <i>Auto Scaling Developer Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-scale-based-on-demand.html"
+     * >Dynamic Scaling</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -394,14 +420,18 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * <br/>
      *
      * @return <p>
-     *         The adjustment type. Valid values are
+     *         The adjustment type. The valid values are
      *         <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and
      *         <code>PercentChangeInCapacity</code>.
      *         </p>
      *         <p>
+     *         This parameter is supported if the policy type is
+     *         <code>SimpleScaling</code> or <code>StepScaling</code>.
+     *         </p>
+     *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-scale-based-on-demand.html"
-     *         >Dynamic Scaling</a> in the <i>Auto Scaling Developer Guide</i>.
+     *         "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-scale-based-on-demand.html"
+     *         >Dynamic Scaling</a> in the <i>Auto Scaling User Guide</i>.
      *         </p>
      */
     public String getAdjustmentType() {
@@ -410,13 +440,17 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The adjustment type. Valid values are <code>ChangeInCapacity</code>,
+     * The adjustment type. The valid values are <code>ChangeInCapacity</code>,
      * <code>ExactCapacity</code>, and <code>PercentChangeInCapacity</code>.
      * </p>
      * <p>
+     * This parameter is supported if the policy type is
+     * <code>SimpleScaling</code> or <code>StepScaling</code>.
+     * </p>
+     * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-scale-based-on-demand.html"
-     * >Dynamic Scaling</a> in the <i>Auto Scaling Developer Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-scale-based-on-demand.html"
+     * >Dynamic Scaling</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -425,15 +459,18 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * <br/>
      *
      * @param adjustmentType <p>
-     *            The adjustment type. Valid values are
+     *            The adjustment type. The valid values are
      *            <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and
      *            <code>PercentChangeInCapacity</code>.
      *            </p>
      *            <p>
+     *            This parameter is supported if the policy type is
+     *            <code>SimpleScaling</code> or <code>StepScaling</code>.
+     *            </p>
+     *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-scale-based-on-demand.html"
-     *            >Dynamic Scaling</a> in the <i>Auto Scaling Developer
-     *            Guide</i>.
+     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-scale-based-on-demand.html"
+     *            >Dynamic Scaling</a> in the <i>Auto Scaling User Guide</i>.
      *            </p>
      */
     public void setAdjustmentType(String adjustmentType) {
@@ -442,13 +479,17 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The adjustment type. Valid values are <code>ChangeInCapacity</code>,
+     * The adjustment type. The valid values are <code>ChangeInCapacity</code>,
      * <code>ExactCapacity</code>, and <code>PercentChangeInCapacity</code>.
      * </p>
      * <p>
+     * This parameter is supported if the policy type is
+     * <code>SimpleScaling</code> or <code>StepScaling</code>.
+     * </p>
+     * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-scale-based-on-demand.html"
-     * >Dynamic Scaling</a> in the <i>Auto Scaling Developer Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-scale-based-on-demand.html"
+     * >Dynamic Scaling</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -460,15 +501,18 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * <br/>
      *
      * @param adjustmentType <p>
-     *            The adjustment type. Valid values are
+     *            The adjustment type. The valid values are
      *            <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and
      *            <code>PercentChangeInCapacity</code>.
      *            </p>
      *            <p>
+     *            This parameter is supported if the policy type is
+     *            <code>SimpleScaling</code> or <code>StepScaling</code>.
+     *            </p>
+     *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-scale-based-on-demand.html"
-     *            >Dynamic Scaling</a> in the <i>Auto Scaling Developer
-     *            Guide</i>.
+     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-scale-based-on-demand.html"
+     *            >Dynamic Scaling</a> in the <i>Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -537,6 +581,10 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * Scaling group by at least this many instances. Otherwise, the error is
      * <code>ValidationError</code>.
      * </p>
+     * <p>
+     * This parameter is supported if the policy type is
+     * <code>SimpleScaling</code> or <code>StepScaling</code>.
+     * </p>
      *
      * @return <p>
      *         The minimum number of instances to scale. If the value of
@@ -545,6 +593,10 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *         the <code>DesiredCapacity</code> of the Auto Scaling group by at
      *         least this many instances. Otherwise, the error is
      *         <code>ValidationError</code>.
+     *         </p>
+     *         <p>
+     *         This parameter is supported if the policy type is
+     *         <code>SimpleScaling</code> or <code>StepScaling</code>.
      *         </p>
      */
     public Integer getMinAdjustmentMagnitude() {
@@ -559,6 +611,10 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * Scaling group by at least this many instances. Otherwise, the error is
      * <code>ValidationError</code>.
      * </p>
+     * <p>
+     * This parameter is supported if the policy type is
+     * <code>SimpleScaling</code> or <code>StepScaling</code>.
+     * </p>
      *
      * @param minAdjustmentMagnitude <p>
      *            The minimum number of instances to scale. If the value of
@@ -567,6 +623,10 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            changes the <code>DesiredCapacity</code> of the Auto Scaling
      *            group by at least this many instances. Otherwise, the error is
      *            <code>ValidationError</code>.
+     *            </p>
+     *            <p>
+     *            This parameter is supported if the policy type is
+     *            <code>SimpleScaling</code> or <code>StepScaling</code>.
      *            </p>
      */
     public void setMinAdjustmentMagnitude(Integer minAdjustmentMagnitude) {
@@ -582,6 +642,10 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * <code>ValidationError</code>.
      * </p>
      * <p>
+     * This parameter is supported if the policy type is
+     * <code>SimpleScaling</code> or <code>StepScaling</code>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -592,6 +656,10 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            changes the <code>DesiredCapacity</code> of the Auto Scaling
      *            group by at least this many instances. Otherwise, the error is
      *            <code>ValidationError</code>.
+     *            </p>
+     *            <p>
+     *            This parameter is supported if the policy type is
+     *            <code>SimpleScaling</code> or <code>StepScaling</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -689,13 +757,13 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * specified, the default cooldown period for the group applies.
      * </p>
      * <p>
-     * This parameter is not supported unless the policy type is
+     * This parameter is supported if the policy type is
      * <code>SimpleScaling</code>.
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
-     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      *
      * @return <p>
@@ -705,13 +773,13 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *         group applies.
      *         </p>
      *         <p>
-     *         This parameter is not supported unless the policy type is
+     *         This parameter is supported if the policy type is
      *         <code>SimpleScaling</code>.
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
-     *         >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer
+     *         "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     *         >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User
      *         Guide</i>.
      *         </p>
      */
@@ -726,13 +794,13 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * specified, the default cooldown period for the group applies.
      * </p>
      * <p>
-     * This parameter is not supported unless the policy type is
+     * This parameter is supported if the policy type is
      * <code>SimpleScaling</code>.
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
-     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      *
      * @param cooldown <p>
@@ -742,13 +810,13 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            for the group applies.
      *            </p>
      *            <p>
-     *            This parameter is not supported unless the policy type is
+     *            This parameter is supported if the policy type is
      *            <code>SimpleScaling</code>.
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
-     *            >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer
+     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     *            >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User
      *            Guide</i>.
      *            </p>
      */
@@ -763,13 +831,13 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * specified, the default cooldown period for the group applies.
      * </p>
      * <p>
-     * This parameter is not supported unless the policy type is
+     * This parameter is supported if the policy type is
      * <code>SimpleScaling</code>.
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
-     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -782,13 +850,13 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            for the group applies.
      *            </p>
      *            <p>
-     *            This parameter is not supported unless the policy type is
+     *            This parameter is supported if the policy type is
      *            <code>SimpleScaling</code>.
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
-     *            >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer
+     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     *            >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User
      *            Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -801,14 +869,14 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The aggregation type for the CloudWatch metrics. Valid values are
+     * The aggregation type for the CloudWatch metrics. The valid values are
      * <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code>. If
      * the aggregation type is null, the value is treated as
      * <code>Average</code>.
      * </p>
      * <p>
-     * This parameter is not supported if the policy type is
-     * <code>SimpleScaling</code>.
+     * This parameter is supported if the policy type is
+     * <code>StepScaling</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -817,14 +885,14 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * <br/>
      *
      * @return <p>
-     *         The aggregation type for the CloudWatch metrics. Valid values are
-     *         <code>Minimum</code>, <code>Maximum</code>, and
+     *         The aggregation type for the CloudWatch metrics. The valid values
+     *         are <code>Minimum</code>, <code>Maximum</code>, and
      *         <code>Average</code>. If the aggregation type is null, the value
      *         is treated as <code>Average</code>.
      *         </p>
      *         <p>
-     *         This parameter is not supported if the policy type is
-     *         <code>SimpleScaling</code>.
+     *         This parameter is supported if the policy type is
+     *         <code>StepScaling</code>.
      *         </p>
      */
     public String getMetricAggregationType() {
@@ -833,14 +901,14 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The aggregation type for the CloudWatch metrics. Valid values are
+     * The aggregation type for the CloudWatch metrics. The valid values are
      * <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code>. If
      * the aggregation type is null, the value is treated as
      * <code>Average</code>.
      * </p>
      * <p>
-     * This parameter is not supported if the policy type is
-     * <code>SimpleScaling</code>.
+     * This parameter is supported if the policy type is
+     * <code>StepScaling</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -849,14 +917,14 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * <br/>
      *
      * @param metricAggregationType <p>
-     *            The aggregation type for the CloudWatch metrics. Valid values
-     *            are <code>Minimum</code>, <code>Maximum</code>, and
+     *            The aggregation type for the CloudWatch metrics. The valid
+     *            values are <code>Minimum</code>, <code>Maximum</code>, and
      *            <code>Average</code>. If the aggregation type is null, the
      *            value is treated as <code>Average</code>.
      *            </p>
      *            <p>
-     *            This parameter is not supported if the policy type is
-     *            <code>SimpleScaling</code>.
+     *            This parameter is supported if the policy type is
+     *            <code>StepScaling</code>.
      *            </p>
      */
     public void setMetricAggregationType(String metricAggregationType) {
@@ -865,14 +933,14 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The aggregation type for the CloudWatch metrics. Valid values are
+     * The aggregation type for the CloudWatch metrics. The valid values are
      * <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code>. If
      * the aggregation type is null, the value is treated as
      * <code>Average</code>.
      * </p>
      * <p>
-     * This parameter is not supported if the policy type is
-     * <code>SimpleScaling</code>.
+     * This parameter is supported if the policy type is
+     * <code>StepScaling</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -884,14 +952,14 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * <br/>
      *
      * @param metricAggregationType <p>
-     *            The aggregation type for the CloudWatch metrics. Valid values
-     *            are <code>Minimum</code>, <code>Maximum</code>, and
+     *            The aggregation type for the CloudWatch metrics. The valid
+     *            values are <code>Minimum</code>, <code>Maximum</code>, and
      *            <code>Average</code>. If the aggregation type is null, the
      *            value is treated as <code>Average</code>.
      *            </p>
      *            <p>
-     *            This parameter is not supported if the policy type is
-     *            <code>SimpleScaling</code>.
+     *            This parameter is supported if the policy type is
+     *            <code>StepScaling</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1023,8 +1091,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * specified for the default cooldown period for the group.
      * </p>
      * <p>
-     * This parameter is not supported if the policy type is
-     * <code>SimpleScaling</code>.
+     * This parameter is supported if the policy type is
+     * <code>StepScaling</code> or <code>TargetTrackingScaling</code>.
      * </p>
      *
      * @return <p>
@@ -1034,8 +1102,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *         group.
      *         </p>
      *         <p>
-     *         This parameter is not supported if the policy type is
-     *         <code>SimpleScaling</code>.
+     *         This parameter is supported if the policy type is
+     *         <code>StepScaling</code> or <code>TargetTrackingScaling</code>.
      *         </p>
      */
     public Integer getEstimatedInstanceWarmup() {
@@ -1049,8 +1117,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * specified for the default cooldown period for the group.
      * </p>
      * <p>
-     * This parameter is not supported if the policy type is
-     * <code>SimpleScaling</code>.
+     * This parameter is supported if the policy type is
+     * <code>StepScaling</code> or <code>TargetTrackingScaling</code>.
      * </p>
      *
      * @param estimatedInstanceWarmup <p>
@@ -1060,8 +1128,9 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            for the group.
      *            </p>
      *            <p>
-     *            This parameter is not supported if the policy type is
-     *            <code>SimpleScaling</code>.
+     *            This parameter is supported if the policy type is
+     *            <code>StepScaling</code> or <code>TargetTrackingScaling</code>
+     *            .
      *            </p>
      */
     public void setEstimatedInstanceWarmup(Integer estimatedInstanceWarmup) {
@@ -1075,8 +1144,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * specified for the default cooldown period for the group.
      * </p>
      * <p>
-     * This parameter is not supported if the policy type is
-     * <code>SimpleScaling</code>.
+     * This parameter is supported if the policy type is
+     * <code>StepScaling</code> or <code>TargetTrackingScaling</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1089,14 +1158,88 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            for the group.
      *            </p>
      *            <p>
-     *            This parameter is not supported if the policy type is
-     *            <code>SimpleScaling</code>.
+     *            This parameter is supported if the policy type is
+     *            <code>StepScaling</code> or <code>TargetTrackingScaling</code>
+     *            .
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public PutScalingPolicyRequest withEstimatedInstanceWarmup(Integer estimatedInstanceWarmup) {
         this.estimatedInstanceWarmup = estimatedInstanceWarmup;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A target tracking policy.
+     * </p>
+     * <p>
+     * This parameter is required if the policy type is
+     * <code>TargetTrackingScaling</code> and not supported otherwise.
+     * </p>
+     *
+     * @return <p>
+     *         A target tracking policy.
+     *         </p>
+     *         <p>
+     *         This parameter is required if the policy type is
+     *         <code>TargetTrackingScaling</code> and not supported otherwise.
+     *         </p>
+     */
+    public TargetTrackingConfiguration getTargetTrackingConfiguration() {
+        return targetTrackingConfiguration;
+    }
+
+    /**
+     * <p>
+     * A target tracking policy.
+     * </p>
+     * <p>
+     * This parameter is required if the policy type is
+     * <code>TargetTrackingScaling</code> and not supported otherwise.
+     * </p>
+     *
+     * @param targetTrackingConfiguration <p>
+     *            A target tracking policy.
+     *            </p>
+     *            <p>
+     *            This parameter is required if the policy type is
+     *            <code>TargetTrackingScaling</code> and not supported
+     *            otherwise.
+     *            </p>
+     */
+    public void setTargetTrackingConfiguration(
+            TargetTrackingConfiguration targetTrackingConfiguration) {
+        this.targetTrackingConfiguration = targetTrackingConfiguration;
+    }
+
+    /**
+     * <p>
+     * A target tracking policy.
+     * </p>
+     * <p>
+     * This parameter is required if the policy type is
+     * <code>TargetTrackingScaling</code> and not supported otherwise.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param targetTrackingConfiguration <p>
+     *            A target tracking policy.
+     *            </p>
+     *            <p>
+     *            This parameter is required if the policy type is
+     *            <code>TargetTrackingScaling</code> and not supported
+     *            otherwise.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PutScalingPolicyRequest withTargetTrackingConfiguration(
+            TargetTrackingConfiguration targetTrackingConfiguration) {
+        this.targetTrackingConfiguration = targetTrackingConfiguration;
         return this;
     }
 
@@ -1132,7 +1275,9 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
         if (getStepAdjustments() != null)
             sb.append("StepAdjustments: " + getStepAdjustments() + ",");
         if (getEstimatedInstanceWarmup() != null)
-            sb.append("EstimatedInstanceWarmup: " + getEstimatedInstanceWarmup());
+            sb.append("EstimatedInstanceWarmup: " + getEstimatedInstanceWarmup() + ",");
+        if (getTargetTrackingConfiguration() != null)
+            sb.append("TargetTrackingConfiguration: " + getTargetTrackingConfiguration());
         sb.append("}");
         return sb.toString();
     }
@@ -1166,6 +1311,10 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
                 * hashCode
                 + ((getEstimatedInstanceWarmup() == null) ? 0 : getEstimatedInstanceWarmup()
                         .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getTargetTrackingConfiguration() == null) ? 0
+                        : getTargetTrackingConfiguration().hashCode());
         return hashCode;
     }
 
@@ -1233,6 +1382,13 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
             return false;
         if (other.getEstimatedInstanceWarmup() != null
                 && other.getEstimatedInstanceWarmup().equals(this.getEstimatedInstanceWarmup()) == false)
+            return false;
+        if (other.getTargetTrackingConfiguration() == null
+                ^ this.getTargetTrackingConfiguration() == null)
+            return false;
+        if (other.getTargetTrackingConfiguration() != null
+                && other.getTargetTrackingConfiguration().equals(
+                        this.getTargetTrackingConfiguration()) == false)
             return false;
         return true;
     }

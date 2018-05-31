@@ -34,7 +34,7 @@ public class GetRecordsResult implements Serializable {
      * <p>
      * The next position in the shard from which to start sequentially reading
      * data records. If set to <code>null</code>, the shard has been closed and
-     * the requested iterator will not return any more data.
+     * the requested iterator does not return any more data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -46,8 +46,8 @@ public class GetRecordsResult implements Serializable {
      * <p>
      * The number of milliseconds the <a>GetRecords</a> response is from the tip
      * of the stream, indicating how far behind current time the consumer is. A
-     * value of zero indicates record processing is caught up, and there are no
-     * new records to process at this moment.
+     * value of zero indicates that record processing is caught up, and there
+     * are no new records to process at this moment.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -133,7 +133,7 @@ public class GetRecordsResult implements Serializable {
      * <p>
      * The next position in the shard from which to start sequentially reading
      * data records. If set to <code>null</code>, the shard has been closed and
-     * the requested iterator will not return any more data.
+     * the requested iterator does not return any more data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -142,7 +142,7 @@ public class GetRecordsResult implements Serializable {
      * @return <p>
      *         The next position in the shard from which to start sequentially
      *         reading data records. If set to <code>null</code>, the shard has
-     *         been closed and the requested iterator will not return any more
+     *         been closed and the requested iterator does not return any more
      *         data.
      *         </p>
      */
@@ -154,7 +154,7 @@ public class GetRecordsResult implements Serializable {
      * <p>
      * The next position in the shard from which to start sequentially reading
      * data records. If set to <code>null</code>, the shard has been closed and
-     * the requested iterator will not return any more data.
+     * the requested iterator does not return any more data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -163,7 +163,7 @@ public class GetRecordsResult implements Serializable {
      * @param nextShardIterator <p>
      *            The next position in the shard from which to start
      *            sequentially reading data records. If set to <code>null</code>
-     *            , the shard has been closed and the requested iterator will
+     *            , the shard has been closed and the requested iterator does
      *            not return any more data.
      *            </p>
      */
@@ -175,7 +175,7 @@ public class GetRecordsResult implements Serializable {
      * <p>
      * The next position in the shard from which to start sequentially reading
      * data records. If set to <code>null</code>, the shard has been closed and
-     * the requested iterator will not return any more data.
+     * the requested iterator does not return any more data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -187,7 +187,7 @@ public class GetRecordsResult implements Serializable {
      * @param nextShardIterator <p>
      *            The next position in the shard from which to start
      *            sequentially reading data records. If set to <code>null</code>
-     *            , the shard has been closed and the requested iterator will
+     *            , the shard has been closed and the requested iterator does
      *            not return any more data.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -202,8 +202,8 @@ public class GetRecordsResult implements Serializable {
      * <p>
      * The number of milliseconds the <a>GetRecords</a> response is from the tip
      * of the stream, indicating how far behind current time the consumer is. A
-     * value of zero indicates record processing is caught up, and there are no
-     * new records to process at this moment.
+     * value of zero indicates that record processing is caught up, and there
+     * are no new records to process at this moment.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -212,7 +212,7 @@ public class GetRecordsResult implements Serializable {
      * @return <p>
      *         The number of milliseconds the <a>GetRecords</a> response is from
      *         the tip of the stream, indicating how far behind current time the
-     *         consumer is. A value of zero indicates record processing is
+     *         consumer is. A value of zero indicates that record processing is
      *         caught up, and there are no new records to process at this
      *         moment.
      *         </p>
@@ -225,8 +225,8 @@ public class GetRecordsResult implements Serializable {
      * <p>
      * The number of milliseconds the <a>GetRecords</a> response is from the tip
      * of the stream, indicating how far behind current time the consumer is. A
-     * value of zero indicates record processing is caught up, and there are no
-     * new records to process at this moment.
+     * value of zero indicates that record processing is caught up, and there
+     * are no new records to process at this moment.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -235,7 +235,7 @@ public class GetRecordsResult implements Serializable {
      * @param millisBehindLatest <p>
      *            The number of milliseconds the <a>GetRecords</a> response is
      *            from the tip of the stream, indicating how far behind current
-     *            time the consumer is. A value of zero indicates record
+     *            time the consumer is. A value of zero indicates that record
      *            processing is caught up, and there are no new records to
      *            process at this moment.
      *            </p>
@@ -248,8 +248,8 @@ public class GetRecordsResult implements Serializable {
      * <p>
      * The number of milliseconds the <a>GetRecords</a> response is from the tip
      * of the stream, indicating how far behind current time the consumer is. A
-     * value of zero indicates record processing is caught up, and there are no
-     * new records to process at this moment.
+     * value of zero indicates that record processing is caught up, and there
+     * are no new records to process at this moment.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -261,7 +261,7 @@ public class GetRecordsResult implements Serializable {
      * @param millisBehindLatest <p>
      *            The number of milliseconds the <a>GetRecords</a> response is
      *            from the tip of the stream, indicating how far behind current
-     *            time the consumer is. A value of zero indicates record
+     *            time the consumer is. A value of zero indicates that record
      *            processing is caught up, and there are no new records to
      *            process at this moment.
      *            </p>

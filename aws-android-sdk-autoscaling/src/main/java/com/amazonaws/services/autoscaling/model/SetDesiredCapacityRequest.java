@@ -25,8 +25,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information about desired capacity, see <a href=
- * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/WhatIsAutoScaling.html"
- * >What Is Auto Scaling?</a> in the <i>Auto Scaling Developer Guide</i>.
+ * "http://docs.aws.amazon.com/autoscaling/latest/userguide/WhatIsAutoScaling.html"
+ * >What Is Auto Scaling?</a> in the <i>Auto Scaling User Guide</i>.
  * </p>
  */
 public class SetDesiredCapacityRequest extends AmazonWebServiceRequest implements Serializable {
@@ -52,11 +52,10 @@ public class SetDesiredCapacityRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * By default, <code>SetDesiredCapacity</code> overrides any cooldown period
-     * associated with the Auto Scaling group. Specify <code>True</code> to make
-     * Auto Scaling to wait for the cool-down period associated with the Auto
-     * Scaling group to complete before initiating a scaling activity to set
-     * your Auto Scaling group to its new capacity.
+     * Indicates whether Auto Scaling waits for the cooldown period to complete
+     * before initiating a scaling activity to set your Auto Scaling group to
+     * its new capacity. By default, Auto Scaling does not honor the cooldown
+     * period during manual scaling activities.
      * </p>
      */
     private Boolean honorCooldown;
@@ -174,20 +173,17 @@ public class SetDesiredCapacityRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * By default, <code>SetDesiredCapacity</code> overrides any cooldown period
-     * associated with the Auto Scaling group. Specify <code>True</code> to make
-     * Auto Scaling to wait for the cool-down period associated with the Auto
-     * Scaling group to complete before initiating a scaling activity to set
-     * your Auto Scaling group to its new capacity.
+     * Indicates whether Auto Scaling waits for the cooldown period to complete
+     * before initiating a scaling activity to set your Auto Scaling group to
+     * its new capacity. By default, Auto Scaling does not honor the cooldown
+     * period during manual scaling activities.
      * </p>
      *
      * @return <p>
-     *         By default, <code>SetDesiredCapacity</code> overrides any
-     *         cooldown period associated with the Auto Scaling group. Specify
-     *         <code>True</code> to make Auto Scaling to wait for the cool-down
-     *         period associated with the Auto Scaling group to complete before
-     *         initiating a scaling activity to set your Auto Scaling group to
-     *         its new capacity.
+     *         Indicates whether Auto Scaling waits for the cooldown period to
+     *         complete before initiating a scaling activity to set your Auto
+     *         Scaling group to its new capacity. By default, Auto Scaling does
+     *         not honor the cooldown period during manual scaling activities.
      *         </p>
      */
     public Boolean isHonorCooldown() {
@@ -196,20 +192,17 @@ public class SetDesiredCapacityRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * By default, <code>SetDesiredCapacity</code> overrides any cooldown period
-     * associated with the Auto Scaling group. Specify <code>True</code> to make
-     * Auto Scaling to wait for the cool-down period associated with the Auto
-     * Scaling group to complete before initiating a scaling activity to set
-     * your Auto Scaling group to its new capacity.
+     * Indicates whether Auto Scaling waits for the cooldown period to complete
+     * before initiating a scaling activity to set your Auto Scaling group to
+     * its new capacity. By default, Auto Scaling does not honor the cooldown
+     * period during manual scaling activities.
      * </p>
      *
      * @return <p>
-     *         By default, <code>SetDesiredCapacity</code> overrides any
-     *         cooldown period associated with the Auto Scaling group. Specify
-     *         <code>True</code> to make Auto Scaling to wait for the cool-down
-     *         period associated with the Auto Scaling group to complete before
-     *         initiating a scaling activity to set your Auto Scaling group to
-     *         its new capacity.
+     *         Indicates whether Auto Scaling waits for the cooldown period to
+     *         complete before initiating a scaling activity to set your Auto
+     *         Scaling group to its new capacity. By default, Auto Scaling does
+     *         not honor the cooldown period during manual scaling activities.
      *         </p>
      */
     public Boolean getHonorCooldown() {
@@ -218,20 +211,18 @@ public class SetDesiredCapacityRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * By default, <code>SetDesiredCapacity</code> overrides any cooldown period
-     * associated with the Auto Scaling group. Specify <code>True</code> to make
-     * Auto Scaling to wait for the cool-down period associated with the Auto
-     * Scaling group to complete before initiating a scaling activity to set
-     * your Auto Scaling group to its new capacity.
+     * Indicates whether Auto Scaling waits for the cooldown period to complete
+     * before initiating a scaling activity to set your Auto Scaling group to
+     * its new capacity. By default, Auto Scaling does not honor the cooldown
+     * period during manual scaling activities.
      * </p>
      *
      * @param honorCooldown <p>
-     *            By default, <code>SetDesiredCapacity</code> overrides any
-     *            cooldown period associated with the Auto Scaling group.
-     *            Specify <code>True</code> to make Auto Scaling to wait for the
-     *            cool-down period associated with the Auto Scaling group to
-     *            complete before initiating a scaling activity to set your Auto
-     *            Scaling group to its new capacity.
+     *            Indicates whether Auto Scaling waits for the cooldown period
+     *            to complete before initiating a scaling activity to set your
+     *            Auto Scaling group to its new capacity. By default, Auto
+     *            Scaling does not honor the cooldown period during manual
+     *            scaling activities.
      *            </p>
      */
     public void setHonorCooldown(Boolean honorCooldown) {
@@ -240,23 +231,21 @@ public class SetDesiredCapacityRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * By default, <code>SetDesiredCapacity</code> overrides any cooldown period
-     * associated with the Auto Scaling group. Specify <code>True</code> to make
-     * Auto Scaling to wait for the cool-down period associated with the Auto
-     * Scaling group to complete before initiating a scaling activity to set
-     * your Auto Scaling group to its new capacity.
+     * Indicates whether Auto Scaling waits for the cooldown period to complete
+     * before initiating a scaling activity to set your Auto Scaling group to
+     * its new capacity. By default, Auto Scaling does not honor the cooldown
+     * period during manual scaling activities.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param honorCooldown <p>
-     *            By default, <code>SetDesiredCapacity</code> overrides any
-     *            cooldown period associated with the Auto Scaling group.
-     *            Specify <code>True</code> to make Auto Scaling to wait for the
-     *            cool-down period associated with the Auto Scaling group to
-     *            complete before initiating a scaling activity to set your Auto
-     *            Scaling group to its new capacity.
+     *            Indicates whether Auto Scaling waits for the cooldown period
+     *            to complete before initiating a scaling activity to set your
+     *            Auto Scaling group to its new capacity. By default, Auto
+     *            Scaling does not honor the cooldown period during manual
+     *            scaling activities.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

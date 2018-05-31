@@ -18,7 +18,9 @@ package com.amazonaws.services.kinesisvideo.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * The caller is not authorized to perform this operation.
+ * </p>
  */
 public class NotAuthorizedException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

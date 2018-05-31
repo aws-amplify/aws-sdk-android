@@ -39,7 +39,7 @@ public class ListThingTypesRequest extends AmazonWebServiceRequest implements Se
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 10000<br/>
+     * <b>Range: </b>1 - 250<br/>
      */
     private Integer maxResults;
 
@@ -111,7 +111,7 @@ public class ListThingTypesRequest extends AmazonWebServiceRequest implements Se
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 10000<br/>
+     * <b>Range: </b>1 - 250<br/>
      *
      * @return <p>
      *         The maximum number of results to return in this operation.
@@ -127,7 +127,7 @@ public class ListThingTypesRequest extends AmazonWebServiceRequest implements Se
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 10000<br/>
+     * <b>Range: </b>1 - 250<br/>
      *
      * @param maxResults <p>
      *            The maximum number of results to return in this operation.
@@ -146,7 +146,7 @@ public class ListThingTypesRequest extends AmazonWebServiceRequest implements Se
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 10000<br/>
+     * <b>Range: </b>1 - 250<br/>
      *
      * @param maxResults <p>
      *            The maximum number of results to return in this operation.

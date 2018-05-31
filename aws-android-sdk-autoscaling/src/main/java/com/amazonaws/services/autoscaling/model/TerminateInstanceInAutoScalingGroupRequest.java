@@ -45,8 +45,8 @@ public class TerminateInstanceInAutoScalingGroupRequest extends AmazonWebService
 
     /**
      * <p>
-     * If <code>true</code>, terminating the instance also decrements the size
-     * of the Auto Scaling group.
+     * Indicates whether terminating the instance also decrements the size of
+     * the Auto Scaling group.
      * </p>
      */
     private Boolean shouldDecrementDesiredCapacity;
@@ -113,13 +113,13 @@ public class TerminateInstanceInAutoScalingGroupRequest extends AmazonWebService
 
     /**
      * <p>
-     * If <code>true</code>, terminating the instance also decrements the size
-     * of the Auto Scaling group.
+     * Indicates whether terminating the instance also decrements the size of
+     * the Auto Scaling group.
      * </p>
      *
      * @return <p>
-     *         If <code>true</code>, terminating the instance also decrements
-     *         the size of the Auto Scaling group.
+     *         Indicates whether terminating the instance also decrements the
+     *         size of the Auto Scaling group.
      *         </p>
      */
     public Boolean isShouldDecrementDesiredCapacity() {
@@ -128,13 +128,13 @@ public class TerminateInstanceInAutoScalingGroupRequest extends AmazonWebService
 
     /**
      * <p>
-     * If <code>true</code>, terminating the instance also decrements the size
-     * of the Auto Scaling group.
+     * Indicates whether terminating the instance also decrements the size of
+     * the Auto Scaling group.
      * </p>
      *
      * @return <p>
-     *         If <code>true</code>, terminating the instance also decrements
-     *         the size of the Auto Scaling group.
+     *         Indicates whether terminating the instance also decrements the
+     *         size of the Auto Scaling group.
      *         </p>
      */
     public Boolean getShouldDecrementDesiredCapacity() {
@@ -143,13 +143,13 @@ public class TerminateInstanceInAutoScalingGroupRequest extends AmazonWebService
 
     /**
      * <p>
-     * If <code>true</code>, terminating the instance also decrements the size
-     * of the Auto Scaling group.
+     * Indicates whether terminating the instance also decrements the size of
+     * the Auto Scaling group.
      * </p>
      *
      * @param shouldDecrementDesiredCapacity <p>
-     *            If <code>true</code>, terminating the instance also decrements
-     *            the size of the Auto Scaling group.
+     *            Indicates whether terminating the instance also decrements the
+     *            size of the Auto Scaling group.
      *            </p>
      */
     public void setShouldDecrementDesiredCapacity(Boolean shouldDecrementDesiredCapacity) {
@@ -158,16 +158,16 @@ public class TerminateInstanceInAutoScalingGroupRequest extends AmazonWebService
 
     /**
      * <p>
-     * If <code>true</code>, terminating the instance also decrements the size
-     * of the Auto Scaling group.
+     * Indicates whether terminating the instance also decrements the size of
+     * the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param shouldDecrementDesiredCapacity <p>
-     *            If <code>true</code>, terminating the instance also decrements
-     *            the size of the Auto Scaling group.
+     *            Indicates whether terminating the instance also decrements the
+     *            size of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

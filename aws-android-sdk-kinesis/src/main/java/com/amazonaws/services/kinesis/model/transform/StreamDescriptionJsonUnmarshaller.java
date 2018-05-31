@@ -56,11 +56,20 @@ class StreamDescriptionJsonUnmarshaller implements
             } else if (name.equals("RetentionPeriodHours")) {
                 streamDescription.setRetentionPeriodHours(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("StreamCreationTimestamp")) {
+                streamDescription.setStreamCreationTimestamp(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("EnhancedMonitoring")) {
                 streamDescription.setEnhancedMonitoring(new ListUnmarshaller<EnhancedMetrics>(
                         EnhancedMetricsJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("EncryptionType")) {
+                streamDescription.setEncryptionType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("KeyId")) {
+                streamDescription.setKeyId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -40,19 +40,6 @@ class MessageRequestJsonMarshaller {
             }
             jsonWriter.endObject();
         }
-        if (messageRequest.getCampaign() != null) {
-            java.util.Map<String, String> campaign = messageRequest.getCampaign();
-            jsonWriter.name("Campaign");
-            jsonWriter.beginObject();
-            for (java.util.Map.Entry<String, String> campaignEntry : campaign.entrySet()) {
-                String campaignValue = campaignEntry.getValue();
-                if (campaignValue != null) {
-                    jsonWriter.name(campaignEntry.getKey());
-                    jsonWriter.value(campaignValue);
-                }
-            }
-            jsonWriter.endObject();
-        }
         if (messageRequest.getContext() != null) {
             java.util.Map<String, String> context = messageRequest.getContext();
             jsonWriter.name("Context");
@@ -88,11 +75,6 @@ class MessageRequestJsonMarshaller {
             jsonWriter.name("MessageConfiguration");
             DirectMessageConfigurationJsonMarshaller.getInstance().marshall(messageConfiguration,
                     jsonWriter);
-        }
-        if (messageRequest.getRequestId() != null) {
-            String requestId = messageRequest.getRequestId();
-            jsonWriter.name("RequestId");
-            jsonWriter.value(requestId);
         }
         jsonWriter.endObject();
     }

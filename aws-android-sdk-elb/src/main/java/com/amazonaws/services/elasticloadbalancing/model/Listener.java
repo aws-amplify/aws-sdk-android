@@ -24,9 +24,9 @@ import java.io.Serializable;
  * <p>
  * For information about the protocols and the ports supported by Elastic Load
  * Balancing, see <a href=
- * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html"
- * >Listener Configurations for Elastic Load Balancing</a> in the <i>Elastic
- * Load Balancing Developer Guide</i>.
+ * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-listener-config.html"
+ * >Listeners for Your Classic Load Balancer</a> in the <i>Classic Load Balancer
+ * Guide</i>.
  * </p>
  */
 public class Listener implements Serializable {
@@ -49,8 +49,8 @@ public class Listener implements Serializable {
 
     /**
      * <p>
-     * The protocol to use for routing traffic to back-end instances: HTTP,
-     * HTTPS, TCP, or SSL.
+     * The protocol to use for routing traffic to instances: HTTP, HTTPS, TCP,
+     * or SSL.
      * </p>
      * <p>
      * If the front-end protocol is HTTP, HTTPS, TCP, or SSL,
@@ -231,8 +231,8 @@ public class Listener implements Serializable {
 
     /**
      * <p>
-     * The protocol to use for routing traffic to back-end instances: HTTP,
-     * HTTPS, TCP, or SSL.
+     * The protocol to use for routing traffic to instances: HTTP, HTTPS, TCP,
+     * or SSL.
      * </p>
      * <p>
      * If the front-end protocol is HTTP, HTTPS, TCP, or SSL,
@@ -250,8 +250,8 @@ public class Listener implements Serializable {
      * </p>
      *
      * @return <p>
-     *         The protocol to use for routing traffic to back-end instances:
-     *         HTTP, HTTPS, TCP, or SSL.
+     *         The protocol to use for routing traffic to instances: HTTP,
+     *         HTTPS, TCP, or SSL.
      *         </p>
      *         <p>
      *         If the front-end protocol is HTTP, HTTPS, TCP, or SSL,
@@ -276,8 +276,8 @@ public class Listener implements Serializable {
 
     /**
      * <p>
-     * The protocol to use for routing traffic to back-end instances: HTTP,
-     * HTTPS, TCP, or SSL.
+     * The protocol to use for routing traffic to instances: HTTP, HTTPS, TCP,
+     * or SSL.
      * </p>
      * <p>
      * If the front-end protocol is HTTP, HTTPS, TCP, or SSL,
@@ -295,8 +295,8 @@ public class Listener implements Serializable {
      * </p>
      *
      * @param instanceProtocol <p>
-     *            The protocol to use for routing traffic to back-end instances:
-     *            HTTP, HTTPS, TCP, or SSL.
+     *            The protocol to use for routing traffic to instances: HTTP,
+     *            HTTPS, TCP, or SSL.
      *            </p>
      *            <p>
      *            If the front-end protocol is HTTP, HTTPS, TCP, or SSL,
@@ -321,8 +321,8 @@ public class Listener implements Serializable {
 
     /**
      * <p>
-     * The protocol to use for routing traffic to back-end instances: HTTP,
-     * HTTPS, TCP, or SSL.
+     * The protocol to use for routing traffic to instances: HTTP, HTTPS, TCP,
+     * or SSL.
      * </p>
      * <p>
      * If the front-end protocol is HTTP, HTTPS, TCP, or SSL,
@@ -343,8 +343,8 @@ public class Listener implements Serializable {
      * together.
      *
      * @param instanceProtocol <p>
-     *            The protocol to use for routing traffic to back-end instances:
-     *            HTTP, HTTPS, TCP, or SSL.
+     *            The protocol to use for routing traffic to instances: HTTP,
+     *            HTTPS, TCP, or SSL.
      *            </p>
      *            <p>
      *            If the front-end protocol is HTTP, HTTPS, TCP, or SSL,

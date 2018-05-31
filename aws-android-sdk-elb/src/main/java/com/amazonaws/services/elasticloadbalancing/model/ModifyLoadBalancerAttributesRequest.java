@@ -31,22 +31,38 @@ import com.amazonaws.AmazonWebServiceRequest;
  * timeout value for your load balancer.
  * </p>
  * <p>
- * For more information, see the following in the <i>Elastic Load Balancing
- * Developer Guide</i>:
+ * For more information, see the following in the <i>Classic Load Balancer
+ * Guide</i>:
  * </p>
  * <ul>
- * <li><a href=
- * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#request-routing"
- * >Cross-Zone Load Balancing</a></li>
- * <li><a href=
- * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#conn-drain"
- * >Connection Draining</a></li>
- * <li><a href=
- * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/access-log-collection.html"
- * >Access Logs</a></li>
- * <li><a href=
- * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#idle-timeout"
- * >Idle Connection Timeout</a></li>
+ * <li>
+ * <p>
+ * <a href=
+ * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-crosszone-lb.html"
+ * >Cross-Zone Load Balancing</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-conn-drain.html"
+ * >Connection Draining</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/access-log-collection.html"
+ * >Access Logs</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-idle-timeout.html"
+ * >Idle Connection Timeout</a>
+ * </p>
+ * </li>
  * </ul>
  */
 public class ModifyLoadBalancerAttributesRequest extends AmazonWebServiceRequest implements
@@ -60,7 +76,7 @@ public class ModifyLoadBalancerAttributesRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The attributes of the load balancer.
+     * The attributes for the load balancer.
      * </p>
      */
     private LoadBalancerAttributes loadBalancerAttributes;
@@ -112,11 +128,11 @@ public class ModifyLoadBalancerAttributesRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The attributes of the load balancer.
+     * The attributes for the load balancer.
      * </p>
      *
      * @return <p>
-     *         The attributes of the load balancer.
+     *         The attributes for the load balancer.
      *         </p>
      */
     public LoadBalancerAttributes getLoadBalancerAttributes() {
@@ -125,11 +141,11 @@ public class ModifyLoadBalancerAttributesRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The attributes of the load balancer.
+     * The attributes for the load balancer.
      * </p>
      *
      * @param loadBalancerAttributes <p>
-     *            The attributes of the load balancer.
+     *            The attributes for the load balancer.
      *            </p>
      */
     public void setLoadBalancerAttributes(LoadBalancerAttributes loadBalancerAttributes) {
@@ -138,14 +154,14 @@ public class ModifyLoadBalancerAttributesRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The attributes of the load balancer.
+     * The attributes for the load balancer.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param loadBalancerAttributes <p>
-     *            The attributes of the load balancer.
+     *            The attributes for the load balancer.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

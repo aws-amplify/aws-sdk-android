@@ -20,100 +20,19 @@ import java.io.Serializable;
 public class DescribeAutoScalingNotificationTypesResult implements Serializable {
     /**
      * <p>
-     * One or more of the following notification types:
+     * The notification types.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_LAUNCH</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_LAUNCH_ERROR</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_TERMINATE</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_TERMINATE_ERROR</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:TEST_NOTIFICATION</code>
-     * </p>
-     * </li>
-     * </ul>
      */
     private java.util.List<String> autoScalingNotificationTypes = new java.util.ArrayList<String>();
 
     /**
      * <p>
-     * One or more of the following notification types:
+     * The notification types.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_LAUNCH</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_LAUNCH_ERROR</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_TERMINATE</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_TERMINATE_ERROR</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:TEST_NOTIFICATION</code>
-     * </p>
-     * </li>
-     * </ul>
      *
      * @return <p>
-     *         One or more of the following notification types:
+     *         The notification types.
      *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         <code>autoscaling:EC2_INSTANCE_LAUNCH</code>
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         <code>autoscaling:EC2_INSTANCE_LAUNCH_ERROR</code>
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         <code>autoscaling:EC2_INSTANCE_TERMINATE</code>
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         <code>autoscaling:EC2_INSTANCE_TERMINATE_ERROR</code>
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         <code>autoscaling:TEST_NOTIFICATION</code>
-     *         </p>
-     *         </li>
-     *         </ul>
      */
     public java.util.List<String> getAutoScalingNotificationTypes() {
         return autoScalingNotificationTypes;
@@ -121,66 +40,12 @@ public class DescribeAutoScalingNotificationTypesResult implements Serializable 
 
     /**
      * <p>
-     * One or more of the following notification types:
+     * The notification types.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_LAUNCH</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_LAUNCH_ERROR</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_TERMINATE</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_TERMINATE_ERROR</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:TEST_NOTIFICATION</code>
-     * </p>
-     * </li>
-     * </ul>
      *
      * @param autoScalingNotificationTypes <p>
-     *            One or more of the following notification types:
+     *            The notification types.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>autoscaling:EC2_INSTANCE_LAUNCH</code>
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>autoscaling:EC2_INSTANCE_LAUNCH_ERROR</code>
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>autoscaling:EC2_INSTANCE_TERMINATE</code>
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>autoscaling:EC2_INSTANCE_TERMINATE_ERROR</code>
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>autoscaling:TEST_NOTIFICATION</code>
-     *            </p>
-     *            </li>
-     *            </ul>
      */
     public void setAutoScalingNotificationTypes(
             java.util.Collection<String> autoScalingNotificationTypes) {
@@ -195,69 +60,15 @@ public class DescribeAutoScalingNotificationTypesResult implements Serializable 
 
     /**
      * <p>
-     * One or more of the following notification types:
+     * The notification types.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_LAUNCH</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_LAUNCH_ERROR</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_TERMINATE</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_TERMINATE_ERROR</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:TEST_NOTIFICATION</code>
-     * </p>
-     * </li>
-     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param autoScalingNotificationTypes <p>
-     *            One or more of the following notification types:
+     *            The notification types.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>autoscaling:EC2_INSTANCE_LAUNCH</code>
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>autoscaling:EC2_INSTANCE_LAUNCH_ERROR</code>
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>autoscaling:EC2_INSTANCE_TERMINATE</code>
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>autoscaling:EC2_INSTANCE_TERMINATE_ERROR</code>
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>autoscaling:TEST_NOTIFICATION</code>
-     *            </p>
-     *            </li>
-     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -275,69 +86,15 @@ public class DescribeAutoScalingNotificationTypesResult implements Serializable 
 
     /**
      * <p>
-     * One or more of the following notification types:
+     * The notification types.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_LAUNCH</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_LAUNCH_ERROR</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_TERMINATE</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:EC2_INSTANCE_TERMINATE_ERROR</code>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>autoscaling:TEST_NOTIFICATION</code>
-     * </p>
-     * </li>
-     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param autoScalingNotificationTypes <p>
-     *            One or more of the following notification types:
+     *            The notification types.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>autoscaling:EC2_INSTANCE_LAUNCH</code>
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>autoscaling:EC2_INSTANCE_LAUNCH_ERROR</code>
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>autoscaling:EC2_INSTANCE_TERMINATE</code>
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>autoscaling:EC2_INSTANCE_TERMINATE_ERROR</code>
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>autoscaling:TEST_NOTIFICATION</code>
-     *            </p>
-     *            </li>
-     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

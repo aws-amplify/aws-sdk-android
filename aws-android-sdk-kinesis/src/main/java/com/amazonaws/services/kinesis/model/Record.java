@@ -19,14 +19,14 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The unit of data of the Amazon Kinesis stream, which is composed of a
- * sequence number, a partition key, and a data blob.
+ * The unit of data of the Kinesis data stream, which is composed of a sequence
+ * number, a partition key, and a data blob.
  * </p>
  */
 public class Record implements Serializable {
     /**
      * <p>
-     * The unique identifier of the record in the stream.
+     * The unique identifier of the record within its shard.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -43,8 +43,8 @@ public class Record implements Serializable {
 
     /**
      * <p>
-     * The data blob. The data in the blob is both opaque and immutable to the
-     * Amazon Kinesis service, which does not inspect, interpret, or change the
+     * The data blob. The data in the blob is both opaque and immutable to
+     * Kinesis Data Streams, which does not inspect, interpret, or change the
      * data in the blob in any way. When the data blob (the payload before
      * base64-encoding) is added to the partition key size, the total size must
      * not exceed the maximum record size (1 MB).
@@ -67,14 +67,38 @@ public class Record implements Serializable {
 
     /**
      * <p>
-     * The unique identifier of the record in the stream.
+     * The encryption type used on the record. This parameter can be one of the
+     * following values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>NONE</code>: Do not encrypt the records in the stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KMS</code>: Use server-side encryption on the records in the stream
+     * using a customer-managed AWS KMS key.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>NONE, KMS
+     */
+    private String encryptionType;
+
+    /**
+     * <p>
+     * The unique identifier of the record within its shard.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>0|([1-9]\d{0,128})<br/>
      *
      * @return <p>
-     *         The unique identifier of the record in the stream.
+     *         The unique identifier of the record within its shard.
      *         </p>
      */
     public String getSequenceNumber() {
@@ -83,14 +107,14 @@ public class Record implements Serializable {
 
     /**
      * <p>
-     * The unique identifier of the record in the stream.
+     * The unique identifier of the record within its shard.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>0|([1-9]\d{0,128})<br/>
      *
      * @param sequenceNumber <p>
-     *            The unique identifier of the record in the stream.
+     *            The unique identifier of the record within its shard.
      *            </p>
      */
     public void setSequenceNumber(String sequenceNumber) {
@@ -99,7 +123,7 @@ public class Record implements Serializable {
 
     /**
      * <p>
-     * The unique identifier of the record in the stream.
+     * The unique identifier of the record within its shard.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -109,7 +133,7 @@ public class Record implements Serializable {
      * <b>Pattern: </b>0|([1-9]\d{0,128})<br/>
      *
      * @param sequenceNumber <p>
-     *            The unique identifier of the record in the stream.
+     *            The unique identifier of the record within its shard.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -169,8 +193,8 @@ public class Record implements Serializable {
 
     /**
      * <p>
-     * The data blob. The data in the blob is both opaque and immutable to the
-     * Amazon Kinesis service, which does not inspect, interpret, or change the
+     * The data blob. The data in the blob is both opaque and immutable to
+     * Kinesis Data Streams, which does not inspect, interpret, or change the
      * data in the blob in any way. When the data blob (the payload before
      * base64-encoding) is added to the partition key size, the total size must
      * not exceed the maximum record size (1 MB).
@@ -181,11 +205,11 @@ public class Record implements Serializable {
      *
      * @return <p>
      *         The data blob. The data in the blob is both opaque and immutable
-     *         to the Amazon Kinesis service, which does not inspect, interpret,
-     *         or change the data in the blob in any way. When the data blob
-     *         (the payload before base64-encoding) is added to the partition
-     *         key size, the total size must not exceed the maximum record size
-     *         (1 MB).
+     *         to Kinesis Data Streams, which does not inspect, interpret, or
+     *         change the data in the blob in any way. When the data blob (the
+     *         payload before base64-encoding) is added to the partition key
+     *         size, the total size must not exceed the maximum record size (1
+     *         MB).
      *         </p>
      */
     public java.nio.ByteBuffer getData() {
@@ -194,8 +218,8 @@ public class Record implements Serializable {
 
     /**
      * <p>
-     * The data blob. The data in the blob is both opaque and immutable to the
-     * Amazon Kinesis service, which does not inspect, interpret, or change the
+     * The data blob. The data in the blob is both opaque and immutable to
+     * Kinesis Data Streams, which does not inspect, interpret, or change the
      * data in the blob in any way. When the data blob (the payload before
      * base64-encoding) is added to the partition key size, the total size must
      * not exceed the maximum record size (1 MB).
@@ -206,11 +230,11 @@ public class Record implements Serializable {
      *
      * @param data <p>
      *            The data blob. The data in the blob is both opaque and
-     *            immutable to the Amazon Kinesis service, which does not
-     *            inspect, interpret, or change the data in the blob in any way.
-     *            When the data blob (the payload before base64-encoding) is
-     *            added to the partition key size, the total size must not
-     *            exceed the maximum record size (1 MB).
+     *            immutable to Kinesis Data Streams, which does not inspect,
+     *            interpret, or change the data in the blob in any way. When the
+     *            data blob (the payload before base64-encoding) is added to the
+     *            partition key size, the total size must not exceed the maximum
+     *            record size (1 MB).
      *            </p>
      */
     public void setData(java.nio.ByteBuffer data) {
@@ -219,8 +243,8 @@ public class Record implements Serializable {
 
     /**
      * <p>
-     * The data blob. The data in the blob is both opaque and immutable to the
-     * Amazon Kinesis service, which does not inspect, interpret, or change the
+     * The data blob. The data in the blob is both opaque and immutable to
+     * Kinesis Data Streams, which does not inspect, interpret, or change the
      * data in the blob in any way. When the data blob (the payload before
      * base64-encoding) is added to the partition key size, the total size must
      * not exceed the maximum record size (1 MB).
@@ -234,11 +258,11 @@ public class Record implements Serializable {
      *
      * @param data <p>
      *            The data blob. The data in the blob is both opaque and
-     *            immutable to the Amazon Kinesis service, which does not
-     *            inspect, interpret, or change the data in the blob in any way.
-     *            When the data blob (the payload before base64-encoding) is
-     *            added to the partition key size, the total size must not
-     *            exceed the maximum record size (1 MB).
+     *            immutable to Kinesis Data Streams, which does not inspect,
+     *            interpret, or change the data in the blob in any way. When the
+     *            data blob (the payload before base64-encoding) is added to the
+     *            partition key size, the total size must not exceed the maximum
+     *            record size (1 MB).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -306,6 +330,243 @@ public class Record implements Serializable {
     }
 
     /**
+     * <p>
+     * The encryption type used on the record. This parameter can be one of the
+     * following values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>NONE</code>: Do not encrypt the records in the stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KMS</code>: Use server-side encryption on the records in the stream
+     * using a customer-managed AWS KMS key.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>NONE, KMS
+     *
+     * @return <p>
+     *         The encryption type used on the record. This parameter can be one
+     *         of the following values:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>NONE</code>: Do not encrypt the records in the stream.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>KMS</code>: Use server-side encryption on the records in
+     *         the stream using a customer-managed AWS KMS key.
+     *         </p>
+     *         </li>
+     *         </ul>
+     * @see EncryptionType
+     */
+    public String getEncryptionType() {
+        return encryptionType;
+    }
+
+    /**
+     * <p>
+     * The encryption type used on the record. This parameter can be one of the
+     * following values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>NONE</code>: Do not encrypt the records in the stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KMS</code>: Use server-side encryption on the records in the stream
+     * using a customer-managed AWS KMS key.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>NONE, KMS
+     *
+     * @param encryptionType <p>
+     *            The encryption type used on the record. This parameter can be
+     *            one of the following values:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>NONE</code>: Do not encrypt the records in the stream.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>KMS</code>: Use server-side encryption on the records in
+     *            the stream using a customer-managed AWS KMS key.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @see EncryptionType
+     */
+    public void setEncryptionType(String encryptionType) {
+        this.encryptionType = encryptionType;
+    }
+
+    /**
+     * <p>
+     * The encryption type used on the record. This parameter can be one of the
+     * following values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>NONE</code>: Do not encrypt the records in the stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KMS</code>: Use server-side encryption on the records in the stream
+     * using a customer-managed AWS KMS key.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>NONE, KMS
+     *
+     * @param encryptionType <p>
+     *            The encryption type used on the record. This parameter can be
+     *            one of the following values:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>NONE</code>: Do not encrypt the records in the stream.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>KMS</code>: Use server-side encryption on the records in
+     *            the stream using a customer-managed AWS KMS key.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see EncryptionType
+     */
+    public Record withEncryptionType(String encryptionType) {
+        this.encryptionType = encryptionType;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The encryption type used on the record. This parameter can be one of the
+     * following values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>NONE</code>: Do not encrypt the records in the stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KMS</code>: Use server-side encryption on the records in the stream
+     * using a customer-managed AWS KMS key.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>NONE, KMS
+     *
+     * @param encryptionType <p>
+     *            The encryption type used on the record. This parameter can be
+     *            one of the following values:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>NONE</code>: Do not encrypt the records in the stream.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>KMS</code>: Use server-side encryption on the records in
+     *            the stream using a customer-managed AWS KMS key.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @see EncryptionType
+     */
+    public void setEncryptionType(EncryptionType encryptionType) {
+        this.encryptionType = encryptionType.toString();
+    }
+
+    /**
+     * <p>
+     * The encryption type used on the record. This parameter can be one of the
+     * following values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>NONE</code>: Do not encrypt the records in the stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KMS</code>: Use server-side encryption on the records in the stream
+     * using a customer-managed AWS KMS key.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>NONE, KMS
+     *
+     * @param encryptionType <p>
+     *            The encryption type used on the record. This parameter can be
+     *            one of the following values:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>NONE</code>: Do not encrypt the records in the stream.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>KMS</code>: Use server-side encryption on the records in
+     *            the stream using a customer-managed AWS KMS key.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see EncryptionType
+     */
+    public Record withEncryptionType(EncryptionType encryptionType) {
+        this.encryptionType = encryptionType.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -323,7 +584,9 @@ public class Record implements Serializable {
         if (getData() != null)
             sb.append("Data: " + getData() + ",");
         if (getPartitionKey() != null)
-            sb.append("PartitionKey: " + getPartitionKey());
+            sb.append("PartitionKey: " + getPartitionKey() + ",");
+        if (getEncryptionType() != null)
+            sb.append("EncryptionType: " + getEncryptionType());
         sb.append("}");
         return sb.toString();
     }
@@ -342,6 +605,8 @@ public class Record implements Serializable {
         hashCode = prime * hashCode + ((getData() == null) ? 0 : getData().hashCode());
         hashCode = prime * hashCode
                 + ((getPartitionKey() == null) ? 0 : getPartitionKey().hashCode());
+        hashCode = prime * hashCode
+                + ((getEncryptionType() == null) ? 0 : getEncryptionType().hashCode());
         return hashCode;
     }
 
@@ -376,6 +641,11 @@ public class Record implements Serializable {
             return false;
         if (other.getPartitionKey() != null
                 && other.getPartitionKey().equals(this.getPartitionKey()) == false)
+            return false;
+        if (other.getEncryptionType() == null ^ this.getEncryptionType() == null)
+            return false;
+        if (other.getEncryptionType() != null
+                && other.getEncryptionType().equals(this.getEncryptionType()) == false)
             return false;
         return true;
     }

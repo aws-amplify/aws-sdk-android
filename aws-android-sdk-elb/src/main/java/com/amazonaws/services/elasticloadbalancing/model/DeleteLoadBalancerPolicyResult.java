@@ -17,6 +17,11 @@ package com.amazonaws.services.elasticloadbalancing.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * Contains the output of DeleteLoadBalancerPolicy.
+ * </p>
+ */
 public class DeleteLoadBalancerPolicyResult implements Serializable {
     /**
      * Returns a string representation of this object; useful for testing and

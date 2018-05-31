@@ -58,7 +58,7 @@ public class HealthCheck implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 300<br/>
+     * <b>Range: </b>5 - 300<br/>
      */
     private Integer interval;
 
@@ -72,7 +72,7 @@ public class HealthCheck implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 300<br/>
+     * <b>Range: </b>2 - 60<br/>
      */
     private Integer timeout;
 
@@ -356,7 +356,7 @@ public class HealthCheck implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 300<br/>
+     * <b>Range: </b>5 - 300<br/>
      *
      * @return <p>
      *         The approximate interval, in seconds, between health checks of an
@@ -374,7 +374,7 @@ public class HealthCheck implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 300<br/>
+     * <b>Range: </b>5 - 300<br/>
      *
      * @param interval <p>
      *            The approximate interval, in seconds, between health checks of
@@ -395,7 +395,7 @@ public class HealthCheck implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 300<br/>
+     * <b>Range: </b>5 - 300<br/>
      *
      * @param interval <p>
      *            The approximate interval, in seconds, between health checks of
@@ -419,7 +419,7 @@ public class HealthCheck implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 300<br/>
+     * <b>Range: </b>2 - 60<br/>
      *
      * @return <p>
      *         The amount of time, in seconds, during which no response means a
@@ -443,7 +443,7 @@ public class HealthCheck implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 300<br/>
+     * <b>Range: </b>2 - 60<br/>
      *
      * @param timeout <p>
      *            The amount of time, in seconds, during which no response means
@@ -470,7 +470,7 @@ public class HealthCheck implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 300<br/>
+     * <b>Range: </b>2 - 60<br/>
      *
      * @param timeout <p>
      *            The amount of time, in seconds, during which no response means

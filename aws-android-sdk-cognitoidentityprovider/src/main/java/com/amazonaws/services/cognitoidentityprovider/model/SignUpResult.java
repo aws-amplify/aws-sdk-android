@@ -33,10 +33,19 @@ public class SignUpResult implements Serializable {
 
     /**
      * <p>
-     * The type of code delivery details being returned from the server.
+     * The code delivery details returned by the server response to the user
+     * registration request.
      * </p>
      */
     private CodeDeliveryDetailsType codeDeliveryDetails;
+
+    /**
+     * <p>
+     * The UUID of the authenticated user. This is not the same as
+     * <code>username</code>.
+     * </p>
+     */
+    private String userSub;
 
     /**
      * <p>
@@ -106,11 +115,13 @@ public class SignUpResult implements Serializable {
 
     /**
      * <p>
-     * The type of code delivery details being returned from the server.
+     * The code delivery details returned by the server response to the user
+     * registration request.
      * </p>
      *
      * @return <p>
-     *         The type of code delivery details being returned from the server.
+     *         The code delivery details returned by the server response to the
+     *         user registration request.
      *         </p>
      */
     public CodeDeliveryDetailsType getCodeDeliveryDetails() {
@@ -119,12 +130,13 @@ public class SignUpResult implements Serializable {
 
     /**
      * <p>
-     * The type of code delivery details being returned from the server.
+     * The code delivery details returned by the server response to the user
+     * registration request.
      * </p>
      *
      * @param codeDeliveryDetails <p>
-     *            The type of code delivery details being returned from the
-     *            server.
+     *            The code delivery details returned by the server response to
+     *            the user registration request.
      *            </p>
      */
     public void setCodeDeliveryDetails(CodeDeliveryDetailsType codeDeliveryDetails) {
@@ -133,21 +145,73 @@ public class SignUpResult implements Serializable {
 
     /**
      * <p>
-     * The type of code delivery details being returned from the server.
+     * The code delivery details returned by the server response to the user
+     * registration request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param codeDeliveryDetails <p>
-     *            The type of code delivery details being returned from the
-     *            server.
+     *            The code delivery details returned by the server response to
+     *            the user registration request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public SignUpResult withCodeDeliveryDetails(CodeDeliveryDetailsType codeDeliveryDetails) {
         this.codeDeliveryDetails = codeDeliveryDetails;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The UUID of the authenticated user. This is not the same as
+     * <code>username</code>.
+     * </p>
+     *
+     * @return <p>
+     *         The UUID of the authenticated user. This is not the same as
+     *         <code>username</code>.
+     *         </p>
+     */
+    public String getUserSub() {
+        return userSub;
+    }
+
+    /**
+     * <p>
+     * The UUID of the authenticated user. This is not the same as
+     * <code>username</code>.
+     * </p>
+     *
+     * @param userSub <p>
+     *            The UUID of the authenticated user. This is not the same as
+     *            <code>username</code>.
+     *            </p>
+     */
+    public void setUserSub(String userSub) {
+        this.userSub = userSub;
+    }
+
+    /**
+     * <p>
+     * The UUID of the authenticated user. This is not the same as
+     * <code>username</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param userSub <p>
+     *            The UUID of the authenticated user. This is not the same as
+     *            <code>username</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SignUpResult withUserSub(String userSub) {
+        this.userSub = userSub;
         return this;
     }
 
@@ -165,7 +229,9 @@ public class SignUpResult implements Serializable {
         if (getUserConfirmed() != null)
             sb.append("UserConfirmed: " + getUserConfirmed() + ",");
         if (getCodeDeliveryDetails() != null)
-            sb.append("CodeDeliveryDetails: " + getCodeDeliveryDetails());
+            sb.append("CodeDeliveryDetails: " + getCodeDeliveryDetails() + ",");
+        if (getUserSub() != null)
+            sb.append("UserSub: " + getUserSub());
         sb.append("}");
         return sb.toString();
     }
@@ -179,6 +245,7 @@ public class SignUpResult implements Serializable {
                 + ((getUserConfirmed() == null) ? 0 : getUserConfirmed().hashCode());
         hashCode = prime * hashCode
                 + ((getCodeDeliveryDetails() == null) ? 0 : getCodeDeliveryDetails().hashCode());
+        hashCode = prime * hashCode + ((getUserSub() == null) ? 0 : getUserSub().hashCode());
         return hashCode;
     }
 
@@ -202,6 +269,10 @@ public class SignUpResult implements Serializable {
             return false;
         if (other.getCodeDeliveryDetails() != null
                 && other.getCodeDeliveryDetails().equals(this.getCodeDeliveryDetails()) == false)
+            return false;
+        if (other.getUserSub() == null ^ this.getUserSub() == null)
+            return false;
+        if (other.getUserSub() != null && other.getUserSub().equals(this.getUserSub()) == false)
             return false;
         return true;
     }

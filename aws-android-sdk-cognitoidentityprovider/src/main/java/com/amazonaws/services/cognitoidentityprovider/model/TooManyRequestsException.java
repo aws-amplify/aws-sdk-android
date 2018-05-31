@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * This exception gets thrown when the user has made too many requests for a
- * given operation.
+ * This exception is thrown when the user has made too many requests for a given
+ * operation.
  * </p>
  */
 public class TooManyRequestsException extends AmazonServiceException {

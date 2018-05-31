@@ -19,9 +19,18 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Use this API to register a user's entered TOTP code and mark the user's
+ * software token MFA status as "verified" if successful. The request takes an
+ * access token or a session string, but not both.
+ * </p>
+ */
 public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the accessToken property for this object.
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
@@ -29,7 +38,10 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
     private String accessToken;
 
     /**
-     * The new value for the session property for this object.
+     * <p>
+     * The session which should be passed both ways in challenge-response calls
+     * to the service.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
@@ -37,7 +49,9 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
     private String session;
 
     /**
-     * The new value for the userCode property for this object.
+     * <p>
+     * The one time password computed using the secret code returned by
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>6 - 6<br/>
@@ -46,37 +60,48 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
     private String userCode;
 
     /**
-     * The new value for the friendlyDeviceName property for this object.
+     * <p>
+     * The friendly device name.
+     * </p>
      */
     private String friendlyDeviceName;
 
     /**
-     * Returns the value of the accessToken property for this object.
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
-     * @return The value of the accessToken property for this object.
+     * @return <p>
+     *         The access token.
+     *         </p>
      */
     public String getAccessToken() {
         return accessToken;
     }
 
     /**
-     * Sets the value of accessToken
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
-     * @param accessToken The new value for the accessToken property for this
-     *            object.
+     * @param accessToken <p>
+     *            The access token.
+     *            </p>
      */
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
 
     /**
-     * Sets the value of the accessToken property for this object.
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -84,8 +109,9 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
-     * @param accessToken The new value for the accessToken property for this
-     *            object.
+     * @param accessToken <p>
+     *            The access token.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -95,31 +121,46 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * Returns the value of the session property for this object.
+     * <p>
+     * The session which should be passed both ways in challenge-response calls
+     * to the service.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @return The value of the session property for this object.
+     * @return <p>
+     *         The session which should be passed both ways in
+     *         challenge-response calls to the service.
+     *         </p>
      */
     public String getSession() {
         return session;
     }
 
     /**
-     * Sets the value of session
+     * <p>
+     * The session which should be passed both ways in challenge-response calls
+     * to the service.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @param session The new value for the session property for this object.
+     * @param session <p>
+     *            The session which should be passed both ways in
+     *            challenge-response calls to the service.
+     *            </p>
      */
     public void setSession(String session) {
         this.session = session;
     }
 
     /**
-     * Sets the value of the session property for this object.
+     * <p>
+     * The session which should be passed both ways in challenge-response calls
+     * to the service.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -127,7 +168,10 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @param session The new value for the session property for this object.
+     * @param session <p>
+     *            The session which should be passed both ways in
+     *            challenge-response calls to the service.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -137,33 +181,44 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * Returns the value of the userCode property for this object.
+     * <p>
+     * The one time password computed using the secret code returned by
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>6 - 6<br/>
      * <b>Pattern: </b>[0-9]+<br/>
      *
-     * @return The value of the userCode property for this object.
+     * @return <p>
+     *         The one time password computed using the secret code returned by
+     *         </p>
      */
     public String getUserCode() {
         return userCode;
     }
 
     /**
-     * Sets the value of userCode
+     * <p>
+     * The one time password computed using the secret code returned by
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>6 - 6<br/>
      * <b>Pattern: </b>[0-9]+<br/>
      *
-     * @param userCode The new value for the userCode property for this object.
+     * @param userCode <p>
+     *            The one time password computed using the secret code returned
+     *            by
+     *            </p>
      */
     public void setUserCode(String userCode) {
         this.userCode = userCode;
     }
 
     /**
-     * Sets the value of the userCode property for this object.
+     * <p>
+     * The one time password computed using the secret code returned by
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -172,7 +227,10 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
      * <b>Length: </b>6 - 6<br/>
      * <b>Pattern: </b>[0-9]+<br/>
      *
-     * @param userCode The new value for the userCode property for this object.
+     * @param userCode <p>
+     *            The one time password computed using the secret code returned
+     *            by
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -182,32 +240,42 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * Returns the value of the friendlyDeviceName property for this object.
+     * <p>
+     * The friendly device name.
+     * </p>
      *
-     * @return The value of the friendlyDeviceName property for this object.
+     * @return <p>
+     *         The friendly device name.
+     *         </p>
      */
     public String getFriendlyDeviceName() {
         return friendlyDeviceName;
     }
 
     /**
-     * Sets the value of friendlyDeviceName
+     * <p>
+     * The friendly device name.
+     * </p>
      *
-     * @param friendlyDeviceName The new value for the friendlyDeviceName
-     *            property for this object.
+     * @param friendlyDeviceName <p>
+     *            The friendly device name.
+     *            </p>
      */
     public void setFriendlyDeviceName(String friendlyDeviceName) {
         this.friendlyDeviceName = friendlyDeviceName;
     }
 
     /**
-     * Sets the value of the friendlyDeviceName property for this object.
+     * <p>
+     * The friendly device name.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param friendlyDeviceName The new value for the friendlyDeviceName
-     *            property for this object.
+     * @param friendlyDeviceName <p>
+     *            The friendly device name.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -26,10 +26,21 @@ class APNSChannelRequestJsonMarshaller {
     public void marshall(APNSChannelRequest aPNSChannelRequest, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
+        if (aPNSChannelRequest.getBundleId() != null) {
+            String bundleId = aPNSChannelRequest.getBundleId();
+            jsonWriter.name("BundleId");
+            jsonWriter.value(bundleId);
+        }
         if (aPNSChannelRequest.getCertificate() != null) {
             String certificate = aPNSChannelRequest.getCertificate();
             jsonWriter.name("Certificate");
             jsonWriter.value(certificate);
+        }
+        if (aPNSChannelRequest.getDefaultAuthenticationMethod() != null) {
+            String defaultAuthenticationMethod = aPNSChannelRequest
+                    .getDefaultAuthenticationMethod();
+            jsonWriter.name("DefaultAuthenticationMethod");
+            jsonWriter.value(defaultAuthenticationMethod);
         }
         if (aPNSChannelRequest.getEnabled() != null) {
             Boolean enabled = aPNSChannelRequest.getEnabled();
@@ -40,6 +51,21 @@ class APNSChannelRequestJsonMarshaller {
             String privateKey = aPNSChannelRequest.getPrivateKey();
             jsonWriter.name("PrivateKey");
             jsonWriter.value(privateKey);
+        }
+        if (aPNSChannelRequest.getTeamId() != null) {
+            String teamId = aPNSChannelRequest.getTeamId();
+            jsonWriter.name("TeamId");
+            jsonWriter.value(teamId);
+        }
+        if (aPNSChannelRequest.getTokenKey() != null) {
+            String tokenKey = aPNSChannelRequest.getTokenKey();
+            jsonWriter.name("TokenKey");
+            jsonWriter.value(tokenKey);
+        }
+        if (aPNSChannelRequest.getTokenKeyId() != null) {
+            String tokenKeyId = aPNSChannelRequest.getTokenKeyId();
+            jsonWriter.name("TokenKeyId");
+            jsonWriter.value(tokenKeyId);
         }
         jsonWriter.endObject();
     }

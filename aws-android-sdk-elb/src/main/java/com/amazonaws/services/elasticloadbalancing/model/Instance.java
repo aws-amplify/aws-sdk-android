@@ -19,13 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The ID of a back-end instance.
+ * The ID of an EC2 instance.
  * </p>
  */
 public class Instance implements Serializable {
     /**
      * <p>
-     * The ID of the instance.
+     * The instance ID.
      * </p>
      */
     private String instanceId;
@@ -43,7 +43,7 @@ public class Instance implements Serializable {
      * setter (with...) methods to initialize any additional object members.
      * 
      * @param instanceId <p>
-     *            The ID of the instance.
+     *            The instance ID.
      *            </p>
      */
     public Instance(String instanceId) {
@@ -52,11 +52,11 @@ public class Instance implements Serializable {
 
     /**
      * <p>
-     * The ID of the instance.
+     * The instance ID.
      * </p>
      *
      * @return <p>
-     *         The ID of the instance.
+     *         The instance ID.
      *         </p>
      */
     public String getInstanceId() {
@@ -65,11 +65,11 @@ public class Instance implements Serializable {
 
     /**
      * <p>
-     * The ID of the instance.
+     * The instance ID.
      * </p>
      *
      * @param instanceId <p>
-     *            The ID of the instance.
+     *            The instance ID.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -78,14 +78,14 @@ public class Instance implements Serializable {
 
     /**
      * <p>
-     * The ID of the instance.
+     * The instance ID.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param instanceId <p>
-     *            The ID of the instance.
+     *            The instance ID.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

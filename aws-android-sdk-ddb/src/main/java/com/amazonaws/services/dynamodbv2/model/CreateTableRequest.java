@@ -21,26 +21,28 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * The <i>CreateTable</i> operation adds a new table to your account. In an AWS
- * account, table names must be unique within each region. That is, you can have
- * two tables with same name if you create the tables in different regions.
+ * The <code>CreateTable</code> operation adds a new table to your account. In
+ * an AWS account, table names must be unique within each region. That is, you
+ * can have two tables with same name if you create the tables in different
+ * regions.
  * </p>
  * <p>
- * <i>CreateTable</i> is an asynchronous operation. Upon receiving a
- * <i>CreateTable</i> request, DynamoDB immediately returns a response with a
- * <i>TableStatus</i> of <code>CREATING</code>. After the table is created,
- * DynamoDB sets the <i>TableStatus</i> to <code>ACTIVE</code>. You can perform
- * read and write operations only on an <code>ACTIVE</code> table.
+ * <code>CreateTable</code> is an asynchronous operation. Upon receiving a
+ * <code>CreateTable</code> request, DynamoDB immediately returns a response
+ * with a <code>TableStatus</code> of <code>CREATING</code>. After the table is
+ * created, DynamoDB sets the <code>TableStatus</code> to <code>ACTIVE</code>.
+ * You can perform read and write operations only on an <code>ACTIVE</code>
+ * table.
  * </p>
  * <p>
  * You can optionally define secondary indexes on the new table, as part of the
- * <i>CreateTable</i> operation. If you want to create multiple tables with
- * secondary indexes on them, you must create the tables sequentially. Only one
- * table with secondary indexes can be in the <code>CREATING</code> state at any
- * given time.
+ * <code>CreateTable</code> operation. If you want to create multiple tables
+ * with secondary indexes on them, you must create the tables sequentially. Only
+ * one table with secondary indexes can be in the <code>CREATING</code> state at
+ * any given time.
  * </p>
  * <p>
- * You can use the <i>DescribeTable</i> API to check the table status.
+ * You can use the <code>DescribeTable</code> action to check the table status.
  * </p>
  */
 public class CreateTableRequest extends AmazonWebServiceRequest implements Serializable {
@@ -66,23 +68,24 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * Specifies the attributes that make up the primary key for a table or an
-     * index. The attributes in <i>KeySchema</i> must also be defined in the
-     * <i>AttributeDefinitions</i> array. For more information, see <a href=
+     * index. The attributes in <code>KeySchema</code> must also be defined in
+     * the <code>AttributeDefinitions</code> array. For more information, see <a
+     * href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html"
      * >Data Model</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * </p>
      * <p>
-     * Each <i>KeySchemaElement</i> in the array is composed of:
+     * Each <code>KeySchemaElement</code> in the array is composed of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>AttributeName</i> - The name of this key attribute.
+     * <code>AttributeName</code> - The name of this key attribute.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>KeyType</i> - The role that the key attribute will assume:
+     * <code>KeyType</code> - The role that the key attribute will assume:
      * </p>
      * <ul>
      * <li>
@@ -114,13 +117,13 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * </note>
      * <p>
      * For a simple primary key (partition key), you must provide exactly one
-     * element with a <i>KeyType</i> of <code>HASH</code>.
+     * element with a <code>KeyType</code> of <code>HASH</code>.
      * </p>
      * <p>
      * For a composite primary key (partition key and sort key), you must
      * provide exactly two elements, in this order: The first element must have
-     * a <i>KeyType</i> of <code>HASH</code>, and the second element must have a
-     * <i>KeyType</i> of <code>RANGE</code>.
+     * a <code>KeyType</code> of <code>HASH</code>, and the second element must
+     * have a <code>KeyType</code> of <code>RANGE</code>.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -144,28 +147,28 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <i>IndexName</i> - The name of the local secondary index. Must be unique
-     * only for this table.
+     * <code>IndexName</code> - The name of the local secondary index. Must be
+     * unique only for this table.
      * </p>
      * <p/></li>
      * <li>
      * <p>
-     * <i>KeySchema</i> - Specifies the key schema for the local secondary
+     * <code>KeySchema</code> - Specifies the key schema for the local secondary
      * index. The key schema must begin with the same partition key as the
      * table.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>Projection</i> - Specifies attributes that are copied (projected) from
-     * the table into the index. These are in addition to the primary key
-     * attributes and index key attributes, which are automatically projected.
-     * Each attribute specification is composed of:
+     * <code>Projection</code> - Specifies attributes that are copied
+     * (projected) from the table into the index. These are in addition to the
+     * primary key attributes and index key attributes, which are automatically
+     * projected. Each attribute specification is composed of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>ProjectionType</i> - One of the following:
+     * <code>ProjectionType</code> - One of the following:
      * </p>
      * <ul>
      * <li>
@@ -178,7 +181,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <code>INCLUDE</code> - Only the specified table attributes are projected
      * into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>.
+     * <code>NonKeyAttributes</code>.
      * </p>
      * </li>
      * <li>
@@ -191,12 +194,12 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
-     * <i>NonKeyAttributes</i> - A list of one or more non-key attribute names
-     * that are projected into the secondary index. The total count of
-     * attributes provided in <i>NonKeyAttributes</i>, summed across all of the
-     * secondary indexes, must not exceed 20. If you project the same attribute
-     * into two different indexes, this counts as two distinct attributes when
-     * determining the total.
+     * <code>NonKeyAttributes</code> - A list of one or more non-key attribute
+     * names that are projected into the secondary index. The total count of
+     * attributes provided in <code>NonKeyAttributes</code>, summed across all
+     * of the secondary indexes, must not exceed 20. If you project the same
+     * attribute into two different indexes, this counts as two distinct
+     * attributes when determining the total.
      * </p>
      * </li>
      * </ul>
@@ -214,27 +217,27 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <i>IndexName</i> - The name of the global secondary index. Must be unique
-     * only for this table.
+     * <code>IndexName</code> - The name of the global secondary index. Must be
+     * unique only for this table.
      * </p>
      * <p/></li>
      * <li>
      * <p>
-     * <i>KeySchema</i> - Specifies the key schema for the global secondary
-     * index.
+     * <code>KeySchema</code> - Specifies the key schema for the global
+     * secondary index.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>Projection</i> - Specifies attributes that are copied (projected) from
-     * the table into the index. These are in addition to the primary key
-     * attributes and index key attributes, which are automatically projected.
-     * Each attribute specification is composed of:
+     * <code>Projection</code> - Specifies attributes that are copied
+     * (projected) from the table into the index. These are in addition to the
+     * primary key attributes and index key attributes, which are automatically
+     * projected. Each attribute specification is composed of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>ProjectionType</i> - One of the following:
+     * <code>ProjectionType</code> - One of the following:
      * </p>
      * <ul>
      * <li>
@@ -247,7 +250,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <code>INCLUDE</code> - Only the specified table attributes are projected
      * into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>.
+     * <code>NonKeyAttributes</code>.
      * </p>
      * </li>
      * <li>
@@ -260,20 +263,21 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
-     * <i>NonKeyAttributes</i> - A list of one or more non-key attribute names
-     * that are projected into the secondary index. The total count of
-     * attributes provided in <i>NonKeyAttributes</i>, summed across all of the
-     * secondary indexes, must not exceed 20. If you project the same attribute
-     * into two different indexes, this counts as two distinct attributes when
-     * determining the total.
+     * <code>NonKeyAttributes</code> - A list of one or more non-key attribute
+     * names that are projected into the secondary index. The total count of
+     * attributes provided in <code>NonKeyAttributes</code>, summed across all
+     * of the secondary indexes, must not exceed 20. If you project the same
+     * attribute into two different indexes, this counts as two distinct
+     * attributes when determining the total.
      * </p>
      * </li>
      * </ul>
      * </li>
      * <li>
      * <p>
-     * <i>ProvisionedThroughput</i> - The provisioned throughput settings for
-     * the global secondary index, consisting of read and write capacity units.
+     * <code>ProvisionedThroughput</code> - The provisioned throughput settings
+     * for the global secondary index, consisting of read and write capacity
+     * units.
      * </p>
      * </li>
      * </ul>
@@ -283,7 +287,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * Represents the provisioned throughput settings for a specified table or
-     * index. The settings can be modified using the <i>UpdateTable</i>
+     * index. The settings can be modified using the <code>UpdateTable</code>
      * operation.
      * </p>
      * <p>
@@ -303,39 +307,39 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <i>StreamEnabled</i> - Indicates whether Streams is to be enabled (true)
-     * or disabled (false).
+     * <code>StreamEnabled</code> - Indicates whether Streams is to be enabled
+     * (true) or disabled (false).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>StreamViewType</i> - When an item in the table is modified,
-     * <i>StreamViewType</i> determines what information is written to the
-     * table's stream. Valid values for <i>StreamViewType</i> are:
+     * <code>StreamViewType</code> - When an item in the table is modified,
+     * <code>StreamViewType</code> determines what information is written to the
+     * table's stream. Valid values for <code>StreamViewType</code> are:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>KEYS_ONLY</i> - Only the key attributes of the modified item are
+     * <code>KEYS_ONLY</code> - Only the key attributes of the modified item are
      * written to the stream.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>NEW_IMAGE</i> - The entire item, as it appears after it was modified,
-     * is written to the stream.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <i>OLD_IMAGE</i> - The entire item, as it appeared before it was
+     * <code>NEW_IMAGE</code> - The entire item, as it appears after it was
      * modified, is written to the stream.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>NEW_AND_OLD_IMAGES</i> - Both the new and the old item images of the
-     * item are written to the stream.
+     * <code>OLD_IMAGE</code> - The entire item, as it appeared before it was
+     * modified, is written to the stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEW_AND_OLD_IMAGES</code> - Both the new and the old item images of
+     * the item are written to the stream.
      * </p>
      * </li>
      * </ul>
@@ -343,6 +347,13 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * </ul>
      */
     private StreamSpecification streamSpecification;
+
+    /**
+     * <p>
+     * Represents the settings used to enable server-side encryption.
+     * </p>
+     */
+    private SSESpecification sSESpecification;
 
     /**
      * Default constructor for CreateTableRequest object. Callers should use the
@@ -362,24 +373,26 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            </p>
      * @param keySchema <p>
      *            Specifies the attributes that make up the primary key for a
-     *            table or an index. The attributes in <i>KeySchema</i> must
-     *            also be defined in the <i>AttributeDefinitions</i> array. For
-     *            more information, see <a href=
+     *            table or an index. The attributes in <code>KeySchema</code>
+     *            must also be defined in the <code>AttributeDefinitions</code>
+     *            array. For more information, see <a href=
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html"
      *            >Data Model</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *            </p>
      *            <p>
-     *            Each <i>KeySchemaElement</i> in the array is composed of:
+     *            Each <code>KeySchemaElement</code> in the array is composed
+     *            of:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>AttributeName</i> - The name of this key attribute.
+     *            <code>AttributeName</code> - The name of this key attribute.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>KeyType</i> - The role that the key attribute will assume:
+     *            <code>KeyType</code> - The role that the key attribute will
+     *            assume:
      *            </p>
      *            <ul>
      *            <li>
@@ -412,14 +425,14 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            </note>
      *            <p>
      *            For a simple primary key (partition key), you must provide
-     *            exactly one element with a <i>KeyType</i> of <code>HASH</code>
-     *            .
+     *            exactly one element with a <code>KeyType</code> of
+     *            <code>HASH</code>.
      *            </p>
      *            <p>
      *            For a composite primary key (partition key and sort key), you
      *            must provide exactly two elements, in this order: The first
-     *            element must have a <i>KeyType</i> of <code>HASH</code>, and
-     *            the second element must have a <i>KeyType</i> of
+     *            element must have a <code>KeyType</code> of <code>HASH</code>,
+     *            and the second element must have a <code>KeyType</code> of
      *            <code>RANGE</code>.
      *            </p>
      *            <p>
@@ -448,24 +461,26 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            </p>
      * @param keySchema <p>
      *            Specifies the attributes that make up the primary key for a
-     *            table or an index. The attributes in <i>KeySchema</i> must
-     *            also be defined in the <i>AttributeDefinitions</i> array. For
-     *            more information, see <a href=
+     *            table or an index. The attributes in <code>KeySchema</code>
+     *            must also be defined in the <code>AttributeDefinitions</code>
+     *            array. For more information, see <a href=
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html"
      *            >Data Model</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *            </p>
      *            <p>
-     *            Each <i>KeySchemaElement</i> in the array is composed of:
+     *            Each <code>KeySchemaElement</code> in the array is composed
+     *            of:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>AttributeName</i> - The name of this key attribute.
+     *            <code>AttributeName</code> - The name of this key attribute.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>KeyType</i> - The role that the key attribute will assume:
+     *            <code>KeyType</code> - The role that the key attribute will
+     *            assume:
      *            </p>
      *            <ul>
      *            <li>
@@ -498,14 +513,14 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            </note>
      *            <p>
      *            For a simple primary key (partition key), you must provide
-     *            exactly one element with a <i>KeyType</i> of <code>HASH</code>
-     *            .
+     *            exactly one element with a <code>KeyType</code> of
+     *            <code>HASH</code>.
      *            </p>
      *            <p>
      *            For a composite primary key (partition key and sort key), you
      *            must provide exactly two elements, in this order: The first
-     *            element must have a <i>KeyType</i> of <code>HASH</code>, and
-     *            the second element must have a <i>KeyType</i> of
+     *            element must have a <code>KeyType</code> of <code>HASH</code>,
+     *            and the second element must have a <code>KeyType</code> of
      *            <code>RANGE</code>.
      *            </p>
      *            <p>
@@ -517,7 +532,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * @param provisionedThroughput <p>
      *            Represents the provisioned throughput settings for a specified
      *            table or index. The settings can be modified using the
-     *            <i>UpdateTable</i> operation.
+     *            <code>UpdateTable</code> operation.
      *            </p>
      *            <p>
      *            For current minimum and maximum provisioned throughput values,
@@ -681,23 +696,24 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * Specifies the attributes that make up the primary key for a table or an
-     * index. The attributes in <i>KeySchema</i> must also be defined in the
-     * <i>AttributeDefinitions</i> array. For more information, see <a href=
+     * index. The attributes in <code>KeySchema</code> must also be defined in
+     * the <code>AttributeDefinitions</code> array. For more information, see <a
+     * href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html"
      * >Data Model</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * </p>
      * <p>
-     * Each <i>KeySchemaElement</i> in the array is composed of:
+     * Each <code>KeySchemaElement</code> in the array is composed of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>AttributeName</i> - The name of this key attribute.
+     * <code>AttributeName</code> - The name of this key attribute.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>KeyType</i> - The role that the key attribute will assume:
+     * <code>KeyType</code> - The role that the key attribute will assume:
      * </p>
      * <ul>
      * <li>
@@ -729,13 +745,13 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * </note>
      * <p>
      * For a simple primary key (partition key), you must provide exactly one
-     * element with a <i>KeyType</i> of <code>HASH</code>.
+     * element with a <code>KeyType</code> of <code>HASH</code>.
      * </p>
      * <p>
      * For a composite primary key (partition key and sort key), you must
      * provide exactly two elements, in this order: The first element must have
-     * a <i>KeyType</i> of <code>HASH</code>, and the second element must have a
-     * <i>KeyType</i> of <code>RANGE</code>.
+     * a <code>KeyType</code> of <code>HASH</code>, and the second element must
+     * have a <code>KeyType</code> of <code>RANGE</code>.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -746,24 +762,25 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *
      * @return <p>
      *         Specifies the attributes that make up the primary key for a table
-     *         or an index. The attributes in <i>KeySchema</i> must also be
-     *         defined in the <i>AttributeDefinitions</i> array. For more
-     *         information, see <a href=
+     *         or an index. The attributes in <code>KeySchema</code> must also
+     *         be defined in the <code>AttributeDefinitions</code> array. For
+     *         more information, see <a href=
      *         "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html"
      *         >Data Model</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *         </p>
      *         <p>
-     *         Each <i>KeySchemaElement</i> in the array is composed of:
+     *         Each <code>KeySchemaElement</code> in the array is composed of:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         <i>AttributeName</i> - The name of this key attribute.
+     *         <code>AttributeName</code> - The name of this key attribute.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <i>KeyType</i> - The role that the key attribute will assume:
+     *         <code>KeyType</code> - The role that the key attribute will
+     *         assume:
      *         </p>
      *         <ul>
      *         <li>
@@ -795,13 +812,15 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         </note>
      *         <p>
      *         For a simple primary key (partition key), you must provide
-     *         exactly one element with a <i>KeyType</i> of <code>HASH</code>.
+     *         exactly one element with a <code>KeyType</code> of
+     *         <code>HASH</code>.
      *         </p>
      *         <p>
      *         For a composite primary key (partition key and sort key), you
      *         must provide exactly two elements, in this order: The first
-     *         element must have a <i>KeyType</i> of <code>HASH</code>, and the
-     *         second element must have a <i>KeyType</i> of <code>RANGE</code>.
+     *         element must have a <code>KeyType</code> of <code>HASH</code>,
+     *         and the second element must have a <code>KeyType</code> of
+     *         <code>RANGE</code>.
      *         </p>
      *         <p>
      *         For more information, see <a href=
@@ -817,23 +836,24 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * Specifies the attributes that make up the primary key for a table or an
-     * index. The attributes in <i>KeySchema</i> must also be defined in the
-     * <i>AttributeDefinitions</i> array. For more information, see <a href=
+     * index. The attributes in <code>KeySchema</code> must also be defined in
+     * the <code>AttributeDefinitions</code> array. For more information, see <a
+     * href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html"
      * >Data Model</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * </p>
      * <p>
-     * Each <i>KeySchemaElement</i> in the array is composed of:
+     * Each <code>KeySchemaElement</code> in the array is composed of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>AttributeName</i> - The name of this key attribute.
+     * <code>AttributeName</code> - The name of this key attribute.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>KeyType</i> - The role that the key attribute will assume:
+     * <code>KeyType</code> - The role that the key attribute will assume:
      * </p>
      * <ul>
      * <li>
@@ -865,13 +885,13 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * </note>
      * <p>
      * For a simple primary key (partition key), you must provide exactly one
-     * element with a <i>KeyType</i> of <code>HASH</code>.
+     * element with a <code>KeyType</code> of <code>HASH</code>.
      * </p>
      * <p>
      * For a composite primary key (partition key and sort key), you must
      * provide exactly two elements, in this order: The first element must have
-     * a <i>KeyType</i> of <code>HASH</code>, and the second element must have a
-     * <i>KeyType</i> of <code>RANGE</code>.
+     * a <code>KeyType</code> of <code>HASH</code>, and the second element must
+     * have a <code>KeyType</code> of <code>RANGE</code>.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -882,24 +902,26 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *
      * @param keySchema <p>
      *            Specifies the attributes that make up the primary key for a
-     *            table or an index. The attributes in <i>KeySchema</i> must
-     *            also be defined in the <i>AttributeDefinitions</i> array. For
-     *            more information, see <a href=
+     *            table or an index. The attributes in <code>KeySchema</code>
+     *            must also be defined in the <code>AttributeDefinitions</code>
+     *            array. For more information, see <a href=
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html"
      *            >Data Model</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *            </p>
      *            <p>
-     *            Each <i>KeySchemaElement</i> in the array is composed of:
+     *            Each <code>KeySchemaElement</code> in the array is composed
+     *            of:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>AttributeName</i> - The name of this key attribute.
+     *            <code>AttributeName</code> - The name of this key attribute.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>KeyType</i> - The role that the key attribute will assume:
+     *            <code>KeyType</code> - The role that the key attribute will
+     *            assume:
      *            </p>
      *            <ul>
      *            <li>
@@ -932,14 +954,14 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            </note>
      *            <p>
      *            For a simple primary key (partition key), you must provide
-     *            exactly one element with a <i>KeyType</i> of <code>HASH</code>
-     *            .
+     *            exactly one element with a <code>KeyType</code> of
+     *            <code>HASH</code>.
      *            </p>
      *            <p>
      *            For a composite primary key (partition key and sort key), you
      *            must provide exactly two elements, in this order: The first
-     *            element must have a <i>KeyType</i> of <code>HASH</code>, and
-     *            the second element must have a <i>KeyType</i> of
+     *            element must have a <code>KeyType</code> of <code>HASH</code>,
+     *            and the second element must have a <code>KeyType</code> of
      *            <code>RANGE</code>.
      *            </p>
      *            <p>
@@ -961,23 +983,24 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * Specifies the attributes that make up the primary key for a table or an
-     * index. The attributes in <i>KeySchema</i> must also be defined in the
-     * <i>AttributeDefinitions</i> array. For more information, see <a href=
+     * index. The attributes in <code>KeySchema</code> must also be defined in
+     * the <code>AttributeDefinitions</code> array. For more information, see <a
+     * href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html"
      * >Data Model</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * </p>
      * <p>
-     * Each <i>KeySchemaElement</i> in the array is composed of:
+     * Each <code>KeySchemaElement</code> in the array is composed of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>AttributeName</i> - The name of this key attribute.
+     * <code>AttributeName</code> - The name of this key attribute.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>KeyType</i> - The role that the key attribute will assume:
+     * <code>KeyType</code> - The role that the key attribute will assume:
      * </p>
      * <ul>
      * <li>
@@ -1009,13 +1032,13 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * </note>
      * <p>
      * For a simple primary key (partition key), you must provide exactly one
-     * element with a <i>KeyType</i> of <code>HASH</code>.
+     * element with a <code>KeyType</code> of <code>HASH</code>.
      * </p>
      * <p>
      * For a composite primary key (partition key and sort key), you must
      * provide exactly two elements, in this order: The first element must have
-     * a <i>KeyType</i> of <code>HASH</code>, and the second element must have a
-     * <i>KeyType</i> of <code>RANGE</code>.
+     * a <code>KeyType</code> of <code>HASH</code>, and the second element must
+     * have a <code>KeyType</code> of <code>RANGE</code>.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -1029,24 +1052,26 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *
      * @param keySchema <p>
      *            Specifies the attributes that make up the primary key for a
-     *            table or an index. The attributes in <i>KeySchema</i> must
-     *            also be defined in the <i>AttributeDefinitions</i> array. For
-     *            more information, see <a href=
+     *            table or an index. The attributes in <code>KeySchema</code>
+     *            must also be defined in the <code>AttributeDefinitions</code>
+     *            array. For more information, see <a href=
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html"
      *            >Data Model</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *            </p>
      *            <p>
-     *            Each <i>KeySchemaElement</i> in the array is composed of:
+     *            Each <code>KeySchemaElement</code> in the array is composed
+     *            of:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>AttributeName</i> - The name of this key attribute.
+     *            <code>AttributeName</code> - The name of this key attribute.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>KeyType</i> - The role that the key attribute will assume:
+     *            <code>KeyType</code> - The role that the key attribute will
+     *            assume:
      *            </p>
      *            <ul>
      *            <li>
@@ -1079,14 +1104,14 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            </note>
      *            <p>
      *            For a simple primary key (partition key), you must provide
-     *            exactly one element with a <i>KeyType</i> of <code>HASH</code>
-     *            .
+     *            exactly one element with a <code>KeyType</code> of
+     *            <code>HASH</code>.
      *            </p>
      *            <p>
      *            For a composite primary key (partition key and sort key), you
      *            must provide exactly two elements, in this order: The first
-     *            element must have a <i>KeyType</i> of <code>HASH</code>, and
-     *            the second element must have a <i>KeyType</i> of
+     *            element must have a <code>KeyType</code> of <code>HASH</code>,
+     *            and the second element must have a <code>KeyType</code> of
      *            <code>RANGE</code>.
      *            </p>
      *            <p>
@@ -1111,23 +1136,24 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * Specifies the attributes that make up the primary key for a table or an
-     * index. The attributes in <i>KeySchema</i> must also be defined in the
-     * <i>AttributeDefinitions</i> array. For more information, see <a href=
+     * index. The attributes in <code>KeySchema</code> must also be defined in
+     * the <code>AttributeDefinitions</code> array. For more information, see <a
+     * href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html"
      * >Data Model</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      * </p>
      * <p>
-     * Each <i>KeySchemaElement</i> in the array is composed of:
+     * Each <code>KeySchemaElement</code> in the array is composed of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>AttributeName</i> - The name of this key attribute.
+     * <code>AttributeName</code> - The name of this key attribute.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>KeyType</i> - The role that the key attribute will assume:
+     * <code>KeyType</code> - The role that the key attribute will assume:
      * </p>
      * <ul>
      * <li>
@@ -1159,13 +1185,13 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * </note>
      * <p>
      * For a simple primary key (partition key), you must provide exactly one
-     * element with a <i>KeyType</i> of <code>HASH</code>.
+     * element with a <code>KeyType</code> of <code>HASH</code>.
      * </p>
      * <p>
      * For a composite primary key (partition key and sort key), you must
      * provide exactly two elements, in this order: The first element must have
-     * a <i>KeyType</i> of <code>HASH</code>, and the second element must have a
-     * <i>KeyType</i> of <code>RANGE</code>.
+     * a <code>KeyType</code> of <code>HASH</code>, and the second element must
+     * have a <code>KeyType</code> of <code>RANGE</code>.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -1179,24 +1205,26 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *
      * @param keySchema <p>
      *            Specifies the attributes that make up the primary key for a
-     *            table or an index. The attributes in <i>KeySchema</i> must
-     *            also be defined in the <i>AttributeDefinitions</i> array. For
-     *            more information, see <a href=
+     *            table or an index. The attributes in <code>KeySchema</code>
+     *            must also be defined in the <code>AttributeDefinitions</code>
+     *            array. For more information, see <a href=
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html"
      *            >Data Model</a> in the <i>Amazon DynamoDB Developer Guide</i>.
      *            </p>
      *            <p>
-     *            Each <i>KeySchemaElement</i> in the array is composed of:
+     *            Each <code>KeySchemaElement</code> in the array is composed
+     *            of:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>AttributeName</i> - The name of this key attribute.
+     *            <code>AttributeName</code> - The name of this key attribute.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>KeyType</i> - The role that the key attribute will assume:
+     *            <code>KeyType</code> - The role that the key attribute will
+     *            assume:
      *            </p>
      *            <ul>
      *            <li>
@@ -1229,14 +1257,14 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            </note>
      *            <p>
      *            For a simple primary key (partition key), you must provide
-     *            exactly one element with a <i>KeyType</i> of <code>HASH</code>
-     *            .
+     *            exactly one element with a <code>KeyType</code> of
+     *            <code>HASH</code>.
      *            </p>
      *            <p>
      *            For a composite primary key (partition key and sort key), you
      *            must provide exactly two elements, in this order: The first
-     *            element must have a <i>KeyType</i> of <code>HASH</code>, and
-     *            the second element must have a <i>KeyType</i> of
+     *            element must have a <code>KeyType</code> of <code>HASH</code>,
+     *            and the second element must have a <code>KeyType</code> of
      *            <code>RANGE</code>.
      *            </p>
      *            <p>
@@ -1266,28 +1294,28 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <i>IndexName</i> - The name of the local secondary index. Must be unique
-     * only for this table.
+     * <code>IndexName</code> - The name of the local secondary index. Must be
+     * unique only for this table.
      * </p>
      * <p/></li>
      * <li>
      * <p>
-     * <i>KeySchema</i> - Specifies the key schema for the local secondary
+     * <code>KeySchema</code> - Specifies the key schema for the local secondary
      * index. The key schema must begin with the same partition key as the
      * table.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>Projection</i> - Specifies attributes that are copied (projected) from
-     * the table into the index. These are in addition to the primary key
-     * attributes and index key attributes, which are automatically projected.
-     * Each attribute specification is composed of:
+     * <code>Projection</code> - Specifies attributes that are copied
+     * (projected) from the table into the index. These are in addition to the
+     * primary key attributes and index key attributes, which are automatically
+     * projected. Each attribute specification is composed of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>ProjectionType</i> - One of the following:
+     * <code>ProjectionType</code> - One of the following:
      * </p>
      * <ul>
      * <li>
@@ -1300,7 +1328,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <code>INCLUDE</code> - Only the specified table attributes are projected
      * into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>.
+     * <code>NonKeyAttributes</code>.
      * </p>
      * </li>
      * <li>
@@ -1313,12 +1341,12 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
-     * <i>NonKeyAttributes</i> - A list of one or more non-key attribute names
-     * that are projected into the secondary index. The total count of
-     * attributes provided in <i>NonKeyAttributes</i>, summed across all of the
-     * secondary indexes, must not exceed 20. If you project the same attribute
-     * into two different indexes, this counts as two distinct attributes when
-     * determining the total.
+     * <code>NonKeyAttributes</code> - A list of one or more non-key attribute
+     * names that are projected into the secondary index. The total count of
+     * attributes provided in <code>NonKeyAttributes</code>, summed across all
+     * of the secondary indexes, must not exceed 20. If you project the same
+     * attribute into two different indexes, this counts as two distinct
+     * attributes when determining the total.
      * </p>
      * </li>
      * </ul>
@@ -1337,20 +1365,20 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         <ul>
      *         <li>
      *         <p>
-     *         <i>IndexName</i> - The name of the local secondary index. Must be
-     *         unique only for this table.
+     *         <code>IndexName</code> - The name of the local secondary index.
+     *         Must be unique only for this table.
      *         </p>
      *         <p/></li>
      *         <li>
      *         <p>
-     *         <i>KeySchema</i> - Specifies the key schema for the local
+     *         <code>KeySchema</code> - Specifies the key schema for the local
      *         secondary index. The key schema must begin with the same
      *         partition key as the table.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <i>Projection</i> - Specifies attributes that are copied
+     *         <code>Projection</code> - Specifies attributes that are copied
      *         (projected) from the table into the index. These are in addition
      *         to the primary key attributes and index key attributes, which are
      *         automatically projected. Each attribute specification is composed
@@ -1359,7 +1387,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         <ul>
      *         <li>
      *         <p>
-     *         <i>ProjectionType</i> - One of the following:
+     *         <code>ProjectionType</code> - One of the following:
      *         </p>
      *         <ul>
      *         <li>
@@ -1372,7 +1400,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         <p>
      *         <code>INCLUDE</code> - Only the specified table attributes are
      *         projected into the index. The list of projected attributes are in
-     *         <i>NonKeyAttributes</i>.
+     *         <code>NonKeyAttributes</code>.
      *         </p>
      *         </li>
      *         <li>
@@ -1385,12 +1413,13 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         </li>
      *         <li>
      *         <p>
-     *         <i>NonKeyAttributes</i> - A list of one or more non-key attribute
-     *         names that are projected into the secondary index. The total
-     *         count of attributes provided in <i>NonKeyAttributes</i>, summed
-     *         across all of the secondary indexes, must not exceed 20. If you
-     *         project the same attribute into two different indexes, this
-     *         counts as two distinct attributes when determining the total.
+     *         <code>NonKeyAttributes</code> - A list of one or more non-key
+     *         attribute names that are projected into the secondary index. The
+     *         total count of attributes provided in
+     *         <code>NonKeyAttributes</code>, summed across all of the secondary
+     *         indexes, must not exceed 20. If you project the same attribute
+     *         into two different indexes, this counts as two distinct
+     *         attributes when determining the total.
      *         </p>
      *         </li>
      *         </ul>
@@ -1414,28 +1443,28 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <i>IndexName</i> - The name of the local secondary index. Must be unique
-     * only for this table.
+     * <code>IndexName</code> - The name of the local secondary index. Must be
+     * unique only for this table.
      * </p>
      * <p/></li>
      * <li>
      * <p>
-     * <i>KeySchema</i> - Specifies the key schema for the local secondary
+     * <code>KeySchema</code> - Specifies the key schema for the local secondary
      * index. The key schema must begin with the same partition key as the
      * table.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>Projection</i> - Specifies attributes that are copied (projected) from
-     * the table into the index. These are in addition to the primary key
-     * attributes and index key attributes, which are automatically projected.
-     * Each attribute specification is composed of:
+     * <code>Projection</code> - Specifies attributes that are copied
+     * (projected) from the table into the index. These are in addition to the
+     * primary key attributes and index key attributes, which are automatically
+     * projected. Each attribute specification is composed of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>ProjectionType</i> - One of the following:
+     * <code>ProjectionType</code> - One of the following:
      * </p>
      * <ul>
      * <li>
@@ -1448,7 +1477,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <code>INCLUDE</code> - Only the specified table attributes are projected
      * into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>.
+     * <code>NonKeyAttributes</code>.
      * </p>
      * </li>
      * <li>
@@ -1461,12 +1490,12 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
-     * <i>NonKeyAttributes</i> - A list of one or more non-key attribute names
-     * that are projected into the secondary index. The total count of
-     * attributes provided in <i>NonKeyAttributes</i>, summed across all of the
-     * secondary indexes, must not exceed 20. If you project the same attribute
-     * into two different indexes, this counts as two distinct attributes when
-     * determining the total.
+     * <code>NonKeyAttributes</code> - A list of one or more non-key attribute
+     * names that are projected into the secondary index. The total count of
+     * attributes provided in <code>NonKeyAttributes</code>, summed across all
+     * of the secondary indexes, must not exceed 20. If you project the same
+     * attribute into two different indexes, this counts as two distinct
+     * attributes when determining the total.
      * </p>
      * </li>
      * </ul>
@@ -1487,20 +1516,20 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>IndexName</i> - The name of the local secondary index. Must
-     *            be unique only for this table.
+     *            <code>IndexName</code> - The name of the local secondary
+     *            index. Must be unique only for this table.
      *            </p>
      *            <p/></li>
      *            <li>
      *            <p>
-     *            <i>KeySchema</i> - Specifies the key schema for the local
-     *            secondary index. The key schema must begin with the same
+     *            <code>KeySchema</code> - Specifies the key schema for the
+     *            local secondary index. The key schema must begin with the same
      *            partition key as the table.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>Projection</i> - Specifies attributes that are copied
+     *            <code>Projection</code> - Specifies attributes that are copied
      *            (projected) from the table into the index. These are in
      *            addition to the primary key attributes and index key
      *            attributes, which are automatically projected. Each attribute
@@ -1509,7 +1538,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>ProjectionType</i> - One of the following:
+     *            <code>ProjectionType</code> - One of the following:
      *            </p>
      *            <ul>
      *            <li>
@@ -1522,7 +1551,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <p>
      *            <code>INCLUDE</code> - Only the specified table attributes are
      *            projected into the index. The list of projected attributes are
-     *            in <i>NonKeyAttributes</i>.
+     *            in <code>NonKeyAttributes</code>.
      *            </p>
      *            </li>
      *            <li>
@@ -1535,13 +1564,13 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            </li>
      *            <li>
      *            <p>
-     *            <i>NonKeyAttributes</i> - A list of one or more non-key
+     *            <code>NonKeyAttributes</code> - A list of one or more non-key
      *            attribute names that are projected into the secondary index.
      *            The total count of attributes provided in
-     *            <i>NonKeyAttributes</i>, summed across all of the secondary
-     *            indexes, must not exceed 20. If you project the same attribute
-     *            into two different indexes, this counts as two distinct
-     *            attributes when determining the total.
+     *            <code>NonKeyAttributes</code>, summed across all of the
+     *            secondary indexes, must not exceed 20. If you project the same
+     *            attribute into two different indexes, this counts as two
+     *            distinct attributes when determining the total.
      *            </p>
      *            </li>
      *            </ul>
@@ -1572,28 +1601,28 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <i>IndexName</i> - The name of the local secondary index. Must be unique
-     * only for this table.
+     * <code>IndexName</code> - The name of the local secondary index. Must be
+     * unique only for this table.
      * </p>
      * <p/></li>
      * <li>
      * <p>
-     * <i>KeySchema</i> - Specifies the key schema for the local secondary
+     * <code>KeySchema</code> - Specifies the key schema for the local secondary
      * index. The key schema must begin with the same partition key as the
      * table.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>Projection</i> - Specifies attributes that are copied (projected) from
-     * the table into the index. These are in addition to the primary key
-     * attributes and index key attributes, which are automatically projected.
-     * Each attribute specification is composed of:
+     * <code>Projection</code> - Specifies attributes that are copied
+     * (projected) from the table into the index. These are in addition to the
+     * primary key attributes and index key attributes, which are automatically
+     * projected. Each attribute specification is composed of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>ProjectionType</i> - One of the following:
+     * <code>ProjectionType</code> - One of the following:
      * </p>
      * <ul>
      * <li>
@@ -1606,7 +1635,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <code>INCLUDE</code> - Only the specified table attributes are projected
      * into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>.
+     * <code>NonKeyAttributes</code>.
      * </p>
      * </li>
      * <li>
@@ -1619,12 +1648,12 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
-     * <i>NonKeyAttributes</i> - A list of one or more non-key attribute names
-     * that are projected into the secondary index. The total count of
-     * attributes provided in <i>NonKeyAttributes</i>, summed across all of the
-     * secondary indexes, must not exceed 20. If you project the same attribute
-     * into two different indexes, this counts as two distinct attributes when
-     * determining the total.
+     * <code>NonKeyAttributes</code> - A list of one or more non-key attribute
+     * names that are projected into the secondary index. The total count of
+     * attributes provided in <code>NonKeyAttributes</code>, summed across all
+     * of the secondary indexes, must not exceed 20. If you project the same
+     * attribute into two different indexes, this counts as two distinct
+     * attributes when determining the total.
      * </p>
      * </li>
      * </ul>
@@ -1648,20 +1677,20 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>IndexName</i> - The name of the local secondary index. Must
-     *            be unique only for this table.
+     *            <code>IndexName</code> - The name of the local secondary
+     *            index. Must be unique only for this table.
      *            </p>
      *            <p/></li>
      *            <li>
      *            <p>
-     *            <i>KeySchema</i> - Specifies the key schema for the local
-     *            secondary index. The key schema must begin with the same
+     *            <code>KeySchema</code> - Specifies the key schema for the
+     *            local secondary index. The key schema must begin with the same
      *            partition key as the table.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>Projection</i> - Specifies attributes that are copied
+     *            <code>Projection</code> - Specifies attributes that are copied
      *            (projected) from the table into the index. These are in
      *            addition to the primary key attributes and index key
      *            attributes, which are automatically projected. Each attribute
@@ -1670,7 +1699,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>ProjectionType</i> - One of the following:
+     *            <code>ProjectionType</code> - One of the following:
      *            </p>
      *            <ul>
      *            <li>
@@ -1683,7 +1712,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <p>
      *            <code>INCLUDE</code> - Only the specified table attributes are
      *            projected into the index. The list of projected attributes are
-     *            in <i>NonKeyAttributes</i>.
+     *            in <code>NonKeyAttributes</code>.
      *            </p>
      *            </li>
      *            <li>
@@ -1696,13 +1725,13 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            </li>
      *            <li>
      *            <p>
-     *            <i>NonKeyAttributes</i> - A list of one or more non-key
+     *            <code>NonKeyAttributes</code> - A list of one or more non-key
      *            attribute names that are projected into the secondary index.
      *            The total count of attributes provided in
-     *            <i>NonKeyAttributes</i>, summed across all of the secondary
-     *            indexes, must not exceed 20. If you project the same attribute
-     *            into two different indexes, this counts as two distinct
-     *            attributes when determining the total.
+     *            <code>NonKeyAttributes</code>, summed across all of the
+     *            secondary indexes, must not exceed 20. If you project the same
+     *            attribute into two different indexes, this counts as two
+     *            distinct attributes when determining the total.
      *            </p>
      *            </li>
      *            </ul>
@@ -1736,28 +1765,28 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <i>IndexName</i> - The name of the local secondary index. Must be unique
-     * only for this table.
+     * <code>IndexName</code> - The name of the local secondary index. Must be
+     * unique only for this table.
      * </p>
      * <p/></li>
      * <li>
      * <p>
-     * <i>KeySchema</i> - Specifies the key schema for the local secondary
+     * <code>KeySchema</code> - Specifies the key schema for the local secondary
      * index. The key schema must begin with the same partition key as the
      * table.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>Projection</i> - Specifies attributes that are copied (projected) from
-     * the table into the index. These are in addition to the primary key
-     * attributes and index key attributes, which are automatically projected.
-     * Each attribute specification is composed of:
+     * <code>Projection</code> - Specifies attributes that are copied
+     * (projected) from the table into the index. These are in addition to the
+     * primary key attributes and index key attributes, which are automatically
+     * projected. Each attribute specification is composed of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>ProjectionType</i> - One of the following:
+     * <code>ProjectionType</code> - One of the following:
      * </p>
      * <ul>
      * <li>
@@ -1770,7 +1799,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <code>INCLUDE</code> - Only the specified table attributes are projected
      * into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>.
+     * <code>NonKeyAttributes</code>.
      * </p>
      * </li>
      * <li>
@@ -1783,12 +1812,12 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
-     * <i>NonKeyAttributes</i> - A list of one or more non-key attribute names
-     * that are projected into the secondary index. The total count of
-     * attributes provided in <i>NonKeyAttributes</i>, summed across all of the
-     * secondary indexes, must not exceed 20. If you project the same attribute
-     * into two different indexes, this counts as two distinct attributes when
-     * determining the total.
+     * <code>NonKeyAttributes</code> - A list of one or more non-key attribute
+     * names that are projected into the secondary index. The total count of
+     * attributes provided in <code>NonKeyAttributes</code>, summed across all
+     * of the secondary indexes, must not exceed 20. If you project the same
+     * attribute into two different indexes, this counts as two distinct
+     * attributes when determining the total.
      * </p>
      * </li>
      * </ul>
@@ -1812,20 +1841,20 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>IndexName</i> - The name of the local secondary index. Must
-     *            be unique only for this table.
+     *            <code>IndexName</code> - The name of the local secondary
+     *            index. Must be unique only for this table.
      *            </p>
      *            <p/></li>
      *            <li>
      *            <p>
-     *            <i>KeySchema</i> - Specifies the key schema for the local
-     *            secondary index. The key schema must begin with the same
+     *            <code>KeySchema</code> - Specifies the key schema for the
+     *            local secondary index. The key schema must begin with the same
      *            partition key as the table.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>Projection</i> - Specifies attributes that are copied
+     *            <code>Projection</code> - Specifies attributes that are copied
      *            (projected) from the table into the index. These are in
      *            addition to the primary key attributes and index key
      *            attributes, which are automatically projected. Each attribute
@@ -1834,7 +1863,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>ProjectionType</i> - One of the following:
+     *            <code>ProjectionType</code> - One of the following:
      *            </p>
      *            <ul>
      *            <li>
@@ -1847,7 +1876,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <p>
      *            <code>INCLUDE</code> - Only the specified table attributes are
      *            projected into the index. The list of projected attributes are
-     *            in <i>NonKeyAttributes</i>.
+     *            in <code>NonKeyAttributes</code>.
      *            </p>
      *            </li>
      *            <li>
@@ -1860,13 +1889,13 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            </li>
      *            <li>
      *            <p>
-     *            <i>NonKeyAttributes</i> - A list of one or more non-key
+     *            <code>NonKeyAttributes</code> - A list of one or more non-key
      *            attribute names that are projected into the secondary index.
      *            The total count of attributes provided in
-     *            <i>NonKeyAttributes</i>, summed across all of the secondary
-     *            indexes, must not exceed 20. If you project the same attribute
-     *            into two different indexes, this counts as two distinct
-     *            attributes when determining the total.
+     *            <code>NonKeyAttributes</code>, summed across all of the
+     *            secondary indexes, must not exceed 20. If you project the same
+     *            attribute into two different indexes, this counts as two
+     *            distinct attributes when determining the total.
      *            </p>
      *            </li>
      *            </ul>
@@ -1890,27 +1919,27 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <i>IndexName</i> - The name of the global secondary index. Must be unique
-     * only for this table.
+     * <code>IndexName</code> - The name of the global secondary index. Must be
+     * unique only for this table.
      * </p>
      * <p/></li>
      * <li>
      * <p>
-     * <i>KeySchema</i> - Specifies the key schema for the global secondary
-     * index.
+     * <code>KeySchema</code> - Specifies the key schema for the global
+     * secondary index.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>Projection</i> - Specifies attributes that are copied (projected) from
-     * the table into the index. These are in addition to the primary key
-     * attributes and index key attributes, which are automatically projected.
-     * Each attribute specification is composed of:
+     * <code>Projection</code> - Specifies attributes that are copied
+     * (projected) from the table into the index. These are in addition to the
+     * primary key attributes and index key attributes, which are automatically
+     * projected. Each attribute specification is composed of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>ProjectionType</i> - One of the following:
+     * <code>ProjectionType</code> - One of the following:
      * </p>
      * <ul>
      * <li>
@@ -1923,7 +1952,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <code>INCLUDE</code> - Only the specified table attributes are projected
      * into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>.
+     * <code>NonKeyAttributes</code>.
      * </p>
      * </li>
      * <li>
@@ -1936,20 +1965,21 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
-     * <i>NonKeyAttributes</i> - A list of one or more non-key attribute names
-     * that are projected into the secondary index. The total count of
-     * attributes provided in <i>NonKeyAttributes</i>, summed across all of the
-     * secondary indexes, must not exceed 20. If you project the same attribute
-     * into two different indexes, this counts as two distinct attributes when
-     * determining the total.
+     * <code>NonKeyAttributes</code> - A list of one or more non-key attribute
+     * names that are projected into the secondary index. The total count of
+     * attributes provided in <code>NonKeyAttributes</code>, summed across all
+     * of the secondary indexes, must not exceed 20. If you project the same
+     * attribute into two different indexes, this counts as two distinct
+     * attributes when determining the total.
      * </p>
      * </li>
      * </ul>
      * </li>
      * <li>
      * <p>
-     * <i>ProvisionedThroughput</i> - The provisioned throughput settings for
-     * the global secondary index, consisting of read and write capacity units.
+     * <code>ProvisionedThroughput</code> - The provisioned throughput settings
+     * for the global secondary index, consisting of read and write capacity
+     * units.
      * </p>
      * </li>
      * </ul>
@@ -1962,19 +1992,19 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         <ul>
      *         <li>
      *         <p>
-     *         <i>IndexName</i> - The name of the global secondary index. Must
-     *         be unique only for this table.
+     *         <code>IndexName</code> - The name of the global secondary index.
+     *         Must be unique only for this table.
      *         </p>
      *         <p/></li>
      *         <li>
      *         <p>
-     *         <i>KeySchema</i> - Specifies the key schema for the global
+     *         <code>KeySchema</code> - Specifies the key schema for the global
      *         secondary index.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <i>Projection</i> - Specifies attributes that are copied
+     *         <code>Projection</code> - Specifies attributes that are copied
      *         (projected) from the table into the index. These are in addition
      *         to the primary key attributes and index key attributes, which are
      *         automatically projected. Each attribute specification is composed
@@ -1983,7 +2013,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         <ul>
      *         <li>
      *         <p>
-     *         <i>ProjectionType</i> - One of the following:
+     *         <code>ProjectionType</code> - One of the following:
      *         </p>
      *         <ul>
      *         <li>
@@ -1996,7 +2026,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         <p>
      *         <code>INCLUDE</code> - Only the specified table attributes are
      *         projected into the index. The list of projected attributes are in
-     *         <i>NonKeyAttributes</i>.
+     *         <code>NonKeyAttributes</code>.
      *         </p>
      *         </li>
      *         <li>
@@ -2009,19 +2039,20 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         </li>
      *         <li>
      *         <p>
-     *         <i>NonKeyAttributes</i> - A list of one or more non-key attribute
-     *         names that are projected into the secondary index. The total
-     *         count of attributes provided in <i>NonKeyAttributes</i>, summed
-     *         across all of the secondary indexes, must not exceed 20. If you
-     *         project the same attribute into two different indexes, this
-     *         counts as two distinct attributes when determining the total.
+     *         <code>NonKeyAttributes</code> - A list of one or more non-key
+     *         attribute names that are projected into the secondary index. The
+     *         total count of attributes provided in
+     *         <code>NonKeyAttributes</code>, summed across all of the secondary
+     *         indexes, must not exceed 20. If you project the same attribute
+     *         into two different indexes, this counts as two distinct
+     *         attributes when determining the total.
      *         </p>
      *         </li>
      *         </ul>
      *         </li>
      *         <li>
      *         <p>
-     *         <i>ProvisionedThroughput</i> - The provisioned throughput
+     *         <code>ProvisionedThroughput</code> - The provisioned throughput
      *         settings for the global secondary index, consisting of read and
      *         write capacity units.
      *         </p>
@@ -2041,27 +2072,27 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <i>IndexName</i> - The name of the global secondary index. Must be unique
-     * only for this table.
+     * <code>IndexName</code> - The name of the global secondary index. Must be
+     * unique only for this table.
      * </p>
      * <p/></li>
      * <li>
      * <p>
-     * <i>KeySchema</i> - Specifies the key schema for the global secondary
-     * index.
+     * <code>KeySchema</code> - Specifies the key schema for the global
+     * secondary index.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>Projection</i> - Specifies attributes that are copied (projected) from
-     * the table into the index. These are in addition to the primary key
-     * attributes and index key attributes, which are automatically projected.
-     * Each attribute specification is composed of:
+     * <code>Projection</code> - Specifies attributes that are copied
+     * (projected) from the table into the index. These are in addition to the
+     * primary key attributes and index key attributes, which are automatically
+     * projected. Each attribute specification is composed of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>ProjectionType</i> - One of the following:
+     * <code>ProjectionType</code> - One of the following:
      * </p>
      * <ul>
      * <li>
@@ -2074,7 +2105,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <code>INCLUDE</code> - Only the specified table attributes are projected
      * into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>.
+     * <code>NonKeyAttributes</code>.
      * </p>
      * </li>
      * <li>
@@ -2087,20 +2118,21 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
-     * <i>NonKeyAttributes</i> - A list of one or more non-key attribute names
-     * that are projected into the secondary index. The total count of
-     * attributes provided in <i>NonKeyAttributes</i>, summed across all of the
-     * secondary indexes, must not exceed 20. If you project the same attribute
-     * into two different indexes, this counts as two distinct attributes when
-     * determining the total.
+     * <code>NonKeyAttributes</code> - A list of one or more non-key attribute
+     * names that are projected into the secondary index. The total count of
+     * attributes provided in <code>NonKeyAttributes</code>, summed across all
+     * of the secondary indexes, must not exceed 20. If you project the same
+     * attribute into two different indexes, this counts as two distinct
+     * attributes when determining the total.
      * </p>
      * </li>
      * </ul>
      * </li>
      * <li>
      * <p>
-     * <i>ProvisionedThroughput</i> - The provisioned throughput settings for
-     * the global secondary index, consisting of read and write capacity units.
+     * <code>ProvisionedThroughput</code> - The provisioned throughput settings
+     * for the global secondary index, consisting of read and write capacity
+     * units.
      * </p>
      * </li>
      * </ul>
@@ -2113,19 +2145,19 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>IndexName</i> - The name of the global secondary index.
-     *            Must be unique only for this table.
+     *            <code>IndexName</code> - The name of the global secondary
+     *            index. Must be unique only for this table.
      *            </p>
      *            <p/></li>
      *            <li>
      *            <p>
-     *            <i>KeySchema</i> - Specifies the key schema for the global
-     *            secondary index.
+     *            <code>KeySchema</code> - Specifies the key schema for the
+     *            global secondary index.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>Projection</i> - Specifies attributes that are copied
+     *            <code>Projection</code> - Specifies attributes that are copied
      *            (projected) from the table into the index. These are in
      *            addition to the primary key attributes and index key
      *            attributes, which are automatically projected. Each attribute
@@ -2134,7 +2166,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>ProjectionType</i> - One of the following:
+     *            <code>ProjectionType</code> - One of the following:
      *            </p>
      *            <ul>
      *            <li>
@@ -2147,7 +2179,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <p>
      *            <code>INCLUDE</code> - Only the specified table attributes are
      *            projected into the index. The list of projected attributes are
-     *            in <i>NonKeyAttributes</i>.
+     *            in <code>NonKeyAttributes</code>.
      *            </p>
      *            </li>
      *            <li>
@@ -2160,22 +2192,22 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            </li>
      *            <li>
      *            <p>
-     *            <i>NonKeyAttributes</i> - A list of one or more non-key
+     *            <code>NonKeyAttributes</code> - A list of one or more non-key
      *            attribute names that are projected into the secondary index.
      *            The total count of attributes provided in
-     *            <i>NonKeyAttributes</i>, summed across all of the secondary
-     *            indexes, must not exceed 20. If you project the same attribute
-     *            into two different indexes, this counts as two distinct
-     *            attributes when determining the total.
+     *            <code>NonKeyAttributes</code>, summed across all of the
+     *            secondary indexes, must not exceed 20. If you project the same
+     *            attribute into two different indexes, this counts as two
+     *            distinct attributes when determining the total.
      *            </p>
      *            </li>
      *            </ul>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>ProvisionedThroughput</i> - The provisioned throughput
-     *            settings for the global secondary index, consisting of read
-     *            and write capacity units.
+     *            <code>ProvisionedThroughput</code> - The provisioned
+     *            throughput settings for the global secondary index, consisting
+     *            of read and write capacity units.
      *            </p>
      *            </li>
      *            </ul>
@@ -2200,27 +2232,27 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <i>IndexName</i> - The name of the global secondary index. Must be unique
-     * only for this table.
+     * <code>IndexName</code> - The name of the global secondary index. Must be
+     * unique only for this table.
      * </p>
      * <p/></li>
      * <li>
      * <p>
-     * <i>KeySchema</i> - Specifies the key schema for the global secondary
-     * index.
+     * <code>KeySchema</code> - Specifies the key schema for the global
+     * secondary index.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>Projection</i> - Specifies attributes that are copied (projected) from
-     * the table into the index. These are in addition to the primary key
-     * attributes and index key attributes, which are automatically projected.
-     * Each attribute specification is composed of:
+     * <code>Projection</code> - Specifies attributes that are copied
+     * (projected) from the table into the index. These are in addition to the
+     * primary key attributes and index key attributes, which are automatically
+     * projected. Each attribute specification is composed of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>ProjectionType</i> - One of the following:
+     * <code>ProjectionType</code> - One of the following:
      * </p>
      * <ul>
      * <li>
@@ -2233,7 +2265,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <code>INCLUDE</code> - Only the specified table attributes are projected
      * into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>.
+     * <code>NonKeyAttributes</code>.
      * </p>
      * </li>
      * <li>
@@ -2246,20 +2278,21 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
-     * <i>NonKeyAttributes</i> - A list of one or more non-key attribute names
-     * that are projected into the secondary index. The total count of
-     * attributes provided in <i>NonKeyAttributes</i>, summed across all of the
-     * secondary indexes, must not exceed 20. If you project the same attribute
-     * into two different indexes, this counts as two distinct attributes when
-     * determining the total.
+     * <code>NonKeyAttributes</code> - A list of one or more non-key attribute
+     * names that are projected into the secondary index. The total count of
+     * attributes provided in <code>NonKeyAttributes</code>, summed across all
+     * of the secondary indexes, must not exceed 20. If you project the same
+     * attribute into two different indexes, this counts as two distinct
+     * attributes when determining the total.
      * </p>
      * </li>
      * </ul>
      * </li>
      * <li>
      * <p>
-     * <i>ProvisionedThroughput</i> - The provisioned throughput settings for
-     * the global secondary index, consisting of read and write capacity units.
+     * <code>ProvisionedThroughput</code> - The provisioned throughput settings
+     * for the global secondary index, consisting of read and write capacity
+     * units.
      * </p>
      * </li>
      * </ul>
@@ -2275,19 +2308,19 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>IndexName</i> - The name of the global secondary index.
-     *            Must be unique only for this table.
+     *            <code>IndexName</code> - The name of the global secondary
+     *            index. Must be unique only for this table.
      *            </p>
      *            <p/></li>
      *            <li>
      *            <p>
-     *            <i>KeySchema</i> - Specifies the key schema for the global
-     *            secondary index.
+     *            <code>KeySchema</code> - Specifies the key schema for the
+     *            global secondary index.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>Projection</i> - Specifies attributes that are copied
+     *            <code>Projection</code> - Specifies attributes that are copied
      *            (projected) from the table into the index. These are in
      *            addition to the primary key attributes and index key
      *            attributes, which are automatically projected. Each attribute
@@ -2296,7 +2329,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>ProjectionType</i> - One of the following:
+     *            <code>ProjectionType</code> - One of the following:
      *            </p>
      *            <ul>
      *            <li>
@@ -2309,7 +2342,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <p>
      *            <code>INCLUDE</code> - Only the specified table attributes are
      *            projected into the index. The list of projected attributes are
-     *            in <i>NonKeyAttributes</i>.
+     *            in <code>NonKeyAttributes</code>.
      *            </p>
      *            </li>
      *            <li>
@@ -2322,22 +2355,22 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            </li>
      *            <li>
      *            <p>
-     *            <i>NonKeyAttributes</i> - A list of one or more non-key
+     *            <code>NonKeyAttributes</code> - A list of one or more non-key
      *            attribute names that are projected into the secondary index.
      *            The total count of attributes provided in
-     *            <i>NonKeyAttributes</i>, summed across all of the secondary
-     *            indexes, must not exceed 20. If you project the same attribute
-     *            into two different indexes, this counts as two distinct
-     *            attributes when determining the total.
+     *            <code>NonKeyAttributes</code>, summed across all of the
+     *            secondary indexes, must not exceed 20. If you project the same
+     *            attribute into two different indexes, this counts as two
+     *            distinct attributes when determining the total.
      *            </p>
      *            </li>
      *            </ul>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>ProvisionedThroughput</i> - The provisioned throughput
-     *            settings for the global secondary index, consisting of read
-     *            and write capacity units.
+     *            <code>ProvisionedThroughput</code> - The provisioned
+     *            throughput settings for the global secondary index, consisting
+     *            of read and write capacity units.
      *            </p>
      *            </li>
      *            </ul>
@@ -2365,27 +2398,27 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <i>IndexName</i> - The name of the global secondary index. Must be unique
-     * only for this table.
+     * <code>IndexName</code> - The name of the global secondary index. Must be
+     * unique only for this table.
      * </p>
      * <p/></li>
      * <li>
      * <p>
-     * <i>KeySchema</i> - Specifies the key schema for the global secondary
-     * index.
+     * <code>KeySchema</code> - Specifies the key schema for the global
+     * secondary index.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>Projection</i> - Specifies attributes that are copied (projected) from
-     * the table into the index. These are in addition to the primary key
-     * attributes and index key attributes, which are automatically projected.
-     * Each attribute specification is composed of:
+     * <code>Projection</code> - Specifies attributes that are copied
+     * (projected) from the table into the index. These are in addition to the
+     * primary key attributes and index key attributes, which are automatically
+     * projected. Each attribute specification is composed of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>ProjectionType</i> - One of the following:
+     * <code>ProjectionType</code> - One of the following:
      * </p>
      * <ul>
      * <li>
@@ -2398,7 +2431,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * <code>INCLUDE</code> - Only the specified table attributes are projected
      * into the index. The list of projected attributes are in
-     * <i>NonKeyAttributes</i>.
+     * <code>NonKeyAttributes</code>.
      * </p>
      * </li>
      * <li>
@@ -2411,20 +2444,21 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
-     * <i>NonKeyAttributes</i> - A list of one or more non-key attribute names
-     * that are projected into the secondary index. The total count of
-     * attributes provided in <i>NonKeyAttributes</i>, summed across all of the
-     * secondary indexes, must not exceed 20. If you project the same attribute
-     * into two different indexes, this counts as two distinct attributes when
-     * determining the total.
+     * <code>NonKeyAttributes</code> - A list of one or more non-key attribute
+     * names that are projected into the secondary index. The total count of
+     * attributes provided in <code>NonKeyAttributes</code>, summed across all
+     * of the secondary indexes, must not exceed 20. If you project the same
+     * attribute into two different indexes, this counts as two distinct
+     * attributes when determining the total.
      * </p>
      * </li>
      * </ul>
      * </li>
      * <li>
      * <p>
-     * <i>ProvisionedThroughput</i> - The provisioned throughput settings for
-     * the global secondary index, consisting of read and write capacity units.
+     * <code>ProvisionedThroughput</code> - The provisioned throughput settings
+     * for the global secondary index, consisting of read and write capacity
+     * units.
      * </p>
      * </li>
      * </ul>
@@ -2440,19 +2474,19 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>IndexName</i> - The name of the global secondary index.
-     *            Must be unique only for this table.
+     *            <code>IndexName</code> - The name of the global secondary
+     *            index. Must be unique only for this table.
      *            </p>
      *            <p/></li>
      *            <li>
      *            <p>
-     *            <i>KeySchema</i> - Specifies the key schema for the global
-     *            secondary index.
+     *            <code>KeySchema</code> - Specifies the key schema for the
+     *            global secondary index.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>Projection</i> - Specifies attributes that are copied
+     *            <code>Projection</code> - Specifies attributes that are copied
      *            (projected) from the table into the index. These are in
      *            addition to the primary key attributes and index key
      *            attributes, which are automatically projected. Each attribute
@@ -2461,7 +2495,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>ProjectionType</i> - One of the following:
+     *            <code>ProjectionType</code> - One of the following:
      *            </p>
      *            <ul>
      *            <li>
@@ -2474,7 +2508,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <p>
      *            <code>INCLUDE</code> - Only the specified table attributes are
      *            projected into the index. The list of projected attributes are
-     *            in <i>NonKeyAttributes</i>.
+     *            in <code>NonKeyAttributes</code>.
      *            </p>
      *            </li>
      *            <li>
@@ -2487,22 +2521,22 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            </li>
      *            <li>
      *            <p>
-     *            <i>NonKeyAttributes</i> - A list of one or more non-key
+     *            <code>NonKeyAttributes</code> - A list of one or more non-key
      *            attribute names that are projected into the secondary index.
      *            The total count of attributes provided in
-     *            <i>NonKeyAttributes</i>, summed across all of the secondary
-     *            indexes, must not exceed 20. If you project the same attribute
-     *            into two different indexes, this counts as two distinct
-     *            attributes when determining the total.
+     *            <code>NonKeyAttributes</code>, summed across all of the
+     *            secondary indexes, must not exceed 20. If you project the same
+     *            attribute into two different indexes, this counts as two
+     *            distinct attributes when determining the total.
      *            </p>
      *            </li>
      *            </ul>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>ProvisionedThroughput</i> - The provisioned throughput
-     *            settings for the global secondary index, consisting of read
-     *            and write capacity units.
+     *            <code>ProvisionedThroughput</code> - The provisioned
+     *            throughput settings for the global secondary index, consisting
+     *            of read and write capacity units.
      *            </p>
      *            </li>
      *            </ul>
@@ -2518,7 +2552,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * Represents the provisioned throughput settings for a specified table or
-     * index. The settings can be modified using the <i>UpdateTable</i>
+     * index. The settings can be modified using the <code>UpdateTable</code>
      * operation.
      * </p>
      * <p>
@@ -2531,7 +2565,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * @return <p>
      *         Represents the provisioned throughput settings for a specified
      *         table or index. The settings can be modified using the
-     *         <i>UpdateTable</i> operation.
+     *         <code>UpdateTable</code> operation.
      *         </p>
      *         <p>
      *         For current minimum and maximum provisioned throughput values,
@@ -2547,7 +2581,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * Represents the provisioned throughput settings for a specified table or
-     * index. The settings can be modified using the <i>UpdateTable</i>
+     * index. The settings can be modified using the <code>UpdateTable</code>
      * operation.
      * </p>
      * <p>
@@ -2560,7 +2594,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * @param provisionedThroughput <p>
      *            Represents the provisioned throughput settings for a specified
      *            table or index. The settings can be modified using the
-     *            <i>UpdateTable</i> operation.
+     *            <code>UpdateTable</code> operation.
      *            </p>
      *            <p>
      *            For current minimum and maximum provisioned throughput values,
@@ -2576,7 +2610,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * Represents the provisioned throughput settings for a specified table or
-     * index. The settings can be modified using the <i>UpdateTable</i>
+     * index. The settings can be modified using the <code>UpdateTable</code>
      * operation.
      * </p>
      * <p>
@@ -2592,7 +2626,7 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * @param provisionedThroughput <p>
      *            Represents the provisioned throughput settings for a specified
      *            table or index. The settings can be modified using the
-     *            <i>UpdateTable</i> operation.
+     *            <code>UpdateTable</code> operation.
      *            </p>
      *            <p>
      *            For current minimum and maximum provisioned throughput values,
@@ -2616,39 +2650,39 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <i>StreamEnabled</i> - Indicates whether Streams is to be enabled (true)
-     * or disabled (false).
+     * <code>StreamEnabled</code> - Indicates whether Streams is to be enabled
+     * (true) or disabled (false).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>StreamViewType</i> - When an item in the table is modified,
-     * <i>StreamViewType</i> determines what information is written to the
-     * table's stream. Valid values for <i>StreamViewType</i> are:
+     * <code>StreamViewType</code> - When an item in the table is modified,
+     * <code>StreamViewType</code> determines what information is written to the
+     * table's stream. Valid values for <code>StreamViewType</code> are:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>KEYS_ONLY</i> - Only the key attributes of the modified item are
+     * <code>KEYS_ONLY</code> - Only the key attributes of the modified item are
      * written to the stream.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>NEW_IMAGE</i> - The entire item, as it appears after it was modified,
-     * is written to the stream.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <i>OLD_IMAGE</i> - The entire item, as it appeared before it was
+     * <code>NEW_IMAGE</code> - The entire item, as it appears after it was
      * modified, is written to the stream.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>NEW_AND_OLD_IMAGES</i> - Both the new and the old item images of the
-     * item are written to the stream.
+     * <code>OLD_IMAGE</code> - The entire item, as it appeared before it was
+     * modified, is written to the stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEW_AND_OLD_IMAGES</code> - Both the new and the old item images of
+     * the item are written to the stream.
      * </p>
      * </li>
      * </ul>
@@ -2662,39 +2696,40 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *         <ul>
      *         <li>
      *         <p>
-     *         <i>StreamEnabled</i> - Indicates whether Streams is to be enabled
-     *         (true) or disabled (false).
+     *         <code>StreamEnabled</code> - Indicates whether Streams is to be
+     *         enabled (true) or disabled (false).
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <i>StreamViewType</i> - When an item in the table is modified,
-     *         <i>StreamViewType</i> determines what information is written to
-     *         the table's stream. Valid values for <i>StreamViewType</i> are:
+     *         <code>StreamViewType</code> - When an item in the table is
+     *         modified, <code>StreamViewType</code> determines what information
+     *         is written to the table's stream. Valid values for
+     *         <code>StreamViewType</code> are:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         <i>KEYS_ONLY</i> - Only the key attributes of the modified item
-     *         are written to the stream.
+     *         <code>KEYS_ONLY</code> - Only the key attributes of the modified
+     *         item are written to the stream.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <i>NEW_IMAGE</i> - The entire item, as it appears after it was
-     *         modified, is written to the stream.
+     *         <code>NEW_IMAGE</code> - The entire item, as it appears after it
+     *         was modified, is written to the stream.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <i>OLD_IMAGE</i> - The entire item, as it appeared before it was
-     *         modified, is written to the stream.
+     *         <code>OLD_IMAGE</code> - The entire item, as it appeared before
+     *         it was modified, is written to the stream.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <i>NEW_AND_OLD_IMAGES</i> - Both the new and the old item images
-     *         of the item are written to the stream.
+     *         <code>NEW_AND_OLD_IMAGES</code> - Both the new and the old item
+     *         images of the item are written to the stream.
      *         </p>
      *         </li>
      *         </ul>
@@ -2713,39 +2748,39 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <i>StreamEnabled</i> - Indicates whether Streams is to be enabled (true)
-     * or disabled (false).
+     * <code>StreamEnabled</code> - Indicates whether Streams is to be enabled
+     * (true) or disabled (false).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>StreamViewType</i> - When an item in the table is modified,
-     * <i>StreamViewType</i> determines what information is written to the
-     * table's stream. Valid values for <i>StreamViewType</i> are:
+     * <code>StreamViewType</code> - When an item in the table is modified,
+     * <code>StreamViewType</code> determines what information is written to the
+     * table's stream. Valid values for <code>StreamViewType</code> are:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>KEYS_ONLY</i> - Only the key attributes of the modified item are
+     * <code>KEYS_ONLY</code> - Only the key attributes of the modified item are
      * written to the stream.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>NEW_IMAGE</i> - The entire item, as it appears after it was modified,
-     * is written to the stream.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <i>OLD_IMAGE</i> - The entire item, as it appeared before it was
+     * <code>NEW_IMAGE</code> - The entire item, as it appears after it was
      * modified, is written to the stream.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>NEW_AND_OLD_IMAGES</i> - Both the new and the old item images of the
-     * item are written to the stream.
+     * <code>OLD_IMAGE</code> - The entire item, as it appeared before it was
+     * modified, is written to the stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEW_AND_OLD_IMAGES</code> - Both the new and the old item images of
+     * the item are written to the stream.
      * </p>
      * </li>
      * </ul>
@@ -2759,40 +2794,40 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>StreamEnabled</i> - Indicates whether Streams is to be
-     *            enabled (true) or disabled (false).
+     *            <code>StreamEnabled</code> - Indicates whether Streams is to
+     *            be enabled (true) or disabled (false).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>StreamViewType</i> - When an item in the table is modified,
-     *            <i>StreamViewType</i> determines what information is written
-     *            to the table's stream. Valid values for <i>StreamViewType</i>
-     *            are:
+     *            <code>StreamViewType</code> - When an item in the table is
+     *            modified, <code>StreamViewType</code> determines what
+     *            information is written to the table's stream. Valid values for
+     *            <code>StreamViewType</code> are:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>KEYS_ONLY</i> - Only the key attributes of the modified
-     *            item are written to the stream.
+     *            <code>KEYS_ONLY</code> - Only the key attributes of the
+     *            modified item are written to the stream.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>NEW_IMAGE</i> - The entire item, as it appears after it was
-     *            modified, is written to the stream.
+     *            <code>NEW_IMAGE</code> - The entire item, as it appears after
+     *            it was modified, is written to the stream.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>OLD_IMAGE</i> - The entire item, as it appeared before it
-     *            was modified, is written to the stream.
+     *            <code>OLD_IMAGE</code> - The entire item, as it appeared
+     *            before it was modified, is written to the stream.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>NEW_AND_OLD_IMAGES</i> - Both the new and the old item
-     *            images of the item are written to the stream.
+     *            <code>NEW_AND_OLD_IMAGES</code> - Both the new and the old
+     *            item images of the item are written to the stream.
      *            </p>
      *            </li>
      *            </ul>
@@ -2811,39 +2846,39 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <i>StreamEnabled</i> - Indicates whether Streams is to be enabled (true)
-     * or disabled (false).
+     * <code>StreamEnabled</code> - Indicates whether Streams is to be enabled
+     * (true) or disabled (false).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>StreamViewType</i> - When an item in the table is modified,
-     * <i>StreamViewType</i> determines what information is written to the
-     * table's stream. Valid values for <i>StreamViewType</i> are:
+     * <code>StreamViewType</code> - When an item in the table is modified,
+     * <code>StreamViewType</code> determines what information is written to the
+     * table's stream. Valid values for <code>StreamViewType</code> are:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>KEYS_ONLY</i> - Only the key attributes of the modified item are
+     * <code>KEYS_ONLY</code> - Only the key attributes of the modified item are
      * written to the stream.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>NEW_IMAGE</i> - The entire item, as it appears after it was modified,
-     * is written to the stream.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <i>OLD_IMAGE</i> - The entire item, as it appeared before it was
+     * <code>NEW_IMAGE</code> - The entire item, as it appears after it was
      * modified, is written to the stream.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>NEW_AND_OLD_IMAGES</i> - Both the new and the old item images of the
-     * item are written to the stream.
+     * <code>OLD_IMAGE</code> - The entire item, as it appeared before it was
+     * modified, is written to the stream.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEW_AND_OLD_IMAGES</code> - Both the new and the old item images of
+     * the item are written to the stream.
      * </p>
      * </li>
      * </ul>
@@ -2860,40 +2895,40 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>StreamEnabled</i> - Indicates whether Streams is to be
-     *            enabled (true) or disabled (false).
+     *            <code>StreamEnabled</code> - Indicates whether Streams is to
+     *            be enabled (true) or disabled (false).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>StreamViewType</i> - When an item in the table is modified,
-     *            <i>StreamViewType</i> determines what information is written
-     *            to the table's stream. Valid values for <i>StreamViewType</i>
-     *            are:
+     *            <code>StreamViewType</code> - When an item in the table is
+     *            modified, <code>StreamViewType</code> determines what
+     *            information is written to the table's stream. Valid values for
+     *            <code>StreamViewType</code> are:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>KEYS_ONLY</i> - Only the key attributes of the modified
-     *            item are written to the stream.
+     *            <code>KEYS_ONLY</code> - Only the key attributes of the
+     *            modified item are written to the stream.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>NEW_IMAGE</i> - The entire item, as it appears after it was
-     *            modified, is written to the stream.
+     *            <code>NEW_IMAGE</code> - The entire item, as it appears after
+     *            it was modified, is written to the stream.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>OLD_IMAGE</i> - The entire item, as it appeared before it
-     *            was modified, is written to the stream.
+     *            <code>OLD_IMAGE</code> - The entire item, as it appeared
+     *            before it was modified, is written to the stream.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>NEW_AND_OLD_IMAGES</i> - Both the new and the old item
-     *            images of the item are written to the stream.
+     *            <code>NEW_AND_OLD_IMAGES</code> - Both the new and the old
+     *            item images of the item are written to the stream.
      *            </p>
      *            </li>
      *            </ul>
@@ -2904,6 +2939,51 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
      */
     public CreateTableRequest withStreamSpecification(StreamSpecification streamSpecification) {
         this.streamSpecification = streamSpecification;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Represents the settings used to enable server-side encryption.
+     * </p>
+     *
+     * @return <p>
+     *         Represents the settings used to enable server-side encryption.
+     *         </p>
+     */
+    public SSESpecification getSSESpecification() {
+        return sSESpecification;
+    }
+
+    /**
+     * <p>
+     * Represents the settings used to enable server-side encryption.
+     * </p>
+     *
+     * @param sSESpecification <p>
+     *            Represents the settings used to enable server-side encryption.
+     *            </p>
+     */
+    public void setSSESpecification(SSESpecification sSESpecification) {
+        this.sSESpecification = sSESpecification;
+    }
+
+    /**
+     * <p>
+     * Represents the settings used to enable server-side encryption.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sSESpecification <p>
+     *            Represents the settings used to enable server-side encryption.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateTableRequest withSSESpecification(SSESpecification sSESpecification) {
+        this.sSESpecification = sSESpecification;
         return this;
     }
 
@@ -2931,7 +3011,9 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
         if (getProvisionedThroughput() != null)
             sb.append("ProvisionedThroughput: " + getProvisionedThroughput() + ",");
         if (getStreamSpecification() != null)
-            sb.append("StreamSpecification: " + getStreamSpecification());
+            sb.append("StreamSpecification: " + getStreamSpecification() + ",");
+        if (getSSESpecification() != null)
+            sb.append("SSESpecification: " + getSSESpecification());
         sb.append("}");
         return sb.toString();
     }
@@ -2957,6 +3039,8 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
                 + ((getProvisionedThroughput() == null) ? 0 : getProvisionedThroughput().hashCode());
         hashCode = prime * hashCode
                 + ((getStreamSpecification() == null) ? 0 : getStreamSpecification().hashCode());
+        hashCode = prime * hashCode
+                + ((getSSESpecification() == null) ? 0 : getSSESpecification().hashCode());
         return hashCode;
     }
 
@@ -3005,6 +3089,11 @@ public class CreateTableRequest extends AmazonWebServiceRequest implements Seria
             return false;
         if (other.getStreamSpecification() != null
                 && other.getStreamSpecification().equals(this.getStreamSpecification()) == false)
+            return false;
+        if (other.getSSESpecification() == null ^ this.getSSESpecification() == null)
+            return false;
+        if (other.getSSESpecification() != null
+                && other.getSSESpecification().equals(this.getSSESpecification()) == false)
             return false;
         return true;
     }

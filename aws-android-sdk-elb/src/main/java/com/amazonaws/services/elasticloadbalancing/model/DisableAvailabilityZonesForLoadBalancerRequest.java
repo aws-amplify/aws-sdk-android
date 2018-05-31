@@ -33,9 +33,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_ShrinkLBApp04.html"
- * >Disable an Availability Zone from a Load-Balanced Application</a> in the
- * <i>Elastic Load Balancing Developer Guide</i>.
+ * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html"
+ * >Add or Remove Availability Zones</a> in the <i>Classic Load Balancer
+ * Guide</i>.
  * </p>
  */
 public class DisableAvailabilityZonesForLoadBalancerRequest extends AmazonWebServiceRequest

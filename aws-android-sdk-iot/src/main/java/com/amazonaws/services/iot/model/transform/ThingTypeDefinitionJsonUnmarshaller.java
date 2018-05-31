@@ -39,6 +39,9 @@ class ThingTypeDefinitionJsonUnmarshaller implements
             if (name.equals("thingTypeName")) {
                 thingTypeDefinition.setThingTypeName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("thingTypeArn")) {
+                thingTypeDefinition.setThingTypeArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("thingTypeProperties")) {
                 thingTypeDefinition.setThingTypeProperties(ThingTypePropertiesJsonUnmarshaller
                         .getInstance()

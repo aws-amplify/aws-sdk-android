@@ -43,6 +43,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * celebrity in a object and the time, <code>Timestamp</code>, the celebrity was
  * detected.
  * </p>
+ * <note>
+ * <p>
+ * <code>GetCelebrityRecognition</code> only returns the default facial
+ * attributes (<code>BoundingBox</code>, <code>Confidence</code>,
+ * <code>Landmarks</code>, <code>Pose</code>, and <code>Quality</code>). The
+ * other facial attributes listed in the <code>Face</code> object of the
+ * following response syntax are not returned. For more information, see .
+ * </p>
+ * </note>
  * <p>
  * By default, the <code>Celebrities</code> array is sorted by time
  * (milliseconds from the start of the video). You can also sort the array by
@@ -83,8 +92,9 @@ public class GetCelebrityRecognitionRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Maximum number of celebrities you want Rekognition Video to return in the
-     * response. The default is 1000.
+     * Maximum number of results to return per paginated call. The largest value
+     * you can specify is 1000. If you specify a value greater than 1000, a
+     * maximum of 1000 results is returned. The default value is 1000.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -188,16 +198,19 @@ public class GetCelebrityRecognitionRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Maximum number of celebrities you want Rekognition Video to return in the
-     * response. The default is 1000.
+     * Maximum number of results to return per paginated call. The largest value
+     * you can specify is 1000. If you specify a value greater than 1000, a
+     * maximum of 1000 results is returned. The default value is 1000.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
      * @return <p>
-     *         Maximum number of celebrities you want Rekognition Video to
-     *         return in the response. The default is 1000.
+     *         Maximum number of results to return per paginated call. The
+     *         largest value you can specify is 1000. If you specify a value
+     *         greater than 1000, a maximum of 1000 results is returned. The
+     *         default value is 1000.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -206,16 +219,19 @@ public class GetCelebrityRecognitionRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Maximum number of celebrities you want Rekognition Video to return in the
-     * response. The default is 1000.
+     * Maximum number of results to return per paginated call. The largest value
+     * you can specify is 1000. If you specify a value greater than 1000, a
+     * maximum of 1000 results is returned. The default value is 1000.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
      * @param maxResults <p>
-     *            Maximum number of celebrities you want Rekognition Video to
-     *            return in the response. The default is 1000.
+     *            Maximum number of results to return per paginated call. The
+     *            largest value you can specify is 1000. If you specify a value
+     *            greater than 1000, a maximum of 1000 results is returned. The
+     *            default value is 1000.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -224,8 +240,9 @@ public class GetCelebrityRecognitionRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Maximum number of celebrities you want Rekognition Video to return in the
-     * response. The default is 1000.
+     * Maximum number of results to return per paginated call. The largest value
+     * you can specify is 1000. If you specify a value greater than 1000, a
+     * maximum of 1000 results is returned. The default value is 1000.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -235,8 +252,10 @@ public class GetCelebrityRecognitionRequest extends AmazonWebServiceRequest impl
      * <b>Range: </b>1 - <br/>
      *
      * @param maxResults <p>
-     *            Maximum number of celebrities you want Rekognition Video to
-     *            return in the response. The default is 1000.
+     *            Maximum number of results to return per paginated call. The
+     *            largest value you can specify is 1000. If you specify a value
+     *            greater than 1000, a maximum of 1000 results is returned. The
+     *            default value is 1000.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

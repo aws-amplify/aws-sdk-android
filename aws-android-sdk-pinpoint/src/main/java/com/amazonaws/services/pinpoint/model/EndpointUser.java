@@ -22,7 +22,14 @@ import java.io.Serializable;
  */
 public class EndpointUser implements Serializable {
     /**
-     * Custom attributes specific to the user.
+     * Custom attributes that describe an end user by associating a name with an
+     * array of values. For example, an attribute named "interests" might have
+     * the values ["science", "politics", "travel"]. You can use these
+     * attributes as selection criteria when you create a segment of users to
+     * engage with a messaging campaign. The following characters are not
+     * recommended in attribute names: # : ? \ /. The Amazon Pinpoint console
+     * does not display attributes that include these characters in the name.
+     * This limitation does not apply to attribute values.
      */
     private java.util.Map<String, java.util.List<String>> userAttributes;
 
@@ -32,30 +39,77 @@ public class EndpointUser implements Serializable {
     private String userId;
 
     /**
-     * Custom attributes specific to the user.
+     * Custom attributes that describe an end user by associating a name with an
+     * array of values. For example, an attribute named "interests" might have
+     * the values ["science", "politics", "travel"]. You can use these
+     * attributes as selection criteria when you create a segment of users to
+     * engage with a messaging campaign. The following characters are not
+     * recommended in attribute names: # : ? \ /. The Amazon Pinpoint console
+     * does not display attributes that include these characters in the name.
+     * This limitation does not apply to attribute values.
      *
-     * @return Custom attributes specific to the user.
+     * @return Custom attributes that describe an end user by associating a name
+     *         with an array of values. For example, an attribute named
+     *         "interests" might have the values ["science", "politics",
+     *         "travel"]. You can use these attributes as selection criteria
+     *         when you create a segment of users to engage with a messaging
+     *         campaign. The following characters are not recommended in
+     *         attribute names: # : ? \ /. The Amazon Pinpoint console does not
+     *         display attributes that include these characters in the name.
+     *         This limitation does not apply to attribute values.
      */
     public java.util.Map<String, java.util.List<String>> getUserAttributes() {
         return userAttributes;
     }
 
     /**
-     * Custom attributes specific to the user.
+     * Custom attributes that describe an end user by associating a name with an
+     * array of values. For example, an attribute named "interests" might have
+     * the values ["science", "politics", "travel"]. You can use these
+     * attributes as selection criteria when you create a segment of users to
+     * engage with a messaging campaign. The following characters are not
+     * recommended in attribute names: # : ? \ /. The Amazon Pinpoint console
+     * does not display attributes that include these characters in the name.
+     * This limitation does not apply to attribute values.
      *
-     * @param userAttributes Custom attributes specific to the user.
+     * @param userAttributes Custom attributes that describe an end user by
+     *            associating a name with an array of values. For example, an
+     *            attribute named "interests" might have the values ["science",
+     *            "politics", "travel"]. You can use these attributes as
+     *            selection criteria when you create a segment of users to
+     *            engage with a messaging campaign. The following characters are
+     *            not recommended in attribute names: # : ? \ /. The Amazon
+     *            Pinpoint console does not display attributes that include
+     *            these characters in the name. This limitation does not apply
+     *            to attribute values.
      */
     public void setUserAttributes(java.util.Map<String, java.util.List<String>> userAttributes) {
         this.userAttributes = userAttributes;
     }
 
     /**
-     * Custom attributes specific to the user.
+     * Custom attributes that describe an end user by associating a name with an
+     * array of values. For example, an attribute named "interests" might have
+     * the values ["science", "politics", "travel"]. You can use these
+     * attributes as selection criteria when you create a segment of users to
+     * engage with a messaging campaign. The following characters are not
+     * recommended in attribute names: # : ? \ /. The Amazon Pinpoint console
+     * does not display attributes that include these characters in the name.
+     * This limitation does not apply to attribute values.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param userAttributes Custom attributes specific to the user.
+     * @param userAttributes Custom attributes that describe an end user by
+     *            associating a name with an array of values. For example, an
+     *            attribute named "interests" might have the values ["science",
+     *            "politics", "travel"]. You can use these attributes as
+     *            selection criteria when you create a segment of users to
+     *            engage with a messaging campaign. The following characters are
+     *            not recommended in attribute names: # : ? \ /. The Amazon
+     *            Pinpoint console does not display attributes that include
+     *            these characters in the name. This limitation does not apply
+     *            to attribute values.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -66,7 +120,14 @@ public class EndpointUser implements Serializable {
     }
 
     /**
-     * Custom attributes specific to the user.
+     * Custom attributes that describe an end user by associating a name with an
+     * array of values. For example, an attribute named "interests" might have
+     * the values ["science", "politics", "travel"]. You can use these
+     * attributes as selection criteria when you create a segment of users to
+     * engage with a messaging campaign. The following characters are not
+     * recommended in attribute names: # : ? \ /. The Amazon Pinpoint console
+     * does not display attributes that include these characters in the name.
+     * This limitation does not apply to attribute values.
      * <p>
      * The method adds a new key-value pair into UserAttributes parameter, and
      * returns a reference to this object so that method calls can be chained

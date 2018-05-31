@@ -34,21 +34,32 @@ import com.amazonaws.services.elasticloadbalancing.model.*;
  * Interface for accessing Amazon Elastic Load Balancing asynchronously.
  * <fullname>Elastic Load Balancing</fullname>
  * <p>
- * Elastic Load Balancing distributes incoming traffic across your EC2
- * instances.
+ * A load balancer can distribute incoming traffic across your EC2 instances.
+ * This enables you to increase the availability of your application. The load
+ * balancer also monitors the health of its registered instances and ensures
+ * that it routes traffic only to healthy instances. You configure your load
+ * balancer to accept incoming traffic by specifying one or more listeners,
+ * which are configured with a protocol and port number for connections from
+ * clients to the load balancer and a protocol and port number for connections
+ * from the load balancer to the instances.
  * </p>
  * <p>
- * For information about the features of Elastic Load Balancing, see <a href=
- * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elastic-load-balancing.html"
- * >What Is Elastic Load Balancing?</a> in the <i>Elastic Load Balancing
- * Developer Guide</i>.
+ * Elastic Load Balancing supports three types of load balancers: Application
+ * Load Balancers, Network Load Balancers, and Classic Load Balancers. You can
+ * select a load balancer based on your application needs. For more information,
+ * see the <a
+ * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/"
+ * >Elastic Load Balancing User Guide</a>.
  * </p>
  * <p>
- * For information about the AWS regions supported by Elastic Load Balancing,
- * see <a
- * href="http://docs.aws.amazon.com/general/latest/gr/rande.html#elb_region"
- * >Regions and Endpoints - Elastic Load Balancing</a> in the <i>Amazon Web
- * Services General Reference</i>.
+ * This reference covers the 2012-06-01 API, which supports Classic Load
+ * Balancers. The 2015-12-01 API supports Application Load Balancers and Network
+ * Load Balancers.
+ * </p>
+ * <p>
+ * To get started, create a load balancer with one or more listeners using
+ * <a>CreateLoadBalancer</a>. Register your instances with the load balancer
+ * using <a>RegisterInstancesWithLoadBalancer</a>.
  * </p>
  * <p>
  * All Elastic Load Balancing operations are <i>idempotent</i>, which means that
@@ -289,24 +300,19 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/add-remove-tags.html"
-     * >Tag Your Load Balancer</a> in the <i>Elastic Load Balancing Developer
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/add-remove-tags.html"
+     * >Tag Your Classic Load Balancer</a> in the <i>Classic Load Balancer
      * Guide</i>.
      * </p>
      * 
-     * @param addTagsRequest
+     * @param addTagsRequest <p>
+     *            Contains the parameters for AddTags.
+     *            </p>
      * @return A Java Future object containing the response from the AddTags
      *         service method, as returned by Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws TooManyTagsException <p>
-     *             The quota for the number of tags that can be assigned to a
-     *             load balancer has been reached.
-     *             </p>
-     * @throws DuplicateTagKeysException <p>
-     *             A tag key was specified more than once.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws TooManyTagsException
+     * @throws DuplicateTagKeysException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -336,24 +342,19 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/add-remove-tags.html"
-     * >Tag Your Load Balancer</a> in the <i>Elastic Load Balancing Developer
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/add-remove-tags.html"
+     * >Tag Your Classic Load Balancer</a> in the <i>Classic Load Balancer
      * Guide</i>.
      * </p>
      * 
-     * @param addTagsRequest
+     * @param addTagsRequest <p>
+     *            Contains the parameters for AddTags.
+     *            </p>
      * @return A Java Future object containing the response from the AddTags
      *         service method, as returned by Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws TooManyTagsException <p>
-     *             The quota for the number of tags that can be assigned to a
-     *             load balancer has been reached.
-     *             </p>
-     * @throws DuplicateTagKeysException <p>
-     *             A tag key was specified more than once.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws TooManyTagsException
+     * @throws DuplicateTagKeysException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -388,24 +389,20 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-security-groups.html#elb-vpc-security-groups"
-     * >Security Groups for Load Balancers in a VPC</a> in the <i>Elastic Load
-     * Balancing Developer Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-groups.html#elb-vpc-security-groups"
+     * >Security Groups for Load Balancers in a VPC</a> in the <i>Classic Load
+     * Balancer Guide</i>.
      * </p>
      * 
-     * @param applySecurityGroupsToLoadBalancerRequest
+     * @param applySecurityGroupsToLoadBalancerRequest <p>
+     *            Contains the parameters for ApplySecurityGroupsToLoadBalancer.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         ApplySecurityGroupsToLoadBalancer service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
-     * @throws InvalidSecurityGroupException <p>
-     *             One or more of the specified security groups do not exist.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws InvalidConfigurationRequestException
+     * @throws InvalidSecurityGroupException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -432,24 +429,20 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-security-groups.html#elb-vpc-security-groups"
-     * >Security Groups for Load Balancers in a VPC</a> in the <i>Elastic Load
-     * Balancing Developer Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-groups.html#elb-vpc-security-groups"
+     * >Security Groups for Load Balancers in a VPC</a> in the <i>Classic Load
+     * Balancer Guide</i>.
      * </p>
      * 
-     * @param applySecurityGroupsToLoadBalancerRequest
+     * @param applySecurityGroupsToLoadBalancerRequest <p>
+     *            Contains the parameters for ApplySecurityGroupsToLoadBalancer.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         ApplySecurityGroupsToLoadBalancer service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
-     * @throws InvalidSecurityGroupException <p>
-     *             One or more of the specified security groups do not exist.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws InvalidConfigurationRequestException
+     * @throws InvalidSecurityGroupException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -485,27 +478,21 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * <p>
      * The load balancer evenly distributes requests across all registered
      * subnets. For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-manage-subnets.html"
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-manage-subnets.html"
      * >Add or Remove Subnets for Your Load Balancer in a VPC</a> in the
-     * <i>Elastic Load Balancing Developer Guide</i>.
+     * <i>Classic Load Balancer Guide</i>.
      * </p>
      * 
-     * @param attachLoadBalancerToSubnetsRequest
+     * @param attachLoadBalancerToSubnetsRequest <p>
+     *            Contains the parameters for AttachLoaBalancerToSubnets.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         AttachLoadBalancerToSubnets service method, as returned by Amazon
      *         Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
-     * @throws SubnetNotFoundException <p>
-     *             One or more of the specified subnets do not exist.
-     *             </p>
-     * @throws InvalidSubnetException <p>
-     *             The specified VPC has no associated Internet gateway.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws InvalidConfigurationRequestException
+     * @throws SubnetNotFoundException
+     * @throws InvalidSubnetException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -532,27 +519,21 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * <p>
      * The load balancer evenly distributes requests across all registered
      * subnets. For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-manage-subnets.html"
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-manage-subnets.html"
      * >Add or Remove Subnets for Your Load Balancer in a VPC</a> in the
-     * <i>Elastic Load Balancing Developer Guide</i>.
+     * <i>Classic Load Balancer Guide</i>.
      * </p>
      * 
-     * @param attachLoadBalancerToSubnetsRequest
+     * @param attachLoadBalancerToSubnetsRequest <p>
+     *            Contains the parameters for AttachLoaBalancerToSubnets.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         AttachLoadBalancerToSubnets service method, as returned by Amazon
      *         Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
-     * @throws SubnetNotFoundException <p>
-     *             One or more of the specified subnets do not exist.
-     *             </p>
-     * @throws InvalidSubnetException <p>
-     *             The specified VPC has no associated Internet gateway.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws InvalidConfigurationRequestException
+     * @throws SubnetNotFoundException
+     * @throws InvalidSubnetException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -583,22 +564,22 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
     /**
      * <p>
      * Specifies the health check settings to use when evaluating the health
-     * state of your back-end instances.
+     * state of your EC2 instances.
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-healthchecks.html"
-     * >Configure Health Checks</a> in the <i>Elastic Load Balancing Developer
-     * Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-healthchecks.html"
+     * >Configure Health Checks for Your Load Balancer</a> in the <i>Classic
+     * Load Balancer Guide</i>.
      * </p>
      * 
-     * @param configureHealthCheckRequest
+     * @param configureHealthCheckRequest <p>
+     *            Contains the parameters for ConfigureHealthCheck.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         ConfigureHealthCheck service method, as returned by Amazon
      *         Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -620,22 +601,22 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
     /**
      * <p>
      * Specifies the health check settings to use when evaluating the health
-     * state of your back-end instances.
+     * state of your EC2 instances.
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-healthchecks.html"
-     * >Configure Health Checks</a> in the <i>Elastic Load Balancing Developer
-     * Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-healthchecks.html"
+     * >Configure Health Checks for Your Load Balancer</a> in the <i>Classic
+     * Load Balancer Guide</i>.
      * </p>
      * 
-     * @param configureHealthCheckRequest
+     * @param configureHealthCheckRequest <p>
+     *            Contains the parameters for ConfigureHealthCheck.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         ConfigureHealthCheck service method, as returned by Amazon
      *         Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -683,29 +664,21 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-sticky-sessions.html#enable-sticky-sessions-application"
-     * >Application-Controlled Session Stickiness</a> in the <i>Elastic Load
-     * Balancing Developer Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-application"
+     * >Application-Controlled Session Stickiness</a> in the <i>Classic Load
+     * Balancer Guide</i>.
      * </p>
      * 
-     * @param createAppCookieStickinessPolicyRequest
+     * @param createAppCookieStickinessPolicyRequest <p>
+     *            Contains the parameters for CreateAppCookieStickinessPolicy.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         CreateAppCookieStickinessPolicy service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws DuplicatePolicyNameException <p>
-     *             A policy with the specified name already exists for this load
-     *             balancer.
-     *             </p>
-     * @throws TooManyPoliciesException <p>
-     *             The quota for the number of policies for this load balancer
-     *             has been reached.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws DuplicatePolicyNameException
+     * @throws TooManyPoliciesException
+     * @throws InvalidConfigurationRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -744,29 +717,21 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-sticky-sessions.html#enable-sticky-sessions-application"
-     * >Application-Controlled Session Stickiness</a> in the <i>Elastic Load
-     * Balancing Developer Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-application"
+     * >Application-Controlled Session Stickiness</a> in the <i>Classic Load
+     * Balancer Guide</i>.
      * </p>
      * 
-     * @param createAppCookieStickinessPolicyRequest
+     * @param createAppCookieStickinessPolicyRequest <p>
+     *            Contains the parameters for CreateAppCookieStickinessPolicy.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         CreateAppCookieStickinessPolicy service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws DuplicatePolicyNameException <p>
-     *             A policy with the specified name already exists for this load
-     *             balancer.
-     *             </p>
-     * @throws TooManyPoliciesException <p>
-     *             The quota for the number of policies for this load balancer
-     *             has been reached.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws DuplicatePolicyNameException
+     * @throws TooManyPoliciesException
+     * @throws InvalidConfigurationRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -802,12 +767,12 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * When a load balancer implements this policy, the load balancer uses a
-     * special cookie to track the back-end server instance for each request.
-     * When the load balancer receives a request, it first checks to see if this
-     * cookie is present in the request. If so, the load balancer sends the
-     * request to the application server specified in the cookie. If not, the
-     * load balancer sends the request to a server that is chosen based on the
-     * existing load-balancing algorithm.
+     * special cookie to track the instance for each request. When the load
+     * balancer receives a request, it first checks to see if this cookie is
+     * present in the request. If so, the load balancer sends the request to the
+     * application server specified in the cookie. If not, the load balancer
+     * sends the request to a server that is chosen based on the existing
+     * load-balancing algorithm.
      * </p>
      * <p>
      * A cookie is inserted into the response for binding subsequent requests
@@ -817,29 +782,21 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-sticky-sessions.html#enable-sticky-sessions-duration"
-     * >Duration-Based Session Stickiness</a> in the <i>Elastic Load Balancing
-     * Developer Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration"
+     * >Duration-Based Session Stickiness</a> in the <i>Classic Load Balancer
+     * Guide</i>.
      * </p>
      * 
-     * @param createLBCookieStickinessPolicyRequest
+     * @param createLBCookieStickinessPolicyRequest <p>
+     *            Contains the parameters for CreateLBCookieStickinessPolicy.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         CreateLBCookieStickinessPolicy service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws DuplicatePolicyNameException <p>
-     *             A policy with the specified name already exists for this load
-     *             balancer.
-     *             </p>
-     * @throws TooManyPoliciesException <p>
-     *             The quota for the number of policies for this load balancer
-     *             has been reached.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws DuplicatePolicyNameException
+     * @throws TooManyPoliciesException
+     * @throws InvalidConfigurationRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -866,12 +823,12 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * When a load balancer implements this policy, the load balancer uses a
-     * special cookie to track the back-end server instance for each request.
-     * When the load balancer receives a request, it first checks to see if this
-     * cookie is present in the request. If so, the load balancer sends the
-     * request to the application server specified in the cookie. If not, the
-     * load balancer sends the request to a server that is chosen based on the
-     * existing load-balancing algorithm.
+     * special cookie to track the instance for each request. When the load
+     * balancer receives a request, it first checks to see if this cookie is
+     * present in the request. If so, the load balancer sends the request to the
+     * application server specified in the cookie. If not, the load balancer
+     * sends the request to a server that is chosen based on the existing
+     * load-balancing algorithm.
      * </p>
      * <p>
      * A cookie is inserted into the response for binding subsequent requests
@@ -881,29 +838,21 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-sticky-sessions.html#enable-sticky-sessions-duration"
-     * >Duration-Based Session Stickiness</a> in the <i>Elastic Load Balancing
-     * Developer Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration"
+     * >Duration-Based Session Stickiness</a> in the <i>Classic Load Balancer
+     * Guide</i>.
      * </p>
      * 
-     * @param createLBCookieStickinessPolicyRequest
+     * @param createLBCookieStickinessPolicyRequest <p>
+     *            Contains the parameters for CreateLBCookieStickinessPolicy.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         CreateLBCookieStickinessPolicy service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws DuplicatePolicyNameException <p>
-     *             A policy with the specified name already exists for this load
-     *             balancer.
-     *             </p>
-     * @throws TooManyPoliciesException <p>
-     *             The quota for the number of policies for this load balancer
-     *             has been reached.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws DuplicatePolicyNameException
+     * @throws TooManyPoliciesException
+     * @throws InvalidConfigurationRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -933,64 +882,47 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
 
     /**
      * <p>
-     * Creates a load balancer.
+     * Creates a Classic Load Balancer.
      * </p>
      * <p>
-     * If the call completes successfully, a new load balancer is created with a
-     * unique Domain Name Service (DNS) name. The load balancer receives
-     * incoming traffic and routes it to the registered instances. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/how-elb-works.html"
-     * >How Elastic Load Balancing Works</a> in the <i>Elastic Load Balancing
-     * Developer Guide</i>.
+     * You can add listeners, security groups, subnets, and tags when you create
+     * your load balancer, or you can add them later using
+     * <a>CreateLoadBalancerListeners</a>,
+     * <a>ApplySecurityGroupsToLoadBalancer</a>,
+     * <a>AttachLoadBalancerToSubnets</a>, and <a>AddTags</a>.
+     * </p>
+     * <p>
+     * To describe your current load balancers, see
+     * <a>DescribeLoadBalancers</a>. When you are finished with a load balancer,
+     * you can delete it using <a>DeleteLoadBalancer</a>.
      * </p>
      * <p>
      * You can create up to 20 load balancers per region per account. You can
      * request an increase for the number of load balancers for your account.
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-limits.html"
-     * >Elastic Load Balancing Limits</a> in the <i>Elastic Load Balancing
-     * Developer Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-limits.html"
+     * >Limits for Your Classic Load Balancer</a> in the <i>Classic Load
+     * Balancer Guide</i>.
      * </p>
      * 
-     * @param createLoadBalancerRequest
+     * @param createLoadBalancerRequest <p>
+     *            Contains the parameters for CreateLoadBalancer.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         CreateLoadBalancer service method, as returned by Amazon Elastic
      *         Load Balancing.
-     * @throws DuplicateLoadBalancerNameException <p>
-     *             The specified load balancer name already exists for this
-     *             account.
-     *             </p>
-     * @throws TooManyLoadBalancersException <p>
-     *             The quota for the number of load balancers has been reached.
-     *             </p>
-     * @throws CertificateNotFoundException <p>
-     *             The specified SSL ID does not refer to a valid SSL
-     *             certificate in AWS Identity and Access Management (IAM).
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
-     * @throws SubnetNotFoundException <p>
-     *             One or more of the specified subnets do not exist.
-     *             </p>
-     * @throws InvalidSubnetException <p>
-     *             The specified VPC has no associated Internet gateway.
-     *             </p>
-     * @throws InvalidSecurityGroupException <p>
-     *             One or more of the specified security groups do not exist.
-     *             </p>
-     * @throws InvalidSchemeException <p>
-     *             The specified value for the schema is not valid. You can only
-     *             specify a scheme for load balancers in a VPC.
-     *             </p>
-     * @throws TooManyTagsException <p>
-     *             The quota for the number of tags that can be assigned to a
-     *             load balancer has been reached.
-     *             </p>
-     * @throws DuplicateTagKeysException <p>
-     *             A tag key was specified more than once.
-     *             </p>
+     * @throws DuplicateLoadBalancerNameException
+     * @throws TooManyLoadBalancersException
+     * @throws CertificateNotFoundException
+     * @throws InvalidConfigurationRequestException
+     * @throws SubnetNotFoundException
+     * @throws InvalidSubnetException
+     * @throws InvalidSecurityGroupException
+     * @throws InvalidSchemeException
+     * @throws TooManyTagsException
+     * @throws DuplicateTagKeysException
+     * @throws UnsupportedProtocolException
+     * @throws OperationNotPermittedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1011,64 +943,47 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
 
     /**
      * <p>
-     * Creates a load balancer.
+     * Creates a Classic Load Balancer.
      * </p>
      * <p>
-     * If the call completes successfully, a new load balancer is created with a
-     * unique Domain Name Service (DNS) name. The load balancer receives
-     * incoming traffic and routes it to the registered instances. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/how-elb-works.html"
-     * >How Elastic Load Balancing Works</a> in the <i>Elastic Load Balancing
-     * Developer Guide</i>.
+     * You can add listeners, security groups, subnets, and tags when you create
+     * your load balancer, or you can add them later using
+     * <a>CreateLoadBalancerListeners</a>,
+     * <a>ApplySecurityGroupsToLoadBalancer</a>,
+     * <a>AttachLoadBalancerToSubnets</a>, and <a>AddTags</a>.
+     * </p>
+     * <p>
+     * To describe your current load balancers, see
+     * <a>DescribeLoadBalancers</a>. When you are finished with a load balancer,
+     * you can delete it using <a>DeleteLoadBalancer</a>.
      * </p>
      * <p>
      * You can create up to 20 load balancers per region per account. You can
      * request an increase for the number of load balancers for your account.
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-limits.html"
-     * >Elastic Load Balancing Limits</a> in the <i>Elastic Load Balancing
-     * Developer Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-limits.html"
+     * >Limits for Your Classic Load Balancer</a> in the <i>Classic Load
+     * Balancer Guide</i>.
      * </p>
      * 
-     * @param createLoadBalancerRequest
+     * @param createLoadBalancerRequest <p>
+     *            Contains the parameters for CreateLoadBalancer.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         CreateLoadBalancer service method, as returned by Amazon Elastic
      *         Load Balancing.
-     * @throws DuplicateLoadBalancerNameException <p>
-     *             The specified load balancer name already exists for this
-     *             account.
-     *             </p>
-     * @throws TooManyLoadBalancersException <p>
-     *             The quota for the number of load balancers has been reached.
-     *             </p>
-     * @throws CertificateNotFoundException <p>
-     *             The specified SSL ID does not refer to a valid SSL
-     *             certificate in AWS Identity and Access Management (IAM).
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
-     * @throws SubnetNotFoundException <p>
-     *             One or more of the specified subnets do not exist.
-     *             </p>
-     * @throws InvalidSubnetException <p>
-     *             The specified VPC has no associated Internet gateway.
-     *             </p>
-     * @throws InvalidSecurityGroupException <p>
-     *             One or more of the specified security groups do not exist.
-     *             </p>
-     * @throws InvalidSchemeException <p>
-     *             The specified value for the schema is not valid. You can only
-     *             specify a scheme for load balancers in a VPC.
-     *             </p>
-     * @throws TooManyTagsException <p>
-     *             The quota for the number of tags that can be assigned to a
-     *             load balancer has been reached.
-     *             </p>
-     * @throws DuplicateTagKeysException <p>
-     *             A tag key was specified more than once.
-     *             </p>
+     * @throws DuplicateLoadBalancerNameException
+     * @throws TooManyLoadBalancersException
+     * @throws CertificateNotFoundException
+     * @throws InvalidConfigurationRequestException
+     * @throws SubnetNotFoundException
+     * @throws InvalidSubnetException
+     * @throws InvalidSecurityGroupException
+     * @throws InvalidSchemeException
+     * @throws TooManyTagsException
+     * @throws DuplicateTagKeysException
+     * @throws UnsupportedProtocolException
+     * @throws OperationNotPermittedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1105,32 +1020,22 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/us-add-listener.html"
-     * >Add a Listener to Your Load Balancer</a> in the <i>Elastic Load
-     * Balancing Developer Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-listener-config.html"
+     * >Listeners for Your Classic Load Balancer</a> in the <i>Classic Load
+     * Balancer Guide</i>.
      * </p>
      * 
-     * @param createLoadBalancerListenersRequest
+     * @param createLoadBalancerListenersRequest <p>
+     *            Contains the parameters for CreateLoadBalancerListeners.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         CreateLoadBalancerListeners service method, as returned by Amazon
      *         Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws DuplicateListenerException <p>
-     *             A listener already exists for the specified
-     *             <code>LoadBalancerName</code> and
-     *             <code>LoadBalancerPort</code>, but with a different
-     *             <code>InstancePort</code>, <code>Protocol</code>, or
-     *             <code>SSLCertificateId</code>.
-     *             </p>
-     * @throws CertificateNotFoundException <p>
-     *             The specified SSL ID does not refer to a valid SSL
-     *             certificate in AWS Identity and Access Management (IAM).
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws DuplicateListenerException
+     * @throws CertificateNotFoundException
+     * @throws InvalidConfigurationRequestException
+     * @throws UnsupportedProtocolException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1158,32 +1063,22 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/us-add-listener.html"
-     * >Add a Listener to Your Load Balancer</a> in the <i>Elastic Load
-     * Balancing Developer Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-listener-config.html"
+     * >Listeners for Your Classic Load Balancer</a> in the <i>Classic Load
+     * Balancer Guide</i>.
      * </p>
      * 
-     * @param createLoadBalancerListenersRequest
+     * @param createLoadBalancerListenersRequest <p>
+     *            Contains the parameters for CreateLoadBalancerListeners.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         CreateLoadBalancerListeners service method, as returned by Amazon
      *         Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws DuplicateListenerException <p>
-     *             A listener already exists for the specified
-     *             <code>LoadBalancerName</code> and
-     *             <code>LoadBalancerPort</code>, but with a different
-     *             <code>InstancePort</code>, <code>Protocol</code>, or
-     *             <code>SSLCertificateId</code>.
-     *             </p>
-     * @throws CertificateNotFoundException <p>
-     *             The specified SSL ID does not refer to a valid SSL
-     *             certificate in AWS Identity and Access Management (IAM).
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws DuplicateListenerException
+     * @throws CertificateNotFoundException
+     * @throws InvalidConfigurationRequestException
+     * @throws UnsupportedProtocolException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1218,31 +1113,21 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * Policies are settings that are saved for your load balancer and that can
-     * be applied to the front-end listener or the back-end application server,
-     * depending on the policy type.
+     * be applied to the listener or the application server, depending on the
+     * policy type.
      * </p>
      * 
-     * @param createLoadBalancerPolicyRequest
+     * @param createLoadBalancerPolicyRequest <p>
+     *            Contains the parameters for CreateLoadBalancerPolicy.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         CreateLoadBalancerPolicy service method, as returned by Amazon
      *         Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws PolicyTypeNotFoundException <p>
-     *             One or more of the specified policy types do not exist.
-     *             </p>
-     * @throws DuplicatePolicyNameException <p>
-     *             A policy with the specified name already exists for this load
-     *             balancer.
-     *             </p>
-     * @throws TooManyPoliciesException <p>
-     *             The quota for the number of policies for this load balancer
-     *             has been reached.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws PolicyTypeNotFoundException
+     * @throws DuplicatePolicyNameException
+     * @throws TooManyPoliciesException
+     * @throws InvalidConfigurationRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1268,31 +1153,21 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * Policies are settings that are saved for your load balancer and that can
-     * be applied to the front-end listener or the back-end application server,
-     * depending on the policy type.
+     * be applied to the listener or the application server, depending on the
+     * policy type.
      * </p>
      * 
-     * @param createLoadBalancerPolicyRequest
+     * @param createLoadBalancerPolicyRequest <p>
+     *            Contains the parameters for CreateLoadBalancerPolicy.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         CreateLoadBalancerPolicy service method, as returned by Amazon
      *         Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws PolicyTypeNotFoundException <p>
-     *             One or more of the specified policy types do not exist.
-     *             </p>
-     * @throws DuplicatePolicyNameException <p>
-     *             A policy with the specified name already exists for this load
-     *             balancer.
-     *             </p>
-     * @throws TooManyPoliciesException <p>
-     *             The quota for the number of policies for this load balancer
-     *             has been reached.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws PolicyTypeNotFoundException
+     * @throws DuplicatePolicyNameException
+     * @throws TooManyPoliciesException
+     * @throws InvalidConfigurationRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1329,14 +1204,16 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * all settings. The DNS name associated with a deleted load balancer are no
      * longer usable. The name and associated DNS record of the deleted load
      * balancer no longer exist and traffic sent to any of its IP addresses is
-     * no longer delivered to back-end instances.
+     * no longer delivered to your instances.
      * </p>
      * <p>
      * If the load balancer does not exist or has already been deleted, the call
      * to <code>DeleteLoadBalancer</code> still succeeds.
      * </p>
      * 
-     * @param deleteLoadBalancerRequest
+     * @param deleteLoadBalancerRequest <p>
+     *            Contains the parameters for DeleteLoadBalancer.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DeleteLoadBalancer service method, as returned by Amazon Elastic
      *         Load Balancing.
@@ -1367,14 +1244,16 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * all settings. The DNS name associated with a deleted load balancer are no
      * longer usable. The name and associated DNS record of the deleted load
      * balancer no longer exist and traffic sent to any of its IP addresses is
-     * no longer delivered to back-end instances.
+     * no longer delivered to your instances.
      * </p>
      * <p>
      * If the load balancer does not exist or has already been deleted, the call
      * to <code>DeleteLoadBalancer</code> still succeeds.
      * </p>
      * 
-     * @param deleteLoadBalancerRequest
+     * @param deleteLoadBalancerRequest <p>
+     *            Contains the parameters for DeleteLoadBalancer.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DeleteLoadBalancer service method, as returned by Amazon Elastic
      *         Load Balancing.
@@ -1410,13 +1289,13 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * Deletes the specified listeners from the specified load balancer.
      * </p>
      * 
-     * @param deleteLoadBalancerListenersRequest
+     * @param deleteLoadBalancerListenersRequest <p>
+     *            Contains the parameters for DeleteLoadBalancerListeners.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DeleteLoadBalancerListeners service method, as returned by Amazon
      *         Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1440,13 +1319,13 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * Deletes the specified listeners from the specified load balancer.
      * </p>
      * 
-     * @param deleteLoadBalancerListenersRequest
+     * @param deleteLoadBalancerListenersRequest <p>
+     *            Contains the parameters for DeleteLoadBalancerListeners.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DeleteLoadBalancerListeners service method, as returned by Amazon
      *         Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1480,16 +1359,14 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * policy must not be enabled for any listeners.
      * </p>
      * 
-     * @param deleteLoadBalancerPolicyRequest =
+     * @param deleteLoadBalancerPolicyRequest <p>
+     *            Contains the parameters for DeleteLoadBalancerPolicy.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DeleteLoadBalancerPolicy service method, as returned by Amazon
      *         Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws InvalidConfigurationRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1514,16 +1391,14 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * policy must not be enabled for any listeners.
      * </p>
      * 
-     * @param deleteLoadBalancerPolicyRequest =
+     * @param deleteLoadBalancerPolicyRequest <p>
+     *            Contains the parameters for DeleteLoadBalancerPolicy.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DeleteLoadBalancerPolicy service method, as returned by Amazon
      *         Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws InvalidConfigurationRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1563,21 +1438,20 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_DeReg_Reg_Instances.html"
-     * >Deregister and Register Amazon EC2 Instances</a> in the <i>Elastic Load
-     * Balancing Developer Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html"
+     * >Register or De-Register EC2 Instances</a> in the <i>Classic Load
+     * Balancer Guide</i>.
      * </p>
      * 
-     * @param deregisterInstancesFromLoadBalancerRequest
+     * @param deregisterInstancesFromLoadBalancerRequest <p>
+     *            Contains the parameters for
+     *            DeregisterInstancesFromLoadBalancer.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DeregisterInstancesFromLoadBalancer service method, as returned
      *         by Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws InvalidInstanceException <p>
-     *             The specified endpoint is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws InvalidInstanceException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1608,21 +1482,20 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_DeReg_Reg_Instances.html"
-     * >Deregister and Register Amazon EC2 Instances</a> in the <i>Elastic Load
-     * Balancing Developer Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html"
+     * >Register or De-Register EC2 Instances</a> in the <i>Classic Load
+     * Balancer Guide</i>.
      * </p>
      * 
-     * @param deregisterInstancesFromLoadBalancerRequest
+     * @param deregisterInstancesFromLoadBalancerRequest <p>
+     *            Contains the parameters for
+     *            DeregisterInstancesFromLoadBalancer.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DeregisterInstancesFromLoadBalancer service method, as returned
      *         by Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws InvalidInstanceException <p>
-     *             The specified endpoint is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws InvalidInstanceException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1652,6 +1525,83 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
 
     /**
      * <p>
+     * Describes the current Elastic Load Balancing resource limits for your AWS
+     * account.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-limits.html"
+     * >Limits for Your Classic Load Balancer</a> in the <i>Classic Load
+     * Balancer Guide</i>.
+     * </p>
+     * 
+     * @param describeAccountLimitsRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeAccountLimits service method, as returned by Amazon
+     *         Elastic Load Balancing.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Elastic Load Balancing indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public Future<DescribeAccountLimitsResult> describeAccountLimitsAsync(
+            final DescribeAccountLimitsRequest describeAccountLimitsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeAccountLimitsResult>() {
+            public DescribeAccountLimitsResult call() throws Exception {
+                return describeAccountLimits(describeAccountLimitsRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Describes the current Elastic Load Balancing resource limits for your AWS
+     * account.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-limits.html"
+     * >Limits for Your Classic Load Balancer</a> in the <i>Classic Load
+     * Balancer Guide</i>.
+     * </p>
+     * 
+     * @param describeAccountLimitsRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeAccountLimits service method, as returned by Amazon
+     *         Elastic Load Balancing.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Elastic Load Balancing indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public Future<DescribeAccountLimitsResult> describeAccountLimitsAsync(
+            final DescribeAccountLimitsRequest describeAccountLimitsRequest,
+            final AsyncHandler<DescribeAccountLimitsRequest, DescribeAccountLimitsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeAccountLimitsResult>() {
+            public DescribeAccountLimitsResult call() throws Exception {
+                DescribeAccountLimitsResult result = null;
+                try {
+                    result = describeAccountLimits(describeAccountLimitsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(describeAccountLimitsRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Describes the state of the specified instances with respect to the
      * specified load balancer. If no instances are specified, the call
      * describes the state of all instances that are currently registered with
@@ -1660,16 +1610,14 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * of terminated instances is not returned.
      * </p>
      * 
-     * @param describeInstanceHealthRequest
+     * @param describeInstanceHealthRequest <p>
+     *            Contains the parameters for DescribeInstanceHealth.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DescribeInstanceHealth service method, as returned by Amazon
      *         Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws InvalidInstanceException <p>
-     *             The specified endpoint is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws InvalidInstanceException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1698,16 +1646,14 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * of terminated instances is not returned.
      * </p>
      * 
-     * @param describeInstanceHealthRequest
+     * @param describeInstanceHealthRequest <p>
+     *            Contains the parameters for DescribeInstanceHealth.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DescribeInstanceHealth service method, as returned by Amazon
      *         Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws InvalidInstanceException <p>
-     *             The specified endpoint is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws InvalidInstanceException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1740,16 +1686,14 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * Describes the attributes for the specified load balancer.
      * </p>
      * 
-     * @param describeLoadBalancerAttributesRequest
+     * @param describeLoadBalancerAttributesRequest <p>
+     *            Contains the parameters for DescribeLoadBalancerAttributes.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DescribeLoadBalancerAttributes service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws LoadBalancerAttributeNotFoundException <p>
-     *             The specified load balancer attribute does not exist.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws LoadBalancerAttributeNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1773,16 +1717,14 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * Describes the attributes for the specified load balancer.
      * </p>
      * 
-     * @param describeLoadBalancerAttributesRequest
+     * @param describeLoadBalancerAttributesRequest <p>
+     *            Contains the parameters for DescribeLoadBalancerAttributes.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DescribeLoadBalancerAttributes service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws LoadBalancerAttributeNotFoundException <p>
-     *             The specified load balancer attribute does not exist.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws LoadBalancerAttributeNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1824,16 +1766,14 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * have the <code>ELBSample-</code> prefix.
      * </p>
      * 
-     * @param describeLoadBalancerPoliciesRequest
+     * @param describeLoadBalancerPoliciesRequest <p>
+     *            Contains the parameters for DescribeLoadBalancerPolicies.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DescribeLoadBalancerPolicies service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws PolicyNotFoundException <p>
-     *             One or more of the specified policies do not exist.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws PolicyNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1866,16 +1806,14 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * have the <code>ELBSample-</code> prefix.
      * </p>
      * 
-     * @param describeLoadBalancerPoliciesRequest
+     * @param describeLoadBalancerPoliciesRequest <p>
+     *            Contains the parameters for DescribeLoadBalancerPolicies.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DescribeLoadBalancerPolicies service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws PolicyNotFoundException <p>
-     *             One or more of the specified policies do not exist.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws PolicyNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1905,20 +1843,29 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
 
     /**
      * <p>
-     * Describes the specified load balancer policy types.
+     * Describes the specified load balancer policy types or all load balancer
+     * policy types.
      * </p>
      * <p>
-     * You can use these policy types with <a>CreateLoadBalancerPolicy</a> to
-     * create policy configurations for a load balancer.
+     * The description of each type indicates how it can be used. For example,
+     * some policies can be used only with layer 7 listeners, some policies can
+     * be used only with layer 4 listeners, and some policies can be used only
+     * with your EC2 instances.
+     * </p>
+     * <p>
+     * You can use <a>CreateLoadBalancerPolicy</a> to create a policy
+     * configuration for any of these policy types. Then, depending on the
+     * policy type, use either <a>SetLoadBalancerPoliciesOfListener</a> or
+     * <a>SetLoadBalancerPoliciesForBackendServer</a> to set the policy.
      * </p>
      * 
-     * @param describeLoadBalancerPolicyTypesRequest
+     * @param describeLoadBalancerPolicyTypesRequest <p>
+     *            Contains the parameters for DescribeLoadBalancerPolicyTypes.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DescribeLoadBalancerPolicyTypes service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws PolicyTypeNotFoundException <p>
-     *             One or more of the specified policy types do not exist.
-     *             </p>
+     * @throws PolicyTypeNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1939,20 +1886,29 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
 
     /**
      * <p>
-     * Describes the specified load balancer policy types.
+     * Describes the specified load balancer policy types or all load balancer
+     * policy types.
      * </p>
      * <p>
-     * You can use these policy types with <a>CreateLoadBalancerPolicy</a> to
-     * create policy configurations for a load balancer.
+     * The description of each type indicates how it can be used. For example,
+     * some policies can be used only with layer 7 listeners, some policies can
+     * be used only with layer 4 listeners, and some policies can be used only
+     * with your EC2 instances.
+     * </p>
+     * <p>
+     * You can use <a>CreateLoadBalancerPolicy</a> to create a policy
+     * configuration for any of these policy types. Then, depending on the
+     * policy type, use either <a>SetLoadBalancerPoliciesOfListener</a> or
+     * <a>SetLoadBalancerPoliciesForBackendServer</a> to set the policy.
      * </p>
      * 
-     * @param describeLoadBalancerPolicyTypesRequest
+     * @param describeLoadBalancerPolicyTypesRequest <p>
+     *            Contains the parameters for DescribeLoadBalancerPolicyTypes.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DescribeLoadBalancerPolicyTypes service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws PolicyTypeNotFoundException <p>
-     *             One or more of the specified policy types do not exist.
-     *             </p>
+     * @throws PolicyTypeNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1986,13 +1942,14 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * specified, the call describes all of your load balancers.
      * </p>
      * 
-     * @param describeLoadBalancersRequest
+     * @param describeLoadBalancersRequest <p>
+     *            Contains the parameters for DescribeLoadBalancers.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DescribeLoadBalancers service method, as returned by Amazon
      *         Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws DependencyThrottleException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2017,13 +1974,14 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * specified, the call describes all of your load balancers.
      * </p>
      * 
-     * @param describeLoadBalancersRequest
+     * @param describeLoadBalancersRequest <p>
+     *            Contains the parameters for DescribeLoadBalancers.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DescribeLoadBalancers service method, as returned by Amazon
      *         Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws DependencyThrottleException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2056,13 +2014,13 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * Describes the tags associated with the specified load balancers.
      * </p>
      * 
-     * @param describeTagsRequest
+     * @param describeTagsRequest <p>
+     *            Contains the parameters for DescribeTags.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DescribeTags service method, as returned by Amazon Elastic Load
      *         Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2086,13 +2044,13 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * Describes the tags associated with the specified load balancers.
      * </p>
      * 
-     * @param describeTagsRequest
+     * @param describeTagsRequest <p>
+     *            Contains the parameters for DescribeTags.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DescribeTags service method, as returned by Amazon Elastic Load
      *         Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2132,16 +2090,14 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * routable subnets.
      * </p>
      * 
-     * @param detachLoadBalancerFromSubnetsRequest
+     * @param detachLoadBalancerFromSubnetsRequest <p>
+     *            Contains the parameters for DetachLoadBalancerFromSubnets.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DetachLoadBalancerFromSubnets service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws InvalidConfigurationRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2172,16 +2128,14 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * routable subnets.
      * </p>
      * 
-     * @param detachLoadBalancerFromSubnetsRequest
+     * @param detachLoadBalancerFromSubnetsRequest <p>
+     *            Contains the parameters for DetachLoadBalancerFromSubnets.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DetachLoadBalancerFromSubnets service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws InvalidConfigurationRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2224,21 +2178,20 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_ShrinkLBApp04.html"
-     * >Disable an Availability Zone from a Load-Balanced Application</a> in the
-     * <i>Elastic Load Balancing Developer Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html"
+     * >Add or Remove Availability Zones</a> in the <i>Classic Load Balancer
+     * Guide</i>.
      * </p>
      * 
-     * @param disableAvailabilityZonesForLoadBalancerRequest
+     * @param disableAvailabilityZonesForLoadBalancerRequest <p>
+     *            Contains the parameters for
+     *            DisableAvailabilityZonesForLoadBalancer.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DisableAvailabilityZonesForLoadBalancer service method, as
      *         returned by Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws InvalidConfigurationRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2273,21 +2226,20 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_ShrinkLBApp04.html"
-     * >Disable an Availability Zone from a Load-Balanced Application</a> in the
-     * <i>Elastic Load Balancing Developer Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html"
+     * >Add or Remove Availability Zones</a> in the <i>Classic Load Balancer
+     * Guide</i>.
      * </p>
      * 
-     * @param disableAvailabilityZonesForLoadBalancerRequest
+     * @param disableAvailabilityZonesForLoadBalancerRequest <p>
+     *            Contains the parameters for
+     *            DisableAvailabilityZonesForLoadBalancer.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         DisableAvailabilityZonesForLoadBalancer service method, as
      *         returned by Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws InvalidConfigurationRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2328,18 +2280,19 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_AddLBAvailabilityZone.html"
-     * >Add Availability Zone</a> in the <i>Elastic Load Balancing Developer
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html"
+     * >Add or Remove Availability Zones</a> in the <i>Classic Load Balancer
      * Guide</i>.
      * </p>
      * 
-     * @param enableAvailabilityZonesForLoadBalancerRequest
+     * @param enableAvailabilityZonesForLoadBalancerRequest <p>
+     *            Contains the parameters for
+     *            EnableAvailabilityZonesForLoadBalancer.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         EnableAvailabilityZonesForLoadBalancer service method, as
      *         returned by Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2369,18 +2322,19 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_AddLBAvailabilityZone.html"
-     * >Add Availability Zone</a> in the <i>Elastic Load Balancing Developer
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html"
+     * >Add or Remove Availability Zones</a> in the <i>Classic Load Balancer
      * Guide</i>.
      * </p>
      * 
-     * @param enableAvailabilityZonesForLoadBalancerRequest
+     * @param enableAvailabilityZonesForLoadBalancerRequest <p>
+     *            Contains the parameters for
+     *            EnableAvailabilityZonesForLoadBalancer.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         EnableAvailabilityZonesForLoadBalancer service method, as
      *         returned by Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2421,37 +2375,49 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * value for your load balancer.
      * </p>
      * <p>
-     * For more information, see the following in the <i>Elastic Load Balancing
-     * Developer Guide</i>:
+     * For more information, see the following in the <i>Classic Load Balancer
+     * Guide</i>:
      * </p>
      * <ul>
-     * <li><a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#request-routing"
-     * >Cross-Zone Load Balancing</a></li>
-     * <li><a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#conn-drain"
-     * >Connection Draining</a></li>
-     * <li><a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/access-log-collection.html"
-     * >Access Logs</a></li>
-     * <li><a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#idle-timeout"
-     * >Idle Connection Timeout</a></li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-crosszone-lb.html"
+     * >Cross-Zone Load Balancing</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-conn-drain.html"
+     * >Connection Draining</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/access-log-collection.html"
+     * >Access Logs</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-idle-timeout.html"
+     * >Idle Connection Timeout</a>
+     * </p>
+     * </li>
      * </ul>
      * 
-     * @param modifyLoadBalancerAttributesRequest
+     * @param modifyLoadBalancerAttributesRequest <p>
+     *            Contains the parameters for ModifyLoadBalancerAttributes.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         ModifyLoadBalancerAttributes service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws LoadBalancerAttributeNotFoundException <p>
-     *             The specified load balancer attribute does not exist.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws LoadBalancerAttributeNotFoundException
+     * @throws InvalidConfigurationRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2483,37 +2449,49 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * value for your load balancer.
      * </p>
      * <p>
-     * For more information, see the following in the <i>Elastic Load Balancing
-     * Developer Guide</i>:
+     * For more information, see the following in the <i>Classic Load Balancer
+     * Guide</i>:
      * </p>
      * <ul>
-     * <li><a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#request-routing"
-     * >Cross-Zone Load Balancing</a></li>
-     * <li><a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#conn-drain"
-     * >Connection Draining</a></li>
-     * <li><a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/access-log-collection.html"
-     * >Access Logs</a></li>
-     * <li><a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#idle-timeout"
-     * >Idle Connection Timeout</a></li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-crosszone-lb.html"
+     * >Cross-Zone Load Balancing</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-conn-drain.html"
+     * >Connection Draining</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/access-log-collection.html"
+     * >Access Logs</a>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <a href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-idle-timeout.html"
+     * >Idle Connection Timeout</a>
+     * </p>
+     * </li>
      * </ul>
      * 
-     * @param modifyLoadBalancerAttributesRequest
+     * @param modifyLoadBalancerAttributesRequest <p>
+     *            Contains the parameters for ModifyLoadBalancerAttributes.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         ModifyLoadBalancerAttributes service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws LoadBalancerAttributeNotFoundException <p>
-     *             The specified load balancer attribute does not exist.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws LoadBalancerAttributeNotFoundException
+     * @throws InvalidConfigurationRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2567,31 +2545,24 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * to the <code>InService</code> state.
      * </p>
      * <p>
-     * If you stop an instance registered with a load balancer and then start
-     * it, the IP addresses associated with the instance changes. Elastic Load
-     * Balancing cannot recognize the new IP address, which prevents it from
-     * routing traffic to the instances. We recommend that you use the following
-     * sequence: stop the instance, deregister the instance, start the instance,
-     * and then register the instance. To deregister instances from a load
-     * balancer, use <a>DeregisterInstancesFromLoadBalancer</a>.
+     * To deregister instances from a load balancer, use
+     * <a>DeregisterInstancesFromLoadBalancer</a>.
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_DeReg_Reg_Instances.html"
-     * >Deregister and Register EC2 Instances</a> in the <i>Elastic Load
-     * Balancing Developer Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html"
+     * >Register or De-Register EC2 Instances</a> in the <i>Classic Load
+     * Balancer Guide</i>.
      * </p>
      * 
-     * @param registerInstancesWithLoadBalancerRequest
+     * @param registerInstancesWithLoadBalancerRequest <p>
+     *            Contains the parameters for RegisterInstancesWithLoadBalancer.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         RegisterInstancesWithLoadBalancer service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws InvalidInstanceException <p>
-     *             The specified endpoint is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws InvalidInstanceException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2636,31 +2607,24 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * to the <code>InService</code> state.
      * </p>
      * <p>
-     * If you stop an instance registered with a load balancer and then start
-     * it, the IP addresses associated with the instance changes. Elastic Load
-     * Balancing cannot recognize the new IP address, which prevents it from
-     * routing traffic to the instances. We recommend that you use the following
-     * sequence: stop the instance, deregister the instance, start the instance,
-     * and then register the instance. To deregister instances from a load
-     * balancer, use <a>DeregisterInstancesFromLoadBalancer</a>.
+     * To deregister instances from a load balancer, use
+     * <a>DeregisterInstancesFromLoadBalancer</a>.
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_DeReg_Reg_Instances.html"
-     * >Deregister and Register EC2 Instances</a> in the <i>Elastic Load
-     * Balancing Developer Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html"
+     * >Register or De-Register EC2 Instances</a> in the <i>Classic Load
+     * Balancer Guide</i>.
      * </p>
      * 
-     * @param registerInstancesWithLoadBalancerRequest
+     * @param registerInstancesWithLoadBalancerRequest <p>
+     *            Contains the parameters for RegisterInstancesWithLoadBalancer.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         RegisterInstancesWithLoadBalancer service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws InvalidInstanceException <p>
-     *             The specified endpoint is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws InvalidInstanceException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2693,12 +2657,12 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * Removes one or more tags from the specified load balancer.
      * </p>
      * 
-     * @param removeTagsRequest
+     * @param removeTagsRequest <p>
+     *            Contains the parameters for RemoveTags.
+     *            </p>
      * @return A Java Future object containing the response from the RemoveTags
      *         service method, as returned by Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2721,12 +2685,12 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * Removes one or more tags from the specified load balancer.
      * </p>
      * 
-     * @param removeTagsRequest
+     * @param removeTagsRequest <p>
+     *            Contains the parameters for RemoveTags.
+     *            </p>
      * @return A Java Future object containing the response from the RemoveTags
      *         service method, as returned by Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2761,29 +2725,23 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * For more information about updating your SSL certificate, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_UpdatingLoadBalancerSSL.html"
-     * >Updating an SSL Certificate for a Load Balancer</a> in the <i>Elastic
-     * Load Balancing Developer Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-update-ssl-cert.html"
+     * >Replace the SSL Certificate for Your Load Balancer</a> in the <i>Classic
+     * Load Balancer Guide</i>.
      * </p>
      * 
-     * @param setLoadBalancerListenerSSLCertificateRequest
+     * @param setLoadBalancerListenerSSLCertificateRequest <p>
+     *            Contains the parameters for
+     *            SetLoadBalancerListenerSSLCertificate.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         SetLoadBalancerListenerSSLCertificate service method, as returned
      *         by Amazon Elastic Load Balancing.
-     * @throws CertificateNotFoundException <p>
-     *             The specified SSL ID does not refer to a valid SSL
-     *             certificate in AWS Identity and Access Management (IAM).
-     *             </p>
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws ListenerNotFoundException <p>
-     *             The load balancer does not have a listener configured at the
-     *             specified port.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws CertificateNotFoundException
+     * @throws LoadBalancerNotFoundException
+     * @throws ListenerNotFoundException
+     * @throws InvalidConfigurationRequestException
+     * @throws UnsupportedProtocolException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2810,29 +2768,23 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * </p>
      * <p>
      * For more information about updating your SSL certificate, see <a href=
-     * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_UpdatingLoadBalancerSSL.html"
-     * >Updating an SSL Certificate for a Load Balancer</a> in the <i>Elastic
-     * Load Balancing Developer Guide</i>.
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-update-ssl-cert.html"
+     * >Replace the SSL Certificate for Your Load Balancer</a> in the <i>Classic
+     * Load Balancer Guide</i>.
      * </p>
      * 
-     * @param setLoadBalancerListenerSSLCertificateRequest
+     * @param setLoadBalancerListenerSSLCertificateRequest <p>
+     *            Contains the parameters for
+     *            SetLoadBalancerListenerSSLCertificate.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         SetLoadBalancerListenerSSLCertificate service method, as returned
      *         by Amazon Elastic Load Balancing.
-     * @throws CertificateNotFoundException <p>
-     *             The specified SSL ID does not refer to a valid SSL
-     *             certificate in AWS Identity and Access Management (IAM).
-     *             </p>
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws ListenerNotFoundException <p>
-     *             The load balancer does not have a listener configured at the
-     *             specified port.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws CertificateNotFoundException
+     * @throws LoadBalancerNotFoundException
+     * @throws ListenerNotFoundException
+     * @throws InvalidConfigurationRequestException
+     * @throws UnsupportedProtocolException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2863,10 +2815,10 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
     /**
      * <p>
      * Replaces the set of policies associated with the specified port on which
-     * the back-end server is listening with a new set of policies. At this
-     * time, only the back-end server authentication policy type can be applied
-     * to the back-end ports; this policy type is composed of multiple public
-     * key policies.
+     * the EC2 instance is listening with a new set of policies. At this time,
+     * only the back-end server authentication policy type can be applied to the
+     * instance ports; this policy type is composed of multiple public key
+     * policies.
      * </p>
      * <p>
      * Each time you use <code>SetLoadBalancerPoliciesForBackendServer</code> to
@@ -2876,22 +2828,30 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * <p>
      * You can use <a>DescribeLoadBalancers</a> or
      * <a>DescribeLoadBalancerPolicies</a> to verify that the policy is
-     * associated with the back-end server.
+     * associated with the EC2 instance.
+     * </p>
+     * <p>
+     * For more information about enabling back-end instance authentication, see
+     * <a href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-create-https-ssl-load-balancer.html#configure_backendauth_clt"
+     * >Configure Back-end Instance Authentication</a> in the <i>Classic Load
+     * Balancer Guide</i>. For more information about Proxy Protocol, see <a
+     * href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html"
+     * >Configure Proxy Protocol Support</a> in the <i>Classic Load Balancer
+     * Guide</i>.
      * </p>
      * 
-     * @param setLoadBalancerPoliciesForBackendServerRequest
+     * @param setLoadBalancerPoliciesForBackendServerRequest <p>
+     *            Contains the parameters for
+     *            SetLoadBalancerPoliciesForBackendServer.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         SetLoadBalancerPoliciesForBackendServer service method, as
      *         returned by Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws PolicyNotFoundException <p>
-     *             One or more of the specified policies do not exist.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws PolicyNotFoundException
+     * @throws InvalidConfigurationRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2914,10 +2874,10 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
     /**
      * <p>
      * Replaces the set of policies associated with the specified port on which
-     * the back-end server is listening with a new set of policies. At this
-     * time, only the back-end server authentication policy type can be applied
-     * to the back-end ports; this policy type is composed of multiple public
-     * key policies.
+     * the EC2 instance is listening with a new set of policies. At this time,
+     * only the back-end server authentication policy type can be applied to the
+     * instance ports; this policy type is composed of multiple public key
+     * policies.
      * </p>
      * <p>
      * Each time you use <code>SetLoadBalancerPoliciesForBackendServer</code> to
@@ -2927,22 +2887,30 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
      * <p>
      * You can use <a>DescribeLoadBalancers</a> or
      * <a>DescribeLoadBalancerPolicies</a> to verify that the policy is
-     * associated with the back-end server.
+     * associated with the EC2 instance.
+     * </p>
+     * <p>
+     * For more information about enabling back-end instance authentication, see
+     * <a href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-create-https-ssl-load-balancer.html#configure_backendauth_clt"
+     * >Configure Back-end Instance Authentication</a> in the <i>Classic Load
+     * Balancer Guide</i>. For more information about Proxy Protocol, see <a
+     * href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html"
+     * >Configure Proxy Protocol Support</a> in the <i>Classic Load Balancer
+     * Guide</i>.
      * </p>
      * 
-     * @param setLoadBalancerPoliciesForBackendServerRequest
+     * @param setLoadBalancerPoliciesForBackendServerRequest <p>
+     *            Contains the parameters for
+     *            SetLoadBalancerPoliciesForBackendServer.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         SetLoadBalancerPoliciesForBackendServer service method, as
      *         returned by Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws PolicyNotFoundException <p>
-     *             One or more of the specified policies do not exist.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws PolicyNotFoundException
+     * @throws InvalidConfigurationRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2974,28 +2942,34 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
 
     /**
      * <p>
-     * Associates, updates, or disables a policy with a listener for the
-     * specified load balancer. You can associate multiple policies with a
-     * listener.
+     * Replaces the current set of policies for the specified load balancer port
+     * with the specified set of policies.
+     * </p>
+     * <p>
+     * To enable back-end server authentication, use
+     * <a>SetLoadBalancerPoliciesForBackendServer</a>.
+     * </p>
+     * <p>
+     * For more information about setting policies, see <a href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/ssl-config-update.html"
+     * >Update the SSL Negotiation Configuration</a>, <a href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration"
+     * >Duration-Based Session Stickiness</a>, and <a href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-application"
+     * >Application-Controlled Session Stickiness</a> in the <i>Classic Load
+     * Balancer Guide</i>.
      * </p>
      * 
-     * @param setLoadBalancerPoliciesOfListenerRequest
+     * @param setLoadBalancerPoliciesOfListenerRequest <p>
+     *            Contains the parameters for SetLoadBalancePoliciesOfListener.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         SetLoadBalancerPoliciesOfListener service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws PolicyNotFoundException <p>
-     *             One or more of the specified policies do not exist.
-     *             </p>
-     * @throws ListenerNotFoundException <p>
-     *             The load balancer does not have a listener configured at the
-     *             specified port.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws PolicyNotFoundException
+     * @throws ListenerNotFoundException
+     * @throws InvalidConfigurationRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3016,28 +2990,34 @@ public class AmazonElasticLoadBalancingAsyncClient extends AmazonElasticLoadBala
 
     /**
      * <p>
-     * Associates, updates, or disables a policy with a listener for the
-     * specified load balancer. You can associate multiple policies with a
-     * listener.
+     * Replaces the current set of policies for the specified load balancer port
+     * with the specified set of policies.
+     * </p>
+     * <p>
+     * To enable back-end server authentication, use
+     * <a>SetLoadBalancerPoliciesForBackendServer</a>.
+     * </p>
+     * <p>
+     * For more information about setting policies, see <a href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/ssl-config-update.html"
+     * >Update the SSL Negotiation Configuration</a>, <a href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration"
+     * >Duration-Based Session Stickiness</a>, and <a href=
+     * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-application"
+     * >Application-Controlled Session Stickiness</a> in the <i>Classic Load
+     * Balancer Guide</i>.
      * </p>
      * 
-     * @param setLoadBalancerPoliciesOfListenerRequest
+     * @param setLoadBalancerPoliciesOfListenerRequest <p>
+     *            Contains the parameters for SetLoadBalancePoliciesOfListener.
+     *            </p>
      * @return A Java Future object containing the response from the
      *         SetLoadBalancerPoliciesOfListener service method, as returned by
      *         Amazon Elastic Load Balancing.
-     * @throws LoadBalancerNotFoundException <p>
-     *             The specified load balancer does not exist.
-     *             </p>
-     * @throws PolicyNotFoundException <p>
-     *             One or more of the specified policies do not exist.
-     *             </p>
-     * @throws ListenerNotFoundException <p>
-     *             The load balancer does not have a listener configured at the
-     *             specified port.
-     *             </p>
-     * @throws InvalidConfigurationRequestException <p>
-     *             The requested configuration change is not valid.
-     *             </p>
+     * @throws LoadBalancerNotFoundException
+     * @throws PolicyNotFoundException
+     * @throws ListenerNotFoundException
+     * @throws InvalidConfigurationRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

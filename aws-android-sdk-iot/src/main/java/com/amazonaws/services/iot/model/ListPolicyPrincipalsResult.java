@@ -35,6 +35,9 @@ public class ListPolicyPrincipalsResult implements Serializable {
      * The marker for the next set of results, or null if there are no
      * additional results.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      */
     private String nextMarker;
 
@@ -117,6 +120,9 @@ public class ListPolicyPrincipalsResult implements Serializable {
      * The marker for the next set of results, or null if there are no
      * additional results.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @return <p>
      *         The marker for the next set of results, or null if there are no
@@ -132,6 +138,9 @@ public class ListPolicyPrincipalsResult implements Serializable {
      * The marker for the next set of results, or null if there are no
      * additional results.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @param nextMarker <p>
      *            The marker for the next set of results, or null if there are
@@ -150,6 +159,9 @@ public class ListPolicyPrincipalsResult implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @param nextMarker <p>
      *            The marker for the next set of results, or null if there are

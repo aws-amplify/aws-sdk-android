@@ -46,6 +46,14 @@ public class GetUserResultJsonUnmarshaller implements
                         MFAOptionTypeJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("PreferredMfaSetting")) {
+                getUserResult.setPreferredMfaSetting(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("UserMFASettingList")) {
+                getUserResult.setUserMFASettingList(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

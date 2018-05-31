@@ -22,10 +22,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Returns the custom MAIL FROM attributes for a list of identities (email
- * addresses and/or domains).
+ * addresses : domains).
  * </p>
  * <p>
- * This action is throttled at one request per second and can only get custom
+ * This operation is throttled at one request per second and can only get custom
  * MAIL FROM attributes for up to 100 identities at a time.
  * </p>
  */

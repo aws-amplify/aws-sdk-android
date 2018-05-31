@@ -70,17 +70,17 @@ public class ResendConfirmationCodeRequestMarshaller implements
                 jsonWriter.name("SecretHash");
                 jsonWriter.value(secretHash);
             }
-            if (resendConfirmationCodeRequest.getUsername() != null) {
-                String username = resendConfirmationCodeRequest.getUsername();
-                jsonWriter.name("Username");
-                jsonWriter.value(username);
-            }
             if (resendConfirmationCodeRequest.getUserContextData() != null) {
                 UserContextDataType userContextData = resendConfirmationCodeRequest
                         .getUserContextData();
                 jsonWriter.name("UserContextData");
                 UserContextDataTypeJsonMarshaller.getInstance().marshall(userContextData,
                         jsonWriter);
+            }
+            if (resendConfirmationCodeRequest.getUsername() != null) {
+                String username = resendConfirmationCodeRequest.getUsername();
+                jsonWriter.name("Username");
+                jsonWriter.value(username);
             }
             if (resendConfirmationCodeRequest.getAnalyticsMetadata() != null) {
                 AnalyticsMetadataType analyticsMetadata = resendConfirmationCodeRequest

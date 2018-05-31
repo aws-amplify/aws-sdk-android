@@ -53,7 +53,7 @@ public class UpdateThingRequest extends AmazonWebServiceRequest implements Seria
      * For example:
      * </p>
      * <p>
-     * <code>{\"attributes\":{\"name1\":\"value2\"}})</code>
+     * <code>{\"attributes\":{\"name1\":\"value2\"}}</code>
      * </p>
      * <p>
      * This data is used to add new attributes or update existing attributes.
@@ -73,7 +73,7 @@ public class UpdateThingRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Remove a thing type association. If <b>true</b>, the assocation is
+     * Remove a thing type association. If <b>true</b>, the association is
      * removed.
      * </p>
      */
@@ -199,7 +199,7 @@ public class UpdateThingRequest extends AmazonWebServiceRequest implements Seria
      * For example:
      * </p>
      * <p>
-     * <code>{\"attributes\":{\"name1\":\"value2\"}})</code>
+     * <code>{\"attributes\":{\"name1\":\"value2\"}}</code>
      * </p>
      * <p>
      * This data is used to add new attributes or update existing attributes.
@@ -210,7 +210,7 @@ public class UpdateThingRequest extends AmazonWebServiceRequest implements Seria
      *         pairs. For example:
      *         </p>
      *         <p>
-     *         <code>{\"attributes\":{\"name1\":\"value2\"}})</code>
+     *         <code>{\"attributes\":{\"name1\":\"value2\"}}</code>
      *         </p>
      *         <p>
      *         This data is used to add new attributes or update existing
@@ -227,7 +227,7 @@ public class UpdateThingRequest extends AmazonWebServiceRequest implements Seria
      * For example:
      * </p>
      * <p>
-     * <code>{\"attributes\":{\"name1\":\"value2\"}})</code>
+     * <code>{\"attributes\":{\"name1\":\"value2\"}}</code>
      * </p>
      * <p>
      * This data is used to add new attributes or update existing attributes.
@@ -238,7 +238,7 @@ public class UpdateThingRequest extends AmazonWebServiceRequest implements Seria
      *            name-value pairs. For example:
      *            </p>
      *            <p>
-     *            <code>{\"attributes\":{\"name1\":\"value2\"}})</code>
+     *            <code>{\"attributes\":{\"name1\":\"value2\"}}</code>
      *            </p>
      *            <p>
      *            This data is used to add new attributes or update existing
@@ -255,7 +255,7 @@ public class UpdateThingRequest extends AmazonWebServiceRequest implements Seria
      * For example:
      * </p>
      * <p>
-     * <code>{\"attributes\":{\"name1\":\"value2\"}})</code>
+     * <code>{\"attributes\":{\"name1\":\"value2\"}}</code>
      * </p>
      * <p>
      * This data is used to add new attributes or update existing attributes.
@@ -269,7 +269,7 @@ public class UpdateThingRequest extends AmazonWebServiceRequest implements Seria
      *            name-value pairs. For example:
      *            </p>
      *            <p>
-     *            <code>{\"attributes\":{\"name1\":\"value2\"}})</code>
+     *            <code>{\"attributes\":{\"name1\":\"value2\"}}</code>
      *            </p>
      *            <p>
      *            This data is used to add new attributes or update existing
@@ -350,12 +350,12 @@ public class UpdateThingRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Remove a thing type association. If <b>true</b>, the assocation is
+     * Remove a thing type association. If <b>true</b>, the association is
      * removed.
      * </p>
      *
      * @return <p>
-     *         Remove a thing type association. If <b>true</b>, the assocation
+     *         Remove a thing type association. If <b>true</b>, the association
      *         is removed.
      *         </p>
      */
@@ -365,12 +365,12 @@ public class UpdateThingRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Remove a thing type association. If <b>true</b>, the assocation is
+     * Remove a thing type association. If <b>true</b>, the association is
      * removed.
      * </p>
      *
      * @return <p>
-     *         Remove a thing type association. If <b>true</b>, the assocation
+     *         Remove a thing type association. If <b>true</b>, the association
      *         is removed.
      *         </p>
      */
@@ -380,13 +380,13 @@ public class UpdateThingRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Remove a thing type association. If <b>true</b>, the assocation is
+     * Remove a thing type association. If <b>true</b>, the association is
      * removed.
      * </p>
      *
      * @param removeThingType <p>
      *            Remove a thing type association. If <b>true</b>, the
-     *            assocation is removed.
+     *            association is removed.
      *            </p>
      */
     public void setRemoveThingType(Boolean removeThingType) {
@@ -395,7 +395,7 @@ public class UpdateThingRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Remove a thing type association. If <b>true</b>, the assocation is
+     * Remove a thing type association. If <b>true</b>, the association is
      * removed.
      * </p>
      * <p>
@@ -404,7 +404,7 @@ public class UpdateThingRequest extends AmazonWebServiceRequest implements Seria
      *
      * @param removeThingType <p>
      *            Remove a thing type association. If <b>true</b>, the
-     *            assocation is removed.
+     *            association is removed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

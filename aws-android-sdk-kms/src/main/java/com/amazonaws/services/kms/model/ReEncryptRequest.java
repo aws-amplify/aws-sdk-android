@@ -27,6 +27,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * encryption context of a ciphertext.
  * </p>
  * <p>
+ * You can reencrypt data using CMKs in different AWS accounts.
+ * </p>
+ * <p>
  * Unlike other operations, <code>ReEncrypt</code> is authorized twice, once as
  * <code>ReEncryptFrom</code> on the source CMK and once as
  * <code>ReEncryptTo</code> on the destination CMK. We recommend that you
@@ -60,37 +63,49 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * A unique identifier for the CMK to use to reencrypt the data. This value
-     * can be a globally unique identifier, a fully specified ARN to either an
-     * alias or a key, or an alias name prefixed by "alias/".
+     * A unique identifier for the CMK that is used to reencrypt the data.
+     * </p>
+     * <p>
+     * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
+     * or alias ARN. When using an alias name, prefix it with "alias/". To
+     * specify a CMK in a different AWS account, you must use the key ARN or
+     * alias ARN.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Key ARN Example -
-     * arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234
-     * -1234-123456789012
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+     * Key ARN:
+     * <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+     * Alias name: <code>alias/ExampleAlias</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * Alias Name Example - alias/MyAliasName
+     * Alias ARN:
+     * <code>arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias</code>
      * </p>
      * </li>
      * </ul>
      * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>. To get the alias name and alias ARN, use
+     * <a>ListAliases</a>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      */
     private String destinationKeyId;
 
@@ -260,70 +275,92 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * A unique identifier for the CMK to use to reencrypt the data. This value
-     * can be a globally unique identifier, a fully specified ARN to either an
-     * alias or a key, or an alias name prefixed by "alias/".
+     * A unique identifier for the CMK that is used to reencrypt the data.
+     * </p>
+     * <p>
+     * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
+     * or alias ARN. When using an alias name, prefix it with "alias/". To
+     * specify a CMK in a different AWS account, you must use the key ARN or
+     * alias ARN.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Key ARN Example -
-     * arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234
-     * -1234-123456789012
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+     * Key ARN:
+     * <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+     * Alias name: <code>alias/ExampleAlias</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * Alias Name Example - alias/MyAliasName
+     * Alias ARN:
+     * <code>arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias</code>
      * </p>
      * </li>
      * </ul>
      * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>. To get the alias name and alias ARN, use
+     * <a>ListAliases</a>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         A unique identifier for the CMK to use to reencrypt the data.
-     *         This value can be a globally unique identifier, a fully specified
-     *         ARN to either an alias or a key, or an alias name prefixed by
-     *         "alias/".
+     *         A unique identifier for the CMK that is used to reencrypt the
+     *         data.
+     *         </p>
+     *         <p>
+     *         To specify a CMK, use its key ID, Amazon Resource Name (ARN),
+     *         alias name, or alias ARN. When using an alias name, prefix it
+     *         with "alias/". To specify a CMK in a different AWS account, you
+     *         must use the key ARN or alias ARN.
+     *         </p>
+     *         <p>
+     *         For example:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         Key ARN Example -
-     *         arn:aws:kms:us-east-1:123456789012:key/12345678-
-     *         1234-1234-1234-123456789012
+     *         Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         Alias ARN Example -
-     *         arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+     *         Key ARN:
+     *         <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         Globally Unique Key ID Example -
-     *         12345678-1234-1234-1234-123456789012
+     *         Alias name: <code>alias/ExampleAlias</code>
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         Alias Name Example - alias/MyAliasName
+     *         Alias ARN:
+     *         <code>arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias</code>
      *         </p>
      *         </li>
      *         </ul>
+     *         <p>
+     *         To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     *         <a>DescribeKey</a>. To get the alias name and alias ARN, use
+     *         <a>ListAliases</a>.
+     *         </p>
      */
     public String getDestinationKeyId() {
         return destinationKeyId;
@@ -331,70 +368,92 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * A unique identifier for the CMK to use to reencrypt the data. This value
-     * can be a globally unique identifier, a fully specified ARN to either an
-     * alias or a key, or an alias name prefixed by "alias/".
+     * A unique identifier for the CMK that is used to reencrypt the data.
+     * </p>
+     * <p>
+     * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
+     * or alias ARN. When using an alias name, prefix it with "alias/". To
+     * specify a CMK in a different AWS account, you must use the key ARN or
+     * alias ARN.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Key ARN Example -
-     * arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234
-     * -1234-123456789012
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+     * Key ARN:
+     * <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+     * Alias name: <code>alias/ExampleAlias</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * Alias Name Example - alias/MyAliasName
+     * Alias ARN:
+     * <code>arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias</code>
      * </p>
      * </li>
      * </ul>
      * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>. To get the alias name and alias ARN, use
+     * <a>ListAliases</a>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param destinationKeyId <p>
-     *            A unique identifier for the CMK to use to reencrypt the data.
-     *            This value can be a globally unique identifier, a fully
-     *            specified ARN to either an alias or a key, or an alias name
-     *            prefixed by "alias/".
+     *            A unique identifier for the CMK that is used to reencrypt the
+     *            data.
+     *            </p>
+     *            <p>
+     *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
+     *            alias name, or alias ARN. When using an alias name, prefix it
+     *            with "alias/". To specify a CMK in a different AWS account,
+     *            you must use the key ARN or alias ARN.
+     *            </p>
+     *            <p>
+     *            For example:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Key ARN Example -
-     *            arn:aws:kms:us-east-1:123456789012:key/12345678
-     *            -1234-1234-1234-123456789012
+     *            Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Alias ARN Example -
-     *            arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+     *            Key ARN:
+     *            <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Globally Unique Key ID Example -
-     *            12345678-1234-1234-1234-123456789012
+     *            Alias name: <code>alias/ExampleAlias</code>
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Alias Name Example - alias/MyAliasName
+     *            Alias ARN:
+     *            <code>arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias</code>
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
+     *            or <a>DescribeKey</a>. To get the alias name and alias ARN,
+     *            use <a>ListAliases</a>.
+     *            </p>
      */
     public void setDestinationKeyId(String destinationKeyId) {
         this.destinationKeyId = destinationKeyId;
@@ -402,73 +461,95 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * A unique identifier for the CMK to use to reencrypt the data. This value
-     * can be a globally unique identifier, a fully specified ARN to either an
-     * alias or a key, or an alias name prefixed by "alias/".
+     * A unique identifier for the CMK that is used to reencrypt the data.
+     * </p>
+     * <p>
+     * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
+     * or alias ARN. When using an alias name, prefix it with "alias/". To
+     * specify a CMK in a different AWS account, you must use the key ARN or
+     * alias ARN.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Key ARN Example -
-     * arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234
-     * -1234-123456789012
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+     * Key ARN:
+     * <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+     * Alias name: <code>alias/ExampleAlias</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * Alias Name Example - alias/MyAliasName
+     * Alias ARN:
+     * <code>arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias</code>
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>. To get the alias name and alias ARN, use
+     * <a>ListAliases</a>.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param destinationKeyId <p>
-     *            A unique identifier for the CMK to use to reencrypt the data.
-     *            This value can be a globally unique identifier, a fully
-     *            specified ARN to either an alias or a key, or an alias name
-     *            prefixed by "alias/".
+     *            A unique identifier for the CMK that is used to reencrypt the
+     *            data.
+     *            </p>
+     *            <p>
+     *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
+     *            alias name, or alias ARN. When using an alias name, prefix it
+     *            with "alias/". To specify a CMK in a different AWS account,
+     *            you must use the key ARN or alias ARN.
+     *            </p>
+     *            <p>
+     *            For example:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Key ARN Example -
-     *            arn:aws:kms:us-east-1:123456789012:key/12345678
-     *            -1234-1234-1234-123456789012
+     *            Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Alias ARN Example -
-     *            arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+     *            Key ARN:
+     *            <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Globally Unique Key ID Example -
-     *            12345678-1234-1234-1234-123456789012
+     *            Alias name: <code>alias/ExampleAlias</code>
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Alias Name Example - alias/MyAliasName
+     *            Alias ARN:
+     *            <code>arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias</code>
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
+     *            or <a>DescribeKey</a>. To get the alias name and alias ARN,
+     *            use <a>ListAliases</a>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

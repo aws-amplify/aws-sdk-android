@@ -26,8 +26,10 @@ import com.amazonaws.services.simpleemail.model.*;
  * Interface for accessing Amazon Simple Email Service asynchronously.
  * <fullname>Amazon Simple Email Service</fullname>
  * <p>
- * This is the API Reference for Amazon Simple Email Service (Amazon SES). This
- * documentation is intended to be used in conjunction with the <a
+ * This document contains reference information for the <a
+ * href="https://aws.amazon.com/ses/">Amazon Simple Email Service</a> (Amazon
+ * SES) API, version 2010-12-01. This document is best used in conjunction with
+ * the <a
  * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
@@ -35,7 +37,9 @@ import com.amazonaws.services.simpleemail.model.*;
  * <p>
  * For a list of Amazon SES endpoints to use in service requests, see <a
  * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/regions.html"
- * >Regions and Amazon SES</a> in the Amazon SES Developer Guide.
+ * >Regions and Amazon SES</a> in the <a
+ * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html"
+ * >Amazon SES Developer Guide</a>.
  * </p>
  * </note>
  **/
@@ -52,7 +56,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param cloneReceiptRuleSetRequest <p>
@@ -92,7 +96,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param cloneReceiptRuleSetRequest <p>
@@ -127,6 +131,360 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
+     * Creates a configuration set.
+     * </p>
+     * <p>
+     * Configuration sets enable you to publish email sending events. For
+     * information about using configuration sets, see the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param createConfigurationSetRequest <p>
+     *            Represents a request to create a configuration set.
+     *            Configuration sets enable you to publish email sending events.
+     *            For information about using configuration sets, see the <a
+     *            href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         CreateConfigurationSet service method, as returned by Amazon
+     *         Simple Email Service.
+     * @throws ConfigurationSetAlreadyExistsException
+     * @throws InvalidConfigurationSetException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<CreateConfigurationSetResult> createConfigurationSetAsync(
+            CreateConfigurationSetRequest createConfigurationSetRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a configuration set.
+     * </p>
+     * <p>
+     * Configuration sets enable you to publish email sending events. For
+     * information about using configuration sets, see the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param createConfigurationSetRequest <p>
+     *            Represents a request to create a configuration set.
+     *            Configuration sets enable you to publish email sending events.
+     *            For information about using configuration sets, see the <a
+     *            href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         CreateConfigurationSet service method, as returned by Amazon
+     *         Simple Email Service.
+     * @throws ConfigurationSetAlreadyExistsException
+     * @throws InvalidConfigurationSetException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<CreateConfigurationSetResult> createConfigurationSetAsync(
+            CreateConfigurationSetRequest createConfigurationSetRequest,
+            AsyncHandler<CreateConfigurationSetRequest, CreateConfigurationSetResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a configuration set event destination.
+     * </p>
+     * <note>
+     * <p>
+     * When you create or update an event destination, you must provide one, and
+     * only one, destination. The destination can be CloudWatch, Amazon Kinesis
+     * Firehose, or Amazon Simple Notification Service (Amazon SNS).
+     * </p>
+     * </note>
+     * <p>
+     * An event destination is the AWS service to which Amazon SES publishes the
+     * email sending events associated with a configuration set. For information
+     * about using configuration sets, see the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param createConfigurationSetEventDestinationRequest <p>
+     *            Represents a request to create a configuration set event
+     *            destination. A configuration set event destination, which can
+     *            be either Amazon CloudWatch or Amazon Kinesis Firehose,
+     *            describes an AWS service in which Amazon SES publishes the
+     *            email sending events associated with a configuration set. For
+     *            information about using configuration sets, see the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         CreateConfigurationSetEventDestination service method, as
+     *         returned by Amazon Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws EventDestinationAlreadyExistsException
+     * @throws InvalidCloudWatchDestinationException
+     * @throws InvalidFirehoseDestinationException
+     * @throws InvalidSNSDestinationException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<CreateConfigurationSetEventDestinationResult> createConfigurationSetEventDestinationAsync(
+            CreateConfigurationSetEventDestinationRequest createConfigurationSetEventDestinationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a configuration set event destination.
+     * </p>
+     * <note>
+     * <p>
+     * When you create or update an event destination, you must provide one, and
+     * only one, destination. The destination can be CloudWatch, Amazon Kinesis
+     * Firehose, or Amazon Simple Notification Service (Amazon SNS).
+     * </p>
+     * </note>
+     * <p>
+     * An event destination is the AWS service to which Amazon SES publishes the
+     * email sending events associated with a configuration set. For information
+     * about using configuration sets, see the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param createConfigurationSetEventDestinationRequest <p>
+     *            Represents a request to create a configuration set event
+     *            destination. A configuration set event destination, which can
+     *            be either Amazon CloudWatch or Amazon Kinesis Firehose,
+     *            describes an AWS service in which Amazon SES publishes the
+     *            email sending events associated with a configuration set. For
+     *            information about using configuration sets, see the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         CreateConfigurationSetEventDestination service method, as
+     *         returned by Amazon Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws EventDestinationAlreadyExistsException
+     * @throws InvalidCloudWatchDestinationException
+     * @throws InvalidFirehoseDestinationException
+     * @throws InvalidSNSDestinationException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<CreateConfigurationSetEventDestinationResult> createConfigurationSetEventDestinationAsync(
+            CreateConfigurationSetEventDestinationRequest createConfigurationSetEventDestinationRequest,
+            AsyncHandler<CreateConfigurationSetEventDestinationRequest, CreateConfigurationSetEventDestinationResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates an association between a configuration set and a custom domain
+     * for open and click event tracking.
+     * </p>
+     * <p>
+     * By default, images and links used for tracking open and click events are
+     * hosted on domains operated by Amazon SES. You can configure a subdomain
+     * of your own to handle these events. For information about using custom
+     * domains, see the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * 
+     * @param createConfigurationSetTrackingOptionsRequest <p>
+     *            Represents a request to create an open and click tracking
+     *            option object in a configuration set.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         CreateConfigurationSetTrackingOptions service method, as returned
+     *         by Amazon Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws TrackingOptionsAlreadyExistsException
+     * @throws InvalidTrackingOptionsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<CreateConfigurationSetTrackingOptionsResult> createConfigurationSetTrackingOptionsAsync(
+            CreateConfigurationSetTrackingOptionsRequest createConfigurationSetTrackingOptionsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates an association between a configuration set and a custom domain
+     * for open and click event tracking.
+     * </p>
+     * <p>
+     * By default, images and links used for tracking open and click events are
+     * hosted on domains operated by Amazon SES. You can configure a subdomain
+     * of your own to handle these events. For information about using custom
+     * domains, see the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * 
+     * @param createConfigurationSetTrackingOptionsRequest <p>
+     *            Represents a request to create an open and click tracking
+     *            option object in a configuration set.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         CreateConfigurationSetTrackingOptions service method, as returned
+     *         by Amazon Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws TrackingOptionsAlreadyExistsException
+     * @throws InvalidTrackingOptionsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<CreateConfigurationSetTrackingOptionsResult> createConfigurationSetTrackingOptionsAsync(
+            CreateConfigurationSetTrackingOptionsRequest createConfigurationSetTrackingOptionsRequest,
+            AsyncHandler<CreateConfigurationSetTrackingOptionsRequest, CreateConfigurationSetTrackingOptionsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a new custom verification email template.
+     * </p>
+     * <p>
+     * For more information about custom verification email templates, see <a
+     * href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param createCustomVerificationEmailTemplateRequest <p>
+     *            Represents a request to create a custom verification email
+     *            template.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         CreateCustomVerificationEmailTemplate service method, as returned
+     *         by Amazon Simple Email Service.
+     * @throws CustomVerificationEmailTemplateAlreadyExistsException
+     * @throws FromEmailAddressNotVerifiedException
+     * @throws CustomVerificationEmailInvalidContentException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<Void> createCustomVerificationEmailTemplateAsync(
+            CreateCustomVerificationEmailTemplateRequest createCustomVerificationEmailTemplateRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a new custom verification email template.
+     * </p>
+     * <p>
+     * For more information about custom verification email templates, see <a
+     * href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param createCustomVerificationEmailTemplateRequest <p>
+     *            Represents a request to create a custom verification email
+     *            template.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         CreateCustomVerificationEmailTemplate service method, as returned
+     *         by Amazon Simple Email Service.
+     * @throws CustomVerificationEmailTemplateAlreadyExistsException
+     * @throws FromEmailAddressNotVerifiedException
+     * @throws CustomVerificationEmailInvalidContentException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<Void> createCustomVerificationEmailTemplateAsync(
+            CreateCustomVerificationEmailTemplateRequest createCustomVerificationEmailTemplateRequest,
+            AsyncHandler<CreateCustomVerificationEmailTemplateRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Creates a new IP address filter.
      * </p>
      * <p>
@@ -135,7 +493,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param createReceiptFilterRequest <p>
@@ -172,7 +530,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param createReceiptFilterRequest <p>
@@ -214,7 +572,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param createReceiptRuleRequest <p>
@@ -256,7 +614,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param createReceiptRuleRequest <p>
@@ -303,7 +661,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param createReceiptRuleSetRequest <p>
@@ -340,7 +698,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param createReceiptRuleSetRequest <p>
@@ -374,11 +732,408 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
+     * Creates an email template. Email templates enable you to send
+     * personalized email to one or more destinations in a single API operation.
+     * For more information, see the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param createTemplateRequest <p>
+     *            Represents a request to create an email template. For more
+     *            information, see the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         CreateTemplate service method, as returned by Amazon Simple Email
+     *         Service.
+     * @throws AlreadyExistsException
+     * @throws InvalidTemplateException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<CreateTemplateResult> createTemplateAsync(CreateTemplateRequest createTemplateRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates an email template. Email templates enable you to send
+     * personalized email to one or more destinations in a single API operation.
+     * For more information, see the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param createTemplateRequest <p>
+     *            Represents a request to create an email template. For more
+     *            information, see the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         CreateTemplate service method, as returned by Amazon Simple Email
+     *         Service.
+     * @throws AlreadyExistsException
+     * @throws InvalidTemplateException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<CreateTemplateResult> createTemplateAsync(CreateTemplateRequest createTemplateRequest,
+            AsyncHandler<CreateTemplateRequest, CreateTemplateResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a configuration set. Configuration sets enable you to publish
+     * email sending events. For information about using configuration sets, see
+     * the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param deleteConfigurationSetRequest <p>
+     *            Represents a request to delete a configuration set.
+     *            Configuration sets enable you to publish email sending events.
+     *            For information about using configuration sets, see the <a
+     *            href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         DeleteConfigurationSet service method, as returned by Amazon
+     *         Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<DeleteConfigurationSetResult> deleteConfigurationSetAsync(
+            DeleteConfigurationSetRequest deleteConfigurationSetRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a configuration set. Configuration sets enable you to publish
+     * email sending events. For information about using configuration sets, see
+     * the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param deleteConfigurationSetRequest <p>
+     *            Represents a request to delete a configuration set.
+     *            Configuration sets enable you to publish email sending events.
+     *            For information about using configuration sets, see the <a
+     *            href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteConfigurationSet service method, as returned by Amazon
+     *         Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<DeleteConfigurationSetResult> deleteConfigurationSetAsync(
+            DeleteConfigurationSetRequest deleteConfigurationSetRequest,
+            AsyncHandler<DeleteConfigurationSetRequest, DeleteConfigurationSetResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a configuration set event destination. Configuration set event
+     * destinations are associated with configuration sets, which enable you to
+     * publish email sending events. For information about using configuration
+     * sets, see the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param deleteConfigurationSetEventDestinationRequest <p>
+     *            Represents a request to delete a configuration set event
+     *            destination. Configuration set event destinations are
+     *            associated with configuration sets, which enable you to
+     *            publish email sending events. For information about using
+     *            configuration sets, see the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         DeleteConfigurationSetEventDestination service method, as
+     *         returned by Amazon Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws EventDestinationDoesNotExistException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<DeleteConfigurationSetEventDestinationResult> deleteConfigurationSetEventDestinationAsync(
+            DeleteConfigurationSetEventDestinationRequest deleteConfigurationSetEventDestinationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a configuration set event destination. Configuration set event
+     * destinations are associated with configuration sets, which enable you to
+     * publish email sending events. For information about using configuration
+     * sets, see the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param deleteConfigurationSetEventDestinationRequest <p>
+     *            Represents a request to delete a configuration set event
+     *            destination. Configuration set event destinations are
+     *            associated with configuration sets, which enable you to
+     *            publish email sending events. For information about using
+     *            configuration sets, see the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteConfigurationSetEventDestination service method, as
+     *         returned by Amazon Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws EventDestinationDoesNotExistException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<DeleteConfigurationSetEventDestinationResult> deleteConfigurationSetEventDestinationAsync(
+            DeleteConfigurationSetEventDestinationRequest deleteConfigurationSetEventDestinationRequest,
+            AsyncHandler<DeleteConfigurationSetEventDestinationRequest, DeleteConfigurationSetEventDestinationResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes an association between a configuration set and a custom domain
+     * for open and click event tracking.
+     * </p>
+     * <p>
+     * By default, images and links used for tracking open and click events are
+     * hosted on domains operated by Amazon SES. You can configure a subdomain
+     * of your own to handle these events. For information about using custom
+     * domains, see the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * <note>
+     * <p>
+     * Deleting this kind of association will result in emails sent using the
+     * specified configuration set to capture open and click events using the
+     * standard, Amazon SES-operated domains.
+     * </p>
+     * </note>
+     * 
+     * @param deleteConfigurationSetTrackingOptionsRequest <p>
+     *            Represents a request to delete open and click tracking options
+     *            in a configuration set.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         DeleteConfigurationSetTrackingOptions service method, as returned
+     *         by Amazon Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws TrackingOptionsDoesNotExistException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<DeleteConfigurationSetTrackingOptionsResult> deleteConfigurationSetTrackingOptionsAsync(
+            DeleteConfigurationSetTrackingOptionsRequest deleteConfigurationSetTrackingOptionsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes an association between a configuration set and a custom domain
+     * for open and click event tracking.
+     * </p>
+     * <p>
+     * By default, images and links used for tracking open and click events are
+     * hosted on domains operated by Amazon SES. You can configure a subdomain
+     * of your own to handle these events. For information about using custom
+     * domains, see the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * <note>
+     * <p>
+     * Deleting this kind of association will result in emails sent using the
+     * specified configuration set to capture open and click events using the
+     * standard, Amazon SES-operated domains.
+     * </p>
+     * </note>
+     * 
+     * @param deleteConfigurationSetTrackingOptionsRequest <p>
+     *            Represents a request to delete open and click tracking options
+     *            in a configuration set.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteConfigurationSetTrackingOptions service method, as returned
+     *         by Amazon Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws TrackingOptionsDoesNotExistException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<DeleteConfigurationSetTrackingOptionsResult> deleteConfigurationSetTrackingOptionsAsync(
+            DeleteConfigurationSetTrackingOptionsRequest deleteConfigurationSetTrackingOptionsRequest,
+            AsyncHandler<DeleteConfigurationSetTrackingOptionsRequest, DeleteConfigurationSetTrackingOptionsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes an existing custom verification email template.
+     * </p>
+     * <p>
+     * For more information about custom verification email templates, see <a
+     * href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param deleteCustomVerificationEmailTemplateRequest <p>
+     *            Represents a request to delete an existing custom verification
+     *            email template.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         DeleteCustomVerificationEmailTemplate service method, as returned
+     *         by Amazon Simple Email Service.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<Void> deleteCustomVerificationEmailTemplateAsync(
+            DeleteCustomVerificationEmailTemplateRequest deleteCustomVerificationEmailTemplateRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes an existing custom verification email template.
+     * </p>
+     * <p>
+     * For more information about custom verification email templates, see <a
+     * href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param deleteCustomVerificationEmailTemplateRequest <p>
+     *            Represents a request to delete an existing custom verification
+     *            email template.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteCustomVerificationEmailTemplate service method, as returned
+     *         by Amazon Simple Email Service.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<Void> deleteCustomVerificationEmailTemplateAsync(
+            DeleteCustomVerificationEmailTemplateRequest deleteCustomVerificationEmailTemplateRequest,
+            AsyncHandler<DeleteCustomVerificationEmailTemplateRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Deletes the specified identity (an email address or a domain) from the
      * list of verified identities.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param deleteIdentityRequest <p>
@@ -405,7 +1160,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * list of verified identities.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param deleteIdentityRequest <p>
@@ -451,7 +1206,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param deleteIdentityPolicyRequest <p>
@@ -497,7 +1252,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param deleteIdentityPolicyRequest <p>
@@ -538,7 +1293,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param deleteReceiptFilterRequest <p>
@@ -573,7 +1328,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param deleteReceiptFilterRequest <p>
@@ -613,7 +1368,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param deleteReceiptRuleRequest <p>
@@ -649,7 +1404,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param deleteReceiptRuleRequest <p>
@@ -696,7 +1451,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param deleteReceiptRuleSetRequest <p>
@@ -739,7 +1494,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param deleteReceiptRuleSetRequest <p>
@@ -773,17 +1528,69 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Deletes the specified email address from the list of verified addresses.
+     * Deletes an email template.
      * </p>
-     * <important>
      * <p>
-     * The DeleteVerifiedEmailAddress action is deprecated as of the May 15,
-     * 2012 release of Domain Verification. The DeleteIdentity action is now
-     * preferred.
+     * You can execute this operation no more than once per second.
      * </p>
-     * </important>
+     * 
+     * @param deleteTemplateRequest <p>
+     *            Represents a request to delete an email template. For more
+     *            information, see the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         DeleteTemplate service method, as returned by Amazon Simple Email
+     *         Service.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<DeleteTemplateResult> deleteTemplateAsync(DeleteTemplateRequest deleteTemplateRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
      * <p>
-     * This action is throttled at one request per second.
+     * Deletes an email template.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param deleteTemplateRequest <p>
+     *            Represents a request to delete an email template. For more
+     *            information, see the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteTemplate service method, as returned by Amazon Simple Email
+     *         Service.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<DeleteTemplateResult> deleteTemplateAsync(DeleteTemplateRequest deleteTemplateRequest,
+            AsyncHandler<DeleteTemplateRequest, DeleteTemplateResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deprecated. Use the <code>DeleteIdentity</code> operation to delete email
+     * addresses and domains.
      * </p>
      * 
      * @param deleteVerifiedEmailAddressRequest <p>
@@ -808,17 +1615,8 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Deletes the specified email address from the list of verified addresses.
-     * </p>
-     * <important>
-     * <p>
-     * The DeleteVerifiedEmailAddress action is deprecated as of the May 15,
-     * 2012 release of Domain Verification. The DeleteIdentity action is now
-     * preferred.
-     * </p>
-     * </important>
-     * <p>
-     * This action is throttled at one request per second.
+     * Deprecated. Use the <code>DeleteIdentity</code> operation to delete email
+     * addresses and domains.
      * </p>
      * 
      * @param deleteVerifiedEmailAddressRequest <p>
@@ -857,7 +1655,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param describeActiveReceiptRuleSetRequest <p>
@@ -894,7 +1692,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param describeActiveReceiptRuleSetRequest <p>
@@ -927,6 +1725,81 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
+     * Returns the details of the specified configuration set. For information
+     * about using configuration sets, see the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param describeConfigurationSetRequest <p>
+     *            Represents a request to return the details of a configuration
+     *            set. Configuration sets enable you to publish email sending
+     *            events. For information about using configuration sets, see
+     *            the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         DescribeConfigurationSet service method, as returned by Amazon
+     *         Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<DescribeConfigurationSetResult> describeConfigurationSetAsync(
+            DescribeConfigurationSetRequest describeConfigurationSetRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns the details of the specified configuration set. For information
+     * about using configuration sets, see the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param describeConfigurationSetRequest <p>
+     *            Represents a request to return the details of a configuration
+     *            set. Configuration sets enable you to publish email sending
+     *            events. For information about using configuration sets, see
+     *            the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeConfigurationSet service method, as returned by Amazon
+     *         Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<DescribeConfigurationSetResult> describeConfigurationSetAsync(
+            DescribeConfigurationSetRequest describeConfigurationSetRequest,
+            AsyncHandler<DescribeConfigurationSetRequest, DescribeConfigurationSetResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Returns the details of the specified receipt rule.
      * </p>
      * <p>
@@ -935,7 +1808,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param describeReceiptRuleRequest <p>
@@ -972,7 +1845,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param describeReceiptRuleRequest <p>
@@ -1014,7 +1887,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param describeReceiptRuleSetRequest <p>
@@ -1050,7 +1923,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param describeReceiptRuleSetRequest <p>
@@ -1083,14 +1956,146 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
+     * Returns the email sending status of the Amazon SES account for the
+     * current region.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param getAccountSendingEnabledRequest
+     * @return A Java Future object containing the response from the
+     *         GetAccountSendingEnabled service method, as returned by Amazon
+     *         Simple Email Service.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<GetAccountSendingEnabledResult> getAccountSendingEnabledAsync(
+            GetAccountSendingEnabledRequest getAccountSendingEnabledRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns the email sending status of the Amazon SES account for the
+     * current region.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param getAccountSendingEnabledRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         GetAccountSendingEnabled service method, as returned by Amazon
+     *         Simple Email Service.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<GetAccountSendingEnabledResult> getAccountSendingEnabledAsync(
+            GetAccountSendingEnabledRequest getAccountSendingEnabledRequest,
+            AsyncHandler<GetAccountSendingEnabledRequest, GetAccountSendingEnabledResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns the custom email verification template for the template name you
+     * specify.
+     * </p>
+     * <p>
+     * For more information about custom verification email templates, see <a
+     * href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param getCustomVerificationEmailTemplateRequest <p>
+     *            Represents a request to retrieve an existing custom
+     *            verification email template.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         GetCustomVerificationEmailTemplate service method, as returned by
+     *         Amazon Simple Email Service.
+     * @throws CustomVerificationEmailTemplateDoesNotExistException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<GetCustomVerificationEmailTemplateResult> getCustomVerificationEmailTemplateAsync(
+            GetCustomVerificationEmailTemplateRequest getCustomVerificationEmailTemplateRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns the custom email verification template for the template name you
+     * specify.
+     * </p>
+     * <p>
+     * For more information about custom verification email templates, see <a
+     * href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param getCustomVerificationEmailTemplateRequest <p>
+     *            Represents a request to retrieve an existing custom
+     *            verification email template.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         GetCustomVerificationEmailTemplate service method, as returned by
+     *         Amazon Simple Email Service.
+     * @throws CustomVerificationEmailTemplateDoesNotExistException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<GetCustomVerificationEmailTemplateResult> getCustomVerificationEmailTemplateAsync(
+            GetCustomVerificationEmailTemplateRequest getCustomVerificationEmailTemplateRequest,
+            AsyncHandler<GetCustomVerificationEmailTemplateRequest, GetCustomVerificationEmailTemplateResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Returns the current status of Easy DKIM signing for an entity. For domain
-     * name identities, this action also returns the DKIM tokens that are
+     * name identities, this operation also returns the DKIM tokens that are
      * required for Easy DKIM signing, and whether Amazon SES has successfully
      * verified that these tokens have been published.
      * </p>
      * <p>
-     * This action takes a list of identities as input and returns the following
-     * information for each:
+     * This operation takes a list of identities as input and returns the
+     * following information for each:
      * </p>
      * <ul>
      * <li>
@@ -1113,8 +2118,8 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * </li>
      * </ul>
      * <p>
-     * This action is throttled at one request per second and can only get DKIM
-     * attributes for up to 100 identities at a time.
+     * This operation is throttled at one request per second and can only get
+     * DKIM attributes for up to 100 identities at a time.
      * </p>
      * <p>
      * For more information about creating DNS records using DKIM tokens, go to
@@ -1151,13 +2156,13 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
     /**
      * <p>
      * Returns the current status of Easy DKIM signing for an entity. For domain
-     * name identities, this action also returns the DKIM tokens that are
+     * name identities, this operation also returns the DKIM tokens that are
      * required for Easy DKIM signing, and whether Amazon SES has successfully
      * verified that these tokens have been published.
      * </p>
      * <p>
-     * This action takes a list of identities as input and returns the following
-     * information for each:
+     * This operation takes a list of identities as input and returns the
+     * following information for each:
      * </p>
      * <ul>
      * <li>
@@ -1180,8 +2185,8 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * </li>
      * </ul>
      * <p>
-     * This action is throttled at one request per second and can only get DKIM
-     * attributes for up to 100 identities at a time.
+     * This operation is throttled at one request per second and can only get
+     * DKIM attributes for up to 100 identities at a time.
      * </p>
      * <p>
      * For more information about creating DNS records using DKIM tokens, go to
@@ -1223,10 +2228,10 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
     /**
      * <p>
      * Returns the custom MAIL FROM attributes for a list of identities (email
-     * addresses and/or domains).
+     * addresses : domains).
      * </p>
      * <p>
-     * This action is throttled at one request per second and can only get
+     * This operation is throttled at one request per second and can only get
      * custom MAIL FROM attributes for up to 100 identities at a time.
      * </p>
      * 
@@ -1255,10 +2260,10 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
     /**
      * <p>
      * Returns the custom MAIL FROM attributes for a list of identities (email
-     * addresses and/or domains).
+     * addresses : domains).
      * </p>
      * <p>
-     * This action is throttled at one request per second and can only get
+     * This operation is throttled at one request per second and can only get
      * custom MAIL FROM attributes for up to 100 identities at a time.
      * </p>
      * 
@@ -1295,7 +2300,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * returns a structure describing identity notification attributes.
      * </p>
      * <p>
-     * This action is throttled at one request per second and can only get
+     * This operation is throttled at one request per second and can only get
      * notification attributes for up to 100 identities at a time.
      * </p>
      * <p>
@@ -1333,7 +2338,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * returns a structure describing identity notification attributes.
      * </p>
      * <p>
-     * This action is throttled at one request per second and can only get
+     * This operation is throttled at one request per second and can only get
      * notification attributes for up to 100 identities at a time.
      * </p>
      * <p>
@@ -1391,7 +2396,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param getIdentityPoliciesRequest <p>
@@ -1439,7 +2444,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param getIdentityPoliciesRequest <p>
@@ -1478,7 +2483,26 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * for each identity.
      * </p>
      * <p>
-     * This action is throttled at one request per second and can only get
+     * The verification status of an email address is "Pending" until the email
+     * address owner clicks the link within the verification email that Amazon
+     * SES sent to that address. If the email address owner clicks the link
+     * within 24 hours, the verification status of the email address changes to
+     * "Success". If the link is not clicked within 24 hours, the verification
+     * status changes to "Failed." In that case, if you still want to verify the
+     * email address, you must restart the verification process from the
+     * beginning.
+     * </p>
+     * <p>
+     * For domain identities, the domain's verification status is "Pending" as
+     * Amazon SES searches for the required TXT record in the DNS settings of
+     * the domain. When Amazon SES detects the record, the domain's verification
+     * status changes to "Success". If Amazon SES is unable to detect the record
+     * within 72 hours, the domain's verification status changes to "Failed." In
+     * that case, if you still want to verify the domain, you must restart the
+     * verification process from the beginning.
+     * </p>
+     * <p>
+     * This operation is throttled at one request per second and can only get
      * verification attributes for up to 100 identities at a time.
      * </p>
      * 
@@ -1512,7 +2536,26 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * for each identity.
      * </p>
      * <p>
-     * This action is throttled at one request per second and can only get
+     * The verification status of an email address is "Pending" until the email
+     * address owner clicks the link within the verification email that Amazon
+     * SES sent to that address. If the email address owner clicks the link
+     * within 24 hours, the verification status of the email address changes to
+     * "Success". If the link is not clicked within 24 hours, the verification
+     * status changes to "Failed." In that case, if you still want to verify the
+     * email address, you must restart the verification process from the
+     * beginning.
+     * </p>
+     * <p>
+     * For domain identities, the domain's verification status is "Pending" as
+     * Amazon SES searches for the required TXT record in the DNS settings of
+     * the domain. When Amazon SES detects the record, the domain's verification
+     * status changes to "Success". If Amazon SES is unable to detect the record
+     * within 72 hours, the domain's verification status changes to "Failed." In
+     * that case, if you still want to verify the domain, you must restart the
+     * verification process from the beginning.
+     * </p>
+     * <p>
+     * This operation is throttled at one request per second and can only get
      * verification attributes for up to 100 identities at a time.
      * </p>
      * 
@@ -1546,10 +2589,10 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Returns the user's current sending limits.
+     * Provides the sending limits for the Amazon SES account.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param getSendQuotaRequest
@@ -1569,10 +2612,10 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Returns the user's current sending limits.
+     * Provides the sending limits for the Amazon SES account.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param getSendQuotaRequest
@@ -1597,14 +2640,13 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Returns the user's sending statistics. The result is a list of data
-     * points, representing the last two weeks of sending activity.
+     * Provides sending statistics for the current AWS Region. The result is a
+     * list of data points, representing the last two weeks of sending activity.
+     * Each data point in the list contains statistics for a 15-minute period of
+     * time.
      * </p>
      * <p>
-     * Each data point in the list contains statistics for a 15-minute interval.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param getSendStatisticsRequest
@@ -1625,14 +2667,13 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Returns the user's sending statistics. The result is a list of data
-     * points, representing the last two weeks of sending activity.
+     * Provides sending statistics for the current AWS Region. The result is a
+     * list of data points, representing the last two weeks of sending activity.
+     * Each data point in the list contains statistics for a 15-minute period of
+     * time.
      * </p>
      * <p>
-     * Each data point in the list contains statistics for a 15-minute interval.
-     * </p>
-     * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param getSendStatisticsRequest
@@ -1658,11 +2699,243 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Returns a list containing all of the identities (email addresses and
-     * domains) for your AWS account, regardless of verification status.
+     * Displays the template object (which includes the Subject line, HTML part
+     * and text part) for the template you specify.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param getTemplateRequest
+     * @return A Java Future object containing the response from the GetTemplate
+     *         service method, as returned by Amazon Simple Email Service.
+     * @throws TemplateDoesNotExistException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<GetTemplateResult> getTemplateAsync(GetTemplateRequest getTemplateRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Displays the template object (which includes the Subject line, HTML part
+     * and text part) for the template you specify.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param getTemplateRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the GetTemplate
+     *         service method, as returned by Amazon Simple Email Service.
+     * @throws TemplateDoesNotExistException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<GetTemplateResult> getTemplateAsync(GetTemplateRequest getTemplateRequest,
+            AsyncHandler<GetTemplateRequest, GetTemplateResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Provides a list of the configuration sets associated with your Amazon SES
+     * account in the current AWS Region. For information about using
+     * configuration sets, see <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * >Monitoring Your Amazon SES Sending Activity</a> in the <i>Amazon SES
+     * Developer Guide.</i>
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second. This
+     * operation will return up to 1,000 configuration sets each time it is run.
+     * If your Amazon SES account has more than 1,000 configuration sets, this
+     * operation will also return a NextToken element. You can then execute the
+     * <code>ListConfigurationSets</code> operation again, passing the
+     * <code>NextToken</code> parameter and the value of the NextToken element
+     * to retrieve additional results.
+     * </p>
+     * 
+     * @param listConfigurationSetsRequest <p>
+     *            Represents a request to list the configuration sets associated
+     *            with your AWS account. Configuration sets enable you to
+     *            publish email sending events. For information about using
+     *            configuration sets, see the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         ListConfigurationSets service method, as returned by Amazon
+     *         Simple Email Service.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<ListConfigurationSetsResult> listConfigurationSetsAsync(
+            ListConfigurationSetsRequest listConfigurationSetsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Provides a list of the configuration sets associated with your Amazon SES
+     * account in the current AWS Region. For information about using
+     * configuration sets, see <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * >Monitoring Your Amazon SES Sending Activity</a> in the <i>Amazon SES
+     * Developer Guide.</i>
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second. This
+     * operation will return up to 1,000 configuration sets each time it is run.
+     * If your Amazon SES account has more than 1,000 configuration sets, this
+     * operation will also return a NextToken element. You can then execute the
+     * <code>ListConfigurationSets</code> operation again, passing the
+     * <code>NextToken</code> parameter and the value of the NextToken element
+     * to retrieve additional results.
+     * </p>
+     * 
+     * @param listConfigurationSetsRequest <p>
+     *            Represents a request to list the configuration sets associated
+     *            with your AWS account. Configuration sets enable you to
+     *            publish email sending events. For information about using
+     *            configuration sets, see the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListConfigurationSets service method, as returned by Amazon
+     *         Simple Email Service.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<ListConfigurationSetsResult> listConfigurationSetsAsync(
+            ListConfigurationSetsRequest listConfigurationSetsRequest,
+            AsyncHandler<ListConfigurationSetsRequest, ListConfigurationSetsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Lists the existing custom verification email templates for your account
+     * in the current AWS Region.
+     * </p>
+     * <p>
+     * For more information about custom verification email templates, see <a
+     * href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param listCustomVerificationEmailTemplatesRequest <p>
+     *            Represents a request to list the existing custom verification
+     *            email templates for your account.
+     *            </p>
+     *            <p>
+     *            For more information about custom verification email
+     *            templates, see <a href=
+     *            "ses/latest/DeveloperGuide/custom-verification-emails.html"
+     *            >Using Custom Verification Email Templates</a> in the
+     *            <i>Amazon SES Developer Guide</i>.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         ListCustomVerificationEmailTemplates service method, as returned
+     *         by Amazon Simple Email Service.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<ListCustomVerificationEmailTemplatesResult> listCustomVerificationEmailTemplatesAsync(
+            ListCustomVerificationEmailTemplatesRequest listCustomVerificationEmailTemplatesRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Lists the existing custom verification email templates for your account
+     * in the current AWS Region.
+     * </p>
+     * <p>
+     * For more information about custom verification email templates, see <a
+     * href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param listCustomVerificationEmailTemplatesRequest <p>
+     *            Represents a request to list the existing custom verification
+     *            email templates for your account.
+     *            </p>
+     *            <p>
+     *            For more information about custom verification email
+     *            templates, see <a href=
+     *            "ses/latest/DeveloperGuide/custom-verification-emails.html"
+     *            >Using Custom Verification Email Templates</a> in the
+     *            <i>Amazon SES Developer Guide</i>.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListCustomVerificationEmailTemplates service method, as returned
+     *         by Amazon Simple Email Service.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<ListCustomVerificationEmailTemplatesResult> listCustomVerificationEmailTemplatesAsync(
+            ListCustomVerificationEmailTemplatesRequest listCustomVerificationEmailTemplatesRequest,
+            AsyncHandler<ListCustomVerificationEmailTemplatesRequest, ListCustomVerificationEmailTemplatesResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns a list containing all of the identities (email addresses and
+     * domains) for your AWS account in the current AWS Region, regardless of
+     * verification status.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param listIdentitiesRequest <p>
@@ -1687,10 +2960,11 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
     /**
      * <p>
      * Returns a list containing all of the identities (email addresses and
-     * domains) for your AWS account, regardless of verification status.
+     * domains) for your AWS account in the current AWS Region, regardless of
+     * verification status.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param listIdentitiesRequest <p>
@@ -1738,7 +3012,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param listIdentityPoliciesRequest <p>
@@ -1786,7 +3060,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param listIdentityPoliciesRequest <p>
@@ -1820,7 +3094,8 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Lists the IP address filters associated with your AWS account.
+     * Lists the IP address filters associated with your AWS account in the
+     * current AWS Region.
      * </p>
      * <p>
      * For information about managing IP address filters, see the <a href=
@@ -1828,14 +3103,14 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param listReceiptFiltersRequest <p>
-     *            : Represents a request to list the IP address filters that
-     *            exist under your AWS account. You use IP address filters when
-     *            you receive email with Amazon SES. For more information, see
-     *            the <a href=
+     *            Represents a request to list the IP address filters that exist
+     *            under your AWS account. You use IP address filters when you
+     *            receive email with Amazon SES. For more information, see the
+     *            <a href=
      *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
@@ -1856,7 +3131,8 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Lists the IP address filters associated with your AWS account.
+     * Lists the IP address filters associated with your AWS account in the
+     * current AWS Region.
      * </p>
      * <p>
      * For information about managing IP address filters, see the <a href=
@@ -1864,14 +3140,14 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param listReceiptFiltersRequest <p>
-     *            : Represents a request to list the IP address filters that
-     *            exist under your AWS account. You use IP address filters when
-     *            you receive email with Amazon SES. For more information, see
-     *            the <a href=
+     *            Represents a request to list the IP address filters that exist
+     *            under your AWS account. You use IP address filters when you
+     *            receive email with Amazon SES. For more information, see the
+     *            <a href=
      *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
@@ -1897,10 +3173,11 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Lists the receipt rule sets that exist under your AWS account. If there
-     * are additional receipt rule sets to be retrieved, you will receive a
-     * <code>NextToken</code> that you can provide to the next call to
-     * <code>ListReceiptRuleSets</code> to retrieve the additional entries.
+     * Lists the receipt rule sets that exist under your AWS account in the
+     * current AWS Region. If there are additional receipt rule sets to be
+     * retrieved, you will receive a <code>NextToken</code> that you can provide
+     * to the next call to <code>ListReceiptRuleSets</code> to retrieve the
+     * additional entries.
      * </p>
      * <p>
      * For information about managing receipt rule sets, see the <a href=
@@ -1908,7 +3185,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param listReceiptRuleSetsRequest <p>
@@ -1935,10 +3212,11 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Lists the receipt rule sets that exist under your AWS account. If there
-     * are additional receipt rule sets to be retrieved, you will receive a
-     * <code>NextToken</code> that you can provide to the next call to
-     * <code>ListReceiptRuleSets</code> to retrieve the additional entries.
+     * Lists the receipt rule sets that exist under your AWS account in the
+     * current AWS Region. If there are additional receipt rule sets to be
+     * retrieved, you will receive a <code>NextToken</code> that you can provide
+     * to the next call to <code>ListReceiptRuleSets</code> to retrieve the
+     * additional entries.
      * </p>
      * <p>
      * For information about managing receipt rule sets, see the <a href=
@@ -1946,7 +3224,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param listReceiptRuleSetsRequest <p>
@@ -1978,18 +3256,61 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Returns a list containing all of the email addresses that have been
-     * verified.
+     * Lists the email templates present in your Amazon SES account in the
+     * current AWS Region.
      * </p>
-     * <important>
      * <p>
-     * The ListVerifiedEmailAddresses action is deprecated as of the May 15,
-     * 2012 release of Domain Verification. The ListIdentities action is now
-     * preferred.
+     * You can execute this operation no more than once per second.
      * </p>
-     * </important>
+     * 
+     * @param listTemplatesRequest
+     * @return A Java Future object containing the response from the
+     *         ListTemplates service method, as returned by Amazon Simple Email
+     *         Service.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<ListTemplatesResult> listTemplatesAsync(ListTemplatesRequest listTemplatesRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
      * <p>
-     * This action is throttled at one request per second.
+     * Lists the email templates present in your Amazon SES account in the
+     * current AWS Region.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param listTemplatesRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListTemplates service method, as returned by Amazon Simple Email
+     *         Service.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<ListTemplatesResult> listTemplatesAsync(ListTemplatesRequest listTemplatesRequest,
+            AsyncHandler<ListTemplatesRequest, ListTemplatesResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deprecated. Use the <code>ListIdentities</code> operation to list the
+     * email addresses and domains associated with your account.
      * </p>
      * 
      * @param listVerifiedEmailAddressesRequest
@@ -2010,18 +3331,8 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Returns a list containing all of the email addresses that have been
-     * verified.
-     * </p>
-     * <important>
-     * <p>
-     * The ListVerifiedEmailAddresses action is deprecated as of the May 15,
-     * 2012 release of Domain Verification. The ListIdentities action is now
-     * preferred.
-     * </p>
-     * </important>
-     * <p>
-     * This action is throttled at one request per second.
+     * Deprecated. Use the <code>ListIdentities</code> operation to list the
+     * email addresses and domains associated with your account.
      * </p>
      * 
      * @param listVerifiedEmailAddressesRequest
@@ -2064,7 +3375,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param putIdentityPolicyRequest <p>
@@ -2110,7 +3421,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param putIdentityPolicyRequest <p>
@@ -2159,7 +3470,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param reorderReceiptRuleSetRequest <p>
@@ -2203,7 +3514,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param reorderReceiptRuleSetRequest <p>
@@ -2254,7 +3565,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param sendBounceRequest <p>
@@ -2294,7 +3605,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param sendBounceRequest <p>
@@ -2322,50 +3633,318 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Composes an email message based on input data, and then immediately
-     * queues the message for sending.
+     * Composes an email message to multiple destinations. The message body is
+     * created using an email template.
      * </p>
      * <p>
-     * There are several important points to know about <code>SendEmail</code>:
+     * In order to send email using the <code>SendBulkTemplatedEmail</code>
+     * operation, your call to the API must meet the following requirements:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * You can only send email from verified email addresses and domains;
-     * otherwise, you will get an "Email address not verified" error. If your
-     * account is still in the Amazon SES sandbox, you must also verify every
-     * recipient email address except for the recipients provided by the Amazon
-     * SES mailbox simulator. For more information, go to the <a href=
+     * The call must refer to an existing email template. You can create email
+     * templates using the <a>CreateTemplate</a> operation.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The message must be sent from a verified email address or domain.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If your account is still in the Amazon SES sandbox, you may only send to
+     * verified addresses or domains, or to email addresses associated with the
+     * Amazon SES Mailbox Simulator. For more information, see <a href=
      * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
-     * >Amazon SES Developer Guide</a>.
+     * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
+     * Guide.</i>
      * </p>
      * </li>
      * <li>
      * <p>
-     * The total size of the message cannot exceed 10 MB. This includes any
-     * attachments that are part of the message.
+     * The total size of the message, including attachments, must be less than
+     * 10 MB.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon SES has a limit on the total number of recipients per message. The
-     * combined number of To:, CC: and BCC: email addresses cannot exceed 50. If
-     * you need to send an email message to a larger audience, you can divide
-     * your recipient list into groups of 50 or fewer, and then call Amazon SES
-     * repeatedly to send the message to each group.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * For every message that you send, the total number of recipients (To:, CC:
-     * and BCC:) is counted against your sending quota - the maximum number of
-     * emails you can send in a 24-hour period. For information about your
-     * sending quota, go to the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"
-     * >Amazon SES Developer Guide</a>.
+     * Each <code>Destination</code> parameter must include at least one
+     * recipient email address. The recipient address can be a To: address, a
+     * CC: address, or a BCC: address. If a recipient email address is invalid
+     * (that is, it is not in the format
+     * <i>UserName@[SubDomain.]Domain.TopLevelDomain</i>), the entire message
+     * will be rejected, even if the message contains other recipients that are
+     * valid.
      * </p>
      * </li>
      * </ul>
+     * 
+     * @param sendBulkTemplatedEmailRequest <p>
+     *            Represents a request to send a templated email to multiple
+     *            destinations using Amazon SES. For more information, see the
+     *            <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         SendBulkTemplatedEmail service method, as returned by Amazon
+     *         Simple Email Service.
+     * @throws MessageRejectedException
+     * @throws MailFromDomainNotVerifiedException
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws TemplateDoesNotExistException
+     * @throws ConfigurationSetSendingPausedException
+     * @throws AccountSendingPausedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<SendBulkTemplatedEmailResult> sendBulkTemplatedEmailAsync(
+            SendBulkTemplatedEmailRequest sendBulkTemplatedEmailRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Composes an email message to multiple destinations. The message body is
+     * created using an email template.
+     * </p>
+     * <p>
+     * In order to send email using the <code>SendBulkTemplatedEmail</code>
+     * operation, your call to the API must meet the following requirements:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The call must refer to an existing email template. You can create email
+     * templates using the <a>CreateTemplate</a> operation.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The message must be sent from a verified email address or domain.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If your account is still in the Amazon SES sandbox, you may only send to
+     * verified addresses or domains, or to email addresses associated with the
+     * Amazon SES Mailbox Simulator. For more information, see <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
+     * Guide.</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The total size of the message, including attachments, must be less than
+     * 10 MB.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Each <code>Destination</code> parameter must include at least one
+     * recipient email address. The recipient address can be a To: address, a
+     * CC: address, or a BCC: address. If a recipient email address is invalid
+     * (that is, it is not in the format
+     * <i>UserName@[SubDomain.]Domain.TopLevelDomain</i>), the entire message
+     * will be rejected, even if the message contains other recipients that are
+     * valid.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param sendBulkTemplatedEmailRequest <p>
+     *            Represents a request to send a templated email to multiple
+     *            destinations using Amazon SES. For more information, see the
+     *            <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         SendBulkTemplatedEmail service method, as returned by Amazon
+     *         Simple Email Service.
+     * @throws MessageRejectedException
+     * @throws MailFromDomainNotVerifiedException
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws TemplateDoesNotExistException
+     * @throws ConfigurationSetSendingPausedException
+     * @throws AccountSendingPausedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<SendBulkTemplatedEmailResult> sendBulkTemplatedEmailAsync(
+            SendBulkTemplatedEmailRequest sendBulkTemplatedEmailRequest,
+            AsyncHandler<SendBulkTemplatedEmailRequest, SendBulkTemplatedEmailResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Adds an email address to the list of identities for your Amazon SES
+     * account in the current AWS Region and attempts to verify it. As a result
+     * of executing this operation, a customized verification email is sent to
+     * the specified address.
+     * </p>
+     * <p>
+     * To use this operation, you must first create a custom verification email
+     * template. For more information about creating and using custom
+     * verification email templates, see <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param sendCustomVerificationEmailRequest <p>
+     *            Represents a request to send a custom verification email to a
+     *            specified recipient.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         SendCustomVerificationEmail service method, as returned by Amazon
+     *         Simple Email Service.
+     * @throws MessageRejectedException
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws CustomVerificationEmailTemplateDoesNotExistException
+     * @throws FromEmailAddressNotVerifiedException
+     * @throws ProductionAccessNotGrantedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<SendCustomVerificationEmailResult> sendCustomVerificationEmailAsync(
+            SendCustomVerificationEmailRequest sendCustomVerificationEmailRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Adds an email address to the list of identities for your Amazon SES
+     * account in the current AWS Region and attempts to verify it. As a result
+     * of executing this operation, a customized verification email is sent to
+     * the specified address.
+     * </p>
+     * <p>
+     * To use this operation, you must first create a custom verification email
+     * template. For more information about creating and using custom
+     * verification email templates, see <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param sendCustomVerificationEmailRequest <p>
+     *            Represents a request to send a custom verification email to a
+     *            specified recipient.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         SendCustomVerificationEmail service method, as returned by Amazon
+     *         Simple Email Service.
+     * @throws MessageRejectedException
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws CustomVerificationEmailTemplateDoesNotExistException
+     * @throws FromEmailAddressNotVerifiedException
+     * @throws ProductionAccessNotGrantedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<SendCustomVerificationEmailResult> sendCustomVerificationEmailAsync(
+            SendCustomVerificationEmailRequest sendCustomVerificationEmailRequest,
+            AsyncHandler<SendCustomVerificationEmailRequest, SendCustomVerificationEmailResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Composes an email message and immediately queues it for sending. In order
+     * to send email using the <code>SendEmail</code> operation, your message
+     * must meet the following requirements:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The message must be sent from a verified email address or domain. If you
+     * attempt to send email using a non-verified address or domain, the
+     * operation will result in an "Email address not verified" error.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If your account is still in the Amazon SES sandbox, you may only send to
+     * verified addresses or domains, or to email addresses associated with the
+     * Amazon SES Mailbox Simulator. For more information, see <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
+     * Guide.</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The total size of the message, including attachments, must be smaller
+     * than 10 MB.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The message must include at least one recipient email address. The
+     * recipient address can be a To: address, a CC: address, or a BCC: address.
+     * If a recipient email address is invalid (that is, it is not in the format
+     * <i>UserName@[SubDomain.]Domain.TopLevelDomain</i>), the entire message
+     * will be rejected, even if the message contains other recipients that are
+     * valid.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The message may not include more than 50 recipients, across the To:, CC:
+     * and BCC: fields. If you need to send an email message to a larger
+     * audience, you can divide your recipient list into groups of 50 or fewer,
+     * and then call the <code>SendEmail</code> operation several times to send
+     * the message to each group.
+     * </p>
+     * </li>
+     * </ul>
+     * <important>
+     * <p>
+     * For every message that you send, the total number of recipients
+     * (including each recipient in the To:, CC: and BCC: fields) is counted
+     * against the maximum number of emails you can send in a 24-hour period
+     * (your <i>sending quota</i>). For more information about sending quotas in
+     * Amazon SES, see <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"
+     * >Managing Your Amazon SES Sending Limits</a> in the <i>Amazon SES
+     * Developer Guide.</i>
+     * </p>
+     * </important>
      * 
      * @param sendEmailRequest <p>
      *            Represents a request to send a single formatted email using
@@ -2377,6 +3956,9 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      *         service method, as returned by Amazon Simple Email Service.
      * @throws MessageRejectedException
      * @throws MailFromDomainNotVerifiedException
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws ConfigurationSetSendingPausedException
+     * @throws AccountSendingPausedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2390,50 +3972,66 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Composes an email message based on input data, and then immediately
-     * queues the message for sending.
-     * </p>
-     * <p>
-     * There are several important points to know about <code>SendEmail</code>:
+     * Composes an email message and immediately queues it for sending. In order
+     * to send email using the <code>SendEmail</code> operation, your message
+     * must meet the following requirements:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * You can only send email from verified email addresses and domains;
-     * otherwise, you will get an "Email address not verified" error. If your
-     * account is still in the Amazon SES sandbox, you must also verify every
-     * recipient email address except for the recipients provided by the Amazon
-     * SES mailbox simulator. For more information, go to the <a href=
+     * The message must be sent from a verified email address or domain. If you
+     * attempt to send email using a non-verified address or domain, the
+     * operation will result in an "Email address not verified" error.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If your account is still in the Amazon SES sandbox, you may only send to
+     * verified addresses or domains, or to email addresses associated with the
+     * Amazon SES Mailbox Simulator. For more information, see <a href=
      * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
-     * >Amazon SES Developer Guide</a>.
+     * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
+     * Guide.</i>
      * </p>
      * </li>
      * <li>
      * <p>
-     * The total size of the message cannot exceed 10 MB. This includes any
-     * attachments that are part of the message.
+     * The total size of the message, including attachments, must be smaller
+     * than 10 MB.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon SES has a limit on the total number of recipients per message. The
-     * combined number of To:, CC: and BCC: email addresses cannot exceed 50. If
-     * you need to send an email message to a larger audience, you can divide
-     * your recipient list into groups of 50 or fewer, and then call Amazon SES
-     * repeatedly to send the message to each group.
+     * The message must include at least one recipient email address. The
+     * recipient address can be a To: address, a CC: address, or a BCC: address.
+     * If a recipient email address is invalid (that is, it is not in the format
+     * <i>UserName@[SubDomain.]Domain.TopLevelDomain</i>), the entire message
+     * will be rejected, even if the message contains other recipients that are
+     * valid.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For every message that you send, the total number of recipients (To:, CC:
-     * and BCC:) is counted against your sending quota - the maximum number of
-     * emails you can send in a 24-hour period. For information about your
-     * sending quota, go to the <a href=
-     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"
-     * >Amazon SES Developer Guide</a>.
+     * The message may not include more than 50 recipients, across the To:, CC:
+     * and BCC: fields. If you need to send an email message to a larger
+     * audience, you can divide your recipient list into groups of 50 or fewer,
+     * and then call the <code>SendEmail</code> operation several times to send
+     * the message to each group.
      * </p>
      * </li>
      * </ul>
+     * <important>
+     * <p>
+     * For every message that you send, the total number of recipients
+     * (including each recipient in the To:, CC: and BCC: fields) is counted
+     * against the maximum number of emails you can send in a 24-hour period
+     * (your <i>sending quota</i>). For more information about sending quotas in
+     * Amazon SES, see <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"
+     * >Managing Your Amazon SES Sending Limits</a> in the <i>Amazon SES
+     * Developer Guide.</i>
+     * </p>
+     * </important>
      * 
      * @param sendEmailRequest <p>
      *            Represents a request to send a single formatted email using
@@ -2449,6 +4047,9 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      *         service method, as returned by Amazon Simple Email Service.
      * @throws MessageRejectedException
      * @throws MailFromDomainNotVerifiedException
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws ConfigurationSetSendingPausedException
+     * @throws AccountSendingPausedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2463,68 +4064,94 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Sends an email message, with header and content specified by the client.
-     * The <code>SendRawEmail</code> action is useful for sending multipart MIME
-     * emails. The raw text of the message must comply with Internet email
-     * standards; otherwise, the message cannot be sent.
+     * Composes an email message and immediately queues it for sending. When
+     * calling this operation, you may specify the message headers as well as
+     * the content. The <code>SendRawEmail</code> operation is particularly
+     * useful for sending multipart MIME emails (such as those that contain both
+     * a plain-text and an HTML version).
      * </p>
      * <p>
-     * There are several important points to know about
-     * <code>SendRawEmail</code>:
+     * In order to send email using the <code>SendRawEmail</code> operation,
+     * your message must meet the following requirements:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * You can only send email from verified email addresses and domains;
-     * otherwise, you will get an "Email address not verified" error. If your
-     * account is still in the Amazon SES sandbox, you must also verify every
-     * recipient email address except for the recipients provided by the Amazon
-     * SES mailbox simulator. For more information, go to the <a href=
+     * The message must be sent from a verified email address or domain. If you
+     * attempt to send email using a non-verified address or domain, the
+     * operation will result in an "Email address not verified" error.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If your account is still in the Amazon SES sandbox, you may only send to
+     * verified addresses or domains, or to email addresses associated with the
+     * Amazon SES Mailbox Simulator. For more information, see <a href=
      * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
-     * >Amazon SES Developer Guide</a>.
+     * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
+     * Guide.</i>
      * </p>
      * </li>
      * <li>
      * <p>
-     * The total size of the message cannot exceed 10 MB. This includes any
-     * attachments that are part of the message.
+     * The total size of the message, including attachments, must be smaller
+     * than 10 MB.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon SES has a limit on the total number of recipients per message. The
-     * combined number of To:, CC: and BCC: email addresses cannot exceed 50. If
-     * you need to send an email message to a larger audience, you can divide
-     * your recipient list into groups of 50 or fewer, and then call Amazon SES
-     * repeatedly to send the message to each group.
+     * The message must include at least one recipient email address. The
+     * recipient address can be a To: address, a CC: address, or a BCC: address.
+     * If a recipient email address is invalid (that is, it is not in the format
+     * <i>UserName@[SubDomain.]Domain.TopLevelDomain</i>), the entire message
+     * will be rejected, even if the message contains other recipients that are
+     * valid.
      * </p>
      * </li>
      * <li>
      * <p>
-     * The To:, CC:, and BCC: headers in the raw message can contain a group
-     * list. Note that each recipient in a group list counts towards the
-     * 50-recipient limit.
+     * The message may not include more than 50 recipients, across the To:, CC:
+     * and BCC: fields. If you need to send an email message to a larger
+     * audience, you can divide your recipient list into groups of 50 or fewer,
+     * and then call the <code>SendRawEmail</code> operation several times to
+     * send the message to each group.
      * </p>
      * </li>
-     * <li>
+     * </ul>
+     * <important>
      * <p>
-     * For every message that you send, the total number of recipients (To:, CC:
-     * and BCC:) is counted against your sending quota - the maximum number of
-     * emails you can send in a 24-hour period. For information about your
-     * sending quota, go to the <a href=
+     * For every message that you send, the total number of recipients
+     * (including each recipient in the To:, CC: and BCC: fields) is counted
+     * against the maximum number of emails you can send in a 24-hour period
+     * (your <i>sending quota</i>). For more information about sending quotas in
+     * Amazon SES, see <a href=
      * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"
-     * >Amazon SES Developer Guide</a>.
+     * >Managing Your Amazon SES Sending Limits</a> in the <i>Amazon SES
+     * Developer Guide.</i>
+     * </p>
+     * </important>
+     * <p>
+     * Additionally, keep the following considerations in mind when using the
+     * <code>SendRawEmail</code> operation:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Although you can customize the message headers when using the
+     * <code>SendRawEmail</code> operation, Amazon SES will automatically apply
+     * its own <code>Message-ID</code> and <code>Date</code> headers; if you
+     * passed these headers when creating the message, they will be overwritten
+     * by the values that Amazon SES provides.
      * </p>
      * </li>
      * <li>
      * <p>
      * If you are using sending authorization to send on behalf of another user,
      * <code>SendRawEmail</code> enables you to specify the cross-account
-     * identity for the email's "Source," "From," and "Return-Path" parameters
-     * in one of two ways: you can pass optional parameters
-     * <code>SourceArn</code>, <code>FromArn</code>, and/or
-     * <code>ReturnPathArn</code> to the API, or you can include the following
-     * X-headers in the header of your raw email:
+     * identity for the email's Source, From, and Return-Path parameters in one
+     * of two ways: you can pass optional parameters <code>SourceArn</code>,
+     * <code>FromArn</code>, and/or <code>ReturnPathArn</code> to the API, or
+     * you can include the following X-headers in the header of your raw email:
      * </p>
      * <ul>
      * <li>
@@ -2545,21 +4172,21 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * </ul>
      * <important>
      * <p>
-     * Do not include these X-headers in the DKIM signature, because they are
-     * removed by Amazon SES before sending the email.
+     * Do not include these X-headers in the DKIM signature; Amazon SES will
+     * remove them before sending the email.
      * </p>
      * </important>
      * <p>
-     * For the most common sending authorization use case, we recommend that you
-     * specify the <code>SourceIdentityArn</code> and do not specify either the
-     * <code>FromIdentityArn</code> or <code>ReturnPathIdentityArn</code>. (The
-     * same note applies to the corresponding X-headers.) If you only specify
-     * the <code>SourceIdentityArn</code>, Amazon SES will simply set the "From"
-     * address and the "Return Path" address to the identity specified in
-     * <code>SourceIdentityArn</code>. For more information about sending
-     * authorization, see the <a href=
+     * For most common sending authorization scenarios, we recommend that you
+     * specify the <code>SourceIdentityArn</code> parameter and not the
+     * <code>FromIdentityArn</code> or <code>ReturnPathIdentityArn</code>
+     * parameters. If you only specify the <code>SourceIdentityArn</code>
+     * parameter, Amazon SES will set the From and Return Path addresses to the
+     * identity specified in <code>SourceIdentityArn</code>. For more
+     * information about sending authorization, see the <a href=
      * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
-     * >Amazon SES Developer Guide</a>.
+     * >Using Sending Authorization with Amazon SES</a> in the <i>Amazon SES
+     * Developer Guide.</i>
      * </p>
      * </li>
      * </ul>
@@ -2575,6 +4202,9 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      *         Service.
      * @throws MessageRejectedException
      * @throws MailFromDomainNotVerifiedException
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws ConfigurationSetSendingPausedException
+     * @throws AccountSendingPausedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2588,68 +4218,94 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Sends an email message, with header and content specified by the client.
-     * The <code>SendRawEmail</code> action is useful for sending multipart MIME
-     * emails. The raw text of the message must comply with Internet email
-     * standards; otherwise, the message cannot be sent.
+     * Composes an email message and immediately queues it for sending. When
+     * calling this operation, you may specify the message headers as well as
+     * the content. The <code>SendRawEmail</code> operation is particularly
+     * useful for sending multipart MIME emails (such as those that contain both
+     * a plain-text and an HTML version).
      * </p>
      * <p>
-     * There are several important points to know about
-     * <code>SendRawEmail</code>:
+     * In order to send email using the <code>SendRawEmail</code> operation,
+     * your message must meet the following requirements:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * You can only send email from verified email addresses and domains;
-     * otherwise, you will get an "Email address not verified" error. If your
-     * account is still in the Amazon SES sandbox, you must also verify every
-     * recipient email address except for the recipients provided by the Amazon
-     * SES mailbox simulator. For more information, go to the <a href=
+     * The message must be sent from a verified email address or domain. If you
+     * attempt to send email using a non-verified address or domain, the
+     * operation will result in an "Email address not verified" error.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If your account is still in the Amazon SES sandbox, you may only send to
+     * verified addresses or domains, or to email addresses associated with the
+     * Amazon SES Mailbox Simulator. For more information, see <a href=
      * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
-     * >Amazon SES Developer Guide</a>.
+     * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
+     * Guide.</i>
      * </p>
      * </li>
      * <li>
      * <p>
-     * The total size of the message cannot exceed 10 MB. This includes any
-     * attachments that are part of the message.
+     * The total size of the message, including attachments, must be smaller
+     * than 10 MB.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon SES has a limit on the total number of recipients per message. The
-     * combined number of To:, CC: and BCC: email addresses cannot exceed 50. If
-     * you need to send an email message to a larger audience, you can divide
-     * your recipient list into groups of 50 or fewer, and then call Amazon SES
-     * repeatedly to send the message to each group.
+     * The message must include at least one recipient email address. The
+     * recipient address can be a To: address, a CC: address, or a BCC: address.
+     * If a recipient email address is invalid (that is, it is not in the format
+     * <i>UserName@[SubDomain.]Domain.TopLevelDomain</i>), the entire message
+     * will be rejected, even if the message contains other recipients that are
+     * valid.
      * </p>
      * </li>
      * <li>
      * <p>
-     * The To:, CC:, and BCC: headers in the raw message can contain a group
-     * list. Note that each recipient in a group list counts towards the
-     * 50-recipient limit.
+     * The message may not include more than 50 recipients, across the To:, CC:
+     * and BCC: fields. If you need to send an email message to a larger
+     * audience, you can divide your recipient list into groups of 50 or fewer,
+     * and then call the <code>SendRawEmail</code> operation several times to
+     * send the message to each group.
      * </p>
      * </li>
-     * <li>
+     * </ul>
+     * <important>
      * <p>
-     * For every message that you send, the total number of recipients (To:, CC:
-     * and BCC:) is counted against your sending quota - the maximum number of
-     * emails you can send in a 24-hour period. For information about your
-     * sending quota, go to the <a href=
+     * For every message that you send, the total number of recipients
+     * (including each recipient in the To:, CC: and BCC: fields) is counted
+     * against the maximum number of emails you can send in a 24-hour period
+     * (your <i>sending quota</i>). For more information about sending quotas in
+     * Amazon SES, see <a href=
      * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"
-     * >Amazon SES Developer Guide</a>.
+     * >Managing Your Amazon SES Sending Limits</a> in the <i>Amazon SES
+     * Developer Guide.</i>
+     * </p>
+     * </important>
+     * <p>
+     * Additionally, keep the following considerations in mind when using the
+     * <code>SendRawEmail</code> operation:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Although you can customize the message headers when using the
+     * <code>SendRawEmail</code> operation, Amazon SES will automatically apply
+     * its own <code>Message-ID</code> and <code>Date</code> headers; if you
+     * passed these headers when creating the message, they will be overwritten
+     * by the values that Amazon SES provides.
      * </p>
      * </li>
      * <li>
      * <p>
      * If you are using sending authorization to send on behalf of another user,
      * <code>SendRawEmail</code> enables you to specify the cross-account
-     * identity for the email's "Source," "From," and "Return-Path" parameters
-     * in one of two ways: you can pass optional parameters
-     * <code>SourceArn</code>, <code>FromArn</code>, and/or
-     * <code>ReturnPathArn</code> to the API, or you can include the following
-     * X-headers in the header of your raw email:
+     * identity for the email's Source, From, and Return-Path parameters in one
+     * of two ways: you can pass optional parameters <code>SourceArn</code>,
+     * <code>FromArn</code>, and/or <code>ReturnPathArn</code> to the API, or
+     * you can include the following X-headers in the header of your raw email:
      * </p>
      * <ul>
      * <li>
@@ -2670,21 +4326,21 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * </ul>
      * <important>
      * <p>
-     * Do not include these X-headers in the DKIM signature, because they are
-     * removed by Amazon SES before sending the email.
+     * Do not include these X-headers in the DKIM signature; Amazon SES will
+     * remove them before sending the email.
      * </p>
      * </important>
      * <p>
-     * For the most common sending authorization use case, we recommend that you
-     * specify the <code>SourceIdentityArn</code> and do not specify either the
-     * <code>FromIdentityArn</code> or <code>ReturnPathIdentityArn</code>. (The
-     * same note applies to the corresponding X-headers.) If you only specify
-     * the <code>SourceIdentityArn</code>, Amazon SES will simply set the "From"
-     * address and the "Return Path" address to the identity specified in
-     * <code>SourceIdentityArn</code>. For more information about sending
-     * authorization, see the <a href=
+     * For most common sending authorization scenarios, we recommend that you
+     * specify the <code>SourceIdentityArn</code> parameter and not the
+     * <code>FromIdentityArn</code> or <code>ReturnPathIdentityArn</code>
+     * parameters. If you only specify the <code>SourceIdentityArn</code>
+     * parameter, Amazon SES will set the From and Return Path addresses to the
+     * identity specified in <code>SourceIdentityArn</code>. For more
+     * information about sending authorization, see the <a href=
      * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
-     * >Amazon SES Developer Guide</a>.
+     * >Using Sending Authorization with Amazon SES</a> in the <i>Amazon SES
+     * Developer Guide.</i>
      * </p>
      * </li>
      * </ul>
@@ -2704,6 +4360,9 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      *         Service.
      * @throws MessageRejectedException
      * @throws MailFromDomainNotVerifiedException
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws ConfigurationSetSendingPausedException
+     * @throws AccountSendingPausedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2714,6 +4373,219 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      */
     Future<SendRawEmailResult> sendRawEmailAsync(SendRawEmailRequest sendRawEmailRequest,
             AsyncHandler<SendRawEmailRequest, SendRawEmailResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Composes an email message using an email template and immediately queues
+     * it for sending.
+     * </p>
+     * <p>
+     * In order to send email using the <code>SendTemplatedEmail</code>
+     * operation, your call to the API must meet the following requirements:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The call must refer to an existing email template. You can create email
+     * templates using the <a>CreateTemplate</a> operation.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The message must be sent from a verified email address or domain.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If your account is still in the Amazon SES sandbox, you may only send to
+     * verified addresses or domains, or to email addresses associated with the
+     * Amazon SES Mailbox Simulator. For more information, see <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
+     * Guide.</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The total size of the message, including attachments, must be less than
+     * 10 MB.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Calls to the <code>SendTemplatedEmail</code> operation may only include
+     * one <code>Destination</code> parameter. A destination is a set of
+     * recipients who will receive the same version of the email. The
+     * <code>Destination</code> parameter can include up to 50 recipients,
+     * across the To:, CC: and BCC: fields.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The <code>Destination</code> parameter must include at least one
+     * recipient email address. The recipient address can be a To: address, a
+     * CC: address, or a BCC: address. If a recipient email address is invalid
+     * (that is, it is not in the format
+     * <i>UserName@[SubDomain.]Domain.TopLevelDomain</i>), the entire message
+     * will be rejected, even if the message contains other recipients that are
+     * valid.
+     * </p>
+     * </li>
+     * </ul>
+     * <important>
+     * <p>
+     * If your call to the <code>SendTemplatedEmail</code> operation includes
+     * all of the required parameters, Amazon SES accepts it and returns a
+     * Message ID. However, if Amazon SES can't render the email because the
+     * template contains errors, it doesn't send the email. Additionally,
+     * because it already accepted the message, Amazon SES doesn't return a
+     * message stating that it was unable to send the email.
+     * </p>
+     * <p>
+     * For these reasons, we highly recommend that you set up Amazon SES to send
+     * you notifications when Rendering Failure events occur. For more
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     * >Sending Personalized Email Using the Amazon SES API</a> in the <i>Amazon
+     * Simple Email Service Developer Guide</i>.
+     * </p>
+     * </important>
+     * 
+     * @param sendTemplatedEmailRequest <p>
+     *            Represents a request to send a templated email using Amazon
+     *            SES. For more information, see the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         SendTemplatedEmail service method, as returned by Amazon Simple
+     *         Email Service.
+     * @throws MessageRejectedException
+     * @throws MailFromDomainNotVerifiedException
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws TemplateDoesNotExistException
+     * @throws ConfigurationSetSendingPausedException
+     * @throws AccountSendingPausedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<SendTemplatedEmailResult> sendTemplatedEmailAsync(
+            SendTemplatedEmailRequest sendTemplatedEmailRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Composes an email message using an email template and immediately queues
+     * it for sending.
+     * </p>
+     * <p>
+     * In order to send email using the <code>SendTemplatedEmail</code>
+     * operation, your call to the API must meet the following requirements:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The call must refer to an existing email template. You can create email
+     * templates using the <a>CreateTemplate</a> operation.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The message must be sent from a verified email address or domain.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If your account is still in the Amazon SES sandbox, you may only send to
+     * verified addresses or domains, or to email addresses associated with the
+     * Amazon SES Mailbox Simulator. For more information, see <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
+     * Guide.</i>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The total size of the message, including attachments, must be less than
+     * 10 MB.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Calls to the <code>SendTemplatedEmail</code> operation may only include
+     * one <code>Destination</code> parameter. A destination is a set of
+     * recipients who will receive the same version of the email. The
+     * <code>Destination</code> parameter can include up to 50 recipients,
+     * across the To:, CC: and BCC: fields.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The <code>Destination</code> parameter must include at least one
+     * recipient email address. The recipient address can be a To: address, a
+     * CC: address, or a BCC: address. If a recipient email address is invalid
+     * (that is, it is not in the format
+     * <i>UserName@[SubDomain.]Domain.TopLevelDomain</i>), the entire message
+     * will be rejected, even if the message contains other recipients that are
+     * valid.
+     * </p>
+     * </li>
+     * </ul>
+     * <important>
+     * <p>
+     * If your call to the <code>SendTemplatedEmail</code> operation includes
+     * all of the required parameters, Amazon SES accepts it and returns a
+     * Message ID. However, if Amazon SES can't render the email because the
+     * template contains errors, it doesn't send the email. Additionally,
+     * because it already accepted the message, Amazon SES doesn't return a
+     * message stating that it was unable to send the email.
+     * </p>
+     * <p>
+     * For these reasons, we highly recommend that you set up Amazon SES to send
+     * you notifications when Rendering Failure events occur. For more
+     * information, see <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     * >Sending Personalized Email Using the Amazon SES API</a> in the <i>Amazon
+     * Simple Email Service Developer Guide</i>.
+     * </p>
+     * </important>
+     * 
+     * @param sendTemplatedEmailRequest <p>
+     *            Represents a request to send a templated email using Amazon
+     *            SES. For more information, see the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         SendTemplatedEmail service method, as returned by Amazon Simple
+     *         Email Service.
+     * @throws MessageRejectedException
+     * @throws MailFromDomainNotVerifiedException
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws TemplateDoesNotExistException
+     * @throws ConfigurationSetSendingPausedException
+     * @throws AccountSendingPausedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<SendTemplatedEmailResult> sendTemplatedEmailAsync(
+            SendTemplatedEmailRequest sendTemplatedEmailRequest,
+            AsyncHandler<SendTemplatedEmailRequest, SendTemplatedEmailResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -2732,7 +4604,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param setActiveReceiptRuleSetRequest <p>
@@ -2774,7 +4646,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param setActiveReceiptRuleSetRequest <p>
@@ -2812,10 +4684,10 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * <ul>
      * <li>
      * <p>
-     * If Easy DKIM signing is enabled for a domain name identity (e.g.,
+     * If Easy DKIM signing is enabled for a domain name identity (such as
      * <code>example.com</code>), then Amazon SES will DKIM-sign all email sent
-     * by addresses under that domain name (e.g., <code>user@example.com</code>
-     * ).
+     * by addresses under that domain name (for example,
+     * <code>user@example.com</code>).
      * </p>
      * </li>
      * <li>
@@ -2826,13 +4698,13 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * </li>
      * </ul>
      * <p>
-     * For email addresses (e.g., <code>user@example.com</code>), you can only
-     * enable Easy DKIM signing if the corresponding domain (e.g.,
+     * For email addresses (for example, <code>user@example.com</code>), you can
+     * only enable Easy DKIM signing if the corresponding domain (in this case,
      * <code>example.com</code>) has been set up for Easy DKIM using the AWS
-     * Console or the <code>VerifyDomainDkim</code> action.
+     * Console or the <code>VerifyDomainDkim</code> operation.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * <p>
      * For more information about Easy DKIM signing, go to the <a href=
@@ -2869,10 +4741,10 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * <ul>
      * <li>
      * <p>
-     * If Easy DKIM signing is enabled for a domain name identity (e.g.,
+     * If Easy DKIM signing is enabled for a domain name identity (such as
      * <code>example.com</code>), then Amazon SES will DKIM-sign all email sent
-     * by addresses under that domain name (e.g., <code>user@example.com</code>
-     * ).
+     * by addresses under that domain name (for example,
+     * <code>user@example.com</code>).
      * </p>
      * </li>
      * <li>
@@ -2883,13 +4755,13 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * </li>
      * </ul>
      * <p>
-     * For email addresses (e.g., <code>user@example.com</code>), you can only
-     * enable Easy DKIM signing if the corresponding domain (e.g.,
+     * For email addresses (for example, <code>user@example.com</code>), you can
+     * only enable Easy DKIM signing if the corresponding domain (in this case,
      * <code>example.com</code>) has been set up for Easy DKIM using the AWS
-     * Console or the <code>VerifyDomainDkim</code> action.
+     * Console or the <code>VerifyDomainDkim</code> operation.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * <p>
      * For more information about Easy DKIM signing, go to the <a href=
@@ -2939,7 +4811,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * </p>
      * </note>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * <p>
      * For more information about using notifications with Amazon SES, see the
@@ -2986,7 +4858,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * </p>
      * </note>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * <p>
      * For more information about using notifications with Amazon SES, see the
@@ -3030,7 +4902,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * Service (Amazon SNS) notifications of a specified type.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * <p>
      * For more information about using notifications with Amazon SES, see the
@@ -3069,7 +4941,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * Service (Amazon SNS) notifications of a specified type.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * <p>
      * For more information about using notifications with Amazon SES, see the
@@ -3122,7 +4994,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * </p>
      * </important>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param setIdentityMailFromDomainRequest <p>
@@ -3164,7 +5036,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * </p>
      * </important>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param setIdentityMailFromDomainRequest <p>
@@ -3210,7 +5082,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * </p>
      * </note>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * <p>
      * For more information about feedback notification, see the <a href=
@@ -3257,7 +5129,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * </p>
      * </note>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * <p>
      * For more information about feedback notification, see the <a href=
@@ -3304,7 +5176,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param setReceiptRulePositionRequest <p>
@@ -3341,7 +5213,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param setReceiptRulePositionRequest <p>
@@ -3375,6 +5247,535 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
+     * Creates a preview of the MIME content of an email when provided with a
+     * template and a set of replacement data.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param testRenderTemplateRequest
+     * @return A Java Future object containing the response from the
+     *         TestRenderTemplate service method, as returned by Amazon Simple
+     *         Email Service.
+     * @throws TemplateDoesNotExistException
+     * @throws InvalidRenderingParameterException
+     * @throws MissingRenderingAttributeException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<TestRenderTemplateResult> testRenderTemplateAsync(
+            TestRenderTemplateRequest testRenderTemplateRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a preview of the MIME content of an email when provided with a
+     * template and a set of replacement data.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param testRenderTemplateRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         TestRenderTemplate service method, as returned by Amazon Simple
+     *         Email Service.
+     * @throws TemplateDoesNotExistException
+     * @throws InvalidRenderingParameterException
+     * @throws MissingRenderingAttributeException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<TestRenderTemplateResult> testRenderTemplateAsync(
+            TestRenderTemplateRequest testRenderTemplateRequest,
+            AsyncHandler<TestRenderTemplateRequest, TestRenderTemplateResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Enables or disables email sending across your entire Amazon SES account
+     * in the current AWS Region. You can use this operation in conjunction with
+     * Amazon CloudWatch alarms to temporarily pause email sending across your
+     * Amazon SES account in a given AWS Region when reputation metrics (such as
+     * your bounce or complaint rates) reach certain thresholds.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param updateAccountSendingEnabledRequest <p>
+     *            Represents a request to enable or disable the email sending
+     *            capabilities for your entire Amazon SES account.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         UpdateAccountSendingEnabled service method, as returned by Amazon
+     *         Simple Email Service.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<Void> updateAccountSendingEnabledAsync(
+            UpdateAccountSendingEnabledRequest updateAccountSendingEnabledRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Enables or disables email sending across your entire Amazon SES account
+     * in the current AWS Region. You can use this operation in conjunction with
+     * Amazon CloudWatch alarms to temporarily pause email sending across your
+     * Amazon SES account in a given AWS Region when reputation metrics (such as
+     * your bounce or complaint rates) reach certain thresholds.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param updateAccountSendingEnabledRequest <p>
+     *            Represents a request to enable or disable the email sending
+     *            capabilities for your entire Amazon SES account.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateAccountSendingEnabled service method, as returned by Amazon
+     *         Simple Email Service.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<Void> updateAccountSendingEnabledAsync(
+            UpdateAccountSendingEnabledRequest updateAccountSendingEnabledRequest,
+            AsyncHandler<UpdateAccountSendingEnabledRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates the event destination of a configuration set. Event destinations
+     * are associated with configuration sets, which enable you to publish email
+     * sending events to Amazon CloudWatch, Amazon Kinesis Firehose, or Amazon
+     * Simple Notification Service (Amazon SNS). For information about using
+     * configuration sets, see <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * >Monitoring Your Amazon SES Sending Activity</a> in the <i>Amazon SES
+     * Developer Guide.</i>
+     * </p>
+     * <note>
+     * <p>
+     * When you create or update an event destination, you must provide one, and
+     * only one, destination. The destination can be Amazon CloudWatch, Amazon
+     * Kinesis Firehose, or Amazon Simple Notification Service (Amazon SNS).
+     * </p>
+     * </note>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param updateConfigurationSetEventDestinationRequest <p>
+     *            Represents a request to update the event destination of a
+     *            configuration set. Configuration sets enable you to publish
+     *            email sending events. For information about using
+     *            configuration sets, see the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         UpdateConfigurationSetEventDestination service method, as
+     *         returned by Amazon Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws EventDestinationDoesNotExistException
+     * @throws InvalidCloudWatchDestinationException
+     * @throws InvalidFirehoseDestinationException
+     * @throws InvalidSNSDestinationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<UpdateConfigurationSetEventDestinationResult> updateConfigurationSetEventDestinationAsync(
+            UpdateConfigurationSetEventDestinationRequest updateConfigurationSetEventDestinationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates the event destination of a configuration set. Event destinations
+     * are associated with configuration sets, which enable you to publish email
+     * sending events to Amazon CloudWatch, Amazon Kinesis Firehose, or Amazon
+     * Simple Notification Service (Amazon SNS). For information about using
+     * configuration sets, see <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     * >Monitoring Your Amazon SES Sending Activity</a> in the <i>Amazon SES
+     * Developer Guide.</i>
+     * </p>
+     * <note>
+     * <p>
+     * When you create or update an event destination, you must provide one, and
+     * only one, destination. The destination can be Amazon CloudWatch, Amazon
+     * Kinesis Firehose, or Amazon Simple Notification Service (Amazon SNS).
+     * </p>
+     * </note>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param updateConfigurationSetEventDestinationRequest <p>
+     *            Represents a request to update the event destination of a
+     *            configuration set. Configuration sets enable you to publish
+     *            email sending events. For information about using
+     *            configuration sets, see the <a href=
+     *            "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+     *            >Amazon SES Developer Guide</a>.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateConfigurationSetEventDestination service method, as
+     *         returned by Amazon Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws EventDestinationDoesNotExistException
+     * @throws InvalidCloudWatchDestinationException
+     * @throws InvalidFirehoseDestinationException
+     * @throws InvalidSNSDestinationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<UpdateConfigurationSetEventDestinationResult> updateConfigurationSetEventDestinationAsync(
+            UpdateConfigurationSetEventDestinationRequest updateConfigurationSetEventDestinationRequest,
+            AsyncHandler<UpdateConfigurationSetEventDestinationRequest, UpdateConfigurationSetEventDestinationResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Enables or disables the publishing of reputation metrics for emails sent
+     * using a specific configuration set in a given AWS Region. Reputation
+     * metrics include bounce and complaint rates. These metrics are published
+     * to Amazon CloudWatch. By using CloudWatch, you can create alarms when
+     * bounce or complaint rates exceed certain thresholds.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param updateConfigurationSetReputationMetricsEnabledRequest <p>
+     *            Represents a request to modify the reputation metric
+     *            publishing settings for a configuration set.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         UpdateConfigurationSetReputationMetricsEnabled service method, as
+     *         returned by Amazon Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<Void> updateConfigurationSetReputationMetricsEnabledAsync(
+            UpdateConfigurationSetReputationMetricsEnabledRequest updateConfigurationSetReputationMetricsEnabledRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Enables or disables the publishing of reputation metrics for emails sent
+     * using a specific configuration set in a given AWS Region. Reputation
+     * metrics include bounce and complaint rates. These metrics are published
+     * to Amazon CloudWatch. By using CloudWatch, you can create alarms when
+     * bounce or complaint rates exceed certain thresholds.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param updateConfigurationSetReputationMetricsEnabledRequest <p>
+     *            Represents a request to modify the reputation metric
+     *            publishing settings for a configuration set.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateConfigurationSetReputationMetricsEnabled service method, as
+     *         returned by Amazon Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<Void> updateConfigurationSetReputationMetricsEnabledAsync(
+            UpdateConfigurationSetReputationMetricsEnabledRequest updateConfigurationSetReputationMetricsEnabledRequest,
+            AsyncHandler<UpdateConfigurationSetReputationMetricsEnabledRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Enables or disables email sending for messages sent using a specific
+     * configuration set in a given AWS Region. You can use this operation in
+     * conjunction with Amazon CloudWatch alarms to temporarily pause email
+     * sending for a configuration set when the reputation metrics for that
+     * configuration set (such as your bounce on complaint rate) exceed certain
+     * thresholds.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param updateConfigurationSetSendingEnabledRequest <p>
+     *            Represents a request to enable or disable the email sending
+     *            capabilities for a specific configuration set.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         UpdateConfigurationSetSendingEnabled service method, as returned
+     *         by Amazon Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<Void> updateConfigurationSetSendingEnabledAsync(
+            UpdateConfigurationSetSendingEnabledRequest updateConfigurationSetSendingEnabledRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Enables or disables email sending for messages sent using a specific
+     * configuration set in a given AWS Region. You can use this operation in
+     * conjunction with Amazon CloudWatch alarms to temporarily pause email
+     * sending for a configuration set when the reputation metrics for that
+     * configuration set (such as your bounce on complaint rate) exceed certain
+     * thresholds.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param updateConfigurationSetSendingEnabledRequest <p>
+     *            Represents a request to enable or disable the email sending
+     *            capabilities for a specific configuration set.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateConfigurationSetSendingEnabled service method, as returned
+     *         by Amazon Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<Void> updateConfigurationSetSendingEnabledAsync(
+            UpdateConfigurationSetSendingEnabledRequest updateConfigurationSetSendingEnabledRequest,
+            AsyncHandler<UpdateConfigurationSetSendingEnabledRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Modifies an association between a configuration set and a custom domain
+     * for open and click event tracking.
+     * </p>
+     * <p>
+     * By default, images and links used for tracking open and click events are
+     * hosted on domains operated by Amazon SES. You can configure a subdomain
+     * of your own to handle these events. For information about using custom
+     * domains, see the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * 
+     * @param updateConfigurationSetTrackingOptionsRequest <p>
+     *            Represents a request to update the tracking options for a
+     *            configuration set.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         UpdateConfigurationSetTrackingOptions service method, as returned
+     *         by Amazon Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws TrackingOptionsDoesNotExistException
+     * @throws InvalidTrackingOptionsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<UpdateConfigurationSetTrackingOptionsResult> updateConfigurationSetTrackingOptionsAsync(
+            UpdateConfigurationSetTrackingOptionsRequest updateConfigurationSetTrackingOptionsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Modifies an association between a configuration set and a custom domain
+     * for open and click event tracking.
+     * </p>
+     * <p>
+     * By default, images and links used for tracking open and click events are
+     * hosted on domains operated by Amazon SES. You can configure a subdomain
+     * of your own to handle these events. For information about using custom
+     * domains, see the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * 
+     * @param updateConfigurationSetTrackingOptionsRequest <p>
+     *            Represents a request to update the tracking options for a
+     *            configuration set.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateConfigurationSetTrackingOptions service method, as returned
+     *         by Amazon Simple Email Service.
+     * @throws ConfigurationSetDoesNotExistException
+     * @throws TrackingOptionsDoesNotExistException
+     * @throws InvalidTrackingOptionsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<UpdateConfigurationSetTrackingOptionsResult> updateConfigurationSetTrackingOptionsAsync(
+            UpdateConfigurationSetTrackingOptionsRequest updateConfigurationSetTrackingOptionsRequest,
+            AsyncHandler<UpdateConfigurationSetTrackingOptionsRequest, UpdateConfigurationSetTrackingOptionsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates an existing custom verification email template.
+     * </p>
+     * <p>
+     * For more information about custom verification email templates, see <a
+     * href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param updateCustomVerificationEmailTemplateRequest <p>
+     *            Represents a request to update an existing custom verification
+     *            email template.
+     *            </p>
+     * @return A Java Future object containing the response from the
+     *         UpdateCustomVerificationEmailTemplate service method, as returned
+     *         by Amazon Simple Email Service.
+     * @throws CustomVerificationEmailTemplateDoesNotExistException
+     * @throws FromEmailAddressNotVerifiedException
+     * @throws CustomVerificationEmailInvalidContentException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<Void> updateCustomVerificationEmailTemplateAsync(
+            UpdateCustomVerificationEmailTemplateRequest updateCustomVerificationEmailTemplateRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates an existing custom verification email template.
+     * </p>
+     * <p>
+     * For more information about custom verification email templates, see <a
+     * href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+     * >Using Custom Verification Email Templates</a> in the <i>Amazon SES
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param updateCustomVerificationEmailTemplateRequest <p>
+     *            Represents a request to update an existing custom verification
+     *            email template.
+     *            </p>
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateCustomVerificationEmailTemplate service method, as returned
+     *         by Amazon Simple Email Service.
+     * @throws CustomVerificationEmailTemplateDoesNotExistException
+     * @throws FromEmailAddressNotVerifiedException
+     * @throws CustomVerificationEmailInvalidContentException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<Void> updateCustomVerificationEmailTemplateAsync(
+            UpdateCustomVerificationEmailTemplateRequest updateCustomVerificationEmailTemplateRequest,
+            AsyncHandler<UpdateCustomVerificationEmailTemplateRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Updates a receipt rule.
      * </p>
      * <p>
@@ -3383,7 +5784,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param updateReceiptRuleRequest <p>
@@ -3424,7 +5825,7 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param updateReceiptRuleRequest <p>
@@ -3462,6 +5863,69 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
+     * Updates an email template. Email templates enable you to send
+     * personalized email to one or more destinations in a single API operation.
+     * For more information, see the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param updateTemplateRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateTemplate service method, as returned by Amazon Simple Email
+     *         Service.
+     * @throws TemplateDoesNotExistException
+     * @throws InvalidTemplateException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<UpdateTemplateResult> updateTemplateAsync(UpdateTemplateRequest updateTemplateRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates an email template. Email templates enable you to send
+     * personalized email to one or more destinations in a single API operation.
+     * For more information, see the <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+     * >Amazon SES Developer Guide</a>.
+     * </p>
+     * <p>
+     * You can execute this operation no more than once per second.
+     * </p>
+     * 
+     * @param updateTemplateRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateTemplate service method, as returned by Amazon Simple Email
+     *         Service.
+     * @throws TemplateDoesNotExistException
+     * @throws InvalidTemplateException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Email Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    Future<UpdateTemplateResult> updateTemplateAsync(UpdateTemplateRequest updateTemplateRequest,
+            AsyncHandler<UpdateTemplateRequest, UpdateTemplateResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Returns a set of DKIM tokens for a domain. DKIM <i>tokens</i> are
      * character strings that represent your domain's identity. Using these
      * tokens, you will need to create DNS CNAME records that point to DKIM
@@ -3471,11 +5935,11 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * to DKIM-sign email originating from that domain.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * <p>
      * To enable or disable Easy DKIM signing for a domain, use the
-     * <code>SetIdentityDkimEnabled</code> action.
+     * <code>SetIdentityDkimEnabled</code> operation.
      * </p>
      * <p>
      * For more information about creating DNS records using DKIM tokens, go to
@@ -3517,11 +5981,11 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
      * to DKIM-sign email originating from that domain.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * <p>
      * To enable or disable Easy DKIM signing for a domain, use the
-     * <code>SetIdentityDkimEnabled</code> action.
+     * <code>SetIdentityDkimEnabled</code> operation.
      * </p>
      * <p>
      * For more information about creating DNS records using DKIM tokens, go to
@@ -3559,10 +6023,15 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Verifies a domain.
+     * Adds a domain to the list of identities for your Amazon SES account in
+     * the current AWS Region and attempts to verify it. For more information
+     * about verifying domains, see <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
+     * Guide.</i>
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param verifyDomainIdentityRequest <p>
@@ -3590,10 +6059,15 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Verifies a domain.
+     * Adds a domain to the list of identities for your Amazon SES account in
+     * the current AWS Region and attempts to verify it. For more information
+     * about verifying domains, see <a href=
+     * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
+     * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
+     * Guide.</i>
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param verifyDomainIdentityRequest <p>
@@ -3626,18 +6100,8 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Verifies an email address. This action causes a confirmation email
-     * message to be sent to the specified address.
-     * </p>
-     * <important>
-     * <p>
-     * The VerifyEmailAddress action is deprecated as of the May 15, 2012
-     * release of Domain Verification. The VerifyEmailIdentity action is now
-     * preferred.
-     * </p>
-     * </important>
-     * <p>
-     * This action is throttled at one request per second.
+     * Deprecated. Use the <code>VerifyEmailIdentity</code> operation to verify
+     * a new email address.
      * </p>
      * 
      * @param verifyEmailAddressRequest <p>
@@ -3663,18 +6127,8 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Verifies an email address. This action causes a confirmation email
-     * message to be sent to the specified address.
-     * </p>
-     * <important>
-     * <p>
-     * The VerifyEmailAddress action is deprecated as of the May 15, 2012
-     * release of Domain Verification. The VerifyEmailIdentity action is now
-     * preferred.
-     * </p>
-     * </important>
-     * <p>
-     * This action is throttled at one request per second.
+     * Deprecated. Use the <code>VerifyEmailIdentity</code> operation to verify
+     * a new email address.
      * </p>
      * 
      * @param verifyEmailAddressRequest <p>
@@ -3705,11 +6159,13 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Verifies an email address. This action causes a confirmation email
-     * message to be sent to the specified address.
+     * Adds an email address to the list of identities for your Amazon SES
+     * account in the current AWS region and attempts to verify it. As a result
+     * of executing this operation, a verification email is sent to the
+     * specified address.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param verifyEmailIdentityRequest <p>
@@ -3736,11 +6192,13 @@ public interface AmazonSimpleEmailServiceAsync extends AmazonSimpleEmailService 
 
     /**
      * <p>
-     * Verifies an email address. This action causes a confirmation email
-     * message to be sent to the specified address.
+     * Adds an email address to the list of identities for your Amazon SES
+     * account in the current AWS region and attempts to verify it. As a result
+     * of executing this operation, a verification email is sent to the
+     * specified address.
      * </p>
      * <p>
-     * This action is throttled at one request per second.
+     * You can execute this operation no more than once per second.
      * </p>
      * 
      * @param verifyEmailIdentityRequest <p>

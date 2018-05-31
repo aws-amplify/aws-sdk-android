@@ -24,37 +24,35 @@ import com.amazonaws.AmazonWebServiceRequest;
  */
 public class DeleteEventStreamRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the applicationId property for this object.
+     * ApplicationId
      */
     private String applicationId;
 
     /**
-     * Returns the value of the applicationId property for this object.
+     * ApplicationId
      *
-     * @return The value of the applicationId property for this object.
+     * @return ApplicationId
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * Sets the value of applicationId
+     * ApplicationId
      *
-     * @param applicationId The new value for the applicationId property for
-     *            this object.
+     * @param applicationId ApplicationId
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * Sets the value of the applicationId property for this object.
+     * ApplicationId
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The new value for the applicationId property for
-     *            this object.
+     * @param applicationId ApplicationId
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

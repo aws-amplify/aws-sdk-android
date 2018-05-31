@@ -27,7 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ChangePasswordRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The old password in the change password request.
+     * The old password.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -38,7 +38,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The new password in the change password request.
+     * The new password.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -49,7 +49,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The access token in the change password request.
+     * The access token.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,7 +59,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The old password in the change password request.
+     * The old password.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -67,7 +67,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
-     *         The old password in the change password request.
+     *         The old password.
      *         </p>
      */
     public String getPreviousPassword() {
@@ -76,7 +76,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The old password in the change password request.
+     * The old password.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -84,7 +84,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param previousPassword <p>
-     *            The old password in the change password request.
+     *            The old password.
      *            </p>
      */
     public void setPreviousPassword(String previousPassword) {
@@ -93,7 +93,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The old password in the change password request.
+     * The old password.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -104,7 +104,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param previousPassword <p>
-     *            The old password in the change password request.
+     *            The old password.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -116,7 +116,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The new password in the change password request.
+     * The new password.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -124,7 +124,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
-     *         The new password in the change password request.
+     *         The new password.
      *         </p>
      */
     public String getProposedPassword() {
@@ -133,7 +133,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The new password in the change password request.
+     * The new password.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -141,7 +141,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param proposedPassword <p>
-     *            The new password in the change password request.
+     *            The new password.
      *            </p>
      */
     public void setProposedPassword(String proposedPassword) {
@@ -150,7 +150,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The new password in the change password request.
+     * The new password.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -161,7 +161,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param proposedPassword <p>
-     *            The new password in the change password request.
+     *            The new password.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -173,14 +173,14 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The access token in the change password request.
+     * The access token.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
-     *         The access token in the change password request.
+     *         The access token.
      *         </p>
      */
     public String getAccessToken() {
@@ -189,14 +189,14 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The access token in the change password request.
+     * The access token.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token in the change password request.
+     *            The access token.
      *            </p>
      */
     public void setAccessToken(String accessToken) {
@@ -205,7 +205,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The access token in the change password request.
+     * The access token.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -215,7 +215,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token in the change password request.
+     *            The access token.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

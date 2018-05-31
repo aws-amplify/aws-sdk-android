@@ -19,7 +19,10 @@ import java.io.Serializable;
 
 public class AssociateSoftwareTokenResult implements Serializable {
     /**
-     * The new value for the secretCode property for this object.
+     * <p>
+     * A unique generated shared secret code that is used in the TOTP algorithm
+     * to generate a one time code.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>16 - <br/>
@@ -28,7 +31,11 @@ public class AssociateSoftwareTokenResult implements Serializable {
     private String secretCode;
 
     /**
-     * The new value for the session property for this object.
+     * <p>
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. This allows authentication of the user as part of the MFA
+     * setup process.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
@@ -36,34 +43,48 @@ public class AssociateSoftwareTokenResult implements Serializable {
     private String session;
 
     /**
-     * Returns the value of the secretCode property for this object.
+     * <p>
+     * A unique generated shared secret code that is used in the TOTP algorithm
+     * to generate a one time code.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>16 - <br/>
      * <b>Pattern: </b>[A-Za-z0-9]+<br/>
      *
-     * @return The value of the secretCode property for this object.
+     * @return <p>
+     *         A unique generated shared secret code that is used in the TOTP
+     *         algorithm to generate a one time code.
+     *         </p>
      */
     public String getSecretCode() {
         return secretCode;
     }
 
     /**
-     * Sets the value of secretCode
+     * <p>
+     * A unique generated shared secret code that is used in the TOTP algorithm
+     * to generate a one time code.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>16 - <br/>
      * <b>Pattern: </b>[A-Za-z0-9]+<br/>
      *
-     * @param secretCode The new value for the secretCode property for this
-     *            object.
+     * @param secretCode <p>
+     *            A unique generated shared secret code that is used in the TOTP
+     *            algorithm to generate a one time code.
+     *            </p>
      */
     public void setSecretCode(String secretCode) {
         this.secretCode = secretCode;
     }
 
     /**
-     * Sets the value of the secretCode property for this object.
+     * <p>
+     * A unique generated shared secret code that is used in the TOTP algorithm
+     * to generate a one time code.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -72,8 +93,10 @@ public class AssociateSoftwareTokenResult implements Serializable {
      * <b>Length: </b>16 - <br/>
      * <b>Pattern: </b>[A-Za-z0-9]+<br/>
      *
-     * @param secretCode The new value for the secretCode property for this
-     *            object.
+     * @param secretCode <p>
+     *            A unique generated shared secret code that is used in the TOTP
+     *            algorithm to generate a one time code.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -83,31 +106,51 @@ public class AssociateSoftwareTokenResult implements Serializable {
     }
 
     /**
-     * Returns the value of the session property for this object.
+     * <p>
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. This allows authentication of the user as part of the MFA
+     * setup process.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @return The value of the session property for this object.
+     * @return <p>
+     *         The session which should be passed both ways in
+     *         challenge-response calls to the service. This allows
+     *         authentication of the user as part of the MFA setup process.
+     *         </p>
      */
     public String getSession() {
         return session;
     }
 
     /**
-     * Sets the value of session
+     * <p>
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. This allows authentication of the user as part of the MFA
+     * setup process.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @param session The new value for the session property for this object.
+     * @param session <p>
+     *            The session which should be passed both ways in
+     *            challenge-response calls to the service. This allows
+     *            authentication of the user as part of the MFA setup process.
+     *            </p>
      */
     public void setSession(String session) {
         this.session = session;
     }
 
     /**
-     * Sets the value of the session property for this object.
+     * <p>
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. This allows authentication of the user as part of the MFA
+     * setup process.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -115,7 +158,11 @@ public class AssociateSoftwareTokenResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @param session The new value for the session property for this object.
+     * @param session <p>
+     *            The session which should be passed both ways in
+     *            challenge-response calls to the service. This allows
+     *            authentication of the user as part of the MFA setup process.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

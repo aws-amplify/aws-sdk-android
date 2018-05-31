@@ -19,9 +19,17 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Returns a unique generated shared secret key code for the user account. The
+ * request takes an access token or a session string, but not both.
+ * </p>
+ */
 public class AssociateSoftwareTokenRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the accessToken property for this object.
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
@@ -29,7 +37,11 @@ public class AssociateSoftwareTokenRequest extends AmazonWebServiceRequest imple
     private String accessToken;
 
     /**
-     * The new value for the session property for this object.
+     * <p>
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. This allows authentication of the user as part of the MFA
+     * setup process.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
@@ -37,32 +49,41 @@ public class AssociateSoftwareTokenRequest extends AmazonWebServiceRequest imple
     private String session;
 
     /**
-     * Returns the value of the accessToken property for this object.
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
-     * @return The value of the accessToken property for this object.
+     * @return <p>
+     *         The access token.
+     *         </p>
      */
     public String getAccessToken() {
         return accessToken;
     }
 
     /**
-     * Sets the value of accessToken
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
-     * @param accessToken The new value for the accessToken property for this
-     *            object.
+     * @param accessToken <p>
+     *            The access token.
+     *            </p>
      */
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
 
     /**
-     * Sets the value of the accessToken property for this object.
+     * <p>
+     * The access token.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -70,8 +91,9 @@ public class AssociateSoftwareTokenRequest extends AmazonWebServiceRequest imple
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
-     * @param accessToken The new value for the accessToken property for this
-     *            object.
+     * @param accessToken <p>
+     *            The access token.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -81,31 +103,51 @@ public class AssociateSoftwareTokenRequest extends AmazonWebServiceRequest imple
     }
 
     /**
-     * Returns the value of the session property for this object.
+     * <p>
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. This allows authentication of the user as part of the MFA
+     * setup process.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @return The value of the session property for this object.
+     * @return <p>
+     *         The session which should be passed both ways in
+     *         challenge-response calls to the service. This allows
+     *         authentication of the user as part of the MFA setup process.
+     *         </p>
      */
     public String getSession() {
         return session;
     }
 
     /**
-     * Sets the value of session
+     * <p>
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. This allows authentication of the user as part of the MFA
+     * setup process.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @param session The new value for the session property for this object.
+     * @param session <p>
+     *            The session which should be passed both ways in
+     *            challenge-response calls to the service. This allows
+     *            authentication of the user as part of the MFA setup process.
+     *            </p>
      */
     public void setSession(String session) {
         this.session = session;
     }
 
     /**
-     * Sets the value of the session property for this object.
+     * <p>
+     * The session which should be passed both ways in challenge-response calls
+     * to the service. This allows authentication of the user as part of the MFA
+     * setup process.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -113,7 +155,11 @@ public class AssociateSoftwareTokenRequest extends AmazonWebServiceRequest imple
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
-     * @param session The new value for the session property for this object.
+     * @param session <p>
+     *            The session which should be passed both ways in
+     *            challenge-response calls to the service. This allows
+     *            authentication of the user as part of the MFA setup process.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -23,6 +23,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Gets the device, as an administrator.
  * </p>
+ * <p>
+ * Requires developer credentials.
+ * </p>
  */
 public class AdminGetDeviceRequest extends AmazonWebServiceRequest implements Serializable {
     /**

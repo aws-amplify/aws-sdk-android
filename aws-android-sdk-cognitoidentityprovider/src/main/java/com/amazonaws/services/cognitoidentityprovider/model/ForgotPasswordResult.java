@@ -26,18 +26,21 @@ import java.io.Serializable;
 public class ForgotPasswordResult implements Serializable {
     /**
      * <p>
-     * The type of code delivery details being returned from the server.
+     * The code delivery details returned by the server in response to the
+     * request to reset a password.
      * </p>
      */
     private CodeDeliveryDetailsType codeDeliveryDetails;
 
     /**
      * <p>
-     * The type of code delivery details being returned from the server.
+     * The code delivery details returned by the server in response to the
+     * request to reset a password.
      * </p>
      *
      * @return <p>
-     *         The type of code delivery details being returned from the server.
+     *         The code delivery details returned by the server in response to
+     *         the request to reset a password.
      *         </p>
      */
     public CodeDeliveryDetailsType getCodeDeliveryDetails() {
@@ -46,12 +49,13 @@ public class ForgotPasswordResult implements Serializable {
 
     /**
      * <p>
-     * The type of code delivery details being returned from the server.
+     * The code delivery details returned by the server in response to the
+     * request to reset a password.
      * </p>
      *
      * @param codeDeliveryDetails <p>
-     *            The type of code delivery details being returned from the
-     *            server.
+     *            The code delivery details returned by the server in response
+     *            to the request to reset a password.
      *            </p>
      */
     public void setCodeDeliveryDetails(CodeDeliveryDetailsType codeDeliveryDetails) {
@@ -60,15 +64,16 @@ public class ForgotPasswordResult implements Serializable {
 
     /**
      * <p>
-     * The type of code delivery details being returned from the server.
+     * The code delivery details returned by the server in response to the
+     * request to reset a password.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param codeDeliveryDetails <p>
-     *            The type of code delivery details being returned from the
-     *            server.
+     *            The code delivery details returned by the server in response
+     *            to the request to reset a password.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

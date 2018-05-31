@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The number of attached entities exceeds the limit.
+ * A limit has been exceeded.
  * </p>
  */
 public class LimitExceededException extends AmazonServiceException {

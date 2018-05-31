@@ -37,7 +37,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class UpdateCertificateRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The ID of the certificate.
+     * The ID of the certificate. (The last part of the certificate ARN contains
+     * the certificate ID.)
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,7 +69,8 @@ public class UpdateCertificateRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The ID of the certificate.
+     * The ID of the certificate. (The last part of the certificate ARN contains
+     * the certificate ID.)
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,7 +78,8 @@ public class UpdateCertificateRequest extends AmazonWebServiceRequest implements
      * <b>Pattern: </b>(0x)?[a-fA-F0-9]+<br/>
      *
      * @return <p>
-     *         The ID of the certificate.
+     *         The ID of the certificate. (The last part of the certificate ARN
+     *         contains the certificate ID.)
      *         </p>
      */
     public String getCertificateId() {
@@ -85,7 +88,8 @@ public class UpdateCertificateRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The ID of the certificate.
+     * The ID of the certificate. (The last part of the certificate ARN contains
+     * the certificate ID.)
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -93,7 +97,8 @@ public class UpdateCertificateRequest extends AmazonWebServiceRequest implements
      * <b>Pattern: </b>(0x)?[a-fA-F0-9]+<br/>
      *
      * @param certificateId <p>
-     *            The ID of the certificate.
+     *            The ID of the certificate. (The last part of the certificate
+     *            ARN contains the certificate ID.)
      *            </p>
      */
     public void setCertificateId(String certificateId) {
@@ -102,7 +107,8 @@ public class UpdateCertificateRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The ID of the certificate.
+     * The ID of the certificate. (The last part of the certificate ARN contains
+     * the certificate ID.)
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -113,7 +119,8 @@ public class UpdateCertificateRequest extends AmazonWebServiceRequest implements
      * <b>Pattern: </b>(0x)?[a-fA-F0-9]+<br/>
      *
      * @param certificateId <p>
-     *            The ID of the certificate.
+     *            The ID of the certificate. (The last part of the certificate
+     *            ARN contains the certificate ID.)
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

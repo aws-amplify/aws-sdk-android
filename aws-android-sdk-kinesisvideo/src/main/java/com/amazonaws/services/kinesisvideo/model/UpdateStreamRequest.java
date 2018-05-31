@@ -19,9 +19,35 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Updates stream metadata, such as the device name and media type.
+ * </p>
+ * <p>
+ * You must provide the stream name or the Amazon Resource Name (ARN) of the
+ * stream.
+ * </p>
+ * <p>
+ * To make sure that you have the latest version of the stream before updating
+ * it, you can specify the stream version. Kinesis Video Streams assigns a
+ * version to each stream. When you update a stream, Kinesis Video Streams
+ * assigns a new version number. To get the latest stream version, use the
+ * <code>DescribeStream</code> API.
+ * </p>
+ * <p>
+ * <code>UpdateStream</code> is an asynchronous operation, and takes time to
+ * complete.
+ * </p>
+ */
 public class UpdateStreamRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the streamName property for this object.
+     * <p>
+     * The name of the stream whose metadata you want to update.
+     * </p>
+     * <p>
+     * The stream name is an identifier for the stream, and must be unique for
+     * each account and region.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -30,7 +56,9 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
     private String streamName;
 
     /**
-     * The new value for the streamARN property for this object.
+     * <p>
+     * The ARN of the stream whose metadata you want to update.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -41,7 +69,9 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
     private String streamARN;
 
     /**
-     * The new value for the currentVersion property for this object.
+     * <p>
+     * The version of the stream whose metadata you want to update.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
@@ -50,7 +80,15 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
     private String currentVersion;
 
     /**
-     * The new value for the deviceName property for this object.
+     * <p>
+     * The name of the device that is writing to the stream.
+     * </p>
+     * <note>
+     * <p>
+     * In the current implementation, Kinesis Video Streams does not use this
+     * name.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -59,7 +97,20 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
     private String deviceName;
 
     /**
-     * The new value for the mediaType property for this object.
+     * <p>
+     * The stream's media type. Use <code>MediaType</code> to specify the type
+     * of content that the stream contains to the consumers of the stream. For
+     * more information about media types, see <a
+     * href="http://www.iana.org/assignments/media-types/media-types.xhtml"
+     * >Media Types</a>. If you choose to specify the <code>MediaType</code>,
+     * see <a href="https://tools.sietf.org/html/rfc6838#section-4.2">Naming
+     * Requirements</a>.
+     * </p>
+     * <p>
+     * To play video on the console, you must specify the correct video type.
+     * For example, if the video in the stream is H.264, specify
+     * <code>video/h264</code> as the <code>MediaType</code>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -68,34 +119,63 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
     private String mediaType;
 
     /**
-     * Returns the value of the streamName property for this object.
+     * <p>
+     * The name of the stream whose metadata you want to update.
+     * </p>
+     * <p>
+     * The stream name is an identifier for the stream, and must be unique for
+     * each account and region.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @return The value of the streamName property for this object.
+     * @return <p>
+     *         The name of the stream whose metadata you want to update.
+     *         </p>
+     *         <p>
+     *         The stream name is an identifier for the stream, and must be
+     *         unique for each account and region.
+     *         </p>
      */
     public String getStreamName() {
         return streamName;
     }
 
     /**
-     * Sets the value of streamName
+     * <p>
+     * The name of the stream whose metadata you want to update.
+     * </p>
+     * <p>
+     * The stream name is an identifier for the stream, and must be unique for
+     * each account and region.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param streamName The new value for the streamName property for this
-     *            object.
+     * @param streamName <p>
+     *            The name of the stream whose metadata you want to update.
+     *            </p>
+     *            <p>
+     *            The stream name is an identifier for the stream, and must be
+     *            unique for each account and region.
+     *            </p>
      */
     public void setStreamName(String streamName) {
         this.streamName = streamName;
     }
 
     /**
-     * Sets the value of the streamName property for this object.
+     * <p>
+     * The name of the stream whose metadata you want to update.
+     * </p>
+     * <p>
+     * The stream name is an identifier for the stream, and must be unique for
+     * each account and region.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -104,8 +184,13 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param streamName The new value for the streamName property for this
-     *            object.
+     * @param streamName <p>
+     *            The name of the stream whose metadata you want to update.
+     *            </p>
+     *            <p>
+     *            The stream name is an identifier for the stream, and must be
+     *            unique for each account and region.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -115,7 +200,9 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Returns the value of the streamARN property for this object.
+     * <p>
+     * The ARN of the stream whose metadata you want to update.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -123,14 +210,18 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @return The value of the streamARN property for this object.
+     * @return <p>
+     *         The ARN of the stream whose metadata you want to update.
+     *         </p>
      */
     public String getStreamARN() {
         return streamARN;
     }
 
     /**
-     * Sets the value of streamARN
+     * <p>
+     * The ARN of the stream whose metadata you want to update.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -138,15 +229,18 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @param streamARN The new value for the streamARN property for this
-     *            object.
+     * @param streamARN <p>
+     *            The ARN of the stream whose metadata you want to update.
+     *            </p>
      */
     public void setStreamARN(String streamARN) {
         this.streamARN = streamARN;
     }
 
     /**
-     * Sets the value of the streamARN property for this object.
+     * <p>
+     * The ARN of the stream whose metadata you want to update.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -157,8 +251,9 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @param streamARN The new value for the streamARN property for this
-     *            object.
+     * @param streamARN <p>
+     *            The ARN of the stream whose metadata you want to update.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -168,34 +263,43 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Returns the value of the currentVersion property for this object.
+     * <p>
+     * The version of the stream whose metadata you want to update.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9]+<br/>
      *
-     * @return The value of the currentVersion property for this object.
+     * @return <p>
+     *         The version of the stream whose metadata you want to update.
+     *         </p>
      */
     public String getCurrentVersion() {
         return currentVersion;
     }
 
     /**
-     * Sets the value of currentVersion
+     * <p>
+     * The version of the stream whose metadata you want to update.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9]+<br/>
      *
-     * @param currentVersion The new value for the currentVersion property for
-     *            this object.
+     * @param currentVersion <p>
+     *            The version of the stream whose metadata you want to update.
+     *            </p>
      */
     public void setCurrentVersion(String currentVersion) {
         this.currentVersion = currentVersion;
     }
 
     /**
-     * Sets the value of the currentVersion property for this object.
+     * <p>
+     * The version of the stream whose metadata you want to update.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -204,8 +308,9 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9]+<br/>
      *
-     * @param currentVersion The new value for the currentVersion property for
-     *            this object.
+     * @param currentVersion <p>
+     *            The version of the stream whose metadata you want to update.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -215,34 +320,73 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Returns the value of the deviceName property for this object.
+     * <p>
+     * The name of the device that is writing to the stream.
+     * </p>
+     * <note>
+     * <p>
+     * In the current implementation, Kinesis Video Streams does not use this
+     * name.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @return The value of the deviceName property for this object.
+     * @return <p>
+     *         The name of the device that is writing to the stream.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         In the current implementation, Kinesis Video Streams does not use
+     *         this name.
+     *         </p>
+     *         </note>
      */
     public String getDeviceName() {
         return deviceName;
     }
 
     /**
-     * Sets the value of deviceName
+     * <p>
+     * The name of the device that is writing to the stream.
+     * </p>
+     * <note>
+     * <p>
+     * In the current implementation, Kinesis Video Streams does not use this
+     * name.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param deviceName The new value for the deviceName property for this
-     *            object.
+     * @param deviceName <p>
+     *            The name of the device that is writing to the stream.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            In the current implementation, Kinesis Video Streams does not
+     *            use this name.
+     *            </p>
+     *            </note>
      */
     public void setDeviceName(String deviceName) {
         this.deviceName = deviceName;
     }
 
     /**
-     * Sets the value of the deviceName property for this object.
+     * <p>
+     * The name of the device that is writing to the stream.
+     * </p>
+     * <note>
+     * <p>
+     * In the current implementation, Kinesis Video Streams does not use this
+     * name.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -251,8 +395,15 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param deviceName The new value for the deviceName property for this
-     *            object.
+     * @param deviceName <p>
+     *            The name of the device that is writing to the stream.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            In the current implementation, Kinesis Video Streams does not
+     *            use this name.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -262,34 +413,101 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * Returns the value of the mediaType property for this object.
+     * <p>
+     * The stream's media type. Use <code>MediaType</code> to specify the type
+     * of content that the stream contains to the consumers of the stream. For
+     * more information about media types, see <a
+     * href="http://www.iana.org/assignments/media-types/media-types.xhtml"
+     * >Media Types</a>. If you choose to specify the <code>MediaType</code>,
+     * see <a href="https://tools.sietf.org/html/rfc6838#section-4.2">Naming
+     * Requirements</a>.
+     * </p>
+     * <p>
+     * To play video on the console, you must specify the correct video type.
+     * For example, if the video in the stream is H.264, specify
+     * <code>video/h264</code> as the <code>MediaType</code>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+<br/>
      *
-     * @return The value of the mediaType property for this object.
+     * @return <p>
+     *         The stream's media type. Use <code>MediaType</code> to specify
+     *         the type of content that the stream contains to the consumers of
+     *         the stream. For more information about media types, see <a href=
+     *         "http://www.iana.org/assignments/media-types/media-types.xhtml"
+     *         >Media Types</a>. If you choose to specify the
+     *         <code>MediaType</code>, see <a
+     *         href="https://tools.sietf.org/html/rfc6838#section-4.2">Naming
+     *         Requirements</a>.
+     *         </p>
+     *         <p>
+     *         To play video on the console, you must specify the correct video
+     *         type. For example, if the video in the stream is H.264, specify
+     *         <code>video/h264</code> as the <code>MediaType</code>.
+     *         </p>
      */
     public String getMediaType() {
         return mediaType;
     }
 
     /**
-     * Sets the value of mediaType
+     * <p>
+     * The stream's media type. Use <code>MediaType</code> to specify the type
+     * of content that the stream contains to the consumers of the stream. For
+     * more information about media types, see <a
+     * href="http://www.iana.org/assignments/media-types/media-types.xhtml"
+     * >Media Types</a>. If you choose to specify the <code>MediaType</code>,
+     * see <a href="https://tools.sietf.org/html/rfc6838#section-4.2">Naming
+     * Requirements</a>.
+     * </p>
+     * <p>
+     * To play video on the console, you must specify the correct video type.
+     * For example, if the video in the stream is H.264, specify
+     * <code>video/h264</code> as the <code>MediaType</code>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+<br/>
      *
-     * @param mediaType The new value for the mediaType property for this
-     *            object.
+     * @param mediaType <p>
+     *            The stream's media type. Use <code>MediaType</code> to specify
+     *            the type of content that the stream contains to the consumers
+     *            of the stream. For more information about media types, see <a
+     *            href=
+     *            "http://www.iana.org/assignments/media-types/media-types.xhtml"
+     *            >Media Types</a>. If you choose to specify the
+     *            <code>MediaType</code>, see <a
+     *            href="https://tools.sietf.org/html/rfc6838#section-4.2">Naming
+     *            Requirements</a>.
+     *            </p>
+     *            <p>
+     *            To play video on the console, you must specify the correct
+     *            video type. For example, if the video in the stream is H.264,
+     *            specify <code>video/h264</code> as the <code>MediaType</code>.
+     *            </p>
      */
     public void setMediaType(String mediaType) {
         this.mediaType = mediaType;
     }
 
     /**
-     * Sets the value of the mediaType property for this object.
+     * <p>
+     * The stream's media type. Use <code>MediaType</code> to specify the type
+     * of content that the stream contains to the consumers of the stream. For
+     * more information about media types, see <a
+     * href="http://www.iana.org/assignments/media-types/media-types.xhtml"
+     * >Media Types</a>. If you choose to specify the <code>MediaType</code>,
+     * see <a href="https://tools.sietf.org/html/rfc6838#section-4.2">Naming
+     * Requirements</a>.
+     * </p>
+     * <p>
+     * To play video on the console, you must specify the correct video type.
+     * For example, if the video in the stream is H.264, specify
+     * <code>video/h264</code> as the <code>MediaType</code>.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -298,8 +516,22 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+<br/>
      *
-     * @param mediaType The new value for the mediaType property for this
-     *            object.
+     * @param mediaType <p>
+     *            The stream's media type. Use <code>MediaType</code> to specify
+     *            the type of content that the stream contains to the consumers
+     *            of the stream. For more information about media types, see <a
+     *            href=
+     *            "http://www.iana.org/assignments/media-types/media-types.xhtml"
+     *            >Media Types</a>. If you choose to specify the
+     *            <code>MediaType</code>, see <a
+     *            href="https://tools.sietf.org/html/rfc6838#section-4.2">Naming
+     *            Requirements</a>.
+     *            </p>
+     *            <p>
+     *            To play video on the console, you must specify the correct
+     *            video type. For example, if the video in the stream is H.264,
+     *            specify <code>video/h264</code> as the <code>MediaType</code>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

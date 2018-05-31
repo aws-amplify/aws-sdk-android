@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Represents the output of a <i>DescribeLimits</i> operation.
+ * Represents the output of a <code>DescribeLimits</code> operation.
  * </p>
  */
 public class DescribeLimitsResult implements Serializable {

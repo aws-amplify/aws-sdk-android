@@ -39,6 +39,10 @@ class ApplicationSettingsResourceJsonUnmarshaller implements
             if (name.equals("ApplicationId")) {
                 applicationSettingsResource.setApplicationId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("CampaignHook")) {
+                applicationSettingsResource.setCampaignHook(CampaignHookJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LastModifiedDate")) {
                 applicationSettingsResource.setLastModifiedDate(StringJsonUnmarshaller
                         .getInstance()

@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a thing record in the thing registry.
+ * Creates a thing record in the registry.
  * </p>
  */
 public class CreateThingRequest extends AmazonWebServiceRequest implements Serializable {
@@ -53,7 +53,7 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
      * a JSON document. For example:
      * </p>
      * <p>
-     * <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
+     * <code>{\"attributes\":{\"string1\":\"string2\"}}</code>
      * </p>
      */
     private AttributePayload attributePayload;
@@ -178,7 +178,7 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
      * a JSON document. For example:
      * </p>
      * <p>
-     * <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
+     * <code>{\"attributes\":{\"string1\":\"string2\"}}</code>
      * </p>
      *
      * @return <p>
@@ -186,7 +186,7 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
      *         pairs in a JSON document. For example:
      *         </p>
      *         <p>
-     *         <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
+     *         <code>{\"attributes\":{\"string1\":\"string2\"}}</code>
      *         </p>
      */
     public AttributePayload getAttributePayload() {
@@ -199,7 +199,7 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
      * a JSON document. For example:
      * </p>
      * <p>
-     * <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
+     * <code>{\"attributes\":{\"string1\":\"string2\"}}</code>
      * </p>
      *
      * @param attributePayload <p>
@@ -207,7 +207,7 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
      *            name/value pairs in a JSON document. For example:
      *            </p>
      *            <p>
-     *            <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
+     *            <code>{\"attributes\":{\"string1\":\"string2\"}}</code>
      *            </p>
      */
     public void setAttributePayload(AttributePayload attributePayload) {
@@ -220,7 +220,7 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
      * a JSON document. For example:
      * </p>
      * <p>
-     * <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
+     * <code>{\"attributes\":{\"string1\":\"string2\"}}</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -231,7 +231,7 @@ public class CreateThingRequest extends AmazonWebServiceRequest implements Seria
      *            name/value pairs in a JSON document. For example:
      *            </p>
      *            <p>
-     *            <code>{\"attributes\":{\"string1\":\"string2\"}})</code>
+     *            <code>{\"attributes\":{\"string1\":\"string2\"}}</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

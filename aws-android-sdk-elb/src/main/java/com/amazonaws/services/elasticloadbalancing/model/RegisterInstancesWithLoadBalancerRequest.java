@@ -45,19 +45,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>InService</code> state.
  * </p>
  * <p>
- * If you stop an instance registered with a load balancer and then start it,
- * the IP addresses associated with the instance changes. Elastic Load Balancing
- * cannot recognize the new IP address, which prevents it from routing traffic
- * to the instances. We recommend that you use the following sequence: stop the
- * instance, deregister the instance, start the instance, and then register the
- * instance. To deregister instances from a load balancer, use
+ * To deregister instances from a load balancer, use
  * <a>DeregisterInstancesFromLoadBalancer</a>.
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_DeReg_Reg_Instances.html"
- * >Deregister and Register EC2 Instances</a> in the <i>Elastic Load Balancing
- * Developer Guide</i>.
+ * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html"
+ * >Register or De-Register EC2 Instances</a> in the <i>Classic Load Balancer
+ * Guide</i>.
  * </p>
  */
 public class RegisterInstancesWithLoadBalancerRequest extends AmazonWebServiceRequest implements

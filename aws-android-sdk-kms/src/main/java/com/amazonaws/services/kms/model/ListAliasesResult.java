@@ -20,40 +20,41 @@ import java.io.Serializable;
 public class ListAliasesResult implements Serializable {
     /**
      * <p>
-     * A list of key aliases in the user's account.
+     * A list of aliases.
      * </p>
      */
     private java.util.List<AliasListEntry> aliases = new java.util.ArrayList<AliasListEntry>();
 
     /**
      * <p>
-     * When <code>Truncated</code> is true, this value is present and contains
+     * When <code>Truncated</code> is true, this element is present and contains
      * the value to use for the <code>Marker</code> parameter in a subsequent
-     * pagination request.
+     * request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 320<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>[ -\u00FF]*<br/>
      */
     private String nextMarker;
 
     /**
      * <p>
-     * A flag that indicates whether there are more items in the list. If your
-     * results were truncated, you can use the <code>Marker</code> parameter to
-     * make a subsequent pagination request to retrieve more items in the list.
+     * A flag that indicates whether there are more items in the list. When this
+     * value is true, the list in this response is truncated. To get more items,
+     * pass the value of the <code>NextMarker</code> element in this response to
+     * the <code>Marker</code> parameter in a subsequent request.
      * </p>
      */
     private Boolean truncated;
 
     /**
      * <p>
-     * A list of key aliases in the user's account.
+     * A list of aliases.
      * </p>
      *
      * @return <p>
-     *         A list of key aliases in the user's account.
+     *         A list of aliases.
      *         </p>
      */
     public java.util.List<AliasListEntry> getAliases() {
@@ -62,11 +63,11 @@ public class ListAliasesResult implements Serializable {
 
     /**
      * <p>
-     * A list of key aliases in the user's account.
+     * A list of aliases.
      * </p>
      *
      * @param aliases <p>
-     *            A list of key aliases in the user's account.
+     *            A list of aliases.
      *            </p>
      */
     public void setAliases(java.util.Collection<AliasListEntry> aliases) {
@@ -80,14 +81,14 @@ public class ListAliasesResult implements Serializable {
 
     /**
      * <p>
-     * A list of key aliases in the user's account.
+     * A list of aliases.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param aliases <p>
-     *            A list of key aliases in the user's account.
+     *            A list of aliases.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -104,14 +105,14 @@ public class ListAliasesResult implements Serializable {
 
     /**
      * <p>
-     * A list of key aliases in the user's account.
+     * A list of aliases.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param aliases <p>
-     *            A list of key aliases in the user's account.
+     *            A list of aliases.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -123,19 +124,19 @@ public class ListAliasesResult implements Serializable {
 
     /**
      * <p>
-     * When <code>Truncated</code> is true, this value is present and contains
+     * When <code>Truncated</code> is true, this element is present and contains
      * the value to use for the <code>Marker</code> parameter in a subsequent
-     * pagination request.
+     * request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 320<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>[ -\u00FF]*<br/>
      *
      * @return <p>
-     *         When <code>Truncated</code> is true, this value is present and
+     *         When <code>Truncated</code> is true, this element is present and
      *         contains the value to use for the <code>Marker</code> parameter
-     *         in a subsequent pagination request.
+     *         in a subsequent request.
      *         </p>
      */
     public String getNextMarker() {
@@ -144,19 +145,19 @@ public class ListAliasesResult implements Serializable {
 
     /**
      * <p>
-     * When <code>Truncated</code> is true, this value is present and contains
+     * When <code>Truncated</code> is true, this element is present and contains
      * the value to use for the <code>Marker</code> parameter in a subsequent
-     * pagination request.
+     * request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 320<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>[ -\u00FF]*<br/>
      *
      * @param nextMarker <p>
-     *            When <code>Truncated</code> is true, this value is present and
-     *            contains the value to use for the <code>Marker</code>
-     *            parameter in a subsequent pagination request.
+     *            When <code>Truncated</code> is true, this element is present
+     *            and contains the value to use for the <code>Marker</code>
+     *            parameter in a subsequent request.
      *            </p>
      */
     public void setNextMarker(String nextMarker) {
@@ -165,22 +166,22 @@ public class ListAliasesResult implements Serializable {
 
     /**
      * <p>
-     * When <code>Truncated</code> is true, this value is present and contains
+     * When <code>Truncated</code> is true, this element is present and contains
      * the value to use for the <code>Marker</code> parameter in a subsequent
-     * pagination request.
+     * request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 320<br/>
+     * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern: </b>[ -\u00FF]*<br/>
      *
      * @param nextMarker <p>
-     *            When <code>Truncated</code> is true, this value is present and
-     *            contains the value to use for the <code>Marker</code>
-     *            parameter in a subsequent pagination request.
+     *            When <code>Truncated</code> is true, this element is present
+     *            and contains the value to use for the <code>Marker</code>
+     *            parameter in a subsequent request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -192,16 +193,18 @@ public class ListAliasesResult implements Serializable {
 
     /**
      * <p>
-     * A flag that indicates whether there are more items in the list. If your
-     * results were truncated, you can use the <code>Marker</code> parameter to
-     * make a subsequent pagination request to retrieve more items in the list.
+     * A flag that indicates whether there are more items in the list. When this
+     * value is true, the list in this response is truncated. To get more items,
+     * pass the value of the <code>NextMarker</code> element in this response to
+     * the <code>Marker</code> parameter in a subsequent request.
      * </p>
      *
      * @return <p>
      *         A flag that indicates whether there are more items in the list.
-     *         If your results were truncated, you can use the
-     *         <code>Marker</code> parameter to make a subsequent pagination
-     *         request to retrieve more items in the list.
+     *         When this value is true, the list in this response is truncated.
+     *         To get more items, pass the value of the <code>NextMarker</code>
+     *         element in this response to the <code>Marker</code> parameter in
+     *         a subsequent request.
      *         </p>
      */
     public Boolean isTruncated() {
@@ -210,16 +213,18 @@ public class ListAliasesResult implements Serializable {
 
     /**
      * <p>
-     * A flag that indicates whether there are more items in the list. If your
-     * results were truncated, you can use the <code>Marker</code> parameter to
-     * make a subsequent pagination request to retrieve more items in the list.
+     * A flag that indicates whether there are more items in the list. When this
+     * value is true, the list in this response is truncated. To get more items,
+     * pass the value of the <code>NextMarker</code> element in this response to
+     * the <code>Marker</code> parameter in a subsequent request.
      * </p>
      *
      * @return <p>
      *         A flag that indicates whether there are more items in the list.
-     *         If your results were truncated, you can use the
-     *         <code>Marker</code> parameter to make a subsequent pagination
-     *         request to retrieve more items in the list.
+     *         When this value is true, the list in this response is truncated.
+     *         To get more items, pass the value of the <code>NextMarker</code>
+     *         element in this response to the <code>Marker</code> parameter in
+     *         a subsequent request.
      *         </p>
      */
     public Boolean getTruncated() {
@@ -228,16 +233,18 @@ public class ListAliasesResult implements Serializable {
 
     /**
      * <p>
-     * A flag that indicates whether there are more items in the list. If your
-     * results were truncated, you can use the <code>Marker</code> parameter to
-     * make a subsequent pagination request to retrieve more items in the list.
+     * A flag that indicates whether there are more items in the list. When this
+     * value is true, the list in this response is truncated. To get more items,
+     * pass the value of the <code>NextMarker</code> element in this response to
+     * the <code>Marker</code> parameter in a subsequent request.
      * </p>
      *
      * @param truncated <p>
      *            A flag that indicates whether there are more items in the
-     *            list. If your results were truncated, you can use the
-     *            <code>Marker</code> parameter to make a subsequent pagination
-     *            request to retrieve more items in the list.
+     *            list. When this value is true, the list in this response is
+     *            truncated. To get more items, pass the value of the
+     *            <code>NextMarker</code> element in this response to the
+     *            <code>Marker</code> parameter in a subsequent request.
      *            </p>
      */
     public void setTruncated(Boolean truncated) {
@@ -246,9 +253,10 @@ public class ListAliasesResult implements Serializable {
 
     /**
      * <p>
-     * A flag that indicates whether there are more items in the list. If your
-     * results were truncated, you can use the <code>Marker</code> parameter to
-     * make a subsequent pagination request to retrieve more items in the list.
+     * A flag that indicates whether there are more items in the list. When this
+     * value is true, the list in this response is truncated. To get more items,
+     * pass the value of the <code>NextMarker</code> element in this response to
+     * the <code>Marker</code> parameter in a subsequent request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -256,9 +264,10 @@ public class ListAliasesResult implements Serializable {
      *
      * @param truncated <p>
      *            A flag that indicates whether there are more items in the
-     *            list. If your results were truncated, you can use the
-     *            <code>Marker</code> parameter to make a subsequent pagination
-     *            request to retrieve more items in the list.
+     *            list. When this value is true, the list in this response is
+     *            truncated. To get more items, pass the value of the
+     *            <code>NextMarker</code> element in this response to the
+     *            <code>Marker</code> parameter in a subsequent request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

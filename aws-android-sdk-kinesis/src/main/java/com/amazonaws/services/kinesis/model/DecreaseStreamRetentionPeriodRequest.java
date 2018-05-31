@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Decreases the Amazon Kinesis stream's retention period, which is the length
- * of time data records are accessible after they are added to the stream. The
+ * Decreases the Kinesis data stream's retention period, which is the length of
+ * time data records are accessible after they are added to the stream. The
  * minimum value of a stream's retention period is 24 hours.
  * </p>
  * <p>
@@ -51,7 +51,7 @@ public class DecreaseStreamRetentionPeriodRequest extends AmazonWebServiceReques
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>24 - 168<br/>
+     * <b>Range: </b>1 - 168<br/>
      */
     private Integer retentionPeriodHours;
 
@@ -119,7 +119,7 @@ public class DecreaseStreamRetentionPeriodRequest extends AmazonWebServiceReques
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>24 - 168<br/>
+     * <b>Range: </b>1 - 168<br/>
      *
      * @return <p>
      *         The new retention period of the stream, in hours. Must be less
@@ -137,7 +137,7 @@ public class DecreaseStreamRetentionPeriodRequest extends AmazonWebServiceReques
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>24 - 168<br/>
+     * <b>Range: </b>1 - 168<br/>
      *
      * @param retentionPeriodHours <p>
      *            The new retention period of the stream, in hours. Must be less
@@ -158,7 +158,7 @@ public class DecreaseStreamRetentionPeriodRequest extends AmazonWebServiceReques
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>24 - 168<br/>
+     * <b>Range: </b>1 - 168<br/>
      *
      * @param retentionPeriodHours <p>
      *            The new retention period of the stream, in hours. Must be less

@@ -17,6 +17,11 @@ package com.amazonaws.services.elasticloadbalancing.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * Contains the output for DisableAvailabilityZonesForLoadBalancer.
+ * </p>
+ */
 public class DisableAvailabilityZonesForLoadBalancerResult implements Serializable {
     /**
      * <p>

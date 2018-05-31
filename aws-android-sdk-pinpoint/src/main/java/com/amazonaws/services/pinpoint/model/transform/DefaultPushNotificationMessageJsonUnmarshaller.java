@@ -48,9 +48,6 @@ class DefaultPushNotificationMessageJsonUnmarshaller implements
                         StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("JsonData")) {
-                defaultPushNotificationMessage.setJsonData(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
             } else if (name.equals("SilentPush")) {
                 defaultPushNotificationMessage.setSilentPush(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));

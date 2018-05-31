@@ -18,7 +18,10 @@ package com.amazonaws.services.kinesisvideo.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * Kinesis Video Streams has throttled the request because you have exceeded the
+ * limit of allowed client calls. Try making the call later.
+ * </p>
  */
 public class ClientLimitExceededException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

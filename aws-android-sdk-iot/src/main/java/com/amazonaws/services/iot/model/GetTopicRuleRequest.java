@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets information about the specified rule.
+ * Gets information about the rule.
  * </p>
  */
 public class GetTopicRuleRequest extends AmazonWebServiceRequest implements Serializable {

@@ -84,17 +84,17 @@ public class ConfirmSignUpRequestMarshaller implements
                 jsonWriter.name("ForceAliasCreation");
                 jsonWriter.value(forceAliasCreation);
             }
-            if (confirmSignUpRequest.getUserContextData() != null) {
-                UserContextDataType userContextData = confirmSignUpRequest.getUserContextData();
-                jsonWriter.name("UserContextData");
-                UserContextDataTypeJsonMarshaller.getInstance().marshall(userContextData,
-                        jsonWriter);
-            }
             if (confirmSignUpRequest.getAnalyticsMetadata() != null) {
                 AnalyticsMetadataType analyticsMetadata = confirmSignUpRequest
                         .getAnalyticsMetadata();
                 jsonWriter.name("AnalyticsMetadata");
                 AnalyticsMetadataTypeJsonMarshaller.getInstance().marshall(analyticsMetadata,
+                        jsonWriter);
+            }
+            if (confirmSignUpRequest.getUserContextData() != null) {
+                UserContextDataType userContextData = confirmSignUpRequest.getUserContextData();
+                jsonWriter.name("UserContextData");
+                UserContextDataTypeJsonMarshaller.getInstance().marshall(userContextData,
                         jsonWriter);
             }
 

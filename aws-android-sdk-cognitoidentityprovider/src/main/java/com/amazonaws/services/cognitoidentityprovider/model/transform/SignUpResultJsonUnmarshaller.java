@@ -40,6 +40,9 @@ public class SignUpResultJsonUnmarshaller implements
                 signUpResult.setCodeDeliveryDetails(CodeDeliveryDetailsTypeJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("UserSub")) {
+                signUpResult.setUserSub(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -70,9 +70,9 @@ public class LocalSecondaryIndexDescription implements Serializable {
 
     /**
      * <p>
-     * Represents attributes that are copied (projected) from the table into an
-     * index. These are in addition to the primary key attributes and index key
-     * attributes, which are automatically projected.
+     * Represents attributes that are copied (projected) from the table into the
+     * global secondary index. These are in addition to the primary key
+     * attributes and index key attributes, which are automatically projected.
      * </p>
      */
     private Projection projection;
@@ -458,16 +458,16 @@ public class LocalSecondaryIndexDescription implements Serializable {
 
     /**
      * <p>
-     * Represents attributes that are copied (projected) from the table into an
-     * index. These are in addition to the primary key attributes and index key
-     * attributes, which are automatically projected.
+     * Represents attributes that are copied (projected) from the table into the
+     * global secondary index. These are in addition to the primary key
+     * attributes and index key attributes, which are automatically projected.
      * </p>
      *
      * @return <p>
      *         Represents attributes that are copied (projected) from the table
-     *         into an index. These are in addition to the primary key
-     *         attributes and index key attributes, which are automatically
-     *         projected.
+     *         into the global secondary index. These are in addition to the
+     *         primary key attributes and index key attributes, which are
+     *         automatically projected.
      *         </p>
      */
     public Projection getProjection() {
@@ -476,16 +476,16 @@ public class LocalSecondaryIndexDescription implements Serializable {
 
     /**
      * <p>
-     * Represents attributes that are copied (projected) from the table into an
-     * index. These are in addition to the primary key attributes and index key
-     * attributes, which are automatically projected.
+     * Represents attributes that are copied (projected) from the table into the
+     * global secondary index. These are in addition to the primary key
+     * attributes and index key attributes, which are automatically projected.
      * </p>
      *
      * @param projection <p>
      *            Represents attributes that are copied (projected) from the
-     *            table into an index. These are in addition to the primary key
-     *            attributes and index key attributes, which are automatically
-     *            projected.
+     *            table into the global secondary index. These are in addition
+     *            to the primary key attributes and index key attributes, which
+     *            are automatically projected.
      *            </p>
      */
     public void setProjection(Projection projection) {
@@ -494,9 +494,9 @@ public class LocalSecondaryIndexDescription implements Serializable {
 
     /**
      * <p>
-     * Represents attributes that are copied (projected) from the table into an
-     * index. These are in addition to the primary key attributes and index key
-     * attributes, which are automatically projected.
+     * Represents attributes that are copied (projected) from the table into the
+     * global secondary index. These are in addition to the primary key
+     * attributes and index key attributes, which are automatically projected.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -504,9 +504,9 @@ public class LocalSecondaryIndexDescription implements Serializable {
      *
      * @param projection <p>
      *            Represents attributes that are copied (projected) from the
-     *            table into an index. These are in addition to the primary key
-     *            attributes and index key attributes, which are automatically
-     *            projected.
+     *            table into the global secondary index. These are in addition
+     *            to the primary key attributes and index key attributes, which
+     *            are automatically projected.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

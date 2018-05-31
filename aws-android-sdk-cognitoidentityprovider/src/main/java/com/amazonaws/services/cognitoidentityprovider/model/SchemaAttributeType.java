@@ -53,7 +53,7 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * Specifies whether the attribute can be changed once it has been created.
+     * Specifies whether the value of the attribute can be changed.
      * </p>
      */
     private Boolean mutable;
@@ -295,12 +295,11 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * Specifies whether the attribute can be changed once it has been created.
+     * Specifies whether the value of the attribute can be changed.
      * </p>
      *
      * @return <p>
-     *         Specifies whether the attribute can be changed once it has been
-     *         created.
+     *         Specifies whether the value of the attribute can be changed.
      *         </p>
      */
     public Boolean isMutable() {
@@ -309,12 +308,11 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * Specifies whether the attribute can be changed once it has been created.
+     * Specifies whether the value of the attribute can be changed.
      * </p>
      *
      * @return <p>
-     *         Specifies whether the attribute can be changed once it has been
-     *         created.
+     *         Specifies whether the value of the attribute can be changed.
      *         </p>
      */
     public Boolean getMutable() {
@@ -323,12 +321,11 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * Specifies whether the attribute can be changed once it has been created.
+     * Specifies whether the value of the attribute can be changed.
      * </p>
      *
      * @param mutable <p>
-     *            Specifies whether the attribute can be changed once it has
-     *            been created.
+     *            Specifies whether the value of the attribute can be changed.
      *            </p>
      */
     public void setMutable(Boolean mutable) {
@@ -337,15 +334,14 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * Specifies whether the attribute can be changed once it has been created.
+     * Specifies whether the value of the attribute can be changed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param mutable <p>
-     *            Specifies whether the attribute can be changed once it has
-     *            been created.
+     *            Specifies whether the value of the attribute can be changed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

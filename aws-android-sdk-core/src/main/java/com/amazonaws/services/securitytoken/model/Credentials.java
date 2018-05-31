@@ -29,7 +29,7 @@ public class Credentials implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>16 - 32<br/>
+     * <b>Length: </b>16 - 128<br/>
      * <b>Pattern: </b>[\w]*<br/>
      */
     private String accessKeyId;
@@ -98,7 +98,7 @@ public class Credentials implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>16 - 32<br/>
+     * <b>Length: </b>16 - 128<br/>
      * <b>Pattern: </b>[\w]*<br/>
      *
      * @return <p>
@@ -116,7 +116,7 @@ public class Credentials implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>16 - 32<br/>
+     * <b>Length: </b>16 - 128<br/>
      * <b>Pattern: </b>[\w]*<br/>
      *
      * @param accessKeyId <p>
@@ -137,7 +137,7 @@ public class Credentials implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>16 - 32<br/>
+     * <b>Length: </b>16 - 128<br/>
      * <b>Pattern: </b>[\w]*<br/>
      *
      * @param accessKeyId <p>

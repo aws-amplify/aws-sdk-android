@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A certificate that has been transfered but not yet accepted.
+ * A certificate that has been transferred but not yet accepted.
  * </p>
  */
 public class OutgoingCertificate implements Serializable {

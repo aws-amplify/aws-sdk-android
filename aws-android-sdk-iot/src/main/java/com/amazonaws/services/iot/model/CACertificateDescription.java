@@ -91,6 +91,30 @@ public class CACertificateDescription implements Serializable {
 
     /**
      * <p>
+     * The date the CA certificate was last modified.
+     * </p>
+     */
+    private java.util.Date lastModifiedDate;
+
+    /**
+     * <p>
+     * The customer version of the CA certificate.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - <br/>
+     */
+    private Integer customerVersion;
+
+    /**
+     * <p>
+     * The generation ID of the CA certificate.
+     * </p>
+     */
+    private String generationId;
+
+    /**
+     * <p>
      * The CA certificate ARN.
      * </p>
      *
@@ -550,6 +574,150 @@ public class CACertificateDescription implements Serializable {
     }
 
     /**
+     * <p>
+     * The date the CA certificate was last modified.
+     * </p>
+     *
+     * @return <p>
+     *         The date the CA certificate was last modified.
+     *         </p>
+     */
+    public java.util.Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    /**
+     * <p>
+     * The date the CA certificate was last modified.
+     * </p>
+     *
+     * @param lastModifiedDate <p>
+     *            The date the CA certificate was last modified.
+     *            </p>
+     */
+    public void setLastModifiedDate(java.util.Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    /**
+     * <p>
+     * The date the CA certificate was last modified.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param lastModifiedDate <p>
+     *            The date the CA certificate was last modified.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CACertificateDescription withLastModifiedDate(java.util.Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The customer version of the CA certificate.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - <br/>
+     *
+     * @return <p>
+     *         The customer version of the CA certificate.
+     *         </p>
+     */
+    public Integer getCustomerVersion() {
+        return customerVersion;
+    }
+
+    /**
+     * <p>
+     * The customer version of the CA certificate.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - <br/>
+     *
+     * @param customerVersion <p>
+     *            The customer version of the CA certificate.
+     *            </p>
+     */
+    public void setCustomerVersion(Integer customerVersion) {
+        this.customerVersion = customerVersion;
+    }
+
+    /**
+     * <p>
+     * The customer version of the CA certificate.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - <br/>
+     *
+     * @param customerVersion <p>
+     *            The customer version of the CA certificate.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CACertificateDescription withCustomerVersion(Integer customerVersion) {
+        this.customerVersion = customerVersion;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The generation ID of the CA certificate.
+     * </p>
+     *
+     * @return <p>
+     *         The generation ID of the CA certificate.
+     *         </p>
+     */
+    public String getGenerationId() {
+        return generationId;
+    }
+
+    /**
+     * <p>
+     * The generation ID of the CA certificate.
+     * </p>
+     *
+     * @param generationId <p>
+     *            The generation ID of the CA certificate.
+     *            </p>
+     */
+    public void setGenerationId(String generationId) {
+        this.generationId = generationId;
+    }
+
+    /**
+     * <p>
+     * The generation ID of the CA certificate.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param generationId <p>
+     *            The generation ID of the CA certificate.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CACertificateDescription withGenerationId(String generationId) {
+        this.generationId = generationId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -573,7 +741,13 @@ public class CACertificateDescription implements Serializable {
         if (getCreationDate() != null)
             sb.append("creationDate: " + getCreationDate() + ",");
         if (getAutoRegistrationStatus() != null)
-            sb.append("autoRegistrationStatus: " + getAutoRegistrationStatus());
+            sb.append("autoRegistrationStatus: " + getAutoRegistrationStatus() + ",");
+        if (getLastModifiedDate() != null)
+            sb.append("lastModifiedDate: " + getLastModifiedDate() + ",");
+        if (getCustomerVersion() != null)
+            sb.append("customerVersion: " + getCustomerVersion() + ",");
+        if (getGenerationId() != null)
+            sb.append("generationId: " + getGenerationId());
         sb.append("}");
         return sb.toString();
     }
@@ -597,6 +771,12 @@ public class CACertificateDescription implements Serializable {
                 * hashCode
                 + ((getAutoRegistrationStatus() == null) ? 0 : getAutoRegistrationStatus()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getLastModifiedDate() == null) ? 0 : getLastModifiedDate().hashCode());
+        hashCode = prime * hashCode
+                + ((getCustomerVersion() == null) ? 0 : getCustomerVersion().hashCode());
+        hashCode = prime * hashCode
+                + ((getGenerationId() == null) ? 0 : getGenerationId().hashCode());
         return hashCode;
     }
 
@@ -643,6 +823,21 @@ public class CACertificateDescription implements Serializable {
             return false;
         if (other.getAutoRegistrationStatus() != null
                 && other.getAutoRegistrationStatus().equals(this.getAutoRegistrationStatus()) == false)
+            return false;
+        if (other.getLastModifiedDate() == null ^ this.getLastModifiedDate() == null)
+            return false;
+        if (other.getLastModifiedDate() != null
+                && other.getLastModifiedDate().equals(this.getLastModifiedDate()) == false)
+            return false;
+        if (other.getCustomerVersion() == null ^ this.getCustomerVersion() == null)
+            return false;
+        if (other.getCustomerVersion() != null
+                && other.getCustomerVersion().equals(this.getCustomerVersion()) == false)
+            return false;
+        if (other.getGenerationId() == null ^ this.getGenerationId() == null)
+            return false;
+        if (other.getGenerationId() != null
+                && other.getGenerationId().equals(this.getGenerationId()) == false)
             return false;
         return true;
     }

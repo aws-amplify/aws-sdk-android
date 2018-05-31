@@ -45,6 +45,9 @@ class ADMChannelResponseJsonUnmarshaller implements
             } else if (name.equals("Enabled")) {
                 aDMChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("HasCredential")) {
+                aDMChannelResponse.setHasCredential(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Id")) {
                 aDMChannelResponse.setId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

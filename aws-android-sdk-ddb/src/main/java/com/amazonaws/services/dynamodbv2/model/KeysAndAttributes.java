@@ -40,10 +40,11 @@ public class KeysAndAttributes implements Serializable {
 
     /**
      * <p>
-     * One or more attributes to retrieve from the table or index. If no
-     * attribute names are specified then all attributes will be returned. If
-     * any of the specified attributes are not found, they will not appear in
-     * the result.
+     * This is a legacy parameter. Use <code>ProjectionExpression</code>
+     * instead. For more information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.html"
+     * >Legacy Conditional Parameters</a> in the <i>Amazon DynamoDB Developer
+     * Guide</i>.
      * </p>
      */
     private java.util.List<String> attributesToGet;
@@ -61,7 +62,7 @@ public class KeysAndAttributes implements Serializable {
      * <p>
      * A string that identifies one or more attributes to retrieve from the
      * table. These attributes can include scalars, sets, or elements of a JSON
-     * document. The attributes in the <i>ProjectionExpression</i> must be
+     * document. The attributes in the <code>ProjectionExpression</code> must be
      * separated by commas.
      * </p>
      * <p>
@@ -75,19 +76,14 @@ public class KeysAndAttributes implements Serializable {
      * >Accessing Item Attributes</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
      * </p>
-     * <note>
-     * <p>
-     * <i>ProjectionExpression</i> replaces the legacy <i>AttributesToGet</i>
-     * parameter.
-     * </p>
-     * </note>
      */
     private String projectionExpression;
 
     /**
      * <p>
      * One or more substitution tokens for attribute names in an expression. The
-     * following are some use cases for using <i>ExpressionAttributeNames</i>:
+     * following are some use cases for using
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>
@@ -127,7 +123,7 @@ public class KeysAndAttributes implements Serializable {
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html"
      * >Reserved Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To
      * work around this, you could specify the following for
-     * <i>ExpressionAttributeNames</i>:
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>
@@ -247,17 +243,19 @@ public class KeysAndAttributes implements Serializable {
 
     /**
      * <p>
-     * One or more attributes to retrieve from the table or index. If no
-     * attribute names are specified then all attributes will be returned. If
-     * any of the specified attributes are not found, they will not appear in
-     * the result.
+     * This is a legacy parameter. Use <code>ProjectionExpression</code>
+     * instead. For more information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.html"
+     * >Legacy Conditional Parameters</a> in the <i>Amazon DynamoDB Developer
+     * Guide</i>.
      * </p>
      *
      * @return <p>
-     *         One or more attributes to retrieve from the table or index. If no
-     *         attribute names are specified then all attributes will be
-     *         returned. If any of the specified attributes are not found, they
-     *         will not appear in the result.
+     *         This is a legacy parameter. Use <code>ProjectionExpression</code>
+     *         instead. For more information, see <a href=
+     *         "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.html"
+     *         >Legacy Conditional Parameters</a> in the <i>Amazon DynamoDB
+     *         Developer Guide</i>.
      *         </p>
      */
     public java.util.List<String> getAttributesToGet() {
@@ -266,17 +264,20 @@ public class KeysAndAttributes implements Serializable {
 
     /**
      * <p>
-     * One or more attributes to retrieve from the table or index. If no
-     * attribute names are specified then all attributes will be returned. If
-     * any of the specified attributes are not found, they will not appear in
-     * the result.
+     * This is a legacy parameter. Use <code>ProjectionExpression</code>
+     * instead. For more information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.html"
+     * >Legacy Conditional Parameters</a> in the <i>Amazon DynamoDB Developer
+     * Guide</i>.
      * </p>
      *
      * @param attributesToGet <p>
-     *            One or more attributes to retrieve from the table or index. If
-     *            no attribute names are specified then all attributes will be
-     *            returned. If any of the specified attributes are not found,
-     *            they will not appear in the result.
+     *            This is a legacy parameter. Use
+     *            <code>ProjectionExpression</code> instead. For more
+     *            information, see <a href=
+     *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.html"
+     *            >Legacy Conditional Parameters</a> in the <i>Amazon DynamoDB
+     *            Developer Guide</i>.
      *            </p>
      */
     public void setAttributesToGet(java.util.Collection<String> attributesToGet) {
@@ -290,20 +291,23 @@ public class KeysAndAttributes implements Serializable {
 
     /**
      * <p>
-     * One or more attributes to retrieve from the table or index. If no
-     * attribute names are specified then all attributes will be returned. If
-     * any of the specified attributes are not found, they will not appear in
-     * the result.
+     * This is a legacy parameter. Use <code>ProjectionExpression</code>
+     * instead. For more information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.html"
+     * >Legacy Conditional Parameters</a> in the <i>Amazon DynamoDB Developer
+     * Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param attributesToGet <p>
-     *            One or more attributes to retrieve from the table or index. If
-     *            no attribute names are specified then all attributes will be
-     *            returned. If any of the specified attributes are not found,
-     *            they will not appear in the result.
+     *            This is a legacy parameter. Use
+     *            <code>ProjectionExpression</code> instead. For more
+     *            information, see <a href=
+     *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.html"
+     *            >Legacy Conditional Parameters</a> in the <i>Amazon DynamoDB
+     *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -320,20 +324,23 @@ public class KeysAndAttributes implements Serializable {
 
     /**
      * <p>
-     * One or more attributes to retrieve from the table or index. If no
-     * attribute names are specified then all attributes will be returned. If
-     * any of the specified attributes are not found, they will not appear in
-     * the result.
+     * This is a legacy parameter. Use <code>ProjectionExpression</code>
+     * instead. For more information, see <a href=
+     * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.html"
+     * >Legacy Conditional Parameters</a> in the <i>Amazon DynamoDB Developer
+     * Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param attributesToGet <p>
-     *            One or more attributes to retrieve from the table or index. If
-     *            no attribute names are specified then all attributes will be
-     *            returned. If any of the specified attributes are not found,
-     *            they will not appear in the result.
+     *            This is a legacy parameter. Use
+     *            <code>ProjectionExpression</code> instead. For more
+     *            information, see <a href=
+     *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.html"
+     *            >Legacy Conditional Parameters</a> in the <i>Amazon DynamoDB
+     *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -421,7 +428,7 @@ public class KeysAndAttributes implements Serializable {
      * <p>
      * A string that identifies one or more attributes to retrieve from the
      * table. These attributes can include scalars, sets, or elements of a JSON
-     * document. The attributes in the <i>ProjectionExpression</i> must be
+     * document. The attributes in the <code>ProjectionExpression</code> must be
      * separated by commas.
      * </p>
      * <p>
@@ -435,18 +442,12 @@ public class KeysAndAttributes implements Serializable {
      * >Accessing Item Attributes</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
      * </p>
-     * <note>
-     * <p>
-     * <i>ProjectionExpression</i> replaces the legacy <i>AttributesToGet</i>
-     * parameter.
-     * </p>
-     * </note>
      *
      * @return <p>
      *         A string that identifies one or more attributes to retrieve from
      *         the table. These attributes can include scalars, sets, or
      *         elements of a JSON document. The attributes in the
-     *         <i>ProjectionExpression</i> must be separated by commas.
+     *         <code>ProjectionExpression</code> must be separated by commas.
      *         </p>
      *         <p>
      *         If no attribute names are specified, then all attributes will be
@@ -459,12 +460,6 @@ public class KeysAndAttributes implements Serializable {
      *         >Accessing Item Attributes</a> in the <i>Amazon DynamoDB
      *         Developer Guide</i>.
      *         </p>
-     *         <note>
-     *         <p>
-     *         <i>ProjectionExpression</i> replaces the legacy
-     *         <i>AttributesToGet</i> parameter.
-     *         </p>
-     *         </note>
      */
     public String getProjectionExpression() {
         return projectionExpression;
@@ -474,7 +469,7 @@ public class KeysAndAttributes implements Serializable {
      * <p>
      * A string that identifies one or more attributes to retrieve from the
      * table. These attributes can include scalars, sets, or elements of a JSON
-     * document. The attributes in the <i>ProjectionExpression</i> must be
+     * document. The attributes in the <code>ProjectionExpression</code> must be
      * separated by commas.
      * </p>
      * <p>
@@ -488,18 +483,12 @@ public class KeysAndAttributes implements Serializable {
      * >Accessing Item Attributes</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
      * </p>
-     * <note>
-     * <p>
-     * <i>ProjectionExpression</i> replaces the legacy <i>AttributesToGet</i>
-     * parameter.
-     * </p>
-     * </note>
      *
      * @param projectionExpression <p>
      *            A string that identifies one or more attributes to retrieve
      *            from the table. These attributes can include scalars, sets, or
      *            elements of a JSON document. The attributes in the
-     *            <i>ProjectionExpression</i> must be separated by commas.
+     *            <code>ProjectionExpression</code> must be separated by commas.
      *            </p>
      *            <p>
      *            If no attribute names are specified, then all attributes will
@@ -512,12 +501,6 @@ public class KeysAndAttributes implements Serializable {
      *            >Accessing Item Attributes</a> in the <i>Amazon DynamoDB
      *            Developer Guide</i>.
      *            </p>
-     *            <note>
-     *            <p>
-     *            <i>ProjectionExpression</i> replaces the legacy
-     *            <i>AttributesToGet</i> parameter.
-     *            </p>
-     *            </note>
      */
     public void setProjectionExpression(String projectionExpression) {
         this.projectionExpression = projectionExpression;
@@ -527,7 +510,7 @@ public class KeysAndAttributes implements Serializable {
      * <p>
      * A string that identifies one or more attributes to retrieve from the
      * table. These attributes can include scalars, sets, or elements of a JSON
-     * document. The attributes in the <i>ProjectionExpression</i> must be
+     * document. The attributes in the <code>ProjectionExpression</code> must be
      * separated by commas.
      * </p>
      * <p>
@@ -541,12 +524,6 @@ public class KeysAndAttributes implements Serializable {
      * >Accessing Item Attributes</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
      * </p>
-     * <note>
-     * <p>
-     * <i>ProjectionExpression</i> replaces the legacy <i>AttributesToGet</i>
-     * parameter.
-     * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -555,7 +532,7 @@ public class KeysAndAttributes implements Serializable {
      *            A string that identifies one or more attributes to retrieve
      *            from the table. These attributes can include scalars, sets, or
      *            elements of a JSON document. The attributes in the
-     *            <i>ProjectionExpression</i> must be separated by commas.
+     *            <code>ProjectionExpression</code> must be separated by commas.
      *            </p>
      *            <p>
      *            If no attribute names are specified, then all attributes will
@@ -568,12 +545,6 @@ public class KeysAndAttributes implements Serializable {
      *            >Accessing Item Attributes</a> in the <i>Amazon DynamoDB
      *            Developer Guide</i>.
      *            </p>
-     *            <note>
-     *            <p>
-     *            <i>ProjectionExpression</i> replaces the legacy
-     *            <i>AttributesToGet</i> parameter.
-     *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -585,7 +556,8 @@ public class KeysAndAttributes implements Serializable {
     /**
      * <p>
      * One or more substitution tokens for attribute names in an expression. The
-     * following are some use cases for using <i>ExpressionAttributeNames</i>:
+     * following are some use cases for using
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>
@@ -625,7 +597,7 @@ public class KeysAndAttributes implements Serializable {
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html"
      * >Reserved Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To
      * work around this, you could specify the following for
-     * <i>ExpressionAttributeNames</i>:
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>
@@ -661,7 +633,7 @@ public class KeysAndAttributes implements Serializable {
      * @return <p>
      *         One or more substitution tokens for attribute names in an
      *         expression. The following are some use cases for using
-     *         <i>ExpressionAttributeNames</i>:
+     *         <code>ExpressionAttributeNames</code>:
      *         </p>
      *         <ul>
      *         <li>
@@ -702,7 +674,7 @@ public class KeysAndAttributes implements Serializable {
      *         "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html"
      *         >Reserved Words</a> in the <i>Amazon DynamoDB Developer
      *         Guide</i>). To work around this, you could specify the following
-     *         for <i>ExpressionAttributeNames</i>:
+     *         for <code>ExpressionAttributeNames</code>:
      *         </p>
      *         <ul>
      *         <li>
@@ -743,7 +715,8 @@ public class KeysAndAttributes implements Serializable {
     /**
      * <p>
      * One or more substitution tokens for attribute names in an expression. The
-     * following are some use cases for using <i>ExpressionAttributeNames</i>:
+     * following are some use cases for using
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>
@@ -783,7 +756,7 @@ public class KeysAndAttributes implements Serializable {
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html"
      * >Reserved Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To
      * work around this, you could specify the following for
-     * <i>ExpressionAttributeNames</i>:
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>
@@ -819,7 +792,7 @@ public class KeysAndAttributes implements Serializable {
      * @param expressionAttributeNames <p>
      *            One or more substitution tokens for attribute names in an
      *            expression. The following are some use cases for using
-     *            <i>ExpressionAttributeNames</i>:
+     *            <code>ExpressionAttributeNames</code>:
      *            </p>
      *            <ul>
      *            <li>
@@ -860,7 +833,7 @@ public class KeysAndAttributes implements Serializable {
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html"
      *            >Reserved Words</a> in the <i>Amazon DynamoDB Developer
      *            Guide</i>). To work around this, you could specify the
-     *            following for <i>ExpressionAttributeNames</i>:
+     *            following for <code>ExpressionAttributeNames</code>:
      *            </p>
      *            <ul>
      *            <li>
@@ -902,7 +875,8 @@ public class KeysAndAttributes implements Serializable {
     /**
      * <p>
      * One or more substitution tokens for attribute names in an expression. The
-     * following are some use cases for using <i>ExpressionAttributeNames</i>:
+     * following are some use cases for using
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>
@@ -942,7 +916,7 @@ public class KeysAndAttributes implements Serializable {
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html"
      * >Reserved Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To
      * work around this, you could specify the following for
-     * <i>ExpressionAttributeNames</i>:
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>
@@ -981,7 +955,7 @@ public class KeysAndAttributes implements Serializable {
      * @param expressionAttributeNames <p>
      *            One or more substitution tokens for attribute names in an
      *            expression. The following are some use cases for using
-     *            <i>ExpressionAttributeNames</i>:
+     *            <code>ExpressionAttributeNames</code>:
      *            </p>
      *            <ul>
      *            <li>
@@ -1022,7 +996,7 @@ public class KeysAndAttributes implements Serializable {
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html"
      *            >Reserved Words</a> in the <i>Amazon DynamoDB Developer
      *            Guide</i>). To work around this, you could specify the
-     *            following for <i>ExpressionAttributeNames</i>:
+     *            following for <code>ExpressionAttributeNames</code>:
      *            </p>
      *            <ul>
      *            <li>
@@ -1068,7 +1042,8 @@ public class KeysAndAttributes implements Serializable {
     /**
      * <p>
      * One or more substitution tokens for attribute names in an expression. The
-     * following are some use cases for using <i>ExpressionAttributeNames</i>:
+     * following are some use cases for using
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>
@@ -1108,7 +1083,7 @@ public class KeysAndAttributes implements Serializable {
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html"
      * >Reserved Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To
      * work around this, you could specify the following for
-     * <i>ExpressionAttributeNames</i>:
+     * <code>ExpressionAttributeNames</code>:
      * </p>
      * <ul>
      * <li>

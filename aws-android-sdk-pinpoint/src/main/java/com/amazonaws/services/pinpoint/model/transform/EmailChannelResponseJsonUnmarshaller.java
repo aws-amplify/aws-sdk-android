@@ -48,6 +48,9 @@ class EmailChannelResponseJsonUnmarshaller implements
             } else if (name.equals("FromAddress")) {
                 emailChannelResponse.setFromAddress(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("HasCredential")) {
+                emailChannelResponse.setHasCredential(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Id")) {
                 emailChannelResponse.setId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

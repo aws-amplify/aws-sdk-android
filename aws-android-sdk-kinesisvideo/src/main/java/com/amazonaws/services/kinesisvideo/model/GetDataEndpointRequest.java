@@ -19,9 +19,30 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Gets an endpoint for a specified stream for either reading or writing. Use
+ * this endpoint in your application to read from the specified stream (using
+ * the <code>GetMedia</code> or <code>GetMediaForFragmentList</code> operations)
+ * or write to it (using the <code>PutMedia</code> operation).
+ * </p>
+ * <note>
+ * <p>
+ * The returned endpoint does not have the API name appended. The client needs
+ * to add the API name to the returned endpoint.
+ * </p>
+ * </note>
+ * <p>
+ * In the request, specify the stream either by <code>StreamName</code> or
+ * <code>StreamARN</code>.
+ * </p>
+ */
 public class GetDataEndpointRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the streamName property for this object.
+     * <p>
+     * The name of the stream that you want to get the endpoint for. You must
+     * specify either this parameter or a <code>StreamARN</code> in the request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -30,7 +51,11 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
     private String streamName;
 
     /**
-     * The new value for the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream that you want to get the
+     * endpoint for. You must specify either this parameter or a
+     * <code>StreamName</code> in the request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -41,7 +66,9 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
     private String streamARN;
 
     /**
-     * The new value for the aPIName property for this object.
+     * <p>
+     * The name of the API action for which to get an endpoint.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUT_MEDIA, GET_MEDIA, LIST_FRAGMENTS,
@@ -50,34 +77,50 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
     private String aPIName;
 
     /**
-     * Returns the value of the streamName property for this object.
+     * <p>
+     * The name of the stream that you want to get the endpoint for. You must
+     * specify either this parameter or a <code>StreamARN</code> in the request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @return The value of the streamName property for this object.
+     * @return <p>
+     *         The name of the stream that you want to get the endpoint for. You
+     *         must specify either this parameter or a <code>StreamARN</code> in
+     *         the request.
+     *         </p>
      */
     public String getStreamName() {
         return streamName;
     }
 
     /**
-     * Sets the value of streamName
+     * <p>
+     * The name of the stream that you want to get the endpoint for. You must
+     * specify either this parameter or a <code>StreamARN</code> in the request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param streamName The new value for the streamName property for this
-     *            object.
+     * @param streamName <p>
+     *            The name of the stream that you want to get the endpoint for.
+     *            You must specify either this parameter or a
+     *            <code>StreamARN</code> in the request.
+     *            </p>
      */
     public void setStreamName(String streamName) {
         this.streamName = streamName;
     }
 
     /**
-     * Sets the value of the streamName property for this object.
+     * <p>
+     * The name of the stream that you want to get the endpoint for. You must
+     * specify either this parameter or a <code>StreamARN</code> in the request.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -86,8 +129,11 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param streamName The new value for the streamName property for this
-     *            object.
+     * @param streamName <p>
+     *            The name of the stream that you want to get the endpoint for.
+     *            You must specify either this parameter or a
+     *            <code>StreamARN</code> in the request.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -97,7 +143,11 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
     }
 
     /**
-     * Returns the value of the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream that you want to get the
+     * endpoint for. You must specify either this parameter or a
+     * <code>StreamName</code> in the request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -105,14 +155,22 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @return The value of the streamARN property for this object.
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the stream that you want to get
+     *         the endpoint for. You must specify either this parameter or a
+     *         <code>StreamName</code> in the request.
+     *         </p>
      */
     public String getStreamARN() {
         return streamARN;
     }
 
     /**
-     * Sets the value of streamARN
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream that you want to get the
+     * endpoint for. You must specify either this parameter or a
+     * <code>StreamName</code> in the request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -120,15 +178,22 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @param streamARN The new value for the streamARN property for this
-     *            object.
+     * @param streamARN <p>
+     *            The Amazon Resource Name (ARN) of the stream that you want to
+     *            get the endpoint for. You must specify either this parameter
+     *            or a <code>StreamName</code> in the request.
+     *            </p>
      */
     public void setStreamARN(String streamARN) {
         this.streamARN = streamARN;
     }
 
     /**
-     * Sets the value of the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream that you want to get the
+     * endpoint for. You must specify either this parameter or a
+     * <code>StreamName</code> in the request.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -139,8 +204,11 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @param streamARN The new value for the streamARN property for this
-     *            object.
+     * @param streamARN <p>
+     *            The Amazon Resource Name (ARN) of the stream that you want to
+     *            get the endpoint for. You must specify either this parameter
+     *            or a <code>StreamName</code> in the request.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -150,13 +218,17 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
     }
 
     /**
-     * Returns the value of the aPIName property for this object.
+     * <p>
+     * The name of the API action for which to get an endpoint.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUT_MEDIA, GET_MEDIA, LIST_FRAGMENTS,
      * GET_MEDIA_FOR_FRAGMENT_LIST
      *
-     * @return The value of the aPIName property for this object.
+     * @return <p>
+     *         The name of the API action for which to get an endpoint.
+     *         </p>
      * @see APIName
      */
     public String getAPIName() {
@@ -164,13 +236,17 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
     }
 
     /**
-     * Sets the value of aPIName
+     * <p>
+     * The name of the API action for which to get an endpoint.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUT_MEDIA, GET_MEDIA, LIST_FRAGMENTS,
      * GET_MEDIA_FOR_FRAGMENT_LIST
      *
-     * @param aPIName The new value for the aPIName property for this object.
+     * @param aPIName <p>
+     *            The name of the API action for which to get an endpoint.
+     *            </p>
      * @see APIName
      */
     public void setAPIName(String aPIName) {
@@ -178,7 +254,9 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
     }
 
     /**
-     * Sets the value of the aPIName property for this object.
+     * <p>
+     * The name of the API action for which to get an endpoint.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -187,7 +265,9 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Allowed Values: </b>PUT_MEDIA, GET_MEDIA, LIST_FRAGMENTS,
      * GET_MEDIA_FOR_FRAGMENT_LIST
      *
-     * @param aPIName The new value for the aPIName property for this object.
+     * @param aPIName <p>
+     *            The name of the API action for which to get an endpoint.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see APIName
@@ -198,13 +278,17 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
     }
 
     /**
-     * Sets the value of aPIName
+     * <p>
+     * The name of the API action for which to get an endpoint.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUT_MEDIA, GET_MEDIA, LIST_FRAGMENTS,
      * GET_MEDIA_FOR_FRAGMENT_LIST
      *
-     * @param aPIName The new value for the aPIName property for this object.
+     * @param aPIName <p>
+     *            The name of the API action for which to get an endpoint.
+     *            </p>
      * @see APIName
      */
     public void setAPIName(APIName aPIName) {
@@ -212,7 +296,9 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
     }
 
     /**
-     * Sets the value of the aPIName property for this object.
+     * <p>
+     * The name of the API action for which to get an endpoint.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -221,7 +307,9 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Allowed Values: </b>PUT_MEDIA, GET_MEDIA, LIST_FRAGMENTS,
      * GET_MEDIA_FOR_FRAGMENT_LIST
      *
-     * @param aPIName The new value for the aPIName property for this object.
+     * @param aPIName <p>
+     *            The name of the API action for which to get an endpoint.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see APIName

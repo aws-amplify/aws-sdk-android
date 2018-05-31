@@ -17,15 +17,10 @@ package com.amazonaws.services.kinesisfirehose.model;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * Contains the output of <a>PutRecordBatch</a>.
- * </p>
- */
 public class PutRecordBatchResult implements Serializable {
     /**
      * <p>
-     * The number of unsuccessfully written records.
+     * The number of records that might have failed processing.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -35,22 +30,22 @@ public class PutRecordBatchResult implements Serializable {
 
     /**
      * <p>
-     * The results for the individual records. The index of each element matches
-     * the same index in which records were sent.
+     * The results array. For each record, the index of the response element is
+     * the same as the index used in the request array.
      * </p>
      */
     private java.util.List<PutRecordBatchResponseEntry> requestResponses;
 
     /**
      * <p>
-     * The number of unsuccessfully written records.
+     * The number of records that might have failed processing.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The number of unsuccessfully written records.
+     *         The number of records that might have failed processing.
      *         </p>
      */
     public Integer getFailedPutCount() {
@@ -59,14 +54,14 @@ public class PutRecordBatchResult implements Serializable {
 
     /**
      * <p>
-     * The number of unsuccessfully written records.
+     * The number of records that might have failed processing.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @param failedPutCount <p>
-     *            The number of unsuccessfully written records.
+     *            The number of records that might have failed processing.
      *            </p>
      */
     public void setFailedPutCount(Integer failedPutCount) {
@@ -75,7 +70,7 @@ public class PutRecordBatchResult implements Serializable {
 
     /**
      * <p>
-     * The number of unsuccessfully written records.
+     * The number of records that might have failed processing.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -85,7 +80,7 @@ public class PutRecordBatchResult implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param failedPutCount <p>
-     *            The number of unsuccessfully written records.
+     *            The number of records that might have failed processing.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -97,13 +92,13 @@ public class PutRecordBatchResult implements Serializable {
 
     /**
      * <p>
-     * The results for the individual records. The index of each element matches
-     * the same index in which records were sent.
+     * The results array. For each record, the index of the response element is
+     * the same as the index used in the request array.
      * </p>
      *
      * @return <p>
-     *         The results for the individual records. The index of each element
-     *         matches the same index in which records were sent.
+     *         The results array. For each record, the index of the response
+     *         element is the same as the index used in the request array.
      *         </p>
      */
     public java.util.List<PutRecordBatchResponseEntry> getRequestResponses() {
@@ -112,13 +107,13 @@ public class PutRecordBatchResult implements Serializable {
 
     /**
      * <p>
-     * The results for the individual records. The index of each element matches
-     * the same index in which records were sent.
+     * The results array. For each record, the index of the response element is
+     * the same as the index used in the request array.
      * </p>
      *
      * @param requestResponses <p>
-     *            The results for the individual records. The index of each
-     *            element matches the same index in which records were sent.
+     *            The results array. For each record, the index of the response
+     *            element is the same as the index used in the request array.
      *            </p>
      */
     public void setRequestResponses(
@@ -134,16 +129,16 @@ public class PutRecordBatchResult implements Serializable {
 
     /**
      * <p>
-     * The results for the individual records. The index of each element matches
-     * the same index in which records were sent.
+     * The results array. For each record, the index of the response element is
+     * the same as the index used in the request array.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param requestResponses <p>
-     *            The results for the individual records. The index of each
-     *            element matches the same index in which records were sent.
+     *            The results array. For each record, the index of the response
+     *            element is the same as the index used in the request array.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -162,16 +157,16 @@ public class PutRecordBatchResult implements Serializable {
 
     /**
      * <p>
-     * The results for the individual records. The index of each element matches
-     * the same index in which records were sent.
+     * The results array. For each record, the index of the response element is
+     * the same as the index used in the request array.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param requestResponses <p>
-     *            The results for the individual records. The index of each
-     *            element matches the same index in which records were sent.
+     *            The results array. For each record, the index of the response
+     *            element is the same as the index used in the request array.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

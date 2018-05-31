@@ -110,6 +110,13 @@ class ScalingPolicyStaxMarshaller {
             }
             prefix = alarmsPrefix;
         }
+        if (_scalingPolicy.getTargetTrackingConfiguration() != null) {
+            prefix = _prefix + "TargetTrackingConfiguration";
+            TargetTrackingConfiguration targetTrackingConfiguration = _scalingPolicy
+                    .getTargetTrackingConfiguration();
+            TargetTrackingConfigurationStaxMarshaller.getInstance().marshall(
+                    targetTrackingConfiguration, request, prefix + ".");
+        }
     }
 
     private static ScalingPolicyStaxMarshaller instance;

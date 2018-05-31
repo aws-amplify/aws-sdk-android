@@ -21,8 +21,22 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Associates, updates, or disables a policy with a listener for the specified
- * load balancer. You can associate multiple policies with a listener.
+ * Replaces the current set of policies for the specified load balancer port
+ * with the specified set of policies.
+ * </p>
+ * <p>
+ * To enable back-end server authentication, use
+ * <a>SetLoadBalancerPoliciesForBackendServer</a>.
+ * </p>
+ * <p>
+ * For more information about setting policies, see <a href=
+ * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/ssl-config-update.html"
+ * >Update the SSL Negotiation Configuration</a>, <a href=
+ * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration"
+ * >Duration-Based Session Stickiness</a>, and <a href=
+ * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-application"
+ * >Application-Controlled Session Stickiness</a> in the <i>Classic Load
+ * Balancer Guide</i>.
  * </p>
  */
 public class SetLoadBalancerPoliciesOfListenerRequest extends AmazonWebServiceRequest implements
@@ -36,15 +50,16 @@ public class SetLoadBalancerPoliciesOfListenerRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The external port of the load balancer for the policy.
+     * The external port of the load balancer.
      * </p>
      */
     private Integer loadBalancerPort;
 
     /**
      * <p>
-     * The names of the policies. If the list is empty, the current policy is
-     * removed from the listener.
+     * The names of the policies. This list must include all policies to be
+     * enabled. If you omit a policy that is currently enabled, it is disabled.
+     * If the list is empty, all current policies are disabled.
      * </p>
      */
     private java.util.List<String> policyNames = new java.util.ArrayList<String>();
@@ -66,11 +81,13 @@ public class SetLoadBalancerPoliciesOfListenerRequest extends AmazonWebServiceRe
      *            The name of the load balancer.
      *            </p>
      * @param loadBalancerPort <p>
-     *            The external port of the load balancer for the policy.
+     *            The external port of the load balancer.
      *            </p>
      * @param policyNames <p>
-     *            The names of the policies. If the list is empty, the current
-     *            policy is removed from the listener.
+     *            The names of the policies. This list must include all policies
+     *            to be enabled. If you omit a policy that is currently enabled,
+     *            it is disabled. If the list is empty, all current policies are
+     *            disabled.
      *            </p>
      */
     public SetLoadBalancerPoliciesOfListenerRequest(String loadBalancerName,
@@ -127,11 +144,11 @@ public class SetLoadBalancerPoliciesOfListenerRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The external port of the load balancer for the policy.
+     * The external port of the load balancer.
      * </p>
      *
      * @return <p>
-     *         The external port of the load balancer for the policy.
+     *         The external port of the load balancer.
      *         </p>
      */
     public Integer getLoadBalancerPort() {
@@ -140,11 +157,11 @@ public class SetLoadBalancerPoliciesOfListenerRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The external port of the load balancer for the policy.
+     * The external port of the load balancer.
      * </p>
      *
      * @param loadBalancerPort <p>
-     *            The external port of the load balancer for the policy.
+     *            The external port of the load balancer.
      *            </p>
      */
     public void setLoadBalancerPort(Integer loadBalancerPort) {
@@ -153,14 +170,14 @@ public class SetLoadBalancerPoliciesOfListenerRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The external port of the load balancer for the policy.
+     * The external port of the load balancer.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param loadBalancerPort <p>
-     *            The external port of the load balancer for the policy.
+     *            The external port of the load balancer.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -172,13 +189,16 @@ public class SetLoadBalancerPoliciesOfListenerRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The names of the policies. If the list is empty, the current policy is
-     * removed from the listener.
+     * The names of the policies. This list must include all policies to be
+     * enabled. If you omit a policy that is currently enabled, it is disabled.
+     * If the list is empty, all current policies are disabled.
      * </p>
      *
      * @return <p>
-     *         The names of the policies. If the list is empty, the current
-     *         policy is removed from the listener.
+     *         The names of the policies. This list must include all policies to
+     *         be enabled. If you omit a policy that is currently enabled, it is
+     *         disabled. If the list is empty, all current policies are
+     *         disabled.
      *         </p>
      */
     public java.util.List<String> getPolicyNames() {
@@ -187,13 +207,16 @@ public class SetLoadBalancerPoliciesOfListenerRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The names of the policies. If the list is empty, the current policy is
-     * removed from the listener.
+     * The names of the policies. This list must include all policies to be
+     * enabled. If you omit a policy that is currently enabled, it is disabled.
+     * If the list is empty, all current policies are disabled.
      * </p>
      *
      * @param policyNames <p>
-     *            The names of the policies. If the list is empty, the current
-     *            policy is removed from the listener.
+     *            The names of the policies. This list must include all policies
+     *            to be enabled. If you omit a policy that is currently enabled,
+     *            it is disabled. If the list is empty, all current policies are
+     *            disabled.
      *            </p>
      */
     public void setPolicyNames(java.util.Collection<String> policyNames) {
@@ -207,16 +230,19 @@ public class SetLoadBalancerPoliciesOfListenerRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The names of the policies. If the list is empty, the current policy is
-     * removed from the listener.
+     * The names of the policies. This list must include all policies to be
+     * enabled. If you omit a policy that is currently enabled, it is disabled.
+     * If the list is empty, all current policies are disabled.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param policyNames <p>
-     *            The names of the policies. If the list is empty, the current
-     *            policy is removed from the listener.
+     *            The names of the policies. This list must include all policies
+     *            to be enabled. If you omit a policy that is currently enabled,
+     *            it is disabled. If the list is empty, all current policies are
+     *            disabled.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -233,16 +259,19 @@ public class SetLoadBalancerPoliciesOfListenerRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The names of the policies. If the list is empty, the current policy is
-     * removed from the listener.
+     * The names of the policies. This list must include all policies to be
+     * enabled. If you omit a policy that is currently enabled, it is disabled.
+     * If the list is empty, all current policies are disabled.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param policyNames <p>
-     *            The names of the policies. If the list is empty, the current
-     *            policy is removed from the listener.
+     *            The names of the policies. This list must include all policies
+     *            to be enabled. If you omit a policy that is currently enabled,
+     *            it is disabled. If the list is empty, all current policies are
+     *            disabled.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

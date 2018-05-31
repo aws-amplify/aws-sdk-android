@@ -19,12 +19,17 @@ import java.io.Serializable;
 
 public class ListStreamsResult implements Serializable {
     /**
-     * The new value for the streamInfoList property for this object.
+     * <p>
+     * An array of <code>StreamInfo</code> objects.
+     * </p>
      */
     private java.util.List<StreamInfo> streamInfoList = new java.util.ArrayList<StreamInfo>();
 
     /**
-     * The new value for the nextToken property for this object.
+     * <p>
+     * If the response is truncated, the call returns this element with a token.
+     * To get the next batch of streams, use this token in your next request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
@@ -32,19 +37,26 @@ public class ListStreamsResult implements Serializable {
     private String nextToken;
 
     /**
-     * Returns the value of the streamInfoList property for this object.
+     * <p>
+     * An array of <code>StreamInfo</code> objects.
+     * </p>
      *
-     * @return The value of the streamInfoList property for this object.
+     * @return <p>
+     *         An array of <code>StreamInfo</code> objects.
+     *         </p>
      */
     public java.util.List<StreamInfo> getStreamInfoList() {
         return streamInfoList;
     }
 
     /**
-     * Sets the value of streamInfoList
+     * <p>
+     * An array of <code>StreamInfo</code> objects.
+     * </p>
      *
-     * @param streamInfoList The new value for the streamInfoList property for
-     *            this object.
+     * @param streamInfoList <p>
+     *            An array of <code>StreamInfo</code> objects.
+     *            </p>
      */
     public void setStreamInfoList(java.util.Collection<StreamInfo> streamInfoList) {
         if (streamInfoList == null) {
@@ -56,13 +68,16 @@ public class ListStreamsResult implements Serializable {
     }
 
     /**
-     * Sets the value of the streamInfoList property for this object.
+     * <p>
+     * An array of <code>StreamInfo</code> objects.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param streamInfoList The new value for the streamInfoList property for
-     *            this object.
+     * @param streamInfoList <p>
+     *            An array of <code>StreamInfo</code> objects.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -77,13 +92,16 @@ public class ListStreamsResult implements Serializable {
     }
 
     /**
-     * Sets the value of the streamInfoList property for this object.
+     * <p>
+     * An array of <code>StreamInfo</code> objects.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param streamInfoList The new value for the streamInfoList property for
-     *            this object.
+     * @param streamInfoList <p>
+     *            An array of <code>StreamInfo</code> objects.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -93,32 +111,48 @@ public class ListStreamsResult implements Serializable {
     }
 
     /**
-     * Returns the value of the nextToken property for this object.
+     * <p>
+     * If the response is truncated, the call returns this element with a token.
+     * To get the next batch of streams, use this token in your next request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
      *
-     * @return The value of the nextToken property for this object.
+     * @return <p>
+     *         If the response is truncated, the call returns this element with
+     *         a token. To get the next batch of streams, use this token in your
+     *         next request.
+     *         </p>
      */
     public String getNextToken() {
         return nextToken;
     }
 
     /**
-     * Sets the value of nextToken
+     * <p>
+     * If the response is truncated, the call returns this element with a token.
+     * To get the next batch of streams, use this token in your next request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
      *
-     * @param nextToken The new value for the nextToken property for this
-     *            object.
+     * @param nextToken <p>
+     *            If the response is truncated, the call returns this element
+     *            with a token. To get the next batch of streams, use this token
+     *            in your next request.
+     *            </p>
      */
     public void setNextToken(String nextToken) {
         this.nextToken = nextToken;
     }
 
     /**
-     * Sets the value of the nextToken property for this object.
+     * <p>
+     * If the response is truncated, the call returns this element with a token.
+     * To get the next batch of streams, use this token in your next request.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -126,8 +160,11 @@ public class ListStreamsResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 512<br/>
      *
-     * @param nextToken The new value for the nextToken property for this
-     *            object.
+     * @param nextToken <p>
+     *            If the response is truncated, the call returns this element
+     *            with a token. To get the next batch of streams, use this token
+     *            in your next request.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

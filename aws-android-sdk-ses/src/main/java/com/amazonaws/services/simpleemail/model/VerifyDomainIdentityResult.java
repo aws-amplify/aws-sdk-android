@@ -26,21 +26,46 @@ import java.io.Serializable;
 public class VerifyDomainIdentityResult implements Serializable {
     /**
      * <p>
-     * A TXT record that must be placed in the DNS settings for the domain, in
-     * order to complete domain verification.
+     * A TXT record that you must place in the DNS settings of the domain to
+     * complete domain verification with Amazon SES.
+     * </p>
+     * <p>
+     * As Amazon SES searches for the TXT record, the domain's verification
+     * status is "Pending". When Amazon SES detects the record, the domain's
+     * verification status changes to "Success". If Amazon SES is unable to
+     * detect the record within 72 hours, the domain's verification status
+     * changes to "Failed." In that case, if you still want to verify the
+     * domain, you must restart the verification process from the beginning.
      * </p>
      */
     private String verificationToken;
 
     /**
      * <p>
-     * A TXT record that must be placed in the DNS settings for the domain, in
-     * order to complete domain verification.
+     * A TXT record that you must place in the DNS settings of the domain to
+     * complete domain verification with Amazon SES.
+     * </p>
+     * <p>
+     * As Amazon SES searches for the TXT record, the domain's verification
+     * status is "Pending". When Amazon SES detects the record, the domain's
+     * verification status changes to "Success". If Amazon SES is unable to
+     * detect the record within 72 hours, the domain's verification status
+     * changes to "Failed." In that case, if you still want to verify the
+     * domain, you must restart the verification process from the beginning.
      * </p>
      *
      * @return <p>
-     *         A TXT record that must be placed in the DNS settings for the
-     *         domain, in order to complete domain verification.
+     *         A TXT record that you must place in the DNS settings of the
+     *         domain to complete domain verification with Amazon SES.
+     *         </p>
+     *         <p>
+     *         As Amazon SES searches for the TXT record, the domain's
+     *         verification status is "Pending". When Amazon SES detects the
+     *         record, the domain's verification status changes to "Success". If
+     *         Amazon SES is unable to detect the record within 72 hours, the
+     *         domain's verification status changes to "Failed." In that case,
+     *         if you still want to verify the domain, you must restart the
+     *         verification process from the beginning.
      *         </p>
      */
     public String getVerificationToken() {
@@ -49,13 +74,30 @@ public class VerifyDomainIdentityResult implements Serializable {
 
     /**
      * <p>
-     * A TXT record that must be placed in the DNS settings for the domain, in
-     * order to complete domain verification.
+     * A TXT record that you must place in the DNS settings of the domain to
+     * complete domain verification with Amazon SES.
+     * </p>
+     * <p>
+     * As Amazon SES searches for the TXT record, the domain's verification
+     * status is "Pending". When Amazon SES detects the record, the domain's
+     * verification status changes to "Success". If Amazon SES is unable to
+     * detect the record within 72 hours, the domain's verification status
+     * changes to "Failed." In that case, if you still want to verify the
+     * domain, you must restart the verification process from the beginning.
      * </p>
      *
      * @param verificationToken <p>
-     *            A TXT record that must be placed in the DNS settings for the
-     *            domain, in order to complete domain verification.
+     *            A TXT record that you must place in the DNS settings of the
+     *            domain to complete domain verification with Amazon SES.
+     *            </p>
+     *            <p>
+     *            As Amazon SES searches for the TXT record, the domain's
+     *            verification status is "Pending". When Amazon SES detects the
+     *            record, the domain's verification status changes to "Success".
+     *            If Amazon SES is unable to detect the record within 72 hours,
+     *            the domain's verification status changes to "Failed." In that
+     *            case, if you still want to verify the domain, you must restart
+     *            the verification process from the beginning.
      *            </p>
      */
     public void setVerificationToken(String verificationToken) {
@@ -64,16 +106,33 @@ public class VerifyDomainIdentityResult implements Serializable {
 
     /**
      * <p>
-     * A TXT record that must be placed in the DNS settings for the domain, in
-     * order to complete domain verification.
+     * A TXT record that you must place in the DNS settings of the domain to
+     * complete domain verification with Amazon SES.
+     * </p>
+     * <p>
+     * As Amazon SES searches for the TXT record, the domain's verification
+     * status is "Pending". When Amazon SES detects the record, the domain's
+     * verification status changes to "Success". If Amazon SES is unable to
+     * detect the record within 72 hours, the domain's verification status
+     * changes to "Failed." In that case, if you still want to verify the
+     * domain, you must restart the verification process from the beginning.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param verificationToken <p>
-     *            A TXT record that must be placed in the DNS settings for the
-     *            domain, in order to complete domain verification.
+     *            A TXT record that you must place in the DNS settings of the
+     *            domain to complete domain verification with Amazon SES.
+     *            </p>
+     *            <p>
+     *            As Amazon SES searches for the TXT record, the domain's
+     *            verification status is "Pending". When Amazon SES detects the
+     *            record, the domain's verification status changes to "Success".
+     *            If Amazon SES is unable to detect the record within 72 hours,
+     *            the domain's verification status changes to "Failed." In that
+     *            case, if you still want to verify the domain, you must restart
+     *            the verification process from the beginning.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

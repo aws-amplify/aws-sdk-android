@@ -20,7 +20,7 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * Lambda was unable to decrypt the environment variables because the KMS key
- * used is in an invalid state for Decrypt. Please check the function's KMS key
+ * used is in an invalid state for Decrypt. Check the function's KMS key
  * settings.
  * </p>
  */

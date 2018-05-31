@@ -26,10 +26,20 @@ class MessageConfigurationJsonMarshaller {
     public void marshall(MessageConfiguration messageConfiguration, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
+        if (messageConfiguration.getADMMessage() != null) {
+            Message aDMMessage = messageConfiguration.getADMMessage();
+            jsonWriter.name("ADMMessage");
+            MessageJsonMarshaller.getInstance().marshall(aDMMessage, jsonWriter);
+        }
         if (messageConfiguration.getAPNSMessage() != null) {
             Message aPNSMessage = messageConfiguration.getAPNSMessage();
             jsonWriter.name("APNSMessage");
             MessageJsonMarshaller.getInstance().marshall(aPNSMessage, jsonWriter);
+        }
+        if (messageConfiguration.getBaiduMessage() != null) {
+            Message baiduMessage = messageConfiguration.getBaiduMessage();
+            jsonWriter.name("BaiduMessage");
+            MessageJsonMarshaller.getInstance().marshall(baiduMessage, jsonWriter);
         }
         if (messageConfiguration.getDefaultMessage() != null) {
             Message defaultMessage = messageConfiguration.getDefaultMessage();

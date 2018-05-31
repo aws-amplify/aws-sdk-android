@@ -37,10 +37,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Although you can increase these limits by filing a case at <a
  * href="https://console.aws.amazon.com/support/home#/">AWS Support Center</a>,
- * obtaining the increase is not instantaneous. The <i>DescribeLimits</i> API
- * lets you write code to compare the capacity you are currently using to those
- * limits imposed by your account so that you have enough time to apply for an
- * increase before you hit a limit.
+ * obtaining the increase is not instantaneous. The <code>DescribeLimits</code>
+ * action lets you write code to compare the capacity you are currently using to
+ * those limits imposed by your account so that you have enough time to apply
+ * for an increase before you hit a limit.
  * </p>
  * <p>
  * For example, you could use one of the AWS SDKs to do the following:
@@ -48,8 +48,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <ol>
  * <li>
  * <p>
- * Call <i>DescribeLimits</i> for a particular region to obtain your current
- * account limits on provisioned capacity there.
+ * Call <code>DescribeLimits</code> for a particular region to obtain your
+ * current account limits on provisioned capacity there.
  * </p>
  * </li>
  * <li>
@@ -61,23 +61,24 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * Call <i>ListTables</i> to obtain a list of all your DynamoDB tables.
+ * Call <code>ListTables</code> to obtain a list of all your DynamoDB tables.
  * </p>
  * </li>
  * <li>
  * <p>
- * For each table name listed by <i>ListTables</i>, do the following:
+ * For each table name listed by <code>ListTables</code>, do the following:
  * </p>
  * <ul>
  * <li>
  * <p>
- * Call <i>DescribeTable</i> with the table name.
+ * Call <code>DescribeTable</code> with the table name.
  * </p>
  * </li>
  * <li>
  * <p>
- * Use the data returned by <i>DescribeTable</i> to add the read capacity units
- * and write capacity units provisioned for the table itself to your variables.
+ * Use the data returned by <code>DescribeTable</code> to add the read capacity
+ * units and write capacity units provisioned for the table itself to your
+ * variables.
  * </p>
  * </li>
  * <li>
@@ -90,8 +91,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * Report the account limits for that region returned by <i>DescribeLimits</i>,
- * along with the total current provisioned capacity levels you have calculated.
+ * Report the account limits for that region returned by
+ * <code>DescribeLimits</code>, along with the total current provisioned
+ * capacity levels you have calculated.
  * </p>
  * </li>
  * </ol>
@@ -112,12 +114,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <note>
  * <p>
- * <i>DescribeLimits</i> should only be called periodically. You can expect
- * throttling errors if you call it more than once in a minute.
+ * <code>DescribeLimits</code> should only be called periodically. You can
+ * expect throttling errors if you call it more than once in a minute.
  * </p>
  * </note>
  * <p>
- * The <i>DescribeLimits</i> Request element has no content.
+ * The <code>DescribeLimits</code> Request element has no content.
  * </p>
  */
 public class DescribeLimitsRequest extends AmazonWebServiceRequest implements Serializable {

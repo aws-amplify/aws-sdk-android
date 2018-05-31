@@ -38,6 +38,10 @@ public class DescribeCACertificateResultJsonUnmarshaller implements
                         .setCertificateDescription(CACertificateDescriptionJsonUnmarshaller
                                 .getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("registrationConfig")) {
+                describeCACertificateResult
+                        .setRegistrationConfig(RegistrationConfigJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

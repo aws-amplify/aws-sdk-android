@@ -31,6 +31,11 @@ class ApplicationSettingsResourceJsonMarshaller {
             jsonWriter.name("ApplicationId");
             jsonWriter.value(applicationId);
         }
+        if (applicationSettingsResource.getCampaignHook() != null) {
+            CampaignHook campaignHook = applicationSettingsResource.getCampaignHook();
+            jsonWriter.name("CampaignHook");
+            CampaignHookJsonMarshaller.getInstance().marshall(campaignHook, jsonWriter);
+        }
         if (applicationSettingsResource.getLastModifiedDate() != null) {
             String lastModifiedDate = applicationSettingsResource.getLastModifiedDate();
             jsonWriter.name("LastModifiedDate");

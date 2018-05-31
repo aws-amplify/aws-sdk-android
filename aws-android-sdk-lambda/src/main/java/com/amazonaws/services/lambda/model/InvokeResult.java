@@ -26,7 +26,7 @@ public class InvokeResult implements Serializable {
     /**
      * <p>
      * The HTTP status code will be in the 200 range for successful request. For
-     * the <code>RequestResonse</code> invocation type this status code will be
+     * the <code>RequestResponse</code> invocation type this status code will be
      * 200. For the <code>Event</code> invocation type this status code will be
      * 202. For the <code>DryRun</code> invocation type the status code will be
      * 204.
@@ -76,8 +76,21 @@ public class InvokeResult implements Serializable {
 
     /**
      * <p>
+     * The function version that has been executed. This value is returned only
+     * if the invocation type is <code>RequestResponse</code>. For more
+     * information, see <a>lambda-traffic-shifting-using-aliases</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern: </b>(\$LATEST|[0-9]+)<br/>
+     */
+    private String executedVersion;
+
+    /**
+     * <p>
      * The HTTP status code will be in the 200 range for successful request. For
-     * the <code>RequestResonse</code> invocation type this status code will be
+     * the <code>RequestResponse</code> invocation type this status code will be
      * 200. For the <code>Event</code> invocation type this status code will be
      * 202. For the <code>DryRun</code> invocation type the status code will be
      * 204.
@@ -85,10 +98,10 @@ public class InvokeResult implements Serializable {
      *
      * @return <p>
      *         The HTTP status code will be in the 200 range for successful
-     *         request. For the <code>RequestResonse</code> invocation type this
-     *         status code will be 200. For the <code>Event</code> invocation
-     *         type this status code will be 202. For the <code>DryRun</code>
-     *         invocation type the status code will be 204.
+     *         request. For the <code>RequestResponse</code> invocation type
+     *         this status code will be 200. For the <code>Event</code>
+     *         invocation type this status code will be 202. For the
+     *         <code>DryRun</code> invocation type the status code will be 204.
      *         </p>
      */
     public Integer getStatusCode() {
@@ -98,7 +111,7 @@ public class InvokeResult implements Serializable {
     /**
      * <p>
      * The HTTP status code will be in the 200 range for successful request. For
-     * the <code>RequestResonse</code> invocation type this status code will be
+     * the <code>RequestResponse</code> invocation type this status code will be
      * 200. For the <code>Event</code> invocation type this status code will be
      * 202. For the <code>DryRun</code> invocation type the status code will be
      * 204.
@@ -106,7 +119,7 @@ public class InvokeResult implements Serializable {
      *
      * @param statusCode <p>
      *            The HTTP status code will be in the 200 range for successful
-     *            request. For the <code>RequestResonse</code> invocation type
+     *            request. For the <code>RequestResponse</code> invocation type
      *            this status code will be 200. For the <code>Event</code>
      *            invocation type this status code will be 202. For the
      *            <code>DryRun</code> invocation type the status code will be
@@ -120,7 +133,7 @@ public class InvokeResult implements Serializable {
     /**
      * <p>
      * The HTTP status code will be in the 200 range for successful request. For
-     * the <code>RequestResonse</code> invocation type this status code will be
+     * the <code>RequestResponse</code> invocation type this status code will be
      * 200. For the <code>Event</code> invocation type this status code will be
      * 202. For the <code>DryRun</code> invocation type the status code will be
      * 204.
@@ -131,7 +144,7 @@ public class InvokeResult implements Serializable {
      *
      * @param statusCode <p>
      *            The HTTP status code will be in the 200 range for successful
-     *            request. For the <code>RequestResonse</code> invocation type
+     *            request. For the <code>RequestResponse</code> invocation type
      *            this status code will be 200. For the <code>Event</code>
      *            invocation type this status code will be 202. For the
      *            <code>DryRun</code> invocation type the status code will be
@@ -397,6 +410,78 @@ public class InvokeResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The function version that has been executed. This value is returned only
+     * if the invocation type is <code>RequestResponse</code>. For more
+     * information, see <a>lambda-traffic-shifting-using-aliases</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern: </b>(\$LATEST|[0-9]+)<br/>
+     *
+     * @return <p>
+     *         The function version that has been executed. This value is
+     *         returned only if the invocation type is
+     *         <code>RequestResponse</code>. For more information, see
+     *         <a>lambda-traffic-shifting-using-aliases</a>.
+     *         </p>
+     */
+    public String getExecutedVersion() {
+        return executedVersion;
+    }
+
+    /**
+     * <p>
+     * The function version that has been executed. This value is returned only
+     * if the invocation type is <code>RequestResponse</code>. For more
+     * information, see <a>lambda-traffic-shifting-using-aliases</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern: </b>(\$LATEST|[0-9]+)<br/>
+     *
+     * @param executedVersion <p>
+     *            The function version that has been executed. This value is
+     *            returned only if the invocation type is
+     *            <code>RequestResponse</code>. For more information, see
+     *            <a>lambda-traffic-shifting-using-aliases</a>.
+     *            </p>
+     */
+    public void setExecutedVersion(String executedVersion) {
+        this.executedVersion = executedVersion;
+    }
+
+    /**
+     * <p>
+     * The function version that has been executed. This value is returned only
+     * if the invocation type is <code>RequestResponse</code>. For more
+     * information, see <a>lambda-traffic-shifting-using-aliases</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern: </b>(\$LATEST|[0-9]+)<br/>
+     *
+     * @param executedVersion <p>
+     *            The function version that has been executed. This value is
+     *            returned only if the invocation type is
+     *            <code>RequestResponse</code>. For more information, see
+     *            <a>lambda-traffic-shifting-using-aliases</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public InvokeResult withExecutedVersion(String executedVersion) {
+        this.executedVersion = executedVersion;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -414,7 +499,9 @@ public class InvokeResult implements Serializable {
         if (getLogResult() != null)
             sb.append("LogResult: " + getLogResult() + ",");
         if (getPayload() != null)
-            sb.append("Payload: " + getPayload());
+            sb.append("Payload: " + getPayload() + ",");
+        if (getExecutedVersion() != null)
+            sb.append("ExecutedVersion: " + getExecutedVersion());
         sb.append("}");
         return sb.toString();
     }
@@ -429,6 +516,8 @@ public class InvokeResult implements Serializable {
                 + ((getFunctionError() == null) ? 0 : getFunctionError().hashCode());
         hashCode = prime * hashCode + ((getLogResult() == null) ? 0 : getLogResult().hashCode());
         hashCode = prime * hashCode + ((getPayload() == null) ? 0 : getPayload().hashCode());
+        hashCode = prime * hashCode
+                + ((getExecutedVersion() == null) ? 0 : getExecutedVersion().hashCode());
         return hashCode;
     }
 
@@ -461,6 +550,11 @@ public class InvokeResult implements Serializable {
         if (other.getPayload() == null ^ this.getPayload() == null)
             return false;
         if (other.getPayload() != null && other.getPayload().equals(this.getPayload()) == false)
+            return false;
+        if (other.getExecutedVersion() == null ^ this.getExecutedVersion() == null)
+            return false;
+        if (other.getExecutedVersion() != null
+                && other.getExecutedVersion().equals(this.getExecutedVersion()) == false)
             return false;
         return true;
     }

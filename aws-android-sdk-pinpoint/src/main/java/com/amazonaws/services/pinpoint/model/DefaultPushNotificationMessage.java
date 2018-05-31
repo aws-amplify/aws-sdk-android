@@ -48,12 +48,6 @@ public class DefaultPushNotificationMessage implements Serializable {
     private java.util.Map<String, String> data;
 
     /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
-     */
-    private String jsonData;
-
-    /**
      * Indicates if the message should display on the users device. Silent
      * pushes can be used for Remote Configuration and Phone Home use cases.
      */
@@ -338,45 +332,6 @@ public class DefaultPushNotificationMessage implements Serializable {
     }
 
     /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
-     *
-     * @return The data payload used for a silent push. This payload is added to
-     *         the notifications' data.pinpoint.jsonBody' object
-     */
-    public String getJsonData() {
-        return jsonData;
-    }
-
-    /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
-     *
-     * @param jsonData The data payload used for a silent push. This payload is
-     *            added to the notifications' data.pinpoint.jsonBody' object
-     */
-    public void setJsonData(String jsonData) {
-        this.jsonData = jsonData;
-    }
-
-    /**
-     * The data payload used for a silent push. This payload is added to the
-     * notifications' data.pinpoint.jsonBody' object
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param jsonData The data payload used for a silent push. This payload is
-     *            added to the notifications' data.pinpoint.jsonBody' object
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public DefaultPushNotificationMessage withJsonData(String jsonData) {
-        this.jsonData = jsonData;
-        return this;
-    }
-
-    /**
      * Indicates if the message should display on the users device. Silent
      * pushes can be used for Remote Configuration and Phone Home use cases.
      *
@@ -599,8 +554,6 @@ public class DefaultPushNotificationMessage implements Serializable {
             sb.append("Body: " + getBody() + ",");
         if (getData() != null)
             sb.append("Data: " + getData() + ",");
-        if (getJsonData() != null)
-            sb.append("JsonData: " + getJsonData() + ",");
         if (getSilentPush() != null)
             sb.append("SilentPush: " + getSilentPush() + ",");
         if (getSubstitutions() != null)
@@ -621,7 +574,6 @@ public class DefaultPushNotificationMessage implements Serializable {
         hashCode = prime * hashCode + ((getAction() == null) ? 0 : getAction().hashCode());
         hashCode = prime * hashCode + ((getBody() == null) ? 0 : getBody().hashCode());
         hashCode = prime * hashCode + ((getData() == null) ? 0 : getData().hashCode());
-        hashCode = prime * hashCode + ((getJsonData() == null) ? 0 : getJsonData().hashCode());
         hashCode = prime * hashCode + ((getSilentPush() == null) ? 0 : getSilentPush().hashCode());
         hashCode = prime * hashCode
                 + ((getSubstitutions() == null) ? 0 : getSubstitutions().hashCode());
@@ -652,10 +604,6 @@ public class DefaultPushNotificationMessage implements Serializable {
         if (other.getData() == null ^ this.getData() == null)
             return false;
         if (other.getData() != null && other.getData().equals(this.getData()) == false)
-            return false;
-        if (other.getJsonData() == null ^ this.getJsonData() == null)
-            return false;
-        if (other.getJsonData() != null && other.getJsonData().equals(this.getJsonData()) == false)
             return false;
         if (other.getSilentPush() == null ^ this.getSilentPush() == null)
             return false;

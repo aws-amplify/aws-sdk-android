@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a customer master key (CMK).
+ * Creates a customer master key (CMK) in the caller's AWS account.
  * </p>
  * <p>
  * You can use a CMK to encrypt small amounts of data (4 KiB or less) directly,
@@ -43,6 +43,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </li>
  * </ul>
+ * <p>
+ * You cannot use this operation to create a CMK in a different AWS account.
+ * </p>
  */
 public class CreateKeyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -50,44 +53,44 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * The key policy to attach to the CMK.
      * </p>
      * <p>
-     * If you specify a policy and do not set
-     * <code>BypassPolicyLockoutSafetyCheck</code> to true, the policy must meet
-     * the following criteria:
+     * If you provide a key policy, it must meet the following criteria:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * It must allow the principal making the <code>CreateKey</code> request to
-     * make a subsequent <a>PutKeyPolicy</a> request on the CMK. This reduces
-     * the likelihood that the CMK becomes unmanageable. For more information,
-     * refer to the scenario in the <a href=
+     * If you don't set <code>BypassPolicyLockoutSafetyCheck</code> to true, the
+     * key policy must allow the principal that is making the
+     * <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
+     * request on the CMK. This reduces the risk that the CMK becomes
+     * unmanageable. For more information, refer to the scenario in the <a href=
      * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     * >Default Key Policy</a> section in the <i>AWS Key Management Service
+     * >Default Key Policy</a> section of the <i>AWS Key Management Service
      * Developer Guide</i>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * The principal(s) specified in the key policy must exist and be visible to
-     * AWS KMS. When you create a new AWS principal (for example, an IAM user or
-     * role), you might need to enforce a delay before specifying the new
-     * principal in a key policy because the new principal might not immediately
-     * be visible to AWS KMS. For more information, see <a href=
+     * Each statement in the key policy must contain one or more principals. The
+     * principals in the key policy must exist and be visible to AWS KMS. When
+     * you create a new AWS principal (for example, an IAM user or role), you
+     * might need to enforce a delay before including the new principal in a key
+     * policy because the new principal might not be immediately visible to AWS
+     * KMS. For more information, see <a href=
      * "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
-     * >Changes that I make are not always immediately visible</a> in the <i>IAM
-     * User Guide</i>.
+     * >Changes that I make are not always immediately visible</a> in the <i>AWS
+     * Identity and Access Management User Guide</i>.
      * </p>
      * </li>
      * </ul>
      * <p>
-     * If you do not specify a policy, AWS KMS attaches a default key policy to
-     * the CMK. For more information, see <a href=
+     * If you do not provide a key policy, AWS KMS attaches a default key policy
+     * to the CMK. For more information, see <a href=
      * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
      * >Default Key Policy</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
-     * The policy size limit is 32 KiB (32768 bytes).
+     * The key policy size limit is 32 kilobytes (32768 bytes).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -153,7 +156,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <important>
      * <p>
-     * Setting this value to true increases the likelihood that the CMK becomes
+     * Setting this value to true increases the risk that the CMK becomes
      * unmanageable. Do not set this value to true indiscriminately.
      * </p>
      * <p>
@@ -165,7 +168,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </important>
      * <p>
      * Use this parameter only when you include a policy in the request and you
-     * intend to prevent the principal making the request from making a
+     * intend to prevent the principal that is making the request from making a
      * subsequent <a>PutKeyPolicy</a> request on the CMK.
      * </p>
      * <p>
@@ -176,47 +179,61 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
+     * One or more tags. Each tag consists of a tag key and a tag value. Tag
+     * keys and tag values are both required, but tag values can be empty (null)
+     * strings.
+     * </p>
+     * <p>
+     * Use this parameter to tag the CMK when it is created. Alternately, you
+     * can omit this parameter and instead tag the CMK after it is created using
+     * <a>TagResource</a>.
+     * </p>
+     */
+    private java.util.List<Tag> tags = new java.util.ArrayList<Tag>();
+
+    /**
+     * <p>
      * The key policy to attach to the CMK.
      * </p>
      * <p>
-     * If you specify a policy and do not set
-     * <code>BypassPolicyLockoutSafetyCheck</code> to true, the policy must meet
-     * the following criteria:
+     * If you provide a key policy, it must meet the following criteria:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * It must allow the principal making the <code>CreateKey</code> request to
-     * make a subsequent <a>PutKeyPolicy</a> request on the CMK. This reduces
-     * the likelihood that the CMK becomes unmanageable. For more information,
-     * refer to the scenario in the <a href=
+     * If you don't set <code>BypassPolicyLockoutSafetyCheck</code> to true, the
+     * key policy must allow the principal that is making the
+     * <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
+     * request on the CMK. This reduces the risk that the CMK becomes
+     * unmanageable. For more information, refer to the scenario in the <a href=
      * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     * >Default Key Policy</a> section in the <i>AWS Key Management Service
+     * >Default Key Policy</a> section of the <i>AWS Key Management Service
      * Developer Guide</i>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * The principal(s) specified in the key policy must exist and be visible to
-     * AWS KMS. When you create a new AWS principal (for example, an IAM user or
-     * role), you might need to enforce a delay before specifying the new
-     * principal in a key policy because the new principal might not immediately
-     * be visible to AWS KMS. For more information, see <a href=
+     * Each statement in the key policy must contain one or more principals. The
+     * principals in the key policy must exist and be visible to AWS KMS. When
+     * you create a new AWS principal (for example, an IAM user or role), you
+     * might need to enforce a delay before including the new principal in a key
+     * policy because the new principal might not be immediately visible to AWS
+     * KMS. For more information, see <a href=
      * "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
-     * >Changes that I make are not always immediately visible</a> in the <i>IAM
-     * User Guide</i>.
+     * >Changes that I make are not always immediately visible</a> in the <i>AWS
+     * Identity and Access Management User Guide</i>.
      * </p>
      * </li>
      * </ul>
      * <p>
-     * If you do not specify a policy, AWS KMS attaches a default key policy to
-     * the CMK. For more information, see <a href=
+     * If you do not provide a key policy, AWS KMS attaches a default key policy
+     * to the CMK. For more information, see <a href=
      * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
      * >Default Key Policy</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
-     * The policy size limit is 32 KiB (32768 bytes).
+     * The key policy size limit is 32 kilobytes (32768 bytes).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -227,46 +244,46 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         The key policy to attach to the CMK.
      *         </p>
      *         <p>
-     *         If you specify a policy and do not set
-     *         <code>BypassPolicyLockoutSafetyCheck</code> to true, the policy
-     *         must meet the following criteria:
+     *         If you provide a key policy, it must meet the following criteria:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         It must allow the principal making the <code>CreateKey</code>
-     *         request to make a subsequent <a>PutKeyPolicy</a> request on the
-     *         CMK. This reduces the likelihood that the CMK becomes
-     *         unmanageable. For more information, refer to the scenario in the
-     *         <a href=
+     *         If you don't set <code>BypassPolicyLockoutSafetyCheck</code> to
+     *         true, the key policy must allow the principal that is making the
+     *         <code>CreateKey</code> request to make a subsequent
+     *         <a>PutKeyPolicy</a> request on the CMK. This reduces the risk
+     *         that the CMK becomes unmanageable. For more information, refer to
+     *         the scenario in the <a href=
      *         "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     *         >Default Key Policy</a> section in the <i>AWS Key Management
+     *         >Default Key Policy</a> section of the <i>AWS Key Management
      *         Service Developer Guide</i>.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         The principal(s) specified in the key policy must exist and be
+     *         Each statement in the key policy must contain one or more
+     *         principals. The principals in the key policy must exist and be
      *         visible to AWS KMS. When you create a new AWS principal (for
      *         example, an IAM user or role), you might need to enforce a delay
-     *         before specifying the new principal in a key policy because the
-     *         new principal might not immediately be visible to AWS KMS. For
+     *         before including the new principal in a key policy because the
+     *         new principal might not be immediately visible to AWS KMS. For
      *         more information, see <a href=
      *         "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
      *         >Changes that I make are not always immediately visible</a> in
-     *         the <i>IAM User Guide</i>.
+     *         the <i>AWS Identity and Access Management User Guide</i>.
      *         </p>
      *         </li>
      *         </ul>
      *         <p>
-     *         If you do not specify a policy, AWS KMS attaches a default key
-     *         policy to the CMK. For more information, see <a href=
+     *         If you do not provide a key policy, AWS KMS attaches a default
+     *         key policy to the CMK. For more information, see <a href=
      *         "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
      *         >Default Key Policy</a> in the <i>AWS Key Management Service
      *         Developer Guide</i>.
      *         </p>
      *         <p>
-     *         The policy size limit is 32 KiB (32768 bytes).
+     *         The key policy size limit is 32 kilobytes (32768 bytes).
      *         </p>
      */
     public String getPolicy() {
@@ -278,44 +295,44 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * The key policy to attach to the CMK.
      * </p>
      * <p>
-     * If you specify a policy and do not set
-     * <code>BypassPolicyLockoutSafetyCheck</code> to true, the policy must meet
-     * the following criteria:
+     * If you provide a key policy, it must meet the following criteria:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * It must allow the principal making the <code>CreateKey</code> request to
-     * make a subsequent <a>PutKeyPolicy</a> request on the CMK. This reduces
-     * the likelihood that the CMK becomes unmanageable. For more information,
-     * refer to the scenario in the <a href=
+     * If you don't set <code>BypassPolicyLockoutSafetyCheck</code> to true, the
+     * key policy must allow the principal that is making the
+     * <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
+     * request on the CMK. This reduces the risk that the CMK becomes
+     * unmanageable. For more information, refer to the scenario in the <a href=
      * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     * >Default Key Policy</a> section in the <i>AWS Key Management Service
+     * >Default Key Policy</a> section of the <i>AWS Key Management Service
      * Developer Guide</i>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * The principal(s) specified in the key policy must exist and be visible to
-     * AWS KMS. When you create a new AWS principal (for example, an IAM user or
-     * role), you might need to enforce a delay before specifying the new
-     * principal in a key policy because the new principal might not immediately
-     * be visible to AWS KMS. For more information, see <a href=
+     * Each statement in the key policy must contain one or more principals. The
+     * principals in the key policy must exist and be visible to AWS KMS. When
+     * you create a new AWS principal (for example, an IAM user or role), you
+     * might need to enforce a delay before including the new principal in a key
+     * policy because the new principal might not be immediately visible to AWS
+     * KMS. For more information, see <a href=
      * "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
-     * >Changes that I make are not always immediately visible</a> in the <i>IAM
-     * User Guide</i>.
+     * >Changes that I make are not always immediately visible</a> in the <i>AWS
+     * Identity and Access Management User Guide</i>.
      * </p>
      * </li>
      * </ul>
      * <p>
-     * If you do not specify a policy, AWS KMS attaches a default key policy to
-     * the CMK. For more information, see <a href=
+     * If you do not provide a key policy, AWS KMS attaches a default key policy
+     * to the CMK. For more information, see <a href=
      * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
      * >Default Key Policy</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
-     * The policy size limit is 32 KiB (32768 bytes).
+     * The key policy size limit is 32 kilobytes (32768 bytes).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -326,46 +343,47 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            The key policy to attach to the CMK.
      *            </p>
      *            <p>
-     *            If you specify a policy and do not set
-     *            <code>BypassPolicyLockoutSafetyCheck</code> to true, the
-     *            policy must meet the following criteria:
+     *            If you provide a key policy, it must meet the following
+     *            criteria:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            It must allow the principal making the <code>CreateKey</code>
-     *            request to make a subsequent <a>PutKeyPolicy</a> request on
-     *            the CMK. This reduces the likelihood that the CMK becomes
-     *            unmanageable. For more information, refer to the scenario in
-     *            the <a href=
+     *            If you don't set <code>BypassPolicyLockoutSafetyCheck</code>
+     *            to true, the key policy must allow the principal that is
+     *            making the <code>CreateKey</code> request to make a subsequent
+     *            <a>PutKeyPolicy</a> request on the CMK. This reduces the risk
+     *            that the CMK becomes unmanageable. For more information, refer
+     *            to the scenario in the <a href=
      *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     *            >Default Key Policy</a> section in the <i>AWS Key Management
+     *            >Default Key Policy</a> section of the <i>AWS Key Management
      *            Service Developer Guide</i>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            The principal(s) specified in the key policy must exist and be
+     *            Each statement in the key policy must contain one or more
+     *            principals. The principals in the key policy must exist and be
      *            visible to AWS KMS. When you create a new AWS principal (for
      *            example, an IAM user or role), you might need to enforce a
-     *            delay before specifying the new principal in a key policy
-     *            because the new principal might not immediately be visible to
+     *            delay before including the new principal in a key policy
+     *            because the new principal might not be immediately visible to
      *            AWS KMS. For more information, see <a href=
      *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
      *            >Changes that I make are not always immediately visible</a> in
-     *            the <i>IAM User Guide</i>.
+     *            the <i>AWS Identity and Access Management User Guide</i>.
      *            </p>
      *            </li>
      *            </ul>
      *            <p>
-     *            If you do not specify a policy, AWS KMS attaches a default key
-     *            policy to the CMK. For more information, see <a href=
+     *            If you do not provide a key policy, AWS KMS attaches a default
+     *            key policy to the CMK. For more information, see <a href=
      *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
      *            >Default Key Policy</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
      *            <p>
-     *            The policy size limit is 32 KiB (32768 bytes).
+     *            The key policy size limit is 32 kilobytes (32768 bytes).
      *            </p>
      */
     public void setPolicy(String policy) {
@@ -377,44 +395,44 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * The key policy to attach to the CMK.
      * </p>
      * <p>
-     * If you specify a policy and do not set
-     * <code>BypassPolicyLockoutSafetyCheck</code> to true, the policy must meet
-     * the following criteria:
+     * If you provide a key policy, it must meet the following criteria:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * It must allow the principal making the <code>CreateKey</code> request to
-     * make a subsequent <a>PutKeyPolicy</a> request on the CMK. This reduces
-     * the likelihood that the CMK becomes unmanageable. For more information,
-     * refer to the scenario in the <a href=
+     * If you don't set <code>BypassPolicyLockoutSafetyCheck</code> to true, the
+     * key policy must allow the principal that is making the
+     * <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
+     * request on the CMK. This reduces the risk that the CMK becomes
+     * unmanageable. For more information, refer to the scenario in the <a href=
      * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     * >Default Key Policy</a> section in the <i>AWS Key Management Service
+     * >Default Key Policy</a> section of the <i>AWS Key Management Service
      * Developer Guide</i>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * The principal(s) specified in the key policy must exist and be visible to
-     * AWS KMS. When you create a new AWS principal (for example, an IAM user or
-     * role), you might need to enforce a delay before specifying the new
-     * principal in a key policy because the new principal might not immediately
-     * be visible to AWS KMS. For more information, see <a href=
+     * Each statement in the key policy must contain one or more principals. The
+     * principals in the key policy must exist and be visible to AWS KMS. When
+     * you create a new AWS principal (for example, an IAM user or role), you
+     * might need to enforce a delay before including the new principal in a key
+     * policy because the new principal might not be immediately visible to AWS
+     * KMS. For more information, see <a href=
      * "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
-     * >Changes that I make are not always immediately visible</a> in the <i>IAM
-     * User Guide</i>.
+     * >Changes that I make are not always immediately visible</a> in the <i>AWS
+     * Identity and Access Management User Guide</i>.
      * </p>
      * </li>
      * </ul>
      * <p>
-     * If you do not specify a policy, AWS KMS attaches a default key policy to
-     * the CMK. For more information, see <a href=
+     * If you do not provide a key policy, AWS KMS attaches a default key policy
+     * to the CMK. For more information, see <a href=
      * "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
      * >Default Key Policy</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
-     * The policy size limit is 32 KiB (32768 bytes).
+     * The key policy size limit is 32 kilobytes (32768 bytes).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -428,46 +446,47 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            The key policy to attach to the CMK.
      *            </p>
      *            <p>
-     *            If you specify a policy and do not set
-     *            <code>BypassPolicyLockoutSafetyCheck</code> to true, the
-     *            policy must meet the following criteria:
+     *            If you provide a key policy, it must meet the following
+     *            criteria:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            It must allow the principal making the <code>CreateKey</code>
-     *            request to make a subsequent <a>PutKeyPolicy</a> request on
-     *            the CMK. This reduces the likelihood that the CMK becomes
-     *            unmanageable. For more information, refer to the scenario in
-     *            the <a href=
+     *            If you don't set <code>BypassPolicyLockoutSafetyCheck</code>
+     *            to true, the key policy must allow the principal that is
+     *            making the <code>CreateKey</code> request to make a subsequent
+     *            <a>PutKeyPolicy</a> request on the CMK. This reduces the risk
+     *            that the CMK becomes unmanageable. For more information, refer
+     *            to the scenario in the <a href=
      *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
-     *            >Default Key Policy</a> section in the <i>AWS Key Management
+     *            >Default Key Policy</a> section of the <i>AWS Key Management
      *            Service Developer Guide</i>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            The principal(s) specified in the key policy must exist and be
+     *            Each statement in the key policy must contain one or more
+     *            principals. The principals in the key policy must exist and be
      *            visible to AWS KMS. When you create a new AWS principal (for
      *            example, an IAM user or role), you might need to enforce a
-     *            delay before specifying the new principal in a key policy
-     *            because the new principal might not immediately be visible to
+     *            delay before including the new principal in a key policy
+     *            because the new principal might not be immediately visible to
      *            AWS KMS. For more information, see <a href=
      *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
      *            >Changes that I make are not always immediately visible</a> in
-     *            the <i>IAM User Guide</i>.
+     *            the <i>AWS Identity and Access Management User Guide</i>.
      *            </p>
      *            </li>
      *            </ul>
      *            <p>
-     *            If you do not specify a policy, AWS KMS attaches a default key
-     *            policy to the CMK. For more information, see <a href=
+     *            If you do not provide a key policy, AWS KMS attaches a default
+     *            key policy to the CMK. For more information, see <a href=
      *            "http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
      *            >Default Key Policy</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
      *            <p>
-     *            The policy size limit is 32 KiB (32768 bytes).
+     *            The key policy size limit is 32 kilobytes (32768 bytes).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -930,7 +949,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <important>
      * <p>
-     * Setting this value to true increases the likelihood that the CMK becomes
+     * Setting this value to true increases the risk that the CMK becomes
      * unmanageable. Do not set this value to true indiscriminately.
      * </p>
      * <p>
@@ -942,7 +961,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </important>
      * <p>
      * Use this parameter only when you include a policy in the request and you
-     * intend to prevent the principal making the request from making a
+     * intend to prevent the principal that is making the request from making a
      * subsequent <a>PutKeyPolicy</a> request on the CMK.
      * </p>
      * <p>
@@ -955,7 +974,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         </p>
      *         <important>
      *         <p>
-     *         Setting this value to true increases the likelihood that the CMK
+     *         Setting this value to true increases the risk that the CMK
      *         becomes unmanageable. Do not set this value to true
      *         indiscriminately.
      *         </p>
@@ -968,8 +987,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         </important>
      *         <p>
      *         Use this parameter only when you include a policy in the request
-     *         and you intend to prevent the principal making the request from
-     *         making a subsequent <a>PutKeyPolicy</a> request on the CMK.
+     *         and you intend to prevent the principal that is making the
+     *         request from making a subsequent <a>PutKeyPolicy</a> request on
+     *         the CMK.
      *         </p>
      *         <p>
      *         The default value is false.
@@ -985,7 +1005,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <important>
      * <p>
-     * Setting this value to true increases the likelihood that the CMK becomes
+     * Setting this value to true increases the risk that the CMK becomes
      * unmanageable. Do not set this value to true indiscriminately.
      * </p>
      * <p>
@@ -997,7 +1017,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </important>
      * <p>
      * Use this parameter only when you include a policy in the request and you
-     * intend to prevent the principal making the request from making a
+     * intend to prevent the principal that is making the request from making a
      * subsequent <a>PutKeyPolicy</a> request on the CMK.
      * </p>
      * <p>
@@ -1010,7 +1030,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         </p>
      *         <important>
      *         <p>
-     *         Setting this value to true increases the likelihood that the CMK
+     *         Setting this value to true increases the risk that the CMK
      *         becomes unmanageable. Do not set this value to true
      *         indiscriminately.
      *         </p>
@@ -1023,8 +1043,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         </important>
      *         <p>
      *         Use this parameter only when you include a policy in the request
-     *         and you intend to prevent the principal making the request from
-     *         making a subsequent <a>PutKeyPolicy</a> request on the CMK.
+     *         and you intend to prevent the principal that is making the
+     *         request from making a subsequent <a>PutKeyPolicy</a> request on
+     *         the CMK.
      *         </p>
      *         <p>
      *         The default value is false.
@@ -1040,7 +1061,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <important>
      * <p>
-     * Setting this value to true increases the likelihood that the CMK becomes
+     * Setting this value to true increases the risk that the CMK becomes
      * unmanageable. Do not set this value to true indiscriminately.
      * </p>
      * <p>
@@ -1052,7 +1073,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </important>
      * <p>
      * Use this parameter only when you include a policy in the request and you
-     * intend to prevent the principal making the request from making a
+     * intend to prevent the principal that is making the request from making a
      * subsequent <a>PutKeyPolicy</a> request on the CMK.
      * </p>
      * <p>
@@ -1065,8 +1086,8 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            </p>
      *            <important>
      *            <p>
-     *            Setting this value to true increases the likelihood that the
-     *            CMK becomes unmanageable. Do not set this value to true
+     *            Setting this value to true increases the risk that the CMK
+     *            becomes unmanageable. Do not set this value to true
      *            indiscriminately.
      *            </p>
      *            <p>
@@ -1078,9 +1099,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            </important>
      *            <p>
      *            Use this parameter only when you include a policy in the
-     *            request and you intend to prevent the principal making the
-     *            request from making a subsequent <a>PutKeyPolicy</a> request
-     *            on the CMK.
+     *            request and you intend to prevent the principal that is making
+     *            the request from making a subsequent <a>PutKeyPolicy</a>
+     *            request on the CMK.
      *            </p>
      *            <p>
      *            The default value is false.
@@ -1096,7 +1117,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <important>
      * <p>
-     * Setting this value to true increases the likelihood that the CMK becomes
+     * Setting this value to true increases the risk that the CMK becomes
      * unmanageable. Do not set this value to true indiscriminately.
      * </p>
      * <p>
@@ -1108,7 +1129,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </important>
      * <p>
      * Use this parameter only when you include a policy in the request and you
-     * intend to prevent the principal making the request from making a
+     * intend to prevent the principal that is making the request from making a
      * subsequent <a>PutKeyPolicy</a> request on the CMK.
      * </p>
      * <p>
@@ -1124,8 +1145,8 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            </p>
      *            <important>
      *            <p>
-     *            Setting this value to true increases the likelihood that the
-     *            CMK becomes unmanageable. Do not set this value to true
+     *            Setting this value to true increases the risk that the CMK
+     *            becomes unmanageable. Do not set this value to true
      *            indiscriminately.
      *            </p>
      *            <p>
@@ -1137,9 +1158,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            </important>
      *            <p>
      *            Use this parameter only when you include a policy in the
-     *            request and you intend to prevent the principal making the
-     *            request from making a subsequent <a>PutKeyPolicy</a> request
-     *            on the CMK.
+     *            request and you intend to prevent the principal that is making
+     *            the request from making a subsequent <a>PutKeyPolicy</a>
+     *            request on the CMK.
      *            </p>
      *            <p>
      *            The default value is false.
@@ -1150,6 +1171,136 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
     public CreateKeyRequest withBypassPolicyLockoutSafetyCheck(
             Boolean bypassPolicyLockoutSafetyCheck) {
         this.bypassPolicyLockoutSafetyCheck = bypassPolicyLockoutSafetyCheck;
+        return this;
+    }
+
+    /**
+     * <p>
+     * One or more tags. Each tag consists of a tag key and a tag value. Tag
+     * keys and tag values are both required, but tag values can be empty (null)
+     * strings.
+     * </p>
+     * <p>
+     * Use this parameter to tag the CMK when it is created. Alternately, you
+     * can omit this parameter and instead tag the CMK after it is created using
+     * <a>TagResource</a>.
+     * </p>
+     *
+     * @return <p>
+     *         One or more tags. Each tag consists of a tag key and a tag value.
+     *         Tag keys and tag values are both required, but tag values can be
+     *         empty (null) strings.
+     *         </p>
+     *         <p>
+     *         Use this parameter to tag the CMK when it is created.
+     *         Alternately, you can omit this parameter and instead tag the CMK
+     *         after it is created using <a>TagResource</a>.
+     *         </p>
+     */
+    public java.util.List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * One or more tags. Each tag consists of a tag key and a tag value. Tag
+     * keys and tag values are both required, but tag values can be empty (null)
+     * strings.
+     * </p>
+     * <p>
+     * Use this parameter to tag the CMK when it is created. Alternately, you
+     * can omit this parameter and instead tag the CMK after it is created using
+     * <a>TagResource</a>.
+     * </p>
+     *
+     * @param tags <p>
+     *            One or more tags. Each tag consists of a tag key and a tag
+     *            value. Tag keys and tag values are both required, but tag
+     *            values can be empty (null) strings.
+     *            </p>
+     *            <p>
+     *            Use this parameter to tag the CMK when it is created.
+     *            Alternately, you can omit this parameter and instead tag the
+     *            CMK after it is created using <a>TagResource</a>.
+     *            </p>
+     */
+    public void setTags(java.util.Collection<Tag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<Tag>(tags);
+    }
+
+    /**
+     * <p>
+     * One or more tags. Each tag consists of a tag key and a tag value. Tag
+     * keys and tag values are both required, but tag values can be empty (null)
+     * strings.
+     * </p>
+     * <p>
+     * Use this parameter to tag the CMK when it is created. Alternately, you
+     * can omit this parameter and instead tag the CMK after it is created using
+     * <a>TagResource</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            One or more tags. Each tag consists of a tag key and a tag
+     *            value. Tag keys and tag values are both required, but tag
+     *            values can be empty (null) strings.
+     *            </p>
+     *            <p>
+     *            Use this parameter to tag the CMK when it is created.
+     *            Alternately, you can omit this parameter and instead tag the
+     *            CMK after it is created using <a>TagResource</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateKeyRequest withTags(Tag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<Tag>(tags.length);
+        }
+        for (Tag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * One or more tags. Each tag consists of a tag key and a tag value. Tag
+     * keys and tag values are both required, but tag values can be empty (null)
+     * strings.
+     * </p>
+     * <p>
+     * Use this parameter to tag the CMK when it is created. Alternately, you
+     * can omit this parameter and instead tag the CMK after it is created using
+     * <a>TagResource</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            One or more tags. Each tag consists of a tag key and a tag
+     *            value. Tag keys and tag values are both required, but tag
+     *            values can be empty (null) strings.
+     *            </p>
+     *            <p>
+     *            Use this parameter to tag the CMK when it is created.
+     *            Alternately, you can omit this parameter and instead tag the
+     *            CMK after it is created using <a>TagResource</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateKeyRequest withTags(java.util.Collection<Tag> tags) {
+        setTags(tags);
         return this;
     }
 
@@ -1173,7 +1324,10 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
         if (getOrigin() != null)
             sb.append("Origin: " + getOrigin() + ",");
         if (getBypassPolicyLockoutSafetyCheck() != null)
-            sb.append("BypassPolicyLockoutSafetyCheck: " + getBypassPolicyLockoutSafetyCheck());
+            sb.append("BypassPolicyLockoutSafetyCheck: " + getBypassPolicyLockoutSafetyCheck()
+                    + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -1192,6 +1346,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
                 * hashCode
                 + ((getBypassPolicyLockoutSafetyCheck() == null) ? 0
                         : getBypassPolicyLockoutSafetyCheck().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -1229,6 +1384,10 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
         if (other.getBypassPolicyLockoutSafetyCheck() != null
                 && other.getBypassPolicyLockoutSafetyCheck().equals(
                         this.getBypassPolicyLockoutSafetyCheck()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

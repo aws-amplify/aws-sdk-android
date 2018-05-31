@@ -19,24 +19,24 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Represents the output of a <i>DescribeTable</i> operation.
+ * Represents the output of a <code>DescribeTable</code> operation.
  * </p>
  */
 public class DescribeTableResult implements Serializable {
     /**
      * <p>
-     * Represents the properties of a table.
+     * The properties of the table.
      * </p>
      */
     private TableDescription table;
 
     /**
      * <p>
-     * Represents the properties of a table.
+     * The properties of the table.
      * </p>
      *
      * @return <p>
-     *         Represents the properties of a table.
+     *         The properties of the table.
      *         </p>
      */
     public TableDescription getTable() {
@@ -45,11 +45,11 @@ public class DescribeTableResult implements Serializable {
 
     /**
      * <p>
-     * Represents the properties of a table.
+     * The properties of the table.
      * </p>
      *
      * @param table <p>
-     *            Represents the properties of a table.
+     *            The properties of the table.
      *            </p>
      */
     public void setTable(TableDescription table) {
@@ -58,14 +58,14 @@ public class DescribeTableResult implements Serializable {
 
     /**
      * <p>
-     * Represents the properties of a table.
+     * The properties of the table.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param table <p>
-     *            Represents the properties of a table.
+     *            The properties of the table.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -21,11 +21,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Removes tags from the specified Amazon Kinesis stream. Removed tags are
- * deleted and cannot be recovered after this operation successfully completes.
+ * Removes tags from the specified Kinesis data stream. Removed tags are deleted
+ * and cannot be recovered after this operation successfully completes.
  * </p>
  * <p>
  * If you specify a tag that does not exist, it is ignored.
+ * </p>
+ * <p>
+ * <a>RemoveTagsFromStream</a> has a limit of five transactions per second per
+ * account.
  * </p>
  */
 public class RemoveTagsFromStreamRequest extends AmazonWebServiceRequest implements Serializable {

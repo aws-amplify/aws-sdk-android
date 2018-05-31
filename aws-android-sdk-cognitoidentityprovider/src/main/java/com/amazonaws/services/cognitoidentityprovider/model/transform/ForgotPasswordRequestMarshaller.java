@@ -69,16 +69,16 @@ public class ForgotPasswordRequestMarshaller implements
                 jsonWriter.name("SecretHash");
                 jsonWriter.value(secretHash);
             }
-            if (forgotPasswordRequest.getUsername() != null) {
-                String username = forgotPasswordRequest.getUsername();
-                jsonWriter.name("Username");
-                jsonWriter.value(username);
-            }
             if (forgotPasswordRequest.getUserContextData() != null) {
                 UserContextDataType userContextData = forgotPasswordRequest.getUserContextData();
                 jsonWriter.name("UserContextData");
                 UserContextDataTypeJsonMarshaller.getInstance().marshall(userContextData,
                         jsonWriter);
+            }
+            if (forgotPasswordRequest.getUsername() != null) {
+                String username = forgotPasswordRequest.getUsername();
+                jsonWriter.name("Username");
+                jsonWriter.value(username);
             }
             if (forgotPasswordRequest.getAnalyticsMetadata() != null) {
                 AnalyticsMetadataType analyticsMetadata = forgotPasswordRequest

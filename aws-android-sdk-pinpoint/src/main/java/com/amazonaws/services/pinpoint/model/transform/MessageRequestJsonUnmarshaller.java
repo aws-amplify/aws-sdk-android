@@ -41,11 +41,6 @@ class MessageRequestJsonUnmarshaller implements
                         AddressConfigurationJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("Campaign")) {
-                messageRequest.setCampaign(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
             } else if (name.equals("Context")) {
                 messageRequest.setContext(new MapUnmarshaller<String>(StringJsonUnmarshaller
                         .getInstance()
@@ -59,9 +54,6 @@ class MessageRequestJsonUnmarshaller implements
             } else if (name.equals("MessageConfiguration")) {
                 messageRequest.setMessageConfiguration(DirectMessageConfigurationJsonUnmarshaller
                         .getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("RequestId")) {
-                messageRequest.setRequestId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

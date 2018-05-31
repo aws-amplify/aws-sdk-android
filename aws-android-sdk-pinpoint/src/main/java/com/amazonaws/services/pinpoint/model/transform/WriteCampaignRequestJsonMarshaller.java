@@ -49,6 +49,11 @@ class WriteCampaignRequestJsonMarshaller {
             jsonWriter.name("HoldoutPercent");
             jsonWriter.value(holdoutPercent);
         }
+        if (writeCampaignRequest.getHook() != null) {
+            CampaignHook hook = writeCampaignRequest.getHook();
+            jsonWriter.name("Hook");
+            CampaignHookJsonMarshaller.getInstance().marshall(hook, jsonWriter);
+        }
         if (writeCampaignRequest.getIsPaused() != null) {
             Boolean isPaused = writeCampaignRequest.getIsPaused();
             jsonWriter.name("IsPaused");
@@ -85,11 +90,6 @@ class WriteCampaignRequestJsonMarshaller {
             Integer segmentVersion = writeCampaignRequest.getSegmentVersion();
             jsonWriter.name("SegmentVersion");
             jsonWriter.value(segmentVersion);
-        }
-        if (writeCampaignRequest.getTrace() != null) {
-            Boolean trace = writeCampaignRequest.getTrace();
-            jsonWriter.name("Trace");
-            jsonWriter.value(trace);
         }
         if (writeCampaignRequest.getTreatmentDescription() != null) {
             String treatmentDescription = writeCampaignRequest.getTreatmentDescription();

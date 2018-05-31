@@ -34,6 +34,9 @@ public class ListCACertificatesResult implements Serializable {
      * <p>
      * The current position within the list of CA certificates.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      */
     private String nextMarker;
 
@@ -116,6 +119,9 @@ public class ListCACertificatesResult implements Serializable {
      * <p>
      * The current position within the list of CA certificates.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @return <p>
      *         The current position within the list of CA certificates.
@@ -129,6 +135,9 @@ public class ListCACertificatesResult implements Serializable {
      * <p>
      * The current position within the list of CA certificates.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @param nextMarker <p>
      *            The current position within the list of CA certificates.
@@ -145,6 +154,9 @@ public class ListCACertificatesResult implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @param nextMarker <p>
      *            The current position within the list of CA certificates.

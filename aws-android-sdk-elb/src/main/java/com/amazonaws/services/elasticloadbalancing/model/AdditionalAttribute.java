@@ -27,6 +27,10 @@ public class AdditionalAttribute implements Serializable {
      * <p>
      * This parameter is reserved.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9.]+$<br/>
      */
     private String key;
 
@@ -34,6 +38,10 @@ public class AdditionalAttribute implements Serializable {
      * <p>
      * This parameter is reserved.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9.]+$<br/>
      */
     private String value;
 
@@ -41,6 +49,10 @@ public class AdditionalAttribute implements Serializable {
      * <p>
      * This parameter is reserved.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9.]+$<br/>
      *
      * @return <p>
      *         This parameter is reserved.
@@ -54,6 +66,10 @@ public class AdditionalAttribute implements Serializable {
      * <p>
      * This parameter is reserved.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9.]+$<br/>
      *
      * @param key <p>
      *            This parameter is reserved.
@@ -70,6 +86,10 @@ public class AdditionalAttribute implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9.]+$<br/>
      *
      * @param key <p>
      *            This parameter is reserved.
@@ -86,6 +106,10 @@ public class AdditionalAttribute implements Serializable {
      * <p>
      * This parameter is reserved.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9.]+$<br/>
      *
      * @return <p>
      *         This parameter is reserved.
@@ -99,6 +123,10 @@ public class AdditionalAttribute implements Serializable {
      * <p>
      * This parameter is reserved.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9.]+$<br/>
      *
      * @param value <p>
      *            This parameter is reserved.
@@ -115,6 +143,10 @@ public class AdditionalAttribute implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9.]+$<br/>
      *
      * @param value <p>
      *            This parameter is reserved.

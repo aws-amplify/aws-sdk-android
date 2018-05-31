@@ -21,30 +21,61 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Imports key material into an AWS KMS customer master key (CMK) from your
- * existing key management infrastructure. For more information about importing
- * key material into AWS KMS, see <a href=
+ * Imports key material into an existing AWS KMS customer master key (CMK) that
+ * was created without key material. You cannot perform this operation on a CMK
+ * in a different AWS account. For more information about creating CMKs with no
+ * key material and then importing key material, see <a href=
  * "http://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
  * >Importing Key Material</a> in the <i>AWS Key Management Service Developer
  * Guide</i>.
  * </p>
  * <p>
- * You must specify the key ID of the CMK to import the key material into. This
- * CMK's <code>Origin</code> must be <code>EXTERNAL</code>. You must also send
- * an import token and the encrypted key material. Send the import token that
- * you received in the same <a>GetParametersForImport</a> response that
- * contained the public key that you used to encrypt the key material. You must
- * also specify whether the key material expires and if so, when. When the key
- * material expires, AWS KMS deletes the key material and the CMK becomes
- * unusable. To use the CMK again, you can reimport the same key material. If
- * you set an expiration date, you can change it only by reimporting the same
- * key material and specifying a new expiration date.
+ * Before using this operation, call <a>GetParametersForImport</a>. Its response
+ * includes a public key and an import token. Use the public key to encrypt the
+ * key material. Then, submit the import token from the same
+ * <code>GetParametersForImport</code> response.
  * </p>
  * <p>
- * When this operation is successful, the specified CMK's key state changes to
- * <code>Enabled</code>, and you can use the CMK.
+ * When calling this operation, you must specify the following values:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * The key ID or key ARN of a CMK with no key material. Its <code>Origin</code>
+ * must be <code>EXTERNAL</code>.
  * </p>
  * <p>
+ * To create a CMK with no key material, call <a>CreateKey</a> and set the value
+ * of its <code>Origin</code> parameter to <code>EXTERNAL</code>. To get the
+ * <code>Origin</code> of a CMK, call <a>DescribeKey</a>.)
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * The encrypted key material. To get the public key to encrypt the key
+ * material, call <a>GetParametersForImport</a>.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * The import token that <a>GetParametersForImport</a> returned. This token and
+ * the public key used to encrypt the key material must have come from the same
+ * response.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Whether the key material expires and if so, when. If you set an expiration
+ * date, you can change it only by reimporting the same key material and
+ * specifying a new expiration date. If the key material expires, AWS KMS
+ * deletes the key material and the CMK becomes unusable. To use the CMK again,
+ * you must reimport the same key material.
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * When this operation is successful, the CMK's key state changes from
+ * <code>PendingImport</code> to <code>Enabled</code>, and you can use the CMK.
  * After you successfully import key material into a CMK, you can reimport the
  * same key material into that CMK, but you cannot import different key
  * material.
@@ -57,13 +88,15 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * <code>Origin</code> must be <code>EXTERNAL</code>.
      * </p>
      * <p>
-     * A valid identifier is the unique key ID or the Amazon Resource Name (ARN)
-     * of the CMK. Examples:
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Unique key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
@@ -74,8 +107,12 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * </li>
      * </ul>
      * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      */
     private String keyId;
 
@@ -135,13 +172,15 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * <code>Origin</code> must be <code>EXTERNAL</code>.
      * </p>
      * <p>
-     * A valid identifier is the unique key ID or the Amazon Resource Name (ARN)
-     * of the CMK. Examples:
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Unique key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
@@ -152,21 +191,27 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * </li>
      * </ul>
      * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
      *         The identifier of the CMK to import the key material into. The
      *         CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
      *         </p>
      *         <p>
-     *         A valid identifier is the unique key ID or the Amazon Resource
-     *         Name (ARN) of the CMK. Examples:
+     *         Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     *         </p>
+     *         <p>
+     *         For example:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         Unique key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     *         Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *         </p>
      *         </li>
      *         <li>
@@ -176,6 +221,10 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      *         </p>
      *         </li>
      *         </ul>
+     *         <p>
+     *         To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     *         <a>DescribeKey</a>.
+     *         </p>
      */
     public String getKeyId() {
         return keyId;
@@ -187,13 +236,15 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * <code>Origin</code> must be <code>EXTERNAL</code>.
      * </p>
      * <p>
-     * A valid identifier is the unique key ID or the Amazon Resource Name (ARN)
-     * of the CMK. Examples:
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Unique key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
@@ -204,22 +255,28 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * </li>
      * </ul>
      * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            The identifier of the CMK to import the key material into. The
      *            CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
      *            </p>
      *            <p>
-     *            A valid identifier is the unique key ID or the Amazon Resource
-     *            Name (ARN) of the CMK. Examples:
+     *            Specify the key ID or the Amazon Resource Name (ARN) of the
+     *            CMK.
+     *            </p>
+     *            <p>
+     *            For example:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Unique key ID:
-     *            <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     *            Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *            </p>
      *            </li>
      *            <li>
@@ -229,6 +286,10 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
+     *            or <a>DescribeKey</a>.
+     *            </p>
      */
     public void setKeyId(String keyId) {
         this.keyId = keyId;
@@ -240,13 +301,15 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * <code>Origin</code> must be <code>EXTERNAL</code>.
      * </p>
      * <p>
-     * A valid identifier is the unique key ID or the Amazon Resource Name (ARN)
-     * of the CMK. Examples:
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Unique key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
@@ -257,25 +320,31 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * </li>
      * </ul>
      * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            The identifier of the CMK to import the key material into. The
      *            CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
      *            </p>
      *            <p>
-     *            A valid identifier is the unique key ID or the Amazon Resource
-     *            Name (ARN) of the CMK. Examples:
+     *            Specify the key ID or the Amazon Resource Name (ARN) of the
+     *            CMK.
+     *            </p>
+     *            <p>
+     *            For example:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Unique key ID:
-     *            <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     *            Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *            </p>
      *            </li>
      *            <li>
@@ -285,6 +354,10 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
+     *            or <a>DescribeKey</a>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

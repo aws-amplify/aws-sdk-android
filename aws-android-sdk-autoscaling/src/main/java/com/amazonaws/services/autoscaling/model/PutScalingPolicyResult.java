@@ -17,6 +17,11 @@ package com.amazonaws.services.autoscaling.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * Contains the output of PutScalingPolicy.
+ * </p>
+ */
 public class PutScalingPolicyResult implements Serializable {
     /**
      * <p>
@@ -29,6 +34,13 @@ public class PutScalingPolicyResult implements Serializable {
      * <br/>
      */
     private String policyARN;
+
+    /**
+     * <p>
+     * The CloudWatch alarms created for the target tracking policy.
+     * </p>
+     */
+    private java.util.List<Alarm> alarms = new java.util.ArrayList<Alarm>();
 
     /**
      * <p>
@@ -91,6 +103,80 @@ public class PutScalingPolicyResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The CloudWatch alarms created for the target tracking policy.
+     * </p>
+     *
+     * @return <p>
+     *         The CloudWatch alarms created for the target tracking policy.
+     *         </p>
+     */
+    public java.util.List<Alarm> getAlarms() {
+        return alarms;
+    }
+
+    /**
+     * <p>
+     * The CloudWatch alarms created for the target tracking policy.
+     * </p>
+     *
+     * @param alarms <p>
+     *            The CloudWatch alarms created for the target tracking policy.
+     *            </p>
+     */
+    public void setAlarms(java.util.Collection<Alarm> alarms) {
+        if (alarms == null) {
+            this.alarms = null;
+            return;
+        }
+
+        this.alarms = new java.util.ArrayList<Alarm>(alarms);
+    }
+
+    /**
+     * <p>
+     * The CloudWatch alarms created for the target tracking policy.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param alarms <p>
+     *            The CloudWatch alarms created for the target tracking policy.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PutScalingPolicyResult withAlarms(Alarm... alarms) {
+        if (getAlarms() == null) {
+            this.alarms = new java.util.ArrayList<Alarm>(alarms.length);
+        }
+        for (Alarm value : alarms) {
+            this.alarms.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The CloudWatch alarms created for the target tracking policy.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param alarms <p>
+     *            The CloudWatch alarms created for the target tracking policy.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PutScalingPolicyResult withAlarms(java.util.Collection<Alarm> alarms) {
+        setAlarms(alarms);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -102,7 +188,9 @@ public class PutScalingPolicyResult implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getPolicyARN() != null)
-            sb.append("PolicyARN: " + getPolicyARN());
+            sb.append("PolicyARN: " + getPolicyARN() + ",");
+        if (getAlarms() != null)
+            sb.append("Alarms: " + getAlarms());
         sb.append("}");
         return sb.toString();
     }
@@ -113,6 +201,7 @@ public class PutScalingPolicyResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getPolicyARN() == null) ? 0 : getPolicyARN().hashCode());
+        hashCode = prime * hashCode + ((getAlarms() == null) ? 0 : getAlarms().hashCode());
         return hashCode;
     }
 
@@ -131,6 +220,10 @@ public class PutScalingPolicyResult implements Serializable {
             return false;
         if (other.getPolicyARN() != null
                 && other.getPolicyARN().equals(this.getPolicyARN()) == false)
+            return false;
+        if (other.getAlarms() == null ^ this.getAlarms() == null)
+            return false;
+        if (other.getAlarms() != null && other.getAlarms().equals(this.getAlarms()) == false)
             return false;
         return true;
     }

@@ -22,17 +22,17 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Configures an Auto Scaling group to send notifications when specified events
- * take place. Subscribers to this topic can have messages for events delivered
- * to an endpoint such as a web server or email address.
+ * take place. Subscribers to the specified topic can have messages delivered to
+ * an endpoint such as a web server or an email address.
+ * </p>
+ * <p>
+ * This configuration overwrites any existing configuration.
  * </p>
  * <p>
  * For more information see <a href=
- * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/ASGettingNotifications.html"
- * >Getting Notifications When Your Auto Scaling Group Changes</a> in the
- * <i>Auto Scaling Developer Guide</i>.
- * </p>
- * <p>
- * This configuration overwrites an existing configuration.
+ * "http://docs.aws.amazon.com/autoscaling/latest/userguide/ASGettingNotifications.html"
+ * >Getting SNS Notifications When Your Auto Scaling Group Scales</a> in the
+ * <i>Auto Scaling User Guide</i>.
  * </p>
  */
 public class PutNotificationConfigurationRequest extends AmazonWebServiceRequest implements

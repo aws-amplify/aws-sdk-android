@@ -24,6 +24,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Confirms user registration as an admin without using a confirmation code.
  * Works on any user.
  * </p>
+ * <p>
+ * Requires developer credentials.
+ * </p>
  */
 public class AdminConfirmSignUpRequest extends AmazonWebServiceRequest implements Serializable {
     /**

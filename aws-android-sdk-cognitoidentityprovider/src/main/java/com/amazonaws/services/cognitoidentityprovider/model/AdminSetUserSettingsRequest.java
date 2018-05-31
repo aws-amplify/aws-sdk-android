@@ -23,6 +23,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Sets all the user settings for a specified user name. Works on any user.
  * </p>
+ * <p>
+ * Requires developer credentials.
+ * </p>
  */
 public class AdminSetUserSettingsRequest extends AmazonWebServiceRequest implements Serializable {
     /**

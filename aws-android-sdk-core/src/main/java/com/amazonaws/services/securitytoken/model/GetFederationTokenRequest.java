@@ -78,7 +78,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * You cannot call any STS APIs.
+ * You cannot call any STS APIs except <code>GetCallerIdentity</code>.
  * </p>
  * </li>
  * </ul>
@@ -148,9 +148,9 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * such as in an Amazon S3 bucket policy.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
      * characters: =,.@-
      * </p>
      * <p>
@@ -245,10 +245,10 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      *            Amazon S3 bucket policy.
      *            </p>
      *            <p>
-     *            The format for this parameter, as described by its regex
-     *            pattern, is a string of characters consisting of upper- and
-     *            lower-case alphanumeric characters with no spaces. You can
-     *            also include any of the following characters: =,.@-
+     *            The regex used to validate this parameter is a string of
+     *            characters consisting of upper- and lower-case alphanumeric
+     *            characters with no spaces. You can also include underscores or
+     *            any of the following characters: =,.@-
      *            </p>
      */
     public GetFederationTokenRequest(String name) {
@@ -263,9 +263,9 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * such as in an Amazon S3 bucket policy.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
      * characters: =,.@-
      * </p>
      * <p>
@@ -280,10 +280,10 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      *         resource-based policy, such as in an Amazon S3 bucket policy.
      *         </p>
      *         <p>
-     *         The format for this parameter, as described by its regex pattern,
-     *         is a string of characters consisting of upper- and lower-case
-     *         alphanumeric characters with no spaces. You can also include any
-     *         of the following characters: =,.@-
+     *         The regex used to validate this parameter is a string of
+     *         characters consisting of upper- and lower-case alphanumeric
+     *         characters with no spaces. You can also include underscores or
+     *         any of the following characters: =,.@-
      *         </p>
      */
     public String getName() {
@@ -298,9 +298,9 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * such as in an Amazon S3 bucket policy.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
      * characters: =,.@-
      * </p>
      * <p>
@@ -316,10 +316,10 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      *            Amazon S3 bucket policy.
      *            </p>
      *            <p>
-     *            The format for this parameter, as described by its regex
-     *            pattern, is a string of characters consisting of upper- and
-     *            lower-case alphanumeric characters with no spaces. You can
-     *            also include any of the following characters: =,.@-
+     *            The regex used to validate this parameter is a string of
+     *            characters consisting of upper- and lower-case alphanumeric
+     *            characters with no spaces. You can also include underscores or
+     *            any of the following characters: =,.@-
      *            </p>
      */
     public void setName(String name) {
@@ -334,9 +334,9 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * such as in an Amazon S3 bucket policy.
      * </p>
      * <p>
-     * The format for this parameter, as described by its regex pattern, is a
-     * string of characters consisting of upper- and lower-case alphanumeric
-     * characters with no spaces. You can also include any of the following
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
      * characters: =,.@-
      * </p>
      * <p>
@@ -355,10 +355,10 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      *            Amazon S3 bucket policy.
      *            </p>
      *            <p>
-     *            The format for this parameter, as described by its regex
-     *            pattern, is a string of characters consisting of upper- and
-     *            lower-case alphanumeric characters with no spaces. You can
-     *            also include any of the following characters: =,.@-
+     *            The regex used to validate this parameter is a string of
+     *            characters consisting of upper- and lower-case alphanumeric
+     *            characters with no spaces. You can also include underscores or
+     *            any of the following characters: =,.@-
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

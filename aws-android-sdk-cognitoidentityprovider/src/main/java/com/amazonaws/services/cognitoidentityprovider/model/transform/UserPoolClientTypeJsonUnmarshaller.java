@@ -72,6 +72,43 @@ class UserPoolClientTypeJsonUnmarshaller implements
                         StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("SupportedIdentityProviders")) {
+                userPoolClientType.setSupportedIdentityProviders(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("CallbackURLs")) {
+                userPoolClientType.setCallbackURLs(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("LogoutURLs")) {
+                userPoolClientType.setLogoutURLs(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("DefaultRedirectURI")) {
+                userPoolClientType.setDefaultRedirectURI(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("AllowedOAuthFlows")) {
+                userPoolClientType.setAllowedOAuthFlows(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("AllowedOAuthScopes")) {
+                userPoolClientType.setAllowedOAuthScopes(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("AllowedOAuthFlowsUserPoolClient")) {
+                userPoolClientType.setAllowedOAuthFlowsUserPoolClient(BooleanJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("AnalyticsConfiguration")) {
+                userPoolClientType
+                        .setAnalyticsConfiguration(AnalyticsConfigurationTypeJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

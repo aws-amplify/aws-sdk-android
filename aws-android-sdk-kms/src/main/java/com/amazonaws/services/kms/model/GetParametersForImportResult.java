@@ -26,7 +26,7 @@ public class GetParametersForImportResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      */
     private String keyId;
 
@@ -57,7 +57,7 @@ public class GetParametersForImportResult implements Serializable {
      * The time at which the import token and public key are no longer valid.
      * After this time, you cannot use them to make an <a>ImportKeyMaterial</a>
      * request and you must send another <code>GetParametersForImport</code>
-     * request to retrieve new ones.
+     * request to get new ones.
      * </p>
      */
     private java.util.Date parametersValidTo;
@@ -70,7 +70,7 @@ public class GetParametersForImportResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
      *         The identifier of the CMK to use in a subsequent
@@ -90,7 +90,7 @@ public class GetParametersForImportResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            The identifier of the CMK to use in a subsequent
@@ -113,7 +113,7 @@ public class GetParametersForImportResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            The identifier of the CMK to use in a subsequent
@@ -253,14 +253,14 @@ public class GetParametersForImportResult implements Serializable {
      * The time at which the import token and public key are no longer valid.
      * After this time, you cannot use them to make an <a>ImportKeyMaterial</a>
      * request and you must send another <code>GetParametersForImport</code>
-     * request to retrieve new ones.
+     * request to get new ones.
      * </p>
      *
      * @return <p>
      *         The time at which the import token and public key are no longer
      *         valid. After this time, you cannot use them to make an
      *         <a>ImportKeyMaterial</a> request and you must send another
-     *         <code>GetParametersForImport</code> request to retrieve new ones.
+     *         <code>GetParametersForImport</code> request to get new ones.
      *         </p>
      */
     public java.util.Date getParametersValidTo() {
@@ -272,15 +272,14 @@ public class GetParametersForImportResult implements Serializable {
      * The time at which the import token and public key are no longer valid.
      * After this time, you cannot use them to make an <a>ImportKeyMaterial</a>
      * request and you must send another <code>GetParametersForImport</code>
-     * request to retrieve new ones.
+     * request to get new ones.
      * </p>
      *
      * @param parametersValidTo <p>
      *            The time at which the import token and public key are no
      *            longer valid. After this time, you cannot use them to make an
      *            <a>ImportKeyMaterial</a> request and you must send another
-     *            <code>GetParametersForImport</code> request to retrieve new
-     *            ones.
+     *            <code>GetParametersForImport</code> request to get new ones.
      *            </p>
      */
     public void setParametersValidTo(java.util.Date parametersValidTo) {
@@ -292,7 +291,7 @@ public class GetParametersForImportResult implements Serializable {
      * The time at which the import token and public key are no longer valid.
      * After this time, you cannot use them to make an <a>ImportKeyMaterial</a>
      * request and you must send another <code>GetParametersForImport</code>
-     * request to retrieve new ones.
+     * request to get new ones.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -302,8 +301,7 @@ public class GetParametersForImportResult implements Serializable {
      *            The time at which the import token and public key are no
      *            longer valid. After this time, you cannot use them to make an
      *            <a>ImportKeyMaterial</a> request and you must send another
-     *            <code>GetParametersForImport</code> request to retrieve new
-     *            ones.
+     *            <code>GetParametersForImport</code> request to get new ones.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

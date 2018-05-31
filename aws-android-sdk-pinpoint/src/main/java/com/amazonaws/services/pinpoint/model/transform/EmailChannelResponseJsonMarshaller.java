@@ -46,6 +46,11 @@ class EmailChannelResponseJsonMarshaller {
             jsonWriter.name("FromAddress");
             jsonWriter.value(fromAddress);
         }
+        if (emailChannelResponse.getHasCredential() != null) {
+            Boolean hasCredential = emailChannelResponse.getHasCredential();
+            jsonWriter.name("HasCredential");
+            jsonWriter.value(hasCredential);
+        }
         if (emailChannelResponse.getId() != null) {
             String id = emailChannelResponse.getId();
             jsonWriter.name("Id");

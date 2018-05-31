@@ -63,11 +63,6 @@ class BaiduMessageJsonMarshaller {
             jsonWriter.name("ImageUrl");
             jsonWriter.value(imageUrl);
         }
-        if (baiduMessage.getJsonData() != null) {
-            String jsonData = baiduMessage.getJsonData();
-            jsonWriter.name("JsonData");
-            jsonWriter.value(jsonData);
-        }
         if (baiduMessage.getRawContent() != null) {
             String rawContent = baiduMessage.getRawContent();
             jsonWriter.name("RawContent");

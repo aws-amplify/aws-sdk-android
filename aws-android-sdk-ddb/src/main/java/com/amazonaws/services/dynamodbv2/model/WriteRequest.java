@@ -19,24 +19,24 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Represents an operation to perform - either <i>DeleteItem</i> or
- * <i>PutItem</i>. You can only request one of these operations, not both, in a
- * single <i>WriteRequest</i>. If you do need to perform both of these
- * operations, you will need to provide two separate <i>WriteRequest</i>
- * objects.
+ * Represents an operation to perform - either <code>DeleteItem</code> or
+ * <code>PutItem</code>. You can only request one of these operations, not both,
+ * in a single <code>WriteRequest</code>. If you do need to perform both of
+ * these operations, you will need to provide two separate
+ * <code>WriteRequest</code> objects.
  * </p>
  */
 public class WriteRequest implements Serializable {
     /**
      * <p>
-     * A request to perform a <i>PutItem</i> operation.
+     * A request to perform a <code>PutItem</code> operation.
      * </p>
      */
     private PutRequest putRequest;
 
     /**
      * <p>
-     * A request to perform a <i>DeleteItem</i> operation.
+     * A request to perform a <code>DeleteItem</code> operation.
      * </p>
      */
     private DeleteRequest deleteRequest;
@@ -55,7 +55,7 @@ public class WriteRequest implements Serializable {
      * members.
      * 
      * @param putRequest <p>
-     *            A request to perform a <i>PutItem</i> operation.
+     *            A request to perform a <code>PutItem</code> operation.
      *            </p>
      */
     public WriteRequest(PutRequest putRequest) {
@@ -68,7 +68,7 @@ public class WriteRequest implements Serializable {
      * members.
      * 
      * @param deleteRequest <p>
-     *            A request to perform a <i>DeleteItem</i> operation.
+     *            A request to perform a <code>DeleteItem</code> operation.
      *            </p>
      */
     public WriteRequest(DeleteRequest deleteRequest) {
@@ -77,11 +77,11 @@ public class WriteRequest implements Serializable {
 
     /**
      * <p>
-     * A request to perform a <i>PutItem</i> operation.
+     * A request to perform a <code>PutItem</code> operation.
      * </p>
      *
      * @return <p>
-     *         A request to perform a <i>PutItem</i> operation.
+     *         A request to perform a <code>PutItem</code> operation.
      *         </p>
      */
     public PutRequest getPutRequest() {
@@ -90,11 +90,11 @@ public class WriteRequest implements Serializable {
 
     /**
      * <p>
-     * A request to perform a <i>PutItem</i> operation.
+     * A request to perform a <code>PutItem</code> operation.
      * </p>
      *
      * @param putRequest <p>
-     *            A request to perform a <i>PutItem</i> operation.
+     *            A request to perform a <code>PutItem</code> operation.
      *            </p>
      */
     public void setPutRequest(PutRequest putRequest) {
@@ -103,14 +103,14 @@ public class WriteRequest implements Serializable {
 
     /**
      * <p>
-     * A request to perform a <i>PutItem</i> operation.
+     * A request to perform a <code>PutItem</code> operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param putRequest <p>
-     *            A request to perform a <i>PutItem</i> operation.
+     *            A request to perform a <code>PutItem</code> operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -122,11 +122,11 @@ public class WriteRequest implements Serializable {
 
     /**
      * <p>
-     * A request to perform a <i>DeleteItem</i> operation.
+     * A request to perform a <code>DeleteItem</code> operation.
      * </p>
      *
      * @return <p>
-     *         A request to perform a <i>DeleteItem</i> operation.
+     *         A request to perform a <code>DeleteItem</code> operation.
      *         </p>
      */
     public DeleteRequest getDeleteRequest() {
@@ -135,11 +135,11 @@ public class WriteRequest implements Serializable {
 
     /**
      * <p>
-     * A request to perform a <i>DeleteItem</i> operation.
+     * A request to perform a <code>DeleteItem</code> operation.
      * </p>
      *
      * @param deleteRequest <p>
-     *            A request to perform a <i>DeleteItem</i> operation.
+     *            A request to perform a <code>DeleteItem</code> operation.
      *            </p>
      */
     public void setDeleteRequest(DeleteRequest deleteRequest) {
@@ -148,14 +148,14 @@ public class WriteRequest implements Serializable {
 
     /**
      * <p>
-     * A request to perform a <i>DeleteItem</i> operation.
+     * A request to perform a <code>DeleteItem</code> operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param deleteRequest <p>
-     *            A request to perform a <i>DeleteItem</i> operation.
+     *            A request to perform a <code>DeleteItem</code> operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -17,9 +17,16 @@ package com.amazonaws.services.kinesisvideo.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * An object describing a Kinesis video stream.
+ * </p>
+ */
 public class StreamInfo implements Serializable {
     /**
-     * The new value for the deviceName property for this object.
+     * <p>
+     * The name of the device that is associated with the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -28,7 +35,9 @@ public class StreamInfo implements Serializable {
     private String deviceName;
 
     /**
-     * The new value for the streamName property for this object.
+     * <p>
+     * The name of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -37,7 +46,9 @@ public class StreamInfo implements Serializable {
     private String streamName;
 
     /**
-     * The new value for the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -48,7 +59,9 @@ public class StreamInfo implements Serializable {
     private String streamARN;
 
     /**
-     * The new value for the mediaType property for this object.
+     * <p>
+     * The <code>MediaType</code> of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -57,7 +70,10 @@ public class StreamInfo implements Serializable {
     private String mediaType;
 
     /**
-     * The new value for the kmsKeyId property for this object.
+     * <p>
+     * The ID of the AWS Key Management Service (AWS KMS) key that Kinesis Video
+     * Streams uses to encrypt data on the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
@@ -65,7 +81,9 @@ public class StreamInfo implements Serializable {
     private String kmsKeyId;
 
     /**
-     * The new value for the version property for this object.
+     * <p>
+     * The version of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
@@ -74,7 +92,9 @@ public class StreamInfo implements Serializable {
     private String version;
 
     /**
-     * The new value for the status property for this object.
+     * <p>
+     * The status of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATING, ACTIVE, UPDATING, DELETING
@@ -82,12 +102,16 @@ public class StreamInfo implements Serializable {
     private String status;
 
     /**
-     * The new value for the creationTime property for this object.
+     * <p>
+     * A time stamp that indicates when the stream was created.
+     * </p>
      */
     private java.util.Date creationTime;
 
     /**
-     * The new value for the dataRetentionInHours property for this object.
+     * <p>
+     * How long the stream retains data, in hours.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
@@ -95,34 +119,43 @@ public class StreamInfo implements Serializable {
     private Integer dataRetentionInHours;
 
     /**
-     * Returns the value of the deviceName property for this object.
+     * <p>
+     * The name of the device that is associated with the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @return The value of the deviceName property for this object.
+     * @return <p>
+     *         The name of the device that is associated with the stream.
+     *         </p>
      */
     public String getDeviceName() {
         return deviceName;
     }
 
     /**
-     * Sets the value of deviceName
+     * <p>
+     * The name of the device that is associated with the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param deviceName The new value for the deviceName property for this
-     *            object.
+     * @param deviceName <p>
+     *            The name of the device that is associated with the stream.
+     *            </p>
      */
     public void setDeviceName(String deviceName) {
         this.deviceName = deviceName;
     }
 
     /**
-     * Sets the value of the deviceName property for this object.
+     * <p>
+     * The name of the device that is associated with the stream.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -131,8 +164,9 @@ public class StreamInfo implements Serializable {
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param deviceName The new value for the deviceName property for this
-     *            object.
+     * @param deviceName <p>
+     *            The name of the device that is associated with the stream.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -142,34 +176,43 @@ public class StreamInfo implements Serializable {
     }
 
     /**
-     * Returns the value of the streamName property for this object.
+     * <p>
+     * The name of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @return The value of the streamName property for this object.
+     * @return <p>
+     *         The name of the stream.
+     *         </p>
      */
     public String getStreamName() {
         return streamName;
     }
 
     /**
-     * Sets the value of streamName
+     * <p>
+     * The name of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param streamName The new value for the streamName property for this
-     *            object.
+     * @param streamName <p>
+     *            The name of the stream.
+     *            </p>
      */
     public void setStreamName(String streamName) {
         this.streamName = streamName;
     }
 
     /**
-     * Sets the value of the streamName property for this object.
+     * <p>
+     * The name of the stream.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -178,8 +221,9 @@ public class StreamInfo implements Serializable {
      * <b>Length: </b>1 - 256<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
-     * @param streamName The new value for the streamName property for this
-     *            object.
+     * @param streamName <p>
+     *            The name of the stream.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -189,7 +233,9 @@ public class StreamInfo implements Serializable {
     }
 
     /**
-     * Returns the value of the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -197,14 +243,18 @@ public class StreamInfo implements Serializable {
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @return The value of the streamARN property for this object.
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the stream.
+     *         </p>
      */
     public String getStreamARN() {
         return streamARN;
     }
 
     /**
-     * Sets the value of streamARN
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -212,15 +262,18 @@ public class StreamInfo implements Serializable {
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @param streamARN The new value for the streamARN property for this
-     *            object.
+     * @param streamARN <p>
+     *            The Amazon Resource Name (ARN) of the stream.
+     *            </p>
      */
     public void setStreamARN(String streamARN) {
         this.streamARN = streamARN;
     }
 
     /**
-     * Sets the value of the streamARN property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -231,8 +284,9 @@ public class StreamInfo implements Serializable {
      * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
      * <br/>
      *
-     * @param streamARN The new value for the streamARN property for this
-     *            object.
+     * @param streamARN <p>
+     *            The Amazon Resource Name (ARN) of the stream.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -242,34 +296,43 @@ public class StreamInfo implements Serializable {
     }
 
     /**
-     * Returns the value of the mediaType property for this object.
+     * <p>
+     * The <code>MediaType</code> of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+<br/>
      *
-     * @return The value of the mediaType property for this object.
+     * @return <p>
+     *         The <code>MediaType</code> of the stream.
+     *         </p>
      */
     public String getMediaType() {
         return mediaType;
     }
 
     /**
-     * Sets the value of mediaType
+     * <p>
+     * The <code>MediaType</code> of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+<br/>
      *
-     * @param mediaType The new value for the mediaType property for this
-     *            object.
+     * @param mediaType <p>
+     *            The <code>MediaType</code> of the stream.
+     *            </p>
      */
     public void setMediaType(String mediaType) {
         this.mediaType = mediaType;
     }
 
     /**
-     * Sets the value of the mediaType property for this object.
+     * <p>
+     * The <code>MediaType</code> of the stream.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -278,8 +341,9 @@ public class StreamInfo implements Serializable {
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\w\-\.\+]+/[\w\-\.\+]+<br/>
      *
-     * @param mediaType The new value for the mediaType property for this
-     *            object.
+     * @param mediaType <p>
+     *            The <code>MediaType</code> of the stream.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -289,31 +353,46 @@ public class StreamInfo implements Serializable {
     }
 
     /**
-     * Returns the value of the kmsKeyId property for this object.
+     * <p>
+     * The ID of the AWS Key Management Service (AWS KMS) key that Kinesis Video
+     * Streams uses to encrypt data on the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
-     * @return The value of the kmsKeyId property for this object.
+     * @return <p>
+     *         The ID of the AWS Key Management Service (AWS KMS) key that
+     *         Kinesis Video Streams uses to encrypt data on the stream.
+     *         </p>
      */
     public String getKmsKeyId() {
         return kmsKeyId;
     }
 
     /**
-     * Sets the value of kmsKeyId
+     * <p>
+     * The ID of the AWS Key Management Service (AWS KMS) key that Kinesis Video
+     * Streams uses to encrypt data on the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
-     * @param kmsKeyId The new value for the kmsKeyId property for this object.
+     * @param kmsKeyId <p>
+     *            The ID of the AWS Key Management Service (AWS KMS) key that
+     *            Kinesis Video Streams uses to encrypt data on the stream.
+     *            </p>
      */
     public void setKmsKeyId(String kmsKeyId) {
         this.kmsKeyId = kmsKeyId;
     }
 
     /**
-     * Sets the value of the kmsKeyId property for this object.
+     * <p>
+     * The ID of the AWS Key Management Service (AWS KMS) key that Kinesis Video
+     * Streams uses to encrypt data on the stream.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -321,7 +400,10 @@ public class StreamInfo implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
-     * @param kmsKeyId The new value for the kmsKeyId property for this object.
+     * @param kmsKeyId <p>
+     *            The ID of the AWS Key Management Service (AWS KMS) key that
+     *            Kinesis Video Streams uses to encrypt data on the stream.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -331,33 +413,43 @@ public class StreamInfo implements Serializable {
     }
 
     /**
-     * Returns the value of the version property for this object.
+     * <p>
+     * The version of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9]+<br/>
      *
-     * @return The value of the version property for this object.
+     * @return <p>
+     *         The version of the stream.
+     *         </p>
      */
     public String getVersion() {
         return version;
     }
 
     /**
-     * Sets the value of version
+     * <p>
+     * The version of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9]+<br/>
      *
-     * @param version The new value for the version property for this object.
+     * @param version <p>
+     *            The version of the stream.
+     *            </p>
      */
     public void setVersion(String version) {
         this.version = version;
     }
 
     /**
-     * Sets the value of the version property for this object.
+     * <p>
+     * The version of the stream.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -366,7 +458,9 @@ public class StreamInfo implements Serializable {
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9]+<br/>
      *
-     * @param version The new value for the version property for this object.
+     * @param version <p>
+     *            The version of the stream.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -376,12 +470,16 @@ public class StreamInfo implements Serializable {
     }
 
     /**
-     * Returns the value of the status property for this object.
+     * <p>
+     * The status of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATING, ACTIVE, UPDATING, DELETING
      *
-     * @return The value of the status property for this object.
+     * @return <p>
+     *         The status of the stream.
+     *         </p>
      * @see Status
      */
     public String getStatus() {
@@ -389,12 +487,16 @@ public class StreamInfo implements Serializable {
     }
 
     /**
-     * Sets the value of status
+     * <p>
+     * The status of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATING, ACTIVE, UPDATING, DELETING
      *
-     * @param status The new value for the status property for this object.
+     * @param status <p>
+     *            The status of the stream.
+     *            </p>
      * @see Status
      */
     public void setStatus(String status) {
@@ -402,7 +504,9 @@ public class StreamInfo implements Serializable {
     }
 
     /**
-     * Sets the value of the status property for this object.
+     * <p>
+     * The status of the stream.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -410,7 +514,9 @@ public class StreamInfo implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATING, ACTIVE, UPDATING, DELETING
      *
-     * @param status The new value for the status property for this object.
+     * @param status <p>
+     *            The status of the stream.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Status
@@ -421,12 +527,16 @@ public class StreamInfo implements Serializable {
     }
 
     /**
-     * Sets the value of status
+     * <p>
+     * The status of the stream.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATING, ACTIVE, UPDATING, DELETING
      *
-     * @param status The new value for the status property for this object.
+     * @param status <p>
+     *            The status of the stream.
+     *            </p>
      * @see Status
      */
     public void setStatus(Status status) {
@@ -434,7 +544,9 @@ public class StreamInfo implements Serializable {
     }
 
     /**
-     * Sets the value of the status property for this object.
+     * <p>
+     * The status of the stream.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -442,7 +554,9 @@ public class StreamInfo implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATING, ACTIVE, UPDATING, DELETING
      *
-     * @param status The new value for the status property for this object.
+     * @param status <p>
+     *            The status of the stream.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Status
@@ -453,32 +567,42 @@ public class StreamInfo implements Serializable {
     }
 
     /**
-     * Returns the value of the creationTime property for this object.
+     * <p>
+     * A time stamp that indicates when the stream was created.
+     * </p>
      *
-     * @return The value of the creationTime property for this object.
+     * @return <p>
+     *         A time stamp that indicates when the stream was created.
+     *         </p>
      */
     public java.util.Date getCreationTime() {
         return creationTime;
     }
 
     /**
-     * Sets the value of creationTime
+     * <p>
+     * A time stamp that indicates when the stream was created.
+     * </p>
      *
-     * @param creationTime The new value for the creationTime property for this
-     *            object.
+     * @param creationTime <p>
+     *            A time stamp that indicates when the stream was created.
+     *            </p>
      */
     public void setCreationTime(java.util.Date creationTime) {
         this.creationTime = creationTime;
     }
 
     /**
-     * Sets the value of the creationTime property for this object.
+     * <p>
+     * A time stamp that indicates when the stream was created.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param creationTime The new value for the creationTime property for this
-     *            object.
+     * @param creationTime <p>
+     *            A time stamp that indicates when the stream was created.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -488,32 +612,41 @@ public class StreamInfo implements Serializable {
     }
 
     /**
-     * Returns the value of the dataRetentionInHours property for this object.
+     * <p>
+     * How long the stream retains data, in hours.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
-     * @return The value of the dataRetentionInHours property for this object.
+     * @return <p>
+     *         How long the stream retains data, in hours.
+     *         </p>
      */
     public Integer getDataRetentionInHours() {
         return dataRetentionInHours;
     }
 
     /**
-     * Sets the value of dataRetentionInHours
+     * <p>
+     * How long the stream retains data, in hours.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
-     * @param dataRetentionInHours The new value for the dataRetentionInHours
-     *            property for this object.
+     * @param dataRetentionInHours <p>
+     *            How long the stream retains data, in hours.
+     *            </p>
      */
     public void setDataRetentionInHours(Integer dataRetentionInHours) {
         this.dataRetentionInHours = dataRetentionInHours;
     }
 
     /**
-     * Sets the value of the dataRetentionInHours property for this object.
+     * <p>
+     * How long the stream retains data, in hours.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -521,8 +654,9 @@ public class StreamInfo implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
-     * @param dataRetentionInHours The new value for the dataRetentionInHours
-     *            property for this object.
+     * @param dataRetentionInHours <p>
+     *            How long the stream retains data, in hours.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

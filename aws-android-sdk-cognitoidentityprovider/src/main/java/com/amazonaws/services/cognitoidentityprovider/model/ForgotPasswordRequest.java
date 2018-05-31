@@ -21,7 +21,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Retrieves the password for the specified client ID or username.
+ * Calling this API causes a message to be sent to the end user with a
+ * confirmation code that is required to change the user's password. For the
+ * <code>Username</code> parameter, you can use the username or user alias. If a
+ * verified phone number exists for the user, the confirmation code is sent to
+ * the phone number. Otherwise, if a verified email exists, the confirmation
+ * code is sent to the email. If neither a verified phone number nor a verified
+ * email exists, <code>InvalidParameterException</code> is thrown. To use the
+ * confirmation code for resetting the password, call .
  * </p>
  */
 public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Serializable {
@@ -51,7 +58,16 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The user name of the user for whom you want to enter a code to retrieve a
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
+     * </p>
+     */
+    private UserContextDataType userContextData;
+
+    /**
+     * <p>
+     * The user name of the user for whom you want to enter a code to reset a
      * forgotten password.
      * </p>
      * <p>
@@ -63,14 +79,8 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Base64 encoded string for user context data collected for risk evaluation
-     * </p>
-     */
-    private UserContextDataType userContextData;
-
-    /**
-     * <p>
-     * The pinpoint installation id.
+     * The Amazon Pinpoint analytics metadata for collecting metrics for
+     * <code>ForgotPassword</code> calls.
      * </p>
      */
     private AnalyticsMetadataType analyticsMetadata;
@@ -203,75 +213,15 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The user name of the user for whom you want to enter a code to retrieve a
-     * forgotten password.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
-     *
-     * @return <p>
-     *         The user name of the user for whom you want to enter a code to
-     *         retrieve a forgotten password.
-     *         </p>
-     */
-    public String getUsername() {
-        return username;
-    }
-
-    /**
-     * <p>
-     * The user name of the user for whom you want to enter a code to retrieve a
-     * forgotten password.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
-     *
-     * @param username <p>
-     *            The user name of the user for whom you want to enter a code to
-     *            retrieve a forgotten password.
-     *            </p>
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    /**
-     * <p>
-     * The user name of the user for whom you want to enter a code to retrieve a
-     * forgotten password.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
-     *
-     * @param username <p>
-     *            The user name of the user for whom you want to enter a code to
-     *            retrieve a forgotten password.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public ForgotPasswordRequest withUsername(String username) {
-        this.username = username;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Base64 encoded string for user context data collected for risk evaluation
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
      * </p>
      *
      * @return <p>
-     *         Base64 encoded string for user context data collected for risk
-     *         evaluation
+     *         Contextual data such as the user's device fingerprint, IP
+     *         address, or location used for evaluating the risk of an
+     *         unexpected event by Amazon Cognito advanced security.
      *         </p>
      */
     public UserContextDataType getUserContextData() {
@@ -280,12 +230,15 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Base64 encoded string for user context data collected for risk evaluation
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
      * </p>
      *
      * @param userContextData <p>
-     *            Base64 encoded string for user context data collected for risk
-     *            evaluation
+     *            Contextual data such as the user's device fingerprint, IP
+     *            address, or location used for evaluating the risk of an
+     *            unexpected event by Amazon Cognito advanced security.
      *            </p>
      */
     public void setUserContextData(UserContextDataType userContextData) {
@@ -294,15 +247,18 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Base64 encoded string for user context data collected for risk evaluation
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param userContextData <p>
-     *            Base64 encoded string for user context data collected for risk
-     *            evaluation
+     *            Contextual data such as the user's device fingerprint, IP
+     *            address, or location used for evaluating the risk of an
+     *            unexpected event by Amazon Cognito advanced security.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -314,11 +270,76 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The pinpoint installation id.
+     * The user name of the user for whom you want to enter a code to reset a
+     * forgotten password.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
+     *
+     * @return <p>
+     *         The user name of the user for whom you want to enter a code to
+     *         reset a forgotten password.
+     *         </p>
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * <p>
+     * The user name of the user for whom you want to enter a code to reset a
+     * forgotten password.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
+     *
+     * @param username <p>
+     *            The user name of the user for whom you want to enter a code to
+     *            reset a forgotten password.
+     *            </p>
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * <p>
+     * The user name of the user for whom you want to enter a code to reset a
+     * forgotten password.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
+     *
+     * @param username <p>
+     *            The user name of the user for whom you want to enter a code to
+     *            reset a forgotten password.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ForgotPasswordRequest withUsername(String username) {
+        this.username = username;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Pinpoint analytics metadata for collecting metrics for
+     * <code>ForgotPassword</code> calls.
      * </p>
      *
      * @return <p>
-     *         The pinpoint installation id.
+     *         The Amazon Pinpoint analytics metadata for collecting metrics for
+     *         <code>ForgotPassword</code> calls.
      *         </p>
      */
     public AnalyticsMetadataType getAnalyticsMetadata() {
@@ -327,11 +348,13 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The pinpoint installation id.
+     * The Amazon Pinpoint analytics metadata for collecting metrics for
+     * <code>ForgotPassword</code> calls.
      * </p>
      *
      * @param analyticsMetadata <p>
-     *            The pinpoint installation id.
+     *            The Amazon Pinpoint analytics metadata for collecting metrics
+     *            for <code>ForgotPassword</code> calls.
      *            </p>
      */
     public void setAnalyticsMetadata(AnalyticsMetadataType analyticsMetadata) {
@@ -340,14 +363,16 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The pinpoint installation id.
+     * The Amazon Pinpoint analytics metadata for collecting metrics for
+     * <code>ForgotPassword</code> calls.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param analyticsMetadata <p>
-     *            The pinpoint installation id.
+     *            The Amazon Pinpoint analytics metadata for collecting metrics
+     *            for <code>ForgotPassword</code> calls.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -372,10 +397,10 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
             sb.append("ClientId: " + getClientId() + ",");
         if (getSecretHash() != null)
             sb.append("SecretHash: " + getSecretHash() + ",");
-        if (getUsername() != null)
-            sb.append("Username: " + getUsername() + ",");
         if (getUserContextData() != null)
             sb.append("UserContextData: " + getUserContextData() + ",");
+        if (getUsername() != null)
+            sb.append("Username: " + getUsername() + ",");
         if (getAnalyticsMetadata() != null)
             sb.append("AnalyticsMetadata: " + getAnalyticsMetadata());
         sb.append("}");
@@ -389,9 +414,9 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
 
         hashCode = prime * hashCode + ((getClientId() == null) ? 0 : getClientId().hashCode());
         hashCode = prime * hashCode + ((getSecretHash() == null) ? 0 : getSecretHash().hashCode());
-        hashCode = prime * hashCode + ((getUsername() == null) ? 0 : getUsername().hashCode());
         hashCode = prime * hashCode
                 + ((getUserContextData() == null) ? 0 : getUserContextData().hashCode());
+        hashCode = prime * hashCode + ((getUsername() == null) ? 0 : getUsername().hashCode());
         hashCode = prime * hashCode
                 + ((getAnalyticsMetadata() == null) ? 0 : getAnalyticsMetadata().hashCode());
         return hashCode;
@@ -417,14 +442,14 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
         if (other.getSecretHash() != null
                 && other.getSecretHash().equals(this.getSecretHash()) == false)
             return false;
-        if (other.getUsername() == null ^ this.getUsername() == null)
-            return false;
-        if (other.getUsername() != null && other.getUsername().equals(this.getUsername()) == false)
-            return false;
         if (other.getUserContextData() == null ^ this.getUserContextData() == null)
             return false;
         if (other.getUserContextData() != null
                 && other.getUserContextData().equals(this.getUserContextData()) == false)
+            return false;
+        if (other.getUsername() == null ^ this.getUsername() == null)
+            return false;
+        if (other.getUsername() != null && other.getUsername().equals(this.getUsername()) == false)
             return false;
         if (other.getAnalyticsMetadata() == null ^ this.getAnalyticsMetadata() == null)
             return false;

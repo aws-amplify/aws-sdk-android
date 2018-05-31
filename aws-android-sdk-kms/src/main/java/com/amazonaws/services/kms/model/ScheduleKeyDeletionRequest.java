@@ -30,6 +30,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * period ends, AWS KMS deletes the CMK and all AWS KMS data associated with it,
  * including all aliases that refer to it.
  * </p>
+ * <p>
+ * You cannot perform this operation on a CMK in a different AWS account.
+ * </p>
  * <important>
  * <p>
  * Deleting a CMK is a destructive and potentially dangerous operation. When a
@@ -48,32 +51,34 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ScheduleKeyDeletionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The unique identifier for the customer master key (CMK) to delete.
+     * The unique identifier of the customer master key (CMK) to delete.
      * </p>
      * <p>
-     * To specify this value, use the unique key ID or the Amazon Resource Name
-     * (ARN) of the CMK. Examples:
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * Key ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-
-     * 56ef-1234567890ab
+     * Key ARN:
+     * <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * </ul>
      * <p>
-     * To obtain the unique key ID and key ARN for a given CMK, use
-     * <a>ListKeys</a> or <a>DescribeKey</a>.
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      */
     private String keyId;
 
@@ -94,58 +99,60 @@ public class ScheduleKeyDeletionRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The unique identifier for the customer master key (CMK) to delete.
+     * The unique identifier of the customer master key (CMK) to delete.
      * </p>
      * <p>
-     * To specify this value, use the unique key ID or the Amazon Resource Name
-     * (ARN) of the CMK. Examples:
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * Key ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-
-     * 56ef-1234567890ab
+     * Key ARN:
+     * <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * </ul>
      * <p>
-     * To obtain the unique key ID and key ARN for a given CMK, use
-     * <a>ListKeys</a> or <a>DescribeKey</a>.
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         The unique identifier for the customer master key (CMK) to
-     *         delete.
+     *         The unique identifier of the customer master key (CMK) to delete.
      *         </p>
      *         <p>
-     *         To specify this value, use the unique key ID or the Amazon
-     *         Resource Name (ARN) of the CMK. Examples:
+     *         Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     *         </p>
+     *         <p>
+     *         For example:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+     *         Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         Key ARN:
-     *         arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd
-     *         -56ef-1234567890ab
+     *         <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *         </p>
      *         </li>
      *         </ul>
      *         <p>
-     *         To obtain the unique key ID and key ARN for a given CMK, use
-     *         <a>ListKeys</a> or <a>DescribeKey</a>.
+     *         To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     *         <a>DescribeKey</a>.
      *         </p>
      */
     public String getKeyId() {
@@ -154,58 +161,62 @@ public class ScheduleKeyDeletionRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The unique identifier for the customer master key (CMK) to delete.
+     * The unique identifier of the customer master key (CMK) to delete.
      * </p>
      * <p>
-     * To specify this value, use the unique key ID or the Amazon Resource Name
-     * (ARN) of the CMK. Examples:
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * Key ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-
-     * 56ef-1234567890ab
+     * Key ARN:
+     * <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * </ul>
      * <p>
-     * To obtain the unique key ID and key ARN for a given CMK, use
-     * <a>ListKeys</a> or <a>DescribeKey</a>.
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The unique identifier for the customer master key (CMK) to
+     *            The unique identifier of the customer master key (CMK) to
      *            delete.
      *            </p>
      *            <p>
-     *            To specify this value, use the unique key ID or the Amazon
-     *            Resource Name (ARN) of the CMK. Examples:
+     *            Specify the key ID or the Amazon Resource Name (ARN) of the
+     *            CMK.
+     *            </p>
+     *            <p>
+     *            For example:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+     *            Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            Key ARN:
-     *            arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34
-     *            cd-56ef-1234567890ab
+     *            <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *            </p>
      *            </li>
      *            </ul>
      *            <p>
-     *            To obtain the unique key ID and key ARN for a given CMK, use
-     *            <a>ListKeys</a> or <a>DescribeKey</a>.
+     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
+     *            or <a>DescribeKey</a>.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -214,61 +225,65 @@ public class ScheduleKeyDeletionRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The unique identifier for the customer master key (CMK) to delete.
+     * The unique identifier of the customer master key (CMK) to delete.
      * </p>
      * <p>
-     * To specify this value, use the unique key ID or the Amazon Resource Name
-     * (ARN) of the CMK. Examples:
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * Key ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-
-     * 56ef-1234567890ab
+     * Key ARN:
+     * <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      * </p>
      * </li>
      * </ul>
      * <p>
-     * To obtain the unique key ID and key ARN for a given CMK, use
-     * <a>ListKeys</a> or <a>DescribeKey</a>.
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The unique identifier for the customer master key (CMK) to
+     *            The unique identifier of the customer master key (CMK) to
      *            delete.
      *            </p>
      *            <p>
-     *            To specify this value, use the unique key ID or the Amazon
-     *            Resource Name (ARN) of the CMK. Examples:
+     *            Specify the key ID or the Amazon Resource Name (ARN) of the
+     *            CMK.
+     *            </p>
+     *            <p>
+     *            For example:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+     *            Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            Key ARN:
-     *            arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34
-     *            cd-56ef-1234567890ab
+     *            <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
      *            </p>
      *            </li>
      *            </ul>
      *            <p>
-     *            To obtain the unique key ID and key ARN for a given CMK, use
-     *            <a>ListKeys</a> or <a>DescribeKey</a>.
+     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
+     *            or <a>DescribeKey</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

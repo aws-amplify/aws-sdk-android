@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Represents the output of a <i>DeleteTable</i> operation.
+ * Represents the output of a <code>DeleteTable</code> operation.
  * </p>
  */
 public class DeleteTableResult implements Serializable {

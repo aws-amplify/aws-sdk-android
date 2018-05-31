@@ -53,6 +53,9 @@ class TopicRulePayloadJsonUnmarshaller implements
             } else if (name.equals("awsIotSqlVersion")) {
                 topicRulePayload.setAwsIotSqlVersion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("errorAction")) {
+                topicRulePayload.setErrorAction(ActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

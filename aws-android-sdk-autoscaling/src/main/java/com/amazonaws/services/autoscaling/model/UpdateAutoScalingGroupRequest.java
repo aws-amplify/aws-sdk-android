@@ -24,16 +24,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Updates the configuration for the specified Auto Scaling group.
  * </p>
  * <p>
+ * The new settings take effect on any scaling activities after this call
+ * returns. Scaling activities that are currently in progress aren't affected.
+ * </p>
+ * <p>
  * To update an Auto Scaling group with a launch configuration with
- * <code>InstanceMonitoring</code> set to <code>False</code>, you must first
+ * <code>InstanceMonitoring</code> set to <code>false</code>, you must first
  * disable the collection of group metrics. Otherwise, you will get an error. If
  * you have previously enabled the collection of group metrics, you can disable
  * it using <a>DisableMetricsCollection</a>.
- * </p>
- * <p>
- * The new settings are registered upon the completion of this call. Any launch
- * configuration settings take effect on any triggers after this call returns.
- * Scaling activities that are currently in progress aren't affected.
  * </p>
  * <p>
  * Note the following:
@@ -79,7 +78,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the launch configuration.
+     * The name of the launch configuration. If you specify a launch
+     * configuration, you can't specify a launch template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -88,6 +88,14 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      */
     private String launchConfigurationName;
+
+    /**
+     * <p>
+     * The launch template to use to specify the updates. If you specify a
+     * launch template, you can't specify a launch configuration.
+     * </p>
+     */
+    private LaunchTemplateSpecification launchTemplate;
 
     /**
      * <p>
@@ -119,8 +127,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
-     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      */
     private Integer defaultCooldown;
@@ -149,12 +157,12 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * The amount of time, in seconds, that Auto Scaling waits before checking
      * the health status of an EC2 instance that has come into service. The
-     * default is 300.
+     * default is 0.
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"
-     * >Health Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html"
+     * >Health Checks</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      */
     private Integer healthCheckGracePeriod;
@@ -187,13 +195,13 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
      * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
-     * Developer Guide</i>.
+     * User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 2047<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
      * <br/>
      */
@@ -207,9 +215,9 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html"
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html"
      * >Controlling Which Instances Auto Scaling Terminates During Scale In</a>
-     * in the <i>Auto Scaling Developer Guide</i>.
+     * in the <i>Auto Scaling User Guide</i>.
      * </p>
      */
     private java.util.List<String> terminationPolicies = new java.util.ArrayList<String>();
@@ -221,6 +229,19 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      */
     private Boolean newInstancesProtectedFromScaleIn;
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the service-linked role that the Auto
+     * Scaling group uses to call other AWS services on your behalf.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1600<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
+     */
+    private String serviceLinkedRoleARN;
 
     /**
      * <p>
@@ -284,7 +305,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the launch configuration.
+     * The name of the launch configuration. If you specify a launch
+     * configuration, you can't specify a launch template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -293,7 +315,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @return <p>
-     *         The name of the launch configuration.
+     *         The name of the launch configuration. If you specify a launch
+     *         configuration, you can't specify a launch template.
      *         </p>
      */
     public String getLaunchConfigurationName() {
@@ -302,7 +325,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the launch configuration.
+     * The name of the launch configuration. If you specify a launch
+     * configuration, you can't specify a launch template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -311,7 +335,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @param launchConfigurationName <p>
-     *            The name of the launch configuration.
+     *            The name of the launch configuration. If you specify a launch
+     *            configuration, you can't specify a launch template.
      *            </p>
      */
     public void setLaunchConfigurationName(String launchConfigurationName) {
@@ -320,7 +345,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the launch configuration.
+     * The name of the launch configuration. If you specify a launch
+     * configuration, you can't specify a launch template.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -332,13 +358,68 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @param launchConfigurationName <p>
-     *            The name of the launch configuration.
+     *            The name of the launch configuration. If you specify a launch
+     *            configuration, you can't specify a launch template.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public UpdateAutoScalingGroupRequest withLaunchConfigurationName(String launchConfigurationName) {
         this.launchConfigurationName = launchConfigurationName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The launch template to use to specify the updates. If you specify a
+     * launch template, you can't specify a launch configuration.
+     * </p>
+     *
+     * @return <p>
+     *         The launch template to use to specify the updates. If you specify
+     *         a launch template, you can't specify a launch configuration.
+     *         </p>
+     */
+    public LaunchTemplateSpecification getLaunchTemplate() {
+        return launchTemplate;
+    }
+
+    /**
+     * <p>
+     * The launch template to use to specify the updates. If you specify a
+     * launch template, you can't specify a launch configuration.
+     * </p>
+     *
+     * @param launchTemplate <p>
+     *            The launch template to use to specify the updates. If you
+     *            specify a launch template, you can't specify a launch
+     *            configuration.
+     *            </p>
+     */
+    public void setLaunchTemplate(LaunchTemplateSpecification launchTemplate) {
+        this.launchTemplate = launchTemplate;
+    }
+
+    /**
+     * <p>
+     * The launch template to use to specify the updates. If you specify a
+     * launch template, you can't specify a launch configuration.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param launchTemplate <p>
+     *            The launch template to use to specify the updates. If you
+     *            specify a launch template, you can't specify a launch
+     *            configuration.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateAutoScalingGroupRequest withLaunchTemplate(
+            LaunchTemplateSpecification launchTemplate) {
+        this.launchTemplate = launchTemplate;
         return this;
     }
 
@@ -499,8 +580,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
-     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      *
      * @return <p>
@@ -510,8 +591,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
-     *         >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer
+     *         "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     *         >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User
      *         Guide</i>.
      *         </p>
      */
@@ -526,8 +607,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
-     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      *
      * @param defaultCooldown <p>
@@ -537,8 +618,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
-     *            >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer
+     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     *            >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User
      *            Guide</i>.
      *            </p>
      */
@@ -553,8 +634,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
-     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -567,8 +648,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html"
-     *            >Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer
+     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     *            >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User
      *            Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -724,23 +805,23 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * The amount of time, in seconds, that Auto Scaling waits before checking
      * the health status of an EC2 instance that has come into service. The
-     * default is 300.
+     * default is 0.
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"
-     * >Health Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html"
+     * >Health Checks</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      *
      * @return <p>
      *         The amount of time, in seconds, that Auto Scaling waits before
      *         checking the health status of an EC2 instance that has come into
-     *         service. The default is 300.
+     *         service. The default is 0.
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"
-     *         >Health Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     *         "http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html"
+     *         >Health Checks</a> in the <i>Auto Scaling User Guide</i>.
      *         </p>
      */
     public Integer getHealthCheckGracePeriod() {
@@ -751,23 +832,23 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * The amount of time, in seconds, that Auto Scaling waits before checking
      * the health status of an EC2 instance that has come into service. The
-     * default is 300.
+     * default is 0.
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"
-     * >Health Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html"
+     * >Health Checks</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      *
      * @param healthCheckGracePeriod <p>
      *            The amount of time, in seconds, that Auto Scaling waits before
      *            checking the health status of an EC2 instance that has come
-     *            into service. The default is 300.
+     *            into service. The default is 0.
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"
-     *            >Health Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html"
+     *            >Health Checks</a> in the <i>Auto Scaling User Guide</i>.
      *            </p>
      */
     public void setHealthCheckGracePeriod(Integer healthCheckGracePeriod) {
@@ -778,12 +859,12 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * The amount of time, in seconds, that Auto Scaling waits before checking
      * the health status of an EC2 instance that has come into service. The
-     * default is 300.
+     * default is 0.
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"
-     * >Health Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html"
+     * >Health Checks</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -792,12 +873,12 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * @param healthCheckGracePeriod <p>
      *            The amount of time, in seconds, that Auto Scaling waits before
      *            checking the health status of an EC2 instance that has come
-     *            into service. The default is 300.
+     *            into service. The default is 0.
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html"
-     *            >Health Checks</a> in the <i>Auto Scaling Developer Guide</i>.
+     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html"
+     *            >Health Checks</a> in the <i>Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -903,13 +984,13 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
      * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
-     * Developer Guide</i>.
+     * User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 2047<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
      * <br/>
      *
@@ -925,9 +1006,9 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     *         "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
      *         >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
-     *         Scaling Developer Guide</i>.
+     *         Scaling User Guide</i>.
      *         </p>
      */
     public String getVPCZoneIdentifier() {
@@ -946,13 +1027,13 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
      * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
-     * Developer Guide</i>.
+     * User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 2047<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
      * <br/>
      *
@@ -968,9 +1049,9 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
      *            >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
-     *            Scaling Developer Guide</i>.
+     *            Scaling User Guide</i>.
      *            </p>
      */
     public void setVPCZoneIdentifier(String vPCZoneIdentifier) {
@@ -989,16 +1070,16 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
      * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
-     * Developer Guide</i>.
+     * User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>1 - 2047<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
      * <br/>
      *
@@ -1014,9 +1095,9 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/asg-in-vpc.html"
+     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
      *            >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
-     *            Scaling Developer Guide</i>.
+     *            Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1034,9 +1115,9 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html"
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html"
      * >Controlling Which Instances Auto Scaling Terminates During Scale In</a>
-     * in the <i>Auto Scaling Developer Guide</i>.
+     * in the <i>Auto Scaling User Guide</i>.
      * </p>
      *
      * @return <p>
@@ -1046,9 +1127,9 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html"
+     *         "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html"
      *         >Controlling Which Instances Auto Scaling Terminates During Scale
-     *         In</a> in the <i>Auto Scaling Developer Guide</i>.
+     *         In</a> in the <i>Auto Scaling User Guide</i>.
      *         </p>
      */
     public java.util.List<String> getTerminationPolicies() {
@@ -1063,9 +1144,9 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html"
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html"
      * >Controlling Which Instances Auto Scaling Terminates During Scale In</a>
-     * in the <i>Auto Scaling Developer Guide</i>.
+     * in the <i>Auto Scaling User Guide</i>.
      * </p>
      *
      * @param terminationPolicies <p>
@@ -1075,9 +1156,9 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html"
+     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html"
      *            >Controlling Which Instances Auto Scaling Terminates During
-     *            Scale In</a> in the <i>Auto Scaling Developer Guide</i>.
+     *            Scale In</a> in the <i>Auto Scaling User Guide</i>.
      *            </p>
      */
     public void setTerminationPolicies(java.util.Collection<String> terminationPolicies) {
@@ -1097,9 +1178,9 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html"
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html"
      * >Controlling Which Instances Auto Scaling Terminates During Scale In</a>
-     * in the <i>Auto Scaling Developer Guide</i>.
+     * in the <i>Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1112,9 +1193,9 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html"
+     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html"
      *            >Controlling Which Instances Auto Scaling Terminates During
-     *            Scale In</a> in the <i>Auto Scaling Developer Guide</i>.
+     *            Scale In</a> in the <i>Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1137,9 +1218,9 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html"
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html"
      * >Controlling Which Instances Auto Scaling Terminates During Scale In</a>
-     * in the <i>Auto Scaling Developer Guide</i>.
+     * in the <i>Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1152,9 +1233,9 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html"
+     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html"
      *            >Controlling Which Instances Auto Scaling Terminates During
-     *            Scale In</a> in the <i>Auto Scaling Developer Guide</i>.
+     *            Scale In</a> in the <i>Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1233,6 +1314,75 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     }
 
     /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the service-linked role that the Auto
+     * Scaling group uses to call other AWS services on your behalf.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1600<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the service-linked role that
+     *         the Auto Scaling group uses to call other AWS services on your
+     *         behalf.
+     *         </p>
+     */
+    public String getServiceLinkedRoleARN() {
+        return serviceLinkedRoleARN;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the service-linked role that the Auto
+     * Scaling group uses to call other AWS services on your behalf.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1600<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
+     *
+     * @param serviceLinkedRoleARN <p>
+     *            The Amazon Resource Name (ARN) of the service-linked role that
+     *            the Auto Scaling group uses to call other AWS services on your
+     *            behalf.
+     *            </p>
+     */
+    public void setServiceLinkedRoleARN(String serviceLinkedRoleARN) {
+        this.serviceLinkedRoleARN = serviceLinkedRoleARN;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the service-linked role that the Auto
+     * Scaling group uses to call other AWS services on your behalf.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1600<br/>
+     * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
+     * <br/>
+     *
+     * @param serviceLinkedRoleARN <p>
+     *            The Amazon Resource Name (ARN) of the service-linked role that
+     *            the Auto Scaling group uses to call other AWS services on your
+     *            behalf.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateAutoScalingGroupRequest withServiceLinkedRoleARN(String serviceLinkedRoleARN) {
+        this.serviceLinkedRoleARN = serviceLinkedRoleARN;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1247,6 +1397,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
             sb.append("AutoScalingGroupName: " + getAutoScalingGroupName() + ",");
         if (getLaunchConfigurationName() != null)
             sb.append("LaunchConfigurationName: " + getLaunchConfigurationName() + ",");
+        if (getLaunchTemplate() != null)
+            sb.append("LaunchTemplate: " + getLaunchTemplate() + ",");
         if (getMinSize() != null)
             sb.append("MinSize: " + getMinSize() + ",");
         if (getMaxSize() != null)
@@ -1268,7 +1420,10 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
         if (getTerminationPolicies() != null)
             sb.append("TerminationPolicies: " + getTerminationPolicies() + ",");
         if (getNewInstancesProtectedFromScaleIn() != null)
-            sb.append("NewInstancesProtectedFromScaleIn: " + getNewInstancesProtectedFromScaleIn());
+            sb.append("NewInstancesProtectedFromScaleIn: " + getNewInstancesProtectedFromScaleIn()
+                    + ",");
+        if (getServiceLinkedRoleARN() != null)
+            sb.append("ServiceLinkedRoleARN: " + getServiceLinkedRoleARN());
         sb.append("}");
         return sb.toString();
     }
@@ -1284,6 +1439,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
                 * hashCode
                 + ((getLaunchConfigurationName() == null) ? 0 : getLaunchConfigurationName()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getLaunchTemplate() == null) ? 0 : getLaunchTemplate().hashCode());
         hashCode = prime * hashCode + ((getMinSize() == null) ? 0 : getMinSize().hashCode());
         hashCode = prime * hashCode + ((getMaxSize() == null) ? 0 : getMaxSize().hashCode());
         hashCode = prime * hashCode
@@ -1308,6 +1465,8 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
                 * hashCode
                 + ((getNewInstancesProtectedFromScaleIn() == null) ? 0
                         : getNewInstancesProtectedFromScaleIn().hashCode());
+        hashCode = prime * hashCode
+                + ((getServiceLinkedRoleARN() == null) ? 0 : getServiceLinkedRoleARN().hashCode());
         return hashCode;
     }
 
@@ -1331,6 +1490,11 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
             return false;
         if (other.getLaunchConfigurationName() != null
                 && other.getLaunchConfigurationName().equals(this.getLaunchConfigurationName()) == false)
+            return false;
+        if (other.getLaunchTemplate() == null ^ this.getLaunchTemplate() == null)
+            return false;
+        if (other.getLaunchTemplate() != null
+                && other.getLaunchTemplate().equals(this.getLaunchTemplate()) == false)
             return false;
         if (other.getMinSize() == null ^ this.getMinSize() == null)
             return false;
@@ -1386,6 +1550,11 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
         if (other.getNewInstancesProtectedFromScaleIn() != null
                 && other.getNewInstancesProtectedFromScaleIn().equals(
                         this.getNewInstancesProtectedFromScaleIn()) == false)
+            return false;
+        if (other.getServiceLinkedRoleARN() == null ^ this.getServiceLinkedRoleARN() == null)
+            return false;
+        if (other.getServiceLinkedRoleARN() != null
+                && other.getServiceLinkedRoleARN().equals(this.getServiceLinkedRoleARN()) == false)
             return false;
         return true;
     }

@@ -94,6 +94,80 @@ class UserPoolClientTypeJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (userPoolClientType.getSupportedIdentityProviders() != null) {
+            java.util.List<String> supportedIdentityProviders = userPoolClientType
+                    .getSupportedIdentityProviders();
+            jsonWriter.name("SupportedIdentityProviders");
+            jsonWriter.beginArray();
+            for (String supportedIdentityProvidersItem : supportedIdentityProviders) {
+                if (supportedIdentityProvidersItem != null) {
+                    jsonWriter.value(supportedIdentityProvidersItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (userPoolClientType.getCallbackURLs() != null) {
+            java.util.List<String> callbackURLs = userPoolClientType.getCallbackURLs();
+            jsonWriter.name("CallbackURLs");
+            jsonWriter.beginArray();
+            for (String callbackURLsItem : callbackURLs) {
+                if (callbackURLsItem != null) {
+                    jsonWriter.value(callbackURLsItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (userPoolClientType.getLogoutURLs() != null) {
+            java.util.List<String> logoutURLs = userPoolClientType.getLogoutURLs();
+            jsonWriter.name("LogoutURLs");
+            jsonWriter.beginArray();
+            for (String logoutURLsItem : logoutURLs) {
+                if (logoutURLsItem != null) {
+                    jsonWriter.value(logoutURLsItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (userPoolClientType.getDefaultRedirectURI() != null) {
+            String defaultRedirectURI = userPoolClientType.getDefaultRedirectURI();
+            jsonWriter.name("DefaultRedirectURI");
+            jsonWriter.value(defaultRedirectURI);
+        }
+        if (userPoolClientType.getAllowedOAuthFlows() != null) {
+            java.util.List<String> allowedOAuthFlows = userPoolClientType.getAllowedOAuthFlows();
+            jsonWriter.name("AllowedOAuthFlows");
+            jsonWriter.beginArray();
+            for (String allowedOAuthFlowsItem : allowedOAuthFlows) {
+                if (allowedOAuthFlowsItem != null) {
+                    jsonWriter.value(allowedOAuthFlowsItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (userPoolClientType.getAllowedOAuthScopes() != null) {
+            java.util.List<String> allowedOAuthScopes = userPoolClientType.getAllowedOAuthScopes();
+            jsonWriter.name("AllowedOAuthScopes");
+            jsonWriter.beginArray();
+            for (String allowedOAuthScopesItem : allowedOAuthScopes) {
+                if (allowedOAuthScopesItem != null) {
+                    jsonWriter.value(allowedOAuthScopesItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (userPoolClientType.getAllowedOAuthFlowsUserPoolClient() != null) {
+            Boolean allowedOAuthFlowsUserPoolClient = userPoolClientType
+                    .getAllowedOAuthFlowsUserPoolClient();
+            jsonWriter.name("AllowedOAuthFlowsUserPoolClient");
+            jsonWriter.value(allowedOAuthFlowsUserPoolClient);
+        }
+        if (userPoolClientType.getAnalyticsConfiguration() != null) {
+            AnalyticsConfigurationType analyticsConfiguration = userPoolClientType
+                    .getAnalyticsConfiguration();
+            jsonWriter.name("AnalyticsConfiguration");
+            AnalyticsConfigurationTypeJsonMarshaller.getInstance().marshall(analyticsConfiguration,
+                    jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

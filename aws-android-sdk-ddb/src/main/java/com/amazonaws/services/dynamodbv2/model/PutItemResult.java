@@ -19,14 +19,14 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Represents the output of a <i>PutItem</i> operation.
+ * Represents the output of a <code>PutItem</code> operation.
  * </p>
  */
 public class PutItemResult implements Serializable {
     /**
      * <p>
-     * The attribute values as they appeared before the <i>PutItem</i>
-     * operation, but only if <i>ReturnValues</i> is specified as
+     * The attribute values as they appeared before the <code>PutItem</code>
+     * operation, but only if <code>ReturnValues</code> is specified as
      * <code>ALL_OLD</code> in the request. Each element consists of an
      * attribute name and an attribute value.
      * </p>
@@ -35,11 +35,12 @@ public class PutItemResult implements Serializable {
 
     /**
      * <p>
-     * The capacity units consumed by an operation. The data returned includes
-     * the total provisioned throughput consumed, along with statistics for the
-     * table and any indexes involved in the operation. <i>ConsumedCapacity</i>
-     * is only returned if the request asked for it. For more information, see
-     * <a href=
+     * The capacity units consumed by the <code>PutItem</code> operation. The
+     * data returned includes the total provisioned throughput consumed, along
+     * with statistics for the table and any indexes involved in the operation.
+     * <code>ConsumedCapacity</code> is only returned if the
+     * <code>ReturnConsumedCapacity</code> parameter was specified. For more
+     * information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      * >Provisioned Throughput</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
@@ -50,29 +51,30 @@ public class PutItemResult implements Serializable {
     /**
      * <p>
      * Information about item collections, if any, that were affected by the
-     * operation. <i>ItemCollectionMetrics</i> is only returned if the request
-     * asked for it. If the table does not have any local secondary indexes,
+     * <code>PutItem</code> operation. <code>ItemCollectionMetrics</code> is
+     * only returned if the <code>ReturnItemCollectionMetrics</code> parameter
+     * was specified. If the table does not have any local secondary indexes,
      * this information is not returned in the response.
      * </p>
      * <p>
-     * Each <i>ItemCollectionMetrics</i> element consists of:
+     * Each <code>ItemCollectionMetrics</code> element consists of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>ItemCollectionKey</i> - The partition key value of the item
+     * <code>ItemCollectionKey</code> - The partition key value of the item
      * collection. This is the same as the partition key value of the item
      * itself.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>SizeEstimateRange</i> - An estimate of item collection size, in
-     * gigabytes. This value is a two-element array containing a lower bound and
-     * an upper bound for the estimate. The estimate includes the size of all
-     * the items in the table, plus the size of all attributes projected into
-     * all of the local secondary indexes on that table. Use this estimate to
-     * measure whether a local secondary index is approaching its size limit.
+     * <code>SizeEstimateRangeGB</code> - An estimate of item collection size,
+     * in gigabytes. This value is a two-element array containing a lower bound
+     * and an upper bound for the estimate. The estimate includes the size of
+     * all the items in the table, plus the size of all attributes projected
+     * into all of the local secondary indexes on that table. Use this estimate
+     * to measure whether a local secondary index is approaching its size limit.
      * </p>
      * <p>
      * The estimate is subject to change over time; therefore, do not rely on
@@ -85,17 +87,18 @@ public class PutItemResult implements Serializable {
 
     /**
      * <p>
-     * The attribute values as they appeared before the <i>PutItem</i>
-     * operation, but only if <i>ReturnValues</i> is specified as
+     * The attribute values as they appeared before the <code>PutItem</code>
+     * operation, but only if <code>ReturnValues</code> is specified as
      * <code>ALL_OLD</code> in the request. Each element consists of an
      * attribute name and an attribute value.
      * </p>
      *
      * @return <p>
-     *         The attribute values as they appeared before the <i>PutItem</i>
-     *         operation, but only if <i>ReturnValues</i> is specified as
-     *         <code>ALL_OLD</code> in the request. Each element consists of an
-     *         attribute name and an attribute value.
+     *         The attribute values as they appeared before the
+     *         <code>PutItem</code> operation, but only if
+     *         <code>ReturnValues</code> is specified as <code>ALL_OLD</code> in
+     *         the request. Each element consists of an attribute name and an
+     *         attribute value.
      *         </p>
      */
     public java.util.Map<String, AttributeValue> getAttributes() {
@@ -104,17 +107,18 @@ public class PutItemResult implements Serializable {
 
     /**
      * <p>
-     * The attribute values as they appeared before the <i>PutItem</i>
-     * operation, but only if <i>ReturnValues</i> is specified as
+     * The attribute values as they appeared before the <code>PutItem</code>
+     * operation, but only if <code>ReturnValues</code> is specified as
      * <code>ALL_OLD</code> in the request. Each element consists of an
      * attribute name and an attribute value.
      * </p>
      *
      * @param attributes <p>
      *            The attribute values as they appeared before the
-     *            <i>PutItem</i> operation, but only if <i>ReturnValues</i> is
-     *            specified as <code>ALL_OLD</code> in the request. Each element
-     *            consists of an attribute name and an attribute value.
+     *            <code>PutItem</code> operation, but only if
+     *            <code>ReturnValues</code> is specified as <code>ALL_OLD</code>
+     *            in the request. Each element consists of an attribute name and
+     *            an attribute value.
      *            </p>
      */
     public void setAttributes(java.util.Map<String, AttributeValue> attributes) {
@@ -123,8 +127,8 @@ public class PutItemResult implements Serializable {
 
     /**
      * <p>
-     * The attribute values as they appeared before the <i>PutItem</i>
-     * operation, but only if <i>ReturnValues</i> is specified as
+     * The attribute values as they appeared before the <code>PutItem</code>
+     * operation, but only if <code>ReturnValues</code> is specified as
      * <code>ALL_OLD</code> in the request. Each element consists of an
      * attribute name and an attribute value.
      * </p>
@@ -134,9 +138,10 @@ public class PutItemResult implements Serializable {
      *
      * @param attributes <p>
      *            The attribute values as they appeared before the
-     *            <i>PutItem</i> operation, but only if <i>ReturnValues</i> is
-     *            specified as <code>ALL_OLD</code> in the request. Each element
-     *            consists of an attribute name and an attribute value.
+     *            <code>PutItem</code> operation, but only if
+     *            <code>ReturnValues</code> is specified as <code>ALL_OLD</code>
+     *            in the request. Each element consists of an attribute name and
+     *            an attribute value.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -148,8 +153,8 @@ public class PutItemResult implements Serializable {
 
     /**
      * <p>
-     * The attribute values as they appeared before the <i>PutItem</i>
-     * operation, but only if <i>ReturnValues</i> is specified as
+     * The attribute values as they appeared before the <code>PutItem</code>
+     * operation, but only if <code>ReturnValues</code> is specified as
      * <code>ALL_OLD</code> in the request. Each element consists of an
      * attribute name and an attribute value.
      * </p>
@@ -188,22 +193,24 @@ public class PutItemResult implements Serializable {
 
     /**
      * <p>
-     * The capacity units consumed by an operation. The data returned includes
-     * the total provisioned throughput consumed, along with statistics for the
-     * table and any indexes involved in the operation. <i>ConsumedCapacity</i>
-     * is only returned if the request asked for it. For more information, see
-     * <a href=
+     * The capacity units consumed by the <code>PutItem</code> operation. The
+     * data returned includes the total provisioned throughput consumed, along
+     * with statistics for the table and any indexes involved in the operation.
+     * <code>ConsumedCapacity</code> is only returned if the
+     * <code>ReturnConsumedCapacity</code> parameter was specified. For more
+     * information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      * >Provisioned Throughput</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
      * </p>
      *
      * @return <p>
-     *         The capacity units consumed by an operation. The data returned
-     *         includes the total provisioned throughput consumed, along with
-     *         statistics for the table and any indexes involved in the
-     *         operation. <i>ConsumedCapacity</i> is only returned if the
-     *         request asked for it. For more information, see <a href=
+     *         The capacity units consumed by the <code>PutItem</code>
+     *         operation. The data returned includes the total provisioned
+     *         throughput consumed, along with statistics for the table and any
+     *         indexes involved in the operation. <code>ConsumedCapacity</code>
+     *         is only returned if the <code>ReturnConsumedCapacity</code>
+     *         parameter was specified. For more information, see <a href=
      *         "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      *         >Provisioned Throughput</a> in the <i>Amazon DynamoDB Developer
      *         Guide</i>.
@@ -215,22 +222,25 @@ public class PutItemResult implements Serializable {
 
     /**
      * <p>
-     * The capacity units consumed by an operation. The data returned includes
-     * the total provisioned throughput consumed, along with statistics for the
-     * table and any indexes involved in the operation. <i>ConsumedCapacity</i>
-     * is only returned if the request asked for it. For more information, see
-     * <a href=
+     * The capacity units consumed by the <code>PutItem</code> operation. The
+     * data returned includes the total provisioned throughput consumed, along
+     * with statistics for the table and any indexes involved in the operation.
+     * <code>ConsumedCapacity</code> is only returned if the
+     * <code>ReturnConsumedCapacity</code> parameter was specified. For more
+     * information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      * >Provisioned Throughput</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
      * </p>
      *
      * @param consumedCapacity <p>
-     *            The capacity units consumed by an operation. The data returned
-     *            includes the total provisioned throughput consumed, along with
-     *            statistics for the table and any indexes involved in the
-     *            operation. <i>ConsumedCapacity</i> is only returned if the
-     *            request asked for it. For more information, see <a href=
+     *            The capacity units consumed by the <code>PutItem</code>
+     *            operation. The data returned includes the total provisioned
+     *            throughput consumed, along with statistics for the table and
+     *            any indexes involved in the operation.
+     *            <code>ConsumedCapacity</code> is only returned if the
+     *            <code>ReturnConsumedCapacity</code> parameter was specified.
+     *            For more information, see <a href=
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      *            >Provisioned Throughput</a> in the <i>Amazon DynamoDB
      *            Developer Guide</i>.
@@ -242,11 +252,12 @@ public class PutItemResult implements Serializable {
 
     /**
      * <p>
-     * The capacity units consumed by an operation. The data returned includes
-     * the total provisioned throughput consumed, along with statistics for the
-     * table and any indexes involved in the operation. <i>ConsumedCapacity</i>
-     * is only returned if the request asked for it. For more information, see
-     * <a href=
+     * The capacity units consumed by the <code>PutItem</code> operation. The
+     * data returned includes the total provisioned throughput consumed, along
+     * with statistics for the table and any indexes involved in the operation.
+     * <code>ConsumedCapacity</code> is only returned if the
+     * <code>ReturnConsumedCapacity</code> parameter was specified. For more
+     * information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      * >Provisioned Throughput</a> in the <i>Amazon DynamoDB Developer
      * Guide</i>.
@@ -256,11 +267,13 @@ public class PutItemResult implements Serializable {
      * together.
      *
      * @param consumedCapacity <p>
-     *            The capacity units consumed by an operation. The data returned
-     *            includes the total provisioned throughput consumed, along with
-     *            statistics for the table and any indexes involved in the
-     *            operation. <i>ConsumedCapacity</i> is only returned if the
-     *            request asked for it. For more information, see <a href=
+     *            The capacity units consumed by the <code>PutItem</code>
+     *            operation. The data returned includes the total provisioned
+     *            throughput consumed, along with statistics for the table and
+     *            any indexes involved in the operation.
+     *            <code>ConsumedCapacity</code> is only returned if the
+     *            <code>ReturnConsumedCapacity</code> parameter was specified.
+     *            For more information, see <a href=
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html"
      *            >Provisioned Throughput</a> in the <i>Amazon DynamoDB
      *            Developer Guide</i>.
@@ -276,29 +289,30 @@ public class PutItemResult implements Serializable {
     /**
      * <p>
      * Information about item collections, if any, that were affected by the
-     * operation. <i>ItemCollectionMetrics</i> is only returned if the request
-     * asked for it. If the table does not have any local secondary indexes,
+     * <code>PutItem</code> operation. <code>ItemCollectionMetrics</code> is
+     * only returned if the <code>ReturnItemCollectionMetrics</code> parameter
+     * was specified. If the table does not have any local secondary indexes,
      * this information is not returned in the response.
      * </p>
      * <p>
-     * Each <i>ItemCollectionMetrics</i> element consists of:
+     * Each <code>ItemCollectionMetrics</code> element consists of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>ItemCollectionKey</i> - The partition key value of the item
+     * <code>ItemCollectionKey</code> - The partition key value of the item
      * collection. This is the same as the partition key value of the item
      * itself.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>SizeEstimateRange</i> - An estimate of item collection size, in
-     * gigabytes. This value is a two-element array containing a lower bound and
-     * an upper bound for the estimate. The estimate includes the size of all
-     * the items in the table, plus the size of all attributes projected into
-     * all of the local secondary indexes on that table. Use this estimate to
-     * measure whether a local secondary index is approaching its size limit.
+     * <code>SizeEstimateRangeGB</code> - An estimate of item collection size,
+     * in gigabytes. This value is a two-element array containing a lower bound
+     * and an upper bound for the estimate. The estimate includes the size of
+     * all the items in the table, plus the size of all attributes projected
+     * into all of the local secondary indexes on that table. Use this estimate
+     * to measure whether a local secondary index is approaching its size limit.
      * </p>
      * <p>
      * The estimate is subject to change over time; therefore, do not rely on
@@ -309,27 +323,28 @@ public class PutItemResult implements Serializable {
      *
      * @return <p>
      *         Information about item collections, if any, that were affected by
-     *         the operation. <i>ItemCollectionMetrics</i> is only returned if
-     *         the request asked for it. If the table does not have any local
-     *         secondary indexes, this information is not returned in the
-     *         response.
+     *         the <code>PutItem</code> operation.
+     *         <code>ItemCollectionMetrics</code> is only returned if the
+     *         <code>ReturnItemCollectionMetrics</code> parameter was specified.
+     *         If the table does not have any local secondary indexes, this
+     *         information is not returned in the response.
      *         </p>
      *         <p>
-     *         Each <i>ItemCollectionMetrics</i> element consists of:
+     *         Each <code>ItemCollectionMetrics</code> element consists of:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         <i>ItemCollectionKey</i> - The partition key value of the item
-     *         collection. This is the same as the partition key value of the
-     *         item itself.
+     *         <code>ItemCollectionKey</code> - The partition key value of the
+     *         item collection. This is the same as the partition key value of
+     *         the item itself.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <i>SizeEstimateRange</i> - An estimate of item collection size,
-     *         in gigabytes. This value is a two-element array containing a
-     *         lower bound and an upper bound for the estimate. The estimate
+     *         <code>SizeEstimateRangeGB</code> - An estimate of item collection
+     *         size, in gigabytes. This value is a two-element array containing
+     *         a lower bound and an upper bound for the estimate. The estimate
      *         includes the size of all the items in the table, plus the size of
      *         all attributes projected into all of the local secondary indexes
      *         on that table. Use this estimate to measure whether a local
@@ -349,29 +364,30 @@ public class PutItemResult implements Serializable {
     /**
      * <p>
      * Information about item collections, if any, that were affected by the
-     * operation. <i>ItemCollectionMetrics</i> is only returned if the request
-     * asked for it. If the table does not have any local secondary indexes,
+     * <code>PutItem</code> operation. <code>ItemCollectionMetrics</code> is
+     * only returned if the <code>ReturnItemCollectionMetrics</code> parameter
+     * was specified. If the table does not have any local secondary indexes,
      * this information is not returned in the response.
      * </p>
      * <p>
-     * Each <i>ItemCollectionMetrics</i> element consists of:
+     * Each <code>ItemCollectionMetrics</code> element consists of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>ItemCollectionKey</i> - The partition key value of the item
+     * <code>ItemCollectionKey</code> - The partition key value of the item
      * collection. This is the same as the partition key value of the item
      * itself.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>SizeEstimateRange</i> - An estimate of item collection size, in
-     * gigabytes. This value is a two-element array containing a lower bound and
-     * an upper bound for the estimate. The estimate includes the size of all
-     * the items in the table, plus the size of all attributes projected into
-     * all of the local secondary indexes on that table. Use this estimate to
-     * measure whether a local secondary index is approaching its size limit.
+     * <code>SizeEstimateRangeGB</code> - An estimate of item collection size,
+     * in gigabytes. This value is a two-element array containing a lower bound
+     * and an upper bound for the estimate. The estimate includes the size of
+     * all the items in the table, plus the size of all attributes projected
+     * into all of the local secondary indexes on that table. Use this estimate
+     * to measure whether a local secondary index is approaching its size limit.
      * </p>
      * <p>
      * The estimate is subject to change over time; therefore, do not rely on
@@ -382,32 +398,33 @@ public class PutItemResult implements Serializable {
      *
      * @param itemCollectionMetrics <p>
      *            Information about item collections, if any, that were affected
-     *            by the operation. <i>ItemCollectionMetrics</i> is only
-     *            returned if the request asked for it. If the table does not
-     *            have any local secondary indexes, this information is not
-     *            returned in the response.
+     *            by the <code>PutItem</code> operation.
+     *            <code>ItemCollectionMetrics</code> is only returned if the
+     *            <code>ReturnItemCollectionMetrics</code> parameter was
+     *            specified. If the table does not have any local secondary
+     *            indexes, this information is not returned in the response.
      *            </p>
      *            <p>
-     *            Each <i>ItemCollectionMetrics</i> element consists of:
+     *            Each <code>ItemCollectionMetrics</code> element consists of:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>ItemCollectionKey</i> - The partition key value of the item
-     *            collection. This is the same as the partition key value of the
-     *            item itself.
+     *            <code>ItemCollectionKey</code> - The partition key value of
+     *            the item collection. This is the same as the partition key
+     *            value of the item itself.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>SizeEstimateRange</i> - An estimate of item collection
-     *            size, in gigabytes. This value is a two-element array
-     *            containing a lower bound and an upper bound for the estimate.
-     *            The estimate includes the size of all the items in the table,
-     *            plus the size of all attributes projected into all of the
-     *            local secondary indexes on that table. Use this estimate to
-     *            measure whether a local secondary index is approaching its
-     *            size limit.
+     *            <code>SizeEstimateRangeGB</code> - An estimate of item
+     *            collection size, in gigabytes. This value is a two-element
+     *            array containing a lower bound and an upper bound for the
+     *            estimate. The estimate includes the size of all the items in
+     *            the table, plus the size of all attributes projected into all
+     *            of the local secondary indexes on that table. Use this
+     *            estimate to measure whether a local secondary index is
+     *            approaching its size limit.
      *            </p>
      *            <p>
      *            The estimate is subject to change over time; therefore, do not
@@ -423,29 +440,30 @@ public class PutItemResult implements Serializable {
     /**
      * <p>
      * Information about item collections, if any, that were affected by the
-     * operation. <i>ItemCollectionMetrics</i> is only returned if the request
-     * asked for it. If the table does not have any local secondary indexes,
+     * <code>PutItem</code> operation. <code>ItemCollectionMetrics</code> is
+     * only returned if the <code>ReturnItemCollectionMetrics</code> parameter
+     * was specified. If the table does not have any local secondary indexes,
      * this information is not returned in the response.
      * </p>
      * <p>
-     * Each <i>ItemCollectionMetrics</i> element consists of:
+     * Each <code>ItemCollectionMetrics</code> element consists of:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <i>ItemCollectionKey</i> - The partition key value of the item
+     * <code>ItemCollectionKey</code> - The partition key value of the item
      * collection. This is the same as the partition key value of the item
      * itself.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <i>SizeEstimateRange</i> - An estimate of item collection size, in
-     * gigabytes. This value is a two-element array containing a lower bound and
-     * an upper bound for the estimate. The estimate includes the size of all
-     * the items in the table, plus the size of all attributes projected into
-     * all of the local secondary indexes on that table. Use this estimate to
-     * measure whether a local secondary index is approaching its size limit.
+     * <code>SizeEstimateRangeGB</code> - An estimate of item collection size,
+     * in gigabytes. This value is a two-element array containing a lower bound
+     * and an upper bound for the estimate. The estimate includes the size of
+     * all the items in the table, plus the size of all attributes projected
+     * into all of the local secondary indexes on that table. Use this estimate
+     * to measure whether a local secondary index is approaching its size limit.
      * </p>
      * <p>
      * The estimate is subject to change over time; therefore, do not rely on
@@ -459,32 +477,33 @@ public class PutItemResult implements Serializable {
      *
      * @param itemCollectionMetrics <p>
      *            Information about item collections, if any, that were affected
-     *            by the operation. <i>ItemCollectionMetrics</i> is only
-     *            returned if the request asked for it. If the table does not
-     *            have any local secondary indexes, this information is not
-     *            returned in the response.
+     *            by the <code>PutItem</code> operation.
+     *            <code>ItemCollectionMetrics</code> is only returned if the
+     *            <code>ReturnItemCollectionMetrics</code> parameter was
+     *            specified. If the table does not have any local secondary
+     *            indexes, this information is not returned in the response.
      *            </p>
      *            <p>
-     *            Each <i>ItemCollectionMetrics</i> element consists of:
+     *            Each <code>ItemCollectionMetrics</code> element consists of:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <i>ItemCollectionKey</i> - The partition key value of the item
-     *            collection. This is the same as the partition key value of the
-     *            item itself.
+     *            <code>ItemCollectionKey</code> - The partition key value of
+     *            the item collection. This is the same as the partition key
+     *            value of the item itself.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <i>SizeEstimateRange</i> - An estimate of item collection
-     *            size, in gigabytes. This value is a two-element array
-     *            containing a lower bound and an upper bound for the estimate.
-     *            The estimate includes the size of all the items in the table,
-     *            plus the size of all attributes projected into all of the
-     *            local secondary indexes on that table. Use this estimate to
-     *            measure whether a local secondary index is approaching its
-     *            size limit.
+     *            <code>SizeEstimateRangeGB</code> - An estimate of item
+     *            collection size, in gigabytes. This value is a two-element
+     *            array containing a lower bound and an upper bound for the
+     *            estimate. The estimate includes the size of all the items in
+     *            the table, plus the size of all attributes projected into all
+     *            of the local secondary indexes on that table. Use this
+     *            estimate to measure whether a local secondary index is
+     *            approaching its size limit.
      *            </p>
      *            <p>
      *            The estimate is subject to change over time; therefore, do not

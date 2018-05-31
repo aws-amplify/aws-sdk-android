@@ -33,7 +33,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DeleteCertificateRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The ID of the certificate.
+     * The ID of the certificate. (The last part of the certificate ARN contains
+     * the certificate ID.)
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -44,7 +45,15 @@ public class DeleteCertificateRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The ID of the certificate.
+     * Forces a certificate request to be deleted.
+     * </p>
+     */
+    private Boolean forceDelete;
+
+    /**
+     * <p>
+     * The ID of the certificate. (The last part of the certificate ARN contains
+     * the certificate ID.)
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -52,7 +61,8 @@ public class DeleteCertificateRequest extends AmazonWebServiceRequest implements
      * <b>Pattern: </b>(0x)?[a-fA-F0-9]+<br/>
      *
      * @return <p>
-     *         The ID of the certificate.
+     *         The ID of the certificate. (The last part of the certificate ARN
+     *         contains the certificate ID.)
      *         </p>
      */
     public String getCertificateId() {
@@ -61,7 +71,8 @@ public class DeleteCertificateRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The ID of the certificate.
+     * The ID of the certificate. (The last part of the certificate ARN contains
+     * the certificate ID.)
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -69,7 +80,8 @@ public class DeleteCertificateRequest extends AmazonWebServiceRequest implements
      * <b>Pattern: </b>(0x)?[a-fA-F0-9]+<br/>
      *
      * @param certificateId <p>
-     *            The ID of the certificate.
+     *            The ID of the certificate. (The last part of the certificate
+     *            ARN contains the certificate ID.)
      *            </p>
      */
     public void setCertificateId(String certificateId) {
@@ -78,7 +90,8 @@ public class DeleteCertificateRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The ID of the certificate.
+     * The ID of the certificate. (The last part of the certificate ARN contains
+     * the certificate ID.)
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -89,13 +102,72 @@ public class DeleteCertificateRequest extends AmazonWebServiceRequest implements
      * <b>Pattern: </b>(0x)?[a-fA-F0-9]+<br/>
      *
      * @param certificateId <p>
-     *            The ID of the certificate.
+     *            The ID of the certificate. (The last part of the certificate
+     *            ARN contains the certificate ID.)
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public DeleteCertificateRequest withCertificateId(String certificateId) {
         this.certificateId = certificateId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Forces a certificate request to be deleted.
+     * </p>
+     *
+     * @return <p>
+     *         Forces a certificate request to be deleted.
+     *         </p>
+     */
+    public Boolean isForceDelete() {
+        return forceDelete;
+    }
+
+    /**
+     * <p>
+     * Forces a certificate request to be deleted.
+     * </p>
+     *
+     * @return <p>
+     *         Forces a certificate request to be deleted.
+     *         </p>
+     */
+    public Boolean getForceDelete() {
+        return forceDelete;
+    }
+
+    /**
+     * <p>
+     * Forces a certificate request to be deleted.
+     * </p>
+     *
+     * @param forceDelete <p>
+     *            Forces a certificate request to be deleted.
+     *            </p>
+     */
+    public void setForceDelete(Boolean forceDelete) {
+        this.forceDelete = forceDelete;
+    }
+
+    /**
+     * <p>
+     * Forces a certificate request to be deleted.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param forceDelete <p>
+     *            Forces a certificate request to be deleted.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DeleteCertificateRequest withForceDelete(Boolean forceDelete) {
+        this.forceDelete = forceDelete;
         return this;
     }
 
@@ -111,7 +183,9 @@ public class DeleteCertificateRequest extends AmazonWebServiceRequest implements
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getCertificateId() != null)
-            sb.append("certificateId: " + getCertificateId());
+            sb.append("certificateId: " + getCertificateId() + ",");
+        if (getForceDelete() != null)
+            sb.append("forceDelete: " + getForceDelete());
         sb.append("}");
         return sb.toString();
     }
@@ -123,6 +197,8 @@ public class DeleteCertificateRequest extends AmazonWebServiceRequest implements
 
         hashCode = prime * hashCode
                 + ((getCertificateId() == null) ? 0 : getCertificateId().hashCode());
+        hashCode = prime * hashCode
+                + ((getForceDelete() == null) ? 0 : getForceDelete().hashCode());
         return hashCode;
     }
 
@@ -141,6 +217,11 @@ public class DeleteCertificateRequest extends AmazonWebServiceRequest implements
             return false;
         if (other.getCertificateId() != null
                 && other.getCertificateId().equals(this.getCertificateId()) == false)
+            return false;
+        if (other.getForceDelete() == null ^ this.getForceDelete() == null)
+            return false;
+        if (other.getForceDelete() != null
+                && other.getForceDelete().equals(this.getForceDelete()) == false)
             return false;
         return true;
     }

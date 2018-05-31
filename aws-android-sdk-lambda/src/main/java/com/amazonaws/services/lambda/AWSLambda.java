@@ -26,11 +26,11 @@ import com.amazonaws.services.lambda.model.*;
  * </p>
  * <p>
  * This is the <i>AWS Lambda API Reference</i>. The AWS Lambda Developer Guide
- * provides additional information. For the service overview, go to <a
+ * provides additional information. For the service overview, see <a
  * href="http://docs.aws.amazon.com/lambda/latest/dg/welcome.html">What is AWS
- * Lambda</a>, and for information about how the service works, go to <a
+ * Lambda</a>, and for information about how the service works, see <a
  * href="http://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html"
- * >AWS Lambda: How it Works</a> in the <i>AWS Lambda Developer Guide</i>.
+ * >AWS Lambda: How it Works</a> in the <b>AWS Lambda Developer Guide</b>.
  * </p>
  **/
 public interface AWSLambda {
@@ -115,6 +115,18 @@ public interface AWSLambda {
      * This operation requires permission for the
      * <code>lambda:InvokeFunction</code> action.
      * </p>
+     * <note>
+     * <p>
+     * The <code>TooManyRequestsException</code> noted below will return the
+     * following: <code>ConcurrentInvocationLimitExceeded</code> will be
+     * returned if you have no functions with reserved concurrency and have
+     * exceeded your account concurrent limit or if a function without reserved
+     * concurrency exceeds the account's unreserved concurrency limit.
+     * <code>ReservedFunctionConcurrentInvocationLimitExceeded</code> will be
+     * returned when a function with reserved concurrency exceeds its configured
+     * concurrency limit.
+     * </p>
+     * </note>
      * 
      * @param invokeRequest <p/>
      * @return invokeResult The response from the Invoke service method, as
@@ -138,6 +150,7 @@ public interface AWSLambda {
      * @throws KMSInvalidStateException
      * @throws KMSAccessDeniedException
      * @throws KMSNotFoundException
+     * @throws InvalidRuntimeException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

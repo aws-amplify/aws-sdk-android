@@ -36,8 +36,14 @@ class MessageConfigurationJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("APNSMessage")) {
+            if (name.equals("ADMMessage")) {
+                messageConfiguration.setADMMessage(MessageJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("APNSMessage")) {
                 messageConfiguration.setAPNSMessage(MessageJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("BaiduMessage")) {
+                messageConfiguration.setBaiduMessage(MessageJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("DefaultMessage")) {
                 messageConfiguration.setDefaultMessage(MessageJsonUnmarshaller.getInstance()

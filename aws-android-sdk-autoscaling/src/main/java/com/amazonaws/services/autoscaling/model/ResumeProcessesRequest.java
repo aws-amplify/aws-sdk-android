@@ -26,15 +26,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html"
+ * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-suspend-resume-processes.html"
  * >Suspending and Resuming Auto Scaling Processes</a> in the <i>Auto Scaling
- * Developer Guide</i>.
+ * User Guide</i>.
  * </p>
  */
 public class ResumeProcessesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name or Amazon Resource Name (ARN) of the Auto Scaling group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -46,7 +46,8 @@ public class ResumeProcessesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * One or more of the following processes:
+     * One or more of the following processes. If you omit this parameter, all
+     * processes are specified.
      * </p>
      * <ul>
      * <li>
@@ -95,7 +96,7 @@ public class ResumeProcessesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The name or Amazon Resource Name (ARN) of the Auto Scaling group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -104,7 +105,7 @@ public class ResumeProcessesRequest extends AmazonWebServiceRequest implements S
      * <br/>
      *
      * @return <p>
-     *         The name or Amazon Resource Name (ARN) of the Auto Scaling group.
+     *         The name of the Auto Scaling group.
      *         </p>
      */
     public String getAutoScalingGroupName() {
@@ -113,7 +114,7 @@ public class ResumeProcessesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The name or Amazon Resource Name (ARN) of the Auto Scaling group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -122,8 +123,7 @@ public class ResumeProcessesRequest extends AmazonWebServiceRequest implements S
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name or Amazon Resource Name (ARN) of the Auto Scaling
-     *            group.
+     *            The name of the Auto Scaling group.
      *            </p>
      */
     public void setAutoScalingGroupName(String autoScalingGroupName) {
@@ -132,7 +132,7 @@ public class ResumeProcessesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The name or Amazon Resource Name (ARN) of the Auto Scaling group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -144,8 +144,7 @@ public class ResumeProcessesRequest extends AmazonWebServiceRequest implements S
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name or Amazon Resource Name (ARN) of the Auto Scaling
-     *            group.
+     *            The name of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -157,7 +156,8 @@ public class ResumeProcessesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * One or more of the following processes:
+     * One or more of the following processes. If you omit this parameter, all
+     * processes are specified.
      * </p>
      * <ul>
      * <li>
@@ -203,7 +203,8 @@ public class ResumeProcessesRequest extends AmazonWebServiceRequest implements S
      * </ul>
      *
      * @return <p>
-     *         One or more of the following processes:
+     *         One or more of the following processes. If you omit this
+     *         parameter, all processes are specified.
      *         </p>
      *         <ul>
      *         <li>
@@ -254,7 +255,8 @@ public class ResumeProcessesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * One or more of the following processes:
+     * One or more of the following processes. If you omit this parameter, all
+     * processes are specified.
      * </p>
      * <ul>
      * <li>
@@ -300,7 +302,8 @@ public class ResumeProcessesRequest extends AmazonWebServiceRequest implements S
      * </ul>
      *
      * @param scalingProcesses <p>
-     *            One or more of the following processes:
+     *            One or more of the following processes. If you omit this
+     *            parameter, all processes are specified.
      *            </p>
      *            <ul>
      *            <li>
@@ -356,7 +359,8 @@ public class ResumeProcessesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * One or more of the following processes:
+     * One or more of the following processes. If you omit this parameter, all
+     * processes are specified.
      * </p>
      * <ul>
      * <li>
@@ -405,7 +409,8 @@ public class ResumeProcessesRequest extends AmazonWebServiceRequest implements S
      * together.
      *
      * @param scalingProcesses <p>
-     *            One or more of the following processes:
+     *            One or more of the following processes. If you omit this
+     *            parameter, all processes are specified.
      *            </p>
      *            <ul>
      *            <li>
@@ -464,7 +469,8 @@ public class ResumeProcessesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * One or more of the following processes:
+     * One or more of the following processes. If you omit this parameter, all
+     * processes are specified.
      * </p>
      * <ul>
      * <li>
@@ -513,7 +519,8 @@ public class ResumeProcessesRequest extends AmazonWebServiceRequest implements S
      * together.
      *
      * @param scalingProcesses <p>
-     *            One or more of the following processes:
+     *            One or more of the following processes. If you omit this
+     *            parameter, all processes are specified.
      *            </p>
      *            <ul>
      *            <li>

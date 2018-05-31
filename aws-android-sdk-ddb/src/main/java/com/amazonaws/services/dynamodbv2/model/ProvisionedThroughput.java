@@ -20,7 +20,8 @@ import java.io.Serializable;
 /**
  * <p>
  * Represents the provisioned throughput settings for a specified table or
- * index. The settings can be modified using the <i>UpdateTable</i> operation.
+ * index. The settings can be modified using the <code>UpdateTable</code>
+ * operation.
  * </p>
  * <p>
  * For current minimum and maximum provisioned throughput values, see <a href=
@@ -32,7 +33,7 @@ public class ProvisionedThroughput implements Serializable {
     /**
      * <p>
      * The maximum number of strongly consistent reads consumed per second
-     * before DynamoDB returns a <i>ThrottlingException</i>. For more
+     * before DynamoDB returns a <code>ThrottlingException</code>. For more
      * information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput"
      * >Specifying Read and Write Requirements</a> in the <i>Amazon DynamoDB
@@ -47,7 +48,7 @@ public class ProvisionedThroughput implements Serializable {
     /**
      * <p>
      * The maximum number of writes consumed per second before DynamoDB returns
-     * a <i>ThrottlingException</i>. For more information, see <a href=
+     * a <code>ThrottlingException</code>. For more information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput"
      * >Specifying Read and Write Requirements</a> in the <i>Amazon DynamoDB
      * Developer Guide</i>.
@@ -73,15 +74,16 @@ public class ProvisionedThroughput implements Serializable {
      * 
      * @param readCapacityUnits <p>
      *            The maximum number of strongly consistent reads consumed per
-     *            second before DynamoDB returns a <i>ThrottlingException</i>.
-     *            For more information, see <a href=
+     *            second before DynamoDB returns a
+     *            <code>ThrottlingException</code>. For more information, see <a
+     *            href=
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput"
      *            >Specifying Read and Write Requirements</a> in the <i>Amazon
      *            DynamoDB Developer Guide</i>.
      *            </p>
      * @param writeCapacityUnits <p>
      *            The maximum number of writes consumed per second before
-     *            DynamoDB returns a <i>ThrottlingException</i>. For more
+     *            DynamoDB returns a <code>ThrottlingException</code>. For more
      *            information, see <a href=
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput"
      *            >Specifying Read and Write Requirements</a> in the <i>Amazon
@@ -96,7 +98,7 @@ public class ProvisionedThroughput implements Serializable {
     /**
      * <p>
      * The maximum number of strongly consistent reads consumed per second
-     * before DynamoDB returns a <i>ThrottlingException</i>. For more
+     * before DynamoDB returns a <code>ThrottlingException</code>. For more
      * information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput"
      * >Specifying Read and Write Requirements</a> in the <i>Amazon DynamoDB
@@ -108,8 +110,8 @@ public class ProvisionedThroughput implements Serializable {
      *
      * @return <p>
      *         The maximum number of strongly consistent reads consumed per
-     *         second before DynamoDB returns a <i>ThrottlingException</i>. For
-     *         more information, see <a href=
+     *         second before DynamoDB returns a <code>ThrottlingException</code>
+     *         . For more information, see <a href=
      *         "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput"
      *         >Specifying Read and Write Requirements</a> in the <i>Amazon
      *         DynamoDB Developer Guide</i>.
@@ -122,7 +124,7 @@ public class ProvisionedThroughput implements Serializable {
     /**
      * <p>
      * The maximum number of strongly consistent reads consumed per second
-     * before DynamoDB returns a <i>ThrottlingException</i>. For more
+     * before DynamoDB returns a <code>ThrottlingException</code>. For more
      * information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput"
      * >Specifying Read and Write Requirements</a> in the <i>Amazon DynamoDB
@@ -134,8 +136,9 @@ public class ProvisionedThroughput implements Serializable {
      *
      * @param readCapacityUnits <p>
      *            The maximum number of strongly consistent reads consumed per
-     *            second before DynamoDB returns a <i>ThrottlingException</i>.
-     *            For more information, see <a href=
+     *            second before DynamoDB returns a
+     *            <code>ThrottlingException</code>. For more information, see <a
+     *            href=
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput"
      *            >Specifying Read and Write Requirements</a> in the <i>Amazon
      *            DynamoDB Developer Guide</i>.
@@ -148,7 +151,7 @@ public class ProvisionedThroughput implements Serializable {
     /**
      * <p>
      * The maximum number of strongly consistent reads consumed per second
-     * before DynamoDB returns a <i>ThrottlingException</i>. For more
+     * before DynamoDB returns a <code>ThrottlingException</code>. For more
      * information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput"
      * >Specifying Read and Write Requirements</a> in the <i>Amazon DynamoDB
@@ -163,8 +166,9 @@ public class ProvisionedThroughput implements Serializable {
      *
      * @param readCapacityUnits <p>
      *            The maximum number of strongly consistent reads consumed per
-     *            second before DynamoDB returns a <i>ThrottlingException</i>.
-     *            For more information, see <a href=
+     *            second before DynamoDB returns a
+     *            <code>ThrottlingException</code>. For more information, see <a
+     *            href=
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput"
      *            >Specifying Read and Write Requirements</a> in the <i>Amazon
      *            DynamoDB Developer Guide</i>.
@@ -180,7 +184,7 @@ public class ProvisionedThroughput implements Serializable {
     /**
      * <p>
      * The maximum number of writes consumed per second before DynamoDB returns
-     * a <i>ThrottlingException</i>. For more information, see <a href=
+     * a <code>ThrottlingException</code>. For more information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput"
      * >Specifying Read and Write Requirements</a> in the <i>Amazon DynamoDB
      * Developer Guide</i>.
@@ -191,8 +195,8 @@ public class ProvisionedThroughput implements Serializable {
      *
      * @return <p>
      *         The maximum number of writes consumed per second before DynamoDB
-     *         returns a <i>ThrottlingException</i>. For more information, see
-     *         <a href=
+     *         returns a <code>ThrottlingException</code>. For more information,
+     *         see <a href=
      *         "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput"
      *         >Specifying Read and Write Requirements</a> in the <i>Amazon
      *         DynamoDB Developer Guide</i>.
@@ -205,7 +209,7 @@ public class ProvisionedThroughput implements Serializable {
     /**
      * <p>
      * The maximum number of writes consumed per second before DynamoDB returns
-     * a <i>ThrottlingException</i>. For more information, see <a href=
+     * a <code>ThrottlingException</code>. For more information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput"
      * >Specifying Read and Write Requirements</a> in the <i>Amazon DynamoDB
      * Developer Guide</i>.
@@ -216,7 +220,7 @@ public class ProvisionedThroughput implements Serializable {
      *
      * @param writeCapacityUnits <p>
      *            The maximum number of writes consumed per second before
-     *            DynamoDB returns a <i>ThrottlingException</i>. For more
+     *            DynamoDB returns a <code>ThrottlingException</code>. For more
      *            information, see <a href=
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput"
      *            >Specifying Read and Write Requirements</a> in the <i>Amazon
@@ -230,7 +234,7 @@ public class ProvisionedThroughput implements Serializable {
     /**
      * <p>
      * The maximum number of writes consumed per second before DynamoDB returns
-     * a <i>ThrottlingException</i>. For more information, see <a href=
+     * a <code>ThrottlingException</code>. For more information, see <a href=
      * "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput"
      * >Specifying Read and Write Requirements</a> in the <i>Amazon DynamoDB
      * Developer Guide</i>.
@@ -244,7 +248,7 @@ public class ProvisionedThroughput implements Serializable {
      *
      * @param writeCapacityUnits <p>
      *            The maximum number of writes consumed per second before
-     *            DynamoDB returns a <i>ThrottlingException</i>. For more
+     *            DynamoDB returns a <code>ThrottlingException</code>. For more
      *            information, see <a href=
      *            "http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput"
      *            >Specifying Read and Write Requirements</a> in the <i>Amazon

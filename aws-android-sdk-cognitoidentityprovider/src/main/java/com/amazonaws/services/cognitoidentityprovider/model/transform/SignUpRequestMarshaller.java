@@ -101,16 +101,16 @@ public class SignUpRequestMarshaller implements Marshaller<Request<SignUpRequest
                 }
                 jsonWriter.endArray();
             }
-            if (signUpRequest.getUserContextData() != null) {
-                UserContextDataType userContextData = signUpRequest.getUserContextData();
-                jsonWriter.name("UserContextData");
-                UserContextDataTypeJsonMarshaller.getInstance().marshall(userContextData,
-                        jsonWriter);
-            }
             if (signUpRequest.getAnalyticsMetadata() != null) {
                 AnalyticsMetadataType analyticsMetadata = signUpRequest.getAnalyticsMetadata();
                 jsonWriter.name("AnalyticsMetadata");
                 AnalyticsMetadataTypeJsonMarshaller.getInstance().marshall(analyticsMetadata,
+                        jsonWriter);
+            }
+            if (signUpRequest.getUserContextData() != null) {
+                UserContextDataType userContextData = signUpRequest.getUserContextData();
+                jsonWriter.name("UserContextData");
+                UserContextDataTypeJsonMarshaller.getInstance().marshall(userContextData,
                         jsonWriter);
             }
 

@@ -30,7 +30,7 @@ public class GrantListEntry implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      */
     private String keyId;
 
@@ -103,7 +103,8 @@ public class GrantListEntry implements Serializable {
 
     /**
      * <p>
-     * The conditions under which the grant's operations are allowed.
+     * A list of key-value pairs that must be present in the encryption context
+     * of certain subsequent operations that the grant allows.
      * </p>
      */
     private GrantConstraints constraints;
@@ -115,7 +116,7 @@ public class GrantListEntry implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
      *         The unique identifier for the customer master key (CMK) to which
@@ -133,7 +134,7 @@ public class GrantListEntry implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            The unique identifier for the customer master key (CMK) to
@@ -154,7 +155,7 @@ public class GrantListEntry implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            The unique identifier for the customer master key (CMK) to
@@ -574,11 +575,13 @@ public class GrantListEntry implements Serializable {
 
     /**
      * <p>
-     * The conditions under which the grant's operations are allowed.
+     * A list of key-value pairs that must be present in the encryption context
+     * of certain subsequent operations that the grant allows.
      * </p>
      *
      * @return <p>
-     *         The conditions under which the grant's operations are allowed.
+     *         A list of key-value pairs that must be present in the encryption
+     *         context of certain subsequent operations that the grant allows.
      *         </p>
      */
     public GrantConstraints getConstraints() {
@@ -587,11 +590,14 @@ public class GrantListEntry implements Serializable {
 
     /**
      * <p>
-     * The conditions under which the grant's operations are allowed.
+     * A list of key-value pairs that must be present in the encryption context
+     * of certain subsequent operations that the grant allows.
      * </p>
      *
      * @param constraints <p>
-     *            The conditions under which the grant's operations are allowed.
+     *            A list of key-value pairs that must be present in the
+     *            encryption context of certain subsequent operations that the
+     *            grant allows.
      *            </p>
      */
     public void setConstraints(GrantConstraints constraints) {
@@ -600,14 +606,17 @@ public class GrantListEntry implements Serializable {
 
     /**
      * <p>
-     * The conditions under which the grant's operations are allowed.
+     * A list of key-value pairs that must be present in the encryption context
+     * of certain subsequent operations that the grant allows.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param constraints <p>
-     *            The conditions under which the grant's operations are allowed.
+     *            A list of key-value pairs that must be present in the
+     *            encryption context of certain subsequent operations that the
+     *            grant allows.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

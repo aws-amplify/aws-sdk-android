@@ -31,6 +31,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
@@ -38,6 +39,7 @@ import org.robolectric.annotation.Config;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -49,6 +51,7 @@ public class AbstractKinesisRecorderTest {
 
     private RecordSender sender;
     private AbstractKinesisRecorder recorder;
+    private DeadLetterListener deadLetterListener;
 
     @Rule
     public TemporaryFolder temp = new TemporaryFolder();
@@ -74,7 +77,9 @@ public class AbstractKinesisRecorderTest {
     @Before
     public void setup() throws IOException {
         sender = Mockito.mock(RecordSender.class);
-        KinesisRecorderConfig config = new KinesisRecorderConfig();
+        deadLetterListener = Mockito.mock(DeadLetterListener.class);
+        KinesisRecorderConfig config = new KinesisRecorderConfig()
+                .withDeadLetterListener(deadLetterListener);
         FileRecordStore recordStore = new FileRecordStore(temp.newFolder(), RECORD_FILE_NAME,
                 config.getMaxStorageSize());
         MockAbstractKinesisRecorder mockRecorder = new MockAbstractKinesisRecorder(recordStore,
@@ -231,6 +236,42 @@ public class AbstractKinesisRecorderTest {
             assertSame("same exception", ase, ace);
         }
         assertEquals("no records sent", size, recorder.getDiskBytesUsed());
+    }
+
+    @Test
+    public void testSubmitAllRecordsWithUnmarshallFailures() {
+        List<byte[]> data = new LinkedList<byte[]>();
+        for (int i = 0; i < 10; i++) {
+            final byte[] data_i = randomBytes(1024);
+            data.add(data_i);
+            recorder.saveRecord(data_i, STREAM_NAME);
+        }
+        long size = recorder.getDiskBytesUsed();
+        AmazonServiceException ase = new AmazonServiceException("Unable to unmarshall error response");
+        Mockito.when(sender.sendBatch(Mockito.anyString(), Mockito.anyListOf(byte[].class)))
+                .thenThrow(ase);
+        Mockito.when(sender.isRecoverable(ase)).thenReturn(false);
+        try {
+            recorder.submitAllRecords();
+            fail("Should throw exception");
+        } catch (AmazonClientException ace) {
+            assertSame("same exception", ase, ace);
+        }
+        Mockito.verify(sender, Mockito.times(2))
+                .sendBatch(Mockito.anyString(), Mockito.anyList());
+
+        ArgumentCaptor<String> streamNameCaptor = ArgumentCaptor.forClass(String.class);
+        ArgumentCaptor<List> dataCaptor = ArgumentCaptor.forClass(List.class);
+
+        Mockito.verify(deadLetterListener, Mockito.times(1))
+                .onRecordsDropped(streamNameCaptor.capture(), dataCaptor.capture());
+        assertEquals("same stream name submitted", STREAM_NAME, streamNameCaptor.getValue());
+        List<byte[]> deadData = dataCaptor.getValue();
+        assertEquals("same data submitted", data.size(), deadData.size());
+        for (int i = 0; i < data.size(); ++i) {
+            assertTrue("same data submitted", Arrays.equals(data.get(i), deadData.get(i)));
+        }
+        assertEquals("records removed to keep streaming", 0, recorder.getDiskBytesUsed());
     }
 
     @Test

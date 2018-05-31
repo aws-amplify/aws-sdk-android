@@ -29,6 +29,11 @@ import com.amazonaws.AmazonServiceException;
 public class InvalidSnsTopicException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * <p>
+     * Indicates that the topic does not exist.
+     * </p>
+     */
     private String topic;
 
     /**
@@ -42,18 +47,26 @@ public class InvalidSnsTopicException extends AmazonServiceException {
     }
 
     /**
-     * Returns the value of the topic property for this object.
+     * <p>
+     * Indicates that the topic does not exist.
+     * </p>
      *
-     * @return The value of the topic property for this object.
+     * @return <p>
+     *         Indicates that the topic does not exist.
+     *         </p>
      */
     public String getTopic() {
         return topic;
     }
 
     /**
-     * Sets the value of topic
+     * <p>
+     * Indicates that the topic does not exist.
+     * </p>
      *
-     * @param topic The new value for the topic property for this object.
+     * @param topic <p>
+     *            Indicates that the topic does not exist.
+     *            </p>
      */
     public void setTopic(String topic) {
         this.topic = topic;

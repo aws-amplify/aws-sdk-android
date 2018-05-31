@@ -105,6 +105,18 @@ public class AdminInitiateAuthRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
+            if (adminInitiateAuthRequest.getAnalyticsMetadata() != null) {
+                AnalyticsMetadataType analyticsMetadata = adminInitiateAuthRequest
+                        .getAnalyticsMetadata();
+                jsonWriter.name("AnalyticsMetadata");
+                AnalyticsMetadataTypeJsonMarshaller.getInstance().marshall(analyticsMetadata,
+                        jsonWriter);
+            }
+            if (adminInitiateAuthRequest.getContextData() != null) {
+                ContextDataType contextData = adminInitiateAuthRequest.getContextData();
+                jsonWriter.name("ContextData");
+                ContextDataTypeJsonMarshaller.getInstance().marshall(contextData, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

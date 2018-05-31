@@ -21,15 +21,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Describes one or more launch configurations. If you omit the list of names,
- * then the call describes all launch configurations.
+ * Describes one or more launch configurations.
  * </p>
  */
 public class DescribeLaunchConfigurationsRequest extends AmazonWebServiceRequest implements
         Serializable {
     /**
      * <p>
-     * The launch configuration names.
+     * The launch configuration names. If you omit this parameter, all launch
+     * configurations are described.
      * </p>
      */
     private java.util.List<String> launchConfigurationNames = new java.util.ArrayList<String>();
@@ -48,18 +48,21 @@ public class DescribeLaunchConfigurationsRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The maximum number of items to return with this call. The default is 100.
+     * The maximum number of items to return with this call. The default value
+     * is 50 and the maximum value is 100.
      * </p>
      */
     private Integer maxRecords;
 
     /**
      * <p>
-     * The launch configuration names.
+     * The launch configuration names. If you omit this parameter, all launch
+     * configurations are described.
      * </p>
      *
      * @return <p>
-     *         The launch configuration names.
+     *         The launch configuration names. If you omit this parameter, all
+     *         launch configurations are described.
      *         </p>
      */
     public java.util.List<String> getLaunchConfigurationNames() {
@@ -68,11 +71,13 @@ public class DescribeLaunchConfigurationsRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The launch configuration names.
+     * The launch configuration names. If you omit this parameter, all launch
+     * configurations are described.
      * </p>
      *
      * @param launchConfigurationNames <p>
-     *            The launch configuration names.
+     *            The launch configuration names. If you omit this parameter,
+     *            all launch configurations are described.
      *            </p>
      */
     public void setLaunchConfigurationNames(java.util.Collection<String> launchConfigurationNames) {
@@ -86,14 +91,16 @@ public class DescribeLaunchConfigurationsRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The launch configuration names.
+     * The launch configuration names. If you omit this parameter, all launch
+     * configurations are described.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param launchConfigurationNames <p>
-     *            The launch configuration names.
+     *            The launch configuration names. If you omit this parameter,
+     *            all launch configurations are described.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -112,14 +119,16 @@ public class DescribeLaunchConfigurationsRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The launch configuration names.
+     * The launch configuration names. If you omit this parameter, all launch
+     * configurations are described.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param launchConfigurationNames <p>
-     *            The launch configuration names.
+     *            The launch configuration names. If you omit this parameter,
+     *            all launch configurations are described.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -195,12 +204,13 @@ public class DescribeLaunchConfigurationsRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The maximum number of items to return with this call. The default is 100.
+     * The maximum number of items to return with this call. The default value
+     * is 50 and the maximum value is 100.
      * </p>
      *
      * @return <p>
      *         The maximum number of items to return with this call. The default
-     *         is 100.
+     *         value is 50 and the maximum value is 100.
      *         </p>
      */
     public Integer getMaxRecords() {
@@ -209,12 +219,13 @@ public class DescribeLaunchConfigurationsRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The maximum number of items to return with this call. The default is 100.
+     * The maximum number of items to return with this call. The default value
+     * is 50 and the maximum value is 100.
      * </p>
      *
      * @param maxRecords <p>
      *            The maximum number of items to return with this call. The
-     *            default is 100.
+     *            default value is 50 and the maximum value is 100.
      *            </p>
      */
     public void setMaxRecords(Integer maxRecords) {
@@ -223,7 +234,8 @@ public class DescribeLaunchConfigurationsRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The maximum number of items to return with this call. The default is 100.
+     * The maximum number of items to return with this call. The default value
+     * is 50 and the maximum value is 100.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -231,7 +243,7 @@ public class DescribeLaunchConfigurationsRequest extends AmazonWebServiceRequest
      *
      * @param maxRecords <p>
      *            The maximum number of items to return with this call. The
-     *            default is 100.
+     *            default value is 50 and the maximum value is 100.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

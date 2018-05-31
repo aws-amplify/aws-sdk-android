@@ -29,6 +29,11 @@ import com.amazonaws.AmazonServiceException;
 public class InvalidLambdaFunctionException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * <p>
+     * Indicates that the ARN of the function was not found.
+     * </p>
+     */
     private String functionArn;
 
     /**
@@ -42,19 +47,26 @@ public class InvalidLambdaFunctionException extends AmazonServiceException {
     }
 
     /**
-     * Returns the value of the functionArn property for this object.
+     * <p>
+     * Indicates that the ARN of the function was not found.
+     * </p>
      *
-     * @return The value of the functionArn property for this object.
+     * @return <p>
+     *         Indicates that the ARN of the function was not found.
+     *         </p>
      */
     public String getFunctionArn() {
         return functionArn;
     }
 
     /**
-     * Sets the value of functionArn
+     * <p>
+     * Indicates that the ARN of the function was not found.
+     * </p>
      *
-     * @param functionArn The new value for the functionArn property for this
-     *            object.
+     * @param functionArn <p>
+     *            Indicates that the ARN of the function was not found.
+     *            </p>
      */
     public void setFunctionArn(String functionArn) {
         this.functionArn = functionArn;

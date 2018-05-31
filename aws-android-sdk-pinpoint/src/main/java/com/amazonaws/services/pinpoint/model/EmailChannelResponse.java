@@ -42,6 +42,11 @@ public class EmailChannelResponse implements Serializable {
     private String fromAddress;
 
     /**
+     * If the channel is registered with a credential for authentication.
+     */
+    private Boolean hasCredential;
+
+    /**
      * Channel ID. Not used, only for backwards compatibility.
      */
     private String id;
@@ -225,6 +230,52 @@ public class EmailChannelResponse implements Serializable {
      */
     public EmailChannelResponse withFromAddress(String fromAddress) {
         this.fromAddress = fromAddress;
+        return this;
+    }
+
+    /**
+     * If the channel is registered with a credential for authentication.
+     *
+     * @return If the channel is registered with a credential for
+     *         authentication.
+     */
+    public Boolean isHasCredential() {
+        return hasCredential;
+    }
+
+    /**
+     * If the channel is registered with a credential for authentication.
+     *
+     * @return If the channel is registered with a credential for
+     *         authentication.
+     */
+    public Boolean getHasCredential() {
+        return hasCredential;
+    }
+
+    /**
+     * If the channel is registered with a credential for authentication.
+     *
+     * @param hasCredential If the channel is registered with a credential for
+     *            authentication.
+     */
+    public void setHasCredential(Boolean hasCredential) {
+        this.hasCredential = hasCredential;
+    }
+
+    /**
+     * If the channel is registered with a credential for authentication.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param hasCredential If the channel is registered with a credential for
+     *            authentication.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public EmailChannelResponse withHasCredential(Boolean hasCredential) {
+        this.hasCredential = hasCredential;
         return this;
     }
 
@@ -526,6 +577,8 @@ public class EmailChannelResponse implements Serializable {
             sb.append("Enabled: " + getEnabled() + ",");
         if (getFromAddress() != null)
             sb.append("FromAddress: " + getFromAddress() + ",");
+        if (getHasCredential() != null)
+            sb.append("HasCredential: " + getHasCredential() + ",");
         if (getId() != null)
             sb.append("Id: " + getId() + ",");
         if (getIdentity() != null)
@@ -558,6 +611,8 @@ public class EmailChannelResponse implements Serializable {
         hashCode = prime * hashCode + ((getEnabled() == null) ? 0 : getEnabled().hashCode());
         hashCode = prime * hashCode
                 + ((getFromAddress() == null) ? 0 : getFromAddress().hashCode());
+        hashCode = prime * hashCode
+                + ((getHasCredential() == null) ? 0 : getHasCredential().hashCode());
         hashCode = prime * hashCode + ((getId() == null) ? 0 : getId().hashCode());
         hashCode = prime * hashCode + ((getIdentity() == null) ? 0 : getIdentity().hashCode());
         hashCode = prime * hashCode + ((getIsArchived() == null) ? 0 : getIsArchived().hashCode());
@@ -600,6 +655,11 @@ public class EmailChannelResponse implements Serializable {
             return false;
         if (other.getFromAddress() != null
                 && other.getFromAddress().equals(this.getFromAddress()) == false)
+            return false;
+        if (other.getHasCredential() == null ^ this.getHasCredential() == null)
+            return false;
+        if (other.getHasCredential() != null
+                && other.getHasCredential().equals(this.getHasCredential()) == false)
             return false;
         if (other.getId() == null ^ this.getId() == null)
             return false;

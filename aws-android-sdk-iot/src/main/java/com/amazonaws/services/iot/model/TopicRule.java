@@ -79,6 +79,13 @@ public class TopicRule implements Serializable {
 
     /**
      * <p>
+     * The action to perform when an error occurs.
+     * </p>
+     */
+    private Action errorAction;
+
+    /**
+     * <p>
      * The name of the rule.
      * </p>
      * <p>
@@ -458,6 +465,51 @@ public class TopicRule implements Serializable {
     }
 
     /**
+     * <p>
+     * The action to perform when an error occurs.
+     * </p>
+     *
+     * @return <p>
+     *         The action to perform when an error occurs.
+     *         </p>
+     */
+    public Action getErrorAction() {
+        return errorAction;
+    }
+
+    /**
+     * <p>
+     * The action to perform when an error occurs.
+     * </p>
+     *
+     * @param errorAction <p>
+     *            The action to perform when an error occurs.
+     *            </p>
+     */
+    public void setErrorAction(Action errorAction) {
+        this.errorAction = errorAction;
+    }
+
+    /**
+     * <p>
+     * The action to perform when an error occurs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param errorAction <p>
+     *            The action to perform when an error occurs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TopicRule withErrorAction(Action errorAction) {
+        this.errorAction = errorAction;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -481,7 +533,9 @@ public class TopicRule implements Serializable {
         if (getRuleDisabled() != null)
             sb.append("ruleDisabled: " + getRuleDisabled() + ",");
         if (getAwsIotSqlVersion() != null)
-            sb.append("awsIotSqlVersion: " + getAwsIotSqlVersion());
+            sb.append("awsIotSqlVersion: " + getAwsIotSqlVersion() + ",");
+        if (getErrorAction() != null)
+            sb.append("errorAction: " + getErrorAction());
         sb.append("}");
         return sb.toString();
     }
@@ -501,6 +555,8 @@ public class TopicRule implements Serializable {
                 + ((getRuleDisabled() == null) ? 0 : getRuleDisabled().hashCode());
         hashCode = prime * hashCode
                 + ((getAwsIotSqlVersion() == null) ? 0 : getAwsIotSqlVersion().hashCode());
+        hashCode = prime * hashCode
+                + ((getErrorAction() == null) ? 0 : getErrorAction().hashCode());
         return hashCode;
     }
 
@@ -546,6 +602,11 @@ public class TopicRule implements Serializable {
             return false;
         if (other.getAwsIotSqlVersion() != null
                 && other.getAwsIotSqlVersion().equals(this.getAwsIotSqlVersion()) == false)
+            return false;
+        if (other.getErrorAction() == null ^ this.getErrorAction() == null)
+            return false;
+        if (other.getErrorAction() != null
+                && other.getErrorAction().equals(this.getErrorAction()) == false)
             return false;
         return true;
     }

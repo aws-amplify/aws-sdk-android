@@ -26,7 +26,7 @@ public class IdentityDkimAttributes implements Serializable {
     /**
      * <p>
      * True if DKIM signing is enabled for email sent from the identity; false
-     * otherwise.
+     * otherwise. The default value is true.
      * </p>
      */
     private Boolean dkimEnabled;
@@ -66,12 +66,12 @@ public class IdentityDkimAttributes implements Serializable {
     /**
      * <p>
      * True if DKIM signing is enabled for email sent from the identity; false
-     * otherwise.
+     * otherwise. The default value is true.
      * </p>
      *
      * @return <p>
      *         True if DKIM signing is enabled for email sent from the identity;
-     *         false otherwise.
+     *         false otherwise. The default value is true.
      *         </p>
      */
     public Boolean isDkimEnabled() {
@@ -81,12 +81,12 @@ public class IdentityDkimAttributes implements Serializable {
     /**
      * <p>
      * True if DKIM signing is enabled for email sent from the identity; false
-     * otherwise.
+     * otherwise. The default value is true.
      * </p>
      *
      * @return <p>
      *         True if DKIM signing is enabled for email sent from the identity;
-     *         false otherwise.
+     *         false otherwise. The default value is true.
      *         </p>
      */
     public Boolean getDkimEnabled() {
@@ -96,12 +96,12 @@ public class IdentityDkimAttributes implements Serializable {
     /**
      * <p>
      * True if DKIM signing is enabled for email sent from the identity; false
-     * otherwise.
+     * otherwise. The default value is true.
      * </p>
      *
      * @param dkimEnabled <p>
      *            True if DKIM signing is enabled for email sent from the
-     *            identity; false otherwise.
+     *            identity; false otherwise. The default value is true.
      *            </p>
      */
     public void setDkimEnabled(Boolean dkimEnabled) {
@@ -111,7 +111,7 @@ public class IdentityDkimAttributes implements Serializable {
     /**
      * <p>
      * True if DKIM signing is enabled for email sent from the identity; false
-     * otherwise.
+     * otherwise. The default value is true.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -119,7 +119,7 @@ public class IdentityDkimAttributes implements Serializable {
      *
      * @param dkimEnabled <p>
      *            True if DKIM signing is enabled for email sent from the
-     *            identity; false otherwise.
+     *            identity; false otherwise. The default value is true.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

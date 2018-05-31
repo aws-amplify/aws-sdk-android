@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes the specified rule.
+ * Deletes the rule.
  * </p>
  */
 public class DeleteTopicRuleRequest extends AmazonWebServiceRequest implements Serializable {

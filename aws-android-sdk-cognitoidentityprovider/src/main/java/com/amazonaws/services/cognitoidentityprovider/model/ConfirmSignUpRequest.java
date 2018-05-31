@@ -28,7 +28,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The ID of the client associated with the user pool.
+     * The ID of the app client associated with the user pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -75,32 +75,36 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * Boolean to be specified to force user confirmation irrespective of
-     * existing alias. By default set to False. If this parameter is set to True
-     * and the phone number/email used for sign up confirmation already exists
-     * as an alias with a different user, the API call will migrate the alias
-     * from the previous user to the newly created user being confirmed. If set
-     * to False, the API will throw an <b>AliasExistsException</b> error.
+     * existing alias. By default set to <code>False</code>. If this parameter
+     * is set to <code>True</code> and the phone number/email used for sign up
+     * confirmation already exists as an alias with a different user, the API
+     * call will migrate the alias from the previous user to the newly created
+     * user being confirmed. If set to <code>False</code>, the API will throw an
+     * <b>AliasExistsException</b> error.
      * </p>
      */
     private Boolean forceAliasCreation;
 
     /**
      * <p>
-     * Base64 encoded string for user context data collected for risk evaluation
-     * </p>
-     */
-    private UserContextDataType userContextData;
-
-    /**
-     * <p>
-     * The pinpoint installation id.
+     * The Amazon Pinpoint analytics metadata for collecting metrics for
+     * <code>ConfirmSignUp</code> calls.
      * </p>
      */
     private AnalyticsMetadataType analyticsMetadata;
 
     /**
      * <p>
-     * The ID of the client associated with the user pool.
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
+     * </p>
+     */
+    private UserContextDataType userContextData;
+
+    /**
+     * <p>
+     * The ID of the app client associated with the user pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -108,7 +112,7 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>[\w+]+<br/>
      *
      * @return <p>
-     *         The ID of the client associated with the user pool.
+     *         The ID of the app client associated with the user pool.
      *         </p>
      */
     public String getClientId() {
@@ -117,7 +121,7 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The ID of the client associated with the user pool.
+     * The ID of the app client associated with the user pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -125,7 +129,7 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>[\w+]+<br/>
      *
      * @param clientId <p>
-     *            The ID of the client associated with the user pool.
+     *            The ID of the app client associated with the user pool.
      *            </p>
      */
     public void setClientId(String clientId) {
@@ -134,7 +138,7 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The ID of the client associated with the user pool.
+     * The ID of the app client associated with the user pool.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -145,7 +149,7 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>[\w+]+<br/>
      *
      * @param clientId <p>
-     *            The ID of the client associated with the user pool.
+     *            The ID of the app client associated with the user pool.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -346,21 +350,23 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * Boolean to be specified to force user confirmation irrespective of
-     * existing alias. By default set to False. If this parameter is set to True
-     * and the phone number/email used for sign up confirmation already exists
-     * as an alias with a different user, the API call will migrate the alias
-     * from the previous user to the newly created user being confirmed. If set
-     * to False, the API will throw an <b>AliasExistsException</b> error.
+     * existing alias. By default set to <code>False</code>. If this parameter
+     * is set to <code>True</code> and the phone number/email used for sign up
+     * confirmation already exists as an alias with a different user, the API
+     * call will migrate the alias from the previous user to the newly created
+     * user being confirmed. If set to <code>False</code>, the API will throw an
+     * <b>AliasExistsException</b> error.
      * </p>
      *
      * @return <p>
      *         Boolean to be specified to force user confirmation irrespective
-     *         of existing alias. By default set to False. If this parameter is
-     *         set to True and the phone number/email used for sign up
-     *         confirmation already exists as an alias with a different user,
-     *         the API call will migrate the alias from the previous user to the
-     *         newly created user being confirmed. If set to False, the API will
-     *         throw an <b>AliasExistsException</b> error.
+     *         of existing alias. By default set to <code>False</code>. If this
+     *         parameter is set to <code>True</code> and the phone number/email
+     *         used for sign up confirmation already exists as an alias with a
+     *         different user, the API call will migrate the alias from the
+     *         previous user to the newly created user being confirmed. If set
+     *         to <code>False</code>, the API will throw an
+     *         <b>AliasExistsException</b> error.
      *         </p>
      */
     public Boolean isForceAliasCreation() {
@@ -370,21 +376,23 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * Boolean to be specified to force user confirmation irrespective of
-     * existing alias. By default set to False. If this parameter is set to True
-     * and the phone number/email used for sign up confirmation already exists
-     * as an alias with a different user, the API call will migrate the alias
-     * from the previous user to the newly created user being confirmed. If set
-     * to False, the API will throw an <b>AliasExistsException</b> error.
+     * existing alias. By default set to <code>False</code>. If this parameter
+     * is set to <code>True</code> and the phone number/email used for sign up
+     * confirmation already exists as an alias with a different user, the API
+     * call will migrate the alias from the previous user to the newly created
+     * user being confirmed. If set to <code>False</code>, the API will throw an
+     * <b>AliasExistsException</b> error.
      * </p>
      *
      * @return <p>
      *         Boolean to be specified to force user confirmation irrespective
-     *         of existing alias. By default set to False. If this parameter is
-     *         set to True and the phone number/email used for sign up
-     *         confirmation already exists as an alias with a different user,
-     *         the API call will migrate the alias from the previous user to the
-     *         newly created user being confirmed. If set to False, the API will
-     *         throw an <b>AliasExistsException</b> error.
+     *         of existing alias. By default set to <code>False</code>. If this
+     *         parameter is set to <code>True</code> and the phone number/email
+     *         used for sign up confirmation already exists as an alias with a
+     *         different user, the API call will migrate the alias from the
+     *         previous user to the newly created user being confirmed. If set
+     *         to <code>False</code>, the API will throw an
+     *         <b>AliasExistsException</b> error.
      *         </p>
      */
     public Boolean getForceAliasCreation() {
@@ -394,21 +402,23 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * Boolean to be specified to force user confirmation irrespective of
-     * existing alias. By default set to False. If this parameter is set to True
-     * and the phone number/email used for sign up confirmation already exists
-     * as an alias with a different user, the API call will migrate the alias
-     * from the previous user to the newly created user being confirmed. If set
-     * to False, the API will throw an <b>AliasExistsException</b> error.
+     * existing alias. By default set to <code>False</code>. If this parameter
+     * is set to <code>True</code> and the phone number/email used for sign up
+     * confirmation already exists as an alias with a different user, the API
+     * call will migrate the alias from the previous user to the newly created
+     * user being confirmed. If set to <code>False</code>, the API will throw an
+     * <b>AliasExistsException</b> error.
      * </p>
      *
      * @param forceAliasCreation <p>
      *            Boolean to be specified to force user confirmation
-     *            irrespective of existing alias. By default set to False. If
-     *            this parameter is set to True and the phone number/email used
-     *            for sign up confirmation already exists as an alias with a
-     *            different user, the API call will migrate the alias from the
-     *            previous user to the newly created user being confirmed. If
-     *            set to False, the API will throw an
+     *            irrespective of existing alias. By default set to
+     *            <code>False</code>. If this parameter is set to
+     *            <code>True</code> and the phone number/email used for sign up
+     *            confirmation already exists as an alias with a different user,
+     *            the API call will migrate the alias from the previous user to
+     *            the newly created user being confirmed. If set to
+     *            <code>False</code>, the API will throw an
      *            <b>AliasExistsException</b> error.
      *            </p>
      */
@@ -419,11 +429,12 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * Boolean to be specified to force user confirmation irrespective of
-     * existing alias. By default set to False. If this parameter is set to True
-     * and the phone number/email used for sign up confirmation already exists
-     * as an alias with a different user, the API call will migrate the alias
-     * from the previous user to the newly created user being confirmed. If set
-     * to False, the API will throw an <b>AliasExistsException</b> error.
+     * existing alias. By default set to <code>False</code>. If this parameter
+     * is set to <code>True</code> and the phone number/email used for sign up
+     * confirmation already exists as an alias with a different user, the API
+     * call will migrate the alias from the previous user to the newly created
+     * user being confirmed. If set to <code>False</code>, the API will throw an
+     * <b>AliasExistsException</b> error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -431,12 +442,13 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
      *
      * @param forceAliasCreation <p>
      *            Boolean to be specified to force user confirmation
-     *            irrespective of existing alias. By default set to False. If
-     *            this parameter is set to True and the phone number/email used
-     *            for sign up confirmation already exists as an alias with a
-     *            different user, the API call will migrate the alias from the
-     *            previous user to the newly created user being confirmed. If
-     *            set to False, the API will throw an
+     *            irrespective of existing alias. By default set to
+     *            <code>False</code>. If this parameter is set to
+     *            <code>True</code> and the phone number/email used for sign up
+     *            confirmation already exists as an alias with a different user,
+     *            the API call will migrate the alias from the previous user to
+     *            the newly created user being confirmed. If set to
+     *            <code>False</code>, the API will throw an
      *            <b>AliasExistsException</b> error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -449,59 +461,13 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Base64 encoded string for user context data collected for risk evaluation
+     * The Amazon Pinpoint analytics metadata for collecting metrics for
+     * <code>ConfirmSignUp</code> calls.
      * </p>
      *
      * @return <p>
-     *         Base64 encoded string for user context data collected for risk
-     *         evaluation
-     *         </p>
-     */
-    public UserContextDataType getUserContextData() {
-        return userContextData;
-    }
-
-    /**
-     * <p>
-     * Base64 encoded string for user context data collected for risk evaluation
-     * </p>
-     *
-     * @param userContextData <p>
-     *            Base64 encoded string for user context data collected for risk
-     *            evaluation
-     *            </p>
-     */
-    public void setUserContextData(UserContextDataType userContextData) {
-        this.userContextData = userContextData;
-    }
-
-    /**
-     * <p>
-     * Base64 encoded string for user context data collected for risk evaluation
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param userContextData <p>
-     *            Base64 encoded string for user context data collected for risk
-     *            evaluation
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public ConfirmSignUpRequest withUserContextData(UserContextDataType userContextData) {
-        this.userContextData = userContextData;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The pinpoint installation id.
-     * </p>
-     *
-     * @return <p>
-     *         The pinpoint installation id.
+     *         The Amazon Pinpoint analytics metadata for collecting metrics for
+     *         <code>ConfirmSignUp</code> calls.
      *         </p>
      */
     public AnalyticsMetadataType getAnalyticsMetadata() {
@@ -510,11 +476,13 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The pinpoint installation id.
+     * The Amazon Pinpoint analytics metadata for collecting metrics for
+     * <code>ConfirmSignUp</code> calls.
      * </p>
      *
      * @param analyticsMetadata <p>
-     *            The pinpoint installation id.
+     *            The Amazon Pinpoint analytics metadata for collecting metrics
+     *            for <code>ConfirmSignUp</code> calls.
      *            </p>
      */
     public void setAnalyticsMetadata(AnalyticsMetadataType analyticsMetadata) {
@@ -523,20 +491,79 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The pinpoint installation id.
+     * The Amazon Pinpoint analytics metadata for collecting metrics for
+     * <code>ConfirmSignUp</code> calls.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param analyticsMetadata <p>
-     *            The pinpoint installation id.
+     *            The Amazon Pinpoint analytics metadata for collecting metrics
+     *            for <code>ConfirmSignUp</code> calls.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public ConfirmSignUpRequest withAnalyticsMetadata(AnalyticsMetadataType analyticsMetadata) {
         this.analyticsMetadata = analyticsMetadata;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
+     * </p>
+     *
+     * @return <p>
+     *         Contextual data such as the user's device fingerprint, IP
+     *         address, or location used for evaluating the risk of an
+     *         unexpected event by Amazon Cognito advanced security.
+     *         </p>
+     */
+    public UserContextDataType getUserContextData() {
+        return userContextData;
+    }
+
+    /**
+     * <p>
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
+     * </p>
+     *
+     * @param userContextData <p>
+     *            Contextual data such as the user's device fingerprint, IP
+     *            address, or location used for evaluating the risk of an
+     *            unexpected event by Amazon Cognito advanced security.
+     *            </p>
+     */
+    public void setUserContextData(UserContextDataType userContextData) {
+        this.userContextData = userContextData;
+    }
+
+    /**
+     * <p>
+     * Contextual data such as the user's device fingerprint, IP address, or
+     * location used for evaluating the risk of an unexpected event by Amazon
+     * Cognito advanced security.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param userContextData <p>
+     *            Contextual data such as the user's device fingerprint, IP
+     *            address, or location used for evaluating the risk of an
+     *            unexpected event by Amazon Cognito advanced security.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ConfirmSignUpRequest withUserContextData(UserContextDataType userContextData) {
+        this.userContextData = userContextData;
         return this;
     }
 
@@ -561,10 +588,10 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
             sb.append("ConfirmationCode: " + getConfirmationCode() + ",");
         if (getForceAliasCreation() != null)
             sb.append("ForceAliasCreation: " + getForceAliasCreation() + ",");
-        if (getUserContextData() != null)
-            sb.append("UserContextData: " + getUserContextData() + ",");
         if (getAnalyticsMetadata() != null)
-            sb.append("AnalyticsMetadata: " + getAnalyticsMetadata());
+            sb.append("AnalyticsMetadata: " + getAnalyticsMetadata() + ",");
+        if (getUserContextData() != null)
+            sb.append("UserContextData: " + getUserContextData());
         sb.append("}");
         return sb.toString();
     }
@@ -582,9 +609,9 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
         hashCode = prime * hashCode
                 + ((getForceAliasCreation() == null) ? 0 : getForceAliasCreation().hashCode());
         hashCode = prime * hashCode
-                + ((getUserContextData() == null) ? 0 : getUserContextData().hashCode());
-        hashCode = prime * hashCode
                 + ((getAnalyticsMetadata() == null) ? 0 : getAnalyticsMetadata().hashCode());
+        hashCode = prime * hashCode
+                + ((getUserContextData() == null) ? 0 : getUserContextData().hashCode());
         return hashCode;
     }
 
@@ -622,15 +649,15 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
         if (other.getForceAliasCreation() != null
                 && other.getForceAliasCreation().equals(this.getForceAliasCreation()) == false)
             return false;
-        if (other.getUserContextData() == null ^ this.getUserContextData() == null)
-            return false;
-        if (other.getUserContextData() != null
-                && other.getUserContextData().equals(this.getUserContextData()) == false)
-            return false;
         if (other.getAnalyticsMetadata() == null ^ this.getAnalyticsMetadata() == null)
             return false;
         if (other.getAnalyticsMetadata() != null
                 && other.getAnalyticsMetadata().equals(this.getAnalyticsMetadata()) == false)
+            return false;
+        if (other.getUserContextData() == null ^ this.getUserContextData() == null)
+            return false;
+        if (other.getUserContextData() != null
+                && other.getUserContextData().equals(this.getUserContextData()) == false)
             return false;
         return true;
     }

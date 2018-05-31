@@ -22,8 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Replaces the set of policies associated with the specified port on which the
- * back-end server is listening with a new set of policies. At this time, only
- * the back-end server authentication policy type can be applied to the back-end
+ * EC2 instance is listening with a new set of policies. At this time, only the
+ * back-end server authentication policy type can be applied to the instance
  * ports; this policy type is composed of multiple public key policies.
  * </p>
  * <p>
@@ -34,7 +34,17 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * You can use <a>DescribeLoadBalancers</a> or
  * <a>DescribeLoadBalancerPolicies</a> to verify that the policy is associated
- * with the back-end server.
+ * with the EC2 instance.
+ * </p>
+ * <p>
+ * For more information about enabling back-end instance authentication, see <a
+ * href=
+ * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-create-https-ssl-load-balancer.html#configure_backendauth_clt"
+ * >Configure Back-end Instance Authentication</a> in the <i>Classic Load
+ * Balancer Guide</i>. For more information about Proxy Protocol, see <a href=
+ * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html"
+ * >Configure Proxy Protocol Support</a> in the <i>Classic Load Balancer
+ * Guide</i>.
  * </p>
  */
 public class SetLoadBalancerPoliciesForBackendServerRequest extends AmazonWebServiceRequest
@@ -48,7 +58,7 @@ public class SetLoadBalancerPoliciesForBackendServerRequest extends AmazonWebSer
 
     /**
      * <p>
-     * The port number associated with the back-end server.
+     * The port number associated with the EC2 instance.
      * </p>
      */
     private Integer instancePort;
@@ -56,7 +66,7 @@ public class SetLoadBalancerPoliciesForBackendServerRequest extends AmazonWebSer
     /**
      * <p>
      * The names of the policies. If the list is empty, then all current polices
-     * are removed from the back-end server.
+     * are removed from the EC2 instance.
      * </p>
      */
     private java.util.List<String> policyNames = new java.util.ArrayList<String>();
@@ -109,11 +119,11 @@ public class SetLoadBalancerPoliciesForBackendServerRequest extends AmazonWebSer
 
     /**
      * <p>
-     * The port number associated with the back-end server.
+     * The port number associated with the EC2 instance.
      * </p>
      *
      * @return <p>
-     *         The port number associated with the back-end server.
+     *         The port number associated with the EC2 instance.
      *         </p>
      */
     public Integer getInstancePort() {
@@ -122,11 +132,11 @@ public class SetLoadBalancerPoliciesForBackendServerRequest extends AmazonWebSer
 
     /**
      * <p>
-     * The port number associated with the back-end server.
+     * The port number associated with the EC2 instance.
      * </p>
      *
      * @param instancePort <p>
-     *            The port number associated with the back-end server.
+     *            The port number associated with the EC2 instance.
      *            </p>
      */
     public void setInstancePort(Integer instancePort) {
@@ -135,14 +145,14 @@ public class SetLoadBalancerPoliciesForBackendServerRequest extends AmazonWebSer
 
     /**
      * <p>
-     * The port number associated with the back-end server.
+     * The port number associated with the EC2 instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param instancePort <p>
-     *            The port number associated with the back-end server.
+     *            The port number associated with the EC2 instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -155,12 +165,12 @@ public class SetLoadBalancerPoliciesForBackendServerRequest extends AmazonWebSer
     /**
      * <p>
      * The names of the policies. If the list is empty, then all current polices
-     * are removed from the back-end server.
+     * are removed from the EC2 instance.
      * </p>
      *
      * @return <p>
      *         The names of the policies. If the list is empty, then all current
-     *         polices are removed from the back-end server.
+     *         polices are removed from the EC2 instance.
      *         </p>
      */
     public java.util.List<String> getPolicyNames() {
@@ -170,12 +180,12 @@ public class SetLoadBalancerPoliciesForBackendServerRequest extends AmazonWebSer
     /**
      * <p>
      * The names of the policies. If the list is empty, then all current polices
-     * are removed from the back-end server.
+     * are removed from the EC2 instance.
      * </p>
      *
      * @param policyNames <p>
      *            The names of the policies. If the list is empty, then all
-     *            current polices are removed from the back-end server.
+     *            current polices are removed from the EC2 instance.
      *            </p>
      */
     public void setPolicyNames(java.util.Collection<String> policyNames) {
@@ -190,7 +200,7 @@ public class SetLoadBalancerPoliciesForBackendServerRequest extends AmazonWebSer
     /**
      * <p>
      * The names of the policies. If the list is empty, then all current polices
-     * are removed from the back-end server.
+     * are removed from the EC2 instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -198,7 +208,7 @@ public class SetLoadBalancerPoliciesForBackendServerRequest extends AmazonWebSer
      *
      * @param policyNames <p>
      *            The names of the policies. If the list is empty, then all
-     *            current polices are removed from the back-end server.
+     *            current polices are removed from the EC2 instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -216,7 +226,7 @@ public class SetLoadBalancerPoliciesForBackendServerRequest extends AmazonWebSer
     /**
      * <p>
      * The names of the policies. If the list is empty, then all current polices
-     * are removed from the back-end server.
+     * are removed from the EC2 instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -224,7 +234,7 @@ public class SetLoadBalancerPoliciesForBackendServerRequest extends AmazonWebSer
      *
      * @param policyNames <p>
      *            The names of the policies. If the list is empty, then all
-     *            current polices are removed from the back-end server.
+     *            current polices are removed from the EC2 instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

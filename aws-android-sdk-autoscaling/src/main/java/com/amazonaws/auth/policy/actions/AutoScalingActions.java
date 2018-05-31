@@ -27,6 +27,9 @@ public enum AutoScalingActions implements Action {
     /** Action for the AttachInstances operation. */
     AttachInstances("autoscaling:AttachInstances"),
 
+    /** Action for the AttachLoadBalancerTargetGroups operation. */
+    AttachLoadBalancerTargetGroups("autoscaling:AttachLoadBalancerTargetGroups"),
+
     /** Action for the AttachLoadBalancers operation. */
     AttachLoadBalancers("autoscaling:AttachLoadBalancers"),
 
@@ -87,6 +90,9 @@ public enum AutoScalingActions implements Action {
     /** Action for the DescribeLifecycleHooks operation. */
     DescribeLifecycleHooks("autoscaling:DescribeLifecycleHooks"),
 
+    /** Action for the DescribeLoadBalancerTargetGroups operation. */
+    DescribeLoadBalancerTargetGroups("autoscaling:DescribeLoadBalancerTargetGroups"),
+
     /** Action for the DescribeLoadBalancers operation. */
     DescribeLoadBalancers("autoscaling:DescribeLoadBalancers"),
 
@@ -116,6 +122,9 @@ public enum AutoScalingActions implements Action {
 
     /** Action for the DetachInstances operation. */
     DetachInstances("autoscaling:DetachInstances"),
+
+    /** Action for the DetachLoadBalancerTargetGroups operation. */
+    DetachLoadBalancerTargetGroups("autoscaling:DetachLoadBalancerTargetGroups"),
 
     /** Action for the DetachLoadBalancers operation. */
     DetachLoadBalancers("autoscaling:DetachLoadBalancers"),

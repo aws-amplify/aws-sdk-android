@@ -48,6 +48,15 @@ public class GetPolicyVersionResultJsonUnmarshaller implements
             } else if (name.equals("isDefaultVersion")) {
                 getPolicyVersionResult.setIsDefaultVersion(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("creationDate")) {
+                getPolicyVersionResult.setCreationDate(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("lastModifiedDate")) {
+                getPolicyVersionResult.setLastModifiedDate(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("generationId")) {
+                getPolicyVersionResult.setGenerationId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

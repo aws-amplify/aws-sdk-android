@@ -48,6 +48,9 @@ class GCMChannelResponseJsonUnmarshaller implements
             } else if (name.equals("Enabled")) {
                 gCMChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("HasCredential")) {
+                gCMChannelResponse.setHasCredential(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Id")) {
                 gCMChannelResponse.setId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

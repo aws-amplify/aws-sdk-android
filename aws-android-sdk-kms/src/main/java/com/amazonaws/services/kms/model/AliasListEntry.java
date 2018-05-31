@@ -50,7 +50,7 @@ public class AliasListEntry implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      */
     private String targetKeyId;
 
@@ -171,7 +171,7 @@ public class AliasListEntry implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
      *         String that contains the key identifier referred to by the alias.
@@ -187,7 +187,7 @@ public class AliasListEntry implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param targetKeyId <p>
      *            String that contains the key identifier referred to by the
@@ -207,7 +207,7 @@ public class AliasListEntry implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param targetKeyId <p>
      *            String that contains the key identifier referred to by the

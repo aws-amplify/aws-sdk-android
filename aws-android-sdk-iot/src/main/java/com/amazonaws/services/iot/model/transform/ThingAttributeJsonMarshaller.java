@@ -35,6 +35,11 @@ class ThingAttributeJsonMarshaller {
             jsonWriter.name("thingTypeName");
             jsonWriter.value(thingTypeName);
         }
+        if (thingAttribute.getThingArn() != null) {
+            String thingArn = thingAttribute.getThingArn();
+            jsonWriter.name("thingArn");
+            jsonWriter.value(thingArn);
+        }
         if (thingAttribute.getAttributes() != null) {
             java.util.Map<String, String> attributes = thingAttribute.getAttributes();
             jsonWriter.name("attributes");

@@ -21,14 +21,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists your Amazon Kinesis streams.
+ * Lists your Kinesis data streams.
  * </p>
  * <p>
  * The number of streams may be too large to return from a single call to
  * <code>ListStreams</code>. You can limit the number of returned streams using
  * the <code>Limit</code> parameter. If you do not specify a value for the
- * <code>Limit</code> parameter, Amazon Kinesis uses the default limit, which is
- * currently 10.
+ * <code>Limit</code> parameter, Kinesis Data Streams uses the default limit,
+ * which is currently 10.
  * </p>
  * <p>
  * You can detect if there are more streams available to list by using the
@@ -41,7 +41,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * until all the stream names have been collected in the list.
  * </p>
  * <p>
- * <a>ListStreams</a> has a limit of 5 transactions per second per account.
+ * <a>ListStreams</a> has a limit of five transactions per second per account.
  * </p>
  */
 public class ListStreamsRequest extends AmazonWebServiceRequest implements Serializable {

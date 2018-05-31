@@ -26,7 +26,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * (Amazon SNS) notifications of a specified type.
  * </p>
  * <p>
- * This action is throttled at one request per second.
+ * You can execute this operation no more than once per second.
  * </p>
  * <p>
  * For more information about using notifications with Amazon SES, see the <a

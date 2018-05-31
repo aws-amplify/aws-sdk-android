@@ -24,10 +24,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Registers a CA certificate with AWS IoT. This CA certificate can then be used
  * to sign device certificates, which can be then registered with AWS IoT. You
  * can register up to 10 CA certificates per AWS account that have the same
- * subject field and public key. This enables you to have up to 10 certificate
- * authorities sign your device certificates. If you have more than one CA
- * certificate registered, make sure you pass the CA certificate when you
- * register your device certificates with the RegisterCertificate API.
+ * subject field. This enables you to have up to 10 certificate authorities sign
+ * your device certificates. If you have more than one CA certificate
+ * registered, make sure you pass the CA certificate when you register your
+ * device certificates with the RegisterCertificate API.
  * </p>
  */
 public class RegisterCACertificateRequest extends AmazonWebServiceRequest implements Serializable {
@@ -65,6 +65,13 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
      * </p>
      */
     private Boolean allowAutoRegistration;
+
+    /**
+     * <p>
+     * Information about the registration configuration.
+     * </p>
+     */
+    private RegistrationConfig registrationConfig;
 
     /**
      * <p>
@@ -303,6 +310,51 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
     }
 
     /**
+     * <p>
+     * Information about the registration configuration.
+     * </p>
+     *
+     * @return <p>
+     *         Information about the registration configuration.
+     *         </p>
+     */
+    public RegistrationConfig getRegistrationConfig() {
+        return registrationConfig;
+    }
+
+    /**
+     * <p>
+     * Information about the registration configuration.
+     * </p>
+     *
+     * @param registrationConfig <p>
+     *            Information about the registration configuration.
+     *            </p>
+     */
+    public void setRegistrationConfig(RegistrationConfig registrationConfig) {
+        this.registrationConfig = registrationConfig;
+    }
+
+    /**
+     * <p>
+     * Information about the registration configuration.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param registrationConfig <p>
+     *            Information about the registration configuration.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public RegisterCACertificateRequest withRegistrationConfig(RegistrationConfig registrationConfig) {
+        this.registrationConfig = registrationConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -320,7 +372,9 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
         if (getSetAsActive() != null)
             sb.append("setAsActive: " + getSetAsActive() + ",");
         if (getAllowAutoRegistration() != null)
-            sb.append("allowAutoRegistration: " + getAllowAutoRegistration());
+            sb.append("allowAutoRegistration: " + getAllowAutoRegistration() + ",");
+        if (getRegistrationConfig() != null)
+            sb.append("registrationConfig: " + getRegistrationConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -341,6 +395,8 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
         hashCode = prime
                 * hashCode
                 + ((getAllowAutoRegistration() == null) ? 0 : getAllowAutoRegistration().hashCode());
+        hashCode = prime * hashCode
+                + ((getRegistrationConfig() == null) ? 0 : getRegistrationConfig().hashCode());
         return hashCode;
     }
 
@@ -374,6 +430,11 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
             return false;
         if (other.getAllowAutoRegistration() != null
                 && other.getAllowAutoRegistration().equals(this.getAllowAutoRegistration()) == false)
+            return false;
+        if (other.getRegistrationConfig() == null ^ this.getRegistrationConfig() == null)
+            return false;
+        if (other.getRegistrationConfig() != null
+                && other.getRegistrationConfig().equals(this.getRegistrationConfig()) == false)
             return false;
         return true;
     }

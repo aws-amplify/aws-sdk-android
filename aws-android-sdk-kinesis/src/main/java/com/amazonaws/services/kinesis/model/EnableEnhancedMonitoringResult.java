@@ -26,7 +26,7 @@ import java.io.Serializable;
 public class EnableEnhancedMonitoringResult implements Serializable {
     /**
      * <p>
-     * The name of the Amazon Kinesis stream.
+     * The name of the Kinesis data stream.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,7 +53,7 @@ public class EnableEnhancedMonitoringResult implements Serializable {
 
     /**
      * <p>
-     * The name of the Amazon Kinesis stream.
+     * The name of the Kinesis data stream.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -61,7 +61,7 @@ public class EnableEnhancedMonitoringResult implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
      * @return <p>
-     *         The name of the Amazon Kinesis stream.
+     *         The name of the Kinesis data stream.
      *         </p>
      */
     public String getStreamName() {
@@ -70,7 +70,7 @@ public class EnableEnhancedMonitoringResult implements Serializable {
 
     /**
      * <p>
-     * The name of the Amazon Kinesis stream.
+     * The name of the Kinesis data stream.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -78,7 +78,7 @@ public class EnableEnhancedMonitoringResult implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
      * @param streamName <p>
-     *            The name of the Amazon Kinesis stream.
+     *            The name of the Kinesis data stream.
      *            </p>
      */
     public void setStreamName(String streamName) {
@@ -87,7 +87,7 @@ public class EnableEnhancedMonitoringResult implements Serializable {
 
     /**
      * <p>
-     * The name of the Amazon Kinesis stream.
+     * The name of the Kinesis data stream.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -98,7 +98,7 @@ public class EnableEnhancedMonitoringResult implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
      * @param streamName <p>
-     *            The name of the Amazon Kinesis stream.
+     *            The name of the Kinesis data stream.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

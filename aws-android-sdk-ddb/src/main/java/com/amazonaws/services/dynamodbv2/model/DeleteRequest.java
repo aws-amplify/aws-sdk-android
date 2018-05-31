@@ -19,7 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Represents a request to perform a <i>DeleteItem</i> operation on an item.
+ * Represents a request to perform a <code>DeleteItem</code> operation on an
+ * item.
  * </p>
  */
 public class DeleteRequest implements Serializable {

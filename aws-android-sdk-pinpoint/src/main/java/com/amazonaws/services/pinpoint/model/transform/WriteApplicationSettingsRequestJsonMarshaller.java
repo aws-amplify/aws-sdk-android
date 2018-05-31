@@ -26,6 +26,11 @@ class WriteApplicationSettingsRequestJsonMarshaller {
     public void marshall(WriteApplicationSettingsRequest writeApplicationSettingsRequest,
             AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
+        if (writeApplicationSettingsRequest.getCampaignHook() != null) {
+            CampaignHook campaignHook = writeApplicationSettingsRequest.getCampaignHook();
+            jsonWriter.name("CampaignHook");
+            CampaignHookJsonMarshaller.getInstance().marshall(campaignHook, jsonWriter);
+        }
         if (writeApplicationSettingsRequest.getLimits() != null) {
             CampaignLimits limits = writeApplicationSettingsRequest.getLimits();
             jsonWriter.name("Limits");

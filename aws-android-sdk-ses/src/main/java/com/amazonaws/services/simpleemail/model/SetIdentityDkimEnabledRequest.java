@@ -26,9 +26,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <ul>
  * <li>
  * <p>
- * If Easy DKIM signing is enabled for a domain name identity (e.g.,
+ * If Easy DKIM signing is enabled for a domain name identity (such as
  * <code>example.com</code>), then Amazon SES will DKIM-sign all email sent by
- * addresses under that domain name (e.g., <code>user@example.com</code>).
+ * addresses under that domain name (for example, <code>user@example.com</code>
+ * ).
  * </p>
  * </li>
  * <li>
@@ -39,13 +40,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * </ul>
  * <p>
- * For email addresses (e.g., <code>user@example.com</code>), you can only
- * enable Easy DKIM signing if the corresponding domain (e.g.,
+ * For email addresses (for example, <code>user@example.com</code>), you can
+ * only enable Easy DKIM signing if the corresponding domain (in this case,
  * <code>example.com</code>) has been set up for Easy DKIM using the AWS Console
- * or the <code>VerifyDomainDkim</code> action.
+ * or the <code>VerifyDomainDkim</code> operation.
  * </p>
  * <p>
- * This action is throttled at one request per second.
+ * You can execute this operation no more than once per second.
  * </p>
  * <p>
  * For more information about Easy DKIM signing, go to the <a

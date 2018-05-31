@@ -36,10 +36,26 @@ class APNSChannelResponseJsonMarshaller {
             jsonWriter.name("CreationDate");
             jsonWriter.value(creationDate);
         }
+        if (aPNSChannelResponse.getDefaultAuthenticationMethod() != null) {
+            String defaultAuthenticationMethod = aPNSChannelResponse
+                    .getDefaultAuthenticationMethod();
+            jsonWriter.name("DefaultAuthenticationMethod");
+            jsonWriter.value(defaultAuthenticationMethod);
+        }
         if (aPNSChannelResponse.getEnabled() != null) {
             Boolean enabled = aPNSChannelResponse.getEnabled();
             jsonWriter.name("Enabled");
             jsonWriter.value(enabled);
+        }
+        if (aPNSChannelResponse.getHasCredential() != null) {
+            Boolean hasCredential = aPNSChannelResponse.getHasCredential();
+            jsonWriter.name("HasCredential");
+            jsonWriter.value(hasCredential);
+        }
+        if (aPNSChannelResponse.getHasTokenKey() != null) {
+            Boolean hasTokenKey = aPNSChannelResponse.getHasTokenKey();
+            jsonWriter.name("HasTokenKey");
+            jsonWriter.value(hasTokenKey);
         }
         if (aPNSChannelResponse.getId() != null) {
             String id = aPNSChannelResponse.getId();

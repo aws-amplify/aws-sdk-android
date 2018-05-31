@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Allows a user to delete one's self.
+ * Allows a user to delete himself or herself.
  * </p>
  */
 public class DeleteUserRequest extends AmazonWebServiceRequest implements Serializable {

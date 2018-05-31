@@ -26,7 +26,10 @@ public enum DeliveryStatus {
     SUCCESSFUL("SUCCESSFUL"),
     THROTTLED("THROTTLED"),
     TEMPORARY_FAILURE("TEMPORARY_FAILURE"),
-    PERMANENT_FAILURE("PERMANENT_FAILURE");
+    PERMANENT_FAILURE("PERMANENT_FAILURE"),
+    UNKNOWN_FAILURE("UNKNOWN_FAILURE"),
+    OPT_OUT("OPT_OUT"),
+    DUPLICATE("DUPLICATE");
 
     private String value;
 
@@ -46,6 +49,9 @@ public enum DeliveryStatus {
         enumMap.put("THROTTLED", THROTTLED);
         enumMap.put("TEMPORARY_FAILURE", TEMPORARY_FAILURE);
         enumMap.put("PERMANENT_FAILURE", PERMANENT_FAILURE);
+        enumMap.put("UNKNOWN_FAILURE", UNKNOWN_FAILURE);
+        enumMap.put("OPT_OUT", OPT_OUT);
+        enumMap.put("DUPLICATE", DUPLICATE);
     }
 
     /**

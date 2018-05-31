@@ -18,7 +18,9 @@ package com.amazonaws.services.kinesisvideo.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * The value for this input parameter is invalid.
+ * </p>
  */
 public class InvalidArgumentException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

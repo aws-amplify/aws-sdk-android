@@ -21,15 +21,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Disables monitoring of the specified metrics for the specified Auto Scaling
- * group.
+ * Disables group metrics for the specified Auto Scaling group.
  * </p>
  */
 public class DisableMetricsCollectionRequest extends AmazonWebServiceRequest implements
         Serializable {
     /**
      * <p>
-     * The name or Amazon Resource Name (ARN) of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -91,7 +90,7 @@ public class DisableMetricsCollectionRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The name or Amazon Resource Name (ARN) of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -100,7 +99,7 @@ public class DisableMetricsCollectionRequest extends AmazonWebServiceRequest imp
      * <br/>
      *
      * @return <p>
-     *         The name or Amazon Resource Name (ARN) of the group.
+     *         The name of the Auto Scaling group.
      *         </p>
      */
     public String getAutoScalingGroupName() {
@@ -109,7 +108,7 @@ public class DisableMetricsCollectionRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The name or Amazon Resource Name (ARN) of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -118,7 +117,7 @@ public class DisableMetricsCollectionRequest extends AmazonWebServiceRequest imp
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name or Amazon Resource Name (ARN) of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      */
     public void setAutoScalingGroupName(String autoScalingGroupName) {
@@ -127,7 +126,7 @@ public class DisableMetricsCollectionRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The name or Amazon Resource Name (ARN) of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -139,7 +138,7 @@ public class DisableMetricsCollectionRequest extends AmazonWebServiceRequest imp
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name or Amazon Resource Name (ARN) of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -164,8 +164,8 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * Controls whether instances in this group are launched with detailed
-     * monitoring.
+     * Controls whether instances in this group are launched with detailed (
+     * <code>true</code>) or basic (<code>false</code>) monitoring.
      * </p>
      */
     private InstanceMonitoring instanceMonitoring;
@@ -1084,13 +1084,14 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * Controls whether instances in this group are launched with detailed
-     * monitoring.
+     * Controls whether instances in this group are launched with detailed (
+     * <code>true</code>) or basic (<code>false</code>) monitoring.
      * </p>
      *
      * @return <p>
      *         Controls whether instances in this group are launched with
-     *         detailed monitoring.
+     *         detailed (<code>true</code>) or basic (<code>false</code>)
+     *         monitoring.
      *         </p>
      */
     public InstanceMonitoring getInstanceMonitoring() {
@@ -1099,13 +1100,14 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * Controls whether instances in this group are launched with detailed
-     * monitoring.
+     * Controls whether instances in this group are launched with detailed (
+     * <code>true</code>) or basic (<code>false</code>) monitoring.
      * </p>
      *
      * @param instanceMonitoring <p>
      *            Controls whether instances in this group are launched with
-     *            detailed monitoring.
+     *            detailed (<code>true</code>) or basic (<code>false</code>)
+     *            monitoring.
      *            </p>
      */
     public void setInstanceMonitoring(InstanceMonitoring instanceMonitoring) {
@@ -1114,8 +1116,8 @@ public class LaunchConfiguration implements Serializable {
 
     /**
      * <p>
-     * Controls whether instances in this group are launched with detailed
-     * monitoring.
+     * Controls whether instances in this group are launched with detailed (
+     * <code>true</code>) or basic (<code>false</code>) monitoring.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1123,7 +1125,8 @@ public class LaunchConfiguration implements Serializable {
      *
      * @param instanceMonitoring <p>
      *            Controls whether instances in this group are launched with
-     *            detailed monitoring.
+     *            detailed (<code>true</code>) or basic (<code>false</code>)
+     *            monitoring.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

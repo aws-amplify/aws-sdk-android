@@ -35,8 +35,10 @@ public class EventStream implements Serializable {
     private String destinationStreamArn;
 
     /**
-     * The external ID assigned the IAM role that authorizes Amazon Pinpoint to
-     * publish to the stream.
+     * DEPRECATED. Your AWS account ID, which you assigned to the ExternalID key
+     * in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM role.
+     * This requirement is removed, and external IDs are not recommended for IAM
+     * roles assumed by Amazon Pinpoint.
      */
     private String externalId;
 
@@ -148,36 +150,50 @@ public class EventStream implements Serializable {
     }
 
     /**
-     * The external ID assigned the IAM role that authorizes Amazon Pinpoint to
-     * publish to the stream.
+     * DEPRECATED. Your AWS account ID, which you assigned to the ExternalID key
+     * in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM role.
+     * This requirement is removed, and external IDs are not recommended for IAM
+     * roles assumed by Amazon Pinpoint.
      *
-     * @return The external ID assigned the IAM role that authorizes Amazon
-     *         Pinpoint to publish to the stream.
+     * @return DEPRECATED. Your AWS account ID, which you assigned to the
+     *         ExternalID key in an IAM trust policy. Used by Amazon Pinpoint to
+     *         assume an IAM role. This requirement is removed, and external IDs
+     *         are not recommended for IAM roles assumed by Amazon Pinpoint.
      */
     public String getExternalId() {
         return externalId;
     }
 
     /**
-     * The external ID assigned the IAM role that authorizes Amazon Pinpoint to
-     * publish to the stream.
+     * DEPRECATED. Your AWS account ID, which you assigned to the ExternalID key
+     * in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM role.
+     * This requirement is removed, and external IDs are not recommended for IAM
+     * roles assumed by Amazon Pinpoint.
      *
-     * @param externalId The external ID assigned the IAM role that authorizes
-     *            Amazon Pinpoint to publish to the stream.
+     * @param externalId DEPRECATED. Your AWS account ID, which you assigned to
+     *            the ExternalID key in an IAM trust policy. Used by Amazon
+     *            Pinpoint to assume an IAM role. This requirement is removed,
+     *            and external IDs are not recommended for IAM roles assumed by
+     *            Amazon Pinpoint.
      */
     public void setExternalId(String externalId) {
         this.externalId = externalId;
     }
 
     /**
-     * The external ID assigned the IAM role that authorizes Amazon Pinpoint to
-     * publish to the stream.
+     * DEPRECATED. Your AWS account ID, which you assigned to the ExternalID key
+     * in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM role.
+     * This requirement is removed, and external IDs are not recommended for IAM
+     * roles assumed by Amazon Pinpoint.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param externalId The external ID assigned the IAM role that authorizes
-     *            Amazon Pinpoint to publish to the stream.
+     * @param externalId DEPRECATED. Your AWS account ID, which you assigned to
+     *            the ExternalID key in an IAM trust policy. Used by Amazon
+     *            Pinpoint to assume an IAM role. This requirement is removed,
+     *            and external IDs are not recommended for IAM roles assumed by
+     *            Amazon Pinpoint.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

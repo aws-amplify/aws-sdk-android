@@ -57,6 +57,11 @@ class TopicRulePayloadJsonMarshaller {
             jsonWriter.name("awsIotSqlVersion");
             jsonWriter.value(awsIotSqlVersion);
         }
+        if (topicRulePayload.getErrorAction() != null) {
+            Action errorAction = topicRulePayload.getErrorAction();
+            jsonWriter.name("errorAction");
+            ActionJsonMarshaller.getInstance().marshall(errorAction, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

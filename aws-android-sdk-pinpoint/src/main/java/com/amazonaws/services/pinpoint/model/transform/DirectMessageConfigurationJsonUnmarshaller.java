@@ -55,10 +55,6 @@ class DirectMessageConfigurationJsonUnmarshaller implements
                         .setDefaultPushNotificationMessage(DefaultPushNotificationMessageJsonUnmarshaller
                                 .getInstance()
                                 .unmarshall(context));
-            } else if (name.equals("EmailMessage")) {
-                directMessageConfiguration.setEmailMessage(EmailMessageJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
             } else if (name.equals("GCMMessage")) {
                 directMessageConfiguration.setGCMMessage(GCMMessageJsonUnmarshaller.getInstance()
                         .unmarshall(context));

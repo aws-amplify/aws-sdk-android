@@ -59,7 +59,7 @@ public class UserImportJobType implements Serializable {
 
     /**
      * <p>
-     * The pre-signed URL to be used to upload the .csv file.
+     * The pre-signed URL to be used to upload the <code>.csv</code> file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -69,7 +69,7 @@ public class UserImportJobType implements Serializable {
 
     /**
      * <p>
-     * The date when the user import job was created.
+     * The date the user import job was created.
      * </p>
      */
     private java.util.Date creationDate;
@@ -83,7 +83,7 @@ public class UserImportJobType implements Serializable {
 
     /**
      * <p>
-     * The date when the user imoprt job was completed.
+     * The date when the user import job was completed.
      * </p>
      */
     private java.util.Date completionDate;
@@ -95,47 +95,48 @@ public class UserImportJobType implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Created - The job was created but not started.
+     * <code>Created</code> - The job was created but not started.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Pending - A transition state. You have started the job, but it has not
-     * begun importing users yet.
+     * <code>Pending</code> - A transition state. You have started the job, but
+     * it has not begun importing users yet.
      * </p>
      * </li>
      * <li>
      * <p>
-     * InProgress - The job has started, and users are being imported.
+     * <code>InProgress</code> - The job has started, and users are being
+     * imported.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Stopping - You have stopped the job, but the job has not stopped
-     * importing users yet.
+     * <code>Stopping</code> - You have stopped the job, but the job has not
+     * stopped importing users yet.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Stopped - You have stopped the job, and the job has stopped importing
-     * users.
+     * <code>Stopped</code> - You have stopped the job, and the job has stopped
+     * importing users.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Succeeded - The job has completed successfully.
+     * <code>Succeeded</code> - The job has completed successfully.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Failed - The job has stopped due to an error.
+     * <code>Failed</code> - The job has stopped due to an error.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Expired - You created a job, but did not start the job within 24-48
-     * hours. All data associated with the job was deleted, and the job cannot
-     * be started.
+     * <code>Expired</code> - You created a job, but did not start the job
+     * within 24-48 hours. All data associated with the job was deleted, and the
+     * job cannot be started.
      * </p>
      * </li>
      * </ul>
@@ -372,14 +373,15 @@ public class UserImportJobType implements Serializable {
 
     /**
      * <p>
-     * The pre-signed URL to be used to upload the .csv file.
+     * The pre-signed URL to be used to upload the <code>.csv</code> file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 2048<br/>
      *
      * @return <p>
-     *         The pre-signed URL to be used to upload the .csv file.
+     *         The pre-signed URL to be used to upload the <code>.csv</code>
+     *         file.
      *         </p>
      */
     public String getPreSignedUrl() {
@@ -388,14 +390,15 @@ public class UserImportJobType implements Serializable {
 
     /**
      * <p>
-     * The pre-signed URL to be used to upload the .csv file.
+     * The pre-signed URL to be used to upload the <code>.csv</code> file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 2048<br/>
      *
      * @param preSignedUrl <p>
-     *            The pre-signed URL to be used to upload the .csv file.
+     *            The pre-signed URL to be used to upload the <code>.csv</code>
+     *            file.
      *            </p>
      */
     public void setPreSignedUrl(String preSignedUrl) {
@@ -404,7 +407,7 @@ public class UserImportJobType implements Serializable {
 
     /**
      * <p>
-     * The pre-signed URL to be used to upload the .csv file.
+     * The pre-signed URL to be used to upload the <code>.csv</code> file.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -414,7 +417,8 @@ public class UserImportJobType implements Serializable {
      * <b>Length: </b>0 - 2048<br/>
      *
      * @param preSignedUrl <p>
-     *            The pre-signed URL to be used to upload the .csv file.
+     *            The pre-signed URL to be used to upload the <code>.csv</code>
+     *            file.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -426,11 +430,11 @@ public class UserImportJobType implements Serializable {
 
     /**
      * <p>
-     * The date when the user import job was created.
+     * The date the user import job was created.
      * </p>
      *
      * @return <p>
-     *         The date when the user import job was created.
+     *         The date the user import job was created.
      *         </p>
      */
     public java.util.Date getCreationDate() {
@@ -439,11 +443,11 @@ public class UserImportJobType implements Serializable {
 
     /**
      * <p>
-     * The date when the user import job was created.
+     * The date the user import job was created.
      * </p>
      *
      * @param creationDate <p>
-     *            The date when the user import job was created.
+     *            The date the user import job was created.
      *            </p>
      */
     public void setCreationDate(java.util.Date creationDate) {
@@ -452,14 +456,14 @@ public class UserImportJobType implements Serializable {
 
     /**
      * <p>
-     * The date when the user import job was created.
+     * The date the user import job was created.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param creationDate <p>
-     *            The date when the user import job was created.
+     *            The date the user import job was created.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -516,11 +520,11 @@ public class UserImportJobType implements Serializable {
 
     /**
      * <p>
-     * The date when the user imoprt job was completed.
+     * The date when the user import job was completed.
      * </p>
      *
      * @return <p>
-     *         The date when the user imoprt job was completed.
+     *         The date when the user import job was completed.
      *         </p>
      */
     public java.util.Date getCompletionDate() {
@@ -529,11 +533,11 @@ public class UserImportJobType implements Serializable {
 
     /**
      * <p>
-     * The date when the user imoprt job was completed.
+     * The date when the user import job was completed.
      * </p>
      *
      * @param completionDate <p>
-     *            The date when the user imoprt job was completed.
+     *            The date when the user import job was completed.
      *            </p>
      */
     public void setCompletionDate(java.util.Date completionDate) {
@@ -542,14 +546,14 @@ public class UserImportJobType implements Serializable {
 
     /**
      * <p>
-     * The date when the user imoprt job was completed.
+     * The date when the user import job was completed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param completionDate <p>
-     *            The date when the user imoprt job was completed.
+     *            The date when the user import job was completed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -566,47 +570,48 @@ public class UserImportJobType implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Created - The job was created but not started.
+     * <code>Created</code> - The job was created but not started.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Pending - A transition state. You have started the job, but it has not
-     * begun importing users yet.
+     * <code>Pending</code> - A transition state. You have started the job, but
+     * it has not begun importing users yet.
      * </p>
      * </li>
      * <li>
      * <p>
-     * InProgress - The job has started, and users are being imported.
+     * <code>InProgress</code> - The job has started, and users are being
+     * imported.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Stopping - You have stopped the job, but the job has not stopped
-     * importing users yet.
+     * <code>Stopping</code> - You have stopped the job, but the job has not
+     * stopped importing users yet.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Stopped - You have stopped the job, and the job has stopped importing
-     * users.
+     * <code>Stopped</code> - You have stopped the job, and the job has stopped
+     * importing users.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Succeeded - The job has completed successfully.
+     * <code>Succeeded</code> - The job has completed successfully.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Failed - The job has stopped due to an error.
+     * <code>Failed</code> - The job has stopped due to an error.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Expired - You created a job, but did not start the job within 24-48
-     * hours. All data associated with the job was deleted, and the job cannot
-     * be started.
+     * <code>Expired</code> - You created a job, but did not start the job
+     * within 24-48 hours. All data associated with the job was deleted, and the
+     * job cannot be started.
      * </p>
      * </li>
      * </ul>
@@ -621,47 +626,48 @@ public class UserImportJobType implements Serializable {
      *         <ul>
      *         <li>
      *         <p>
-     *         Created - The job was created but not started.
+     *         <code>Created</code> - The job was created but not started.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         Pending - A transition state. You have started the job, but it
-     *         has not begun importing users yet.
+     *         <code>Pending</code> - A transition state. You have started the
+     *         job, but it has not begun importing users yet.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         InProgress - The job has started, and users are being imported.
+     *         <code>InProgress</code> - The job has started, and users are
+     *         being imported.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         Stopping - You have stopped the job, but the job has not stopped
-     *         importing users yet.
+     *         <code>Stopping</code> - You have stopped the job, but the job has
+     *         not stopped importing users yet.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         Stopped - You have stopped the job, and the job has stopped
-     *         importing users.
+     *         <code>Stopped</code> - You have stopped the job, and the job has
+     *         stopped importing users.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         Succeeded - The job has completed successfully.
+     *         <code>Succeeded</code> - The job has completed successfully.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         Failed - The job has stopped due to an error.
+     *         <code>Failed</code> - The job has stopped due to an error.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         Expired - You created a job, but did not start the job within
-     *         24-48 hours. All data associated with the job was deleted, and
-     *         the job cannot be started.
+     *         <code>Expired</code> - You created a job, but did not start the
+     *         job within 24-48 hours. All data associated with the job was
+     *         deleted, and the job cannot be started.
      *         </p>
      *         </li>
      *         </ul>
@@ -678,47 +684,48 @@ public class UserImportJobType implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Created - The job was created but not started.
+     * <code>Created</code> - The job was created but not started.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Pending - A transition state. You have started the job, but it has not
-     * begun importing users yet.
+     * <code>Pending</code> - A transition state. You have started the job, but
+     * it has not begun importing users yet.
      * </p>
      * </li>
      * <li>
      * <p>
-     * InProgress - The job has started, and users are being imported.
+     * <code>InProgress</code> - The job has started, and users are being
+     * imported.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Stopping - You have stopped the job, but the job has not stopped
-     * importing users yet.
+     * <code>Stopping</code> - You have stopped the job, but the job has not
+     * stopped importing users yet.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Stopped - You have stopped the job, and the job has stopped importing
-     * users.
+     * <code>Stopped</code> - You have stopped the job, and the job has stopped
+     * importing users.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Succeeded - The job has completed successfully.
+     * <code>Succeeded</code> - The job has completed successfully.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Failed - The job has stopped due to an error.
+     * <code>Failed</code> - The job has stopped due to an error.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Expired - You created a job, but did not start the job within 24-48
-     * hours. All data associated with the job was deleted, and the job cannot
-     * be started.
+     * <code>Expired</code> - You created a job, but did not start the job
+     * within 24-48 hours. All data associated with the job was deleted, and the
+     * job cannot be started.
      * </p>
      * </li>
      * </ul>
@@ -733,48 +740,48 @@ public class UserImportJobType implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            Created - The job was created but not started.
+     *            <code>Created</code> - The job was created but not started.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Pending - A transition state. You have started the job, but it
-     *            has not begun importing users yet.
+     *            <code>Pending</code> - A transition state. You have started
+     *            the job, but it has not begun importing users yet.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            InProgress - The job has started, and users are being
-     *            imported.
+     *            <code>InProgress</code> - The job has started, and users are
+     *            being imported.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Stopping - You have stopped the job, but the job has not
-     *            stopped importing users yet.
+     *            <code>Stopping</code> - You have stopped the job, but the job
+     *            has not stopped importing users yet.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Stopped - You have stopped the job, and the job has stopped
-     *            importing users.
+     *            <code>Stopped</code> - You have stopped the job, and the job
+     *            has stopped importing users.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Succeeded - The job has completed successfully.
+     *            <code>Succeeded</code> - The job has completed successfully.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Failed - The job has stopped due to an error.
+     *            <code>Failed</code> - The job has stopped due to an error.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Expired - You created a job, but did not start the job within
-     *            24-48 hours. All data associated with the job was deleted, and
-     *            the job cannot be started.
+     *            <code>Expired</code> - You created a job, but did not start
+     *            the job within 24-48 hours. All data associated with the job
+     *            was deleted, and the job cannot be started.
      *            </p>
      *            </li>
      *            </ul>
@@ -791,47 +798,48 @@ public class UserImportJobType implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Created - The job was created but not started.
+     * <code>Created</code> - The job was created but not started.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Pending - A transition state. You have started the job, but it has not
-     * begun importing users yet.
+     * <code>Pending</code> - A transition state. You have started the job, but
+     * it has not begun importing users yet.
      * </p>
      * </li>
      * <li>
      * <p>
-     * InProgress - The job has started, and users are being imported.
+     * <code>InProgress</code> - The job has started, and users are being
+     * imported.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Stopping - You have stopped the job, but the job has not stopped
-     * importing users yet.
+     * <code>Stopping</code> - You have stopped the job, but the job has not
+     * stopped importing users yet.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Stopped - You have stopped the job, and the job has stopped importing
-     * users.
+     * <code>Stopped</code> - You have stopped the job, and the job has stopped
+     * importing users.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Succeeded - The job has completed successfully.
+     * <code>Succeeded</code> - The job has completed successfully.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Failed - The job has stopped due to an error.
+     * <code>Failed</code> - The job has stopped due to an error.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Expired - You created a job, but did not start the job within 24-48
-     * hours. All data associated with the job was deleted, and the job cannot
-     * be started.
+     * <code>Expired</code> - You created a job, but did not start the job
+     * within 24-48 hours. All data associated with the job was deleted, and the
+     * job cannot be started.
      * </p>
      * </li>
      * </ul>
@@ -849,48 +857,48 @@ public class UserImportJobType implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            Created - The job was created but not started.
+     *            <code>Created</code> - The job was created but not started.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Pending - A transition state. You have started the job, but it
-     *            has not begun importing users yet.
+     *            <code>Pending</code> - A transition state. You have started
+     *            the job, but it has not begun importing users yet.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            InProgress - The job has started, and users are being
-     *            imported.
+     *            <code>InProgress</code> - The job has started, and users are
+     *            being imported.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Stopping - You have stopped the job, but the job has not
-     *            stopped importing users yet.
+     *            <code>Stopping</code> - You have stopped the job, but the job
+     *            has not stopped importing users yet.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Stopped - You have stopped the job, and the job has stopped
-     *            importing users.
+     *            <code>Stopped</code> - You have stopped the job, and the job
+     *            has stopped importing users.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Succeeded - The job has completed successfully.
+     *            <code>Succeeded</code> - The job has completed successfully.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Failed - The job has stopped due to an error.
+     *            <code>Failed</code> - The job has stopped due to an error.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Expired - You created a job, but did not start the job within
-     *            24-48 hours. All data associated with the job was deleted, and
-     *            the job cannot be started.
+     *            <code>Expired</code> - You created a job, but did not start
+     *            the job within 24-48 hours. All data associated with the job
+     *            was deleted, and the job cannot be started.
      *            </p>
      *            </li>
      *            </ul>
@@ -910,47 +918,48 @@ public class UserImportJobType implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Created - The job was created but not started.
+     * <code>Created</code> - The job was created but not started.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Pending - A transition state. You have started the job, but it has not
-     * begun importing users yet.
+     * <code>Pending</code> - A transition state. You have started the job, but
+     * it has not begun importing users yet.
      * </p>
      * </li>
      * <li>
      * <p>
-     * InProgress - The job has started, and users are being imported.
+     * <code>InProgress</code> - The job has started, and users are being
+     * imported.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Stopping - You have stopped the job, but the job has not stopped
-     * importing users yet.
+     * <code>Stopping</code> - You have stopped the job, but the job has not
+     * stopped importing users yet.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Stopped - You have stopped the job, and the job has stopped importing
-     * users.
+     * <code>Stopped</code> - You have stopped the job, and the job has stopped
+     * importing users.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Succeeded - The job has completed successfully.
+     * <code>Succeeded</code> - The job has completed successfully.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Failed - The job has stopped due to an error.
+     * <code>Failed</code> - The job has stopped due to an error.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Expired - You created a job, but did not start the job within 24-48
-     * hours. All data associated with the job was deleted, and the job cannot
-     * be started.
+     * <code>Expired</code> - You created a job, but did not start the job
+     * within 24-48 hours. All data associated with the job was deleted, and the
+     * job cannot be started.
      * </p>
      * </li>
      * </ul>
@@ -965,48 +974,48 @@ public class UserImportJobType implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            Created - The job was created but not started.
+     *            <code>Created</code> - The job was created but not started.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Pending - A transition state. You have started the job, but it
-     *            has not begun importing users yet.
+     *            <code>Pending</code> - A transition state. You have started
+     *            the job, but it has not begun importing users yet.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            InProgress - The job has started, and users are being
-     *            imported.
+     *            <code>InProgress</code> - The job has started, and users are
+     *            being imported.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Stopping - You have stopped the job, but the job has not
-     *            stopped importing users yet.
+     *            <code>Stopping</code> - You have stopped the job, but the job
+     *            has not stopped importing users yet.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Stopped - You have stopped the job, and the job has stopped
-     *            importing users.
+     *            <code>Stopped</code> - You have stopped the job, and the job
+     *            has stopped importing users.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Succeeded - The job has completed successfully.
+     *            <code>Succeeded</code> - The job has completed successfully.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Failed - The job has stopped due to an error.
+     *            <code>Failed</code> - The job has stopped due to an error.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Expired - You created a job, but did not start the job within
-     *            24-48 hours. All data associated with the job was deleted, and
-     *            the job cannot be started.
+     *            <code>Expired</code> - You created a job, but did not start
+     *            the job within 24-48 hours. All data associated with the job
+     *            was deleted, and the job cannot be started.
      *            </p>
      *            </li>
      *            </ul>
@@ -1023,47 +1032,48 @@ public class UserImportJobType implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Created - The job was created but not started.
+     * <code>Created</code> - The job was created but not started.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Pending - A transition state. You have started the job, but it has not
-     * begun importing users yet.
+     * <code>Pending</code> - A transition state. You have started the job, but
+     * it has not begun importing users yet.
      * </p>
      * </li>
      * <li>
      * <p>
-     * InProgress - The job has started, and users are being imported.
+     * <code>InProgress</code> - The job has started, and users are being
+     * imported.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Stopping - You have stopped the job, but the job has not stopped
-     * importing users yet.
+     * <code>Stopping</code> - You have stopped the job, but the job has not
+     * stopped importing users yet.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Stopped - You have stopped the job, and the job has stopped importing
-     * users.
+     * <code>Stopped</code> - You have stopped the job, and the job has stopped
+     * importing users.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Succeeded - The job has completed successfully.
+     * <code>Succeeded</code> - The job has completed successfully.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Failed - The job has stopped due to an error.
+     * <code>Failed</code> - The job has stopped due to an error.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Expired - You created a job, but did not start the job within 24-48
-     * hours. All data associated with the job was deleted, and the job cannot
-     * be started.
+     * <code>Expired</code> - You created a job, but did not start the job
+     * within 24-48 hours. All data associated with the job was deleted, and the
+     * job cannot be started.
      * </p>
      * </li>
      * </ul>
@@ -1081,48 +1091,48 @@ public class UserImportJobType implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            Created - The job was created but not started.
+     *            <code>Created</code> - The job was created but not started.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Pending - A transition state. You have started the job, but it
-     *            has not begun importing users yet.
+     *            <code>Pending</code> - A transition state. You have started
+     *            the job, but it has not begun importing users yet.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            InProgress - The job has started, and users are being
-     *            imported.
+     *            <code>InProgress</code> - The job has started, and users are
+     *            being imported.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Stopping - You have stopped the job, but the job has not
-     *            stopped importing users yet.
+     *            <code>Stopping</code> - You have stopped the job, but the job
+     *            has not stopped importing users yet.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Stopped - You have stopped the job, and the job has stopped
-     *            importing users.
+     *            <code>Stopped</code> - You have stopped the job, and the job
+     *            has stopped importing users.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Succeeded - The job has completed successfully.
+     *            <code>Succeeded</code> - The job has completed successfully.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Failed - The job has stopped due to an error.
+     *            <code>Failed</code> - The job has stopped due to an error.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Expired - You created a job, but did not start the job within
-     *            24-48 hours. All data associated with the job was deleted, and
-     *            the job cannot be started.
+     *            <code>Expired</code> - You created a job, but did not start
+     *            the job within 24-48 hours. All data associated with the job
+     *            was deleted, and the job cannot be started.
      *            </p>
      *            </li>
      *            </ul>

@@ -35,7 +35,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </important>
  * <p>
- * This action is throttled at one request per second.
+ * You can execute this operation no more than once per second.
  * </p>
  */
 public class SetIdentityMailFromDomainRequest extends AmazonWebServiceRequest implements

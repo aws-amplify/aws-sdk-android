@@ -85,6 +85,11 @@ class KeyMetadataJsonMarshaller {
             jsonWriter.name("ExpirationModel");
             jsonWriter.value(expirationModel);
         }
+        if (keyMetadata.getKeyManager() != null) {
+            String keyManager = keyMetadata.getKeyManager();
+            jsonWriter.name("KeyManager");
+            jsonWriter.value(keyManager);
+        }
         jsonWriter.endObject();
     }
 

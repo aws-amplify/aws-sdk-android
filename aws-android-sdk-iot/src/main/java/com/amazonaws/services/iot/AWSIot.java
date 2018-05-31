@@ -23,12 +23,12 @@ import com.amazonaws.services.iot.model.*;
  * Interface for accessing AWS IoT <fullname>AWS IoT</fullname>
  * <p>
  * AWS IoT provides secure, bi-directional communication between
- * Internet-connected things (such as sensors, actuators, embedded devices, or
+ * Internet-connected devices (such as sensors, actuators, embedded devices, or
  * smart appliances) and the AWS cloud. You can discover your custom IoT-Data
  * endpoint to communicate with, configure rules for data processing and
  * integration with other services, organize resources associated with each
- * thing (Thing Registry), configure logging, and create and manage policies and
- * credentials to authenticate things.
+ * device (Registry), configure logging, and create and manage policies and
+ * credentials to authenticate devices.
  * </p>
  * <p>
  * For more information about how AWS IoT works, see the <a href=
@@ -109,28 +109,13 @@ public interface AWSIot {
      * @param acceptCertificateTransferRequest <p>
      *            The input for the AcceptCertificateTransfer operation.
      *            </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws TransferAlreadyCompletedException <p>
-     *             You can't revert the certificate transfer because the
-     *             transfer is already complete.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws TransferAlreadyCompletedException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -144,34 +129,16 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Attaches the specified policy to the specified principal (certificate or
-     * other credential).
+     * Adds a thing to a thing group.
      * </p>
      * 
-     * @param attachPrincipalPolicyRequest <p>
-     *            The input for the AttachPrincipalPolicy operation.
-     *            </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws LimitExceededException <p>
-     *             The number of attached entities exceeds the limit.
-     *             </p>
+     * @param addThingToThingGroupRequest
+     * @return addThingToThingGroupResult The response from the
+     *         AddThingToThingGroup service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -180,6 +147,107 @@ public interface AWSIot {
      *             IoT indicating either a problem with the data in the request,
      *             or a server side issue.
      */
+    AddThingToThingGroupResult addThingToThingGroup(
+            AddThingToThingGroupRequest addThingToThingGroupRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Associates a group with a continuous job. The following criteria must be
+     * met:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The job must have been created with the <code>targetSelection</code>
+     * field set to "CONTINUOUS".
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The job status must currently be "IN_PROGRESS".
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The total number of targets associated with a job must not exceed 100.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param associateTargetsWithJobRequest
+     * @return associateTargetsWithJobResult The response from the
+     *         AssociateTargetsWithJob service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    AssociateTargetsWithJobResult associateTargetsWithJob(
+            AssociateTargetsWithJobRequest associateTargetsWithJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Attaches a policy to the specified target.
+     * </p>
+     * 
+     * @param attachPolicyRequest
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    void attachPolicy(AttachPolicyRequest attachPolicyRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Attaches the specified policy to the specified principal (certificate or
+     * other credential).
+     * </p>
+     * <p>
+     * <b>Note:</b> This API is deprecated. Please use <a>AttachPolicy</a>
+     * instead.
+     * </p>
+     * 
+     * @param attachPrincipalPolicyRequest <p>
+     *            The input for the AttachPrincipalPolicy operation.
+     *            </p>
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    @Deprecated
     void attachPrincipalPolicy(AttachPrincipalPolicyRequest attachPrincipalPolicyRequest)
             throws AmazonClientException, AmazonServiceException;
 
@@ -193,24 +261,12 @@ public interface AWSIot {
      *            </p>
      * @return attachThingPrincipalResult The response from the
      *         AttachThingPrincipal service method, as returned by AWS IoT.
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -243,28 +299,13 @@ public interface AWSIot {
      * @param cancelCertificateTransferRequest <p>
      *            The input for the CancelCertificateTransfer operation.
      *            </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws TransferAlreadyCompletedException <p>
-     *             You can't revert the certificate transfer because the
-     *             transfer is already complete.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws TransferAlreadyCompletedException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -278,12 +319,92 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Cancels a job.
+     * </p>
+     * 
+     * @param cancelJobRequest
+     * @return cancelJobResult The response from the CancelJob service method,
+     *         as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CancelJobResult cancelJob(CancelJobRequest cancelJobRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Clears the default authorizer.
+     * </p>
+     * 
+     * @param clearDefaultAuthorizerRequest
+     * @return clearDefaultAuthorizerResult The response from the
+     *         ClearDefaultAuthorizer service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ClearDefaultAuthorizerResult clearDefaultAuthorizer(
+            ClearDefaultAuthorizerRequest clearDefaultAuthorizerRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates an authorizer.
+     * </p>
+     * 
+     * @param createAuthorizerRequest
+     * @return createAuthorizerResult The response from the CreateAuthorizer
+     *         service method, as returned by AWS IoT.
+     * @throws ResourceAlreadyExistsException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateAuthorizerResult createAuthorizer(CreateAuthorizerRequest createAuthorizerRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Creates an X.509 certificate using the specified certificate signing
      * request.
      * </p>
      * <p>
-     * <b>Note</b> Reusing the same certificate signing request (CSR) results in
-     * a distinct certificate.
+     * <b>Note:</b> The CSR must include a public key that is either an RSA key
+     * with a length of at least 2048 bits or an ECC key from NIST P-256 or NIST
+     * P-384 curves.
+     * </p>
+     * <p>
+     * <b>Note:</b> Reusing the same certificate signing request (CSR) results
+     * in a distinct certificate.
      * </p>
      * <p>
      * You can create multiple certificates in a batch by creating a directory,
@@ -338,21 +459,11 @@ public interface AWSIot {
      *            </p>
      * @return createCertificateFromCsrResult The response from the
      *         CreateCertificateFromCsr service method, as returned by AWS IoT.
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -364,6 +475,31 @@ public interface AWSIot {
     CreateCertificateFromCsrResult createCertificateFromCsr(
             CreateCertificateFromCsrRequest createCertificateFromCsrRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a job.
+     * </p>
+     * 
+     * @param createJobRequest
+     * @return createJobResult The response from the CreateJob service method,
+     *         as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ResourceAlreadyExistsException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateJobResult createJob(CreateJobRequest createJobRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -380,21 +516,11 @@ public interface AWSIot {
      *            </p>
      * @return createKeysAndCertificateResult The response from the
      *         CreateKeysAndCertificate service method, as returned by AWS IoT.
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -405,6 +531,32 @@ public interface AWSIot {
      */
     CreateKeysAndCertificateResult createKeysAndCertificate(
             CreateKeysAndCertificateRequest createKeysAndCertificateRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates an AWS IoT OTAUpdate on a target group of things or groups.
+     * </p>
+     * 
+     * @param createOTAUpdateRequest
+     * @return createOTAUpdateResult The response from the CreateOTAUpdate
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ResourceAlreadyExistsException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws InternalFailureException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateOTAUpdateResult createOTAUpdate(CreateOTAUpdateRequest createOTAUpdateRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -422,27 +574,13 @@ public interface AWSIot {
      *            </p>
      * @return createPolicyResult The response from the CreatePolicy service
      *         method, as returned by AWS IoT.
-     * @throws ResourceAlreadyExistsException <p>
-     *             The resource already exists.
-     *             </p>
-     * @throws MalformedPolicyException <p>
-     *             The policy documentation is not valid.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceAlreadyExistsException
+     * @throws MalformedPolicyException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -473,30 +611,14 @@ public interface AWSIot {
      *            </p>
      * @return createPolicyVersionResult The response from the
      *         CreatePolicyVersion service method, as returned by AWS IoT.
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws MalformedPolicyException <p>
-     *             The policy documentation is not valid.
-     *             </p>
-     * @throws VersionsLimitExceededException <p>
-     *             The number of policy versions exceeds the limit.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws MalformedPolicyException
+     * @throws VersionsLimitExceededException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -511,7 +633,66 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Creates a thing record in the thing registry.
+     * Creates a role alias.
+     * </p>
+     * 
+     * @param createRoleAliasRequest
+     * @return createRoleAliasResult The response from the CreateRoleAlias
+     *         service method, as returned by AWS IoT.
+     * @throws ResourceAlreadyExistsException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateRoleAliasResult createRoleAlias(CreateRoleAliasRequest createRoleAliasRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a stream for delivering one or more large files in chunks over
+     * MQTT. A stream transports data bytes in chunks or blocks packaged as MQTT
+     * messages from a source like S3. You can have one or more files associated
+     * with a stream. The total size of a file associated with the stream cannot
+     * exceed more than 2 MB. The stream will be created with version 0. If a
+     * stream is created with the same streamID as a stream that existed and was
+     * deleted within last 90 days, we will resurrect that old stream by
+     * incrementing the version by 1.
+     * </p>
+     * 
+     * @param createStreamRequest
+     * @return createStreamResult The response from the CreateStream service
+     *         method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ResourceAlreadyExistsException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateStreamResult createStream(CreateStreamRequest createStreamRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a thing record in the registry.
      * </p>
      * 
      * @param createThingRequest <p>
@@ -519,27 +700,13 @@ public interface AWSIot {
      *            </p>
      * @return createThingResult The response from the CreateThing service
      *         method, as returned by AWS IoT.
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws ResourceAlreadyExistsException <p>
-     *             The resource already exists.
-     *             </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceAlreadyExistsException
+     * @throws ResourceNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -553,6 +720,29 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Create a thing group.
+     * </p>
+     * 
+     * @param createThingGroupRequest
+     * @return createThingGroupResult The response from the CreateThingGroup
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceAlreadyExistsException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateThingGroupResult createThingGroup(CreateThingGroupRequest createThingGroupRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Creates a new thing type.
      * </p>
      * 
@@ -561,24 +751,12 @@ public interface AWSIot {
      *            </p>
      * @return createThingTypeResult The response from the CreateThingType
      *         service method, as returned by AWS IoT.
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws ResourceAlreadyExistsException <p>
-     *             The resource already exists.
-     *             </p>
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceAlreadyExistsException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -600,21 +778,11 @@ public interface AWSIot {
      * @param createTopicRuleRequest <p>
      *            The input for the CreateTopicRule operation.
      *            </p>
-     * @throws SqlParseException <p>
-     *             The Rule-SQL expression can't be parsed correctly.
-     *             </p>
-     * @throws InternalException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ResourceAlreadyExistsException <p>
-     *             The resource already exists.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
+     * @throws SqlParseException
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ResourceAlreadyExistsException
+     * @throws ServiceUnavailableException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -628,6 +796,32 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Deletes an authorizer.
+     * </p>
+     * 
+     * @param deleteAuthorizerRequest
+     * @return deleteAuthorizerResult The response from the DeleteAuthorizer
+     *         service method, as returned by AWS IoT.
+     * @throws DeleteConflictException
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteAuthorizerResult deleteAuthorizer(DeleteAuthorizerRequest deleteAuthorizerRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Deletes a registered CA certificate.
      * </p>
      * 
@@ -636,27 +830,13 @@ public interface AWSIot {
      *            </p>
      * @return deleteCACertificateResult The response from the
      *         DeleteCACertificate service method, as returned by AWS IoT.
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws CertificateStateException <p>
-     *             The certificate operation is not allowed.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
+     * @throws InvalidRequestException
+     * @throws CertificateStateException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -684,31 +864,14 @@ public interface AWSIot {
      * @param deleteCertificateRequest <p>
      *            The input for the DeleteCertificate operation.
      *            </p>
-     * @throws CertificateStateException <p>
-     *             The certificate operation is not allowed.
-     *             </p>
-     * @throws DeleteConflictException <p>
-     *             You can't delete the resource because it is attached to one
-     *             or more resources.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
+     * @throws CertificateStateException
+     * @throws DeleteConflictException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -718,6 +881,87 @@ public interface AWSIot {
      *             or a server side issue.
      */
     void deleteCertificate(DeleteCertificateRequest deleteCertificateRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a job and its related job executions.
+     * </p>
+     * <p>
+     * Deleting a job may take time, depending on the number of job executions
+     * created for the job and various other factors. While the job is being
+     * deleted, the status of the job will be shown as "DELETION_IN_PROGRESS".
+     * Attempting to delete or cancel a job whose status is already
+     * "DELETION_IN_PROGRESS" will result in an error.
+     * </p>
+     * <p>
+     * Only 10 jobs may have status "DELETION_IN_PROGRESS" at the same time, or
+     * a LimitExceededException will occur.
+     * </p>
+     * 
+     * @param deleteJobRequest
+     * @throws InvalidRequestException
+     * @throws InvalidStateTransitionException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    void deleteJob(DeleteJobRequest deleteJobRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a job execution.
+     * </p>
+     * 
+     * @param deleteJobExecutionRequest
+     * @throws InvalidRequestException
+     * @throws InvalidStateTransitionException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    void deleteJobExecution(DeleteJobExecutionRequest deleteJobExecutionRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Delete an OTA update.
+     * </p>
+     * 
+     * @param deleteOTAUpdateRequest
+     * @return deleteOTAUpdateResult The response from the DeleteOTAUpdate
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws InternalFailureException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteOTAUpdateResult deleteOTAUpdate(DeleteOTAUpdateRequest deleteOTAUpdateRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -742,28 +986,13 @@ public interface AWSIot {
      * @param deletePolicyRequest <p>
      *            The input for the DeletePolicy operation.
      *            </p>
-     * @throws DeleteConflictException <p>
-     *             You can't delete the resource because it is attached to one
-     *             or more resources.
-     *             </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws DeleteConflictException
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -786,28 +1015,13 @@ public interface AWSIot {
      * @param deletePolicyVersionRequest <p>
      *            The input for the DeletePolicyVersion operation.
      *            </p>
-     * @throws DeleteConflictException <p>
-     *             You can't delete the resource because it is attached to one
-     *             or more resources.
-     *             </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws DeleteConflictException
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -829,21 +1043,11 @@ public interface AWSIot {
      *            </p>
      * @return deleteRegistrationCodeResult The response from the
      *         DeleteRegistrationCode service method, as returned by AWS IoT.
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -858,6 +1062,58 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Deletes a role alias
+     * </p>
+     * 
+     * @param deleteRoleAliasRequest
+     * @return deleteRoleAliasResult The response from the DeleteRoleAlias
+     *         service method, as returned by AWS IoT.
+     * @throws DeleteConflictException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteRoleAliasResult deleteRoleAlias(DeleteRoleAliasRequest deleteRoleAliasRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a stream.
+     * </p>
+     * 
+     * @param deleteStreamRequest
+     * @return deleteStreamResult The response from the DeleteStream service
+     *         method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws DeleteConflictException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteStreamResult deleteStream(DeleteStreamRequest deleteStreamRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Deletes the specified thing.
      * </p>
      * 
@@ -866,29 +1122,13 @@ public interface AWSIot {
      *            </p>
      * @return deleteThingResult The response from the DeleteThing service
      *         method, as returned by AWS IoT.
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws VersionConflictException <p>
-     *             An exception thrown when the version of a thing passed to a
-     *             command is different than the version specified with the
-     *             --version parameter.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws VersionConflictException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -898,6 +1138,29 @@ public interface AWSIot {
      *             or a server side issue.
      */
     DeleteThingResult deleteThing(DeleteThingRequest deleteThingRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a thing group.
+     * </p>
+     * 
+     * @param deleteThingGroupRequest
+     * @return deleteThingGroupResult The response from the DeleteThingGroup
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws VersionConflictException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteThingGroupResult deleteThingGroup(DeleteThingGroupRequest deleteThingGroupRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -915,24 +1178,12 @@ public interface AWSIot {
      *            </p>
      * @return deleteThingTypeResult The response from the DeleteThingType
      *         service method, as returned by AWS IoT.
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -946,24 +1197,16 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Deletes the specified rule.
+     * Deletes the rule.
      * </p>
      * 
      * @param deleteTopicRuleRequest <p>
      *            The input for the DeleteTopicRule operation.
      *            </p>
-     * @throws InternalException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -977,6 +1220,26 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Deletes a logging level.
+     * </p>
+     * 
+     * @param deleteV2LoggingLevelRequest
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    void deleteV2LoggingLevel(DeleteV2LoggingLevelRequest deleteV2LoggingLevelRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Deprecates a thing type. You can not associate new things with deprecated
      * thing type.
      * </p>
@@ -986,24 +1249,12 @@ public interface AWSIot {
      *            </p>
      * @return deprecateThingTypeResult The response from the DeprecateThingType
      *         service method, as returned by AWS IoT.
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1017,6 +1268,31 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Describes an authorizer.
+     * </p>
+     * 
+     * @param describeAuthorizerRequest
+     * @return describeAuthorizerResult The response from the DescribeAuthorizer
+     *         service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeAuthorizerResult describeAuthorizer(DescribeAuthorizerRequest describeAuthorizerRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Describes a registered CA certificate.
      * </p>
      * 
@@ -1025,24 +1301,12 @@ public interface AWSIot {
      *            </p>
      * @return describeCACertificateResult The response from the
      *         DescribeCACertificate service method, as returned by AWS IoT.
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1065,24 +1329,12 @@ public interface AWSIot {
      *            </p>
      * @return describeCertificateResult The response from the
      *         DescribeCertificate service method, as returned by AWS IoT.
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1097,6 +1349,32 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Describes the default authorizer.
+     * </p>
+     * 
+     * @param describeDefaultAuthorizerRequest
+     * @return describeDefaultAuthorizerResult The response from the
+     *         DescribeDefaultAuthorizer service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeDefaultAuthorizerResult describeDefaultAuthorizer(
+            DescribeDefaultAuthorizerRequest describeDefaultAuthorizerRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Returns a unique endpoint specific to the AWS account making the call.
      * </p>
      * 
@@ -1105,15 +1383,10 @@ public interface AWSIot {
      *            </p>
      * @return describeEndpointResult The response from the DescribeEndpoint
      *         service method, as returned by AWS IoT.
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws UnauthorizedException
+     * @throws ThrottlingException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1127,6 +1400,151 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Describes event configurations.
+     * </p>
+     * 
+     * @param describeEventConfigurationsRequest
+     * @return describeEventConfigurationsResult The response from the
+     *         DescribeEventConfigurations service method, as returned by AWS
+     *         IoT.
+     * @throws InternalFailureException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeEventConfigurationsResult describeEventConfigurations(
+            DescribeEventConfigurationsRequest describeEventConfigurationsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Describes a search index.
+     * </p>
+     * 
+     * @param describeIndexRequest
+     * @return describeIndexResult The response from the DescribeIndex service
+     *         method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeIndexResult describeIndex(DescribeIndexRequest describeIndexRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Describes a job.
+     * </p>
+     * 
+     * @param describeJobRequest
+     * @return describeJobResult The response from the DescribeJob service
+     *         method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeJobResult describeJob(DescribeJobRequest describeJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Describes a job execution.
+     * </p>
+     * 
+     * @param describeJobExecutionRequest
+     * @return describeJobExecutionResult The response from the
+     *         DescribeJobExecution service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeJobExecutionResult describeJobExecution(
+            DescribeJobExecutionRequest describeJobExecutionRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Describes a role alias.
+     * </p>
+     * 
+     * @param describeRoleAliasRequest
+     * @return describeRoleAliasResult The response from the DescribeRoleAlias
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeRoleAliasResult describeRoleAlias(DescribeRoleAliasRequest describeRoleAliasRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets information about a stream.
+     * </p>
+     * 
+     * @param describeStreamRequest
+     * @return describeStreamResult The response from the DescribeStream service
+     *         method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeStreamResult describeStream(DescribeStreamRequest describeStreamRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets information about the specified thing.
      * </p>
      * 
@@ -1135,24 +1553,12 @@ public interface AWSIot {
      *            </p>
      * @return describeThingResult The response from the DescribeThing service
      *         method, as returned by AWS IoT.
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1166,6 +1572,55 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Describe a thing group.
+     * </p>
+     * 
+     * @param describeThingGroupRequest
+     * @return describeThingGroupResult The response from the DescribeThingGroup
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeThingGroupResult describeThingGroup(DescribeThingGroupRequest describeThingGroupRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Describes a bulk thing provisioning task.
+     * </p>
+     * 
+     * @param describeThingRegistrationTaskRequest
+     * @return describeThingRegistrationTaskResult The response from the
+     *         DescribeThingRegistrationTask service method, as returned by AWS
+     *         IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeThingRegistrationTaskResult describeThingRegistrationTask(
+            DescribeThingRegistrationTaskRequest describeThingRegistrationTaskRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets information about the specified thing type.
      * </p>
      * 
@@ -1174,24 +1629,12 @@ public interface AWSIot {
      *            </p>
      * @return describeThingTypeResult The response from the DescribeThingType
      *         service method, as returned by AWS IoT.
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1205,30 +1648,16 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Removes the specified policy from the specified certificate.
+     * Detaches a policy from the specified target.
      * </p>
      * 
-     * @param detachPrincipalPolicyRequest <p>
-     *            The input for the DetachPrincipalPolicy operation.
-     *            </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @param detachPolicyRequest
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws LimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1237,6 +1666,36 @@ public interface AWSIot {
      *             IoT indicating either a problem with the data in the request,
      *             or a server side issue.
      */
+    void detachPolicy(DetachPolicyRequest detachPolicyRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Removes the specified policy from the specified certificate.
+     * </p>
+     * <p>
+     * <b>Note:</b> This API is deprecated. Please use <a>DetachPolicy</a>
+     * instead.
+     * </p>
+     * 
+     * @param detachPrincipalPolicyRequest <p>
+     *            The input for the DetachPrincipalPolicy operation.
+     *            </p>
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    @Deprecated
     void detachPrincipalPolicy(DetachPrincipalPolicyRequest detachPrincipalPolicyRequest)
             throws AmazonClientException, AmazonServiceException;
 
@@ -1250,24 +1709,12 @@ public interface AWSIot {
      *            </p>
      * @return detachThingPrincipalResult The response from the
      *         DetachThingPrincipal service method, as returned by AWS IoT.
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1282,24 +1729,16 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Disables the specified rule.
+     * Disables the rule.
      * </p>
      * 
      * @param disableTopicRuleRequest <p>
      *            The input for the DisableTopicRuleRequest operation.
      *            </p>
-     * @throws InternalException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1313,24 +1752,16 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Enables the specified rule.
+     * Enables the rule.
      * </p>
      * 
      * @param enableTopicRuleRequest <p>
      *            The input for the EnableTopicRuleRequest operation.
      *            </p>
-     * @throws InternalException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1344,6 +1775,81 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Gets effective policies.
+     * </p>
+     * 
+     * @param getEffectivePoliciesRequest
+     * @return getEffectivePoliciesResult The response from the
+     *         GetEffectivePolicies service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    GetEffectivePoliciesResult getEffectivePolicies(
+            GetEffectivePoliciesRequest getEffectivePoliciesRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets the search configuration.
+     * </p>
+     * 
+     * @param getIndexingConfigurationRequest
+     * @return getIndexingConfigurationResult The response from the
+     *         GetIndexingConfiguration service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    GetIndexingConfigurationResult getIndexingConfiguration(
+            GetIndexingConfigurationRequest getIndexingConfigurationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets a job document.
+     * </p>
+     * 
+     * @param getJobDocumentRequest
+     * @return getJobDocumentResult The response from the GetJobDocument service
+     *         method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    GetJobDocumentResult getJobDocument(GetJobDocumentRequest getJobDocumentRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets the logging options.
      * </p>
      * 
@@ -1352,15 +1858,9 @@ public interface AWSIot {
      *            </p>
      * @return getLoggingOptionsResult The response from the GetLoggingOptions
      *         service method, as returned by AWS IoT.
-     * @throws InternalException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1374,6 +1874,31 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Gets an OTA update.
+     * </p>
+     * 
+     * @param getOTAUpdateRequest
+     * @return getOTAUpdateResult The response from the GetOTAUpdate service
+     *         method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws InternalFailureException
+     * @throws ServiceUnavailableException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    GetOTAUpdateResult getOTAUpdate(GetOTAUpdateRequest getOTAUpdateRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets information about the specified policy with the policy document of
      * the default version.
      * </p>
@@ -1383,24 +1908,12 @@ public interface AWSIot {
      *            </p>
      * @return getPolicyResult The response from the GetPolicy service method,
      *         as returned by AWS IoT.
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1422,24 +1935,12 @@ public interface AWSIot {
      *            </p>
      * @return getPolicyVersionResult The response from the GetPolicyVersion
      *         service method, as returned by AWS IoT.
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1461,21 +1962,11 @@ public interface AWSIot {
      *            </p>
      * @return getRegistrationCodeResult The response from the
      *         GetRegistrationCode service method, as returned by AWS IoT.
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1490,7 +1981,7 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Gets information about the specified rule.
+     * Gets information about the rule.
      * </p>
      * 
      * @param getTopicRuleRequest <p>
@@ -1498,18 +1989,10 @@ public interface AWSIot {
      *            </p>
      * @return getTopicRuleResult The response from the GetTopicRule service
      *         method, as returned by AWS IoT.
-     * @throws InternalException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1519,6 +2002,80 @@ public interface AWSIot {
      *             or a server side issue.
      */
     GetTopicRuleResult getTopicRule(GetTopicRuleRequest getTopicRuleRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets the fine grained logging options.
+     * </p>
+     * 
+     * @param getV2LoggingOptionsRequest
+     * @return getV2LoggingOptionsResult The response from the
+     *         GetV2LoggingOptions service method, as returned by AWS IoT.
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    GetV2LoggingOptionsResult getV2LoggingOptions(
+            GetV2LoggingOptionsRequest getV2LoggingOptionsRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists the policies attached to the specified thing group.
+     * </p>
+     * 
+     * @param listAttachedPoliciesRequest
+     * @return listAttachedPoliciesResult The response from the
+     *         ListAttachedPolicies service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListAttachedPoliciesResult listAttachedPolicies(
+            ListAttachedPoliciesRequest listAttachedPoliciesRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists the authorizers registered in your account.
+     * </p>
+     * 
+     * @param listAuthorizersRequest
+     * @return listAuthorizersResult The response from the ListAuthorizers
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListAuthorizersResult listAuthorizers(ListAuthorizersRequest listAuthorizersRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1535,21 +2092,11 @@ public interface AWSIot {
      *            </p>
      * @return listCACertificatesResult The response from the ListCACertificates
      *         service method, as returned by AWS IoT.
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1575,21 +2122,11 @@ public interface AWSIot {
      *            </p>
      * @return listCertificatesResult The response from the ListCertificates
      *         service method, as returned by AWS IoT.
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1611,21 +2148,11 @@ public interface AWSIot {
      *            </p>
      * @return listCertificatesByCAResult The response from the
      *         ListCertificatesByCA service method, as returned by AWS IoT.
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1640,7 +2167,126 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Lists certificates that are being transfered but not yet accepted.
+     * Lists the search indices.
+     * </p>
+     * 
+     * @param listIndicesRequest
+     * @return listIndicesResult The response from the ListIndices service
+     *         method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListIndicesResult listIndices(ListIndicesRequest listIndicesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists the job executions for a job.
+     * </p>
+     * 
+     * @param listJobExecutionsForJobRequest
+     * @return listJobExecutionsForJobResult The response from the
+     *         ListJobExecutionsForJob service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListJobExecutionsForJobResult listJobExecutionsForJob(
+            ListJobExecutionsForJobRequest listJobExecutionsForJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists the job executions for the specified thing.
+     * </p>
+     * 
+     * @param listJobExecutionsForThingRequest
+     * @return listJobExecutionsForThingResult The response from the
+     *         ListJobExecutionsForThing service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListJobExecutionsForThingResult listJobExecutionsForThing(
+            ListJobExecutionsForThingRequest listJobExecutionsForThingRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists jobs.
+     * </p>
+     * 
+     * @param listJobsRequest
+     * @return listJobsResult The response from the ListJobs service method, as
+     *         returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListJobsResult listJobs(ListJobsRequest listJobsRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists OTA updates.
+     * </p>
+     * 
+     * @param listOTAUpdatesRequest
+     * @return listOTAUpdatesResult The response from the ListOTAUpdates service
+     *         method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws InternalFailureException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListOTAUpdatesResult listOTAUpdates(ListOTAUpdatesRequest listOTAUpdatesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists certificates that are being transferred but not yet accepted.
      * </p>
      * 
      * @param listOutgoingCertificatesRequest <p>
@@ -1648,21 +2294,11 @@ public interface AWSIot {
      *            </p>
      * @return listOutgoingCertificatesResult The response from the
      *         ListOutgoingCertificates service method, as returned by AWS IoT.
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1685,21 +2321,11 @@ public interface AWSIot {
      *            </p>
      * @return listPoliciesResult The response from the ListPolicies service
      *         method, as returned by AWS IoT.
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1715,30 +2341,22 @@ public interface AWSIot {
      * <p>
      * Lists the principals associated with the specified policy.
      * </p>
+     * <p>
+     * <b>Note:</b> This API is deprecated. Please use
+     * <a>ListTargetsForPolicy</a> instead.
+     * </p>
      * 
      * @param listPolicyPrincipalsRequest <p>
      *            The input for the ListPolicyPrincipals operation.
      *            </p>
      * @return listPolicyPrincipalsResult The response from the
      *         ListPolicyPrincipals service method, as returned by AWS IoT.
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1747,6 +2365,7 @@ public interface AWSIot {
      *             IoT indicating either a problem with the data in the request,
      *             or a server side issue.
      */
+    @Deprecated
     ListPolicyPrincipalsResult listPolicyPrincipals(
             ListPolicyPrincipalsRequest listPolicyPrincipalsRequest) throws AmazonClientException,
             AmazonServiceException;
@@ -1762,24 +2381,12 @@ public interface AWSIot {
      *            </p>
      * @return listPolicyVersionsResult The response from the ListPolicyVersions
      *         service method, as returned by AWS IoT.
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1798,30 +2405,22 @@ public interface AWSIot {
      * "http://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax"
      * >AmazonCognito Identity format</a>.
      * </p>
+     * <p>
+     * <b>Note:</b> This API is deprecated. Please use
+     * <a>ListAttachedPolicies</a> instead.
+     * </p>
      * 
      * @param listPrincipalPoliciesRequest <p>
      *            The input for the ListPrincipalPolicies operation.
      *            </p>
      * @return listPrincipalPoliciesResult The response from the
      *         ListPrincipalPolicies service method, as returned by AWS IoT.
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1830,6 +2429,7 @@ public interface AWSIot {
      *             IoT indicating either a problem with the data in the request,
      *             or a server side issue.
      */
+    @Deprecated
     ListPrincipalPoliciesResult listPrincipalPolicies(
             ListPrincipalPoliciesRequest listPrincipalPoliciesRequest)
             throws AmazonClientException, AmazonServiceException;
@@ -1844,24 +2444,12 @@ public interface AWSIot {
      *            </p>
      * @return listPrincipalThingsResult The response from the
      *         ListPrincipalThings service method, as returned by AWS IoT.
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1876,6 +2464,126 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Lists the role aliases registered in your account.
+     * </p>
+     * 
+     * @param listRoleAliasesRequest
+     * @return listRoleAliasesResult The response from the ListRoleAliases
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListRoleAliasesResult listRoleAliases(ListRoleAliasesRequest listRoleAliasesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists all of the streams in your AWS account.
+     * </p>
+     * 
+     * @param listStreamsRequest
+     * @return listStreamsResult The response from the ListStreams service
+     *         method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListStreamsResult listStreams(ListStreamsRequest listStreamsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * List targets for the specified policy.
+     * </p>
+     * 
+     * @param listTargetsForPolicyRequest
+     * @return listTargetsForPolicyResult The response from the
+     *         ListTargetsForPolicy service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListTargetsForPolicyResult listTargetsForPolicy(
+            ListTargetsForPolicyRequest listTargetsForPolicyRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * List the thing groups in your account.
+     * </p>
+     * 
+     * @param listThingGroupsRequest
+     * @return listThingGroupsResult The response from the ListThingGroups
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListThingGroupsResult listThingGroups(ListThingGroupsRequest listThingGroupsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * List the thing groups to which the specified thing belongs.
+     * </p>
+     * 
+     * @param listThingGroupsForThingRequest
+     * @return listThingGroupsForThingResult The response from the
+     *         ListThingGroupsForThing service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListThingGroupsForThingResult listThingGroupsForThing(
+            ListThingGroupsForThingRequest listThingGroupsForThingRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Lists the principals associated with the specified thing.
      * </p>
      * 
@@ -1884,24 +2592,12 @@ public interface AWSIot {
      *            </p>
      * @return listThingPrincipalsResult The response from the
      *         ListThingPrincipals service method, as returned by AWS IoT.
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1916,6 +2612,56 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Information about the thing registration tasks.
+     * </p>
+     * 
+     * @param listThingRegistrationTaskReportsRequest
+     * @return listThingRegistrationTaskReportsResult The response from the
+     *         ListThingRegistrationTaskReports service method, as returned by
+     *         AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListThingRegistrationTaskReportsResult listThingRegistrationTaskReports(
+            ListThingRegistrationTaskReportsRequest listThingRegistrationTaskReportsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * List bulk thing provisioning tasks.
+     * </p>
+     * 
+     * @param listThingRegistrationTasksRequest
+     * @return listThingRegistrationTasksResult The response from the
+     *         ListThingRegistrationTasks service method, as returned by AWS
+     *         IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListThingRegistrationTasksResult listThingRegistrationTasks(
+            ListThingRegistrationTasksRequest listThingRegistrationTasksRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Lists the existing thing types.
      * </p>
      * 
@@ -1924,21 +2670,11 @@ public interface AWSIot {
      *            </p>
      * @return listThingTypesResult The response from the ListThingTypes service
      *         method, as returned by AWS IoT.
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1964,21 +2700,11 @@ public interface AWSIot {
      *            </p>
      * @return listThingsResult The response from the ListThings service method,
      *         as returned by AWS IoT.
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1992,6 +2718,29 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Lists the things in the specified group.
+     * </p>
+     * 
+     * @param listThingsInThingGroupRequest
+     * @return listThingsInThingGroupResult The response from the
+     *         ListThingsInThingGroup service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListThingsInThingGroupResult listThingsInThingGroup(
+            ListThingsInThingGroupRequest listThingsInThingGroupRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Lists the rules for the specific topic.
      * </p>
      * 
@@ -2000,15 +2749,9 @@ public interface AWSIot {
      *            </p>
      * @return listTopicRulesResult The response from the ListTopicRules service
      *         method, as returned by AWS IoT.
-     * @throws InternalException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2022,14 +2765,37 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Lists logging levels.
+     * </p>
+     * 
+     * @param listV2LoggingLevelsRequest
+     * @return listV2LoggingLevelsResult The response from the
+     *         ListV2LoggingLevels service method, as returned by AWS IoT.
+     * @throws InternalException
+     * @throws NotConfiguredException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListV2LoggingLevelsResult listV2LoggingLevels(
+            ListV2LoggingLevelsRequest listV2LoggingLevelsRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Registers a CA certificate with AWS IoT. This CA certificate can then be
      * used to sign device certificates, which can be then registered with AWS
      * IoT. You can register up to 10 CA certificates per AWS account that have
-     * the same subject field and public key. This enables you to have up to 10
-     * certificate authorities sign your device certificates. If you have more
-     * than one CA certificate registered, make sure you pass the CA certificate
-     * when you register your device certificates with the RegisterCertificate
-     * API.
+     * the same subject field. This enables you to have up to 10 certificate
+     * authorities sign your device certificates. If you have more than one CA
+     * certificate registered, make sure you pass the CA certificate when you
+     * register your device certificates with the RegisterCertificate API.
      * </p>
      * 
      * @param registerCACertificateRequest <p>
@@ -2037,33 +2803,15 @@ public interface AWSIot {
      *            </p>
      * @return registerCACertificateResult The response from the
      *         RegisterCACertificate service method, as returned by AWS IoT.
-     * @throws ResourceAlreadyExistsException <p>
-     *             The resource already exists.
-     *             </p>
-     * @throws RegistrationCodeValidationException <p>
-     *             The registration code is invalid.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws CertificateValidationException <p>
-     *             The certificate is invalid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws LimitExceededException <p>
-     *             The number of attached entities exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceAlreadyExistsException
+     * @throws RegistrationCodeValidationException
+     * @throws InvalidRequestException
+     * @throws CertificateValidationException
+     * @throws ThrottlingException
+     * @throws LimitExceededException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2089,36 +2837,15 @@ public interface AWSIot {
      *            </p>
      * @return registerCertificateResult The response from the
      *         RegisterCertificate service method, as returned by AWS IoT.
-     * @throws ResourceAlreadyExistsException <p>
-     *             The resource already exists.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws CertificateValidationException <p>
-     *             The certificate is invalid.
-     *             </p>
-     * @throws CertificateStateException <p>
-     *             The certificate operation is not allowed.
-     *             </p>
-     * @throws CertificateConflictException <p>
-     *             Unable to verify the CA certificate used to sign the device
-     *             certificate you are attempting to register. This is happens
-     *             when you have registered more than one CA certificate that
-     *             has the same subject field and public key.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceAlreadyExistsException
+     * @throws InvalidRequestException
+     * @throws CertificateValidationException
+     * @throws CertificateStateException
+     * @throws CertificateConflictException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2130,6 +2857,32 @@ public interface AWSIot {
     RegisterCertificateResult registerCertificate(
             RegisterCertificateRequest registerCertificateRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Provisions a thing.
+     * </p>
+     * 
+     * @param registerThingRequest
+     * @return registerThingResult The response from the RegisterThing service
+     *         method, as returned by AWS IoT.
+     * @throws InternalFailureException
+     * @throws ServiceUnavailableException
+     * @throws InvalidRequestException
+     * @throws UnauthorizedException
+     * @throws ThrottlingException
+     * @throws ConflictingResourceUpdateException
+     * @throws ResourceRegistrationFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    RegisterThingResult registerThing(RegisterThingRequest registerThingRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -2150,28 +2903,13 @@ public interface AWSIot {
      * @param rejectCertificateTransferRequest <p>
      *            The input for the RejectCertificateTransfer operation.
      *            </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws TransferAlreadyCompletedException <p>
-     *             You can't revert the certificate transfer because the
-     *             transfer is already complete.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws TransferAlreadyCompletedException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2185,8 +2923,32 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Replaces the specified rule. You must specify all parameters for the new
-     * rule. Creating rules is an administrator-level action. Any user who has
+     * Remove the specified thing from the specified group.
+     * </p>
+     * 
+     * @param removeThingFromThingGroupRequest
+     * @return removeThingFromThingGroupResult The response from the
+     *         RemoveThingFromThingGroup service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    RemoveThingFromThingGroupResult removeThingFromThingGroup(
+            RemoveThingFromThingGroupRequest removeThingFromThingGroupRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Replaces the rule. You must specify all parameters for the new rule.
+     * Creating rules is an administrator-level action. Any user who has
      * permission to create rules will be able to access data processed by the
      * rule.
      * </p>
@@ -2194,21 +2956,11 @@ public interface AWSIot {
      * @param replaceTopicRuleRequest <p>
      *            The input for the ReplaceTopicRule operation.
      *            </p>
-     * @throws SqlParseException <p>
-     *             The Rule-SQL expression can't be parsed correctly.
-     *             </p>
-     * @throws InternalException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
+     * @throws SqlParseException
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws UnauthorizedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2222,6 +2974,61 @@ public interface AWSIot {
 
     /**
      * <p>
+     * The query search index.
+     * </p>
+     * 
+     * @param searchIndexRequest
+     * @return searchIndexResult The response from the SearchIndex service
+     *         method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws InvalidQueryException
+     * @throws IndexNotReadyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    SearchIndexResult searchIndex(SearchIndexRequest searchIndexRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Sets the default authorizer. This will be used if a websocket connection
+     * is made without specifying an authorizer.
+     * </p>
+     * 
+     * @param setDefaultAuthorizerRequest
+     * @return setDefaultAuthorizerResult The response from the
+     *         SetDefaultAuthorizer service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceAlreadyExistsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    SetDefaultAuthorizerResult setDefaultAuthorizer(
+            SetDefaultAuthorizerRequest setDefaultAuthorizerRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Sets the specified version of the specified policy as the policy's
      * default (operative) version. This action affects all certificates to
      * which the policy is attached. To list the principals the policy is
@@ -2231,24 +3038,12 @@ public interface AWSIot {
      * @param setDefaultPolicyVersionRequest <p>
      *            The input for the SetDefaultPolicyVersion operation.
      *            </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2268,15 +3063,9 @@ public interface AWSIot {
      * @param setLoggingOptionsRequest <p>
      *            The input for the SetLoggingOptions operation.
      *            </p>
-     * @throws InternalException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2287,6 +3076,150 @@ public interface AWSIot {
      */
     void setLoggingOptions(SetLoggingOptionsRequest setLoggingOptionsRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Sets the logging level.
+     * </p>
+     * 
+     * @param setV2LoggingLevelRequest
+     * @throws InternalException
+     * @throws NotConfiguredException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    void setV2LoggingLevel(SetV2LoggingLevelRequest setV2LoggingLevelRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Sets the logging options for the V2 logging service.
+     * </p>
+     * 
+     * @param setV2LoggingOptionsRequest
+     * @throws InternalException
+     * @throws InvalidRequestException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    void setV2LoggingOptions(SetV2LoggingOptionsRequest setV2LoggingOptionsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a bulk thing provisioning task.
+     * </p>
+     * 
+     * @param startThingRegistrationTaskRequest
+     * @return startThingRegistrationTaskResult The response from the
+     *         StartThingRegistrationTask service method, as returned by AWS
+     *         IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    StartThingRegistrationTaskResult startThingRegistrationTask(
+            StartThingRegistrationTaskRequest startThingRegistrationTaskRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Cancels a bulk thing provisioning task.
+     * </p>
+     * 
+     * @param stopThingRegistrationTaskRequest
+     * @return stopThingRegistrationTaskResult The response from the
+     *         StopThingRegistrationTask service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    StopThingRegistrationTaskResult stopThingRegistrationTask(
+            StopThingRegistrationTaskRequest stopThingRegistrationTaskRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Test custom authorization.
+     * </p>
+     * 
+     * @param testAuthorizationRequest
+     * @return testAuthorizationResult The response from the TestAuthorization
+     *         service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    TestAuthorizationResult testAuthorization(TestAuthorizationRequest testAuthorizationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Invoke the specified custom authorizer for testing purposes.
+     * </p>
+     * 
+     * @param testInvokeAuthorizerRequest
+     * @return testInvokeAuthorizerResult The response from the
+     *         TestInvokeAuthorizer service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws InvalidResponseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    TestInvokeAuthorizerResult testInvokeAuthorizer(
+            TestInvokeAuthorizerRequest testInvokeAuthorizerRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -2313,31 +3246,14 @@ public interface AWSIot {
      *            </p>
      * @return transferCertificateResult The response from the
      *         TransferCertificate service method, as returned by AWS IoT.
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws CertificateStateException <p>
-     *             The certificate operation is not allowed.
-     *             </p>
-     * @throws TransferConflictException <p>
-     *             You can't transfer the certificate because authorization
-     *             policies are still attached.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws CertificateStateException
+     * @throws TransferConflictException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2352,30 +3268,44 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Updates an authorizer.
+     * </p>
+     * 
+     * @param updateAuthorizerRequest
+     * @return updateAuthorizerResult The response from the UpdateAuthorizer
+     *         service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateAuthorizerResult updateAuthorizer(UpdateAuthorizerRequest updateAuthorizerRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Updates a registered CA certificate.
      * </p>
      * 
      * @param updateCACertificateRequest <p>
      *            The input to the UpdateCACertificate operation.
      *            </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2405,27 +3335,13 @@ public interface AWSIot {
      * @param updateCertificateRequest <p>
      *            The input for the UpdateCertificate operation.
      *            </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
-     * @throws CertificateStateException <p>
-     *             The certificate operation is not allowed.
-     *             </p>
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
+     * @throws ResourceNotFoundException
+     * @throws CertificateStateException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2439,6 +3355,106 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Updates the event configurations.
+     * </p>
+     * 
+     * @param updateEventConfigurationsRequest
+     * @return updateEventConfigurationsResult The response from the
+     *         UpdateEventConfigurations service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws InternalFailureException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateEventConfigurationsResult updateEventConfigurations(
+            UpdateEventConfigurationsRequest updateEventConfigurationsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the search configuration.
+     * </p>
+     * 
+     * @param updateIndexingConfigurationRequest
+     * @return updateIndexingConfigurationResult The response from the
+     *         UpdateIndexingConfiguration service method, as returned by AWS
+     *         IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateIndexingConfigurationResult updateIndexingConfiguration(
+            UpdateIndexingConfigurationRequest updateIndexingConfigurationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates a role alias.
+     * </p>
+     * 
+     * @param updateRoleAliasRequest
+     * @return updateRoleAliasResult The response from the UpdateRoleAlias
+     *         service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateRoleAliasResult updateRoleAlias(UpdateRoleAliasRequest updateRoleAliasRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates an existing stream. The stream version will be incremented by
+     * one.
+     * </p>
+     * 
+     * @param updateStreamRequest
+     * @return updateStreamResult The response from the UpdateStream service
+     *         method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateStreamResult updateStream(UpdateStreamRequest updateStreamRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Updates the data for a thing.
      * </p>
      * 
@@ -2447,29 +3463,13 @@ public interface AWSIot {
      *            </p>
      * @return updateThingResult The response from the UpdateThing service
      *         method, as returned by AWS IoT.
-     * @throws InvalidRequestException <p>
-     *             The request is not valid.
-     *             </p>
-     * @throws VersionConflictException <p>
-     *             An exception thrown when the version of a thing passed to a
-     *             command is different than the version specified with the
-     *             --version parameter.
-     *             </p>
-     * @throws ThrottlingException <p>
-     *             The rate exceeds the limit.
-     *             </p>
-     * @throws UnauthorizedException <p>
-     *             You are not authorized to perform this operation.
-     *             </p>
-     * @throws ServiceUnavailableException <p>
-     *             The service is temporarily unavailable.
-     *             </p>
-     * @throws InternalFailureException <p>
-     *             An unexpected error has occurred.
-     *             </p>
-     * @throws ResourceNotFoundException <p>
-     *             The specified resource does not exist.
-     *             </p>
+     * @throws InvalidRequestException
+     * @throws VersionConflictException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2479,6 +3479,54 @@ public interface AWSIot {
      *             or a server side issue.
      */
     UpdateThingResult updateThing(UpdateThingRequest updateThingRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Update a thing group.
+     * </p>
+     * 
+     * @param updateThingGroupRequest
+     * @return updateThingGroupResult The response from the UpdateThingGroup
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws VersionConflictException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateThingGroupResult updateThingGroup(UpdateThingGroupRequest updateThingGroupRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the groups to which the thing belongs.
+     * </p>
+     * 
+     * @param updateThingGroupsForThingRequest
+     * @return updateThingGroupsForThingResult The response from the
+     *         UpdateThingGroupsForThing service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateThingGroupsForThingResult updateThingGroupsForThing(
+            UpdateThingGroupsForThingRequest updateThingGroupsForThingRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

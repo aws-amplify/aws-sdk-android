@@ -77,6 +77,13 @@ public class RegisterCACertificateRequestMarshaller implements
                 jsonWriter.name("verificationCertificate");
                 jsonWriter.value(verificationCertificate);
             }
+            if (registerCACertificateRequest.getRegistrationConfig() != null) {
+                RegistrationConfig registrationConfig = registerCACertificateRequest
+                        .getRegistrationConfig();
+                jsonWriter.name("registrationConfig");
+                RegistrationConfigJsonMarshaller.getInstance().marshall(registrationConfig,
+                        jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

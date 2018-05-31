@@ -48,6 +48,9 @@ class BaiduChannelResponseJsonUnmarshaller implements
             } else if (name.equals("Enabled")) {
                 baiduChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("HasCredential")) {
+                baiduChannelResponse.setHasCredential(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Id")) {
                 baiduChannelResponse.setId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

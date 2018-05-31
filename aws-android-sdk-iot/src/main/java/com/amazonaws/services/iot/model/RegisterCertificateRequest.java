@@ -55,7 +55,9 @@ public class RegisterCertificateRequest extends AmazonWebServiceRequest implemen
     private Boolean setAsActive;
 
     /**
-     * The new value for the status property for this object.
+     * <p>
+     * The status of the register certificate request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
@@ -237,13 +239,17 @@ public class RegisterCertificateRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * Returns the value of the status property for this object.
+     * <p>
+     * The status of the register certificate request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
      * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
-     * @return The value of the status property for this object.
+     * @return <p>
+     *         The status of the register certificate request.
+     *         </p>
      * @see CertificateStatus
      */
     public String getStatus() {
@@ -251,13 +257,17 @@ public class RegisterCertificateRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * Sets the value of status
+     * <p>
+     * The status of the register certificate request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
      * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
-     * @param status The new value for the status property for this object.
+     * @param status <p>
+     *            The status of the register certificate request.
+     *            </p>
      * @see CertificateStatus
      */
     public void setStatus(String status) {
@@ -265,7 +275,9 @@ public class RegisterCertificateRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * Sets the value of the status property for this object.
+     * <p>
+     * The status of the register certificate request.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -274,7 +286,9 @@ public class RegisterCertificateRequest extends AmazonWebServiceRequest implemen
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
      * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
-     * @param status The new value for the status property for this object.
+     * @param status <p>
+     *            The status of the register certificate request.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see CertificateStatus
@@ -285,13 +299,17 @@ public class RegisterCertificateRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * Sets the value of status
+     * <p>
+     * The status of the register certificate request.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
      * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
-     * @param status The new value for the status property for this object.
+     * @param status <p>
+     *            The status of the register certificate request.
+     *            </p>
      * @see CertificateStatus
      */
     public void setStatus(CertificateStatus status) {
@@ -299,7 +317,9 @@ public class RegisterCertificateRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
-     * Sets the value of the status property for this object.
+     * <p>
+     * The status of the register certificate request.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -308,7 +328,9 @@ public class RegisterCertificateRequest extends AmazonWebServiceRequest implemen
      * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
      * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
-     * @param status The new value for the status property for this object.
+     * @param status <p>
+     *            The status of the register certificate request.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see CertificateStatus

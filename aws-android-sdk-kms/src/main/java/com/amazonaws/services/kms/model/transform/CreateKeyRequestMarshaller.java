@@ -84,6 +84,17 @@ public class CreateKeyRequestMarshaller implements
                 jsonWriter.name("BypassPolicyLockoutSafetyCheck");
                 jsonWriter.value(bypassPolicyLockoutSafetyCheck);
             }
+            if (createKeyRequest.getTags() != null) {
+                java.util.List<Tag> tags = createKeyRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

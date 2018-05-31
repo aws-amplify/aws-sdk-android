@@ -25,8 +25,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingBehavior.InstanceTermination.html#instance-protection"
- * >Instance Protection</a> in the <i>Auto Scaling Developer Guide</i>.
+ * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html#instance-protection"
+ * >Instance Protection</a> in the <i>Auto Scaling User Guide</i>.
  * </p>
  */
 public class SetInstanceProtectionRequest extends AmazonWebServiceRequest implements Serializable {
@@ -39,7 +39,7 @@ public class SetInstanceProtectionRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -133,7 +133,7 @@ public class SetInstanceProtectionRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -142,7 +142,7 @@ public class SetInstanceProtectionRequest extends AmazonWebServiceRequest implem
      * <br/>
      *
      * @return <p>
-     *         The name of the group.
+     *         The name of the Auto Scaling group.
      *         </p>
      */
     public String getAutoScalingGroupName() {
@@ -151,7 +151,7 @@ public class SetInstanceProtectionRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -160,7 +160,7 @@ public class SetInstanceProtectionRequest extends AmazonWebServiceRequest implem
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      */
     public void setAutoScalingGroupName(String autoScalingGroupName) {
@@ -169,7 +169,7 @@ public class SetInstanceProtectionRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the group.
+     * The name of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -181,7 +181,7 @@ public class SetInstanceProtectionRequest extends AmazonWebServiceRequest implem
      * <br/>
      *
      * @param autoScalingGroupName <p>
-     *            The name of the group.
+     *            The name of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

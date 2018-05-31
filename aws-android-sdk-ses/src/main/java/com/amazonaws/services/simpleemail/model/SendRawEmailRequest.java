@@ -21,66 +21,93 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Sends an email message, with header and content specified by the client. The
- * <code>SendRawEmail</code> action is useful for sending multipart MIME emails.
- * The raw text of the message must comply with Internet email standards;
- * otherwise, the message cannot be sent.
+ * Composes an email message and immediately queues it for sending. When calling
+ * this operation, you may specify the message headers as well as the content.
+ * The <code>SendRawEmail</code> operation is particularly useful for sending
+ * multipart MIME emails (such as those that contain both a plain-text and an
+ * HTML version).
  * </p>
  * <p>
- * There are several important points to know about <code>SendRawEmail</code>:
+ * In order to send email using the <code>SendRawEmail</code> operation, your
+ * message must meet the following requirements:
  * </p>
  * <ul>
  * <li>
  * <p>
- * You can only send email from verified email addresses and domains; otherwise,
- * you will get an "Email address not verified" error. If your account is still
- * in the Amazon SES sandbox, you must also verify every recipient email address
- * except for the recipients provided by the Amazon SES mailbox simulator. For
- * more information, go to the <a href=
+ * The message must be sent from a verified email address or domain. If you
+ * attempt to send email using a non-verified address or domain, the operation
+ * will result in an "Email address not verified" error.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * If your account is still in the Amazon SES sandbox, you may only send to
+ * verified addresses or domains, or to email addresses associated with the
+ * Amazon SES Mailbox Simulator. For more information, see <a href=
  * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html"
- * >Amazon SES Developer Guide</a>.
+ * >Verifying Email Addresses and Domains</a> in the <i>Amazon SES Developer
+ * Guide.</i>
  * </p>
  * </li>
  * <li>
  * <p>
- * The total size of the message cannot exceed 10 MB. This includes any
- * attachments that are part of the message.
+ * The total size of the message, including attachments, must be smaller than 10
+ * MB.
  * </p>
  * </li>
  * <li>
  * <p>
- * Amazon SES has a limit on the total number of recipients per message. The
- * combined number of To:, CC: and BCC: email addresses cannot exceed 50. If you
- * need to send an email message to a larger audience, you can divide your
- * recipient list into groups of 50 or fewer, and then call Amazon SES
- * repeatedly to send the message to each group.
+ * The message must include at least one recipient email address. The recipient
+ * address can be a To: address, a CC: address, or a BCC: address. If a
+ * recipient email address is invalid (that is, it is not in the format
+ * <i>UserName@[SubDomain.]Domain.TopLevelDomain</i>), the entire message will
+ * be rejected, even if the message contains other recipients that are valid.
  * </p>
  * </li>
  * <li>
  * <p>
- * The To:, CC:, and BCC: headers in the raw message can contain a group list.
- * Note that each recipient in a group list counts towards the 50-recipient
- * limit.
+ * The message may not include more than 50 recipients, across the To:, CC: and
+ * BCC: fields. If you need to send an email message to a larger audience, you
+ * can divide your recipient list into groups of 50 or fewer, and then call the
+ * <code>SendRawEmail</code> operation several times to send the message to each
+ * group.
  * </p>
  * </li>
- * <li>
+ * </ul>
+ * <important>
  * <p>
- * For every message that you send, the total number of recipients (To:, CC: and
- * BCC:) is counted against your sending quota - the maximum number of emails
- * you can send in a 24-hour period. For information about your sending quota,
- * go to the <a href=
+ * For every message that you send, the total number of recipients (including
+ * each recipient in the To:, CC: and BCC: fields) is counted against the
+ * maximum number of emails you can send in a 24-hour period (your <i>sending
+ * quota</i>). For more information about sending quotas in Amazon SES, see <a
+ * href=
  * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html"
- * >Amazon SES Developer Guide</a>.
+ * >Managing Your Amazon SES Sending Limits</a> in the <i>Amazon SES Developer
+ * Guide.</i>
+ * </p>
+ * </important>
+ * <p>
+ * Additionally, keep the following considerations in mind when using the
+ * <code>SendRawEmail</code> operation:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * Although you can customize the message headers when using the
+ * <code>SendRawEmail</code> operation, Amazon SES will automatically apply its
+ * own <code>Message-ID</code> and <code>Date</code> headers; if you passed
+ * these headers when creating the message, they will be overwritten by the
+ * values that Amazon SES provides.
  * </p>
  * </li>
  * <li>
  * <p>
  * If you are using sending authorization to send on behalf of another user,
  * <code>SendRawEmail</code> enables you to specify the cross-account identity
- * for the email's "Source," "From," and "Return-Path" parameters in one of two
- * ways: you can pass optional parameters <code>SourceArn</code>,
- * <code>FromArn</code>, and/or <code>ReturnPathArn</code> to the API, or you
- * can include the following X-headers in the header of your raw email:
+ * for the email's Source, From, and Return-Path parameters in one of two ways:
+ * you can pass optional parameters <code>SourceArn</code>, <code>FromArn</code>
+ * , and/or <code>ReturnPathArn</code> to the API, or you can include the
+ * following X-headers in the header of your raw email:
  * </p>
  * <ul>
  * <li>
@@ -101,21 +128,21 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </ul>
  * <important>
  * <p>
- * Do not include these X-headers in the DKIM signature, because they are
- * removed by Amazon SES before sending the email.
+ * Do not include these X-headers in the DKIM signature; Amazon SES will remove
+ * them before sending the email.
  * </p>
  * </important>
  * <p>
- * For the most common sending authorization use case, we recommend that you
- * specify the <code>SourceIdentityArn</code> and do not specify either the
- * <code>FromIdentityArn</code> or <code>ReturnPathIdentityArn</code>. (The same
- * note applies to the corresponding X-headers.) If you only specify the
- * <code>SourceIdentityArn</code>, Amazon SES will simply set the "From" address
- * and the "Return Path" address to the identity specified in
- * <code>SourceIdentityArn</code>. For more information about sending
- * authorization, see the <a href=
+ * For most common sending authorization scenarios, we recommend that you
+ * specify the <code>SourceIdentityArn</code> parameter and not the
+ * <code>FromIdentityArn</code> or <code>ReturnPathIdentityArn</code>
+ * parameters. If you only specify the <code>SourceIdentityArn</code> parameter,
+ * Amazon SES will set the From and Return Path addresses to the identity
+ * specified in <code>SourceIdentityArn</code>. For more information about
+ * sending authorization, see the <a href=
  * "http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
- * >Amazon SES Developer Guide</a>.
+ * >Using Sending Authorization with Amazon SES</a> in the <i>Amazon SES
+ * Developer Guide.</i>
  * </p>
  * </li>
  * </ul>
@@ -127,22 +154,30 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
      * parameter, you must specify a "From" address in the raw text of the
      * message. (You can also specify both.)
      * </p>
-     * <p>
-     * By default, the string must be 7-bit ASCII. If the text must contain any
-     * other characters, then you must use MIME encoded-word syntax (RFC 2047)
-     * instead of a literal string. MIME encoded-word syntax uses the following
-     * form: <code>=?charset?encoding?encoded-text?=</code>. For more
-     * information, see <a href="http://tools.ietf.org/html/rfc2047">RFC
-     * 2047</a>.
-     * </p>
      * <note>
+     * <p>
+     * Amazon SES does not support the SMTPUTF8 extension, as described in<a
+     * href="https://tools.ietf.org/html/rfc6531">RFC6531</a>. For this reason,
+     * the <i>local part</i> of a source email address (the part of the email
+     * address that precedes the @ sign) may only contain <a
+     * href="https://en.wikipedia.org/wiki/Email_address#Local-part">7-bit ASCII
+     * characters</a>. If the <i>domain part</i> of an address (the part after
+     * the @ sign) contains non-ASCII characters, they must be encoded using
+     * Punycode, as described in <a
+     * href="https://tools.ietf.org/html/rfc3492.html">RFC3492</a>. The sender
+     * name (also known as the <i>friendly name</i>) may contain non-ASCII
+     * characters. These characters must be encoded using MIME encoded-word
+     * syntax, as described in <a href="https://tools.ietf.org/html/rfc2047">RFC
+     * 2047</a>. MIME encoded-word syntax uses the following form:
+     * <code>=?charset?encoding?encoded-text?=</code>.
+     * </p>
+     * </note>
      * <p>
      * If you specify the <code>Source</code> parameter and have feedback
      * forwarding enabled, then bounces and complaints will be sent to this
-     * email address. This takes precedence over any <i>Return-Path</i> header
-     * that you might include in the raw text of the message.
+     * email address. This takes precedence over any Return-Path header that you
+     * might include in the raw text of the message.
      * </p>
-     * </note>
      */
     private String source;
 
@@ -185,7 +220,14 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * <li>
      * <p>
-     * Content must be base64-encoded, if MIME requires it.
+     * Must be base64-encoded.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Per <a href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC
+     * 5321</a>, the maximum length of each line of text, including the
+     * &lt;CRLF&gt;, must not exceed 1,000 characters.
      * </p>
      * </li>
      * </ul>
@@ -284,6 +326,24 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
     private String returnPathArn;
 
     /**
+     * <p>
+     * A list of tags, in the form of name/value pairs, to apply to an email
+     * that you send using <code>SendRawEmail</code>. Tags correspond to
+     * characteristics of the email that you define, so that you can publish
+     * email sending events.
+     * </p>
+     */
+    private java.util.List<MessageTag> tags = new java.util.ArrayList<MessageTag>();
+
+    /**
+     * <p>
+     * The name of the configuration set to use when you send an email using
+     * <code>SendRawEmail</code>.
+     * </p>
+     */
+    private String configurationSetName;
+
+    /**
      * Default constructor for SendRawEmailRequest object. Callers should use
      * the setter or fluent setter (with...) methods to initialize any
      * additional object members.
@@ -328,7 +388,15 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
      *            </li>
      *            <li>
      *            <p>
-     *            Content must be base64-encoded, if MIME requires it.
+     *            Must be base64-encoded.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Per <a
+     *            href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6"
+     *            >RFC 5321</a>, the maximum length of each line of text,
+     *            including the &lt;CRLF&gt;, must not exceed 1,000 characters.
      *            </p>
      *            </li>
      *            </ul>
@@ -343,46 +411,63 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
      * parameter, you must specify a "From" address in the raw text of the
      * message. (You can also specify both.)
      * </p>
-     * <p>
-     * By default, the string must be 7-bit ASCII. If the text must contain any
-     * other characters, then you must use MIME encoded-word syntax (RFC 2047)
-     * instead of a literal string. MIME encoded-word syntax uses the following
-     * form: <code>=?charset?encoding?encoded-text?=</code>. For more
-     * information, see <a href="http://tools.ietf.org/html/rfc2047">RFC
-     * 2047</a>.
-     * </p>
      * <note>
+     * <p>
+     * Amazon SES does not support the SMTPUTF8 extension, as described in<a
+     * href="https://tools.ietf.org/html/rfc6531">RFC6531</a>. For this reason,
+     * the <i>local part</i> of a source email address (the part of the email
+     * address that precedes the @ sign) may only contain <a
+     * href="https://en.wikipedia.org/wiki/Email_address#Local-part">7-bit ASCII
+     * characters</a>. If the <i>domain part</i> of an address (the part after
+     * the @ sign) contains non-ASCII characters, they must be encoded using
+     * Punycode, as described in <a
+     * href="https://tools.ietf.org/html/rfc3492.html">RFC3492</a>. The sender
+     * name (also known as the <i>friendly name</i>) may contain non-ASCII
+     * characters. These characters must be encoded using MIME encoded-word
+     * syntax, as described in <a href="https://tools.ietf.org/html/rfc2047">RFC
+     * 2047</a>. MIME encoded-word syntax uses the following form:
+     * <code>=?charset?encoding?encoded-text?=</code>.
+     * </p>
+     * </note>
      * <p>
      * If you specify the <code>Source</code> parameter and have feedback
      * forwarding enabled, then bounces and complaints will be sent to this
-     * email address. This takes precedence over any <i>Return-Path</i> header
-     * that you might include in the raw text of the message.
+     * email address. This takes precedence over any Return-Path header that you
+     * might include in the raw text of the message.
      * </p>
-     * </note>
      *
      * @return <p>
      *         The identity's email address. If you do not provide a value for
      *         this parameter, you must specify a "From" address in the raw text
      *         of the message. (You can also specify both.)
      *         </p>
-     *         <p>
-     *         By default, the string must be 7-bit ASCII. If the text must
-     *         contain any other characters, then you must use MIME encoded-word
-     *         syntax (RFC 2047) instead of a literal string. MIME encoded-word
-     *         syntax uses the following form:
-     *         <code>=?charset?encoding?encoded-text?=</code>. For more
-     *         information, see <a href="http://tools.ietf.org/html/rfc2047">RFC
-     *         2047</a>.
-     *         </p>
      *         <note>
+     *         <p>
+     *         Amazon SES does not support the SMTPUTF8 extension, as described
+     *         in<a href="https://tools.ietf.org/html/rfc6531">RFC6531</a>. For
+     *         this reason, the <i>local part</i> of a source email address (the
+     *         part of the email address that precedes the @ sign) may only
+     *         contain <a
+     *         href="https://en.wikipedia.org/wiki/Email_address#Local-part"
+     *         >7-bit ASCII characters</a>. If the <i>domain part</i> of an
+     *         address (the part after the @ sign) contains non-ASCII
+     *         characters, they must be encoded using Punycode, as described in
+     *         <a href="https://tools.ietf.org/html/rfc3492.html">RFC3492</a>.
+     *         The sender name (also known as the <i>friendly name</i>) may
+     *         contain non-ASCII characters. These characters must be encoded
+     *         using MIME encoded-word syntax, as described in <a
+     *         href="https://tools.ietf.org/html/rfc2047">RFC 2047</a>. MIME
+     *         encoded-word syntax uses the following form:
+     *         <code>=?charset?encoding?encoded-text?=</code>.
+     *         </p>
+     *         </note>
      *         <p>
      *         If you specify the <code>Source</code> parameter and have
      *         feedback forwarding enabled, then bounces and complaints will be
      *         sent to this email address. This takes precedence over any
-     *         <i>Return-Path</i> header that you might include in the raw text
-     *         of the message.
+     *         Return-Path header that you might include in the raw text of the
+     *         message.
      *         </p>
-     *         </note>
      */
     public String getSource() {
         return source;
@@ -394,46 +479,64 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
      * parameter, you must specify a "From" address in the raw text of the
      * message. (You can also specify both.)
      * </p>
-     * <p>
-     * By default, the string must be 7-bit ASCII. If the text must contain any
-     * other characters, then you must use MIME encoded-word syntax (RFC 2047)
-     * instead of a literal string. MIME encoded-word syntax uses the following
-     * form: <code>=?charset?encoding?encoded-text?=</code>. For more
-     * information, see <a href="http://tools.ietf.org/html/rfc2047">RFC
-     * 2047</a>.
-     * </p>
      * <note>
+     * <p>
+     * Amazon SES does not support the SMTPUTF8 extension, as described in<a
+     * href="https://tools.ietf.org/html/rfc6531">RFC6531</a>. For this reason,
+     * the <i>local part</i> of a source email address (the part of the email
+     * address that precedes the @ sign) may only contain <a
+     * href="https://en.wikipedia.org/wiki/Email_address#Local-part">7-bit ASCII
+     * characters</a>. If the <i>domain part</i> of an address (the part after
+     * the @ sign) contains non-ASCII characters, they must be encoded using
+     * Punycode, as described in <a
+     * href="https://tools.ietf.org/html/rfc3492.html">RFC3492</a>. The sender
+     * name (also known as the <i>friendly name</i>) may contain non-ASCII
+     * characters. These characters must be encoded using MIME encoded-word
+     * syntax, as described in <a href="https://tools.ietf.org/html/rfc2047">RFC
+     * 2047</a>. MIME encoded-word syntax uses the following form:
+     * <code>=?charset?encoding?encoded-text?=</code>.
+     * </p>
+     * </note>
      * <p>
      * If you specify the <code>Source</code> parameter and have feedback
      * forwarding enabled, then bounces and complaints will be sent to this
-     * email address. This takes precedence over any <i>Return-Path</i> header
-     * that you might include in the raw text of the message.
+     * email address. This takes precedence over any Return-Path header that you
+     * might include in the raw text of the message.
      * </p>
-     * </note>
      *
      * @param source <p>
      *            The identity's email address. If you do not provide a value
      *            for this parameter, you must specify a "From" address in the
      *            raw text of the message. (You can also specify both.)
      *            </p>
-     *            <p>
-     *            By default, the string must be 7-bit ASCII. If the text must
-     *            contain any other characters, then you must use MIME
-     *            encoded-word syntax (RFC 2047) instead of a literal string.
-     *            MIME encoded-word syntax uses the following form:
-     *            <code>=?charset?encoding?encoded-text?=</code>. For more
-     *            information, see <a
-     *            href="http://tools.ietf.org/html/rfc2047">RFC 2047</a>.
-     *            </p>
      *            <note>
+     *            <p>
+     *            Amazon SES does not support the SMTPUTF8 extension, as
+     *            described in<a
+     *            href="https://tools.ietf.org/html/rfc6531">RFC6531</a>. For
+     *            this reason, the <i>local part</i> of a source email address
+     *            (the part of the email address that precedes the @ sign) may
+     *            only contain <a href=
+     *            "https://en.wikipedia.org/wiki/Email_address#Local-part">7-bit
+     *            ASCII characters</a>. If the <i>domain part</i> of an address
+     *            (the part after the @ sign) contains non-ASCII characters,
+     *            they must be encoded using Punycode, as described in <a
+     *            href="https://tools.ietf.org/html/rfc3492.html">RFC3492</a>.
+     *            The sender name (also known as the <i>friendly name</i>) may
+     *            contain non-ASCII characters. These characters must be encoded
+     *            using MIME encoded-word syntax, as described in <a
+     *            href="https://tools.ietf.org/html/rfc2047">RFC 2047</a>. MIME
+     *            encoded-word syntax uses the following form:
+     *            <code>=?charset?encoding?encoded-text?=</code>.
+     *            </p>
+     *            </note>
      *            <p>
      *            If you specify the <code>Source</code> parameter and have
      *            feedback forwarding enabled, then bounces and complaints will
      *            be sent to this email address. This takes precedence over any
-     *            <i>Return-Path</i> header that you might include in the raw
-     *            text of the message.
+     *            Return-Path header that you might include in the raw text of
+     *            the message.
      *            </p>
-     *            </note>
      */
     public void setSource(String source) {
         this.source = source;
@@ -445,22 +548,30 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
      * parameter, you must specify a "From" address in the raw text of the
      * message. (You can also specify both.)
      * </p>
-     * <p>
-     * By default, the string must be 7-bit ASCII. If the text must contain any
-     * other characters, then you must use MIME encoded-word syntax (RFC 2047)
-     * instead of a literal string. MIME encoded-word syntax uses the following
-     * form: <code>=?charset?encoding?encoded-text?=</code>. For more
-     * information, see <a href="http://tools.ietf.org/html/rfc2047">RFC
-     * 2047</a>.
-     * </p>
      * <note>
+     * <p>
+     * Amazon SES does not support the SMTPUTF8 extension, as described in<a
+     * href="https://tools.ietf.org/html/rfc6531">RFC6531</a>. For this reason,
+     * the <i>local part</i> of a source email address (the part of the email
+     * address that precedes the @ sign) may only contain <a
+     * href="https://en.wikipedia.org/wiki/Email_address#Local-part">7-bit ASCII
+     * characters</a>. If the <i>domain part</i> of an address (the part after
+     * the @ sign) contains non-ASCII characters, they must be encoded using
+     * Punycode, as described in <a
+     * href="https://tools.ietf.org/html/rfc3492.html">RFC3492</a>. The sender
+     * name (also known as the <i>friendly name</i>) may contain non-ASCII
+     * characters. These characters must be encoded using MIME encoded-word
+     * syntax, as described in <a href="https://tools.ietf.org/html/rfc2047">RFC
+     * 2047</a>. MIME encoded-word syntax uses the following form:
+     * <code>=?charset?encoding?encoded-text?=</code>.
+     * </p>
+     * </note>
      * <p>
      * If you specify the <code>Source</code> parameter and have feedback
      * forwarding enabled, then bounces and complaints will be sent to this
-     * email address. This takes precedence over any <i>Return-Path</i> header
-     * that you might include in the raw text of the message.
+     * email address. This takes precedence over any Return-Path header that you
+     * might include in the raw text of the message.
      * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -470,24 +581,34 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
      *            for this parameter, you must specify a "From" address in the
      *            raw text of the message. (You can also specify both.)
      *            </p>
-     *            <p>
-     *            By default, the string must be 7-bit ASCII. If the text must
-     *            contain any other characters, then you must use MIME
-     *            encoded-word syntax (RFC 2047) instead of a literal string.
-     *            MIME encoded-word syntax uses the following form:
-     *            <code>=?charset?encoding?encoded-text?=</code>. For more
-     *            information, see <a
-     *            href="http://tools.ietf.org/html/rfc2047">RFC 2047</a>.
-     *            </p>
      *            <note>
+     *            <p>
+     *            Amazon SES does not support the SMTPUTF8 extension, as
+     *            described in<a
+     *            href="https://tools.ietf.org/html/rfc6531">RFC6531</a>. For
+     *            this reason, the <i>local part</i> of a source email address
+     *            (the part of the email address that precedes the @ sign) may
+     *            only contain <a href=
+     *            "https://en.wikipedia.org/wiki/Email_address#Local-part">7-bit
+     *            ASCII characters</a>. If the <i>domain part</i> of an address
+     *            (the part after the @ sign) contains non-ASCII characters,
+     *            they must be encoded using Punycode, as described in <a
+     *            href="https://tools.ietf.org/html/rfc3492.html">RFC3492</a>.
+     *            The sender name (also known as the <i>friendly name</i>) may
+     *            contain non-ASCII characters. These characters must be encoded
+     *            using MIME encoded-word syntax, as described in <a
+     *            href="https://tools.ietf.org/html/rfc2047">RFC 2047</a>. MIME
+     *            encoded-word syntax uses the following form:
+     *            <code>=?charset?encoding?encoded-text?=</code>.
+     *            </p>
+     *            </note>
      *            <p>
      *            If you specify the <code>Source</code> parameter and have
      *            feedback forwarding enabled, then bounces and complaints will
      *            be sent to this email address. This takes precedence over any
-     *            <i>Return-Path</i> header that you might include in the raw
-     *            text of the message.
+     *            Return-Path header that you might include in the raw text of
+     *            the message.
      *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -609,7 +730,14 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * <li>
      * <p>
-     * Content must be base64-encoded, if MIME requires it.
+     * Must be base64-encoded.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Per <a href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC
+     * 5321</a>, the maximum length of each line of text, including the
+     * &lt;CRLF&gt;, must not exceed 1,000 characters.
      * </p>
      * </li>
      * </ul>
@@ -645,7 +773,15 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
      *         </li>
      *         <li>
      *         <p>
-     *         Content must be base64-encoded, if MIME requires it.
+     *         Must be base64-encoded.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Per <a
+     *         href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC
+     *         5321</a>, the maximum length of each line of text, including the
+     *         &lt;CRLF&gt;, must not exceed 1,000 characters.
      *         </p>
      *         </li>
      *         </ul>
@@ -685,7 +821,14 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * <li>
      * <p>
-     * Content must be base64-encoded, if MIME requires it.
+     * Must be base64-encoded.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Per <a href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC
+     * 5321</a>, the maximum length of each line of text, including the
+     * &lt;CRLF&gt;, must not exceed 1,000 characters.
      * </p>
      * </li>
      * </ul>
@@ -722,7 +865,15 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
      *            </li>
      *            <li>
      *            <p>
-     *            Content must be base64-encoded, if MIME requires it.
+     *            Must be base64-encoded.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Per <a
+     *            href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6"
+     *            >RFC 5321</a>, the maximum length of each line of text,
+     *            including the &lt;CRLF&gt;, must not exceed 1,000 characters.
      *            </p>
      *            </li>
      *            </ul>
@@ -762,7 +913,14 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * <li>
      * <p>
-     * Content must be base64-encoded, if MIME requires it.
+     * Must be base64-encoded.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Per <a href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC
+     * 5321</a>, the maximum length of each line of text, including the
+     * &lt;CRLF&gt;, must not exceed 1,000 characters.
      * </p>
      * </li>
      * </ul>
@@ -802,7 +960,15 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
      *            </li>
      *            <li>
      *            <p>
-     *            Content must be base64-encoded, if MIME requires it.
+     *            Must be base64-encoded.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Per <a
+     *            href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6"
+     *            >RFC 5321</a>, the maximum length of each line of text,
+     *            including the &lt;CRLF&gt;, must not exceed 1,000 characters.
      *            </p>
      *            </li>
      *            </ul>
@@ -1397,6 +1563,155 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
+     * <p>
+     * A list of tags, in the form of name/value pairs, to apply to an email
+     * that you send using <code>SendRawEmail</code>. Tags correspond to
+     * characteristics of the email that you define, so that you can publish
+     * email sending events.
+     * </p>
+     *
+     * @return <p>
+     *         A list of tags, in the form of name/value pairs, to apply to an
+     *         email that you send using <code>SendRawEmail</code>. Tags
+     *         correspond to characteristics of the email that you define, so
+     *         that you can publish email sending events.
+     *         </p>
+     */
+    public java.util.List<MessageTag> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * A list of tags, in the form of name/value pairs, to apply to an email
+     * that you send using <code>SendRawEmail</code>. Tags correspond to
+     * characteristics of the email that you define, so that you can publish
+     * email sending events.
+     * </p>
+     *
+     * @param tags <p>
+     *            A list of tags, in the form of name/value pairs, to apply to
+     *            an email that you send using <code>SendRawEmail</code>. Tags
+     *            correspond to characteristics of the email that you define, so
+     *            that you can publish email sending events.
+     *            </p>
+     */
+    public void setTags(java.util.Collection<MessageTag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<MessageTag>(tags);
+    }
+
+    /**
+     * <p>
+     * A list of tags, in the form of name/value pairs, to apply to an email
+     * that you send using <code>SendRawEmail</code>. Tags correspond to
+     * characteristics of the email that you define, so that you can publish
+     * email sending events.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            A list of tags, in the form of name/value pairs, to apply to
+     *            an email that you send using <code>SendRawEmail</code>. Tags
+     *            correspond to characteristics of the email that you define, so
+     *            that you can publish email sending events.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SendRawEmailRequest withTags(MessageTag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<MessageTag>(tags.length);
+        }
+        for (MessageTag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of tags, in the form of name/value pairs, to apply to an email
+     * that you send using <code>SendRawEmail</code>. Tags correspond to
+     * characteristics of the email that you define, so that you can publish
+     * email sending events.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            A list of tags, in the form of name/value pairs, to apply to
+     *            an email that you send using <code>SendRawEmail</code>. Tags
+     *            correspond to characteristics of the email that you define, so
+     *            that you can publish email sending events.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SendRawEmailRequest withTags(java.util.Collection<MessageTag> tags) {
+        setTags(tags);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The name of the configuration set to use when you send an email using
+     * <code>SendRawEmail</code>.
+     * </p>
+     *
+     * @return <p>
+     *         The name of the configuration set to use when you send an email
+     *         using <code>SendRawEmail</code>.
+     *         </p>
+     */
+    public String getConfigurationSetName() {
+        return configurationSetName;
+    }
+
+    /**
+     * <p>
+     * The name of the configuration set to use when you send an email using
+     * <code>SendRawEmail</code>.
+     * </p>
+     *
+     * @param configurationSetName <p>
+     *            The name of the configuration set to use when you send an
+     *            email using <code>SendRawEmail</code>.
+     *            </p>
+     */
+    public void setConfigurationSetName(String configurationSetName) {
+        this.configurationSetName = configurationSetName;
+    }
+
+    /**
+     * <p>
+     * The name of the configuration set to use when you send an email using
+     * <code>SendRawEmail</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param configurationSetName <p>
+     *            The name of the configuration set to use when you send an
+     *            email using <code>SendRawEmail</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SendRawEmailRequest withConfigurationSetName(String configurationSetName) {
+        this.configurationSetName = configurationSetName;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1418,7 +1733,11 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
         if (getSourceArn() != null)
             sb.append("SourceArn: " + getSourceArn() + ",");
         if (getReturnPathArn() != null)
-            sb.append("ReturnPathArn: " + getReturnPathArn());
+            sb.append("ReturnPathArn: " + getReturnPathArn() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags() + ",");
+        if (getConfigurationSetName() != null)
+            sb.append("ConfigurationSetName: " + getConfigurationSetName());
         sb.append("}");
         return sb.toString();
     }
@@ -1436,6 +1755,9 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
         hashCode = prime * hashCode + ((getSourceArn() == null) ? 0 : getSourceArn().hashCode());
         hashCode = prime * hashCode
                 + ((getReturnPathArn() == null) ? 0 : getReturnPathArn().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime * hashCode
+                + ((getConfigurationSetName() == null) ? 0 : getConfigurationSetName().hashCode());
         return hashCode;
     }
 
@@ -1477,6 +1799,15 @@ public class SendRawEmailRequest extends AmazonWebServiceRequest implements Seri
             return false;
         if (other.getReturnPathArn() != null
                 && other.getReturnPathArn().equals(this.getReturnPathArn()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        if (other.getConfigurationSetName() == null ^ this.getConfigurationSetName() == null)
+            return false;
+        if (other.getConfigurationSetName() != null
+                && other.getConfigurationSetName().equals(this.getConfigurationSetName()) == false)
             return false;
         return true;
     }

@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class GetKeyPolicyResult implements Serializable {
     /**
      * <p>
-     * A policy document in JSON format.
+     * A key policy document in JSON format.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -31,7 +31,7 @@ public class GetKeyPolicyResult implements Serializable {
 
     /**
      * <p>
-     * A policy document in JSON format.
+     * A key policy document in JSON format.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -39,7 +39,7 @@ public class GetKeyPolicyResult implements Serializable {
      * <b>Pattern: </b>[ -\u00FF]+<br/>
      *
      * @return <p>
-     *         A policy document in JSON format.
+     *         A key policy document in JSON format.
      *         </p>
      */
     public String getPolicy() {
@@ -48,7 +48,7 @@ public class GetKeyPolicyResult implements Serializable {
 
     /**
      * <p>
-     * A policy document in JSON format.
+     * A key policy document in JSON format.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -56,7 +56,7 @@ public class GetKeyPolicyResult implements Serializable {
      * <b>Pattern: </b>[ -\u00FF]+<br/>
      *
      * @param policy <p>
-     *            A policy document in JSON format.
+     *            A key policy document in JSON format.
      *            </p>
      */
     public void setPolicy(String policy) {
@@ -65,7 +65,7 @@ public class GetKeyPolicyResult implements Serializable {
 
     /**
      * <p>
-     * A policy document in JSON format.
+     * A key policy document in JSON format.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -76,7 +76,7 @@ public class GetKeyPolicyResult implements Serializable {
      * <b>Pattern: </b>[ -\u00FF]+<br/>
      *
      * @param policy <p>
-     *            A policy document in JSON format.
+     *            A key policy document in JSON format.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

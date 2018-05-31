@@ -21,11 +21,20 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Describes the specified load balancer policy types.
+ * Describes the specified load balancer policy types or all load balancer
+ * policy types.
  * </p>
  * <p>
- * You can use these policy types with <a>CreateLoadBalancerPolicy</a> to create
- * policy configurations for a load balancer.
+ * The description of each type indicates how it can be used. For example, some
+ * policies can be used only with layer 7 listeners, some policies can be used
+ * only with layer 4 listeners, and some policies can be used only with your EC2
+ * instances.
+ * </p>
+ * <p>
+ * You can use <a>CreateLoadBalancerPolicy</a> to create a policy configuration
+ * for any of these policy types. Then, depending on the policy type, use either
+ * <a>SetLoadBalancerPoliciesOfListener</a> or
+ * <a>SetLoadBalancerPoliciesForBackendServer</a> to set the policy.
  * </p>
  */
 public class DescribeLoadBalancerPolicyTypesRequest extends AmazonWebServiceRequest implements

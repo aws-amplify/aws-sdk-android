@@ -20,7 +20,8 @@ import java.io.Serializable;
 public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
     /**
      * <p>
-     * The encrypted data encryption key.
+     * The encrypted data encryption key. When you use the HTTP API or the AWS
+     * CLI, the value is Base64-encoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -35,20 +36,23 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      */
     private String keyId;
 
     /**
      * <p>
-     * The encrypted data encryption key.
+     * The encrypted data encryption key. When you use the HTTP API or the AWS
+     * CLI, the value is Base64-encoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
      *
      * @return <p>
-     *         The encrypted data encryption key.
+     *         The encrypted data encryption key. When you use the HTTP API or
+     *         the AWS CLI, the value is Base64-encoded. Otherwise, it is not
+     *         encoded.
      *         </p>
      */
     public java.nio.ByteBuffer getCiphertextBlob() {
@@ -57,14 +61,17 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
 
     /**
      * <p>
-     * The encrypted data encryption key.
+     * The encrypted data encryption key. When you use the HTTP API or the AWS
+     * CLI, the value is Base64-encoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
      *
      * @param ciphertextBlob <p>
-     *            The encrypted data encryption key.
+     *            The encrypted data encryption key. When you use the HTTP API
+     *            or the AWS CLI, the value is Base64-encoded. Otherwise, it is
+     *            not encoded.
      *            </p>
      */
     public void setCiphertextBlob(java.nio.ByteBuffer ciphertextBlob) {
@@ -73,7 +80,8 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
 
     /**
      * <p>
-     * The encrypted data encryption key.
+     * The encrypted data encryption key. When you use the HTTP API or the AWS
+     * CLI, the value is Base64-encoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -83,7 +91,9 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
      * <b>Length: </b>1 - 6144<br/>
      *
      * @param ciphertextBlob <p>
-     *            The encrypted data encryption key.
+     *            The encrypted data encryption key. When you use the HTTP API
+     *            or the AWS CLI, the value is Base64-encoded. Otherwise, it is
+     *            not encoded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -101,7 +111,7 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
      *         The identifier of the CMK under which the data encryption key was
@@ -119,7 +129,7 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            The identifier of the CMK under which the data encryption key
@@ -140,7 +150,7 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
      *            The identifier of the CMK under which the data encryption key
