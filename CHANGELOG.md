@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.22](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.22)
+
+### Enhancements
+
+- **Amazon Polly**
+  - Added support for new voice - `Lea`.
+
 ## [Release 2.6.21](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.21)
 
 ### Enhancements

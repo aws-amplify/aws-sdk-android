@@ -122,7 +122,7 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
      * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
+     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea
      */
     private String voiceId;
 
@@ -778,7 +778,7 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
      * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
+     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea
      *
      * @return <p>
      *         Voice ID to use for the synthesis. You can get a list of
@@ -806,7 +806,7 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
      * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
+     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -837,7 +837,7 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Liv, Lotte, Ruben, Ewa,
      * Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
+     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -868,7 +868,7 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
      * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
+     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -899,7 +899,7 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Liv, Lotte, Ruben, Ewa,
      * Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
+     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
