@@ -382,6 +382,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
             response = invoke(request, new AddTagsResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -433,6 +434,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     new ApplySecurityGroupsToLoadBalancerResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -485,6 +487,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -533,6 +536,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -597,6 +601,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -664,6 +669,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -734,6 +740,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -788,6 +795,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -839,6 +847,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -888,6 +897,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -929,6 +939,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -972,6 +983,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1028,6 +1040,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1073,6 +1086,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1120,6 +1134,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1162,6 +1177,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1213,6 +1229,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1267,6 +1284,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1310,6 +1328,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1347,6 +1366,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
             response = invoke(request, new DescribeTagsResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1396,6 +1416,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1455,6 +1476,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1509,6 +1531,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1594,6 +1617,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1667,6 +1691,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     new RegisterInstancesWithLoadBalancerResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1704,6 +1729,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
             response = invoke(request, new RemoveTagsResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1759,6 +1785,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1829,6 +1856,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1888,6 +1916,7 @@ public class AmazonElasticLoadBalancingClient extends AmazonWebServiceClient imp
                     new SetLoadBalancerPoliciesOfListenerResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }

@@ -834,7 +834,7 @@ public class ObjectMetadata implements ServerSideEncryptionResult, S3RequesterCh
      * @param storageClass The Amazon S3 storage class for the stored objects.
      */
     public void setStorageClass(StorageClass storageClass) {
-    	    metadata.put(Headers.STORAGE_CLASS, storageClass);
+    	metadata.put(Headers.STORAGE_CLASS, storageClass);
     }
 
     /**

@@ -336,6 +336,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -387,6 +388,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -443,6 +445,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -526,6 +529,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -575,6 +579,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -624,6 +629,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -670,6 +676,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -725,6 +732,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -765,6 +773,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -809,6 +818,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -843,6 +853,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -880,6 +891,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -913,6 +925,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -946,6 +959,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -991,6 +1005,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1031,6 +1046,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1071,6 +1087,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1111,6 +1128,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1151,6 +1169,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1191,6 +1210,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1230,6 +1250,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1269,6 +1290,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1308,6 +1330,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     new DescribeLoadBalancerTargetGroupsResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1352,6 +1375,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1396,6 +1420,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1438,6 +1463,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1476,6 +1502,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1517,6 +1544,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1557,6 +1585,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1599,6 +1628,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1646,6 +1676,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             response = invoke(request, new DescribeTagsResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1685,6 +1716,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1741,6 +1773,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1780,6 +1813,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1831,6 +1865,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1865,6 +1900,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1903,6 +1939,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1944,6 +1981,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             response = invoke(request, new EnterStandbyResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1977,6 +2015,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -2018,6 +2057,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             response = invoke(request, new ExitStandbyResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -2111,6 +2151,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -2158,6 +2199,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -2207,6 +2249,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -2250,6 +2293,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -2334,6 +2378,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -2374,6 +2419,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -2412,6 +2458,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -2449,6 +2496,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -2494,6 +2542,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -2542,6 +2591,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -2588,6 +2638,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -2663,6 +2714,7 @@ public class AmazonAutoScalingClient extends AmazonWebServiceClient implements A
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }

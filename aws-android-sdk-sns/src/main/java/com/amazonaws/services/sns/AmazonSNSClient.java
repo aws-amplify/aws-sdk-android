@@ -337,6 +337,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -387,6 +388,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -436,6 +438,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -515,6 +518,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -579,6 +583,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -624,6 +629,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
             response = invoke(request, new CreateTopicResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -667,6 +673,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -708,6 +715,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -746,6 +754,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -794,6 +803,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -842,6 +852,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
                     new GetPlatformApplicationAttributesResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -886,6 +897,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -930,6 +942,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -974,6 +987,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1029,6 +1043,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1083,6 +1098,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1136,6 +1152,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1182,6 +1199,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1230,6 +1248,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1270,6 +1289,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
             response = invoke(request, new ListTopicsResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1315,6 +1335,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1376,6 +1397,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
             response = invoke(request, new PublishResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1413,6 +1435,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1455,6 +1478,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1501,6 +1525,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1551,6 +1576,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1591,6 +1617,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1628,6 +1655,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1672,6 +1700,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
             response = invoke(request, new SubscribeResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1716,6 +1745,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }

@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.23](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.23)
+
+### Enhacements
+
+* **Amazon S3**
+  * Support user metadata headers.
+
 ## [Release 2.6.22](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.22)
 
 ### Enhancements

@@ -390,6 +390,7 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
 
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
         }
     }
@@ -448,6 +449,7 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
 
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
         }
     }
@@ -509,6 +511,7 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
 
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
         }
     }

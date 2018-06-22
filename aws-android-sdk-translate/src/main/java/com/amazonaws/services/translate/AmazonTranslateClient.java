@@ -372,6 +372,7 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
 
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
         }
     }

@@ -521,6 +521,7 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
             response = invoke(request, new AssumeRoleResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -714,6 +715,7 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -751,6 +753,7 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -910,6 +913,7 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1017,6 +1021,7 @@ public class AWSSecurityTokenServiceClient extends AmazonWebServiceClient implem
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
