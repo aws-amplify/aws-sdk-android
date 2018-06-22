@@ -445,6 +445,7 @@ public class AmazonSQSClient extends AmazonWebServiceClient implements AmazonSQS
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -524,6 +525,7 @@ public class AmazonSQSClient extends AmazonWebServiceClient implements AmazonSQS
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -590,6 +592,7 @@ public class AmazonSQSClient extends AmazonWebServiceClient implements AmazonSQS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -695,6 +698,7 @@ public class AmazonSQSClient extends AmazonWebServiceClient implements AmazonSQS
             response = invoke(request, new CreateQueueResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -754,6 +758,7 @@ public class AmazonSQSClient extends AmazonWebServiceClient implements AmazonSQS
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -816,6 +821,7 @@ public class AmazonSQSClient extends AmazonWebServiceClient implements AmazonSQS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -869,6 +875,7 @@ public class AmazonSQSClient extends AmazonWebServiceClient implements AmazonSQS
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -920,6 +927,7 @@ public class AmazonSQSClient extends AmazonWebServiceClient implements AmazonSQS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -965,6 +973,7 @@ public class AmazonSQSClient extends AmazonWebServiceClient implements AmazonSQS
             response = invoke(request, new GetQueueUrlResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1011,6 +1020,7 @@ public class AmazonSQSClient extends AmazonWebServiceClient implements AmazonSQS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1048,6 +1058,7 @@ public class AmazonSQSClient extends AmazonWebServiceClient implements AmazonSQS
             response = invoke(request, new ListQueuesResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1095,6 +1106,7 @@ public class AmazonSQSClient extends AmazonWebServiceClient implements AmazonSQS
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1211,6 +1223,7 @@ public class AmazonSQSClient extends AmazonWebServiceClient implements AmazonSQS
             response = invoke(request, new ReceiveMessageResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1244,6 +1257,7 @@ public class AmazonSQSClient extends AmazonWebServiceClient implements AmazonSQS
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1297,6 +1311,7 @@ public class AmazonSQSClient extends AmazonWebServiceClient implements AmazonSQS
             response = invoke(request, new SendMessageResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1386,6 +1401,7 @@ public class AmazonSQSClient extends AmazonWebServiceClient implements AmazonSQS
                     executionContext);
             return response.getAwsResponse();
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }
@@ -1428,6 +1444,7 @@ public class AmazonSQSClient extends AmazonWebServiceClient implements AmazonSQS
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
         } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
         }
     }

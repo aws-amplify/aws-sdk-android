@@ -291,7 +291,8 @@ class TransferRecord {
                 .append("partNumber:").append(partNumber).append(",")
                 .append("multipartId:").append(multipartId).append(",")
                 .append("eTag:").append(eTag).append(",")
-                .append("storageClass:").append(headerStorageClass)
+                .append("storageClass:").append(headerStorageClass).append(",")
+                .append("userMetadata:").append(userMetadata.toString()).append(",")
                 .append("]");
         return sb.toString();
     }

@@ -19,13 +19,16 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferService.NetworkInfoReceiver;
 import com.amazonaws.retry.RetryUtils;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.Headers;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.CompleteMultipartUploadRequest;
 import com.amazonaws.services.s3.model.InitiateMultipartUploadRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.ObjectTagging;
 import com.amazonaws.services.s3.model.PartETag;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.SSEAwsKeyManagementParams;
+import com.amazonaws.services.s3.model.Tag;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.util.Mimetypes;
 
@@ -46,6 +49,9 @@ import java.util.concurrent.Future;
 class UploadTask implements Callable<Boolean> {
 
     private static final Log LOGGER = LogFactory.getLog(UploadTask.class);
+    private static final String OBJECT_TAGS_DELIMITER = "&";
+    private static final String OBJECT_TAG_KEY_VALUE_SEPARATOR = "=";
+    private static final String REQUESTER_PAYS = "requester";
 
     private final AmazonS3 s3;
     private final TransferRecord upload;
@@ -314,6 +320,31 @@ class UploadTask implements Callable<Boolean> {
         }
         if (upload.userMetadata != null) {
             om.setUserMetadata(upload.userMetadata);
+            // Check Object Tag
+            String objectTag = upload.userMetadata.get(Headers.S3_TAGGING);
+            if (objectTag != null) {
+                try {
+                    String[] tags = objectTag.split(OBJECT_TAGS_DELIMITER);
+                    List<Tag> tagList = new ArrayList<Tag>();
+                    for (String tag : tags) {
+                        String[] tagParts = tag.split(OBJECT_TAG_KEY_VALUE_SEPARATOR);
+                        tagList.add(new Tag(tagParts[0], tagParts[1]));
+                    }
+                    putObjectRequest.setTagging(new ObjectTagging(tagList));
+                } catch (Exception exception) {
+                    LOGGER.error("Error in passing the object tags as request headers.", exception);
+                }
+            }
+            // Check Redirect Location
+            String redirectLocation = upload.userMetadata.get(Headers.REDIRECT_LOCATION);
+            if (redirectLocation != null) {
+                putObjectRequest.setRedirectLocation(redirectLocation);
+            }
+            // Check Requester Pays
+            String isRequesterPays = upload.userMetadata.get(Headers.REQUESTER_PAYS_HEADER);
+            if (isRequesterPays != null) {
+                putObjectRequest.setRequesterPays(REQUESTER_PAYS.equals(isRequesterPays) ? true : false);
+            }
         }
         if (upload.md5 != null) {
             om.setContentMD5(upload.md5);
@@ -322,6 +353,7 @@ class UploadTask implements Callable<Boolean> {
             putObjectRequest
                     .setSSEAwsKeyManagementParams(new SSEAwsKeyManagementParams(upload.sseKMSKey));
         }
+
         putObjectRequest.setMetadata(om);
         putObjectRequest.setCannedAcl(getCannedAclFromString(upload.cannedAcl));
 

@@ -134,6 +134,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -1655,6 +1656,10 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                 input = new ByteArrayInputStream(new byte[0]);
             }
         }
+
+        addHeaderIfNotNull(request, Headers.S3_TAGGING, urlEncodeTags(putObjectRequest.getTagging()));
+
+        populateRequesterPaysHeader(request, putObjectRequest.isRequesterPays());
 
         // Populate the SSE-CPK parameters to the request header
         populateSSE_C(request, putObjectRequest.getSSECustomerKey());
@@ -5218,6 +5223,25 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         addParameterIfNotNull(request, "continuation-token", listBucketInventoryConfigurationsRequest.getContinuationToken());
 
         return invoke(request, new Unmarshallers.ListBucketInventoryConfigurationsUnmarshaller(), bucketName, null);
+    }
+
+    private String urlEncodeTags(ObjectTagging tagging) {
+        if (tagging == null || tagging.getTagSet() == null)
+                return null;
+
+        StringBuilder sb = new StringBuilder();
+
+        Iterator<Tag> tagIter = tagging.getTagSet().iterator();
+        while (tagIter.hasNext()) {
+                Tag tag = tagIter.next();
+                sb.append(S3HttpUtils.urlEncode(tag.getKey(), false)).append('=')
+                                .append(S3HttpUtils.urlEncode(tag.getValue(), false));
+                if (tagIter.hasNext()) {
+                        sb.append("&");
+                }
+        }
+
+        return sb.toString();
     }
 
     private void setContent(Request<?> request, byte[] content, String contentType, boolean setMd5) {
