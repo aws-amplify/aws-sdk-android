@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<PutAttributesResponse xmlns="http://sdb.amazonaws.com/doc/2009-04-15/">
-   <ResponseMetadata>
-      <RequestId>1</RequestId>
-      <BoxUsage>1</BoxUsage>
-   </ResponseMetadata>
-</PutAttributesResponse>
