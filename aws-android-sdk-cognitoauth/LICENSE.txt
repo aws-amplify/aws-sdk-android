@@ -1,1 +1,0 @@
-The Amazon Cognito Auth aws-android-sdk-cognitoauth is generally licensed under the Apache 2.0 License, with the code provided in the Java package "com.amazonaws.cognito" subcomponent being licensed under the Amazon Software License.

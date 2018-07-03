@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-     <string name="title_activity_sign_in">Sign-in</string>
-     <string name="sign_in_succeeded_message_format">"Sign-in with %s succeeded."</string>
-     <string name="sign_in_canceled_message_format">"Sign-in with %s canceled."</string>
-     <string name="sign_in_or">or sign in with</string>
-     <string name="sign_in_with">Sign in with</string>
-</resources>
