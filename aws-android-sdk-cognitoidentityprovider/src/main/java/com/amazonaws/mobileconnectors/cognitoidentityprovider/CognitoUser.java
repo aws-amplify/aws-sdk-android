@@ -2604,6 +2604,8 @@ public class CognitoUser {
                 authenticationDetails.getUserId());
         authRequest.addAuthParametersEntry(CognitoServiceConstants.AUTH_PARAM_PASSWORD,
                 authenticationDetails.getPassword());
+        authRequest.addAuthParametersEntry(CognitoServiceConstants.AUTH_PARAM_SECRET_HASH,
+                secretHash);
 
         if (authenticationDetails.getValidationData() != null
                 && authenticationDetails.getValidationData().size() > 0) {
