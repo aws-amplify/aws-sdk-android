@@ -1,8 +1,15 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.24](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.24)
+
+### Bug Fixes
+
+* **Amazon Cognito Identity Provider**
+  * Fix bug that prevents authentication with the username and password flow. See (issue #484)[https://github.com/aws/aws-sdk-android/issues/484]
+
 ## [Release 2.6.23](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.23)
 
-### Enhacements
+### Enhancements
 
 * **Amazon S3**
   * Support user metadata headers.
