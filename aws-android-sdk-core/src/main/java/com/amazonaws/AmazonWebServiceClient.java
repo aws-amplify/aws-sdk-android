@@ -197,11 +197,10 @@ public abstract class AmazonWebServiceClient {
      * {@link ClientConfiguration} will be used, which by default is HTTPS.
      * <p>
      * For more information on using AWS regions with the AWS SDK for Java, and
-     * a complete list of all available endpoints for all AWS services, see: <a
-     * href=
-     * "http://developer.amazonwebservices.com/connect/entry.jspa?externalID=3912"
-     * > http://developer.amazonwebservices.com/connect/entry.jspa?externalID=
-     * 3912</a>
+     * a complete list of all available endpoints for all AWS services, see: 
+     * <a href= "https://docs.aws.amazon.com/general/latest/gr/rande.html">
+     * https://docs.aws.amazon.com/general/latest/gr/rande.html
+     * </a>
      *
      * @param endpoint The endpoint (ex: "ec2.amazonaws.com") or a full URL,
      *            including the protocol (ex: "https://ec2.amazonaws.com") of
