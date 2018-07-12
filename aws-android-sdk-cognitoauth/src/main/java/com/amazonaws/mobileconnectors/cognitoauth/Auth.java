@@ -360,6 +360,20 @@ public final class Auth {
         }
 
         /**
+         * Sets the identity provider.
+         * <p>
+         *     Optional. Set identity provider for social sign in.
+         * </p>
+         * @param mIdentityProvider Required: Scopes as a {@link Set<String>}.
+         * @return A reference to this builder.
+         */
+        @SuppressWarnings("checkstyle:hiddenfield")
+        public Builder setIdentityProvider(final String mIdentityProvider) {
+            this.mIdentityProvider = mIdentityProvider;
+            return this;
+        }
+
+        /**
          * Instantiates {@link Auth} with the set options.
          * @return {@link Auth}.
          */
