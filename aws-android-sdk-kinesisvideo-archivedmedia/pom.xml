@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.amazonaws</groupId>
+  <artifactId>aws-android-sdk-kinesisvideo-archivedmedia</artifactId>
+  <packaging>jar</packaging>
+  <name>AWS SDK for Android - Amazon Kinesis Video Streams Archived Media</name>
+  <description>The AWS Android SDK for Amazon Kinesis Video Streams Archived Media module holds the client classes that are used for communicating with Amazon Kinesis Video Streams Service Archived Media</description>
+  <url>http://aws.amazon.com/sdkforandroid</url>
+
+  <parent>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-android-sdk-pom</artifactId>
+    <version>2.6.25</version>
+  </parent>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-android-sdk-core</artifactId>
+      <optional>false</optional>
+      <version>2.6.25</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+</project>

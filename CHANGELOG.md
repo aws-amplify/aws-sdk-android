@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.25](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.25)
+
+## New Features
+
+* **Amazon Kinesis Video Streams**
+  * Updated models for HLS streaming feature. Add `AWSKinesisVideoArchivedMediaClient`and dependency `implementation 'com.amazonaws:aws-android-sdk-kinesisvideo-archivedmedia:2.6.25'` to access HLS streaming feature.
+
 ## [Release 2.6.24](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.24)
 
 ### Bug Fixes

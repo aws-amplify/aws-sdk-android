@@ -103,7 +103,7 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
      * more information about media types, see <a
      * href="http://www.iana.org/assignments/media-types/media-types.xhtml"
      * >Media Types</a>. If you choose to specify the <code>MediaType</code>,
-     * see <a href="https://tools.sietf.org/html/rfc6838#section-4.2">Naming
+     * see <a href="https://tools.ietf.org/html/rfc6838#section-4.2">Naming
      * Requirements</a>.
      * </p>
      * <p>
@@ -419,7 +419,7 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
      * more information about media types, see <a
      * href="http://www.iana.org/assignments/media-types/media-types.xhtml"
      * >Media Types</a>. If you choose to specify the <code>MediaType</code>,
-     * see <a href="https://tools.sietf.org/html/rfc6838#section-4.2">Naming
+     * see <a href="https://tools.ietf.org/html/rfc6838#section-4.2">Naming
      * Requirements</a>.
      * </p>
      * <p>
@@ -439,7 +439,7 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
      *         "http://www.iana.org/assignments/media-types/media-types.xhtml"
      *         >Media Types</a>. If you choose to specify the
      *         <code>MediaType</code>, see <a
-     *         href="https://tools.sietf.org/html/rfc6838#section-4.2">Naming
+     *         href="https://tools.ietf.org/html/rfc6838#section-4.2">Naming
      *         Requirements</a>.
      *         </p>
      *         <p>
@@ -459,7 +459,7 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
      * more information about media types, see <a
      * href="http://www.iana.org/assignments/media-types/media-types.xhtml"
      * >Media Types</a>. If you choose to specify the <code>MediaType</code>,
-     * see <a href="https://tools.sietf.org/html/rfc6838#section-4.2">Naming
+     * see <a href="https://tools.ietf.org/html/rfc6838#section-4.2">Naming
      * Requirements</a>.
      * </p>
      * <p>
@@ -480,7 +480,7 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
      *            "http://www.iana.org/assignments/media-types/media-types.xhtml"
      *            >Media Types</a>. If you choose to specify the
      *            <code>MediaType</code>, see <a
-     *            href="https://tools.sietf.org/html/rfc6838#section-4.2">Naming
+     *            href="https://tools.ietf.org/html/rfc6838#section-4.2">Naming
      *            Requirements</a>.
      *            </p>
      *            <p>
@@ -500,7 +500,7 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
      * more information about media types, see <a
      * href="http://www.iana.org/assignments/media-types/media-types.xhtml"
      * >Media Types</a>. If you choose to specify the <code>MediaType</code>,
-     * see <a href="https://tools.sietf.org/html/rfc6838#section-4.2">Naming
+     * see <a href="https://tools.ietf.org/html/rfc6838#section-4.2">Naming
      * Requirements</a>.
      * </p>
      * <p>
@@ -524,7 +524,7 @@ public class UpdateStreamRequest extends AmazonWebServiceRequest implements Seri
      *            "http://www.iana.org/assignments/media-types/media-types.xhtml"
      *            >Media Types</a>. If you choose to specify the
      *            <code>MediaType</code>, see <a
-     *            href="https://tools.sietf.org/html/rfc6838#section-4.2">Naming
+     *            href="https://tools.ietf.org/html/rfc6838#section-4.2">Naming
      *            Requirements</a>.
      *            </p>
      *            <p>
