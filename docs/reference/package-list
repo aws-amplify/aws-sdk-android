@@ -103,6 +103,8 @@ com.amazonaws.services.iotdata
 com.amazonaws.services.iotdata.model
 com.amazonaws.services.kinesisvideo
 com.amazonaws.services.kinesisvideo.model
+com.amazonaws.services.kinesisvideoarchivedmedia
+com.amazonaws.services.kinesisvideoarchivedmedia.model
 com.amazonaws.services.kms
 com.amazonaws.services.kms.model
 com.amazonaws.services.lambda
