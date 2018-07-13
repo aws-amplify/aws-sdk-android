@@ -130,6 +130,13 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * The default value is 0, indicating that the stream does not persist data.
      * </p>
      * <p>
+     * When the <code>DataRetentionInHours</code> value is 0, consumers can
+     * still consume the fragments that remain in the service host buffer, which
+     * has a retention time limit of 5 minutes and a retention memory limit of
+     * 200 MB. Fragments are removed from the buffer when either limit is
+     * reached.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      */
@@ -583,6 +590,13 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * The default value is 0, indicating that the stream does not persist data.
      * </p>
      * <p>
+     * When the <code>DataRetentionInHours</code> value is 0, consumers can
+     * still consume the fragments that remain in the service host buffer, which
+     * has a retention time limit of 5 minutes and a retention memory limit of
+     * 200 MB. Fragments are removed from the buffer when either limit is
+     * reached.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
@@ -594,6 +608,13 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      *         <p>
      *         The default value is 0, indicating that the stream does not
      *         persist data.
+     *         </p>
+     *         <p>
+     *         When the <code>DataRetentionInHours</code> value is 0, consumers
+     *         can still consume the fragments that remain in the service host
+     *         buffer, which has a retention time limit of 5 minutes and a
+     *         retention memory limit of 200 MB. Fragments are removed from the
+     *         buffer when either limit is reached.
      *         </p>
      */
     public Integer getDataRetentionInHours() {
@@ -610,6 +631,13 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * The default value is 0, indicating that the stream does not persist data.
      * </p>
      * <p>
+     * When the <code>DataRetentionInHours</code> value is 0, consumers can
+     * still consume the fragments that remain in the service host buffer, which
+     * has a retention time limit of 5 minutes and a retention memory limit of
+     * 200 MB. Fragments are removed from the buffer when either limit is
+     * reached.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
@@ -621,6 +649,13 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      *            <p>
      *            The default value is 0, indicating that the stream does not
      *            persist data.
+     *            </p>
+     *            <p>
+     *            When the <code>DataRetentionInHours</code> value is 0,
+     *            consumers can still consume the fragments that remain in the
+     *            service host buffer, which has a retention time limit of 5
+     *            minutes and a retention memory limit of 200 MB. Fragments are
+     *            removed from the buffer when either limit is reached.
      *            </p>
      */
     public void setDataRetentionInHours(Integer dataRetentionInHours) {
@@ -637,6 +672,13 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * The default value is 0, indicating that the stream does not persist data.
      * </p>
      * <p>
+     * When the <code>DataRetentionInHours</code> value is 0, consumers can
+     * still consume the fragments that remain in the service host buffer, which
+     * has a retention time limit of 5 minutes and a retention memory limit of
+     * 200 MB. Fragments are removed from the buffer when either limit is
+     * reached.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -651,6 +693,13 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      *            <p>
      *            The default value is 0, indicating that the stream does not
      *            persist data.
+     *            </p>
+     *            <p>
+     *            When the <code>DataRetentionInHours</code> value is 0,
+     *            consumers can still consume the fragments that remain in the
+     *            service host buffer, which has a retention time limit of 5
+     *            minutes and a retention memory limit of 200 MB. Fragments are
+     *            removed from the buffer when either limit is reached.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
