@@ -66,6 +66,9 @@ class EmailChannelResponseJsonUnmarshaller implements
             } else if (name.equals("LastModifiedDate")) {
                 emailChannelResponse.setLastModifiedDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("MessagesPerSecond")) {
+                emailChannelResponse.setMessagesPerSecond(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Platform")) {
                 emailChannelResponse.setPlatform(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

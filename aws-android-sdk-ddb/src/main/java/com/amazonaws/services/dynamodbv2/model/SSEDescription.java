@@ -57,6 +57,37 @@ public class SSEDescription implements Serializable {
 
     /**
      * <p>
+     * Server-side encryption type:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>AES256</code> - Server-side encryption which uses the AES256
+     * algorithm.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KMS</code> - Server-side encryption which uses AWS Key Management
+     * Service.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AES256, KMS
+     */
+    private String sSEType;
+
+    /**
+     * <p>
+     * The KMS master key ARN used for the KMS encryption.
+     * </p>
+     */
+    private String kMSMasterKeyArn;
+
+    /**
+     * <p>
      * The current state of server-side encryption:
      * </p>
      * <ul>
@@ -382,6 +413,288 @@ public class SSEDescription implements Serializable {
     }
 
     /**
+     * <p>
+     * Server-side encryption type:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>AES256</code> - Server-side encryption which uses the AES256
+     * algorithm.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KMS</code> - Server-side encryption which uses AWS Key Management
+     * Service.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AES256, KMS
+     *
+     * @return <p>
+     *         Server-side encryption type:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>AES256</code> - Server-side encryption which uses the
+     *         AES256 algorithm.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>KMS</code> - Server-side encryption which uses AWS Key
+     *         Management Service.
+     *         </p>
+     *         </li>
+     *         </ul>
+     * @see SSEType
+     */
+    public String getSSEType() {
+        return sSEType;
+    }
+
+    /**
+     * <p>
+     * Server-side encryption type:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>AES256</code> - Server-side encryption which uses the AES256
+     * algorithm.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KMS</code> - Server-side encryption which uses AWS Key Management
+     * Service.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AES256, KMS
+     *
+     * @param sSEType <p>
+     *            Server-side encryption type:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>AES256</code> - Server-side encryption which uses the
+     *            AES256 algorithm.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>KMS</code> - Server-side encryption which uses AWS Key
+     *            Management Service.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @see SSEType
+     */
+    public void setSSEType(String sSEType) {
+        this.sSEType = sSEType;
+    }
+
+    /**
+     * <p>
+     * Server-side encryption type:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>AES256</code> - Server-side encryption which uses the AES256
+     * algorithm.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KMS</code> - Server-side encryption which uses AWS Key Management
+     * Service.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AES256, KMS
+     *
+     * @param sSEType <p>
+     *            Server-side encryption type:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>AES256</code> - Server-side encryption which uses the
+     *            AES256 algorithm.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>KMS</code> - Server-side encryption which uses AWS Key
+     *            Management Service.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see SSEType
+     */
+    public SSEDescription withSSEType(String sSEType) {
+        this.sSEType = sSEType;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Server-side encryption type:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>AES256</code> - Server-side encryption which uses the AES256
+     * algorithm.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KMS</code> - Server-side encryption which uses AWS Key Management
+     * Service.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AES256, KMS
+     *
+     * @param sSEType <p>
+     *            Server-side encryption type:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>AES256</code> - Server-side encryption which uses the
+     *            AES256 algorithm.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>KMS</code> - Server-side encryption which uses AWS Key
+     *            Management Service.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @see SSEType
+     */
+    public void setSSEType(SSEType sSEType) {
+        this.sSEType = sSEType.toString();
+    }
+
+    /**
+     * <p>
+     * Server-side encryption type:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>AES256</code> - Server-side encryption which uses the AES256
+     * algorithm.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KMS</code> - Server-side encryption which uses AWS Key Management
+     * Service.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AES256, KMS
+     *
+     * @param sSEType <p>
+     *            Server-side encryption type:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>AES256</code> - Server-side encryption which uses the
+     *            AES256 algorithm.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>KMS</code> - Server-side encryption which uses AWS Key
+     *            Management Service.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see SSEType
+     */
+    public SSEDescription withSSEType(SSEType sSEType) {
+        this.sSEType = sSEType.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The KMS master key ARN used for the KMS encryption.
+     * </p>
+     *
+     * @return <p>
+     *         The KMS master key ARN used for the KMS encryption.
+     *         </p>
+     */
+    public String getKMSMasterKeyArn() {
+        return kMSMasterKeyArn;
+    }
+
+    /**
+     * <p>
+     * The KMS master key ARN used for the KMS encryption.
+     * </p>
+     *
+     * @param kMSMasterKeyArn <p>
+     *            The KMS master key ARN used for the KMS encryption.
+     *            </p>
+     */
+    public void setKMSMasterKeyArn(String kMSMasterKeyArn) {
+        this.kMSMasterKeyArn = kMSMasterKeyArn;
+    }
+
+    /**
+     * <p>
+     * The KMS master key ARN used for the KMS encryption.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param kMSMasterKeyArn <p>
+     *            The KMS master key ARN used for the KMS encryption.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SSEDescription withKMSMasterKeyArn(String kMSMasterKeyArn) {
+        this.kMSMasterKeyArn = kMSMasterKeyArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -393,7 +706,11 @@ public class SSEDescription implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getStatus() != null)
-            sb.append("Status: " + getStatus());
+            sb.append("Status: " + getStatus() + ",");
+        if (getSSEType() != null)
+            sb.append("SSEType: " + getSSEType() + ",");
+        if (getKMSMasterKeyArn() != null)
+            sb.append("KMSMasterKeyArn: " + getKMSMasterKeyArn());
         sb.append("}");
         return sb.toString();
     }
@@ -404,6 +721,9 @@ public class SSEDescription implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        hashCode = prime * hashCode + ((getSSEType() == null) ? 0 : getSSEType().hashCode());
+        hashCode = prime * hashCode
+                + ((getKMSMasterKeyArn() == null) ? 0 : getKMSMasterKeyArn().hashCode());
         return hashCode;
     }
 
@@ -421,6 +741,15 @@ public class SSEDescription implements Serializable {
         if (other.getStatus() == null ^ this.getStatus() == null)
             return false;
         if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
+            return false;
+        if (other.getSSEType() == null ^ this.getSSEType() == null)
+            return false;
+        if (other.getSSEType() != null && other.getSSEType().equals(this.getSSEType()) == false)
+            return false;
+        if (other.getKMSMasterKeyArn() == null ^ this.getKMSMasterKeyArn() == null)
+            return false;
+        if (other.getKMSMasterKeyArn() != null
+                && other.getKMSMasterKeyArn().equals(this.getKMSMasterKeyArn()) == false)
             return false;
         return true;
     }

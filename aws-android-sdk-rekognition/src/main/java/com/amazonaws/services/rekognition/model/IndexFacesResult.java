@@ -21,7 +21,8 @@ public class IndexFacesResult implements Serializable {
     /**
      * <p>
      * An array of faces detected and added to the collection. For more
-     * information, see <a>collections-index-faces</a>.
+     * information, see Searching Faces in a Collection in the Amazon
+     * Rekognition Developer Guide.
      * </p>
      */
     private java.util.List<FaceRecord> faceRecords;
@@ -61,12 +62,14 @@ public class IndexFacesResult implements Serializable {
     /**
      * <p>
      * An array of faces detected and added to the collection. For more
-     * information, see <a>collections-index-faces</a>.
+     * information, see Searching Faces in a Collection in the Amazon
+     * Rekognition Developer Guide.
      * </p>
      *
      * @return <p>
      *         An array of faces detected and added to the collection. For more
-     *         information, see <a>collections-index-faces</a>.
+     *         information, see Searching Faces in a Collection in the Amazon
+     *         Rekognition Developer Guide.
      *         </p>
      */
     public java.util.List<FaceRecord> getFaceRecords() {
@@ -76,12 +79,14 @@ public class IndexFacesResult implements Serializable {
     /**
      * <p>
      * An array of faces detected and added to the collection. For more
-     * information, see <a>collections-index-faces</a>.
+     * information, see Searching Faces in a Collection in the Amazon
+     * Rekognition Developer Guide.
      * </p>
      *
      * @param faceRecords <p>
      *            An array of faces detected and added to the collection. For
-     *            more information, see <a>collections-index-faces</a>.
+     *            more information, see Searching Faces in a Collection in the
+     *            Amazon Rekognition Developer Guide.
      *            </p>
      */
     public void setFaceRecords(java.util.Collection<FaceRecord> faceRecords) {
@@ -96,7 +101,8 @@ public class IndexFacesResult implements Serializable {
     /**
      * <p>
      * An array of faces detected and added to the collection. For more
-     * information, see <a>collections-index-faces</a>.
+     * information, see Searching Faces in a Collection in the Amazon
+     * Rekognition Developer Guide.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -104,7 +110,8 @@ public class IndexFacesResult implements Serializable {
      *
      * @param faceRecords <p>
      *            An array of faces detected and added to the collection. For
-     *            more information, see <a>collections-index-faces</a>.
+     *            more information, see Searching Faces in a Collection in the
+     *            Amazon Rekognition Developer Guide.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -122,7 +129,8 @@ public class IndexFacesResult implements Serializable {
     /**
      * <p>
      * An array of faces detected and added to the collection. For more
-     * information, see <a>collections-index-faces</a>.
+     * information, see Searching Faces in a Collection in the Amazon
+     * Rekognition Developer Guide.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -130,7 +138,8 @@ public class IndexFacesResult implements Serializable {
      *
      * @param faceRecords <p>
      *            An array of faces detected and added to the collection. For
-     *            more information, see <a>collections-index-faces</a>.
+     *            more information, see Searching Faces in a Collection in the
+     *            Amazon Rekognition Developer Guide.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

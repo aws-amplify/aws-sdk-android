@@ -38,6 +38,9 @@ class MessageResultJsonUnmarshaller implements Unmarshaller<MessageResult, JsonU
             if (name.equals("DeliveryStatus")) {
                 messageResult.setDeliveryStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("MessageId")) {
+                messageResult.setMessageId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("StatusCode")) {
                 messageResult.setStatusCode(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));

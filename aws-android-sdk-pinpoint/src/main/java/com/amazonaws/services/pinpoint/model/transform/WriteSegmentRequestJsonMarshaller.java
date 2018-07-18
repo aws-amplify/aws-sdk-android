@@ -36,6 +36,11 @@ class WriteSegmentRequestJsonMarshaller {
             jsonWriter.name("Name");
             jsonWriter.value(name);
         }
+        if (writeSegmentRequest.getSegmentGroups() != null) {
+            SegmentGroupList segmentGroups = writeSegmentRequest.getSegmentGroups();
+            jsonWriter.name("SegmentGroups");
+            SegmentGroupListJsonMarshaller.getInstance().marshall(segmentGroups, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

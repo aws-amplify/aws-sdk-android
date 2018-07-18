@@ -20,7 +20,7 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * The input image size exceeds the allowed limit. For more information, see
- * <a>limits</a>.
+ * Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
  * </p>
  */
 public class ImageTooLargeException extends AmazonServiceException {

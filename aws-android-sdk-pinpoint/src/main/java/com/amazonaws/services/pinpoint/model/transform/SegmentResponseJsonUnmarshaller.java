@@ -58,6 +58,9 @@ class SegmentResponseJsonUnmarshaller implements
             } else if (name.equals("Name")) {
                 segmentResponse.setName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SegmentGroups")) {
+                segmentResponse.setSegmentGroups(SegmentGroupListJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SegmentType")) {
                 segmentResponse.setSegmentType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

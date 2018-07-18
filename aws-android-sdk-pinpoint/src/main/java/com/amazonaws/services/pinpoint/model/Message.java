@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Message to send
+ */
 public class Message implements Serializable {
     /**
      * The action that occurs if the user taps a push notification delivered by
@@ -76,6 +79,16 @@ public class Message implements Serializable {
      * pushes can be used for Remote Configuration and Phone Home use cases.
      */
     private Boolean silentPush;
+
+    /**
+     * This parameter specifies how long (in seconds) the message should be kept
+     * if the service is unable to deliver the notification the first time. If
+     * the value is 0, it treats the notification as if it expires immediately
+     * and does not store the notification or attempt to redeliver it. This
+     * value is converted to the expiration field when sent to the service. It
+     * only applies to APNs and GCM
+     */
+    private Integer timeToLive;
 
     /**
      * The message title that displays above the message on the user's device.
@@ -542,6 +555,72 @@ public class Message implements Serializable {
     }
 
     /**
+     * This parameter specifies how long (in seconds) the message should be kept
+     * if the service is unable to deliver the notification the first time. If
+     * the value is 0, it treats the notification as if it expires immediately
+     * and does not store the notification or attempt to redeliver it. This
+     * value is converted to the expiration field when sent to the service. It
+     * only applies to APNs and GCM
+     *
+     * @return This parameter specifies how long (in seconds) the message should
+     *         be kept if the service is unable to deliver the notification the
+     *         first time. If the value is 0, it treats the notification as if
+     *         it expires immediately and does not store the notification or
+     *         attempt to redeliver it. This value is converted to the
+     *         expiration field when sent to the service. It only applies to
+     *         APNs and GCM
+     */
+    public Integer getTimeToLive() {
+        return timeToLive;
+    }
+
+    /**
+     * This parameter specifies how long (in seconds) the message should be kept
+     * if the service is unable to deliver the notification the first time. If
+     * the value is 0, it treats the notification as if it expires immediately
+     * and does not store the notification or attempt to redeliver it. This
+     * value is converted to the expiration field when sent to the service. It
+     * only applies to APNs and GCM
+     *
+     * @param timeToLive This parameter specifies how long (in seconds) the
+     *            message should be kept if the service is unable to deliver the
+     *            notification the first time. If the value is 0, it treats the
+     *            notification as if it expires immediately and does not store
+     *            the notification or attempt to redeliver it. This value is
+     *            converted to the expiration field when sent to the service. It
+     *            only applies to APNs and GCM
+     */
+    public void setTimeToLive(Integer timeToLive) {
+        this.timeToLive = timeToLive;
+    }
+
+    /**
+     * This parameter specifies how long (in seconds) the message should be kept
+     * if the service is unable to deliver the notification the first time. If
+     * the value is 0, it treats the notification as if it expires immediately
+     * and does not store the notification or attempt to redeliver it. This
+     * value is converted to the expiration field when sent to the service. It
+     * only applies to APNs and GCM
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param timeToLive This parameter specifies how long (in seconds) the
+     *            message should be kept if the service is unable to deliver the
+     *            notification the first time. If the value is 0, it treats the
+     *            notification as if it expires immediately and does not store
+     *            the notification or attempt to redeliver it. This value is
+     *            converted to the expiration field when sent to the service. It
+     *            only applies to APNs and GCM
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Message withTimeToLive(Integer timeToLive) {
+        this.timeToLive = timeToLive;
+        return this;
+    }
+
+    /**
      * The message title that displays above the message on the user's device.
      *
      * @return The message title that displays above the message on the user's
@@ -645,6 +724,8 @@ public class Message implements Serializable {
             sb.append("RawContent: " + getRawContent() + ",");
         if (getSilentPush() != null)
             sb.append("SilentPush: " + getSilentPush() + ",");
+        if (getTimeToLive() != null)
+            sb.append("TimeToLive: " + getTimeToLive() + ",");
         if (getTitle() != null)
             sb.append("Title: " + getTitle() + ",");
         if (getUrl() != null)
@@ -669,6 +750,7 @@ public class Message implements Serializable {
         hashCode = prime * hashCode + ((getMediaUrl() == null) ? 0 : getMediaUrl().hashCode());
         hashCode = prime * hashCode + ((getRawContent() == null) ? 0 : getRawContent().hashCode());
         hashCode = prime * hashCode + ((getSilentPush() == null) ? 0 : getSilentPush().hashCode());
+        hashCode = prime * hashCode + ((getTimeToLive() == null) ? 0 : getTimeToLive().hashCode());
         hashCode = prime * hashCode + ((getTitle() == null) ? 0 : getTitle().hashCode());
         hashCode = prime * hashCode + ((getUrl() == null) ? 0 : getUrl().hashCode());
         return hashCode;
@@ -724,6 +806,11 @@ public class Message implements Serializable {
             return false;
         if (other.getSilentPush() != null
                 && other.getSilentPush().equals(this.getSilentPush()) == false)
+            return false;
+        if (other.getTimeToLive() == null ^ this.getTimeToLive() == null)
+            return false;
+        if (other.getTimeToLive() != null
+                && other.getTimeToLive().equals(this.getTimeToLive()) == false)
             return false;
         if (other.getTitle() == null ^ this.getTitle() == null)
             return false;

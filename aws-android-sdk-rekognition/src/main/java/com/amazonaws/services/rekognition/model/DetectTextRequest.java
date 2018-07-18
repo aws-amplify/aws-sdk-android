@@ -60,7 +60,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * horizontal axis.
  * </p>
  * <p>
- * For more information, see <a>text-detection</a>.
+ * For more information, see DetectText in the Amazon Rekognition Developer
+ * Guide.
  * </p>
  */
 public class DetectTextRequest extends AmazonWebServiceRequest implements Serializable {

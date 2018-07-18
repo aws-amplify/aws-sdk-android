@@ -24,12 +24,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  */
 public class GetCampaignActivitiesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the applicationId property for this object.
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * The new value for the campaignId property for this object.
+     * The unique ID of the campaign.
      */
     private String campaignId;
 
@@ -45,32 +45,30 @@ public class GetCampaignActivitiesRequest extends AmazonWebServiceRequest implem
     private String token;
 
     /**
-     * Returns the value of the applicationId property for this object.
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return The value of the applicationId property for this object.
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * Sets the value of applicationId
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId The new value for the applicationId property for
-     *            this object.
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * Sets the value of the applicationId property for this object.
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The new value for the applicationId property for
-     *            this object.
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -80,32 +78,30 @@ public class GetCampaignActivitiesRequest extends AmazonWebServiceRequest implem
     }
 
     /**
-     * Returns the value of the campaignId property for this object.
+     * The unique ID of the campaign.
      *
-     * @return The value of the campaignId property for this object.
+     * @return The unique ID of the campaign.
      */
     public String getCampaignId() {
         return campaignId;
     }
 
     /**
-     * Sets the value of campaignId
+     * The unique ID of the campaign.
      *
-     * @param campaignId The new value for the campaignId property for this
-     *            object.
+     * @param campaignId The unique ID of the campaign.
      */
     public void setCampaignId(String campaignId) {
         this.campaignId = campaignId;
     }
 
     /**
-     * Sets the value of the campaignId property for this object.
+     * The unique ID of the campaign.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param campaignId The new value for the campaignId property for this
-     *            object.
+     * @param campaignId The unique ID of the campaign.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

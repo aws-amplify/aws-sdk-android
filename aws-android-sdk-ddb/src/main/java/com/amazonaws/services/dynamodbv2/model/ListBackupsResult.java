@@ -27,7 +27,21 @@ public class ListBackupsResult implements Serializable {
 
     /**
      * <p>
-     * Last evaluated BackupARN.
+     * The ARN of the backup last evaluated when the current page of results was
+     * returned, inclusive of the current page of results. This value may be
+     * specified as the <code>ExclusiveStartBackupArn</code> of a new
+     * <code>ListBackups</code> operation in order to fetch the next page of
+     * results.
+     * </p>
+     * <p>
+     * If <code>LastEvaluatedBackupArn</code> is empty, then the last page of
+     * results has been processed and there are no more results to be retrieved.
+     * </p>
+     * <p>
+     * If <code>LastEvaluatedBackupArn</code> is not empty, this may or may not
+     * indicate there is more data to be returned. All results are guaranteed to
+     * have been returned if and only if no value for
+     * <code>LastEvaluatedBackupArn</code> is returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -111,14 +125,44 @@ public class ListBackupsResult implements Serializable {
 
     /**
      * <p>
-     * Last evaluated BackupARN.
+     * The ARN of the backup last evaluated when the current page of results was
+     * returned, inclusive of the current page of results. This value may be
+     * specified as the <code>ExclusiveStartBackupArn</code> of a new
+     * <code>ListBackups</code> operation in order to fetch the next page of
+     * results.
+     * </p>
+     * <p>
+     * If <code>LastEvaluatedBackupArn</code> is empty, then the last page of
+     * results has been processed and there are no more results to be retrieved.
+     * </p>
+     * <p>
+     * If <code>LastEvaluatedBackupArn</code> is not empty, this may or may not
+     * indicate there is more data to be returned. All results are guaranteed to
+     * have been returned if and only if no value for
+     * <code>LastEvaluatedBackupArn</code> is returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>37 - 1024<br/>
      *
      * @return <p>
-     *         Last evaluated BackupARN.
+     *         The ARN of the backup last evaluated when the current page of
+     *         results was returned, inclusive of the current page of results.
+     *         This value may be specified as the
+     *         <code>ExclusiveStartBackupArn</code> of a new
+     *         <code>ListBackups</code> operation in order to fetch the next
+     *         page of results.
+     *         </p>
+     *         <p>
+     *         If <code>LastEvaluatedBackupArn</code> is empty, then the last
+     *         page of results has been processed and there are no more results
+     *         to be retrieved.
+     *         </p>
+     *         <p>
+     *         If <code>LastEvaluatedBackupArn</code> is not empty, this may or
+     *         may not indicate there is more data to be returned. All results
+     *         are guaranteed to have been returned if and only if no value for
+     *         <code>LastEvaluatedBackupArn</code> is returned.
      *         </p>
      */
     public String getLastEvaluatedBackupArn() {
@@ -127,14 +171,44 @@ public class ListBackupsResult implements Serializable {
 
     /**
      * <p>
-     * Last evaluated BackupARN.
+     * The ARN of the backup last evaluated when the current page of results was
+     * returned, inclusive of the current page of results. This value may be
+     * specified as the <code>ExclusiveStartBackupArn</code> of a new
+     * <code>ListBackups</code> operation in order to fetch the next page of
+     * results.
+     * </p>
+     * <p>
+     * If <code>LastEvaluatedBackupArn</code> is empty, then the last page of
+     * results has been processed and there are no more results to be retrieved.
+     * </p>
+     * <p>
+     * If <code>LastEvaluatedBackupArn</code> is not empty, this may or may not
+     * indicate there is more data to be returned. All results are guaranteed to
+     * have been returned if and only if no value for
+     * <code>LastEvaluatedBackupArn</code> is returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>37 - 1024<br/>
      *
      * @param lastEvaluatedBackupArn <p>
-     *            Last evaluated BackupARN.
+     *            The ARN of the backup last evaluated when the current page of
+     *            results was returned, inclusive of the current page of
+     *            results. This value may be specified as the
+     *            <code>ExclusiveStartBackupArn</code> of a new
+     *            <code>ListBackups</code> operation in order to fetch the next
+     *            page of results.
+     *            </p>
+     *            <p>
+     *            If <code>LastEvaluatedBackupArn</code> is empty, then the last
+     *            page of results has been processed and there are no more
+     *            results to be retrieved.
+     *            </p>
+     *            <p>
+     *            If <code>LastEvaluatedBackupArn</code> is not empty, this may
+     *            or may not indicate there is more data to be returned. All
+     *            results are guaranteed to have been returned if and only if no
+     *            value for <code>LastEvaluatedBackupArn</code> is returned.
      *            </p>
      */
     public void setLastEvaluatedBackupArn(String lastEvaluatedBackupArn) {
@@ -143,7 +217,21 @@ public class ListBackupsResult implements Serializable {
 
     /**
      * <p>
-     * Last evaluated BackupARN.
+     * The ARN of the backup last evaluated when the current page of results was
+     * returned, inclusive of the current page of results. This value may be
+     * specified as the <code>ExclusiveStartBackupArn</code> of a new
+     * <code>ListBackups</code> operation in order to fetch the next page of
+     * results.
+     * </p>
+     * <p>
+     * If <code>LastEvaluatedBackupArn</code> is empty, then the last page of
+     * results has been processed and there are no more results to be retrieved.
+     * </p>
+     * <p>
+     * If <code>LastEvaluatedBackupArn</code> is not empty, this may or may not
+     * indicate there is more data to be returned. All results are guaranteed to
+     * have been returned if and only if no value for
+     * <code>LastEvaluatedBackupArn</code> is returned.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -153,7 +241,23 @@ public class ListBackupsResult implements Serializable {
      * <b>Length: </b>37 - 1024<br/>
      *
      * @param lastEvaluatedBackupArn <p>
-     *            Last evaluated BackupARN.
+     *            The ARN of the backup last evaluated when the current page of
+     *            results was returned, inclusive of the current page of
+     *            results. This value may be specified as the
+     *            <code>ExclusiveStartBackupArn</code> of a new
+     *            <code>ListBackups</code> operation in order to fetch the next
+     *            page of results.
+     *            </p>
+     *            <p>
+     *            If <code>LastEvaluatedBackupArn</code> is empty, then the last
+     *            page of results has been processed and there are no more
+     *            results to be retrieved.
+     *            </p>
+     *            <p>
+     *            If <code>LastEvaluatedBackupArn</code> is not empty, this may
+     *            or may not indicate there is more data to be returned. All
+     *            results are guaranteed to have been returned if and only if no
+     *            value for <code>LastEvaluatedBackupArn</code> is returned.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

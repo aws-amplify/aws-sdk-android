@@ -39,6 +39,9 @@ class SegmentLocationJsonUnmarshaller implements
             if (name.equals("Country")) {
                 segmentLocation.setCountry(SetDimensionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("GPSPoint")) {
+                segmentLocation.setGPSPoint(GPSPointDimensionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

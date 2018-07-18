@@ -18,7 +18,8 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * The message configuration.
+ * Message definitions for the default message and any messages that are
+ * tailored for specific channels.
  */
 public class DirectMessageConfiguration implements Serializable {
     /**

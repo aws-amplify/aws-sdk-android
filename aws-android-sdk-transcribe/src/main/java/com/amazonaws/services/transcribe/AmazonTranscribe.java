@@ -117,6 +117,7 @@ public interface AmazonTranscribe {
      * @param deleteVocabularyRequest
      * @throws NotFoundException
      * @throws LimitExceededException
+     * @throws BadRequestException
      * @throws InternalFailureException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -255,7 +256,9 @@ public interface AmazonTranscribe {
 
     /**
      * <p>
-     * Updates an existing vocabulary with new values.
+     * Updates an existing vocabulary with new values. The
+     * <code>UpdateVocabulary</code> operation overwrites all of the existing
+     * information with the values that you provide in the request.
      * </p>
      * 
      * @param updateVocabularyRequest
@@ -265,6 +268,7 @@ public interface AmazonTranscribe {
      * @throws LimitExceededException
      * @throws InternalFailureException
      * @throws NotFoundException
+     * @throws ConflictException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

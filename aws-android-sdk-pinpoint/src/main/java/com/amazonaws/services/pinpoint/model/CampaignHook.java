@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Campaign hook information.
+ */
 public class CampaignHook implements Serializable {
     /**
      * Lambda function name or arn to be called for delivery

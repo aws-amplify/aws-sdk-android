@@ -57,6 +57,19 @@ class SegmentDimensionsJsonMarshaller {
             jsonWriter.name("Location");
             SegmentLocationJsonMarshaller.getInstance().marshall(location, jsonWriter);
         }
+        if (segmentDimensions.getMetrics() != null) {
+            java.util.Map<String, MetricDimension> metrics = segmentDimensions.getMetrics();
+            jsonWriter.name("Metrics");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, MetricDimension> metricsEntry : metrics.entrySet()) {
+                MetricDimension metricsValue = metricsEntry.getValue();
+                if (metricsValue != null) {
+                    jsonWriter.name(metricsEntry.getKey());
+                    MetricDimensionJsonMarshaller.getInstance().marshall(metricsValue, jsonWriter);
+                }
+            }
+            jsonWriter.endObject();
+        }
         if (segmentDimensions.getUserAttributes() != null) {
             java.util.Map<String, AttributeDimension> userAttributes = segmentDimensions
                     .getUserAttributes();

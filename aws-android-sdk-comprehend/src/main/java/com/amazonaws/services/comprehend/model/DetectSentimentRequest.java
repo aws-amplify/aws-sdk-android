@@ -40,13 +40,8 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The RFC 5646 language code for the input text. If you don't specify a
-     * language code, Amazon Comprehend detects the dominant language. If you
-     * specify the code for a language that Amazon Comprehend does not support,
-     * it returns and <code>UnsupportedLanguageException</code>. For more
-     * information about RFC 5646, see <a
-     * href="https://tools.ietf.org/html/rfc5646">Tags for Identifying
-     * Languages</a> on the <i>IETF Tools</i> web site.
+     * The language of the input documents. You can specify English ("en") or
+     * Spanish ("es"). All documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -116,27 +111,17 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The RFC 5646 language code for the input text. If you don't specify a
-     * language code, Amazon Comprehend detects the dominant language. If you
-     * specify the code for a language that Amazon Comprehend does not support,
-     * it returns and <code>UnsupportedLanguageException</code>. For more
-     * information about RFC 5646, see <a
-     * href="https://tools.ietf.org/html/rfc5646">Tags for Identifying
-     * Languages</a> on the <i>IETF Tools</i> web site.
+     * The language of the input documents. You can specify English ("en") or
+     * Spanish ("es"). All documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es
      *
      * @return <p>
-     *         The RFC 5646 language code for the input text. If you don't
-     *         specify a language code, Amazon Comprehend detects the dominant
-     *         language. If you specify the code for a language that Amazon
-     *         Comprehend does not support, it returns and
-     *         <code>UnsupportedLanguageException</code>. For more information
-     *         about RFC 5646, see <a
-     *         href="https://tools.ietf.org/html/rfc5646">Tags for Identifying
-     *         Languages</a> on the <i>IETF Tools</i> web site.
+     *         The language of the input documents. You can specify English
+     *         ("en") or Spanish ("es"). All documents must be in the same
+     *         language.
      *         </p>
      * @see LanguageCode
      */
@@ -146,27 +131,17 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The RFC 5646 language code for the input text. If you don't specify a
-     * language code, Amazon Comprehend detects the dominant language. If you
-     * specify the code for a language that Amazon Comprehend does not support,
-     * it returns and <code>UnsupportedLanguageException</code>. For more
-     * information about RFC 5646, see <a
-     * href="https://tools.ietf.org/html/rfc5646">Tags for Identifying
-     * Languages</a> on the <i>IETF Tools</i> web site.
+     * The language of the input documents. You can specify English ("en") or
+     * Spanish ("es"). All documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es
      *
      * @param languageCode <p>
-     *            The RFC 5646 language code for the input text. If you don't
-     *            specify a language code, Amazon Comprehend detects the
-     *            dominant language. If you specify the code for a language that
-     *            Amazon Comprehend does not support, it returns and
-     *            <code>UnsupportedLanguageException</code>. For more
-     *            information about RFC 5646, see <a
-     *            href="https://tools.ietf.org/html/rfc5646">Tags for
-     *            Identifying Languages</a> on the <i>IETF Tools</i> web site.
+     *            The language of the input documents. You can specify English
+     *            ("en") or Spanish ("es"). All documents must be in the same
+     *            language.
      *            </p>
      * @see LanguageCode
      */
@@ -176,13 +151,8 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The RFC 5646 language code for the input text. If you don't specify a
-     * language code, Amazon Comprehend detects the dominant language. If you
-     * specify the code for a language that Amazon Comprehend does not support,
-     * it returns and <code>UnsupportedLanguageException</code>. For more
-     * information about RFC 5646, see <a
-     * href="https://tools.ietf.org/html/rfc5646">Tags for Identifying
-     * Languages</a> on the <i>IETF Tools</i> web site.
+     * The language of the input documents. You can specify English ("en") or
+     * Spanish ("es"). All documents must be in the same language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -192,14 +162,9 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
      * <b>Allowed Values: </b>en, es
      *
      * @param languageCode <p>
-     *            The RFC 5646 language code for the input text. If you don't
-     *            specify a language code, Amazon Comprehend detects the
-     *            dominant language. If you specify the code for a language that
-     *            Amazon Comprehend does not support, it returns and
-     *            <code>UnsupportedLanguageException</code>. For more
-     *            information about RFC 5646, see <a
-     *            href="https://tools.ietf.org/html/rfc5646">Tags for
-     *            Identifying Languages</a> on the <i>IETF Tools</i> web site.
+     *            The language of the input documents. You can specify English
+     *            ("en") or Spanish ("es"). All documents must be in the same
+     *            language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -212,27 +177,17 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The RFC 5646 language code for the input text. If you don't specify a
-     * language code, Amazon Comprehend detects the dominant language. If you
-     * specify the code for a language that Amazon Comprehend does not support,
-     * it returns and <code>UnsupportedLanguageException</code>. For more
-     * information about RFC 5646, see <a
-     * href="https://tools.ietf.org/html/rfc5646">Tags for Identifying
-     * Languages</a> on the <i>IETF Tools</i> web site.
+     * The language of the input documents. You can specify English ("en") or
+     * Spanish ("es"). All documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es
      *
      * @param languageCode <p>
-     *            The RFC 5646 language code for the input text. If you don't
-     *            specify a language code, Amazon Comprehend detects the
-     *            dominant language. If you specify the code for a language that
-     *            Amazon Comprehend does not support, it returns and
-     *            <code>UnsupportedLanguageException</code>. For more
-     *            information about RFC 5646, see <a
-     *            href="https://tools.ietf.org/html/rfc5646">Tags for
-     *            Identifying Languages</a> on the <i>IETF Tools</i> web site.
+     *            The language of the input documents. You can specify English
+     *            ("en") or Spanish ("es"). All documents must be in the same
+     *            language.
      *            </p>
      * @see LanguageCode
      */
@@ -242,13 +197,8 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The RFC 5646 language code for the input text. If you don't specify a
-     * language code, Amazon Comprehend detects the dominant language. If you
-     * specify the code for a language that Amazon Comprehend does not support,
-     * it returns and <code>UnsupportedLanguageException</code>. For more
-     * information about RFC 5646, see <a
-     * href="https://tools.ietf.org/html/rfc5646">Tags for Identifying
-     * Languages</a> on the <i>IETF Tools</i> web site.
+     * The language of the input documents. You can specify English ("en") or
+     * Spanish ("es"). All documents must be in the same language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -258,14 +208,9 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
      * <b>Allowed Values: </b>en, es
      *
      * @param languageCode <p>
-     *            The RFC 5646 language code for the input text. If you don't
-     *            specify a language code, Amazon Comprehend detects the
-     *            dominant language. If you specify the code for a language that
-     *            Amazon Comprehend does not support, it returns and
-     *            <code>UnsupportedLanguageException</code>. For more
-     *            information about RFC 5646, see <a
-     *            href="https://tools.ietf.org/html/rfc5646">Tags for
-     *            Identifying Languages</a> on the <i>IETF Tools</i> web site.
+     *            The language of the input documents. You can specify English
+     *            ("en") or Spanish ("es"). All documents must be in the same
+     *            language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

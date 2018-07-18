@@ -24,42 +24,40 @@ import com.amazonaws.AmazonWebServiceRequest;
  */
 public class CreateExportJobRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the applicationId property for this object.
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * The new value for the exportJobRequest property for this object.
+     * Export job request.
      */
     private ExportJobRequest exportJobRequest;
 
     /**
-     * Returns the value of the applicationId property for this object.
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return The value of the applicationId property for this object.
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * Sets the value of applicationId
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId The new value for the applicationId property for
-     *            this object.
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * Sets the value of the applicationId property for this object.
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The new value for the applicationId property for
-     *            this object.
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -69,32 +67,30 @@ public class CreateExportJobRequest extends AmazonWebServiceRequest implements S
     }
 
     /**
-     * Returns the value of the exportJobRequest property for this object.
+     * Export job request.
      *
-     * @return The value of the exportJobRequest property for this object.
+     * @return Export job request.
      */
     public ExportJobRequest getExportJobRequest() {
         return exportJobRequest;
     }
 
     /**
-     * Sets the value of exportJobRequest
+     * Export job request.
      *
-     * @param exportJobRequest The new value for the exportJobRequest property
-     *            for this object.
+     * @param exportJobRequest Export job request.
      */
     public void setExportJobRequest(ExportJobRequest exportJobRequest) {
         this.exportJobRequest = exportJobRequest;
     }
 
     /**
-     * Sets the value of the exportJobRequest property for this object.
+     * Export job request.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param exportJobRequest The new value for the exportJobRequest property
-     *            for this object.
+     * @param exportJobRequest Export job request.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

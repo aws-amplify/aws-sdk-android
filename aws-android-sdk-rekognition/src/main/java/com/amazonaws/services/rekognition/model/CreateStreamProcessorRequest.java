@@ -25,9 +25,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * recognize faces in a streaming video.
  * </p>
  * <p>
- * Rekognition Video is a consumer of live video from Amazon Kinesis Video
- * Streams. Rekognition Video sends analysis results to Amazon Kinesis Data
- * Streams.
+ * Amazon Rekognition Video is a consumer of live video from Amazon Kinesis
+ * Video Streams. Amazon Rekognition Video sends analysis results to Amazon
+ * Kinesis Data Streams.
  * </p>
  * <p>
  * You provide as input a Kinesis video stream (<code>Input</code>) and a
@@ -55,8 +55,8 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Kinesis data stream stream to which Rekognition Video puts the analysis
-     * results. If you are using the AWS CLI, the parameter name is
+     * Kinesis data stream stream to which Amazon Rekognition Video puts the
+     * analysis results. If you are using the AWS CLI, the parameter name is
      * <code>StreamProcessorOutput</code>.
      * </p>
      */
@@ -154,14 +154,14 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Kinesis data stream stream to which Rekognition Video puts the analysis
-     * results. If you are using the AWS CLI, the parameter name is
+     * Kinesis data stream stream to which Amazon Rekognition Video puts the
+     * analysis results. If you are using the AWS CLI, the parameter name is
      * <code>StreamProcessorOutput</code>.
      * </p>
      *
      * @return <p>
-     *         Kinesis data stream stream to which Rekognition Video puts the
-     *         analysis results. If you are using the AWS CLI, the parameter
+     *         Kinesis data stream stream to which Amazon Rekognition Video puts
+     *         the analysis results. If you are using the AWS CLI, the parameter
      *         name is <code>StreamProcessorOutput</code>.
      *         </p>
      */
@@ -171,15 +171,15 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Kinesis data stream stream to which Rekognition Video puts the analysis
-     * results. If you are using the AWS CLI, the parameter name is
+     * Kinesis data stream stream to which Amazon Rekognition Video puts the
+     * analysis results. If you are using the AWS CLI, the parameter name is
      * <code>StreamProcessorOutput</code>.
      * </p>
      *
      * @param output <p>
-     *            Kinesis data stream stream to which Rekognition Video puts the
-     *            analysis results. If you are using the AWS CLI, the parameter
-     *            name is <code>StreamProcessorOutput</code>.
+     *            Kinesis data stream stream to which Amazon Rekognition Video
+     *            puts the analysis results. If you are using the AWS CLI, the
+     *            parameter name is <code>StreamProcessorOutput</code>.
      *            </p>
      */
     public void setOutput(StreamProcessorOutput output) {
@@ -188,8 +188,8 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Kinesis data stream stream to which Rekognition Video puts the analysis
-     * results. If you are using the AWS CLI, the parameter name is
+     * Kinesis data stream stream to which Amazon Rekognition Video puts the
+     * analysis results. If you are using the AWS CLI, the parameter name is
      * <code>StreamProcessorOutput</code>.
      * </p>
      * <p>
@@ -197,9 +197,9 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
      * together.
      *
      * @param output <p>
-     *            Kinesis data stream stream to which Rekognition Video puts the
-     *            analysis results. If you are using the AWS CLI, the parameter
-     *            name is <code>StreamProcessorOutput</code>.
+     *            Kinesis data stream stream to which Amazon Rekognition Video
+     *            puts the analysis results. If you are using the AWS CLI, the
+     *            parameter name is <code>StreamProcessorOutput</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

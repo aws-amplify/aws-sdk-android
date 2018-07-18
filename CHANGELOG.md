@@ -1,5 +1,23 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.26](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.26)
+
+### Enhancements
+
+* **Amazon Polly**
+  * Added support for new `SynthesisTask` feature which allows asynchronous and batch processing.
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon Comprehend
+  * Amazon DynamoDB
+  * AWS IoT
+  * Amazon Pinpoint
+  * Amazon Polly
+  * Amazon Rekognition
+  * Amazon Transcribe
+
 ## [Release 2.6.25](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.25)
 
 ## New Features

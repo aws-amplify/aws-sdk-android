@@ -21,7 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets effective policies.
+ * Gets a list of the policies that have an effect on the authorization behavior
+ * of the specified device when it connects to the AWS IoT device gateway.
  * </p>
  */
 public class GetEffectivePoliciesRequest extends AmazonWebServiceRequest implements Serializable {

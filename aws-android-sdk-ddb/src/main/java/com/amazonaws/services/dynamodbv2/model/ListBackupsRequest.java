@@ -75,8 +75,11 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * <code>LastEvaluatedBackupARN</code> returned by the previous ListBackups
-     * call.
+     * <code>LastEvaluatedBackupArn</code> is the ARN of the backup last
+     * evaluated when the current page of results was returned, inclusive of the
+     * current page of results. This value may be specified as the
+     * <code>ExclusiveStartBackupArn</code> of a new <code>ListBackups</code>
+     * operation in order to fetch the next page of results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -299,16 +302,23 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * <code>LastEvaluatedBackupARN</code> returned by the previous ListBackups
-     * call.
+     * <code>LastEvaluatedBackupArn</code> is the ARN of the backup last
+     * evaluated when the current page of results was returned, inclusive of the
+     * current page of results. This value may be specified as the
+     * <code>ExclusiveStartBackupArn</code> of a new <code>ListBackups</code>
+     * operation in order to fetch the next page of results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>37 - 1024<br/>
      *
      * @return <p>
-     *         <code>LastEvaluatedBackupARN</code> returned by the previous
-     *         ListBackups call.
+     *         <code>LastEvaluatedBackupArn</code> is the ARN of the backup last
+     *         evaluated when the current page of results was returned,
+     *         inclusive of the current page of results. This value may be
+     *         specified as the <code>ExclusiveStartBackupArn</code> of a new
+     *         <code>ListBackups</code> operation in order to fetch the next
+     *         page of results.
      *         </p>
      */
     public String getExclusiveStartBackupArn() {
@@ -317,16 +327,23 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * <code>LastEvaluatedBackupARN</code> returned by the previous ListBackups
-     * call.
+     * <code>LastEvaluatedBackupArn</code> is the ARN of the backup last
+     * evaluated when the current page of results was returned, inclusive of the
+     * current page of results. This value may be specified as the
+     * <code>ExclusiveStartBackupArn</code> of a new <code>ListBackups</code>
+     * operation in order to fetch the next page of results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>37 - 1024<br/>
      *
      * @param exclusiveStartBackupArn <p>
-     *            <code>LastEvaluatedBackupARN</code> returned by the previous
-     *            ListBackups call.
+     *            <code>LastEvaluatedBackupArn</code> is the ARN of the backup
+     *            last evaluated when the current page of results was returned,
+     *            inclusive of the current page of results. This value may be
+     *            specified as the <code>ExclusiveStartBackupArn</code> of a new
+     *            <code>ListBackups</code> operation in order to fetch the next
+     *            page of results.
      *            </p>
      */
     public void setExclusiveStartBackupArn(String exclusiveStartBackupArn) {
@@ -335,8 +352,11 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * <code>LastEvaluatedBackupARN</code> returned by the previous ListBackups
-     * call.
+     * <code>LastEvaluatedBackupArn</code> is the ARN of the backup last
+     * evaluated when the current page of results was returned, inclusive of the
+     * current page of results. This value may be specified as the
+     * <code>ExclusiveStartBackupArn</code> of a new <code>ListBackups</code>
+     * operation in order to fetch the next page of results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -346,8 +366,12 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>37 - 1024<br/>
      *
      * @param exclusiveStartBackupArn <p>
-     *            <code>LastEvaluatedBackupARN</code> returned by the previous
-     *            ListBackups call.
+     *            <code>LastEvaluatedBackupArn</code> is the ARN of the backup
+     *            last evaluated when the current page of results was returned,
+     *            inclusive of the current page of results. This value may be
+     *            specified as the <code>ExclusiveStartBackupArn</code> of a new
+     *            <code>ListBackups</code> operation in order to fetch the next
+     *            page of results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

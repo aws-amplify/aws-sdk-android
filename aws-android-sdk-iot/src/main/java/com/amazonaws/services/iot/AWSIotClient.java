@@ -756,6 +756,51 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Cancels the execution of a job for a given thing.
+     * </p>
+     * 
+     * @param cancelJobExecutionRequest
+     * @throws InvalidRequestException
+     * @throws InvalidStateTransitionException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceUnavailableException
+     * @throws VersionConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public void cancelJobExecution(CancelJobExecutionRequest cancelJobExecutionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(cancelJobExecutionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CancelJobExecutionRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CancelJobExecutionRequestMarshaller()
+                        .marshall(cancelJobExecutionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Clears the default authorizer.
      * </p>
      * 
@@ -3483,7 +3528,9 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Gets effective policies.
+     * Gets a list of the policies that have an effect on the authorization
+     * behavior of the specified device when it connects to the AWS IoT device
+     * gateway.
      * </p>
      * 
      * @param getEffectivePoliciesRequest
@@ -6264,7 +6311,9 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Test custom authorization.
+     * Tests if a specified principal is authorized to perform an AWS IoT action
+     * on a specified resource. Use this to test and debug the authorization
+     * behavior of devices that connect to the AWS IoT device gateway.
      * </p>
      * 
      * @param testAuthorizationRequest
@@ -6318,7 +6367,9 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Invoke the specified custom authorizer for testing purposes.
+     * Tests a custom authorization behavior by invoking a specified custom
+     * authorizer. Use this to test and debug the custom authorization behavior
+     * of devices that connect to the AWS IoT device gateway.
      * </p>
      * 
      * @param testInvokeAuthorizerRequest

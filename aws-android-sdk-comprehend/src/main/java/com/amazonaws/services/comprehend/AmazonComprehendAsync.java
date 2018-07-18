@@ -97,8 +97,9 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
 
     /**
      * <p>
-     * Inspects the text of a batch of documents and returns information about
-     * them. For more information about entities, see <a>how-entities</a>
+     * Inspects the text of a batch of documents for named entities and returns
+     * information about them. For more information about named entities, see
+     * <a>how-entities</a>
      * </p>
      * 
      * @param batchDetectEntitiesRequest
@@ -124,8 +125,9 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
 
     /**
      * <p>
-     * Inspects the text of a batch of documents and returns information about
-     * them. For more information about entities, see <a>how-entities</a>
+     * Inspects the text of a batch of documents for named entities and returns
+     * information about them. For more information about named entities, see
+     * <a>how-entities</a>
      * </p>
      * 
      * @param batchDetectEntitiesRequest
@@ -274,6 +276,295 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
 
     /**
      * <p>
+     * Inspects the text of a batch of documents for the syntax and part of
+     * speech of the words in the document and returns information about them.
+     * For more information, see <a>how-syntax</a>.
+     * </p>
+     * 
+     * @param batchDetectSyntaxRequest
+     * @return A Java Future object containing the response from the
+     *         BatchDetectSyntax service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws BatchSizeLimitExceededException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<BatchDetectSyntaxResult> batchDetectSyntaxAsync(
+            BatchDetectSyntaxRequest batchDetectSyntaxRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Inspects the text of a batch of documents for the syntax and part of
+     * speech of the words in the document and returns information about them.
+     * For more information, see <a>how-syntax</a>.
+     * </p>
+     * 
+     * @param batchDetectSyntaxRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         BatchDetectSyntax service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws BatchSizeLimitExceededException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<BatchDetectSyntaxResult> batchDetectSyntaxAsync(
+            BatchDetectSyntaxRequest batchDetectSyntaxRequest,
+            AsyncHandler<BatchDetectSyntaxRequest, BatchDetectSyntaxResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the properties associated with a dominant language detection job.
+     * Use this operation to get the status of a detection job.
+     * </p>
+     * 
+     * @param describeDominantLanguageDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeDominantLanguageDetectionJob service method, as returned
+     *         by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeDominantLanguageDetectionJobResult> describeDominantLanguageDetectionJobAsync(
+            DescribeDominantLanguageDetectionJobRequest describeDominantLanguageDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the properties associated with a dominant language detection job.
+     * Use this operation to get the status of a detection job.
+     * </p>
+     * 
+     * @param describeDominantLanguageDetectionJobRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeDominantLanguageDetectionJob service method, as returned
+     *         by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeDominantLanguageDetectionJobResult> describeDominantLanguageDetectionJobAsync(
+            DescribeDominantLanguageDetectionJobRequest describeDominantLanguageDetectionJobRequest,
+            AsyncHandler<DescribeDominantLanguageDetectionJobRequest, DescribeDominantLanguageDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the properties associated with an entities detection job. Use this
+     * operation to get the status of a detection job.
+     * </p>
+     * 
+     * @param describeEntitiesDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeEntitiesDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeEntitiesDetectionJobResult> describeEntitiesDetectionJobAsync(
+            DescribeEntitiesDetectionJobRequest describeEntitiesDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the properties associated with an entities detection job. Use this
+     * operation to get the status of a detection job.
+     * </p>
+     * 
+     * @param describeEntitiesDetectionJobRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeEntitiesDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeEntitiesDetectionJobResult> describeEntitiesDetectionJobAsync(
+            DescribeEntitiesDetectionJobRequest describeEntitiesDetectionJobRequest,
+            AsyncHandler<DescribeEntitiesDetectionJobRequest, DescribeEntitiesDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the properties associated with a key phrases detection job. Use this
+     * operation to get the status of a detection job.
+     * </p>
+     * 
+     * @param describeKeyPhrasesDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeKeyPhrasesDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeKeyPhrasesDetectionJobResult> describeKeyPhrasesDetectionJobAsync(
+            DescribeKeyPhrasesDetectionJobRequest describeKeyPhrasesDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the properties associated with a key phrases detection job. Use this
+     * operation to get the status of a detection job.
+     * </p>
+     * 
+     * @param describeKeyPhrasesDetectionJobRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeKeyPhrasesDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeKeyPhrasesDetectionJobResult> describeKeyPhrasesDetectionJobAsync(
+            DescribeKeyPhrasesDetectionJobRequest describeKeyPhrasesDetectionJobRequest,
+            AsyncHandler<DescribeKeyPhrasesDetectionJobRequest, DescribeKeyPhrasesDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the properties associated with a sentiment detection job. Use this
+     * operation to get the status of a detection job.
+     * </p>
+     * 
+     * @param describeSentimentDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeSentimentDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeSentimentDetectionJobResult> describeSentimentDetectionJobAsync(
+            DescribeSentimentDetectionJobRequest describeSentimentDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the properties associated with a sentiment detection job. Use this
+     * operation to get the status of a detection job.
+     * </p>
+     * 
+     * @param describeSentimentDetectionJobRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeSentimentDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeSentimentDetectionJobResult> describeSentimentDetectionJobAsync(
+            DescribeSentimentDetectionJobRequest describeSentimentDetectionJobRequest,
+            AsyncHandler<DescribeSentimentDetectionJobRequest, DescribeSentimentDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Gets the properties associated with a topic detection job. Use this
      * operation to get the status of a detection job.
      * </p>
@@ -390,8 +681,8 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
 
     /**
      * <p>
-     * Inspects text for entities, and returns information about them. For more
-     * information, about entities, see <a>how-entities</a>.
+     * Inspects text for named entities, and returns information about them. For
+     * more information, about named entities, see <a>how-entities</a>.
      * </p>
      * 
      * @param detectEntitiesRequest
@@ -414,8 +705,8 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
 
     /**
      * <p>
-     * Inspects text for entities, and returns information about them. For more
-     * information, about entities, see <a>how-entities</a>.
+     * Inspects text for named entities, and returns information about them. For
+     * more information, about named entities, see <a>how-entities</a>.
      * </p>
      * 
      * @param detectEntitiesRequest
@@ -554,6 +845,281 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
 
     /**
      * <p>
+     * Inspects text for syntax and the part of speech of words in the document.
+     * For more information, <a>how-syntax</a>.
+     * </p>
+     * 
+     * @param detectSyntaxRequest
+     * @return A Java Future object containing the response from the
+     *         DetectSyntax service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DetectSyntaxResult> detectSyntaxAsync(DetectSyntaxRequest detectSyntaxRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Inspects text for syntax and the part of speech of words in the document.
+     * For more information, <a>how-syntax</a>.
+     * </p>
+     * 
+     * @param detectSyntaxRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DetectSyntax service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DetectSyntaxResult> detectSyntaxAsync(DetectSyntaxRequest detectSyntaxRequest,
+            AsyncHandler<DetectSyntaxRequest, DetectSyntaxResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets a list of the dominant language detection jobs that you have
+     * submitted.
+     * </p>
+     * 
+     * @param listDominantLanguageDetectionJobsRequest
+     * @return A Java Future object containing the response from the
+     *         ListDominantLanguageDetectionJobs service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListDominantLanguageDetectionJobsResult> listDominantLanguageDetectionJobsAsync(
+            ListDominantLanguageDetectionJobsRequest listDominantLanguageDetectionJobsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets a list of the dominant language detection jobs that you have
+     * submitted.
+     * </p>
+     * 
+     * @param listDominantLanguageDetectionJobsRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListDominantLanguageDetectionJobs service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListDominantLanguageDetectionJobsResult> listDominantLanguageDetectionJobsAsync(
+            ListDominantLanguageDetectionJobsRequest listDominantLanguageDetectionJobsRequest,
+            AsyncHandler<ListDominantLanguageDetectionJobsRequest, ListDominantLanguageDetectionJobsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets a list of the entity detection jobs that you have submitted.
+     * </p>
+     * 
+     * @param listEntitiesDetectionJobsRequest
+     * @return A Java Future object containing the response from the
+     *         ListEntitiesDetectionJobs service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListEntitiesDetectionJobsResult> listEntitiesDetectionJobsAsync(
+            ListEntitiesDetectionJobsRequest listEntitiesDetectionJobsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets a list of the entity detection jobs that you have submitted.
+     * </p>
+     * 
+     * @param listEntitiesDetectionJobsRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListEntitiesDetectionJobs service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListEntitiesDetectionJobsResult> listEntitiesDetectionJobsAsync(
+            ListEntitiesDetectionJobsRequest listEntitiesDetectionJobsRequest,
+            AsyncHandler<ListEntitiesDetectionJobsRequest, ListEntitiesDetectionJobsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Get a list of key phrase detection jobs that you have submitted.
+     * </p>
+     * 
+     * @param listKeyPhrasesDetectionJobsRequest
+     * @return A Java Future object containing the response from the
+     *         ListKeyPhrasesDetectionJobs service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListKeyPhrasesDetectionJobsResult> listKeyPhrasesDetectionJobsAsync(
+            ListKeyPhrasesDetectionJobsRequest listKeyPhrasesDetectionJobsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Get a list of key phrase detection jobs that you have submitted.
+     * </p>
+     * 
+     * @param listKeyPhrasesDetectionJobsRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListKeyPhrasesDetectionJobs service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListKeyPhrasesDetectionJobsResult> listKeyPhrasesDetectionJobsAsync(
+            ListKeyPhrasesDetectionJobsRequest listKeyPhrasesDetectionJobsRequest,
+            AsyncHandler<ListKeyPhrasesDetectionJobsRequest, ListKeyPhrasesDetectionJobsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets a list of sentiment detection jobs that you have submitted.
+     * </p>
+     * 
+     * @param listSentimentDetectionJobsRequest
+     * @return A Java Future object containing the response from the
+     *         ListSentimentDetectionJobs service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListSentimentDetectionJobsResult> listSentimentDetectionJobsAsync(
+            ListSentimentDetectionJobsRequest listSentimentDetectionJobsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets a list of sentiment detection jobs that you have submitted.
+     * </p>
+     * 
+     * @param listSentimentDetectionJobsRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListSentimentDetectionJobs service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListSentimentDetectionJobsResult> listSentimentDetectionJobsAsync(
+            ListSentimentDetectionJobsRequest listSentimentDetectionJobsRequest,
+            AsyncHandler<ListSentimentDetectionJobsRequest, ListSentimentDetectionJobsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Gets a list of the topic detection jobs that you have submitted.
      * </p>
      * 
@@ -605,6 +1171,226 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
     Future<ListTopicsDetectionJobsResult> listTopicsDetectionJobsAsync(
             ListTopicsDetectionJobsRequest listTopicsDetectionJobsRequest,
             AsyncHandler<ListTopicsDetectionJobsRequest, ListTopicsDetectionJobsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Starts an asynchronous dominant language detection job for a collection
+     * of documents. Use the operation to track the status of a job.
+     * </p>
+     * 
+     * @param startDominantLanguageDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         StartDominantLanguageDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StartDominantLanguageDetectionJobResult> startDominantLanguageDetectionJobAsync(
+            StartDominantLanguageDetectionJobRequest startDominantLanguageDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Starts an asynchronous dominant language detection job for a collection
+     * of documents. Use the operation to track the status of a job.
+     * </p>
+     * 
+     * @param startDominantLanguageDetectionJobRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         StartDominantLanguageDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StartDominantLanguageDetectionJobResult> startDominantLanguageDetectionJobAsync(
+            StartDominantLanguageDetectionJobRequest startDominantLanguageDetectionJobRequest,
+            AsyncHandler<StartDominantLanguageDetectionJobRequest, StartDominantLanguageDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Starts an asynchronous entity detection job for a collection of
+     * documents. Use the operation to track the status of a job.
+     * </p>
+     * 
+     * @param startEntitiesDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         StartEntitiesDetectionJob service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StartEntitiesDetectionJobResult> startEntitiesDetectionJobAsync(
+            StartEntitiesDetectionJobRequest startEntitiesDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Starts an asynchronous entity detection job for a collection of
+     * documents. Use the operation to track the status of a job.
+     * </p>
+     * 
+     * @param startEntitiesDetectionJobRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         StartEntitiesDetectionJob service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StartEntitiesDetectionJobResult> startEntitiesDetectionJobAsync(
+            StartEntitiesDetectionJobRequest startEntitiesDetectionJobRequest,
+            AsyncHandler<StartEntitiesDetectionJobRequest, StartEntitiesDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Starts an asynchronous key phrase detection job for a collection of
+     * documents. Use the operation to track the status of a job.
+     * </p>
+     * 
+     * @param startKeyPhrasesDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         StartKeyPhrasesDetectionJob service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StartKeyPhrasesDetectionJobResult> startKeyPhrasesDetectionJobAsync(
+            StartKeyPhrasesDetectionJobRequest startKeyPhrasesDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Starts an asynchronous key phrase detection job for a collection of
+     * documents. Use the operation to track the status of a job.
+     * </p>
+     * 
+     * @param startKeyPhrasesDetectionJobRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         StartKeyPhrasesDetectionJob service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StartKeyPhrasesDetectionJobResult> startKeyPhrasesDetectionJobAsync(
+            StartKeyPhrasesDetectionJobRequest startKeyPhrasesDetectionJobRequest,
+            AsyncHandler<StartKeyPhrasesDetectionJobRequest, StartKeyPhrasesDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Starts an asynchronous sentiment detection job for a collection of
+     * documents. use the operation to track the status of a job.
+     * </p>
+     * 
+     * @param startSentimentDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         StartSentimentDetectionJob service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StartSentimentDetectionJobResult> startSentimentDetectionJobAsync(
+            StartSentimentDetectionJobRequest startSentimentDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Starts an asynchronous sentiment detection job for a collection of
+     * documents. use the operation to track the status of a job.
+     * </p>
+     * 
+     * @param startSentimentDetectionJobRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         StartSentimentDetectionJob service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StartSentimentDetectionJobResult> startSentimentDetectionJobAsync(
+            StartSentimentDetectionJobRequest startSentimentDetectionJobRequest,
+            AsyncHandler<StartSentimentDetectionJobRequest, StartSentimentDetectionJobResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -662,6 +1448,346 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
     Future<StartTopicsDetectionJobResult> startTopicsDetectionJobAsync(
             StartTopicsDetectionJobRequest startTopicsDetectionJobRequest,
             AsyncHandler<StartTopicsDetectionJobRequest, StartTopicsDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Stops a dominant language detection job in progress.
+     * </p>
+     * <p>
+     * If the job state is <code>IN_PROGRESS</code> the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * job completes before it can be stopped, it is put into the
+     * <code>COMPLETED</code> state; otherwise the job is stopped and put into
+     * the <code>STOPPED</code> state.
+     * </p>
+     * <p>
+     * If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state
+     * when you call the <code>StopDominantLanguageDetectionJob</code>
+     * operation, the operation returns a 400 Internal Request Exception.
+     * </p>
+     * <p>
+     * When a job is stopped, any documents already processed are written to the
+     * output location.
+     * </p>
+     * 
+     * @param stopDominantLanguageDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         StopDominantLanguageDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StopDominantLanguageDetectionJobResult> stopDominantLanguageDetectionJobAsync(
+            StopDominantLanguageDetectionJobRequest stopDominantLanguageDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Stops a dominant language detection job in progress.
+     * </p>
+     * <p>
+     * If the job state is <code>IN_PROGRESS</code> the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * job completes before it can be stopped, it is put into the
+     * <code>COMPLETED</code> state; otherwise the job is stopped and put into
+     * the <code>STOPPED</code> state.
+     * </p>
+     * <p>
+     * If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state
+     * when you call the <code>StopDominantLanguageDetectionJob</code>
+     * operation, the operation returns a 400 Internal Request Exception.
+     * </p>
+     * <p>
+     * When a job is stopped, any documents already processed are written to the
+     * output location.
+     * </p>
+     * 
+     * @param stopDominantLanguageDetectionJobRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         StopDominantLanguageDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StopDominantLanguageDetectionJobResult> stopDominantLanguageDetectionJobAsync(
+            StopDominantLanguageDetectionJobRequest stopDominantLanguageDetectionJobRequest,
+            AsyncHandler<StopDominantLanguageDetectionJobRequest, StopDominantLanguageDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Stops an entities detection job in progress.
+     * </p>
+     * <p>
+     * If the job state is <code>IN_PROGRESS</code> the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * job completes before it can be stopped, it is put into the
+     * <code>COMPLETED</code> state; otherwise the job is stopped and put into
+     * the <code>STOPPED</code> state.
+     * </p>
+     * <p>
+     * If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state
+     * when you call the <code>StopDominantLanguageDetectionJob</code>
+     * operation, the operation returns a 400 Internal Request Exception.
+     * </p>
+     * <p>
+     * When a job is stopped, any documents already processed are written to the
+     * output location.
+     * </p>
+     * 
+     * @param stopEntitiesDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         StopEntitiesDetectionJob service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StopEntitiesDetectionJobResult> stopEntitiesDetectionJobAsync(
+            StopEntitiesDetectionJobRequest stopEntitiesDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Stops an entities detection job in progress.
+     * </p>
+     * <p>
+     * If the job state is <code>IN_PROGRESS</code> the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * job completes before it can be stopped, it is put into the
+     * <code>COMPLETED</code> state; otherwise the job is stopped and put into
+     * the <code>STOPPED</code> state.
+     * </p>
+     * <p>
+     * If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state
+     * when you call the <code>StopDominantLanguageDetectionJob</code>
+     * operation, the operation returns a 400 Internal Request Exception.
+     * </p>
+     * <p>
+     * When a job is stopped, any documents already processed are written to the
+     * output location.
+     * </p>
+     * 
+     * @param stopEntitiesDetectionJobRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         StopEntitiesDetectionJob service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StopEntitiesDetectionJobResult> stopEntitiesDetectionJobAsync(
+            StopEntitiesDetectionJobRequest stopEntitiesDetectionJobRequest,
+            AsyncHandler<StopEntitiesDetectionJobRequest, StopEntitiesDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Stops a key phrases detection job in progress.
+     * </p>
+     * <p>
+     * If the job state is <code>IN_PROGRESS</code> the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * job completes before it can be stopped, it is put into the
+     * <code>COMPLETED</code> state; otherwise the job is stopped and put into
+     * the <code>STOPPED</code> state.
+     * </p>
+     * <p>
+     * If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state
+     * when you call the <code>StopDominantLanguageDetectionJob</code>
+     * operation, the operation returns a 400 Internal Request Exception.
+     * </p>
+     * <p>
+     * When a job is stopped, any documents already processed are written to the
+     * output location.
+     * </p>
+     * 
+     * @param stopKeyPhrasesDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         StopKeyPhrasesDetectionJob service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StopKeyPhrasesDetectionJobResult> stopKeyPhrasesDetectionJobAsync(
+            StopKeyPhrasesDetectionJobRequest stopKeyPhrasesDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Stops a key phrases detection job in progress.
+     * </p>
+     * <p>
+     * If the job state is <code>IN_PROGRESS</code> the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * job completes before it can be stopped, it is put into the
+     * <code>COMPLETED</code> state; otherwise the job is stopped and put into
+     * the <code>STOPPED</code> state.
+     * </p>
+     * <p>
+     * If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state
+     * when you call the <code>StopDominantLanguageDetectionJob</code>
+     * operation, the operation returns a 400 Internal Request Exception.
+     * </p>
+     * <p>
+     * When a job is stopped, any documents already processed are written to the
+     * output location.
+     * </p>
+     * 
+     * @param stopKeyPhrasesDetectionJobRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         StopKeyPhrasesDetectionJob service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StopKeyPhrasesDetectionJobResult> stopKeyPhrasesDetectionJobAsync(
+            StopKeyPhrasesDetectionJobRequest stopKeyPhrasesDetectionJobRequest,
+            AsyncHandler<StopKeyPhrasesDetectionJobRequest, StopKeyPhrasesDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Stops a sentiment detection job in progress.
+     * </p>
+     * <p>
+     * If the job state is <code>IN_PROGRESS</code> the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * job completes before it can be stopped, it is put into the
+     * <code>COMPLETED</code> state; otherwise the job is be stopped and put
+     * into the <code>STOPPED</code> state.
+     * </p>
+     * <p>
+     * If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state
+     * when you call the <code>StopDominantLanguageDetectionJob</code>
+     * operation, the operation returns a 400 Internal Request Exception.
+     * </p>
+     * <p>
+     * When a job is stopped, any documents already processed are written to the
+     * output location.
+     * </p>
+     * 
+     * @param stopSentimentDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         StopSentimentDetectionJob service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StopSentimentDetectionJobResult> stopSentimentDetectionJobAsync(
+            StopSentimentDetectionJobRequest stopSentimentDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Stops a sentiment detection job in progress.
+     * </p>
+     * <p>
+     * If the job state is <code>IN_PROGRESS</code> the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * job completes before it can be stopped, it is put into the
+     * <code>COMPLETED</code> state; otherwise the job is be stopped and put
+     * into the <code>STOPPED</code> state.
+     * </p>
+     * <p>
+     * If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state
+     * when you call the <code>StopDominantLanguageDetectionJob</code>
+     * operation, the operation returns a 400 Internal Request Exception.
+     * </p>
+     * <p>
+     * When a job is stopped, any documents already processed are written to the
+     * output location.
+     * </p>
+     * 
+     * @param stopSentimentDetectionJobRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         StopSentimentDetectionJob service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StopSentimentDetectionJobResult> stopSentimentDetectionJobAsync(
+            StopSentimentDetectionJobRequest stopSentimentDetectionJobRequest,
+            AsyncHandler<StopSentimentDetectionJobRequest, StopSentimentDetectionJobResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
 }

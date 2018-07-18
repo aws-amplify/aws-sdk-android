@@ -96,6 +96,13 @@ public class BaiduMessage implements Serializable {
     private java.util.Map<String, java.util.List<String>> substitutions;
 
     /**
+     * This parameter specifies how long (in seconds) the message should be kept
+     * in Baidu storage if the device is offline. The and the default value and
+     * the maximum time to live supported is 7 days (604800 seconds)
+     */
+    private Integer timeToLive;
+
+    /**
      * The message title that displays above the message on the user's device.
      */
     private String title;
@@ -739,6 +746,54 @@ public class BaiduMessage implements Serializable {
     }
 
     /**
+     * This parameter specifies how long (in seconds) the message should be kept
+     * in Baidu storage if the device is offline. The and the default value and
+     * the maximum time to live supported is 7 days (604800 seconds)
+     *
+     * @return This parameter specifies how long (in seconds) the message should
+     *         be kept in Baidu storage if the device is offline. The and the
+     *         default value and the maximum time to live supported is 7 days
+     *         (604800 seconds)
+     */
+    public Integer getTimeToLive() {
+        return timeToLive;
+    }
+
+    /**
+     * This parameter specifies how long (in seconds) the message should be kept
+     * in Baidu storage if the device is offline. The and the default value and
+     * the maximum time to live supported is 7 days (604800 seconds)
+     *
+     * @param timeToLive This parameter specifies how long (in seconds) the
+     *            message should be kept in Baidu storage if the device is
+     *            offline. The and the default value and the maximum time to
+     *            live supported is 7 days (604800 seconds)
+     */
+    public void setTimeToLive(Integer timeToLive) {
+        this.timeToLive = timeToLive;
+    }
+
+    /**
+     * This parameter specifies how long (in seconds) the message should be kept
+     * in Baidu storage if the device is offline. The and the default value and
+     * the maximum time to live supported is 7 days (604800 seconds)
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param timeToLive This parameter specifies how long (in seconds) the
+     *            message should be kept in Baidu storage if the device is
+     *            offline. The and the default value and the maximum time to
+     *            live supported is 7 days (604800 seconds)
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public BaiduMessage withTimeToLive(Integer timeToLive) {
+        this.timeToLive = timeToLive;
+        return this;
+    }
+
+    /**
      * The message title that displays above the message on the user's device.
      *
      * @return The message title that displays above the message on the user's
@@ -846,6 +901,8 @@ public class BaiduMessage implements Serializable {
             sb.append("Sound: " + getSound() + ",");
         if (getSubstitutions() != null)
             sb.append("Substitutions: " + getSubstitutions() + ",");
+        if (getTimeToLive() != null)
+            sb.append("TimeToLive: " + getTimeToLive() + ",");
         if (getTitle() != null)
             sb.append("Title: " + getTitle() + ",");
         if (getUrl() != null)
@@ -874,6 +931,7 @@ public class BaiduMessage implements Serializable {
         hashCode = prime * hashCode + ((getSound() == null) ? 0 : getSound().hashCode());
         hashCode = prime * hashCode
                 + ((getSubstitutions() == null) ? 0 : getSubstitutions().hashCode());
+        hashCode = prime * hashCode + ((getTimeToLive() == null) ? 0 : getTimeToLive().hashCode());
         hashCode = prime * hashCode + ((getTitle() == null) ? 0 : getTitle().hashCode());
         hashCode = prime * hashCode + ((getUrl() == null) ? 0 : getUrl().hashCode());
         return hashCode;
@@ -939,6 +997,11 @@ public class BaiduMessage implements Serializable {
             return false;
         if (other.getSubstitutions() != null
                 && other.getSubstitutions().equals(this.getSubstitutions()) == false)
+            return false;
+        if (other.getTimeToLive() == null ^ this.getTimeToLive() == null)
+            return false;
+        if (other.getTimeToLive() != null
+                && other.getTimeToLive().equals(this.getTimeToLive()) == false)
             return false;
         if (other.getTitle() == null ^ this.getTitle() == null)
             return false;

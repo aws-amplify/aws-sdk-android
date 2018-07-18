@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Import job request.
+ */
 public class ImportJobRequest implements Serializable {
     /**
      * Sets whether the endpoints create a segment when they are imported.

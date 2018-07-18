@@ -27,6 +27,11 @@ public class SegmentLocation implements Serializable {
     private SetDimension country;
 
     /**
+     * The GPS Point dimension.
+     */
+    private GPSPointDimension gPSPoint;
+
+    /**
      * The country filter according to ISO 3166-1 Alpha-2 codes.
      *
      * @return The country filter according to ISO 3166-1 Alpha-2 codes.
@@ -60,6 +65,39 @@ public class SegmentLocation implements Serializable {
     }
 
     /**
+     * The GPS Point dimension.
+     *
+     * @return The GPS Point dimension.
+     */
+    public GPSPointDimension getGPSPoint() {
+        return gPSPoint;
+    }
+
+    /**
+     * The GPS Point dimension.
+     *
+     * @param gPSPoint The GPS Point dimension.
+     */
+    public void setGPSPoint(GPSPointDimension gPSPoint) {
+        this.gPSPoint = gPSPoint;
+    }
+
+    /**
+     * The GPS Point dimension.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param gPSPoint The GPS Point dimension.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SegmentLocation withGPSPoint(GPSPointDimension gPSPoint) {
+        this.gPSPoint = gPSPoint;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -71,7 +109,9 @@ public class SegmentLocation implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getCountry() != null)
-            sb.append("Country: " + getCountry());
+            sb.append("Country: " + getCountry() + ",");
+        if (getGPSPoint() != null)
+            sb.append("GPSPoint: " + getGPSPoint());
         sb.append("}");
         return sb.toString();
     }
@@ -82,6 +122,7 @@ public class SegmentLocation implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getCountry() == null) ? 0 : getCountry().hashCode());
+        hashCode = prime * hashCode + ((getGPSPoint() == null) ? 0 : getGPSPoint().hashCode());
         return hashCode;
     }
 
@@ -99,6 +140,10 @@ public class SegmentLocation implements Serializable {
         if (other.getCountry() == null ^ this.getCountry() == null)
             return false;
         if (other.getCountry() != null && other.getCountry().equals(this.getCountry()) == false)
+            return false;
+        if (other.getGPSPoint() == null ^ this.getGPSPoint() == null)
+            return false;
+        if (other.getGPSPoint() != null && other.getGPSPoint().equals(this.getGPSPoint()) == false)
             return false;
         return true;
     }

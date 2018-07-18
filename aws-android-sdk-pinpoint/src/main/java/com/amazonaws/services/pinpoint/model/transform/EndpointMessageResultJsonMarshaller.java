@@ -36,6 +36,11 @@ class EndpointMessageResultJsonMarshaller {
             jsonWriter.name("DeliveryStatus");
             jsonWriter.value(deliveryStatus);
         }
+        if (endpointMessageResult.getMessageId() != null) {
+            String messageId = endpointMessageResult.getMessageId();
+            jsonWriter.name("MessageId");
+            jsonWriter.value(messageId);
+        }
         if (endpointMessageResult.getStatusCode() != null) {
             Integer statusCode = endpointMessageResult.getStatusCode();
             jsonWriter.name("StatusCode");

@@ -20,9 +20,9 @@ import java.io.Serializable;
 public class ListStreamProcessorsResult implements Serializable {
     /**
      * <p>
-     * If the response is truncated, Rekognition Video returns this token that
-     * you can use in the subsequent request to retrieve the next set of stream
-     * processors.
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
+     * stream processors.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -39,18 +39,18 @@ public class ListStreamProcessorsResult implements Serializable {
 
     /**
      * <p>
-     * If the response is truncated, Rekognition Video returns this token that
-     * you can use in the subsequent request to retrieve the next set of stream
-     * processors.
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
+     * stream processors.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 255<br/>
      *
      * @return <p>
-     *         If the response is truncated, Rekognition Video returns this
-     *         token that you can use in the subsequent request to retrieve the
-     *         next set of stream processors.
+     *         If the response is truncated, Amazon Rekognition Video returns
+     *         this token that you can use in the subsequent request to retrieve
+     *         the next set of stream processors.
      *         </p>
      */
     public String getNextToken() {
@@ -59,18 +59,18 @@ public class ListStreamProcessorsResult implements Serializable {
 
     /**
      * <p>
-     * If the response is truncated, Rekognition Video returns this token that
-     * you can use in the subsequent request to retrieve the next set of stream
-     * processors.
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
+     * stream processors.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 255<br/>
      *
      * @param nextToken <p>
-     *            If the response is truncated, Rekognition Video returns this
-     *            token that you can use in the subsequent request to retrieve
-     *            the next set of stream processors.
+     *            If the response is truncated, Amazon Rekognition Video returns
+     *            this token that you can use in the subsequent request to
+     *            retrieve the next set of stream processors.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -79,9 +79,9 @@ public class ListStreamProcessorsResult implements Serializable {
 
     /**
      * <p>
-     * If the response is truncated, Rekognition Video returns this token that
-     * you can use in the subsequent request to retrieve the next set of stream
-     * processors.
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
+     * stream processors.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -91,9 +91,9 @@ public class ListStreamProcessorsResult implements Serializable {
      * <b>Length: </b> - 255<br/>
      *
      * @param nextToken <p>
-     *            If the response is truncated, Rekognition Video returns this
-     *            token that you can use in the subsequent request to retrieve
-     *            the next set of stream processors.
+     *            If the response is truncated, Amazon Rekognition Video returns
+     *            this token that you can use in the subsequent request to
+     *            retrieve the next set of stream processors.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

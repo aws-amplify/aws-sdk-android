@@ -39,6 +39,12 @@ class SSEDescriptionJsonUnmarshaller implements
             if (name.equals("Status")) {
                 sSEDescription.setStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SSEType")) {
+                sSEDescription.setSSEType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("KMSMasterKeyArn")) {
+                sSEDescription.setKMSMasterKeyArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

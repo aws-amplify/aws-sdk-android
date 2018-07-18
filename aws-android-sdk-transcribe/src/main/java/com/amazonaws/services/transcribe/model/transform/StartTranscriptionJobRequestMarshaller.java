@@ -87,6 +87,11 @@ public class StartTranscriptionJobRequestMarshaller implements
                 jsonWriter.name("Media");
                 MediaJsonMarshaller.getInstance().marshall(media, jsonWriter);
             }
+            if (startTranscriptionJobRequest.getOutputBucketName() != null) {
+                String outputBucketName = startTranscriptionJobRequest.getOutputBucketName();
+                jsonWriter.name("OutputBucketName");
+                jsonWriter.value(outputBucketName);
+            }
             if (startTranscriptionJobRequest.getSettings() != null) {
                 Settings settings = startTranscriptionJobRequest.getSettings();
                 jsonWriter.name("Settings");

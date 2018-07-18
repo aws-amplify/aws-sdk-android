@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Export job response.
+ */
 public class ExportJobResponse implements Serializable {
     /**
      * The unique ID of the application to which the job applies.

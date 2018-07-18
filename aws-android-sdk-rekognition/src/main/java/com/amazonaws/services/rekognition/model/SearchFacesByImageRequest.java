@@ -54,7 +54,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * that Amazon Rekognition used for the input image.
  * </p>
  * <p>
- * For an example, see <a>search-face-with-image-procedure</a>.
+ * For an example, Searching for a Face Using an Image in the Amazon Rekognition
+ * Developer Guide.
  * </p>
  * <p>
  * This operation requires permissions to perform the

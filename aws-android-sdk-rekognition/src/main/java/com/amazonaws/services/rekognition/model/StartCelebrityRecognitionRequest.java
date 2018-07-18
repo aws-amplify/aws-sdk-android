@@ -24,18 +24,21 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Starts asynchronous recognition of celebrities in a stored video.
  * </p>
  * <p>
- * Rekognition Video can detect celebrities in a video must be stored in an
- * Amazon S3 bucket. Use <a>Video</a> to specify the bucket name and the
+ * Amazon Rekognition Video can detect celebrities in a video must be stored in
+ * an Amazon S3 bucket. Use <a>Video</a> to specify the bucket name and the
  * filename of the video. <code>StartCelebrityRecognition</code> returns a job
  * identifier (<code>JobId</code>) which you use to get the results of the
- * analysis. When celebrity recognition analysis is finished, Rekognition Video
- * publishes a completion status to the Amazon Simple Notification Service topic
- * that you specify in <code>NotificationChannel</code>. To get the results of
- * the celebrity recognition analysis, first check that the status value
- * published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call and
- * pass the job identifier (<code>JobId</code>) from the initial call to
- * <code>StartCelebrityRecognition</code>. For more information, see
- * <a>celebrities</a>.
+ * analysis. When celebrity recognition analysis is finished, Amazon Rekognition
+ * Video publishes a completion status to the Amazon Simple Notification Service
+ * topic that you specify in <code>NotificationChannel</code>. To get the
+ * results of the celebrity recognition analysis, first check that the status
+ * value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so,
+ * call and pass the job identifier (<code>JobId</code>) from the initial call
+ * to <code>StartCelebrityRecognition</code>.
+ * </p>
+ * <p>
+ * For more information, see Recognizing Celebrities in the Amazon Rekognition
+ * Developer Guide.
  * </p>
  */
 public class StartCelebrityRecognitionRequest extends AmazonWebServiceRequest implements
@@ -64,8 +67,8 @@ public class StartCelebrityRecognitionRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The Amazon SNS topic ARN that you want Rekognition Video to publish the
-     * completion status of the celebrity recognition analysis to.
+     * The Amazon SNS topic ARN that you want Amazon Rekognition Video to
+     * publish the completion status of the celebrity recognition analysis to.
      * </p>
      */
     private NotificationChannel notificationChannel;
@@ -216,13 +219,13 @@ public class StartCelebrityRecognitionRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The Amazon SNS topic ARN that you want Rekognition Video to publish the
-     * completion status of the celebrity recognition analysis to.
+     * The Amazon SNS topic ARN that you want Amazon Rekognition Video to
+     * publish the completion status of the celebrity recognition analysis to.
      * </p>
      *
      * @return <p>
-     *         The Amazon SNS topic ARN that you want Rekognition Video to
-     *         publish the completion status of the celebrity recognition
+     *         The Amazon SNS topic ARN that you want Amazon Rekognition Video
+     *         to publish the completion status of the celebrity recognition
      *         analysis to.
      *         </p>
      */
@@ -232,14 +235,14 @@ public class StartCelebrityRecognitionRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The Amazon SNS topic ARN that you want Rekognition Video to publish the
-     * completion status of the celebrity recognition analysis to.
+     * The Amazon SNS topic ARN that you want Amazon Rekognition Video to
+     * publish the completion status of the celebrity recognition analysis to.
      * </p>
      *
      * @param notificationChannel <p>
-     *            The Amazon SNS topic ARN that you want Rekognition Video to
-     *            publish the completion status of the celebrity recognition
-     *            analysis to.
+     *            The Amazon SNS topic ARN that you want Amazon Rekognition
+     *            Video to publish the completion status of the celebrity
+     *            recognition analysis to.
      *            </p>
      */
     public void setNotificationChannel(NotificationChannel notificationChannel) {
@@ -248,17 +251,17 @@ public class StartCelebrityRecognitionRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The Amazon SNS topic ARN that you want Rekognition Video to publish the
-     * completion status of the celebrity recognition analysis to.
+     * The Amazon SNS topic ARN that you want Amazon Rekognition Video to
+     * publish the completion status of the celebrity recognition analysis to.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param notificationChannel <p>
-     *            The Amazon SNS topic ARN that you want Rekognition Video to
-     *            publish the completion status of the celebrity recognition
-     *            analysis to.
+     *            The Amazon SNS topic ARN that you want Amazon Rekognition
+     *            Video to publish the completion status of the celebrity
+     *            recognition analysis to.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

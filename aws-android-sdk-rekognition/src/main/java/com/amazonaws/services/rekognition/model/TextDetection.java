@@ -32,7 +32,8 @@ import java.io.Serializable;
  * an index for the word within a line of words.
  * </p>
  * <p>
- * For more information, see <a>text-detection</a>.
+ * For more information, see Detecting Text in the Amazon Rekognition Developer
+ * Guide.
  * </p>
  */
 public class TextDetection implements Serializable {

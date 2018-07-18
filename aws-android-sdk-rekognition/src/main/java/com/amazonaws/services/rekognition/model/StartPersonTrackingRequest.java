@@ -24,12 +24,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Starts the asynchronous tracking of persons in a stored video.
  * </p>
  * <p>
- * Rekognition Video can track persons in a video stored in an Amazon S3 bucket.
- * Use <a>Video</a> to specify the bucket name and the filename of the video.
- * <code>StartPersonTracking</code> returns a job identifier (<code>JobId</code>
- * ) which you use to get the results of the operation. When label detection is
- * finished, Amazon Rekognition publishes a completion status to the Amazon
- * Simple Notification Service topic that you specify in
+ * Amazon Rekognition Video can track persons in a video stored in an Amazon S3
+ * bucket. Use <a>Video</a> to specify the bucket name and the filename of the
+ * video. <code>StartPersonTracking</code> returns a job identifier (
+ * <code>JobId</code>) which you use to get the results of the operation. When
+ * label detection is finished, Amazon Rekognition publishes a completion status
+ * to the Amazon Simple Notification Service topic that you specify in
  * <code>NotificationChannel</code>.
  * </p>
  * <p>
@@ -64,7 +64,7 @@ public class StartPersonTrackingRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The Amazon SNS topic ARN you want Rekognition Video to publish the
+     * The Amazon SNS topic ARN you want Amazon Rekognition Video to publish the
      * completion status of the people detection operation to.
      * </p>
      */
@@ -215,13 +215,14 @@ public class StartPersonTrackingRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The Amazon SNS topic ARN you want Rekognition Video to publish the
+     * The Amazon SNS topic ARN you want Amazon Rekognition Video to publish the
      * completion status of the people detection operation to.
      * </p>
      *
      * @return <p>
-     *         The Amazon SNS topic ARN you want Rekognition Video to publish
-     *         the completion status of the people detection operation to.
+     *         The Amazon SNS topic ARN you want Amazon Rekognition Video to
+     *         publish the completion status of the people detection operation
+     *         to.
      *         </p>
      */
     public NotificationChannel getNotificationChannel() {
@@ -230,13 +231,14 @@ public class StartPersonTrackingRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The Amazon SNS topic ARN you want Rekognition Video to publish the
+     * The Amazon SNS topic ARN you want Amazon Rekognition Video to publish the
      * completion status of the people detection operation to.
      * </p>
      *
      * @param notificationChannel <p>
-     *            The Amazon SNS topic ARN you want Rekognition Video to publish
-     *            the completion status of the people detection operation to.
+     *            The Amazon SNS topic ARN you want Amazon Rekognition Video to
+     *            publish the completion status of the people detection
+     *            operation to.
      *            </p>
      */
     public void setNotificationChannel(NotificationChannel notificationChannel) {
@@ -245,7 +247,7 @@ public class StartPersonTrackingRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The Amazon SNS topic ARN you want Rekognition Video to publish the
+     * The Amazon SNS topic ARN you want Amazon Rekognition Video to publish the
      * completion status of the people detection operation to.
      * </p>
      * <p>
@@ -253,8 +255,9 @@ public class StartPersonTrackingRequest extends AmazonWebServiceRequest implemen
      * together.
      *
      * @param notificationChannel <p>
-     *            The Amazon SNS topic ARN you want Rekognition Video to publish
-     *            the completion status of the people detection operation to.
+     *            The Amazon SNS topic ARN you want Amazon Rekognition Video to
+     *            publish the completion status of the people detection
+     *            operation to.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

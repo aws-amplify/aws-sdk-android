@@ -49,6 +49,21 @@ public class CancelJobRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
+     * (Optional) If <code>true</code> job executions with status "IN_PROGRESS"
+     * and "QUEUED" are canceled, otherwise only job executions with status
+     * "QUEUED" are canceled. The default is <code>false</code>.
+     * </p>
+     * <p>
+     * Canceling a job which is "IN_PROGRESS", will cause a device which is
+     * executing the job to be unable to update the job execution status. Use
+     * caution and ensure that each device executing a job which is canceled is
+     * able to recover to a valid state.
+     * </p>
+     */
+    private Boolean force;
+
+    /**
+     * <p>
      * The unique identifier you assigned to this job when it was created.
      * </p>
      * <p>
@@ -167,6 +182,134 @@ public class CancelJobRequest extends AmazonWebServiceRequest implements Seriali
     }
 
     /**
+     * <p>
+     * (Optional) If <code>true</code> job executions with status "IN_PROGRESS"
+     * and "QUEUED" are canceled, otherwise only job executions with status
+     * "QUEUED" are canceled. The default is <code>false</code>.
+     * </p>
+     * <p>
+     * Canceling a job which is "IN_PROGRESS", will cause a device which is
+     * executing the job to be unable to update the job execution status. Use
+     * caution and ensure that each device executing a job which is canceled is
+     * able to recover to a valid state.
+     * </p>
+     *
+     * @return <p>
+     *         (Optional) If <code>true</code> job executions with status
+     *         "IN_PROGRESS" and "QUEUED" are canceled, otherwise only job
+     *         executions with status "QUEUED" are canceled. The default is
+     *         <code>false</code>.
+     *         </p>
+     *         <p>
+     *         Canceling a job which is "IN_PROGRESS", will cause a device which
+     *         is executing the job to be unable to update the job execution
+     *         status. Use caution and ensure that each device executing a job
+     *         which is canceled is able to recover to a valid state.
+     *         </p>
+     */
+    public Boolean isForce() {
+        return force;
+    }
+
+    /**
+     * <p>
+     * (Optional) If <code>true</code> job executions with status "IN_PROGRESS"
+     * and "QUEUED" are canceled, otherwise only job executions with status
+     * "QUEUED" are canceled. The default is <code>false</code>.
+     * </p>
+     * <p>
+     * Canceling a job which is "IN_PROGRESS", will cause a device which is
+     * executing the job to be unable to update the job execution status. Use
+     * caution and ensure that each device executing a job which is canceled is
+     * able to recover to a valid state.
+     * </p>
+     *
+     * @return <p>
+     *         (Optional) If <code>true</code> job executions with status
+     *         "IN_PROGRESS" and "QUEUED" are canceled, otherwise only job
+     *         executions with status "QUEUED" are canceled. The default is
+     *         <code>false</code>.
+     *         </p>
+     *         <p>
+     *         Canceling a job which is "IN_PROGRESS", will cause a device which
+     *         is executing the job to be unable to update the job execution
+     *         status. Use caution and ensure that each device executing a job
+     *         which is canceled is able to recover to a valid state.
+     *         </p>
+     */
+    public Boolean getForce() {
+        return force;
+    }
+
+    /**
+     * <p>
+     * (Optional) If <code>true</code> job executions with status "IN_PROGRESS"
+     * and "QUEUED" are canceled, otherwise only job executions with status
+     * "QUEUED" are canceled. The default is <code>false</code>.
+     * </p>
+     * <p>
+     * Canceling a job which is "IN_PROGRESS", will cause a device which is
+     * executing the job to be unable to update the job execution status. Use
+     * caution and ensure that each device executing a job which is canceled is
+     * able to recover to a valid state.
+     * </p>
+     *
+     * @param force <p>
+     *            (Optional) If <code>true</code> job executions with status
+     *            "IN_PROGRESS" and "QUEUED" are canceled, otherwise only job
+     *            executions with status "QUEUED" are canceled. The default is
+     *            <code>false</code>.
+     *            </p>
+     *            <p>
+     *            Canceling a job which is "IN_PROGRESS", will cause a device
+     *            which is executing the job to be unable to update the job
+     *            execution status. Use caution and ensure that each device
+     *            executing a job which is canceled is able to recover to a
+     *            valid state.
+     *            </p>
+     */
+    public void setForce(Boolean force) {
+        this.force = force;
+    }
+
+    /**
+     * <p>
+     * (Optional) If <code>true</code> job executions with status "IN_PROGRESS"
+     * and "QUEUED" are canceled, otherwise only job executions with status
+     * "QUEUED" are canceled. The default is <code>false</code>.
+     * </p>
+     * <p>
+     * Canceling a job which is "IN_PROGRESS", will cause a device which is
+     * executing the job to be unable to update the job execution status. Use
+     * caution and ensure that each device executing a job which is canceled is
+     * able to recover to a valid state.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param force <p>
+     *            (Optional) If <code>true</code> job executions with status
+     *            "IN_PROGRESS" and "QUEUED" are canceled, otherwise only job
+     *            executions with status "QUEUED" are canceled. The default is
+     *            <code>false</code>.
+     *            </p>
+     *            <p>
+     *            Canceling a job which is "IN_PROGRESS", will cause a device
+     *            which is executing the job to be unable to update the job
+     *            execution status. Use caution and ensure that each device
+     *            executing a job which is canceled is able to recover to a
+     *            valid state.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CancelJobRequest withForce(Boolean force) {
+        this.force = force;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -180,7 +323,9 @@ public class CancelJobRequest extends AmazonWebServiceRequest implements Seriali
         if (getJobId() != null)
             sb.append("jobId: " + getJobId() + ",");
         if (getComment() != null)
-            sb.append("comment: " + getComment());
+            sb.append("comment: " + getComment() + ",");
+        if (getForce() != null)
+            sb.append("force: " + getForce());
         sb.append("}");
         return sb.toString();
     }
@@ -192,6 +337,7 @@ public class CancelJobRequest extends AmazonWebServiceRequest implements Seriali
 
         hashCode = prime * hashCode + ((getJobId() == null) ? 0 : getJobId().hashCode());
         hashCode = prime * hashCode + ((getComment() == null) ? 0 : getComment().hashCode());
+        hashCode = prime * hashCode + ((getForce() == null) ? 0 : getForce().hashCode());
         return hashCode;
     }
 
@@ -213,6 +359,10 @@ public class CancelJobRequest extends AmazonWebServiceRequest implements Seriali
         if (other.getComment() == null ^ this.getComment() == null)
             return false;
         if (other.getComment() != null && other.getComment().equals(this.getComment()) == false)
+            return false;
+        if (other.getForce() == null ^ this.getForce() == null)
+            return false;
+        if (other.getForce() != null && other.getForce().equals(this.getForce()) == false)
             return false;
         return true;
     }

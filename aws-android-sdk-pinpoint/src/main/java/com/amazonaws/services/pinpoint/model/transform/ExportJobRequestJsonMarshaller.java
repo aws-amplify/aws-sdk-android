@@ -41,6 +41,11 @@ class ExportJobRequestJsonMarshaller {
             jsonWriter.name("SegmentId");
             jsonWriter.value(segmentId);
         }
+        if (exportJobRequest.getSegmentVersion() != null) {
+            Integer segmentVersion = exportJobRequest.getSegmentVersion();
+            jsonWriter.name("SegmentVersion");
+            jsonWriter.value(segmentVersion);
+        }
         jsonWriter.endObject();
     }
 

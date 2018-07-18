@@ -37,10 +37,7 @@ public class ADMChannelResponse implements Serializable {
     private Boolean enabled;
 
     /**
-     * Indicates whether the channel is configured with ADM credentials. Amazon
-     * Pinpoint uses your credentials to authenticate push notifications with
-     * ADM. Provide your credentials by setting the ClientId and ClientSecret
-     * attributes.
+     * Not used. Retained for backwards compatibility.
      */
     private Boolean hasCredential;
 
@@ -185,65 +182,39 @@ public class ADMChannelResponse implements Serializable {
     }
 
     /**
-     * Indicates whether the channel is configured with ADM credentials. Amazon
-     * Pinpoint uses your credentials to authenticate push notifications with
-     * ADM. Provide your credentials by setting the ClientId and ClientSecret
-     * attributes.
+     * Not used. Retained for backwards compatibility.
      *
-     * @return Indicates whether the channel is configured with ADM credentials.
-     *         Amazon Pinpoint uses your credentials to authenticate push
-     *         notifications with ADM. Provide your credentials by setting the
-     *         ClientId and ClientSecret attributes.
+     * @return Not used. Retained for backwards compatibility.
      */
     public Boolean isHasCredential() {
         return hasCredential;
     }
 
     /**
-     * Indicates whether the channel is configured with ADM credentials. Amazon
-     * Pinpoint uses your credentials to authenticate push notifications with
-     * ADM. Provide your credentials by setting the ClientId and ClientSecret
-     * attributes.
+     * Not used. Retained for backwards compatibility.
      *
-     * @return Indicates whether the channel is configured with ADM credentials.
-     *         Amazon Pinpoint uses your credentials to authenticate push
-     *         notifications with ADM. Provide your credentials by setting the
-     *         ClientId and ClientSecret attributes.
+     * @return Not used. Retained for backwards compatibility.
      */
     public Boolean getHasCredential() {
         return hasCredential;
     }
 
     /**
-     * Indicates whether the channel is configured with ADM credentials. Amazon
-     * Pinpoint uses your credentials to authenticate push notifications with
-     * ADM. Provide your credentials by setting the ClientId and ClientSecret
-     * attributes.
+     * Not used. Retained for backwards compatibility.
      *
-     * @param hasCredential Indicates whether the channel is configured with ADM
-     *            credentials. Amazon Pinpoint uses your credentials to
-     *            authenticate push notifications with ADM. Provide your
-     *            credentials by setting the ClientId and ClientSecret
-     *            attributes.
+     * @param hasCredential Not used. Retained for backwards compatibility.
      */
     public void setHasCredential(Boolean hasCredential) {
         this.hasCredential = hasCredential;
     }
 
     /**
-     * Indicates whether the channel is configured with ADM credentials. Amazon
-     * Pinpoint uses your credentials to authenticate push notifications with
-     * ADM. Provide your credentials by setting the ClientId and ClientSecret
-     * attributes.
+     * Not used. Retained for backwards compatibility.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param hasCredential Indicates whether the channel is configured with ADM
-     *            credentials. Amazon Pinpoint uses your credentials to
-     *            authenticate push notifications with ADM. Provide your
-     *            credentials by setting the ClientId and ClientSecret
-     *            attributes.
+     * @param hasCredential Not used. Retained for backwards compatibility.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

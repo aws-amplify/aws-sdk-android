@@ -25,7 +25,9 @@ import java.io.Serializable;
 public class JobProcessDetails implements Serializable {
     /**
      * <p>
-     * The devices on which the job is executing.
+     * The target devices to which the job execution is being rolled out. This
+     * value will be null after the job execution has finished rolling out to
+     * all the target devices.
      * </p>
      */
     private java.util.List<String> processingTargets;
@@ -83,11 +85,15 @@ public class JobProcessDetails implements Serializable {
 
     /**
      * <p>
-     * The devices on which the job is executing.
+     * The target devices to which the job execution is being rolled out. This
+     * value will be null after the job execution has finished rolling out to
+     * all the target devices.
      * </p>
      *
      * @return <p>
-     *         The devices on which the job is executing.
+     *         The target devices to which the job execution is being rolled
+     *         out. This value will be null after the job execution has finished
+     *         rolling out to all the target devices.
      *         </p>
      */
     public java.util.List<String> getProcessingTargets() {
@@ -96,11 +102,15 @@ public class JobProcessDetails implements Serializable {
 
     /**
      * <p>
-     * The devices on which the job is executing.
+     * The target devices to which the job execution is being rolled out. This
+     * value will be null after the job execution has finished rolling out to
+     * all the target devices.
      * </p>
      *
      * @param processingTargets <p>
-     *            The devices on which the job is executing.
+     *            The target devices to which the job execution is being rolled
+     *            out. This value will be null after the job execution has
+     *            finished rolling out to all the target devices.
      *            </p>
      */
     public void setProcessingTargets(java.util.Collection<String> processingTargets) {
@@ -114,14 +124,18 @@ public class JobProcessDetails implements Serializable {
 
     /**
      * <p>
-     * The devices on which the job is executing.
+     * The target devices to which the job execution is being rolled out. This
+     * value will be null after the job execution has finished rolling out to
+     * all the target devices.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param processingTargets <p>
-     *            The devices on which the job is executing.
+     *            The target devices to which the job execution is being rolled
+     *            out. This value will be null after the job execution has
+     *            finished rolling out to all the target devices.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -138,14 +152,18 @@ public class JobProcessDetails implements Serializable {
 
     /**
      * <p>
-     * The devices on which the job is executing.
+     * The target devices to which the job execution is being rolled out. This
+     * value will be null after the job execution has finished rolling out to
+     * all the target devices.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param processingTargets <p>
-     *            The devices on which the job is executing.
+     *            The target devices to which the job execution is being rolled
+     *            out. This value will be null after the job execution has
+     *            finished rolling out to all the target devices.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

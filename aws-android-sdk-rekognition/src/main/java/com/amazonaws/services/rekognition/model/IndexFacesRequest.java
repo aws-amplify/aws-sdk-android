@@ -36,8 +36,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Later versions of the face detection model index the 100 largest faces in the
  * input image. To determine which version of the model you are using, check the
  * the value of <code>FaceModelVersion</code> in the response from
- * <code>IndexFaces</code>. For more information, see
- * <a>face-detection-model</a>.
+ * <code>IndexFaces</code>.
+ * </p>
+ * <p>
+ * For more information, see Model Versioning in the Amazon Rekognition
+ * Developer Guide.
  * </p>
  * <p>
  * If you provide the optional <code>ExternalImageID</code> for the input image
@@ -59,6 +62,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * provide the same image, specify the same collection, and use the same
  * external ID in the <code>IndexFaces</code> operation, Amazon Rekognition
  * doesn't save duplicate face metadata.
+ * </p>
+ * <p>
+ * For more information, see Adding Faces to a Collection in the Amazon
+ * Rekognition Developer Guide.
  * </p>
  * <p>
  * The input image is passed either as base64-encoded image bytes or as a

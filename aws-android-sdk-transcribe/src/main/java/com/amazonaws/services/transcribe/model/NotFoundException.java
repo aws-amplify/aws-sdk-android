@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * We can't find the requested transcription job or custom vocabulary. Check the
- * name and try your request again.
+ * We can't find the requested resource. Check the name and try your request
+ * again.
  * </p>
  */
 public class NotFoundException extends AmazonServiceException {
