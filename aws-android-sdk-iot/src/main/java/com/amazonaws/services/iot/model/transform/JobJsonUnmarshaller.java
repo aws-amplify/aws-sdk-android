@@ -47,6 +47,9 @@ class JobJsonUnmarshaller implements Unmarshaller<Job, JsonUnmarshallerContext> 
             } else if (name.equals("status")) {
                 job.setStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("forceCanceled")) {
+                job.setForceCanceled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("comment")) {
                 job.setComment(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

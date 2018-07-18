@@ -21,12 +21,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets the person tracking results of a Rekognition Video analysis started by .
+ * Gets the person tracking results of a Amazon Rekognition Video analysis
+ * started by .
  * </p>
  * <p>
  * The person detection operation is started by a call to
  * <code>StartPersonTracking</code> which returns a job identifier (
- * <code>JobId</code>). When the person detection operation finishes,
+ * <code>JobId</code>). When the person detection operation finishes, Amazon
  * Rekognition Video publishes a completion status to the Amazon Simple
  * Notification Service topic registered in the initial call to
  * <code>StartPersonTracking</code>.
@@ -47,7 +48,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>BoundingBox</code>, <code>Confidence</code>, <code>Landmarks</code>,
  * <code>Pose</code>, and <code>Quality</code>). The other facial attributes
  * listed in the <code>Face</code> object of the following response syntax are
- * not returned. For more information, see .
+ * not returned.
+ * </p>
+ * <p>
+ * For more information, see FaceDetail in the Amazon Rekognition Developer
+ * Guide.
  * </p>
  * </note>
  * <p>
@@ -93,7 +98,7 @@ public class GetPersonTrackingRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * If the previous response was incomplete (because there are more persons
-     * to retrieve), Rekognition Video returns a pagination token in the
+     * to retrieve), Amazon Rekognition Video returns a pagination token in the
      * response. You can use this pagination token to retrieve the next set of
      * persons.
      * </p>
@@ -255,7 +260,7 @@ public class GetPersonTrackingRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * If the previous response was incomplete (because there are more persons
-     * to retrieve), Rekognition Video returns a pagination token in the
+     * to retrieve), Amazon Rekognition Video returns a pagination token in the
      * response. You can use this pagination token to retrieve the next set of
      * persons.
      * </p>
@@ -265,9 +270,9 @@ public class GetPersonTrackingRequest extends AmazonWebServiceRequest implements
      *
      * @return <p>
      *         If the previous response was incomplete (because there are more
-     *         persons to retrieve), Rekognition Video returns a pagination
-     *         token in the response. You can use this pagination token to
-     *         retrieve the next set of persons.
+     *         persons to retrieve), Amazon Rekognition Video returns a
+     *         pagination token in the response. You can use this pagination
+     *         token to retrieve the next set of persons.
      *         </p>
      */
     public String getNextToken() {
@@ -277,7 +282,7 @@ public class GetPersonTrackingRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * If the previous response was incomplete (because there are more persons
-     * to retrieve), Rekognition Video returns a pagination token in the
+     * to retrieve), Amazon Rekognition Video returns a pagination token in the
      * response. You can use this pagination token to retrieve the next set of
      * persons.
      * </p>
@@ -287,7 +292,7 @@ public class GetPersonTrackingRequest extends AmazonWebServiceRequest implements
      *
      * @param nextToken <p>
      *            If the previous response was incomplete (because there are
-     *            more persons to retrieve), Rekognition Video returns a
+     *            more persons to retrieve), Amazon Rekognition Video returns a
      *            pagination token in the response. You can use this pagination
      *            token to retrieve the next set of persons.
      *            </p>
@@ -299,7 +304,7 @@ public class GetPersonTrackingRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * If the previous response was incomplete (because there are more persons
-     * to retrieve), Rekognition Video returns a pagination token in the
+     * to retrieve), Amazon Rekognition Video returns a pagination token in the
      * response. You can use this pagination token to retrieve the next set of
      * persons.
      * </p>
@@ -312,7 +317,7 @@ public class GetPersonTrackingRequest extends AmazonWebServiceRequest implements
      *
      * @param nextToken <p>
      *            If the previous response was incomplete (because there are
-     *            more persons to retrieve), Rekognition Video returns a
+     *            more persons to retrieve), Amazon Rekognition Video returns a
      *            pagination token in the response. You can use this pagination
      *            token to retrieve the next set of persons.
      *            </p>

@@ -26,7 +26,9 @@ public enum JobStatus {
     SUBMITTED("SUBMITTED"),
     IN_PROGRESS("IN_PROGRESS"),
     COMPLETED("COMPLETED"),
-    FAILED("FAILED");
+    FAILED("FAILED"),
+    STOP_REQUESTED("STOP_REQUESTED"),
+    STOPPED("STOPPED");
 
     private String value;
 
@@ -46,6 +48,8 @@ public enum JobStatus {
         enumMap.put("IN_PROGRESS", IN_PROGRESS);
         enumMap.put("COMPLETED", COMPLETED);
         enumMap.put("FAILED", FAILED);
+        enumMap.put("STOP_REQUESTED", STOP_REQUESTED);
+        enumMap.put("STOPPED", STOPPED);
     }
 
     /**

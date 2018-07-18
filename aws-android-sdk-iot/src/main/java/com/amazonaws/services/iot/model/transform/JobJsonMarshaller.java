@@ -45,6 +45,11 @@ class JobJsonMarshaller {
             jsonWriter.name("status");
             jsonWriter.value(status);
         }
+        if (job.getForceCanceled() != null) {
+            Boolean forceCanceled = job.getForceCanceled();
+            jsonWriter.name("forceCanceled");
+            jsonWriter.value(forceCanceled);
+        }
         if (job.getComment() != null) {
             String comment = job.getComment();
             jsonWriter.name("comment");

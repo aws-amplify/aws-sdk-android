@@ -41,6 +41,10 @@ class WriteApplicationSettingsRequestJsonUnmarshaller implements
                 writeApplicationSettingsRequest.setCampaignHook(CampaignHookJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("CloudWatchMetricsEnabled")) {
+                writeApplicationSettingsRequest.setCloudWatchMetricsEnabled(BooleanJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Limits")) {
                 writeApplicationSettingsRequest.setLimits(CampaignLimitsJsonUnmarshaller
                         .getInstance()

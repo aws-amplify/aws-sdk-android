@@ -17,6 +17,9 @@ package com.amazonaws.services.pinpoint.model;
 
 import java.io.Serializable;
 
+/**
+ * Export job request.
+ */
 public class ExportJobRequest implements Serializable {
     /**
      * The Amazon Resource Name (ARN) of an IAM role that grants Amazon Pinpoint
@@ -33,10 +36,15 @@ public class ExportJobRequest implements Serializable {
     private String s3UrlPrefix;
 
     /**
-     * The ID of the segment to export endpoints from. If not present all
-     * endpoints will be exported.
+     * The ID of the segment to export endpoints from. If not present, Amazon
+     * Pinpoint exports all of the endpoints that belong to the application.
      */
     private String segmentId;
+
+    /**
+     * The version of the segment to export if specified.
+     */
+    private Integer segmentVersion;
 
     /**
      * The Amazon Resource Name (ARN) of an IAM role that grants Amazon Pinpoint
@@ -135,41 +143,77 @@ public class ExportJobRequest implements Serializable {
     }
 
     /**
-     * The ID of the segment to export endpoints from. If not present all
-     * endpoints will be exported.
+     * The ID of the segment to export endpoints from. If not present, Amazon
+     * Pinpoint exports all of the endpoints that belong to the application.
      *
-     * @return The ID of the segment to export endpoints from. If not present
-     *         all endpoints will be exported.
+     * @return The ID of the segment to export endpoints from. If not present,
+     *         Amazon Pinpoint exports all of the endpoints that belong to the
+     *         application.
      */
     public String getSegmentId() {
         return segmentId;
     }
 
     /**
-     * The ID of the segment to export endpoints from. If not present all
-     * endpoints will be exported.
+     * The ID of the segment to export endpoints from. If not present, Amazon
+     * Pinpoint exports all of the endpoints that belong to the application.
      *
      * @param segmentId The ID of the segment to export endpoints from. If not
-     *            present all endpoints will be exported.
+     *            present, Amazon Pinpoint exports all of the endpoints that
+     *            belong to the application.
      */
     public void setSegmentId(String segmentId) {
         this.segmentId = segmentId;
     }
 
     /**
-     * The ID of the segment to export endpoints from. If not present all
-     * endpoints will be exported.
+     * The ID of the segment to export endpoints from. If not present, Amazon
+     * Pinpoint exports all of the endpoints that belong to the application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param segmentId The ID of the segment to export endpoints from. If not
-     *            present all endpoints will be exported.
+     *            present, Amazon Pinpoint exports all of the endpoints that
+     *            belong to the application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public ExportJobRequest withSegmentId(String segmentId) {
         this.segmentId = segmentId;
+        return this;
+    }
+
+    /**
+     * The version of the segment to export if specified.
+     *
+     * @return The version of the segment to export if specified.
+     */
+    public Integer getSegmentVersion() {
+        return segmentVersion;
+    }
+
+    /**
+     * The version of the segment to export if specified.
+     *
+     * @param segmentVersion The version of the segment to export if specified.
+     */
+    public void setSegmentVersion(Integer segmentVersion) {
+        this.segmentVersion = segmentVersion;
+    }
+
+    /**
+     * The version of the segment to export if specified.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param segmentVersion The version of the segment to export if specified.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ExportJobRequest withSegmentVersion(Integer segmentVersion) {
+        this.segmentVersion = segmentVersion;
         return this;
     }
 
@@ -189,7 +233,9 @@ public class ExportJobRequest implements Serializable {
         if (getS3UrlPrefix() != null)
             sb.append("S3UrlPrefix: " + getS3UrlPrefix() + ",");
         if (getSegmentId() != null)
-            sb.append("SegmentId: " + getSegmentId());
+            sb.append("SegmentId: " + getSegmentId() + ",");
+        if (getSegmentVersion() != null)
+            sb.append("SegmentVersion: " + getSegmentVersion());
         sb.append("}");
         return sb.toString();
     }
@@ -203,6 +249,8 @@ public class ExportJobRequest implements Serializable {
         hashCode = prime * hashCode
                 + ((getS3UrlPrefix() == null) ? 0 : getS3UrlPrefix().hashCode());
         hashCode = prime * hashCode + ((getSegmentId() == null) ? 0 : getSegmentId().hashCode());
+        hashCode = prime * hashCode
+                + ((getSegmentVersion() == null) ? 0 : getSegmentVersion().hashCode());
         return hashCode;
     }
 
@@ -230,6 +278,11 @@ public class ExportJobRequest implements Serializable {
             return false;
         if (other.getSegmentId() != null
                 && other.getSegmentId().equals(this.getSegmentId()) == false)
+            return false;
+        if (other.getSegmentVersion() == null ^ this.getSegmentVersion() == null)
+            return false;
+        if (other.getSegmentVersion() != null
+                && other.getSegmentVersion().equals(this.getSegmentVersion()) == false)
             return false;
         return true;
     }

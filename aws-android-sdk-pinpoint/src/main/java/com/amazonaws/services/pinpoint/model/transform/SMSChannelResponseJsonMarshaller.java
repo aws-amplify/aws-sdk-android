@@ -71,6 +71,12 @@ class SMSChannelResponseJsonMarshaller {
             jsonWriter.name("Platform");
             jsonWriter.value(platform);
         }
+        if (sMSChannelResponse.getPromotionalMessagesPerSecond() != null) {
+            Integer promotionalMessagesPerSecond = sMSChannelResponse
+                    .getPromotionalMessagesPerSecond();
+            jsonWriter.name("PromotionalMessagesPerSecond");
+            jsonWriter.value(promotionalMessagesPerSecond);
+        }
         if (sMSChannelResponse.getSenderId() != null) {
             String senderId = sMSChannelResponse.getSenderId();
             jsonWriter.name("SenderId");
@@ -80,6 +86,12 @@ class SMSChannelResponseJsonMarshaller {
             String shortCode = sMSChannelResponse.getShortCode();
             jsonWriter.name("ShortCode");
             jsonWriter.value(shortCode);
+        }
+        if (sMSChannelResponse.getTransactionalMessagesPerSecond() != null) {
+            Integer transactionalMessagesPerSecond = sMSChannelResponse
+                    .getTransactionalMessagesPerSecond();
+            jsonWriter.name("TransactionalMessagesPerSecond");
+            jsonWriter.value(transactionalMessagesPerSecond);
         }
         if (sMSChannelResponse.getVersion() != null) {
             Integer version = sMSChannelResponse.getVersion();

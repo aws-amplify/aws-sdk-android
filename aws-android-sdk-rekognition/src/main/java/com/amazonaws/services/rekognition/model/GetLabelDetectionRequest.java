@@ -21,7 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets the label detection results of a Rekognition Video analysis started by .
+ * Gets the label detection results of a Amazon Rekognition Video analysis
+ * started by .
  * </p>
  * <p>
  * The label detection operation is started by a call to which returns a job
@@ -84,8 +85,9 @@ public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * If the previous response was incomplete (because there are more labels to
-     * retrieve), Rekognition Video returns a pagination token in the response.
-     * You can use this pagination token to retrieve the next set of labels.
+     * retrieve), Amazon Rekognition Video returns a pagination token in the
+     * response. You can use this pagination token to retrieve the next set of
+     * labels.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -248,8 +250,9 @@ public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * If the previous response was incomplete (because there are more labels to
-     * retrieve), Rekognition Video returns a pagination token in the response.
-     * You can use this pagination token to retrieve the next set of labels.
+     * retrieve), Amazon Rekognition Video returns a pagination token in the
+     * response. You can use this pagination token to retrieve the next set of
+     * labels.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -257,9 +260,9 @@ public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements
      *
      * @return <p>
      *         If the previous response was incomplete (because there are more
-     *         labels to retrieve), Rekognition Video returns a pagination token
-     *         in the response. You can use this pagination token to retrieve
-     *         the next set of labels.
+     *         labels to retrieve), Amazon Rekognition Video returns a
+     *         pagination token in the response. You can use this pagination
+     *         token to retrieve the next set of labels.
      *         </p>
      */
     public String getNextToken() {
@@ -269,8 +272,9 @@ public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * If the previous response was incomplete (because there are more labels to
-     * retrieve), Rekognition Video returns a pagination token in the response.
-     * You can use this pagination token to retrieve the next set of labels.
+     * retrieve), Amazon Rekognition Video returns a pagination token in the
+     * response. You can use this pagination token to retrieve the next set of
+     * labels.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -278,7 +282,7 @@ public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements
      *
      * @param nextToken <p>
      *            If the previous response was incomplete (because there are
-     *            more labels to retrieve), Rekognition Video returns a
+     *            more labels to retrieve), Amazon Rekognition Video returns a
      *            pagination token in the response. You can use this pagination
      *            token to retrieve the next set of labels.
      *            </p>
@@ -290,8 +294,9 @@ public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * If the previous response was incomplete (because there are more labels to
-     * retrieve), Rekognition Video returns a pagination token in the response.
-     * You can use this pagination token to retrieve the next set of labels.
+     * retrieve), Amazon Rekognition Video returns a pagination token in the
+     * response. You can use this pagination token to retrieve the next set of
+     * labels.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -302,7 +307,7 @@ public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements
      *
      * @param nextToken <p>
      *            If the previous response was incomplete (because there are
-     *            more labels to retrieve), Rekognition Video returns a
+     *            more labels to retrieve), Amazon Rekognition Video returns a
      *            pagination token in the response. You can use this pagination
      *            token to retrieve the next set of labels.
      *            </p>

@@ -31,6 +31,11 @@ public class MessageResult implements Serializable {
     private String deliveryStatus;
 
     /**
+     * Unique message identifier associated with the message that was sent.
+     */
+    private String messageId;
+
+    /**
      * Downstream service status code.
      */
     private Integer statusCode;
@@ -124,6 +129,42 @@ public class MessageResult implements Serializable {
      */
     public MessageResult withDeliveryStatus(DeliveryStatus deliveryStatus) {
         this.deliveryStatus = deliveryStatus.toString();
+        return this;
+    }
+
+    /**
+     * Unique message identifier associated with the message that was sent.
+     *
+     * @return Unique message identifier associated with the message that was
+     *         sent.
+     */
+    public String getMessageId() {
+        return messageId;
+    }
+
+    /**
+     * Unique message identifier associated with the message that was sent.
+     *
+     * @param messageId Unique message identifier associated with the message
+     *            that was sent.
+     */
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
+    }
+
+    /**
+     * Unique message identifier associated with the message that was sent.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param messageId Unique message identifier associated with the message
+     *            that was sent.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public MessageResult withMessageId(String messageId) {
+        this.messageId = messageId;
         return this;
     }
 
@@ -241,6 +282,8 @@ public class MessageResult implements Serializable {
         sb.append("{");
         if (getDeliveryStatus() != null)
             sb.append("DeliveryStatus: " + getDeliveryStatus() + ",");
+        if (getMessageId() != null)
+            sb.append("MessageId: " + getMessageId() + ",");
         if (getStatusCode() != null)
             sb.append("StatusCode: " + getStatusCode() + ",");
         if (getStatusMessage() != null)
@@ -258,6 +301,7 @@ public class MessageResult implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getDeliveryStatus() == null) ? 0 : getDeliveryStatus().hashCode());
+        hashCode = prime * hashCode + ((getMessageId() == null) ? 0 : getMessageId().hashCode());
         hashCode = prime * hashCode + ((getStatusCode() == null) ? 0 : getStatusCode().hashCode());
         hashCode = prime * hashCode
                 + ((getStatusMessage() == null) ? 0 : getStatusMessage().hashCode());
@@ -281,6 +325,11 @@ public class MessageResult implements Serializable {
             return false;
         if (other.getDeliveryStatus() != null
                 && other.getDeliveryStatus().equals(this.getDeliveryStatus()) == false)
+            return false;
+        if (other.getMessageId() == null ^ this.getMessageId() == null)
+            return false;
+        if (other.getMessageId() != null
+                && other.getMessageId().equals(this.getMessageId()) == false)
             return false;
         if (other.getStatusCode() == null ^ this.getStatusCode() == null)
             return false;

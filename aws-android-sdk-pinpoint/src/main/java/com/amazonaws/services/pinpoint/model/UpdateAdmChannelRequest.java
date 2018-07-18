@@ -20,7 +20,7 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Update an ADM channel
+ * Update an ADM channel.
  */
 public class UpdateAdmChannelRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -29,7 +29,7 @@ public class UpdateAdmChannelRequest extends AmazonWebServiceRequest implements 
     private ADMChannelRequest aDMChannelRequest;
 
     /**
-     * The new value for the applicationId property for this object.
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
@@ -67,32 +67,30 @@ public class UpdateAdmChannelRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
-     * Returns the value of the applicationId property for this object.
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return The value of the applicationId property for this object.
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * Sets the value of applicationId
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId The new value for the applicationId property for
-     *            this object.
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * Sets the value of the applicationId property for this object.
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The new value for the applicationId property for
-     *            this object.
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

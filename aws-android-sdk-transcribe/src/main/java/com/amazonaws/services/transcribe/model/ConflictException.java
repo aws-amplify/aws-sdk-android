@@ -19,8 +19,13 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The <code>JobName</code> field is a duplicate of a previously entered job
- * name. Resend your request with a different name.
+ * When you are using the <code>StartTranscriptionJob</code> operation, the
+ * <code>JobName</code> field is a duplicate of a previously entered job name.
+ * Resend your request with a different name.
+ * </p>
+ * <p>
+ * When you are using the <code>UpdateVocabulary</code> operation, there are two
+ * jobs running at the same time. Resend the second request later.
  * </p>
  */
 public class ConflictException extends AmazonServiceException {

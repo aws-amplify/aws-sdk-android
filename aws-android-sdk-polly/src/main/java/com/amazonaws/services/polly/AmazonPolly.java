@@ -192,6 +192,33 @@ public interface AmazonPolly {
 
     /**
      * <p>
+     * Retrieves a specific SpeechSynthesisTask object based on its TaskID. This
+     * object contains information about the given speech synthesis task,
+     * including the status of the task, and a link to the S3 bucket containing
+     * the output of the task.
+     * </p>
+     * 
+     * @param getSpeechSynthesisTaskRequest
+     * @return getSpeechSynthesisTaskResult The response from the
+     *         GetSpeechSynthesisTask service method, as returned by Amazon
+     *         Polly.
+     * @throws InvalidTaskIdException
+     * @throws ServiceFailureException
+     * @throws SynthesisTaskNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Polly indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    GetSpeechSynthesisTaskResult getSpeechSynthesisTask(
+            GetSpeechSynthesisTaskRequest getSpeechSynthesisTaskRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Returns a list of pronunciation lexicons stored in an AWS Region. For
      * more information, see <a href=
      * "http://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html"
@@ -212,6 +239,31 @@ public interface AmazonPolly {
      *             request, or a server side issue.
      */
     ListLexiconsResult listLexicons(ListLexiconsRequest listLexiconsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Returns a list of SpeechSynthesisTask objects ordered by their creation
+     * date. This operation can filter the tasks by their status, for example,
+     * allowing users to list only tasks that are completed.
+     * </p>
+     * 
+     * @param listSpeechSynthesisTasksRequest
+     * @return listSpeechSynthesisTasksResult The response from the
+     *         ListSpeechSynthesisTasks service method, as returned by Amazon
+     *         Polly.
+     * @throws InvalidNextTokenException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Polly indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListSpeechSynthesisTasksResult listSpeechSynthesisTasks(
+            ListSpeechSynthesisTasksRequest listSpeechSynthesisTasksRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -248,6 +300,44 @@ public interface AmazonPolly {
      */
     PutLexiconResult putLexicon(PutLexiconRequest putLexiconRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Allows the creation of an asynchronous synthesis task, by starting a new
+     * <code>SpeechSynthesisTask</code>. This operation requires all the
+     * standard information needed for speech synthesis, plus the name of an
+     * Amazon S3 bucket for the service to store the output of the synthesis
+     * task and two optional parameters (OutputS3KeyPrefix and SnsTopicArn).
+     * Once the synthesis task is created, this operation will return a
+     * SpeechSynthesisTask object, which will include an identifier of this task
+     * as well as the current status.
+     * </p>
+     * 
+     * @param startSpeechSynthesisTaskRequest
+     * @return startSpeechSynthesisTaskResult The response from the
+     *         StartSpeechSynthesisTask service method, as returned by Amazon
+     *         Polly.
+     * @throws TextLengthExceededException
+     * @throws InvalidS3BucketException
+     * @throws InvalidS3KeyException
+     * @throws InvalidSampleRateException
+     * @throws InvalidSnsTopicArnException
+     * @throws InvalidSsmlException
+     * @throws LexiconNotFoundException
+     * @throws ServiceFailureException
+     * @throws MarksNotSupportedForFormatException
+     * @throws SsmlMarksNotSupportedForTextTypeException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Polly indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StartSpeechSynthesisTaskResult startSpeechSynthesisTask(
+            StartSpeechSynthesisTaskRequest startSpeechSynthesisTaskRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>

@@ -42,6 +42,11 @@ public class SegmentDimensions implements Serializable {
     private SegmentLocation location;
 
     /**
+     * Custom segment metrics.
+     */
+    private java.util.Map<String, MetricDimension> metrics;
+
+    /**
      * Custom segment user attributes.
      */
     private java.util.Map<String, AttributeDimension> userAttributes;
@@ -214,6 +219,73 @@ public class SegmentDimensions implements Serializable {
     }
 
     /**
+     * Custom segment metrics.
+     *
+     * @return Custom segment metrics.
+     */
+    public java.util.Map<String, MetricDimension> getMetrics() {
+        return metrics;
+    }
+
+    /**
+     * Custom segment metrics.
+     *
+     * @param metrics Custom segment metrics.
+     */
+    public void setMetrics(java.util.Map<String, MetricDimension> metrics) {
+        this.metrics = metrics;
+    }
+
+    /**
+     * Custom segment metrics.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param metrics Custom segment metrics.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SegmentDimensions withMetrics(java.util.Map<String, MetricDimension> metrics) {
+        this.metrics = metrics;
+        return this;
+    }
+
+    /**
+     * Custom segment metrics.
+     * <p>
+     * The method adds a new key-value pair into Metrics parameter, and returns
+     * a reference to this object so that method calls can be chained together.
+     *
+     * @param key The key of the entry to be added into Metrics.
+     * @param value The corresponding value of the entry to be added into
+     *            Metrics.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SegmentDimensions addMetricsEntry(String key, MetricDimension value) {
+        if (null == this.metrics) {
+            this.metrics = new java.util.HashMap<String, MetricDimension>();
+        }
+        if (this.metrics.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.metrics.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into Metrics.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public SegmentDimensions clearMetricsEntries() {
+        this.metrics = null;
+        return this;
+    }
+
+    /**
      * Custom segment user attributes.
      *
      * @return Custom segment user attributes.
@@ -301,6 +373,8 @@ public class SegmentDimensions implements Serializable {
             sb.append("Demographic: " + getDemographic() + ",");
         if (getLocation() != null)
             sb.append("Location: " + getLocation() + ",");
+        if (getMetrics() != null)
+            sb.append("Metrics: " + getMetrics() + ",");
         if (getUserAttributes() != null)
             sb.append("UserAttributes: " + getUserAttributes());
         sb.append("}");
@@ -317,6 +391,7 @@ public class SegmentDimensions implements Serializable {
         hashCode = prime * hashCode
                 + ((getDemographic() == null) ? 0 : getDemographic().hashCode());
         hashCode = prime * hashCode + ((getLocation() == null) ? 0 : getLocation().hashCode());
+        hashCode = prime * hashCode + ((getMetrics() == null) ? 0 : getMetrics().hashCode());
         hashCode = prime * hashCode
                 + ((getUserAttributes() == null) ? 0 : getUserAttributes().hashCode());
         return hashCode;
@@ -350,6 +425,10 @@ public class SegmentDimensions implements Serializable {
         if (other.getLocation() == null ^ this.getLocation() == null)
             return false;
         if (other.getLocation() != null && other.getLocation().equals(this.getLocation()) == false)
+            return false;
+        if (other.getMetrics() == null ^ this.getMetrics() == null)
+            return false;
+        if (other.getMetrics() != null && other.getMetrics().equals(this.getMetrics()) == false)
             return false;
         if (other.getUserAttributes() == null ^ this.getUserAttributes() == null)
             return false;

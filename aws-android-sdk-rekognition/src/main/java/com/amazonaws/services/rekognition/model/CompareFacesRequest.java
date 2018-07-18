@@ -76,7 +76,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </note>
  * <p>
- * For an example, see <a>faces-compare-images</a>.
+ * For an example, see Comparing Faces in Images in the Amazon Rekognition
+ * Developer Guide.
  * </p>
  * <p>
  * This operation requires permissions to perform the

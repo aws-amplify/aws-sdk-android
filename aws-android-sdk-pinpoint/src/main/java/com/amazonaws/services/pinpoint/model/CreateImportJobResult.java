@@ -19,37 +19,35 @@ import java.io.Serializable;
 
 public class CreateImportJobResult implements Serializable {
     /**
-     * The new value for the importJobResponse property for this object.
+     * Import job response.
      */
     private ImportJobResponse importJobResponse;
 
     /**
-     * Returns the value of the importJobResponse property for this object.
+     * Import job response.
      *
-     * @return The value of the importJobResponse property for this object.
+     * @return Import job response.
      */
     public ImportJobResponse getImportJobResponse() {
         return importJobResponse;
     }
 
     /**
-     * Sets the value of importJobResponse
+     * Import job response.
      *
-     * @param importJobResponse The new value for the importJobResponse property
-     *            for this object.
+     * @param importJobResponse Import job response.
      */
     public void setImportJobResponse(ImportJobResponse importJobResponse) {
         this.importJobResponse = importJobResponse;
     }
 
     /**
-     * Sets the value of the importJobResponse property for this object.
+     * Import job response.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param importJobResponse The new value for the importJobResponse property
-     *            for this object.
+     * @param importJobResponse Import job response.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

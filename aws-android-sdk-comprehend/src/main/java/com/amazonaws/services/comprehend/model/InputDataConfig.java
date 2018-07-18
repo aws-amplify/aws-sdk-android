@@ -38,7 +38,7 @@ public class InputDataConfig implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 1024<br/>
-     * <b>Pattern: </b>s3://([^/]+)(/.*)?<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
      */
     private String s3Uri;
 
@@ -83,7 +83,7 @@ public class InputDataConfig implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 1024<br/>
-     * <b>Pattern: </b>s3://([^/]+)(/.*)?<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
      *
      * @return <p>
      *         The Amazon S3 URI for the input data. The URI must be in same
@@ -118,7 +118,7 @@ public class InputDataConfig implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 1024<br/>
-     * <b>Pattern: </b>s3://([^/]+)(/.*)?<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
      *
      * @param s3Uri <p>
      *            The Amazon S3 URI for the input data. The URI must be in same
@@ -156,7 +156,7 @@ public class InputDataConfig implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 1024<br/>
-     * <b>Pattern: </b>s3://([^/]+)(/.*)?<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
      *
      * @param s3Uri <p>
      *            The Amazon S3 URI for the input data. The URI must be in same

@@ -62,6 +62,9 @@ class MessageJsonUnmarshaller implements Unmarshaller<Message, JsonUnmarshallerC
             } else if (name.equals("SilentPush")) {
                 message.setSilentPush(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("TimeToLive")) {
+                message.setTimeToLive(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Title")) {
                 message.setTitle(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -20,11 +20,18 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Send a batch of messages
+ * Use this resource to send a direct message, which is a one time message that
+ * you send to a limited audience without creating a campaign. You can send the
+ * message to up to 100 recipients. You cannot use the message to engage a
+ * segment. When you send the message, Amazon Pinpoint delivers it immediately,
+ * and you cannot schedule the delivery. To engage a user segment, and to
+ * schedule the message delivery, create a campaign instead of sending a direct
+ * message. You can send a direct message as a push notification to your mobile
+ * app or as an SMS message to SMS-enabled devices.
  */
 public class SendMessagesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the applicationId property for this object.
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
@@ -34,32 +41,30 @@ public class SendMessagesRequest extends AmazonWebServiceRequest implements Seri
     private MessageRequest messageRequest;
 
     /**
-     * Returns the value of the applicationId property for this object.
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return The value of the applicationId property for this object.
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * Sets the value of applicationId
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId The new value for the applicationId property for
-     *            this object.
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * Sets the value of the applicationId property for this object.
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The new value for the applicationId property for
-     *            this object.
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

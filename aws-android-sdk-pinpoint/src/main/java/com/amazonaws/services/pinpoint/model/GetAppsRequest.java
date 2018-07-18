@@ -24,40 +24,43 @@ import com.amazonaws.AmazonWebServiceRequest;
  */
 public class GetAppsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the pageSize property for this object.
+     * The number of entries you want on each page in the response.
      */
     private String pageSize;
 
     /**
-     * The new value for the token property for this object.
+     * The NextToken string returned on a previous page that you use to get the
+     * next page of results in a paginated response.
      */
     private String token;
 
     /**
-     * Returns the value of the pageSize property for this object.
+     * The number of entries you want on each page in the response.
      *
-     * @return The value of the pageSize property for this object.
+     * @return The number of entries you want on each page in the response.
      */
     public String getPageSize() {
         return pageSize;
     }
 
     /**
-     * Sets the value of pageSize
+     * The number of entries you want on each page in the response.
      *
-     * @param pageSize The new value for the pageSize property for this object.
+     * @param pageSize The number of entries you want on each page in the
+     *            response.
      */
     public void setPageSize(String pageSize) {
         this.pageSize = pageSize;
     }
 
     /**
-     * Sets the value of the pageSize property for this object.
+     * The number of entries you want on each page in the response.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param pageSize The new value for the pageSize property for this object.
+     * @param pageSize The number of entries you want on each page in the
+     *            response.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -67,30 +70,36 @@ public class GetAppsRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
-     * Returns the value of the token property for this object.
+     * The NextToken string returned on a previous page that you use to get the
+     * next page of results in a paginated response.
      *
-     * @return The value of the token property for this object.
+     * @return The NextToken string returned on a previous page that you use to
+     *         get the next page of results in a paginated response.
      */
     public String getToken() {
         return token;
     }
 
     /**
-     * Sets the value of token
+     * The NextToken string returned on a previous page that you use to get the
+     * next page of results in a paginated response.
      *
-     * @param token The new value for the token property for this object.
+     * @param token The NextToken string returned on a previous page that you
+     *            use to get the next page of results in a paginated response.
      */
     public void setToken(String token) {
         this.token = token;
     }
 
     /**
-     * Sets the value of the token property for this object.
+     * The NextToken string returned on a previous page that you use to get the
+     * next page of results in a paginated response.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param token The new value for the token property for this object.
+     * @param token The NextToken string returned on a previous page that you
+     *            use to get the next page of results in a paginated response.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

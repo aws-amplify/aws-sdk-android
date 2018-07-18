@@ -78,9 +78,7 @@ public class EndpointResponse implements Serializable {
     private String effectiveDate;
 
     /**
-     * The endpoint status. Can be either ACTIVE or INACTIVE. Will be set to
-     * INACTIVE if a delivery fails. Will be set to ACTIVE if the address is
-     * updated.
+     * Unused.
      */
     private String endpointStatus;
 
@@ -570,42 +568,30 @@ public class EndpointResponse implements Serializable {
     }
 
     /**
-     * The endpoint status. Can be either ACTIVE or INACTIVE. Will be set to
-     * INACTIVE if a delivery fails. Will be set to ACTIVE if the address is
-     * updated.
+     * Unused.
      *
-     * @return The endpoint status. Can be either ACTIVE or INACTIVE. Will be
-     *         set to INACTIVE if a delivery fails. Will be set to ACTIVE if the
-     *         address is updated.
+     * @return Unused.
      */
     public String getEndpointStatus() {
         return endpointStatus;
     }
 
     /**
-     * The endpoint status. Can be either ACTIVE or INACTIVE. Will be set to
-     * INACTIVE if a delivery fails. Will be set to ACTIVE if the address is
-     * updated.
+     * Unused.
      *
-     * @param endpointStatus The endpoint status. Can be either ACTIVE or
-     *            INACTIVE. Will be set to INACTIVE if a delivery fails. Will be
-     *            set to ACTIVE if the address is updated.
+     * @param endpointStatus Unused.
      */
     public void setEndpointStatus(String endpointStatus) {
         this.endpointStatus = endpointStatus;
     }
 
     /**
-     * The endpoint status. Can be either ACTIVE or INACTIVE. Will be set to
-     * INACTIVE if a delivery fails. Will be set to ACTIVE if the address is
-     * updated.
+     * Unused.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endpointStatus The endpoint status. Can be either ACTIVE or
-     *            INACTIVE. Will be set to INACTIVE if a delivery fails. Will be
-     *            set to ACTIVE if the address is updated.
+     * @param endpointStatus Unused.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

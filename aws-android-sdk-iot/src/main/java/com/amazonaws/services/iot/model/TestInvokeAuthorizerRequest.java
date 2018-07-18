@@ -21,7 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Invoke the specified custom authorizer for testing purposes.
+ * Tests a custom authorization behavior by invoking a specified custom
+ * authorizer. Use this to test and debug the custom authorization behavior of
+ * devices that connect to the AWS IoT device gateway.
  * </p>
  */
 public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest implements Serializable {

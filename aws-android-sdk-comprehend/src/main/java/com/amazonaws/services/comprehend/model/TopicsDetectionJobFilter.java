@@ -40,7 +40,8 @@ public class TopicsDetectionJobFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED
+     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED,
+     * STOP_REQUESTED, STOPPED
      */
     private String jobStatus;
 
@@ -114,7 +115,8 @@ public class TopicsDetectionJobFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED
+     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED,
+     * STOP_REQUESTED, STOPPED
      *
      * @return <p>
      *         Filters the list of topic detection jobs based on job status.
@@ -133,7 +135,8 @@ public class TopicsDetectionJobFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED
+     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED,
+     * STOP_REQUESTED, STOPPED
      *
      * @param jobStatus <p>
      *            Filters the list of topic detection jobs based on job status.
@@ -155,7 +158,8 @@ public class TopicsDetectionJobFilter implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED
+     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED,
+     * STOP_REQUESTED, STOPPED
      *
      * @param jobStatus <p>
      *            Filters the list of topic detection jobs based on job status.
@@ -177,7 +181,8 @@ public class TopicsDetectionJobFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED
+     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED,
+     * STOP_REQUESTED, STOPPED
      *
      * @param jobStatus <p>
      *            Filters the list of topic detection jobs based on job status.
@@ -199,7 +204,8 @@ public class TopicsDetectionJobFilter implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED
+     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED,
+     * STOP_REQUESTED, STOPPED
      *
      * @param jobStatus <p>
      *            Filters the list of topic detection jobs based on job status.

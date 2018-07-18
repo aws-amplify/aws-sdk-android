@@ -24,13 +24,18 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Detects instances of real-world entities within an image (JPEG or PNG)
  * provided as input. This includes objects like flower, tree, and table; events
  * like wedding, graduation, and birthday party; and concepts like landscape,
- * evening, and nature. For an example, see <a>images-s3</a>.
+ * evening, and nature.
+ * </p>
+ * <p>
+ * For an example, see Analyzing Images Stored in an Amazon S3 Bucket in the
+ * Amazon Rekognition Developer Guide.
  * </p>
  * <note>
  * <p>
  * <code>DetectLabels</code> does not support the detection of activities.
  * However, activity detection is supported for label detection in videos. For
- * more information, see .
+ * more information, see StartLabelDetection in the Amazon Rekognition Developer
+ * Guide.
  * </p>
  * </note>
  * <p>

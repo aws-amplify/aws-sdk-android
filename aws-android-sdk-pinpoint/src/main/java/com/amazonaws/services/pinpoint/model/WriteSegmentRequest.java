@@ -32,6 +32,12 @@ public class WriteSegmentRequest implements Serializable {
     private String name;
 
     /**
+     * Segment definition groups. We currently only support one. If specified
+     * Dimensions must be empty.
+     */
+    private SegmentGroupList segmentGroups;
+
+    /**
      * The segment dimensions attributes.
      *
      * @return The segment dimensions attributes.
@@ -98,6 +104,45 @@ public class WriteSegmentRequest implements Serializable {
     }
 
     /**
+     * Segment definition groups. We currently only support one. If specified
+     * Dimensions must be empty.
+     *
+     * @return Segment definition groups. We currently only support one. If
+     *         specified Dimensions must be empty.
+     */
+    public SegmentGroupList getSegmentGroups() {
+        return segmentGroups;
+    }
+
+    /**
+     * Segment definition groups. We currently only support one. If specified
+     * Dimensions must be empty.
+     *
+     * @param segmentGroups Segment definition groups. We currently only support
+     *            one. If specified Dimensions must be empty.
+     */
+    public void setSegmentGroups(SegmentGroupList segmentGroups) {
+        this.segmentGroups = segmentGroups;
+    }
+
+    /**
+     * Segment definition groups. We currently only support one. If specified
+     * Dimensions must be empty.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param segmentGroups Segment definition groups. We currently only support
+     *            one. If specified Dimensions must be empty.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public WriteSegmentRequest withSegmentGroups(SegmentGroupList segmentGroups) {
+        this.segmentGroups = segmentGroups;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -111,7 +156,9 @@ public class WriteSegmentRequest implements Serializable {
         if (getDimensions() != null)
             sb.append("Dimensions: " + getDimensions() + ",");
         if (getName() != null)
-            sb.append("Name: " + getName());
+            sb.append("Name: " + getName() + ",");
+        if (getSegmentGroups() != null)
+            sb.append("SegmentGroups: " + getSegmentGroups());
         sb.append("}");
         return sb.toString();
     }
@@ -123,6 +170,8 @@ public class WriteSegmentRequest implements Serializable {
 
         hashCode = prime * hashCode + ((getDimensions() == null) ? 0 : getDimensions().hashCode());
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
+        hashCode = prime * hashCode
+                + ((getSegmentGroups() == null) ? 0 : getSegmentGroups().hashCode());
         return hashCode;
     }
 
@@ -145,6 +194,11 @@ public class WriteSegmentRequest implements Serializable {
         if (other.getName() == null ^ this.getName() == null)
             return false;
         if (other.getName() != null && other.getName().equals(this.getName()) == false)
+            return false;
+        if (other.getSegmentGroups() == null ^ this.getSegmentGroups() == null)
+            return false;
+        if (other.getSegmentGroups() != null
+                && other.getSegmentGroups().equals(this.getSegmentGroups()) == false)
             return false;
         return true;
     }

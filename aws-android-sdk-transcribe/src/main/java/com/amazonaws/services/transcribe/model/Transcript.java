@@ -19,14 +19,20 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes the output of a transcription job.
+ * Identifies the location of a transcription.
  * </p>
  */
 public class Transcript implements Serializable {
     /**
      * <p>
-     * The S3 location where the transcription result is stored. Use this URI to
-     * access the results of the transcription job.
+     * The location where the transcription is stored.
+     * </p>
+     * <p>
+     * Use this URI to access the transcription. If you specified an S3 bucket
+     * in the <code>OutputBucketName</code> field when you created the job, this
+     * is the URI of that bucket. If you chose to store the transcription in
+     * Amazon Transcribe, this is a shareable URL that provides secure access to
+     * that location.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -36,16 +42,28 @@ public class Transcript implements Serializable {
 
     /**
      * <p>
-     * The S3 location where the transcription result is stored. Use this URI to
-     * access the results of the transcription job.
+     * The location where the transcription is stored.
+     * </p>
+     * <p>
+     * Use this URI to access the transcription. If you specified an S3 bucket
+     * in the <code>OutputBucketName</code> field when you created the job, this
+     * is the URI of that bucket. If you chose to store the transcription in
+     * Amazon Transcribe, this is a shareable URL that provides secure access to
+     * that location.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
      *
      * @return <p>
-     *         The S3 location where the transcription result is stored. Use
-     *         this URI to access the results of the transcription job.
+     *         The location where the transcription is stored.
+     *         </p>
+     *         <p>
+     *         Use this URI to access the transcription. If you specified an S3
+     *         bucket in the <code>OutputBucketName</code> field when you
+     *         created the job, this is the URI of that bucket. If you chose to
+     *         store the transcription in Amazon Transcribe, this is a shareable
+     *         URL that provides secure access to that location.
      *         </p>
      */
     public String getTranscriptFileUri() {
@@ -54,16 +72,28 @@ public class Transcript implements Serializable {
 
     /**
      * <p>
-     * The S3 location where the transcription result is stored. Use this URI to
-     * access the results of the transcription job.
+     * The location where the transcription is stored.
+     * </p>
+     * <p>
+     * Use this URI to access the transcription. If you specified an S3 bucket
+     * in the <code>OutputBucketName</code> field when you created the job, this
+     * is the URI of that bucket. If you chose to store the transcription in
+     * Amazon Transcribe, this is a shareable URL that provides secure access to
+     * that location.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
      *
      * @param transcriptFileUri <p>
-     *            The S3 location where the transcription result is stored. Use
-     *            this URI to access the results of the transcription job.
+     *            The location where the transcription is stored.
+     *            </p>
+     *            <p>
+     *            Use this URI to access the transcription. If you specified an
+     *            S3 bucket in the <code>OutputBucketName</code> field when you
+     *            created the job, this is the URI of that bucket. If you chose
+     *            to store the transcription in Amazon Transcribe, this is a
+     *            shareable URL that provides secure access to that location.
      *            </p>
      */
     public void setTranscriptFileUri(String transcriptFileUri) {
@@ -72,8 +102,14 @@ public class Transcript implements Serializable {
 
     /**
      * <p>
-     * The S3 location where the transcription result is stored. Use this URI to
-     * access the results of the transcription job.
+     * The location where the transcription is stored.
+     * </p>
+     * <p>
+     * Use this URI to access the transcription. If you specified an S3 bucket
+     * in the <code>OutputBucketName</code> field when you created the job, this
+     * is the URI of that bucket. If you chose to store the transcription in
+     * Amazon Transcribe, this is a shareable URL that provides secure access to
+     * that location.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -83,8 +119,14 @@ public class Transcript implements Serializable {
      * <b>Length: </b>1 - 2000<br/>
      *
      * @param transcriptFileUri <p>
-     *            The S3 location where the transcription result is stored. Use
-     *            this URI to access the results of the transcription job.
+     *            The location where the transcription is stored.
+     *            </p>
+     *            <p>
+     *            Use this URI to access the transcription. If you specified an
+     *            S3 bucket in the <code>OutputBucketName</code> field when you
+     *            created the job, this is the URI of that bucket. If you chose
+     *            to store the transcription in Amazon Transcribe, this is a
+     *            shareable URL that provides secure access to that location.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

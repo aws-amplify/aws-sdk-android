@@ -49,6 +49,14 @@ public class JobExecution implements Serializable {
 
     /**
      * <p>
+     * Will be <code>true</code> if the job execution was canceled with the
+     * optional <code>force</code> parameter set to <code>true</code>.
+     * </p>
+     */
+    private Boolean forceCanceled;
+
+    /**
+     * <p>
      * A collection of name/value pairs that describe the status of the job
      * execution.
      * </p>
@@ -94,6 +102,14 @@ public class JobExecution implements Serializable {
      * </p>
      */
     private Long executionNumber;
+
+    /**
+     * <p>
+     * The version of the job execution. Job execution versions are incremented
+     * each time they are updated by a device.
+     * </p>
+     */
+    private Long versionNumber;
 
     /**
      * <p>
@@ -264,6 +280,76 @@ public class JobExecution implements Serializable {
      */
     public JobExecution withStatus(JobExecutionStatus status) {
         this.status = status.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Will be <code>true</code> if the job execution was canceled with the
+     * optional <code>force</code> parameter set to <code>true</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Will be <code>true</code> if the job execution was canceled with
+     *         the optional <code>force</code> parameter set to
+     *         <code>true</code>.
+     *         </p>
+     */
+    public Boolean isForceCanceled() {
+        return forceCanceled;
+    }
+
+    /**
+     * <p>
+     * Will be <code>true</code> if the job execution was canceled with the
+     * optional <code>force</code> parameter set to <code>true</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Will be <code>true</code> if the job execution was canceled with
+     *         the optional <code>force</code> parameter set to
+     *         <code>true</code>.
+     *         </p>
+     */
+    public Boolean getForceCanceled() {
+        return forceCanceled;
+    }
+
+    /**
+     * <p>
+     * Will be <code>true</code> if the job execution was canceled with the
+     * optional <code>force</code> parameter set to <code>true</code>.
+     * </p>
+     *
+     * @param forceCanceled <p>
+     *            Will be <code>true</code> if the job execution was canceled
+     *            with the optional <code>force</code> parameter set to
+     *            <code>true</code>.
+     *            </p>
+     */
+    public void setForceCanceled(Boolean forceCanceled) {
+        this.forceCanceled = forceCanceled;
+    }
+
+    /**
+     * <p>
+     * Will be <code>true</code> if the job execution was canceled with the
+     * optional <code>force</code> parameter set to <code>true</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param forceCanceled <p>
+     *            Will be <code>true</code> if the job execution was canceled
+     *            with the optional <code>force</code> parameter set to
+     *            <code>true</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public JobExecution withForceCanceled(Boolean forceCanceled) {
+        this.forceCanceled = forceCanceled;
         return this;
     }
 
@@ -577,6 +663,57 @@ public class JobExecution implements Serializable {
     }
 
     /**
+     * <p>
+     * The version of the job execution. Job execution versions are incremented
+     * each time they are updated by a device.
+     * </p>
+     *
+     * @return <p>
+     *         The version of the job execution. Job execution versions are
+     *         incremented each time they are updated by a device.
+     *         </p>
+     */
+    public Long getVersionNumber() {
+        return versionNumber;
+    }
+
+    /**
+     * <p>
+     * The version of the job execution. Job execution versions are incremented
+     * each time they are updated by a device.
+     * </p>
+     *
+     * @param versionNumber <p>
+     *            The version of the job execution. Job execution versions are
+     *            incremented each time they are updated by a device.
+     *            </p>
+     */
+    public void setVersionNumber(Long versionNumber) {
+        this.versionNumber = versionNumber;
+    }
+
+    /**
+     * <p>
+     * The version of the job execution. Job execution versions are incremented
+     * each time they are updated by a device.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param versionNumber <p>
+     *            The version of the job execution. Job execution versions are
+     *            incremented each time they are updated by a device.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public JobExecution withVersionNumber(Long versionNumber) {
+        this.versionNumber = versionNumber;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -591,6 +728,8 @@ public class JobExecution implements Serializable {
             sb.append("jobId: " + getJobId() + ",");
         if (getStatus() != null)
             sb.append("status: " + getStatus() + ",");
+        if (getForceCanceled() != null)
+            sb.append("forceCanceled: " + getForceCanceled() + ",");
         if (getStatusDetails() != null)
             sb.append("statusDetails: " + getStatusDetails() + ",");
         if (getThingArn() != null)
@@ -602,7 +741,9 @@ public class JobExecution implements Serializable {
         if (getLastUpdatedAt() != null)
             sb.append("lastUpdatedAt: " + getLastUpdatedAt() + ",");
         if (getExecutionNumber() != null)
-            sb.append("executionNumber: " + getExecutionNumber());
+            sb.append("executionNumber: " + getExecutionNumber() + ",");
+        if (getVersionNumber() != null)
+            sb.append("versionNumber: " + getVersionNumber());
         sb.append("}");
         return sb.toString();
     }
@@ -615,6 +756,8 @@ public class JobExecution implements Serializable {
         hashCode = prime * hashCode + ((getJobId() == null) ? 0 : getJobId().hashCode());
         hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
         hashCode = prime * hashCode
+                + ((getForceCanceled() == null) ? 0 : getForceCanceled().hashCode());
+        hashCode = prime * hashCode
                 + ((getStatusDetails() == null) ? 0 : getStatusDetails().hashCode());
         hashCode = prime * hashCode + ((getThingArn() == null) ? 0 : getThingArn().hashCode());
         hashCode = prime * hashCode + ((getQueuedAt() == null) ? 0 : getQueuedAt().hashCode());
@@ -623,6 +766,8 @@ public class JobExecution implements Serializable {
                 + ((getLastUpdatedAt() == null) ? 0 : getLastUpdatedAt().hashCode());
         hashCode = prime * hashCode
                 + ((getExecutionNumber() == null) ? 0 : getExecutionNumber().hashCode());
+        hashCode = prime * hashCode
+                + ((getVersionNumber() == null) ? 0 : getVersionNumber().hashCode());
         return hashCode;
     }
 
@@ -644,6 +789,11 @@ public class JobExecution implements Serializable {
         if (other.getStatus() == null ^ this.getStatus() == null)
             return false;
         if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
+            return false;
+        if (other.getForceCanceled() == null ^ this.getForceCanceled() == null)
+            return false;
+        if (other.getForceCanceled() != null
+                && other.getForceCanceled().equals(this.getForceCanceled()) == false)
             return false;
         if (other.getStatusDetails() == null ^ this.getStatusDetails() == null)
             return false;
@@ -672,6 +822,11 @@ public class JobExecution implements Serializable {
             return false;
         if (other.getExecutionNumber() != null
                 && other.getExecutionNumber().equals(this.getExecutionNumber()) == false)
+            return false;
+        if (other.getVersionNumber() == null ^ this.getVersionNumber() == null)
+            return false;
+        if (other.getVersionNumber() != null
+                && other.getVersionNumber().equals(this.getVersionNumber()) == false)
             return false;
         return true;
     }

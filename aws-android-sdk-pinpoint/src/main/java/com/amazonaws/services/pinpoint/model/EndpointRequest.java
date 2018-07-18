@@ -22,8 +22,12 @@ import java.io.Serializable;
  */
 public class EndpointRequest implements Serializable {
     /**
-     * The address or token of the endpoint as provided by your push provider
-     * (e.g. DeviceToken or RegistrationId).
+     * The destination for messages that you send to this endpoint. The address
+     * varies by channel. For mobile push channels, use the token provided by
+     * the push notification service, such as the APNs device token or the FCM
+     * registration token. For the SMS channel, use a phone number in E.164
+     * format, such as +1206XXX5550100. For the email channel, use an email
+     * address.
      */
     private String address;
 
@@ -60,9 +64,7 @@ public class EndpointRequest implements Serializable {
     private String effectiveDate;
 
     /**
-     * The endpoint status. Can be either ACTIVE or INACTIVE. Will be set to
-     * INACTIVE if a delivery fails. Will be set to ACTIVE if the address is
-     * updated.
+     * Unused.
      */
     private String endpointStatus;
 
@@ -94,36 +96,62 @@ public class EndpointRequest implements Serializable {
     private EndpointUser user;
 
     /**
-     * The address or token of the endpoint as provided by your push provider
-     * (e.g. DeviceToken or RegistrationId).
+     * The destination for messages that you send to this endpoint. The address
+     * varies by channel. For mobile push channels, use the token provided by
+     * the push notification service, such as the APNs device token or the FCM
+     * registration token. For the SMS channel, use a phone number in E.164
+     * format, such as +1206XXX5550100. For the email channel, use an email
+     * address.
      *
-     * @return The address or token of the endpoint as provided by your push
-     *         provider (e.g. DeviceToken or RegistrationId).
+     * @return The destination for messages that you send to this endpoint. The
+     *         address varies by channel. For mobile push channels, use the
+     *         token provided by the push notification service, such as the APNs
+     *         device token or the FCM registration token. For the SMS channel,
+     *         use a phone number in E.164 format, such as +1206XXX5550100. For
+     *         the email channel, use an email address.
      */
     public String getAddress() {
         return address;
     }
 
     /**
-     * The address or token of the endpoint as provided by your push provider
-     * (e.g. DeviceToken or RegistrationId).
+     * The destination for messages that you send to this endpoint. The address
+     * varies by channel. For mobile push channels, use the token provided by
+     * the push notification service, such as the APNs device token or the FCM
+     * registration token. For the SMS channel, use a phone number in E.164
+     * format, such as +1206XXX5550100. For the email channel, use an email
+     * address.
      *
-     * @param address The address or token of the endpoint as provided by your
-     *            push provider (e.g. DeviceToken or RegistrationId).
+     * @param address The destination for messages that you send to this
+     *            endpoint. The address varies by channel. For mobile push
+     *            channels, use the token provided by the push notification
+     *            service, such as the APNs device token or the FCM registration
+     *            token. For the SMS channel, use a phone number in E.164
+     *            format, such as +1206XXX5550100. For the email channel, use an
+     *            email address.
      */
     public void setAddress(String address) {
         this.address = address;
     }
 
     /**
-     * The address or token of the endpoint as provided by your push provider
-     * (e.g. DeviceToken or RegistrationId).
+     * The destination for messages that you send to this endpoint. The address
+     * varies by channel. For mobile push channels, use the token provided by
+     * the push notification service, such as the APNs device token or the FCM
+     * registration token. For the SMS channel, use a phone number in E.164
+     * format, such as +1206XXX5550100. For the email channel, use an email
+     * address.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param address The address or token of the endpoint as provided by your
-     *            push provider (e.g. DeviceToken or RegistrationId).
+     * @param address The destination for messages that you send to this
+     *            endpoint. The address varies by channel. For mobile push
+     *            channels, use the token provided by the push notification
+     *            service, such as the APNs device token or the FCM registration
+     *            token. For the SMS channel, use a phone number in E.164
+     *            format, such as +1206XXX5550100. For the email channel, use an
+     *            email address.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -420,42 +448,30 @@ public class EndpointRequest implements Serializable {
     }
 
     /**
-     * The endpoint status. Can be either ACTIVE or INACTIVE. Will be set to
-     * INACTIVE if a delivery fails. Will be set to ACTIVE if the address is
-     * updated.
+     * Unused.
      *
-     * @return The endpoint status. Can be either ACTIVE or INACTIVE. Will be
-     *         set to INACTIVE if a delivery fails. Will be set to ACTIVE if the
-     *         address is updated.
+     * @return Unused.
      */
     public String getEndpointStatus() {
         return endpointStatus;
     }
 
     /**
-     * The endpoint status. Can be either ACTIVE or INACTIVE. Will be set to
-     * INACTIVE if a delivery fails. Will be set to ACTIVE if the address is
-     * updated.
+     * Unused.
      *
-     * @param endpointStatus The endpoint status. Can be either ACTIVE or
-     *            INACTIVE. Will be set to INACTIVE if a delivery fails. Will be
-     *            set to ACTIVE if the address is updated.
+     * @param endpointStatus Unused.
      */
     public void setEndpointStatus(String endpointStatus) {
         this.endpointStatus = endpointStatus;
     }
 
     /**
-     * The endpoint status. Can be either ACTIVE or INACTIVE. Will be set to
-     * INACTIVE if a delivery fails. Will be set to ACTIVE if the address is
-     * updated.
+     * Unused.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endpointStatus The endpoint status. Can be either ACTIVE or
-     *            INACTIVE. Will be set to INACTIVE if a delivery fails. Will be
-     *            set to ACTIVE if the address is updated.
+     * @param endpointStatus Unused.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

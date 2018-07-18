@@ -28,7 +28,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * The video must be stored in an Amazon S3 bucket. Use <a>Video</a> to specify
  * the bucket name and the filename of the video. <code>StartFaceSearch</code>
  * returns a job identifier (<code>JobId</code>) which you use to get the search
- * results once the search has completed. When searching is finished,
+ * results once the search has completed. When searching is finished, Amazon
  * Rekognition Video publishes a completion status to the Amazon Simple
  * Notification Service topic that you specify in
  * <code>NotificationChannel</code>. To get the search results, first check that
@@ -85,8 +85,8 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The ARN of the Amazon SNS topic to which you want Rekognition Video to
-     * publish the completion status of the search.
+     * The ARN of the Amazon SNS topic to which you want Amazon Rekognition
+     * Video to publish the completion status of the search.
      * </p>
      */
     private NotificationChannel notificationChannel;
@@ -357,13 +357,13 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The ARN of the Amazon SNS topic to which you want Rekognition Video to
-     * publish the completion status of the search.
+     * The ARN of the Amazon SNS topic to which you want Amazon Rekognition
+     * Video to publish the completion status of the search.
      * </p>
      *
      * @return <p>
-     *         The ARN of the Amazon SNS topic to which you want Rekognition
-     *         Video to publish the completion status of the search.
+     *         The ARN of the Amazon SNS topic to which you want Amazon
+     *         Rekognition Video to publish the completion status of the search.
      *         </p>
      */
     public NotificationChannel getNotificationChannel() {
@@ -372,13 +372,14 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The ARN of the Amazon SNS topic to which you want Rekognition Video to
-     * publish the completion status of the search.
+     * The ARN of the Amazon SNS topic to which you want Amazon Rekognition
+     * Video to publish the completion status of the search.
      * </p>
      *
      * @param notificationChannel <p>
-     *            The ARN of the Amazon SNS topic to which you want Rekognition
-     *            Video to publish the completion status of the search.
+     *            The ARN of the Amazon SNS topic to which you want Amazon
+     *            Rekognition Video to publish the completion status of the
+     *            search.
      *            </p>
      */
     public void setNotificationChannel(NotificationChannel notificationChannel) {
@@ -387,16 +388,17 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The ARN of the Amazon SNS topic to which you want Rekognition Video to
-     * publish the completion status of the search.
+     * The ARN of the Amazon SNS topic to which you want Amazon Rekognition
+     * Video to publish the completion status of the search.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param notificationChannel <p>
-     *            The ARN of the Amazon SNS topic to which you want Rekognition
-     *            Video to publish the completion status of the search.
+     *            The ARN of the Amazon SNS topic to which you want Amazon
+     *            Rekognition Video to publish the completion status of the
+     *            search.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

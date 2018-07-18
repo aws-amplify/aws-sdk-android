@@ -30,6 +30,11 @@ class SMSMessageJsonMarshaller {
             jsonWriter.name("Body");
             jsonWriter.value(body);
         }
+        if (sMSMessage.getKeyword() != null) {
+            String keyword = sMSMessage.getKeyword();
+            jsonWriter.name("Keyword");
+            jsonWriter.value(keyword);
+        }
         if (sMSMessage.getMessageType() != null) {
             String messageType = sMSMessage.getMessageType();
             jsonWriter.name("MessageType");

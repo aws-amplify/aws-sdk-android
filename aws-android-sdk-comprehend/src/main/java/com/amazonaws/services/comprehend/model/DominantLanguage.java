@@ -26,7 +26,10 @@ import java.io.Serializable;
 public class DominantLanguage implements Serializable {
     /**
      * <p>
-     * The RFC 5646 language code for the dominant language.
+     * The RFC 5646 language code for the dominant language. For more
+     * information about RFC 5646, see <a
+     * href="https://tools.ietf.org/html/rfc5646">Tags for Identifying
+     * Languages</a> on the <i>IETF Tools</i> web site.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -44,14 +47,20 @@ public class DominantLanguage implements Serializable {
 
     /**
      * <p>
-     * The RFC 5646 language code for the dominant language.
+     * The RFC 5646 language code for the dominant language. For more
+     * information about RFC 5646, see <a
+     * href="https://tools.ietf.org/html/rfc5646">Tags for Identifying
+     * Languages</a> on the <i>IETF Tools</i> web site.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         The RFC 5646 language code for the dominant language.
+     *         The RFC 5646 language code for the dominant language. For more
+     *         information about RFC 5646, see <a
+     *         href="https://tools.ietf.org/html/rfc5646">Tags for Identifying
+     *         Languages</a> on the <i>IETF Tools</i> web site.
      *         </p>
      */
     public String getLanguageCode() {
@@ -60,14 +69,20 @@ public class DominantLanguage implements Serializable {
 
     /**
      * <p>
-     * The RFC 5646 language code for the dominant language.
+     * The RFC 5646 language code for the dominant language. For more
+     * information about RFC 5646, see <a
+     * href="https://tools.ietf.org/html/rfc5646">Tags for Identifying
+     * Languages</a> on the <i>IETF Tools</i> web site.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param languageCode <p>
-     *            The RFC 5646 language code for the dominant language.
+     *            The RFC 5646 language code for the dominant language. For more
+     *            information about RFC 5646, see <a
+     *            href="https://tools.ietf.org/html/rfc5646">Tags for
+     *            Identifying Languages</a> on the <i>IETF Tools</i> web site.
      *            </p>
      */
     public void setLanguageCode(String languageCode) {
@@ -76,7 +91,10 @@ public class DominantLanguage implements Serializable {
 
     /**
      * <p>
-     * The RFC 5646 language code for the dominant language.
+     * The RFC 5646 language code for the dominant language. For more
+     * information about RFC 5646, see <a
+     * href="https://tools.ietf.org/html/rfc5646">Tags for Identifying
+     * Languages</a> on the <i>IETF Tools</i> web site.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -86,7 +104,10 @@ public class DominantLanguage implements Serializable {
      * <b>Length: </b>1 - <br/>
      *
      * @param languageCode <p>
-     *            The RFC 5646 language code for the dominant language.
+     *            The RFC 5646 language code for the dominant language. For more
+     *            information about RFC 5646, see <a
+     *            href="https://tools.ietf.org/html/rfc5646">Tags for
+     *            Identifying Languages</a> on the <i>IETF Tools</i> web site.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -20,7 +20,7 @@ import com.amazonaws.regions.*;
 import com.amazonaws.services.pinpoint.model.*;
 
 /**
- * Interface for accessing AmazonPinpoint
+ * Interface for accessing AmazonPinpoint Amazon Pinpoint
  **/
 public interface AmazonPinpoint {
 
@@ -88,12 +88,12 @@ public interface AmazonPinpoint {
      * @param createAppRequest
      * @return createAppResult The response from the CreateApp service method,
      *         as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -111,12 +111,12 @@ public interface AmazonPinpoint {
      * @param createCampaignRequest
      * @return createCampaignResult The response from the CreateCampaign service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -134,12 +134,12 @@ public interface AmazonPinpoint {
      * @param createExportJobRequest
      * @return createExportJobResult The response from the CreateExportJob
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -157,12 +157,12 @@ public interface AmazonPinpoint {
      * @param createImportJobRequest
      * @return createImportJobResult The response from the CreateImportJob
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -180,12 +180,12 @@ public interface AmazonPinpoint {
      * @param createSegmentRequest
      * @return createSegmentResult The response from the CreateSegment service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -198,17 +198,17 @@ public interface AmazonPinpoint {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * Delete an ADM channel
+     * Delete an ADM channel.
      * 
      * @param deleteAdmChannelRequest
      * @return deleteAdmChannelResult The response from the DeleteAdmChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -226,12 +226,12 @@ public interface AmazonPinpoint {
      * @param deleteApnsChannelRequest
      * @return deleteApnsChannelResult The response from the DeleteApnsChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -244,18 +244,18 @@ public interface AmazonPinpoint {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * Delete an APNS sandbox channel
+     * Delete an APNS sandbox channel.
      * 
      * @param deleteApnsSandboxChannelRequest
      * @return deleteApnsSandboxChannelResult The response from the
      *         DeleteApnsSandboxChannel service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -275,12 +275,12 @@ public interface AmazonPinpoint {
      * @return deleteApnsVoipChannelResult The response from the
      *         DeleteApnsVoipChannel service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -300,12 +300,12 @@ public interface AmazonPinpoint {
      * @return deleteApnsVoipSandboxChannelResult The response from the
      *         DeleteApnsVoipSandboxChannel service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -324,12 +324,12 @@ public interface AmazonPinpoint {
      * @param deleteAppRequest
      * @return deleteAppResult The response from the DeleteApp service method,
      *         as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -347,12 +347,12 @@ public interface AmazonPinpoint {
      * @param deleteBaiduChannelRequest
      * @return deleteBaiduChannelResult The response from the DeleteBaiduChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -370,12 +370,12 @@ public interface AmazonPinpoint {
      * @param deleteCampaignRequest
      * @return deleteCampaignResult The response from the DeleteCampaign service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -388,17 +388,17 @@ public interface AmazonPinpoint {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * Delete an email channel
+     * Delete an email channel.
      * 
      * @param deleteEmailChannelRequest
      * @return deleteEmailChannelResult The response from the DeleteEmailChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -436,15 +436,15 @@ public interface AmazonPinpoint {
     /**
      * Deletes the event stream for an app.
      * 
-     * @param deleteEventStreamRequest DeleteEventStream Request
+     * @param deleteEventStreamRequest
      * @return deleteEventStreamResult The response from the DeleteEventStream
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -462,12 +462,12 @@ public interface AmazonPinpoint {
      * @param deleteGcmChannelRequest
      * @return deleteGcmChannelResult The response from the DeleteGcmChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -485,12 +485,12 @@ public interface AmazonPinpoint {
      * @param deleteSegmentRequest
      * @return deleteSegmentResult The response from the DeleteSegment service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -503,17 +503,17 @@ public interface AmazonPinpoint {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * Delete an SMS channel
+     * Delete an SMS channel.
      * 
      * @param deleteSmsChannelRequest
      * @return deleteSmsChannelResult The response from the DeleteSmsChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -526,17 +526,42 @@ public interface AmazonPinpoint {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * Get an ADM channel
+     * Deletes endpoints associated with an user id.
+     * 
+     * @param deleteUserEndpointsRequest
+     * @return deleteUserEndpointsResult The response from the
+     *         DeleteUserEndpoints service method, as returned by
+     *         AmazonPinpoint.
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AmazonPinpoint indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    DeleteUserEndpointsResult deleteUserEndpoints(
+            DeleteUserEndpointsRequest deleteUserEndpointsRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * Get an ADM channel.
      * 
      * @param getAdmChannelRequest
      * @return getAdmChannelResult The response from the GetAdmChannel service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -554,12 +579,12 @@ public interface AmazonPinpoint {
      * @param getApnsChannelRequest
      * @return getApnsChannelResult The response from the GetApnsChannel service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -572,18 +597,18 @@ public interface AmazonPinpoint {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * Get an APNS sandbox channel
+     * Get an APNS sandbox channel.
      * 
      * @param getApnsSandboxChannelRequest
      * @return getApnsSandboxChannelResult The response from the
      *         GetApnsSandboxChannel service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -602,12 +627,12 @@ public interface AmazonPinpoint {
      * @param getApnsVoipChannelRequest
      * @return getApnsVoipChannelResult The response from the GetApnsVoipChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -626,12 +651,12 @@ public interface AmazonPinpoint {
      * @return getApnsVoipSandboxChannelResult The response from the
      *         GetApnsVoipSandboxChannel service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -650,12 +675,12 @@ public interface AmazonPinpoint {
      * @param getAppRequest
      * @return getAppResult The response from the GetApp service method, as
      *         returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -674,12 +699,12 @@ public interface AmazonPinpoint {
      * @return getApplicationSettingsResult The response from the
      *         GetApplicationSettings service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -698,12 +723,12 @@ public interface AmazonPinpoint {
      * @param getAppsRequest
      * @return getAppsResult The response from the GetApps service method, as
      *         returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -721,12 +746,12 @@ public interface AmazonPinpoint {
      * @param getBaiduChannelRequest
      * @return getBaiduChannelResult The response from the GetBaiduChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -744,12 +769,12 @@ public interface AmazonPinpoint {
      * @param getCampaignRequest
      * @return getCampaignResult The response from the GetCampaign service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -768,12 +793,12 @@ public interface AmazonPinpoint {
      * @return getCampaignActivitiesResult The response from the
      *         GetCampaignActivities service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -792,12 +817,12 @@ public interface AmazonPinpoint {
      * @param getCampaignVersionRequest
      * @return getCampaignVersionResult The response from the GetCampaignVersion
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -816,12 +841,12 @@ public interface AmazonPinpoint {
      * @return getCampaignVersionsResult The response from the
      *         GetCampaignVersions service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -840,12 +865,12 @@ public interface AmazonPinpoint {
      * @param getCampaignsRequest
      * @return getCampaignsResult The response from the GetCampaigns service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -858,17 +883,40 @@ public interface AmazonPinpoint {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * Get an email channel
+     * Get all channels.
+     * 
+     * @param getChannelsRequest
+     * @return getChannelsResult The response from the GetChannels service
+     *         method, as returned by AmazonPinpoint.
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AmazonPinpoint indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    GetChannelsResult getChannels(GetChannelsRequest getChannelsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * Get an email channel.
      * 
      * @param getEmailChannelRequest
      * @return getEmailChannelResult The response from the GetEmailChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -886,12 +934,12 @@ public interface AmazonPinpoint {
      * @param getEndpointRequest
      * @return getEndpointResult The response from the GetEndpoint service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -906,15 +954,15 @@ public interface AmazonPinpoint {
     /**
      * Returns the event stream for an app.
      * 
-     * @param getEventStreamRequest GetEventStreamRequest
+     * @param getEventStreamRequest
      * @return getEventStreamResult The response from the GetEventStream service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -932,12 +980,12 @@ public interface AmazonPinpoint {
      * @param getExportJobRequest
      * @return getExportJobResult The response from the GetExportJob service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -955,12 +1003,12 @@ public interface AmazonPinpoint {
      * @param getExportJobsRequest
      * @return getExportJobsResult The response from the GetExportJobs service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -978,12 +1026,12 @@ public interface AmazonPinpoint {
      * @param getGcmChannelRequest
      * @return getGcmChannelResult The response from the GetGcmChannel service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1001,12 +1049,12 @@ public interface AmazonPinpoint {
      * @param getImportJobRequest
      * @return getImportJobResult The response from the GetImportJob service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1024,12 +1072,12 @@ public interface AmazonPinpoint {
      * @param getImportJobsRequest
      * @return getImportJobsResult The response from the GetImportJobs service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1047,12 +1095,12 @@ public interface AmazonPinpoint {
      * @param getSegmentRequest
      * @return getSegmentResult The response from the GetSegment service method,
      *         as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1071,12 +1119,12 @@ public interface AmazonPinpoint {
      * @return getSegmentExportJobsResult The response from the
      *         GetSegmentExportJobs service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1096,12 +1144,12 @@ public interface AmazonPinpoint {
      * @return getSegmentImportJobsResult The response from the
      *         GetSegmentImportJobs service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1120,12 +1168,12 @@ public interface AmazonPinpoint {
      * @param getSegmentVersionRequest
      * @return getSegmentVersionResult The response from the GetSegmentVersion
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1143,12 +1191,12 @@ public interface AmazonPinpoint {
      * @param getSegmentVersionsRequest
      * @return getSegmentVersionsResult The response from the GetSegmentVersions
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1166,12 +1214,12 @@ public interface AmazonPinpoint {
      * @param getSegmentsRequest
      * @return getSegmentsResult The response from the GetSegments service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1184,17 +1232,17 @@ public interface AmazonPinpoint {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * Get an SMS channel
+     * Get an SMS channel.
      * 
      * @param getSmsChannelRequest
      * @return getSmsChannelResult The response from the GetSmsChannel service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1207,17 +1255,65 @@ public interface AmazonPinpoint {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * Returns information about the endpoints associated with an user id.
+     * 
+     * @param getUserEndpointsRequest
+     * @return getUserEndpointsResult The response from the GetUserEndpoints
+     *         service method, as returned by AmazonPinpoint.
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AmazonPinpoint indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    GetUserEndpointsResult getUserEndpoints(GetUserEndpointsRequest getUserEndpointsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * Returns information about the specified phone number.
+     * 
+     * @param phoneNumberValidateRequest
+     * @return phoneNumberValidateResult The response from the
+     *         PhoneNumberValidate service method, as returned by
+     *         AmazonPinpoint.
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AmazonPinpoint indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    PhoneNumberValidateResult phoneNumberValidate(
+            PhoneNumberValidateRequest phoneNumberValidateRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
      * Use to create or update the event stream for an app.
      * 
      * @param putEventStreamRequest
      * @return putEventStreamResult The response from the PutEventStream service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1230,17 +1326,48 @@ public interface AmazonPinpoint {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * Send a batch of messages
+     * Used to remove the attributes for an app
+     * 
+     * @param removeAttributesRequest
+     * @return removeAttributesResult The response from the RemoveAttributes
+     *         service method, as returned by AmazonPinpoint.
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AmazonPinpoint indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    RemoveAttributesResult removeAttributes(RemoveAttributesRequest removeAttributesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * Use this resource to send a direct message, which is a one time message
+     * that you send to a limited audience without creating a campaign. You can
+     * send the message to up to 100 recipients. You cannot use the message to
+     * engage a segment. When you send the message, Amazon Pinpoint delivers it
+     * immediately, and you cannot schedule the delivery. To engage a user
+     * segment, and to schedule the message delivery, create a campaign instead
+     * of sending a direct message. You can send a direct message as a push
+     * notification to your mobile app or as an SMS message to SMS-enabled
+     * devices.
      * 
      * @param sendMessagesRequest
      * @return sendMessagesResult The response from the SendMessages service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1253,17 +1380,34 @@ public interface AmazonPinpoint {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * Send a batch of messages to users
+     * Use this resource to message a list of users. Amazon Pinpoint sends the
+     * message to all of the endpoints that are associated with each user. A
+     * user represents an individual who is assigned a unique user ID, and this
+     * ID is assigned to one or more endpoints. For example, if an individual
+     * uses your app on multiple devices, your app could assign that person's
+     * user ID to the endpoint for each device. With the users-messages
+     * resource, you specify the message recipients as user IDs. For each user
+     * ID, Amazon Pinpoint delivers the message to all of the user's endpoints.
+     * Within the body of your request, you can specify a default message, and
+     * you can tailor your message for different channels, including those for
+     * mobile push and SMS. With this resource, you send a direct message, which
+     * is a one time message that you send to a limited audience without
+     * creating a campaign. You can send the message to up to 100 users per
+     * request. You cannot use the message to engage a segment. When you send
+     * the message, Amazon Pinpoint delivers it immediately, and you cannot
+     * schedule the delivery. To engage a user segment, and to schedule the
+     * message delivery, create a campaign instead of using the users-messages
+     * resource.
      * 
      * @param sendUsersMessagesRequest
      * @return sendUsersMessagesResult The response from the SendUsersMessages
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1276,17 +1420,17 @@ public interface AmazonPinpoint {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * Update an ADM channel
+     * Update an ADM channel.
      * 
      * @param updateAdmChannelRequest
      * @return updateAdmChannelResult The response from the UpdateAdmChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1304,12 +1448,12 @@ public interface AmazonPinpoint {
      * @param updateApnsChannelRequest
      * @return updateApnsChannelResult The response from the UpdateApnsChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1322,18 +1466,18 @@ public interface AmazonPinpoint {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * Update an APNS sandbox channel
+     * Update an APNS sandbox channel.
      * 
      * @param updateApnsSandboxChannelRequest
      * @return updateApnsSandboxChannelResult The response from the
      *         UpdateApnsSandboxChannel service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1353,12 +1497,12 @@ public interface AmazonPinpoint {
      * @return updateApnsVoipChannelResult The response from the
      *         UpdateApnsVoipChannel service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1378,12 +1522,12 @@ public interface AmazonPinpoint {
      * @return updateApnsVoipSandboxChannelResult The response from the
      *         UpdateApnsVoipSandboxChannel service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1403,12 +1547,12 @@ public interface AmazonPinpoint {
      * @return updateApplicationSettingsResult The response from the
      *         UpdateApplicationSettings service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1427,12 +1571,12 @@ public interface AmazonPinpoint {
      * @param updateBaiduChannelRequest
      * @return updateBaiduChannelResult The response from the UpdateBaiduChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1450,12 +1594,12 @@ public interface AmazonPinpoint {
      * @param updateCampaignRequest
      * @return updateCampaignResult The response from the UpdateCampaign service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1468,17 +1612,17 @@ public interface AmazonPinpoint {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * Update an email channel
+     * Update an email channel.
      * 
      * @param updateEmailChannelRequest
      * @return updateEmailChannelResult The response from the UpdateEmailChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1491,17 +1635,17 @@ public interface AmazonPinpoint {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * Use to update an endpoint.
+     * Creates or updates an endpoint.
      * 
      * @param updateEndpointRequest
      * @return updateEndpointResult The response from the UpdateEndpoint service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1520,12 +1664,12 @@ public interface AmazonPinpoint {
      * @return updateEndpointsBatchResult The response from the
      *         UpdateEndpointsBatch service method, as returned by
      *         AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1544,12 +1688,12 @@ public interface AmazonPinpoint {
      * @param updateGcmChannelRequest
      * @return updateGcmChannelResult The response from the UpdateGcmChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1567,12 +1711,12 @@ public interface AmazonPinpoint {
      * @param updateSegmentRequest
      * @return updateSegmentResult The response from the UpdateSegment service
      *         method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1585,17 +1729,17 @@ public interface AmazonPinpoint {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * Update an SMS channel
+     * Update an SMS channel.
      * 
      * @param updateSmsChannelRequest
      * @return updateSmsChannelResult The response from the UpdateSmsChannel
      *         service method, as returned by AmazonPinpoint.
-     * @throws BadRequestException
-     * @throws InternalServerErrorException
-     * @throws ForbiddenException
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @throws TooManyRequestsException
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

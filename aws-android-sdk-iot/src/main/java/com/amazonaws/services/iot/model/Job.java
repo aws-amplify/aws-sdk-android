@@ -71,6 +71,14 @@ public class Job implements Serializable {
 
     /**
      * <p>
+     * Will be <code>true</code> if the job was canceled with the optional
+     * <code>force</code> parameter set to <code>true</code>.
+     * </p>
+     */
+    private Boolean forceCanceled;
+
+    /**
+     * <p>
      * If the job was updated, describes the reason for the update.
      * </p>
      * <p>
@@ -519,6 +527,74 @@ public class Job implements Serializable {
      */
     public Job withStatus(JobStatus status) {
         this.status = status.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Will be <code>true</code> if the job was canceled with the optional
+     * <code>force</code> parameter set to <code>true</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Will be <code>true</code> if the job was canceled with the
+     *         optional <code>force</code> parameter set to <code>true</code>.
+     *         </p>
+     */
+    public Boolean isForceCanceled() {
+        return forceCanceled;
+    }
+
+    /**
+     * <p>
+     * Will be <code>true</code> if the job was canceled with the optional
+     * <code>force</code> parameter set to <code>true</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Will be <code>true</code> if the job was canceled with the
+     *         optional <code>force</code> parameter set to <code>true</code>.
+     *         </p>
+     */
+    public Boolean getForceCanceled() {
+        return forceCanceled;
+    }
+
+    /**
+     * <p>
+     * Will be <code>true</code> if the job was canceled with the optional
+     * <code>force</code> parameter set to <code>true</code>.
+     * </p>
+     *
+     * @param forceCanceled <p>
+     *            Will be <code>true</code> if the job was canceled with the
+     *            optional <code>force</code> parameter set to <code>true</code>
+     *            .
+     *            </p>
+     */
+    public void setForceCanceled(Boolean forceCanceled) {
+        this.forceCanceled = forceCanceled;
+    }
+
+    /**
+     * <p>
+     * Will be <code>true</code> if the job was canceled with the optional
+     * <code>force</code> parameter set to <code>true</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param forceCanceled <p>
+     *            Will be <code>true</code> if the job was canceled with the
+     *            optional <code>force</code> parameter set to <code>true</code>
+     *            .
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Job withForceCanceled(Boolean forceCanceled) {
+        this.forceCanceled = forceCanceled;
         return this;
     }
 
@@ -1094,6 +1170,8 @@ public class Job implements Serializable {
             sb.append("targetSelection: " + getTargetSelection() + ",");
         if (getStatus() != null)
             sb.append("status: " + getStatus() + ",");
+        if (getForceCanceled() != null)
+            sb.append("forceCanceled: " + getForceCanceled() + ",");
         if (getComment() != null)
             sb.append("comment: " + getComment() + ",");
         if (getTargets() != null)
@@ -1128,6 +1206,8 @@ public class Job implements Serializable {
         hashCode = prime * hashCode
                 + ((getTargetSelection() == null) ? 0 : getTargetSelection().hashCode());
         hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        hashCode = prime * hashCode
+                + ((getForceCanceled() == null) ? 0 : getForceCanceled().hashCode());
         hashCode = prime * hashCode + ((getComment() == null) ? 0 : getComment().hashCode());
         hashCode = prime * hashCode + ((getTargets() == null) ? 0 : getTargets().hashCode());
         hashCode = prime * hashCode
@@ -1177,6 +1257,11 @@ public class Job implements Serializable {
         if (other.getStatus() == null ^ this.getStatus() == null)
             return false;
         if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
+            return false;
+        if (other.getForceCanceled() == null ^ this.getForceCanceled() == null)
+            return false;
+        if (other.getForceCanceled() != null
+                && other.getForceCanceled().equals(this.getForceCanceled()) == false)
             return false;
         if (other.getComment() == null ^ this.getComment() == null)
             return false;

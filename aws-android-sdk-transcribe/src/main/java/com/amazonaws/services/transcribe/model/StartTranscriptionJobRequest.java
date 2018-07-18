@@ -27,7 +27,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the job. The name must be unique within an AWS account.
+     * The name of the job. You can't use the strings "." or ".." in the job
+     * name. The name must be unique within an AWS account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -75,6 +76,33 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
+     * The location where the transcription is stored.
+     * </p>
+     * <p>
+     * If you set the <code>OutputBucketName</code>, Amazon Transcribe puts the
+     * transcription in the specified S3 bucket. When you call the
+     * <a>GetTranscriptionJob</a> operation, the operation returns this location
+     * in the <code>TranscriptFileUri</code> field. The S3 bucket must have
+     * permissions that allow Amazon Transcribe to put files in the bucket. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user"
+     * >Permissions Required for IAM User Roles</a>.
+     * </p>
+     * <p>
+     * If you don't set the <code>OutputBucketName</code>, Amazon Transcribe
+     * generates a pre-signed URL, a shareable URL that provides secure access
+     * to your transcription, and returns it in the
+     * <code>TranscriptFileUri</code> field. Use this URL to download the
+     * transcription.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9]<br/>
+     */
+    private String outputBucketName;
+
+    /**
+     * <p>
      * A <code>Settings</code> object that provides optional settings for a
      * transcription job.
      * </p>
@@ -83,7 +111,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the job. The name must be unique within an AWS account.
+     * The name of the job. You can't use the strings "." or ".." in the job
+     * name. The name must be unique within an AWS account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -91,8 +120,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the job. The name must be unique within an AWS
-     *         account.
+     *         The name of the job. You can't use the strings "." or ".." in the
+     *         job name. The name must be unique within an AWS account.
      *         </p>
      */
     public String getTranscriptionJobName() {
@@ -101,7 +130,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the job. The name must be unique within an AWS account.
+     * The name of the job. You can't use the strings "." or ".." in the job
+     * name. The name must be unique within an AWS account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -109,8 +139,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param transcriptionJobName <p>
-     *            The name of the job. The name must be unique within an AWS
-     *            account.
+     *            The name of the job. You can't use the strings "." or ".." in
+     *            the job name. The name must be unique within an AWS account.
      *            </p>
      */
     public void setTranscriptionJobName(String transcriptionJobName) {
@@ -119,7 +149,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the job. The name must be unique within an AWS account.
+     * The name of the job. You can't use the strings "." or ".." in the job
+     * name. The name must be unique within an AWS account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -130,8 +161,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param transcriptionJobName <p>
-     *            The name of the job. The name must be unique within an AWS
-     *            account.
+     *            The name of the job. You can't use the strings "." or ".." in
+     *            the job name. The name must be unique within an AWS account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -445,6 +476,164 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
+     * The location where the transcription is stored.
+     * </p>
+     * <p>
+     * If you set the <code>OutputBucketName</code>, Amazon Transcribe puts the
+     * transcription in the specified S3 bucket. When you call the
+     * <a>GetTranscriptionJob</a> operation, the operation returns this location
+     * in the <code>TranscriptFileUri</code> field. The S3 bucket must have
+     * permissions that allow Amazon Transcribe to put files in the bucket. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user"
+     * >Permissions Required for IAM User Roles</a>.
+     * </p>
+     * <p>
+     * If you don't set the <code>OutputBucketName</code>, Amazon Transcribe
+     * generates a pre-signed URL, a shareable URL that provides secure access
+     * to your transcription, and returns it in the
+     * <code>TranscriptFileUri</code> field. Use this URL to download the
+     * transcription.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9]<br/>
+     *
+     * @return <p>
+     *         The location where the transcription is stored.
+     *         </p>
+     *         <p>
+     *         If you set the <code>OutputBucketName</code>, Amazon Transcribe
+     *         puts the transcription in the specified S3 bucket. When you call
+     *         the <a>GetTranscriptionJob</a> operation, the operation returns
+     *         this location in the <code>TranscriptFileUri</code> field. The S3
+     *         bucket must have permissions that allow Amazon Transcribe to put
+     *         files in the bucket. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user"
+     *         >Permissions Required for IAM User Roles</a>.
+     *         </p>
+     *         <p>
+     *         If you don't set the <code>OutputBucketName</code>, Amazon
+     *         Transcribe generates a pre-signed URL, a shareable URL that
+     *         provides secure access to your transcription, and returns it in
+     *         the <code>TranscriptFileUri</code> field. Use this URL to
+     *         download the transcription.
+     *         </p>
+     */
+    public String getOutputBucketName() {
+        return outputBucketName;
+    }
+
+    /**
+     * <p>
+     * The location where the transcription is stored.
+     * </p>
+     * <p>
+     * If you set the <code>OutputBucketName</code>, Amazon Transcribe puts the
+     * transcription in the specified S3 bucket. When you call the
+     * <a>GetTranscriptionJob</a> operation, the operation returns this location
+     * in the <code>TranscriptFileUri</code> field. The S3 bucket must have
+     * permissions that allow Amazon Transcribe to put files in the bucket. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user"
+     * >Permissions Required for IAM User Roles</a>.
+     * </p>
+     * <p>
+     * If you don't set the <code>OutputBucketName</code>, Amazon Transcribe
+     * generates a pre-signed URL, a shareable URL that provides secure access
+     * to your transcription, and returns it in the
+     * <code>TranscriptFileUri</code> field. Use this URL to download the
+     * transcription.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9]<br/>
+     *
+     * @param outputBucketName <p>
+     *            The location where the transcription is stored.
+     *            </p>
+     *            <p>
+     *            If you set the <code>OutputBucketName</code>, Amazon
+     *            Transcribe puts the transcription in the specified S3 bucket.
+     *            When you call the <a>GetTranscriptionJob</a> operation, the
+     *            operation returns this location in the
+     *            <code>TranscriptFileUri</code> field. The S3 bucket must have
+     *            permissions that allow Amazon Transcribe to put files in the
+     *            bucket. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user"
+     *            >Permissions Required for IAM User Roles</a>.
+     *            </p>
+     *            <p>
+     *            If you don't set the <code>OutputBucketName</code>, Amazon
+     *            Transcribe generates a pre-signed URL, a shareable URL that
+     *            provides secure access to your transcription, and returns it
+     *            in the <code>TranscriptFileUri</code> field. Use this URL to
+     *            download the transcription.
+     *            </p>
+     */
+    public void setOutputBucketName(String outputBucketName) {
+        this.outputBucketName = outputBucketName;
+    }
+
+    /**
+     * <p>
+     * The location where the transcription is stored.
+     * </p>
+     * <p>
+     * If you set the <code>OutputBucketName</code>, Amazon Transcribe puts the
+     * transcription in the specified S3 bucket. When you call the
+     * <a>GetTranscriptionJob</a> operation, the operation returns this location
+     * in the <code>TranscriptFileUri</code> field. The S3 bucket must have
+     * permissions that allow Amazon Transcribe to put files in the bucket. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user"
+     * >Permissions Required for IAM User Roles</a>.
+     * </p>
+     * <p>
+     * If you don't set the <code>OutputBucketName</code>, Amazon Transcribe
+     * generates a pre-signed URL, a shareable URL that provides secure access
+     * to your transcription, and returns it in the
+     * <code>TranscriptFileUri</code> field. Use this URL to download the
+     * transcription.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9]<br/>
+     *
+     * @param outputBucketName <p>
+     *            The location where the transcription is stored.
+     *            </p>
+     *            <p>
+     *            If you set the <code>OutputBucketName</code>, Amazon
+     *            Transcribe puts the transcription in the specified S3 bucket.
+     *            When you call the <a>GetTranscriptionJob</a> operation, the
+     *            operation returns this location in the
+     *            <code>TranscriptFileUri</code> field. The S3 bucket must have
+     *            permissions that allow Amazon Transcribe to put files in the
+     *            bucket. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/access-control-managing-permissions.html#auth-role-iam-user"
+     *            >Permissions Required for IAM User Roles</a>.
+     *            </p>
+     *            <p>
+     *            If you don't set the <code>OutputBucketName</code>, Amazon
+     *            Transcribe generates a pre-signed URL, a shareable URL that
+     *            provides secure access to your transcription, and returns it
+     *            in the <code>TranscriptFileUri</code> field. Use this URL to
+     *            download the transcription.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartTranscriptionJobRequest withOutputBucketName(String outputBucketName) {
+        this.outputBucketName = outputBucketName;
+        return this;
+    }
+
+    /**
+     * <p>
      * A <code>Settings</code> object that provides optional settings for a
      * transcription job.
      * </p>
@@ -515,6 +704,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
             sb.append("MediaFormat: " + getMediaFormat() + ",");
         if (getMedia() != null)
             sb.append("Media: " + getMedia() + ",");
+        if (getOutputBucketName() != null)
+            sb.append("OutputBucketName: " + getOutputBucketName() + ",");
         if (getSettings() != null)
             sb.append("Settings: " + getSettings());
         sb.append("}");
@@ -535,6 +726,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
         hashCode = prime * hashCode
                 + ((getMediaFormat() == null) ? 0 : getMediaFormat().hashCode());
         hashCode = prime * hashCode + ((getMedia() == null) ? 0 : getMedia().hashCode());
+        hashCode = prime * hashCode
+                + ((getOutputBucketName() == null) ? 0 : getOutputBucketName().hashCode());
         hashCode = prime * hashCode + ((getSettings() == null) ? 0 : getSettings().hashCode());
         return hashCode;
     }
@@ -573,6 +766,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
         if (other.getMedia() == null ^ this.getMedia() == null)
             return false;
         if (other.getMedia() != null && other.getMedia().equals(this.getMedia()) == false)
+            return false;
+        if (other.getOutputBucketName() == null ^ this.getOutputBucketName() == null)
+            return false;
+        if (other.getOutputBucketName() != null
+                && other.getOutputBucketName().equals(this.getOutputBucketName()) == false)
             return false;
         if (other.getSettings() == null ^ this.getSettings() == null)
             return false;

@@ -70,6 +70,11 @@ class MessageJsonMarshaller {
             jsonWriter.name("SilentPush");
             jsonWriter.value(silentPush);
         }
+        if (message.getTimeToLive() != null) {
+            Integer timeToLive = message.getTimeToLive();
+            jsonWriter.name("TimeToLive");
+            jsonWriter.value(timeToLive);
+        }
         if (message.getTitle() != null) {
             String title = message.getTitle();
             jsonWriter.name("Title");

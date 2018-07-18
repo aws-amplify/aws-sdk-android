@@ -60,7 +60,8 @@ public class StartTopicsDetectionJobResult implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED
+     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED,
+     * STOP_REQUESTED, STOPPED
      */
     private String jobStatus;
 
@@ -160,7 +161,8 @@ public class StartTopicsDetectionJobResult implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED
+     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED,
+     * STOP_REQUESTED, STOPPED
      *
      * @return <p>
      *         The status of the job:
@@ -226,7 +228,8 @@ public class StartTopicsDetectionJobResult implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED
+     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED,
+     * STOP_REQUESTED, STOPPED
      *
      * @param jobStatus <p>
      *            The status of the job:
@@ -295,7 +298,8 @@ public class StartTopicsDetectionJobResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED
+     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED,
+     * STOP_REQUESTED, STOPPED
      *
      * @param jobStatus <p>
      *            The status of the job:
@@ -364,7 +368,8 @@ public class StartTopicsDetectionJobResult implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED
+     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED,
+     * STOP_REQUESTED, STOPPED
      *
      * @param jobStatus <p>
      *            The status of the job:
@@ -433,7 +438,8 @@ public class StartTopicsDetectionJobResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED
+     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED,
+     * STOP_REQUESTED, STOPPED
      *
      * @param jobStatus <p>
      *            The status of the job:

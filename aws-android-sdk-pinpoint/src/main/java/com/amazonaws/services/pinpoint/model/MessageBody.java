@@ -22,7 +22,7 @@ import java.io.Serializable;
  */
 public class MessageBody implements Serializable {
     /**
-     * The error message returned from the API.
+     * The error message that's returned from the API.
      */
     private String message;
 
@@ -32,30 +32,30 @@ public class MessageBody implements Serializable {
     private String requestID;
 
     /**
-     * The error message returned from the API.
+     * The error message that's returned from the API.
      *
-     * @return The error message returned from the API.
+     * @return The error message that's returned from the API.
      */
     public String getMessage() {
         return message;
     }
 
     /**
-     * The error message returned from the API.
+     * The error message that's returned from the API.
      *
-     * @param message The error message returned from the API.
+     * @param message The error message that's returned from the API.
      */
     public void setMessage(String message) {
         this.message = message;
     }
 
     /**
-     * The error message returned from the API.
+     * The error message that's returned from the API.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param message The error message returned from the API.
+     * @param message The error message that's returned from the API.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

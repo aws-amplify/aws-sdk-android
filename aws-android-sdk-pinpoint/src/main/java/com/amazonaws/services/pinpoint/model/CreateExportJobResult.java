@@ -19,37 +19,35 @@ import java.io.Serializable;
 
 public class CreateExportJobResult implements Serializable {
     /**
-     * The new value for the exportJobResponse property for this object.
+     * Export job response.
      */
     private ExportJobResponse exportJobResponse;
 
     /**
-     * Returns the value of the exportJobResponse property for this object.
+     * Export job response.
      *
-     * @return The value of the exportJobResponse property for this object.
+     * @return Export job response.
      */
     public ExportJobResponse getExportJobResponse() {
         return exportJobResponse;
     }
 
     /**
-     * Sets the value of exportJobResponse
+     * Export job response.
      *
-     * @param exportJobResponse The new value for the exportJobResponse property
-     *            for this object.
+     * @param exportJobResponse Export job response.
      */
     public void setExportJobResponse(ExportJobResponse exportJobResponse) {
         this.exportJobResponse = exportJobResponse;
     }
 
     /**
-     * Sets the value of the exportJobResponse property for this object.
+     * Export job response.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param exportJobResponse The new value for the exportJobResponse property
-     *            for this object.
+     * @param exportJobResponse Export job response.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -31,6 +31,12 @@ class WriteApplicationSettingsRequestJsonMarshaller {
             jsonWriter.name("CampaignHook");
             CampaignHookJsonMarshaller.getInstance().marshall(campaignHook, jsonWriter);
         }
+        if (writeApplicationSettingsRequest.getCloudWatchMetricsEnabled() != null) {
+            Boolean cloudWatchMetricsEnabled = writeApplicationSettingsRequest
+                    .getCloudWatchMetricsEnabled();
+            jsonWriter.name("CloudWatchMetricsEnabled");
+            jsonWriter.value(cloudWatchMetricsEnabled);
+        }
         if (writeApplicationSettingsRequest.getLimits() != null) {
             CampaignLimits limits = writeApplicationSettingsRequest.getLimits();
             jsonWriter.name("Limits");

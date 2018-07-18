@@ -56,6 +56,9 @@ class TranscriptionJobSummaryJsonUnmarshaller implements
             } else if (name.equals("FailureReason")) {
                 transcriptionJobSummary.setFailureReason(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("OutputLocationType")) {
+                transcriptionJobSummary.setOutputLocationType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -45,6 +45,9 @@ class ExportJobResourceJsonUnmarshaller implements
             } else if (name.equals("SegmentId")) {
                 exportJobResource.setSegmentId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SegmentVersion")) {
+                exportJobResource.setSegmentVersion(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

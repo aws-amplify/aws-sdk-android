@@ -24,40 +24,40 @@ import com.amazonaws.AmazonWebServiceRequest;
  */
 public class PutEventStreamRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * ApplicationId
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * EventStream to write.
+     * Request to save an EventStream.
      */
     private WriteEventStream writeEventStream;
 
     /**
-     * ApplicationId
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return ApplicationId
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * ApplicationId
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId ApplicationId
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * ApplicationId
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId ApplicationId
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -67,30 +67,30 @@ public class PutEventStreamRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * EventStream to write.
+     * Request to save an EventStream.
      *
-     * @return EventStream to write.
+     * @return Request to save an EventStream.
      */
     public WriteEventStream getWriteEventStream() {
         return writeEventStream;
     }
 
     /**
-     * EventStream to write.
+     * Request to save an EventStream.
      *
-     * @param writeEventStream EventStream to write.
+     * @param writeEventStream Request to save an EventStream.
      */
     public void setWriteEventStream(WriteEventStream writeEventStream) {
         this.writeEventStream = writeEventStream;
     }
 
     /**
-     * EventStream to write.
+     * Request to save an EventStream.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param writeEventStream EventStream to write.
+     * @param writeEventStream Request to save an EventStream.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -62,6 +62,11 @@ class SegmentResponseJsonMarshaller {
             jsonWriter.name("Name");
             jsonWriter.value(name);
         }
+        if (segmentResponse.getSegmentGroups() != null) {
+            SegmentGroupList segmentGroups = segmentResponse.getSegmentGroups();
+            jsonWriter.name("SegmentGroups");
+            SegmentGroupListJsonMarshaller.getInstance().marshall(segmentGroups, jsonWriter);
+        }
         if (segmentResponse.getSegmentType() != null) {
             String segmentType = segmentResponse.getSegmentType();
             jsonWriter.name("SegmentType");
