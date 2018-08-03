@@ -1,5 +1,28 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.27](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.27)
+
+### New Features
+
+* **Amazon Polly**
+  * Amazon Polly enables female voice Aditi to speak Hindi language.
+
+### Bug Fixes
+
+* **AWS IoT**
+  * Add customer callback when exception is thrown in client connect.
+
+* **Amazon Cognito Identity**
+  * Fixes developer authentication flow in the `cn-north-1` region.
+
+* **AWS Lambda**
+  * Fix a bug in `LambdaInvocationHandler` where the `InvocationType` is always set to `RequestResponse` even if `LogType` is `None`. See [issue #459](https://github.com/aws/aws-sdk-android/issues/459)
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon DynamoDB
+
 ## [Release 2.6.26](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.26)
 
 ### Enhancements
