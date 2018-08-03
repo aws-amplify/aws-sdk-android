@@ -56,8 +56,8 @@ public class Voice implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ko-KR, ja-JP,
-     * nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
+     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      */
     private String languageCode;
 
@@ -75,6 +75,20 @@ public class Voice implements Serializable {
      * </p>
      */
     private String name;
+
+    /**
+     * <p>
+     * Additional codes for languages available for the specified voice in
+     * addition to its default language.
+     * </p>
+     * <p>
+     * For example, the default language for Aditi is Indian English (en-IN)
+     * because it was first used for that language. Since Aditi is bilingual and
+     * fluent in both Indian English and Hindi, this parameter would show the
+     * code <code>hi-IN</code>.
+     * </p>
+     */
+    private java.util.List<String> additionalLanguageCodes;
 
     /**
      * <p>
@@ -316,8 +330,8 @@ public class Voice implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ko-KR, ja-JP,
-     * nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
+     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
      * @return <p>
      *         Language code of the voice.
@@ -335,8 +349,8 @@ public class Voice implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ko-KR, ja-JP,
-     * nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
+     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
      * @param languageCode <p>
      *            Language code of the voice.
@@ -357,8 +371,8 @@ public class Voice implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ko-KR, ja-JP,
-     * nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
+     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
      * @param languageCode <p>
      *            Language code of the voice.
@@ -379,8 +393,8 @@ public class Voice implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ko-KR, ja-JP,
-     * nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
+     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
      * @param languageCode <p>
      *            Language code of the voice.
@@ -401,8 +415,8 @@ public class Voice implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ko-KR, ja-JP,
-     * nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
+     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
      * @param languageCode <p>
      *            Language code of the voice.
@@ -516,6 +530,137 @@ public class Voice implements Serializable {
     }
 
     /**
+     * <p>
+     * Additional codes for languages available for the specified voice in
+     * addition to its default language.
+     * </p>
+     * <p>
+     * For example, the default language for Aditi is Indian English (en-IN)
+     * because it was first used for that language. Since Aditi is bilingual and
+     * fluent in both Indian English and Hindi, this parameter would show the
+     * code <code>hi-IN</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Additional codes for languages available for the specified voice
+     *         in addition to its default language.
+     *         </p>
+     *         <p>
+     *         For example, the default language for Aditi is Indian English
+     *         (en-IN) because it was first used for that language. Since Aditi
+     *         is bilingual and fluent in both Indian English and Hindi, this
+     *         parameter would show the code <code>hi-IN</code>.
+     *         </p>
+     */
+    public java.util.List<String> getAdditionalLanguageCodes() {
+        return additionalLanguageCodes;
+    }
+
+    /**
+     * <p>
+     * Additional codes for languages available for the specified voice in
+     * addition to its default language.
+     * </p>
+     * <p>
+     * For example, the default language for Aditi is Indian English (en-IN)
+     * because it was first used for that language. Since Aditi is bilingual and
+     * fluent in both Indian English and Hindi, this parameter would show the
+     * code <code>hi-IN</code>.
+     * </p>
+     *
+     * @param additionalLanguageCodes <p>
+     *            Additional codes for languages available for the specified
+     *            voice in addition to its default language.
+     *            </p>
+     *            <p>
+     *            For example, the default language for Aditi is Indian English
+     *            (en-IN) because it was first used for that language. Since
+     *            Aditi is bilingual and fluent in both Indian English and
+     *            Hindi, this parameter would show the code <code>hi-IN</code>.
+     *            </p>
+     */
+    public void setAdditionalLanguageCodes(java.util.Collection<String> additionalLanguageCodes) {
+        if (additionalLanguageCodes == null) {
+            this.additionalLanguageCodes = null;
+            return;
+        }
+
+        this.additionalLanguageCodes = new java.util.ArrayList<String>(additionalLanguageCodes);
+    }
+
+    /**
+     * <p>
+     * Additional codes for languages available for the specified voice in
+     * addition to its default language.
+     * </p>
+     * <p>
+     * For example, the default language for Aditi is Indian English (en-IN)
+     * because it was first used for that language. Since Aditi is bilingual and
+     * fluent in both Indian English and Hindi, this parameter would show the
+     * code <code>hi-IN</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param additionalLanguageCodes <p>
+     *            Additional codes for languages available for the specified
+     *            voice in addition to its default language.
+     *            </p>
+     *            <p>
+     *            For example, the default language for Aditi is Indian English
+     *            (en-IN) because it was first used for that language. Since
+     *            Aditi is bilingual and fluent in both Indian English and
+     *            Hindi, this parameter would show the code <code>hi-IN</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Voice withAdditionalLanguageCodes(String... additionalLanguageCodes) {
+        if (getAdditionalLanguageCodes() == null) {
+            this.additionalLanguageCodes = new java.util.ArrayList<String>(
+                    additionalLanguageCodes.length);
+        }
+        for (String value : additionalLanguageCodes) {
+            this.additionalLanguageCodes.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Additional codes for languages available for the specified voice in
+     * addition to its default language.
+     * </p>
+     * <p>
+     * For example, the default language for Aditi is Indian English (en-IN)
+     * because it was first used for that language. Since Aditi is bilingual and
+     * fluent in both Indian English and Hindi, this parameter would show the
+     * code <code>hi-IN</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param additionalLanguageCodes <p>
+     *            Additional codes for languages available for the specified
+     *            voice in addition to its default language.
+     *            </p>
+     *            <p>
+     *            For example, the default language for Aditi is Indian English
+     *            (en-IN) because it was first used for that language. Since
+     *            Aditi is bilingual and fluent in both Indian English and
+     *            Hindi, this parameter would show the code <code>hi-IN</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Voice withAdditionalLanguageCodes(java.util.Collection<String> additionalLanguageCodes) {
+        setAdditionalLanguageCodes(additionalLanguageCodes);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -535,7 +680,9 @@ public class Voice implements Serializable {
         if (getLanguageName() != null)
             sb.append("LanguageName: " + getLanguageName() + ",");
         if (getName() != null)
-            sb.append("Name: " + getName());
+            sb.append("Name: " + getName() + ",");
+        if (getAdditionalLanguageCodes() != null)
+            sb.append("AdditionalLanguageCodes: " + getAdditionalLanguageCodes());
         sb.append("}");
         return sb.toString();
     }
@@ -552,6 +699,10 @@ public class Voice implements Serializable {
         hashCode = prime * hashCode
                 + ((getLanguageName() == null) ? 0 : getLanguageName().hashCode());
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAdditionalLanguageCodes() == null) ? 0 : getAdditionalLanguageCodes()
+                        .hashCode());
         return hashCode;
     }
 
@@ -587,6 +738,11 @@ public class Voice implements Serializable {
         if (other.getName() == null ^ this.getName() == null)
             return false;
         if (other.getName() != null && other.getName().equals(this.getName()) == false)
+            return false;
+        if (other.getAdditionalLanguageCodes() == null ^ this.getAdditionalLanguageCodes() == null)
+            return false;
+        if (other.getAdditionalLanguageCodes() != null
+                && other.getAdditionalLanguageCodes().equals(this.getAdditionalLanguageCodes()) == false)
             return false;
         return true;
     }

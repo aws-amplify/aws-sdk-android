@@ -94,7 +94,7 @@ class LambdaInvocationHandler implements InvocationHandler {
         invokeRequest.setLogType(lambdaFunction.logType());
 
         // If the log type is other than 'None', force to be RequestResponse.
-        if (!LogType.None.equals(lambdaFunction.logType())) {
+        if (!LogType.None.toString().equals(lambdaFunction.logType())) {
             invokeRequest.setInvocationType(InvocationType.RequestResponse);
         } else {
             invokeRequest.setInvocationType(lambdaFunction.invocationType());

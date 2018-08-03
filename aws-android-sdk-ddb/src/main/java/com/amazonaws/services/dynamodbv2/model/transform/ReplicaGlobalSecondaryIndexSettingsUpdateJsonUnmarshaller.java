@@ -45,6 +45,11 @@ class ReplicaGlobalSecondaryIndexSettingsUpdateJsonUnmarshaller implements
                 replicaGlobalSecondaryIndexSettingsUpdate
                         .setProvisionedReadCapacityUnits(LongJsonUnmarshaller.getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("ProvisionedReadCapacityAutoScalingSettingsUpdate")) {
+                replicaGlobalSecondaryIndexSettingsUpdate
+                        .setProvisionedReadCapacityAutoScalingSettingsUpdate(AutoScalingSettingsUpdateJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

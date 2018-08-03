@@ -122,6 +122,11 @@ public class StartSpeechSynthesisTaskRequestMarshaller implements
                 jsonWriter.name("VoiceId");
                 jsonWriter.value(voiceId);
             }
+            if (startSpeechSynthesisTaskRequest.getLanguageCode() != null) {
+                String languageCode = startSpeechSynthesisTaskRequest.getLanguageCode();
+                jsonWriter.name("LanguageCode");
+                jsonWriter.value(languageCode);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -47,6 +47,14 @@ public class ReplicaSettingsUpdate implements Serializable {
 
     /**
      * <p>
+     * Autoscaling settings for managing a global table replica's read capacity
+     * units.
+     * </p>
+     */
+    private AutoScalingSettingsUpdate replicaProvisionedReadCapacityAutoScalingSettingsUpdate;
+
+    /**
+     * <p>
      * Represents the settings of a global secondary index for a global table
      * that will be modified.
      * </p>
@@ -187,6 +195,59 @@ public class ReplicaSettingsUpdate implements Serializable {
 
     /**
      * <p>
+     * Autoscaling settings for managing a global table replica's read capacity
+     * units.
+     * </p>
+     *
+     * @return <p>
+     *         Autoscaling settings for managing a global table replica's read
+     *         capacity units.
+     *         </p>
+     */
+    public AutoScalingSettingsUpdate getReplicaProvisionedReadCapacityAutoScalingSettingsUpdate() {
+        return replicaProvisionedReadCapacityAutoScalingSettingsUpdate;
+    }
+
+    /**
+     * <p>
+     * Autoscaling settings for managing a global table replica's read capacity
+     * units.
+     * </p>
+     *
+     * @param replicaProvisionedReadCapacityAutoScalingSettingsUpdate <p>
+     *            Autoscaling settings for managing a global table replica's
+     *            read capacity units.
+     *            </p>
+     */
+    public void setReplicaProvisionedReadCapacityAutoScalingSettingsUpdate(
+            AutoScalingSettingsUpdate replicaProvisionedReadCapacityAutoScalingSettingsUpdate) {
+        this.replicaProvisionedReadCapacityAutoScalingSettingsUpdate = replicaProvisionedReadCapacityAutoScalingSettingsUpdate;
+    }
+
+    /**
+     * <p>
+     * Autoscaling settings for managing a global table replica's read capacity
+     * units.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param replicaProvisionedReadCapacityAutoScalingSettingsUpdate <p>
+     *            Autoscaling settings for managing a global table replica's
+     *            read capacity units.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ReplicaSettingsUpdate withReplicaProvisionedReadCapacityAutoScalingSettingsUpdate(
+            AutoScalingSettingsUpdate replicaProvisionedReadCapacityAutoScalingSettingsUpdate) {
+        this.replicaProvisionedReadCapacityAutoScalingSettingsUpdate = replicaProvisionedReadCapacityAutoScalingSettingsUpdate;
+        return this;
+    }
+
+    /**
+     * <p>
      * Represents the settings of a global secondary index for a global table
      * that will be modified.
      * </p>
@@ -288,6 +349,9 @@ public class ReplicaSettingsUpdate implements Serializable {
         if (getReplicaProvisionedReadCapacityUnits() != null)
             sb.append("ReplicaProvisionedReadCapacityUnits: "
                     + getReplicaProvisionedReadCapacityUnits() + ",");
+        if (getReplicaProvisionedReadCapacityAutoScalingSettingsUpdate() != null)
+            sb.append("ReplicaProvisionedReadCapacityAutoScalingSettingsUpdate: "
+                    + getReplicaProvisionedReadCapacityAutoScalingSettingsUpdate() + ",");
         if (getReplicaGlobalSecondaryIndexSettingsUpdate() != null)
             sb.append("ReplicaGlobalSecondaryIndexSettingsUpdate: "
                     + getReplicaGlobalSecondaryIndexSettingsUpdate());
@@ -305,6 +369,10 @@ public class ReplicaSettingsUpdate implements Serializable {
                 * hashCode
                 + ((getReplicaProvisionedReadCapacityUnits() == null) ? 0
                         : getReplicaProvisionedReadCapacityUnits().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getReplicaProvisionedReadCapacityAutoScalingSettingsUpdate() == null) ? 0
+                        : getReplicaProvisionedReadCapacityAutoScalingSettingsUpdate().hashCode());
         hashCode = prime
                 * hashCode
                 + ((getReplicaGlobalSecondaryIndexSettingsUpdate() == null) ? 0
@@ -334,6 +402,13 @@ public class ReplicaSettingsUpdate implements Serializable {
         if (other.getReplicaProvisionedReadCapacityUnits() != null
                 && other.getReplicaProvisionedReadCapacityUnits().equals(
                         this.getReplicaProvisionedReadCapacityUnits()) == false)
+            return false;
+        if (other.getReplicaProvisionedReadCapacityAutoScalingSettingsUpdate() == null
+                ^ this.getReplicaProvisionedReadCapacityAutoScalingSettingsUpdate() == null)
+            return false;
+        if (other.getReplicaProvisionedReadCapacityAutoScalingSettingsUpdate() != null
+                && other.getReplicaProvisionedReadCapacityAutoScalingSettingsUpdate().equals(
+                        this.getReplicaProvisionedReadCapacityAutoScalingSettingsUpdate()) == false)
             return false;
         if (other.getReplicaGlobalSecondaryIndexSettingsUpdate() == null
                 ^ this.getReplicaGlobalSecondaryIndexSettingsUpdate() == null)

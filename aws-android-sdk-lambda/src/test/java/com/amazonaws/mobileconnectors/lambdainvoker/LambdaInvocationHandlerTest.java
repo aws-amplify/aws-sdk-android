@@ -73,6 +73,9 @@ public class LambdaInvocationHandlerTest {
         @LambdaFunction(functionName = "echo", invocationType = "Event")
         String echoAlias(String a);
 
+        @LambdaFunction(functionName = "echo", invocationType = "Event", logType = "Tail")
+        String echoAliasLogTail(String a);
+
         @LambdaFunction(qualifier = "version")
         String echoVersion(String a);
 
@@ -197,17 +200,28 @@ public class LambdaInvocationHandlerTest {
     @Test
     public void testBuildInvokeRequestOverride() throws Exception {
         Method echoAlias = getMethod("echoAlias", String.class);
-        InvokeRequest request = handler.buildInvokeRequest(echoAlias, "hello world");
+        String input = "hello world";
+        InvokeRequest request = handler.buildInvokeRequest(echoAlias, input);
         assertEquals("function name", "echo", request.getFunctionName());
-        // invocation type is forced as RequestResponse because log type is
-        // empty/None
+        // invocation type is set to Event because LogType is None.
+        assertEquals("invocation type", "Event", request.getInvocationType());
+    }
+
+    @Test
+    public void testBuildInvokeLogAndRequestOverride() throws Exception {
+        Method echoAlias = getMethod("echoAliasLogTail", String.class);
+        String input = "hello world";
+        InvokeRequest request = handler.buildInvokeRequest(echoAlias, input);
+        assertEquals("function name", "echo", request.getFunctionName());
+        // invocation type is set to RequestResponse because LogType is Not None.
         assertEquals("invocation type", "RequestResponse", request.getInvocationType());
     }
 
     @Test
     public void testBuildInvokeRequestVersion() throws Exception {
         Method echoVersion = getMethod("echoVersion", String.class);
-        InvokeRequest request = handler.buildInvokeRequest(echoVersion, "hello world");
+        String input = "hello world";
+        InvokeRequest request = handler.buildInvokeRequest(echoVersion, input);
         assertEquals("function name", "echoVersion", request.getFunctionName());
         assertEquals("qualifier", "version", request.getQualifier());
     }

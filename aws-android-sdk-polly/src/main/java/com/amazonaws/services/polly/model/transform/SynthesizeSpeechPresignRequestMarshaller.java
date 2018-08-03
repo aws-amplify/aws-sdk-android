@@ -78,6 +78,11 @@ public class SynthesizeSpeechPresignRequestMarshaller implements
                     .fromString(synthesizeSpeechPresignRequest.getVoiceId()));
         }
 
+        if (synthesizeSpeechPresignRequest.getLanguageCode() != null) {
+            request.addParameter("LanguageCode", StringUtils
+                    .fromString(synthesizeSpeechPresignRequest.getLanguageCode()));
+        }
+
         if (synthesizeSpeechPresignRequest.getSampleRate() != null) {
             request.addParameter("SampleRate", synthesizeSpeechPresignRequest.getSampleRate());
         }

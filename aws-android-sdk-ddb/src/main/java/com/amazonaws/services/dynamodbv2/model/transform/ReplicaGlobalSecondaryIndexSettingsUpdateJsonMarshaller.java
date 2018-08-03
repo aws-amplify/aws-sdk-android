@@ -38,6 +38,14 @@ class ReplicaGlobalSecondaryIndexSettingsUpdateJsonMarshaller {
             jsonWriter.name("ProvisionedReadCapacityUnits");
             jsonWriter.value(provisionedReadCapacityUnits);
         }
+        if (replicaGlobalSecondaryIndexSettingsUpdate
+                .getProvisionedReadCapacityAutoScalingSettingsUpdate() != null) {
+            AutoScalingSettingsUpdate provisionedReadCapacityAutoScalingSettingsUpdate = replicaGlobalSecondaryIndexSettingsUpdate
+                    .getProvisionedReadCapacityAutoScalingSettingsUpdate();
+            jsonWriter.name("ProvisionedReadCapacityAutoScalingSettingsUpdate");
+            AutoScalingSettingsUpdateJsonMarshaller.getInstance().marshall(
+                    provisionedReadCapacityAutoScalingSettingsUpdate, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

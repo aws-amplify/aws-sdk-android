@@ -54,6 +54,9 @@ public @interface LambdaFunction {
      * The type of log to request from the service, either 'None' as default or
      * 'Tail'. If set to other than 'None', the invocation type will be
      * 'RequestResponse' regardless of any explicit setting.
+     * <p>
+     * When specified, the log information returned by the Lambda function will be
+     * emitted to the JCL log for the interface class at the {@code INFO} level.
      */
     String logType() default "None";
 

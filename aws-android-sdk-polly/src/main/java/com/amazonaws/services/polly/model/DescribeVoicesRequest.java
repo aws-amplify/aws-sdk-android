@@ -56,10 +56,22 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ko-KR, ja-JP,
-     * nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
+     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      */
     private String languageCode;
+
+    /**
+     * <p>
+     * Boolean value indicating whether to return any bilingual voices that use
+     * the specified language as an additional language. For instance, if you
+     * request all languages that use US English (es-US), and there is an
+     * Italian voice that speaks both Italian (it-IT) and US English, that voice
+     * will be included if you specify <code>yes</code> but not if you specify
+     * <code>no</code>.
+     * </p>
+     */
+    private Boolean includeAdditionalLanguageCodes;
 
     /**
      * <p>
@@ -79,8 +91,8 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ko-KR, ja-JP,
-     * nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
+     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
      * @return <p>
      *         The language identification tag (ISO 639 code for the language
@@ -103,8 +115,8 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ko-KR, ja-JP,
-     * nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
+     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
      * @param languageCode <p>
      *            The language identification tag (ISO 639 code for the language
@@ -130,8 +142,8 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ko-KR, ja-JP,
-     * nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
+     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
      * @param languageCode <p>
      *            The language identification tag (ISO 639 code for the language
@@ -157,8 +169,8 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ko-KR, ja-JP,
-     * nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
+     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
      * @param languageCode <p>
      *            The language identification tag (ISO 639 code for the language
@@ -184,8 +196,8 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ko-KR, ja-JP,
-     * nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
+     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
      * @param languageCode <p>
      *            The language identification tag (ISO 639 code for the language
@@ -199,6 +211,107 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
      */
     public DescribeVoicesRequest withLanguageCode(LanguageCode languageCode) {
         this.languageCode = languageCode.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Boolean value indicating whether to return any bilingual voices that use
+     * the specified language as an additional language. For instance, if you
+     * request all languages that use US English (es-US), and there is an
+     * Italian voice that speaks both Italian (it-IT) and US English, that voice
+     * will be included if you specify <code>yes</code> but not if you specify
+     * <code>no</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Boolean value indicating whether to return any bilingual voices
+     *         that use the specified language as an additional language. For
+     *         instance, if you request all languages that use US English
+     *         (es-US), and there is an Italian voice that speaks both Italian
+     *         (it-IT) and US English, that voice will be included if you
+     *         specify <code>yes</code> but not if you specify <code>no</code>.
+     *         </p>
+     */
+    public Boolean isIncludeAdditionalLanguageCodes() {
+        return includeAdditionalLanguageCodes;
+    }
+
+    /**
+     * <p>
+     * Boolean value indicating whether to return any bilingual voices that use
+     * the specified language as an additional language. For instance, if you
+     * request all languages that use US English (es-US), and there is an
+     * Italian voice that speaks both Italian (it-IT) and US English, that voice
+     * will be included if you specify <code>yes</code> but not if you specify
+     * <code>no</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Boolean value indicating whether to return any bilingual voices
+     *         that use the specified language as an additional language. For
+     *         instance, if you request all languages that use US English
+     *         (es-US), and there is an Italian voice that speaks both Italian
+     *         (it-IT) and US English, that voice will be included if you
+     *         specify <code>yes</code> but not if you specify <code>no</code>.
+     *         </p>
+     */
+    public Boolean getIncludeAdditionalLanguageCodes() {
+        return includeAdditionalLanguageCodes;
+    }
+
+    /**
+     * <p>
+     * Boolean value indicating whether to return any bilingual voices that use
+     * the specified language as an additional language. For instance, if you
+     * request all languages that use US English (es-US), and there is an
+     * Italian voice that speaks both Italian (it-IT) and US English, that voice
+     * will be included if you specify <code>yes</code> but not if you specify
+     * <code>no</code>.
+     * </p>
+     *
+     * @param includeAdditionalLanguageCodes <p>
+     *            Boolean value indicating whether to return any bilingual
+     *            voices that use the specified language as an additional
+     *            language. For instance, if you request all languages that use
+     *            US English (es-US), and there is an Italian voice that speaks
+     *            both Italian (it-IT) and US English, that voice will be
+     *            included if you specify <code>yes</code> but not if you
+     *            specify <code>no</code>.
+     *            </p>
+     */
+    public void setIncludeAdditionalLanguageCodes(Boolean includeAdditionalLanguageCodes) {
+        this.includeAdditionalLanguageCodes = includeAdditionalLanguageCodes;
+    }
+
+    /**
+     * <p>
+     * Boolean value indicating whether to return any bilingual voices that use
+     * the specified language as an additional language. For instance, if you
+     * request all languages that use US English (es-US), and there is an
+     * Italian voice that speaks both Italian (it-IT) and US English, that voice
+     * will be included if you specify <code>yes</code> but not if you specify
+     * <code>no</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param includeAdditionalLanguageCodes <p>
+     *            Boolean value indicating whether to return any bilingual
+     *            voices that use the specified language as an additional
+     *            language. For instance, if you request all languages that use
+     *            US English (es-US), and there is an Italian voice that speaks
+     *            both Italian (it-IT) and US English, that voice will be
+     *            included if you specify <code>yes</code> but not if you
+     *            specify <code>no</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeVoicesRequest withIncludeAdditionalLanguageCodes(
+            Boolean includeAdditionalLanguageCodes) {
+        this.includeAdditionalLanguageCodes = includeAdditionalLanguageCodes;
         return this;
     }
 
@@ -272,6 +385,9 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
         sb.append("{");
         if (getLanguageCode() != null)
             sb.append("LanguageCode: " + getLanguageCode() + ",");
+        if (getIncludeAdditionalLanguageCodes() != null)
+            sb.append("IncludeAdditionalLanguageCodes: " + getIncludeAdditionalLanguageCodes()
+                    + ",");
         if (getNextToken() != null)
             sb.append("NextToken: " + getNextToken());
         sb.append("}");
@@ -285,6 +401,10 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
 
         hashCode = prime * hashCode
                 + ((getLanguageCode() == null) ? 0 : getLanguageCode().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getIncludeAdditionalLanguageCodes() == null) ? 0
+                        : getIncludeAdditionalLanguageCodes().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         return hashCode;
     }
@@ -304,6 +424,13 @@ public class DescribeVoicesRequest extends AmazonWebServiceRequest implements Se
             return false;
         if (other.getLanguageCode() != null
                 && other.getLanguageCode().equals(this.getLanguageCode()) == false)
+            return false;
+        if (other.getIncludeAdditionalLanguageCodes() == null
+                ^ this.getIncludeAdditionalLanguageCodes() == null)
+            return false;
+        if (other.getIncludeAdditionalLanguageCodes() != null
+                && other.getIncludeAdditionalLanguageCodes().equals(
+                        this.getIncludeAdditionalLanguageCodes()) == false)
             return false;
         if (other.getNextToken() == null ^ this.getNextToken() == null)
             return false;

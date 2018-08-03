@@ -102,6 +102,11 @@ class SynthesisTaskJsonMarshaller {
             jsonWriter.name("VoiceId");
             jsonWriter.value(voiceId);
         }
+        if (synthesisTask.getLanguageCode() != null) {
+            String languageCode = synthesisTask.getLanguageCode();
+            jsonWriter.name("LanguageCode");
+            jsonWriter.value(languageCode);
+        }
         jsonWriter.endObject();
     }
 

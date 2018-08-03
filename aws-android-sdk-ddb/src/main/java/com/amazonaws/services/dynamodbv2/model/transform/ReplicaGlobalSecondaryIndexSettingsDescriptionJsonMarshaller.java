@@ -43,11 +43,27 @@ class ReplicaGlobalSecondaryIndexSettingsDescriptionJsonMarshaller {
             jsonWriter.name("ProvisionedReadCapacityUnits");
             jsonWriter.value(provisionedReadCapacityUnits);
         }
+        if (replicaGlobalSecondaryIndexSettingsDescription
+                .getProvisionedReadCapacityAutoScalingSettings() != null) {
+            AutoScalingSettingsDescription provisionedReadCapacityAutoScalingSettings = replicaGlobalSecondaryIndexSettingsDescription
+                    .getProvisionedReadCapacityAutoScalingSettings();
+            jsonWriter.name("ProvisionedReadCapacityAutoScalingSettings");
+            AutoScalingSettingsDescriptionJsonMarshaller.getInstance().marshall(
+                    provisionedReadCapacityAutoScalingSettings, jsonWriter);
+        }
         if (replicaGlobalSecondaryIndexSettingsDescription.getProvisionedWriteCapacityUnits() != null) {
             Long provisionedWriteCapacityUnits = replicaGlobalSecondaryIndexSettingsDescription
                     .getProvisionedWriteCapacityUnits();
             jsonWriter.name("ProvisionedWriteCapacityUnits");
             jsonWriter.value(provisionedWriteCapacityUnits);
+        }
+        if (replicaGlobalSecondaryIndexSettingsDescription
+                .getProvisionedWriteCapacityAutoScalingSettings() != null) {
+            AutoScalingSettingsDescription provisionedWriteCapacityAutoScalingSettings = replicaGlobalSecondaryIndexSettingsDescription
+                    .getProvisionedWriteCapacityAutoScalingSettings();
+            jsonWriter.name("ProvisionedWriteCapacityAutoScalingSettings");
+            AutoScalingSettingsDescriptionJsonMarshaller.getInstance().marshall(
+                    provisionedWriteCapacityAutoScalingSettings, jsonWriter);
         }
         jsonWriter.endObject();
     }

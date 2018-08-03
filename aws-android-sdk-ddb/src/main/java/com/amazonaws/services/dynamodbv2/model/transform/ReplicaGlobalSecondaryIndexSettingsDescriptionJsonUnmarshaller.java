@@ -49,9 +49,19 @@ class ReplicaGlobalSecondaryIndexSettingsDescriptionJsonUnmarshaller implements
                 replicaGlobalSecondaryIndexSettingsDescription
                         .setProvisionedReadCapacityUnits(LongJsonUnmarshaller.getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("ProvisionedReadCapacityAutoScalingSettings")) {
+                replicaGlobalSecondaryIndexSettingsDescription
+                        .setProvisionedReadCapacityAutoScalingSettings(AutoScalingSettingsDescriptionJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("ProvisionedWriteCapacityUnits")) {
                 replicaGlobalSecondaryIndexSettingsDescription
                         .setProvisionedWriteCapacityUnits(LongJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
+            } else if (name.equals("ProvisionedWriteCapacityAutoScalingSettings")) {
+                replicaGlobalSecondaryIndexSettingsDescription
+                        .setProvisionedWriteCapacityAutoScalingSettings(AutoScalingSettingsDescriptionJsonUnmarshaller
+                                .getInstance()
                                 .unmarshall(context));
             } else {
                 reader.skipValue();

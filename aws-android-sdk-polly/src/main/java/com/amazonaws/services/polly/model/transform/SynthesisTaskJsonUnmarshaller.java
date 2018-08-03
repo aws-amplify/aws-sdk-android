@@ -78,6 +78,9 @@ class SynthesisTaskJsonUnmarshaller implements Unmarshaller<SynthesisTask, JsonU
             } else if (name.equals("VoiceId")) {
                 synthesisTask.setVoiceId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("LanguageCode")) {
+                synthesisTask.setLanguageCode(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

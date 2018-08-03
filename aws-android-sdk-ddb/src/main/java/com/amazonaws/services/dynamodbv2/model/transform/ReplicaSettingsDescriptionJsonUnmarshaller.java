@@ -46,9 +46,19 @@ class ReplicaSettingsDescriptionJsonUnmarshaller implements
                 replicaSettingsDescription
                         .setReplicaProvisionedReadCapacityUnits(LongJsonUnmarshaller.getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("ReplicaProvisionedReadCapacityAutoScalingSettings")) {
+                replicaSettingsDescription
+                        .setReplicaProvisionedReadCapacityAutoScalingSettings(AutoScalingSettingsDescriptionJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("ReplicaProvisionedWriteCapacityUnits")) {
                 replicaSettingsDescription
                         .setReplicaProvisionedWriteCapacityUnits(LongJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
+            } else if (name.equals("ReplicaProvisionedWriteCapacityAutoScalingSettings")) {
+                replicaSettingsDescription
+                        .setReplicaProvisionedWriteCapacityAutoScalingSettings(AutoScalingSettingsDescriptionJsonUnmarshaller
+                                .getInstance()
                                 .unmarshall(context));
             } else if (name.equals("ReplicaGlobalSecondaryIndexSettings")) {
                 replicaSettingsDescription
