@@ -37,6 +37,13 @@ class ReplicaSettingsUpdateJsonMarshaller {
             jsonWriter.name("ReplicaProvisionedReadCapacityUnits");
             jsonWriter.value(replicaProvisionedReadCapacityUnits);
         }
+        if (replicaSettingsUpdate.getReplicaProvisionedReadCapacityAutoScalingSettingsUpdate() != null) {
+            AutoScalingSettingsUpdate replicaProvisionedReadCapacityAutoScalingSettingsUpdate = replicaSettingsUpdate
+                    .getReplicaProvisionedReadCapacityAutoScalingSettingsUpdate();
+            jsonWriter.name("ReplicaProvisionedReadCapacityAutoScalingSettingsUpdate");
+            AutoScalingSettingsUpdateJsonMarshaller.getInstance().marshall(
+                    replicaProvisionedReadCapacityAutoScalingSettingsUpdate, jsonWriter);
+        }
         if (replicaSettingsUpdate.getReplicaGlobalSecondaryIndexSettingsUpdate() != null) {
             java.util.List<ReplicaGlobalSecondaryIndexSettingsUpdate> replicaGlobalSecondaryIndexSettingsUpdate = replicaSettingsUpdate
                     .getReplicaGlobalSecondaryIndexSettingsUpdate();

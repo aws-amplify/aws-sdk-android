@@ -80,6 +80,14 @@ public class ReplicaGlobalSecondaryIndexSettingsDescription implements Serializa
 
     /**
      * <p>
+     * Autoscaling settings for a global secondary index replica's read capacity
+     * units.
+     * </p>
+     */
+    private AutoScalingSettingsDescription provisionedReadCapacityAutoScalingSettings;
+
+    /**
+     * <p>
      * The maximum number of writes consumed per second before DynamoDB returns
      * a <code>ThrottlingException</code>.
      * </p>
@@ -88,6 +96,14 @@ public class ReplicaGlobalSecondaryIndexSettingsDescription implements Serializa
      * <b>Range: </b>1 - <br/>
      */
     private Long provisionedWriteCapacityUnits;
+
+    /**
+     * <p>
+     * AutoScaling settings for a global secondary index replica's write
+     * capacity units.
+     * </p>
+     */
+    private AutoScalingSettingsDescription provisionedWriteCapacityAutoScalingSettings;
 
     /**
      * <p>
@@ -555,6 +571,59 @@ public class ReplicaGlobalSecondaryIndexSettingsDescription implements Serializa
 
     /**
      * <p>
+     * Autoscaling settings for a global secondary index replica's read capacity
+     * units.
+     * </p>
+     *
+     * @return <p>
+     *         Autoscaling settings for a global secondary index replica's read
+     *         capacity units.
+     *         </p>
+     */
+    public AutoScalingSettingsDescription getProvisionedReadCapacityAutoScalingSettings() {
+        return provisionedReadCapacityAutoScalingSettings;
+    }
+
+    /**
+     * <p>
+     * Autoscaling settings for a global secondary index replica's read capacity
+     * units.
+     * </p>
+     *
+     * @param provisionedReadCapacityAutoScalingSettings <p>
+     *            Autoscaling settings for a global secondary index replica's
+     *            read capacity units.
+     *            </p>
+     */
+    public void setProvisionedReadCapacityAutoScalingSettings(
+            AutoScalingSettingsDescription provisionedReadCapacityAutoScalingSettings) {
+        this.provisionedReadCapacityAutoScalingSettings = provisionedReadCapacityAutoScalingSettings;
+    }
+
+    /**
+     * <p>
+     * Autoscaling settings for a global secondary index replica's read capacity
+     * units.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param provisionedReadCapacityAutoScalingSettings <p>
+     *            Autoscaling settings for a global secondary index replica's
+     *            read capacity units.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ReplicaGlobalSecondaryIndexSettingsDescription withProvisionedReadCapacityAutoScalingSettings(
+            AutoScalingSettingsDescription provisionedReadCapacityAutoScalingSettings) {
+        this.provisionedReadCapacityAutoScalingSettings = provisionedReadCapacityAutoScalingSettings;
+        return this;
+    }
+
+    /**
+     * <p>
      * The maximum number of writes consumed per second before DynamoDB returns
      * a <code>ThrottlingException</code>.
      * </p>
@@ -615,6 +684,59 @@ public class ReplicaGlobalSecondaryIndexSettingsDescription implements Serializa
     }
 
     /**
+     * <p>
+     * AutoScaling settings for a global secondary index replica's write
+     * capacity units.
+     * </p>
+     *
+     * @return <p>
+     *         AutoScaling settings for a global secondary index replica's write
+     *         capacity units.
+     *         </p>
+     */
+    public AutoScalingSettingsDescription getProvisionedWriteCapacityAutoScalingSettings() {
+        return provisionedWriteCapacityAutoScalingSettings;
+    }
+
+    /**
+     * <p>
+     * AutoScaling settings for a global secondary index replica's write
+     * capacity units.
+     * </p>
+     *
+     * @param provisionedWriteCapacityAutoScalingSettings <p>
+     *            AutoScaling settings for a global secondary index replica's
+     *            write capacity units.
+     *            </p>
+     */
+    public void setProvisionedWriteCapacityAutoScalingSettings(
+            AutoScalingSettingsDescription provisionedWriteCapacityAutoScalingSettings) {
+        this.provisionedWriteCapacityAutoScalingSettings = provisionedWriteCapacityAutoScalingSettings;
+    }
+
+    /**
+     * <p>
+     * AutoScaling settings for a global secondary index replica's write
+     * capacity units.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param provisionedWriteCapacityAutoScalingSettings <p>
+     *            AutoScaling settings for a global secondary index replica's
+     *            write capacity units.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ReplicaGlobalSecondaryIndexSettingsDescription withProvisionedWriteCapacityAutoScalingSettings(
+            AutoScalingSettingsDescription provisionedWriteCapacityAutoScalingSettings) {
+        this.provisionedWriteCapacityAutoScalingSettings = provisionedWriteCapacityAutoScalingSettings;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -631,8 +753,14 @@ public class ReplicaGlobalSecondaryIndexSettingsDescription implements Serializa
             sb.append("IndexStatus: " + getIndexStatus() + ",");
         if (getProvisionedReadCapacityUnits() != null)
             sb.append("ProvisionedReadCapacityUnits: " + getProvisionedReadCapacityUnits() + ",");
+        if (getProvisionedReadCapacityAutoScalingSettings() != null)
+            sb.append("ProvisionedReadCapacityAutoScalingSettings: "
+                    + getProvisionedReadCapacityAutoScalingSettings() + ",");
         if (getProvisionedWriteCapacityUnits() != null)
-            sb.append("ProvisionedWriteCapacityUnits: " + getProvisionedWriteCapacityUnits());
+            sb.append("ProvisionedWriteCapacityUnits: " + getProvisionedWriteCapacityUnits() + ",");
+        if (getProvisionedWriteCapacityAutoScalingSettings() != null)
+            sb.append("ProvisionedWriteCapacityAutoScalingSettings: "
+                    + getProvisionedWriteCapacityAutoScalingSettings());
         sb.append("}");
         return sb.toString();
     }
@@ -651,8 +779,16 @@ public class ReplicaGlobalSecondaryIndexSettingsDescription implements Serializa
                         : getProvisionedReadCapacityUnits().hashCode());
         hashCode = prime
                 * hashCode
+                + ((getProvisionedReadCapacityAutoScalingSettings() == null) ? 0
+                        : getProvisionedReadCapacityAutoScalingSettings().hashCode());
+        hashCode = prime
+                * hashCode
                 + ((getProvisionedWriteCapacityUnits() == null) ? 0
                         : getProvisionedWriteCapacityUnits().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getProvisionedWriteCapacityAutoScalingSettings() == null) ? 0
+                        : getProvisionedWriteCapacityAutoScalingSettings().hashCode());
         return hashCode;
     }
 
@@ -684,12 +820,26 @@ public class ReplicaGlobalSecondaryIndexSettingsDescription implements Serializa
                 && other.getProvisionedReadCapacityUnits().equals(
                         this.getProvisionedReadCapacityUnits()) == false)
             return false;
+        if (other.getProvisionedReadCapacityAutoScalingSettings() == null
+                ^ this.getProvisionedReadCapacityAutoScalingSettings() == null)
+            return false;
+        if (other.getProvisionedReadCapacityAutoScalingSettings() != null
+                && other.getProvisionedReadCapacityAutoScalingSettings().equals(
+                        this.getProvisionedReadCapacityAutoScalingSettings()) == false)
+            return false;
         if (other.getProvisionedWriteCapacityUnits() == null
                 ^ this.getProvisionedWriteCapacityUnits() == null)
             return false;
         if (other.getProvisionedWriteCapacityUnits() != null
                 && other.getProvisionedWriteCapacityUnits().equals(
                         this.getProvisionedWriteCapacityUnits()) == false)
+            return false;
+        if (other.getProvisionedWriteCapacityAutoScalingSettings() == null
+                ^ this.getProvisionedWriteCapacityAutoScalingSettings() == null)
+            return false;
+        if (other.getProvisionedWriteCapacityAutoScalingSettings() != null
+                && other.getProvisionedWriteCapacityAutoScalingSettings().equals(
+                        this.getProvisionedWriteCapacityAutoScalingSettings()) == false)
             return false;
         return true;
     }

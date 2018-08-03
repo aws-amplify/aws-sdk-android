@@ -50,6 +50,17 @@ class VoiceJsonMarshaller {
             jsonWriter.name("Name");
             jsonWriter.value(name);
         }
+        if (voice.getAdditionalLanguageCodes() != null) {
+            java.util.List<String> additionalLanguageCodes = voice.getAdditionalLanguageCodes();
+            jsonWriter.name("AdditionalLanguageCodes");
+            jsonWriter.beginArray();
+            for (String additionalLanguageCodesItem : additionalLanguageCodes) {
+                if (additionalLanguageCodesItem != null) {
+                    jsonWriter.value(additionalLanguageCodesItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

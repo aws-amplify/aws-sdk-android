@@ -35,4 +35,10 @@ public interface MyInterface {
 
     @LambdaFunction(functionName = "echoFirst", qualifier = "alias")
     String echoFirstAlias(NameInfo nameInfo);
+
+    @LambdaFunction(functionName = "echo", invocationType = "Event")
+    void echoEventLogNone(NameInfo nameInfo);
+
+    @LambdaFunction(functionName = "echo", invocationType = "Event", logType = "Tail")
+    void echoEventLogTail(NameInfo nameInfo);
 }

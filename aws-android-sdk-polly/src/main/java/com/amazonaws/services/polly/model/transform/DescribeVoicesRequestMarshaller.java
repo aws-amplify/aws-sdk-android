@@ -55,6 +55,10 @@ public class DescribeVoicesRequestMarshaller implements
             request.addParameter("LanguageCode",
                     StringUtils.fromString(describeVoicesRequest.getLanguageCode()));
         }
+        if (describeVoicesRequest.getIncludeAdditionalLanguageCodes() != null) {
+            request.addParameter("IncludeAdditionalLanguageCodes", StringUtils
+                    .fromBoolean(describeVoicesRequest.getIncludeAdditionalLanguageCodes()));
+        }
         if (describeVoicesRequest.getNextToken() != null) {
             request.addParameter("NextToken",
                     StringUtils.fromString(describeVoicesRequest.getNextToken()));

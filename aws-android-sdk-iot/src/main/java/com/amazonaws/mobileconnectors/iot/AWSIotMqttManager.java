@@ -728,7 +728,10 @@ public class AWSIotMqttManager {
                     mqttConnect(options, statusCallback);
 
                 } catch (final MqttException e) {
-                    throw new AmazonClientException("An error occurred in the MQTT client.", e);
+                    AWSIotMqttManager.this.userStatusCallback.onStatusChanged(
+                        AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.ConnectionLost,
+                        new AmazonClientException("An error occurred in the MQTT client.", e)
+                    );
                 }
             }
         }, "Mqtt Connect Thread").start();

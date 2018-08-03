@@ -28,9 +28,9 @@ public class ListSpeechSynthesisTasksResult implements Serializable {
 
     /**
      * <p>
-     * SynthesisTask object that provides information from the specified task in
-     * the list request, including output format, creation time, task status,
-     * and so on.
+     * List of SynthesisTask objects that provides information from the
+     * specified task in the list request, including output format, creation
+     * time, task status, and so on.
      * </p>
      */
     private java.util.List<SynthesisTask> synthesisTasks;
@@ -91,15 +91,15 @@ public class ListSpeechSynthesisTasksResult implements Serializable {
 
     /**
      * <p>
-     * SynthesisTask object that provides information from the specified task in
-     * the list request, including output format, creation time, task status,
-     * and so on.
+     * List of SynthesisTask objects that provides information from the
+     * specified task in the list request, including output format, creation
+     * time, task status, and so on.
      * </p>
      *
      * @return <p>
-     *         SynthesisTask object that provides information from the specified
-     *         task in the list request, including output format, creation time,
-     *         task status, and so on.
+     *         List of SynthesisTask objects that provides information from the
+     *         specified task in the list request, including output format,
+     *         creation time, task status, and so on.
      *         </p>
      */
     public java.util.List<SynthesisTask> getSynthesisTasks() {
@@ -108,15 +108,15 @@ public class ListSpeechSynthesisTasksResult implements Serializable {
 
     /**
      * <p>
-     * SynthesisTask object that provides information from the specified task in
-     * the list request, including output format, creation time, task status,
-     * and so on.
+     * List of SynthesisTask objects that provides information from the
+     * specified task in the list request, including output format, creation
+     * time, task status, and so on.
      * </p>
      *
      * @param synthesisTasks <p>
-     *            SynthesisTask object that provides information from the
-     *            specified task in the list request, including output format,
-     *            creation time, task status, and so on.
+     *            List of SynthesisTask objects that provides information from
+     *            the specified task in the list request, including output
+     *            format, creation time, task status, and so on.
      *            </p>
      */
     public void setSynthesisTasks(java.util.Collection<SynthesisTask> synthesisTasks) {
@@ -130,18 +130,18 @@ public class ListSpeechSynthesisTasksResult implements Serializable {
 
     /**
      * <p>
-     * SynthesisTask object that provides information from the specified task in
-     * the list request, including output format, creation time, task status,
-     * and so on.
+     * List of SynthesisTask objects that provides information from the
+     * specified task in the list request, including output format, creation
+     * time, task status, and so on.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param synthesisTasks <p>
-     *            SynthesisTask object that provides information from the
-     *            specified task in the list request, including output format,
-     *            creation time, task status, and so on.
+     *            List of SynthesisTask objects that provides information from
+     *            the specified task in the list request, including output
+     *            format, creation time, task status, and so on.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -158,18 +158,18 @@ public class ListSpeechSynthesisTasksResult implements Serializable {
 
     /**
      * <p>
-     * SynthesisTask object that provides information from the specified task in
-     * the list request, including output format, creation time, task status,
-     * and so on.
+     * List of SynthesisTask objects that provides information from the
+     * specified task in the list request, including output format, creation
+     * time, task status, and so on.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param synthesisTasks <p>
-     *            SynthesisTask object that provides information from the
-     *            specified task in the list request, including output format,
-     *            creation time, task status, and so on.
+     *            List of SynthesisTask objects that provides information from
+     *            the specified task in the list request, including output
+     *            format, creation time, task status, and so on.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -50,6 +50,11 @@ class VoiceJsonUnmarshaller implements Unmarshaller<Voice, JsonUnmarshallerConte
             } else if (name.equals("Name")) {
                 voice.setName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("AdditionalLanguageCodes")) {
+                voice.setAdditionalLanguageCodes(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
