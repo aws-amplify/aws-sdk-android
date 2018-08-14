@@ -204,6 +204,7 @@ public class AuthClient {
      */
     @SuppressWarnings("checkstyle:hiddenfield")
     public boolean isAuthenticated() {
+        //change the code pool.getAppWebDomain to pool.getAppId to fix the issue that isAuthenticated return false for logged user
         AuthUserSession session =
                 LocalDataManager.getCachedSession(context, pool.getAppId(), userId, pool.getScopes());
         return session.isValidForThreshold();
