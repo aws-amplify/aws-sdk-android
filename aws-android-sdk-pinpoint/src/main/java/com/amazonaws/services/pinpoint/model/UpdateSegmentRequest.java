@@ -20,7 +20,7 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Use to update a segment.
+ * Used to update a segment.
  */
 public class UpdateSegmentRequest extends AmazonWebServiceRequest implements Serializable {
     /**

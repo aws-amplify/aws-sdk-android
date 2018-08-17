@@ -20,7 +20,7 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Deletes endpoints associated with an user id.
+ * Deletes endpoints that are associated with a User ID.
  */
 public class DeleteUserEndpointsRequest extends AmazonWebServiceRequest implements Serializable {
     /**

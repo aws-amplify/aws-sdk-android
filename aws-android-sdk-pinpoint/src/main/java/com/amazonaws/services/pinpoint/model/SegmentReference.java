@@ -22,7 +22,7 @@ import java.io.Serializable;
  */
 public class SegmentReference implements Serializable {
     /**
-     * Segment Id.
+     * A unique identifier for the segment.
      */
     private String id;
 
@@ -32,30 +32,30 @@ public class SegmentReference implements Serializable {
     private Integer version;
 
     /**
-     * Segment Id.
+     * A unique identifier for the segment.
      *
-     * @return Segment Id.
+     * @return A unique identifier for the segment.
      */
     public String getId() {
         return id;
     }
 
     /**
-     * Segment Id.
+     * A unique identifier for the segment.
      *
-     * @param id Segment Id.
+     * @param id A unique identifier for the segment.
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * Segment Id.
+     * A unique identifier for the segment.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id Segment Id.
+     * @param id A unique identifier for the segment.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -28,6 +28,7 @@ import android.support.customtabs.CustomTabsClient;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.customtabs.CustomTabsServiceConnection;
 import android.support.customtabs.CustomTabsSession;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.amazonaws.cognito.clientcontext.data.UserContextDataProvider;
@@ -204,7 +205,7 @@ public class AuthClient {
     @SuppressWarnings("checkstyle:hiddenfield")
     public boolean isAuthenticated() {
         AuthUserSession session =
-                LocalDataManager.getCachedSession(context, pool.getAppWebDomain(), userId, pool.getScopes());
+                LocalDataManager.getCachedSession(context, pool.getAppId(), userId, pool.getScopes());
         return session.isValidForThreshold();
     }
 
@@ -477,6 +478,11 @@ public class AuthClient {
                         ClientConstants.DOMAIN_QUERY_PARAM_CODE_CHALLENGE_METHOD_SHA256)
                 .appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_STATE, state)
                 .appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_USERCONTEXTDATA, getUserContextData());;
+
+        //check if identity provider set as param.
+        if (!TextUtils.isEmpty(pool.getIdentityProvider())) {
+            builder.appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_IDENTITY_PROVIDER, pool.getIdentityProvider());
+        }
 
         // Convert scopes into a string of comma separated values.
         final int noOfScopes = tokenScopes.size();

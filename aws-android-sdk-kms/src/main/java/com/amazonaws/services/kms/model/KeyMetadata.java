@@ -158,7 +158,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The CMK's manager. CMKs are either customer-managed or AWS-managed. For
+     * The CMK's manager. CMKs are either customer managed or AWS managed. For
      * more information about the difference, see <a href=
      * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      * >Customer Master Keys</a> in the <i>AWS Key Management Service Developer
@@ -1186,7 +1186,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The CMK's manager. CMKs are either customer-managed or AWS-managed. For
+     * The CMK's manager. CMKs are either customer managed or AWS managed. For
      * more information about the difference, see <a href=
      * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      * >Customer Master Keys</a> in the <i>AWS Key Management Service Developer
@@ -1197,9 +1197,8 @@ public class KeyMetadata implements Serializable {
      * <b>Allowed Values: </b>AWS, CUSTOMER
      *
      * @return <p>
-     *         The CMK's manager. CMKs are either customer-managed or
-     *         AWS-managed. For more information about the difference, see <a
-     *         href=
+     *         The CMK's manager. CMKs are either customer managed or AWS
+     *         managed. For more information about the difference, see <a href=
      *         "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      *         >Customer Master Keys</a> in the <i>AWS Key Management Service
      *         Developer Guide</i>.
@@ -1212,7 +1211,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The CMK's manager. CMKs are either customer-managed or AWS-managed. For
+     * The CMK's manager. CMKs are either customer managed or AWS managed. For
      * more information about the difference, see <a href=
      * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      * >Customer Master Keys</a> in the <i>AWS Key Management Service Developer
@@ -1223,8 +1222,8 @@ public class KeyMetadata implements Serializable {
      * <b>Allowed Values: </b>AWS, CUSTOMER
      *
      * @param keyManager <p>
-     *            The CMK's manager. CMKs are either customer-managed or
-     *            AWS-managed. For more information about the difference, see <a
+     *            The CMK's manager. CMKs are either customer managed or AWS
+     *            managed. For more information about the difference, see <a
      *            href=
      *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      *            >Customer Master Keys</a> in the <i>AWS Key Management Service
@@ -1238,7 +1237,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The CMK's manager. CMKs are either customer-managed or AWS-managed. For
+     * The CMK's manager. CMKs are either customer managed or AWS managed. For
      * more information about the difference, see <a href=
      * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      * >Customer Master Keys</a> in the <i>AWS Key Management Service Developer
@@ -1252,8 +1251,8 @@ public class KeyMetadata implements Serializable {
      * <b>Allowed Values: </b>AWS, CUSTOMER
      *
      * @param keyManager <p>
-     *            The CMK's manager. CMKs are either customer-managed or
-     *            AWS-managed. For more information about the difference, see <a
+     *            The CMK's manager. CMKs are either customer managed or AWS
+     *            managed. For more information about the difference, see <a
      *            href=
      *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      *            >Customer Master Keys</a> in the <i>AWS Key Management Service
@@ -1270,7 +1269,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The CMK's manager. CMKs are either customer-managed or AWS-managed. For
+     * The CMK's manager. CMKs are either customer managed or AWS managed. For
      * more information about the difference, see <a href=
      * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      * >Customer Master Keys</a> in the <i>AWS Key Management Service Developer
@@ -1281,8 +1280,8 @@ public class KeyMetadata implements Serializable {
      * <b>Allowed Values: </b>AWS, CUSTOMER
      *
      * @param keyManager <p>
-     *            The CMK's manager. CMKs are either customer-managed or
-     *            AWS-managed. For more information about the difference, see <a
+     *            The CMK's manager. CMKs are either customer managed or AWS
+     *            managed. For more information about the difference, see <a
      *            href=
      *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      *            >Customer Master Keys</a> in the <i>AWS Key Management Service
@@ -1296,7 +1295,7 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The CMK's manager. CMKs are either customer-managed or AWS-managed. For
+     * The CMK's manager. CMKs are either customer managed or AWS managed. For
      * more information about the difference, see <a href=
      * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      * >Customer Master Keys</a> in the <i>AWS Key Management Service Developer
@@ -1310,8 +1309,8 @@ public class KeyMetadata implements Serializable {
      * <b>Allowed Values: </b>AWS, CUSTOMER
      *
      * @param keyManager <p>
-     *            The CMK's manager. CMKs are either customer-managed or
-     *            AWS-managed. For more information about the difference, see <a
+     *            The CMK's manager. CMKs are either customer managed or AWS
+     *            managed. For more information about the difference, see <a
      *            href=
      *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
      *            >Customer Master Keys</a> in the <i>AWS Key Management Service

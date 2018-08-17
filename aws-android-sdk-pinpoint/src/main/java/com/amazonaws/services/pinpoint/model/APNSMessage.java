@@ -44,7 +44,7 @@ public class APNSMessage implements Serializable {
     private Integer badge;
 
     /**
-     * The message body of the notification, the email body or the text message.
+     * The message body of the notification.
      */
     private String body;
 
@@ -349,33 +349,30 @@ public class APNSMessage implements Serializable {
     }
 
     /**
-     * The message body of the notification, the email body or the text message.
+     * The message body of the notification.
      *
-     * @return The message body of the notification, the email body or the text
-     *         message.
+     * @return The message body of the notification.
      */
     public String getBody() {
         return body;
     }
 
     /**
-     * The message body of the notification, the email body or the text message.
+     * The message body of the notification.
      *
-     * @param body The message body of the notification, the email body or the
-     *            text message.
+     * @param body The message body of the notification.
      */
     public void setBody(String body) {
         this.body = body;
     }
 
     /**
-     * The message body of the notification, the email body or the text message.
+     * The message body of the notification.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param body The message body of the notification, the email body or the
-     *            text message.
+     * @param body The message body of the notification.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -45,10 +45,20 @@ class BackupDetailsJsonMarshaller {
             jsonWriter.name("BackupStatus");
             jsonWriter.value(backupStatus);
         }
+        if (backupDetails.getBackupType() != null) {
+            String backupType = backupDetails.getBackupType();
+            jsonWriter.name("BackupType");
+            jsonWriter.value(backupType);
+        }
         if (backupDetails.getBackupCreationDateTime() != null) {
             java.util.Date backupCreationDateTime = backupDetails.getBackupCreationDateTime();
             jsonWriter.name("BackupCreationDateTime");
             jsonWriter.value(backupCreationDateTime);
+        }
+        if (backupDetails.getBackupExpiryDateTime() != null) {
+            java.util.Date backupExpiryDateTime = backupDetails.getBackupExpiryDateTime();
+            jsonWriter.name("BackupExpiryDateTime");
+            jsonWriter.value(backupExpiryDateTime);
         }
         jsonWriter.endObject();
     }

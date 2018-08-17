@@ -22,7 +22,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Creates or updates a resource policy allowing other AWS services to put log
- * events to this account, such as Amazon Route 53. An account can have up to 50
+ * events to this account, such as Amazon Route 53. An account can have up to 10
  * resource policies per region.
  * </p>
  */
@@ -47,10 +47,7 @@ public class PutResourcePolicyRequest extends AmazonWebServiceRequest implements
      * group or log stream.
      * </p>
      * <p>
-     * { "Version": "2012-10-17" "Statement": [ { "Sid":
-     * "Route53LogsToCloudWatchLogs", "Effect": "Allow", "Principal": {
-     * "Service": [ "route53.amazonaws.com" ] }, "Action":"logs:PutLogEvents",
-     * "Resource": logArn } ] }
+     * <code>{ "Version": "2012-10-17", "Statement": [ { "Sid": "Route53LogsToCloudWatchLogs", "Effect": "Allow", "Principal": { "Service": [ "route53.amazonaws.com" ] }, "Action":"logs:PutLogEvents", "Resource": "logArn" } ] } </code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -116,10 +113,7 @@ public class PutResourcePolicyRequest extends AmazonWebServiceRequest implements
      * group or log stream.
      * </p>
      * <p>
-     * { "Version": "2012-10-17" "Statement": [ { "Sid":
-     * "Route53LogsToCloudWatchLogs", "Effect": "Allow", "Principal": {
-     * "Service": [ "route53.amazonaws.com" ] }, "Action":"logs:PutLogEvents",
-     * "Resource": logArn } ] }
+     * <code>{ "Version": "2012-10-17", "Statement": [ { "Sid": "Route53LogsToCloudWatchLogs", "Effect": "Allow", "Principal": { "Service": [ "route53.amazonaws.com" ] }, "Action":"logs:PutLogEvents", "Resource": "logArn" } ] } </code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -137,10 +131,7 @@ public class PutResourcePolicyRequest extends AmazonWebServiceRequest implements
      *         resource, such as a log group or log stream.
      *         </p>
      *         <p>
-     *         { "Version": "2012-10-17" "Statement": [ { "Sid":
-     *         "Route53LogsToCloudWatchLogs", "Effect": "Allow", "Principal": {
-     *         "Service": [ "route53.amazonaws.com" ] },
-     *         "Action":"logs:PutLogEvents", "Resource": logArn } ] }
+     *         <code>{ "Version": "2012-10-17", "Statement": [ { "Sid": "Route53LogsToCloudWatchLogs", "Effect": "Allow", "Principal": { "Service": [ "route53.amazonaws.com" ] }, "Action":"logs:PutLogEvents", "Resource": "logArn" } ] } </code>
      *         </p>
      */
     public String getPolicyDocument() {
@@ -160,10 +151,7 @@ public class PutResourcePolicyRequest extends AmazonWebServiceRequest implements
      * group or log stream.
      * </p>
      * <p>
-     * { "Version": "2012-10-17" "Statement": [ { "Sid":
-     * "Route53LogsToCloudWatchLogs", "Effect": "Allow", "Principal": {
-     * "Service": [ "route53.amazonaws.com" ] }, "Action":"logs:PutLogEvents",
-     * "Resource": logArn } ] }
+     * <code>{ "Version": "2012-10-17", "Statement": [ { "Sid": "Route53LogsToCloudWatchLogs", "Effect": "Allow", "Principal": { "Service": [ "route53.amazonaws.com" ] }, "Action":"logs:PutLogEvents", "Resource": "logArn" } ] } </code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -181,10 +169,7 @@ public class PutResourcePolicyRequest extends AmazonWebServiceRequest implements
      *            resource, such as a log group or log stream.
      *            </p>
      *            <p>
-     *            { "Version": "2012-10-17" "Statement": [ { "Sid":
-     *            "Route53LogsToCloudWatchLogs", "Effect": "Allow", "Principal":
-     *            { "Service": [ "route53.amazonaws.com" ] },
-     *            "Action":"logs:PutLogEvents", "Resource": logArn } ] }
+     *            <code>{ "Version": "2012-10-17", "Statement": [ { "Sid": "Route53LogsToCloudWatchLogs", "Effect": "Allow", "Principal": { "Service": [ "route53.amazonaws.com" ] }, "Action":"logs:PutLogEvents", "Resource": "logArn" } ] } </code>
      *            </p>
      */
     public void setPolicyDocument(String policyDocument) {
@@ -204,10 +189,7 @@ public class PutResourcePolicyRequest extends AmazonWebServiceRequest implements
      * group or log stream.
      * </p>
      * <p>
-     * { "Version": "2012-10-17" "Statement": [ { "Sid":
-     * "Route53LogsToCloudWatchLogs", "Effect": "Allow", "Principal": {
-     * "Service": [ "route53.amazonaws.com" ] }, "Action":"logs:PutLogEvents",
-     * "Resource": logArn } ] }
+     * <code>{ "Version": "2012-10-17", "Statement": [ { "Sid": "Route53LogsToCloudWatchLogs", "Effect": "Allow", "Principal": { "Service": [ "route53.amazonaws.com" ] }, "Action":"logs:PutLogEvents", "Resource": "logArn" } ] } </code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -228,10 +210,7 @@ public class PutResourcePolicyRequest extends AmazonWebServiceRequest implements
      *            resource, such as a log group or log stream.
      *            </p>
      *            <p>
-     *            { "Version": "2012-10-17" "Statement": [ { "Sid":
-     *            "Route53LogsToCloudWatchLogs", "Effect": "Allow", "Principal":
-     *            { "Service": [ "route53.amazonaws.com" ] },
-     *            "Action":"logs:PutLogEvents", "Resource": logArn } ] }
+     *            <code>{ "Version": "2012-10-17", "Statement": [ { "Sid": "Route53LogsToCloudWatchLogs", "Effect": "Allow", "Principal": { "Service": [ "route53.amazonaws.com" ] }, "Action":"logs:PutLogEvents", "Resource": "logArn" } ] } </code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

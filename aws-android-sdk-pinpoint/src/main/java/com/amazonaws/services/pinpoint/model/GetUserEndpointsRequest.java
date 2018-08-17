@@ -20,7 +20,7 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Returns information about the endpoints associated with an user id.
+ * Returns information about the endpoints that are associated with a User ID.
  */
 public class GetUserEndpointsRequest extends AmazonWebServiceRequest implements Serializable {
     /**

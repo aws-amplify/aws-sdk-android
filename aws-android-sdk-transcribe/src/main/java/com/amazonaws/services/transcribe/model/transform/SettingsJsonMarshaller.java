@@ -40,6 +40,11 @@ class SettingsJsonMarshaller {
             jsonWriter.name("MaxSpeakerLabels");
             jsonWriter.value(maxSpeakerLabels);
         }
+        if (settings.getChannelIdentification() != null) {
+            Boolean channelIdentification = settings.getChannelIdentification();
+            jsonWriter.name("ChannelIdentification");
+            jsonWriter.value(channelIdentification);
+        }
         jsonWriter.endObject();
     }
 

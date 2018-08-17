@@ -18,7 +18,7 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Endpoint demographic data
+ * Demographic information about the endpoint.
  */
 public class EndpointDemographic implements Serializable {
     /**
@@ -33,27 +33,27 @@ public class EndpointDemographic implements Serializable {
     private String locale;
 
     /**
-     * The endpoint make, such as such as Apple or Samsung.
+     * The manufacturer of the endpoint device, such as Apple or Samsung.
      */
     private String make;
 
     /**
-     * The endpoint model, such as iPhone.
+     * The model name or number of the endpoint device, such as iPhone.
      */
     private String model;
 
     /**
-     * The endpoint model version.
+     * The model version of the endpoint device.
      */
     private String modelVersion;
 
     /**
-     * The endpoint platform, such as ios or android.
+     * The platform of the endpoint device, such as iOS or Android.
      */
     private String platform;
 
     /**
-     * The endpoint platform version.
+     * The platform version of the endpoint device.
      */
     private String platformVersion;
 
@@ -139,30 +139,33 @@ public class EndpointDemographic implements Serializable {
     }
 
     /**
-     * The endpoint make, such as such as Apple or Samsung.
+     * The manufacturer of the endpoint device, such as Apple or Samsung.
      *
-     * @return The endpoint make, such as such as Apple or Samsung.
+     * @return The manufacturer of the endpoint device, such as Apple or
+     *         Samsung.
      */
     public String getMake() {
         return make;
     }
 
     /**
-     * The endpoint make, such as such as Apple or Samsung.
+     * The manufacturer of the endpoint device, such as Apple or Samsung.
      *
-     * @param make The endpoint make, such as such as Apple or Samsung.
+     * @param make The manufacturer of the endpoint device, such as Apple or
+     *            Samsung.
      */
     public void setMake(String make) {
         this.make = make;
     }
 
     /**
-     * The endpoint make, such as such as Apple or Samsung.
+     * The manufacturer of the endpoint device, such as Apple or Samsung.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param make The endpoint make, such as such as Apple or Samsung.
+     * @param make The manufacturer of the endpoint device, such as Apple or
+     *            Samsung.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -172,30 +175,32 @@ public class EndpointDemographic implements Serializable {
     }
 
     /**
-     * The endpoint model, such as iPhone.
+     * The model name or number of the endpoint device, such as iPhone.
      *
-     * @return The endpoint model, such as iPhone.
+     * @return The model name or number of the endpoint device, such as iPhone.
      */
     public String getModel() {
         return model;
     }
 
     /**
-     * The endpoint model, such as iPhone.
+     * The model name or number of the endpoint device, such as iPhone.
      *
-     * @param model The endpoint model, such as iPhone.
+     * @param model The model name or number of the endpoint device, such as
+     *            iPhone.
      */
     public void setModel(String model) {
         this.model = model;
     }
 
     /**
-     * The endpoint model, such as iPhone.
+     * The model name or number of the endpoint device, such as iPhone.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param model The endpoint model, such as iPhone.
+     * @param model The model name or number of the endpoint device, such as
+     *            iPhone.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -205,30 +210,30 @@ public class EndpointDemographic implements Serializable {
     }
 
     /**
-     * The endpoint model version.
+     * The model version of the endpoint device.
      *
-     * @return The endpoint model version.
+     * @return The model version of the endpoint device.
      */
     public String getModelVersion() {
         return modelVersion;
     }
 
     /**
-     * The endpoint model version.
+     * The model version of the endpoint device.
      *
-     * @param modelVersion The endpoint model version.
+     * @param modelVersion The model version of the endpoint device.
      */
     public void setModelVersion(String modelVersion) {
         this.modelVersion = modelVersion;
     }
 
     /**
-     * The endpoint model version.
+     * The model version of the endpoint device.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param modelVersion The endpoint model version.
+     * @param modelVersion The model version of the endpoint device.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -238,30 +243,32 @@ public class EndpointDemographic implements Serializable {
     }
 
     /**
-     * The endpoint platform, such as ios or android.
+     * The platform of the endpoint device, such as iOS or Android.
      *
-     * @return The endpoint platform, such as ios or android.
+     * @return The platform of the endpoint device, such as iOS or Android.
      */
     public String getPlatform() {
         return platform;
     }
 
     /**
-     * The endpoint platform, such as ios or android.
+     * The platform of the endpoint device, such as iOS or Android.
      *
-     * @param platform The endpoint platform, such as ios or android.
+     * @param platform The platform of the endpoint device, such as iOS or
+     *            Android.
      */
     public void setPlatform(String platform) {
         this.platform = platform;
     }
 
     /**
-     * The endpoint platform, such as ios or android.
+     * The platform of the endpoint device, such as iOS or Android.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param platform The endpoint platform, such as ios or android.
+     * @param platform The platform of the endpoint device, such as iOS or
+     *            Android.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -271,30 +278,30 @@ public class EndpointDemographic implements Serializable {
     }
 
     /**
-     * The endpoint platform version.
+     * The platform version of the endpoint device.
      *
-     * @return The endpoint platform version.
+     * @return The platform version of the endpoint device.
      */
     public String getPlatformVersion() {
         return platformVersion;
     }
 
     /**
-     * The endpoint platform version.
+     * The platform version of the endpoint device.
      *
-     * @param platformVersion The endpoint platform version.
+     * @param platformVersion The platform version of the endpoint device.
      */
     public void setPlatformVersion(String platformVersion) {
         this.platformVersion = platformVersion;
     }
 
     /**
-     * The endpoint platform version.
+     * The platform version of the endpoint device.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param platformVersion The endpoint platform version.
+     * @param platformVersion The platform version of the endpoint device.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

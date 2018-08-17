@@ -24,8 +24,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Creates a customer master key (CMK) in the caller's AWS account.
  * </p>
  * <p>
- * You can use a CMK to encrypt small amounts of data (4 KiB or less) directly,
- * but CMKs are more commonly used to encrypt data encryption keys (DEKs), which
+ * You can use a CMK to encrypt small amounts of data (4 KiB or less) directly.
+ * But CMKs are more commonly used to encrypt data encryption keys (DEKs), which
  * are used to encrypt raw data. For more information about DEKs and the
  * difference between CMKs and DEKs, see the following:
  * </p>
@@ -74,8 +74,8 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * principals in the key policy must exist and be visible to AWS KMS. When
      * you create a new AWS principal (for example, an IAM user or role), you
      * might need to enforce a delay before including the new principal in a key
-     * policy because the new principal might not be immediately visible to AWS
-     * KMS. For more information, see <a href=
+     * policy. The reason for this is that the new principal might not be
+     * immediately visible to AWS KMS. For more information, see <a href=
      * "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
      * >Changes that I make are not always immediately visible</a> in the <i>AWS
      * Identity and Access Management User Guide</i>.
@@ -217,8 +217,8 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * principals in the key policy must exist and be visible to AWS KMS. When
      * you create a new AWS principal (for example, an IAM user or role), you
      * might need to enforce a delay before including the new principal in a key
-     * policy because the new principal might not be immediately visible to AWS
-     * KMS. For more information, see <a href=
+     * policy. The reason for this is that the new principal might not be
+     * immediately visible to AWS KMS. For more information, see <a href=
      * "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
      * >Changes that I make are not always immediately visible</a> in the <i>AWS
      * Identity and Access Management User Guide</i>.
@@ -266,9 +266,9 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         principals. The principals in the key policy must exist and be
      *         visible to AWS KMS. When you create a new AWS principal (for
      *         example, an IAM user or role), you might need to enforce a delay
-     *         before including the new principal in a key policy because the
-     *         new principal might not be immediately visible to AWS KMS. For
-     *         more information, see <a href=
+     *         before including the new principal in a key policy. The reason
+     *         for this is that the new principal might not be immediately
+     *         visible to AWS KMS. For more information, see <a href=
      *         "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
      *         >Changes that I make are not always immediately visible</a> in
      *         the <i>AWS Identity and Access Management User Guide</i>.
@@ -316,8 +316,8 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * principals in the key policy must exist and be visible to AWS KMS. When
      * you create a new AWS principal (for example, an IAM user or role), you
      * might need to enforce a delay before including the new principal in a key
-     * policy because the new principal might not be immediately visible to AWS
-     * KMS. For more information, see <a href=
+     * policy. The reason for this is that the new principal might not be
+     * immediately visible to AWS KMS. For more information, see <a href=
      * "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
      * >Changes that I make are not always immediately visible</a> in the <i>AWS
      * Identity and Access Management User Guide</i>.
@@ -366,9 +366,10 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            principals. The principals in the key policy must exist and be
      *            visible to AWS KMS. When you create a new AWS principal (for
      *            example, an IAM user or role), you might need to enforce a
-     *            delay before including the new principal in a key policy
-     *            because the new principal might not be immediately visible to
-     *            AWS KMS. For more information, see <a href=
+     *            delay before including the new principal in a key policy. The
+     *            reason for this is that the new principal might not be
+     *            immediately visible to AWS KMS. For more information, see <a
+     *            href=
      *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
      *            >Changes that I make are not always immediately visible</a> in
      *            the <i>AWS Identity and Access Management User Guide</i>.
@@ -416,8 +417,8 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * principals in the key policy must exist and be visible to AWS KMS. When
      * you create a new AWS principal (for example, an IAM user or role), you
      * might need to enforce a delay before including the new principal in a key
-     * policy because the new principal might not be immediately visible to AWS
-     * KMS. For more information, see <a href=
+     * policy. The reason for this is that the new principal might not be
+     * immediately visible to AWS KMS. For more information, see <a href=
      * "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
      * >Changes that I make are not always immediately visible</a> in the <i>AWS
      * Identity and Access Management User Guide</i>.
@@ -469,9 +470,10 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            principals. The principals in the key policy must exist and be
      *            visible to AWS KMS. When you create a new AWS principal (for
      *            example, an IAM user or role), you might need to enforce a
-     *            delay before including the new principal in a key policy
-     *            because the new principal might not be immediately visible to
-     *            AWS KMS. For more information, see <a href=
+     *            delay before including the new principal in a key policy. The
+     *            reason for this is that the new principal might not be
+     *            immediately visible to AWS KMS. For more information, see <a
+     *            href=
      *            "http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency"
      *            >Changes that I make are not always immediately visible</a> in
      *            the <i>AWS Identity and Access Management User Guide</i>.

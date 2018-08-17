@@ -20,14 +20,7 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Use this resource to send a direct message, which is a one time message that
- * you send to a limited audience without creating a campaign. You can send the
- * message to up to 100 recipients. You cannot use the message to engage a
- * segment. When you send the message, Amazon Pinpoint delivers it immediately,
- * and you cannot schedule the delivery. To engage a user segment, and to
- * schedule the message delivery, create a campaign instead of sending a direct
- * message. You can send a direct message as a push notification to your mobile
- * app or as an SMS message to SMS-enabled devices.
+ * Used to send a direct message.
  */
 public class SendMessagesRequest extends AmazonWebServiceRequest implements Serializable {
     /**

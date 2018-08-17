@@ -47,7 +47,7 @@ public class DescribeLogStreamsRequest extends AmazonWebServiceRequest implement
      * The prefix to match.
      * </p>
      * <p>
-     * iIf <code>orderBy</code> is <code>LastEventTime</code>,you cannot specify
+     * If <code>orderBy</code> is <code>LastEventTime</code>,you cannot specify
      * this parameter.
      * </p>
      * <p>
@@ -195,7 +195,7 @@ public class DescribeLogStreamsRequest extends AmazonWebServiceRequest implement
      * The prefix to match.
      * </p>
      * <p>
-     * iIf <code>orderBy</code> is <code>LastEventTime</code>,you cannot specify
+     * If <code>orderBy</code> is <code>LastEventTime</code>,you cannot specify
      * this parameter.
      * </p>
      * <p>
@@ -207,7 +207,7 @@ public class DescribeLogStreamsRequest extends AmazonWebServiceRequest implement
      *         The prefix to match.
      *         </p>
      *         <p>
-     *         iIf <code>orderBy</code> is <code>LastEventTime</code>,you cannot
+     *         If <code>orderBy</code> is <code>LastEventTime</code>,you cannot
      *         specify this parameter.
      *         </p>
      */
@@ -220,7 +220,7 @@ public class DescribeLogStreamsRequest extends AmazonWebServiceRequest implement
      * The prefix to match.
      * </p>
      * <p>
-     * iIf <code>orderBy</code> is <code>LastEventTime</code>,you cannot specify
+     * If <code>orderBy</code> is <code>LastEventTime</code>,you cannot specify
      * this parameter.
      * </p>
      * <p>
@@ -232,7 +232,7 @@ public class DescribeLogStreamsRequest extends AmazonWebServiceRequest implement
      *            The prefix to match.
      *            </p>
      *            <p>
-     *            iIf <code>orderBy</code> is <code>LastEventTime</code>,you
+     *            If <code>orderBy</code> is <code>LastEventTime</code>,you
      *            cannot specify this parameter.
      *            </p>
      */
@@ -245,7 +245,7 @@ public class DescribeLogStreamsRequest extends AmazonWebServiceRequest implement
      * The prefix to match.
      * </p>
      * <p>
-     * iIf <code>orderBy</code> is <code>LastEventTime</code>,you cannot specify
+     * If <code>orderBy</code> is <code>LastEventTime</code>,you cannot specify
      * this parameter.
      * </p>
      * <p>
@@ -260,7 +260,7 @@ public class DescribeLogStreamsRequest extends AmazonWebServiceRequest implement
      *            The prefix to match.
      *            </p>
      *            <p>
-     *            iIf <code>orderBy</code> is <code>LastEventTime</code>,you
+     *            If <code>orderBy</code> is <code>LastEventTime</code>,you
      *            cannot specify this parameter.
      *            </p>
      * @return A reference to this updated object so that method calls can be

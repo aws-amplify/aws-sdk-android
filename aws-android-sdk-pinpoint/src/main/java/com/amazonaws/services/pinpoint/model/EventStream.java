@@ -35,10 +35,10 @@ public class EventStream implements Serializable {
     private String destinationStreamArn;
 
     /**
-     * DEPRECATED. Your AWS account ID, which you assigned to the ExternalID key
-     * in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM role.
-     * This requirement is removed, and external IDs are not recommended for IAM
-     * roles assumed by Amazon Pinpoint.
+     * (Deprecated) Your AWS account ID, which you assigned to the ExternalID
+     * key in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM
+     * role. This requirement is removed, and external IDs are not recommended
+     * for IAM roles assumed by Amazon Pinpoint.
      */
     private String externalId;
 
@@ -150,12 +150,12 @@ public class EventStream implements Serializable {
     }
 
     /**
-     * DEPRECATED. Your AWS account ID, which you assigned to the ExternalID key
-     * in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM role.
-     * This requirement is removed, and external IDs are not recommended for IAM
-     * roles assumed by Amazon Pinpoint.
+     * (Deprecated) Your AWS account ID, which you assigned to the ExternalID
+     * key in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM
+     * role. This requirement is removed, and external IDs are not recommended
+     * for IAM roles assumed by Amazon Pinpoint.
      *
-     * @return DEPRECATED. Your AWS account ID, which you assigned to the
+     * @return (Deprecated) Your AWS account ID, which you assigned to the
      *         ExternalID key in an IAM trust policy. Used by Amazon Pinpoint to
      *         assume an IAM role. This requirement is removed, and external IDs
      *         are not recommended for IAM roles assumed by Amazon Pinpoint.
@@ -165,12 +165,12 @@ public class EventStream implements Serializable {
     }
 
     /**
-     * DEPRECATED. Your AWS account ID, which you assigned to the ExternalID key
-     * in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM role.
-     * This requirement is removed, and external IDs are not recommended for IAM
-     * roles assumed by Amazon Pinpoint.
+     * (Deprecated) Your AWS account ID, which you assigned to the ExternalID
+     * key in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM
+     * role. This requirement is removed, and external IDs are not recommended
+     * for IAM roles assumed by Amazon Pinpoint.
      *
-     * @param externalId DEPRECATED. Your AWS account ID, which you assigned to
+     * @param externalId (Deprecated) Your AWS account ID, which you assigned to
      *            the ExternalID key in an IAM trust policy. Used by Amazon
      *            Pinpoint to assume an IAM role. This requirement is removed,
      *            and external IDs are not recommended for IAM roles assumed by
@@ -181,15 +181,15 @@ public class EventStream implements Serializable {
     }
 
     /**
-     * DEPRECATED. Your AWS account ID, which you assigned to the ExternalID key
-     * in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM role.
-     * This requirement is removed, and external IDs are not recommended for IAM
-     * roles assumed by Amazon Pinpoint.
+     * (Deprecated) Your AWS account ID, which you assigned to the ExternalID
+     * key in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM
+     * role. This requirement is removed, and external IDs are not recommended
+     * for IAM roles assumed by Amazon Pinpoint.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param externalId DEPRECATED. Your AWS account ID, which you assigned to
+     * @param externalId (Deprecated) Your AWS account ID, which you assigned to
      *            the ExternalID key in an IAM trust policy. Used by Amazon
      *            Pinpoint to assume an IAM role. This requirement is removed,
      *            and external IDs are not recommended for IAM roles assumed by

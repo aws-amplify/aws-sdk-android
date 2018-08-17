@@ -22,15 +22,15 @@ import java.io.Serializable;
  */
 public class SegmentImportResource implements Serializable {
     /**
-     * Channel type counts
+     * The number of channel types in the imported segment.
      */
     private java.util.Map<String, Integer> channelCounts;
 
     /**
-     * DEPRECATED. Your AWS account ID, which you assigned to the ExternalID key
-     * in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM role.
-     * This requirement is removed, and external IDs are not recommended for IAM
-     * roles assumed by Amazon Pinpoint.
+     * (Deprecated) Your AWS account ID, which you assigned to the ExternalID
+     * key in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM
+     * role. This requirement is removed, and external IDs are not recommended
+     * for IAM roles assumed by Amazon Pinpoint.
      */
     private String externalId;
 
@@ -50,8 +50,7 @@ public class SegmentImportResource implements Serializable {
     private String roleArn;
 
     /**
-     * A URL that points to the Amazon S3 location from which the endpoints for
-     * this segment were imported.
+     * The URL of the S3 bucket that the segment was imported from.
      */
     private String s3Url;
 
@@ -62,30 +61,30 @@ public class SegmentImportResource implements Serializable {
     private Integer size;
 
     /**
-     * Channel type counts
+     * The number of channel types in the imported segment.
      *
-     * @return Channel type counts
+     * @return The number of channel types in the imported segment.
      */
     public java.util.Map<String, Integer> getChannelCounts() {
         return channelCounts;
     }
 
     /**
-     * Channel type counts
+     * The number of channel types in the imported segment.
      *
-     * @param channelCounts Channel type counts
+     * @param channelCounts The number of channel types in the imported segment.
      */
     public void setChannelCounts(java.util.Map<String, Integer> channelCounts) {
         this.channelCounts = channelCounts;
     }
 
     /**
-     * Channel type counts
+     * The number of channel types in the imported segment.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param channelCounts Channel type counts
+     * @param channelCounts The number of channel types in the imported segment.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -95,7 +94,7 @@ public class SegmentImportResource implements Serializable {
     }
 
     /**
-     * Channel type counts
+     * The number of channel types in the imported segment.
      * <p>
      * The method adds a new key-value pair into ChannelCounts parameter, and
      * returns a reference to this object so that method calls can be chained
@@ -130,12 +129,12 @@ public class SegmentImportResource implements Serializable {
     }
 
     /**
-     * DEPRECATED. Your AWS account ID, which you assigned to the ExternalID key
-     * in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM role.
-     * This requirement is removed, and external IDs are not recommended for IAM
-     * roles assumed by Amazon Pinpoint.
+     * (Deprecated) Your AWS account ID, which you assigned to the ExternalID
+     * key in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM
+     * role. This requirement is removed, and external IDs are not recommended
+     * for IAM roles assumed by Amazon Pinpoint.
      *
-     * @return DEPRECATED. Your AWS account ID, which you assigned to the
+     * @return (Deprecated) Your AWS account ID, which you assigned to the
      *         ExternalID key in an IAM trust policy. Used by Amazon Pinpoint to
      *         assume an IAM role. This requirement is removed, and external IDs
      *         are not recommended for IAM roles assumed by Amazon Pinpoint.
@@ -145,12 +144,12 @@ public class SegmentImportResource implements Serializable {
     }
 
     /**
-     * DEPRECATED. Your AWS account ID, which you assigned to the ExternalID key
-     * in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM role.
-     * This requirement is removed, and external IDs are not recommended for IAM
-     * roles assumed by Amazon Pinpoint.
+     * (Deprecated) Your AWS account ID, which you assigned to the ExternalID
+     * key in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM
+     * role. This requirement is removed, and external IDs are not recommended
+     * for IAM roles assumed by Amazon Pinpoint.
      *
-     * @param externalId DEPRECATED. Your AWS account ID, which you assigned to
+     * @param externalId (Deprecated) Your AWS account ID, which you assigned to
      *            the ExternalID key in an IAM trust policy. Used by Amazon
      *            Pinpoint to assume an IAM role. This requirement is removed,
      *            and external IDs are not recommended for IAM roles assumed by
@@ -161,15 +160,15 @@ public class SegmentImportResource implements Serializable {
     }
 
     /**
-     * DEPRECATED. Your AWS account ID, which you assigned to the ExternalID key
-     * in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM role.
-     * This requirement is removed, and external IDs are not recommended for IAM
-     * roles assumed by Amazon Pinpoint.
+     * (Deprecated) Your AWS account ID, which you assigned to the ExternalID
+     * key in an IAM trust policy. Used by Amazon Pinpoint to assume an IAM
+     * role. This requirement is removed, and external IDs are not recommended
+     * for IAM roles assumed by Amazon Pinpoint.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param externalId DEPRECATED. Your AWS account ID, which you assigned to
+     * @param externalId (Deprecated) Your AWS account ID, which you assigned to
      *            the ExternalID key in an IAM trust policy. Used by Amazon
      *            Pinpoint to assume an IAM role. This requirement is removed,
      *            and external IDs are not recommended for IAM roles assumed by
@@ -309,36 +308,30 @@ public class SegmentImportResource implements Serializable {
     }
 
     /**
-     * A URL that points to the Amazon S3 location from which the endpoints for
-     * this segment were imported.
+     * The URL of the S3 bucket that the segment was imported from.
      *
-     * @return A URL that points to the Amazon S3 location from which the
-     *         endpoints for this segment were imported.
+     * @return The URL of the S3 bucket that the segment was imported from.
      */
     public String getS3Url() {
         return s3Url;
     }
 
     /**
-     * A URL that points to the Amazon S3 location from which the endpoints for
-     * this segment were imported.
+     * The URL of the S3 bucket that the segment was imported from.
      *
-     * @param s3Url A URL that points to the Amazon S3 location from which the
-     *            endpoints for this segment were imported.
+     * @param s3Url The URL of the S3 bucket that the segment was imported from.
      */
     public void setS3Url(String s3Url) {
         this.s3Url = s3Url;
     }
 
     /**
-     * A URL that points to the Amazon S3 location from which the endpoints for
-     * this segment were imported.
+     * The URL of the S3 bucket that the segment was imported from.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param s3Url A URL that points to the Amazon S3 location from which the
-     *            endpoints for this segment were imported.
+     * @param s3Url The URL of the S3 bucket that the segment was imported from.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

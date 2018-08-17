@@ -28,7 +28,8 @@ public class GetLogEventsResult implements Serializable {
     /**
      * <p>
      * The token for the next set of items in the forward direction. The token
-     * expires after 24 hours.
+     * expires after 24 hours. If you have reached the end of the stream, it
+     * will return the same token you passed in.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -39,7 +40,9 @@ public class GetLogEventsResult implements Serializable {
     /**
      * <p>
      * The token for the next set of items in the backward direction. The token
-     * expires after 24 hours.
+     * expires after 24 hours. This token will never be null. If you have
+     * reached the end of the stream, it will return the same token you passed
+     * in.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -124,7 +127,8 @@ public class GetLogEventsResult implements Serializable {
     /**
      * <p>
      * The token for the next set of items in the forward direction. The token
-     * expires after 24 hours.
+     * expires after 24 hours. If you have reached the end of the stream, it
+     * will return the same token you passed in.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -132,7 +136,8 @@ public class GetLogEventsResult implements Serializable {
      *
      * @return <p>
      *         The token for the next set of items in the forward direction. The
-     *         token expires after 24 hours.
+     *         token expires after 24 hours. If you have reached the end of the
+     *         stream, it will return the same token you passed in.
      *         </p>
      */
     public String getNextForwardToken() {
@@ -142,7 +147,8 @@ public class GetLogEventsResult implements Serializable {
     /**
      * <p>
      * The token for the next set of items in the forward direction. The token
-     * expires after 24 hours.
+     * expires after 24 hours. If you have reached the end of the stream, it
+     * will return the same token you passed in.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -150,7 +156,8 @@ public class GetLogEventsResult implements Serializable {
      *
      * @param nextForwardToken <p>
      *            The token for the next set of items in the forward direction.
-     *            The token expires after 24 hours.
+     *            The token expires after 24 hours. If you have reached the end
+     *            of the stream, it will return the same token you passed in.
      *            </p>
      */
     public void setNextForwardToken(String nextForwardToken) {
@@ -160,7 +167,8 @@ public class GetLogEventsResult implements Serializable {
     /**
      * <p>
      * The token for the next set of items in the forward direction. The token
-     * expires after 24 hours.
+     * expires after 24 hours. If you have reached the end of the stream, it
+     * will return the same token you passed in.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -171,7 +179,8 @@ public class GetLogEventsResult implements Serializable {
      *
      * @param nextForwardToken <p>
      *            The token for the next set of items in the forward direction.
-     *            The token expires after 24 hours.
+     *            The token expires after 24 hours. If you have reached the end
+     *            of the stream, it will return the same token you passed in.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -184,7 +193,9 @@ public class GetLogEventsResult implements Serializable {
     /**
      * <p>
      * The token for the next set of items in the backward direction. The token
-     * expires after 24 hours.
+     * expires after 24 hours. This token will never be null. If you have
+     * reached the end of the stream, it will return the same token you passed
+     * in.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -192,7 +203,9 @@ public class GetLogEventsResult implements Serializable {
      *
      * @return <p>
      *         The token for the next set of items in the backward direction.
-     *         The token expires after 24 hours.
+     *         The token expires after 24 hours. This token will never be null.
+     *         If you have reached the end of the stream, it will return the
+     *         same token you passed in.
      *         </p>
      */
     public String getNextBackwardToken() {
@@ -202,7 +215,9 @@ public class GetLogEventsResult implements Serializable {
     /**
      * <p>
      * The token for the next set of items in the backward direction. The token
-     * expires after 24 hours.
+     * expires after 24 hours. This token will never be null. If you have
+     * reached the end of the stream, it will return the same token you passed
+     * in.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -210,7 +225,9 @@ public class GetLogEventsResult implements Serializable {
      *
      * @param nextBackwardToken <p>
      *            The token for the next set of items in the backward direction.
-     *            The token expires after 24 hours.
+     *            The token expires after 24 hours. This token will never be
+     *            null. If you have reached the end of the stream, it will
+     *            return the same token you passed in.
      *            </p>
      */
     public void setNextBackwardToken(String nextBackwardToken) {
@@ -220,7 +237,9 @@ public class GetLogEventsResult implements Serializable {
     /**
      * <p>
      * The token for the next set of items in the backward direction. The token
-     * expires after 24 hours.
+     * expires after 24 hours. This token will never be null. If you have
+     * reached the end of the stream, it will return the same token you passed
+     * in.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -231,7 +250,9 @@ public class GetLogEventsResult implements Serializable {
      *
      * @param nextBackwardToken <p>
      *            The token for the next set of items in the backward direction.
-     *            The token expires after 24 hours.
+     *            The token expires after 24 hours. This token will never be
+     *            null. If you have reached the end of the stream, it will
+     *            return the same token you passed in.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

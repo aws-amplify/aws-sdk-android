@@ -27,6 +27,12 @@ public class ActivitiesResponse implements Serializable {
     private java.util.List<ActivityResponse> item;
 
     /**
+     * The string that you use in a subsequent request to get the next page of
+     * results in a paginated response.
+     */
+    private String nextToken;
+
+    /**
      * List of campaign activities
      *
      * @return List of campaign activities
@@ -85,6 +91,45 @@ public class ActivitiesResponse implements Serializable {
     }
 
     /**
+     * The string that you use in a subsequent request to get the next page of
+     * results in a paginated response.
+     *
+     * @return The string that you use in a subsequent request to get the next
+     *         page of results in a paginated response.
+     */
+    public String getNextToken() {
+        return nextToken;
+    }
+
+    /**
+     * The string that you use in a subsequent request to get the next page of
+     * results in a paginated response.
+     *
+     * @param nextToken The string that you use in a subsequent request to get
+     *            the next page of results in a paginated response.
+     */
+    public void setNextToken(String nextToken) {
+        this.nextToken = nextToken;
+    }
+
+    /**
+     * The string that you use in a subsequent request to get the next page of
+     * results in a paginated response.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param nextToken The string that you use in a subsequent request to get
+     *            the next page of results in a paginated response.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ActivitiesResponse withNextToken(String nextToken) {
+        this.nextToken = nextToken;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -96,7 +141,9 @@ public class ActivitiesResponse implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getItem() != null)
-            sb.append("Item: " + getItem());
+            sb.append("Item: " + getItem() + ",");
+        if (getNextToken() != null)
+            sb.append("NextToken: " + getNextToken());
         sb.append("}");
         return sb.toString();
     }
@@ -107,6 +154,7 @@ public class ActivitiesResponse implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getItem() == null) ? 0 : getItem().hashCode());
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         return hashCode;
     }
 
@@ -124,6 +172,11 @@ public class ActivitiesResponse implements Serializable {
         if (other.getItem() == null ^ this.getItem() == null)
             return false;
         if (other.getItem() != null && other.getItem().equals(this.getItem()) == false)
+            return false;
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
+            return false;
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
             return false;
         return true;
     }

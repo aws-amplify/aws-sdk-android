@@ -37,10 +37,16 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Determines whether the transcription job should use speaker recognition
-     * to identify different speakers in the input audio. If you set the
+     * Determines whether the transcription job uses speaker recognition to
+     * identify different speakers in the input audio. Speaker recognition
+     * labels individual speakers in the audio file. If you set the
      * <code>ShowSpeakerLabels</code> field to true, you must also set the
      * maximum number of speaker labels <code>MaxSpeakerLabels</code> field.
+     * </p>
+     * <p>
+     * You can't set both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. If you set both,
+     * your request returns a <code>BadRequestException</code>.
      * </p>
      */
     private Boolean showSpeakerLabels;
@@ -58,6 +64,26 @@ public class Settings implements Serializable {
      * <b>Range: </b>2 - 10<br/>
      */
     private Integer maxSpeakerLabels;
+
+    /**
+     * <p>
+     * Instructs Amazon Transcribe to process each audio channel separately and
+     * then merge the transcription output of each channel into a single
+     * transcription.
+     * </p>
+     * <p>
+     * Amazon Transcribe also produces a transcription of each item detected on
+     * an audio channel, including the start time and end time of the item and
+     * alternative transcriptions of the item including the confidence that
+     * Amazon Transcribe has in the transcription.
+     * </p>
+     * <p>
+     * You can't set both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. If you set both,
+     * your request returns a <code>BadRequestException</code>.
+     * </p>
+     */
+    private Boolean channelIdentification;
 
     /**
      * <p>
@@ -121,18 +147,31 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Determines whether the transcription job should use speaker recognition
-     * to identify different speakers in the input audio. If you set the
+     * Determines whether the transcription job uses speaker recognition to
+     * identify different speakers in the input audio. Speaker recognition
+     * labels individual speakers in the audio file. If you set the
      * <code>ShowSpeakerLabels</code> field to true, you must also set the
      * maximum number of speaker labels <code>MaxSpeakerLabels</code> field.
      * </p>
+     * <p>
+     * You can't set both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. If you set both,
+     * your request returns a <code>BadRequestException</code>.
+     * </p>
      *
      * @return <p>
-     *         Determines whether the transcription job should use speaker
-     *         recognition to identify different speakers in the input audio. If
-     *         you set the <code>ShowSpeakerLabels</code> field to true, you
-     *         must also set the maximum number of speaker labels
+     *         Determines whether the transcription job uses speaker recognition
+     *         to identify different speakers in the input audio. Speaker
+     *         recognition labels individual speakers in the audio file. If you
+     *         set the <code>ShowSpeakerLabels</code> field to true, you must
+     *         also set the maximum number of speaker labels
      *         <code>MaxSpeakerLabels</code> field.
+     *         </p>
+     *         <p>
+     *         You can't set both <code>ShowSpeakerLabels</code> and
+     *         <code>ChannelIdentification</code> in the same request. If you
+     *         set both, your request returns a <code>BadRequestException</code>
+     *         .
      *         </p>
      */
     public Boolean isShowSpeakerLabels() {
@@ -141,18 +180,31 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Determines whether the transcription job should use speaker recognition
-     * to identify different speakers in the input audio. If you set the
+     * Determines whether the transcription job uses speaker recognition to
+     * identify different speakers in the input audio. Speaker recognition
+     * labels individual speakers in the audio file. If you set the
      * <code>ShowSpeakerLabels</code> field to true, you must also set the
      * maximum number of speaker labels <code>MaxSpeakerLabels</code> field.
      * </p>
+     * <p>
+     * You can't set both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. If you set both,
+     * your request returns a <code>BadRequestException</code>.
+     * </p>
      *
      * @return <p>
-     *         Determines whether the transcription job should use speaker
-     *         recognition to identify different speakers in the input audio. If
-     *         you set the <code>ShowSpeakerLabels</code> field to true, you
-     *         must also set the maximum number of speaker labels
+     *         Determines whether the transcription job uses speaker recognition
+     *         to identify different speakers in the input audio. Speaker
+     *         recognition labels individual speakers in the audio file. If you
+     *         set the <code>ShowSpeakerLabels</code> field to true, you must
+     *         also set the maximum number of speaker labels
      *         <code>MaxSpeakerLabels</code> field.
+     *         </p>
+     *         <p>
+     *         You can't set both <code>ShowSpeakerLabels</code> and
+     *         <code>ChannelIdentification</code> in the same request. If you
+     *         set both, your request returns a <code>BadRequestException</code>
+     *         .
      *         </p>
      */
     public Boolean getShowSpeakerLabels() {
@@ -161,18 +213,31 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Determines whether the transcription job should use speaker recognition
-     * to identify different speakers in the input audio. If you set the
+     * Determines whether the transcription job uses speaker recognition to
+     * identify different speakers in the input audio. Speaker recognition
+     * labels individual speakers in the audio file. If you set the
      * <code>ShowSpeakerLabels</code> field to true, you must also set the
      * maximum number of speaker labels <code>MaxSpeakerLabels</code> field.
      * </p>
+     * <p>
+     * You can't set both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. If you set both,
+     * your request returns a <code>BadRequestException</code>.
+     * </p>
      *
      * @param showSpeakerLabels <p>
-     *            Determines whether the transcription job should use speaker
+     *            Determines whether the transcription job uses speaker
      *            recognition to identify different speakers in the input audio.
-     *            If you set the <code>ShowSpeakerLabels</code> field to true,
-     *            you must also set the maximum number of speaker labels
+     *            Speaker recognition labels individual speakers in the audio
+     *            file. If you set the <code>ShowSpeakerLabels</code> field to
+     *            true, you must also set the maximum number of speaker labels
      *            <code>MaxSpeakerLabels</code> field.
+     *            </p>
+     *            <p>
+     *            You can't set both <code>ShowSpeakerLabels</code> and
+     *            <code>ChannelIdentification</code> in the same request. If you
+     *            set both, your request returns a
+     *            <code>BadRequestException</code>.
      *            </p>
      */
     public void setShowSpeakerLabels(Boolean showSpeakerLabels) {
@@ -181,21 +246,34 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Determines whether the transcription job should use speaker recognition
-     * to identify different speakers in the input audio. If you set the
+     * Determines whether the transcription job uses speaker recognition to
+     * identify different speakers in the input audio. Speaker recognition
+     * labels individual speakers in the audio file. If you set the
      * <code>ShowSpeakerLabels</code> field to true, you must also set the
      * maximum number of speaker labels <code>MaxSpeakerLabels</code> field.
+     * </p>
+     * <p>
+     * You can't set both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. If you set both,
+     * your request returns a <code>BadRequestException</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param showSpeakerLabels <p>
-     *            Determines whether the transcription job should use speaker
+     *            Determines whether the transcription job uses speaker
      *            recognition to identify different speakers in the input audio.
-     *            If you set the <code>ShowSpeakerLabels</code> field to true,
-     *            you must also set the maximum number of speaker labels
+     *            Speaker recognition labels individual speakers in the audio
+     *            file. If you set the <code>ShowSpeakerLabels</code> field to
+     *            true, you must also set the maximum number of speaker labels
      *            <code>MaxSpeakerLabels</code> field.
+     *            </p>
+     *            <p>
+     *            You can't set both <code>ShowSpeakerLabels</code> and
+     *            <code>ChannelIdentification</code> in the same request. If you
+     *            set both, your request returns a
+     *            <code>BadRequestException</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -284,6 +362,176 @@ public class Settings implements Serializable {
     }
 
     /**
+     * <p>
+     * Instructs Amazon Transcribe to process each audio channel separately and
+     * then merge the transcription output of each channel into a single
+     * transcription.
+     * </p>
+     * <p>
+     * Amazon Transcribe also produces a transcription of each item detected on
+     * an audio channel, including the start time and end time of the item and
+     * alternative transcriptions of the item including the confidence that
+     * Amazon Transcribe has in the transcription.
+     * </p>
+     * <p>
+     * You can't set both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. If you set both,
+     * your request returns a <code>BadRequestException</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Instructs Amazon Transcribe to process each audio channel
+     *         separately and then merge the transcription output of each
+     *         channel into a single transcription.
+     *         </p>
+     *         <p>
+     *         Amazon Transcribe also produces a transcription of each item
+     *         detected on an audio channel, including the start time and end
+     *         time of the item and alternative transcriptions of the item
+     *         including the confidence that Amazon Transcribe has in the
+     *         transcription.
+     *         </p>
+     *         <p>
+     *         You can't set both <code>ShowSpeakerLabels</code> and
+     *         <code>ChannelIdentification</code> in the same request. If you
+     *         set both, your request returns a <code>BadRequestException</code>
+     *         .
+     *         </p>
+     */
+    public Boolean isChannelIdentification() {
+        return channelIdentification;
+    }
+
+    /**
+     * <p>
+     * Instructs Amazon Transcribe to process each audio channel separately and
+     * then merge the transcription output of each channel into a single
+     * transcription.
+     * </p>
+     * <p>
+     * Amazon Transcribe also produces a transcription of each item detected on
+     * an audio channel, including the start time and end time of the item and
+     * alternative transcriptions of the item including the confidence that
+     * Amazon Transcribe has in the transcription.
+     * </p>
+     * <p>
+     * You can't set both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. If you set both,
+     * your request returns a <code>BadRequestException</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Instructs Amazon Transcribe to process each audio channel
+     *         separately and then merge the transcription output of each
+     *         channel into a single transcription.
+     *         </p>
+     *         <p>
+     *         Amazon Transcribe also produces a transcription of each item
+     *         detected on an audio channel, including the start time and end
+     *         time of the item and alternative transcriptions of the item
+     *         including the confidence that Amazon Transcribe has in the
+     *         transcription.
+     *         </p>
+     *         <p>
+     *         You can't set both <code>ShowSpeakerLabels</code> and
+     *         <code>ChannelIdentification</code> in the same request. If you
+     *         set both, your request returns a <code>BadRequestException</code>
+     *         .
+     *         </p>
+     */
+    public Boolean getChannelIdentification() {
+        return channelIdentification;
+    }
+
+    /**
+     * <p>
+     * Instructs Amazon Transcribe to process each audio channel separately and
+     * then merge the transcription output of each channel into a single
+     * transcription.
+     * </p>
+     * <p>
+     * Amazon Transcribe also produces a transcription of each item detected on
+     * an audio channel, including the start time and end time of the item and
+     * alternative transcriptions of the item including the confidence that
+     * Amazon Transcribe has in the transcription.
+     * </p>
+     * <p>
+     * You can't set both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. If you set both,
+     * your request returns a <code>BadRequestException</code>.
+     * </p>
+     *
+     * @param channelIdentification <p>
+     *            Instructs Amazon Transcribe to process each audio channel
+     *            separately and then merge the transcription output of each
+     *            channel into a single transcription.
+     *            </p>
+     *            <p>
+     *            Amazon Transcribe also produces a transcription of each item
+     *            detected on an audio channel, including the start time and end
+     *            time of the item and alternative transcriptions of the item
+     *            including the confidence that Amazon Transcribe has in the
+     *            transcription.
+     *            </p>
+     *            <p>
+     *            You can't set both <code>ShowSpeakerLabels</code> and
+     *            <code>ChannelIdentification</code> in the same request. If you
+     *            set both, your request returns a
+     *            <code>BadRequestException</code>.
+     *            </p>
+     */
+    public void setChannelIdentification(Boolean channelIdentification) {
+        this.channelIdentification = channelIdentification;
+    }
+
+    /**
+     * <p>
+     * Instructs Amazon Transcribe to process each audio channel separately and
+     * then merge the transcription output of each channel into a single
+     * transcription.
+     * </p>
+     * <p>
+     * Amazon Transcribe also produces a transcription of each item detected on
+     * an audio channel, including the start time and end time of the item and
+     * alternative transcriptions of the item including the confidence that
+     * Amazon Transcribe has in the transcription.
+     * </p>
+     * <p>
+     * You can't set both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. If you set both,
+     * your request returns a <code>BadRequestException</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param channelIdentification <p>
+     *            Instructs Amazon Transcribe to process each audio channel
+     *            separately and then merge the transcription output of each
+     *            channel into a single transcription.
+     *            </p>
+     *            <p>
+     *            Amazon Transcribe also produces a transcription of each item
+     *            detected on an audio channel, including the start time and end
+     *            time of the item and alternative transcriptions of the item
+     *            including the confidence that Amazon Transcribe has in the
+     *            transcription.
+     *            </p>
+     *            <p>
+     *            You can't set both <code>ShowSpeakerLabels</code> and
+     *            <code>ChannelIdentification</code> in the same request. If you
+     *            set both, your request returns a
+     *            <code>BadRequestException</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Settings withChannelIdentification(Boolean channelIdentification) {
+        this.channelIdentification = channelIdentification;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -299,7 +547,9 @@ public class Settings implements Serializable {
         if (getShowSpeakerLabels() != null)
             sb.append("ShowSpeakerLabels: " + getShowSpeakerLabels() + ",");
         if (getMaxSpeakerLabels() != null)
-            sb.append("MaxSpeakerLabels: " + getMaxSpeakerLabels());
+            sb.append("MaxSpeakerLabels: " + getMaxSpeakerLabels() + ",");
+        if (getChannelIdentification() != null)
+            sb.append("ChannelIdentification: " + getChannelIdentification());
         sb.append("}");
         return sb.toString();
     }
@@ -315,6 +565,9 @@ public class Settings implements Serializable {
                 + ((getShowSpeakerLabels() == null) ? 0 : getShowSpeakerLabels().hashCode());
         hashCode = prime * hashCode
                 + ((getMaxSpeakerLabels() == null) ? 0 : getMaxSpeakerLabels().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getChannelIdentification() == null) ? 0 : getChannelIdentification().hashCode());
         return hashCode;
     }
 
@@ -343,6 +596,11 @@ public class Settings implements Serializable {
             return false;
         if (other.getMaxSpeakerLabels() != null
                 && other.getMaxSpeakerLabels().equals(this.getMaxSpeakerLabels()) == false)
+            return false;
+        if (other.getChannelIdentification() == null ^ this.getChannelIdentification() == null)
+            return false;
+        if (other.getChannelIdentification() != null
+                && other.getChannelIdentification().equals(this.getChannelIdentification()) == false)
             return false;
         return true;
     }

@@ -56,8 +56,9 @@ public class GetLogEventsRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The start of the time range, expressed as the number of milliseconds
-     * after Jan 1, 1970 00:00:00 UTC. Events with a time stamp earlier than
-     * this time are not included.
+     * after Jan 1, 1970 00:00:00 UTC. Events with a time stamp equal to this
+     * time or later than this time are included. Events with a time stamp
+     * earlier than this time are not included.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,8 +69,8 @@ public class GetLogEventsRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The end of the time range, expressed as the number of milliseconds after
-     * Jan 1, 1970 00:00:00 UTC. Events with a time stamp later than this time
-     * are not included.
+     * Jan 1, 1970 00:00:00 UTC. Events with a time stamp equal to or later than
+     * this time are not included.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -251,8 +252,9 @@ public class GetLogEventsRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The start of the time range, expressed as the number of milliseconds
-     * after Jan 1, 1970 00:00:00 UTC. Events with a time stamp earlier than
-     * this time are not included.
+     * after Jan 1, 1970 00:00:00 UTC. Events with a time stamp equal to this
+     * time or later than this time are included. Events with a time stamp
+     * earlier than this time are not included.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -261,7 +263,8 @@ public class GetLogEventsRequest extends AmazonWebServiceRequest implements Seri
      * @return <p>
      *         The start of the time range, expressed as the number of
      *         milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a time
-     *         stamp earlier than this time are not included.
+     *         stamp equal to this time or later than this time are included.
+     *         Events with a time stamp earlier than this time are not included.
      *         </p>
      */
     public Long getStartTime() {
@@ -271,8 +274,9 @@ public class GetLogEventsRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The start of the time range, expressed as the number of milliseconds
-     * after Jan 1, 1970 00:00:00 UTC. Events with a time stamp earlier than
-     * this time are not included.
+     * after Jan 1, 1970 00:00:00 UTC. Events with a time stamp equal to this
+     * time or later than this time are included. Events with a time stamp
+     * earlier than this time are not included.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -281,7 +285,9 @@ public class GetLogEventsRequest extends AmazonWebServiceRequest implements Seri
      * @param startTime <p>
      *            The start of the time range, expressed as the number of
      *            milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a
-     *            time stamp earlier than this time are not included.
+     *            time stamp equal to this time or later than this time are
+     *            included. Events with a time stamp earlier than this time are
+     *            not included.
      *            </p>
      */
     public void setStartTime(Long startTime) {
@@ -291,8 +297,9 @@ public class GetLogEventsRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The start of the time range, expressed as the number of milliseconds
-     * after Jan 1, 1970 00:00:00 UTC. Events with a time stamp earlier than
-     * this time are not included.
+     * after Jan 1, 1970 00:00:00 UTC. Events with a time stamp equal to this
+     * time or later than this time are included. Events with a time stamp
+     * earlier than this time are not included.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -304,7 +311,9 @@ public class GetLogEventsRequest extends AmazonWebServiceRequest implements Seri
      * @param startTime <p>
      *            The start of the time range, expressed as the number of
      *            milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a
-     *            time stamp earlier than this time are not included.
+     *            time stamp equal to this time or later than this time are
+     *            included. Events with a time stamp earlier than this time are
+     *            not included.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -317,8 +326,8 @@ public class GetLogEventsRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The end of the time range, expressed as the number of milliseconds after
-     * Jan 1, 1970 00:00:00 UTC. Events with a time stamp later than this time
-     * are not included.
+     * Jan 1, 1970 00:00:00 UTC. Events with a time stamp equal to or later than
+     * this time are not included.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -327,7 +336,7 @@ public class GetLogEventsRequest extends AmazonWebServiceRequest implements Seri
      * @return <p>
      *         The end of the time range, expressed as the number of
      *         milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a time
-     *         stamp later than this time are not included.
+     *         stamp equal to or later than this time are not included.
      *         </p>
      */
     public Long getEndTime() {
@@ -337,8 +346,8 @@ public class GetLogEventsRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The end of the time range, expressed as the number of milliseconds after
-     * Jan 1, 1970 00:00:00 UTC. Events with a time stamp later than this time
-     * are not included.
+     * Jan 1, 1970 00:00:00 UTC. Events with a time stamp equal to or later than
+     * this time are not included.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -347,7 +356,7 @@ public class GetLogEventsRequest extends AmazonWebServiceRequest implements Seri
      * @param endTime <p>
      *            The end of the time range, expressed as the number of
      *            milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a
-     *            time stamp later than this time are not included.
+     *            time stamp equal to or later than this time are not included.
      *            </p>
      */
     public void setEndTime(Long endTime) {
@@ -357,8 +366,8 @@ public class GetLogEventsRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * The end of the time range, expressed as the number of milliseconds after
-     * Jan 1, 1970 00:00:00 UTC. Events with a time stamp later than this time
-     * are not included.
+     * Jan 1, 1970 00:00:00 UTC. Events with a time stamp equal to or later than
+     * this time are not included.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -370,7 +379,7 @@ public class GetLogEventsRequest extends AmazonWebServiceRequest implements Seri
      * @param endTime <p>
      *            The end of the time range, expressed as the number of
      *            milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a
-     *            time stamp later than this time are not included.
+     *            time stamp equal to or later than this time are not included.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

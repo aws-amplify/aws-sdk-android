@@ -21,12 +21,36 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets a Boolean value that indicates whether automatic rotation of the key
- * material is enabled for the specified customer master key (CMK).
+ * Gets a Boolean value that indicates whether <a href=
+ * "http://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html"
+ * >automatic rotation of the key material</a> is enabled for the specified
+ * customer master key (CMK).
  * </p>
  * <p>
+ * The result of this operation varies with the key state of the CMK. For
+ * details, see <a
+ * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+ * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
+ * Management Service Developer Guide</i>.
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * Disabled: The key rotation status does not change when you disable a CMK.
+ * However, while the CMK is disabled, AWS KMS does not rotate the backing key.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Pending deletion: While a CMK is pending deletion, its key rotation status is
+ * <code>false</code> and AWS KMS does not rotate the backing key. If you cancel
+ * the deletion, the original key rotation status is restored.
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
  * To perform this operation on a CMK in a different AWS account, specify the
- * key ARN in the value of the KeyId parameter.
+ * key ARN in the value of the <code>KeyId</code> parameter.
  * </p>
  */
 public class GetKeyRotationStatusRequest extends AmazonWebServiceRequest implements Serializable {
