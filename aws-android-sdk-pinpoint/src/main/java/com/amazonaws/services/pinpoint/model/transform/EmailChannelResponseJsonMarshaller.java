@@ -76,6 +76,11 @@ class EmailChannelResponseJsonMarshaller {
             jsonWriter.name("LastModifiedDate");
             jsonWriter.value(lastModifiedDate);
         }
+        if (emailChannelResponse.getMessagesPerSecond() != null) {
+            Integer messagesPerSecond = emailChannelResponse.getMessagesPerSecond();
+            jsonWriter.name("MessagesPerSecond");
+            jsonWriter.value(messagesPerSecond);
+        }
         if (emailChannelResponse.getPlatform() != null) {
             String platform = emailChannelResponse.getPlatform();
             jsonWriter.name("Platform");

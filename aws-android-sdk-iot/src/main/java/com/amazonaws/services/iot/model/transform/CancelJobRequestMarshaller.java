@@ -54,6 +54,9 @@ public class CancelJobRequestMarshaller implements
                 "{jobId}",
                 (cancelJobRequest.getJobId() == null) ? "" : StringUtils
                         .fromString(cancelJobRequest.getJobId()));
+        if (cancelJobRequest.getForce() != null) {
+            request.addParameter("force", StringUtils.fromBoolean(cancelJobRequest.getForce()));
+        }
         request.setResourcePath(uriResourcePath);
         try {
             StringWriter stringWriter = new StringWriter();

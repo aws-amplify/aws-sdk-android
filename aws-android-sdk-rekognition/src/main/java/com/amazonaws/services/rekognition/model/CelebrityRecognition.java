@@ -20,7 +20,8 @@ import java.io.Serializable;
 /**
  * <p>
  * Information about a detected celebrity and the time the celebrity was
- * detected in a stored video. For more information, see .
+ * detected in a stored video. For more information, see GetCelebrityRecognition
+ * in the Amazon Rekognition Developer Guide.
  * </p>
  */
 public class CelebrityRecognition implements Serializable {

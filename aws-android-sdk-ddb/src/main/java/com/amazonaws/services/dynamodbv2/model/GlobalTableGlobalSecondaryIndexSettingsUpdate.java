@@ -49,6 +49,14 @@ public class GlobalTableGlobalSecondaryIndexSettingsUpdate implements Serializab
 
     /**
      * <p>
+     * AutoScaling settings for managing a global secondary index's write
+     * capacity units.
+     * </p>
+     */
+    private AutoScalingSettingsUpdate provisionedWriteCapacityAutoScalingSettingsUpdate;
+
+    /**
+     * <p>
      * The name of the global secondary index. The name must be unique among all
      * other indexes on this table.
      * </p>
@@ -172,6 +180,59 @@ public class GlobalTableGlobalSecondaryIndexSettingsUpdate implements Serializab
     }
 
     /**
+     * <p>
+     * AutoScaling settings for managing a global secondary index's write
+     * capacity units.
+     * </p>
+     *
+     * @return <p>
+     *         AutoScaling settings for managing a global secondary index's
+     *         write capacity units.
+     *         </p>
+     */
+    public AutoScalingSettingsUpdate getProvisionedWriteCapacityAutoScalingSettingsUpdate() {
+        return provisionedWriteCapacityAutoScalingSettingsUpdate;
+    }
+
+    /**
+     * <p>
+     * AutoScaling settings for managing a global secondary index's write
+     * capacity units.
+     * </p>
+     *
+     * @param provisionedWriteCapacityAutoScalingSettingsUpdate <p>
+     *            AutoScaling settings for managing a global secondary index's
+     *            write capacity units.
+     *            </p>
+     */
+    public void setProvisionedWriteCapacityAutoScalingSettingsUpdate(
+            AutoScalingSettingsUpdate provisionedWriteCapacityAutoScalingSettingsUpdate) {
+        this.provisionedWriteCapacityAutoScalingSettingsUpdate = provisionedWriteCapacityAutoScalingSettingsUpdate;
+    }
+
+    /**
+     * <p>
+     * AutoScaling settings for managing a global secondary index's write
+     * capacity units.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param provisionedWriteCapacityAutoScalingSettingsUpdate <p>
+     *            AutoScaling settings for managing a global secondary index's
+     *            write capacity units.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GlobalTableGlobalSecondaryIndexSettingsUpdate withProvisionedWriteCapacityAutoScalingSettingsUpdate(
+            AutoScalingSettingsUpdate provisionedWriteCapacityAutoScalingSettingsUpdate) {
+        this.provisionedWriteCapacityAutoScalingSettingsUpdate = provisionedWriteCapacityAutoScalingSettingsUpdate;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -185,7 +246,10 @@ public class GlobalTableGlobalSecondaryIndexSettingsUpdate implements Serializab
         if (getIndexName() != null)
             sb.append("IndexName: " + getIndexName() + ",");
         if (getProvisionedWriteCapacityUnits() != null)
-            sb.append("ProvisionedWriteCapacityUnits: " + getProvisionedWriteCapacityUnits());
+            sb.append("ProvisionedWriteCapacityUnits: " + getProvisionedWriteCapacityUnits() + ",");
+        if (getProvisionedWriteCapacityAutoScalingSettingsUpdate() != null)
+            sb.append("ProvisionedWriteCapacityAutoScalingSettingsUpdate: "
+                    + getProvisionedWriteCapacityAutoScalingSettingsUpdate());
         sb.append("}");
         return sb.toString();
     }
@@ -200,6 +264,10 @@ public class GlobalTableGlobalSecondaryIndexSettingsUpdate implements Serializab
                 * hashCode
                 + ((getProvisionedWriteCapacityUnits() == null) ? 0
                         : getProvisionedWriteCapacityUnits().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getProvisionedWriteCapacityAutoScalingSettingsUpdate() == null) ? 0
+                        : getProvisionedWriteCapacityAutoScalingSettingsUpdate().hashCode());
         return hashCode;
     }
 
@@ -225,6 +293,13 @@ public class GlobalTableGlobalSecondaryIndexSettingsUpdate implements Serializab
         if (other.getProvisionedWriteCapacityUnits() != null
                 && other.getProvisionedWriteCapacityUnits().equals(
                         this.getProvisionedWriteCapacityUnits()) == false)
+            return false;
+        if (other.getProvisionedWriteCapacityAutoScalingSettingsUpdate() == null
+                ^ this.getProvisionedWriteCapacityAutoScalingSettingsUpdate() == null)
+            return false;
+        if (other.getProvisionedWriteCapacityAutoScalingSettingsUpdate() != null
+                && other.getProvisionedWriteCapacityAutoScalingSettingsUpdate().equals(
+                        this.getProvisionedWriteCapacityAutoScalingSettingsUpdate()) == false)
             return false;
         return true;
     }

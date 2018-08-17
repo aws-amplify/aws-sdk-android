@@ -45,6 +45,11 @@ class GlobalTableGlobalSecondaryIndexSettingsUpdateJsonUnmarshaller implements
                 globalTableGlobalSecondaryIndexSettingsUpdate
                         .setProvisionedWriteCapacityUnits(LongJsonUnmarshaller.getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("ProvisionedWriteCapacityAutoScalingSettingsUpdate")) {
+                globalTableGlobalSecondaryIndexSettingsUpdate
+                        .setProvisionedWriteCapacityAutoScalingSettingsUpdate(AutoScalingSettingsUpdateJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

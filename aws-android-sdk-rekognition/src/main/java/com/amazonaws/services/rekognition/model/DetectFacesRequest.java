@@ -48,9 +48,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </note>
  * <p>
- * For an example, see <a>procedure-detecting-faces-in-images</a>.
- * </p>
- * <p>
  * This operation requires permissions to perform the
  * <code>rekognition:DetectFaces</code> action.
  * </p>

@@ -22,46 +22,51 @@ import java.io.Serializable;
  */
 public class SendUsersMessageResponse implements Serializable {
     /**
-     * Application id of the message.
+     * The unique ID of the Amazon Pinpoint project used to send the message.
      */
     private String applicationId;
 
     /**
-     * Original request Id for which this message was delivered.
+     * The unique ID assigned to the users-messages request.
      */
     private String requestId;
 
     /**
-     * A map containing of UserId to Map of EndpointId to Endpoint Message
-     * Result.
+     * An object that shows the endpoints that were messaged for each user. The
+     * object provides a list of user IDs. For each user ID, it provides the
+     * endpoint IDs that were messaged. For each endpoint ID, it provides an
+     * EndpointMessageResult object.
      */
     private java.util.Map<String, java.util.Map<String, EndpointMessageResult>> result;
 
     /**
-     * Application id of the message.
+     * The unique ID of the Amazon Pinpoint project used to send the message.
      *
-     * @return Application id of the message.
+     * @return The unique ID of the Amazon Pinpoint project used to send the
+     *         message.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * Application id of the message.
+     * The unique ID of the Amazon Pinpoint project used to send the message.
      *
-     * @param applicationId Application id of the message.
+     * @param applicationId The unique ID of the Amazon Pinpoint project used to
+     *            send the message.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * Application id of the message.
+     * The unique ID of the Amazon Pinpoint project used to send the message.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId Application id of the message.
+     * @param applicationId The unique ID of the Amazon Pinpoint project used to
+     *            send the message.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -71,32 +76,30 @@ public class SendUsersMessageResponse implements Serializable {
     }
 
     /**
-     * Original request Id for which this message was delivered.
+     * The unique ID assigned to the users-messages request.
      *
-     * @return Original request Id for which this message was delivered.
+     * @return The unique ID assigned to the users-messages request.
      */
     public String getRequestId() {
         return requestId;
     }
 
     /**
-     * Original request Id for which this message was delivered.
+     * The unique ID assigned to the users-messages request.
      *
-     * @param requestId Original request Id for which this message was
-     *            delivered.
+     * @param requestId The unique ID assigned to the users-messages request.
      */
     public void setRequestId(String requestId) {
         this.requestId = requestId;
     }
 
     /**
-     * Original request Id for which this message was delivered.
+     * The unique ID assigned to the users-messages request.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param requestId Original request Id for which this message was
-     *            delivered.
+     * @param requestId The unique ID assigned to the users-messages request.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -106,36 +109,48 @@ public class SendUsersMessageResponse implements Serializable {
     }
 
     /**
-     * A map containing of UserId to Map of EndpointId to Endpoint Message
-     * Result.
+     * An object that shows the endpoints that were messaged for each user. The
+     * object provides a list of user IDs. For each user ID, it provides the
+     * endpoint IDs that were messaged. For each endpoint ID, it provides an
+     * EndpointMessageResult object.
      *
-     * @return A map containing of UserId to Map of EndpointId to Endpoint
-     *         Message Result.
+     * @return An object that shows the endpoints that were messaged for each
+     *         user. The object provides a list of user IDs. For each user ID,
+     *         it provides the endpoint IDs that were messaged. For each
+     *         endpoint ID, it provides an EndpointMessageResult object.
      */
     public java.util.Map<String, java.util.Map<String, EndpointMessageResult>> getResult() {
         return result;
     }
 
     /**
-     * A map containing of UserId to Map of EndpointId to Endpoint Message
-     * Result.
+     * An object that shows the endpoints that were messaged for each user. The
+     * object provides a list of user IDs. For each user ID, it provides the
+     * endpoint IDs that were messaged. For each endpoint ID, it provides an
+     * EndpointMessageResult object.
      *
-     * @param result A map containing of UserId to Map of EndpointId to Endpoint
-     *            Message Result.
+     * @param result An object that shows the endpoints that were messaged for
+     *            each user. The object provides a list of user IDs. For each
+     *            user ID, it provides the endpoint IDs that were messaged. For
+     *            each endpoint ID, it provides an EndpointMessageResult object.
      */
     public void setResult(java.util.Map<String, java.util.Map<String, EndpointMessageResult>> result) {
         this.result = result;
     }
 
     /**
-     * A map containing of UserId to Map of EndpointId to Endpoint Message
-     * Result.
+     * An object that shows the endpoints that were messaged for each user. The
+     * object provides a list of user IDs. For each user ID, it provides the
+     * endpoint IDs that were messaged. For each endpoint ID, it provides an
+     * EndpointMessageResult object.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param result A map containing of UserId to Map of EndpointId to Endpoint
-     *            Message Result.
+     * @param result An object that shows the endpoints that were messaged for
+     *            each user. The object provides a list of user IDs. For each
+     *            user ID, it provides the endpoint IDs that were messaged. For
+     *            each endpoint ID, it provides an EndpointMessageResult object.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -146,8 +161,10 @@ public class SendUsersMessageResponse implements Serializable {
     }
 
     /**
-     * A map containing of UserId to Map of EndpointId to Endpoint Message
-     * Result.
+     * An object that shows the endpoints that were messaged for each user. The
+     * object provides a list of user IDs. For each user ID, it provides the
+     * endpoint IDs that were messaged. For each endpoint ID, it provides an
+     * EndpointMessageResult object.
      * <p>
      * The method adds a new key-value pair into Result parameter, and returns a
      * reference to this object so that method calls can be chained together.

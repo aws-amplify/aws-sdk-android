@@ -83,7 +83,8 @@ public class DescribeStreamProcessorResult implements Serializable {
 
     /**
      * <p>
-     * Kinesis data stream to which Rekognition Video puts the analysis results.
+     * Kinesis data stream to which Amazon Rekognition Video puts the analysis
+     * results.
      * </p>
      */
     private StreamProcessorOutput output;
@@ -518,12 +519,13 @@ public class DescribeStreamProcessorResult implements Serializable {
 
     /**
      * <p>
-     * Kinesis data stream to which Rekognition Video puts the analysis results.
+     * Kinesis data stream to which Amazon Rekognition Video puts the analysis
+     * results.
      * </p>
      *
      * @return <p>
-     *         Kinesis data stream to which Rekognition Video puts the analysis
-     *         results.
+     *         Kinesis data stream to which Amazon Rekognition Video puts the
+     *         analysis results.
      *         </p>
      */
     public StreamProcessorOutput getOutput() {
@@ -532,11 +534,12 @@ public class DescribeStreamProcessorResult implements Serializable {
 
     /**
      * <p>
-     * Kinesis data stream to which Rekognition Video puts the analysis results.
+     * Kinesis data stream to which Amazon Rekognition Video puts the analysis
+     * results.
      * </p>
      *
      * @param output <p>
-     *            Kinesis data stream to which Rekognition Video puts the
+     *            Kinesis data stream to which Amazon Rekognition Video puts the
      *            analysis results.
      *            </p>
      */
@@ -546,14 +549,15 @@ public class DescribeStreamProcessorResult implements Serializable {
 
     /**
      * <p>
-     * Kinesis data stream to which Rekognition Video puts the analysis results.
+     * Kinesis data stream to which Amazon Rekognition Video puts the analysis
+     * results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param output <p>
-     *            Kinesis data stream to which Rekognition Video puts the
+     *            Kinesis data stream to which Amazon Rekognition Video puts the
      *            analysis results.
      *            </p>
      * @return A reference to this updated object so that method calls can be

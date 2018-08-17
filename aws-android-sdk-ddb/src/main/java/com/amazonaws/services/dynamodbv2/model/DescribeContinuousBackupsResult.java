@@ -20,21 +20,21 @@ import java.io.Serializable;
 public class DescribeContinuousBackupsResult implements Serializable {
     /**
      * <p>
-     * <code>ContinuousBackupsDescription</code> can be one of the following :
-     * ENABLED, DISABLED.
+     * Represents the continuous backups and point in time recovery settings on
+     * the table.
      * </p>
      */
     private ContinuousBackupsDescription continuousBackupsDescription;
 
     /**
      * <p>
-     * <code>ContinuousBackupsDescription</code> can be one of the following :
-     * ENABLED, DISABLED.
+     * Represents the continuous backups and point in time recovery settings on
+     * the table.
      * </p>
      *
      * @return <p>
-     *         <code>ContinuousBackupsDescription</code> can be one of the
-     *         following : ENABLED, DISABLED.
+     *         Represents the continuous backups and point in time recovery
+     *         settings on the table.
      *         </p>
      */
     public ContinuousBackupsDescription getContinuousBackupsDescription() {
@@ -43,13 +43,13 @@ public class DescribeContinuousBackupsResult implements Serializable {
 
     /**
      * <p>
-     * <code>ContinuousBackupsDescription</code> can be one of the following :
-     * ENABLED, DISABLED.
+     * Represents the continuous backups and point in time recovery settings on
+     * the table.
      * </p>
      *
      * @param continuousBackupsDescription <p>
-     *            <code>ContinuousBackupsDescription</code> can be one of the
-     *            following : ENABLED, DISABLED.
+     *            Represents the continuous backups and point in time recovery
+     *            settings on the table.
      *            </p>
      */
     public void setContinuousBackupsDescription(
@@ -59,16 +59,16 @@ public class DescribeContinuousBackupsResult implements Serializable {
 
     /**
      * <p>
-     * <code>ContinuousBackupsDescription</code> can be one of the following :
-     * ENABLED, DISABLED.
+     * Represents the continuous backups and point in time recovery settings on
+     * the table.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param continuousBackupsDescription <p>
-     *            <code>ContinuousBackupsDescription</code> can be one of the
-     *            following : ENABLED, DISABLED.
+     *            Represents the continuous backups and point in time recovery
+     *            settings on the table.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -29,7 +29,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * To filter images, use the labels returned by
  * <code>DetectModerationLabels</code> to determine which types of content are
- * appropriate. For information about moderation labels, see <a>moderation</a>.
+ * appropriate.
+ * </p>
+ * <p>
+ * For information about moderation labels, see Detecting Unsafe Content in the
+ * Amazon Rekognition Developer Guide.
  * </p>
  * <p>
  * You pass the input image either as base64-encoded image bytes or as a

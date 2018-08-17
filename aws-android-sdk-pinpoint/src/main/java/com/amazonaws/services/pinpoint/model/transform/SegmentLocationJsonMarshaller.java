@@ -31,6 +31,11 @@ class SegmentLocationJsonMarshaller {
             jsonWriter.name("Country");
             SetDimensionJsonMarshaller.getInstance().marshall(country, jsonWriter);
         }
+        if (segmentLocation.getGPSPoint() != null) {
+            GPSPointDimension gPSPoint = segmentLocation.getGPSPoint();
+            jsonWriter.name("GPSPoint");
+            GPSPointDimensionJsonMarshaller.getInstance().marshall(gPSPoint, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

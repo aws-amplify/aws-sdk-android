@@ -20,16 +20,16 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Use to update an endpoint.
+ * Creates or updates an endpoint.
  */
 public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the applicationId property for this object.
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * The new value for the endpointId property for this object.
+     * The unique ID of the endpoint.
      */
     private String endpointId;
 
@@ -39,32 +39,30 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
     private EndpointRequest endpointRequest;
 
     /**
-     * Returns the value of the applicationId property for this object.
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return The value of the applicationId property for this object.
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * Sets the value of applicationId
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId The new value for the applicationId property for
-     *            this object.
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * Sets the value of the applicationId property for this object.
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The new value for the applicationId property for
-     *            this object.
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -74,32 +72,30 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * Returns the value of the endpointId property for this object.
+     * The unique ID of the endpoint.
      *
-     * @return The value of the endpointId property for this object.
+     * @return The unique ID of the endpoint.
      */
     public String getEndpointId() {
         return endpointId;
     }
 
     /**
-     * Sets the value of endpointId
+     * The unique ID of the endpoint.
      *
-     * @param endpointId The new value for the endpointId property for this
-     *            object.
+     * @param endpointId The unique ID of the endpoint.
      */
     public void setEndpointId(String endpointId) {
         this.endpointId = endpointId;
     }
 
     /**
-     * Sets the value of the endpointId property for this object.
+     * The unique ID of the endpoint.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endpointId The new value for the endpointId property for this
-     *            object.
+     * @param endpointId The unique ID of the endpoint.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

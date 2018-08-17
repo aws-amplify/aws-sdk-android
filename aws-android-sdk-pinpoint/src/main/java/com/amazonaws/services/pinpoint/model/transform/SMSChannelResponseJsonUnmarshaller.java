@@ -63,11 +63,19 @@ class SMSChannelResponseJsonUnmarshaller implements
             } else if (name.equals("Platform")) {
                 sMSChannelResponse.setPlatform(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("PromotionalMessagesPerSecond")) {
+                sMSChannelResponse.setPromotionalMessagesPerSecond(IntegerJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SenderId")) {
                 sMSChannelResponse.setSenderId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("ShortCode")) {
                 sMSChannelResponse.setShortCode(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("TransactionalMessagesPerSecond")) {
+                sMSChannelResponse.setTransactionalMessagesPerSecond(IntegerJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
             } else if (name.equals("Version")) {
                 sMSChannelResponse.setVersion(IntegerJsonUnmarshaller.getInstance()

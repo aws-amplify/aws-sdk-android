@@ -38,7 +38,7 @@ public class GetLabelDetectionResult implements Serializable {
 
     /**
      * <p>
-     * Information about a video that Rekognition Video analyzed.
+     * Information about a video that Amazon Rekognition Video analyzed.
      * <code>Videometadata</code> is returned in every page of paginated
      * responses from a Amazon Rekognition video operation.
      * </p>
@@ -47,8 +47,9 @@ public class GetLabelDetectionResult implements Serializable {
 
     /**
      * <p>
-     * If the response is truncated, Rekognition Video returns this token that
-     * you can use in the subsequent request to retrieve the next set of labels.
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
+     * labels.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -215,13 +216,13 @@ public class GetLabelDetectionResult implements Serializable {
 
     /**
      * <p>
-     * Information about a video that Rekognition Video analyzed.
+     * Information about a video that Amazon Rekognition Video analyzed.
      * <code>Videometadata</code> is returned in every page of paginated
      * responses from a Amazon Rekognition video operation.
      * </p>
      *
      * @return <p>
-     *         Information about a video that Rekognition Video analyzed.
+     *         Information about a video that Amazon Rekognition Video analyzed.
      *         <code>Videometadata</code> is returned in every page of paginated
      *         responses from a Amazon Rekognition video operation.
      *         </p>
@@ -232,15 +233,16 @@ public class GetLabelDetectionResult implements Serializable {
 
     /**
      * <p>
-     * Information about a video that Rekognition Video analyzed.
+     * Information about a video that Amazon Rekognition Video analyzed.
      * <code>Videometadata</code> is returned in every page of paginated
      * responses from a Amazon Rekognition video operation.
      * </p>
      *
      * @param videoMetadata <p>
-     *            Information about a video that Rekognition Video analyzed.
-     *            <code>Videometadata</code> is returned in every page of
-     *            paginated responses from a Amazon Rekognition video operation.
+     *            Information about a video that Amazon Rekognition Video
+     *            analyzed. <code>Videometadata</code> is returned in every page
+     *            of paginated responses from a Amazon Rekognition video
+     *            operation.
      *            </p>
      */
     public void setVideoMetadata(VideoMetadata videoMetadata) {
@@ -249,7 +251,7 @@ public class GetLabelDetectionResult implements Serializable {
 
     /**
      * <p>
-     * Information about a video that Rekognition Video analyzed.
+     * Information about a video that Amazon Rekognition Video analyzed.
      * <code>Videometadata</code> is returned in every page of paginated
      * responses from a Amazon Rekognition video operation.
      * </p>
@@ -258,9 +260,10 @@ public class GetLabelDetectionResult implements Serializable {
      * together.
      *
      * @param videoMetadata <p>
-     *            Information about a video that Rekognition Video analyzed.
-     *            <code>Videometadata</code> is returned in every page of
-     *            paginated responses from a Amazon Rekognition video operation.
+     *            Information about a video that Amazon Rekognition Video
+     *            analyzed. <code>Videometadata</code> is returned in every page
+     *            of paginated responses from a Amazon Rekognition video
+     *            operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -272,17 +275,18 @@ public class GetLabelDetectionResult implements Serializable {
 
     /**
      * <p>
-     * If the response is truncated, Rekognition Video returns this token that
-     * you can use in the subsequent request to retrieve the next set of labels.
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
+     * labels.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 255<br/>
      *
      * @return <p>
-     *         If the response is truncated, Rekognition Video returns this
-     *         token that you can use in the subsequent request to retrieve the
-     *         next set of labels.
+     *         If the response is truncated, Amazon Rekognition Video returns
+     *         this token that you can use in the subsequent request to retrieve
+     *         the next set of labels.
      *         </p>
      */
     public String getNextToken() {
@@ -291,17 +295,18 @@ public class GetLabelDetectionResult implements Serializable {
 
     /**
      * <p>
-     * If the response is truncated, Rekognition Video returns this token that
-     * you can use in the subsequent request to retrieve the next set of labels.
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
+     * labels.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 255<br/>
      *
      * @param nextToken <p>
-     *            If the response is truncated, Rekognition Video returns this
-     *            token that you can use in the subsequent request to retrieve
-     *            the next set of labels.
+     *            If the response is truncated, Amazon Rekognition Video returns
+     *            this token that you can use in the subsequent request to
+     *            retrieve the next set of labels.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -310,8 +315,9 @@ public class GetLabelDetectionResult implements Serializable {
 
     /**
      * <p>
-     * If the response is truncated, Rekognition Video returns this token that
-     * you can use in the subsequent request to retrieve the next set of labels.
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
+     * labels.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -321,9 +327,9 @@ public class GetLabelDetectionResult implements Serializable {
      * <b>Length: </b> - 255<br/>
      *
      * @param nextToken <p>
-     *            If the response is truncated, Rekognition Video returns this
-     *            token that you can use in the subsequent request to retrieve
-     *            the next set of labels.
+     *            If the response is truncated, Amazon Rekognition Video returns
+     *            this token that you can use in the subsequent request to
+     *            retrieve the next set of labels.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

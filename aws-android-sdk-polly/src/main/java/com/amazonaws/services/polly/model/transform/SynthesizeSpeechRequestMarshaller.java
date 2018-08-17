@@ -105,6 +105,11 @@ public class SynthesizeSpeechRequestMarshaller implements
                 jsonWriter.name("VoiceId");
                 jsonWriter.value(voiceId);
             }
+            if (synthesizeSpeechRequest.getLanguageCode() != null) {
+                String languageCode = synthesizeSpeechRequest.getLanguageCode();
+                jsonWriter.name("LanguageCode");
+                jsonWriter.value(languageCode);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

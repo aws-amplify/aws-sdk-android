@@ -1,5 +1,70 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.28](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.28)
+
+### Bug Fixes
+
+* **Amazon Cognito Auth**
+  * Fix an issue where `getAppWebDomain` was used instead of  `getAppId`  which caused the SDK to return isAuthenticated as false for a logged in user. See [issue #508](https://github.com/aws/aws-sdk-android/issues/508)
+  * Added identity provider as parameter to the CognitoAuth builder to allow developers to launch hosted UI directly to a certain social provider. See [issue ##494](https://github.com/aws/aws-sdk-android/issues/494) and [issue ##230](https://github.com/awslabs/aws-sdk-android-samples/issues/230)
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon CloudWatch Logs
+  * Amazon DynamoDB
+  * Amazon KMS
+  * Amazon Pinpoint
+  * Amazon Transcribe
+
+## [Release 2.6.27](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.27)
+
+### New Features
+
+* **Amazon Polly**
+  * Amazon Polly enables female voice Aditi to speak Hindi language.
+
+### Bug Fixes
+
+* **AWS IoT**
+  * Add customer callback when exception is thrown in client connect.
+
+* **Amazon Cognito Identity**
+  * Fixes developer authentication flow in the `cn-north-1` region.
+
+* **AWS Lambda**
+  * Fix a bug in `LambdaInvocationHandler` where the `InvocationType` is always set to `RequestResponse` even if `LogType` is `None`. See [issue #459](https://github.com/aws/aws-sdk-android/issues/459)
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon DynamoDB
+
+## [Release 2.6.26](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.26)
+
+### Enhancements
+
+* **Amazon Polly**
+  * Added support for new `SynthesisTask` feature which allows asynchronous and batch processing.
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon Comprehend
+  * Amazon DynamoDB
+  * AWS IoT
+  * Amazon Pinpoint
+  * Amazon Polly
+  * Amazon Rekognition
+  * Amazon Transcribe
+
+## [Release 2.6.25](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.25)
+
+## New Features
+
+* **Amazon Kinesis Video Streams**
+  * Updated models for HLS streaming feature. Add `AWSKinesisVideoArchivedMediaClient`and dependency `implementation 'com.amazonaws:aws-android-sdk-kinesisvideo-archivedmedia:2.6.25'` to access HLS streaming feature.
+
 ## [Release 2.6.24](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.24)
 
 ### Bug Fixes

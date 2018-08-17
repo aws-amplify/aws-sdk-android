@@ -27,10 +27,17 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * To perform this operation on a CMK in a different AWS account, specify the
- * key ARN in the value of the KeyId parameter. For more information about
- * grants, see <a
+ * key ARN in the value of the <code>KeyId</code> parameter. For more
+ * information about grants, see <a
  * href="http://docs.aws.amazon.com/kms/latest/developerguide/grants.html"
  * >Grants</a> in the <i>AWS Key Management Service Developer Guide</i>.
+ * </p>
+ * <p>
+ * The result of this operation varies with the key state of the CMK. For
+ * details, see <a
+ * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+ * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
+ * Management Service Developer Guide</i>.
  * </p>
  */
 public class CreateGrantRequest extends AmazonWebServiceRequest implements Serializable {
@@ -147,7 +154,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A friendly name for identifying the grant. Use this value to prevent
+     * A friendly name for identifying the grant. Use this value to prevent the
      * unintended creation of duplicate grants when retrying this request.
      * </p>
      * <p>
@@ -904,7 +911,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A friendly name for identifying the grant. Use this value to prevent
+     * A friendly name for identifying the grant. Use this value to prevent the
      * unintended creation of duplicate grants when retrying this request.
      * </p>
      * <p>
@@ -929,7 +936,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *
      * @return <p>
      *         A friendly name for identifying the grant. Use this value to
-     *         prevent unintended creation of duplicate grants when retrying
+     *         prevent the unintended creation of duplicate grants when retrying
      *         this request.
      *         </p>
      *         <p>
@@ -956,7 +963,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A friendly name for identifying the grant. Use this value to prevent
+     * A friendly name for identifying the grant. Use this value to prevent the
      * unintended creation of duplicate grants when retrying this request.
      * </p>
      * <p>
@@ -981,8 +988,8 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *
      * @param name <p>
      *            A friendly name for identifying the grant. Use this value to
-     *            prevent unintended creation of duplicate grants when retrying
-     *            this request.
+     *            prevent the unintended creation of duplicate grants when
+     *            retrying this request.
      *            </p>
      *            <p>
      *            When this value is absent, all <code>CreateGrant</code>
@@ -1008,7 +1015,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A friendly name for identifying the grant. Use this value to prevent
+     * A friendly name for identifying the grant. Use this value to prevent the
      * unintended creation of duplicate grants when retrying this request.
      * </p>
      * <p>
@@ -1036,8 +1043,8 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *
      * @param name <p>
      *            A friendly name for identifying the grant. Use this value to
-     *            prevent unintended creation of duplicate grants when retrying
-     *            this request.
+     *            prevent the unintended creation of duplicate grants when
+     *            retrying this request.
      *            </p>
      *            <p>
      *            When this value is absent, all <code>CreateGrant</code>

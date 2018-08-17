@@ -71,6 +71,14 @@ public class UpdateGlobalTableSettingsRequestMarshaller implements
                 jsonWriter.name("GlobalTableProvisionedWriteCapacityUnits");
                 jsonWriter.value(globalTableProvisionedWriteCapacityUnits);
             }
+            if (updateGlobalTableSettingsRequest
+                    .getGlobalTableProvisionedWriteCapacityAutoScalingSettingsUpdate() != null) {
+                AutoScalingSettingsUpdate globalTableProvisionedWriteCapacityAutoScalingSettingsUpdate = updateGlobalTableSettingsRequest
+                        .getGlobalTableProvisionedWriteCapacityAutoScalingSettingsUpdate();
+                jsonWriter.name("GlobalTableProvisionedWriteCapacityAutoScalingSettingsUpdate");
+                AutoScalingSettingsUpdateJsonMarshaller.getInstance().marshall(
+                        globalTableProvisionedWriteCapacityAutoScalingSettingsUpdate, jsonWriter);
+            }
             if (updateGlobalTableSettingsRequest.getGlobalTableGlobalSecondaryIndexSettingsUpdate() != null) {
                 java.util.List<GlobalTableGlobalSecondaryIndexSettingsUpdate> globalTableGlobalSecondaryIndexSettingsUpdate = updateGlobalTableSettingsRequest
                         .getGlobalTableGlobalSecondaryIndexSettingsUpdate();

@@ -73,6 +73,9 @@ class BaiduMessageJsonUnmarshaller implements Unmarshaller<BaiduMessage, JsonUnm
                         )
                         )
                                 .unmarshall(context));
+            } else if (name.equals("TimeToLive")) {
+                baiduMessage.setTimeToLive(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Title")) {
                 baiduMessage.setTitle(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

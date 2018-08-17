@@ -73,9 +73,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the CloudWatch metric to which the monitored log information
-     * should be published. For example, you may publish to a metric called
-     * ErrorCount.
+     * Filters results to include only those with the specified metric name. If
+     * you include this parameter in your request, you must also include the
+     * <code>metricNamespace</code> parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -86,7 +86,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The namespace of the CloudWatch metric.
+     * Filters results to include only those in the specified namespace. If you
+     * include this parameter in your request, you must also include the
+     * <code>metricName</code> parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -352,9 +354,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the CloudWatch metric to which the monitored log information
-     * should be published. For example, you may publish to a metric called
-     * ErrorCount.
+     * Filters results to include only those with the specified metric name. If
+     * you include this parameter in your request, you must also include the
+     * <code>metricNamespace</code> parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -362,9 +364,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>[^:*$]*<br/>
      *
      * @return <p>
-     *         The name of the CloudWatch metric to which the monitored log
-     *         information should be published. For example, you may publish to
-     *         a metric called ErrorCount.
+     *         Filters results to include only those with the specified metric
+     *         name. If you include this parameter in your request, you must
+     *         also include the <code>metricNamespace</code> parameter.
      *         </p>
      */
     public String getMetricName() {
@@ -373,9 +375,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the CloudWatch metric to which the monitored log information
-     * should be published. For example, you may publish to a metric called
-     * ErrorCount.
+     * Filters results to include only those with the specified metric name. If
+     * you include this parameter in your request, you must also include the
+     * <code>metricNamespace</code> parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -383,9 +385,10 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>[^:*$]*<br/>
      *
      * @param metricName <p>
-     *            The name of the CloudWatch metric to which the monitored log
-     *            information should be published. For example, you may publish
-     *            to a metric called ErrorCount.
+     *            Filters results to include only those with the specified
+     *            metric name. If you include this parameter in your request,
+     *            you must also include the <code>metricNamespace</code>
+     *            parameter.
      *            </p>
      */
     public void setMetricName(String metricName) {
@@ -394,9 +397,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the CloudWatch metric to which the monitored log information
-     * should be published. For example, you may publish to a metric called
-     * ErrorCount.
+     * Filters results to include only those with the specified metric name. If
+     * you include this parameter in your request, you must also include the
+     * <code>metricNamespace</code> parameter.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -407,9 +410,10 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>[^:*$]*<br/>
      *
      * @param metricName <p>
-     *            The name of the CloudWatch metric to which the monitored log
-     *            information should be published. For example, you may publish
-     *            to a metric called ErrorCount.
+     *            Filters results to include only those with the specified
+     *            metric name. If you include this parameter in your request,
+     *            you must also include the <code>metricNamespace</code>
+     *            parameter.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -421,7 +425,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The namespace of the CloudWatch metric.
+     * Filters results to include only those in the specified namespace. If you
+     * include this parameter in your request, you must also include the
+     * <code>metricName</code> parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -429,7 +435,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>[^:*$]*<br/>
      *
      * @return <p>
-     *         The namespace of the CloudWatch metric.
+     *         Filters results to include only those in the specified namespace.
+     *         If you include this parameter in your request, you must also
+     *         include the <code>metricName</code> parameter.
      *         </p>
      */
     public String getMetricNamespace() {
@@ -438,7 +446,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The namespace of the CloudWatch metric.
+     * Filters results to include only those in the specified namespace. If you
+     * include this parameter in your request, you must also include the
+     * <code>metricName</code> parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -446,7 +456,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>[^:*$]*<br/>
      *
      * @param metricNamespace <p>
-     *            The namespace of the CloudWatch metric.
+     *            Filters results to include only those in the specified
+     *            namespace. If you include this parameter in your request, you
+     *            must also include the <code>metricName</code> parameter.
      *            </p>
      */
     public void setMetricNamespace(String metricNamespace) {
@@ -455,7 +467,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The namespace of the CloudWatch metric.
+     * Filters results to include only those in the specified namespace. If you
+     * include this parameter in your request, you must also include the
+     * <code>metricName</code> parameter.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -466,7 +480,9 @@ public class DescribeMetricFiltersRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>[^:*$]*<br/>
      *
      * @param metricNamespace <p>
-     *            The namespace of the CloudWatch metric.
+     *            Filters results to include only those in the specified
+     *            namespace. If you include this parameter in your request, you
+     *            must also include the <code>metricName</code> parameter.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

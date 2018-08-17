@@ -20,7 +20,7 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * Your request didn't pass one or more validation tests. For example, a name
- * already exists when createing a resource or a name may not exist when getting
+ * already exists when creating a resource or a name may not exist when getting
  * a transcription job or custom vocabulary. See the exception
  * <code>Message</code> field for more information.
  * </p>

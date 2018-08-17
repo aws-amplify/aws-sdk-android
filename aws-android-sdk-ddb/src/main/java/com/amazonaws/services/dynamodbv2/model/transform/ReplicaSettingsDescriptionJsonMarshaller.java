@@ -42,11 +42,25 @@ class ReplicaSettingsDescriptionJsonMarshaller {
             jsonWriter.name("ReplicaProvisionedReadCapacityUnits");
             jsonWriter.value(replicaProvisionedReadCapacityUnits);
         }
+        if (replicaSettingsDescription.getReplicaProvisionedReadCapacityAutoScalingSettings() != null) {
+            AutoScalingSettingsDescription replicaProvisionedReadCapacityAutoScalingSettings = replicaSettingsDescription
+                    .getReplicaProvisionedReadCapacityAutoScalingSettings();
+            jsonWriter.name("ReplicaProvisionedReadCapacityAutoScalingSettings");
+            AutoScalingSettingsDescriptionJsonMarshaller.getInstance().marshall(
+                    replicaProvisionedReadCapacityAutoScalingSettings, jsonWriter);
+        }
         if (replicaSettingsDescription.getReplicaProvisionedWriteCapacityUnits() != null) {
             Long replicaProvisionedWriteCapacityUnits = replicaSettingsDescription
                     .getReplicaProvisionedWriteCapacityUnits();
             jsonWriter.name("ReplicaProvisionedWriteCapacityUnits");
             jsonWriter.value(replicaProvisionedWriteCapacityUnits);
+        }
+        if (replicaSettingsDescription.getReplicaProvisionedWriteCapacityAutoScalingSettings() != null) {
+            AutoScalingSettingsDescription replicaProvisionedWriteCapacityAutoScalingSettings = replicaSettingsDescription
+                    .getReplicaProvisionedWriteCapacityAutoScalingSettings();
+            jsonWriter.name("ReplicaProvisionedWriteCapacityAutoScalingSettings");
+            AutoScalingSettingsDescriptionJsonMarshaller.getInstance().marshall(
+                    replicaProvisionedWriteCapacityAutoScalingSettings, jsonWriter);
         }
         if (replicaSettingsDescription.getReplicaGlobalSecondaryIndexSettings() != null) {
             java.util.List<ReplicaGlobalSecondaryIndexSettingsDescription> replicaGlobalSecondaryIndexSettings = replicaSettingsDescription

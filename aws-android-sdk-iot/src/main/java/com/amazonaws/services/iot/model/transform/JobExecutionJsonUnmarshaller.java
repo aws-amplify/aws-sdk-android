@@ -41,6 +41,9 @@ class JobExecutionJsonUnmarshaller implements Unmarshaller<JobExecution, JsonUnm
             } else if (name.equals("status")) {
                 jobExecution.setStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("forceCanceled")) {
+                jobExecution.setForceCanceled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("statusDetails")) {
                 jobExecution.setStatusDetails(JobExecutionStatusDetailsJsonUnmarshaller
                         .getInstance()
@@ -59,6 +62,9 @@ class JobExecutionJsonUnmarshaller implements Unmarshaller<JobExecution, JsonUnm
                         .unmarshall(context));
             } else if (name.equals("executionNumber")) {
                 jobExecution.setExecutionNumber(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("versionNumber")) {
+                jobExecution.setVersionNumber(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

@@ -32,6 +32,14 @@ public class WriteSegmentRequest implements Serializable {
     private String name;
 
     /**
+     * A segment group, which consists of zero or more source segments, plus
+     * dimensions that are applied to those source segments. Your request can
+     * only include one segment group. Your request can include either a
+     * SegmentGroups object or a Dimensions object, but not both.
+     */
+    private SegmentGroupList segmentGroups;
+
+    /**
      * The segment dimensions attributes.
      *
      * @return The segment dimensions attributes.
@@ -98,6 +106,60 @@ public class WriteSegmentRequest implements Serializable {
     }
 
     /**
+     * A segment group, which consists of zero or more source segments, plus
+     * dimensions that are applied to those source segments. Your request can
+     * only include one segment group. Your request can include either a
+     * SegmentGroups object or a Dimensions object, but not both.
+     *
+     * @return A segment group, which consists of zero or more source segments,
+     *         plus dimensions that are applied to those source segments. Your
+     *         request can only include one segment group. Your request can
+     *         include either a SegmentGroups object or a Dimensions object, but
+     *         not both.
+     */
+    public SegmentGroupList getSegmentGroups() {
+        return segmentGroups;
+    }
+
+    /**
+     * A segment group, which consists of zero or more source segments, plus
+     * dimensions that are applied to those source segments. Your request can
+     * only include one segment group. Your request can include either a
+     * SegmentGroups object or a Dimensions object, but not both.
+     *
+     * @param segmentGroups A segment group, which consists of zero or more
+     *            source segments, plus dimensions that are applied to those
+     *            source segments. Your request can only include one segment
+     *            group. Your request can include either a SegmentGroups object
+     *            or a Dimensions object, but not both.
+     */
+    public void setSegmentGroups(SegmentGroupList segmentGroups) {
+        this.segmentGroups = segmentGroups;
+    }
+
+    /**
+     * A segment group, which consists of zero or more source segments, plus
+     * dimensions that are applied to those source segments. Your request can
+     * only include one segment group. Your request can include either a
+     * SegmentGroups object or a Dimensions object, but not both.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param segmentGroups A segment group, which consists of zero or more
+     *            source segments, plus dimensions that are applied to those
+     *            source segments. Your request can only include one segment
+     *            group. Your request can include either a SegmentGroups object
+     *            or a Dimensions object, but not both.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public WriteSegmentRequest withSegmentGroups(SegmentGroupList segmentGroups) {
+        this.segmentGroups = segmentGroups;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -111,7 +173,9 @@ public class WriteSegmentRequest implements Serializable {
         if (getDimensions() != null)
             sb.append("Dimensions: " + getDimensions() + ",");
         if (getName() != null)
-            sb.append("Name: " + getName());
+            sb.append("Name: " + getName() + ",");
+        if (getSegmentGroups() != null)
+            sb.append("SegmentGroups: " + getSegmentGroups());
         sb.append("}");
         return sb.toString();
     }
@@ -123,6 +187,8 @@ public class WriteSegmentRequest implements Serializable {
 
         hashCode = prime * hashCode + ((getDimensions() == null) ? 0 : getDimensions().hashCode());
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
+        hashCode = prime * hashCode
+                + ((getSegmentGroups() == null) ? 0 : getSegmentGroups().hashCode());
         return hashCode;
     }
 
@@ -145,6 +211,11 @@ public class WriteSegmentRequest implements Serializable {
         if (other.getName() == null ^ this.getName() == null)
             return false;
         if (other.getName() != null && other.getName().equals(this.getName()) == false)
+            return false;
+        if (other.getSegmentGroups() == null ^ this.getSegmentGroups() == null)
+            return false;
+        if (other.getSegmentGroups() != null
+                && other.getSegmentGroups().equals(this.getSegmentGroups()) == false)
             return false;
         return true;
     }

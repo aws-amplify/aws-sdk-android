@@ -27,50 +27,48 @@ public class ADMChannelResponse implements Serializable {
     private String applicationId;
 
     /**
-     * When was this segment created
+     * The date and time when this channel was created.
      */
     private String creationDate;
 
     /**
-     * If the channel is enabled for sending messages.
+     * Indicates whether or not the channel is enabled for sending messages.
      */
     private Boolean enabled;
 
     /**
-     * Indicates whether the channel is configured with ADM credentials. Amazon
-     * Pinpoint uses your credentials to authenticate push notifications with
-     * ADM. Provide your credentials by setting the ClientId and ClientSecret
-     * attributes.
+     * Not used. Retained for backwards compatibility.
      */
     private Boolean hasCredential;
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * (Deprecated) An identifier for the channel. Retained for backwards
+     * compatibility.
      */
     private String id;
 
     /**
-     * Is this channel archived
+     * Indicates whether or not the channel is archived.
      */
     private Boolean isArchived;
 
     /**
-     * Who last updated this entry
+     * The user who last updated this channel.
      */
     private String lastModifiedBy;
 
     /**
-     * Last date this was updated
+     * The date and time when this channel was last modified.
      */
     private String lastModifiedDate;
 
     /**
-     * Platform type. Will be "ADM"
+     * The platform type. For this channel, the value is always "ADM."
      */
     private String platform;
 
     /**
-     * Version of channel
+     * The channel version.
      */
     private Integer version;
 
@@ -110,30 +108,30 @@ public class ADMChannelResponse implements Serializable {
     }
 
     /**
-     * When was this segment created
+     * The date and time when this channel was created.
      *
-     * @return When was this segment created
+     * @return The date and time when this channel was created.
      */
     public String getCreationDate() {
         return creationDate;
     }
 
     /**
-     * When was this segment created
+     * The date and time when this channel was created.
      *
-     * @param creationDate When was this segment created
+     * @param creationDate The date and time when this channel was created.
      */
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
     /**
-     * When was this segment created
+     * The date and time when this channel was created.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param creationDate When was this segment created
+     * @param creationDate The date and time when this channel was created.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -143,39 +141,43 @@ public class ADMChannelResponse implements Serializable {
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * Indicates whether or not the channel is enabled for sending messages.
      *
-     * @return If the channel is enabled for sending messages.
+     * @return Indicates whether or not the channel is enabled for sending
+     *         messages.
      */
     public Boolean isEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * Indicates whether or not the channel is enabled for sending messages.
      *
-     * @return If the channel is enabled for sending messages.
+     * @return Indicates whether or not the channel is enabled for sending
+     *         messages.
      */
     public Boolean getEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * Indicates whether or not the channel is enabled for sending messages.
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled Indicates whether or not the channel is enabled for
+     *            sending messages.
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * Indicates whether or not the channel is enabled for sending messages.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled Indicates whether or not the channel is enabled for
+     *            sending messages.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -185,65 +187,39 @@ public class ADMChannelResponse implements Serializable {
     }
 
     /**
-     * Indicates whether the channel is configured with ADM credentials. Amazon
-     * Pinpoint uses your credentials to authenticate push notifications with
-     * ADM. Provide your credentials by setting the ClientId and ClientSecret
-     * attributes.
+     * Not used. Retained for backwards compatibility.
      *
-     * @return Indicates whether the channel is configured with ADM credentials.
-     *         Amazon Pinpoint uses your credentials to authenticate push
-     *         notifications with ADM. Provide your credentials by setting the
-     *         ClientId and ClientSecret attributes.
+     * @return Not used. Retained for backwards compatibility.
      */
     public Boolean isHasCredential() {
         return hasCredential;
     }
 
     /**
-     * Indicates whether the channel is configured with ADM credentials. Amazon
-     * Pinpoint uses your credentials to authenticate push notifications with
-     * ADM. Provide your credentials by setting the ClientId and ClientSecret
-     * attributes.
+     * Not used. Retained for backwards compatibility.
      *
-     * @return Indicates whether the channel is configured with ADM credentials.
-     *         Amazon Pinpoint uses your credentials to authenticate push
-     *         notifications with ADM. Provide your credentials by setting the
-     *         ClientId and ClientSecret attributes.
+     * @return Not used. Retained for backwards compatibility.
      */
     public Boolean getHasCredential() {
         return hasCredential;
     }
 
     /**
-     * Indicates whether the channel is configured with ADM credentials. Amazon
-     * Pinpoint uses your credentials to authenticate push notifications with
-     * ADM. Provide your credentials by setting the ClientId and ClientSecret
-     * attributes.
+     * Not used. Retained for backwards compatibility.
      *
-     * @param hasCredential Indicates whether the channel is configured with ADM
-     *            credentials. Amazon Pinpoint uses your credentials to
-     *            authenticate push notifications with ADM. Provide your
-     *            credentials by setting the ClientId and ClientSecret
-     *            attributes.
+     * @param hasCredential Not used. Retained for backwards compatibility.
      */
     public void setHasCredential(Boolean hasCredential) {
         this.hasCredential = hasCredential;
     }
 
     /**
-     * Indicates whether the channel is configured with ADM credentials. Amazon
-     * Pinpoint uses your credentials to authenticate push notifications with
-     * ADM. Provide your credentials by setting the ClientId and ClientSecret
-     * attributes.
+     * Not used. Retained for backwards compatibility.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param hasCredential Indicates whether the channel is configured with ADM
-     *            credentials. Amazon Pinpoint uses your credentials to
-     *            authenticate push notifications with ADM. Provide your
-     *            credentials by setting the ClientId and ClientSecret
-     *            attributes.
+     * @param hasCredential Not used. Retained for backwards compatibility.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -253,30 +229,36 @@ public class ADMChannelResponse implements Serializable {
     }
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * (Deprecated) An identifier for the channel. Retained for backwards
+     * compatibility.
      *
-     * @return Channel ID. Not used, only for backwards compatibility.
+     * @return (Deprecated) An identifier for the channel. Retained for
+     *         backwards compatibility.
      */
     public String getId() {
         return id;
     }
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * (Deprecated) An identifier for the channel. Retained for backwards
+     * compatibility.
      *
-     * @param id Channel ID. Not used, only for backwards compatibility.
+     * @param id (Deprecated) An identifier for the channel. Retained for
+     *            backwards compatibility.
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * Channel ID. Not used, only for backwards compatibility.
+     * (Deprecated) An identifier for the channel. Retained for backwards
+     * compatibility.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id Channel ID. Not used, only for backwards compatibility.
+     * @param id (Deprecated) An identifier for the channel. Retained for
+     *            backwards compatibility.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -286,39 +268,39 @@ public class ADMChannelResponse implements Serializable {
     }
 
     /**
-     * Is this channel archived
+     * Indicates whether or not the channel is archived.
      *
-     * @return Is this channel archived
+     * @return Indicates whether or not the channel is archived.
      */
     public Boolean isIsArchived() {
         return isArchived;
     }
 
     /**
-     * Is this channel archived
+     * Indicates whether or not the channel is archived.
      *
-     * @return Is this channel archived
+     * @return Indicates whether or not the channel is archived.
      */
     public Boolean getIsArchived() {
         return isArchived;
     }
 
     /**
-     * Is this channel archived
+     * Indicates whether or not the channel is archived.
      *
-     * @param isArchived Is this channel archived
+     * @param isArchived Indicates whether or not the channel is archived.
      */
     public void setIsArchived(Boolean isArchived) {
         this.isArchived = isArchived;
     }
 
     /**
-     * Is this channel archived
+     * Indicates whether or not the channel is archived.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param isArchived Is this channel archived
+     * @param isArchived Indicates whether or not the channel is archived.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -328,30 +310,30 @@ public class ADMChannelResponse implements Serializable {
     }
 
     /**
-     * Who last updated this entry
+     * The user who last updated this channel.
      *
-     * @return Who last updated this entry
+     * @return The user who last updated this channel.
      */
     public String getLastModifiedBy() {
         return lastModifiedBy;
     }
 
     /**
-     * Who last updated this entry
+     * The user who last updated this channel.
      *
-     * @param lastModifiedBy Who last updated this entry
+     * @param lastModifiedBy The user who last updated this channel.
      */
     public void setLastModifiedBy(String lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
 
     /**
-     * Who last updated this entry
+     * The user who last updated this channel.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedBy Who last updated this entry
+     * @param lastModifiedBy The user who last updated this channel.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -361,30 +343,32 @@ public class ADMChannelResponse implements Serializable {
     }
 
     /**
-     * Last date this was updated
+     * The date and time when this channel was last modified.
      *
-     * @return Last date this was updated
+     * @return The date and time when this channel was last modified.
      */
     public String getLastModifiedDate() {
         return lastModifiedDate;
     }
 
     /**
-     * Last date this was updated
+     * The date and time when this channel was last modified.
      *
-     * @param lastModifiedDate Last date this was updated
+     * @param lastModifiedDate The date and time when this channel was last
+     *            modified.
      */
     public void setLastModifiedDate(String lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
     /**
-     * Last date this was updated
+     * The date and time when this channel was last modified.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedDate Last date this was updated
+     * @param lastModifiedDate The date and time when this channel was last
+     *            modified.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -394,30 +378,32 @@ public class ADMChannelResponse implements Serializable {
     }
 
     /**
-     * Platform type. Will be "ADM"
+     * The platform type. For this channel, the value is always "ADM."
      *
-     * @return Platform type. Will be "ADM"
+     * @return The platform type. For this channel, the value is always "ADM."
      */
     public String getPlatform() {
         return platform;
     }
 
     /**
-     * Platform type. Will be "ADM"
+     * The platform type. For this channel, the value is always "ADM."
      *
-     * @param platform Platform type. Will be "ADM"
+     * @param platform The platform type. For this channel, the value is always
+     *            "ADM."
      */
     public void setPlatform(String platform) {
         this.platform = platform;
     }
 
     /**
-     * Platform type. Will be "ADM"
+     * The platform type. For this channel, the value is always "ADM."
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param platform Platform type. Will be "ADM"
+     * @param platform The platform type. For this channel, the value is always
+     *            "ADM."
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -427,30 +413,30 @@ public class ADMChannelResponse implements Serializable {
     }
 
     /**
-     * Version of channel
+     * The channel version.
      *
-     * @return Version of channel
+     * @return The channel version.
      */
     public Integer getVersion() {
         return version;
     }
 
     /**
-     * Version of channel
+     * The channel version.
      *
-     * @param version Version of channel
+     * @param version The channel version.
      */
     public void setVersion(Integer version) {
         this.version = version;
     }
 
     /**
-     * Version of channel
+     * The channel version.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param version Version of channel
+     * @param version The channel version.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

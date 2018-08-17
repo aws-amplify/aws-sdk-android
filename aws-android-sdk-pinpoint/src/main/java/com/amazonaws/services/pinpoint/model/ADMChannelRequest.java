@@ -22,45 +22,49 @@ import java.io.Serializable;
  */
 public class ADMChannelRequest implements Serializable {
     /**
-     * Client ID as gotten from Amazon
+     * The Client ID that you obtained from the Amazon App Distribution Portal.
      */
     private String clientId;
 
     /**
-     * Client secret as gotten from Amazon
+     * The Client Secret that you obtained from the Amazon App Distribution
+     * Portal.
      */
     private String clientSecret;
 
     /**
-     * If the channel is enabled for sending messages.
+     * Indicates whether or not the channel is enabled for sending messages.
      */
     private Boolean enabled;
 
     /**
-     * Client ID as gotten from Amazon
+     * The Client ID that you obtained from the Amazon App Distribution Portal.
      *
-     * @return Client ID as gotten from Amazon
+     * @return The Client ID that you obtained from the Amazon App Distribution
+     *         Portal.
      */
     public String getClientId() {
         return clientId;
     }
 
     /**
-     * Client ID as gotten from Amazon
+     * The Client ID that you obtained from the Amazon App Distribution Portal.
      *
-     * @param clientId Client ID as gotten from Amazon
+     * @param clientId The Client ID that you obtained from the Amazon App
+     *            Distribution Portal.
      */
     public void setClientId(String clientId) {
         this.clientId = clientId;
     }
 
     /**
-     * Client ID as gotten from Amazon
+     * The Client ID that you obtained from the Amazon App Distribution Portal.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param clientId Client ID as gotten from Amazon
+     * @param clientId The Client ID that you obtained from the Amazon App
+     *            Distribution Portal.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -70,30 +74,36 @@ public class ADMChannelRequest implements Serializable {
     }
 
     /**
-     * Client secret as gotten from Amazon
+     * The Client Secret that you obtained from the Amazon App Distribution
+     * Portal.
      *
-     * @return Client secret as gotten from Amazon
+     * @return The Client Secret that you obtained from the Amazon App
+     *         Distribution Portal.
      */
     public String getClientSecret() {
         return clientSecret;
     }
 
     /**
-     * Client secret as gotten from Amazon
+     * The Client Secret that you obtained from the Amazon App Distribution
+     * Portal.
      *
-     * @param clientSecret Client secret as gotten from Amazon
+     * @param clientSecret The Client Secret that you obtained from the Amazon
+     *            App Distribution Portal.
      */
     public void setClientSecret(String clientSecret) {
         this.clientSecret = clientSecret;
     }
 
     /**
-     * Client secret as gotten from Amazon
+     * The Client Secret that you obtained from the Amazon App Distribution
+     * Portal.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param clientSecret Client secret as gotten from Amazon
+     * @param clientSecret The Client Secret that you obtained from the Amazon
+     *            App Distribution Portal.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -103,39 +113,43 @@ public class ADMChannelRequest implements Serializable {
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * Indicates whether or not the channel is enabled for sending messages.
      *
-     * @return If the channel is enabled for sending messages.
+     * @return Indicates whether or not the channel is enabled for sending
+     *         messages.
      */
     public Boolean isEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * Indicates whether or not the channel is enabled for sending messages.
      *
-     * @return If the channel is enabled for sending messages.
+     * @return Indicates whether or not the channel is enabled for sending
+     *         messages.
      */
     public Boolean getEnabled() {
         return enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * Indicates whether or not the channel is enabled for sending messages.
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled Indicates whether or not the channel is enabled for
+     *            sending messages.
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
     /**
-     * If the channel is enabled for sending messages.
+     * Indicates whether or not the channel is enabled for sending messages.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param enabled If the channel is enabled for sending messages.
+     * @param enabled Indicates whether or not the channel is enabled for
+     *            sending messages.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -41,7 +41,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * input face.
  * </p>
  * <p>
- * For an example, see <a>search-face-with-id-procedure</a>.
+ * For an example, see Searching for a Face Using Its Face ID in the Amazon
+ * Rekognition Developer Guide.
  * </p>
  * <p>
  * This operation requires permissions to perform the

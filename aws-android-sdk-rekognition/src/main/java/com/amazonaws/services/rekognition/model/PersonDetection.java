@@ -22,7 +22,11 @@ import java.io.Serializable;
  * Details and tracking information for a single time a person is tracked in a
  * video. Amazon Rekognition operations that track persons return an array of
  * <code>PersonDetection</code> objects with elements for each time a person is
- * tracked in a video. For more information, see .
+ * tracked in a video.
+ * </p>
+ * <p>
+ * For more information, see API_GetPersonTracking in the Amazon Rekognition
+ * Developer Guide.
  * </p>
  */
 public class PersonDetection implements Serializable {

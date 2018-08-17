@@ -21,21 +21,25 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets the face search results for Rekognition Video face search started by .
- * The search returns faces in a collection that match the faces of persons
+ * Gets the face search results for Amazon Rekognition Video face search started
+ * by . The search returns faces in a collection that match the faces of persons
  * detected in a video. It also includes the time(s) that faces are matched in
  * the video.
  * </p>
  * <p>
  * Face search in a video is an asynchronous operation. You start face search by
  * calling to which returns a job identifier (<code>JobId</code>). When the
- * search operation finishes, Rekognition Video publishes a completion status to
- * the Amazon Simple Notification Service topic registered in the initial call
- * to <code>StartFaceSearch</code>. To get the search results, first check that
- * the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>.
- * If so, call <code>GetFaceSearch</code> and pass the job identifier (
- * <code>JobId</code>) from the initial call to <code>StartFaceSearch</code>.
- * For more information, see <a>collections</a>.
+ * search operation finishes, Amazon Rekognition Video publishes a completion
+ * status to the Amazon Simple Notification Service topic registered in the
+ * initial call to <code>StartFaceSearch</code>. To get the search results,
+ * first check that the status value published to the Amazon SNS topic is
+ * <code>SUCCEEDED</code>. If so, call <code>GetFaceSearch</code> and pass the
+ * job identifier (<code>JobId</code>) from the initial call to
+ * <code>StartFaceSearch</code>.
+ * </p>
+ * <p>
+ * For more information, see Searching Faces in a Collection in the Amazon
+ * Rekognition Developer Guide.
  * </p>
  * <p>
  * The search results are retured in an array, <code>Persons</code>, of objects.
@@ -50,7 +54,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>BoundingBox</code>, <code>Confidence</code>, <code>Landmarks</code>,
  * <code>Pose</code>, and <code>Quality</code>). The other facial attributes
  * listed in the <code>Face</code> object of the following response syntax are
- * not returned. For more information, see .
+ * not returned. For more information, see FaceDetail in the Amazon Rekognition
+ * Developer Guide.
  * </p>
  * </note>
  * <p>
@@ -88,9 +93,9 @@ public class GetFaceSearchRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * If the previous response was incomplete (because there is more search
-     * results to retrieve), Rekognition Video returns a pagination token in the
-     * response. You can use this pagination token to retrieve the next set of
-     * search results.
+     * results to retrieve), Amazon Rekognition Video returns a pagination token
+     * in the response. You can use this pagination token to retrieve the next
+     * set of search results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -247,9 +252,9 @@ public class GetFaceSearchRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * If the previous response was incomplete (because there is more search
-     * results to retrieve), Rekognition Video returns a pagination token in the
-     * response. You can use this pagination token to retrieve the next set of
-     * search results.
+     * results to retrieve), Amazon Rekognition Video returns a pagination token
+     * in the response. You can use this pagination token to retrieve the next
+     * set of search results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -257,7 +262,7 @@ public class GetFaceSearchRequest extends AmazonWebServiceRequest implements Ser
      *
      * @return <p>
      *         If the previous response was incomplete (because there is more
-     *         search results to retrieve), Rekognition Video returns a
+     *         search results to retrieve), Amazon Rekognition Video returns a
      *         pagination token in the response. You can use this pagination
      *         token to retrieve the next set of search results.
      *         </p>
@@ -269,9 +274,9 @@ public class GetFaceSearchRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * If the previous response was incomplete (because there is more search
-     * results to retrieve), Rekognition Video returns a pagination token in the
-     * response. You can use this pagination token to retrieve the next set of
-     * search results.
+     * results to retrieve), Amazon Rekognition Video returns a pagination token
+     * in the response. You can use this pagination token to retrieve the next
+     * set of search results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -279,9 +284,9 @@ public class GetFaceSearchRequest extends AmazonWebServiceRequest implements Ser
      *
      * @param nextToken <p>
      *            If the previous response was incomplete (because there is more
-     *            search results to retrieve), Rekognition Video returns a
-     *            pagination token in the response. You can use this pagination
-     *            token to retrieve the next set of search results.
+     *            search results to retrieve), Amazon Rekognition Video returns
+     *            a pagination token in the response. You can use this
+     *            pagination token to retrieve the next set of search results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -291,9 +296,9 @@ public class GetFaceSearchRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * If the previous response was incomplete (because there is more search
-     * results to retrieve), Rekognition Video returns a pagination token in the
-     * response. You can use this pagination token to retrieve the next set of
-     * search results.
+     * results to retrieve), Amazon Rekognition Video returns a pagination token
+     * in the response. You can use this pagination token to retrieve the next
+     * set of search results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -304,9 +309,9 @@ public class GetFaceSearchRequest extends AmazonWebServiceRequest implements Ser
      *
      * @param nextToken <p>
      *            If the previous response was incomplete (because there is more
-     *            search results to retrieve), Rekognition Video returns a
-     *            pagination token in the response. You can use this pagination
-     *            token to retrieve the next set of search results.
+     *            search results to retrieve), Amazon Rekognition Video returns
+     *            a pagination token in the response. You can use this
+     *            pagination token to retrieve the next set of search results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

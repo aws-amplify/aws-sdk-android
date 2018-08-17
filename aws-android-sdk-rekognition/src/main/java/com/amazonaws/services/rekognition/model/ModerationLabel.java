@@ -21,7 +21,8 @@ import java.io.Serializable;
  * <p>
  * Provides information about a single type of moderated content found in an
  * image or video. Each type of moderated content has a label within a
- * hierarchical taxonomy. For more information, see <a>moderation</a>.
+ * hierarchical taxonomy. For more information, see Detecting Unsafe Content in
+ * the Amazon Rekognition Developer Guide.
  * </p>
  */
 public class ModerationLabel implements Serializable {

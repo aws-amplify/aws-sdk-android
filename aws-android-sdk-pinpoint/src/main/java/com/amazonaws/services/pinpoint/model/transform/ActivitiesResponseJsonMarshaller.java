@@ -37,6 +37,11 @@ class ActivitiesResponseJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (activitiesResponse.getNextToken() != null) {
+            String nextToken = activitiesResponse.getNextToken();
+            jsonWriter.name("NextToken");
+            jsonWriter.value(nextToken);
+        }
         jsonWriter.endObject();
     }
 

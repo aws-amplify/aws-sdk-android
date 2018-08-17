@@ -28,7 +28,7 @@ public class CampaignState implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED,
-     * PAUSED
+     * PAUSED, DELETED
      */
     private String campaignStatus;
 
@@ -39,7 +39,7 @@ public class CampaignState implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED,
-     * PAUSED
+     * PAUSED, DELETED
      *
      * @return The status of the campaign, or the status of a treatment that
      *         belongs to an A/B test campaign. Valid values: SCHEDULED,
@@ -57,7 +57,7 @@ public class CampaignState implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED,
-     * PAUSED
+     * PAUSED, DELETED
      *
      * @param campaignStatus The status of the campaign, or the status of a
      *            treatment that belongs to an A/B test campaign. Valid values:
@@ -78,7 +78,7 @@ public class CampaignState implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED,
-     * PAUSED
+     * PAUSED, DELETED
      *
      * @param campaignStatus The status of the campaign, or the status of a
      *            treatment that belongs to an A/B test campaign. Valid values:
@@ -99,7 +99,7 @@ public class CampaignState implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED,
-     * PAUSED
+     * PAUSED, DELETED
      *
      * @param campaignStatus The status of the campaign, or the status of a
      *            treatment that belongs to an A/B test campaign. Valid values:
@@ -120,7 +120,7 @@ public class CampaignState implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED,
-     * PAUSED
+     * PAUSED, DELETED
      *
      * @param campaignStatus The status of the campaign, or the status of a
      *            treatment that belongs to an A/B test campaign. Valid values:

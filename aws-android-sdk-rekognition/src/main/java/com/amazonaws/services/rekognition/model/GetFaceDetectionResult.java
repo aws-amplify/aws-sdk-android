@@ -38,7 +38,7 @@ public class GetFaceDetectionResult implements Serializable {
 
     /**
      * <p>
-     * Information about a video that Rekognition Video analyzed.
+     * Information about a video that Amazon Rekognition Video analyzed.
      * <code>Videometadata</code> is returned in every page of paginated
      * responses from a Amazon Rekognition video operation.
      * </p>
@@ -215,13 +215,13 @@ public class GetFaceDetectionResult implements Serializable {
 
     /**
      * <p>
-     * Information about a video that Rekognition Video analyzed.
+     * Information about a video that Amazon Rekognition Video analyzed.
      * <code>Videometadata</code> is returned in every page of paginated
      * responses from a Amazon Rekognition video operation.
      * </p>
      *
      * @return <p>
-     *         Information about a video that Rekognition Video analyzed.
+     *         Information about a video that Amazon Rekognition Video analyzed.
      *         <code>Videometadata</code> is returned in every page of paginated
      *         responses from a Amazon Rekognition video operation.
      *         </p>
@@ -232,15 +232,16 @@ public class GetFaceDetectionResult implements Serializable {
 
     /**
      * <p>
-     * Information about a video that Rekognition Video analyzed.
+     * Information about a video that Amazon Rekognition Video analyzed.
      * <code>Videometadata</code> is returned in every page of paginated
      * responses from a Amazon Rekognition video operation.
      * </p>
      *
      * @param videoMetadata <p>
-     *            Information about a video that Rekognition Video analyzed.
-     *            <code>Videometadata</code> is returned in every page of
-     *            paginated responses from a Amazon Rekognition video operation.
+     *            Information about a video that Amazon Rekognition Video
+     *            analyzed. <code>Videometadata</code> is returned in every page
+     *            of paginated responses from a Amazon Rekognition video
+     *            operation.
      *            </p>
      */
     public void setVideoMetadata(VideoMetadata videoMetadata) {
@@ -249,7 +250,7 @@ public class GetFaceDetectionResult implements Serializable {
 
     /**
      * <p>
-     * Information about a video that Rekognition Video analyzed.
+     * Information about a video that Amazon Rekognition Video analyzed.
      * <code>Videometadata</code> is returned in every page of paginated
      * responses from a Amazon Rekognition video operation.
      * </p>
@@ -258,9 +259,10 @@ public class GetFaceDetectionResult implements Serializable {
      * together.
      *
      * @param videoMetadata <p>
-     *            Information about a video that Rekognition Video analyzed.
-     *            <code>Videometadata</code> is returned in every page of
-     *            paginated responses from a Amazon Rekognition video operation.
+     *            Information about a video that Amazon Rekognition Video
+     *            analyzed. <code>Videometadata</code> is returned in every page
+     *            of paginated responses from a Amazon Rekognition video
+     *            operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

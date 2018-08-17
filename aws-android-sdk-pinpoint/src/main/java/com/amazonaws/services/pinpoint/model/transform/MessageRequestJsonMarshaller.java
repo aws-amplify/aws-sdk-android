@@ -76,6 +76,11 @@ class MessageRequestJsonMarshaller {
             DirectMessageConfigurationJsonMarshaller.getInstance().marshall(messageConfiguration,
                     jsonWriter);
         }
+        if (messageRequest.getTraceId() != null) {
+            String traceId = messageRequest.getTraceId();
+            jsonWriter.name("TraceId");
+            jsonWriter.value(traceId);
+        }
         jsonWriter.endObject();
     }
 

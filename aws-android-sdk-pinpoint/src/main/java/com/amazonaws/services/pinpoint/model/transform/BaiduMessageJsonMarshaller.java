@@ -104,6 +104,11 @@ class BaiduMessageJsonMarshaller {
             }
             jsonWriter.endObject();
         }
+        if (baiduMessage.getTimeToLive() != null) {
+            Integer timeToLive = baiduMessage.getTimeToLive();
+            jsonWriter.name("TimeToLive");
+            jsonWriter.value(timeToLive);
+        }
         if (baiduMessage.getTitle() != null) {
             String title = baiduMessage.getTitle();
             jsonWriter.name("Title");

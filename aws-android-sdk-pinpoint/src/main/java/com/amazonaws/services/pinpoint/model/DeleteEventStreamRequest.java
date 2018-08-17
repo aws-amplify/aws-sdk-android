@@ -24,35 +24,35 @@ import com.amazonaws.AmazonWebServiceRequest;
  */
 public class DeleteEventStreamRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * ApplicationId
+     * The unique ID of your Amazon Pinpoint application.
      */
     private String applicationId;
 
     /**
-     * ApplicationId
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @return ApplicationId
+     * @return The unique ID of your Amazon Pinpoint application.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * ApplicationId
+     * The unique ID of your Amazon Pinpoint application.
      *
-     * @param applicationId ApplicationId
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * ApplicationId
+     * The unique ID of your Amazon Pinpoint application.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId ApplicationId
+     * @param applicationId The unique ID of your Amazon Pinpoint application.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -55,8 +55,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <li>
  * <p>
  * The log events in the batch must be in chronological ordered by their time
- * stamp (the time the event occurred, expressed as the number of milliseconds
- * after Jan 1, 1970 00:00:00 UTC).
+ * stamp. The time stamp is the time the event occurred, expressed as the number
+ * of milliseconds after Jan 1, 1970 00:00:00 UTC. (In AWS Tools for PowerShell
+ * and the AWS SDK for .NET, the timestamp is specified in .NET format:
+ * yyyy-mm-ddThh:mm:ss. For example, 2017-09-15T13:45:30.)
  * </p>
  * </li>
  * <li>
@@ -71,6 +73,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </li>
  * </ul>
+ * <p>
+ * If a call to PutLogEvents returns "UnrecognizedClientException" the most
+ * likely cause is an invalid AWS access key ID or secret key.
+ * </p>
  */
 public class PutLogEventsRequest extends AmazonWebServiceRequest implements Serializable {
     /**

@@ -38,9 +38,9 @@ public class GetFaceSearchResult implements Serializable {
 
     /**
      * <p>
-     * If the response is truncated, Rekognition Video returns this token that
-     * you can use in the subsequent request to retrieve the next set of search
-     * results.
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
+     * search results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -52,7 +52,7 @@ public class GetFaceSearchResult implements Serializable {
      * <p>
      * Information about a video that Amazon Rekognition analyzed.
      * <code>Videometadata</code> is returned in every page of paginated
-     * responses from a Rekognition Video operation.
+     * responses from a Amazon Rekognition Video operation.
      * </p>
      */
     private VideoMetadata videoMetadata;
@@ -220,18 +220,18 @@ public class GetFaceSearchResult implements Serializable {
 
     /**
      * <p>
-     * If the response is truncated, Rekognition Video returns this token that
-     * you can use in the subsequent request to retrieve the next set of search
-     * results.
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
+     * search results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 255<br/>
      *
      * @return <p>
-     *         If the response is truncated, Rekognition Video returns this
-     *         token that you can use in the subsequent request to retrieve the
-     *         next set of search results.
+     *         If the response is truncated, Amazon Rekognition Video returns
+     *         this token that you can use in the subsequent request to retrieve
+     *         the next set of search results.
      *         </p>
      */
     public String getNextToken() {
@@ -240,18 +240,18 @@ public class GetFaceSearchResult implements Serializable {
 
     /**
      * <p>
-     * If the response is truncated, Rekognition Video returns this token that
-     * you can use in the subsequent request to retrieve the next set of search
-     * results.
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
+     * search results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 255<br/>
      *
      * @param nextToken <p>
-     *            If the response is truncated, Rekognition Video returns this
-     *            token that you can use in the subsequent request to retrieve
-     *            the next set of search results.
+     *            If the response is truncated, Amazon Rekognition Video returns
+     *            this token that you can use in the subsequent request to
+     *            retrieve the next set of search results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -260,9 +260,9 @@ public class GetFaceSearchResult implements Serializable {
 
     /**
      * <p>
-     * If the response is truncated, Rekognition Video returns this token that
-     * you can use in the subsequent request to retrieve the next set of search
-     * results.
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
+     * search results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -272,9 +272,9 @@ public class GetFaceSearchResult implements Serializable {
      * <b>Length: </b> - 255<br/>
      *
      * @param nextToken <p>
-     *            If the response is truncated, Rekognition Video returns this
-     *            token that you can use in the subsequent request to retrieve
-     *            the next set of search results.
+     *            If the response is truncated, Amazon Rekognition Video returns
+     *            this token that you can use in the subsequent request to
+     *            retrieve the next set of search results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -288,13 +288,13 @@ public class GetFaceSearchResult implements Serializable {
      * <p>
      * Information about a video that Amazon Rekognition analyzed.
      * <code>Videometadata</code> is returned in every page of paginated
-     * responses from a Rekognition Video operation.
+     * responses from a Amazon Rekognition Video operation.
      * </p>
      *
      * @return <p>
      *         Information about a video that Amazon Rekognition analyzed.
      *         <code>Videometadata</code> is returned in every page of paginated
-     *         responses from a Rekognition Video operation.
+     *         responses from a Amazon Rekognition Video operation.
      *         </p>
      */
     public VideoMetadata getVideoMetadata() {
@@ -305,13 +305,13 @@ public class GetFaceSearchResult implements Serializable {
      * <p>
      * Information about a video that Amazon Rekognition analyzed.
      * <code>Videometadata</code> is returned in every page of paginated
-     * responses from a Rekognition Video operation.
+     * responses from a Amazon Rekognition Video operation.
      * </p>
      *
      * @param videoMetadata <p>
      *            Information about a video that Amazon Rekognition analyzed.
      *            <code>Videometadata</code> is returned in every page of
-     *            paginated responses from a Rekognition Video operation.
+     *            paginated responses from a Amazon Rekognition Video operation.
      *            </p>
      */
     public void setVideoMetadata(VideoMetadata videoMetadata) {
@@ -322,7 +322,7 @@ public class GetFaceSearchResult implements Serializable {
      * <p>
      * Information about a video that Amazon Rekognition analyzed.
      * <code>Videometadata</code> is returned in every page of paginated
-     * responses from a Rekognition Video operation.
+     * responses from a Amazon Rekognition Video operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -331,7 +331,7 @@ public class GetFaceSearchResult implements Serializable {
      * @param videoMetadata <p>
      *            Information about a video that Amazon Rekognition analyzed.
      *            <code>Videometadata</code> is returned in every page of
-     *            paginated responses from a Rekognition Video operation.
+     *            paginated responses from a Amazon Rekognition Video operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

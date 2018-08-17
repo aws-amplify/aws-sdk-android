@@ -38,6 +38,14 @@ class GlobalTableGlobalSecondaryIndexSettingsUpdateJsonMarshaller {
             jsonWriter.name("ProvisionedWriteCapacityUnits");
             jsonWriter.value(provisionedWriteCapacityUnits);
         }
+        if (globalTableGlobalSecondaryIndexSettingsUpdate
+                .getProvisionedWriteCapacityAutoScalingSettingsUpdate() != null) {
+            AutoScalingSettingsUpdate provisionedWriteCapacityAutoScalingSettingsUpdate = globalTableGlobalSecondaryIndexSettingsUpdate
+                    .getProvisionedWriteCapacityAutoScalingSettingsUpdate();
+            jsonWriter.name("ProvisionedWriteCapacityAutoScalingSettingsUpdate");
+            AutoScalingSettingsUpdateJsonMarshaller.getInstance().marshall(
+                    provisionedWriteCapacityAutoScalingSettingsUpdate, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

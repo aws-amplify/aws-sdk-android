@@ -20,7 +20,8 @@ import java.io.Serializable;
 /**
  * <p>
  * Kinesis video stream stream that provides the source streaming video for a
- * Rekognition Video stream processor. For more information, see .
+ * Amazon Rekognition Video stream processor. For more information, see
+ * CreateStreamProcessor in the Amazon Rekognition Developer Guide.
  * </p>
  */
 public class KinesisVideoStream implements Serializable {

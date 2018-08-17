@@ -46,6 +46,9 @@ class SendUsersMessageRequestJsonUnmarshaller implements
                         .setMessageConfiguration(DirectMessageConfigurationJsonUnmarshaller
                                 .getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("TraceId")) {
+                sendUsersMessageRequest.setTraceId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Users")) {
                 sendUsersMessageRequest.setUsers(new MapUnmarshaller<EndpointSendConfiguration>(
                         EndpointSendConfigurationJsonUnmarshaller.getInstance()

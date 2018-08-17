@@ -50,6 +50,11 @@ class SegmentDimensionsJsonUnmarshaller implements
             } else if (name.equals("Location")) {
                 segmentDimensions.setLocation(SegmentLocationJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Metrics")) {
+                segmentDimensions.setMetrics(new MapUnmarshaller<MetricDimension>(
+                        MetricDimensionJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("UserAttributes")) {
                 segmentDimensions.setUserAttributes(new MapUnmarshaller<AttributeDimension>(
                         AttributeDimensionJsonUnmarshaller.getInstance()

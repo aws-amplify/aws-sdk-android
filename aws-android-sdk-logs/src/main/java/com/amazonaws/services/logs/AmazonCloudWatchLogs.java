@@ -871,8 +871,10 @@ public interface AmazonCloudWatchLogs {
      * <li>
      * <p>
      * The log events in the batch must be in chronological ordered by their
-     * time stamp (the time the event occurred, expressed as the number of
-     * milliseconds after Jan 1, 1970 00:00:00 UTC).
+     * time stamp. The time stamp is the time the event occurred, expressed as
+     * the number of milliseconds after Jan 1, 1970 00:00:00 UTC. (In AWS Tools
+     * for PowerShell and the AWS SDK for .NET, the timestamp is specified in
+     * .NET format: yyyy-mm-ddThh:mm:ss. For example, 2017-09-15T13:45:30.)
      * </p>
      * </li>
      * <li>
@@ -887,6 +889,10 @@ public interface AmazonCloudWatchLogs {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * If a call to PutLogEvents returns "UnrecognizedClientException" the most
+     * likely cause is an invalid AWS access key ID or secret key.
+     * </p>
      * 
      * @param putLogEventsRequest
      * @return putLogEventsResult The response from the PutLogEvents service
@@ -896,6 +902,7 @@ public interface AmazonCloudWatchLogs {
      * @throws DataAlreadyAcceptedException
      * @throws ResourceNotFoundException
      * @throws ServiceUnavailableException
+     * @throws UnrecognizedClientException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -939,7 +946,7 @@ public interface AmazonCloudWatchLogs {
      * <p>
      * Creates or updates a resource policy allowing other AWS services to put
      * log events to this account, such as Amazon Route 53. An account can have
-     * up to 50 resource policies per region.
+     * up to 10 resource policies per region.
      * </p>
      * 
      * @param putResourcePolicyRequest

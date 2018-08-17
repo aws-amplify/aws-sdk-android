@@ -53,8 +53,14 @@ class BackupSummaryJsonUnmarshaller implements Unmarshaller<BackupSummary, JsonU
             } else if (name.equals("BackupCreationDateTime")) {
                 backupSummary.setBackupCreationDateTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("BackupExpiryDateTime")) {
+                backupSummary.setBackupExpiryDateTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("BackupStatus")) {
                 backupSummary.setBackupStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("BackupType")) {
+                backupSummary.setBackupType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("BackupSizeBytes")) {
                 backupSummary.setBackupSizeBytes(LongJsonUnmarshaller.getInstance()

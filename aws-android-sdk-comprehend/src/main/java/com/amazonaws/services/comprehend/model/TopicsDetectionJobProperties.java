@@ -52,7 +52,8 @@ public class TopicsDetectionJobProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED
+     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED,
+     * STOP_REQUESTED, STOPPED
      */
     private String jobStatus;
 
@@ -220,7 +221,8 @@ public class TopicsDetectionJobProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED
+     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED,
+     * STOP_REQUESTED, STOPPED
      *
      * @return <p>
      *         The current status of the topic detection job. If the status is
@@ -241,7 +243,8 @@ public class TopicsDetectionJobProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED
+     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED,
+     * STOP_REQUESTED, STOPPED
      *
      * @param jobStatus <p>
      *            The current status of the topic detection job. If the status
@@ -265,7 +268,8 @@ public class TopicsDetectionJobProperties implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED
+     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED,
+     * STOP_REQUESTED, STOPPED
      *
      * @param jobStatus <p>
      *            The current status of the topic detection job. If the status
@@ -289,7 +293,8 @@ public class TopicsDetectionJobProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED
+     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED,
+     * STOP_REQUESTED, STOPPED
      *
      * @param jobStatus <p>
      *            The current status of the topic detection job. If the status
@@ -313,7 +318,8 @@ public class TopicsDetectionJobProperties implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED
+     * <b>Allowed Values: </b>SUBMITTED, IN_PROGRESS, COMPLETED, FAILED,
+     * STOP_REQUESTED, STOPPED
      *
      * @param jobStatus <p>
      *            The current status of the topic detection job. If the status

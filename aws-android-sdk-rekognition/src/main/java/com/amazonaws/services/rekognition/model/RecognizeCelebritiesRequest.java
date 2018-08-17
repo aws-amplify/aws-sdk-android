@@ -22,7 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Returns an array of celebrities recognized in the input image. For more
- * information, see <a>celebrities</a>.
+ * information, see Recognizing Celebrities in the Amazon Rekognition Developer
+ * Guide.
  * </p>
  * <p>
  * <code>RecognizeCelebrities</code> returns the 100 largest faces in the image.
@@ -53,7 +54,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * image must be either a PNG or JPEG formatted file.
  * </p>
  * <p>
- * For an example, see <a>celebrities-procedure-image</a>.
+ * For an example, see Recognizing Celebrities in an Image in the Amazon
+ * Rekognition Developer Guide.
  * </p>
  * <p>
  * This operation requires permissions to perform the

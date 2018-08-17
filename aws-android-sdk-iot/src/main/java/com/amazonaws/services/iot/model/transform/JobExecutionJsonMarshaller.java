@@ -35,6 +35,11 @@ class JobExecutionJsonMarshaller {
             jsonWriter.name("status");
             jsonWriter.value(status);
         }
+        if (jobExecution.getForceCanceled() != null) {
+            Boolean forceCanceled = jobExecution.getForceCanceled();
+            jsonWriter.name("forceCanceled");
+            jsonWriter.value(forceCanceled);
+        }
         if (jobExecution.getStatusDetails() != null) {
             JobExecutionStatusDetails statusDetails = jobExecution.getStatusDetails();
             jsonWriter.name("statusDetails");
@@ -65,6 +70,11 @@ class JobExecutionJsonMarshaller {
             Long executionNumber = jobExecution.getExecutionNumber();
             jsonWriter.name("executionNumber");
             jsonWriter.value(executionNumber);
+        }
+        if (jobExecution.getVersionNumber() != null) {
+            Long versionNumber = jobExecution.getVersionNumber();
+            jsonWriter.name("versionNumber");
+            jsonWriter.value(versionNumber);
         }
         jsonWriter.endObject();
     }

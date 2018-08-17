@@ -56,6 +56,11 @@ class TranscriptionJobSummaryJsonMarshaller {
             jsonWriter.name("FailureReason");
             jsonWriter.value(failureReason);
         }
+        if (transcriptionJobSummary.getOutputLocationType() != null) {
+            String outputLocationType = transcriptionJobSummary.getOutputLocationType();
+            jsonWriter.name("OutputLocationType");
+            jsonWriter.value(outputLocationType);
+        }
         jsonWriter.endObject();
     }
 

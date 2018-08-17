@@ -37,8 +37,9 @@ public enum LanguageCode {
     FrFR("fr-FR"),
     IsIS("is-IS"),
     ItIT("it-IT"),
-    KoKR("ko-KR"),
     JaJP("ja-JP"),
+    HiIN("hi-IN"),
+    KoKR("ko-KR"),
     NbNO("nb-NO"),
     NlNL("nl-NL"),
     PlPL("pl-PL"),
@@ -77,8 +78,9 @@ public enum LanguageCode {
         enumMap.put("fr-FR", FrFR);
         enumMap.put("is-IS", IsIS);
         enumMap.put("it-IT", ItIT);
-        enumMap.put("ko-KR", KoKR);
         enumMap.put("ja-JP", JaJP);
+        enumMap.put("hi-IN", HiIN);
+        enumMap.put("ko-KR", KoKR);
         enumMap.put("nb-NO", NbNO);
         enumMap.put("nl-NL", NlNL);
         enumMap.put("pl-PL", PlPL);

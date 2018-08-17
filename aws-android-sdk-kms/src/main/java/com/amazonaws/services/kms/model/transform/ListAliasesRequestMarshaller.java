@@ -59,6 +59,11 @@ public class ListAliasesRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
+            if (listAliasesRequest.getKeyId() != null) {
+                String keyId = listAliasesRequest.getKeyId();
+                jsonWriter.name("KeyId");
+                jsonWriter.value(keyId);
+            }
             if (listAliasesRequest.getLimit() != null) {
                 Integer limit = listAliasesRequest.getLimit();
                 jsonWriter.name("Limit");

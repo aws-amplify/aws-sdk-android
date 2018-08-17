@@ -21,8 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Inspects the text of a batch of documents and returns information about them.
- * For more information about entities, see <a>how-entities</a>
+ * Inspects the text of a batch of documents for named entities and returns
+ * information about them. For more information about named entities, see
+ * <a>how-entities</a>
  * </p>
  */
 public class BatchDetectEntitiesRequest extends AmazonWebServiceRequest implements Serializable {
@@ -37,12 +38,12 @@ public class BatchDetectEntitiesRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The language of the input documents. All documents must be in the same
-     * language.
+     * The language of the input documents. You can specify English ("en") or
+     * Spanish ("es"). All documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Allowed Values: </b>en, es
      */
     private String languageCode;
 
@@ -138,17 +139,19 @@ public class BatchDetectEntitiesRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The language of the input documents. All documents must be in the same
-     * language.
+     * The language of the input documents. You can specify English ("en") or
+     * Spanish ("es"). All documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Allowed Values: </b>en, es
      *
      * @return <p>
-     *         The language of the input documents. All documents must be in the
-     *         same language.
+     *         The language of the input documents. You can specify English
+     *         ("en") or Spanish ("es"). All documents must be in the same
+     *         language.
      *         </p>
+     * @see LanguageCode
      */
     public String getLanguageCode() {
         return languageCode;
@@ -156,17 +159,19 @@ public class BatchDetectEntitiesRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The language of the input documents. All documents must be in the same
-     * language.
+     * The language of the input documents. You can specify English ("en") or
+     * Spanish ("es"). All documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Allowed Values: </b>en, es
      *
      * @param languageCode <p>
-     *            The language of the input documents. All documents must be in
-     *            the same language.
+     *            The language of the input documents. You can specify English
+     *            ("en") or Spanish ("es"). All documents must be in the same
+     *            language.
      *            </p>
+     * @see LanguageCode
      */
     public void setLanguageCode(String languageCode) {
         this.languageCode = languageCode;
@@ -174,25 +179,73 @@ public class BatchDetectEntitiesRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The language of the input documents. All documents must be in the same
-     * language.
+     * The language of the input documents. You can specify English ("en") or
+     * Spanish ("es"). All documents must be in the same language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Allowed Values: </b>en, es
      *
      * @param languageCode <p>
-     *            The language of the input documents. All documents must be in
-     *            the same language.
+     *            The language of the input documents. You can specify English
+     *            ("en") or Spanish ("es"). All documents must be in the same
+     *            language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
+     * @see LanguageCode
      */
     public BatchDetectEntitiesRequest withLanguageCode(String languageCode) {
         this.languageCode = languageCode;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The language of the input documents. You can specify English ("en") or
+     * Spanish ("es"). All documents must be in the same language.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>en, es
+     *
+     * @param languageCode <p>
+     *            The language of the input documents. You can specify English
+     *            ("en") or Spanish ("es"). All documents must be in the same
+     *            language.
+     *            </p>
+     * @see LanguageCode
+     */
+    public void setLanguageCode(LanguageCode languageCode) {
+        this.languageCode = languageCode.toString();
+    }
+
+    /**
+     * <p>
+     * The language of the input documents. You can specify English ("en") or
+     * Spanish ("es"). All documents must be in the same language.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>en, es
+     *
+     * @param languageCode <p>
+     *            The language of the input documents. You can specify English
+     *            ("en") or Spanish ("es"). All documents must be in the same
+     *            language.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see LanguageCode
+     */
+    public BatchDetectEntitiesRequest withLanguageCode(LanguageCode languageCode) {
+        this.languageCode = languageCode.toString();
         return this;
     }
 

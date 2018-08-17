@@ -24,6 +24,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Provides detailed information about the specified customer master key (CMK).
  * </p>
  * <p>
+ * You can use <code>DescribeKey</code> on a predefined AWS alias, that is, an
+ * AWS alias with no key ID. When you do, AWS KMS associates the alias with an
+ * <a href=
+ * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+ * >AWS managed CMK</a> and returns its <code>KeyId</code> and <code>Arn</code>
+ * in the response.
+ * </p>
+ * <p>
  * To perform this operation on a CMK in a different AWS account, specify the
  * key ARN or alias ARN in the value of the KeyId parameter.
  * </p>
@@ -31,13 +39,20 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DescribeKeyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK).
+     * Describes the specified customer master key (CMK).
+     * </p>
+     * <p>
+     * If you specify a predefined AWS alias (an AWS alias with no key ID), KMS
+     * associates the alias with an <a href=
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     * >AWS managed CMK</a> and returns its <code>KeyId</code> and
+     * <code>Arn</code> in the response.
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with "alias/". To
-     * specify a CMK in a different AWS account, you must use the key ARN or
-     * alias ARN.
+     * or alias ARN. When using an alias name, prefix it with
+     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
+     * must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -92,13 +107,20 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK).
+     * Describes the specified customer master key (CMK).
+     * </p>
+     * <p>
+     * If you specify a predefined AWS alias (an AWS alias with no key ID), KMS
+     * associates the alias with an <a href=
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     * >AWS managed CMK</a> and returns its <code>KeyId</code> and
+     * <code>Arn</code> in the response.
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with "alias/". To
-     * specify a CMK in a different AWS account, you must use the key ARN or
-     * alias ARN.
+     * or alias ARN. When using an alias name, prefix it with
+     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
+     * must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -137,13 +159,20 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         A unique identifier for the customer master key (CMK).
+     *         Describes the specified customer master key (CMK).
+     *         </p>
+     *         <p>
+     *         If you specify a predefined AWS alias (an AWS alias with no key
+     *         ID), KMS associates the alias with an <a href=
+     *         "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     *         >AWS managed CMK</a> and returns its <code>KeyId</code> and
+     *         <code>Arn</code> in the response.
      *         </p>
      *         <p>
      *         To specify a CMK, use its key ID, Amazon Resource Name (ARN),
      *         alias name, or alias ARN. When using an alias name, prefix it
-     *         with "alias/". To specify a CMK in a different AWS account, you
-     *         must use the key ARN or alias ARN.
+     *         with <code>"alias/"</code>. To specify a CMK in a different AWS
+     *         account, you must use the key ARN or alias ARN.
      *         </p>
      *         <p>
      *         For example:
@@ -184,13 +213,20 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK).
+     * Describes the specified customer master key (CMK).
+     * </p>
+     * <p>
+     * If you specify a predefined AWS alias (an AWS alias with no key ID), KMS
+     * associates the alias with an <a href=
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     * >AWS managed CMK</a> and returns its <code>KeyId</code> and
+     * <code>Arn</code> in the response.
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with "alias/". To
-     * specify a CMK in a different AWS account, you must use the key ARN or
-     * alias ARN.
+     * or alias ARN. When using an alias name, prefix it with
+     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
+     * must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -229,13 +265,20 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            A unique identifier for the customer master key (CMK).
+     *            Describes the specified customer master key (CMK).
+     *            </p>
+     *            <p>
+     *            If you specify a predefined AWS alias (an AWS alias with no
+     *            key ID), KMS associates the alias with an <a href=
+     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     *            >AWS managed CMK</a> and returns its <code>KeyId</code> and
+     *            <code>Arn</code> in the response.
      *            </p>
      *            <p>
      *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
      *            alias name, or alias ARN. When using an alias name, prefix it
-     *            with "alias/". To specify a CMK in a different AWS account,
-     *            you must use the key ARN or alias ARN.
+     *            with <code>"alias/"</code>. To specify a CMK in a different
+     *            AWS account, you must use the key ARN or alias ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -276,13 +319,20 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK).
+     * Describes the specified customer master key (CMK).
+     * </p>
+     * <p>
+     * If you specify a predefined AWS alias (an AWS alias with no key ID), KMS
+     * associates the alias with an <a href=
+     * "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     * >AWS managed CMK</a> and returns its <code>KeyId</code> and
+     * <code>Arn</code> in the response.
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
-     * or alias ARN. When using an alias name, prefix it with "alias/". To
-     * specify a CMK in a different AWS account, you must use the key ARN or
-     * alias ARN.
+     * or alias ARN. When using an alias name, prefix it with
+     * <code>"alias/"</code>. To specify a CMK in a different AWS account, you
+     * must use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -324,13 +374,20 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            A unique identifier for the customer master key (CMK).
+     *            Describes the specified customer master key (CMK).
+     *            </p>
+     *            <p>
+     *            If you specify a predefined AWS alias (an AWS alias with no
+     *            key ID), KMS associates the alias with an <a href=
+     *            "http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
+     *            >AWS managed CMK</a> and returns its <code>KeyId</code> and
+     *            <code>Arn</code> in the response.
      *            </p>
      *            <p>
      *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
      *            alias name, or alias ARN. When using an alias name, prefix it
-     *            with "alias/". To specify a CMK in a different AWS account,
-     *            you must use the key ARN or alias ARN.
+     *            with <code>"alias/"</code>. To specify a CMK in a different
+     *            AWS account, you must use the key ARN or alias ARN.
      *            </p>
      *            <p>
      *            For example:

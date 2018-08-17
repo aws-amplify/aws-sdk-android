@@ -22,12 +22,12 @@ import java.io.Serializable;
  */
 public class SegmentResponse implements Serializable {
     /**
-     * The ID of the application to which the segment applies.
+     * The ID of the application that the segment applies to.
      */
     private String applicationId;
 
     /**
-     * The date the segment was created in ISO 8601 format.
+     * The date and time when the segment was created.
      */
     private String creationDate;
 
@@ -47,14 +47,20 @@ public class SegmentResponse implements Serializable {
     private SegmentImportResource importDefinition;
 
     /**
-     * The date the segment was last updated in ISO 8601 format.
+     * The date and time when the segment was last modified.
      */
     private String lastModifiedDate;
 
     /**
-     * The name of segment
+     * The name of the segment.
      */
     private String name;
+
+    /**
+     * A segment group, which consists of zero or more source segments, plus
+     * dimensions that are applied to those source segments.
+     */
+    private SegmentGroupList segmentGroups;
 
     /**
      * The segment type: DIMENSIONAL - A dynamic segment built from selection
@@ -76,32 +82,32 @@ public class SegmentResponse implements Serializable {
     private Integer version;
 
     /**
-     * The ID of the application to which the segment applies.
+     * The ID of the application that the segment applies to.
      *
-     * @return The ID of the application to which the segment applies.
+     * @return The ID of the application that the segment applies to.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The ID of the application to which the segment applies.
+     * The ID of the application that the segment applies to.
      *
-     * @param applicationId The ID of the application to which the segment
-     *            applies.
+     * @param applicationId The ID of the application that the segment applies
+     *            to.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The ID of the application to which the segment applies.
+     * The ID of the application that the segment applies to.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The ID of the application to which the segment
-     *            applies.
+     * @param applicationId The ID of the application that the segment applies
+     *            to.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -111,30 +117,30 @@ public class SegmentResponse implements Serializable {
     }
 
     /**
-     * The date the segment was created in ISO 8601 format.
+     * The date and time when the segment was created.
      *
-     * @return The date the segment was created in ISO 8601 format.
+     * @return The date and time when the segment was created.
      */
     public String getCreationDate() {
         return creationDate;
     }
 
     /**
-     * The date the segment was created in ISO 8601 format.
+     * The date and time when the segment was created.
      *
-     * @param creationDate The date the segment was created in ISO 8601 format.
+     * @param creationDate The date and time when the segment was created.
      */
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
     /**
-     * The date the segment was created in ISO 8601 format.
+     * The date and time when the segment was created.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param creationDate The date the segment was created in ISO 8601 format.
+     * @param creationDate The date and time when the segment was created.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -243,32 +249,32 @@ public class SegmentResponse implements Serializable {
     }
 
     /**
-     * The date the segment was last updated in ISO 8601 format.
+     * The date and time when the segment was last modified.
      *
-     * @return The date the segment was last updated in ISO 8601 format.
+     * @return The date and time when the segment was last modified.
      */
     public String getLastModifiedDate() {
         return lastModifiedDate;
     }
 
     /**
-     * The date the segment was last updated in ISO 8601 format.
+     * The date and time when the segment was last modified.
      *
-     * @param lastModifiedDate The date the segment was last updated in ISO 8601
-     *            format.
+     * @param lastModifiedDate The date and time when the segment was last
+     *            modified.
      */
     public void setLastModifiedDate(String lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
     /**
-     * The date the segment was last updated in ISO 8601 format.
+     * The date and time when the segment was last modified.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastModifiedDate The date the segment was last updated in ISO 8601
-     *            format.
+     * @param lastModifiedDate The date and time when the segment was last
+     *            modified.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -278,35 +284,76 @@ public class SegmentResponse implements Serializable {
     }
 
     /**
-     * The name of segment
+     * The name of the segment.
      *
-     * @return The name of segment
+     * @return The name of the segment.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * The name of segment
+     * The name of the segment.
      *
-     * @param name The name of segment
+     * @param name The name of the segment.
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * The name of segment
+     * The name of the segment.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param name The name of segment
+     * @param name The name of the segment.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public SegmentResponse withName(String name) {
         this.name = name;
+        return this;
+    }
+
+    /**
+     * A segment group, which consists of zero or more source segments, plus
+     * dimensions that are applied to those source segments.
+     *
+     * @return A segment group, which consists of zero or more source segments,
+     *         plus dimensions that are applied to those source segments.
+     */
+    public SegmentGroupList getSegmentGroups() {
+        return segmentGroups;
+    }
+
+    /**
+     * A segment group, which consists of zero or more source segments, plus
+     * dimensions that are applied to those source segments.
+     *
+     * @param segmentGroups A segment group, which consists of zero or more
+     *            source segments, plus dimensions that are applied to those
+     *            source segments.
+     */
+    public void setSegmentGroups(SegmentGroupList segmentGroups) {
+        this.segmentGroups = segmentGroups;
+    }
+
+    /**
+     * A segment group, which consists of zero or more source segments, plus
+     * dimensions that are applied to those source segments.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param segmentGroups A segment group, which consists of zero or more
+     *            source segments, plus dimensions that are applied to those
+     *            source segments.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SegmentResponse withSegmentGroups(SegmentGroupList segmentGroups) {
+        this.segmentGroups = segmentGroups;
         return this;
     }
 
@@ -514,6 +561,8 @@ public class SegmentResponse implements Serializable {
             sb.append("LastModifiedDate: " + getLastModifiedDate() + ",");
         if (getName() != null)
             sb.append("Name: " + getName() + ",");
+        if (getSegmentGroups() != null)
+            sb.append("SegmentGroups: " + getSegmentGroups() + ",");
         if (getSegmentType() != null)
             sb.append("SegmentType: " + getSegmentType() + ",");
         if (getVersion() != null)
@@ -538,6 +587,8 @@ public class SegmentResponse implements Serializable {
         hashCode = prime * hashCode
                 + ((getLastModifiedDate() == null) ? 0 : getLastModifiedDate().hashCode());
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
+        hashCode = prime * hashCode
+                + ((getSegmentGroups() == null) ? 0 : getSegmentGroups().hashCode());
         hashCode = prime * hashCode
                 + ((getSegmentType() == null) ? 0 : getSegmentType().hashCode());
         hashCode = prime * hashCode + ((getVersion() == null) ? 0 : getVersion().hashCode());
@@ -587,6 +638,11 @@ public class SegmentResponse implements Serializable {
         if (other.getName() == null ^ this.getName() == null)
             return false;
         if (other.getName() != null && other.getName().equals(this.getName()) == false)
+            return false;
+        if (other.getSegmentGroups() == null ^ this.getSegmentGroups() == null)
+            return false;
+        if (other.getSegmentGroups() != null
+                && other.getSegmentGroups().equals(this.getSegmentGroups()) == false)
             return false;
         if (other.getSegmentType() == null ^ this.getSegmentType() == null)
             return false;

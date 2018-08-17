@@ -46,7 +46,7 @@ public class ListTopicsDetectionJobsRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The maximum number of results to return in each page.
+     * The maximum number of results to return in each page. The default is 100.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -167,14 +167,15 @@ public class ListTopicsDetectionJobsRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The maximum number of results to return in each page.
+     * The maximum number of results to return in each page. The default is 100.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 500<br/>
      *
      * @return <p>
-     *         The maximum number of results to return in each page.
+     *         The maximum number of results to return in each page. The default
+     *         is 100.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -183,14 +184,15 @@ public class ListTopicsDetectionJobsRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The maximum number of results to return in each page.
+     * The maximum number of results to return in each page. The default is 100.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 500<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of results to return in each page.
+     *            The maximum number of results to return in each page. The
+     *            default is 100.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -199,7 +201,7 @@ public class ListTopicsDetectionJobsRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The maximum number of results to return in each page.
+     * The maximum number of results to return in each page. The default is 100.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -209,7 +211,8 @@ public class ListTopicsDetectionJobsRequest extends AmazonWebServiceRequest impl
      * <b>Range: </b>1 - 500<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of results to return in each page.
+     *            The maximum number of results to return in each page. The
+     *            default is 100.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

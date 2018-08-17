@@ -360,7 +360,7 @@ public final class Auth {
         }
 
         /**
-         * Sets the identity provider.
+         * Sets the identity provider. This will change the hosted UI behavior to go directly to the specified social provider
          * <p>
          *     Optional. Set identity provider for social sign in.
          * </p>
@@ -518,7 +518,7 @@ public final class Auth {
     }
 
     /**
-     * @return Indentity Provider set for this {@link Auth} instance.
+     * @return Identity Provider set for this {@link Auth} instance.
      */
     public String getIdentityProvider() {
         return identityProvider;

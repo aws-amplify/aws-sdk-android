@@ -26,7 +26,7 @@ import java.io.Serializable;
 public class TranscriptionJob implements Serializable {
     /**
      * <p>
-     * A name to identify the transcription job.
+     * The name of the transcription job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -77,7 +77,7 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * An object that describes the input media for a transcription job.
+     * An object that describes the input media for the transcription job.
      * </p>
      */
     private Media media;
@@ -91,14 +91,14 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Timestamp of the date and time that the job was created.
+     * A timestamp that shows when the job was created.
      * </p>
      */
     private java.util.Date creationTime;
 
     /**
      * <p>
-     * Timestamp of the date and time that the job completed.
+     * A timestamp that shows when the job was completed.
      * </p>
      */
     private java.util.Date completionTime;
@@ -113,14 +113,17 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Optional settings for the transcription job.
+     * Optional settings for the transcription job. Use these settings to turn
+     * on speaker recognition, to set the maximum number of speakers that should
+     * be identified and to specify a custom vocabulary to use when processing
+     * the transcription job.
      * </p>
      */
     private Settings settings;
 
     /**
      * <p>
-     * A name to identify the transcription job.
+     * The name of the transcription job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -128,7 +131,7 @@ public class TranscriptionJob implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         A name to identify the transcription job.
+     *         The name of the transcription job.
      *         </p>
      */
     public String getTranscriptionJobName() {
@@ -137,7 +140,7 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * A name to identify the transcription job.
+     * The name of the transcription job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -145,7 +148,7 @@ public class TranscriptionJob implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param transcriptionJobName <p>
-     *            A name to identify the transcription job.
+     *            The name of the transcription job.
      *            </p>
      */
     public void setTranscriptionJobName(String transcriptionJobName) {
@@ -154,7 +157,7 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * A name to identify the transcription job.
+     * The name of the transcription job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -165,7 +168,7 @@ public class TranscriptionJob implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param transcriptionJobName <p>
-     *            A name to identify the transcription job.
+     *            The name of the transcription job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -525,11 +528,12 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * An object that describes the input media for a transcription job.
+     * An object that describes the input media for the transcription job.
      * </p>
      *
      * @return <p>
-     *         An object that describes the input media for a transcription job.
+     *         An object that describes the input media for the transcription
+     *         job.
      *         </p>
      */
     public Media getMedia() {
@@ -538,11 +542,11 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * An object that describes the input media for a transcription job.
+     * An object that describes the input media for the transcription job.
      * </p>
      *
      * @param media <p>
-     *            An object that describes the input media for a transcription
+     *            An object that describes the input media for the transcription
      *            job.
      *            </p>
      */
@@ -552,14 +556,14 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * An object that describes the input media for a transcription job.
+     * An object that describes the input media for the transcription job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param media <p>
-     *            An object that describes the input media for a transcription
+     *            An object that describes the input media for the transcription
      *            job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -617,11 +621,11 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Timestamp of the date and time that the job was created.
+     * A timestamp that shows when the job was created.
      * </p>
      *
      * @return <p>
-     *         Timestamp of the date and time that the job was created.
+     *         A timestamp that shows when the job was created.
      *         </p>
      */
     public java.util.Date getCreationTime() {
@@ -630,11 +634,11 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Timestamp of the date and time that the job was created.
+     * A timestamp that shows when the job was created.
      * </p>
      *
      * @param creationTime <p>
-     *            Timestamp of the date and time that the job was created.
+     *            A timestamp that shows when the job was created.
      *            </p>
      */
     public void setCreationTime(java.util.Date creationTime) {
@@ -643,14 +647,14 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Timestamp of the date and time that the job was created.
+     * A timestamp that shows when the job was created.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param creationTime <p>
-     *            Timestamp of the date and time that the job was created.
+     *            A timestamp that shows when the job was created.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -662,11 +666,11 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Timestamp of the date and time that the job completed.
+     * A timestamp that shows when the job was completed.
      * </p>
      *
      * @return <p>
-     *         Timestamp of the date and time that the job completed.
+     *         A timestamp that shows when the job was completed.
      *         </p>
      */
     public java.util.Date getCompletionTime() {
@@ -675,11 +679,11 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Timestamp of the date and time that the job completed.
+     * A timestamp that shows when the job was completed.
      * </p>
      *
      * @param completionTime <p>
-     *            Timestamp of the date and time that the job completed.
+     *            A timestamp that shows when the job was completed.
      *            </p>
      */
     public void setCompletionTime(java.util.Date completionTime) {
@@ -688,14 +692,14 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Timestamp of the date and time that the job completed.
+     * A timestamp that shows when the job was completed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param completionTime <p>
-     *            Timestamp of the date and time that the job completed.
+     *            A timestamp that shows when the job was completed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -761,11 +765,17 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Optional settings for the transcription job.
+     * Optional settings for the transcription job. Use these settings to turn
+     * on speaker recognition, to set the maximum number of speakers that should
+     * be identified and to specify a custom vocabulary to use when processing
+     * the transcription job.
      * </p>
      *
      * @return <p>
-     *         Optional settings for the transcription job.
+     *         Optional settings for the transcription job. Use these settings
+     *         to turn on speaker recognition, to set the maximum number of
+     *         speakers that should be identified and to specify a custom
+     *         vocabulary to use when processing the transcription job.
      *         </p>
      */
     public Settings getSettings() {
@@ -774,11 +784,18 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Optional settings for the transcription job.
+     * Optional settings for the transcription job. Use these settings to turn
+     * on speaker recognition, to set the maximum number of speakers that should
+     * be identified and to specify a custom vocabulary to use when processing
+     * the transcription job.
      * </p>
      *
      * @param settings <p>
-     *            Optional settings for the transcription job.
+     *            Optional settings for the transcription job. Use these
+     *            settings to turn on speaker recognition, to set the maximum
+     *            number of speakers that should be identified and to specify a
+     *            custom vocabulary to use when processing the transcription
+     *            job.
      *            </p>
      */
     public void setSettings(Settings settings) {
@@ -787,14 +804,21 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Optional settings for the transcription job.
+     * Optional settings for the transcription job. Use these settings to turn
+     * on speaker recognition, to set the maximum number of speakers that should
+     * be identified and to specify a custom vocabulary to use when processing
+     * the transcription job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param settings <p>
-     *            Optional settings for the transcription job.
+     *            Optional settings for the transcription job. Use these
+     *            settings to turn on speaker recognition, to set the maximum
+     *            number of speakers that should be identified and to specify a
+     *            custom vocabulary to use when processing the transcription
+     *            job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

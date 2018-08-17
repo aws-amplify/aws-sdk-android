@@ -54,8 +54,8 @@ public class GetContentModerationResult implements Serializable {
 
     /**
      * <p>
-     * If the response is truncated, Rekognition Video returns this token that
-     * you can use in the subsequent request to retrieve the next set of
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
      * moderation labels.
      * </p>
      * <p>
@@ -354,8 +354,8 @@ public class GetContentModerationResult implements Serializable {
 
     /**
      * <p>
-     * If the response is truncated, Rekognition Video returns this token that
-     * you can use in the subsequent request to retrieve the next set of
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
      * moderation labels.
      * </p>
      * <p>
@@ -363,9 +363,9 @@ public class GetContentModerationResult implements Serializable {
      * <b>Length: </b> - 255<br/>
      *
      * @return <p>
-     *         If the response is truncated, Rekognition Video returns this
-     *         token that you can use in the subsequent request to retrieve the
-     *         next set of moderation labels.
+     *         If the response is truncated, Amazon Rekognition Video returns
+     *         this token that you can use in the subsequent request to retrieve
+     *         the next set of moderation labels.
      *         </p>
      */
     public String getNextToken() {
@@ -374,8 +374,8 @@ public class GetContentModerationResult implements Serializable {
 
     /**
      * <p>
-     * If the response is truncated, Rekognition Video returns this token that
-     * you can use in the subsequent request to retrieve the next set of
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
      * moderation labels.
      * </p>
      * <p>
@@ -383,9 +383,9 @@ public class GetContentModerationResult implements Serializable {
      * <b>Length: </b> - 255<br/>
      *
      * @param nextToken <p>
-     *            If the response is truncated, Rekognition Video returns this
-     *            token that you can use in the subsequent request to retrieve
-     *            the next set of moderation labels.
+     *            If the response is truncated, Amazon Rekognition Video returns
+     *            this token that you can use in the subsequent request to
+     *            retrieve the next set of moderation labels.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -394,8 +394,8 @@ public class GetContentModerationResult implements Serializable {
 
     /**
      * <p>
-     * If the response is truncated, Rekognition Video returns this token that
-     * you can use in the subsequent request to retrieve the next set of
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
      * moderation labels.
      * </p>
      * <p>
@@ -406,9 +406,9 @@ public class GetContentModerationResult implements Serializable {
      * <b>Length: </b> - 255<br/>
      *
      * @param nextToken <p>
-     *            If the response is truncated, Rekognition Video returns this
-     *            token that you can use in the subsequent request to retrieve
-     *            the next set of moderation labels.
+     *            If the response is truncated, Amazon Rekognition Video returns
+     *            this token that you can use in the subsequent request to
+     *            retrieve the next set of moderation labels.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

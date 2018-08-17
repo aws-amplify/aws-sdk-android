@@ -29,6 +29,7 @@ import com.amazonaws.http.UrlHttpClient;
 import com.amazonaws.metrics.AwsSdkMetrics;
 import com.amazonaws.metrics.RequestMetricCollector;
 import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.util.AWSRequestMetrics;
 import com.amazonaws.util.AWSRequestMetrics.Field;
 import com.amazonaws.util.AwsHostNameUtils;
@@ -107,6 +108,7 @@ public abstract class AmazonWebServiceClient {
     private volatile String serviceName;
 
     protected volatile String endpointPrefix;
+    private volatile Region region;
 
     /**
      * Constructs a new AmazonWebServiceClient object using the specified
@@ -411,6 +413,10 @@ public abstract class AmazonWebServiceClient {
                 regionAwareSigner.setRegionName(regionId);
             }
         }
+
+        synchronized (this) {
+            this.region = Region.getRegion(regionId);
+        }
         return signer;
     }
 
@@ -471,7 +477,16 @@ public abstract class AmazonWebServiceClient {
         }
     }
 
-
+    /**
+     * Returns the region that the client is set to operate in.
+     * Note: This may be different from the region the client uses in its signature.
+     * @return the region that the client is set to operate in
+     */
+    public Regions getRegions() {
+        synchronized (this) {
+            return Regions.fromName(this.region.getName());
+        }
+    }
 
     /**
      * @deprecated by client configuration via the constructor. This method will

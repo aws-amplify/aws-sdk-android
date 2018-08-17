@@ -27,13 +27,32 @@ public class EndpointMessageResult implements Serializable {
     private String address;
 
     /**
-     * Delivery status of message.
+     * The delivery status of the message. Possible values: SUCCESS - The
+     * message was successfully delivered to the endpoint. TRANSIENT_FAILURE - A
+     * temporary error occurred. Amazon Pinpoint will attempt to deliver the
+     * message again later. FAILURE_PERMANENT - An error occurred when
+     * delivering the message to the endpoint. Amazon Pinpoint won't attempt to
+     * send the message again. TIMEOUT - The message couldn't be sent within the
+     * timeout period. QUIET_TIME - The local time for the endpoint was within
+     * the Quiet Hours for the campaign. DAILY_CAP - The endpoint has received
+     * the maximum number of messages it can receive within a 24-hour period.
+     * HOLDOUT - The endpoint was in a hold out treatment for the campaign.
+     * THROTTLED - Amazon Pinpoint throttled sending to this endpoint. EXPIRED -
+     * The endpoint address is expired. CAMPAIGN_CAP - The endpoint received the
+     * maximum number of messages allowed by the campaign. SERVICE_FAILURE - A
+     * service-level failure prevented Amazon Pinpoint from delivering the
+     * message. UNKNOWN - An unknown error occurred.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUCCESSFUL, THROTTLED, TEMPORARY_FAILURE,
      * PERMANENT_FAILURE, UNKNOWN_FAILURE, OPT_OUT, DUPLICATE
      */
     private String deliveryStatus;
+
+    /**
+     * Unique message identifier associated with the message that was sent.
+     */
+    private String messageId;
 
     /**
      * Downstream service status code.
@@ -84,13 +103,43 @@ public class EndpointMessageResult implements Serializable {
     }
 
     /**
-     * Delivery status of message.
+     * The delivery status of the message. Possible values: SUCCESS - The
+     * message was successfully delivered to the endpoint. TRANSIENT_FAILURE - A
+     * temporary error occurred. Amazon Pinpoint will attempt to deliver the
+     * message again later. FAILURE_PERMANENT - An error occurred when
+     * delivering the message to the endpoint. Amazon Pinpoint won't attempt to
+     * send the message again. TIMEOUT - The message couldn't be sent within the
+     * timeout period. QUIET_TIME - The local time for the endpoint was within
+     * the Quiet Hours for the campaign. DAILY_CAP - The endpoint has received
+     * the maximum number of messages it can receive within a 24-hour period.
+     * HOLDOUT - The endpoint was in a hold out treatment for the campaign.
+     * THROTTLED - Amazon Pinpoint throttled sending to this endpoint. EXPIRED -
+     * The endpoint address is expired. CAMPAIGN_CAP - The endpoint received the
+     * maximum number of messages allowed by the campaign. SERVICE_FAILURE - A
+     * service-level failure prevented Amazon Pinpoint from delivering the
+     * message. UNKNOWN - An unknown error occurred.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUCCESSFUL, THROTTLED, TEMPORARY_FAILURE,
      * PERMANENT_FAILURE, UNKNOWN_FAILURE, OPT_OUT, DUPLICATE
      *
-     * @return Delivery status of message.
+     * @return The delivery status of the message. Possible values: SUCCESS -
+     *         The message was successfully delivered to the endpoint.
+     *         TRANSIENT_FAILURE - A temporary error occurred. Amazon Pinpoint
+     *         will attempt to deliver the message again later.
+     *         FAILURE_PERMANENT - An error occurred when delivering the message
+     *         to the endpoint. Amazon Pinpoint won't attempt to send the
+     *         message again. TIMEOUT - The message couldn't be sent within the
+     *         timeout period. QUIET_TIME - The local time for the endpoint was
+     *         within the Quiet Hours for the campaign. DAILY_CAP - The endpoint
+     *         has received the maximum number of messages it can receive within
+     *         a 24-hour period. HOLDOUT - The endpoint was in a hold out
+     *         treatment for the campaign. THROTTLED - Amazon Pinpoint throttled
+     *         sending to this endpoint. EXPIRED - The endpoint address is
+     *         expired. CAMPAIGN_CAP - The endpoint received the maximum number
+     *         of messages allowed by the campaign. SERVICE_FAILURE - A
+     *         service-level failure prevented Amazon Pinpoint from delivering
+     *         the message. UNKNOWN - An unknown error occurred.
      * @see DeliveryStatus
      */
     public String getDeliveryStatus() {
@@ -98,13 +147,44 @@ public class EndpointMessageResult implements Serializable {
     }
 
     /**
-     * Delivery status of message.
+     * The delivery status of the message. Possible values: SUCCESS - The
+     * message was successfully delivered to the endpoint. TRANSIENT_FAILURE - A
+     * temporary error occurred. Amazon Pinpoint will attempt to deliver the
+     * message again later. FAILURE_PERMANENT - An error occurred when
+     * delivering the message to the endpoint. Amazon Pinpoint won't attempt to
+     * send the message again. TIMEOUT - The message couldn't be sent within the
+     * timeout period. QUIET_TIME - The local time for the endpoint was within
+     * the Quiet Hours for the campaign. DAILY_CAP - The endpoint has received
+     * the maximum number of messages it can receive within a 24-hour period.
+     * HOLDOUT - The endpoint was in a hold out treatment for the campaign.
+     * THROTTLED - Amazon Pinpoint throttled sending to this endpoint. EXPIRED -
+     * The endpoint address is expired. CAMPAIGN_CAP - The endpoint received the
+     * maximum number of messages allowed by the campaign. SERVICE_FAILURE - A
+     * service-level failure prevented Amazon Pinpoint from delivering the
+     * message. UNKNOWN - An unknown error occurred.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUCCESSFUL, THROTTLED, TEMPORARY_FAILURE,
      * PERMANENT_FAILURE, UNKNOWN_FAILURE, OPT_OUT, DUPLICATE
      *
-     * @param deliveryStatus Delivery status of message.
+     * @param deliveryStatus The delivery status of the message. Possible
+     *            values: SUCCESS - The message was successfully delivered to
+     *            the endpoint. TRANSIENT_FAILURE - A temporary error occurred.
+     *            Amazon Pinpoint will attempt to deliver the message again
+     *            later. FAILURE_PERMANENT - An error occurred when delivering
+     *            the message to the endpoint. Amazon Pinpoint won't attempt to
+     *            send the message again. TIMEOUT - The message couldn't be sent
+     *            within the timeout period. QUIET_TIME - The local time for the
+     *            endpoint was within the Quiet Hours for the campaign.
+     *            DAILY_CAP - The endpoint has received the maximum number of
+     *            messages it can receive within a 24-hour period. HOLDOUT - The
+     *            endpoint was in a hold out treatment for the campaign.
+     *            THROTTLED - Amazon Pinpoint throttled sending to this
+     *            endpoint. EXPIRED - The endpoint address is expired.
+     *            CAMPAIGN_CAP - The endpoint received the maximum number of
+     *            messages allowed by the campaign. SERVICE_FAILURE - A
+     *            service-level failure prevented Amazon Pinpoint from
+     *            delivering the message. UNKNOWN - An unknown error occurred.
      * @see DeliveryStatus
      */
     public void setDeliveryStatus(String deliveryStatus) {
@@ -112,7 +192,21 @@ public class EndpointMessageResult implements Serializable {
     }
 
     /**
-     * Delivery status of message.
+     * The delivery status of the message. Possible values: SUCCESS - The
+     * message was successfully delivered to the endpoint. TRANSIENT_FAILURE - A
+     * temporary error occurred. Amazon Pinpoint will attempt to deliver the
+     * message again later. FAILURE_PERMANENT - An error occurred when
+     * delivering the message to the endpoint. Amazon Pinpoint won't attempt to
+     * send the message again. TIMEOUT - The message couldn't be sent within the
+     * timeout period. QUIET_TIME - The local time for the endpoint was within
+     * the Quiet Hours for the campaign. DAILY_CAP - The endpoint has received
+     * the maximum number of messages it can receive within a 24-hour period.
+     * HOLDOUT - The endpoint was in a hold out treatment for the campaign.
+     * THROTTLED - Amazon Pinpoint throttled sending to this endpoint. EXPIRED -
+     * The endpoint address is expired. CAMPAIGN_CAP - The endpoint received the
+     * maximum number of messages allowed by the campaign. SERVICE_FAILURE - A
+     * service-level failure prevented Amazon Pinpoint from delivering the
+     * message. UNKNOWN - An unknown error occurred.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -121,7 +215,24 @@ public class EndpointMessageResult implements Serializable {
      * <b>Allowed Values: </b>SUCCESSFUL, THROTTLED, TEMPORARY_FAILURE,
      * PERMANENT_FAILURE, UNKNOWN_FAILURE, OPT_OUT, DUPLICATE
      *
-     * @param deliveryStatus Delivery status of message.
+     * @param deliveryStatus The delivery status of the message. Possible
+     *            values: SUCCESS - The message was successfully delivered to
+     *            the endpoint. TRANSIENT_FAILURE - A temporary error occurred.
+     *            Amazon Pinpoint will attempt to deliver the message again
+     *            later. FAILURE_PERMANENT - An error occurred when delivering
+     *            the message to the endpoint. Amazon Pinpoint won't attempt to
+     *            send the message again. TIMEOUT - The message couldn't be sent
+     *            within the timeout period. QUIET_TIME - The local time for the
+     *            endpoint was within the Quiet Hours for the campaign.
+     *            DAILY_CAP - The endpoint has received the maximum number of
+     *            messages it can receive within a 24-hour period. HOLDOUT - The
+     *            endpoint was in a hold out treatment for the campaign.
+     *            THROTTLED - Amazon Pinpoint throttled sending to this
+     *            endpoint. EXPIRED - The endpoint address is expired.
+     *            CAMPAIGN_CAP - The endpoint received the maximum number of
+     *            messages allowed by the campaign. SERVICE_FAILURE - A
+     *            service-level failure prevented Amazon Pinpoint from
+     *            delivering the message. UNKNOWN - An unknown error occurred.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see DeliveryStatus
@@ -132,13 +243,44 @@ public class EndpointMessageResult implements Serializable {
     }
 
     /**
-     * Delivery status of message.
+     * The delivery status of the message. Possible values: SUCCESS - The
+     * message was successfully delivered to the endpoint. TRANSIENT_FAILURE - A
+     * temporary error occurred. Amazon Pinpoint will attempt to deliver the
+     * message again later. FAILURE_PERMANENT - An error occurred when
+     * delivering the message to the endpoint. Amazon Pinpoint won't attempt to
+     * send the message again. TIMEOUT - The message couldn't be sent within the
+     * timeout period. QUIET_TIME - The local time for the endpoint was within
+     * the Quiet Hours for the campaign. DAILY_CAP - The endpoint has received
+     * the maximum number of messages it can receive within a 24-hour period.
+     * HOLDOUT - The endpoint was in a hold out treatment for the campaign.
+     * THROTTLED - Amazon Pinpoint throttled sending to this endpoint. EXPIRED -
+     * The endpoint address is expired. CAMPAIGN_CAP - The endpoint received the
+     * maximum number of messages allowed by the campaign. SERVICE_FAILURE - A
+     * service-level failure prevented Amazon Pinpoint from delivering the
+     * message. UNKNOWN - An unknown error occurred.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUCCESSFUL, THROTTLED, TEMPORARY_FAILURE,
      * PERMANENT_FAILURE, UNKNOWN_FAILURE, OPT_OUT, DUPLICATE
      *
-     * @param deliveryStatus Delivery status of message.
+     * @param deliveryStatus The delivery status of the message. Possible
+     *            values: SUCCESS - The message was successfully delivered to
+     *            the endpoint. TRANSIENT_FAILURE - A temporary error occurred.
+     *            Amazon Pinpoint will attempt to deliver the message again
+     *            later. FAILURE_PERMANENT - An error occurred when delivering
+     *            the message to the endpoint. Amazon Pinpoint won't attempt to
+     *            send the message again. TIMEOUT - The message couldn't be sent
+     *            within the timeout period. QUIET_TIME - The local time for the
+     *            endpoint was within the Quiet Hours for the campaign.
+     *            DAILY_CAP - The endpoint has received the maximum number of
+     *            messages it can receive within a 24-hour period. HOLDOUT - The
+     *            endpoint was in a hold out treatment for the campaign.
+     *            THROTTLED - Amazon Pinpoint throttled sending to this
+     *            endpoint. EXPIRED - The endpoint address is expired.
+     *            CAMPAIGN_CAP - The endpoint received the maximum number of
+     *            messages allowed by the campaign. SERVICE_FAILURE - A
+     *            service-level failure prevented Amazon Pinpoint from
+     *            delivering the message. UNKNOWN - An unknown error occurred.
      * @see DeliveryStatus
      */
     public void setDeliveryStatus(DeliveryStatus deliveryStatus) {
@@ -146,7 +288,21 @@ public class EndpointMessageResult implements Serializable {
     }
 
     /**
-     * Delivery status of message.
+     * The delivery status of the message. Possible values: SUCCESS - The
+     * message was successfully delivered to the endpoint. TRANSIENT_FAILURE - A
+     * temporary error occurred. Amazon Pinpoint will attempt to deliver the
+     * message again later. FAILURE_PERMANENT - An error occurred when
+     * delivering the message to the endpoint. Amazon Pinpoint won't attempt to
+     * send the message again. TIMEOUT - The message couldn't be sent within the
+     * timeout period. QUIET_TIME - The local time for the endpoint was within
+     * the Quiet Hours for the campaign. DAILY_CAP - The endpoint has received
+     * the maximum number of messages it can receive within a 24-hour period.
+     * HOLDOUT - The endpoint was in a hold out treatment for the campaign.
+     * THROTTLED - Amazon Pinpoint throttled sending to this endpoint. EXPIRED -
+     * The endpoint address is expired. CAMPAIGN_CAP - The endpoint received the
+     * maximum number of messages allowed by the campaign. SERVICE_FAILURE - A
+     * service-level failure prevented Amazon Pinpoint from delivering the
+     * message. UNKNOWN - An unknown error occurred.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -155,13 +311,66 @@ public class EndpointMessageResult implements Serializable {
      * <b>Allowed Values: </b>SUCCESSFUL, THROTTLED, TEMPORARY_FAILURE,
      * PERMANENT_FAILURE, UNKNOWN_FAILURE, OPT_OUT, DUPLICATE
      *
-     * @param deliveryStatus Delivery status of message.
+     * @param deliveryStatus The delivery status of the message. Possible
+     *            values: SUCCESS - The message was successfully delivered to
+     *            the endpoint. TRANSIENT_FAILURE - A temporary error occurred.
+     *            Amazon Pinpoint will attempt to deliver the message again
+     *            later. FAILURE_PERMANENT - An error occurred when delivering
+     *            the message to the endpoint. Amazon Pinpoint won't attempt to
+     *            send the message again. TIMEOUT - The message couldn't be sent
+     *            within the timeout period. QUIET_TIME - The local time for the
+     *            endpoint was within the Quiet Hours for the campaign.
+     *            DAILY_CAP - The endpoint has received the maximum number of
+     *            messages it can receive within a 24-hour period. HOLDOUT - The
+     *            endpoint was in a hold out treatment for the campaign.
+     *            THROTTLED - Amazon Pinpoint throttled sending to this
+     *            endpoint. EXPIRED - The endpoint address is expired.
+     *            CAMPAIGN_CAP - The endpoint received the maximum number of
+     *            messages allowed by the campaign. SERVICE_FAILURE - A
+     *            service-level failure prevented Amazon Pinpoint from
+     *            delivering the message. UNKNOWN - An unknown error occurred.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see DeliveryStatus
      */
     public EndpointMessageResult withDeliveryStatus(DeliveryStatus deliveryStatus) {
         this.deliveryStatus = deliveryStatus.toString();
+        return this;
+    }
+
+    /**
+     * Unique message identifier associated with the message that was sent.
+     *
+     * @return Unique message identifier associated with the message that was
+     *         sent.
+     */
+    public String getMessageId() {
+        return messageId;
+    }
+
+    /**
+     * Unique message identifier associated with the message that was sent.
+     *
+     * @param messageId Unique message identifier associated with the message
+     *            that was sent.
+     */
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
+    }
+
+    /**
+     * Unique message identifier associated with the message that was sent.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param messageId Unique message identifier associated with the message
+     *            that was sent.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public EndpointMessageResult withMessageId(String messageId) {
+        this.messageId = messageId;
         return this;
     }
 
@@ -281,6 +490,8 @@ public class EndpointMessageResult implements Serializable {
             sb.append("Address: " + getAddress() + ",");
         if (getDeliveryStatus() != null)
             sb.append("DeliveryStatus: " + getDeliveryStatus() + ",");
+        if (getMessageId() != null)
+            sb.append("MessageId: " + getMessageId() + ",");
         if (getStatusCode() != null)
             sb.append("StatusCode: " + getStatusCode() + ",");
         if (getStatusMessage() != null)
@@ -299,6 +510,7 @@ public class EndpointMessageResult implements Serializable {
         hashCode = prime * hashCode + ((getAddress() == null) ? 0 : getAddress().hashCode());
         hashCode = prime * hashCode
                 + ((getDeliveryStatus() == null) ? 0 : getDeliveryStatus().hashCode());
+        hashCode = prime * hashCode + ((getMessageId() == null) ? 0 : getMessageId().hashCode());
         hashCode = prime * hashCode + ((getStatusCode() == null) ? 0 : getStatusCode().hashCode());
         hashCode = prime * hashCode
                 + ((getStatusMessage() == null) ? 0 : getStatusMessage().hashCode());
@@ -326,6 +538,11 @@ public class EndpointMessageResult implements Serializable {
             return false;
         if (other.getDeliveryStatus() != null
                 && other.getDeliveryStatus().equals(this.getDeliveryStatus()) == false)
+            return false;
+        if (other.getMessageId() == null ^ this.getMessageId() == null)
+            return false;
+        if (other.getMessageId() != null
+                && other.getMessageId().equals(this.getMessageId()) == false)
             return false;
         if (other.getStatusCode() == null ^ this.getStatusCode() == null)
             return false;

@@ -25,11 +25,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * stored video.
  * </p>
  * <p>
- * Rekognition Video can moderate content in a video stored in an Amazon S3
- * bucket. Use <a>Video</a> to specify the bucket name and the filename of the
- * video. <code>StartContentModeration</code> returns a job identifier (
+ * Amazon Rekognition Video can moderate content in a video stored in an Amazon
+ * S3 bucket. Use <a>Video</a> to specify the bucket name and the filename of
+ * the video. <code>StartContentModeration</code> returns a job identifier (
  * <code>JobId</code>) which you use to get the results of the analysis. When
- * content moderation analysis is finished, Rekognition Video publishes a
+ * content moderation analysis is finished, Amazon Rekognition Video publishes a
  * completion status to the Amazon Simple Notification Service topic that you
  * specify in <code>NotificationChannel</code>.
  * </p>
@@ -37,8 +37,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * To get the results of the content moderation analysis, first check that the
  * status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If
  * so, call and pass the job identifier (<code>JobId</code>) from the initial
- * call to <code>StartContentModeration</code>. For more information, see
- * <a>moderation</a>.
+ * call to <code>StartContentModeration</code>.
+ * </p>
+ * <p>
+ * For more information, see Detecting Unsafe Content in the Amazon Rekognition
+ * Developer Guide.
  * </p>
  */
 public class StartContentModerationRequest extends AmazonWebServiceRequest implements Serializable {
@@ -81,8 +84,8 @@ public class StartContentModerationRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon SNS topic ARN that you want Rekognition Video to publish the
-     * completion status of the content moderation analysis to.
+     * The Amazon SNS topic ARN that you want Amazon Rekognition Video to
+     * publish the completion status of the content moderation analysis to.
      * </p>
      */
     private NotificationChannel notificationChannel;
@@ -319,14 +322,14 @@ public class StartContentModerationRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon SNS topic ARN that you want Rekognition Video to publish the
-     * completion status of the content moderation analysis to.
+     * The Amazon SNS topic ARN that you want Amazon Rekognition Video to
+     * publish the completion status of the content moderation analysis to.
      * </p>
      *
      * @return <p>
-     *         The Amazon SNS topic ARN that you want Rekognition Video to
-     *         publish the completion status of the content moderation analysis
-     *         to.
+     *         The Amazon SNS topic ARN that you want Amazon Rekognition Video
+     *         to publish the completion status of the content moderation
+     *         analysis to.
      *         </p>
      */
     public NotificationChannel getNotificationChannel() {
@@ -335,14 +338,14 @@ public class StartContentModerationRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon SNS topic ARN that you want Rekognition Video to publish the
-     * completion status of the content moderation analysis to.
+     * The Amazon SNS topic ARN that you want Amazon Rekognition Video to
+     * publish the completion status of the content moderation analysis to.
      * </p>
      *
      * @param notificationChannel <p>
-     *            The Amazon SNS topic ARN that you want Rekognition Video to
-     *            publish the completion status of the content moderation
-     *            analysis to.
+     *            The Amazon SNS topic ARN that you want Amazon Rekognition
+     *            Video to publish the completion status of the content
+     *            moderation analysis to.
      *            </p>
      */
     public void setNotificationChannel(NotificationChannel notificationChannel) {
@@ -351,17 +354,17 @@ public class StartContentModerationRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon SNS topic ARN that you want Rekognition Video to publish the
-     * completion status of the content moderation analysis to.
+     * The Amazon SNS topic ARN that you want Amazon Rekognition Video to
+     * publish the completion status of the content moderation analysis to.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param notificationChannel <p>
-     *            The Amazon SNS topic ARN that you want Rekognition Video to
-     *            publish the completion status of the content moderation
-     *            analysis to.
+     *            The Amazon SNS topic ARN that you want Amazon Rekognition
+     *            Video to publish the completion status of the content
+     *            moderation analysis to.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
