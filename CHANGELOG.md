@@ -1,5 +1,22 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.28](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.28)
+
+### Bug Fixes
+
+* **Amazon Cognito Auth**
+  * Fix an issue where `getAppWebDomain` was used instead of  `getAppId`  which caused the SDK to return isAuthenticated as false for a logged in user. See [issue #508](https://github.com/aws/aws-sdk-android/issues/508)
+  * Added identity provider as parameter to the CognitoAuth builder to allow developers to launch hosted UI directly to a certain social provider. See [issue ##494](https://github.com/aws/aws-sdk-android/issues/494) and [issue ##230](https://github.com/awslabs/aws-sdk-android-samples/issues/230)
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon CloudWatch Logs
+  * Amazon DynamoDB
+  * Amazon KMS
+  * Amazon Pinpoint
+  * Amazon Transcribe
+
 ## [Release 2.6.27](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.27)
 
 ### New Features
