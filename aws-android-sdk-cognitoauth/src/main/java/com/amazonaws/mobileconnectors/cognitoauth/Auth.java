@@ -50,6 +50,11 @@ public final class Auth {
     private final String userPoolId;
 
     /**
+     * Identity Provider for social login
+     */
+    private final String identityProvider;
+
+    /**
      * This identifies the settings for additional userPool features.
      */
     private boolean advancedSecurityDataCollectionFlag;
@@ -131,7 +136,8 @@ public final class Auth {
                  final String signOutRedirectUri,
                  final Set<String> scopes,
                  final AuthHandler userHandler,
-                 final boolean advancedSecurityDataCollectionFlag) {
+                 final boolean advancedSecurityDataCollectionFlag,
+                 final String identityProvider) {
         this.context = context;
         this.appWebDomain = appWebDomain;
         this.appId = appId;
@@ -144,6 +150,7 @@ public final class Auth {
         this.user.setUserHandler(userHandler);
         this.userPoolId = userPoolId;
         this.advancedSecurityDataCollectionFlag = advancedSecurityDataCollectionFlag;
+        this.identityProvider = identityProvider;
         getCurrentUser();
     }
 
@@ -197,6 +204,11 @@ public final class Auth {
          * User Pool id for the userPool.
          */
         private String mUserPoolId;
+
+        /**
+         * Identity Provider for the userPool.
+         */
+        private String mIdentityProvider;
 
         /**
          * Flag indicating if data collection for advanced security mode is enabled.
@@ -348,6 +360,20 @@ public final class Auth {
         }
 
         /**
+         * Sets the identity provider. This will change the hosted UI behavior to go directly to the specified social provider
+         * <p>
+         *     Optional. Set identity provider for social sign in.
+         * </p>
+         * @param mIdentityProvider Required: Scopes as a {@link Set<String>}.
+         * @return A reference to this builder.
+         */
+        @SuppressWarnings("checkstyle:hiddenfield")
+        public Builder setIdentityProvider(final String mIdentityProvider) {
+            this.mIdentityProvider = mIdentityProvider;
+            return this;
+        }
+
+        /**
          * Instantiates {@link Auth} with the set options.
          * @return {@link Auth}.
          */
@@ -362,8 +388,10 @@ public final class Auth {
                     this.mSignOutRedirect,
                     this.mScopes,
                     this.mUserHandler,
-                    this.mAdvancedSecurityDataCollectionFlag);
+                    this.mAdvancedSecurityDataCollectionFlag,
+                    this.mIdentityProvider);
         }
+
 
         /**
          * Checks if all required parameters are available to instantiate {@link Auth}.
@@ -487,6 +515,13 @@ public final class Auth {
      */
     public String getSignOutRedirectUri() {
         return signOutRedirectUri;
+    }
+
+    /**
+     * @return Identity Provider set for this {@link Auth} instance.
+     */
+    public String getIdentityProvider() {
+        return identityProvider;
     }
 
     /**

@@ -49,6 +49,12 @@ public class MessageRequest implements Serializable {
     private DirectMessageConfiguration messageConfiguration;
 
     /**
+     * A unique ID that you can use to trace a message. This ID is visible to
+     * recipients.
+     */
+    private String traceId;
+
+    /**
      * A map of key-value pairs, where each key is an address and each value is
      * an AddressConfiguration object. An address can be a push notification
      * token, a phone number, or an email address.
@@ -341,6 +347,45 @@ public class MessageRequest implements Serializable {
     }
 
     /**
+     * A unique ID that you can use to trace a message. This ID is visible to
+     * recipients.
+     *
+     * @return A unique ID that you can use to trace a message. This ID is
+     *         visible to recipients.
+     */
+    public String getTraceId() {
+        return traceId;
+    }
+
+    /**
+     * A unique ID that you can use to trace a message. This ID is visible to
+     * recipients.
+     *
+     * @param traceId A unique ID that you can use to trace a message. This ID
+     *            is visible to recipients.
+     */
+    public void setTraceId(String traceId) {
+        this.traceId = traceId;
+    }
+
+    /**
+     * A unique ID that you can use to trace a message. This ID is visible to
+     * recipients.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param traceId A unique ID that you can use to trace a message. This ID
+     *            is visible to recipients.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public MessageRequest withTraceId(String traceId) {
+        this.traceId = traceId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -358,7 +403,9 @@ public class MessageRequest implements Serializable {
         if (getEndpoints() != null)
             sb.append("Endpoints: " + getEndpoints() + ",");
         if (getMessageConfiguration() != null)
-            sb.append("MessageConfiguration: " + getMessageConfiguration());
+            sb.append("MessageConfiguration: " + getMessageConfiguration() + ",");
+        if (getTraceId() != null)
+            sb.append("TraceId: " + getTraceId());
         sb.append("}");
         return sb.toString();
     }
@@ -373,6 +420,7 @@ public class MessageRequest implements Serializable {
         hashCode = prime * hashCode + ((getEndpoints() == null) ? 0 : getEndpoints().hashCode());
         hashCode = prime * hashCode
                 + ((getMessageConfiguration() == null) ? 0 : getMessageConfiguration().hashCode());
+        hashCode = prime * hashCode + ((getTraceId() == null) ? 0 : getTraceId().hashCode());
         return hashCode;
     }
 
@@ -405,6 +453,10 @@ public class MessageRequest implements Serializable {
             return false;
         if (other.getMessageConfiguration() != null
                 && other.getMessageConfiguration().equals(this.getMessageConfiguration()) == false)
+            return false;
+        if (other.getTraceId() == null ^ this.getTraceId() == null)
+            return false;
+        if (other.getTraceId() != null && other.getTraceId().equals(this.getTraceId()) == false)
             return false;
         return true;
     }

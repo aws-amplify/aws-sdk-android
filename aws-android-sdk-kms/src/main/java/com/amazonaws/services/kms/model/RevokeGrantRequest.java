@@ -26,7 +26,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * To perform this operation on a CMK in a different AWS account, specify the
- * key ARN in the value of the KeyId parameter.
+ * key ARN in the value of the <code>KeyId</code> parameter.
  * </p>
  */
 public class RevokeGrantRequest extends AmazonWebServiceRequest implements Serializable {

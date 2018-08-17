@@ -1229,7 +1229,7 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Deletes endpoints associated with an user id.
+     * Deletes endpoints that are associated with a User ID.
      * 
      * @param deleteUserEndpointsRequest
      * @return deleteUserEndpointsResult The response from the
@@ -2780,7 +2780,8 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Returns information about the endpoints associated with an user id.
+     * Returns information about the endpoints that are associated with a User
+     * ID.
      * 
      * @param getUserEndpointsRequest
      * @return getUserEndpointsResult The response from the GetUserEndpoints
@@ -2930,6 +2931,56 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
+     * Use to record events for endpoints. This method creates events and
+     * creates or updates the endpoints that those events are associated with.
+     * 
+     * @param putEventsRequest
+     * @return putEventsResult The response from the PutEvents service method,
+     *         as returned by AmazonPinpoint.
+     * @throws BadRequestException 400 response
+     * @throws InternalServerErrorException 500 response
+     * @throws ForbiddenException 403 response
+     * @throws NotFoundException 404 response
+     * @throws MethodNotAllowedException 405 response
+     * @throws TooManyRequestsException 429 response
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AmazonPinpoint indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public PutEventsResult putEvents(PutEventsRequest putEventsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(putEventsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<PutEventsRequest> request = null;
+        Response<PutEventsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new PutEventsRequestMarshaller().marshall(putEventsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<PutEventsResult, JsonUnmarshallerContext> unmarshaller = new PutEventsResultJsonUnmarshaller();
+            JsonResponseHandler<PutEventsResult> responseHandler = new JsonResponseHandler<PutEventsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
      * Used to remove the attributes for an app
      * 
      * @param removeAttributesRequest
@@ -2979,15 +3030,7 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Use this resource to send a direct message, which is a one time message
-     * that you send to a limited audience without creating a campaign. You can
-     * send the message to up to 100 recipients. You cannot use the message to
-     * engage a segment. When you send the message, Amazon Pinpoint delivers it
-     * immediately, and you cannot schedule the delivery. To engage a user
-     * segment, and to schedule the message delivery, create a campaign instead
-     * of sending a direct message. You can send a direct message as a push
-     * notification to your mobile app or as an SMS message to SMS-enabled
-     * devices.
+     * Used to send a direct message.
      * 
      * @param sendMessagesRequest
      * @return sendMessagesResult The response from the SendMessages service
@@ -3036,24 +3079,7 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Use this resource to message a list of users. Amazon Pinpoint sends the
-     * message to all of the endpoints that are associated with each user. A
-     * user represents an individual who is assigned a unique user ID, and this
-     * ID is assigned to one or more endpoints. For example, if an individual
-     * uses your app on multiple devices, your app could assign that person's
-     * user ID to the endpoint for each device. With the users-messages
-     * resource, you specify the message recipients as user IDs. For each user
-     * ID, Amazon Pinpoint delivers the message to all of the user's endpoints.
-     * Within the body of your request, you can specify a default message, and
-     * you can tailor your message for different channels, including those for
-     * mobile push and SMS. With this resource, you send a direct message, which
-     * is a one time message that you send to a limited audience without
-     * creating a campaign. You can send the message to up to 100 users per
-     * request. You cannot use the message to engage a segment. When you send
-     * the message, Amazon Pinpoint delivers it immediately, and you cannot
-     * schedule the delivery. To engage a user segment, and to schedule the
-     * message delivery, create a campaign instead of using the users-messages
-     * resource.
+     * Used to send a message to a list of users.
      * 
      * @param sendUsersMessagesRequest
      * @return sendUsersMessagesResult The response from the SendUsersMessages
@@ -3713,7 +3739,7 @@ public class AmazonPinpointClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
-     * Use to update a segment.
+     * Used to update a segment.
      * 
      * @param updateSegmentRequest
      * @return updateSegmentResult The response from the UpdateSegment service

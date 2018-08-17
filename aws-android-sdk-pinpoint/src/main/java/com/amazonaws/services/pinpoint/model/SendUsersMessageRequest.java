@@ -36,6 +36,12 @@ public class SendUsersMessageRequest implements Serializable {
     private DirectMessageConfiguration messageConfiguration;
 
     /**
+     * A unique ID that you can use to trace a message. This ID is visible to
+     * recipients.
+     */
+    private String traceId;
+
+    /**
      * A map that associates user IDs with EndpointSendConfiguration objects.
      * Within an EndpointSendConfiguration object, you can tailor the message
      * for a user by specifying message overrides or substitutions.
@@ -174,6 +180,45 @@ public class SendUsersMessageRequest implements Serializable {
     }
 
     /**
+     * A unique ID that you can use to trace a message. This ID is visible to
+     * recipients.
+     *
+     * @return A unique ID that you can use to trace a message. This ID is
+     *         visible to recipients.
+     */
+    public String getTraceId() {
+        return traceId;
+    }
+
+    /**
+     * A unique ID that you can use to trace a message. This ID is visible to
+     * recipients.
+     *
+     * @param traceId A unique ID that you can use to trace a message. This ID
+     *            is visible to recipients.
+     */
+    public void setTraceId(String traceId) {
+        this.traceId = traceId;
+    }
+
+    /**
+     * A unique ID that you can use to trace a message. This ID is visible to
+     * recipients.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param traceId A unique ID that you can use to trace a message. This ID
+     *            is visible to recipients.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SendUsersMessageRequest withTraceId(String traceId) {
+        this.traceId = traceId;
+        return this;
+    }
+
+    /**
      * A map that associates user IDs with EndpointSendConfiguration objects.
      * Within an EndpointSendConfiguration object, you can tailor the message
      * for a user by specifying message overrides or substitutions.
@@ -271,6 +316,8 @@ public class SendUsersMessageRequest implements Serializable {
             sb.append("Context: " + getContext() + ",");
         if (getMessageConfiguration() != null)
             sb.append("MessageConfiguration: " + getMessageConfiguration() + ",");
+        if (getTraceId() != null)
+            sb.append("TraceId: " + getTraceId() + ",");
         if (getUsers() != null)
             sb.append("Users: " + getUsers());
         sb.append("}");
@@ -285,6 +332,7 @@ public class SendUsersMessageRequest implements Serializable {
         hashCode = prime * hashCode + ((getContext() == null) ? 0 : getContext().hashCode());
         hashCode = prime * hashCode
                 + ((getMessageConfiguration() == null) ? 0 : getMessageConfiguration().hashCode());
+        hashCode = prime * hashCode + ((getTraceId() == null) ? 0 : getTraceId().hashCode());
         hashCode = prime * hashCode + ((getUsers() == null) ? 0 : getUsers().hashCode());
         return hashCode;
     }
@@ -308,6 +356,10 @@ public class SendUsersMessageRequest implements Serializable {
             return false;
         if (other.getMessageConfiguration() != null
                 && other.getMessageConfiguration().equals(this.getMessageConfiguration()) == false)
+            return false;
+        if (other.getTraceId() == null ^ this.getTraceId() == null)
+            return false;
+        if (other.getTraceId() != null && other.getTraceId().equals(this.getTraceId()) == false)
             return false;
         if (other.getUsers() == null ^ this.getUsers() == null)
             return false;

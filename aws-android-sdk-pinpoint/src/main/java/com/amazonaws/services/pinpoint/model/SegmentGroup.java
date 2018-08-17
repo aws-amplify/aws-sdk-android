@@ -27,21 +27,29 @@ public class SegmentGroup implements Serializable {
     private java.util.List<SegmentDimensions> dimensions;
 
     /**
-     * Segments that define the source of this segment. Currently a maximum of 1
-     * import segment is supported.
+     * The base segment that you build your segment on. The source segment
+     * defines the starting "universe" of endpoints. When you add dimensions to
+     * the segment, it filters the source segment based on the dimensions that
+     * you specify. You can specify more than one dimensional segment. You can
+     * only specify one imported segment.
      */
     private java.util.List<SegmentReference> sourceSegments;
 
     /**
-     * Include or exclude the source.
+     * Specify how to handle multiple source segments. For example, if you
+     * specify three source segments, should the resulting segment be based on
+     * any or all of the segments? Acceptable values: ANY or ALL.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ALL, ANY
+     * <b>Allowed Values: </b>ALL, ANY, NONE
      */
     private String sourceType;
 
     /**
-     * How should the dimensions be applied for the result
+     * Specify how to handle multiple segment dimensions. For example, if you
+     * specify three dimensions, should the resulting segment include endpoints
+     * that are matched by all, any, or none of the dimensions? Acceptable
+     * values: ALL, ANY, or NONE.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ALL, ANY, NONE
@@ -107,22 +115,36 @@ public class SegmentGroup implements Serializable {
     }
 
     /**
-     * Segments that define the source of this segment. Currently a maximum of 1
-     * import segment is supported.
+     * The base segment that you build your segment on. The source segment
+     * defines the starting "universe" of endpoints. When you add dimensions to
+     * the segment, it filters the source segment based on the dimensions that
+     * you specify. You can specify more than one dimensional segment. You can
+     * only specify one imported segment.
      *
-     * @return Segments that define the source of this segment. Currently a
-     *         maximum of 1 import segment is supported.
+     * @return The base segment that you build your segment on. The source
+     *         segment defines the starting "universe" of endpoints. When you
+     *         add dimensions to the segment, it filters the source segment
+     *         based on the dimensions that you specify. You can specify more
+     *         than one dimensional segment. You can only specify one imported
+     *         segment.
      */
     public java.util.List<SegmentReference> getSourceSegments() {
         return sourceSegments;
     }
 
     /**
-     * Segments that define the source of this segment. Currently a maximum of 1
-     * import segment is supported.
+     * The base segment that you build your segment on. The source segment
+     * defines the starting "universe" of endpoints. When you add dimensions to
+     * the segment, it filters the source segment based on the dimensions that
+     * you specify. You can specify more than one dimensional segment. You can
+     * only specify one imported segment.
      *
-     * @param sourceSegments Segments that define the source of this segment.
-     *            Currently a maximum of 1 import segment is supported.
+     * @param sourceSegments The base segment that you build your segment on.
+     *            The source segment defines the starting "universe" of
+     *            endpoints. When you add dimensions to the segment, it filters
+     *            the source segment based on the dimensions that you specify.
+     *            You can specify more than one dimensional segment. You can
+     *            only specify one imported segment.
      */
     public void setSourceSegments(java.util.Collection<SegmentReference> sourceSegments) {
         if (sourceSegments == null) {
@@ -134,14 +156,21 @@ public class SegmentGroup implements Serializable {
     }
 
     /**
-     * Segments that define the source of this segment. Currently a maximum of 1
-     * import segment is supported.
+     * The base segment that you build your segment on. The source segment
+     * defines the starting "universe" of endpoints. When you add dimensions to
+     * the segment, it filters the source segment based on the dimensions that
+     * you specify. You can specify more than one dimensional segment. You can
+     * only specify one imported segment.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param sourceSegments Segments that define the source of this segment.
-     *            Currently a maximum of 1 import segment is supported.
+     * @param sourceSegments The base segment that you build your segment on.
+     *            The source segment defines the starting "universe" of
+     *            endpoints. When you add dimensions to the segment, it filters
+     *            the source segment based on the dimensions that you specify.
+     *            You can specify more than one dimensional segment. You can
+     *            only specify one imported segment.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -156,14 +185,21 @@ public class SegmentGroup implements Serializable {
     }
 
     /**
-     * Segments that define the source of this segment. Currently a maximum of 1
-     * import segment is supported.
+     * The base segment that you build your segment on. The source segment
+     * defines the starting "universe" of endpoints. When you add dimensions to
+     * the segment, it filters the source segment based on the dimensions that
+     * you specify. You can specify more than one dimensional segment. You can
+     * only specify one imported segment.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param sourceSegments Segments that define the source of this segment.
-     *            Currently a maximum of 1 import segment is supported.
+     * @param sourceSegments The base segment that you build your segment on.
+     *            The source segment defines the starting "universe" of
+     *            endpoints. When you add dimensions to the segment, it filters
+     *            the source segment based on the dimensions that you specify.
+     *            You can specify more than one dimensional segment. You can
+     *            only specify one imported segment.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -173,12 +209,17 @@ public class SegmentGroup implements Serializable {
     }
 
     /**
-     * Include or exclude the source.
+     * Specify how to handle multiple source segments. For example, if you
+     * specify three source segments, should the resulting segment be based on
+     * any or all of the segments? Acceptable values: ANY or ALL.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ALL, ANY
+     * <b>Allowed Values: </b>ALL, ANY, NONE
      *
-     * @return Include or exclude the source.
+     * @return Specify how to handle multiple source segments. For example, if
+     *         you specify three source segments, should the resulting segment
+     *         be based on any or all of the segments? Acceptable values: ANY or
+     *         ALL.
      * @see SourceType
      */
     public String getSourceType() {
@@ -186,12 +227,17 @@ public class SegmentGroup implements Serializable {
     }
 
     /**
-     * Include or exclude the source.
+     * Specify how to handle multiple source segments. For example, if you
+     * specify three source segments, should the resulting segment be based on
+     * any or all of the segments? Acceptable values: ANY or ALL.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ALL, ANY
+     * <b>Allowed Values: </b>ALL, ANY, NONE
      *
-     * @param sourceType Include or exclude the source.
+     * @param sourceType Specify how to handle multiple source segments. For
+     *            example, if you specify three source segments, should the
+     *            resulting segment be based on any or all of the segments?
+     *            Acceptable values: ANY or ALL.
      * @see SourceType
      */
     public void setSourceType(String sourceType) {
@@ -199,15 +245,20 @@ public class SegmentGroup implements Serializable {
     }
 
     /**
-     * Include or exclude the source.
+     * Specify how to handle multiple source segments. For example, if you
+     * specify three source segments, should the resulting segment be based on
+     * any or all of the segments? Acceptable values: ANY or ALL.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ALL, ANY
+     * <b>Allowed Values: </b>ALL, ANY, NONE
      *
-     * @param sourceType Include or exclude the source.
+     * @param sourceType Specify how to handle multiple source segments. For
+     *            example, if you specify three source segments, should the
+     *            resulting segment be based on any or all of the segments?
+     *            Acceptable values: ANY or ALL.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see SourceType
@@ -218,12 +269,17 @@ public class SegmentGroup implements Serializable {
     }
 
     /**
-     * Include or exclude the source.
+     * Specify how to handle multiple source segments. For example, if you
+     * specify three source segments, should the resulting segment be based on
+     * any or all of the segments? Acceptable values: ANY or ALL.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ALL, ANY
+     * <b>Allowed Values: </b>ALL, ANY, NONE
      *
-     * @param sourceType Include or exclude the source.
+     * @param sourceType Specify how to handle multiple source segments. For
+     *            example, if you specify three source segments, should the
+     *            resulting segment be based on any or all of the segments?
+     *            Acceptable values: ANY or ALL.
      * @see SourceType
      */
     public void setSourceType(SourceType sourceType) {
@@ -231,15 +287,20 @@ public class SegmentGroup implements Serializable {
     }
 
     /**
-     * Include or exclude the source.
+     * Specify how to handle multiple source segments. For example, if you
+     * specify three source segments, should the resulting segment be based on
+     * any or all of the segments? Acceptable values: ANY or ALL.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ALL, ANY
+     * <b>Allowed Values: </b>ALL, ANY, NONE
      *
-     * @param sourceType Include or exclude the source.
+     * @param sourceType Specify how to handle multiple source segments. For
+     *            example, if you specify three source segments, should the
+     *            resulting segment be based on any or all of the segments?
+     *            Acceptable values: ANY or ALL.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see SourceType
@@ -250,12 +311,18 @@ public class SegmentGroup implements Serializable {
     }
 
     /**
-     * How should the dimensions be applied for the result
+     * Specify how to handle multiple segment dimensions. For example, if you
+     * specify three dimensions, should the resulting segment include endpoints
+     * that are matched by all, any, or none of the dimensions? Acceptable
+     * values: ALL, ANY, or NONE.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ALL, ANY, NONE
      *
-     * @return How should the dimensions be applied for the result
+     * @return Specify how to handle multiple segment dimensions. For example,
+     *         if you specify three dimensions, should the resulting segment
+     *         include endpoints that are matched by all, any, or none of the
+     *         dimensions? Acceptable values: ALL, ANY, or NONE.
      * @see Type
      */
     public String getType() {
@@ -263,12 +330,18 @@ public class SegmentGroup implements Serializable {
     }
 
     /**
-     * How should the dimensions be applied for the result
+     * Specify how to handle multiple segment dimensions. For example, if you
+     * specify three dimensions, should the resulting segment include endpoints
+     * that are matched by all, any, or none of the dimensions? Acceptable
+     * values: ALL, ANY, or NONE.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ALL, ANY, NONE
      *
-     * @param type How should the dimensions be applied for the result
+     * @param type Specify how to handle multiple segment dimensions. For
+     *            example, if you specify three dimensions, should the resulting
+     *            segment include endpoints that are matched by all, any, or
+     *            none of the dimensions? Acceptable values: ALL, ANY, or NONE.
      * @see Type
      */
     public void setType(String type) {
@@ -276,7 +349,10 @@ public class SegmentGroup implements Serializable {
     }
 
     /**
-     * How should the dimensions be applied for the result
+     * Specify how to handle multiple segment dimensions. For example, if you
+     * specify three dimensions, should the resulting segment include endpoints
+     * that are matched by all, any, or none of the dimensions? Acceptable
+     * values: ALL, ANY, or NONE.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -284,7 +360,10 @@ public class SegmentGroup implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ALL, ANY, NONE
      *
-     * @param type How should the dimensions be applied for the result
+     * @param type Specify how to handle multiple segment dimensions. For
+     *            example, if you specify three dimensions, should the resulting
+     *            segment include endpoints that are matched by all, any, or
+     *            none of the dimensions? Acceptable values: ALL, ANY, or NONE.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Type
@@ -295,12 +374,18 @@ public class SegmentGroup implements Serializable {
     }
 
     /**
-     * How should the dimensions be applied for the result
+     * Specify how to handle multiple segment dimensions. For example, if you
+     * specify three dimensions, should the resulting segment include endpoints
+     * that are matched by all, any, or none of the dimensions? Acceptable
+     * values: ALL, ANY, or NONE.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ALL, ANY, NONE
      *
-     * @param type How should the dimensions be applied for the result
+     * @param type Specify how to handle multiple segment dimensions. For
+     *            example, if you specify three dimensions, should the resulting
+     *            segment include endpoints that are matched by all, any, or
+     *            none of the dimensions? Acceptable values: ALL, ANY, or NONE.
      * @see Type
      */
     public void setType(Type type) {
@@ -308,7 +393,10 @@ public class SegmentGroup implements Serializable {
     }
 
     /**
-     * How should the dimensions be applied for the result
+     * Specify how to handle multiple segment dimensions. For example, if you
+     * specify three dimensions, should the resulting segment include endpoints
+     * that are matched by all, any, or none of the dimensions? Acceptable
+     * values: ALL, ANY, or NONE.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -316,7 +404,10 @@ public class SegmentGroup implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ALL, ANY, NONE
      *
-     * @param type How should the dimensions be applied for the result
+     * @param type Specify how to handle multiple segment dimensions. For
+     *            example, if you specify three dimensions, should the resulting
+     *            segment include endpoints that are matched by all, any, or
+     *            none of the dimensions? Acceptable values: ALL, ANY, or NONE.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Type

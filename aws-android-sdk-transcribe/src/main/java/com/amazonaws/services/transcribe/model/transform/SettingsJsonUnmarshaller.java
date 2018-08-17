@@ -44,6 +44,9 @@ class SettingsJsonUnmarshaller implements Unmarshaller<Settings, JsonUnmarshalle
             } else if (name.equals("MaxSpeakerLabels")) {
                 settings.setMaxSpeakerLabels(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ChannelIdentification")) {
+                settings.setChannelIdentification(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

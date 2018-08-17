@@ -22,47 +22,51 @@ import java.io.Serializable;
  */
 public class NumberValidateRequest implements Serializable {
     /**
-     * (Optional) The two-character ISO country code for the country where the
-     * phone number was originally registered.
+     * (Optional) The two-character ISO country code for the country or region
+     * where the phone number was originally registered.
      */
     private String isoCountryCode;
 
     /**
-     * The phone number to get information about.
+     * The phone number to get information about. The phone number that you
+     * provide should include a country code. If the number doesn't include a
+     * valid country code, the operation might result in an error.
      */
     private String phoneNumber;
 
     /**
-     * (Optional) The two-character ISO country code for the country where the
-     * phone number was originally registered.
+     * (Optional) The two-character ISO country code for the country or region
+     * where the phone number was originally registered.
      *
-     * @return (Optional) The two-character ISO country code for the country
-     *         where the phone number was originally registered.
+     * @return (Optional) The two-character ISO country code for the country or
+     *         region where the phone number was originally registered.
      */
     public String getIsoCountryCode() {
         return isoCountryCode;
     }
 
     /**
-     * (Optional) The two-character ISO country code for the country where the
-     * phone number was originally registered.
+     * (Optional) The two-character ISO country code for the country or region
+     * where the phone number was originally registered.
      *
      * @param isoCountryCode (Optional) The two-character ISO country code for
-     *            the country where the phone number was originally registered.
+     *            the country or region where the phone number was originally
+     *            registered.
      */
     public void setIsoCountryCode(String isoCountryCode) {
         this.isoCountryCode = isoCountryCode;
     }
 
     /**
-     * (Optional) The two-character ISO country code for the country where the
-     * phone number was originally registered.
+     * (Optional) The two-character ISO country code for the country or region
+     * where the phone number was originally registered.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param isoCountryCode (Optional) The two-character ISO country code for
-     *            the country where the phone number was originally registered.
+     *            the country or region where the phone number was originally
+     *            registered.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -72,30 +76,45 @@ public class NumberValidateRequest implements Serializable {
     }
 
     /**
-     * The phone number to get information about.
+     * The phone number to get information about. The phone number that you
+     * provide should include a country code. If the number doesn't include a
+     * valid country code, the operation might result in an error.
      *
-     * @return The phone number to get information about.
+     * @return The phone number to get information about. The phone number that
+     *         you provide should include a country code. If the number doesn't
+     *         include a valid country code, the operation might result in an
+     *         error.
      */
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
     /**
-     * The phone number to get information about.
+     * The phone number to get information about. The phone number that you
+     * provide should include a country code. If the number doesn't include a
+     * valid country code, the operation might result in an error.
      *
-     * @param phoneNumber The phone number to get information about.
+     * @param phoneNumber The phone number to get information about. The phone
+     *            number that you provide should include a country code. If the
+     *            number doesn't include a valid country code, the operation
+     *            might result in an error.
      */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
     /**
-     * The phone number to get information about.
+     * The phone number to get information about. The phone number that you
+     * provide should include a country code. If the number doesn't include a
+     * valid country code, the operation might result in an error.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param phoneNumber The phone number to get information about.
+     * @param phoneNumber The phone number to get information about. The phone
+     *            number that you provide should include a country code. If the
+     *            number doesn't include a valid country code, the operation
+     *            might result in an error.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

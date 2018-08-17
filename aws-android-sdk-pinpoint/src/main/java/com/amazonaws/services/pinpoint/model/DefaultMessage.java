@@ -18,7 +18,7 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Default Message across push notification, email, and sms.
+ * The default message to use across all channels.
  */
 public class DefaultMessage implements Serializable {
     /**

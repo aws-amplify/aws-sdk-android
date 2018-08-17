@@ -47,8 +47,14 @@ class BackupDetailsJsonUnmarshaller implements Unmarshaller<BackupDetails, JsonU
             } else if (name.equals("BackupStatus")) {
                 backupDetails.setBackupStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("BackupType")) {
+                backupDetails.setBackupType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("BackupCreationDateTime")) {
                 backupDetails.setBackupCreationDateTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("BackupExpiryDateTime")) {
+                backupDetails.setBackupExpiryDateTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

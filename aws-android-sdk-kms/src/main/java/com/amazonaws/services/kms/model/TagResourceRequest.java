@@ -21,20 +21,16 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Adds or overwrites one or more tags for the specified customer master key
- * (CMK). You cannot perform this operation on a CMK in a different AWS account.
+ * Adds or edits tags for a customer master key (CMK). You cannot perform this
+ * operation on a CMK in a different AWS account.
  * </p>
  * <p>
  * Each tag consists of a tag key and a tag value. Tag keys and tag values are
  * both required, but tag values can be empty (null) strings.
  * </p>
  * <p>
- * You cannot use the same tag key more than once per CMK. For example, consider
- * a CMK with one tag whose tag key is <code>Purpose</code> and tag value is
- * <code>Test</code>. If you send a <code>TagResource</code> request for this
- * CMK with a tag key of <code>Purpose</code> and a tag value of
- * <code>Prod</code>, it does not create a second tag. Instead, the original tag
- * is overwritten with the new tag value.
+ * You can only use a tag key once for each CMK. If you use the tag key again,
+ * AWS KMS replaces the current tag value with the specified value.
  * </p>
  * <p>
  * For information about the rules that apply to tag keys and tag values, see <a
@@ -42,6 +38,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * "http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html"
  * >User-Defined Tag Restrictions</a> in the <i>AWS Billing and Cost Management
  * User Guide</i>.
+ * </p>
+ * <p>
+ * The result of this operation varies with the key state of the CMK. For
+ * details, see <a
+ * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+ * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
+ * Management Service Developer Guide</i>.
  * </p>
  */
 public class TagResourceRequest extends AmazonWebServiceRequest implements Serializable {

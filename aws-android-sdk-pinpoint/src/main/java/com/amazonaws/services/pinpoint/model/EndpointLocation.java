@@ -18,7 +18,7 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Endpoint location data
+ * Location data for the endpoint.
  */
 public class EndpointLocation implements Serializable {
     /**
@@ -27,19 +27,18 @@ public class EndpointLocation implements Serializable {
     private String city;
 
     /**
-     * Country according to ISO 3166-1 Alpha-2 codes. For example, US.
+     * The two-letter code for the country or region of the endpoint. Specified
+     * as an ISO 3166-1 Alpha-2 code, such as "US" for the United States.
      */
     private String country;
 
     /**
-     * The latitude of the endpoint location. Rounded to one decimal (Roughly
-     * corresponding to a mile).
+     * The latitude of the endpoint location, rounded to one decimal place.
      */
     private Double latitude;
 
     /**
-     * The longitude of the endpoint location. Rounded to one decimal (Roughly
-     * corresponding to a mile).
+     * The longitude of the endpoint location, rounded to one decimal place.
      */
     private Double longitude;
 
@@ -49,8 +48,8 @@ public class EndpointLocation implements Serializable {
     private String postalCode;
 
     /**
-     * The region of the endpoint location. For example, corresponds to a state
-     * in US.
+     * The region of the endpoint location. For example, in the United States,
+     * this corresponds to a state.
      */
     private String region;
 
@@ -88,32 +87,39 @@ public class EndpointLocation implements Serializable {
     }
 
     /**
-     * Country according to ISO 3166-1 Alpha-2 codes. For example, US.
+     * The two-letter code for the country or region of the endpoint. Specified
+     * as an ISO 3166-1 Alpha-2 code, such as "US" for the United States.
      *
-     * @return Country according to ISO 3166-1 Alpha-2 codes. For example, US.
+     * @return The two-letter code for the country or region of the endpoint.
+     *         Specified as an ISO 3166-1 Alpha-2 code, such as "US" for the
+     *         United States.
      */
     public String getCountry() {
         return country;
     }
 
     /**
-     * Country according to ISO 3166-1 Alpha-2 codes. For example, US.
+     * The two-letter code for the country or region of the endpoint. Specified
+     * as an ISO 3166-1 Alpha-2 code, such as "US" for the United States.
      *
-     * @param country Country according to ISO 3166-1 Alpha-2 codes. For
-     *            example, US.
+     * @param country The two-letter code for the country or region of the
+     *            endpoint. Specified as an ISO 3166-1 Alpha-2 code, such as
+     *            "US" for the United States.
      */
     public void setCountry(String country) {
         this.country = country;
     }
 
     /**
-     * Country according to ISO 3166-1 Alpha-2 codes. For example, US.
+     * The two-letter code for the country or region of the endpoint. Specified
+     * as an ISO 3166-1 Alpha-2 code, such as "US" for the United States.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param country Country according to ISO 3166-1 Alpha-2 codes. For
-     *            example, US.
+     * @param country The two-letter code for the country or region of the
+     *            endpoint. Specified as an ISO 3166-1 Alpha-2 code, such as
+     *            "US" for the United States.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -123,36 +129,33 @@ public class EndpointLocation implements Serializable {
     }
 
     /**
-     * The latitude of the endpoint location. Rounded to one decimal (Roughly
-     * corresponding to a mile).
+     * The latitude of the endpoint location, rounded to one decimal place.
      *
-     * @return The latitude of the endpoint location. Rounded to one decimal
-     *         (Roughly corresponding to a mile).
+     * @return The latitude of the endpoint location, rounded to one decimal
+     *         place.
      */
     public Double getLatitude() {
         return latitude;
     }
 
     /**
-     * The latitude of the endpoint location. Rounded to one decimal (Roughly
-     * corresponding to a mile).
+     * The latitude of the endpoint location, rounded to one decimal place.
      *
-     * @param latitude The latitude of the endpoint location. Rounded to one
-     *            decimal (Roughly corresponding to a mile).
+     * @param latitude The latitude of the endpoint location, rounded to one
+     *            decimal place.
      */
     public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
     /**
-     * The latitude of the endpoint location. Rounded to one decimal (Roughly
-     * corresponding to a mile).
+     * The latitude of the endpoint location, rounded to one decimal place.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param latitude The latitude of the endpoint location. Rounded to one
-     *            decimal (Roughly corresponding to a mile).
+     * @param latitude The latitude of the endpoint location, rounded to one
+     *            decimal place.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -162,36 +165,33 @@ public class EndpointLocation implements Serializable {
     }
 
     /**
-     * The longitude of the endpoint location. Rounded to one decimal (Roughly
-     * corresponding to a mile).
+     * The longitude of the endpoint location, rounded to one decimal place.
      *
-     * @return The longitude of the endpoint location. Rounded to one decimal
-     *         (Roughly corresponding to a mile).
+     * @return The longitude of the endpoint location, rounded to one decimal
+     *         place.
      */
     public Double getLongitude() {
         return longitude;
     }
 
     /**
-     * The longitude of the endpoint location. Rounded to one decimal (Roughly
-     * corresponding to a mile).
+     * The longitude of the endpoint location, rounded to one decimal place.
      *
-     * @param longitude The longitude of the endpoint location. Rounded to one
-     *            decimal (Roughly corresponding to a mile).
+     * @param longitude The longitude of the endpoint location, rounded to one
+     *            decimal place.
      */
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
     /**
-     * The longitude of the endpoint location. Rounded to one decimal (Roughly
-     * corresponding to a mile).
+     * The longitude of the endpoint location, rounded to one decimal place.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param longitude The longitude of the endpoint location. Rounded to one
-     *            decimal (Roughly corresponding to a mile).
+     * @param longitude The longitude of the endpoint location, rounded to one
+     *            decimal place.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -234,36 +234,36 @@ public class EndpointLocation implements Serializable {
     }
 
     /**
-     * The region of the endpoint location. For example, corresponds to a state
-     * in US.
+     * The region of the endpoint location. For example, in the United States,
+     * this corresponds to a state.
      *
-     * @return The region of the endpoint location. For example, corresponds to
-     *         a state in US.
+     * @return The region of the endpoint location. For example, in the United
+     *         States, this corresponds to a state.
      */
     public String getRegion() {
         return region;
     }
 
     /**
-     * The region of the endpoint location. For example, corresponds to a state
-     * in US.
+     * The region of the endpoint location. For example, in the United States,
+     * this corresponds to a state.
      *
-     * @param region The region of the endpoint location. For example,
-     *            corresponds to a state in US.
+     * @param region The region of the endpoint location. For example, in the
+     *            United States, this corresponds to a state.
      */
     public void setRegion(String region) {
         this.region = region;
     }
 
     /**
-     * The region of the endpoint location. For example, corresponds to a state
-     * in US.
+     * The region of the endpoint location. For example, in the United States,
+     * this corresponds to a state.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param region The region of the endpoint location. For example,
-     *            corresponds to a state in US.
+     * @param region The region of the endpoint location. For example, in the
+     *            United States, this corresponds to a state.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

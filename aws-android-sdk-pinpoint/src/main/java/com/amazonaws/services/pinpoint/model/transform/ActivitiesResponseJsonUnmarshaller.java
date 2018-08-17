@@ -41,6 +41,9 @@ class ActivitiesResponseJsonUnmarshaller implements
                         ActivityResponseJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("NextToken")) {
+                activitiesResponse.setNextToken(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -84,6 +84,11 @@ public class ListBackupsRequestMarshaller implements
                 jsonWriter.name("ExclusiveStartBackupArn");
                 jsonWriter.value(exclusiveStartBackupArn);
             }
+            if (listBackupsRequest.getBackupType() != null) {
+                String backupType = listBackupsRequest.getBackupType();
+                jsonWriter.name("BackupType");
+                jsonWriter.value(backupType);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

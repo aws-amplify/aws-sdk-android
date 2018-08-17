@@ -22,7 +22,7 @@ import java.io.Serializable;
  */
 public class ExportJobResponse implements Serializable {
     /**
-     * The unique ID of the application to which the job applies.
+     * The unique ID of the application associated with the export job.
      */
     private String applicationId;
 
@@ -97,32 +97,32 @@ public class ExportJobResponse implements Serializable {
     private String type;
 
     /**
-     * The unique ID of the application to which the job applies.
+     * The unique ID of the application associated with the export job.
      *
-     * @return The unique ID of the application to which the job applies.
+     * @return The unique ID of the application associated with the export job.
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The unique ID of the application to which the job applies.
+     * The unique ID of the application associated with the export job.
      *
-     * @param applicationId The unique ID of the application to which the job
-     *            applies.
+     * @param applicationId The unique ID of the application associated with the
+     *            export job.
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The unique ID of the application to which the job applies.
+     * The unique ID of the application associated with the export job.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The unique ID of the application to which the job
-     *            applies.
+     * @param applicationId The unique ID of the application associated with the
+     *            export job.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

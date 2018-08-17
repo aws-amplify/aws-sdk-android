@@ -21,9 +21,18 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Enables automatic rotation of the key material for the specified customer
- * master key (CMK). You cannot perform this operation on a CMK in a different
- * AWS account.
+ * Enables <a href=
+ * "http://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html"
+ * >automatic rotation of the key material</a> for the specified customer master
+ * key (CMK). You cannot perform this operation on a CMK in a different AWS
+ * account.
+ * </p>
+ * <p>
+ * The result of this operation varies with the key state of the CMK. For
+ * details, see <a
+ * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+ * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
+ * Management Service Developer Guide</i>.
  * </p>
  */
 public class EnableKeyRotationRequest extends AmazonWebServiceRequest implements Serializable {

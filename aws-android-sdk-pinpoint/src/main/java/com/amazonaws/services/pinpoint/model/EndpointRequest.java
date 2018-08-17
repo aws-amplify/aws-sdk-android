@@ -26,7 +26,7 @@ public class EndpointRequest implements Serializable {
      * varies by channel. For mobile push channels, use the token provided by
      * the push notification service, such as the APNs device token or the FCM
      * registration token. For the SMS channel, use a phone number in E.164
-     * format, such as +1206XXX5550100. For the email channel, use an email
+     * format, such as +12065550100. For the email channel, use an email
      * address.
      */
     private String address;
@@ -54,12 +54,13 @@ public class EndpointRequest implements Serializable {
     private String channelType;
 
     /**
-     * The endpoint demographic attributes.
+     * Demographic attributes for the endpoint.
      */
     private EndpointDemographic demographic;
 
     /**
-     * The last time the endpoint was updated. Provided in ISO 8601 format.
+     * The date and time when the endpoint was updated, shown in ISO 8601
+     * format.
      */
     private String effectiveDate;
 
@@ -100,15 +101,15 @@ public class EndpointRequest implements Serializable {
      * varies by channel. For mobile push channels, use the token provided by
      * the push notification service, such as the APNs device token or the FCM
      * registration token. For the SMS channel, use a phone number in E.164
-     * format, such as +1206XXX5550100. For the email channel, use an email
+     * format, such as +12065550100. For the email channel, use an email
      * address.
      *
      * @return The destination for messages that you send to this endpoint. The
      *         address varies by channel. For mobile push channels, use the
      *         token provided by the push notification service, such as the APNs
      *         device token or the FCM registration token. For the SMS channel,
-     *         use a phone number in E.164 format, such as +1206XXX5550100. For
-     *         the email channel, use an email address.
+     *         use a phone number in E.164 format, such as +12065550100. For the
+     *         email channel, use an email address.
      */
     public String getAddress() {
         return address;
@@ -119,7 +120,7 @@ public class EndpointRequest implements Serializable {
      * varies by channel. For mobile push channels, use the token provided by
      * the push notification service, such as the APNs device token or the FCM
      * registration token. For the SMS channel, use a phone number in E.164
-     * format, such as +1206XXX5550100. For the email channel, use an email
+     * format, such as +12065550100. For the email channel, use an email
      * address.
      *
      * @param address The destination for messages that you send to this
@@ -127,7 +128,7 @@ public class EndpointRequest implements Serializable {
      *            channels, use the token provided by the push notification
      *            service, such as the APNs device token or the FCM registration
      *            token. For the SMS channel, use a phone number in E.164
-     *            format, such as +1206XXX5550100. For the email channel, use an
+     *            format, such as +12065550100. For the email channel, use an
      *            email address.
      */
     public void setAddress(String address) {
@@ -139,7 +140,7 @@ public class EndpointRequest implements Serializable {
      * varies by channel. For mobile push channels, use the token provided by
      * the push notification service, such as the APNs device token or the FCM
      * registration token. For the SMS channel, use a phone number in E.164
-     * format, such as +1206XXX5550100. For the email channel, use an email
+     * format, such as +12065550100. For the email channel, use an email
      * address.
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -150,7 +151,7 @@ public class EndpointRequest implements Serializable {
      *            channels, use the token provided by the push notification
      *            service, such as the APNs device token or the FCM registration
      *            token. For the SMS channel, use a phone number in E.164
-     *            format, such as +1206XXX5550100. For the email channel, use an
+     *            format, such as +12065550100. For the email channel, use an
      *            email address.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -379,30 +380,30 @@ public class EndpointRequest implements Serializable {
     }
 
     /**
-     * The endpoint demographic attributes.
+     * Demographic attributes for the endpoint.
      *
-     * @return The endpoint demographic attributes.
+     * @return Demographic attributes for the endpoint.
      */
     public EndpointDemographic getDemographic() {
         return demographic;
     }
 
     /**
-     * The endpoint demographic attributes.
+     * Demographic attributes for the endpoint.
      *
-     * @param demographic The endpoint demographic attributes.
+     * @param demographic Demographic attributes for the endpoint.
      */
     public void setDemographic(EndpointDemographic demographic) {
         this.demographic = demographic;
     }
 
     /**
-     * The endpoint demographic attributes.
+     * Demographic attributes for the endpoint.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param demographic The endpoint demographic attributes.
+     * @param demographic Demographic attributes for the endpoint.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -412,33 +413,36 @@ public class EndpointRequest implements Serializable {
     }
 
     /**
-     * The last time the endpoint was updated. Provided in ISO 8601 format.
+     * The date and time when the endpoint was updated, shown in ISO 8601
+     * format.
      *
-     * @return The last time the endpoint was updated. Provided in ISO 8601
-     *         format.
+     * @return The date and time when the endpoint was updated, shown in ISO
+     *         8601 format.
      */
     public String getEffectiveDate() {
         return effectiveDate;
     }
 
     /**
-     * The last time the endpoint was updated. Provided in ISO 8601 format.
+     * The date and time when the endpoint was updated, shown in ISO 8601
+     * format.
      *
-     * @param effectiveDate The last time the endpoint was updated. Provided in
-     *            ISO 8601 format.
+     * @param effectiveDate The date and time when the endpoint was updated,
+     *            shown in ISO 8601 format.
      */
     public void setEffectiveDate(String effectiveDate) {
         this.effectiveDate = effectiveDate;
     }
 
     /**
-     * The last time the endpoint was updated. Provided in ISO 8601 format.
+     * The date and time when the endpoint was updated, shown in ISO 8601
+     * format.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param effectiveDate The last time the endpoint was updated. Provided in
-     *            ISO 8601 format.
+     * @param effectiveDate The date and time when the endpoint was updated,
+     *            shown in ISO 8601 format.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

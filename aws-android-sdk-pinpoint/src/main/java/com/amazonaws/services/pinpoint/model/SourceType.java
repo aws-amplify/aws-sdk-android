@@ -24,7 +24,8 @@ import java.util.Map;
 public enum SourceType {
 
     ALL("ALL"),
-    ANY("ANY");
+    ANY("ANY"),
+    NONE("NONE");
 
     private String value;
 
@@ -42,6 +43,7 @@ public enum SourceType {
         enumMap = new HashMap<String, SourceType>();
         enumMap.put("ALL", ALL);
         enumMap.put("ANY", ANY);
+        enumMap.put("NONE", NONE);
     }
 
     /**
