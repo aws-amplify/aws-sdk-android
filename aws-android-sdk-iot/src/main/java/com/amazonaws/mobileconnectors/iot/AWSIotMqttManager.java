@@ -305,7 +305,7 @@ public class AWSIotMqttManager {
      * @param attempts number of reconnects attempted automatically. Retry
      *            forever = -1.
      */
-    public void setMaxAutoReconnectAttepts(int attempts) {
+    public void setMaxAutoReconnectAttempts(int attempts) {
         if (attempts <= 0 && attempts != -1) {
             throw new IllegalArgumentException("Max reconnection attempts must be postive or -1");
         }
