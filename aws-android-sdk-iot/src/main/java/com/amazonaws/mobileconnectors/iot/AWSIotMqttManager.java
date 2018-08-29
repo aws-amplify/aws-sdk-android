@@ -304,6 +304,19 @@ public class AWSIotMqttManager {
      *
      * @param attempts number of reconnects attempted automatically. Retry
      *            forever = -1.
+     *
+     * @deprecated This method contains a spelling mistake. Recommended to use {@link #setMaxAutoReconnectAttempts(int)}.
+     */
+    @Deprecated
+    public void setMaxAutoReconnectAttepts(int attempts) {
+        setMaxAutoReconnectAttempts(attempts);
+    }
+
+    /**
+     * Set the maximum reconnects attempted automatically before quitting.
+     *
+     * @param attempts number of reconnects attempted automatically. Retry
+     *            forever = -1.
      */
     public void setMaxAutoReconnectAttempts(int attempts) {
         if (attempts <= 0 && attempts != -1) {
