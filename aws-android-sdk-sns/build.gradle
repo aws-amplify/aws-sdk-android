@@ -3,8 +3,8 @@ apply plugin: 'java-library'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile project(":aws-android-sdk-core")
-    compile project(":aws-android-sdk-sqs")
+    api project(":aws-android-sdk-core")
+    api project(":aws-android-sdk-sqs")
 }
 
 sourceCompatibility = "1.7"
