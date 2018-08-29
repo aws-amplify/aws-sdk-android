@@ -300,7 +300,7 @@ public class AWSIotMqttManager {
     }
 
     /**
-     * Set the maxium reconnects attempted automatically before quitting.
+     * Set the maximum reconnects attempted automatically before quitting.
      *
      * @param attempts number of reconnects attempted automatically. Retry
      *            forever = -1.
