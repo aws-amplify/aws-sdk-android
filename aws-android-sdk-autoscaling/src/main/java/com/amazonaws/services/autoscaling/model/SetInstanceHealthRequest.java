@@ -25,8 +25,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html"
- * >Health Checks</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+ * "http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html"
+ * >Health Checks</a> in the <i>Auto Scaling User Guide</i>.
  * </p>
  */
 public class SetInstanceHealthRequest extends AmazonWebServiceRequest implements Serializable {
@@ -46,8 +46,8 @@ public class SetInstanceHealthRequest extends AmazonWebServiceRequest implements
      * <p>
      * The health status of the instance. Set to <code>Healthy</code> if you
      * want the instance to remain in service. Set to <code>Unhealthy</code> if
-     * you want the instance to be out of service. Amazon EC2 Auto Scaling will
-     * terminate and replace the unhealthy instance.
+     * you want the instance to be out of service. Auto Scaling will terminate
+     * and replace the unhealthy instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -136,8 +136,8 @@ public class SetInstanceHealthRequest extends AmazonWebServiceRequest implements
      * <p>
      * The health status of the instance. Set to <code>Healthy</code> if you
      * want the instance to remain in service. Set to <code>Unhealthy</code> if
-     * you want the instance to be out of service. Amazon EC2 Auto Scaling will
-     * terminate and replace the unhealthy instance.
+     * you want the instance to be out of service. Auto Scaling will terminate
+     * and replace the unhealthy instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -149,8 +149,8 @@ public class SetInstanceHealthRequest extends AmazonWebServiceRequest implements
      *         The health status of the instance. Set to <code>Healthy</code> if
      *         you want the instance to remain in service. Set to
      *         <code>Unhealthy</code> if you want the instance to be out of
-     *         service. Amazon EC2 Auto Scaling will terminate and replace the
-     *         unhealthy instance.
+     *         service. Auto Scaling will terminate and replace the unhealthy
+     *         instance.
      *         </p>
      */
     public String getHealthStatus() {
@@ -161,8 +161,8 @@ public class SetInstanceHealthRequest extends AmazonWebServiceRequest implements
      * <p>
      * The health status of the instance. Set to <code>Healthy</code> if you
      * want the instance to remain in service. Set to <code>Unhealthy</code> if
-     * you want the instance to be out of service. Amazon EC2 Auto Scaling will
-     * terminate and replace the unhealthy instance.
+     * you want the instance to be out of service. Auto Scaling will terminate
+     * and replace the unhealthy instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -174,8 +174,8 @@ public class SetInstanceHealthRequest extends AmazonWebServiceRequest implements
      *            The health status of the instance. Set to <code>Healthy</code>
      *            if you want the instance to remain in service. Set to
      *            <code>Unhealthy</code> if you want the instance to be out of
-     *            service. Amazon EC2 Auto Scaling will terminate and replace
-     *            the unhealthy instance.
+     *            service. Auto Scaling will terminate and replace the unhealthy
+     *            instance.
      *            </p>
      */
     public void setHealthStatus(String healthStatus) {
@@ -186,8 +186,8 @@ public class SetInstanceHealthRequest extends AmazonWebServiceRequest implements
      * <p>
      * The health status of the instance. Set to <code>Healthy</code> if you
      * want the instance to remain in service. Set to <code>Unhealthy</code> if
-     * you want the instance to be out of service. Amazon EC2 Auto Scaling will
-     * terminate and replace the unhealthy instance.
+     * you want the instance to be out of service. Auto Scaling will terminate
+     * and replace the unhealthy instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -202,8 +202,8 @@ public class SetInstanceHealthRequest extends AmazonWebServiceRequest implements
      *            The health status of the instance. Set to <code>Healthy</code>
      *            if you want the instance to remain in service. Set to
      *            <code>Unhealthy</code> if you want the instance to be out of
-     *            service. Amazon EC2 Auto Scaling will terminate and replace
-     *            the unhealthy instance.
+     *            service. Auto Scaling will terminate and replace the unhealthy
+     *            instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -84,8 +84,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
-     * >Dynamic Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-scale-based-on-demand.html"
+     * >Dynamic Scaling</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -143,8 +143,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     * >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      */
     private Integer cooldown;
@@ -410,8 +410,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
-     * >Dynamic Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-scale-based-on-demand.html"
+     * >Dynamic Scaling</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -430,9 +430,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
-     *         >Dynamic Scaling</a> in the <i>Amazon EC2 Auto Scaling User
-     *         Guide</i>.
+     *         "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-scale-based-on-demand.html"
+     *         >Dynamic Scaling</a> in the <i>Auto Scaling User Guide</i>.
      *         </p>
      */
     public String getAdjustmentType() {
@@ -450,8 +449,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
-     * >Dynamic Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-scale-based-on-demand.html"
+     * >Dynamic Scaling</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -470,9 +469,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
-     *            >Dynamic Scaling</a> in the <i>Amazon EC2 Auto Scaling User
-     *            Guide</i>.
+     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-scale-based-on-demand.html"
+     *            >Dynamic Scaling</a> in the <i>Auto Scaling User Guide</i>.
      *            </p>
      */
     public void setAdjustmentType(String adjustmentType) {
@@ -490,8 +488,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
-     * >Dynamic Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-scale-based-on-demand.html"
+     * >Dynamic Scaling</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -513,9 +511,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html"
-     *            >Dynamic Scaling</a> in the <i>Amazon EC2 Auto Scaling User
-     *            Guide</i>.
+     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-scale-based-on-demand.html"
+     *            >Dynamic Scaling</a> in the <i>Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -765,8 +762,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     * >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      *
      * @return <p>
@@ -781,8 +778,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     *         >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User
+     *         "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     *         >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User
      *         Guide</i>.
      *         </p>
      */
@@ -802,8 +799,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     * >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      *
      * @param cooldown <p>
@@ -818,8 +815,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     *            >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User
+     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     *            >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User
      *            Guide</i>.
      *            </p>
      */
@@ -839,8 +836,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     * >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     * >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -858,8 +855,8 @@ public class PutScalingPolicyRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     *            >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User
+     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/Cooldown.html"
+     *            >Auto Scaling Cooldowns</a> in the <i>Auto Scaling User
      *            Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

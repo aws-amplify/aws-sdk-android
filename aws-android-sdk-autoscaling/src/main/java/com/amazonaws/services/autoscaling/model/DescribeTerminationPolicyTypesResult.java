@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class DescribeTerminationPolicyTypesResult implements Serializable {
     /**
      * <p>
-     * The termination policies supported by Amazon EC2 Auto Scaling (
+     * The termination policies supported by Auto Scaling (
      * <code>OldestInstance</code>, <code>OldestLaunchConfiguration</code>,
      * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>, and
      * <code>Default</code>).
@@ -30,14 +30,14 @@ public class DescribeTerminationPolicyTypesResult implements Serializable {
 
     /**
      * <p>
-     * The termination policies supported by Amazon EC2 Auto Scaling (
+     * The termination policies supported by Auto Scaling (
      * <code>OldestInstance</code>, <code>OldestLaunchConfiguration</code>,
      * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>, and
      * <code>Default</code>).
      * </p>
      *
      * @return <p>
-     *         The termination policies supported by Amazon EC2 Auto Scaling (
+     *         The termination policies supported by Auto Scaling (
      *         <code>OldestInstance</code>,
      *         <code>OldestLaunchConfiguration</code>,
      *         <code>NewestInstance</code>,
@@ -51,15 +51,15 @@ public class DescribeTerminationPolicyTypesResult implements Serializable {
 
     /**
      * <p>
-     * The termination policies supported by Amazon EC2 Auto Scaling (
+     * The termination policies supported by Auto Scaling (
      * <code>OldestInstance</code>, <code>OldestLaunchConfiguration</code>,
      * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>, and
      * <code>Default</code>).
      * </p>
      *
      * @param terminationPolicyTypes <p>
-     *            The termination policies supported by Amazon EC2 Auto Scaling
-     *            (<code>OldestInstance</code>,
+     *            The termination policies supported by Auto Scaling (
+     *            <code>OldestInstance</code>,
      *            <code>OldestLaunchConfiguration</code>,
      *            <code>NewestInstance</code>,
      *            <code>ClosestToNextInstanceHour</code>, and
@@ -77,7 +77,7 @@ public class DescribeTerminationPolicyTypesResult implements Serializable {
 
     /**
      * <p>
-     * The termination policies supported by Amazon EC2 Auto Scaling (
+     * The termination policies supported by Auto Scaling (
      * <code>OldestInstance</code>, <code>OldestLaunchConfiguration</code>,
      * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>, and
      * <code>Default</code>).
@@ -87,8 +87,8 @@ public class DescribeTerminationPolicyTypesResult implements Serializable {
      * together.
      *
      * @param terminationPolicyTypes <p>
-     *            The termination policies supported by Amazon EC2 Auto Scaling
-     *            (<code>OldestInstance</code>,
+     *            The termination policies supported by Auto Scaling (
+     *            <code>OldestInstance</code>,
      *            <code>OldestLaunchConfiguration</code>,
      *            <code>NewestInstance</code>,
      *            <code>ClosestToNextInstanceHour</code>, and
@@ -111,7 +111,7 @@ public class DescribeTerminationPolicyTypesResult implements Serializable {
 
     /**
      * <p>
-     * The termination policies supported by Amazon EC2 Auto Scaling (
+     * The termination policies supported by Auto Scaling (
      * <code>OldestInstance</code>, <code>OldestLaunchConfiguration</code>,
      * <code>NewestInstance</code>, <code>ClosestToNextInstanceHour</code>, and
      * <code>Default</code>).
@@ -121,8 +121,8 @@ public class DescribeTerminationPolicyTypesResult implements Serializable {
      * together.
      *
      * @param terminationPolicyTypes <p>
-     *            The termination policies supported by Amazon EC2 Auto Scaling
-     *            (<code>OldestInstance</code>,
+     *            The termination policies supported by Auto Scaling (
+     *            <code>OldestInstance</code>,
      *            <code>OldestLaunchConfiguration</code>,
      *            <code>NewestInstance</code>,
      *            <code>ClosestToNextInstanceHour</code>, and

@@ -35,8 +35,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * To remove instances from the Auto Scaling group before deleting it, call
  * <a>DetachInstances</a> with the list of instances and the option to decrement
- * the desired capacity so that Amazon EC2 Auto Scaling does not launch
- * replacement instances.
+ * the desired capacity so that Auto Scaling does not launch replacement
+ * instances.
  * </p>
  * <p>
  * To terminate all instances before deleting the Auto Scaling group, call

@@ -355,27 +355,6 @@ public interface AmazonRekognition {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * @param describeCollectionRequest
-     * @return describeCollectionResult The response from the DescribeCollection
-     *         service method, as returned by Amazon Rekognition.
-     * @throws InvalidParameterException
-     * @throws AccessDeniedException
-     * @throws InternalServerErrorException
-     * @throws ThrottlingException
-     * @throws ProvisionedThroughputExceededException
-     * @throws ResourceNotFoundException
-     * @throws AmazonClientException If any internal errors are encountered
-     *             inside the client while attempting to make the request or
-     *             handle the response. For example if a network connection is
-     *             not available.
-     * @throws AmazonServiceException If an error response is returned by Amazon
-     *             Rekognition indicating either a problem with the data in the
-     *             request, or a server side issue.
-     */
-    DescribeCollectionResult describeCollection(DescribeCollectionRequest describeCollectionRequest)
-            throws AmazonClientException, AmazonServiceException;
-
-    /**
      * <p>
      * Provides information about a stream processor created by . You can get
      * information about the input and output streams, the input parameters for
@@ -1169,7 +1148,7 @@ public interface AmazonRekognition {
      * assigned by the service for the input image. If you request all facial
      * attributes (using the <code>detectionAttributes</code> parameter, Amazon
      * Rekognition returns detailed facial attributes such as facial landmarks
-     * (for example, location of eye and mouth) and other facial attributes such
+     * (for example, location of eye and mount) and other facial attributes such
      * gender. If you provide the same image, specify the same collection, and
      * use the same external ID in the <code>IndexFaces</code> operation, Amazon
      * Rekognition doesn't save duplicate face metadata.
@@ -1656,7 +1635,7 @@ public interface AmazonRekognition {
      * topic is <code>SUCCEEDED</code>. If so, call and pass the job identifier
      * (<code>JobId</code>) from the initial call to
      * <code>StartFaceSearch</code>. For more information, see
-     * <a>procedure-person-search-videos</a>.
+     * <a>collections-search-person</a>.
      * </p>
      * 
      * @param startFaceSearchRequest

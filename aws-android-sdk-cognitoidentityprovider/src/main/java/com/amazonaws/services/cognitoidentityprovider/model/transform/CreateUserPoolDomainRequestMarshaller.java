@@ -70,13 +70,6 @@ public class CreateUserPoolDomainRequestMarshaller implements
                 jsonWriter.name("UserPoolId");
                 jsonWriter.value(userPoolId);
             }
-            if (createUserPoolDomainRequest.getCustomDomainConfig() != null) {
-                CustomDomainConfigType customDomainConfig = createUserPoolDomainRequest
-                        .getCustomDomainConfig();
-                jsonWriter.name("CustomDomainConfig");
-                CustomDomainConfigTypeJsonMarshaller.getInstance().marshall(customDomainConfig,
-                        jsonWriter);
-            }
 
             jsonWriter.endObject();
             jsonWriter.close();

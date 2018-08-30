@@ -29,19 +29,6 @@ public class CreateUserPoolDomainResultJsonUnmarshaller implements
     public CreateUserPoolDomainResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         CreateUserPoolDomainResult createUserPoolDomainResult = new CreateUserPoolDomainResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("CloudFrontDomain")) {
-                createUserPoolDomainResult.setCloudFrontDomain(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return createUserPoolDomainResult;
     }
 

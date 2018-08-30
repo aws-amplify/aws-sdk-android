@@ -26,7 +26,7 @@ import java.io.Serializable;
 public class ContinuousBackupsDescription implements Serializable {
     /**
      * <p>
-     * <code>ContinuousBackupsStatus</code> can be one of the following states:
+     * <code>ContinuousBackupsStatus</code> can be one of the following states :
      * ENABLED, DISABLED
      * </p>
      * <p>
@@ -45,7 +45,7 @@ public class ContinuousBackupsDescription implements Serializable {
 
     /**
      * <p>
-     * <code>ContinuousBackupsStatus</code> can be one of the following states:
+     * <code>ContinuousBackupsStatus</code> can be one of the following states :
      * ENABLED, DISABLED
      * </p>
      * <p>
@@ -54,7 +54,7 @@ public class ContinuousBackupsDescription implements Serializable {
      *
      * @return <p>
      *         <code>ContinuousBackupsStatus</code> can be one of the following
-     *         states: ENABLED, DISABLED
+     *         states : ENABLED, DISABLED
      *         </p>
      * @see ContinuousBackupsStatus
      */
@@ -64,7 +64,7 @@ public class ContinuousBackupsDescription implements Serializable {
 
     /**
      * <p>
-     * <code>ContinuousBackupsStatus</code> can be one of the following states:
+     * <code>ContinuousBackupsStatus</code> can be one of the following states :
      * ENABLED, DISABLED
      * </p>
      * <p>
@@ -73,7 +73,7 @@ public class ContinuousBackupsDescription implements Serializable {
      *
      * @param continuousBackupsStatus <p>
      *            <code>ContinuousBackupsStatus</code> can be one of the
-     *            following states: ENABLED, DISABLED
+     *            following states : ENABLED, DISABLED
      *            </p>
      * @see ContinuousBackupsStatus
      */
@@ -83,7 +83,7 @@ public class ContinuousBackupsDescription implements Serializable {
 
     /**
      * <p>
-     * <code>ContinuousBackupsStatus</code> can be one of the following states:
+     * <code>ContinuousBackupsStatus</code> can be one of the following states :
      * ENABLED, DISABLED
      * </p>
      * <p>
@@ -95,7 +95,7 @@ public class ContinuousBackupsDescription implements Serializable {
      *
      * @param continuousBackupsStatus <p>
      *            <code>ContinuousBackupsStatus</code> can be one of the
-     *            following states: ENABLED, DISABLED
+     *            following states : ENABLED, DISABLED
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -108,7 +108,7 @@ public class ContinuousBackupsDescription implements Serializable {
 
     /**
      * <p>
-     * <code>ContinuousBackupsStatus</code> can be one of the following states:
+     * <code>ContinuousBackupsStatus</code> can be one of the following states :
      * ENABLED, DISABLED
      * </p>
      * <p>
@@ -117,7 +117,7 @@ public class ContinuousBackupsDescription implements Serializable {
      *
      * @param continuousBackupsStatus <p>
      *            <code>ContinuousBackupsStatus</code> can be one of the
-     *            following states: ENABLED, DISABLED
+     *            following states : ENABLED, DISABLED
      *            </p>
      * @see ContinuousBackupsStatus
      */
@@ -127,7 +127,7 @@ public class ContinuousBackupsDescription implements Serializable {
 
     /**
      * <p>
-     * <code>ContinuousBackupsStatus</code> can be one of the following states:
+     * <code>ContinuousBackupsStatus</code> can be one of the following states :
      * ENABLED, DISABLED
      * </p>
      * <p>
@@ -139,7 +139,7 @@ public class ContinuousBackupsDescription implements Serializable {
      *
      * @param continuousBackupsStatus <p>
      *            <code>ContinuousBackupsStatus</code> can be one of the
-     *            following states: ENABLED, DISABLED
+     *            following states : ENABLED, DISABLED
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

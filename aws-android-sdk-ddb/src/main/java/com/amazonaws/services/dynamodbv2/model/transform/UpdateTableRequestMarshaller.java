@@ -104,11 +104,6 @@ public class UpdateTableRequestMarshaller implements
                 StreamSpecificationJsonMarshaller.getInstance().marshall(streamSpecification,
                         jsonWriter);
             }
-            if (updateTableRequest.getSSESpecification() != null) {
-                SSESpecification sSESpecification = updateTableRequest.getSSESpecification();
-                jsonWriter.name("SSESpecification");
-                SSESpecificationJsonMarshaller.getInstance().marshall(sSESpecification, jsonWriter);
-            }
 
             jsonWriter.endObject();
             jsonWriter.close();

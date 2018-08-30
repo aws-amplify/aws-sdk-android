@@ -38,8 +38,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ListBackupsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The backups from the table specified by <code>TableName</code> are
-     * listed.
+     * The backups from the table specified by TableName are listed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -90,26 +89,25 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The backups from the table specified by <code>BackupType</code> are
-     * listed.
+     * The backups from the table specified by BackupType are listed.
      * </p>
      * <p>
-     * Where <code>BackupType</code> can be:
+     * Where BackupType can be:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>USER</code> - On-demand backup created by you.
+     * <code>USER</code> - On demand backup created by you.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SYSTEM</code> - On-demand backup automatically created by DynamoDB.
+     * <code>SYSTEM</code> - On demand backup automatically created by DynamoDB.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ALL</code> - All types of on-demand backups (USER and SYSTEM).
+     * <code>ALL</code> - All types of on demand backups (USER and SYSTEM).
      * </p>
      * </li>
      * </ul>
@@ -121,8 +119,7 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The backups from the table specified by <code>TableName</code> are
-     * listed.
+     * The backups from the table specified by TableName are listed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -130,8 +127,7 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
      * @return <p>
-     *         The backups from the table specified by <code>TableName</code>
-     *         are listed.
+     *         The backups from the table specified by TableName are listed.
      *         </p>
      */
     public String getTableName() {
@@ -140,8 +136,7 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The backups from the table specified by <code>TableName</code> are
-     * listed.
+     * The backups from the table specified by TableName are listed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -149,8 +144,7 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
      * @param tableName <p>
-     *            The backups from the table specified by <code>TableName</code>
-     *            are listed.
+     *            The backups from the table specified by TableName are listed.
      *            </p>
      */
     public void setTableName(String tableName) {
@@ -159,8 +153,7 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The backups from the table specified by <code>TableName</code> are
-     * listed.
+     * The backups from the table specified by TableName are listed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -171,8 +164,7 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
      * @param tableName <p>
-     *            The backups from the table specified by <code>TableName</code>
-     *            are listed.
+     *            The backups from the table specified by TableName are listed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -421,26 +413,25 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The backups from the table specified by <code>BackupType</code> are
-     * listed.
+     * The backups from the table specified by BackupType are listed.
      * </p>
      * <p>
-     * Where <code>BackupType</code> can be:
+     * Where BackupType can be:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>USER</code> - On-demand backup created by you.
+     * <code>USER</code> - On demand backup created by you.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SYSTEM</code> - On-demand backup automatically created by DynamoDB.
+     * <code>SYSTEM</code> - On demand backup automatically created by DynamoDB.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ALL</code> - All types of on-demand backups (USER and SYSTEM).
+     * <code>ALL</code> - All types of on demand backups (USER and SYSTEM).
      * </p>
      * </li>
      * </ul>
@@ -449,27 +440,26 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
      * <b>Allowed Values: </b>USER, SYSTEM, ALL
      *
      * @return <p>
-     *         The backups from the table specified by <code>BackupType</code>
-     *         are listed.
+     *         The backups from the table specified by BackupType are listed.
      *         </p>
      *         <p>
-     *         Where <code>BackupType</code> can be:
+     *         Where BackupType can be:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>USER</code> - On-demand backup created by you.
+     *         <code>USER</code> - On demand backup created by you.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>SYSTEM</code> - On-demand backup automatically created by
+     *         <code>SYSTEM</code> - On demand backup automatically created by
      *         DynamoDB.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>ALL</code> - All types of on-demand backups (USER and
+     *         <code>ALL</code> - All types of on demand backups (USER and
      *         SYSTEM).
      *         </p>
      *         </li>
@@ -482,26 +472,25 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The backups from the table specified by <code>BackupType</code> are
-     * listed.
+     * The backups from the table specified by BackupType are listed.
      * </p>
      * <p>
-     * Where <code>BackupType</code> can be:
+     * Where BackupType can be:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>USER</code> - On-demand backup created by you.
+     * <code>USER</code> - On demand backup created by you.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SYSTEM</code> - On-demand backup automatically created by DynamoDB.
+     * <code>SYSTEM</code> - On demand backup automatically created by DynamoDB.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ALL</code> - All types of on-demand backups (USER and SYSTEM).
+     * <code>ALL</code> - All types of on demand backups (USER and SYSTEM).
      * </p>
      * </li>
      * </ul>
@@ -510,27 +499,26 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
      * <b>Allowed Values: </b>USER, SYSTEM, ALL
      *
      * @param backupType <p>
-     *            The backups from the table specified by
-     *            <code>BackupType</code> are listed.
+     *            The backups from the table specified by BackupType are listed.
      *            </p>
      *            <p>
-     *            Where <code>BackupType</code> can be:
+     *            Where BackupType can be:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>USER</code> - On-demand backup created by you.
+     *            <code>USER</code> - On demand backup created by you.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>SYSTEM</code> - On-demand backup automatically created
+     *            <code>SYSTEM</code> - On demand backup automatically created
      *            by DynamoDB.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ALL</code> - All types of on-demand backups (USER and
+     *            <code>ALL</code> - All types of on demand backups (USER and
      *            SYSTEM).
      *            </p>
      *            </li>
@@ -543,26 +531,25 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The backups from the table specified by <code>BackupType</code> are
-     * listed.
+     * The backups from the table specified by BackupType are listed.
      * </p>
      * <p>
-     * Where <code>BackupType</code> can be:
+     * Where BackupType can be:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>USER</code> - On-demand backup created by you.
+     * <code>USER</code> - On demand backup created by you.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SYSTEM</code> - On-demand backup automatically created by DynamoDB.
+     * <code>SYSTEM</code> - On demand backup automatically created by DynamoDB.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ALL</code> - All types of on-demand backups (USER and SYSTEM).
+     * <code>ALL</code> - All types of on demand backups (USER and SYSTEM).
      * </p>
      * </li>
      * </ul>
@@ -574,27 +561,26 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
      * <b>Allowed Values: </b>USER, SYSTEM, ALL
      *
      * @param backupType <p>
-     *            The backups from the table specified by
-     *            <code>BackupType</code> are listed.
+     *            The backups from the table specified by BackupType are listed.
      *            </p>
      *            <p>
-     *            Where <code>BackupType</code> can be:
+     *            Where BackupType can be:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>USER</code> - On-demand backup created by you.
+     *            <code>USER</code> - On demand backup created by you.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>SYSTEM</code> - On-demand backup automatically created
+     *            <code>SYSTEM</code> - On demand backup automatically created
      *            by DynamoDB.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ALL</code> - All types of on-demand backups (USER and
+     *            <code>ALL</code> - All types of on demand backups (USER and
      *            SYSTEM).
      *            </p>
      *            </li>
@@ -610,26 +596,25 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The backups from the table specified by <code>BackupType</code> are
-     * listed.
+     * The backups from the table specified by BackupType are listed.
      * </p>
      * <p>
-     * Where <code>BackupType</code> can be:
+     * Where BackupType can be:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>USER</code> - On-demand backup created by you.
+     * <code>USER</code> - On demand backup created by you.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SYSTEM</code> - On-demand backup automatically created by DynamoDB.
+     * <code>SYSTEM</code> - On demand backup automatically created by DynamoDB.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ALL</code> - All types of on-demand backups (USER and SYSTEM).
+     * <code>ALL</code> - All types of on demand backups (USER and SYSTEM).
      * </p>
      * </li>
      * </ul>
@@ -638,27 +623,26 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
      * <b>Allowed Values: </b>USER, SYSTEM, ALL
      *
      * @param backupType <p>
-     *            The backups from the table specified by
-     *            <code>BackupType</code> are listed.
+     *            The backups from the table specified by BackupType are listed.
      *            </p>
      *            <p>
-     *            Where <code>BackupType</code> can be:
+     *            Where BackupType can be:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>USER</code> - On-demand backup created by you.
+     *            <code>USER</code> - On demand backup created by you.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>SYSTEM</code> - On-demand backup automatically created
+     *            <code>SYSTEM</code> - On demand backup automatically created
      *            by DynamoDB.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ALL</code> - All types of on-demand backups (USER and
+     *            <code>ALL</code> - All types of on demand backups (USER and
      *            SYSTEM).
      *            </p>
      *            </li>
@@ -671,26 +655,25 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The backups from the table specified by <code>BackupType</code> are
-     * listed.
+     * The backups from the table specified by BackupType are listed.
      * </p>
      * <p>
-     * Where <code>BackupType</code> can be:
+     * Where BackupType can be:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>USER</code> - On-demand backup created by you.
+     * <code>USER</code> - On demand backup created by you.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SYSTEM</code> - On-demand backup automatically created by DynamoDB.
+     * <code>SYSTEM</code> - On demand backup automatically created by DynamoDB.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ALL</code> - All types of on-demand backups (USER and SYSTEM).
+     * <code>ALL</code> - All types of on demand backups (USER and SYSTEM).
      * </p>
      * </li>
      * </ul>
@@ -702,27 +685,26 @@ public class ListBackupsRequest extends AmazonWebServiceRequest implements Seria
      * <b>Allowed Values: </b>USER, SYSTEM, ALL
      *
      * @param backupType <p>
-     *            The backups from the table specified by
-     *            <code>BackupType</code> are listed.
+     *            The backups from the table specified by BackupType are listed.
      *            </p>
      *            <p>
-     *            Where <code>BackupType</code> can be:
+     *            Where BackupType can be:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>USER</code> - On-demand backup created by you.
+     *            <code>USER</code> - On demand backup created by you.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>SYSTEM</code> - On-demand backup automatically created
+     *            <code>SYSTEM</code> - On demand backup automatically created
      *            by DynamoDB.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ALL</code> - All types of on-demand backups (USER and
+     *            <code>ALL</code> - All types of on demand backups (USER and
      *            SYSTEM).
      *            </p>
      *            </li>

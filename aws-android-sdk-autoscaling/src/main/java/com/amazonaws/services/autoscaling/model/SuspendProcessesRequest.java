@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Suspends the specified automatic scaling processes, or all processes, for the
+ * Suspends the specified Auto Scaling processes, or all processes, for the
  * specified Auto Scaling group.
  * </p>
  * <p>
@@ -34,9 +34,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html"
- * >Suspending and Resuming Scaling Processes</a> in the <i>Amazon EC2 Auto
- * Scaling User Guide</i>.
+ * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-suspend-resume-processes.html"
+ * >Suspending and Resuming Auto Scaling Processes</a> in the <i>Auto Scaling
+ * User Guide</i>.
  * </p>
  */
 public class SuspendProcessesRequest extends AmazonWebServiceRequest implements Serializable {

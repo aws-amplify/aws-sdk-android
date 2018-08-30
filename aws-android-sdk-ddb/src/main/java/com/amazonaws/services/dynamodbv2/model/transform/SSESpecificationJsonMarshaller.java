@@ -31,16 +31,6 @@ class SSESpecificationJsonMarshaller {
             jsonWriter.name("Enabled");
             jsonWriter.value(enabled);
         }
-        if (sSESpecification.getSSEType() != null) {
-            String sSEType = sSESpecification.getSSEType();
-            jsonWriter.name("SSEType");
-            jsonWriter.value(sSEType);
-        }
-        if (sSESpecification.getKMSMasterKeyId() != null) {
-            String kMSMasterKeyId = sSESpecification.getKMSMasterKeyId();
-            jsonWriter.name("KMSMasterKeyId");
-            jsonWriter.value(kMSMasterKeyId);
-        }
         jsonWriter.endObject();
     }
 
