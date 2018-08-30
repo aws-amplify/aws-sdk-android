@@ -50,18 +50,6 @@ public class GetFaceSearchResultJsonUnmarshaller implements
                         PersonMatchJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("BillableDurationSeconds")) {
-                getFaceSearchResult.setBillableDurationSeconds(IntegerJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("ErrorCode")) {
-                getFaceSearchResult.setErrorCode(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Warnings")) {
-                getFaceSearchResult.setWarnings(new ListUnmarshaller<Warning>(
-                        WarningJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

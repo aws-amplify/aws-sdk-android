@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Describes the available CloudWatch metrics for Amazon EC2 Auto Scaling.
+ * Describes the available CloudWatch metrics for Auto Scaling.
  * </p>
  * <p>
  * Note that the <code>GroupStandbyInstances</code> metric is not returned by

@@ -64,6 +64,9 @@ public class Ebs implements Serializable {
      * Valid values: <code>standard</code> | <code>io1</code> | <code>gp2</code>
      * </p>
      * <p>
+     * Default: <code>standard</code>
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      */
@@ -281,6 +284,9 @@ public class Ebs implements Serializable {
      * Valid values: <code>standard</code> | <code>io1</code> | <code>gp2</code>
      * </p>
      * <p>
+     * Default: <code>standard</code>
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
@@ -293,6 +299,9 @@ public class Ebs implements Serializable {
      *         <p>
      *         Valid values: <code>standard</code> | <code>io1</code> |
      *         <code>gp2</code>
+     *         </p>
+     *         <p>
+     *         Default: <code>standard</code>
      *         </p>
      */
     public String getVolumeType() {
@@ -310,6 +319,9 @@ public class Ebs implements Serializable {
      * Valid values: <code>standard</code> | <code>io1</code> | <code>gp2</code>
      * </p>
      * <p>
+     * Default: <code>standard</code>
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      *
@@ -322,6 +334,9 @@ public class Ebs implements Serializable {
      *            <p>
      *            Valid values: <code>standard</code> | <code>io1</code> |
      *            <code>gp2</code>
+     *            </p>
+     *            <p>
+     *            Default: <code>standard</code>
      *            </p>
      */
     public void setVolumeType(String volumeType) {
@@ -339,6 +354,9 @@ public class Ebs implements Serializable {
      * Valid values: <code>standard</code> | <code>io1</code> | <code>gp2</code>
      * </p>
      * <p>
+     * Default: <code>standard</code>
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -354,6 +372,9 @@ public class Ebs implements Serializable {
      *            <p>
      *            Valid values: <code>standard</code> | <code>io1</code> |
      *            <code>gp2</code>
+     *            </p>
+     *            <p>
+     *            Default: <code>standard</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -51,18 +51,6 @@ public class GetPersonTrackingResultJsonUnmarshaller implements
                         PersonDetectionJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("BillableDurationSeconds")) {
-                getPersonTrackingResult.setBillableDurationSeconds(IntegerJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("ErrorCode")) {
-                getPersonTrackingResult.setErrorCode(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Warnings")) {
-                getPersonTrackingResult.setWarnings(new ListUnmarshaller<Warning>(
-                        WarningJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

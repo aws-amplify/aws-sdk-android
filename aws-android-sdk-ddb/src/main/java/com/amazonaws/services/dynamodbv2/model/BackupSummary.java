@@ -82,8 +82,8 @@ public class BackupSummary implements Serializable {
 
     /**
      * <p>
-     * Time at which the automatic on-demand backup created by DynamoDB will
-     * expire. This <code>SYSTEM</code> on-demand backup expires automatically
+     * Time at which the automatic on demand backup created by DynamoDB will
+     * expire. This <code>SYSTEM</code> on demand backup expires automatically
      * 35 days after its creation.
      * </p>
      */
@@ -106,12 +106,12 @@ public class BackupSummary implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>USER</code> - On-demand backup created by you.
+     * <code>USER</code> - On demand backup created by you.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SYSTEM</code> - On-demand backup automatically created by DynamoDB.
+     * <code>SYSTEM</code> - On demand backup automatically created by DynamoDB.
      * </p>
      * </li>
      * </ul>
@@ -448,14 +448,14 @@ public class BackupSummary implements Serializable {
 
     /**
      * <p>
-     * Time at which the automatic on-demand backup created by DynamoDB will
-     * expire. This <code>SYSTEM</code> on-demand backup expires automatically
+     * Time at which the automatic on demand backup created by DynamoDB will
+     * expire. This <code>SYSTEM</code> on demand backup expires automatically
      * 35 days after its creation.
      * </p>
      *
      * @return <p>
-     *         Time at which the automatic on-demand backup created by DynamoDB
-     *         will expire. This <code>SYSTEM</code> on-demand backup expires
+     *         Time at which the automatic on demand backup created by DynamoDB
+     *         will expire. This <code>SYSTEM</code> on demand backup expires
      *         automatically 35 days after its creation.
      *         </p>
      */
@@ -465,14 +465,14 @@ public class BackupSummary implements Serializable {
 
     /**
      * <p>
-     * Time at which the automatic on-demand backup created by DynamoDB will
-     * expire. This <code>SYSTEM</code> on-demand backup expires automatically
+     * Time at which the automatic on demand backup created by DynamoDB will
+     * expire. This <code>SYSTEM</code> on demand backup expires automatically
      * 35 days after its creation.
      * </p>
      *
      * @param backupExpiryDateTime <p>
-     *            Time at which the automatic on-demand backup created by
-     *            DynamoDB will expire. This <code>SYSTEM</code> on-demand
+     *            Time at which the automatic on demand backup created by
+     *            DynamoDB will expire. This <code>SYSTEM</code> on demand
      *            backup expires automatically 35 days after its creation.
      *            </p>
      */
@@ -482,8 +482,8 @@ public class BackupSummary implements Serializable {
 
     /**
      * <p>
-     * Time at which the automatic on-demand backup created by DynamoDB will
-     * expire. This <code>SYSTEM</code> on-demand backup expires automatically
+     * Time at which the automatic on demand backup created by DynamoDB will
+     * expire. This <code>SYSTEM</code> on demand backup expires automatically
      * 35 days after its creation.
      * </p>
      * <p>
@@ -491,8 +491,8 @@ public class BackupSummary implements Serializable {
      * together.
      *
      * @param backupExpiryDateTime <p>
-     *            Time at which the automatic on-demand backup created by
-     *            DynamoDB will expire. This <code>SYSTEM</code> on-demand
+     *            Time at which the automatic on demand backup created by
+     *            DynamoDB will expire. This <code>SYSTEM</code> on demand
      *            backup expires automatically 35 days after its creation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -612,12 +612,12 @@ public class BackupSummary implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>USER</code> - On-demand backup created by you.
+     * <code>USER</code> - On demand backup created by you.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SYSTEM</code> - On-demand backup automatically created by DynamoDB.
+     * <code>SYSTEM</code> - On demand backup automatically created by DynamoDB.
      * </p>
      * </li>
      * </ul>
@@ -631,12 +631,12 @@ public class BackupSummary implements Serializable {
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>USER</code> - On-demand backup created by you.
+     *         <code>USER</code> - On demand backup created by you.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>SYSTEM</code> - On-demand backup automatically created by
+     *         <code>SYSTEM</code> - On demand backup automatically created by
      *         DynamoDB.
      *         </p>
      *         </li>
@@ -654,12 +654,12 @@ public class BackupSummary implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>USER</code> - On-demand backup created by you.
+     * <code>USER</code> - On demand backup created by you.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SYSTEM</code> - On-demand backup automatically created by DynamoDB.
+     * <code>SYSTEM</code> - On demand backup automatically created by DynamoDB.
      * </p>
      * </li>
      * </ul>
@@ -673,12 +673,12 @@ public class BackupSummary implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>USER</code> - On-demand backup created by you.
+     *            <code>USER</code> - On demand backup created by you.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>SYSTEM</code> - On-demand backup automatically created
+     *            <code>SYSTEM</code> - On demand backup automatically created
      *            by DynamoDB.
      *            </p>
      *            </li>
@@ -696,12 +696,12 @@ public class BackupSummary implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>USER</code> - On-demand backup created by you.
+     * <code>USER</code> - On demand backup created by you.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SYSTEM</code> - On-demand backup automatically created by DynamoDB.
+     * <code>SYSTEM</code> - On demand backup automatically created by DynamoDB.
      * </p>
      * </li>
      * </ul>
@@ -718,12 +718,12 @@ public class BackupSummary implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>USER</code> - On-demand backup created by you.
+     *            <code>USER</code> - On demand backup created by you.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>SYSTEM</code> - On-demand backup automatically created
+     *            <code>SYSTEM</code> - On demand backup automatically created
      *            by DynamoDB.
      *            </p>
      *            </li>
@@ -744,12 +744,12 @@ public class BackupSummary implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>USER</code> - On-demand backup created by you.
+     * <code>USER</code> - On demand backup created by you.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SYSTEM</code> - On-demand backup automatically created by DynamoDB.
+     * <code>SYSTEM</code> - On demand backup automatically created by DynamoDB.
      * </p>
      * </li>
      * </ul>
@@ -763,12 +763,12 @@ public class BackupSummary implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>USER</code> - On-demand backup created by you.
+     *            <code>USER</code> - On demand backup created by you.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>SYSTEM</code> - On-demand backup automatically created
+     *            <code>SYSTEM</code> - On demand backup automatically created
      *            by DynamoDB.
      *            </p>
      *            </li>
@@ -786,12 +786,12 @@ public class BackupSummary implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>USER</code> - On-demand backup created by you.
+     * <code>USER</code> - On demand backup created by you.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>SYSTEM</code> - On-demand backup automatically created by DynamoDB.
+     * <code>SYSTEM</code> - On demand backup automatically created by DynamoDB.
      * </p>
      * </li>
      * </ul>
@@ -808,12 +808,12 @@ public class BackupSummary implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>USER</code> - On-demand backup created by you.
+     *            <code>USER</code> - On demand backup created by you.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>SYSTEM</code> - On-demand backup automatically created
+     *            <code>SYSTEM</code> - On demand backup automatically created
      *            by DynamoDB.
      *            </p>
      *            </li>

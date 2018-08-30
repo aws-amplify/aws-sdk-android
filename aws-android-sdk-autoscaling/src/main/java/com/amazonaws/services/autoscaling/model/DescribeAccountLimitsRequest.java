@@ -25,8 +25,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For information about requesting an increase in these limits, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html"
- * >Auto Scaling Limits</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+ * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-account-limits.html"
+ * >Auto Scaling Limits</a> in the <i>Auto Scaling User Guide</i>.
  * </p>
  */
 public class DescribeAccountLimitsRequest extends AmazonWebServiceRequest implements Serializable {

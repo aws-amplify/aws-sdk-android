@@ -78,12 +78,6 @@ public class StartCelebrityRecognitionRequestMarshaller implements
                 NotificationChannelJsonMarshaller.getInstance().marshall(notificationChannel,
                         jsonWriter);
             }
-            if (startCelebrityRecognitionRequest.getEnablePersonTracking() != null) {
-                Boolean enablePersonTracking = startCelebrityRecognitionRequest
-                        .getEnablePersonTracking();
-                jsonWriter.name("EnablePersonTracking");
-                jsonWriter.value(enablePersonTracking);
-            }
             if (startCelebrityRecognitionRequest.getJobTag() != null) {
                 String jobTag = startCelebrityRecognitionRequest.getJobTag();
                 jsonWriter.name("JobTag");

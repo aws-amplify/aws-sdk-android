@@ -21,8 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Describes the notification types that are supported by Amazon EC2 Auto
- * Scaling.
+ * Describes the notification types that are supported by Auto Scaling.
  * </p>
  */
 public class DescribeAutoScalingNotificationTypesRequest extends AmazonWebServiceRequest implements

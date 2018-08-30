@@ -28,9 +28,8 @@ public class DescribeAutoScalingGroupsRequest extends AmazonWebServiceRequest im
         Serializable {
     /**
      * <p>
-     * The names of the Auto Scaling groups. You can specify up to
-     * <code>MaxRecords</code> names. If you omit this parameter, all Auto
-     * Scaling groups are described.
+     * The names of the Auto Scaling groups. If you omit this parameter, all
+     * Auto Scaling groups are described.
      * </p>
      */
     private java.util.List<String> autoScalingGroupNames = new java.util.ArrayList<String>();
@@ -57,15 +56,13 @@ public class DescribeAutoScalingGroupsRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The names of the Auto Scaling groups. You can specify up to
-     * <code>MaxRecords</code> names. If you omit this parameter, all Auto
-     * Scaling groups are described.
+     * The names of the Auto Scaling groups. If you omit this parameter, all
+     * Auto Scaling groups are described.
      * </p>
      *
      * @return <p>
-     *         The names of the Auto Scaling groups. You can specify up to
-     *         <code>MaxRecords</code> names. If you omit this parameter, all
-     *         Auto Scaling groups are described.
+     *         The names of the Auto Scaling groups. If you omit this parameter,
+     *         all Auto Scaling groups are described.
      *         </p>
      */
     public java.util.List<String> getAutoScalingGroupNames() {
@@ -74,15 +71,13 @@ public class DescribeAutoScalingGroupsRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The names of the Auto Scaling groups. You can specify up to
-     * <code>MaxRecords</code> names. If you omit this parameter, all Auto
-     * Scaling groups are described.
+     * The names of the Auto Scaling groups. If you omit this parameter, all
+     * Auto Scaling groups are described.
      * </p>
      *
      * @param autoScalingGroupNames <p>
-     *            The names of the Auto Scaling groups. You can specify up to
-     *            <code>MaxRecords</code> names. If you omit this parameter, all
-     *            Auto Scaling groups are described.
+     *            The names of the Auto Scaling groups. If you omit this
+     *            parameter, all Auto Scaling groups are described.
      *            </p>
      */
     public void setAutoScalingGroupNames(java.util.Collection<String> autoScalingGroupNames) {
@@ -96,18 +91,16 @@ public class DescribeAutoScalingGroupsRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The names of the Auto Scaling groups. You can specify up to
-     * <code>MaxRecords</code> names. If you omit this parameter, all Auto
-     * Scaling groups are described.
+     * The names of the Auto Scaling groups. If you omit this parameter, all
+     * Auto Scaling groups are described.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param autoScalingGroupNames <p>
-     *            The names of the Auto Scaling groups. You can specify up to
-     *            <code>MaxRecords</code> names. If you omit this parameter, all
-     *            Auto Scaling groups are described.
+     *            The names of the Auto Scaling groups. If you omit this
+     *            parameter, all Auto Scaling groups are described.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -126,18 +119,16 @@ public class DescribeAutoScalingGroupsRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The names of the Auto Scaling groups. You can specify up to
-     * <code>MaxRecords</code> names. If you omit this parameter, all Auto
-     * Scaling groups are described.
+     * The names of the Auto Scaling groups. If you omit this parameter, all
+     * Auto Scaling groups are described.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param autoScalingGroupNames <p>
-     *            The names of the Auto Scaling groups. You can specify up to
-     *            <code>MaxRecords</code> names. If you omit this parameter, all
-     *            Auto Scaling groups are described.
+     *            The names of the Auto Scaling groups. If you omit this
+     *            parameter, all Auto Scaling groups are described.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

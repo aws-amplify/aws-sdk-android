@@ -21,9 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates the specified user pool app client with the specified attributes. If
- * you don't provide a value for an attribute, it will be set to the default
- * value. You can get a list of the current user pool app client settings with .
+ * Allows the developer to update the specified user pool client and password
+ * policy.
  * </p>
  */
 public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest implements Serializable {
@@ -121,6 +120,11 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * </li>
      * <li>
      * <p>
+     * Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * Not include a fragment component.
      * </p>
      * </li>
@@ -128,13 +132,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <p>
      * See <a href="https://tools.ietf.org/html/rfc6749#section-3.1.2">OAuth 2.0
      * - Redirection Endpoint</a>.
-     * </p>
-     * <p>
-     * Amazon Cognito requires HTTPS over HTTP except for http://localhost for
-     * testing purposes only.
-     * </p>
-     * <p>
-     * App callback URLs such as myapp://example are also supported.
      * </p>
      */
     private java.util.List<String> callbackURLs;
@@ -166,6 +163,11 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * </li>
      * <li>
      * <p>
+     * Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * Not include a fragment component.
      * </p>
      * </li>
@@ -173,13 +175,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <p>
      * See <a href="https://tools.ietf.org/html/rfc6749#section-3.1.2">OAuth 2.0
      * - Redirection Endpoint</a>.
-     * </p>
-     * <p>
-     * Amazon Cognito requires HTTPS over HTTP except for http://localhost for
-     * testing purposes only.
-     * </p>
-     * <p>
-     * App callback URLs such as myapp://example are also supported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -795,6 +790,11 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * </li>
      * <li>
      * <p>
+     * Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * Not include a fragment component.
      * </p>
      * </li>
@@ -802,13 +802,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <p>
      * See <a href="https://tools.ietf.org/html/rfc6749#section-3.1.2">OAuth 2.0
      * - Redirection Endpoint</a>.
-     * </p>
-     * <p>
-     * Amazon Cognito requires HTTPS over HTTP except for http://localhost for
-     * testing purposes only.
-     * </p>
-     * <p>
-     * App callback URLs such as myapp://example are also supported.
      * </p>
      *
      * @return <p>
@@ -831,6 +824,11 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *         </li>
      *         <li>
      *         <p>
+     *         Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
      *         Not include a fragment component.
      *         </p>
      *         </li>
@@ -839,13 +837,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *         See <a
      *         href="https://tools.ietf.org/html/rfc6749#section-3.1.2">OAuth
      *         2.0 - Redirection Endpoint</a>.
-     *         </p>
-     *         <p>
-     *         Amazon Cognito requires HTTPS over HTTP except for
-     *         http://localhost for testing purposes only.
-     *         </p>
-     *         <p>
-     *         App callback URLs such as myapp://example are also supported.
      *         </p>
      */
     public java.util.List<String> getCallbackURLs() {
@@ -872,6 +863,11 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * </li>
      * <li>
      * <p>
+     * Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * Not include a fragment component.
      * </p>
      * </li>
@@ -879,13 +875,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <p>
      * See <a href="https://tools.ietf.org/html/rfc6749#section-3.1.2">OAuth 2.0
      * - Redirection Endpoint</a>.
-     * </p>
-     * <p>
-     * Amazon Cognito requires HTTPS over HTTP except for http://localhost for
-     * testing purposes only.
-     * </p>
-     * <p>
-     * App callback URLs such as myapp://example are also supported.
      * </p>
      *
      * @param callbackURLs <p>
@@ -908,6 +897,11 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            </li>
      *            <li>
      *            <p>
+     *            Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
      *            Not include a fragment component.
      *            </p>
      *            </li>
@@ -916,13 +910,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            See <a
      *            href="https://tools.ietf.org/html/rfc6749#section-3.1.2">OAuth
      *            2.0 - Redirection Endpoint</a>.
-     *            </p>
-     *            <p>
-     *            Amazon Cognito requires HTTPS over HTTP except for
-     *            http://localhost for testing purposes only.
-     *            </p>
-     *            <p>
-     *            App callback URLs such as myapp://example are also supported.
      *            </p>
      */
     public void setCallbackURLs(java.util.Collection<String> callbackURLs) {
@@ -954,6 +941,11 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * </li>
      * <li>
      * <p>
+     * Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * Not include a fragment component.
      * </p>
      * </li>
@@ -961,13 +953,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <p>
      * See <a href="https://tools.ietf.org/html/rfc6749#section-3.1.2">OAuth 2.0
      * - Redirection Endpoint</a>.
-     * </p>
-     * <p>
-     * Amazon Cognito requires HTTPS over HTTP except for http://localhost for
-     * testing purposes only.
-     * </p>
-     * <p>
-     * App callback URLs such as myapp://example are also supported.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -993,6 +978,11 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            </li>
      *            <li>
      *            <p>
+     *            Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
      *            Not include a fragment component.
      *            </p>
      *            </li>
@@ -1001,13 +991,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            See <a
      *            href="https://tools.ietf.org/html/rfc6749#section-3.1.2">OAuth
      *            2.0 - Redirection Endpoint</a>.
-     *            </p>
-     *            <p>
-     *            Amazon Cognito requires HTTPS over HTTP except for
-     *            http://localhost for testing purposes only.
-     *            </p>
-     *            <p>
-     *            App callback URLs such as myapp://example are also supported.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1042,6 +1025,11 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * </li>
      * <li>
      * <p>
+     * Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * Not include a fragment component.
      * </p>
      * </li>
@@ -1049,13 +1037,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <p>
      * See <a href="https://tools.ietf.org/html/rfc6749#section-3.1.2">OAuth 2.0
      * - Redirection Endpoint</a>.
-     * </p>
-     * <p>
-     * Amazon Cognito requires HTTPS over HTTP except for http://localhost for
-     * testing purposes only.
-     * </p>
-     * <p>
-     * App callback URLs such as myapp://example are also supported.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1081,6 +1062,11 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            </li>
      *            <li>
      *            <p>
+     *            Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
      *            Not include a fragment component.
      *            </p>
      *            </li>
@@ -1089,13 +1075,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            See <a
      *            href="https://tools.ietf.org/html/rfc6749#section-3.1.2">OAuth
      *            2.0 - Redirection Endpoint</a>.
-     *            </p>
-     *            <p>
-     *            Amazon Cognito requires HTTPS over HTTP except for
-     *            http://localhost for testing purposes only.
-     *            </p>
-     *            <p>
-     *            App callback URLs such as myapp://example are also supported.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1199,6 +1178,11 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * </li>
      * <li>
      * <p>
+     * Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * Not include a fragment component.
      * </p>
      * </li>
@@ -1206,13 +1190,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <p>
      * See <a href="https://tools.ietf.org/html/rfc6749#section-3.1.2">OAuth 2.0
      * - Redirection Endpoint</a>.
-     * </p>
-     * <p>
-     * Amazon Cognito requires HTTPS over HTTP except for http://localhost for
-     * testing purposes only.
-     * </p>
-     * <p>
-     * App callback URLs such as myapp://example are also supported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1239,6 +1216,11 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *         </li>
      *         <li>
      *         <p>
+     *         Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
      *         Not include a fragment component.
      *         </p>
      *         </li>
@@ -1247,13 +1229,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *         See <a
      *         href="https://tools.ietf.org/html/rfc6749#section-3.1.2">OAuth
      *         2.0 - Redirection Endpoint</a>.
-     *         </p>
-     *         <p>
-     *         Amazon Cognito requires HTTPS over HTTP except for
-     *         http://localhost for testing purposes only.
-     *         </p>
-     *         <p>
-     *         App callback URLs such as myapp://example are also supported.
      *         </p>
      */
     public String getDefaultRedirectURI() {
@@ -1280,6 +1255,11 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * </li>
      * <li>
      * <p>
+     * Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * Not include a fragment component.
      * </p>
      * </li>
@@ -1287,13 +1267,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <p>
      * See <a href="https://tools.ietf.org/html/rfc6749#section-3.1.2">OAuth 2.0
      * - Redirection Endpoint</a>.
-     * </p>
-     * <p>
-     * Amazon Cognito requires HTTPS over HTTP except for http://localhost for
-     * testing purposes only.
-     * </p>
-     * <p>
-     * App callback URLs such as myapp://example are also supported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1320,6 +1293,11 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            </li>
      *            <li>
      *            <p>
+     *            Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
      *            Not include a fragment component.
      *            </p>
      *            </li>
@@ -1328,13 +1306,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            See <a
      *            href="https://tools.ietf.org/html/rfc6749#section-3.1.2">OAuth
      *            2.0 - Redirection Endpoint</a>.
-     *            </p>
-     *            <p>
-     *            Amazon Cognito requires HTTPS over HTTP except for
-     *            http://localhost for testing purposes only.
-     *            </p>
-     *            <p>
-     *            App callback URLs such as myapp://example are also supported.
      *            </p>
      */
     public void setDefaultRedirectURI(String defaultRedirectURI) {
@@ -1361,6 +1332,11 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * </li>
      * <li>
      * <p>
+     * Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * Not include a fragment component.
      * </p>
      * </li>
@@ -1368,13 +1344,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <p>
      * See <a href="https://tools.ietf.org/html/rfc6749#section-3.1.2">OAuth 2.0
      * - Redirection Endpoint</a>.
-     * </p>
-     * <p>
-     * Amazon Cognito requires HTTPS over HTTP except for http://localhost for
-     * testing purposes only.
-     * </p>
-     * <p>
-     * App callback URLs such as myapp://example are also supported.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1404,6 +1373,11 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            </li>
      *            <li>
      *            <p>
+     *            Not use HTTP without TLS (i.e. use HTTPS instead of HTTP).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
      *            Not include a fragment component.
      *            </p>
      *            </li>
@@ -1412,13 +1386,6 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            See <a
      *            href="https://tools.ietf.org/html/rfc6749#section-3.1.2">OAuth
      *            2.0 - Redirection Endpoint</a>.
-     *            </p>
-     *            <p>
-     *            Amazon Cognito requires HTTPS over HTTP except for
-     *            http://localhost for testing purposes only.
-     *            </p>
-     *            <p>
-     *            App callback URLs such as myapp://example are also supported.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

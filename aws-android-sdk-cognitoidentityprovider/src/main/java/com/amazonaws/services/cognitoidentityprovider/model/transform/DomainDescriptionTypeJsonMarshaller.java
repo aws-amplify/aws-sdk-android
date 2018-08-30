@@ -61,13 +61,6 @@ class DomainDescriptionTypeJsonMarshaller {
             jsonWriter.name("Status");
             jsonWriter.value(status);
         }
-        if (domainDescriptionType.getCustomDomainConfig() != null) {
-            CustomDomainConfigType customDomainConfig = domainDescriptionType
-                    .getCustomDomainConfig();
-            jsonWriter.name("CustomDomainConfig");
-            CustomDomainConfigTypeJsonMarshaller.getInstance().marshall(customDomainConfig,
-                    jsonWriter);
-        }
         jsonWriter.endObject();
     }
 

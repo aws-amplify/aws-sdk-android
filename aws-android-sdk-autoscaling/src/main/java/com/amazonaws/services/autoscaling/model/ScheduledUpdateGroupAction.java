@@ -19,8 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes a scheduled scaling action. Used in response to
- * <a>DescribeScheduledActions</a>.
+ * Describes a scheduled update to an Auto Scaling group.
  * </p>
  */
 public class ScheduledUpdateGroupAction implements Serializable {

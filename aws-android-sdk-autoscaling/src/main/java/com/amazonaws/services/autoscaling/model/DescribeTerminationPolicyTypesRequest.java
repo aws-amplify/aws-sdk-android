@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Describes the termination policies supported by Amazon EC2 Auto Scaling.
+ * Describes the termination policies supported by Auto Scaling.
  * </p>
  */
 public class DescribeTerminationPolicyTypesRequest extends AmazonWebServiceRequest implements

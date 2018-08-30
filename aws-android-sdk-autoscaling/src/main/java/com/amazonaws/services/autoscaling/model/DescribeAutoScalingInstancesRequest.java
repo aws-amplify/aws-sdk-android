@@ -28,10 +28,9 @@ public class DescribeAutoScalingInstancesRequest extends AmazonWebServiceRequest
         Serializable {
     /**
      * <p>
-     * The IDs of the instances. You can specify up to <code>MaxRecords</code>
-     * IDs. If you omit this parameter, all Auto Scaling instances are
-     * described. If you specify an ID that does not exist, it is ignored with
-     * no error.
+     * The instances to describe; up to 50 instance IDs. If you omit this
+     * parameter, all Auto Scaling instances are described. If you specify an ID
+     * that does not exist, it is ignored with no error.
      * </p>
      */
     private java.util.List<String> instanceIds = new java.util.ArrayList<String>();
@@ -58,17 +57,15 @@ public class DescribeAutoScalingInstancesRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The IDs of the instances. You can specify up to <code>MaxRecords</code>
-     * IDs. If you omit this parameter, all Auto Scaling instances are
-     * described. If you specify an ID that does not exist, it is ignored with
-     * no error.
+     * The instances to describe; up to 50 instance IDs. If you omit this
+     * parameter, all Auto Scaling instances are described. If you specify an ID
+     * that does not exist, it is ignored with no error.
      * </p>
      *
      * @return <p>
-     *         The IDs of the instances. You can specify up to
-     *         <code>MaxRecords</code> IDs. If you omit this parameter, all Auto
-     *         Scaling instances are described. If you specify an ID that does
-     *         not exist, it is ignored with no error.
+     *         The instances to describe; up to 50 instance IDs. If you omit
+     *         this parameter, all Auto Scaling instances are described. If you
+     *         specify an ID that does not exist, it is ignored with no error.
      *         </p>
      */
     public java.util.List<String> getInstanceIds() {
@@ -77,17 +74,16 @@ public class DescribeAutoScalingInstancesRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The IDs of the instances. You can specify up to <code>MaxRecords</code>
-     * IDs. If you omit this parameter, all Auto Scaling instances are
-     * described. If you specify an ID that does not exist, it is ignored with
-     * no error.
+     * The instances to describe; up to 50 instance IDs. If you omit this
+     * parameter, all Auto Scaling instances are described. If you specify an ID
+     * that does not exist, it is ignored with no error.
      * </p>
      *
      * @param instanceIds <p>
-     *            The IDs of the instances. You can specify up to
-     *            <code>MaxRecords</code> IDs. If you omit this parameter, all
-     *            Auto Scaling instances are described. If you specify an ID
-     *            that does not exist, it is ignored with no error.
+     *            The instances to describe; up to 50 instance IDs. If you omit
+     *            this parameter, all Auto Scaling instances are described. If
+     *            you specify an ID that does not exist, it is ignored with no
+     *            error.
      *            </p>
      */
     public void setInstanceIds(java.util.Collection<String> instanceIds) {
@@ -101,20 +97,19 @@ public class DescribeAutoScalingInstancesRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The IDs of the instances. You can specify up to <code>MaxRecords</code>
-     * IDs. If you omit this parameter, all Auto Scaling instances are
-     * described. If you specify an ID that does not exist, it is ignored with
-     * no error.
+     * The instances to describe; up to 50 instance IDs. If you omit this
+     * parameter, all Auto Scaling instances are described. If you specify an ID
+     * that does not exist, it is ignored with no error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param instanceIds <p>
-     *            The IDs of the instances. You can specify up to
-     *            <code>MaxRecords</code> IDs. If you omit this parameter, all
-     *            Auto Scaling instances are described. If you specify an ID
-     *            that does not exist, it is ignored with no error.
+     *            The instances to describe; up to 50 instance IDs. If you omit
+     *            this parameter, all Auto Scaling instances are described. If
+     *            you specify an ID that does not exist, it is ignored with no
+     *            error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -131,20 +126,19 @@ public class DescribeAutoScalingInstancesRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The IDs of the instances. You can specify up to <code>MaxRecords</code>
-     * IDs. If you omit this parameter, all Auto Scaling instances are
-     * described. If you specify an ID that does not exist, it is ignored with
-     * no error.
+     * The instances to describe; up to 50 instance IDs. If you omit this
+     * parameter, all Auto Scaling instances are described. If you specify an ID
+     * that does not exist, it is ignored with no error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param instanceIds <p>
-     *            The IDs of the instances. You can specify up to
-     *            <code>MaxRecords</code> IDs. If you omit this parameter, all
-     *            Auto Scaling instances are described. If you specify an ID
-     *            that does not exist, it is ignored with no error.
+     *            The instances to describe; up to 50 instance IDs. If you omit
+     *            this parameter, all Auto Scaling instances are described. If
+     *            you specify an ID that does not exist, it is ignored with no
+     *            error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

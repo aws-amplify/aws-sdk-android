@@ -142,13 +142,13 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * <code>cognito:user_status</code> (called <b>Status</b> in the Console)
-     * (case-insensitive)
+     * <code>cognito:user_status</code> (called <b>Enabled</b> in the Console)
+     * (case-sensitive)
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>status (called <b>Enabled</b> in the Console) (case-sensitive)</code>
+     * <code>status</code> (case-insensitive)
      * </p>
      * </li>
      * <li>
@@ -521,13 +521,13 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * <code>cognito:user_status</code> (called <b>Status</b> in the Console)
-     * (case-insensitive)
+     * <code>cognito:user_status</code> (called <b>Enabled</b> in the Console)
+     * (case-sensitive)
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>status (called <b>Enabled</b> in the Console) (case-sensitive)</code>
+     * <code>status</code> (case-insensitive)
      * </p>
      * </li>
      * <li>
@@ -624,13 +624,13 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      *         </li>
      *         <li>
      *         <p>
-     *         <code>cognito:user_status</code> (called <b>Status</b> in the
-     *         Console) (case-insensitive)
+     *         <code>cognito:user_status</code> (called <b>Enabled</b> in the
+     *         Console) (case-sensitive)
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>status (called <b>Enabled</b> in the Console) (case-sensitive)</code>
+     *         <code>status</code> (case-insensitive)
      *         </p>
      *         </li>
      *         <li>
@@ -729,13 +729,13 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * <code>cognito:user_status</code> (called <b>Status</b> in the Console)
-     * (case-insensitive)
+     * <code>cognito:user_status</code> (called <b>Enabled</b> in the Console)
+     * (case-sensitive)
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>status (called <b>Enabled</b> in the Console) (case-sensitive)</code>
+     * <code>status</code> (case-insensitive)
      * </p>
      * </li>
      * <li>
@@ -833,13 +833,13 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      *            </li>
      *            <li>
      *            <p>
-     *            <code>cognito:user_status</code> (called <b>Status</b> in the
-     *            Console) (case-insensitive)
+     *            <code>cognito:user_status</code> (called <b>Enabled</b> in the
+     *            Console) (case-sensitive)
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>status (called <b>Enabled</b> in the Console) (case-sensitive)</code>
+     *            <code>status</code> (case-insensitive)
      *            </p>
      *            </li>
      *            <li>
@@ -938,13 +938,13 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * <code>cognito:user_status</code> (called <b>Status</b> in the Console)
-     * (case-insensitive)
+     * <code>cognito:user_status</code> (called <b>Enabled</b> in the Console)
+     * (case-sensitive)
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>status (called <b>Enabled</b> in the Console) (case-sensitive)</code>
+     * <code>status</code> (case-insensitive)
      * </p>
      * </li>
      * <li>
@@ -1045,13 +1045,13 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      *            </li>
      *            <li>
      *            <p>
-     *            <code>cognito:user_status</code> (called <b>Status</b> in the
-     *            Console) (case-insensitive)
+     *            <code>cognito:user_status</code> (called <b>Enabled</b> in the
+     *            Console) (case-sensitive)
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>status (called <b>Enabled</b> in the Console) (case-sensitive)</code>
+     *            <code>status</code> (case-insensitive)
      *            </p>
      *            </li>
      *            <li>

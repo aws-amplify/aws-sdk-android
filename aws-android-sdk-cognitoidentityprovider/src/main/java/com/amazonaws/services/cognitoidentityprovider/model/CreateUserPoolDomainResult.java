@@ -19,84 +19,6 @@ import java.io.Serializable;
 
 public class CreateUserPoolDomainResult implements Serializable {
     /**
-     * <p>
-     * The Amazon CloudFront endpoint that you use as the target of the alias
-     * that you set up with your Domain Name Service (DNS) provider.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 63<br/>
-     * <b>Pattern: </b>^[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?$<br/>
-     */
-    private String cloudFrontDomain;
-
-    /**
-     * <p>
-     * The Amazon CloudFront endpoint that you use as the target of the alias
-     * that you set up with your Domain Name Service (DNS) provider.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 63<br/>
-     * <b>Pattern: </b>^[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?$<br/>
-     *
-     * @return <p>
-     *         The Amazon CloudFront endpoint that you use as the target of the
-     *         alias that you set up with your Domain Name Service (DNS)
-     *         provider.
-     *         </p>
-     */
-    public String getCloudFrontDomain() {
-        return cloudFrontDomain;
-    }
-
-    /**
-     * <p>
-     * The Amazon CloudFront endpoint that you use as the target of the alias
-     * that you set up with your Domain Name Service (DNS) provider.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 63<br/>
-     * <b>Pattern: </b>^[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?$<br/>
-     *
-     * @param cloudFrontDomain <p>
-     *            The Amazon CloudFront endpoint that you use as the target of
-     *            the alias that you set up with your Domain Name Service (DNS)
-     *            provider.
-     *            </p>
-     */
-    public void setCloudFrontDomain(String cloudFrontDomain) {
-        this.cloudFrontDomain = cloudFrontDomain;
-    }
-
-    /**
-     * <p>
-     * The Amazon CloudFront endpoint that you use as the target of the alias
-     * that you set up with your Domain Name Service (DNS) provider.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 63<br/>
-     * <b>Pattern: </b>^[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?$<br/>
-     *
-     * @param cloudFrontDomain <p>
-     *            The Amazon CloudFront endpoint that you use as the target of
-     *            the alias that you set up with your Domain Name Service (DNS)
-     *            provider.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateUserPoolDomainResult withCloudFrontDomain(String cloudFrontDomain) {
-        this.cloudFrontDomain = cloudFrontDomain;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -107,8 +29,6 @@ public class CreateUserPoolDomainResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getCloudFrontDomain() != null)
-            sb.append("CloudFrontDomain: " + getCloudFrontDomain());
         sb.append("}");
         return sb.toString();
     }
@@ -118,8 +38,6 @@ public class CreateUserPoolDomainResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode
-                + ((getCloudFrontDomain() == null) ? 0 : getCloudFrontDomain().hashCode());
         return hashCode;
     }
 
@@ -134,11 +52,6 @@ public class CreateUserPoolDomainResult implements Serializable {
             return false;
         CreateUserPoolDomainResult other = (CreateUserPoolDomainResult) obj;
 
-        if (other.getCloudFrontDomain() == null ^ this.getCloudFrontDomain() == null)
-            return false;
-        if (other.getCloudFrontDomain() != null
-                && other.getCloudFrontDomain().equals(this.getCloudFrontDomain()) == false)
-            return false;
         return true;
     }
 }

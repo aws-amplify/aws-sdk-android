@@ -23,21 +23,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Describes the available types of lifecycle hooks.
  * </p>
- * <p>
- * The following hook types are supported:
- * </p>
- * <ul>
- * <li>
- * <p>
- * autoscaling:EC2_INSTANCE_LAUNCHING
- * </p>
- * </li>
- * <li>
- * <p>
- * autoscaling:EC2_INSTANCE_TERMINATING
- * </p>
- * </li>
- * </ul>
  */
 public class DescribeLifecycleHookTypesRequest extends AmazonWebServiceRequest implements
         Serializable {

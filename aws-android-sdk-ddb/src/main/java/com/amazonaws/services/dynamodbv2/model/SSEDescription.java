@@ -48,15 +48,10 @@ public class SSEDescription implements Serializable {
      * <code>DISABLED</code> - Server-side encryption is disabled.
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * <code>UPDATING</code> - Server-side encryption is being updated.
-     * </p>
-     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLING, ENABLED, DISABLING, DISABLED, UPDATING
+     * <b>Allowed Values: </b>ENABLING, ENABLED, DISABLING, DISABLED
      */
     private String status;
 
@@ -116,15 +111,10 @@ public class SSEDescription implements Serializable {
      * <code>DISABLED</code> - Server-side encryption is disabled.
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * <code>UPDATING</code> - Server-side encryption is being updated.
-     * </p>
-     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLING, ENABLED, DISABLING, DISABLED, UPDATING
+     * <b>Allowed Values: </b>ENABLING, ENABLED, DISABLING, DISABLED
      *
      * @return <p>
      *         The current state of server-side encryption:
@@ -149,11 +139,6 @@ public class SSEDescription implements Serializable {
      *         <li>
      *         <p>
      *         <code>DISABLED</code> - Server-side encryption is disabled.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         <code>UPDATING</code> - Server-side encryption is being updated.
      *         </p>
      *         </li>
      *         </ul>
@@ -188,15 +173,10 @@ public class SSEDescription implements Serializable {
      * <code>DISABLED</code> - Server-side encryption is disabled.
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * <code>UPDATING</code> - Server-side encryption is being updated.
-     * </p>
-     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLING, ENABLED, DISABLING, DISABLED, UPDATING
+     * <b>Allowed Values: </b>ENABLING, ENABLED, DISABLING, DISABLED
      *
      * @param status <p>
      *            The current state of server-side encryption:
@@ -222,12 +202,6 @@ public class SSEDescription implements Serializable {
      *            <li>
      *            <p>
      *            <code>DISABLED</code> - Server-side encryption is disabled.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>UPDATING</code> - Server-side encryption is being
-     *            updated.
      *            </p>
      *            </li>
      *            </ul>
@@ -262,18 +236,13 @@ public class SSEDescription implements Serializable {
      * <code>DISABLED</code> - Server-side encryption is disabled.
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * <code>UPDATING</code> - Server-side encryption is being updated.
-     * </p>
-     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLING, ENABLED, DISABLING, DISABLED, UPDATING
+     * <b>Allowed Values: </b>ENABLING, ENABLED, DISABLING, DISABLED
      *
      * @param status <p>
      *            The current state of server-side encryption:
@@ -299,12 +268,6 @@ public class SSEDescription implements Serializable {
      *            <li>
      *            <p>
      *            <code>DISABLED</code> - Server-side encryption is disabled.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>UPDATING</code> - Server-side encryption is being
-     *            updated.
      *            </p>
      *            </li>
      *            </ul>
@@ -342,15 +305,10 @@ public class SSEDescription implements Serializable {
      * <code>DISABLED</code> - Server-side encryption is disabled.
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * <code>UPDATING</code> - Server-side encryption is being updated.
-     * </p>
-     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLING, ENABLED, DISABLING, DISABLED, UPDATING
+     * <b>Allowed Values: </b>ENABLING, ENABLED, DISABLING, DISABLED
      *
      * @param status <p>
      *            The current state of server-side encryption:
@@ -376,12 +334,6 @@ public class SSEDescription implements Serializable {
      *            <li>
      *            <p>
      *            <code>DISABLED</code> - Server-side encryption is disabled.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>UPDATING</code> - Server-side encryption is being
-     *            updated.
      *            </p>
      *            </li>
      *            </ul>
@@ -416,18 +368,13 @@ public class SSEDescription implements Serializable {
      * <code>DISABLED</code> - Server-side encryption is disabled.
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * <code>UPDATING</code> - Server-side encryption is being updated.
-     * </p>
-     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLING, ENABLED, DISABLING, DISABLED, UPDATING
+     * <b>Allowed Values: </b>ENABLING, ENABLED, DISABLING, DISABLED
      *
      * @param status <p>
      *            The current state of server-side encryption:
@@ -453,12 +400,6 @@ public class SSEDescription implements Serializable {
      *            <li>
      *            <p>
      *            <code>DISABLED</code> - Server-side encryption is disabled.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>UPDATING</code> - Server-side encryption is being
-     *            updated.
      *            </p>
      *            </li>
      *            </ul>

@@ -53,9 +53,6 @@ class VideoMetadataJsonUnmarshaller implements Unmarshaller<VideoMetadata, JsonU
             } else if (name.equals("FrameWidth")) {
                 videoMetadata.setFrameWidth(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("Rotation")) {
-                videoMetadata.setRotation(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
