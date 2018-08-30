@@ -1,20 +1,5 @@
 # Change Log - AWS SDK for Android
 
-## [Release 2.6.29](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.29)
-
-### Bug Fixes
-
-* **AWS IoT**
-  * `setMaxAutoReconnectAttepts` method in `AWSIotMqttManager` is deprecated. Please use `setMaxAutoReconnectAttempts` instead.
-
-### Misc. Updates
-
-* Model updates for the following services
-  * Amazon Cognito Identity Provider
-  * Amazon DynamoDB
-  * Amazon Lex
-  * Amazon Rekognition
-
 ## [Release 2.6.28](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.28)
 
 ### Bug Fixes
