@@ -23,8 +23,8 @@ import java.io.Serializable;
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-suspend-resume-processes.html#process-types"
- * >Auto Scaling Processes</a> in the <i>Auto Scaling User Guide</i>.
+ * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html#process-types"
+ * >Scaling Processes</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
  * </p>
  */
 public class ProcessType implements Serializable {

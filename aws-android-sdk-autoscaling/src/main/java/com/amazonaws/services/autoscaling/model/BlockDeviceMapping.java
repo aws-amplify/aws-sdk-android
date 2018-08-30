@@ -61,8 +61,8 @@ public class BlockDeviceMapping implements Serializable {
      * </p>
      * <p>
      * If this parameter is true for the root device, the instance might fail
-     * the EC2 health check. Auto Scaling launches a replacement instance if the
-     * instance fails the health check.
+     * the EC2 health check. Amazon EC2 Auto Scaling launches a replacement
+     * instance if the instance fails the health check.
      * </p>
      */
     private Boolean noDevice;
@@ -247,8 +247,8 @@ public class BlockDeviceMapping implements Serializable {
      * </p>
      * <p>
      * If this parameter is true for the root device, the instance might fail
-     * the EC2 health check. Auto Scaling launches a replacement instance if the
-     * instance fails the health check.
+     * the EC2 health check. Amazon EC2 Auto Scaling launches a replacement
+     * instance if the instance fails the health check.
      * </p>
      *
      * @return <p>
@@ -256,8 +256,8 @@ public class BlockDeviceMapping implements Serializable {
      *         </p>
      *         <p>
      *         If this parameter is true for the root device, the instance might
-     *         fail the EC2 health check. Auto Scaling launches a replacement
-     *         instance if the instance fails the health check.
+     *         fail the EC2 health check. Amazon EC2 Auto Scaling launches a
+     *         replacement instance if the instance fails the health check.
      *         </p>
      */
     public Boolean isNoDevice() {
@@ -270,8 +270,8 @@ public class BlockDeviceMapping implements Serializable {
      * </p>
      * <p>
      * If this parameter is true for the root device, the instance might fail
-     * the EC2 health check. Auto Scaling launches a replacement instance if the
-     * instance fails the health check.
+     * the EC2 health check. Amazon EC2 Auto Scaling launches a replacement
+     * instance if the instance fails the health check.
      * </p>
      *
      * @return <p>
@@ -279,8 +279,8 @@ public class BlockDeviceMapping implements Serializable {
      *         </p>
      *         <p>
      *         If this parameter is true for the root device, the instance might
-     *         fail the EC2 health check. Auto Scaling launches a replacement
-     *         instance if the instance fails the health check.
+     *         fail the EC2 health check. Amazon EC2 Auto Scaling launches a
+     *         replacement instance if the instance fails the health check.
      *         </p>
      */
     public Boolean getNoDevice() {
@@ -293,8 +293,8 @@ public class BlockDeviceMapping implements Serializable {
      * </p>
      * <p>
      * If this parameter is true for the root device, the instance might fail
-     * the EC2 health check. Auto Scaling launches a replacement instance if the
-     * instance fails the health check.
+     * the EC2 health check. Amazon EC2 Auto Scaling launches a replacement
+     * instance if the instance fails the health check.
      * </p>
      *
      * @param noDevice <p>
@@ -302,8 +302,9 @@ public class BlockDeviceMapping implements Serializable {
      *            </p>
      *            <p>
      *            If this parameter is true for the root device, the instance
-     *            might fail the EC2 health check. Auto Scaling launches a
-     *            replacement instance if the instance fails the health check.
+     *            might fail the EC2 health check. Amazon EC2 Auto Scaling
+     *            launches a replacement instance if the instance fails the
+     *            health check.
      *            </p>
      */
     public void setNoDevice(Boolean noDevice) {
@@ -316,8 +317,8 @@ public class BlockDeviceMapping implements Serializable {
      * </p>
      * <p>
      * If this parameter is true for the root device, the instance might fail
-     * the EC2 health check. Auto Scaling launches a replacement instance if the
-     * instance fails the health check.
+     * the EC2 health check. Amazon EC2 Auto Scaling launches a replacement
+     * instance if the instance fails the health check.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -328,8 +329,9 @@ public class BlockDeviceMapping implements Serializable {
      *            </p>
      *            <p>
      *            If this parameter is true for the root device, the instance
-     *            might fail the EC2 health check. Auto Scaling launches a
-     *            replacement instance if the instance fails the health check.
+     *            might fail the EC2 health check. Amazon EC2 Auto Scaling
+     *            launches a replacement instance if the instance fails the
+     *            health check.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

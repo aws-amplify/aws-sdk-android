@@ -58,7 +58,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * by the service for the input image. If you request all facial attributes
  * (using the <code>detectionAttributes</code> parameter, Amazon Rekognition
  * returns detailed facial attributes such as facial landmarks (for example,
- * location of eye and mount) and other facial attributes such gender. If you
+ * location of eye and mouth) and other facial attributes such gender. If you
  * provide the same image, specify the same collection, and use the same
  * external ID in the <code>IndexFaces</code> operation, Amazon Rekognition
  * doesn't save duplicate face metadata.

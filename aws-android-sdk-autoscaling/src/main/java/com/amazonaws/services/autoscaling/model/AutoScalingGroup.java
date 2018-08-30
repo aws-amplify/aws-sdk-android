@@ -132,8 +132,8 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The amount of time, in seconds, that Auto Scaling waits before checking
-     * the health status of an EC2 instance that has come into service.
+     * The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before
+     * checking the health status of an EC2 instance that has come into service.
      * </p>
      */
     private Integer healthCheckGracePeriod;
@@ -956,14 +956,14 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The amount of time, in seconds, that Auto Scaling waits before checking
-     * the health status of an EC2 instance that has come into service.
+     * The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before
+     * checking the health status of an EC2 instance that has come into service.
      * </p>
      *
      * @return <p>
-     *         The amount of time, in seconds, that Auto Scaling waits before
-     *         checking the health status of an EC2 instance that has come into
-     *         service.
+     *         The amount of time, in seconds, that Amazon EC2 Auto Scaling
+     *         waits before checking the health status of an EC2 instance that
+     *         has come into service.
      *         </p>
      */
     public Integer getHealthCheckGracePeriod() {
@@ -972,14 +972,14 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The amount of time, in seconds, that Auto Scaling waits before checking
-     * the health status of an EC2 instance that has come into service.
+     * The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before
+     * checking the health status of an EC2 instance that has come into service.
      * </p>
      *
      * @param healthCheckGracePeriod <p>
-     *            The amount of time, in seconds, that Auto Scaling waits before
-     *            checking the health status of an EC2 instance that has come
-     *            into service.
+     *            The amount of time, in seconds, that Amazon EC2 Auto Scaling
+     *            waits before checking the health status of an EC2 instance
+     *            that has come into service.
      *            </p>
      */
     public void setHealthCheckGracePeriod(Integer healthCheckGracePeriod) {
@@ -988,17 +988,17 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The amount of time, in seconds, that Auto Scaling waits before checking
-     * the health status of an EC2 instance that has come into service.
+     * The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before
+     * checking the health status of an EC2 instance that has come into service.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param healthCheckGracePeriod <p>
-     *            The amount of time, in seconds, that Auto Scaling waits before
-     *            checking the health status of an EC2 instance that has come
-     *            into service.
+     *            The amount of time, in seconds, that Amazon EC2 Auto Scaling
+     *            waits before checking the health status of an EC2 instance
+     *            that has come into service.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

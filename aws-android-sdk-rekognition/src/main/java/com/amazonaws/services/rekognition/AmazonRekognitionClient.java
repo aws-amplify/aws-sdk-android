@@ -720,6 +720,55 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
     }
 
     /**
+     * @param describeCollectionRequest
+     * @return describeCollectionResult The response from the DescribeCollection
+     *         service method, as returned by Amazon Rekognition.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeCollectionResult describeCollection(
+            DescribeCollectionRequest describeCollectionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeCollectionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeCollectionRequest> request = null;
+        Response<DescribeCollectionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeCollectionRequestMarshaller()
+                        .marshall(describeCollectionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeCollectionResult, JsonUnmarshallerContext> unmarshaller = new DescribeCollectionResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeCollectionResult> responseHandler = new JsonResponseHandler<DescribeCollectionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
      * <p>
      * Provides information about a stream processor created by . You can get
      * information about the input and output streams, the input parameters for
@@ -1833,7 +1882,7 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * assigned by the service for the input image. If you request all facial
      * attributes (using the <code>detectionAttributes</code> parameter, Amazon
      * Rekognition returns detailed facial attributes such as facial landmarks
-     * (for example, location of eye and mount) and other facial attributes such
+     * (for example, location of eye and mouth) and other facial attributes such
      * gender. If you provide the same image, specify the same collection, and
      * use the same external ID in the <code>IndexFaces</code> operation, Amazon
      * Rekognition doesn't save duplicate face metadata.
@@ -2588,7 +2637,7 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * topic is <code>SUCCEEDED</code>. If so, call and pass the job identifier
      * (<code>JobId</code>) from the initial call to
      * <code>StartFaceSearch</code>. For more information, see
-     * <a>collections-search-person</a>.
+     * <a>procedure-person-search-videos</a>.
      * </p>
      * 
      * @param startFaceSearchRequest

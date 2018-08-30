@@ -65,6 +65,24 @@ public class GetContentModerationResult implements Serializable {
     private String nextToken;
 
     /**
+     * The new value for the billableDurationSeconds property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     */
+    private Integer billableDurationSeconds;
+
+    /**
+     * The new value for the errorCode property for this object.
+     */
+    private String errorCode;
+
+    /**
+     * The new value for the warnings property for this object.
+     */
+    private java.util.List<Warning> warnings;
+
+    /**
      * <p>
      * The current status of the content moderation job.
      * </p>
@@ -419,6 +437,145 @@ public class GetContentModerationResult implements Serializable {
     }
 
     /**
+     * Returns the value of the billableDurationSeconds property for this
+     * object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @return The value of the billableDurationSeconds property for this
+     *         object.
+     */
+    public Integer getBillableDurationSeconds() {
+        return billableDurationSeconds;
+    }
+
+    /**
+     * Sets the value of billableDurationSeconds
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param billableDurationSeconds The new value for the
+     *            billableDurationSeconds property for this object.
+     */
+    public void setBillableDurationSeconds(Integer billableDurationSeconds) {
+        this.billableDurationSeconds = billableDurationSeconds;
+    }
+
+    /**
+     * Sets the value of the billableDurationSeconds property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param billableDurationSeconds The new value for the
+     *            billableDurationSeconds property for this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetContentModerationResult withBillableDurationSeconds(Integer billableDurationSeconds) {
+        this.billableDurationSeconds = billableDurationSeconds;
+        return this;
+    }
+
+    /**
+     * Returns the value of the errorCode property for this object.
+     *
+     * @return The value of the errorCode property for this object.
+     */
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    /**
+     * Sets the value of errorCode
+     *
+     * @param errorCode The new value for the errorCode property for this
+     *            object.
+     */
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    /**
+     * Sets the value of the errorCode property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param errorCode The new value for the errorCode property for this
+     *            object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetContentModerationResult withErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+        return this;
+    }
+
+    /**
+     * Returns the value of the warnings property for this object.
+     *
+     * @return The value of the warnings property for this object.
+     */
+    public java.util.List<Warning> getWarnings() {
+        return warnings;
+    }
+
+    /**
+     * Sets the value of warnings
+     *
+     * @param warnings The new value for the warnings property for this object.
+     */
+    public void setWarnings(java.util.Collection<Warning> warnings) {
+        if (warnings == null) {
+            this.warnings = null;
+            return;
+        }
+
+        this.warnings = new java.util.ArrayList<Warning>(warnings);
+    }
+
+    /**
+     * Sets the value of the warnings property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param warnings The new value for the warnings property for this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetContentModerationResult withWarnings(Warning... warnings) {
+        if (getWarnings() == null) {
+            this.warnings = new java.util.ArrayList<Warning>(warnings.length);
+        }
+        for (Warning value : warnings) {
+            this.warnings.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * Sets the value of the warnings property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param warnings The new value for the warnings property for this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetContentModerationResult withWarnings(java.util.Collection<Warning> warnings) {
+        setWarnings(warnings);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -438,7 +595,13 @@ public class GetContentModerationResult implements Serializable {
         if (getModerationLabels() != null)
             sb.append("ModerationLabels: " + getModerationLabels() + ",");
         if (getNextToken() != null)
-            sb.append("NextToken: " + getNextToken());
+            sb.append("NextToken: " + getNextToken() + ",");
+        if (getBillableDurationSeconds() != null)
+            sb.append("BillableDurationSeconds: " + getBillableDurationSeconds() + ",");
+        if (getErrorCode() != null)
+            sb.append("ErrorCode: " + getErrorCode() + ",");
+        if (getWarnings() != null)
+            sb.append("Warnings: " + getWarnings());
         sb.append("}");
         return sb.toString();
     }
@@ -456,6 +619,12 @@ public class GetContentModerationResult implements Serializable {
         hashCode = prime * hashCode
                 + ((getModerationLabels() == null) ? 0 : getModerationLabels().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getBillableDurationSeconds() == null) ? 0 : getBillableDurationSeconds()
+                        .hashCode());
+        hashCode = prime * hashCode + ((getErrorCode() == null) ? 0 : getErrorCode().hashCode());
+        hashCode = prime * hashCode + ((getWarnings() == null) ? 0 : getWarnings().hashCode());
         return hashCode;
     }
 
@@ -494,6 +663,20 @@ public class GetContentModerationResult implements Serializable {
             return false;
         if (other.getNextToken() != null
                 && other.getNextToken().equals(this.getNextToken()) == false)
+            return false;
+        if (other.getBillableDurationSeconds() == null ^ this.getBillableDurationSeconds() == null)
+            return false;
+        if (other.getBillableDurationSeconds() != null
+                && other.getBillableDurationSeconds().equals(this.getBillableDurationSeconds()) == false)
+            return false;
+        if (other.getErrorCode() == null ^ this.getErrorCode() == null)
+            return false;
+        if (other.getErrorCode() != null
+                && other.getErrorCode().equals(this.getErrorCode()) == false)
+            return false;
+        if (other.getWarnings() == null ^ this.getWarnings() == null)
+            return false;
+        if (other.getWarnings() != null && other.getWarnings().equals(this.getWarnings()) == false)
             return false;
         return true;
     }

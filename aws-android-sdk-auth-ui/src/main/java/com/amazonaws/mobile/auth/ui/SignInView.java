@@ -58,7 +58,7 @@ public class SignInView extends LinearLayout {
     private static final int IMAGE_LAYOUT_MARGINS = dp(10);
 
     /** String that represents the SDK Version. */
-    private static final String SDK_VERSION = "2.6.28";
+    private static final String SDK_VERSION = "2.6.29";
 
     /** Common Prefix of the namespaces of different SignIn providers. */
     private static final String NAMESPACE_COMMON_PREFIX = "com.amazonaws.mobile.auth";
