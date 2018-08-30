@@ -2107,6 +2107,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws InvalidParameterException
      * @throws NotAuthorizedException
      * @throws ResourceNotFoundException
+     * @throws LimitExceededException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2750,7 +2751,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
     /**
      * <p>
      * Client method for returning the configuration information and metadata of
-     * the specified user pool client.
+     * the specified user pool app client.
      * </p>
      * 
      * @param describeUserPoolClientRequest <p>
@@ -4969,8 +4970,10 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
     /**
      * <p>
-     * Allows the developer to update the specified user pool client and
-     * password policy.
+     * Updates the specified user pool app client with the specified attributes.
+     * If you don't provide a value for an attribute, it will be set to the
+     * default value. You can get a list of the current user pool app client
+     * settings with .
      * </p>
      * 
      * @param updateUserPoolClientRequest <p>

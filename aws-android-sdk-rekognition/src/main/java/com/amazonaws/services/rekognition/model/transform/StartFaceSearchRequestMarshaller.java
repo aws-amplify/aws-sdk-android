@@ -79,6 +79,11 @@ public class StartFaceSearchRequestMarshaller implements
                 jsonWriter.name("CollectionId");
                 jsonWriter.value(collectionId);
             }
+            if (startFaceSearchRequest.getEnablePersonTracking() != null) {
+                Boolean enablePersonTracking = startFaceSearchRequest.getEnablePersonTracking();
+                jsonWriter.name("EnablePersonTracking");
+                jsonWriter.value(enablePersonTracking);
+            }
             if (startFaceSearchRequest.getNotificationChannel() != null) {
                 NotificationChannel notificationChannel = startFaceSearchRequest
                         .getNotificationChannel();

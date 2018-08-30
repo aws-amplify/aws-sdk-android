@@ -136,6 +136,13 @@ public class UpdateTableRequest extends AmazonWebServiceRequest implements Seria
     private StreamSpecification streamSpecification;
 
     /**
+     * <p>
+     * The new server-side encryption settings for the specified table.
+     * </p>
+     */
+    private SSESpecification sSESpecification;
+
+    /**
      * Default constructor for UpdateTableRequest object. Callers should use the
      * setter or fluent setter (with...) methods to initialize any additional
      * object members.
@@ -749,6 +756,53 @@ public class UpdateTableRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
+     * <p>
+     * The new server-side encryption settings for the specified table.
+     * </p>
+     *
+     * @return <p>
+     *         The new server-side encryption settings for the specified table.
+     *         </p>
+     */
+    public SSESpecification getSSESpecification() {
+        return sSESpecification;
+    }
+
+    /**
+     * <p>
+     * The new server-side encryption settings for the specified table.
+     * </p>
+     *
+     * @param sSESpecification <p>
+     *            The new server-side encryption settings for the specified
+     *            table.
+     *            </p>
+     */
+    public void setSSESpecification(SSESpecification sSESpecification) {
+        this.sSESpecification = sSESpecification;
+    }
+
+    /**
+     * <p>
+     * The new server-side encryption settings for the specified table.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sSESpecification <p>
+     *            The new server-side encryption settings for the specified
+     *            table.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateTableRequest withSSESpecification(SSESpecification sSESpecification) {
+        this.sSESpecification = sSESpecification;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -768,7 +822,9 @@ public class UpdateTableRequest extends AmazonWebServiceRequest implements Seria
         if (getGlobalSecondaryIndexUpdates() != null)
             sb.append("GlobalSecondaryIndexUpdates: " + getGlobalSecondaryIndexUpdates() + ",");
         if (getStreamSpecification() != null)
-            sb.append("StreamSpecification: " + getStreamSpecification());
+            sb.append("StreamSpecification: " + getStreamSpecification() + ",");
+        if (getSSESpecification() != null)
+            sb.append("SSESpecification: " + getSSESpecification());
         sb.append("}");
         return sb.toString();
     }
@@ -790,6 +846,8 @@ public class UpdateTableRequest extends AmazonWebServiceRequest implements Seria
                         : getGlobalSecondaryIndexUpdates().hashCode());
         hashCode = prime * hashCode
                 + ((getStreamSpecification() == null) ? 0 : getStreamSpecification().hashCode());
+        hashCode = prime * hashCode
+                + ((getSSESpecification() == null) ? 0 : getSSESpecification().hashCode());
         return hashCode;
     }
 
@@ -830,6 +888,11 @@ public class UpdateTableRequest extends AmazonWebServiceRequest implements Seria
             return false;
         if (other.getStreamSpecification() != null
                 && other.getStreamSpecification().equals(this.getStreamSpecification()) == false)
+            return false;
+        if (other.getSSESpecification() == null ^ this.getSSESpecification() == null)
+            return false;
+        if (other.getSSESpecification() != null
+                && other.getSSESpecification().equals(this.getSSESpecification()) == false)
             return false;
         return true;
     }

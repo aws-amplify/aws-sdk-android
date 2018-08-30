@@ -50,6 +50,9 @@ class FaceJsonUnmarshaller implements Unmarshaller<Face, JsonUnmarshallerContext
             } else if (name.equals("Confidence")) {
                 face.setConfidence(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("AssociationScore")) {
+                face.setAssociationScore(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

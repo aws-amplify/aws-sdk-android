@@ -300,12 +300,25 @@ public class AWSIotMqttManager {
     }
 
     /**
-     * Set the maxium reconnects attempted automatically before quitting.
+     * Set the maximum reconnects attempted automatically before quitting.
+     *
+     * @param attempts number of reconnects attempted automatically. Retry forever =
+     *                 -1.
+     *
+     * @deprecated Please use {@link #setMaxAutoReconnectAttempts(int)} instead.
+     */
+    @Deprecated
+    public void setMaxAutoReconnectAttepts(int attempts) {
+        setMaxAutoReconnectAttempts(attempts);
+    }
+
+    /**
+     * Set the maximum reconnects attempted automatically before quitting.
      *
      * @param attempts number of reconnects attempted automatically. Retry
      *            forever = -1.
      */
-    public void setMaxAutoReconnectAttepts(int attempts) {
+    public void setMaxAutoReconnectAttempts(int attempts) {
         if (attempts <= 0 && attempts != -1) {
             throw new IllegalArgumentException("Max reconnection attempts must be postive or -1");
         }

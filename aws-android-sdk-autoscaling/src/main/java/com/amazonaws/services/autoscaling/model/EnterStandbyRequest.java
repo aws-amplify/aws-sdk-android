@@ -25,9 +25,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-enter-exit-standby.html"
+ * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enter-exit-standby.html"
  * >Temporarily Removing Instances from Your Auto Scaling Group</a> in the
- * <i>Auto Scaling User Guide</i>.
+ * <i>Amazon EC2 Auto Scaling User Guide</i>.
  * </p>
  */
 public class EnterStandbyRequest extends AmazonWebServiceRequest implements Serializable {

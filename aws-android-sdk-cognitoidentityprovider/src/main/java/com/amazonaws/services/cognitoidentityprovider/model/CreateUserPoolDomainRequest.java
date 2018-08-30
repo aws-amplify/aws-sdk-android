@@ -49,6 +49,25 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
+     * The configuration for a custom domain that hosts the sign-up and sign-in
+     * webpages for your application.
+     * </p>
+     * <p>
+     * Provide this parameter only if you want to use own custom domain for your
+     * user pool. Otherwise, you can exclude this parameter and use the Amazon
+     * Cognito hosted domain instead.
+     * </p>
+     * <p>
+     * For more information about the hosted domain and custom domains, see <a
+     * href=
+     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
+     * >Configuring a User Pool Domain</a>.
+     * </p>
+     */
+    private CustomDomainConfigType customDomainConfig;
+
+    /**
+     * <p>
      * The domain string.
      * </p>
      * <p>
@@ -162,6 +181,124 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
+     * <p>
+     * The configuration for a custom domain that hosts the sign-up and sign-in
+     * webpages for your application.
+     * </p>
+     * <p>
+     * Provide this parameter only if you want to use own custom domain for your
+     * user pool. Otherwise, you can exclude this parameter and use the Amazon
+     * Cognito hosted domain instead.
+     * </p>
+     * <p>
+     * For more information about the hosted domain and custom domains, see <a
+     * href=
+     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
+     * >Configuring a User Pool Domain</a>.
+     * </p>
+     *
+     * @return <p>
+     *         The configuration for a custom domain that hosts the sign-up and
+     *         sign-in webpages for your application.
+     *         </p>
+     *         <p>
+     *         Provide this parameter only if you want to use own custom domain
+     *         for your user pool. Otherwise, you can exclude this parameter and
+     *         use the Amazon Cognito hosted domain instead.
+     *         </p>
+     *         <p>
+     *         For more information about the hosted domain and custom domains,
+     *         see <a href=
+     *         "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
+     *         >Configuring a User Pool Domain</a>.
+     *         </p>
+     */
+    public CustomDomainConfigType getCustomDomainConfig() {
+        return customDomainConfig;
+    }
+
+    /**
+     * <p>
+     * The configuration for a custom domain that hosts the sign-up and sign-in
+     * webpages for your application.
+     * </p>
+     * <p>
+     * Provide this parameter only if you want to use own custom domain for your
+     * user pool. Otherwise, you can exclude this parameter and use the Amazon
+     * Cognito hosted domain instead.
+     * </p>
+     * <p>
+     * For more information about the hosted domain and custom domains, see <a
+     * href=
+     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
+     * >Configuring a User Pool Domain</a>.
+     * </p>
+     *
+     * @param customDomainConfig <p>
+     *            The configuration for a custom domain that hosts the sign-up
+     *            and sign-in webpages for your application.
+     *            </p>
+     *            <p>
+     *            Provide this parameter only if you want to use own custom
+     *            domain for your user pool. Otherwise, you can exclude this
+     *            parameter and use the Amazon Cognito hosted domain instead.
+     *            </p>
+     *            <p>
+     *            For more information about the hosted domain and custom
+     *            domains, see <a href=
+     *            "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
+     *            >Configuring a User Pool Domain</a>.
+     *            </p>
+     */
+    public void setCustomDomainConfig(CustomDomainConfigType customDomainConfig) {
+        this.customDomainConfig = customDomainConfig;
+    }
+
+    /**
+     * <p>
+     * The configuration for a custom domain that hosts the sign-up and sign-in
+     * webpages for your application.
+     * </p>
+     * <p>
+     * Provide this parameter only if you want to use own custom domain for your
+     * user pool. Otherwise, you can exclude this parameter and use the Amazon
+     * Cognito hosted domain instead.
+     * </p>
+     * <p>
+     * For more information about the hosted domain and custom domains, see <a
+     * href=
+     * "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
+     * >Configuring a User Pool Domain</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param customDomainConfig <p>
+     *            The configuration for a custom domain that hosts the sign-up
+     *            and sign-in webpages for your application.
+     *            </p>
+     *            <p>
+     *            Provide this parameter only if you want to use own custom
+     *            domain for your user pool. Otherwise, you can exclude this
+     *            parameter and use the Amazon Cognito hosted domain instead.
+     *            </p>
+     *            <p>
+     *            For more information about the hosted domain and custom
+     *            domains, see <a href=
+     *            "http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-assign-domain.html"
+     *            >Configuring a User Pool Domain</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateUserPoolDomainRequest withCustomDomainConfig(
+            CustomDomainConfigType customDomainConfig) {
+        this.customDomainConfig = customDomainConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -175,7 +312,9 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
         if (getDomain() != null)
             sb.append("Domain: " + getDomain() + ",");
         if (getUserPoolId() != null)
-            sb.append("UserPoolId: " + getUserPoolId());
+            sb.append("UserPoolId: " + getUserPoolId() + ",");
+        if (getCustomDomainConfig() != null)
+            sb.append("CustomDomainConfig: " + getCustomDomainConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -187,6 +326,8 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
 
         hashCode = prime * hashCode + ((getDomain() == null) ? 0 : getDomain().hashCode());
         hashCode = prime * hashCode + ((getUserPoolId() == null) ? 0 : getUserPoolId().hashCode());
+        hashCode = prime * hashCode
+                + ((getCustomDomainConfig() == null) ? 0 : getCustomDomainConfig().hashCode());
         return hashCode;
     }
 
@@ -209,6 +350,11 @@ public class CreateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
             return false;
         if (other.getUserPoolId() != null
                 && other.getUserPoolId().equals(this.getUserPoolId()) == false)
+            return false;
+        if (other.getCustomDomainConfig() == null ^ this.getCustomDomainConfig() == null)
+            return false;
+        if (other.getCustomDomainConfig() != null
+                && other.getCustomDomainConfig().equals(this.getCustomDomainConfig()) == false)
             return false;
         return true;
     }

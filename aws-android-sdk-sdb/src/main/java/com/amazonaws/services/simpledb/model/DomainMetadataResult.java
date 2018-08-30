@@ -52,8 +52,7 @@ public class DomainMetadataResult implements Serializable {
     private Long attributeValuesSizeBytes;
 
     /**
-     * The data and time when metadata was calculated, in Epoch (UNIX)
-     * seconds.
+     * The data and time when metadata was calculated in Epoch (UNIX) time.
      */
     private Integer timestamp;
 
@@ -256,35 +255,29 @@ public class DomainMetadataResult implements Serializable {
     }
 
     /**
-     * The data and time when metadata was calculated, in Epoch (UNIX)
-     * seconds.
+     * The data and time when metadata was calculated in Epoch (UNIX) time.
      *
-     * @return The data and time when metadata was calculated, in Epoch (UNIX)
-     *         seconds.
+     * @return The data and time when metadata was calculated in Epoch (UNIX) time.
      */
     public Integer getTimestamp() {
         return timestamp;
     }
     
     /**
-     * The data and time when metadata was calculated, in Epoch (UNIX)
-     * seconds.
+     * The data and time when metadata was calculated in Epoch (UNIX) time.
      *
-     * @param timestamp The data and time when metadata was calculated, in Epoch (UNIX)
-     *         seconds.
+     * @param timestamp The data and time when metadata was calculated in Epoch (UNIX) time.
      */
     public void setTimestamp(Integer timestamp) {
         this.timestamp = timestamp;
     }
     
     /**
-     * The data and time when metadata was calculated, in Epoch (UNIX)
-     * seconds.
+     * The data and time when metadata was calculated in Epoch (UNIX) time.
      * <p>
      * Returns a reference to this object so that method calls can be chained together.
      *
-     * @param timestamp The data and time when metadata was calculated, in Epoch (UNIX)
-     *         seconds.
+     * @param timestamp The data and time when metadata was calculated in Epoch (UNIX) time.
      *
      * @return A reference to this updated object so that method calls can be chained
      *         together.
