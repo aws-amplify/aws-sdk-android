@@ -52,6 +52,18 @@ public class GetContentModerationResultJsonUnmarshaller implements
             } else if (name.equals("NextToken")) {
                 getContentModerationResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("BillableDurationSeconds")) {
+                getContentModerationResult.setBillableDurationSeconds(IntegerJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("ErrorCode")) {
+                getContentModerationResult.setErrorCode(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Warnings")) {
+                getContentModerationResult.setWarnings(new ListUnmarshaller<Warning>(
+                        WarningJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

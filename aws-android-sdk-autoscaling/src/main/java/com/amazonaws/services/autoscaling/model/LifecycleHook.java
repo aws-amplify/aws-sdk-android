@@ -19,13 +19,14 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes a lifecycle hook, which tells Auto Scaling that you want to perform
- * an action whenever it launches instances or whenever it terminates instances.
+ * Describes a lifecycle hook, which tells Amazon EC2 Auto Scaling that you want
+ * to perform an action whenever it launches instances or whenever it terminates
+ * instances.
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/latest/userguide/lifecycle-hooks.html"
- * >Auto Scaling Lifecycle Hooks</a> in the <i>Auto Scaling User Guide</i>.
+ * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html"
+ * >Lifecycle Hooks</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
  * </p>
  */
 public class LifecycleHook implements Serializable {
@@ -55,16 +56,27 @@ public class LifecycleHook implements Serializable {
     /**
      * <p>
      * The state of the EC2 instance to which you want to attach the lifecycle
-     * hook. For a list of lifecycle hook types, see
-     * <a>DescribeLifecycleHookTypes</a>.
+     * hook. The following are possible values:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_LAUNCHING
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_TERMINATING
+     * </p>
+     * </li>
+     * </ul>
      */
     private String lifecycleTransition;
 
     /**
      * <p>
-     * The ARN of the target that Auto Scaling sends notifications to when an
-     * instance is in the transition state for the lifecycle hook. The
+     * The ARN of the target that Amazon EC2 Auto Scaling sends notifications to
+     * when an instance is in the transition state for the lifecycle hook. The
      * notification target can be either an SQS queue or an SNS topic.
      * </p>
      * <p>
@@ -90,8 +102,8 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * Additional information that you want to include any time Auto Scaling
-     * sends a message to the notification target.
+     * Additional information that you want to include any time Amazon EC2 Auto
+     * Scaling sends a message to the notification target.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -104,9 +116,9 @@ public class LifecycleHook implements Serializable {
     /**
      * <p>
      * The maximum time, in seconds, that can elapse before the lifecycle hook
-     * times out. If the lifecycle hook times out, Auto Scaling performs the
-     * default action. You can prevent the lifecycle hook from timing out by
-     * calling <a>RecordLifecycleActionHeartbeat</a>.
+     * times out. If the lifecycle hook times out, Amazon EC2 Auto Scaling
+     * performs the default action. You can prevent the lifecycle hook from
+     * timing out by calling <a>RecordLifecycleActionHeartbeat</a>.
      * </p>
      */
     private Integer heartbeatTimeout;
@@ -251,15 +263,37 @@ public class LifecycleHook implements Serializable {
     /**
      * <p>
      * The state of the EC2 instance to which you want to attach the lifecycle
-     * hook. For a list of lifecycle hook types, see
-     * <a>DescribeLifecycleHookTypes</a>.
+     * hook. The following are possible values:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_LAUNCHING
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_TERMINATING
+     * </p>
+     * </li>
+     * </ul>
      *
      * @return <p>
      *         The state of the EC2 instance to which you want to attach the
-     *         lifecycle hook. For a list of lifecycle hook types, see
-     *         <a>DescribeLifecycleHookTypes</a>.
+     *         lifecycle hook. The following are possible values:
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         autoscaling:EC2_INSTANCE_LAUNCHING
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         autoscaling:EC2_INSTANCE_TERMINATING
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public String getLifecycleTransition() {
         return lifecycleTransition;
@@ -268,15 +302,37 @@ public class LifecycleHook implements Serializable {
     /**
      * <p>
      * The state of the EC2 instance to which you want to attach the lifecycle
-     * hook. For a list of lifecycle hook types, see
-     * <a>DescribeLifecycleHookTypes</a>.
+     * hook. The following are possible values:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_LAUNCHING
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_TERMINATING
+     * </p>
+     * </li>
+     * </ul>
      *
      * @param lifecycleTransition <p>
      *            The state of the EC2 instance to which you want to attach the
-     *            lifecycle hook. For a list of lifecycle hook types, see
-     *            <a>DescribeLifecycleHookTypes</a>.
+     *            lifecycle hook. The following are possible values:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            autoscaling:EC2_INSTANCE_LAUNCHING
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            autoscaling:EC2_INSTANCE_TERMINATING
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setLifecycleTransition(String lifecycleTransition) {
         this.lifecycleTransition = lifecycleTransition;
@@ -285,18 +341,40 @@ public class LifecycleHook implements Serializable {
     /**
      * <p>
      * The state of the EC2 instance to which you want to attach the lifecycle
-     * hook. For a list of lifecycle hook types, see
-     * <a>DescribeLifecycleHookTypes</a>.
+     * hook. The following are possible values:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_LAUNCHING
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_TERMINATING
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lifecycleTransition <p>
      *            The state of the EC2 instance to which you want to attach the
-     *            lifecycle hook. For a list of lifecycle hook types, see
-     *            <a>DescribeLifecycleHookTypes</a>.
+     *            lifecycle hook. The following are possible values:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            autoscaling:EC2_INSTANCE_LAUNCHING
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            autoscaling:EC2_INSTANCE_TERMINATING
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -307,8 +385,8 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * The ARN of the target that Auto Scaling sends notifications to when an
-     * instance is in the transition state for the lifecycle hook. The
+     * The ARN of the target that Amazon EC2 Auto Scaling sends notifications to
+     * when an instance is in the transition state for the lifecycle hook. The
      * notification target can be either an SQS queue or an SNS topic.
      * </p>
      * <p>
@@ -318,10 +396,10 @@ public class LifecycleHook implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The ARN of the target that Auto Scaling sends notifications to
-     *         when an instance is in the transition state for the lifecycle
-     *         hook. The notification target can be either an SQS queue or an
-     *         SNS topic.
+     *         The ARN of the target that Amazon EC2 Auto Scaling sends
+     *         notifications to when an instance is in the transition state for
+     *         the lifecycle hook. The notification target can be either an SQS
+     *         queue or an SNS topic.
      *         </p>
      */
     public String getNotificationTargetARN() {
@@ -330,8 +408,8 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * The ARN of the target that Auto Scaling sends notifications to when an
-     * instance is in the transition state for the lifecycle hook. The
+     * The ARN of the target that Amazon EC2 Auto Scaling sends notifications to
+     * when an instance is in the transition state for the lifecycle hook. The
      * notification target can be either an SQS queue or an SNS topic.
      * </p>
      * <p>
@@ -341,10 +419,10 @@ public class LifecycleHook implements Serializable {
      * <br/>
      *
      * @param notificationTargetARN <p>
-     *            The ARN of the target that Auto Scaling sends notifications to
-     *            when an instance is in the transition state for the lifecycle
-     *            hook. The notification target can be either an SQS queue or an
-     *            SNS topic.
+     *            The ARN of the target that Amazon EC2 Auto Scaling sends
+     *            notifications to when an instance is in the transition state
+     *            for the lifecycle hook. The notification target can be either
+     *            an SQS queue or an SNS topic.
      *            </p>
      */
     public void setNotificationTargetARN(String notificationTargetARN) {
@@ -353,8 +431,8 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * The ARN of the target that Auto Scaling sends notifications to when an
-     * instance is in the transition state for the lifecycle hook. The
+     * The ARN of the target that Amazon EC2 Auto Scaling sends notifications to
+     * when an instance is in the transition state for the lifecycle hook. The
      * notification target can be either an SQS queue or an SNS topic.
      * </p>
      * <p>
@@ -367,10 +445,10 @@ public class LifecycleHook implements Serializable {
      * <br/>
      *
      * @param notificationTargetARN <p>
-     *            The ARN of the target that Auto Scaling sends notifications to
-     *            when an instance is in the transition state for the lifecycle
-     *            hook. The notification target can be either an SQS queue or an
-     *            SNS topic.
+     *            The ARN of the target that Amazon EC2 Auto Scaling sends
+     *            notifications to when an instance is in the transition state
+     *            for the lifecycle hook. The notification target can be either
+     *            an SQS queue or an SNS topic.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -448,8 +526,8 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * Additional information that you want to include any time Auto Scaling
-     * sends a message to the notification target.
+     * Additional information that you want to include any time Amazon EC2 Auto
+     * Scaling sends a message to the notification target.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -458,8 +536,8 @@ public class LifecycleHook implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         Additional information that you want to include any time Auto
-     *         Scaling sends a message to the notification target.
+     *         Additional information that you want to include any time Amazon
+     *         EC2 Auto Scaling sends a message to the notification target.
      *         </p>
      */
     public String getNotificationMetadata() {
@@ -468,8 +546,8 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * Additional information that you want to include any time Auto Scaling
-     * sends a message to the notification target.
+     * Additional information that you want to include any time Amazon EC2 Auto
+     * Scaling sends a message to the notification target.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -478,8 +556,9 @@ public class LifecycleHook implements Serializable {
      * <br/>
      *
      * @param notificationMetadata <p>
-     *            Additional information that you want to include any time Auto
-     *            Scaling sends a message to the notification target.
+     *            Additional information that you want to include any time
+     *            Amazon EC2 Auto Scaling sends a message to the notification
+     *            target.
      *            </p>
      */
     public void setNotificationMetadata(String notificationMetadata) {
@@ -488,8 +567,8 @@ public class LifecycleHook implements Serializable {
 
     /**
      * <p>
-     * Additional information that you want to include any time Auto Scaling
-     * sends a message to the notification target.
+     * Additional information that you want to include any time Amazon EC2 Auto
+     * Scaling sends a message to the notification target.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -501,8 +580,9 @@ public class LifecycleHook implements Serializable {
      * <br/>
      *
      * @param notificationMetadata <p>
-     *            Additional information that you want to include any time Auto
-     *            Scaling sends a message to the notification target.
+     *            Additional information that you want to include any time
+     *            Amazon EC2 Auto Scaling sends a message to the notification
+     *            target.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -515,15 +595,15 @@ public class LifecycleHook implements Serializable {
     /**
      * <p>
      * The maximum time, in seconds, that can elapse before the lifecycle hook
-     * times out. If the lifecycle hook times out, Auto Scaling performs the
-     * default action. You can prevent the lifecycle hook from timing out by
-     * calling <a>RecordLifecycleActionHeartbeat</a>.
+     * times out. If the lifecycle hook times out, Amazon EC2 Auto Scaling
+     * performs the default action. You can prevent the lifecycle hook from
+     * timing out by calling <a>RecordLifecycleActionHeartbeat</a>.
      * </p>
      *
      * @return <p>
      *         The maximum time, in seconds, that can elapse before the
-     *         lifecycle hook times out. If the lifecycle hook times out, Auto
-     *         Scaling performs the default action. You can prevent the
+     *         lifecycle hook times out. If the lifecycle hook times out, Amazon
+     *         EC2 Auto Scaling performs the default action. You can prevent the
      *         lifecycle hook from timing out by calling
      *         <a>RecordLifecycleActionHeartbeat</a>.
      *         </p>
@@ -535,16 +615,16 @@ public class LifecycleHook implements Serializable {
     /**
      * <p>
      * The maximum time, in seconds, that can elapse before the lifecycle hook
-     * times out. If the lifecycle hook times out, Auto Scaling performs the
-     * default action. You can prevent the lifecycle hook from timing out by
-     * calling <a>RecordLifecycleActionHeartbeat</a>.
+     * times out. If the lifecycle hook times out, Amazon EC2 Auto Scaling
+     * performs the default action. You can prevent the lifecycle hook from
+     * timing out by calling <a>RecordLifecycleActionHeartbeat</a>.
      * </p>
      *
      * @param heartbeatTimeout <p>
      *            The maximum time, in seconds, that can elapse before the
      *            lifecycle hook times out. If the lifecycle hook times out,
-     *            Auto Scaling performs the default action. You can prevent the
-     *            lifecycle hook from timing out by calling
+     *            Amazon EC2 Auto Scaling performs the default action. You can
+     *            prevent the lifecycle hook from timing out by calling
      *            <a>RecordLifecycleActionHeartbeat</a>.
      *            </p>
      */
@@ -555,9 +635,9 @@ public class LifecycleHook implements Serializable {
     /**
      * <p>
      * The maximum time, in seconds, that can elapse before the lifecycle hook
-     * times out. If the lifecycle hook times out, Auto Scaling performs the
-     * default action. You can prevent the lifecycle hook from timing out by
-     * calling <a>RecordLifecycleActionHeartbeat</a>.
+     * times out. If the lifecycle hook times out, Amazon EC2 Auto Scaling
+     * performs the default action. You can prevent the lifecycle hook from
+     * timing out by calling <a>RecordLifecycleActionHeartbeat</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -566,8 +646,8 @@ public class LifecycleHook implements Serializable {
      * @param heartbeatTimeout <p>
      *            The maximum time, in seconds, that can elapse before the
      *            lifecycle hook times out. If the lifecycle hook times out,
-     *            Auto Scaling performs the default action. You can prevent the
-     *            lifecycle hook from timing out by calling
+     *            Amazon EC2 Auto Scaling performs the default action. You can
+     *            prevent the lifecycle hook from timing out by calling
      *            <a>RecordLifecycleActionHeartbeat</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

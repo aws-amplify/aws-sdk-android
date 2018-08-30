@@ -67,12 +67,6 @@ public class DomainDescriptionType implements Serializable {
      * <p>
      * The ARN of the CloudFront distribution.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>20 - 2048<br/>
-     * <b>Pattern:
-     * </b>arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=
-     * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      */
     private String cloudFrontDistribution;
 
@@ -95,6 +89,14 @@ public class DomainDescriptionType implements Serializable {
      * <b>Allowed Values: </b>CREATING, DELETING, UPDATING, ACTIVE, FAILED
      */
     private String status;
+
+    /**
+     * <p>
+     * The configuration for a custom domain that hosts the sign-up and sign-in
+     * webpages for your application.
+     * </p>
+     */
+    private CustomDomainConfigType customDomainConfig;
 
     /**
      * <p>
@@ -318,12 +320,6 @@ public class DomainDescriptionType implements Serializable {
      * <p>
      * The ARN of the CloudFront distribution.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>20 - 2048<br/>
-     * <b>Pattern:
-     * </b>arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=
-     * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @return <p>
      *         The ARN of the CloudFront distribution.
@@ -337,12 +333,6 @@ public class DomainDescriptionType implements Serializable {
      * <p>
      * The ARN of the CloudFront distribution.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>20 - 2048<br/>
-     * <b>Pattern:
-     * </b>arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=
-     * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param cloudFrontDistribution <p>
      *            The ARN of the CloudFront distribution.
@@ -359,12 +349,6 @@ public class DomainDescriptionType implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>20 - 2048<br/>
-     * <b>Pattern:
-     * </b>arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=
-     * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param cloudFrontDistribution <p>
      *            The ARN of the CloudFront distribution.
@@ -529,6 +513,57 @@ public class DomainDescriptionType implements Serializable {
     }
 
     /**
+     * <p>
+     * The configuration for a custom domain that hosts the sign-up and sign-in
+     * webpages for your application.
+     * </p>
+     *
+     * @return <p>
+     *         The configuration for a custom domain that hosts the sign-up and
+     *         sign-in webpages for your application.
+     *         </p>
+     */
+    public CustomDomainConfigType getCustomDomainConfig() {
+        return customDomainConfig;
+    }
+
+    /**
+     * <p>
+     * The configuration for a custom domain that hosts the sign-up and sign-in
+     * webpages for your application.
+     * </p>
+     *
+     * @param customDomainConfig <p>
+     *            The configuration for a custom domain that hosts the sign-up
+     *            and sign-in webpages for your application.
+     *            </p>
+     */
+    public void setCustomDomainConfig(CustomDomainConfigType customDomainConfig) {
+        this.customDomainConfig = customDomainConfig;
+    }
+
+    /**
+     * <p>
+     * The configuration for a custom domain that hosts the sign-up and sign-in
+     * webpages for your application.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param customDomainConfig <p>
+     *            The configuration for a custom domain that hosts the sign-up
+     *            and sign-in webpages for your application.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DomainDescriptionType withCustomDomainConfig(CustomDomainConfigType customDomainConfig) {
+        this.customDomainConfig = customDomainConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -552,7 +587,9 @@ public class DomainDescriptionType implements Serializable {
         if (getVersion() != null)
             sb.append("Version: " + getVersion() + ",");
         if (getStatus() != null)
-            sb.append("Status: " + getStatus());
+            sb.append("Status: " + getStatus() + ",");
+        if (getCustomDomainConfig() != null)
+            sb.append("CustomDomainConfig: " + getCustomDomainConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -573,6 +610,8 @@ public class DomainDescriptionType implements Serializable {
                         .hashCode());
         hashCode = prime * hashCode + ((getVersion() == null) ? 0 : getVersion().hashCode());
         hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        hashCode = prime * hashCode
+                + ((getCustomDomainConfig() == null) ? 0 : getCustomDomainConfig().hashCode());
         return hashCode;
     }
 
@@ -617,6 +656,11 @@ public class DomainDescriptionType implements Serializable {
         if (other.getStatus() == null ^ this.getStatus() == null)
             return false;
         if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
+            return false;
+        if (other.getCustomDomainConfig() == null ^ this.getCustomDomainConfig() == null)
+            return false;
+        if (other.getCustomDomainConfig() != null
+                && other.getCustomDomainConfig().equals(this.getCustomDomainConfig()) == false)
             return false;
         return true;
     }

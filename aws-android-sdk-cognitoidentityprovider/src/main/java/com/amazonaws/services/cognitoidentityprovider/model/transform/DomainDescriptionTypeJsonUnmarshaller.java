@@ -58,6 +58,10 @@ class DomainDescriptionTypeJsonUnmarshaller implements
             } else if (name.equals("Status")) {
                 domainDescriptionType.setStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("CustomDomainConfig")) {
+                domainDescriptionType.setCustomDomainConfig(CustomDomainConfigTypeJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

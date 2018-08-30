@@ -51,11 +51,11 @@ public class LaunchTemplateSpecification implements Serializable {
     /**
      * <p>
      * The version number, <code>$Latest</code>, or <code>$Default</code>. If
-     * the value is <code>$Latest</code>, Auto Scaling selects the latest
-     * version of the launch template when launching instances. If the value is
-     * <code>$Default</code>, Auto Scaling selects the default version of the
-     * launch template when launching instances. The default value is
-     * <code>$Default</code>.
+     * the value is <code>$Latest</code>, Amazon EC2 Auto Scaling selects the
+     * latest version of the launch template when launching instances. If the
+     * value is <code>$Default</code>, Amazon EC2 Auto Scaling selects the
+     * default version of the launch template when launching instances. The
+     * default value is <code>$Default</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -197,11 +197,11 @@ public class LaunchTemplateSpecification implements Serializable {
     /**
      * <p>
      * The version number, <code>$Latest</code>, or <code>$Default</code>. If
-     * the value is <code>$Latest</code>, Auto Scaling selects the latest
-     * version of the launch template when launching instances. If the value is
-     * <code>$Default</code>, Auto Scaling selects the default version of the
-     * launch template when launching instances. The default value is
-     * <code>$Default</code>.
+     * the value is <code>$Latest</code>, Amazon EC2 Auto Scaling selects the
+     * latest version of the launch template when launching instances. If the
+     * value is <code>$Default</code>, Amazon EC2 Auto Scaling selects the
+     * default version of the launch template when launching instances. The
+     * default value is <code>$Default</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -211,11 +211,12 @@ public class LaunchTemplateSpecification implements Serializable {
      *
      * @return <p>
      *         The version number, <code>$Latest</code>, or
-     *         <code>$Default</code>. If the value is <code>$Latest</code>, Auto
-     *         Scaling selects the latest version of the launch template when
-     *         launching instances. If the value is <code>$Default</code>, Auto
-     *         Scaling selects the default version of the launch template when
-     *         launching instances. The default value is <code>$Default</code>.
+     *         <code>$Default</code>. If the value is <code>$Latest</code>,
+     *         Amazon EC2 Auto Scaling selects the latest version of the launch
+     *         template when launching instances. If the value is
+     *         <code>$Default</code>, Amazon EC2 Auto Scaling selects the
+     *         default version of the launch template when launching instances.
+     *         The default value is <code>$Default</code>.
      *         </p>
      */
     public String getVersion() {
@@ -225,11 +226,11 @@ public class LaunchTemplateSpecification implements Serializable {
     /**
      * <p>
      * The version number, <code>$Latest</code>, or <code>$Default</code>. If
-     * the value is <code>$Latest</code>, Auto Scaling selects the latest
-     * version of the launch template when launching instances. If the value is
-     * <code>$Default</code>, Auto Scaling selects the default version of the
-     * launch template when launching instances. The default value is
-     * <code>$Default</code>.
+     * the value is <code>$Latest</code>, Amazon EC2 Auto Scaling selects the
+     * latest version of the launch template when launching instances. If the
+     * value is <code>$Default</code>, Amazon EC2 Auto Scaling selects the
+     * default version of the launch template when launching instances. The
+     * default value is <code>$Default</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -240,11 +241,11 @@ public class LaunchTemplateSpecification implements Serializable {
      * @param version <p>
      *            The version number, <code>$Latest</code>, or
      *            <code>$Default</code>. If the value is <code>$Latest</code>,
-     *            Auto Scaling selects the latest version of the launch template
-     *            when launching instances. If the value is
-     *            <code>$Default</code>, Auto Scaling selects the default
-     *            version of the launch template when launching instances. The
-     *            default value is <code>$Default</code>.
+     *            Amazon EC2 Auto Scaling selects the latest version of the
+     *            launch template when launching instances. If the value is
+     *            <code>$Default</code>, Amazon EC2 Auto Scaling selects the
+     *            default version of the launch template when launching
+     *            instances. The default value is <code>$Default</code>.
      *            </p>
      */
     public void setVersion(String version) {
@@ -254,11 +255,11 @@ public class LaunchTemplateSpecification implements Serializable {
     /**
      * <p>
      * The version number, <code>$Latest</code>, or <code>$Default</code>. If
-     * the value is <code>$Latest</code>, Auto Scaling selects the latest
-     * version of the launch template when launching instances. If the value is
-     * <code>$Default</code>, Auto Scaling selects the default version of the
-     * launch template when launching instances. The default value is
-     * <code>$Default</code>.
+     * the value is <code>$Latest</code>, Amazon EC2 Auto Scaling selects the
+     * latest version of the launch template when launching instances. If the
+     * value is <code>$Default</code>, Amazon EC2 Auto Scaling selects the
+     * default version of the launch template when launching instances. The
+     * default value is <code>$Default</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -272,11 +273,11 @@ public class LaunchTemplateSpecification implements Serializable {
      * @param version <p>
      *            The version number, <code>$Latest</code>, or
      *            <code>$Default</code>. If the value is <code>$Latest</code>,
-     *            Auto Scaling selects the latest version of the launch template
-     *            when launching instances. If the value is
-     *            <code>$Default</code>, Auto Scaling selects the default
-     *            version of the launch template when launching instances. The
-     *            default value is <code>$Default</code>.
+     *            Amazon EC2 Auto Scaling selects the latest version of the
+     *            launch template when launching instances. If the value is
+     *            <code>$Default</code>, Amazon EC2 Auto Scaling selects the
+     *            default version of the launch template when launching
+     *            instances. The default value is <code>$Default</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
