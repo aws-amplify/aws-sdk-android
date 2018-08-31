@@ -22,7 +22,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Client method for returning the configuration information and metadata of the
- * specified user pool client.
+ * specified user pool app client.
  * </p>
  */
 public class DescribeUserPoolClientRequest extends AmazonWebServiceRequest implements Serializable {

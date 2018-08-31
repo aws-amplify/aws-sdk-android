@@ -26,7 +26,8 @@ public enum SSEStatus {
     ENABLING("ENABLING"),
     ENABLED("ENABLED"),
     DISABLING("DISABLING"),
-    DISABLED("DISABLED");
+    DISABLED("DISABLED"),
+    UPDATING("UPDATING");
 
     private String value;
 
@@ -46,6 +47,7 @@ public enum SSEStatus {
         enumMap.put("ENABLED", ENABLED);
         enumMap.put("DISABLING", DISABLING);
         enumMap.put("DISABLED", DISABLED);
+        enumMap.put("UPDATING", UPDATING);
     }
 
     /**

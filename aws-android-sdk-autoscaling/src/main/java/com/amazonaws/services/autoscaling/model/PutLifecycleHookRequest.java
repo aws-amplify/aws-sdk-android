@@ -24,9 +24,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Creates or updates a lifecycle hook for the specified Auto Scaling Group.
  * </p>
  * <p>
- * A lifecycle hook tells Auto Scaling that you want to perform an action on an
- * instance that is not actively in service; for example, either when the
- * instance launches or before the instance terminates.
+ * A lifecycle hook tells Amazon EC2 Auto Scaling that you want to perform an
+ * action on an instance that is not actively in service; for example, either
+ * when the instance launches or before the instance terminates.
  * </p>
  * <p>
  * This step is a part of the procedure for adding a lifecycle hook to an Auto
@@ -36,15 +36,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <li>
  * <p>
  * (Optional) Create a Lambda function and a rule that allows CloudWatch Events
- * to invoke your Lambda function when Auto Scaling launches or terminates
- * instances.
+ * to invoke your Lambda function when Amazon EC2 Auto Scaling launches or
+ * terminates instances.
  * </p>
  * </li>
  * <li>
  * <p>
  * (Optional) Create a notification target and an IAM role. The target can be
- * either an Amazon SQS queue or an Amazon SNS topic. The role allows Auto
- * Scaling to publish lifecycle notifications to the target.
+ * either an Amazon SQS queue or an Amazon SNS topic. The role allows Amazon EC2
+ * Auto Scaling to publish lifecycle notifications to the target.
  * </p>
  * </li>
  * <li>
@@ -67,8 +67,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </ol>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/latest/userguide/lifecycle-hooks.html"
- * >Auto Scaling Lifecycle Hooks</a> in the <i>Auto Scaling User Guide</i>.
+ * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html"
+ * >Auto Scaling Lifecycle Hooks</a> in the <i>Amazon EC2 Auto Scaling User
+ * Guide</i>.
  * </p>
  * <p>
  * If you exceed your maximum limit of lifecycle hooks, which by default is 50
@@ -104,9 +105,21 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The instance state to which you want to attach the lifecycle hook. For a
-     * list of lifecycle hook types, see <a>DescribeLifecycleHookTypes</a>.
+     * The instance state to which you want to attach the lifecycle hook. The
+     * possible values are:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_LAUNCHING
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_TERMINATING
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * This parameter is required for new lifecycle hooks, but optional when
      * updating existing hooks.
@@ -133,10 +146,10 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The ARN of the notification target that Auto Scaling will use to notify
-     * you when an instance is in the transition state for the lifecycle hook.
-     * This target can be either an SQS queue or an SNS topic. If you specify an
-     * empty string, this overrides the current ARN.
+     * The ARN of the notification target that Amazon EC2 Auto Scaling will use
+     * to notify you when an instance is in the transition state for the
+     * lifecycle hook. This target can be either an SQS queue or an SNS topic.
+     * If you specify an empty string, this overrides the current ARN.
      * </p>
      * <p>
      * This operation uses the JSON format when sending notifications to an
@@ -144,9 +157,9 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      * notifications to an Amazon SNS topic.
      * </p>
      * <p>
-     * When you specify a notification target, Auto Scaling sends it a test
-     * message. Test messages contains the following additional key/value pair:
-     * <code>"Event": "autoscaling:TEST_NOTIFICATION"</code>.
+     * When you specify a notification target, Amazon EC2 Auto Scaling sends it
+     * a test message. Test messages contains the following additional key/value
+     * pair: <code>"Event": "autoscaling:TEST_NOTIFICATION"</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -158,8 +171,8 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Contains additional information that you want to include any time Auto
-     * Scaling sends a message to the notification target.
+     * Contains additional information that you want to include any time Amazon
+     * EC2 Auto Scaling sends a message to the notification target.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -176,9 +189,9 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      * seconds (1 hour).
      * </p>
      * <p>
-     * If the lifecycle hook times out, Auto Scaling performs the default
-     * action. You can prevent the lifecycle hook from timing out by calling
-     * <a>RecordLifecycleActionHeartbeat</a>.
+     * If the lifecycle hook times out, Amazon EC2 Auto Scaling performs the
+     * default action. You can prevent the lifecycle hook from timing out by
+     * calling <a>RecordLifecycleActionHeartbeat</a>.
      * </p>
      */
     private Integer heartbeatTimeout;
@@ -312,9 +325,21 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The instance state to which you want to attach the lifecycle hook. For a
-     * list of lifecycle hook types, see <a>DescribeLifecycleHookTypes</a>.
+     * The instance state to which you want to attach the lifecycle hook. The
+     * possible values are:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_LAUNCHING
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_TERMINATING
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * This parameter is required for new lifecycle hooks, but optional when
      * updating existing hooks.
@@ -322,9 +347,20 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      *
      * @return <p>
      *         The instance state to which you want to attach the lifecycle
-     *         hook. For a list of lifecycle hook types, see
-     *         <a>DescribeLifecycleHookTypes</a>.
+     *         hook. The possible values are:
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         autoscaling:EC2_INSTANCE_LAUNCHING
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         autoscaling:EC2_INSTANCE_TERMINATING
+     *         </p>
+     *         </li>
+     *         </ul>
      *         <p>
      *         This parameter is required for new lifecycle hooks, but optional
      *         when updating existing hooks.
@@ -336,9 +372,21 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The instance state to which you want to attach the lifecycle hook. For a
-     * list of lifecycle hook types, see <a>DescribeLifecycleHookTypes</a>.
+     * The instance state to which you want to attach the lifecycle hook. The
+     * possible values are:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_LAUNCHING
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_TERMINATING
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * This parameter is required for new lifecycle hooks, but optional when
      * updating existing hooks.
@@ -346,9 +394,20 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      *
      * @param lifecycleTransition <p>
      *            The instance state to which you want to attach the lifecycle
-     *            hook. For a list of lifecycle hook types, see
-     *            <a>DescribeLifecycleHookTypes</a>.
+     *            hook. The possible values are:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            autoscaling:EC2_INSTANCE_LAUNCHING
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            autoscaling:EC2_INSTANCE_TERMINATING
+     *            </p>
+     *            </li>
+     *            </ul>
      *            <p>
      *            This parameter is required for new lifecycle hooks, but
      *            optional when updating existing hooks.
@@ -360,9 +419,21 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The instance state to which you want to attach the lifecycle hook. For a
-     * list of lifecycle hook types, see <a>DescribeLifecycleHookTypes</a>.
+     * The instance state to which you want to attach the lifecycle hook. The
+     * possible values are:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_LAUNCHING
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_TERMINATING
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * This parameter is required for new lifecycle hooks, but optional when
      * updating existing hooks.
@@ -373,9 +444,20 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      *
      * @param lifecycleTransition <p>
      *            The instance state to which you want to attach the lifecycle
-     *            hook. For a list of lifecycle hook types, see
-     *            <a>DescribeLifecycleHookTypes</a>.
+     *            hook. The possible values are:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            autoscaling:EC2_INSTANCE_LAUNCHING
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            autoscaling:EC2_INSTANCE_TERMINATING
+     *            </p>
+     *            </li>
+     *            </ul>
      *            <p>
      *            This parameter is required for new lifecycle hooks, but
      *            optional when updating existing hooks.
@@ -480,10 +562,10 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The ARN of the notification target that Auto Scaling will use to notify
-     * you when an instance is in the transition state for the lifecycle hook.
-     * This target can be either an SQS queue or an SNS topic. If you specify an
-     * empty string, this overrides the current ARN.
+     * The ARN of the notification target that Amazon EC2 Auto Scaling will use
+     * to notify you when an instance is in the transition state for the
+     * lifecycle hook. This target can be either an SQS queue or an SNS topic.
+     * If you specify an empty string, this overrides the current ARN.
      * </p>
      * <p>
      * This operation uses the JSON format when sending notifications to an
@@ -491,9 +573,9 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      * notifications to an Amazon SNS topic.
      * </p>
      * <p>
-     * When you specify a notification target, Auto Scaling sends it a test
-     * message. Test messages contains the following additional key/value pair:
-     * <code>"Event": "autoscaling:TEST_NOTIFICATION"</code>.
+     * When you specify a notification target, Amazon EC2 Auto Scaling sends it
+     * a test message. Test messages contains the following additional key/value
+     * pair: <code>"Event": "autoscaling:TEST_NOTIFICATION"</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -502,11 +584,11 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      * <br/>
      *
      * @return <p>
-     *         The ARN of the notification target that Auto Scaling will use to
-     *         notify you when an instance is in the transition state for the
-     *         lifecycle hook. This target can be either an SQS queue or an SNS
-     *         topic. If you specify an empty string, this overrides the current
-     *         ARN.
+     *         The ARN of the notification target that Amazon EC2 Auto Scaling
+     *         will use to notify you when an instance is in the transition
+     *         state for the lifecycle hook. This target can be either an SQS
+     *         queue or an SNS topic. If you specify an empty string, this
+     *         overrides the current ARN.
      *         </p>
      *         <p>
      *         This operation uses the JSON format when sending notifications to
@@ -514,9 +596,9 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      *         sending notifications to an Amazon SNS topic.
      *         </p>
      *         <p>
-     *         When you specify a notification target, Auto Scaling sends it a
-     *         test message. Test messages contains the following additional
-     *         key/value pair:
+     *         When you specify a notification target, Amazon EC2 Auto Scaling
+     *         sends it a test message. Test messages contains the following
+     *         additional key/value pair:
      *         <code>"Event": "autoscaling:TEST_NOTIFICATION"</code>.
      *         </p>
      */
@@ -526,10 +608,10 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The ARN of the notification target that Auto Scaling will use to notify
-     * you when an instance is in the transition state for the lifecycle hook.
-     * This target can be either an SQS queue or an SNS topic. If you specify an
-     * empty string, this overrides the current ARN.
+     * The ARN of the notification target that Amazon EC2 Auto Scaling will use
+     * to notify you when an instance is in the transition state for the
+     * lifecycle hook. This target can be either an SQS queue or an SNS topic.
+     * If you specify an empty string, this overrides the current ARN.
      * </p>
      * <p>
      * This operation uses the JSON format when sending notifications to an
@@ -537,9 +619,9 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      * notifications to an Amazon SNS topic.
      * </p>
      * <p>
-     * When you specify a notification target, Auto Scaling sends it a test
-     * message. Test messages contains the following additional key/value pair:
-     * <code>"Event": "autoscaling:TEST_NOTIFICATION"</code>.
+     * When you specify a notification target, Amazon EC2 Auto Scaling sends it
+     * a test message. Test messages contains the following additional key/value
+     * pair: <code>"Event": "autoscaling:TEST_NOTIFICATION"</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -548,11 +630,11 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      * <br/>
      *
      * @param notificationTargetARN <p>
-     *            The ARN of the notification target that Auto Scaling will use
-     *            to notify you when an instance is in the transition state for
-     *            the lifecycle hook. This target can be either an SQS queue or
-     *            an SNS topic. If you specify an empty string, this overrides
-     *            the current ARN.
+     *            The ARN of the notification target that Amazon EC2 Auto
+     *            Scaling will use to notify you when an instance is in the
+     *            transition state for the lifecycle hook. This target can be
+     *            either an SQS queue or an SNS topic. If you specify an empty
+     *            string, this overrides the current ARN.
      *            </p>
      *            <p>
      *            This operation uses the JSON format when sending notifications
@@ -560,9 +642,9 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      *            when sending notifications to an Amazon SNS topic.
      *            </p>
      *            <p>
-     *            When you specify a notification target, Auto Scaling sends it
-     *            a test message. Test messages contains the following
-     *            additional key/value pair:
+     *            When you specify a notification target, Amazon EC2 Auto
+     *            Scaling sends it a test message. Test messages contains the
+     *            following additional key/value pair:
      *            <code>"Event": "autoscaling:TEST_NOTIFICATION"</code>.
      *            </p>
      */
@@ -572,10 +654,10 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The ARN of the notification target that Auto Scaling will use to notify
-     * you when an instance is in the transition state for the lifecycle hook.
-     * This target can be either an SQS queue or an SNS topic. If you specify an
-     * empty string, this overrides the current ARN.
+     * The ARN of the notification target that Amazon EC2 Auto Scaling will use
+     * to notify you when an instance is in the transition state for the
+     * lifecycle hook. This target can be either an SQS queue or an SNS topic.
+     * If you specify an empty string, this overrides the current ARN.
      * </p>
      * <p>
      * This operation uses the JSON format when sending notifications to an
@@ -583,9 +665,9 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      * notifications to an Amazon SNS topic.
      * </p>
      * <p>
-     * When you specify a notification target, Auto Scaling sends it a test
-     * message. Test messages contains the following additional key/value pair:
-     * <code>"Event": "autoscaling:TEST_NOTIFICATION"</code>.
+     * When you specify a notification target, Amazon EC2 Auto Scaling sends it
+     * a test message. Test messages contains the following additional key/value
+     * pair: <code>"Event": "autoscaling:TEST_NOTIFICATION"</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -597,11 +679,11 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      * <br/>
      *
      * @param notificationTargetARN <p>
-     *            The ARN of the notification target that Auto Scaling will use
-     *            to notify you when an instance is in the transition state for
-     *            the lifecycle hook. This target can be either an SQS queue or
-     *            an SNS topic. If you specify an empty string, this overrides
-     *            the current ARN.
+     *            The ARN of the notification target that Amazon EC2 Auto
+     *            Scaling will use to notify you when an instance is in the
+     *            transition state for the lifecycle hook. This target can be
+     *            either an SQS queue or an SNS topic. If you specify an empty
+     *            string, this overrides the current ARN.
      *            </p>
      *            <p>
      *            This operation uses the JSON format when sending notifications
@@ -609,9 +691,9 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      *            when sending notifications to an Amazon SNS topic.
      *            </p>
      *            <p>
-     *            When you specify a notification target, Auto Scaling sends it
-     *            a test message. Test messages contains the following
-     *            additional key/value pair:
+     *            When you specify a notification target, Amazon EC2 Auto
+     *            Scaling sends it a test message. Test messages contains the
+     *            following additional key/value pair:
      *            <code>"Event": "autoscaling:TEST_NOTIFICATION"</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -624,8 +706,8 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Contains additional information that you want to include any time Auto
-     * Scaling sends a message to the notification target.
+     * Contains additional information that you want to include any time Amazon
+     * EC2 Auto Scaling sends a message to the notification target.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -635,7 +717,8 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      *
      * @return <p>
      *         Contains additional information that you want to include any time
-     *         Auto Scaling sends a message to the notification target.
+     *         Amazon EC2 Auto Scaling sends a message to the notification
+     *         target.
      *         </p>
      */
     public String getNotificationMetadata() {
@@ -644,8 +727,8 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Contains additional information that you want to include any time Auto
-     * Scaling sends a message to the notification target.
+     * Contains additional information that you want to include any time Amazon
+     * EC2 Auto Scaling sends a message to the notification target.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -655,7 +738,8 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      *
      * @param notificationMetadata <p>
      *            Contains additional information that you want to include any
-     *            time Auto Scaling sends a message to the notification target.
+     *            time Amazon EC2 Auto Scaling sends a message to the
+     *            notification target.
      *            </p>
      */
     public void setNotificationMetadata(String notificationMetadata) {
@@ -664,8 +748,8 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Contains additional information that you want to include any time Auto
-     * Scaling sends a message to the notification target.
+     * Contains additional information that you want to include any time Amazon
+     * EC2 Auto Scaling sends a message to the notification target.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -678,7 +762,8 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      *
      * @param notificationMetadata <p>
      *            Contains additional information that you want to include any
-     *            time Auto Scaling sends a message to the notification target.
+     *            time Amazon EC2 Auto Scaling sends a message to the
+     *            notification target.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -695,9 +780,9 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      * seconds (1 hour).
      * </p>
      * <p>
-     * If the lifecycle hook times out, Auto Scaling performs the default
-     * action. You can prevent the lifecycle hook from timing out by calling
-     * <a>RecordLifecycleActionHeartbeat</a>.
+     * If the lifecycle hook times out, Amazon EC2 Auto Scaling performs the
+     * default action. You can prevent the lifecycle hook from timing out by
+     * calling <a>RecordLifecycleActionHeartbeat</a>.
      * </p>
      *
      * @return <p>
@@ -706,9 +791,9 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      *         The default is 3600 seconds (1 hour).
      *         </p>
      *         <p>
-     *         If the lifecycle hook times out, Auto Scaling performs the
-     *         default action. You can prevent the lifecycle hook from timing
-     *         out by calling <a>RecordLifecycleActionHeartbeat</a>.
+     *         If the lifecycle hook times out, Amazon EC2 Auto Scaling performs
+     *         the default action. You can prevent the lifecycle hook from
+     *         timing out by calling <a>RecordLifecycleActionHeartbeat</a>.
      *         </p>
      */
     public Integer getHeartbeatTimeout() {
@@ -722,9 +807,9 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      * seconds (1 hour).
      * </p>
      * <p>
-     * If the lifecycle hook times out, Auto Scaling performs the default
-     * action. You can prevent the lifecycle hook from timing out by calling
-     * <a>RecordLifecycleActionHeartbeat</a>.
+     * If the lifecycle hook times out, Amazon EC2 Auto Scaling performs the
+     * default action. You can prevent the lifecycle hook from timing out by
+     * calling <a>RecordLifecycleActionHeartbeat</a>.
      * </p>
      *
      * @param heartbeatTimeout <p>
@@ -733,9 +818,10 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      *            seconds. The default is 3600 seconds (1 hour).
      *            </p>
      *            <p>
-     *            If the lifecycle hook times out, Auto Scaling performs the
-     *            default action. You can prevent the lifecycle hook from timing
-     *            out by calling <a>RecordLifecycleActionHeartbeat</a>.
+     *            If the lifecycle hook times out, Amazon EC2 Auto Scaling
+     *            performs the default action. You can prevent the lifecycle
+     *            hook from timing out by calling
+     *            <a>RecordLifecycleActionHeartbeat</a>.
      *            </p>
      */
     public void setHeartbeatTimeout(Integer heartbeatTimeout) {
@@ -749,9 +835,9 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      * seconds (1 hour).
      * </p>
      * <p>
-     * If the lifecycle hook times out, Auto Scaling performs the default
-     * action. You can prevent the lifecycle hook from timing out by calling
-     * <a>RecordLifecycleActionHeartbeat</a>.
+     * If the lifecycle hook times out, Amazon EC2 Auto Scaling performs the
+     * default action. You can prevent the lifecycle hook from timing out by
+     * calling <a>RecordLifecycleActionHeartbeat</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -763,9 +849,10 @@ public class PutLifecycleHookRequest extends AmazonWebServiceRequest implements 
      *            seconds. The default is 3600 seconds (1 hour).
      *            </p>
      *            <p>
-     *            If the lifecycle hook times out, Auto Scaling performs the
-     *            default action. You can prevent the lifecycle hook from timing
-     *            out by calling <a>RecordLifecycleActionHeartbeat</a>.
+     *            If the lifecycle hook times out, Amazon EC2 Auto Scaling
+     *            performs the default action. You can prevent the lifecycle
+     *            hook from timing out by calling
+     *            <a>RecordLifecycleActionHeartbeat</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

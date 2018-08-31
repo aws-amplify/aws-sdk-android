@@ -27,13 +27,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * If you exceed your maximum limit of launch configurations, the call fails.
  * For information about viewing this limit, see <a>DescribeAccountLimits</a>.
  * For information about updating this limit, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-account-limits.html"
- * >Auto Scaling Limits</a> in the <i>Auto Scaling User Guide</i>.
+ * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html"
+ * >Auto Scaling Limits</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/latest/userguide/LaunchConfiguration.html"
- * >Launch Configurations</a> in the <i>Auto Scaling User Guide</i>.
+ * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchConfiguration.html"
+ * >Launch Configurations</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
  * </p>
  */
 public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest implements
@@ -171,9 +171,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/create-lc-with-instanceID.html"
-     * >Create a Launch Configuration Using an EC2 Instance</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/create-lc-with-instanceID.html"
+     * >Create a Launch Configuration Using an EC2 Instance</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -255,9 +255,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * fulfill the request. Spot Instances are launched when the price you
      * specify exceeds the current Spot market price. For more information, see
      * <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/US-SpotInstances.html"
-     * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
+     * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -272,12 +272,13 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * EC2 instances launched with an IAM role will automatically have AWS
-     * security credentials available. You can use IAM roles with Auto Scaling
-     * to automatically enable applications running on your EC2 instances to
-     * securely access other AWS resources. For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/us-iam-role.html"
-     * >Launch Auto Scaling Instances with an IAM Role</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * security credentials available. You can use IAM roles with Amazon EC2
+     * Auto Scaling to automatically enable applications running on your EC2
+     * instances to securely access other AWS resources. For more information,
+     * see <a href=
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
+     * >Launch Auto Scaling Instances with an IAM Role</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -307,9 +308,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * Used for groups that launch instances into a virtual private cloud (VPC).
      * Specifies whether to assign a public IP address to each instance. For
      * more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
-     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
-     * User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * <p>
      * If you specify this parameter, be sure to specify at least one subnet
@@ -340,9 +341,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
-     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
-     * User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * <p>
      * Valid values: <code>default</code> | <code>dedicated</code>
@@ -1141,9 +1142,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/create-lc-with-instanceID.html"
-     * >Create a Launch Configuration Using an EC2 Instance</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/create-lc-with-instanceID.html"
+     * >Create a Launch Configuration Using an EC2 Instance</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1167,9 +1168,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/autoscaling/latest/userguide/create-lc-with-instanceID.html"
+     *         "http://docs.aws.amazon.com/autoscaling/ec2/userguide/create-lc-with-instanceID.html"
      *         >Create a Launch Configuration Using an EC2 Instance</a> in the
-     *         <i>Auto Scaling User Guide</i>.
+     *         <i>Amazon EC2 Auto Scaling User Guide</i>.
      *         </p>
      */
     public String getInstanceId() {
@@ -1192,9 +1193,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/create-lc-with-instanceID.html"
-     * >Create a Launch Configuration Using an EC2 Instance</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/create-lc-with-instanceID.html"
+     * >Create a Launch Configuration Using an EC2 Instance</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1220,9 +1221,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/create-lc-with-instanceID.html"
+     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/create-lc-with-instanceID.html"
      *            >Create a Launch Configuration Using an EC2 Instance</a> in
-     *            the <i>Auto Scaling User Guide</i>.
+     *            the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -1245,9 +1246,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/create-lc-with-instanceID.html"
-     * >Create a Launch Configuration Using an EC2 Instance</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/create-lc-with-instanceID.html"
+     * >Create a Launch Configuration Using an EC2 Instance</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1276,9 +1277,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/create-lc-with-instanceID.html"
+     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/create-lc-with-instanceID.html"
      *            >Create a Launch Configuration Using an EC2 Instance</a> in
-     *            the <i>Auto Scaling User Guide</i>.
+     *            the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1701,9 +1702,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * fulfill the request. Spot Instances are launched when the price you
      * specify exceeds the current Spot market price. For more information, see
      * <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/US-SpotInstances.html"
-     * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
+     * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1714,9 +1715,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *         launched to fulfill the request. Spot Instances are launched when
      *         the price you specify exceeds the current Spot market price. For
      *         more information, see <a href=
-     *         "http://docs.aws.amazon.com/autoscaling/latest/userguide/US-SpotInstances.html"
+     *         "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
      *         >Launching Spot Instances in Your Auto Scaling Group</a> in the
-     *         <i>Auto Scaling User Guide</i>.
+     *         <i>Amazon EC2 Auto Scaling User Guide</i>.
      *         </p>
      */
     public String getSpotPrice() {
@@ -1729,9 +1730,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * fulfill the request. Spot Instances are launched when the price you
      * specify exceeds the current Spot market price. For more information, see
      * <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/US-SpotInstances.html"
-     * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
+     * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1742,9 +1743,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            launched to fulfill the request. Spot Instances are launched
      *            when the price you specify exceeds the current Spot market
      *            price. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/US-SpotInstances.html"
+     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
      *            >Launching Spot Instances in Your Auto Scaling Group</a> in
-     *            the <i>Auto Scaling User Guide</i>.
+     *            the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      */
     public void setSpotPrice(String spotPrice) {
@@ -1757,9 +1758,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * fulfill the request. Spot Instances are launched when the price you
      * specify exceeds the current Spot market price. For more information, see
      * <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/US-SpotInstances.html"
-     * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
+     * >Launching Spot Instances in Your Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1773,9 +1774,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            launched to fulfill the request. Spot Instances are launched
      *            when the price you specify exceeds the current Spot market
      *            price. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/US-SpotInstances.html"
+     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-spot-instances.html"
      *            >Launching Spot Instances in Your Auto Scaling Group</a> in
-     *            the <i>Auto Scaling User Guide</i>.
+     *            the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1792,12 +1793,13 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * EC2 instances launched with an IAM role will automatically have AWS
-     * security credentials available. You can use IAM roles with Auto Scaling
-     * to automatically enable applications running on your EC2 instances to
-     * securely access other AWS resources. For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/us-iam-role.html"
-     * >Launch Auto Scaling Instances with an IAM Role</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * security credentials available. You can use IAM roles with Amazon EC2
+     * Auto Scaling to automatically enable applications running on your EC2
+     * instances to securely access other AWS resources. For more information,
+     * see <a href=
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
+     * >Launch Auto Scaling Instances with an IAM Role</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1812,12 +1814,12 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *         <p>
      *         EC2 instances launched with an IAM role will automatically have
      *         AWS security credentials available. You can use IAM roles with
-     *         Auto Scaling to automatically enable applications running on your
-     *         EC2 instances to securely access other AWS resources. For more
-     *         information, see <a href=
-     *         "http://docs.aws.amazon.com/autoscaling/latest/userguide/us-iam-role.html"
+     *         Amazon EC2 Auto Scaling to automatically enable applications
+     *         running on your EC2 instances to securely access other AWS
+     *         resources. For more information, see <a href=
+     *         "http://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
      *         >Launch Auto Scaling Instances with an IAM Role</a> in the
-     *         <i>Auto Scaling User Guide</i>.
+     *         <i>Amazon EC2 Auto Scaling User Guide</i>.
      *         </p>
      */
     public String getIamInstanceProfile() {
@@ -1831,12 +1833,13 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * EC2 instances launched with an IAM role will automatically have AWS
-     * security credentials available. You can use IAM roles with Auto Scaling
-     * to automatically enable applications running on your EC2 instances to
-     * securely access other AWS resources. For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/us-iam-role.html"
-     * >Launch Auto Scaling Instances with an IAM Role</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * security credentials available. You can use IAM roles with Amazon EC2
+     * Auto Scaling to automatically enable applications running on your EC2
+     * instances to securely access other AWS resources. For more information,
+     * see <a href=
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
+     * >Launch Auto Scaling Instances with an IAM Role</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1851,12 +1854,12 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            <p>
      *            EC2 instances launched with an IAM role will automatically
      *            have AWS security credentials available. You can use IAM roles
-     *            with Auto Scaling to automatically enable applications running
-     *            on your EC2 instances to securely access other AWS resources.
-     *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/us-iam-role.html"
+     *            with Amazon EC2 Auto Scaling to automatically enable
+     *            applications running on your EC2 instances to securely access
+     *            other AWS resources. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
      *            >Launch Auto Scaling Instances with an IAM Role</a> in the
-     *            <i>Auto Scaling User Guide</i>.
+     *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      */
     public void setIamInstanceProfile(String iamInstanceProfile) {
@@ -1870,12 +1873,13 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * EC2 instances launched with an IAM role will automatically have AWS
-     * security credentials available. You can use IAM roles with Auto Scaling
-     * to automatically enable applications running on your EC2 instances to
-     * securely access other AWS resources. For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/us-iam-role.html"
-     * >Launch Auto Scaling Instances with an IAM Role</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * security credentials available. You can use IAM roles with Amazon EC2
+     * Auto Scaling to automatically enable applications running on your EC2
+     * instances to securely access other AWS resources. For more information,
+     * see <a href=
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
+     * >Launch Auto Scaling Instances with an IAM Role</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1893,12 +1897,12 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            <p>
      *            EC2 instances launched with an IAM role will automatically
      *            have AWS security credentials available. You can use IAM roles
-     *            with Auto Scaling to automatically enable applications running
-     *            on your EC2 instances to securely access other AWS resources.
-     *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/us-iam-role.html"
+     *            with Amazon EC2 Auto Scaling to automatically enable
+     *            applications running on your EC2 instances to securely access
+     *            other AWS resources. For more information, see <a href=
+     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
      *            >Launch Auto Scaling Instances with an IAM Role</a> in the
-     *            <i>Auto Scaling User Guide</i>.
+     *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -2039,9 +2043,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * Used for groups that launch instances into a virtual private cloud (VPC).
      * Specifies whether to assign a public IP address to each instance. For
      * more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
-     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
-     * User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * <p>
      * If you specify this parameter, be sure to specify at least one subnet
@@ -2057,9 +2061,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *         Used for groups that launch instances into a virtual private
      *         cloud (VPC). Specifies whether to assign a public IP address to
      *         each instance. For more information, see <a href=
-     *         "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
-     *         >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
-     *         Scaling User Guide</i>.
+     *         "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     *         >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon
+     *         EC2 Auto Scaling User Guide</i>.
      *         </p>
      *         <p>
      *         If you specify this parameter, be sure to specify at least one
@@ -2081,9 +2085,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * Used for groups that launch instances into a virtual private cloud (VPC).
      * Specifies whether to assign a public IP address to each instance. For
      * more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
-     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
-     * User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * <p>
      * If you specify this parameter, be sure to specify at least one subnet
@@ -2099,9 +2103,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *         Used for groups that launch instances into a virtual private
      *         cloud (VPC). Specifies whether to assign a public IP address to
      *         each instance. For more information, see <a href=
-     *         "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
-     *         >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
-     *         Scaling User Guide</i>.
+     *         "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     *         >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon
+     *         EC2 Auto Scaling User Guide</i>.
      *         </p>
      *         <p>
      *         If you specify this parameter, be sure to specify at least one
@@ -2123,9 +2127,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * Used for groups that launch instances into a virtual private cloud (VPC).
      * Specifies whether to assign a public IP address to each instance. For
      * more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
-     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
-     * User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * <p>
      * If you specify this parameter, be sure to specify at least one subnet
@@ -2141,9 +2145,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            Used for groups that launch instances into a virtual private
      *            cloud (VPC). Specifies whether to assign a public IP address
      *            to each instance. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
-     *            >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
-     *            Scaling User Guide</i>.
+     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     *            >Launching Auto Scaling Instances in a VPC</a> in the
+     *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      *            <p>
      *            If you specify this parameter, be sure to specify at least one
@@ -2165,9 +2169,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * Used for groups that launch instances into a virtual private cloud (VPC).
      * Specifies whether to assign a public IP address to each instance. For
      * more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
-     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
-     * User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * <p>
      * If you specify this parameter, be sure to specify at least one subnet
@@ -2186,9 +2190,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            Used for groups that launch instances into a virtual private
      *            cloud (VPC). Specifies whether to assign a public IP address
      *            to each instance. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
-     *            >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
-     *            Scaling User Guide</i>.
+     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     *            >Launching Auto Scaling Instances in a VPC</a> in the
+     *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      *            <p>
      *            If you specify this parameter, be sure to specify at least one
@@ -2226,9 +2230,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
-     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
-     * User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * <p>
      * Valid values: <code>default</code> | <code>dedicated</code>
@@ -2256,9 +2260,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
-     *         >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
-     *         Scaling User Guide</i>.
+     *         "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     *         >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon
+     *         EC2 Auto Scaling User Guide</i>.
      *         </p>
      *         <p>
      *         Valid values: <code>default</code> | <code>dedicated</code>
@@ -2285,9 +2289,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
-     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
-     * User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * <p>
      * Valid values: <code>default</code> | <code>dedicated</code>
@@ -2315,9 +2319,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
-     *            >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
-     *            Scaling User Guide</i>.
+     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     *            >Launching Auto Scaling Instances in a VPC</a> in the
+     *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      *            <p>
      *            Valid values: <code>default</code> | <code>dedicated</code>
@@ -2344,9 +2348,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
-     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling
-     * User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     * >Launching Auto Scaling Instances in a VPC</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * <p>
      * Valid values: <code>default</code> | <code>dedicated</code>
@@ -2377,9 +2381,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html"
-     *            >Launching Auto Scaling Instances in a VPC</a> in the <i>Auto
-     *            Scaling User Guide</i>.
+     *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-in-vpc.html"
+     *            >Launching Auto Scaling Instances in a VPC</a> in the
+     *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      *            <p>
      *            Valid values: <code>default</code> | <code>dedicated</code>

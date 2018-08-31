@@ -35,9 +35,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/latest/userguide/attach-load-balancer-asg.html"
- * >Attach a Load Balancer to Your Auto Scaling Group</a> in the <i>Auto Scaling
- * User Guide</i>.
+ * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html"
+ * >Attach a Load Balancer to Your Auto Scaling Group</a> in the <i>Amazon EC2
+ * Auto Scaling User Guide</i>.
  * </p>
  */
 public class AttachLoadBalancersRequest extends AmazonWebServiceRequest implements Serializable {
