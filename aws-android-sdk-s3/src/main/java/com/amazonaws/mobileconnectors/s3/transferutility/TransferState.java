@@ -16,8 +16,8 @@
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.util.HashMap;
 import java.util.Map;

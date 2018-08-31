@@ -113,8 +113,8 @@ import com.amazonaws.services.s3.model.metrics.MetricsTagPredicate;
 import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.StringUtils;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;

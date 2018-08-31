@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 
 import java.util.UUID;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 /**
  * Handles shared user context with Amazon Pinpoint.

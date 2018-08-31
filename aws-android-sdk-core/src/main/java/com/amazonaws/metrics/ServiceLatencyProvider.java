@@ -17,7 +17,7 @@ package com.amazonaws.metrics;
 
 import com.amazonaws.util.TimingInfo;
 
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.LogFactory;
 
 /**
  * Latency metric information provider.

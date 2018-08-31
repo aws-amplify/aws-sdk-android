@@ -15,7 +15,7 @@
 
 package com.amazonaws.util;
 
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.LogFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;

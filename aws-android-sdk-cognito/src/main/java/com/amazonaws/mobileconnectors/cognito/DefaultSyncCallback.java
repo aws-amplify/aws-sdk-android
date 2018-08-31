@@ -7,8 +7,8 @@ import com.amazonaws.mobileconnectors.cognito.exceptions.DataStorageException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 /**
  * A default implementation of SyncCallback. All methods but onConflict are

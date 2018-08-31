@@ -18,7 +18,7 @@
 
 package com.amazonaws.util;
 
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.LogFactory;
 
 import java.io.BufferedInputStream;
 import java.io.File;

@@ -24,8 +24,8 @@ import android.os.Build;
 import com.amazonaws.util.Base64;
 import com.amazonaws.util.StringUtils;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.math.BigInteger;
 import java.nio.ByteBuffer;

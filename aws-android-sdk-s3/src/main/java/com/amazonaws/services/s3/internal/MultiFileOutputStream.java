@@ -18,7 +18,7 @@ import com.amazonaws.AbortedException;
 import com.amazonaws.services.s3.OnFileDelete;
 import com.amazonaws.services.s3.UploadObjectObserver;
 
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.LogFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;

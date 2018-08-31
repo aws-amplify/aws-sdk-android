@@ -15,7 +15,7 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.analytics.monetization;
 
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.LogFactory;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
 
 /**
@@ -53,7 +53,7 @@ import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
 public class GooglePlayMonetizationEventBuilder
         extends MonetizationEventBuilder {
 
-    private static final org.apache.commons.logging.Log log = LogFactory.getLog(GooglePlayMonetizationEventBuilder.class);
+    private static final com.amazonaws.logging.Log log = LogFactory.getLog(GooglePlayMonetizationEventBuilder.class);
 
     /**
      * Construct a GooglePlayMonetizationEventBuilder with the specified
