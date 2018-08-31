@@ -39,6 +39,12 @@ class SSESpecificationJsonUnmarshaller implements
             if (name.equals("Enabled")) {
                 sSESpecification.setEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SSEType")) {
+                sSESpecification.setSSEType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("KMSMasterKeyId")) {
+                sSESpecification.setKMSMasterKeyId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

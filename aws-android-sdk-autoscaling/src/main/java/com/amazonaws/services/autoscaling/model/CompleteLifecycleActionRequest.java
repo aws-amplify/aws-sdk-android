@@ -32,15 +32,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <li>
  * <p>
  * (Optional) Create a Lambda function and a rule that allows CloudWatch Events
- * to invoke your Lambda function when Auto Scaling launches or terminates
- * instances.
+ * to invoke your Lambda function when Amazon EC2 Auto Scaling launches or
+ * terminates instances.
  * </p>
  * </li>
  * <li>
  * <p>
  * (Optional) Create a notification target and an IAM role. The target can be
- * either an Amazon SQS queue or an Amazon SNS topic. The role allows Auto
- * Scaling to publish lifecycle notifications to the target.
+ * either an Amazon SQS queue or an Amazon SNS topic. The role allows Amazon EC2
+ * Auto Scaling to publish lifecycle notifications to the target.
  * </p>
  * </li>
  * <li>
@@ -64,8 +64,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </ol>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroupLifecycle.html"
- * >Auto Scaling Lifecycle</a> in the <i>Auto Scaling User Guide</i>.
+ * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html"
+ * >Auto Scaling Lifecycle</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
  * </p>
  */
 public class CompleteLifecycleActionRequest extends AmazonWebServiceRequest implements Serializable {
@@ -95,9 +95,9 @@ public class CompleteLifecycleActionRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * A universally unique identifier (UUID) that identifies a specific
-     * lifecycle action associated with an instance. Auto Scaling sends this
-     * token to the notification target you specified when you created the
-     * lifecycle hook.
+     * lifecycle action associated with an instance. Amazon EC2 Auto Scaling
+     * sends this token to the notification target you specified when you
+     * created the lifecycle hook.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -245,9 +245,9 @@ public class CompleteLifecycleActionRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * A universally unique identifier (UUID) that identifies a specific
-     * lifecycle action associated with an instance. Auto Scaling sends this
-     * token to the notification target you specified when you created the
-     * lifecycle hook.
+     * lifecycle action associated with an instance. Amazon EC2 Auto Scaling
+     * sends this token to the notification target you specified when you
+     * created the lifecycle hook.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -255,9 +255,9 @@ public class CompleteLifecycleActionRequest extends AmazonWebServiceRequest impl
      *
      * @return <p>
      *         A universally unique identifier (UUID) that identifies a specific
-     *         lifecycle action associated with an instance. Auto Scaling sends
-     *         this token to the notification target you specified when you
-     *         created the lifecycle hook.
+     *         lifecycle action associated with an instance. Amazon EC2 Auto
+     *         Scaling sends this token to the notification target you specified
+     *         when you created the lifecycle hook.
      *         </p>
      */
     public String getLifecycleActionToken() {
@@ -267,9 +267,9 @@ public class CompleteLifecycleActionRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * A universally unique identifier (UUID) that identifies a specific
-     * lifecycle action associated with an instance. Auto Scaling sends this
-     * token to the notification target you specified when you created the
-     * lifecycle hook.
+     * lifecycle action associated with an instance. Amazon EC2 Auto Scaling
+     * sends this token to the notification target you specified when you
+     * created the lifecycle hook.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -277,9 +277,9 @@ public class CompleteLifecycleActionRequest extends AmazonWebServiceRequest impl
      *
      * @param lifecycleActionToken <p>
      *            A universally unique identifier (UUID) that identifies a
-     *            specific lifecycle action associated with an instance. Auto
-     *            Scaling sends this token to the notification target you
-     *            specified when you created the lifecycle hook.
+     *            specific lifecycle action associated with an instance. Amazon
+     *            EC2 Auto Scaling sends this token to the notification target
+     *            you specified when you created the lifecycle hook.
      *            </p>
      */
     public void setLifecycleActionToken(String lifecycleActionToken) {
@@ -289,9 +289,9 @@ public class CompleteLifecycleActionRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * A universally unique identifier (UUID) that identifies a specific
-     * lifecycle action associated with an instance. Auto Scaling sends this
-     * token to the notification target you specified when you created the
-     * lifecycle hook.
+     * lifecycle action associated with an instance. Amazon EC2 Auto Scaling
+     * sends this token to the notification target you specified when you
+     * created the lifecycle hook.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -302,9 +302,9 @@ public class CompleteLifecycleActionRequest extends AmazonWebServiceRequest impl
      *
      * @param lifecycleActionToken <p>
      *            A universally unique identifier (UUID) that identifies a
-     *            specific lifecycle action associated with an instance. Auto
-     *            Scaling sends this token to the notification target you
-     *            specified when you created the lifecycle hook.
+     *            specific lifecycle action associated with an instance. Amazon
+     *            EC2 Auto Scaling sends this token to the notification target
+     *            you specified when you created the lifecycle hook.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

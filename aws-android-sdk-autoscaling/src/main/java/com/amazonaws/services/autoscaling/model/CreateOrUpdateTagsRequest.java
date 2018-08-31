@@ -29,9 +29,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/autoscaling/latest/userguide/autoscaling-tagging.html"
- * >Tagging Auto Scaling Groups and Instances</a> in the <i>Auto Scaling User
- * Guide</i>.
+ * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-tagging.html"
+ * >Tagging Auto Scaling Groups and Instances</a> in the <i>Amazon EC2 Auto
+ * Scaling User Guide</i>.
  * </p>
  */
 public class CreateOrUpdateTagsRequest extends AmazonWebServiceRequest implements Serializable {

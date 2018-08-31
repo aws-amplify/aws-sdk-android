@@ -266,10 +266,10 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * Attaches one or more EC2 instances to the specified Auto Scaling group.
      * </p>
      * <p>
-     * When you attach instances, Auto Scaling increases the desired capacity of
-     * the group by the number of instances being attached. If the number of
-     * instances being attached plus the desired capacity of the group exceeds
-     * the maximum size of the group, the operation fails.
+     * When you attach instances, Amazon EC2 Auto Scaling increases the desired
+     * capacity of the group by the number of instances being attached. If the
+     * number of instances being attached plus the desired capacity of the group
+     * exceeds the maximum size of the group, the operation fails.
      * </p>
      * <p>
      * If there is a Classic Load Balancer attached to your Auto Scaling group,
@@ -279,9 +279,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/attach-instance-asg.html"
-     * >Attach EC2 Instances to Your Auto Scaling Group</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-instance-asg.html"
+     * >Attach EC2 Instances to Your Auto Scaling Group</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param attachInstancesRequest
@@ -313,10 +313,10 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * Attaches one or more EC2 instances to the specified Auto Scaling group.
      * </p>
      * <p>
-     * When you attach instances, Auto Scaling increases the desired capacity of
-     * the group by the number of instances being attached. If the number of
-     * instances being attached plus the desired capacity of the group exceeds
-     * the maximum size of the group, the operation fails.
+     * When you attach instances, Amazon EC2 Auto Scaling increases the desired
+     * capacity of the group by the number of instances being attached. If the
+     * number of instances being attached plus the desired capacity of the group
+     * exceeds the maximum size of the group, the operation fails.
      * </p>
      * <p>
      * If there is a Classic Load Balancer attached to your Auto Scaling group,
@@ -326,9 +326,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/attach-instance-asg.html"
-     * >Attach EC2 Instances to Your Auto Scaling Group</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-instance-asg.html"
+     * >Attach EC2 Instances to Your Auto Scaling Group</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param attachInstancesRequest
@@ -374,9 +374,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/attach-load-balancer-asg.html"
-     * >Attach a Load Balancer to Your Auto Scaling Group</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html"
+     * >Attach a Load Balancer to Your Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param attachLoadBalancerTargetGroupsRequest
@@ -414,9 +414,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/attach-load-balancer-asg.html"
-     * >Attach a Load Balancer to Your Auto Scaling Group</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html"
+     * >Attach a Load Balancer to Your Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param attachLoadBalancerTargetGroupsRequest
@@ -468,9 +468,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/attach-load-balancer-asg.html"
-     * >Attach a Load Balancer to Your Auto Scaling Group</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html"
+     * >Attach a Load Balancer to Your Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param attachLoadBalancersRequest
@@ -513,9 +513,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/attach-load-balancer-asg.html"
-     * >Attach a Load Balancer to Your Auto Scaling Group</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html"
+     * >Attach a Load Balancer to Your Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param attachLoadBalancersRequest
@@ -553,6 +553,146 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
 
     /**
      * <p>
+     * Deletes one or more scheduled actions for the specified Auto Scaling
+     * group.
+     * </p>
+     * 
+     * @param batchDeleteScheduledActionRequest
+     * @return A Java Future object containing the response from the
+     *         BatchDeleteScheduledAction service method, as returned by Amazon
+     *         Auto Scaling.
+     * @throws ResourceContentionException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Auto Scaling indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<BatchDeleteScheduledActionResult> batchDeleteScheduledActionAsync(
+            final BatchDeleteScheduledActionRequest batchDeleteScheduledActionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<BatchDeleteScheduledActionResult>() {
+            public BatchDeleteScheduledActionResult call() throws Exception {
+                return batchDeleteScheduledAction(batchDeleteScheduledActionRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes one or more scheduled actions for the specified Auto Scaling
+     * group.
+     * </p>
+     * 
+     * @param batchDeleteScheduledActionRequest
+     * @return A Java Future object containing the response from the
+     *         BatchDeleteScheduledAction service method, as returned by Amazon
+     *         Auto Scaling.
+     * @throws ResourceContentionException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Auto Scaling indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<BatchDeleteScheduledActionResult> batchDeleteScheduledActionAsync(
+            final BatchDeleteScheduledActionRequest batchDeleteScheduledActionRequest,
+            final AsyncHandler<BatchDeleteScheduledActionRequest, BatchDeleteScheduledActionResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<BatchDeleteScheduledActionResult>() {
+            public BatchDeleteScheduledActionResult call() throws Exception {
+                BatchDeleteScheduledActionResult result = null;
+                try {
+                    result = batchDeleteScheduledAction(batchDeleteScheduledActionRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(batchDeleteScheduledActionRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Creates or updates one or more scheduled scaling actions for an Auto
+     * Scaling group. When updating a scheduled scaling action, if you leave a
+     * parameter unspecified, the corresponding value remains unchanged.
+     * </p>
+     * 
+     * @param batchPutScheduledUpdateGroupActionRequest
+     * @return A Java Future object containing the response from the
+     *         BatchPutScheduledUpdateGroupAction service method, as returned by
+     *         Amazon Auto Scaling.
+     * @throws AlreadyExistsException
+     * @throws LimitExceededException
+     * @throws ResourceContentionException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Auto Scaling indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<BatchPutScheduledUpdateGroupActionResult> batchPutScheduledUpdateGroupActionAsync(
+            final BatchPutScheduledUpdateGroupActionRequest batchPutScheduledUpdateGroupActionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<BatchPutScheduledUpdateGroupActionResult>() {
+            public BatchPutScheduledUpdateGroupActionResult call() throws Exception {
+                return batchPutScheduledUpdateGroupAction(batchPutScheduledUpdateGroupActionRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Creates or updates one or more scheduled scaling actions for an Auto
+     * Scaling group. When updating a scheduled scaling action, if you leave a
+     * parameter unspecified, the corresponding value remains unchanged.
+     * </p>
+     * 
+     * @param batchPutScheduledUpdateGroupActionRequest
+     * @return A Java Future object containing the response from the
+     *         BatchPutScheduledUpdateGroupAction service method, as returned by
+     *         Amazon Auto Scaling.
+     * @throws AlreadyExistsException
+     * @throws LimitExceededException
+     * @throws ResourceContentionException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Auto Scaling indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<BatchPutScheduledUpdateGroupActionResult> batchPutScheduledUpdateGroupActionAsync(
+            final BatchPutScheduledUpdateGroupActionRequest batchPutScheduledUpdateGroupActionRequest,
+            final AsyncHandler<BatchPutScheduledUpdateGroupActionRequest, BatchPutScheduledUpdateGroupActionResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<BatchPutScheduledUpdateGroupActionResult>() {
+            public BatchPutScheduledUpdateGroupActionResult call() throws Exception {
+                BatchPutScheduledUpdateGroupActionResult result = null;
+                try {
+                    result = batchPutScheduledUpdateGroupAction(batchPutScheduledUpdateGroupActionRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(batchPutScheduledUpdateGroupActionRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Completes the lifecycle action for the specified token or instance with
      * the specified result.
      * </p>
@@ -564,15 +704,15 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <li>
      * <p>
      * (Optional) Create a Lambda function and a rule that allows CloudWatch
-     * Events to invoke your Lambda function when Auto Scaling launches or
-     * terminates instances.
+     * Events to invoke your Lambda function when Amazon EC2 Auto Scaling
+     * launches or terminates instances.
      * </p>
      * </li>
      * <li>
      * <p>
      * (Optional) Create a notification target and an IAM role. The target can
      * be either an Amazon SQS queue or an Amazon SNS topic. The role allows
-     * Auto Scaling to publish lifecycle notifications to the target.
+     * Amazon EC2 Auto Scaling to publish lifecycle notifications to the target.
      * </p>
      * </li>
      * <li>
@@ -596,8 +736,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </ol>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroupLifecycle.html"
-     * >Auto Scaling Lifecycle</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html"
+     * >Auto Scaling Lifecycle</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * 
      * @param completeLifecycleActionRequest
@@ -636,15 +777,15 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <li>
      * <p>
      * (Optional) Create a Lambda function and a rule that allows CloudWatch
-     * Events to invoke your Lambda function when Auto Scaling launches or
-     * terminates instances.
+     * Events to invoke your Lambda function when Amazon EC2 Auto Scaling
+     * launches or terminates instances.
      * </p>
      * </li>
      * <li>
      * <p>
      * (Optional) Create a notification target and an IAM role. The target can
      * be either an Amazon SQS queue or an Amazon SNS topic. The role allows
-     * Auto Scaling to publish lifecycle notifications to the target.
+     * Amazon EC2 Auto Scaling to publish lifecycle notifications to the target.
      * </p>
      * </li>
      * <li>
@@ -668,8 +809,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </ol>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroupLifecycle.html"
-     * >Auto Scaling Lifecycle</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html"
+     * >Auto Scaling Lifecycle</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * 
      * @param completeLifecycleActionRequest
@@ -713,13 +855,15 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * For information about viewing this limit, see
      * <a>DescribeAccountLimits</a>. For information about updating this limit,
      * see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-account-limits.html"
-     * >Auto Scaling Limits</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html"
+     * >Auto Scaling Limits</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroup.html"
-     * >Auto Scaling Groups</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html"
+     * >Auto Scaling Groups</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * 
      * @param createAutoScalingGroupRequest
@@ -758,13 +902,15 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * For information about viewing this limit, see
      * <a>DescribeAccountLimits</a>. For information about updating this limit,
      * see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-account-limits.html"
-     * >Auto Scaling Limits</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html"
+     * >Auto Scaling Limits</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroup.html"
-     * >Auto Scaling Groups</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html"
+     * >Auto Scaling Groups</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * 
      * @param createAutoScalingGroupRequest
@@ -811,13 +957,15 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * fails. For information about viewing this limit, see
      * <a>DescribeAccountLimits</a>. For information about updating this limit,
      * see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-account-limits.html"
-     * >Auto Scaling Limits</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html"
+     * >Auto Scaling Limits</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/LaunchConfiguration.html"
-     * >Launch Configurations</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchConfiguration.html"
+     * >Launch Configurations</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * 
      * @param createLaunchConfigurationRequest
@@ -855,13 +1003,15 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * fails. For information about viewing this limit, see
      * <a>DescribeAccountLimits</a>. For information about updating this limit,
      * see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-account-limits.html"
-     * >Auto Scaling Limits</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html"
+     * >Auto Scaling Limits</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/LaunchConfiguration.html"
-     * >Launch Configurations</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchConfiguration.html"
+     * >Launch Configurations</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * 
      * @param createLaunchConfigurationRequest
@@ -909,9 +1059,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/autoscaling-tagging.html"
-     * >Tagging Auto Scaling Groups and Instances</a> in the <i>Auto Scaling
-     * User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-tagging.html"
+     * >Tagging Auto Scaling Groups and Instances</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * 
      * @param createOrUpdateTagsRequest
@@ -952,9 +1102,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/autoscaling-tagging.html"
-     * >Tagging Auto Scaling Groups and Instances</a> in the <i>Auto Scaling
-     * User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-tagging.html"
+     * >Tagging Auto Scaling Groups and Instances</a> in the <i>Amazon EC2 Auto
+     * Scaling User Guide</i>.
      * </p>
      * 
      * @param createOrUpdateTagsRequest
@@ -1008,8 +1158,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <p>
      * To remove instances from the Auto Scaling group before deleting it, call
      * <a>DetachInstances</a> with the list of instances and the option to
-     * decrement the desired capacity so that Auto Scaling does not launch
-     * replacement instances.
+     * decrement the desired capacity so that Amazon EC2 Auto Scaling does not
+     * launch replacement instances.
      * </p>
      * <p>
      * To terminate all instances before deleting the Auto Scaling group, call
@@ -1059,8 +1209,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <p>
      * To remove instances from the Auto Scaling group before deleting it, call
      * <a>DetachInstances</a> with the list of instances and the option to
-     * decrement the desired capacity so that Auto Scaling does not launch
-     * replacement instances.
+     * decrement the desired capacity so that Amazon EC2 Auto Scaling does not
+     * launch replacement instances.
      * </p>
      * <p>
      * To terminate all instances before deleting the Auto Scaling group, call
@@ -1530,8 +1680,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <p>
      * For information about requesting an increase in these limits, see <a
      * href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-account-limits.html"
-     * >Auto Scaling Limits</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html"
+     * >Auto Scaling Limits</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * 
      * @param describeAccountLimitsRequest
@@ -1564,8 +1715,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <p>
      * For information about requesting an increase in these limits, see <a
      * href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-account-limits.html"
-     * >Auto Scaling Limits</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html"
+     * >Auto Scaling Limits</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * 
      * @param describeAccountLimitsRequest
@@ -1803,7 +1955,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
 
     /**
      * <p>
-     * Describes the notification types that are supported by Auto Scaling.
+     * Describes the notification types that are supported by Amazon EC2 Auto
+     * Scaling.
      * </p>
      * 
      * @param describeAutoScalingNotificationTypesRequest
@@ -1831,7 +1984,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
 
     /**
      * <p>
-     * Describes the notification types that are supported by Auto Scaling.
+     * Describes the notification types that are supported by Amazon EC2 Auto
+     * Scaling.
      * </p>
      * 
      * @param describeAutoScalingNotificationTypesRequest
@@ -1937,6 +2091,21 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <p>
      * Describes the available types of lifecycle hooks.
      * </p>
+     * <p>
+     * The following hook types are supported:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_LAUNCHING
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_TERMINATING
+     * </p>
+     * </li>
+     * </ul>
      * 
      * @param describeLifecycleHookTypesRequest
      * @return A Java Future object containing the response from the
@@ -1965,6 +2134,21 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <p>
      * Describes the available types of lifecycle hooks.
      * </p>
+     * <p>
+     * The following hook types are supported:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_LAUNCHING
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * autoscaling:EC2_INSTANCE_TERMINATING
+     * </p>
+     * </li>
+     * </ul>
      * 
      * @param describeLifecycleHookTypesRequest
      * @return A Java Future object containing the response from the
@@ -2205,7 +2389,7 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
 
     /**
      * <p>
-     * Describes the available CloudWatch metrics for Auto Scaling.
+     * Describes the available CloudWatch metrics for Amazon EC2 Auto Scaling.
      * </p>
      * <p>
      * Note that the <code>GroupStandbyInstances</code> metric is not returned
@@ -2238,7 +2422,7 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
 
     /**
      * <p>
-     * Describes the available CloudWatch metrics for Auto Scaling.
+     * Describes the available CloudWatch metrics for Amazon EC2 Auto Scaling.
      * </p>
      * <p>
      * Note that the <code>GroupStandbyInstances</code> metric is not returned
@@ -2712,7 +2896,7 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
 
     /**
      * <p>
-     * Describes the termination policies supported by Auto Scaling.
+     * Describes the termination policies supported by Amazon EC2 Auto Scaling.
      * </p>
      * 
      * @param describeTerminationPolicyTypesRequest
@@ -2740,7 +2924,7 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
 
     /**
      * <p>
-     * Describes the termination policies supported by Auto Scaling.
+     * Describes the termination policies supported by Amazon EC2 Auto Scaling.
      * </p>
      * 
      * @param describeTerminationPolicyTypesRequest
@@ -2784,8 +2968,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * Auto Scaling group.
      * </p>
      * <p>
-     * If you do not specify the option to decrement the desired capacity, Auto
-     * Scaling launches instances to replace the ones that are detached.
+     * If you do not specify the option to decrement the desired capacity,
+     * Amazon EC2 Auto Scaling launches instances to replace the ones that are
+     * detached.
      * </p>
      * <p>
      * If there is a Classic Load Balancer attached to the Auto Scaling group,
@@ -2795,9 +2980,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/detach-instance-asg.html"
-     * >Detach EC2 Instances from Your Auto Scaling Group</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/detach-instance-asg.html"
+     * >Detach EC2 Instances from Your Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param detachInstancesRequest
@@ -2832,8 +3017,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * Auto Scaling group.
      * </p>
      * <p>
-     * If you do not specify the option to decrement the desired capacity, Auto
-     * Scaling launches instances to replace the ones that are detached.
+     * If you do not specify the option to decrement the desired capacity,
+     * Amazon EC2 Auto Scaling launches instances to replace the ones that are
+     * detached.
      * </p>
      * <p>
      * If there is a Classic Load Balancer attached to the Auto Scaling group,
@@ -2843,9 +3029,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/detach-instance-asg.html"
-     * >Detach EC2 Instances from Your Auto Scaling Group</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/detach-instance-asg.html"
+     * >Detach EC2 Instances from Your Auto Scaling Group</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param detachInstancesRequest
@@ -3104,9 +3290,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <p>
      * Enables group metrics for the specified Auto Scaling group. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-monitoring.html"
-     * >Monitoring Your Auto Scaling Groups and Instances</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-monitoring.html"
+     * >Monitoring Your Auto Scaling Groups and Instances</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param enableMetricsCollectionRequest
@@ -3137,9 +3323,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <p>
      * Enables group metrics for the specified Auto Scaling group. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-monitoring.html"
-     * >Monitoring Your Auto Scaling Groups and Instances</a> in the <i>Auto
-     * Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-monitoring.html"
+     * >Monitoring Your Auto Scaling Groups and Instances</a> in the <i>Amazon
+     * EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param enableMetricsCollectionRequest
@@ -3180,9 +3366,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-enter-exit-standby.html"
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enter-exit-standby.html"
      * >Temporarily Removing Instances from Your Auto Scaling Group</a> in the
-     * <i>Auto Scaling User Guide</i>.
+     * <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param enterStandbyRequest
@@ -3213,9 +3399,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-enter-exit-standby.html"
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enter-exit-standby.html"
      * >Temporarily Removing Instances from Your Auto Scaling Group</a> in the
-     * <i>Auto Scaling User Guide</i>.
+     * <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param enterStandbyRequest
@@ -3319,9 +3505,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-enter-exit-standby.html"
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enter-exit-standby.html"
      * >Temporarily Removing Instances from Your Auto Scaling Group</a> in the
-     * <i>Auto Scaling User Guide</i>.
+     * <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param exitStandbyRequest
@@ -3351,9 +3537,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-enter-exit-standby.html"
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-enter-exit-standby.html"
      * >Temporarily Removing Instances from Your Auto Scaling Group</a> in the
-     * <i>Auto Scaling User Guide</i>.
+     * <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param exitStandbyRequest
@@ -3391,9 +3577,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * Creates or updates a lifecycle hook for the specified Auto Scaling Group.
      * </p>
      * <p>
-     * A lifecycle hook tells Auto Scaling that you want to perform an action on
-     * an instance that is not actively in service; for example, either when the
-     * instance launches or before the instance terminates.
+     * A lifecycle hook tells Amazon EC2 Auto Scaling that you want to perform
+     * an action on an instance that is not actively in service; for example,
+     * either when the instance launches or before the instance terminates.
      * </p>
      * <p>
      * This step is a part of the procedure for adding a lifecycle hook to an
@@ -3403,15 +3589,15 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <li>
      * <p>
      * (Optional) Create a Lambda function and a rule that allows CloudWatch
-     * Events to invoke your Lambda function when Auto Scaling launches or
-     * terminates instances.
+     * Events to invoke your Lambda function when Amazon EC2 Auto Scaling
+     * launches or terminates instances.
      * </p>
      * </li>
      * <li>
      * <p>
      * (Optional) Create a notification target and an IAM role. The target can
      * be either an Amazon SQS queue or an Amazon SNS topic. The role allows
-     * Auto Scaling to publish lifecycle notifications to the target.
+     * Amazon EC2 Auto Scaling to publish lifecycle notifications to the target.
      * </p>
      * </li>
      * <li>
@@ -3435,8 +3621,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </ol>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/lifecycle-hooks.html"
-     * >Auto Scaling Lifecycle Hooks</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html"
+     * >Auto Scaling Lifecycle Hooks</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * <p>
      * If you exceed your maximum limit of lifecycle hooks, which by default is
@@ -3476,9 +3663,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * Creates or updates a lifecycle hook for the specified Auto Scaling Group.
      * </p>
      * <p>
-     * A lifecycle hook tells Auto Scaling that you want to perform an action on
-     * an instance that is not actively in service; for example, either when the
-     * instance launches or before the instance terminates.
+     * A lifecycle hook tells Amazon EC2 Auto Scaling that you want to perform
+     * an action on an instance that is not actively in service; for example,
+     * either when the instance launches or before the instance terminates.
      * </p>
      * <p>
      * This step is a part of the procedure for adding a lifecycle hook to an
@@ -3488,15 +3675,15 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <li>
      * <p>
      * (Optional) Create a Lambda function and a rule that allows CloudWatch
-     * Events to invoke your Lambda function when Auto Scaling launches or
-     * terminates instances.
+     * Events to invoke your Lambda function when Amazon EC2 Auto Scaling
+     * launches or terminates instances.
      * </p>
      * </li>
      * <li>
      * <p>
      * (Optional) Create a notification target and an IAM role. The target can
      * be either an Amazon SQS queue or an Amazon SNS topic. The role allows
-     * Auto Scaling to publish lifecycle notifications to the target.
+     * Amazon EC2 Auto Scaling to publish lifecycle notifications to the target.
      * </p>
      * </li>
      * <li>
@@ -3520,8 +3707,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </ol>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/lifecycle-hooks.html"
-     * >Auto Scaling Lifecycle Hooks</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html"
+     * >Auto Scaling Lifecycle Hooks</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * <p>
      * If you exceed your maximum limit of lifecycle hooks, which by default is
@@ -3576,7 +3764,7 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/ASGettingNotifications.html"
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/ASGettingNotifications.html"
      * >Getting SNS Notifications When Your Auto Scaling Group Scales</a> in the
      * <i>Auto Scaling User Guide</i>.
      * </p>
@@ -3618,7 +3806,7 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/ASGettingNotifications.html"
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/ASGettingNotifications.html"
      * >Getting SNS Notifications When Your Auto Scaling Group Scales</a> in the
      * <i>Auto Scaling User Guide</i>.
      * </p>
@@ -3756,8 +3944,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/schedule_time.html"
-     * >Scheduled Scaling</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/schedule_time.html"
+     * >Scheduled Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param putScheduledUpdateGroupActionRequest
@@ -3794,8 +3982,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/schedule_time.html"
-     * >Scheduled Scaling</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/schedule_time.html"
+     * >Scheduled Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param putScheduledUpdateGroupActionRequest
@@ -3846,15 +4034,15 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <li>
      * <p>
      * (Optional) Create a Lambda function and a rule that allows CloudWatch
-     * Events to invoke your Lambda function when Auto Scaling launches or
-     * terminates instances.
+     * Events to invoke your Lambda function when Amazon EC2 Auto Scaling
+     * launches or terminates instances.
      * </p>
      * </li>
      * <li>
      * <p>
      * (Optional) Create a notification target and an IAM role. The target can
      * be either an Amazon SQS queue or an Amazon SNS topic. The role allows
-     * Auto Scaling to publish lifecycle notifications to the target.
+     * Amazon EC2 Auto Scaling to publish lifecycle notifications to the target.
      * </p>
      * </li>
      * <li>
@@ -3878,8 +4066,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </ol>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroupLifecycle.html"
-     * >Auto Scaling Lifecycle</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html"
+     * >Auto Scaling Lifecycle</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * 
      * @param recordLifecycleActionHeartbeatRequest
@@ -3919,15 +4108,15 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <li>
      * <p>
      * (Optional) Create a Lambda function and a rule that allows CloudWatch
-     * Events to invoke your Lambda function when Auto Scaling launches or
-     * terminates instances.
+     * Events to invoke your Lambda function when Amazon EC2 Auto Scaling
+     * launches or terminates instances.
      * </p>
      * </li>
      * <li>
      * <p>
      * (Optional) Create a notification target and an IAM role. The target can
      * be either an Amazon SQS queue or an Amazon SNS topic. The role allows
-     * Auto Scaling to publish lifecycle notifications to the target.
+     * Amazon EC2 Auto Scaling to publish lifecycle notifications to the target.
      * </p>
      * </li>
      * <li>
@@ -3951,8 +4140,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </ol>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/AutoScalingGroupLifecycle.html"
-     * >Auto Scaling Lifecycle</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html"
+     * >Auto Scaling Lifecycle</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * 
      * @param recordLifecycleActionHeartbeatRequest
@@ -3989,13 +4179,13 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
 
     /**
      * <p>
-     * Resumes the specified suspended Auto Scaling processes, or all suspended
-     * process, for the specified Auto Scaling group.
+     * Resumes the specified suspended automatic scaling processes, or all
+     * suspended process, for the specified Auto Scaling group.
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-suspend-resume-processes.html"
-     * >Suspending and Resuming Auto Scaling Processes</a> in the <i>Auto
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html"
+     * >Suspending and Resuming Scaling Processes</a> in the <i>Amazon EC2 Auto
      * Scaling User Guide</i>.
      * </p>
      * 
@@ -4025,13 +4215,13 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
 
     /**
      * <p>
-     * Resumes the specified suspended Auto Scaling processes, or all suspended
-     * process, for the specified Auto Scaling group.
+     * Resumes the specified suspended automatic scaling processes, or all
+     * suspended process, for the specified Auto Scaling group.
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-suspend-resume-processes.html"
-     * >Suspending and Resuming Auto Scaling Processes</a> in the <i>Auto
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html"
+     * >Suspending and Resuming Scaling Processes</a> in the <i>Amazon EC2 Auto
      * Scaling User Guide</i>.
      * </p>
      * 
@@ -4073,8 +4263,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information about desired capacity, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/WhatIsAutoScaling.html"
-     * >What Is Auto Scaling?</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/WhatIsAutoScaling.html"
+     * >What Is Amazon EC2 Auto Scaling?</a> in the <i>Amazon EC2 Auto Scaling
+     * User Guide</i>.
      * </p>
      * 
      * @param setDesiredCapacityRequest
@@ -4108,8 +4299,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information about desired capacity, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/WhatIsAutoScaling.html"
-     * >What Is Auto Scaling?</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/WhatIsAutoScaling.html"
+     * >What Is Amazon EC2 Auto Scaling?</a> in the <i>Amazon EC2 Auto Scaling
+     * User Guide</i>.
      * </p>
      * 
      * @param setDesiredCapacityRequest
@@ -4151,8 +4343,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html"
-     * >Health Checks</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html"
+     * >Health Checks</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param setInstanceHealthRequest
@@ -4185,8 +4377,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html"
-     * >Health Checks</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html"
+     * >Health Checks</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param setInstanceHealthRequest
@@ -4227,8 +4419,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html#instance-protection"
-     * >Instance Protection</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#instance-protection"
+     * >Instance Protection</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * 
      * @param setInstanceProtectionRequest
@@ -4261,8 +4454,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-instance-termination.html#instance-protection"
-     * >Instance Protection</a> in the <i>Auto Scaling User Guide</i>.
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#instance-protection"
+     * >Instance Protection</a> in the <i>Amazon EC2 Auto Scaling User
+     * Guide</i>.
      * </p>
      * 
      * @param setInstanceProtectionRequest
@@ -4300,8 +4494,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
 
     /**
      * <p>
-     * Suspends the specified Auto Scaling processes, or all processes, for the
-     * specified Auto Scaling group.
+     * Suspends the specified automatic scaling processes, or all processes, for
+     * the specified Auto Scaling group.
      * </p>
      * <p>
      * Note that if you suspend either the <code>Launch</code> or
@@ -4313,8 +4507,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-suspend-resume-processes.html"
-     * >Suspending and Resuming Auto Scaling Processes</a> in the <i>Auto
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html"
+     * >Suspending and Resuming Scaling Processes</a> in the <i>Amazon EC2 Auto
      * Scaling User Guide</i>.
      * </p>
      * 
@@ -4344,8 +4538,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
 
     /**
      * <p>
-     * Suspends the specified Auto Scaling processes, or all processes, for the
-     * specified Auto Scaling group.
+     * Suspends the specified automatic scaling processes, or all processes, for
+     * the specified Auto Scaling group.
      * </p>
      * <p>
      * Note that if you suspend either the <code>Launch</code> or
@@ -4357,8 +4551,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * </p>
      * <p>
      * For more information, see <a href=
-     * "http://docs.aws.amazon.com/autoscaling/latest/userguide/as-suspend-resume-processes.html"
-     * >Suspending and Resuming Auto Scaling Processes</a> in the <i>Auto
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html"
+     * >Suspending and Resuming Scaling Processes</a> in the <i>Amazon EC2 Auto
      * Scaling User Guide</i>.
      * </p>
      * 
