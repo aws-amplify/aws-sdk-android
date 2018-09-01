@@ -1,13 +1,35 @@
+/*
+ * Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://aws.amazon.com/apache2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
 package com.amazonaws.logging;
 
 import android.util.Log;
 
+/**
+ * AndroidLog represents the {@code android.util.Log} and it
+ * confirms to the {@code com.amazonaws.logging.Log} interface.
+ */
 public class AndroidLog implements com.amazonaws.logging.Log {
 
+    /** Tag for the log message */
     private final String tag;
+
     /**
      *
-     * @param tag The tag that is present in android.util.Log.d(TAG, "Hello world");
+     * @param tag The tag that is present in
+     *            android.util.Log.d(TAG, "Hello world");
      */
     public AndroidLog(final String tag) {
         this.tag = tag;
@@ -15,48 +37,37 @@ public class AndroidLog implements com.amazonaws.logging.Log {
 
     @Override
     public boolean isDebugEnabled() {
-        // TODO setters of default to true
-        return true;
+        return Log.isLoggable(tag, Log.DEBUG);
     }
 
     @Override
     public boolean isErrorEnabled() {
-        // TODO setters of default to true
-        return true;
-    }
-
-    @Override
-    public boolean isFatalEnabled() {
-        // TODO setters of default to true
-        return true;
+        return Log.isLoggable(tag, Log.ERROR);
     }
 
     @Override
     public boolean isInfoEnabled() {
-        // TODO setters of default to true
-        return true;
+        return Log.isLoggable(tag, Log.INFO);
     }
 
     @Override
     public boolean isTraceEnabled() {
-        // TODO setters of default to true
-        return true;
+        return Log.isLoggable(tag, Log.VERBOSE);
     }
 
     @Override
     public boolean isWarnEnabled() {
-        // TODO setters of default to true
-        return true;
+        return Log.isLoggable(tag, Log.WARN);
     }
 
     @Override
     public void trace(Object message) {
-        // TODO Get mapping for this method
+        Log.v(tag, message.toString());
     }
 
     @Override
     public void trace(Object message, Throwable t) {
-        // TODO Get mapping for this method
+        Log.v(tag, message.toString(), t);
     }
 
     @Override
@@ -97,15 +108,5 @@ public class AndroidLog implements com.amazonaws.logging.Log {
     @Override
     public void error(Object message, Throwable t) {
         Log.e(tag, message.toString(), t);
-    }
-
-    @Override
-    public void fatal(Object message) {
-        Log.wtf(tag, message.toString());
-    }
-
-    @Override
-    public void fatal(Object message, Throwable t) {
-        Log.wtf(tag, message.toString(), t);
     }
 }

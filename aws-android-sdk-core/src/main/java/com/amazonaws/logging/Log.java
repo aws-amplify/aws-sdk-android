@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-
 package com.amazonaws.logging;
 
 /**
@@ -75,7 +74,7 @@ public interface Log {
      *
      * @return true if debug is enabled in the underlying logger.
      */
-    public boolean isDebugEnabled();
+    boolean isDebugEnabled();
 
 
     /**
@@ -87,19 +86,7 @@ public interface Log {
      *
      * @return true if error is enabled in the underlying logger.
      */
-    public boolean isErrorEnabled();
-
-
-    /**
-     * <p> Is fatal logging currently enabled? </p>
-     *
-     * <p> Call this method to prevent having to perform expensive operations
-     * (for example, <code>String</code> concatenation)
-     * when the log level is more than fatal. </p>
-     *
-     * @return true if fatal is enabled in the underlying logger.
-     */
-    public boolean isFatalEnabled();
+    boolean isErrorEnabled();
 
 
     /**
@@ -111,7 +98,7 @@ public interface Log {
      *
      * @return true if info is enabled in the underlying logger.
      */
-    public boolean isInfoEnabled();
+    boolean isInfoEnabled();
 
 
     /**
@@ -224,23 +211,4 @@ public interface Log {
      * @param t log this cause
      */
     public void error(Object message, Throwable t);
-
-
-    /**
-     * <p> Log a message with fatal log level. </p>
-     *
-     * @param message log this message
-     */
-    public void fatal(Object message);
-
-
-    /**
-     * <p> Log an error with fatal log level. </p>
-     *
-     * @param message log this message
-     * @param t log this cause
-     */
-    public void fatal(Object message, Throwable t);
-
-
 }
