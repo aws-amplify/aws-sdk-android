@@ -34,8 +34,8 @@ import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.Md5Utils;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

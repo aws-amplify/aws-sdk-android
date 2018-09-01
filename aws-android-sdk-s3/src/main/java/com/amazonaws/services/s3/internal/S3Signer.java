@@ -24,8 +24,8 @@ import com.amazonaws.auth.SigningAlgorithm;
 import com.amazonaws.services.s3.Headers;
 import com.amazonaws.util.HttpUtils;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.util.Collection;
 import java.util.Collections;

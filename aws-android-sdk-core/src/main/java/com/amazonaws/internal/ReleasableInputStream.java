@@ -17,8 +17,8 @@
  */
 package com.amazonaws.internal;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.io.FileInputStream;
 import java.io.InputStream;

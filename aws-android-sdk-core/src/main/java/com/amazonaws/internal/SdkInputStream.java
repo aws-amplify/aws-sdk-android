@@ -17,7 +17,7 @@ package com.amazonaws.internal;
 
 import com.amazonaws.AbortedException;
 
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.LogFactory;
 
 import java.io.IOException;
 import java.io.InputStream;

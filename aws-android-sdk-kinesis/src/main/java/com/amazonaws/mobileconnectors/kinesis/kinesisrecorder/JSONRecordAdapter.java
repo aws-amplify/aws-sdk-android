@@ -20,8 +20,8 @@ import android.util.Base64;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.services.kinesis.model.PutRecordRequest;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 

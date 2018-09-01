@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 
-import org.apache.commons.logging.Log;
+import com.amazonaws.logging.Log;
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;

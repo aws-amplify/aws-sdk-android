@@ -36,8 +36,8 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidPreferences;
 import com.amazonaws.services.pinpoint.model.ChannelType;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.io.IOException;
 import java.lang.reflect.Constructor;

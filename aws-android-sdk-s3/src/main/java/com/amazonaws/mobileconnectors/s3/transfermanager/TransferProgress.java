@@ -15,8 +15,8 @@
 
 package com.amazonaws.mobileconnectors.s3.transfermanager;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 /**
  * Describes the progress of a transfer.

@@ -59,8 +59,8 @@ import com.amazonaws.services.dynamodbv2.model.WriteRequest;
 import com.amazonaws.services.s3.model.Region;
 import com.amazonaws.util.VersionInfoUtils;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 import org.json.JSONObject;
 
 import java.lang.reflect.Method;

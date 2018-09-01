@@ -15,8 +15,8 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.analytics;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
 
 import static com.amazonaws.mobileconnectors.pinpoint.internal.core.util.Preconditions.checkNotNull;

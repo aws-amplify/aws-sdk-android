@@ -34,8 +34,8 @@ import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.Md5Utils;
 import com.amazonaws.util.TimingInfo;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
