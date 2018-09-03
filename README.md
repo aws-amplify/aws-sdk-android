@@ -4,6 +4,8 @@
 [![GitHub release](https://img.shields.io/github/release/aws/aws-sdk-android.svg)](https://github.com/aws/aws-sdk-android/releases)
 [![Maven Central](https://img.shields.io/maven-central/v/com.amazonaws/aws-android-sdk-pom.svg)]()
 [![Twitter Follow](https://img.shields.io/twitter/follow/awsformobile.svg?style=social&label=Follow)]()
+[![Code Quality: Java](https://img.shields.io/lgtm/grade/java/g/aws/aws-sdk-android.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/aws/aws-sdk-android/context:java)
+[![Total Alerts](https://img.shields.io/lgtm/alerts/g/aws/aws-sdk-android.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/aws/aws-sdk-android/alerts)
 
 The [AWS SDK for Android](https://aws.amazon.com/mobile/resources/) provides a library and documentation for developers to build connected mobile applications using AWS.
 
