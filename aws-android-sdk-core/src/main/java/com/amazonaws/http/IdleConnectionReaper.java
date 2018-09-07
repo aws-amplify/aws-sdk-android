@@ -15,8 +15,8 @@
 
 package com.amazonaws.http;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 import org.apache.http.conn.ClientConnectionManager;
 
 import java.util.ArrayList;

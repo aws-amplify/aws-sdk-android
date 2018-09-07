@@ -19,8 +19,8 @@ import com.amazonaws.metrics.AwsSdkMetrics;
 import com.amazonaws.metrics.MetricType;
 import com.amazonaws.metrics.RequestMetricCollector;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -15,8 +15,8 @@
 
 package com.amazonaws.mobileconnectors.pinpoint;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;

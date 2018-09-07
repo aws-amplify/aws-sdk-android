@@ -19,8 +19,8 @@ import com.amazonaws.metrics.AwsSdkMetrics;
 import com.amazonaws.metrics.ServiceLatencyProvider;
 import com.amazonaws.util.AWSServiceMetrics;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 import org.apache.http.conn.ClientConnectionRequest;
 
 import java.lang.reflect.InvocationHandler;

@@ -21,8 +21,8 @@ import com.amazonaws.transform.Unmarshaller;
 import com.amazonaws.util.IOUtils;
 import com.amazonaws.util.XpathUtils;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 

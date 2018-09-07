@@ -41,8 +41,8 @@ import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.StorageClass;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.io.InputStream;
 import java.util.ArrayList;

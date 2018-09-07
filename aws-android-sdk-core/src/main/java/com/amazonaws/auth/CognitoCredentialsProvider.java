@@ -35,8 +35,8 @@ import com.amazonaws.services.securitytoken.model.AssumeRoleWithWebIdentityReque
 import com.amazonaws.services.securitytoken.model.AssumeRoleWithWebIdentityResult;
 import com.amazonaws.services.securitytoken.model.Credentials;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 import org.json.JSONObject;
 
 import java.util.concurrent.locks.ReentrantReadWriteLock;

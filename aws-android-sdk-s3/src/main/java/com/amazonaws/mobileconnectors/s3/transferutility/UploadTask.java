@@ -32,8 +32,8 @@ import com.amazonaws.services.s3.model.Tag;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.util.Mimetypes;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.io.File;
 import java.io.IOException;

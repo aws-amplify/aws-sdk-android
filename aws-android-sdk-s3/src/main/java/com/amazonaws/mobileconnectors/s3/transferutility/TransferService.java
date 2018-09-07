@@ -32,8 +32,8 @@ import android.os.Message;
 
 import com.amazonaws.services.s3.AmazonS3;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;

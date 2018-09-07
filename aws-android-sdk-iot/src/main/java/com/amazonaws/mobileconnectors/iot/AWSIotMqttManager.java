@@ -26,8 +26,8 @@ import com.amazonaws.regions.Region;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.VersionInfoUtils;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;

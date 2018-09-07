@@ -20,8 +20,8 @@ package com.amazonaws.services.s3.internal;
 
 import com.amazonaws.internal.SdkInputStream;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.io.File;
 import java.io.FileInputStream;

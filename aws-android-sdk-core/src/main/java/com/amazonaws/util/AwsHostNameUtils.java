@@ -18,7 +18,7 @@ package com.amazonaws.util;
 import com.amazonaws.internal.config.HostRegexToRegionMapping;
 import com.amazonaws.internal.config.InternalConfig;
 
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.LogFactory;
 
 import java.net.InetAddress;
 import java.net.URI;

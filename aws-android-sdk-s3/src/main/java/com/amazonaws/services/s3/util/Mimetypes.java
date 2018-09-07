@@ -20,8 +20,8 @@ package com.amazonaws.services.s3.util;
 
 import com.amazonaws.util.StringUtils;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.io.BufferedReader;
 import java.io.File;

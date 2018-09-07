@@ -18,8 +18,8 @@ package com.amazonaws.services.s3.internal;
 import com.amazonaws.http.HttpResponse;
 import com.amazonaws.services.s3.Headers;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.util.Date;
 import java.util.regex.Matcher;

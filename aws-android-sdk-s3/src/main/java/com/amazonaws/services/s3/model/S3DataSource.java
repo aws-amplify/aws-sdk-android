@@ -19,7 +19,7 @@ import static com.amazonaws.util.IOUtils.release;
 import java.io.File;
 import java.io.InputStream;
 
-import org.apache.commons.logging.Log;
+import com.amazonaws.logging.Log;
 
 /**
  * Used to represent an S3 data source that either has a file or an input

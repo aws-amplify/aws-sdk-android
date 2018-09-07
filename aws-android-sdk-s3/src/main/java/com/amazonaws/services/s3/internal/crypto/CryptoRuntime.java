@@ -17,7 +17,7 @@ package com.amazonaws.services.s3.internal.crypto;
 
 import static com.amazonaws.services.s3.internal.crypto.S3KeyWrapScheme.RSA_ECB_OAEP_WITH_SHA256_AND_MGF1_PADDING;
 
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.LogFactory;
 
 import java.security.Provider;
 import java.security.Security;

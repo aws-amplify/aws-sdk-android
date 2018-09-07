@@ -15,8 +15,8 @@
 
 package com.amazonaws.event;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;

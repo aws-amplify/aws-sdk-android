@@ -24,8 +24,8 @@ import com.amazonaws.auth.policy.Statement;
 import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.io.IOException;
 import java.io.StringWriter;

@@ -1,5 +1,15 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.30](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.30)
+
+### Bug Fixes
+
+* **Amazon Cognito Identity Provider**
+  * Compute and send secret hash when client secret is present for Custom Authentication Flow.
+
+* **AWS Core**
+  * Fixed a bug where getting a logger using Apache Commons Logging would crash starting Android 9.0 (Pie / API Level 28). See [pull #521](ttps://github.com/aws/aws-sdk-android/pull/521). Now, Apache Commons Logging would be used if it's being added as a dependency, otherwise `android.util.Log` will be used.
+
 ## [Release 2.6.29](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.29)
 
 ### Bug Fixes

@@ -100,8 +100,8 @@ import com.amazonaws.services.cognitoidentityprovider.model.VerifyUserAttributeR
 import com.amazonaws.util.Base64;
 import com.amazonaws.util.StringUtils;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -2742,7 +2742,19 @@ public class CognitoUser {
         final InitiateAuthRequest authRequest = new InitiateAuthRequest();
         authRequest.setAuthFlow(CognitoServiceConstants.AUTH_TYPE_INIT_CUSTOM_AUTH);
         authRequest.setClientId(clientId);
+
+        /**
+         * Compute secret hash based on the client secret and pass into the AuthParameters if
+         * the secret hash is not passed in.
+         */
+        Map<String, String> authenticationParameters = authenticationDetails.getAuthenticationParameters();
+        if (clientSecret != null &&
+            authenticationParameters.get(CognitoServiceConstants.AUTH_PARAM_SECRET_HASH) == null) {
+            secretHash = CognitoSecretHash.getSecretHash(usernameInternal, clientId, clientSecret);
+            authenticationParameters.put(CognitoServiceConstants.AUTH_PARAM_SECRET_HASH, secretHash);
+        }
         authRequest.setAuthParameters(authenticationDetails.getAuthenticationParameters());
+
         if (authenticationDetails.getValidationData() != null
                 && authenticationDetails.getValidationData().size() > 0) {
             final Map<String, String> userValidationData = new HashMap<String, String>();
