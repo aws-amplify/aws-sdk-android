@@ -26,7 +26,7 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.util.AWSRequestMetrics.Field;
 import com.amazonaws.util.AWSServiceMetrics;
 
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.LogFactory;
 
 import java.io.File;
 import java.io.IOException;

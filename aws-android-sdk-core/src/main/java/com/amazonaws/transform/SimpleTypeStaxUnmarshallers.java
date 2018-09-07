@@ -18,8 +18,8 @@ package com.amazonaws.transform;
 import com.amazonaws.util.Base64;
 import com.amazonaws.util.DateUtils;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

@@ -13,8 +13,8 @@
 package com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile;
 
 import java.util.MissingResourceException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 import org.json.JSONObject;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.JSONBuilder;

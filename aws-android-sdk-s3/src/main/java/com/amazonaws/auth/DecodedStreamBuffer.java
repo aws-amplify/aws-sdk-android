@@ -17,8 +17,8 @@ package com.amazonaws.auth;
 
 import com.amazonaws.AmazonClientException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 class DecodedStreamBuffer {
     private static final Log log = LogFactory.getLog(DecodedStreamBuffer.class);

@@ -15,7 +15,8 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.analytics.monetization;
 
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
 
 /**
@@ -42,7 +43,7 @@ import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
  */
 public class VirtualMonetizationEventBuilder extends MonetizationEventBuilder {
 
-    private static final org.apache.commons.logging.Log log =
+    private static final Log log =
             LogFactory.getLog(VirtualMonetizationEventBuilder.class);
 
     /**

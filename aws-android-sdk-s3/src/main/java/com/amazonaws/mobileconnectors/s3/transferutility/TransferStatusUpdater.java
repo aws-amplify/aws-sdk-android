@@ -21,8 +21,8 @@ import android.os.Looper;
 import com.amazonaws.event.ProgressEvent;
 import com.amazonaws.event.ProgressListener;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.util.Arrays;
 import java.util.Collections;

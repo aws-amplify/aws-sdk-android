@@ -21,8 +21,8 @@ import com.amazonaws.metrics.ServiceMetricType;
 import com.amazonaws.metrics.ThroughputMetricType;
 import com.amazonaws.metrics.internal.ServiceMetricTypeGuesser;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 import org.apache.http.entity.BasicHttpEntity;
 import org.apache.http.entity.InputStreamEntity;
 

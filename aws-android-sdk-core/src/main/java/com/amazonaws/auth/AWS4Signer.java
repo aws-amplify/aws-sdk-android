@@ -23,8 +23,8 @@ import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.HttpUtils;
 import com.amazonaws.util.StringUtils;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.io.IOException;
 import java.io.InputStream;

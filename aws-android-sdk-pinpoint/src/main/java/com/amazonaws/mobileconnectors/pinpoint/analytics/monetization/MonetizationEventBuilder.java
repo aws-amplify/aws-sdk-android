@@ -15,7 +15,8 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.analytics.monetization;
 
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.StringUtil;
@@ -56,7 +57,7 @@ public abstract class MonetizationEventBuilder {
     static final String AMAZON_STORE = "Amazon";
     static final String GOOGLE_PLAY_STORE = "Google Play";
     static final String VIRTUAL_STORE = "Virtual";
-    private static final org.apache.commons.logging.Log log = LogFactory.getLog(MonetizationEventBuilder.class);
+    private static final Log log = LogFactory.getLog(MonetizationEventBuilder.class);
     private final AnalyticsClient analyticsClient;
     private String productId;
     private String store;

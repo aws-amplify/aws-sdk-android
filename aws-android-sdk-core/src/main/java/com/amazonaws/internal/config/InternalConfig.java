@@ -17,8 +17,8 @@ package com.amazonaws.internal.config;
 
 import com.amazonaws.regions.Regions;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
