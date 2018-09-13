@@ -122,7 +122,7 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
      * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea
+     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea, Zhiyu
      */
     private String voiceId;
 
@@ -780,7 +780,7 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope, Chantal,
      * Celine, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv, Lotte, Ruben,
      * Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines, Carmen, Maxim,
-     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea
+     * Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi, Lea, Zhiyu
      *
      * @return <p>
      *         Voice ID to use for the synthesis. You can get a list of
@@ -811,7 +811,7 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
+     * <b>Allowed Values: </b>cm-CMN, cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
      * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
      * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
@@ -881,7 +881,7 @@ public class SynthesizeSpeechPresignRequest implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
+     * <b>Allowed Values: </b>cm-CMN, cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
      * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
      * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
      *
