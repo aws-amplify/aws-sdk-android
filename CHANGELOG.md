@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.6.31](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.31)
+
+### Enhancements
+
+* **Amazon Polly**
+  * Added support for new voice `Zhiyu`.
+
 ## [Release 2.6.30](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.30)
 
 ### Bug Fixes
