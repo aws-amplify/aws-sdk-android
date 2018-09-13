@@ -135,7 +135,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
      * Chantal, Celine, Lea, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv,
      * Lotte, Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines,
-     * Carmen, Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
+     * Carmen, Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi,
+     * Zhiyu
      */
     private String voiceId;
 
@@ -156,9 +157,10 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
-     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * <b>Allowed Values: </b>cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
+     * en-GB-WLS, en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP,
+     * hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE,
+     * tr-TR
      */
     private String languageCode;
 
@@ -876,7 +878,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
      * Chantal, Celine, Lea, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv,
      * Lotte, Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines,
-     * Carmen, Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
+     * Carmen, Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi,
+     * Zhiyu
      *
      * @return <p>
      *         Voice ID to use for the synthesis.
@@ -898,7 +901,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
      * Chantal, Celine, Lea, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv,
      * Lotte, Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines,
-     * Carmen, Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
+     * Carmen, Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi,
+     * Zhiyu
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -923,7 +927,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
      * Chantal, Celine, Lea, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv,
      * Lotte, Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines,
-     * Carmen, Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
+     * Carmen, Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi,
+     * Zhiyu
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -948,7 +953,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
      * Chantal, Celine, Lea, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv,
      * Lotte, Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines,
-     * Carmen, Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
+     * Carmen, Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi,
+     * Zhiyu
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -973,7 +979,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Kendra, Kimberly, Matthew, Salli, Conchita, Enrique, Miguel, Penelope,
      * Chantal, Celine, Lea, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv,
      * Lotte, Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines,
-     * Carmen, Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi
+     * Carmen, Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi,
+     * Zhiyu
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1004,9 +1011,10 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
-     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * <b>Allowed Values: </b>cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
+     * en-GB-WLS, en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP,
+     * hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE,
+     * tr-TR
      *
      * @return <p>
      *         Optional language code for the Speech Synthesis request. This is
@@ -1046,9 +1054,10 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
-     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * <b>Allowed Values: </b>cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
+     * en-GB-WLS, en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP,
+     * hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE,
+     * tr-TR
      *
      * @param languageCode <p>
      *            Optional language code for the Speech Synthesis request. This
@@ -1093,9 +1102,10 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
-     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * <b>Allowed Values: </b>cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
+     * en-GB-WLS, en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP,
+     * hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE,
+     * tr-TR
      *
      * @param languageCode <p>
      *            Optional language code for the Speech Synthesis request. This
@@ -1140,9 +1150,10 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
-     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * <b>Allowed Values: </b>cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
+     * en-GB-WLS, en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP,
+     * hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE,
+     * tr-TR
      *
      * @param languageCode <p>
      *            Optional language code for the Speech Synthesis request. This
@@ -1187,9 +1198,10 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>cy-GB, da-DK, de-DE, en-AU, en-GB, en-GB-WLS,
-     * en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP, hi-IN,
-     * ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, tr-TR
+     * <b>Allowed Values: </b>cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
+     * en-GB-WLS, en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP,
+     * hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE,
+     * tr-TR
      *
      * @param languageCode <p>
      *            Optional language code for the Speech Synthesis request. This
