@@ -46,7 +46,7 @@ class TransferDBBase {
     private SQLiteDatabase database;
 
     /**
-     * Constructs TransferdatabaseBase with the given Context.
+     * Constructs TransferDatabaseBase with the given Context.
      *
      * @param context A Context instance.
      */
@@ -130,7 +130,6 @@ class TransferDBBase {
      * @param selection The "where" clause of sql.
      * @param selectionArgs Strings in the "where" clause.
      * @param sortOrder Sorting order of the query.
-     * @param type Type of transfers to query.
      * @return A Cursor pointing to records.
      */
     public Cursor query(Uri uri, String[] projection, String selection,
@@ -279,5 +278,4 @@ class TransferDBBase {
     SQLiteDatabase getDatabase() {
         return database;
     }
-
 }

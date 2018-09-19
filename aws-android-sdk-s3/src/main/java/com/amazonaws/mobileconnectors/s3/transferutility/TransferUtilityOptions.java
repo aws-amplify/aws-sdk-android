@@ -53,7 +53,11 @@ public class TransferUtilityOptions implements Serializable {
     /**
      * TransferService checks for the transfers that are waiting or in progress
      * and restarts the transfer for every time interval in milliseconds.
+     *
+     * @deprecated This feature is deprecated since {@code TransferService} is
+     * changed to only support network connectivity changes.
      */
+    @Deprecated
     private long transferServiceCheckTimeInterval;
     
     /**
@@ -75,7 +79,11 @@ public class TransferUtilityOptions implements Serializable {
      * Retrieve the transfer service check time interval.
      * 
      * @return the transferServiceCheckTimeInterval
+     *
+     * @deprecated This feature is deprecated since {@code TransferService} is
+     * changed to only support network connectivity changes.
      */
+    @Deprecated
     public long getTransferServiceCheckTimeInterval() {
         return transferServiceCheckTimeInterval;
     }
@@ -84,9 +92,13 @@ public class TransferUtilityOptions implements Serializable {
      * Set the transfer service check time interval.
      * 
      * @param transferServiceCheckTimeInterval the transferServiceCheckTimeInterval to set
+     *
+     * @deprecated This feature is deprecated since {@code TransferService} is
+     * changed to only support network connectivity changes.
      */
+    @Deprecated
     public void setTransferServiceCheckTimeInterval(final long transferServiceCheckTimeInterval) {
-        this.transferServiceCheckTimeInterval = transferServiceCheckTimeInterval;
+
     }
 
     /**
@@ -125,7 +137,11 @@ public class TransferUtilityOptions implements Serializable {
      * Return the default check time interval.
      * 
      * @return The default check time interval in milliseconds.
+     *
+     * @deprecated This feature is deprecated since {@code TransferService} is
+     * changed to only support network connectivity changes.
      */
+    @Deprecated
     static long getDefaultCheckTimeInterval() {
         return 1 * MILLIS_IN_MINUTE;
     }

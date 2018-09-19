@@ -18,7 +18,6 @@ package com.amazonaws.mobileconnectors.s3.transferutility;
 import android.database.Cursor;
 
 import com.amazonaws.AmazonClientException;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferService.NetworkInfoReceiver;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
 import com.amazonaws.util.json.JsonUtils;
@@ -159,18 +158,16 @@ class TransferRecord {
      * @param s3 s3 instance
      * @param dbUtil database util
      * @param updater status updater
-     * @param networkInfo network info
      * @return Whether the task is running.
      */
-    public boolean start(AmazonS3 s3, TransferDBUtil dbUtil, TransferStatusUpdater updater,
-            NetworkInfoReceiver networkInfo) {
+    public boolean start(AmazonS3 s3, TransferDBUtil dbUtil, TransferStatusUpdater updater) {
         if (!isRunning() && checkIsReadyToRun()) {
             if (type.equals(TransferType.DOWNLOAD)) {
                 submittedTask = TransferThreadPool
-                        .submitTask(new DownloadTask(this, s3, updater, networkInfo));
+                        .submitTask(new DownloadTask(this, s3, updater));
             } else {
                 submittedTask = TransferThreadPool
-                        .submitTask(new UploadTask(this, s3, dbUtil, updater, networkInfo));
+                        .submitTask(new UploadTask(this, s3, dbUtil, updater));
             }
             return true;
         }

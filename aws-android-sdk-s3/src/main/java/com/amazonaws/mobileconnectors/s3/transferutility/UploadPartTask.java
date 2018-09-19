@@ -16,7 +16,6 @@
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
 
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferService.NetworkInfoReceiver;
 import com.amazonaws.retry.RetryUtils;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.UploadPartRequest;
@@ -34,7 +33,6 @@ class UploadPartTask implements Callable<Boolean> {
     private final UploadPartRequest request;
     private final AmazonS3 s3;
     private final TransferDBUtil dbUtil;
-    private final NetworkInfoReceiver networkInfoReceiver;
 
     public UploadPartTask(UploadPartRequest request,
                           AmazonS3 s3,
@@ -42,17 +40,6 @@ class UploadPartTask implements Callable<Boolean> {
         this.request = request;
         this.s3 = s3;
         this.dbUtil = dbUtil;
-        this.networkInfoReceiver = null;
-    }
-
-    public UploadPartTask(UploadPartRequest request,
-                          AmazonS3 s3,
-                          TransferDBUtil dbUtil,
-                          NetworkInfoReceiver networkInfoReceiver) {
-        this.request = request;
-        this.s3 = s3;
-        this.dbUtil = dbUtil;
-        this.networkInfoReceiver = networkInfoReceiver;
     }
 
     /*
@@ -70,8 +57,8 @@ class UploadPartTask implements Callable<Boolean> {
                 // thread interrupted by user
                 return false;
             }
-            if (networkInfoReceiver != null
-                && !networkInfoReceiver.isNetworkConnected()) {
+            if (TransferService.networkInfoReceiver != null
+                && !TransferService.networkInfoReceiver.isNetworkConnected()) {
                 /*
                  * Network connection is being interrupted. Moving the TransferState
                  * to WAITING_FOR_NETWORK till the network availability resumes.

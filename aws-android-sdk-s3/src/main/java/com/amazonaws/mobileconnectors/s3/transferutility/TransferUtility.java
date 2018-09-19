@@ -20,7 +20,6 @@ import static com.amazonaws.services.s3.internal.Constants.MB;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import org.json.JSONObject;
@@ -103,6 +102,26 @@ public class TransferUtility {
     private static final Log LOGGER = LogFactory.getLog(TransferUtility.class);
 
     /**
+     * The status updater that updates the state and the
+     * progress of the transfer in memory and persists to the
+     * database.
+     */
+    private TransferStatusUpdater updater;
+
+    /**
+     * The dbUtil instance.
+     */
+    private TransferDBUtil dbUtil;
+
+    /**
+     * Constants that indicate the type of the transfer operation.
+     */
+    private static final String TRANSFER_ADD = "add_transfer";
+    private static final String TRANSFER_PAUSE = "pause_transfer";
+    private static final String TRANSFER_RESUME = "resume_transfer";
+    private static final String TRANSFER_CANCEL = "cancel_transfer";
+
+    /**
      * Default minimum part size for upload parts. Anything below this will use
      * a single upload
      */
@@ -126,7 +145,6 @@ public class TransferUtility {
 
     private final AmazonS3 s3;
     private final Context appContext;
-    private final TransferDBUtil dbUtil;
     private final String defaultBucket;
     private final TransferUtilityOptions transferUtilityOptions;
 
@@ -270,7 +288,7 @@ public class TransferUtility {
     public static Builder builder() {
         return new Builder();
     }
-    
+
     /**
      * Constructor.
      * 
@@ -285,9 +303,11 @@ public class TransferUtility {
                             TransferUtilityOptions tuOptions) {
         this.s3 = s3;
         this.appContext = context.getApplicationContext();
-        this.dbUtil = new TransferDBUtil(appContext);
         this.defaultBucket = defaultBucket;
         this.transferUtilityOptions = tuOptions;
+        this.dbUtil = new TransferDBUtil(appContext);
+        this.updater = TransferStatusUpdater.getInstance(appContext);
+        TransferThreadPool.init(this.transferUtilityOptions.getTransferThreadPoolSize());
     }
 
     /**
@@ -304,9 +324,11 @@ public class TransferUtility {
     public TransferUtility(AmazonS3 s3, Context context) {
         this.s3 = s3;
         this.appContext = context.getApplicationContext();
-        this.dbUtil = new TransferDBUtil(appContext);
         this.defaultBucket = null;
         this.transferUtilityOptions = new TransferUtilityOptions();
+        this.dbUtil = new TransferDBUtil(appContext);
+        this.updater = TransferStatusUpdater.getInstance(appContext);
+        TransferThreadPool.init(this.transferUtilityOptions.getTransferThreadPoolSize());
     }
 
     private String getDefaultBucketOrThrow() {
@@ -373,7 +395,7 @@ public class TransferUtility {
             file.delete();
         }
 
-        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId);
+        submitTransferJob(TRANSFER_ADD, recordId);
         return new TransferObserver(recordId, dbUtil, bucket, key, file, listener);
     }
 
@@ -531,7 +553,7 @@ public class TransferUtility {
         if (file == null || file.isDirectory() || !file.exists()) {
             throw new IllegalArgumentException("Invalid file: " + file);
         }
-        int recordId = 0;
+        int recordId;
         if (shouldUploadInMultipart(file)) {
             recordId = createMultipartUploadRecords(bucket, key, file, metadata, cannedAcl);
         } else {
@@ -541,7 +563,7 @@ public class TransferUtility {
             recordId = Integer.parseInt(uri.getLastPathSegment());
         }
 
-        sendIntent(TransferService.INTENT_ACTION_TRANSFER_ADD, recordId);
+        submitTransferJob(TRANSFER_ADD, recordId);
         return new TransferObserver(recordId, dbUtil, bucket, key, file, listener);
     }
 
@@ -701,7 +723,6 @@ public class TransferUtility {
      * @param key The key in the specified bucket by which to store the new
      *            object.
      * @param file The file to upload.
-     * @param isUsingEncryption Whether the upload is encrypted.
      * @return Number of records created in database
      */
     private int createMultipartUploadRecords(String bucket, String key, File file,
@@ -743,7 +764,7 @@ public class TransferUtility {
      * @return Whether successfully paused
      */
     public boolean pause(int id) {
-        sendIntent(TransferService.INTENT_ACTION_TRANSFER_PAUSE, id);
+        submitTransferJob(TRANSFER_PAUSE, id);
         return true;
     }
 
@@ -778,7 +799,7 @@ public class TransferUtility {
      *         ID does not represent a paused transfer
      */
     public TransferObserver resume(int id) {
-        sendIntent(TransferService.INTENT_ACTION_TRANSFER_RESUME, id);
+        submitTransferJob(TRANSFER_RESUME, id);
         return getTransferById(id);
     }
     
@@ -818,7 +839,7 @@ public class TransferUtility {
      * @return Whether the transfer was set to be canceled.
      */
     public boolean cancel(int id) {
-        sendIntent(TransferService.INTENT_ACTION_TRANSFER_CANCEL, id);
+        submitTransferJob(TRANSFER_CANCEL, id);
         return true;
     }
 
@@ -858,19 +879,47 @@ public class TransferUtility {
     }
 
     /**
-     * Send an intent to {@link TransferService}
+     * Start a transfer operation by submitting a job to the
+     * ThreadPool. This method will retrieve the transfer record
+     * from the database and add it to the updater to track and
+     * notify the state, progress and error. Then it will start
+     * the transfer operation by calling the appropriate method
+     * in the {@code TransferRecord}.
      *
      * @param action action to perform
      * @param id id of the transfer
      */
-    private synchronized void sendIntent(String action, int id) {
+    private synchronized void submitTransferJob(String action, int id) {
+        // Add the AmazonS3Client to the S3ClientReference map
+        // sp the TransferStatusUpdater can use the client.
         S3ClientReference.put(id, s3);
-        final Intent intent = new Intent(appContext, TransferService.class);
-        intent.setAction(action);
-        intent.putExtra(TransferService.INTENT_BUNDLE_TRANSFER_ID, id);
-        intent.putExtra(TransferService.INTENT_BUNDLE_TRANSFER_UTILITY_OPTIONS,
-                        this.transferUtilityOptions);
-        appContext.startService(intent);
+
+        // Find the transfer record in memory, if present use it
+        // Else read the transfer record from database and
+        // add it to the in memory updater.
+        TransferRecord transfer = updater.getTransfer(id);
+        if (transfer == null) {
+            transfer = dbUtil.getTransferById(id);
+            if (transfer == null) {
+                LOGGER.error("Cannot find transfer with id: " + id);
+                return;
+            }
+            updater.addTransfer(transfer);
+        } else if (transfer != null && TRANSFER_ADD.equals(action)) {
+            LOGGER.warn("Transfer has already been added: " + id);
+            return;
+        }
+
+        if (TRANSFER_ADD.equals(action) ||
+            TRANSFER_RESUME.equals(action)) {
+            transfer.start(s3, dbUtil, updater);
+        } else if (TRANSFER_PAUSE.equals(action)) {
+            transfer.pause(s3, updater);
+        } else if (TRANSFER_CANCEL.equals(action)) {
+            transfer.cancel(s3, updater);
+        } else {
+            LOGGER.error("Unknown action: " + action);
+        }
     }
 
     private boolean shouldUploadInMultipart(File file) {

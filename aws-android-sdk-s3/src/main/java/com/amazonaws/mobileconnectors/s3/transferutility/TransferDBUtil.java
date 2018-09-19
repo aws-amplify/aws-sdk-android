@@ -42,6 +42,8 @@ class TransferDBUtil {
 
     private static final String QUERY_PLACE_HOLDER_STRING = ",?";
 
+    private static final Object LOCK = new Object();
+
     /**
      * transferDBBase is a basic helper for accessing the database
      */
@@ -53,8 +55,10 @@ class TransferDBUtil {
      * @param context An instance of Context.
      */
     public TransferDBUtil(Context context) {
-        if (transferDBBase == null) {
-            transferDBBase = new TransferDBBase(context);
+        synchronized (LOCK) {
+            if (transferDBBase == null) {
+                transferDBBase = new TransferDBBase(context);
+            }
         }
     }
 
@@ -62,8 +66,10 @@ class TransferDBUtil {
      * Closes the DB Connection
      */
     public void closeDB() {
-        if (transferDBBase != null) {
-            transferDBBase.closeDBHelper();
+        synchronized (LOCK) {
+            if (transferDBBase != null) {
+                transferDBBase.closeDBHelper();
+            }
         }
     }
 
@@ -325,7 +331,7 @@ class TransferDBUtil {
      * Updates states of all transfer records with the specified type which are
      * "running" and "waiting" to "pending pause".
      *
-     * @param TransferType The type of transfers to query for.
+     * @param type The type of transfers to query for.
      * @return Number of rows updated.
      */
     public int pauseAllWithType(TransferType type) {
@@ -358,7 +364,7 @@ class TransferDBUtil {
      * Updates states of all transfer records with the specified which are
      * "running" and "waiting" to "pending cancel"
      *
-     * @param TransferType The type of transfers to cancel
+     * @param type The type of transfers to cancel
      * @return Number of rows updated.
      */
     public int cancelAllWithType(TransferType type) {
@@ -394,7 +400,7 @@ class TransferDBUtil {
     /**
      * Queries all the records which have the given type.
      *
-     * @param TransferType The type of transfers to query for.
+     * @param type The type of transfers to query for.
      * @return A Cursor pointing to records in the database with the given type.
      */
     public Cursor queryAllTransfersWithType(TransferType type) {
@@ -411,8 +417,8 @@ class TransferDBUtil {
     /**
      * Queries all the records which have the given type and state.
      *
-     * @param TransferType The type of transfers to query for.
-     * @param TransferState The state of the transfer.
+     * @param type The type of transfers to query for.
+     * @param state The state of the transfer.
      * @return A Cursor pointing to records in the database with the given type
      *         and state.
      */
@@ -622,7 +628,7 @@ class TransferDBUtil {
     /**
      * Create a string with the required number of placeholders
      *
-     * @param length Number of placeholders needed
+     * @param numPlaceHolders Number of placeholders needed
      * @return String with the required placeholders
      */
     private String createPlaceholders(int numPlaceHolders) {
@@ -816,8 +822,17 @@ class TransferDBUtil {
         return transfer;
     }
 
-    static TransferDBBase getTransferDBBase() {
-        return transferDBBase;
+    /**
+     * Retrieve the underlying TransferDBBase object.
+     *
+     * @return TransferDBBase
+     */
+    static TransferDBBase getTransferDBBase(Context context) {
+        synchronized (LOCK) {
+            if (transferDBBase == null) {
+                transferDBBase = new TransferDBBase(context);
+            }
+            return transferDBBase;
+        }
     }
 }
-

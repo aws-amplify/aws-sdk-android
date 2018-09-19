@@ -272,6 +272,19 @@ public class TransferObserver {
             // do nothing
         }
     }
+
+    @Override
+    public String toString() {
+        return "TransferObserver{" +
+                "id=" + id +
+                ", bucket='" + bucket + '\'' +
+                ", key='" + key + '\'' +
+                ", bytesTotal=" + bytesTotal +
+                ", bytesTransferred=" + bytesTransferred +
+                ", transferState=" + transferState +
+                ", filePath='" + filePath + '\'' +
+                '}';
+    }
 }
 
 
