@@ -15,6 +15,7 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -68,20 +69,41 @@ class TransferStatusUpdater {
     /**
      * Database util to update transfer status.
      */
-    private final TransferDBUtil dbUtil;
+    private static TransferDBUtil dbUtil;
     /**
      * The handler of main thread that runs callbacks.
      */
     private final Handler mainHandler;
 
     /**
-     * This class is instantiated by TransferService.
+     * The Singleton instance.
      */
-    TransferStatusUpdater(TransferDBUtil dbUtil) {
-        this.dbUtil = dbUtil;
+    private static TransferStatusUpdater transferStatusUpdater;
+
+    /**
+     * This class is instantiated by TransferService and TransferUtility.
+     * The updater is made a singleton. Use #getInstance for getting
+     * the object of the updater.
+     */
+    TransferStatusUpdater(TransferDBUtil dbUtilInstance) {
+        dbUtil = dbUtilInstance;
         mainHandler = new Handler(Looper.getMainLooper());
         transfers = new HashMap<Integer, TransferRecord>();
         lastUpdateTime = new HashMap<Integer, Long>();
+    }
+
+    /**
+     * Return the singleton instance of the updater.
+     *
+     * @param context The Database utility instance
+     * @return
+     */
+    public static synchronized TransferStatusUpdater getInstance(Context context) {
+        if (transferStatusUpdater == null) {
+            dbUtil = new TransferDBUtil(context);
+            transferStatusUpdater = new TransferStatusUpdater(dbUtil);
+        }
+        return transferStatusUpdater;
     }
 
     /**
@@ -89,7 +111,7 @@ class TransferStatusUpdater {
      *
      * @return an unmodifiable map of transfers
      */
-    Map<Integer, TransferRecord> getTransfers() {
+    synchronized Map<Integer, TransferRecord> getTransfers() {
         return Collections.unmodifiableMap(transfers);
     }
 
@@ -98,7 +120,7 @@ class TransferStatusUpdater {
      *
      * @param transfer a transfer object
      */
-    void addTransfer(TransferRecord transfer) {
+    synchronized void addTransfer(TransferRecord transfer) {
         transfers.put(transfer.id, transfer);
     }
 
@@ -108,7 +130,7 @@ class TransferStatusUpdater {
      * @param id id of the transfer
      * @return transfer if exists, null otherwise
      */
-    TransferRecord getTransfer(int id) {
+    synchronized TransferRecord getTransfer(int id) {
         return transfers.get(id);
     }
 
@@ -117,7 +139,7 @@ class TransferStatusUpdater {
      *
      * @param id id of the transfer to remove
      */
-    void removeTransfer(int id) {
+    synchronized void removeTransfer(int id) {
         transfers.remove(id);
         LISTENERS.remove(id);
         lastUpdateTime.remove(id);
@@ -128,7 +150,7 @@ class TransferStatusUpdater {
      *
      * @param id id of the transfer to remove
      */
-    void removeTransferRecordFromDB(final int id) {
+    synchronized void removeTransferRecordFromDB(final int id) {
         S3ClientReference.remove(id);
         dbUtil.deleteTransferRecords(id);
     }
@@ -149,7 +171,7 @@ class TransferStatusUpdater {
      * @param id id of the transfer to update
      * @param newState new state
      */
-    void updateState(final int id, final TransferState newState) {
+    synchronized void updateState(final int id, final TransferState newState) {
         boolean shouldNotNotify = STATES_NOT_TO_NOTIFY.contains(newState);
         final TransferRecord transfer = transfers.get(id);
         if (transfer == null) {
@@ -210,7 +232,7 @@ class TransferStatusUpdater {
      * @param bytesCurrent current transferred bytes
      * @param bytesTotal total bytes
      */
-    void updateProgress(final int id, final long bytesCurrent, final long bytesTotal) {
+    synchronized void updateProgress(final int id, final long bytesCurrent, final long bytesTotal) {
         final TransferRecord transfer = transfers.get(id);
         if (transfer != null) {
             transfer.bytesCurrent = bytesCurrent;
@@ -221,7 +243,7 @@ class TransferStatusUpdater {
         // comes to the last byte.
         final long timeInMillis = System.currentTimeMillis();
 
-        // update bytes transfered so that the transfer observer may pick it
+        // update bytes transferred so that the transfer observer may pick it
         // up.
         dbUtil.updateBytesTransferred(id, bytesCurrent);
 
@@ -276,7 +298,7 @@ class TransferStatusUpdater {
     /**
      * Clears all transfers, LISTENERS, etc.
      */
-    void clear() {
+    synchronized void clear() {
         LISTENERS.clear();
         transfers.clear();
         lastUpdateTime.clear();
@@ -317,11 +339,13 @@ class TransferStatusUpdater {
         if (listener == null) {
             throw new IllegalArgumentException("Listener can't be null");
         }
-        final List<TransferListener> list = LISTENERS.get(id);
-        if (list == null || list.isEmpty()) {
-            return;
+        synchronized (LISTENERS) {
+            final List<TransferListener> list = LISTENERS.get(id);
+            if (list == null || list.isEmpty()) {
+                return;
+            }
+            list.remove(listener);
         }
-        list.remove(listener);
     }
 
     /**
@@ -363,7 +387,7 @@ class TransferStatusUpdater {
      * @param id id of the transfer
      * @return a progress listener
      */
-    ProgressListener newProgressListener(int id) {
+    synchronized ProgressListener newProgressListener(int id) {
         final TransferRecord transfer = getTransfer(id);
         if (transfer == null) {
             throw new IllegalArgumentException("transfer " + id + " doesn't exist");
