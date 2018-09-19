@@ -1,5 +1,18 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.7.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.7.0)
+
+### Enhancements
+
+* **Amazon S3**
+  * Starting version `2.7.0` of the SDK, `TransferService` logic has been refactored. This service now will be responsible only for monitoring network connectivity changes. When the network goes offline, the transfers that are in progress will be paused. When the network comes back online, the transfers that are paused will be resumed. If you expect your app to perform long-running transfers in the background, you need to initiate the transfers from a background service of your choice.
+
+  * The `TransferService` will not be started or stopped by `TransferUtility` anymore. You have to start `TransferService` manually from your application. A recommended way is to start the service upon Application startup. One way you can do this is to include the following line in the `onCreate` method of your app's Application class.
+  		  
+	```java
+	getApplicationContext().startService(new Intent(getApplicationContext(), TransferService.class));
+	```
+
 ## [Release 2.6.31](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.6.31)
 
 ### Enhancements
