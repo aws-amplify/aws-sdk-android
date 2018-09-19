@@ -23,7 +23,7 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Environment(please complete the following information):**
- - AppSync SDK Version: [e.g. 2.6.25]
+ - SDK Version: [e.g. 2.6.25]
 
 **Device Information (please complete the following information):**
  - Device: [e.g. Pixel XL, Simulator]
