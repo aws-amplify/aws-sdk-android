@@ -17,7 +17,6 @@ package com.amazonaws.mobileconnectors.s3.transferutility;
 
 
 import com.amazonaws.AmazonClientException;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferService.NetworkInfoReceiver;
 import com.amazonaws.retry.RetryUtils;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.GetObjectRequest;
@@ -47,7 +46,6 @@ class DownloadTask implements Callable<Boolean> {
     private final AmazonS3 s3;
     private final TransferRecord download;
     private final TransferStatusUpdater updater;
-    private final NetworkInfoReceiver networkInfo;
 
     /**
      * Constructs a DownloadTask with the given download info and S3 client.
@@ -56,22 +54,20 @@ class DownloadTask implements Callable<Boolean> {
      *            the download
      * @param s3 Low-level S3 client
      * @param updater status updater
-     * @param networkInfo network info
      */
-    public DownloadTask(TransferRecord download, AmazonS3 s3, TransferStatusUpdater updater,
-            NetworkInfoReceiver networkInfo) {
+    public DownloadTask(TransferRecord download, AmazonS3 s3, TransferStatusUpdater updater) {
         this.download = download;
         this.s3 = s3;
         this.updater = updater;
-        this.networkInfo = networkInfo;
     }
 
     /**
      * Runs download task and returns whether successfully downloaded.
      */
     @Override
-    public Boolean call() throws Exception {
-        if (!networkInfo.isNetworkConnected()) {
+    public Boolean call() {
+        if (TransferService.networkInfoReceiver != null &&
+                !TransferService.networkInfoReceiver.isNetworkConnected()) {
             updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
             return false;
         }
@@ -116,8 +112,9 @@ class DownloadTask implements Callable<Boolean> {
                  */
                 LOGGER.debug("Transfer " + download.id + " is interrupted by user");
             } else if (e.getCause() != null &&
-                    (e.getCause() instanceof IOException || e.getCause() instanceof AmazonClientException)
-                    && !networkInfo.isNetworkConnected()) {
+                    (e.getCause() instanceof IOException || e.getCause() instanceof AmazonClientException) &&
+                    TransferService.networkInfoReceiver != null &&
+                    !TransferService.networkInfoReceiver.isNetworkConnected()) {
                 LOGGER.debug("Transfer " + download.id + " waits for network");
                 updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
             } else {

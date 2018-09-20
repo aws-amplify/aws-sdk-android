@@ -16,7 +16,6 @@
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import com.amazonaws.AmazonClientException;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferService.NetworkInfoReceiver;
 import com.amazonaws.retry.RetryUtils;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.Headers;
@@ -57,15 +56,13 @@ class UploadTask implements Callable<Boolean> {
     private final TransferRecord upload;
     private final TransferDBUtil dbUtil;
     private final TransferStatusUpdater updater;
-    private final NetworkInfoReceiver networkInfo;
 
     public UploadTask(TransferRecord uploadInfo, AmazonS3 s3, TransferDBUtil dbUtil,
-            TransferStatusUpdater updater, NetworkInfoReceiver networkInfo) {
+                      TransferStatusUpdater updater) {
         this.upload = uploadInfo;
         this.s3 = s3;
         this.dbUtil = dbUtil;
         this.updater = updater;
-        this.networkInfo = networkInfo;
     }
 
     /*
@@ -73,7 +70,8 @@ class UploadTask implements Callable<Boolean> {
      */
     @Override
     public Boolean call() throws Exception {
-        if (!networkInfo.isNetworkConnected()) {
+        if (TransferService.networkInfoReceiver != null &&
+                !TransferService.networkInfoReceiver.isNetworkConnected()) {
             updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
             return false;
         }
@@ -134,7 +132,7 @@ class UploadTask implements Callable<Boolean> {
         for (final UploadPartRequest request : requestList) {
             TransferUtility.appendMultipartTransferServiceUserAgentString(request);
             request.setGeneralProgressListener(updater.newProgressListener(upload.id));
-            futures.add(TransferThreadPool.submitTask(new UploadPartTask(request, s3, dbUtil, networkInfo)));
+            futures.add(TransferThreadPool.submitTask(new UploadPartTask(request, s3, dbUtil)));
         }
         try {
             boolean isSuccess = true;
@@ -182,7 +180,8 @@ class UploadTask implements Callable<Boolean> {
                     LOGGER.debug("Transfer " + upload.id + " is interrupted by user");
                     return false;
                 } else if (e.getCause() != null && e.getCause() instanceof IOException
-                        && !networkInfo.isNetworkConnected()) {
+                        && TransferService.networkInfoReceiver != null &&
+                        !TransferService.networkInfoReceiver.isNetworkConnected()) {
                     LOGGER.debug("Transfer " + upload.id + " waits for network");
                     updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
                 }
@@ -229,13 +228,13 @@ class UploadTask implements Callable<Boolean> {
                 LOGGER.debug("Transfer " + upload.id + " is interrupted by user");
                 return false;
             } else if (e.getCause() != null && e.getCause() instanceof AmazonClientException
-                    && !networkInfo.isNetworkConnected()) {
+                    && TransferService.networkInfoReceiver != null && !TransferService.networkInfoReceiver.isNetworkConnected()) {
                 // check for network interruption and pause the transfer instead of failing them
                 LOGGER.debug("Network Connection Interrupted: Transfer " + upload.id + " waits for network");
                 updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
                 return false;
             } else if (e.getCause() != null && e.getCause() instanceof IOException
-                    && !networkInfo.isNetworkConnected()) {
+                    && TransferService.networkInfoReceiver != null && !TransferService.networkInfoReceiver.isNetworkConnected()) {
                 LOGGER.debug("Transfer " + upload.id + " waits for network");
                 updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
             }
@@ -263,8 +262,7 @@ class UploadTask implements Callable<Boolean> {
      * @return A multipart upload id
      */
     private String initiateMultipartUpload(PutObjectRequest putObjectRequest) {
-        InitiateMultipartUploadRequest initiateMultipartUploadRequest = null;
-        initiateMultipartUploadRequest = new InitiateMultipartUploadRequest(
+        InitiateMultipartUploadRequest initiateMultipartUploadRequest = new InitiateMultipartUploadRequest(
                 putObjectRequest.getBucketName(), putObjectRequest.getKey())
                 .withCannedACL(putObjectRequest.getCannedAcl())
                 .withObjectMetadata(putObjectRequest.getMetadata())
@@ -279,7 +277,6 @@ class UploadTask implements Callable<Boolean> {
     /**
      * Creates a PutObjectRequest from the data in the TransferRecord
      *
-     * @param por The request to fill
      * @param upload The data for the Object Metadata
      * @return Returns a PutObjectRequest with filled in metadata and parameters
      */
