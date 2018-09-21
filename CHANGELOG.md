@@ -1,5 +1,21 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.7.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.7.1)
+
+### Enhancements
+
+* **AWS IoT**
+  * Added support for new BJS endpoint serving ATS server cert in format: [customer_id.ats.iot.cn-north-1.amazonaws.com.cn]
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon CloudWatch Logs
+  * Amazon DynamoDB
+  * Amazon Elastic Load Balancing(ELB)
+  * Amazon Parrot
+  * Amazon Simple Email Service (SES)
+
 ## [Release 2.7.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.7.0)
 
 ### Enhancements
