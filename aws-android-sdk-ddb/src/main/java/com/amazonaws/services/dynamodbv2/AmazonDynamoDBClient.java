@@ -1221,6 +1221,49 @@ public class AmazonDynamoDBClient extends AmazonWebServiceClient implements Amaz
     }
 
     /**
+     * @param describeEndpointsRequest
+     * @return describeEndpointsResult The response from the DescribeEndpoints
+     *         service method, as returned by Amazon DynamoDB.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeEndpointsResult describeEndpoints(
+            DescribeEndpointsRequest describeEndpointsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeEndpointsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeEndpointsRequest> request = null;
+        Response<DescribeEndpointsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeEndpointsRequestMarshaller()
+                        .marshall(describeEndpointsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeEndpointsResult, JsonUnmarshallerContext> unmarshaller = new DescribeEndpointsResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeEndpointsResult> responseHandler = new JsonResponseHandler<DescribeEndpointsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
      * <p>
      * Returns information about the specified global table.
      * </p>

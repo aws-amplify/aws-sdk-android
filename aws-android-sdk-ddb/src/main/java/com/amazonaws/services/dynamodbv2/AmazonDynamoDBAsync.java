@@ -1376,6 +1376,43 @@ public interface AmazonDynamoDBAsync extends AmazonDynamoDB {
             throws AmazonServiceException, AmazonClientException;
 
     /**
+     * @param describeEndpointsRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeEndpoints service method, as returned by Amazon DynamoDB.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeEndpointsResult> describeEndpointsAsync(
+            DescribeEndpointsRequest describeEndpointsRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * @param describeEndpointsRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeEndpoints service method, as returned by Amazon DynamoDB.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeEndpointsResult> describeEndpointsAsync(
+            DescribeEndpointsRequest describeEndpointsRequest,
+            AsyncHandler<DescribeEndpointsRequest, DescribeEndpointsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
      * <p>
      * Returns information about the specified global table.
      * </p>

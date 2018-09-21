@@ -24,7 +24,7 @@ public class Session implements Serializable {
     /**
      * Session duration in millis
      */
-    private Integer duration;
+    private Long duration;
 
     /**
      * A unique identifier for the session.
@@ -46,7 +46,7 @@ public class Session implements Serializable {
      *
      * @return Session duration in millis
      */
-    public Integer getDuration() {
+    public Long getDuration() {
         return duration;
     }
 
@@ -55,7 +55,7 @@ public class Session implements Serializable {
      *
      * @param duration Session duration in millis
      */
-    public void setDuration(Integer duration) {
+    public void setDuration(Long duration) {
         this.duration = duration;
     }
 
@@ -69,7 +69,7 @@ public class Session implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public Session withDuration(Integer duration) {
+    public Session withDuration(Long duration) {
         this.duration = duration;
         return this;
     }

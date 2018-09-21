@@ -31,7 +31,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * timeout value for your load balancer.
  * </p>
  * <p>
- * For more information, see the following in the <i>Classic Load Balancer
+ * For more information, see the following in the <i>Classic Load Balancers
  * Guide</i>:
  * </p>
  * <ul>

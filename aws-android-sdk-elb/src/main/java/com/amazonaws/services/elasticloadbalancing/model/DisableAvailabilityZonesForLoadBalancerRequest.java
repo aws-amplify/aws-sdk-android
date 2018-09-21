@@ -22,7 +22,11 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Removes the specified Availability Zones from the set of Availability Zones
- * for the specified load balancer.
+ * for the specified load balancer in EC2-Classic or a default VPC.
+ * </p>
+ * <p>
+ * For load balancers in a non-default VPC, use
+ * <a>DetachLoadBalancerFromSubnets</a>.
  * </p>
  * <p>
  * There must be at least one Availability Zone registered with a load balancer
@@ -34,7 +38,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * For more information, see <a href=
  * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html"
- * >Add or Remove Availability Zones</a> in the <i>Classic Load Balancer
+ * >Add or Remove Availability Zones</a> in the <i>Classic Load Balancers
  * Guide</i>.
  * </p>
  */

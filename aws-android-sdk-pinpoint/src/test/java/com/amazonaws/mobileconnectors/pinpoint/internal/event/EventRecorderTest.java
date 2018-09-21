@@ -20,8 +20,18 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
-
 import com.amazonaws.logging.Log;
+import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
+import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfile;
+import com.amazonaws.services.pinpoint.model.BadRequestException;
+import com.amazonaws.services.pinpoint.model.EndpointItemResponse;
+import com.amazonaws.services.pinpoint.model.EventItemResponse;
+import com.amazonaws.services.pinpoint.model.InternalServerErrorException;
+import com.amazonaws.services.pinpoint.model.ItemResponse;
+import com.amazonaws.services.pinpoint.model.PutEventsResult;
+import com.amazonaws.services.pinpoint.model.PutEventsRequest;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
@@ -52,6 +62,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
 
 @RunWith(PowerMockRunner.class)
 @PowerMockRunnerDelegate(RobolectricTestRunner.class)
@@ -70,7 +82,12 @@ public class EventRecorderTest {
     PinpointContext mockContext;
     AnalyticsEvent analyticsEvent;
     MockDeviceDetails testDeviceDetails;
+    EndpointProfile endpointProfile;
     EventRecorder eventRecorder;
+    PutEventsResult putEventsResult;
+    ItemResponse itemResponse;
+    EventItemResponse eventItemResponse;
+
     @Mock
     AmazonPinpointAnalyticsClient mockAnalyticsService;
     @Mock
@@ -94,6 +111,7 @@ public class EventRecorderTest {
                                                            SESSION_DURATION,
                                                            TIME_STAMP,
                                                            EVENT_NAME);
+        endpointProfile = new EndpointProfile(mockContext);
         dbUtil = new PinpointDBUtil(RuntimeEnvironment.application
                                             .getApplicationContext());
         eventRecorder = new EventRecorder(mockContext, dbUtil,
@@ -106,7 +124,7 @@ public class EventRecorderTest {
     }
 
     @Test
-    public void testRecordEvent() {
+    public void testRecordEvent() throws JSONException {
         final Uri uri = eventRecorder.recordEvent(analyticsEvent);
         final int idInserted = Integer.parseInt(uri.getLastPathSegment());
         assertNotEquals(idInserted, 0);
@@ -114,7 +132,10 @@ public class EventRecorderTest {
         assertNotNull(c);
         assertEquals(c.getCount(), 1);
         while (c.moveToNext()) {
-            final JSONObject obj = eventRecorder.readEventFromCursor(c, null, null);
+            final JSONObject obj = eventRecorder.readEventFromCursor(c, null);
+            //add databaseId to event for deleting.
+            assertEquals(obj.getInt("databaseId"), 1);
+            obj.remove("databaseId");
             assertEquals(obj.toString(),
                                 analyticsEvent.toJSONObject().toString());
             dbUtil.deleteEvent(c.getInt(EventTable.COLUMN_INDEX.ID.getValue()),
@@ -128,7 +149,7 @@ public class EventRecorderTest {
     public void testReadEventFromCursorThrowsException() throws Exception {
         final Log mockLog = Mockito.mock(Log.class);
         Mockito.doThrow(new IllegalStateException()).when(mockLog)
-            .error(Mockito.anyObject(), Mockito.any(IllegalStateException.class));
+            .error(Mockito.anyObject(), any(IllegalStateException.class));
         // Set static field to mock log. equivalent to: Whitebox.setInternalState(EventRecorder.class, "log", mockLog);
         final Field field = EventRecorder.class.getDeclaredField("log");
         field.setAccessible(true);
@@ -138,21 +159,120 @@ public class EventRecorderTest {
         field.set(null, mockLog);
 
         final Cursor mockCursor = Mockito.mock(Cursor.class);
-        Mockito.when(mockCursor.getString(Mockito.anyInt()))
+        when(mockCursor.getString(Mockito.anyInt()))
             .thenThrow(new IllegalStateException(
                 "Couldn't read row 794, col 2 from CursorWindow. Make sure the Cursor" +
                 " is initialized correctly before accessing data from it."));
-        eventRecorder.readEventFromCursor(mockCursor, null, null);
+        eventRecorder.readEventFromCursor(mockCursor, null);
 
     }
 
+
     @Test
-    public void testProcessEvent() {
+    public void testProcessEventWithAPIError() {
+        BadRequestException badRequestException = new BadRequestException("BadRequestException");
+        badRequestException.setErrorCode("BadRequestException");
         eventRecorder.recordEvent(analyticsEvent);
         final ArrayList<String> attrValues = new ArrayList<String>();
         attrValues.add("TestValue");
         mockContext.getTargetingClient().addAttribute("Test", attrValues);
+        //mock endpoint profile
+        when(mockContext.getTargetingClient().currentEndpoint()).thenReturn(endpointProfile);
+        //mock putEvents API response;
+        when(mockContext.getPinpointServiceClient().putEvents(any(PutEventsRequest.class))).thenThrow(badRequestException);
+        //before processing events
+        assertTrue(dbUtil.queryAllEvents().getCount() == 1);
         eventRecorder.processEvents();
+        //not retryable, removed from db.
+        assertTrue(dbUtil.queryAllEvents().getCount() == 0);
+    }
+
+    @Test
+    public void testProcessEventWithOutEndpoint() {
+        eventRecorder.recordEvent(analyticsEvent);
+        final ArrayList<String> attrValues = new ArrayList<String>();
+        attrValues.add("TestValue");
+        mockContext.getTargetingClient().addAttribute("Test", attrValues);
+        assertTrue(dbUtil.queryAllEvents().getCount() == 1);
+        eventRecorder.processEvents();
+        //should not delete any events since endpoint profile is null.
+        //putEvents API only accept request with endpoint profile.
+        assertTrue(dbUtil.queryAllEvents().getCount() == 1);
+    }
+
+    @Test
+    public void testProcessEventWithEndpoint() {
+        //build API response
+        System.out.println("endpoint id: " + endpointProfile.getEndpointId());
+        eventItemResponse = new EventItemResponse().withStatusCode(202).withMessage("Accepted");
+        itemResponse = new ItemResponse()
+                .withEndpointItemResponse(new EndpointItemResponse().withStatusCode(202).withMessage("Accepted"));
+        itemResponse.addEventsItemResponseEntry(analyticsEvent.getEventId(), eventItemResponse);
+        putEventsResult = new PutEventsResult();
+        putEventsResult.addResultsEntry(endpointProfile.getEndpointId(), itemResponse);
+
+        eventRecorder.recordEvent(analyticsEvent);
+        final ArrayList<String> attrValues = new ArrayList<String>();
+        attrValues.add("TestValue");
+        mockContext.getTargetingClient().addAttribute("Test", attrValues);
+        //mock endpoint profile
+        when(mockContext.getTargetingClient().currentEndpoint()).thenReturn(endpointProfile);
+        //mock putEvents API response;
+        when(mockContext.getPinpointServiceClient().putEvents(any(PutEventsRequest.class))).thenReturn(putEventsResult);
+        //before processing events
+        assertTrue(dbUtil.queryAllEvents().getCount() == 1);
+        eventRecorder.processEvents();
+        //putEvents API only accept request with endpoint profile.
+        assertTrue(dbUtil.queryAllEvents().getCount() == 0);
+    }
+
+    @Test
+    public void testProcessEventWithItemRetryableError() {
+        //build API response
+        eventItemResponse = new EventItemResponse().withStatusCode(500).withMessage("InternalServerErrorException");
+        itemResponse = new ItemResponse()
+                .withEndpointItemResponse(new EndpointItemResponse().withStatusCode(500).withMessage("InternalServerErrorException"));
+        itemResponse.addEventsItemResponseEntry(analyticsEvent.getEventId(), eventItemResponse);
+        putEventsResult = new PutEventsResult();
+        putEventsResult.addResultsEntry(endpointProfile.getEndpointId(), itemResponse);
+
+        eventRecorder.recordEvent(analyticsEvent);
+        final ArrayList<String> attrValues = new ArrayList<String>();
+        attrValues.add("TestValue");
+        mockContext.getTargetingClient().addAttribute("Test", attrValues);
+        //mock endpoint profile
+        when(mockContext.getTargetingClient().currentEndpoint()).thenReturn(endpointProfile);
+        //mock putEvents API response;
+        when(mockContext.getPinpointServiceClient().putEvents(any(PutEventsRequest.class))).thenReturn(putEventsResult);
+        //before processing events
+        assertTrue(dbUtil.queryAllEvents().getCount() == 1);
+        eventRecorder.processEvents();
+        //retryable, not removed from db.
+        assertTrue(dbUtil.queryAllEvents().getCount() == 1);
+    }
+
+    @Test
+    public void testProcessEventWithItemNotRetryableError() {
+        //build API response
+        eventItemResponse = new EventItemResponse().withStatusCode(400).withMessage("BadRequestException");
+        itemResponse = new ItemResponse()
+                .withEndpointItemResponse(new EndpointItemResponse().withStatusCode(400).withMessage("BadRequestException"));
+        itemResponse.addEventsItemResponseEntry(analyticsEvent.getEventId(), eventItemResponse);
+        putEventsResult = new PutEventsResult();
+        putEventsResult.addResultsEntry(endpointProfile.getEndpointId(), itemResponse);
+
+        eventRecorder.recordEvent(analyticsEvent);
+        final ArrayList<String> attrValues = new ArrayList<String>();
+        attrValues.add("TestValue");
+        mockContext.getTargetingClient().addAttribute("Test", attrValues);
+        //mock endpoint profile
+        when(mockContext.getTargetingClient().currentEndpoint()).thenReturn(endpointProfile);
+        //mock putEvents API response;
+        when(mockContext.getPinpointServiceClient().putEvents(any(PutEventsRequest.class))).thenReturn(putEventsResult);
+        //before processing events
+        assertTrue(dbUtil.queryAllEvents().getCount() == 1);
+        eventRecorder.processEvents();
+        //not retryable, removed from db.
         assertTrue(dbUtil.queryAllEvents().getCount() == 0);
     }
 

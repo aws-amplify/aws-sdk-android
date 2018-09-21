@@ -39,6 +39,11 @@ public class Limit implements Serializable {
      * classic-load-balancers
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * classic-registered-instances
+     * </p>
+     * </li>
      * </ul>
      */
     private String name;
@@ -65,6 +70,11 @@ public class Limit implements Serializable {
      * classic-load-balancers
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * classic-registered-instances
+     * </p>
+     * </li>
      * </ul>
      *
      * @return <p>
@@ -79,6 +89,11 @@ public class Limit implements Serializable {
      *         <li>
      *         <p>
      *         classic-load-balancers
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         classic-registered-instances
      *         </p>
      *         </li>
      *         </ul>
@@ -102,6 +117,11 @@ public class Limit implements Serializable {
      * classic-load-balancers
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * classic-registered-instances
+     * </p>
+     * </li>
      * </ul>
      *
      * @param name <p>
@@ -116,6 +136,11 @@ public class Limit implements Serializable {
      *            <li>
      *            <p>
      *            classic-load-balancers
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            classic-registered-instances
      *            </p>
      *            </li>
      *            </ul>
@@ -139,6 +164,11 @@ public class Limit implements Serializable {
      * classic-load-balancers
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * classic-registered-instances
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -156,6 +186,11 @@ public class Limit implements Serializable {
      *            <li>
      *            <p>
      *            classic-load-balancers
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            classic-registered-instances
      *            </p>
      *            </li>
      *            </ul>

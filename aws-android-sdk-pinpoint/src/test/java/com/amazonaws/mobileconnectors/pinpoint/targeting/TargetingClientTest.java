@@ -67,16 +67,16 @@ public class TargetingClientTest extends MobileAnalyticsTestBase {
         testDeviceDetails = new MockDeviceDetails();
 
         mockContext = new AnalyticsContextBuilder()
-                              .withSdkInfo(SDK_NAME, SDK_VERSION)
-                              .withUniqueIdValue(UNIQUE_ID)
-                              .withDeviceDetails(testDeviceDetails)
-                              .withPinpointServiceClient(mockPinpointServiceClient)
-                              .withContext(RuntimeEnvironment.application
-                                                   .getApplicationContext())
-                              .build();
+                .withSdkInfo(SDK_NAME, SDK_VERSION)
+                .withUniqueIdValue(UNIQUE_ID)
+                .withDeviceDetails(testDeviceDetails)
+                .withPinpointServiceClient(mockPinpointServiceClient)
+                .withContext(RuntimeEnvironment.application
+                        .getApplicationContext())
+                .build();
 
         targetingClient = new TargetingClient(mockContext,
-                                                     mockPinpointExecutor);
+                mockPinpointExecutor);
     }
 
     @After
@@ -88,7 +88,7 @@ public class TargetingClientTest extends MobileAnalyticsTestBase {
     public void endpoint_globalAttributeAndMetricsAddedAfterEndpointCreation() {
 
         final EndpointProfile endpointProfile = targetingClient
-                                                        .currentEndpoint();
+                .currentEndpoint();
         final List attrVals = Arrays.asList(new String[] { "attr1", "attr2" });
         endpointProfile.withAttribute(null, null).withMetric(null, null)
                 .withAttribute("attr", attrVals).withMetric("metric", 1.0);
@@ -104,21 +104,21 @@ public class TargetingClientTest extends MobileAnalyticsTestBase {
 
         targetingClient.currentEndpoint();
         assertThat(targetingClient.currentEndpoint().getAllAttributes().size(),
-                          is(1));
+                is(1));
         assertThat(targetingClient.currentEndpoint().getAllMetrics().size(),
-                          is(1));
+                is(1));
         assertThat(targetingClient.currentEndpoint().getAttribute("globalAttr"),
-                          is(attrVals));
+                is(attrVals));
         assertThat(targetingClient.currentEndpoint().getMetric("globalMetric")
-                           .intValue(), is(100));
+                .intValue(), is(100));
         targetingClient.removeMetric(null);
         targetingClient.removeMetric("globalMetric");
         targetingClient.removeAttribute(null);
         targetingClient.removeAttribute("globalAttr");
         assertThat(targetingClient.currentEndpoint().getAllAttributes().size(),
-                          is(0));
+                is(0));
         assertThat(targetingClient.currentEndpoint().getAllMetrics().size(),
-                          is(0));
+                is(0));
     }
 
     @Test
@@ -130,11 +130,11 @@ public class TargetingClientTest extends MobileAnalyticsTestBase {
         targetingClient.addMetric("metric", 3.0);
 
         final EndpointProfile endpointProfile = targetingClient
-                                                        .currentEndpoint()
-                                                        .withAttribute("c",
-                                                                              attrVals2)
-                                                        .withMetric("metric",
-                                                                           1.0);
+                .currentEndpoint()
+                .withAttribute("c",
+                        attrVals2)
+                .withMetric("metric",
+                        1.0);
 
         assertThat(endpointProfile.getAttribute("c"), is(attrVals2));
         assertThat(endpointProfile.getMetric("metric"), is(1.0));
@@ -150,7 +150,7 @@ public class TargetingClientTest extends MobileAnalyticsTestBase {
 
     private void verifyAndRunExecutorService(int numExpectedRunnables) {
         final ArgumentCaptor<Runnable> runnableCaptor = ArgumentCaptor
-                                                                .forClass(Runnable.class);
+                .forClass(Runnable.class);
         verify(mockPinpointExecutor, times(numExpectedRunnables))
                 .execute(runnableCaptor.capture());
 
@@ -209,7 +209,7 @@ public class TargetingClientTest extends MobileAnalyticsTestBase {
         verifyAndRunExecutorService(1);
         verify(mockPinpointServiceClient, times(1))
                 .updateEndpoint(requestArgumentCaptor.capture());
-        
+
         for (final UpdateEndpointRequest request : requestArgumentCaptor.getAllValues()) {
             assertNotNull(request.getEndpointRequest().getUser());
             assertEquals(request.getEndpointRequest().getUser().getUserId(), "");

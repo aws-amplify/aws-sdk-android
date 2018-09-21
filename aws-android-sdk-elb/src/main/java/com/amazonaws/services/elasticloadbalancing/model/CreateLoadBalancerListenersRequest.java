@@ -29,8 +29,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * For more information, see <a href=
  * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-listener-config.html"
- * >Listeners for Your Classic Load Balancer</a> in the <i>Classic Load Balancer
- * Guide</i>.
+ * >Listeners for Your Classic Load Balancer</a> in the <i>Classic Load
+ * Balancers Guide</i>.
  * </p>
  */
 public class CreateLoadBalancerListenersRequest extends AmazonWebServiceRequest implements

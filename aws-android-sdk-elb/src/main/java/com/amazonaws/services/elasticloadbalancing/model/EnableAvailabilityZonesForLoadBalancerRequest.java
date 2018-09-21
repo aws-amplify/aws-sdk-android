@@ -22,16 +22,17 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Adds the specified Availability Zones to the set of Availability Zones for
- * the specified load balancer.
+ * the specified load balancer in EC2-Classic or a default VPC.
+ * </p>
+ * <p>
+ * For load balancers in a non-default VPC, use
+ * <a>AttachLoadBalancerToSubnets</a>.
  * </p>
  * <p>
  * The load balancer evenly distributes requests across all its registered
- * Availability Zones that contain instances.
- * </p>
- * <p>
- * For more information, see <a href=
+ * Availability Zones that contain instances. For more information, see <a href=
  * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html"
- * >Add or Remove Availability Zones</a> in the <i>Classic Load Balancer
+ * >Add or Remove Availability Zones</a> in the <i>Classic Load Balancers
  * Guide</i>.
  * </p>
  */

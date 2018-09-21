@@ -24,7 +24,7 @@ public class EventsBatch implements Serializable {
     /**
      * Endpoint information
      */
-    private PublicEndpoint endpoint;
+    private EndpointRequest endpoint;
 
     /**
      * Events
@@ -36,7 +36,7 @@ public class EventsBatch implements Serializable {
      *
      * @return Endpoint information
      */
-    public PublicEndpoint getEndpoint() {
+    public EndpointRequest getEndpoint() {
         return endpoint;
     }
 
@@ -45,7 +45,7 @@ public class EventsBatch implements Serializable {
      *
      * @param endpoint Endpoint information
      */
-    public void setEndpoint(PublicEndpoint endpoint) {
+    public void setEndpoint(EndpointRequest endpoint) {
         this.endpoint = endpoint;
     }
 
@@ -59,7 +59,7 @@ public class EventsBatch implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public EventsBatch withEndpoint(PublicEndpoint endpoint) {
+    public EventsBatch withEndpoint(EndpointRequest endpoint) {
         this.endpoint = endpoint;
         return this;
     }

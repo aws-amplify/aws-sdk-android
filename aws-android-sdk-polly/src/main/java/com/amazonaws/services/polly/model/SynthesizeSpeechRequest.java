@@ -49,6 +49,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * be json.
      * </p>
      * <p>
+     * When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1
+     * channel (mono), little-endian format.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
      */
@@ -264,6 +268,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * be json.
      * </p>
      * <p>
+     * When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1
+     * channel (mono), little-endian format.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
      *
@@ -271,6 +279,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      *         The format in which the returned output will be encoded. For
      *         audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
      *         marks, this will be json.
+     *         </p>
+     *         <p>
+     *         When pcm is used, the content returned is audio/pcm in a signed
+     *         16-bit, 1 channel (mono), little-endian format.
      *         </p>
      * @see OutputFormat
      */
@@ -285,6 +297,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * be json.
      * </p>
      * <p>
+     * When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1
+     * channel (mono), little-endian format.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
      *
@@ -292,6 +308,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      *            The format in which the returned output will be encoded. For
      *            audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
      *            marks, this will be json.
+     *            </p>
+     *            <p>
+     *            When pcm is used, the content returned is audio/pcm in a
+     *            signed 16-bit, 1 channel (mono), little-endian format.
      *            </p>
      * @see OutputFormat
      */
@@ -306,6 +326,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * be json.
      * </p>
      * <p>
+     * When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1
+     * channel (mono), little-endian format.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -316,6 +340,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      *            The format in which the returned output will be encoded. For
      *            audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
      *            marks, this will be json.
+     *            </p>
+     *            <p>
+     *            When pcm is used, the content returned is audio/pcm in a
+     *            signed 16-bit, 1 channel (mono), little-endian format.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -333,6 +361,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * be json.
      * </p>
      * <p>
+     * When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1
+     * channel (mono), little-endian format.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>json, mp3, ogg_vorbis, pcm
      *
@@ -340,6 +372,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      *            The format in which the returned output will be encoded. For
      *            audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
      *            marks, this will be json.
+     *            </p>
+     *            <p>
+     *            When pcm is used, the content returned is audio/pcm in a
+     *            signed 16-bit, 1 channel (mono), little-endian format.
      *            </p>
      * @see OutputFormat
      */
@@ -354,6 +390,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * be json.
      * </p>
      * <p>
+     * When pcm is used, the content returned is audio/pcm in a signed 16-bit, 1
+     * channel (mono), little-endian format.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -364,6 +404,10 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      *            The format in which the returned output will be encoded. For
      *            audio stream, this will be mp3, ogg_vorbis, or pcm. For speech
      *            marks, this will be json.
+     *            </p>
+     *            <p>
+     *            When pcm is used, the content returned is audio/pcm in a
+     *            signed 16-bit, 1 channel (mono), little-endian format.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

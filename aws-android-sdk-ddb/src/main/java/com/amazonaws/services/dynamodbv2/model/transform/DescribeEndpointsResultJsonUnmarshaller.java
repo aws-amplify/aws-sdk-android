@@ -13,31 +13,29 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.services.pinpoint.model.transform;
+package com.amazonaws.services.dynamodbv2.model.transform;
 
-import com.amazonaws.services.pinpoint.model.*;
+import com.amazonaws.services.dynamodbv2.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO EventsRequest
+ * JSON unmarshaller for response DescribeEndpointsResult
  */
-class EventsRequestJsonUnmarshaller implements Unmarshaller<EventsRequest, JsonUnmarshallerContext> {
+public class DescribeEndpointsResultJsonUnmarshaller implements
+        Unmarshaller<DescribeEndpointsResult, JsonUnmarshallerContext> {
 
-    public EventsRequest unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public DescribeEndpointsResult unmarshall(JsonUnmarshallerContext context) throws Exception {
+        DescribeEndpointsResult describeEndpointsResult = new DescribeEndpointsResult();
+
         AwsJsonReader reader = context.getReader();
-        if (!reader.isContainer()) {
-            reader.skipValue();
-            return null;
-        }
-        EventsRequest eventsRequest = new EventsRequest();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("BatchItem")) {
-                eventsRequest.setBatchItem(new MapUnmarshaller<EventsBatch>(
-                        EventsBatchJsonUnmarshaller.getInstance()
+            if (name.equals("Endpoints")) {
+                describeEndpointsResult.setEndpoints(new ListUnmarshaller<Endpoint>(
+                        EndpointJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
             } else {
@@ -45,14 +43,15 @@ class EventsRequestJsonUnmarshaller implements Unmarshaller<EventsRequest, JsonU
             }
         }
         reader.endObject();
-        return eventsRequest;
+
+        return describeEndpointsResult;
     }
 
-    private static EventsRequestJsonUnmarshaller instance;
+    private static DescribeEndpointsResultJsonUnmarshaller instance;
 
-    public static EventsRequestJsonUnmarshaller getInstance() {
+    public static DescribeEndpointsResultJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new EventsRequestJsonUnmarshaller();
+            instance = new DescribeEndpointsResultJsonUnmarshaller();
         return instance;
     }
 }

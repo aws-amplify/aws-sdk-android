@@ -36,7 +36,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >Duration-Based Session Stickiness</a>, and <a href=
  * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-application"
  * >Application-Controlled Session Stickiness</a> in the <i>Classic Load
- * Balancer Guide</i>.
+ * Balancers Guide</i>.
  * </p>
  */
 public class SetLoadBalancerPoliciesOfListenerRequest extends AmazonWebServiceRequest implements
