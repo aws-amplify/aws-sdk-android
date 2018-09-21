@@ -28,7 +28,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * For more information, see <a href=
  * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-healthchecks.html"
  * >Configure Health Checks for Your Load Balancer</a> in the <i>Classic Load
- * Balancer Guide</i>.
+ * Balancers Guide</i>.
  * </p>
  */
 public class ConfigureHealthCheckRequest extends AmazonWebServiceRequest implements Serializable {

@@ -126,6 +126,10 @@ public class PinpointManager {
             if (initCompletionCallback != null) {
                 initCompletionCallback.onComplete(this);
             }
+            //override default endpoint.
+            if (region != null && !"us-east-1".equals(region.getName())) {
+                this.pinpointContext.getPinpointServiceClient().setEndpoint(String.format("pinpoint.%s.amazonaws.com", region.getName()));
+            }
 
             log.debug(String.format("Pinpoint SDK(%s) initialization successfully completed", SDK_VERSION));
         } catch (final RuntimeException e) {

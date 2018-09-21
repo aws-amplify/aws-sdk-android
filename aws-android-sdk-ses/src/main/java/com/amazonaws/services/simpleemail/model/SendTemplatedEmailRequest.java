@@ -52,8 +52,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * The total size of the message, including attachments, must be less than 10
- * MB.
+ * The maximum message size is 10 MB.
  * </p>
  * </li>
  * <li>

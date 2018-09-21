@@ -1327,18 +1327,17 @@ public interface AmazonPinpoint {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * Use to record events for endpoints. This method creates events and
-     * creates or updates the endpoints that those events are associated with.
+     * Use to submit events to Pinpoint into multiple regions.
      * 
      * @param putEventsRequest
      * @return putEventsResult The response from the PutEvents service method,
      *         as returned by AmazonPinpoint.
-     * @throws BadRequestException 400 response
-     * @throws InternalServerErrorException 500 response
-     * @throws ForbiddenException 403 response
-     * @throws NotFoundException 404 response
-     * @throws MethodNotAllowedException 405 response
-     * @throws TooManyRequestsException 429 response
+     * @throws BadRequestException
+     * @throws InternalServerErrorException
+     * @throws ForbiddenException
+     * @throws NotFoundException
+     * @throws MethodNotAllowedException
+     * @throws TooManyRequestsException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

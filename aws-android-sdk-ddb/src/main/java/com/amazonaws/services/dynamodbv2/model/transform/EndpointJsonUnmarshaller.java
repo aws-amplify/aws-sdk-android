@@ -13,47 +13,47 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.services.pinpoint.model.transform;
+package com.amazonaws.services.dynamodbv2.model.transform;
 
-import com.amazonaws.services.pinpoint.model.*;
+import com.amazonaws.services.dynamodbv2.model.*;
 import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
 import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO EventsResponse
+ * JSON unmarshaller for POJO Endpoint
  */
-class EventsResponseJsonUnmarshaller implements
-        Unmarshaller<EventsResponse, JsonUnmarshallerContext> {
+class EndpointJsonUnmarshaller implements Unmarshaller<Endpoint, JsonUnmarshallerContext> {
 
-    public EventsResponse unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public Endpoint unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        EventsResponse eventsResponse = new EventsResponse();
+        Endpoint endpoint = new Endpoint();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Results")) {
-                eventsResponse.setResults(new MapUnmarshaller<ItemResponse>(
-                        ItemResponseJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+            if (name.equals("Address")) {
+                endpoint.setAddress(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("CachePeriodInMinutes")) {
+                endpoint.setCachePeriodInMinutes(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return eventsResponse;
+        return endpoint;
     }
 
-    private static EventsResponseJsonUnmarshaller instance;
+    private static EndpointJsonUnmarshaller instance;
 
-    public static EventsResponseJsonUnmarshaller getInstance() {
+    public static EndpointJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new EventsResponseJsonUnmarshaller();
+            instance = new EndpointJsonUnmarshaller();
         return instance;
     }
 }

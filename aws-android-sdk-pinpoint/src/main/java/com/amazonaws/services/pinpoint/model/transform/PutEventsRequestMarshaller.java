@@ -49,7 +49,7 @@ public class PutEventsRequestMarshaller implements
                 "AmazonPinpoint");
         request.setHttpMethod(HttpMethodName.POST);
 
-        String uriResourcePath = "/v1/apps/{application-id}/events";
+        String uriResourcePath = "/v1/apps/{application-id}/events/legacy";
         uriResourcePath = uriResourcePath.replace(
                 "{application-id}",
                 (putEventsRequest.getApplicationId() == null) ? "" : StringUtils
@@ -58,10 +58,24 @@ public class PutEventsRequestMarshaller implements
         try {
             StringWriter stringWriter = new StringWriter();
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
-            if (putEventsRequest.getEventsRequest() != null) {
-                EventsRequest eventsRequest = putEventsRequest.getEventsRequest();
-                EventsRequestJsonMarshaller.getInstance().marshall(eventsRequest, jsonWriter);
+            jsonWriter.beginObject();
+
+            if (putEventsRequest.getBatchItem() != null) {
+                java.util.Map<String, EventsBatch> batchItem = putEventsRequest.getBatchItem();
+                jsonWriter.name("BatchItem");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, EventsBatch> batchItemEntry : batchItem.entrySet()) {
+                    EventsBatch batchItemValue = batchItemEntry.getValue();
+                    if (batchItemValue != null) {
+                        jsonWriter.name(batchItemEntry.getKey());
+                        EventsBatchJsonMarshaller.getInstance()
+                                .marshall(batchItemValue, jsonWriter);
+                    }
+                }
+                jsonWriter.endObject();
             }
+
+            jsonWriter.endObject();
             jsonWriter.close();
             String snippet = stringWriter.toString();
             byte[] content = snippet.getBytes(UTF8);

@@ -18,7 +18,10 @@ package com.amazonaws.services.elasticloadbalancing.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * A request made by Elastic Load Balancing to another service exceeds the
+ * maximum request rate permitted for your account.
+ * </p>
  */
 public class DependencyThrottleException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

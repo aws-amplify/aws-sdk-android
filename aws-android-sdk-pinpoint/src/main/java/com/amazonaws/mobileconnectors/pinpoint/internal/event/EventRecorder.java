@@ -18,28 +18,38 @@ package com.amazonaws.mobileconnectors.pinpoint.internal.event;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
+
+import com.amazonaws.services.pinpoint.model.EndpointDemographic;
+import com.amazonaws.services.pinpoint.model.EndpointLocation;
+import com.amazonaws.services.pinpoint.model.EndpointRequest;
+import com.amazonaws.services.pinpoint.model.EndpointUser;
+import com.amazonaws.services.pinpoint.model.Event;
+import com.amazonaws.services.pinpoint.model.EventItemResponse;
+import com.amazonaws.services.pinpoint.model.EventsBatch;
+import com.amazonaws.services.pinpoint.model.PutEventsRequest;
+import com.amazonaws.services.pinpoint.model.PutEventsResult;
+import com.amazonaws.services.pinpoint.model.Session;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.mobileconnectors.pinpoint.PinpointManager;
+import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfile;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.StringUtil;
-import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
-import com.amazonaws.services.pinpointanalytics.model.Event;
-import com.amazonaws.services.pinpointanalytics.model.PutEventsRequest;
-import com.amazonaws.services.pinpointanalytics.model.Session;
-import com.amazonaws.util.Base64;
 import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.VersionInfoUtils;
 import android.database.Cursor;
@@ -54,6 +64,10 @@ public class EventRecorder {
     static final long DEFAULT_MAX_SUBMISSION_SIZE = 1024 * 100;
     static final String KEY_MAX_PENDING_SIZE = "maxPendingSize";
     static final long DEFAULT_MAX_PENDING_SIZE = 5 * 1024 * 1024;
+    static final String DATABASE_ID_KEY = "databaseId";
+    static final String SUCCESSFUL_EVENT_IDS = "successfulEventIds";
+    static final String FAILED_EVENT_IDS = "failedEventIds";
+    static final String EVENT_ID = "event_id";
     static final String KEY_MAX_SUBMISSIONS_ALLOWED = "maxSubmissionAllowed";
     static final int DEFAULT_MAX_SUBMISSIONS_ALLOWED = 3;
     private static final String USER_AGENT = PinpointManager.class.getName() + "/" + VersionInfoUtils.getVersion();
@@ -141,9 +155,7 @@ public class EventRecorder {
     private static final int ID_COLUMN_INDEX = EventTable.COLUMN_INDEX.ID.getValue();
     private static final int SIZE_COLUMN_INDEX = EventTable.COLUMN_INDEX.SIZE.getValue();
 
-    JSONObject readEventFromCursor(final Cursor cursor,
-                                   final List<Integer> idsToDelete,
-                                   final List<Integer> sizeToDelete) {
+    JSONObject readEventFromCursor(final Cursor cursor, final HashMap<Integer, Integer> idsAndSizeToDelete) {
         Integer rowId = null;
         Integer size = null;
         try {
@@ -168,6 +180,8 @@ public class EventRecorder {
                 final String message = cursor.getString(JSON_COLUMN_INDEX);
                 try {
                     jsonObject = new JSONObject(message);
+                    //link event with databaseId
+                    jsonObject.put(DATABASE_ID_KEY,rowId);
                 } catch (final JSONException e) {
                     log.error(String.format(Locale.US,
                         "Unable to deserialize event JSON for event with ID=%d.", rowId));
@@ -190,9 +204,8 @@ public class EventRecorder {
         } finally {
             // if the row Id is not null then this item needs to be deleted from the database regardless of whether
             // the message was valid json or not, since we don't want to leave a corrupted item in the DB.
-            if (rowId != null && idsToDelete != null && sizeToDelete != null) {
-                idsToDelete.add(rowId);
-                sizeToDelete.add(size);
+            if (rowId != null && idsAndSizeToDelete != null) {
+                idsAndSizeToDelete.put(rowId, size);
             }
         }
         return null;
@@ -207,14 +220,14 @@ public class EventRecorder {
         });
     }
 
-    JSONArray getBatchOfEvents(final Cursor cursor, final List<Integer> idsToDelete, final List<Integer> sizeToDelete) {
+    JSONArray getBatchOfEvents(final Cursor cursor, final HashMap<Integer, Integer> idsAndSizeToDelete) {
         final JSONArray eventArray = new JSONArray();
         long currentRequestSize = 0;
         long eventLength;
         final long maxRequestSize = pinpointContext.getConfiguration().optLong(KEY_MAX_SUBMISSION_SIZE, DEFAULT_MAX_SUBMISSION_SIZE);
 
         do {
-            JSONObject json = readEventFromCursor(cursor, idsToDelete, sizeToDelete);
+            JSONObject json = readEventFromCursor(cursor, idsAndSizeToDelete);
             if (json != null) {
                 eventLength = json.length();
                 currentRequestSize += eventLength;
@@ -234,7 +247,7 @@ public class EventRecorder {
         try {
             cursor = dbUtil.queryAllEvents();
             while (cursor.moveToNext()) {
-                JSONObject jsonEvent = readEventFromCursor(cursor, null, null);
+                JSONObject jsonEvent = readEventFromCursor(cursor, null);
                 if (jsonEvent != null) {
                     events.add(jsonEvent);
                 }
@@ -247,7 +260,7 @@ public class EventRecorder {
         return events;
     }
 
-    void processEvents() {
+    Map<String,Set<String>> processEvents() {
         final long start = TimeUnit.NANOSECONDS.toMillis(System.nanoTime());
 
         Cursor cursor = null;
@@ -258,79 +271,92 @@ public class EventRecorder {
             if (!cursor.moveToFirst()) {
                 // if the cursor is empty there is nothing to do.
                 log.info("No events available to submit.");
-                return;
+                return null;
             }
 
-            final List<Integer> idsToDelete = new ArrayList<Integer>();
-            final List<Integer> sizeToDelete = new ArrayList<Integer>();
-            boolean successful;
+            Map<String,Set<String>> totalProcessedEvents = new HashMap<String,Set<String>>();
+            Map<String,Set<String>> processedEvents;
+            Set<String> successfulEventIds = new HashSet<String>();
+            Set<String> failedEventIds = new HashSet<String>();
+            totalProcessedEvents.put(SUCCESSFUL_EVENT_IDS, successfulEventIds);
+            totalProcessedEvents.put(FAILED_EVENT_IDS, failedEventIds);
+
             int submissions = 0;
             final long maxSubmissionsAllowed = pinpointContext
                 .getConfiguration()
                 .optInt(KEY_MAX_SUBMISSIONS_ALLOWED, DEFAULT_MAX_SUBMISSIONS_ALLOWED);
 
             do {
-                final List<Integer> batchIdsToDelete = new ArrayList<Integer>();
-                final List<Integer> batchSizeToDelete = new ArrayList<Integer>();
-                successful = submitEvents(
-                    this.getBatchOfEvents(cursor, batchIdsToDelete, batchSizeToDelete));
-                if (successful) {
-                    idsToDelete.addAll(batchIdsToDelete);
-                    sizeToDelete.addAll(batchSizeToDelete);
+                final HashMap<Integer, Integer> batchIdsAndSizeToDelete = new HashMap<Integer, Integer>();
+                final JSONArray events = this.getBatchOfEvents(cursor, batchIdsAndSizeToDelete);
+                if (batchIdsAndSizeToDelete.size() > 0) {
+                    processedEvents = submitEventsAndEndpoint(events, batchIdsAndSizeToDelete);
+                    totalProcessedEvents.get(FAILED_EVENT_IDS).addAll(processedEvents.get(FAILED_EVENT_IDS));
+                    totalProcessedEvents.get(SUCCESSFUL_EVENT_IDS).addAll(processedEvents.get(SUCCESSFUL_EVENT_IDS));
                     submissions++;
+                }
+                for(Integer id : batchIdsAndSizeToDelete.keySet()) {
+                    try{
+                        dbUtil.deleteEvent(id, batchIdsAndSizeToDelete.get(id));
+                    } catch (final IllegalArgumentException exc) {
+                        log.error("Failed to delete event: " + id, exc);
+                    }
                 }
                 if (submissions >= maxSubmissionsAllowed) {
                     break;
                 }
             } while (cursor.moveToNext());
 
-            if (sizeToDelete.size() > 0) {
-                for (int i = 0; i < sizeToDelete.size(); i++) {
-                    try {
-                        dbUtil.deleteEvent(idsToDelete.get(i), sizeToDelete.get(i));
-                    } catch (final Exception exc) {
-                        log.error("Failed to delete event: " + idsToDelete.get(i), exc);
-                    }
-                }
-            }
-
             log.info(String.format(Locale.US, "Time of attemptDelivery: %d",
                 TimeUnit.NANOSECONDS.toMillis(System.nanoTime()) - start));
+            return totalProcessedEvents;
         } finally {
             if (cursor != null) {
                 cursor.close();
             }
         }
+
     }
 
-    boolean submitEvents(final JSONArray eventArray) {
-        boolean submitted = false;
+    public Map<String,Set<String>> submitEventsAndEndpoint(final JSONArray eventArray, final HashMap<Integer, Integer> batchIdsAndSizeToDelete) {
+        return submitEventsAndEndpoint(eventArray, batchIdsAndSizeToDelete, pinpointContext.getTargetingClient().currentEndpoint());
+    }
 
-        // package them into an ers request
-        final PutEventsRequest request = this.createRecordEventsRequest(eventArray, pinpointContext.getNetworkType(),
-                                                                        pinpointContext.getTargetingClient());
-        request.withClientContextEncoding("base64");
+    public Map<String,Set<String>> submitEventsAndEndpoint(final JSONArray eventArray, final HashMap<Integer, Integer> batchIdsAndSizeToDelete, EndpointProfile endpoint) {
 
+        Map<String,Set<String>> processedEvents = new HashMap<String,Set<String>>();
+        Set<String> successfulEventIds = new HashSet<String>();
+        Set<String> failedEventIds = new HashSet<String>();
+        processedEvents.put(SUCCESSFUL_EVENT_IDS, successfulEventIds);
+        processedEvents.put(FAILED_EVENT_IDS, failedEventIds);
+        if (endpoint == null) {
+            log.error("Endpoint profile is null, failed to submit events.");
+            batchIdsAndSizeToDelete.clear();
+            addAllEventIdsToSet(eventArray, failedEventIds);
+            return processedEvents;
+        }
+        // package them into an putEvents request
+        PutEventsRequest request = this.createRecordEventsRequest(eventArray, endpoint);
         request.getRequestClientOptions().appendUserAgent(USER_AGENT);
 
         try {
-            pinpointContext.getAnalyticsServiceClient().putEvents(request);
-            submitted = true;
-            log.info(String.format("Successful submission of %d events.", eventArray.length()));
+            //making putEvents request
+            PutEventsResult resultResponse = pinpointContext.getPinpointServiceClient().putEvents(request);
 
-            return submitted;
+            //process endpoint response.
+            processEndpointResponse(endpoint, resultResponse);
+            //request accepted, checking each event item in the response.
+            processEventsResponse(eventArray, endpoint, resultResponse, batchIdsAndSizeToDelete, successfulEventIds, failedEventIds);
+            log.info(String.format("Successful submission of %d events.", batchIdsAndSizeToDelete.size()));
         } catch (final AmazonServiceException e) {
+            //This is service level exception, we also have item level exception.
             log.error("AmazonServiceException occured during send of put event ", e);
             final String errorCode = e.getErrorCode();
-            if (errorCode.equalsIgnoreCase("ValidationException")
-                || errorCode.equalsIgnoreCase("SerializationException")
-                || errorCode.equalsIgnoreCase("BadRequestException")) {
-                submitted = true;
+            if (!isRetryable(errorCode)) {
+                addAllEventIdsToSet(eventArray, failedEventIds);
                 log.error(
                     String.format("Failed to submit events to EventService: statusCode: " + e.getStatusCode() + " errorCode: ", errorCode));
                 log.error(String.format("Failed submission of %d events, events will be removed", eventArray.length()), e);
-
-                return submitted;
             } else {
                 log.warn(
                     "Unable to successfully deliver events to server. Events will be saved, error likely recoverable.  Response status "
@@ -340,25 +366,82 @@ public class EventRecorder {
         } catch (final Exception e2) {
             log.warn("Unable to successfully deliver events to server. Events will be saved, error likely recoverable." + e2.getMessage());
         }
+        return processedEvents;
+    }
 
-        return submitted;
+    private void addAllEventIdsToSet(JSONArray eventArray, Set<String> failedEventIds) {
+        for(int i = 0; i < eventArray.length(); i++) {
+            try {
+                failedEventIds.add(eventArray.getJSONObject(i).getString(EVENT_ID));
+            } catch (JSONException e) {
+                log.error("Failed to get event id while processing event item response.", e);
+            }
+        }
+    }
+
+    private void processEndpointResponse(EndpointProfile endpoint, PutEventsResult resultResponse) {
+        if(resultResponse.getResults().get(endpoint.getEndpointId()).getEndpointItemResponse().getStatusCode() == 202) {
+            log.info("EndpointProfile updated successfully.");
+        } else {
+            log.error("AmazonServiceException occurred during endpoint update: " + resultResponse.getResults().get(endpoint.getEndpointId()).getEndpointItemResponse().getMessage());
+        }
+    }
+
+    private void processEventsResponse(final JSONArray eventArray, EndpointProfile endpointProfile, final PutEventsResult resultResponse, final HashMap<Integer, Integer> batchIdsAndSizeToDelete, Set<String> successfulEventIds, Set<String> failedEventIds) {
+        String eventId;
+        EventItemResponse responseMessage;
+
+        for(int i = 0; i < eventArray.length(); i++) {
+            try {
+                eventId = eventArray.getJSONObject(i).getString(EVENT_ID);
+                responseMessage = resultResponse.getResults()
+                        .get(endpointProfile.getEndpointId())
+                        .getEventsItemResponse().get(eventId);
+                if (responseMessage.getMessage().equalsIgnoreCase("Accepted")) {
+                    successfulEventIds.add(eventId);
+                    log.info(String.format("Successful submit event with event id %s", eventId));
+                } else if (isRetryable(responseMessage.getMessage())) {
+                    //Item level exception, retryable, removed from batchIdsAndSizeToDelete
+                    batchIdsAndSizeToDelete.remove(eventArray.getJSONObject(i).getInt(DATABASE_ID_KEY));
+                    log.warn(String.format("Unable to successfully deliver event to server. Event will be saved. Event id %s", eventId));
+                } else {
+                    //Item level exception, not retryable
+                    failedEventIds.add(eventId);
+                    log.error(String.format("Failed to submitEvents to EventService: statusCode: %s Status Message: %s", responseMessage.getStatusCode(), responseMessage.getMessage()));
+                }
+            } catch (JSONException e) {
+                log.error("Failed to get event id while processing event item response.", e);
+            }
+        }
+    }
+
+    private boolean isRetryable(String responseCode) {
+        if (responseCode.equalsIgnoreCase("ValidationException")
+                || responseCode.equalsIgnoreCase("SerializationException")
+                || responseCode.equalsIgnoreCase("BadRequestException")
+                ) {
+            return false;
+        }
+        return true;
     }
 
     /**
      * @param events
-     * @param networkType
-     * @param targetingClient
+     * @param endpointProfile
      * @return
      */
-    public PutEventsRequest createRecordEventsRequest(final JSONArray events, final String networkType, final TargetingClient targetingClient) {
-        if (events == null || events.length() == 0) {
-            return null;
-        }
+    private PutEventsRequest createRecordEventsRequest(final JSONArray events, final EndpointProfile endpointProfile) {
 
-        final PutEventsRequest putRequest = new PutEventsRequest();
-        final List<Event> eventList = new ArrayList<Event>();
+        final PutEventsRequest putRequest = new PutEventsRequest().withApplicationId(endpointProfile.getApplicationId());
+        final String endpointId = endpointProfile.getEndpointId();
+        final Map<String, EventsBatch> eventsBatchMap = new HashMap<String, EventsBatch>();
+        final EventsBatch eventsBatch = new EventsBatch();
+        final EndpointRequest endpoint = new EndpointRequest();
+        final Map<String,Event> eventsMap = new HashMap<String, Event>();
 
-        ClientContext clientContext = null;
+        //build endpoint payload
+        buildEndpointPayload(endpointProfile, endpoint);
+
         for (int i = 0; i < events.length(); i++) {
             JSONObject eventJSON = null;
             AnalyticsEvent internalEvent = null;
@@ -370,48 +453,83 @@ public class EventRecorder {
                 log.error("Stored event was invalid JSON.");
                 continue;
             }
-            clientContext = internalEvent.createClientContext(networkType);
 
-            //Add EndpointProfile profile to client pinpointContext
-            if (targetingClient != null &&
-                targetingClient.currentEndpoint() != null) {
-                final String endpoint = targetingClient.currentEndpoint().toJSONObject().toString();
-                final Map<String, String> customAttribute = new HashMap<String, String>();
-                customAttribute.put("endpoint", endpoint);
-                clientContext.setCustom(customAttribute);
-                // Do not log client context due to potentially sensitive information
-                log.info("Recorded profile to client pinpointContext.");
-            } else {
-                log.error("Event Client is null.");
-            }
-
+            //build event payload
             final Event event = new Event();
-            final Session session = new Session();
-            session.withId(internalEvent.getSession().getSessionId());
-            session.withStartTimestamp(DateUtils.formatISO8601Date(new Date(internalEvent.getSession().getSessionStart())));
-            if (internalEvent.getSession().getSessionStop() != null &&
-                internalEvent.getSession().getSessionStop() != 0L) {
-                session.withStopTimestamp(DateUtils.formatISO8601Date(new Date(internalEvent.getSession().getSessionStop())));
-            }
-            if (internalEvent.getSession().getSessionDuration() != null && internalEvent.getSession().getSessionDuration() != 0L) {
-                session.withDuration(internalEvent.getSession().getSessionDuration());
-            }
-
-            event.withAttributes(internalEvent.getAllAttributes())
-                 .withMetrics(internalEvent.getAllMetrics())
-                 .withEventType(internalEvent.getEventType())
-                 .withTimestamp(DateUtils.formatISO8601Date(new Date(internalEvent.getEventTimestamp())))
-                 .withSession(session);
-
-            eventList.add(event);
+            buildEventPayload(internalEvent, event);
+            eventsMap.put(internalEvent.getEventId(), event);
         }
 
-        if (clientContext != null && eventList.size() > 0) {
-            putRequest.withEvents(eventList).withClientContext(Base64.encodeAsString(clientContext.toJSONObject().toString().getBytes()));
-        } else {
-            log.error("ClientContext is null or event list is empty.");
-        }
+
+        //build request payload, could also build with only endpoint payload
+        buildRequestPayload(putRequest, endpointId, eventsBatchMap, eventsBatch, endpoint, eventsMap);
+
         return putRequest;
     }
 
+    private void buildRequestPayload(PutEventsRequest putRequest, String endpointId, Map<String, EventsBatch> eventsBatchMap, EventsBatch eventsBatch, EndpointRequest endpoint, Map<String,Event> eventsMap) {
+        eventsBatch.withEndpoint(endpoint)
+                            .withEvents(eventsMap);
+        eventsBatchMap.put(endpointId, eventsBatch);
+        putRequest.withBatchItem(eventsBatchMap);
+    }
+
+    private void buildEndpointPayload(EndpointProfile endpointProfile, EndpointRequest endpoint) {
+        final EndpointDemographic demographic = new EndpointDemographic()
+                .withAppVersion(endpointProfile.getDemographic().getAppVersion())
+                .withLocale(endpointProfile.getDemographic().getLocale().toString())
+                .withTimezone(endpointProfile.getDemographic().getTimezone())
+                .withMake(endpointProfile.getDemographic().getMake())
+                .withModel(endpointProfile.getDemographic().getModel())
+                .withPlatform(endpointProfile.getDemographic().getPlatform())
+                .withPlatformVersion(endpointProfile.getDemographic().getPlatformVersion());
+
+        final EndpointLocation location = new EndpointLocation()
+                .withLatitude(endpointProfile.getLocation().getLatitude())
+                .withLongitude(endpointProfile.getLocation().getLongitude())
+                .withPostalCode(endpointProfile.getLocation().getPostalCode())
+                .withCity(endpointProfile.getLocation().getCity())
+                .withRegion(endpointProfile.getLocation().getRegion())
+                .withCountry(endpointProfile.getLocation().getCountry());
+
+        final EndpointUser user;
+        if (endpointProfile.getUser().getUserId() == null) {
+            user = null;
+        } else {
+            user = new EndpointUser();
+            user.setUserId(endpointProfile.getUser().getUserId());
+        }
+
+        endpoint.withChannelType(endpointProfile.getChannelType())
+                .withAddress(endpointProfile.getAddress())
+                .withLocation(location)
+                .withDemographic(demographic)
+                .withEffectiveDate(DateUtils.formatISO8601Date(
+                        new Date(endpointProfile.getEffectiveDate())))
+                .withOptOut(endpointProfile.getOptOut())
+                .withAttributes(endpointProfile.getAllAttributes())
+                .withMetrics(endpointProfile.getAllMetrics())
+                .withUser(user);
+    }
+
+    private void buildEventPayload(AnalyticsEvent internalEvent, Event event) {
+        final Session session = new Session();
+
+        session.withId(internalEvent.getSession().getSessionId());
+        session.withStartTimestamp(DateUtils.formatISO8601Date(new Date(internalEvent.getSession().getSessionStart())));
+        if (internalEvent.getSession().getSessionStop() != null &&
+                internalEvent.getSession().getSessionStop() != 0L) {
+            session.withStopTimestamp(DateUtils.formatISO8601Date(new Date(internalEvent.getSession().getSessionStop())));
+        }
+        if (internalEvent.getSession().getSessionDuration() != null && internalEvent.getSession().getSessionDuration() != 0L) {
+            session.withDuration(internalEvent.getSession().getSessionDuration());
+        }
+
+        event.withEventType(internalEvent.getEventType())
+                .withClientSdkVersion(internalEvent.getSdkVersion())
+                .withTimestamp(DateUtils.formatISO8601Date(new Date(internalEvent.getEventTimestamp())))
+                .withAttributes(internalEvent.getAllAttributes())
+                .withMetrics(internalEvent.getAllMetrics())
+                .withSession(session);
+    }
 }

@@ -29,7 +29,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * For more information, see <a href=
  * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-groups.html#elb-vpc-security-groups"
  * >Security Groups for Load Balancers in a VPC</a> in the <i>Classic Load
- * Balancer Guide</i>.
+ * Balancers Guide</i>.
  * </p>
  */
 public class ApplySecurityGroupsToLoadBalancerRequest extends AmazonWebServiceRequest implements

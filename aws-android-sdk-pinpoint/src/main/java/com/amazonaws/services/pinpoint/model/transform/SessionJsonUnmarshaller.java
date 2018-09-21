@@ -36,7 +36,7 @@ class SessionJsonUnmarshaller implements Unmarshaller<Session, JsonUnmarshallerC
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Duration")) {
-                session.setDuration(IntegerJsonUnmarshaller.getInstance()
+                session.setDuration(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Id")) {
                 session.setId(StringJsonUnmarshaller.getInstance()

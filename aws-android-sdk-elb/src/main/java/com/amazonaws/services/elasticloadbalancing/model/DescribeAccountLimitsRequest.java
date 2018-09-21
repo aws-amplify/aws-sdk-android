@@ -27,7 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * For more information, see <a href=
  * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-limits.html"
- * >Limits for Your Classic Load Balancer</a> in the <i>Classic Load Balancer
+ * >Limits for Your Classic Load Balancer</a> in the <i>Classic Load Balancers
  * Guide</i>.
  * </p>
  */

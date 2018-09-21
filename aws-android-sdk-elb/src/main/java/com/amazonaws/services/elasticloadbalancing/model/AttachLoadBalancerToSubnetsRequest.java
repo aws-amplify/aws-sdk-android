@@ -29,7 +29,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * For more information, see <a href=
  * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-manage-subnets.html"
  * >Add or Remove Subnets for Your Load Balancer in a VPC</a> in the <i>Classic
- * Load Balancer Guide</i>.
+ * Load Balancers Guide</i>.
  * </p>
  */
 public class AttachLoadBalancerToSubnetsRequest extends AmazonWebServiceRequest implements

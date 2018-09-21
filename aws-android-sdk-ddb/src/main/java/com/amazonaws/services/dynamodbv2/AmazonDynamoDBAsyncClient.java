@@ -1772,6 +1772,59 @@ public class AmazonDynamoDBAsyncClient extends AmazonDynamoDBClient implements A
     }
 
     /**
+     * @param describeEndpointsRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeEndpoints service method, as returned by Amazon DynamoDB.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeEndpointsResult> describeEndpointsAsync(
+            final DescribeEndpointsRequest describeEndpointsRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<DescribeEndpointsResult>() {
+            public DescribeEndpointsResult call() throws Exception {
+                return describeEndpoints(describeEndpointsRequest);
+            }
+        });
+    }
+
+    /**
+     * @param describeEndpointsRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeEndpoints service method, as returned by Amazon DynamoDB.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeEndpointsResult> describeEndpointsAsync(
+            final DescribeEndpointsRequest describeEndpointsRequest,
+            final AsyncHandler<DescribeEndpointsRequest, DescribeEndpointsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeEndpointsResult>() {
+            public DescribeEndpointsResult call() throws Exception {
+                DescribeEndpointsResult result = null;
+                try {
+                    result = describeEndpoints(describeEndpointsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(describeEndpointsRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
      * <p>
      * Returns information about the specified global table.
      * </p>

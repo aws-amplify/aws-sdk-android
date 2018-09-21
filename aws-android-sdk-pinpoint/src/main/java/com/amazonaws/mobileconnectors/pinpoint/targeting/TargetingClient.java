@@ -64,8 +64,6 @@ public class TargetingClient {
     private final ExecutorService endpointRunnableQueue;
     private final EndpointProfile endpointProfile;
 
-    //For testing
-
     /**
      * Initializes a targetingClient used for testing only
      *
@@ -89,7 +87,7 @@ public class TargetingClient {
      */
     public TargetingClient(final PinpointContext context) {
         this(context, new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(MAX_EVENT_OPERATIONS),
-                                             new ThreadPoolExecutor.DiscardPolicy()));
+                new ThreadPoolExecutor.DiscardPolicy()));
     }
 
     /**
@@ -153,21 +151,21 @@ public class TargetingClient {
         }
 
         final EndpointDemographic demographic = new EndpointDemographic()
-            .withAppVersion(endpointProfile.getDemographic().getAppVersion())
-            .withLocale(endpointProfile.getDemographic().getLocale().toString())
-            .withTimezone(endpointProfile.getDemographic().getTimezone())
-            .withMake(endpointProfile.getDemographic().getMake())
-            .withModel(endpointProfile.getDemographic().getModel())
-            .withPlatform(endpointProfile.getDemographic().getPlatform())
-            .withPlatformVersion(endpointProfile.getDemographic().getPlatformVersion());
+                .withAppVersion(endpointProfile.getDemographic().getAppVersion())
+                .withLocale(endpointProfile.getDemographic().getLocale().toString())
+                .withTimezone(endpointProfile.getDemographic().getTimezone())
+                .withMake(endpointProfile.getDemographic().getMake())
+                .withModel(endpointProfile.getDemographic().getModel())
+                .withPlatform(endpointProfile.getDemographic().getPlatform())
+                .withPlatformVersion(endpointProfile.getDemographic().getPlatformVersion());
 
         final EndpointLocation location = new EndpointLocation()
-            .withLatitude(endpointProfile.getLocation().getLatitude())
-            .withLongitude(endpointProfile.getLocation().getLongitude())
-            .withPostalCode(endpointProfile.getLocation().getPostalCode())
-            .withCity(endpointProfile.getLocation().getCity())
-            .withRegion(endpointProfile.getLocation().getRegion())
-            .withCountry(endpointProfile.getLocation().getCountry());
+                .withLatitude(endpointProfile.getLocation().getLatitude())
+                .withLongitude(endpointProfile.getLocation().getLongitude())
+                .withPostalCode(endpointProfile.getLocation().getPostalCode())
+                .withCity(endpointProfile.getLocation().getCity())
+                .withRegion(endpointProfile.getLocation().getRegion())
+                .withCountry(endpointProfile.getLocation().getCountry());
 
         final EndpointUser user;
         if (endpointProfile.getUser().getUserId() == null) {
@@ -178,17 +176,17 @@ public class TargetingClient {
         }
 
         final EndpointRequest endpointRequest = new EndpointRequest().withChannelType(endpointProfile.getChannelType())
-                                                                     .withAddress(endpointProfile.getAddress())
-                                                                     .withLocation(location)
-                                                                     .withDemographic(demographic)
-                                                                     .withEffectiveDate(DateUtils.formatISO8601Date(
-                                                                         new Date(endpointProfile.getEffectiveDate())))
-                                                                     .withOptOut(endpointProfile.getOptOut())
-                                                                     .withAttributes(endpointProfile.getAllAttributes())
-                                                                     .withMetrics(endpointProfile.getAllMetrics())
-                                                                     .withUser(user);
+                .withAddress(endpointProfile.getAddress())
+                .withLocation(location)
+                .withDemographic(demographic)
+                .withEffectiveDate(DateUtils.formatISO8601Date(
+                        new Date(endpointProfile.getEffectiveDate())))
+                .withOptOut(endpointProfile.getOptOut())
+                .withAttributes(endpointProfile.getAllAttributes())
+                .withMetrics(endpointProfile.getAllMetrics())
+                .withUser(user);
         final UpdateEndpointRequest updateEndpointRequest = new UpdateEndpointRequest().withApplicationId(
-            endpointProfile.getApplicationId()).withEndpointId(endpointProfile.getEndpointId()).withEndpointRequest(endpointRequest);
+                endpointProfile.getApplicationId()).withEndpointId(endpointProfile.getEndpointId()).withEndpointRequest(endpointRequest);
 
         updateEndpointRequest.getRequestClientOptions().appendUserAgent(USER_AGENT);
 

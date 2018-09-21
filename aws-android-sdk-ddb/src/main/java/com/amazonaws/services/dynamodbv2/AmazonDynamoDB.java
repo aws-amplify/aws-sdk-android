@@ -742,6 +742,21 @@ public interface AmazonDynamoDB {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * @param describeEndpointsRequest
+     * @return describeEndpointsResult The response from the DescribeEndpoints
+     *         service method, as returned by Amazon DynamoDB.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             DynamoDB indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeEndpointsResult describeEndpoints(DescribeEndpointsRequest describeEndpointsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
      * <p>
      * Returns information about the specified global table.
      * </p>

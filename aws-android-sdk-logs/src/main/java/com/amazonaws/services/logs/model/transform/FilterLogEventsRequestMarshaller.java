@@ -75,6 +75,11 @@ public class FilterLogEventsRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (filterLogEventsRequest.getLogStreamNamePrefix() != null) {
+                String logStreamNamePrefix = filterLogEventsRequest.getLogStreamNamePrefix();
+                jsonWriter.name("logStreamNamePrefix");
+                jsonWriter.value(logStreamNamePrefix);
+            }
             if (filterLogEventsRequest.getStartTime() != null) {
                 Long startTime = filterLogEventsRequest.getStartTime();
                 jsonWriter.name("startTime");

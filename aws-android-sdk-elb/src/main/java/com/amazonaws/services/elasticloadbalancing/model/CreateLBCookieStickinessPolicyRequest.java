@@ -41,7 +41,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * For more information, see <a href=
  * "http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration"
- * >Duration-Based Session Stickiness</a> in the <i>Classic Load Balancer
+ * >Duration-Based Session Stickiness</a> in the <i>Classic Load Balancers
  * Guide</i>.
  * </p>
  */

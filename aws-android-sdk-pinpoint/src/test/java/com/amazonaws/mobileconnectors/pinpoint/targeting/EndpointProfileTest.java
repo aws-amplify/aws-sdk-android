@@ -276,8 +276,10 @@ public class EndpointProfileTest extends MobileAnalyticsTestBase {
         android.content.res.Resources mockResources = mock(android.content.res.Resources.class);
         android.content.res.Configuration mockConfiguration = mock(android.content.res.Configuration.class);
         mockConfiguration.locale = new Locale("en", "CS");
+        Context mockedContext = mockContext.getApplicationContext().getApplicationContext();
         when(mockResources.getConfiguration()).thenReturn(mockConfiguration);
         when(mockApplicationContext.getResources()).thenReturn(mockResources);
+        when(mockApplicationContext.getApplicationContext()).thenReturn(mockedContext);
         when(mockContext.getApplicationContext()).thenReturn(mockApplicationContext);
 
         final TargetingClient targetingClient = new TargetingClient(mockContext, mock(ThreadPoolExecutor.class));
