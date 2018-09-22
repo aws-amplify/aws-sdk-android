@@ -616,19 +616,20 @@ abstract class NotificationClientBase {
             if (imageUrl != null) {
                 try {
                     notificationImage = new DownloadImageTask().execute(imageUrl).get();
-                    if (notificationImage != null) {
-                        bigPictureMethod.invoke(bigPictureStyle, notificationImage);
-                        setSummaryMethod.invoke(bigPictureStyle, contentText);
-                        setStyleMethod.invoke(notificationBuilder, bigPictureStyle);
-                    } else {
-                        bigTextMethod.invoke(bigTextStyle, contentText);
-                        setStyleMethod.invoke(notificationBuilder, bigTextStyle);
-                    }
                 } catch (final InterruptedException e) {
                     log.error("Interrupted when downloading image : " + e.getMessage(), e);
                 } catch (final ExecutionException e) {
                     log.error("Failed execute download image thread : " + e.getMessage(), e);
                 }
+            }
+            
+            if (notificationImage != null) {
+                bigPictureMethod.invoke(bigPictureStyle, notificationImage);
+                setSummaryMethod.invoke(bigPictureStyle, contentText);
+                setStyleMethod.invoke(notificationBuilder, bigPictureStyle);
+            } else {
+                bigTextMethod.invoke(bigTextStyle, contentText);
+                setStyleMethod.invoke(notificationBuilder, bigTextStyle);
             }
 
             return (Notification) buildMethod.invoke(notificationBuilder);
