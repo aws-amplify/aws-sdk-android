@@ -622,7 +622,7 @@ abstract class NotificationClientBase {
                     log.error("Failed execute download image thread : " + e.getMessage(), e);
                 }
             }
-            
+
             if (notificationImage != null) {
                 bigPictureMethod.invoke(bigPictureStyle, notificationImage);
                 setSummaryMethod.invoke(bigPictureStyle, contentText);
