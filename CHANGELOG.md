@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.7.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.7.2)
+
+### Bug Fixes
+
+* **Amazon Pinpoint**
+  * Fix notifications from not showing when notification image could not be loaded. Notifications are now expandable.
+
 ## [Release 2.7.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.7.1)
 
 ### Enhancements
