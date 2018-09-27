@@ -1,4 +1,10 @@
 # Change Log - AWS SDK for Android
+## [Release 2.7.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.7.3)
+
+### Bug Fixes
+
+* **Amazon Kinesis**
+  * Use different patition keys for each record within a single batch when partition key is not specified by caller.
 
 ## [Release 2.7.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.7.2)
 

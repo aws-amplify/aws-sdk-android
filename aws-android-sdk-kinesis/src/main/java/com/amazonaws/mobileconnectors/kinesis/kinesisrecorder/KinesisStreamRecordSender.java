@@ -72,9 +72,9 @@ class KinesisStreamRecordSender implements RecordSender {
         final PutRecordsRequest request = new PutRecordsRequest();
         request.setStreamName(streamName);
         final List<PutRecordsRequestEntry> records = new ArrayList<PutRecordsRequestEntry>(data.size());
-        final String partKey = StringUtils.isBlank(this.partitionKey)
-                ? UUID.randomUUID().toString() : this.partitionKey;
         for (final byte[] d : data) {
+            final String partKey = StringUtils.isBlank(this.partitionKey)
+                    ? UUID.randomUUID().toString() : this.partitionKey;
             final PutRecordsRequestEntry r = new PutRecordsRequestEntry();
             r.setData(ByteBuffer.wrap(d));
             r.setPartitionKey(partKey);
@@ -93,6 +93,7 @@ class KinesisStreamRecordSender implements RecordSender {
                 failures.add(data.get(i));
             }
         }
+
         return failures;
     }
 
