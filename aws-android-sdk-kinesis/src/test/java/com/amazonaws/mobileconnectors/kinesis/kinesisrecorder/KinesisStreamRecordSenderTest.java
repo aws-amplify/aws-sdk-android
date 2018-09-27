@@ -23,12 +23,15 @@ import static org.mockito.Matchers.any;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.RequestClientOptions.Marker;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 import com.amazonaws.services.kinesis.AmazonKinesis;
 import com.amazonaws.services.kinesis.model.PutRecordsRequest;
 import com.amazonaws.services.kinesis.model.PutRecordsResult;
 import com.amazonaws.services.kinesis.model.PutRecordsResultEntry;
 import com.amazonaws.services.kinesisfirehose.model.InvalidArgumentException;
 import com.amazonaws.util.StringUtils;
+import com.amazonaws.services.kinesis.model.PutRecordsRequestEntry;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -38,6 +41,7 @@ import org.mockito.Mockito;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashSet;
 
 public class KinesisStreamRecordSenderTest {
  
@@ -45,6 +49,7 @@ public class KinesisStreamRecordSenderTest {
 
     private KinesisStreamRecordSender sender;
     private AmazonKinesis client;
+    
 
     @Before
     public void setup() {
@@ -82,6 +87,18 @@ public class KinesisStreamRecordSenderTest {
 
         String userAgent = argument.getValue().getRequestClientOptions()
                 .getClientMarker(Marker.USER_AGENT);
+
+        final List<PutRecordsRequestEntry> records  = argument.getValue().getRecords();
+        HashSet partitionKeys = new HashSet();
+        for(PutRecordsRequestEntry record:records)
+        {
+            String partitionKey = record.getPartitionKey();
+            assertFalse("There are duplicated partition keys", partitionKeys.contains(partitionKey));
+            partitionKeys.add(partitionKey);
+
+        }
+
+
         // For some reason userAgent has a leading space
         assertTrue("user agent", userAgent.contains(USER_AGENT));
         assertTrue("no failures", failures.isEmpty());
