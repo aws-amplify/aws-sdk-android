@@ -1,13 +1,12 @@
 # Number of days of inactivity before an issue becomes stale
-daysUntilStale: 30
+daysUntilStale: 36500
 # Number of days of inactivity before a stale issue is closed
 daysUntilClose: 7
 # Issues with these labels will never be considered stale
 exemptLabels:
-  - investigating
-  - feature request
+  - bug
 # Label to use when marking an issue as stale
-staleLabel: wontfix-stale
+staleLabel: closing-soon-if-no-response
 # Comment to post when marking an issue as stale. Set to `false` to disable
 markComment: >
   This issue has been automatically marked as stale because it has not had
