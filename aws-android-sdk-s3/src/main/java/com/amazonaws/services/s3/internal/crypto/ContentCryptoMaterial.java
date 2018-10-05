@@ -62,7 +62,11 @@ import javax.crypto.spec.SecretKeySpec;
  * This includes the randomly generated one-time secured CEK
  * (content-encryption-key) and the respective key wrapping algorithm, if any,
  * and the cryptographic scheme in use.
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 final class ContentCryptoMaterial {
     // null if cek is not secured via key wrapping
     private final String keyWrappingAlgorithm;
@@ -849,8 +853,11 @@ final class ContentCryptoMaterial {
      * @param cek content encrypting key to be secured
      * @param materials used to provide the key-encryption-key (KEK); or if
      * it is KMS-enabled, the customer master key id and material description.
-     * @param contentCryptoScheme the content crypto scheme
+     * @param kwScheme the S3 key wrap scheme
+     * @param srand the SecureRandom instance
      * @param p optional security provider; can be null if the default is used.
+     * @param kms the KMS client
+     * @param req the amazon web service request
      * @return a secured CEK in the form of ciphertext or ciphertext blob.
      */
     private static SecuredCEK secureCEK(SecretKey cek,
@@ -882,7 +889,7 @@ final class ContentCryptoMaterial {
             // Do envelope encryption with symmetric key
             kek = materials.getSymmetricKey();
         }
-        final String keyWrapAlgo = kwScheme.getKeyWrapAlgorithm(kek);
+        final String keyWrapAlgo = kwScheme.getKeyWrapAlgorithm(kek, p);
         try {
             if (keyWrapAlgo != null) {
                 final Cipher cipher = p == null ? Cipher

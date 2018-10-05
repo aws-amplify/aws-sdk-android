@@ -45,7 +45,11 @@ import javax.crypto.SecretKey;
  *
  * @author Hanson Char
  * @see GCMCipherLite
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 class CipherLite {
     /**
      * A no-op implementation.

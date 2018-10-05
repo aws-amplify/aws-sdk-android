@@ -20,9 +20,6 @@ import com.amazonaws.internal.SdkInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
- * Reads only a specific range of bytes from the underlying input stream.
- */
 public class AdjustedRangeInputStream extends SdkInputStream {
     private InputStream decryptedContents;
     private long virtualAvailable;

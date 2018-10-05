@@ -26,7 +26,11 @@ import com.amazonaws.services.s3.model.EncryptionMaterialsProvider;
 /**
  * Strict Authenticated encryption (AE) cryptographic module for the S3
  * encryption client.
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 class S3CryptoModuleAEStrict extends S3CryptoModuleAE {
     /**
      * @param cryptoConfig a read-only copy of the crypto configuration.

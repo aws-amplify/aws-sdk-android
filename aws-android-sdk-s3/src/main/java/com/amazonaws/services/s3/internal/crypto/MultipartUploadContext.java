@@ -21,7 +21,11 @@ import java.util.Map;
 
 /**
  * Contextual information for an in-flight multipart upload.
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 public abstract class MultipartUploadContext {
     private final String bucketName;
     private final String key;

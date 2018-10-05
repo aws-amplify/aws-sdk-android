@@ -24,7 +24,11 @@ import javax.crypto.SecretKey;
  * <p>
  * The KEK has no relevance on the client-side, as KMS only requires the CMK
  * id to be used to uniquely identify the KEK on the server side.
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 public class KMSEncryptionMaterials extends EncryptionMaterials implements Serializable {
     /**
      * Name of the material description to be persisted in S3 for the KMS's

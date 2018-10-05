@@ -15,6 +15,11 @@
 package com.amazonaws.services.s3.model;
 import java.io.Serializable;
 
+/**
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
+ */
+@Deprecated
 public class KMSEncryptionMaterialsProvider extends StaticEncryptionMaterialsProvider implements Serializable {
     public KMSEncryptionMaterialsProvider(String defaultCustomerMasterKeyId) {
         this(new KMSEncryptionMaterials(defaultCustomerMasterKeyId));

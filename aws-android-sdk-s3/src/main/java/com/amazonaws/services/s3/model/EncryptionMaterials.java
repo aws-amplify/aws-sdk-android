@@ -26,7 +26,11 @@ import javax.crypto.SecretKey;
  * The "key encrypting key" materials used in encrypt/decryption. These
  * materials may be either an asymmetric key pair or a symmetric key but not
  * both.
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 public class EncryptionMaterials implements Serializable {
     private final KeyPair keyPair;
     private final SecretKey symmetricKey;

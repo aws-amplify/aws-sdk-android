@@ -33,7 +33,11 @@ import com.amazonaws.services.s3.model.UploadPartRequest;
 
 /**
  * Encryption only (EO) cryptographic module for the S3 encryption client.
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 class S3CryptoModuleEO extends S3CryptoModuleBase<MultipartUploadCbcContext> {
     /**
      * @param cryptoConfig a read-only copy of the crypto configuration

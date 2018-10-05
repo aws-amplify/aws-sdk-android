@@ -44,6 +44,7 @@ class TransferDBBase {
     private final UriMatcher uriMatcher;
     private final TransferDatabaseHelper databaseHelper;
     private SQLiteDatabase database;
+    private static final Object LOCK = new Object();
 
     /**
      * Constructs TransferDatabaseBase with the given Context.
@@ -109,7 +110,7 @@ class TransferDBBase {
      */
     public Uri insert(Uri uri, ContentValues values) {
         final int uriType = uriMatcher.match(uri);
-        long id = 0;
+        long id;
         ensureDatabaseOpen();
 
         switch (uriType) {
@@ -270,12 +271,16 @@ class TransferDBBase {
 
     private void ensureDatabaseOpen() {
         // close and reopen database.
-        if (!database.isOpen()) {
-            database = databaseHelper.getWritableDatabase();
+        synchronized (LOCK) {
+            if (!database.isOpen()) {
+                database = databaseHelper.getWritableDatabase();
+            }
         }
     }
 
     SQLiteDatabase getDatabase() {
-        return database;
+        synchronized (LOCK) {
+            return database;
+        }
     }
 }

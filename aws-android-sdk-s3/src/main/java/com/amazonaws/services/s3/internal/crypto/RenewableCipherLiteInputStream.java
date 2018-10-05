@@ -22,7 +22,11 @@ import java.io.InputStream;
  * mark-and-reset in the sense that, if the underlying input stream supports
  * mark-and-reset, this input stream can then be marked at and get reset back to
  * the very beginning of the stream (but not anywhere else).
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 public final class RenewableCipherLiteInputStream extends CipherLiteInputStream {
     private boolean hasBeenAccessed;
 

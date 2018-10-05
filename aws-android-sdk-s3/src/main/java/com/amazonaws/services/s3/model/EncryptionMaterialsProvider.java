@@ -20,7 +20,11 @@ package com.amazonaws.services.s3.model;
  * any strategy for providing encryption materials, such as simply providing
  * static material that doesn't change, or more complicated implementations,
  * such as integrating with existing key management systems.
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 public interface EncryptionMaterialsProvider extends EncryptionMaterialsAccessor {
 
     /**

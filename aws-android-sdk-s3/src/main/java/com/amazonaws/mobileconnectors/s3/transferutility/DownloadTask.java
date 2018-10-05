@@ -67,7 +67,8 @@ class DownloadTask implements Callable<Boolean> {
     @Override
     public Boolean call() {
         if (TransferService.networkInfoReceiver != null &&
-                !TransferService.networkInfoReceiver.isNetworkConnected()) {
+            !TransferService.networkInfoReceiver.isNetworkConnected()) {
+            LOGGER.info("Network disconnected. Updating the transfer state to WAITING_FOR_NETWORK.");
             updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
             return false;
         }
@@ -111,10 +112,8 @@ class DownloadTask implements Callable<Boolean> {
                  * set by caller who interrupted
                  */
                 LOGGER.debug("Transfer " + download.id + " is interrupted by user");
-            } else if (e.getCause() != null &&
-                    (e.getCause() instanceof IOException || e.getCause() instanceof AmazonClientException) &&
-                    TransferService.networkInfoReceiver != null &&
-                    !TransferService.networkInfoReceiver.isNetworkConnected()) {
+            } else if (TransferService.networkInfoReceiver != null &&
+                       !TransferService.networkInfoReceiver.isNetworkConnected()) {
                 LOGGER.debug("Transfer " + download.id + " waits for network");
                 updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
             } else {
@@ -165,7 +164,9 @@ class DownloadTask implements Callable<Boolean> {
                 LOGGER.warn("got exception", ioe);
             }
             try {
-                is.close();
+                if (is != null) {
+                    is.close();
+                }
             } catch (final IOException ioe) {
                 LOGGER.warn("got exception", ioe);
             }

@@ -22,7 +22,11 @@ import javax.crypto.SecretKey;
 
 /**
  * Contains information used to encrypt and decrypt objects in S3.
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 public class EncryptionInstruction {
 
     private final Map<String, String> materialsDescription;

@@ -31,7 +31,11 @@ package com.amazonaws.services.s3.model;
  * placed in a separate instruction file that will be stored in the same bucket
  * as the encrypted object in S3. No metadata will be used for storing
  * encryption information.
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 public enum CryptoStorageMode {
     InstructionFile,
     ObjectMetadata

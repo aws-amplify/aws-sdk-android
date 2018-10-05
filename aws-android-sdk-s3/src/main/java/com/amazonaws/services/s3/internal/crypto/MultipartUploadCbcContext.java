@@ -14,6 +14,11 @@
  */
 package com.amazonaws.services.s3.internal.crypto;
 
+/**
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
+ */
+@Deprecated
 final class MultipartUploadCbcContext extends MultipartUploadCryptoContext {
     private byte[] nextIV;
 

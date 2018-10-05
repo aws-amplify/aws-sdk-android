@@ -42,7 +42,11 @@ import java.io.OutputStream;
  * An internal SPI used to implement different cryptographic modules
  * for use with the S3 encryption client.
  * @param <T> the class type.
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 public abstract class S3CryptoModule<T extends MultipartUploadContext> {
     /**
      * @param req the PutObjectRequest.

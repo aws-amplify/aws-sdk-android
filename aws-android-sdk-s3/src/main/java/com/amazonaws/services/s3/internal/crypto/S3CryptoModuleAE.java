@@ -52,7 +52,11 @@ import java.util.Map;
 
 /**
  * Authenticated encryption (AE) cryptographic module for the S3 encryption client.
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 class S3CryptoModuleAE extends S3CryptoModuleBase<MultipartUploadCryptoContext> {
 
     private static final int BIT_SIZE = 8;
