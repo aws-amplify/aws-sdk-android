@@ -1,4 +1,14 @@
 # Change Log - AWS SDK for Android
+
+## [Release 2.7.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.7.4)
+
+### Bug Fixes
+
+* **Amazon S3**
+  * Fix a bug in specifying a custom Security Provider for client-side encryption.
+  * `AmazonS3EncryptionClient` (Client-side encryption) is deprecated. You can secure your content in S3 in two ways: a) For uploads, you can encrypt the file locally using an algorithm of your choice and use the TransferUtility API to upload the encrypted file to S3. For downloads, you can use the TransferUtility API to download the file and then decrypt it using the algorithm that you used to upload the file. b) `ServerSideEncryption`: There are multiple options available for ServerSide Encryption. You can setup encryption at the S3 bucket level using the AWS S3 console. When encryption is setup at the bucket level, all objects in the bucket are encrypted. You can also use the AWS console to encrypt individual objects after they have been uploaded. Another option is to request ServerSide encryption for the object being uploaded using the SDK.
+  * Fix a bug to support transfer objects with name containing special characters. '+', '*', '%7E' and '%2F' characters are URL-encoded.
+
 ## [Release 2.7.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.7.3)
 
 ### Bug Fixes
@@ -984,3 +994,4 @@
 ### Bug Fixes
 - **Amazon S3**: Fixed an issue that occurs when required headers are not properly signed. This issue affects S3 in two regions: Frankfurt (eu-central-1) and China (cn-north-1). [#42](https://github.com/aws/aws-sdk-android/issues/42)
 - **AWS Core Runtime Library**: Fixed an issue in Maven distribution where an incorrect version string is set in "User-Agent".
+1
