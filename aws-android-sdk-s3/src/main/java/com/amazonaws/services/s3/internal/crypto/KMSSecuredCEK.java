@@ -19,6 +19,11 @@ package com.amazonaws.services.s3.internal.crypto;
 
 import java.util.Map;
 
+/**
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
+ */
+@Deprecated
 final class KMSSecuredCEK extends SecuredCEK {
     static final String KEY_PROTECTION_MECHANISM = "kms";
 

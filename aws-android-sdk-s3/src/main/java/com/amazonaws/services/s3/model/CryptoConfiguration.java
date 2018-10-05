@@ -27,8 +27,12 @@ import java.security.Provider;
  * the encryption client to use Instruction Files or Object Metadata for storing
  * encryption information. You can also specify your own crypto provider to be
  * used during encryption and decryption.
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
-public class CryptoConfiguration implements Cloneable,Serializable {
+@Deprecated
+public class CryptoConfiguration implements Cloneable, Serializable {
 
     private static final long serialVersionUID = -8646831898339939580L;
 
@@ -66,7 +70,6 @@ public class CryptoConfiguration implements Cloneable,Serializable {
      *             not supported for the specified crypto mode.
      */
     public CryptoConfiguration(CryptoMode cryptoMode) {
-        check(cryptoMode);
         // By default, store encryption info in metadata
         this.storageMode = CryptoStorageMode.ObjectMetadata;
         // A null value implies that the default JCE crypto provider will be
@@ -115,6 +118,7 @@ public class CryptoConfiguration implements Cloneable,Serializable {
      */
     public void setCryptoProvider(Provider cryptoProvider) {
         this.cryptoProvider = cryptoProvider;
+        check(cryptoMode);
     }
 
     /**
@@ -127,6 +131,7 @@ public class CryptoConfiguration implements Cloneable,Serializable {
      */
     public CryptoConfiguration withCryptoProvider(Provider cryptoProvider) {
         this.cryptoProvider = cryptoProvider;
+        check(cryptoMode);
         return this;
     }
 
@@ -160,7 +165,6 @@ public class CryptoConfiguration implements Cloneable,Serializable {
     public void setCryptoMode(CryptoMode cryptoMode)
             throws UnsupportedOperationException {
         this.cryptoMode = cryptoMode;
-        check(cryptoMode);
     }
 
     /**
@@ -170,14 +174,12 @@ public class CryptoConfiguration implements Cloneable,Serializable {
      * @throws UnsupportedOperationException
      *             if the necessary security provider cannot be found or the
      *             necessary cryptographic operations are not supported for the
-     *             specified crypto mode.Note the crypto mode can and will still
+     *             specified crypto mode. Note the crypto mode can and will still
      *             (intentionally) be set in such case, and it's up to the
      *             caller to decide what to do about it.
      */
-    public CryptoConfiguration withCryptoMode(CryptoMode cryptoMode)
-            throws UnsupportedOperationException {
+    public CryptoConfiguration withCryptoMode(CryptoMode cryptoMode) {
         this.cryptoMode = cryptoMode;
-        check(cryptoMode);
         return this;
     }
 
@@ -222,16 +224,18 @@ public class CryptoConfiguration implements Cloneable,Serializable {
      *             not supported for the specified crypto mode.
      */
     private void check(CryptoMode cryptoMode) {
-        if (cryptoMode == CryptoMode.AuthenticatedEncryption
-                || cryptoMode == CryptoMode.StrictAuthenticatedEncryption) {
-            if (!CryptoRuntime.isBouncyCastleAvailable()) {
-                CryptoRuntime.enableBouncyCastle();
+        if ((cryptoMode == CryptoMode.AuthenticatedEncryption
+                || cryptoMode == CryptoMode.StrictAuthenticatedEncryption) ) {
+            if (this.cryptoProvider == null) {
                 if (!CryptoRuntime.isBouncyCastleAvailable()) {
-                    throw new UnsupportedOperationException(
-                            "The Bouncy castle library jar is required on the classpath to enable authenticated encryption");
+                    CryptoRuntime.enableBouncyCastle();
+                    if (!CryptoRuntime.isBouncyCastleAvailable()) {
+                        throw new UnsupportedOperationException(
+                                "The Bouncy castle library jar is required on the classpath to enable authenticated encryption");
+                    }
                 }
             }
-            if (!CryptoRuntime.isAesGcmAvailable()) {
+            if (!CryptoRuntime.isAesGcmAvailable(this.cryptoProvider)) {
                 throw new UnsupportedOperationException(
                         "More recent version of the Bouncy castle library is required to enable authenticated encryption");
             }

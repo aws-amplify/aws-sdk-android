@@ -26,7 +26,11 @@ import javax.crypto.IllegalBlockSizeException;
 /**
  * @see CipherLite
  * @see GCMCipherLite
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 public class CipherLiteInputStream extends SdkFilterInputStream {
     private static final int MAX_RETRY = 1000;
     private static final int DEFAULT_IN_BUFFER_SIZE = 512;

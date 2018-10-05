@@ -16,7 +16,11 @@ package com.amazonaws.services.s3.model;
 
 /**
  * Factory for providing the latest encryption materials.
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 public interface EncryptionMaterialsFactory {
     /**
      * Returns EncryptionMaterials which the caller can use for encryption.

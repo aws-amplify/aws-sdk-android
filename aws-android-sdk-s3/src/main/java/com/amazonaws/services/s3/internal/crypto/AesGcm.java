@@ -25,6 +25,11 @@ import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
+/**
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
+ */
+@Deprecated
 class AesGcm extends ContentCryptoScheme {
 
     private static final int DEFAULT_KEY_LENGTH_IN_BITS = 256;

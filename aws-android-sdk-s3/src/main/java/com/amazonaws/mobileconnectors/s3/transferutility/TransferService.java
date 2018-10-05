@@ -194,7 +194,7 @@ public class TransferService extends Service {
     public void onDestroy() {
         try {
             if (networkInfoReceiver != null) {
-                LOGGER.info("Unregistering the network receiver");
+                LOGGER.info("De-registering the network receiver");
                 this.unregisterReceiver(this.networkInfoReceiver);
                 isReceiverNotRegistered = true;
                 networkInfoReceiver = null;
@@ -204,7 +204,7 @@ public class TransferService extends Service {
              * Ignore on purpose, just in case the service stops before
              * onStartCommand where the receiver is registered.
              */
-            LOGGER.warn("Exception trying to unregister the service");
+            LOGGER.warn("Exception trying to de-register the network receiver");
         }
 
         super.onDestroy();

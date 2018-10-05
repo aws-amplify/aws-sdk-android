@@ -15,6 +15,11 @@
 
 package com.amazonaws.services.s3.internal.crypto;
 
+/**
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
+ */
+@Deprecated
 class AesCtr extends ContentCryptoScheme {
 
     private static final int DEFAULT_IV_LENGTH_IN_BYTES = 16;

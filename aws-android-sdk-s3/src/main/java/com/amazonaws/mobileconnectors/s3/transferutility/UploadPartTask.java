@@ -55,10 +55,11 @@ class UploadPartTask implements Callable<Boolean> {
         } catch (final Exception e) {
             if (RetryUtils.isInterrupted(e)) {
                 // thread interrupted by user
+                LOGGER.error("Upload part interrupted: " + e.getMessage());
                 return false;
             }
-            if (TransferService.networkInfoReceiver != null
-                && !TransferService.networkInfoReceiver.isNetworkConnected()) {
+            if (TransferService.networkInfoReceiver != null &&
+                !TransferService.networkInfoReceiver.isNetworkConnected()) {
                 /*
                  * Network connection is being interrupted. Moving the TransferState
                  * to WAITING_FOR_NETWORK till the network availability resumes.

@@ -114,6 +114,11 @@ public class TransferUtility {
     private TransferDBUtil dbUtil;
 
     /**
+     * Lock to synchronize access to the user-agent-string.
+     */
+    private static final Object LOCK = new Object();
+
+    /**
      * Constants that indicate the type of the transfer operation.
      */
     private static final String TRANSFER_ADD = "add_transfer";
@@ -129,12 +134,12 @@ public class TransferUtility {
     
     private static String userAgentFromConfig = "";
     private static void setUserAgentFromConfig(String userAgent) {
-        synchronized (TransferUtility.userAgentFromConfig) {
+        synchronized (LOCK) {
             TransferUtility.userAgentFromConfig = userAgent;
         }
     }
     private static String getUserAgentFromConfig() {
-        synchronized (TransferUtility.userAgentFromConfig) {
+        synchronized (LOCK) {
             if (TransferUtility.userAgentFromConfig == null
                     || TransferUtility.userAgentFromConfig.trim().isEmpty()) {
                 return "";
@@ -905,9 +910,13 @@ public class TransferUtility {
                 return;
             }
             updater.addTransfer(transfer);
-        } else if (transfer != null && TRANSFER_ADD.equals(action)) {
-            LOGGER.warn("Transfer has already been added: " + id);
-            return;
+        } else {
+            // transfer is not null here. Check if the operation is to
+            // start a transfer. If so, skip the transfer.
+            if (TRANSFER_ADD.equals(action)) {
+                LOGGER.warn("Transfer has already been added: " + id);
+                return;
+            }
         }
 
         if (TRANSFER_ADD.equals(action) ||

@@ -17,6 +17,7 @@ package com.amazonaws.services.s3.internal.crypto;
 
 import static com.amazonaws.services.s3.internal.crypto.S3KeyWrapScheme.RSA_ECB_OAEP_WITH_SHA256_AND_MGF1_PADDING;
 
+import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
 
 import java.security.Provider;
@@ -26,14 +27,20 @@ import javax.crypto.Cipher;
 
 /**
  * The crypto runtime class.
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 public class CryptoRuntime {
     static final String BOUNCY_CASTLE_PROVIDER = "BC";
     private static final String BC_PROVIDER_FQCN = "org.bouncycastle.jce.provider.BouncyCastleProvider";
 
+    private static final Log LOGGER =  LogFactory.getLog(CryptoRuntime.class);
+
     /**
      * Returns true if bouncy castle is available.
-     * @return true if bounch castle is avaiable. False otherwise.
+     * @return true if bouncy castle is available. False otherwise.
      */
     public static synchronized boolean isBouncyCastleAvailable() {
         return Security.getProvider(BOUNCY_CASTLE_PROVIDER) != null;
@@ -52,49 +59,30 @@ public class CryptoRuntime {
             Provider provider = c.newInstance();
             Security.addProvider(provider);
         } catch (Exception e) {
-            LogFactory.getLog(CryptoRuntime.class).debug(
-                    "Bouncy Castle not available", e);
+            LOGGER.debug("Bouncy Castle not available", e);
         }
     }
 
     /**
-     * Used only for unit test when the same class loader is used across
-     * multiple unit tests.
+     * Check if AES/GCM mode is supported by the crypto provider.
+     *
+     * @param cryptoProvider The Security Provider instance
+     * @return true if AES/GCM is supported by the cryptoProvider
      */
-    static void recheck() {
-        recheckAesGcmAvailablility();
-        recheckRsaKeyWrapAvailablility();
+    public static boolean isAesGcmAvailable(Provider cryptoProvider) {
+        return AesGcm.check(cryptoProvider != null ? cryptoProvider : Security.getProvider(BOUNCY_CASTLE_PROVIDER));
     }
 
-    public static boolean isAesGcmAvailable() {
-        return AesGcm.isAvailable;
-    }
-
-    private static void recheckAesGcmAvailablility() {
-        AesGcm.recheck();
-    }
-
-    static boolean isRsaKeyWrapAvailable() {
-        return RsaEcbOaepWithSHA256AndMGF1Padding.isAvailable;
-    }
-
-    private static void recheckRsaKeyWrapAvailablility() {
-        RsaEcbOaepWithSHA256AndMGF1Padding.recheck();
+    static boolean isRsaKeyWrapAvailable(Provider cryptoProvider) {
+        return RsaEcbOaepWithSHA256AndMGF1Padding.check(cryptoProvider != null ? cryptoProvider : Security.getProvider(BOUNCY_CASTLE_PROVIDER));
     }
 
     private static final class AesGcm {
-        static volatile boolean isAvailable = check();
-
-        static boolean recheck() {
-            isAvailable = check();
-            return isAvailable;
-        }
-
-        private static boolean check() {
+        private static boolean check(Provider cryptoProvider) {
             try {
                 Cipher.getInstance(
                         ContentCryptoScheme.AES_GCM.getCipherAlgorithm(),
-                        BOUNCY_CASTLE_PROVIDER);
+                        cryptoProvider);
                 return true;
             } catch (Exception e) {
                 return false;
@@ -103,17 +91,10 @@ public class CryptoRuntime {
     }
 
     private static final class RsaEcbOaepWithSHA256AndMGF1Padding {
-        static volatile boolean isAvailable = check();
-
-        static boolean recheck() {
-            isAvailable = check();
-            return isAvailable;
-        }
-
-        private static boolean check() {
+        private static boolean check(Provider cryptoProvider) {
             try {
                 Cipher.getInstance(RSA_ECB_OAEP_WITH_SHA256_AND_MGF1_PADDING,
-                        BOUNCY_CASTLE_PROVIDER);
+                        cryptoProvider);
                 return true;
             } catch (Exception e) {
                 return false;

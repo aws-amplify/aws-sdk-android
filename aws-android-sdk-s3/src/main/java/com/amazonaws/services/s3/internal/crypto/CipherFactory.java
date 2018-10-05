@@ -26,7 +26,11 @@ import javax.crypto.SecretKey;
  * produce a new, identical Cipher object. Each returned Cipher will encrypt
  * data with <b>exactly</b> the same output as any other Cipher returned
  * by this instance of CipherFactory.
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 public class CipherFactory {
     private final SecretKey symmetricKey;
     private final int cipherMode;

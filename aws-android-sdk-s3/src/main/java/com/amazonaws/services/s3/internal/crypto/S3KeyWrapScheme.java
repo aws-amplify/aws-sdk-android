@@ -16,7 +16,13 @@
 package com.amazonaws.services.s3.internal.crypto;
 
 import java.security.Key;
+import java.security.Provider;
 
+/**
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
+ */
+@Deprecated
 class S3KeyWrapScheme {
     /**
      * Used for backward compatibility where the encryption only mode has no
@@ -24,7 +30,7 @@ class S3KeyWrapScheme {
      */
     static final S3KeyWrapScheme NONE = new S3KeyWrapScheme() {
         @Override
-        String getKeyWrapAlgorithm(Key key) {
+        String getKeyWrapAlgorithm(Key key, Provider provider) {
             return null;
         }
 
@@ -41,13 +47,13 @@ class S3KeyWrapScheme {
      *            the key encrypting key, which is either an AES key or a public
      *            key
      */
-    String getKeyWrapAlgorithm(Key key) {
+    String getKeyWrapAlgorithm(Key key, Provider provider) {
         String algorithm = key.getAlgorithm();
         if (S3CryptoScheme.AES.equals(algorithm)) {
             return AES_WRAP;
         }
         if (S3CryptoScheme.RSA.equals(algorithm)) {
-            if (CryptoRuntime.isRsaKeyWrapAvailable())
+            if (CryptoRuntime.isRsaKeyWrapAvailable(provider))
                 return RSA_ECB_OAEP_WITH_SHA256_AND_MGF1_PADDING;
         }
         return null;

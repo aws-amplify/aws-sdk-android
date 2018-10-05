@@ -91,7 +91,11 @@ import javax.crypto.spec.SecretKeySpec;
 /**
  * Common implementation for different S3 cryptographic modules.
  * @param <T> class type.
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 public abstract class S3CryptoModuleBase<T extends MultipartUploadCryptoContext>
         extends S3CryptoModule<T> {
     private static final boolean IS_MULTI_PART = true;
@@ -118,7 +122,7 @@ public abstract class S3CryptoModuleBase<T extends MultipartUploadCryptoContext>
             EncryptionMaterialsProvider kekMaterialsProvider,
             CryptoConfiguration cryptoConfig) {
         if (!cryptoConfig.isReadOnly()) {
-            throw new IllegalArgumentException("The cryto configuration parameter is required to be read-only");
+            throw new IllegalArgumentException("The crypto configuration parameter is required to be read-only");
         }
         this.kekMaterialsProvider = kekMaterialsProvider;
         this.s3 = s3;
@@ -578,7 +582,9 @@ public abstract class S3CryptoModuleBase<T extends MultipartUploadCryptoContext>
             boolean involvesBCPublicKey = false;
             final KeyPair keypair = kekMaterials.getKeyPair();
             if (keypair != null) {
-                final String keyWrapAlgo = cryptoScheme.getKeyWrapScheme().getKeyWrapAlgorithm(keypair.getPublic());
+                final String keyWrapAlgo = cryptoScheme
+                        .getKeyWrapScheme()
+                        .getKeyWrapAlgorithm(keypair.getPublic(), providerIn);
                 if (keyWrapAlgo == null) {
                     final Provider provider = generator.getProvider();
                     final String providerName = provider == null ? null : provider.getName();

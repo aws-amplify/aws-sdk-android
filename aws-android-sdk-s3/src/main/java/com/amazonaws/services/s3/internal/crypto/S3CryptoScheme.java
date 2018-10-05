@@ -22,7 +22,11 @@ import java.security.SecureRandom;
 /**
  * S3 cryptographic scheme that includes the content crypto scheme and key
  * wrapping scheme (for the content-encrypting-key).
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 final class S3CryptoScheme {
     // http://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html
     // http://docs.oracle.com/javase/7/docs/technotes/guides/security/crypto/CryptoSpec.html#Key

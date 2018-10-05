@@ -17,7 +17,11 @@ package com.amazonaws.services.s3.internal.crypto;
 
 /**
  * Contains constants required by the JCE encryption library.
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 public class JceEncryptionConstants {
 
     /** Name of the symmetric encryption algorithm */

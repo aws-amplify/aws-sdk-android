@@ -28,7 +28,11 @@ import javax.crypto.SecretKey;
  *
  * @author Hanson Char
  * @see CipherLite
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 final class GCMCipherLite extends CipherLite {
     private static final int BITS = 8;
     private static final int TAG_LENGTH = ContentCryptoScheme.AES_GCM

@@ -32,7 +32,11 @@ import java.util.Map;
 
 /**
  * A convenient S3 object wrapper useful for crypto purposes.
+ *
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
  */
+@Deprecated
 class S3ObjectWrapper implements Closeable {
     private final S3Object s3obj;
     private final S3ObjectId id;

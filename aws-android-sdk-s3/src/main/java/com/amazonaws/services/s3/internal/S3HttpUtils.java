@@ -27,6 +27,13 @@ public final class S3HttpUtils {
     /**
      * Regex which matches any of the sequences that we need to fix up after
      * URLEncoder.encode().
+     *
+     * This utility encodes the string based on the following rules:
+     *
+     * + -> %20
+     * * -> %2A
+     * %7E -> ~
+     * %2F -> /
      */
     private static final Pattern ENCODED_CHARACTERS_PATTERN;
     static {
@@ -39,29 +46,14 @@ public final class S3HttpUtils {
                 .append("|")
                 .append(Pattern.quote("%7E"))
                 .append("|")
-                .append(Pattern.quote("%2F"))
-                .append("|")
-                .append(Pattern.quote("%3A"))
-                .append("|")
-                .append(Pattern.quote("%27"))
-                .append("|")
-                .append(Pattern.quote("%28"))
-                .append("|")
-                .append(Pattern.quote("%29"))
-                .append("|")
-                .append(Pattern.quote("%21"))
-                .append("|")
-                .append(Pattern.quote("%5B"))
-                .append("|")
-                .append(Pattern.quote("%5D"))
-                .append("|")
-                .append(Pattern.quote("%24"));
+                .append(Pattern.quote("%2F"));
 
         ENCODED_CHARACTERS_PATTERN = Pattern.compile(pattern.toString());
     }
 
     /**
-     * Encode the URL String or part of URL
+     * Encode a string for use in the path of a URL; uses URLEncoder.encode,
+     * (which encodes a string for use in the query portion of a URL).
      *
      * @param value Entire or part of the URL
      * @param path True if value is a path
@@ -82,27 +74,13 @@ public final class S3HttpUtils {
                 String replacement = matcher.group(0);
 
                 if ("+".equals(replacement)) {
-                    replacement = " ";
+                    replacement = "%20";
                 } else if ("*".equals(replacement)) {
                     replacement = "%2A";
                 } else if ("%7E".equals(replacement)) {
                     replacement = "~";
                 } else if (path && "%2F".equals(replacement)) {
                     replacement = "/";
-                } else if (path && "%3A".equals(replacement)) {
-                    replacement = ":";
-                } else if (path && "%27".equals(replacement)) {
-                    replacement = "'";
-                } else if (path && "%28".equals(replacement)) {
-                    replacement = "(";
-                } else if (path && "%29".equals(replacement)) {
-                    replacement = ")";
-                } else if (path && "%21".equals(replacement)) {
-                    replacement = "!";
-                } else if (path && "%5B".equals(replacement)) {
-                    replacement = "[";
-                } else if (path && "%5D".equals(replacement)) {
-                    replacement = "]";
                 }
                 matcher.appendReplacement(buffer, replacement);
             }

@@ -15,6 +15,11 @@
 
 package com.amazonaws.services.s3.internal.crypto;
 
+/**
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
+ */
+@Deprecated
 class AesCbc extends ContentCryptoScheme {
 
     private static final int DEFAULT_KEY_LENGTH_IN_BITS = 256;

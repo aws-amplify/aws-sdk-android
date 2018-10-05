@@ -17,6 +17,11 @@ package com.amazonaws.services.s3.internal.crypto;
 
 import com.amazonaws.AmazonClientException;
 
+/**
+ * @deprecated See {@link com.amazonaws.services.s3.AmazonS3EncryptionClient}
+ *             for further details.
+ */
+@Deprecated
 class MultipartUploadCryptoContext extends MultipartUploadContext {
     private final ContentCryptoMaterial cekMaterial;
     /**
