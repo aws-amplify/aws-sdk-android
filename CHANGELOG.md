@@ -1,5 +1,15 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.7.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.7.5)
+
+### Bug Fixes
+
+* **Amazon Cognito Identity Provider**
+  * Synchronize to reduce network calls when refreshing the Cognito User session. See [pr #272](https://github.com/aws/aws-sdk-android/pull/272)
+
+* **AWS IoT**
+  * Fix a bug to prevent crashes when concurrent threads publish messages. See [pr #532](https://github.com/aws/aws-sdk-android/pull/532/)
+
 ## [Release 2.7.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.7.4)
 
 ### Bug Fixes

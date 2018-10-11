@@ -1231,7 +1231,9 @@ public class AWSIotMqttManager {
      * Called to handle publishing messages accumulated in the message queue when the client was unable to publish.
      */
     void publishMessagesFromQueue() {
-        if (connectionState == MqttManagerConnectionState.Connected && mqttMessageQueue != null) {
+        if (connectionState == MqttManagerConnectionState.Connected &&
+            mqttMessageQueue != null &&
+            !mqttMessageQueue.isEmpty()) {
             final AWSIotMqttQueueMessage message = mqttMessageQueue.poll();
             if (message != null) {
                 try {
@@ -1259,12 +1261,7 @@ public class AWSIotMqttManager {
                 }
             }
 
-            //Start a separate thread to publish remaining messages
-            //There is no need to run this on the main thread
-            final HandlerThread ht = new HandlerThread("message queue thread");
-            ht.start();
-            Looper looper = ht.getLooper();
-            (new Handler(looper)).postDelayed(new Runnable() {
+            (new Handler(Looper.getMainLooper())).postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     if (!mqttMessageQueue.isEmpty()) {

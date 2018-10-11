@@ -189,6 +189,11 @@ public class CognitoUser {
     private CognitoUserSession cipSession;
 
     /**
+     * Lock for getCachedSession.
+     */
+    private static final Object GET_CACHED_SESSION_LOCK = new Object();
+
+    /**
      * Constructs a new Cognito User from a Cognito user identity pool
      * {@link CognitoUserPool} and userId.
      *
@@ -824,36 +829,38 @@ public class CognitoUser {
      *         otherwise.
      */
     protected CognitoUserSession getCachedSession() {
-        if (userId == null) {
-            throw new CognitoNotAuthorizedException("User-ID is null");
-        }
+        synchronized (GET_CACHED_SESSION_LOCK) {
+            if (userId == null) {
+                throw new CognitoNotAuthorizedException("User-ID is null");
+            }
 
-        if (cipSession != null) {
-            if (cipSession.isValidForThreshold()) {
+            if (cipSession != null) {
+                if (cipSession.isValidForThreshold()) {
+                    return cipSession;
+                }
+            }
+
+            final CognitoUserSession cachedTokens = readCachedTokens();
+
+            if (cachedTokens.isValidForThreshold()) {
+                cipSession = cachedTokens;
                 return cipSession;
             }
-        }
 
-        final CognitoUserSession cachedTokens = readCachedTokens();
-
-        if (cachedTokens.isValidForThreshold()) {
-            cipSession = cachedTokens;
-            return cipSession;
-        }
-
-        if (cachedTokens.getRefreshToken() != null) {
-            try {
-                cipSession = refreshSession(cachedTokens);
-                cacheTokens(cipSession);
-                return cipSession;
-            } catch (final NotAuthorizedException nae) {
-                clearCachedTokens();
-                throw new CognitoNotAuthorizedException("User is not authenticated", nae);
-            } catch (final Exception e) {
-                throw new CognitoInternalErrorException("Failed to authenticate user", e);
+            if (cachedTokens.getRefreshToken() != null) {
+                try {
+                    cipSession = refreshSession(cachedTokens);
+                    cacheTokens(cipSession);
+                    return cipSession;
+                } catch (final NotAuthorizedException nae) {
+                    clearCachedTokens();
+                    throw new CognitoNotAuthorizedException("User is not authenticated", nae);
+                } catch (final Exception e) {
+                    throw new CognitoInternalErrorException("Failed to authenticate user", e);
+                }
             }
+            throw new CognitoNotAuthorizedException("User is not authenticated");
         }
-        throw new CognitoNotAuthorizedException("User is not authenticated");
     }
 
     /**
