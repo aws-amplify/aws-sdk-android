@@ -3,8 +3,8 @@ apply plugin: 'java-library'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile project(":aws-android-sdk-core")
-    compile "org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0"
+    api project(":aws-android-sdk-core")
+    implementation "org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0"
 }
 
 sourceCompatibility = "1.7"

@@ -2,9 +2,6 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '23.0.3'
-
-
 
     defaultConfig {
         minSdkVersion 23
@@ -32,8 +29,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    compile project(":aws-android-sdk-auth-core")
-    compile "com.android.support:appcompat-v7:23.0.1"
+    api project(":aws-android-sdk-auth-core")
+    implementation "com.android.support:appcompat-v7:23.0.1"
 
     // Optional dependencies
 //    compile project(":aws-android-sdk-auth-facebook")

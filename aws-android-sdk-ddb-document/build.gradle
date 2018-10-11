@@ -3,10 +3,10 @@ apply plugin: 'java-library'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile project(":aws-android-sdk-core")
-    compile project(":aws-android-sdk-ddb")
+    api project(":aws-android-sdk-core")
+    implementation project(":aws-android-sdk-ddb")
 
-    compile "com.google.guava:guava:20.0"
+    implementation "com.google.guava:guava:20.0"
 }
 
 sourceCompatibility = "1.7"

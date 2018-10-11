@@ -3,11 +3,11 @@ apply plugin: 'java-library'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile project(":aws-android-sdk-ddb")
-    compile project(":aws-android-sdk-s3")
+    api project(":aws-android-sdk-ddb")
+    api project(":aws-android-sdk-s3")
 
-    testCompile "junit:junit:4.12"
-    testCompile "org.easymock:easymock:3.1"
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.easymock:easymock:3.1"
 }
 
 sourceCompatibility = "1.7"
