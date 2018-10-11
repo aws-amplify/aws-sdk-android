@@ -45,8 +45,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.Map;
 
 import javax.net.SocketFactory;
@@ -127,7 +126,7 @@ public class AWSIotMqttManager {
      * Queue for messages attempted to publish while MQTT client was offline.
      * Republished upon reconnect.
      */
-    private final List<AWSIotMqttQueueMessage> mqttMessageQueue;
+    private final ConcurrentLinkedQueue<AWSIotMqttQueueMessage> mqttMessageQueue;
     /** KeepAlive interval specified by the user. */
     private int userKeepAlive;
     /** MQTT Will parameters. */
@@ -488,7 +487,7 @@ public class AWSIotMqttManager {
      *
      * @return offline message queue.
      */
-    List<AWSIotMqttQueueMessage> getMqttMessageQueue() {
+    ConcurrentLinkedQueue<AWSIotMqttQueueMessage> getMqttMessageQueue() {
         return mqttMessageQueue;
     }
 
@@ -554,7 +553,7 @@ public class AWSIotMqttManager {
         }
 
         this.topicListeners = new ConcurrentHashMap<String, AWSIotMqttTopic>();
-        this.mqttMessageQueue = new LinkedList<AWSIotMqttQueueMessage>();
+        this.mqttMessageQueue = new ConcurrentLinkedQueue<AWSIotMqttQueueMessage>();
         this.accountEndpointPrefix = AwsIotEndpointUtility.getAccountPrefixFromEndpont(endpoint);
         this.mqttClientId = mqttClientId;
         this.region = AwsIotEndpointUtility.getRegionFromIotEndpoint(endpoint);
@@ -585,7 +584,7 @@ public class AWSIotMqttManager {
         }
 
         this.topicListeners = new ConcurrentHashMap<String, AWSIotMqttTopic>();
-        this.mqttMessageQueue = new LinkedList<AWSIotMqttQueueMessage>();
+        this.mqttMessageQueue = new ConcurrentLinkedQueue<AWSIotMqttQueueMessage>();
 
         this.accountEndpointPrefix = accountEndpointPrefix;
         this.mqttClientId = mqttClientId;
@@ -1232,9 +1231,8 @@ public class AWSIotMqttManager {
      * Called to handle publishing messages accumulated in the message queue when the client was unable to publish.
      */
     void publishMessagesFromQueue() {
-        if (connectionState == MqttManagerConnectionState.Connected && mqttMessageQueue != null
-                && !mqttMessageQueue.isEmpty()) {
-            final AWSIotMqttQueueMessage message = mqttMessageQueue.remove(0);
+        if (connectionState == MqttManagerConnectionState.Connected && mqttMessageQueue != null) {
+            final AWSIotMqttQueueMessage message = mqttMessageQueue.poll();
             if (message != null) {
                 try {
                     if (message.getUserData() != null && message.getUserData().getUserCallback() != null) {
@@ -1261,7 +1259,12 @@ public class AWSIotMqttManager {
                 }
             }
 
-            (new Handler(Looper.getMainLooper())).postDelayed(new Runnable() {
+            //Start a separate thread to publish remaining messages
+            //There is no need to run this on the main thread
+            final HandlerThread ht = new HandlerThread("message queue thread");
+            ht.start();
+            Looper looper = ht.getLooper();
+            (new Handler(looper)).postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     if (!mqttMessageQueue.isEmpty()) {
