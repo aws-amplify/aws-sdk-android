@@ -1,5 +1,26 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.7.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.7.6)
+
+### Bug Fixes
+* **Amazon S3**
+  * Fixed the regression introduced in `2.7.4` to support transfer objects with name containing special characters.
+
+### Enhancements
+
+* **AWS Auth SDK**
+  * Added support for forced changed password in the sign-in flow of the UI. [issue #374](https://github.com/aws/aws-sdk-android/issues/374)
+  * UI activities will show keyboard by default when requesting input from the end-user. [issue #550](https://github.com/aws/aws-sdk-android/issues/550)
+  * Preserve sign-up form fields when sign-up validation fails so that end-users can correct and try again. [issue #460](https://github.com/aws/aws-sdk-android/issues/460)
+  * Automatically sign-in user after actions such as sign-up or forgot password. [issue #460](https://github.com/aws/aws-sdk-android/issues/460)
+  * Show the partially redacted destination of the MFA code on the screen when end-user needs to input a code.
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon Comprehend
+  * Amazon Transcribe
+
 ## [Release 2.7.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.7.5)
 
 ### Bug Fixes
