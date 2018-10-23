@@ -44,7 +44,7 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      */
     private String languageCode;
 
@@ -115,7 +115,7 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @return <p>
      *         The language code of the input documents. You can specify English
@@ -134,7 +134,7 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language code of the input documents. You can specify
@@ -156,7 +156,7 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language code of the input documents. You can specify
@@ -178,7 +178,7 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language code of the input documents. You can specify
@@ -200,7 +200,7 @@ public class DetectSyntaxRequest extends AmazonWebServiceRequest implements Seri
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language code of the input documents. You can specify

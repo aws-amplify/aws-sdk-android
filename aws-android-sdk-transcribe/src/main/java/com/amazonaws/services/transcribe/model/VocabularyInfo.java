@@ -19,7 +19,10 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Provides information about a custom vocabulary.
+ * Provides information about a custom vocabulary. Note that vocabularies for
+ * en-AU, en-UK, and fr-CA languages that are in preview are not available. In
+ * the console, the vocabulary section will be greyed-out and SDK will return
+ * error message.
  * </p>
  */
 public class VocabularyInfo implements Serializable {
@@ -40,7 +43,7 @@ public class VocabularyInfo implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      */
     private String languageCode;
 
@@ -126,7 +129,7 @@ public class VocabularyInfo implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @return <p>
      *         The language code of the vocabulary entries.
@@ -143,7 +146,7 @@ public class VocabularyInfo implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -163,7 +166,7 @@ public class VocabularyInfo implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -183,7 +186,7 @@ public class VocabularyInfo implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -203,7 +206,7 @@ public class VocabularyInfo implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.

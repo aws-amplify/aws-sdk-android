@@ -28,17 +28,17 @@ import android.view.inputmethod.InputMethodManager;
 /**
  * Activity to prompt for a new password along with the verification code.
  */
-public class ForgotPasswordActivity extends Activity {
+public class ForceChangePasswordActivity extends Activity {
     /** Log tag. */
-    private static final String LOG_TAG = ForgotPasswordActivity.class.getSimpleName();
+    private static final String LOG_TAG = ForceChangePasswordActivity.class.getSimpleName();
 
-    private ForgotPasswordView forgotPasswordView;
+    private ForceChangePasswordView forceChangePasswordView;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgot_password);
-        forgotPasswordView = (ForgotPasswordView) findViewById(R.id.forgot_password_view);
+        setContentView(R.layout.activity_force_change_password);
+        forceChangePasswordView = (ForceChangePasswordView) findViewById(R.id.force_change_password_view);
 
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
@@ -48,18 +48,13 @@ public class ForgotPasswordActivity extends Activity {
      * Retrieve input and return to caller.
      * @param view the Android View
      */
-    public void forgotPassword(final View view) {
-        final String password = forgotPasswordView.getPassword();
-        final String verificationCode = forgotPasswordView.getVerificationCode();
-
-        Log.d(LOG_TAG, "verificationCode = " + verificationCode);
+    public void forceChangePassword(final View view) {
+        final String password = forceChangePasswordView.getPassword();
 
         final Intent intent = new Intent();
         intent.putExtra(CognitoUserPoolsSignInProvider.AttributeKeys.PASSWORD, password);
-        intent.putExtra(CognitoUserPoolsSignInProvider.AttributeKeys.VERIFICATION_CODE, verificationCode);
 
         setResult(RESULT_OK, intent);
-
         finish();
     }
 }

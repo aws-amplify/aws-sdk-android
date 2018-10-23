@@ -29,7 +29,7 @@ public final class DateUtil {
 
     private static final DateFormat ISO_DATE_FORMATTER_UTC;
     private static final String DATE_FORMAT_STRING = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-    private static final int SECS = 1000;
+    private static final long SECS = 1000L;
 
     static {
         ISO_DATE_FORMATTER_UTC = new SimpleDateFormat(DATE_FORMAT_STRING, Locale.US);
@@ -75,7 +75,7 @@ public final class DateUtil {
         Date dateValue = new Date();
         if (SDKGlobalConfiguration.getGlobalTimeOffset() != 0) {
             long epochMillis = dateValue.getTime();
-            epochMillis -= SDKGlobalConfiguration.getGlobalTimeOffset() * SECS;
+            epochMillis -= Long.valueOf(SDKGlobalConfiguration.getGlobalTimeOffset()) * SECS;
             dateValue = new Date(epochMillis);
         }
         return dateValue;

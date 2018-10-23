@@ -22,7 +22,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Creates a new custom vocabulary that you can use to change the way Amazon
- * Transcribe handles transcription of an audio file.
+ * Transcribe handles transcription of an audio file. Note that vocabularies for
+ * en-AU, en-UK, and fr-CA languages that are in preview are not available. In
+ * the console, the vocabulary section will be greyed-out and SDK will return
+ * error message.
  * </p>
  */
 public class CreateVocabularyRequest extends AmazonWebServiceRequest implements Serializable {
@@ -44,7 +47,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      */
     private String languageCode;
 
@@ -124,7 +127,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @return <p>
      *         The language code of the vocabulary entries.
@@ -141,7 +144,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -161,7 +164,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -181,7 +184,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -201,7 +204,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.

@@ -3,8 +3,8 @@ apply plugin: 'java-library'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation "com.google.code.gson:gson:2.2.4"
-    implementation "com.google.android:android:2.3.3"
+    api "com.google.code.gson:gson:2.2.4"
+    api "com.google.android:android:2.3.3"
     implementation "com.fasterxml.jackson.core:jackson-core:2.1.1"
 
     testImplementation "junit:junit:4.12"

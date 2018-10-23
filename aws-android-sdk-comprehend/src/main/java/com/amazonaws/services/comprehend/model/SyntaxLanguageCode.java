@@ -23,7 +23,12 @@ import java.util.Map;
  */
 public enum SyntaxLanguageCode {
 
-    En("en");
+    En("en"),
+    Es("es"),
+    Fr("fr"),
+    De("de"),
+    It("it"),
+    Pt("pt");
 
     private String value;
 
@@ -40,6 +45,11 @@ public enum SyntaxLanguageCode {
     static {
         enumMap = new HashMap<String, SyntaxLanguageCode>();
         enumMap.put("en", En);
+        enumMap.put("es", Es);
+        enumMap.put("fr", Fr);
+        enumMap.put("de", De);
+        enumMap.put("it", It);
+        enumMap.put("pt", Pt);
     }
 
     /**

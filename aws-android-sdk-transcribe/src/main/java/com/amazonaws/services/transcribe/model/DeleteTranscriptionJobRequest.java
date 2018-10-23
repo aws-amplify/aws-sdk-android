@@ -21,28 +21,25 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets information about a vocabulary. Note that vocabularies for en-AU, en-UK,
- * and fr-CA languages that are in preview are not available. In the console,
- * the vocabulary section will be greyed-out and SDK will return error message.
+ * Deletes a previously submitted transcription job as well as any other
+ * generated results such as the transcription, models, and so on.
  * </p>
  */
-public class GetVocabularyRequest extends AmazonWebServiceRequest implements Serializable {
+public class DeleteTranscriptionJobRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the vocabulary to return information about. The name is
-     * case-sensitive.
+     * The name of the transcription job to be deleted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 200<br/>
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      */
-    private String vocabularyName;
+    private String transcriptionJobName;
 
     /**
      * <p>
-     * The name of the vocabulary to return information about. The name is
-     * case-sensitive.
+     * The name of the transcription job to be deleted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -50,37 +47,33 @@ public class GetVocabularyRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the vocabulary to return information about. The name
-     *         is case-sensitive.
+     *         The name of the transcription job to be deleted.
      *         </p>
      */
-    public String getVocabularyName() {
-        return vocabularyName;
+    public String getTranscriptionJobName() {
+        return transcriptionJobName;
     }
 
     /**
      * <p>
-     * The name of the vocabulary to return information about. The name is
-     * case-sensitive.
+     * The name of the transcription job to be deleted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 200<br/>
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
-     * @param vocabularyName <p>
-     *            The name of the vocabulary to return information about. The
-     *            name is case-sensitive.
+     * @param transcriptionJobName <p>
+     *            The name of the transcription job to be deleted.
      *            </p>
      */
-    public void setVocabularyName(String vocabularyName) {
-        this.vocabularyName = vocabularyName;
+    public void setTranscriptionJobName(String transcriptionJobName) {
+        this.transcriptionJobName = transcriptionJobName;
     }
 
     /**
      * <p>
-     * The name of the vocabulary to return information about. The name is
-     * case-sensitive.
+     * The name of the transcription job to be deleted.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -90,15 +83,14 @@ public class GetVocabularyRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>1 - 200<br/>
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
-     * @param vocabularyName <p>
-     *            The name of the vocabulary to return information about. The
-     *            name is case-sensitive.
+     * @param transcriptionJobName <p>
+     *            The name of the transcription job to be deleted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetVocabularyRequest withVocabularyName(String vocabularyName) {
-        this.vocabularyName = vocabularyName;
+    public DeleteTranscriptionJobRequest withTranscriptionJobName(String transcriptionJobName) {
+        this.transcriptionJobName = transcriptionJobName;
         return this;
     }
 
@@ -113,8 +105,8 @@ public class GetVocabularyRequest extends AmazonWebServiceRequest implements Ser
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getVocabularyName() != null)
-            sb.append("VocabularyName: " + getVocabularyName());
+        if (getTranscriptionJobName() != null)
+            sb.append("TranscriptionJobName: " + getTranscriptionJobName());
         sb.append("}");
         return sb.toString();
     }
@@ -125,7 +117,7 @@ public class GetVocabularyRequest extends AmazonWebServiceRequest implements Ser
         int hashCode = 1;
 
         hashCode = prime * hashCode
-                + ((getVocabularyName() == null) ? 0 : getVocabularyName().hashCode());
+                + ((getTranscriptionJobName() == null) ? 0 : getTranscriptionJobName().hashCode());
         return hashCode;
     }
 
@@ -136,14 +128,14 @@ public class GetVocabularyRequest extends AmazonWebServiceRequest implements Ser
         if (obj == null)
             return false;
 
-        if (obj instanceof GetVocabularyRequest == false)
+        if (obj instanceof DeleteTranscriptionJobRequest == false)
             return false;
-        GetVocabularyRequest other = (GetVocabularyRequest) obj;
+        DeleteTranscriptionJobRequest other = (DeleteTranscriptionJobRequest) obj;
 
-        if (other.getVocabularyName() == null ^ this.getVocabularyName() == null)
+        if (other.getTranscriptionJobName() == null ^ this.getTranscriptionJobName() == null)
             return false;
-        if (other.getVocabularyName() != null
-                && other.getVocabularyName().equals(this.getVocabularyName()) == false)
+        if (other.getTranscriptionJobName() != null
+                && other.getTranscriptionJobName().equals(this.getTranscriptionJobName()) == false)
             return false;
         return true;
     }

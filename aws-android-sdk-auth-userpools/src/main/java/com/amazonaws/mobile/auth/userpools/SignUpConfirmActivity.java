@@ -1,5 +1,5 @@
 /*
-  * Copyright 2013-2017 Amazon.com, Inc. or its affiliates.
+  * Copyright 2013-2018 Amazon.com, Inc. or its affiliates.
   * All Rights Reserved.
   *
   * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,12 +18,17 @@
 package com.amazonaws.mobile.auth.userpools;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
 import com.amazonaws.mobile.auth.userpools.R;
+
+import static com.amazonaws.mobile.auth.userpools.CognitoUserPoolsSignInProvider.AttributeKeys.*;
 
 /**
  * Activity to prompt for sign-up confirmation information.
@@ -39,11 +44,18 @@ public class SignUpConfirmActivity extends Activity {
         setContentView(R.layout.activity_sign_up_confirm);
 
         final String username = getIntent().getStringExtra(
-            CognitoUserPoolsSignInProvider.AttributeKeys.USERNAME);
+            USERNAME);
+        final String destination = getIntent().getStringExtra(CONFIRMATION_DESTINATION);
 
         signUpConfirmView = (SignUpConfirmView) findViewById(R.id.signup_confirm_view);
         signUpConfirmView.getUserNameEditText().setText(username);
         signUpConfirmView.getConfirmCodeEditText().requestFocus();
+
+        TextView message = (TextView) findViewById(R.id.confirm_account_message1);
+        message.setText(getString(R.string.sign_up_confirm_code_sent) + "\n" + destination);
+
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
     }
 
     /**
@@ -61,7 +73,7 @@ public class SignUpConfirmActivity extends Activity {
         Log.d(LOG_TAG, "verificationCode = " + verificationCode);
 
         final Intent intent = new Intent();
-        intent.putExtra(CognitoUserPoolsSignInProvider.AttributeKeys.USERNAME, username);
+        intent.putExtra(USERNAME, username);
         intent.putExtra(CognitoUserPoolsSignInProvider.AttributeKeys.VERIFICATION_CODE, verificationCode);
 
         setResult(RESULT_OK, intent);

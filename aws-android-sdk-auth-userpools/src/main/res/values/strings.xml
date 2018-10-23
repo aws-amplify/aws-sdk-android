@@ -16,6 +16,7 @@
     <string name="forgot_password_body">Set your new password with the verification code that was sent to you.</string>
     <string name="forgot_password_input_code_hint">Verification code</string>
     <string name="forgot_password_button_hint">Set password</string>
+    <string name="force_change_password_button_hint">Set password</string>
     <string name="mfa_header">MFA verification is required to authenticate.</string>
     <string name="mfa_code_sent_message">Code sent.</string>
     <string name="verify_button_text">Verify</string>
@@ -26,7 +27,7 @@
     <string name="sign_up_header">Enter your information to sign up.</string>
     <string name="sign_up_confirm_code">Confirmation code</string>
     <string name="sign_up_confirm_text">Confirm</string>
-    <string name="sign_up_confirm_code_sent">A confirmation code was sent.</string>
+    <string name="sign_up_confirm_code_sent">A confirmation code was sent to</string>
     <string name="sign_up_confirm_enter_code">Please enter the code below to confirm your account.</string>
     <string name="sign_up_confirm_title">Confirm your account</string>
     <string name="password_change_success">Password change succeeded.</string>
@@ -44,4 +45,9 @@
     <string name="password_length_validation_failed">Password should have 6 or more characters.</string>
     <string name="sign_up_username_missing">Missing username.</string>
     <string name="sign_up_confirm_code_missing">Sign Up Confirmation code is missing.</string>
+    <string name="sign_up_in_progress">Sign up in progress</string>
+    <string name="please_wait">Please wait</string>
+    <string name="force_change_password_header">Please set a new password</string>
+    <string name="force_change_password_body">The password on the account must be changed to continue</string>
+    <string name="title_activity_force_change_password">Force Change Password</string>
 </resources>

@@ -24,7 +24,11 @@ import java.util.Map;
 public enum LanguageCode {
 
     En("en"),
-    Es("es");
+    Es("es"),
+    Fr("fr"),
+    De("de"),
+    It("it"),
+    Pt("pt");
 
     private String value;
 
@@ -42,6 +46,10 @@ public enum LanguageCode {
         enumMap = new HashMap<String, LanguageCode>();
         enumMap.put("en", En);
         enumMap.put("es", Es);
+        enumMap.put("fr", Fr);
+        enumMap.put("de", De);
+        enumMap.put("it", It);
+        enumMap.put("pt", Pt);
     }
 
     /**

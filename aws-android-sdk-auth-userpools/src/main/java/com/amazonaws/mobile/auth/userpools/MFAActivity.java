@@ -1,5 +1,5 @@
 /*
-  * Copyright 2013-2017 Amazon.com, Inc. or its affiliates.
+  * Copyright 2013-2018 Amazon.com, Inc. or its affiliates.
   * All Rights Reserved.
   *
   * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,10 +18,12 @@
 package com.amazonaws.mobile.auth.userpools;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.amazonaws.mobile.auth.userpools.R;
 
@@ -38,6 +40,9 @@ public class MFAActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mfa);
         mfaView = (MFAView) findViewById(R.id.mfa_view);
+
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
     }
 
     /**

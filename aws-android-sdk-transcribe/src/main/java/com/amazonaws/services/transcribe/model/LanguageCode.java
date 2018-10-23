@@ -24,7 +24,10 @@ import java.util.Map;
 public enum LanguageCode {
 
     EnUS("en-US"),
-    EsUS("es-US");
+    EsUS("es-US"),
+    EnAU("en-AU"),
+    FrCA("fr-CA"),
+    EnUK("en-UK");
 
     private String value;
 
@@ -42,6 +45,9 @@ public enum LanguageCode {
         enumMap = new HashMap<String, LanguageCode>();
         enumMap.put("en-US", EnUS);
         enumMap.put("es-US", EsUS);
+        enumMap.put("en-AU", EnAU);
+        enumMap.put("fr-CA", FrCA);
+        enumMap.put("en-UK", EnUK);
     }
 
     /**

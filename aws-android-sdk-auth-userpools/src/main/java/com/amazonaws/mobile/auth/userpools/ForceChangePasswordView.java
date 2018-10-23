@@ -1,21 +1,22 @@
 /*
-  * Copyright 2013-2018 Amazon.com, Inc. or its affiliates.
-  * All Rights Reserved.
-  *
-  * Licensed under the Apache License, Version 2.0 (the "License");
-  * you may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at
-  *
-  *     http://www.apache.org/licenses/LICENSE-2.0
-  *
-  * Unless required by applicable law or agreed to in writing, software
-  * distributed under the License is distributed on an "AS IS" BASIS,
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  */
+ * Copyright 2013-2018 Amazon.com, Inc. or its affiliates.
+ * All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.amazonaws.mobile.auth.userpools;
+
 
 import android.app.Activity;
 import android.content.Context;
@@ -23,6 +24,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.text.InputType;
 import android.util.AttributeSet;
@@ -36,8 +38,8 @@ import com.amazonaws.mobile.config.AWSConfiguration;
 
 import com.amazonaws.mobile.auth.core.IdentityManager;
 import com.amazonaws.mobile.auth.core.signin.SignInManager;
-import com.amazonaws.mobile.auth.core.signin.ui.DisplayUtils;
 import com.amazonaws.mobile.auth.core.signin.ui.BackgroundDrawable;
+import com.amazonaws.mobile.auth.core.signin.ui.DisplayUtils;
 import com.amazonaws.mobile.auth.core.signin.ui.SplitBackgroundDrawable;
 
 import com.amazonaws.mobile.auth.userpools.R;
@@ -48,17 +50,18 @@ import static com.amazonaws.mobile.auth.userpools.UserPoolFormConstants.FORM_SID
 import static com.amazonaws.mobile.auth.userpools.UserPoolFormConstants.MAX_FORM_WIDTH_IN_PIXELS;
 
 /**
- * View for showing MFA confirmation upon sign-in.
+ * This view present the ForgotPassword screen for the user to reset the
+ * password.
  */
-public class MFAView extends LinearLayout {
+public class ForceChangePasswordView extends LinearLayout {
 
     /** Log tag. */
-    private static final String LOG_TAG = MFAView.class.getSimpleName();
+    private static final String LOG_TAG = ForgotPasswordView.class.getSimpleName();
 
-    private FormView mfaForm;
-    private EditText mfaCodeEditText;
+    private FormView forgotPassForm;
+    private EditText passwordEditText;
     private Button confirmButton;
-    
+
     private SplitBackgroundDrawable splitBackgroundDrawable;
     private BackgroundDrawable backgroundDrawable;
     private String fontFamily;
@@ -66,39 +69,40 @@ public class MFAView extends LinearLayout {
     private Typeface typeFace;
     private int backgroundColor;
 
-   /**
-    * Constructs the MFA View.
-    * @param context The activity context.
-    */
-    public MFAView(Context context) {
+    /**
+     * Constructs the ForgotPassword View.
+     * @param context The activity context.
+     */
+    public ForceChangePasswordView(final Context context) {
         this(context, null);
     }
 
-   /**
-    * Constructs the MFA View.
-    * @param context The activity context.
-    * @param attrs The Attribute Set for the view from which the resources can be accessed.
-    */
-    public MFAView(Context context, @Nullable AttributeSet attrs) {
+    /**
+     * Constructs the ForgotPassword View.
+     * @param context The activity context.
+     * @param attrs The Attribute Set for the view from which the resources can be accessed.
+     */
+    public ForceChangePasswordView(final Context context, @Nullable final AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-   /**
-    * Constructs the MFA View.
-    * @param context The activity context.
-    * @param attrs The Attribute Set for the view from which the resources can be accessed.
-    * @param defStyleAttr The resource identifier for the default style attribute.
-    */
-    public MFAView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    /**
+     * Constructs the ForgotPassword View.
+     * @param context The activity context.
+     * @param attrs The Attribute Set for the view from which the resources can be accessed.
+     * @param defStyleAttr The resource identifier for the default style attribute.
+     */
+    public ForceChangePasswordView(final Context context, @Nullable final AttributeSet attrs, final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setOrientation(VERTICAL);
+
         final int backgroundColor;
-        
         if (isInEditMode()) {
             backgroundColor = Color.DKGRAY;
         } else {
-            final TypedArray styledAttributes = context.obtainStyledAttributes(attrs, R.styleable.MFAView);
-            backgroundColor = styledAttributes.getInt(R.styleable.MFAView_mfaViewBackgroundColor, Color.DKGRAY);
+            final TypedArray styledAttributes = context.obtainStyledAttributes(attrs, R.styleable.ForgotPasswordView);
+            backgroundColor = styledAttributes.getInt(R.styleable.ForgotPasswordView_forgotPasswordViewBackgroundColor,
+                    Color.DKGRAY);
             styledAttributes.recycle();
         }
 
@@ -116,34 +120,34 @@ public class MFAView extends LinearLayout {
 
     private void setupFontFamily() {
         if (this.typeFace != null) {
-            Log.d(LOG_TAG, "Setup font in MFAView: " + this.fontFamily);
-            mfaCodeEditText.setTypeface(typeFace);
+            Log.d(LOG_TAG, "Setup font in ForgotPasswordView: " + this.fontFamily);
+            passwordEditText.setTypeface(this.typeFace);
         }
     }
 
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mfaForm = (FormView) findViewById(R.id.mfa_form);
+        forgotPassForm = (FormView) findViewById(R.id.forgot_password_form);
 
-        mfaCodeEditText = mfaForm.addFormField(getContext(),
-            InputType.TYPE_CLASS_NUMBER,
-            getContext().getString(R.string.forgot_password_input_code_hint));
+        passwordEditText = forgotPassForm.addFormField(getContext(),
+                InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD,
+                getContext().getString(R.string.sign_in_password));
 
+        setupConfirmButtonColor();
         setupFontFamily();
-        setupVerifyButtonColor();
     }
 
-    private void setupVerifyButtonColor() {
-        confirmButton = (Button) findViewById(R.id.mfa_button);
-        confirmButton.setBackgroundDrawable(
-            DisplayUtils.getRoundedRectangleBackground(FORM_BUTTON_CORNER_RADIUS, FORM_BUTTON_COLOR));
-        final LayoutParams signUpButtonLayoutParams = (LayoutParams) confirmButton.getLayoutParams();
+    private void setupConfirmButtonColor() {
+        confirmButton = (Button) findViewById(R.id.forgot_password_button);
+        confirmButton.setBackgroundDrawable(DisplayUtils.getRoundedRectangleBackground(
+                FORM_BUTTON_CORNER_RADIUS, FORM_BUTTON_COLOR));
+        LayoutParams signUpButtonLayoutParams = (LayoutParams) confirmButton.getLayoutParams();
         signUpButtonLayoutParams.setMargins(
-            mfaForm.getFormShadowMargin(),
-            signUpButtonLayoutParams.topMargin,
-            mfaForm.getFormShadowMargin(),
-            signUpButtonLayoutParams.bottomMargin);
+                forgotPassForm.getFormShadowMargin(),
+                signUpButtonLayoutParams.topMargin,
+                forgotPassForm.getFormShadowMargin(),
+                signUpButtonLayoutParams.bottomMargin);
     }
 
     @Override
@@ -161,15 +165,15 @@ public class MFAView extends LinearLayout {
 
     private void setupBackground() {
         if (!this.fullScreenBackgroundColor) {
-            splitBackgroundDrawable.setSplitPointDistanceFromTop(mfaForm.getTop()
-                + (mfaForm.getMeasuredHeight()/2));
+            splitBackgroundDrawable.setSplitPointDistanceFromTop(forgotPassForm.getTop()
+                    + (forgotPassForm.getMeasuredHeight()/2));
             ((ViewGroup) getParent()).setBackgroundDrawable(splitBackgroundDrawable);
         } else {
             ((ViewGroup) getParent()).setBackgroundDrawable(backgroundDrawable);
         }
     }
 
-    public String getMFACode() {
-        return mfaCodeEditText.getText().toString();
+    public String getPassword() {
+        return passwordEditText.getText().toString();
     }
 }

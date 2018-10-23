@@ -45,7 +45,7 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      */
     private String languageCode;
 
@@ -116,7 +116,7 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @return <p>
      *         The language of the input documents. You can specify English
@@ -136,7 +136,7 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify English
@@ -159,7 +159,7 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify English
@@ -182,7 +182,7 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify English
@@ -205,7 +205,7 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify English

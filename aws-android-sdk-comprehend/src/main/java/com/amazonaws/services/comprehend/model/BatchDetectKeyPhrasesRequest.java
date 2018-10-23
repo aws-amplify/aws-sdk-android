@@ -41,7 +41,7 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      */
     private String languageCode;
 
@@ -142,7 +142,7 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @return <p>
      *         The language of the input documents. You can specify English
@@ -162,7 +162,7 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify English
@@ -185,7 +185,7 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify English
@@ -208,7 +208,7 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify English
@@ -231,7 +231,7 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify English

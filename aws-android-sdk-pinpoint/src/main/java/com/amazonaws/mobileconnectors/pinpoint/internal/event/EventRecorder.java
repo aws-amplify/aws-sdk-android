@@ -111,15 +111,28 @@ public class EventRecorder {
         EventRecorder.clippedEventLength = clippedEventLength;
     }
 
+    /**
+     * Closes the database.
+     */
     public void closeDB() {
         dbUtil.closeDB();
     }
 
+    /**
+     * Records an {@link com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent}.
+     *
+     * @param event the analytics event
+     * @return the URI of the event recorded in the local database
+     */
     public Uri recordEvent(final AnalyticsEvent event) {
-        if (event != null) {
-            log.info(String.format("Event Recorded to database with EventType: %s",
-                                   StringUtil.clipString(event.getEventType(), clippedEventLength, true)));
+        if (event == null) {
+            log.warn("Event cannot be null. Pass in a valid non-null event.");
+            return null;
         }
+
+        log.info(String.format("Event Recorded to database with EventType: %s",
+                StringUtil.clipString(event.getEventType(), clippedEventLength, true)));
+
         long maxPendingSize = pinpointContext.getConfiguration().optLong(KEY_MAX_PENDING_SIZE, DEFAULT_MAX_PENDING_SIZE);
         if (maxPendingSize < MINIMUM_PENDING_SIZE) {
             maxPendingSize = MINIMUM_PENDING_SIZE;
@@ -146,7 +159,7 @@ public class EventRecorder {
             return uri;
         } else {
             log.warn(String.format("Event: '%s' failed to record to local database.",
-                                   StringUtil.clipString(event.getEventType(), clippedEventLength, true)));
+                    StringUtil.clipString(event.getEventType(), clippedEventLength, true)));
             return null;
         }
     }
@@ -330,7 +343,7 @@ public class EventRecorder {
         processedEvents.put(SUCCESSFUL_EVENT_IDS, successfulEventIds);
         processedEvents.put(FAILED_EVENT_IDS, failedEventIds);
         if (endpoint == null) {
-            log.error("Endpoint profile is null, failed to submit events.");
+            log.warn("Endpoint profile is null, failed to submit events.");
             batchIdsAndSizeToDelete.clear();
             addAllEventIdsToSet(eventArray, failedEventIds);
             return processedEvents;
@@ -348,23 +361,29 @@ public class EventRecorder {
             //request accepted, checking each event item in the response.
             processEventsResponse(eventArray, endpoint, resultResponse, batchIdsAndSizeToDelete, successfulEventIds, failedEventIds);
             log.info(String.format("Successful submission of %d events.", batchIdsAndSizeToDelete.size()));
-        } catch (final AmazonServiceException e) {
+        } catch (final AmazonServiceException amazonServiceException) {
             //This is service level exception, we also have item level exception.
-            log.error("AmazonServiceException occured during send of put event ", e);
-            final String errorCode = e.getErrorCode();
+            log.error("AmazonServiceException occured during send of put event ", amazonServiceException);
+            final String errorCode = amazonServiceException.getErrorCode();
             if (!isRetryable(errorCode)) {
                 addAllEventIdsToSet(eventArray, failedEventIds);
                 log.error(
-                    String.format("Failed to submit events to EventService: statusCode: " + e.getStatusCode() + " errorCode: ", errorCode));
-                log.error(String.format("Failed submission of %d events, events will be removed", eventArray.length()), e);
+                    String.format("Failed to submit events to EventService: statusCode: " +
+                            amazonServiceException.getStatusCode() + " errorCode: ", errorCode),
+                        amazonServiceException);
+                log.error(String.format("Failed submission of %d events, events will be removed", eventArray.length()),
+                        amazonServiceException);
             } else {
-                log.warn(
-                    "Unable to successfully deliver events to server. Events will be saved, error likely recoverable.  Response status "
-                    + "code " + e.getStatusCode() + " , response error code " + e.getErrorCode() + e.getMessage());
-                log.warn("Received an error response: " + e.getMessage());
+                log.error(
+                        String.format("Unable to successfully deliver events to server. " +
+                                "Events will be saved, error is likely recoverable. " +
+                                "Response Status code: %s, Response Error Code: %s",
+                                amazonServiceException.getStatusCode(), amazonServiceException.getErrorCode()),
+                        amazonServiceException);
             }
-        } catch (final Exception e2) {
-            log.warn("Unable to successfully deliver events to server. Events will be saved, error likely recoverable." + e2.getMessage());
+        } catch (final Exception exception) {
+            log.error("Unable to successfully deliver events to server. " +
+                    "Events will be saved, error likely recoverable." + exception.getMessage(), exception);
         }
         return processedEvents;
     }
@@ -383,7 +402,8 @@ public class EventRecorder {
         if(resultResponse.getResults().get(endpoint.getEndpointId()).getEndpointItemResponse().getStatusCode() == 202) {
             log.info("EndpointProfile updated successfully.");
         } else {
-            log.error("AmazonServiceException occurred during endpoint update: " + resultResponse.getResults().get(endpoint.getEndpointId()).getEndpointItemResponse().getMessage());
+            log.error("AmazonServiceException occurred during endpoint update: " +
+                    resultResponse.getResults().get(endpoint.getEndpointId()).getEndpointItemResponse().getMessage());
         }
     }
 
@@ -407,7 +427,9 @@ public class EventRecorder {
                 } else {
                     //Item level exception, not retryable
                     failedEventIds.add(eventId);
-                    log.error(String.format("Failed to submitEvents to EventService: statusCode: %s Status Message: %s", responseMessage.getStatusCode(), responseMessage.getMessage()));
+                    log.error(
+                            String.format("Failed to submitEvents to EventService: statusCode: %s Status Message: %s",
+                                    responseMessage.getStatusCode(), responseMessage.getMessage()));
                 }
             } catch (JSONException e) {
                 log.error("Failed to get event id while processing event item response.", e);
@@ -448,9 +470,9 @@ public class EventRecorder {
             try {
                 eventJSON = events.getJSONObject(i);
                 internalEvent = AnalyticsEvent.translateToEvent(eventJSON);
-            } catch (final JSONException e) {
+            } catch (final JSONException jsonException) {
                 // Do not log JSONException due to potentially sensitive information
-                log.error("Stored event was invalid JSON.");
+                log.error("Stored event was invalid JSON.", jsonException);
                 continue;
             }
 

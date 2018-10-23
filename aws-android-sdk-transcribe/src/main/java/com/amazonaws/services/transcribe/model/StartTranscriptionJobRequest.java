@@ -21,7 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Starts an asynchronous job to transcribe speech to text.
+ * Starts an asynchronous job to transcribe speech to text. Note that en-AU,
+ * en-UK, and fr-CA languages are in preview and are only available to
+ * whitelisted customers.
  * </p>
  */
 public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implements Serializable {
@@ -43,7 +45,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      */
     private String languageCode;
 
@@ -178,7 +180,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @return <p>
      *         The language code for the language used in the input media file.
@@ -195,7 +197,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -216,7 +218,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -237,7 +239,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -258,7 +260,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media

@@ -19,7 +19,9 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Provides a summary of information about a transcription job.
+ * Provides a summary of information about a transcription job. Note that en-AU,
+ * en-UK, and fr-CA languages are in preview and are only available to
+ * whitelisted customers.
  * </p>
  */
 public class TranscriptionJobSummary implements Serializable {
@@ -54,7 +56,7 @@ public class TranscriptionJobSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      */
     private String languageCode;
 
@@ -253,7 +255,7 @@ public class TranscriptionJobSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @return <p>
      *         The language code for the input speech.
@@ -270,7 +272,7 @@ public class TranscriptionJobSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @param languageCode <p>
      *            The language code for the input speech.
@@ -290,7 +292,7 @@ public class TranscriptionJobSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @param languageCode <p>
      *            The language code for the input speech.
@@ -310,7 +312,7 @@ public class TranscriptionJobSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @param languageCode <p>
      *            The language code for the input speech.
@@ -330,7 +332,7 @@ public class TranscriptionJobSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US
+     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-UK
      *
      * @param languageCode <p>
      *            The language code for the input speech.
