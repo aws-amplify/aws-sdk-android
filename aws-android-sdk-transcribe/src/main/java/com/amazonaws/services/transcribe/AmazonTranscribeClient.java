@@ -285,7 +285,10 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
     /**
      * <p>
      * Creates a new custom vocabulary that you can use to change the way Amazon
-     * Transcribe handles transcription of an audio file.
+     * Transcribe handles transcription of an audio file. Note that vocabularies
+     * for en-AU, en-UK, and fr-CA languages that are in preview are not
+     * available. In the console, the vocabulary section will be greyed-out and
+     * SDK will return error message.
      * </p>
      * 
      * @param createVocabularyRequest
@@ -326,6 +329,49 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
             response = invoke(request, responseHandler, executionContext);
 
             return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes a previously submitted transcription job as well as any other
+     * generated results such as the transcription, models, and so on.
+     * </p>
+     * 
+     * @param deleteTranscriptionJobRequest
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void deleteTranscriptionJob(DeleteTranscriptionJobRequest deleteTranscriptionJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteTranscriptionJobRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteTranscriptionJobRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteTranscriptionJobRequestMarshaller()
+                        .marshall(deleteTranscriptionJobRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
@@ -432,7 +478,10 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
-     * Gets information about a vocabulary.
+     * Gets information about a vocabulary. Note that vocabularies for en-AU,
+     * en-UK, and fr-CA languages that are in preview are not available. In the
+     * console, the vocabulary section will be greyed-out and SDK will return
+     * error message.
      * </p>
      * 
      * @param getVocabularyRequest
@@ -581,7 +630,9 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
-     * Starts an asynchronous job to transcribe speech to text.
+     * Starts an asynchronous job to transcribe speech to text. Note that en-AU,
+     * en-UK, and fr-CA languages are in preview and are only available to
+     * whitelisted customers.
      * </p>
      * 
      * @param startTranscriptionJobRequest
@@ -635,7 +686,10 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
      * <p>
      * Updates an existing vocabulary with new values. The
      * <code>UpdateVocabulary</code> operation overwrites all of the existing
-     * information with the values that you provide in the request.
+     * information with the values that you provide in the request. Note that
+     * vocabularies for en-AU, en-UK, and fr-CA languages that are in preview
+     * are not available. In the console, the vocabulary section will be
+     * greyed-out and SDK will return error message.
      * </p>
      * 
      * @param updateVocabularyRequest

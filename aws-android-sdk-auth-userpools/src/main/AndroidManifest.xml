@@ -9,35 +9,31 @@
 
      <application>
          <activity
+             android:name="com.amazonaws.mobile.auth.userpools.ForceChangePasswordActivity"
+             android:label="@string/title_activity_force_change_password"
+             android:screenOrientation="portrait"
+             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+         <activity
              android:name="com.amazonaws.mobile.auth.userpools.ForgotPasswordActivity"
              android:label="@string/title_activity_forgot_password"
              android:screenOrientation="portrait"
-             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-             >
-         </activity>
-
+             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
          <activity
              android:name="com.amazonaws.mobile.auth.userpools.SignUpActivity"
              android:label="@string/title_activity_sign_up"
              android:screenOrientation="portrait"
-             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-             >
-         </activity>
+             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
 
          <activity
              android:name="com.amazonaws.mobile.auth.userpools.MFAActivity"
              android:label="@string/title_activity_mfa"
              android:screenOrientation="portrait"
-             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-             >
-         </activity>
+             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
 
          <activity
              android:name="com.amazonaws.mobile.auth.userpools.SignUpConfirmActivity"
              android:label="@string/title_activity_sign_up_confirm"
              android:screenOrientation="portrait"
-             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-             >
-         </activity>
+             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
      </application>
 <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="25" /></manifest>

@@ -260,7 +260,10 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
     /**
      * <p>
      * Creates a new custom vocabulary that you can use to change the way Amazon
-     * Transcribe handles transcription of an audio file.
+     * Transcribe handles transcription of an audio file. Note that vocabularies
+     * for en-AU, en-UK, and fr-CA languages that are in preview are not
+     * available. In the console, the vocabulary section will be greyed-out and
+     * SDK will return error message.
      * </p>
      * 
      * @param createVocabularyRequest
@@ -292,7 +295,10 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
     /**
      * <p>
      * Creates a new custom vocabulary that you can use to change the way Amazon
-     * Transcribe handles transcription of an audio file.
+     * Transcribe handles transcription of an audio file. Note that vocabularies
+     * for en-AU, en-UK, and fr-CA languages that are in preview are not
+     * available. In the console, the vocabulary section will be greyed-out and
+     * SDK will return error message.
      * </p>
      * 
      * @param createVocabularyRequest
@@ -325,6 +331,78 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(createVocabularyRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes a previously submitted transcription job as well as any other
+     * generated results such as the transcription, models, and so on.
+     * </p>
+     * 
+     * @param deleteTranscriptionJobRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteTranscriptionJob service method, as returned by Amazon
+     *         Transcribe.
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> deleteTranscriptionJobAsync(
+            final DeleteTranscriptionJobRequest deleteTranscriptionJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                deleteTranscriptionJob(deleteTranscriptionJobRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes a previously submitted transcription job as well as any other
+     * generated results such as the transcription, models, and so on.
+     * </p>
+     * 
+     * @param deleteTranscriptionJobRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteTranscriptionJob service method, as returned by Amazon
+     *         Transcribe.
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> deleteTranscriptionJobAsync(
+            final DeleteTranscriptionJobRequest deleteTranscriptionJobRequest,
+            final AsyncHandler<DeleteTranscriptionJobRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    deleteTranscriptionJob(deleteTranscriptionJobRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(deleteTranscriptionJobRequest, result);
                 return result;
             }
         });
@@ -482,7 +560,10 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
 
     /**
      * <p>
-     * Gets information about a vocabulary.
+     * Gets information about a vocabulary. Note that vocabularies for en-AU,
+     * en-UK, and fr-CA languages that are in preview are not available. In the
+     * console, the vocabulary section will be greyed-out and SDK will return
+     * error message.
      * </p>
      * 
      * @param getVocabularyRequest
@@ -512,7 +593,10 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
 
     /**
      * <p>
-     * Gets information about a vocabulary.
+     * Gets information about a vocabulary. Note that vocabularies for en-AU,
+     * en-UK, and fr-CA languages that are in preview are not available. In the
+     * console, the vocabulary section will be greyed-out and SDK will return
+     * error message.
      * </p>
      * 
      * @param getVocabularyRequest
@@ -691,7 +775,9 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
 
     /**
      * <p>
-     * Starts an asynchronous job to transcribe speech to text.
+     * Starts an asynchronous job to transcribe speech to text. Note that en-AU,
+     * en-UK, and fr-CA languages are in preview and are only available to
+     * whitelisted customers.
      * </p>
      * 
      * @param startTranscriptionJobRequest
@@ -722,7 +808,9 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
 
     /**
      * <p>
-     * Starts an asynchronous job to transcribe speech to text.
+     * Starts an asynchronous job to transcribe speech to text. Note that en-AU,
+     * en-UK, and fr-CA languages are in preview and are only available to
+     * whitelisted customers.
      * </p>
      * 
      * @param startTranscriptionJobRequest
@@ -764,7 +852,10 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
      * <p>
      * Updates an existing vocabulary with new values. The
      * <code>UpdateVocabulary</code> operation overwrites all of the existing
-     * information with the values that you provide in the request.
+     * information with the values that you provide in the request. Note that
+     * vocabularies for en-AU, en-UK, and fr-CA languages that are in preview
+     * are not available. In the console, the vocabulary section will be
+     * greyed-out and SDK will return error message.
      * </p>
      * 
      * @param updateVocabularyRequest
@@ -798,7 +889,10 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
      * <p>
      * Updates an existing vocabulary with new values. The
      * <code>UpdateVocabulary</code> operation overwrites all of the existing
-     * information with the values that you provide in the request.
+     * information with the values that you provide in the request. Note that
+     * vocabularies for en-AU, en-UK, and fr-CA languages that are in preview
+     * are not available. In the console, the vocabulary section will be
+     * greyed-out and SDK will return error message.
      * </p>
      * 
      * @param updateVocabularyRequest

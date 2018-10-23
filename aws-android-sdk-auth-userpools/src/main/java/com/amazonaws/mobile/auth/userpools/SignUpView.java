@@ -1,5 +1,5 @@
 /*
-  * Copyright 2013-2017 Amazon.com, Inc. or its affiliates.
+  * Copyright 2013-2018 Amazon.com, Inc. or its affiliates.
   * All Rights Reserved.
   *
   * Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,6 +27,7 @@ import android.text.InputType;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -210,6 +211,14 @@ public class SignUpView extends LinearLayout {
      */
     public String getPassword() {
         return passwordEditText.getText().toString();
+    }
+
+    /**
+     * Sets the password field
+     * @param password string to fill in the text view
+     */
+    public void setPassword(final String password) {
+        passwordEditText.setText(password);
     }
 
     /**

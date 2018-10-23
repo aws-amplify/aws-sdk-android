@@ -43,7 +43,7 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      */
     private String languageCode;
 
@@ -144,7 +144,7 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @return <p>
      *         The language of the input documents. You can specify English
@@ -164,7 +164,7 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify English
@@ -187,7 +187,7 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify English
@@ -210,7 +210,7 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify English
@@ -233,7 +233,7 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify English

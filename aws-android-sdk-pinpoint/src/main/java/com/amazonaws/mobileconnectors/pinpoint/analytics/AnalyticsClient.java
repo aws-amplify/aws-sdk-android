@@ -45,7 +45,7 @@ import static com.amazonaws.mobileconnectors.pinpoint.internal.core.util.Precond
  * analyticsClient.recordEvent(level1CompleteEvent);
  *
  *
- * Submitting Events
+ * Submitting Events:
  *
  * The example below demonstrates how to submit events to the Amazon Pinpoint
  * Service. You have direct control over when events are submitted in
@@ -180,12 +180,12 @@ public class AnalyticsClient implements JSONSerializable {
     public void addGlobalAttribute(String attributeName,
                                    String attributeValue) {
         if (attributeName == null) {
-            log.info("Null attribute name provided to addGlobalAttribute.");
+            log.warn("Null attribute name provided to addGlobalAttribute.");
             return;
         }
 
         if (attributeValue == null) {
-            log.debug("Null attribute value provided to addGlobalAttribute.");
+            log.warn("Null attribute value provided to addGlobalAttribute.");
             return;
         }
         globalAttributes.put(attributeName, attributeValue);

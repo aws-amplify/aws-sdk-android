@@ -850,53 +850,51 @@ abstract class NotificationClientBase {
             return this.handleNotificationOpen(campaignAttributes, data);
         }
 
-        if (campaignAttributes != null) {
-            // Create the push event.
-            String eventType = null;
-            if (isAppInForeground) {
-                eventType = AWS_EVENT_TYPE_RECEIVED_FOREGROUND;
+        // Create the push event.
+        String eventType = null;
+        if (isAppInForeground) {
+            eventType = AWS_EVENT_TYPE_RECEIVED_FOREGROUND;
+        } else {
+            eventType = AWS_EVENT_TYPE_RECEIVED_BACKGROUND;
+        }
+        final AnalyticsEvent pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(eventType);
+
+        // Add the campaign attributes.
+        addCampaignAttributesToEvent(pushEvent, campaignAttributes);
+        pushEvent.addAttribute("isAppInForeground", Boolean.toString(isAppInForeground));
+        try {
+            // Ignore whether the app is in the foreground if the configuration indicates it should post
+            // notifications in the foreground.
+            if (
+                !pinpointContext.getPinpointConfiguration().getShouldPostNotificationsInForeground() && isAppInForeground) {
+                // Notify the caller that the app was in the foreground.
+                return NotificationClient.CampaignPushResult.APP_IN_FOREGROUND;
             } else {
-                eventType = AWS_EVENT_TYPE_RECEIVED_BACKGROUND;
-            }
-            final AnalyticsEvent pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(eventType);
-
-            // Add the campaign attributes.
-            addCampaignAttributesToEvent(pushEvent, campaignAttributes);
-            pushEvent.addAttribute("isAppInForeground", Boolean.toString(isAppInForeground));
-            try {
-                // Ignore whether the app is in the foreground if the configuration indicates it should post
-                // notifications in the foreground.
-                if (
-                    !pinpointContext.getPinpointConfiguration().getShouldPostNotificationsInForeground() && isAppInForeground) {
-                    // Notify the caller that the app was in the foreground.
-                    return NotificationClient.CampaignPushResult.APP_IN_FOREGROUND;
-                } else {
-                    // Display a notification with an icon, title, message,
-                    // image, and default sound.
-                    if ("1".equalsIgnoreCase(data.getString(NOTIFICATION_SILENT_PUSH_KEY))) {
-                        return NotificationClient.CampaignPushResult.SILENT;
-                    }
-
-                    // App is in the background; attempt to display a
-                    // notification in the notification center.
-                    if (!areAppNotificationsEnabled() ||
-                        !displayNotification(data, targetClass, imageUrl, imageIconUrl, imageSmallIconUrl, campaignAttributes,
-                                             intentAction)) {
-                        // Local app notifications have been disabled by the
-                        // user from Settings -> App Info
-                        // or we couldn't display the notification for some
-                        // reason.
-
-                        pushEvent.addAttribute("isOptedOut", "true");
-                        // We can't post a notification, so delegate to the
-                        // passed in handler.
-                        return NotificationClient.CampaignPushResult.OPTED_OUT;
-                    }
+                // Display a notification with an icon, title, message,
+                // image, and default sound.
+                if ("1".equalsIgnoreCase(data.getString(NOTIFICATION_SILENT_PUSH_KEY))) {
+                    return NotificationClient.CampaignPushResult.SILENT;
                 }
-            } finally {
-                this.pinpointContext.getAnalyticsClient().recordEvent(pushEvent);
-                this.pinpointContext.getAnalyticsClient().submitEvents();
+
+                // App is in the background; attempt to display a
+                // notification in the notification center.
+                if (!areAppNotificationsEnabled() ||
+                    !displayNotification(data, targetClass, imageUrl, imageIconUrl, imageSmallIconUrl, campaignAttributes,
+                                         intentAction)) {
+                    // Local app notifications have been disabled by the
+                    // user from Settings -> App Info
+                    // or we couldn't display the notification for some
+                    // reason.
+
+                    pushEvent.addAttribute("isOptedOut", "true");
+                    // We can't post a notification, so delegate to the
+                    // passed in handler.
+                    return NotificationClient.CampaignPushResult.OPTED_OUT;
+                }
             }
+        } finally {
+            this.pinpointContext.getAnalyticsClient().recordEvent(pushEvent);
+            this.pinpointContext.getAnalyticsClient().submitEvents();
         }
         return NotificationClient.CampaignPushResult.POSTED_NOTIFICATION;
     }
@@ -962,15 +960,7 @@ abstract class NotificationClientBase {
             final int modeAllowed = modeAllowedField.getInt(null);
             return (modeAllowed == opPostNotificationMode);
 
-        } catch (final ClassNotFoundException e) {
-            log.error(e.getMessage(), e);
-        } catch (final NoSuchMethodException e) {
-            log.error(e.getMessage(), e);
-        } catch (final NoSuchFieldException e) {
-            log.error(e.getMessage(), e);
-        } catch (final InvocationTargetException e) {
-            log.error(e.getMessage(), e);
-        } catch (final IllegalAccessException e) {
+        } catch (final Exception e) {
             log.error(e.getMessage(), e);
         }
         return true;

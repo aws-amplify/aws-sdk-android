@@ -100,7 +100,7 @@ public class SentimentDetectionJobProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      */
     private String languageCode;
 
@@ -594,7 +594,7 @@ public class SentimentDetectionJobProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @return <p>
      *         The language code of the input documents.
@@ -611,7 +611,7 @@ public class SentimentDetectionJobProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language code of the input documents.
@@ -631,7 +631,7 @@ public class SentimentDetectionJobProperties implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language code of the input documents.
@@ -651,7 +651,7 @@ public class SentimentDetectionJobProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language code of the input documents.
@@ -671,7 +671,7 @@ public class SentimentDetectionJobProperties implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en, es
+     * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
      *            The language code of the input documents.

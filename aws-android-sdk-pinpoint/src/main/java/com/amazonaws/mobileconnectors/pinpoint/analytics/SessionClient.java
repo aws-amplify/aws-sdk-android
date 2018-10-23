@@ -27,8 +27,6 @@ import static com.amazonaws.mobileconnectors.pinpoint.internal.core.util.Precond
  *
  * It is recommended to start the session when the application comes to the foreground
  * and stop the session when it goes to the background.
- *
- * For reference, please refer to MobileHub's sample class AbstractApplicationLifeCycleHelper.
  */
 public class SessionClient {
 
@@ -37,25 +35,49 @@ public class SessionClient {
      */
     public static final String SESSION_START_EVENT_TYPE = "_session.start";
 
-    // ~ Event Type Constants ---------------------------=
     /**
      * The eventType recorded for session stop events
      */
     public static final String SESSION_STOP_EVENT_TYPE = "_session.stop";
+
     /**
      * The eventType recorded for session pause events
      */
     public static final String SESSION_PAUSE_EVENT_TYPE = "_session.pause";
+
     /**
      * The eventType recorded for session resume events
      */
     public static final String SESSION_RESUME_EVENT_TYPE = "_session.resume";
+
+    /**
+     * This is the identifier set when there is no current session
+     */
     protected static final String NO_SESSION_ID = "00000000-00000000";
+
+    /**
+     * The key name used in Shared Preferences
+     */
     protected static final String SHARED_PREFS_SESSION_KEY = "AWSPinpoint.Session";
-    private static final Log log = LogFactory
-        .getLog(SessionClient.class);
+
+    /**
+     * Logger instance for SessionClient
+     */
+    private static final Log log = LogFactory.getLog(SessionClient.class);
+
+    /**
+     * The context object wraps all the essential information from the app
+     * that are required.
+     */
     protected final PinpointContext pinpointContext;
 
+    /**
+     * This session object tracks whether or not it has been paused by checking the
+     * status of it's stop time. A session's stop time is only set when the session
+     * has been paused, and is set to -1 if it is currently running. Can be
+     * serialized and restored for persistence. This refers to the current session
+     * object.
+     */
     protected Session session;
 
     /**
@@ -85,14 +107,10 @@ public class SessionClient {
     }
 
     /**
-     * Start a session which records a _session.start event and saves that sessionId
-     * to the AnalyticsClient to be used for recording future events.
-     *
-     * This triggers an update of the endpointProfile.
-     *
-     * It is recommended to start the session when the application comes to the foreground.
-     *
-     * For reference, please refer to MobileHub's sample class AbstractApplicationLifeCycleHelper.
+     * Start a session which records a {@link SESSION_START_EVENT_TYPE} event and
+     * saves that sessionId to the AnalyticsClient to be used for recording future
+     * events. This triggers an update of the endpointProfile. It is recommended to
+     * start the session when the application comes to the foreground.
      */
     public synchronized void startSession() {
         executeStop();
@@ -100,20 +118,18 @@ public class SessionClient {
     }
 
     /**
-     * Stops a session which records a _session.stop event and flushes the events in localstorage
-     * for submission.
-     *
-     * It is recommended to stop the session when the application goes to the background.
-     *
-     * For reference, please refer to MobileHub's sample class AbstractApplicationLifeCycleHelper.
+     * Stops a session which records a {@link SESSION_STOP_EVENT_TYPE}
+     * event and flushes the events in localstorage for submission.
+     * It is recommended to stop the session when the application
+     * goes to the background.
      */
     public synchronized void stopSession() {
         executeStop();
     }
 
     /**
-     * Briefly pauses an application session. Should be called in an activity's
-     * onPause() method. This records a _session.pause event.
+     * Briefly pauses an application session. This records a {@link SESSION_PAUSE_EVENT_TYPE} event.
+     * It is recommended to call in an activity's onPause() method.
      */
     public synchronized void pauseSession() {
         if (getSessionState().equals(SessionState.ACTIVE)) {
@@ -122,8 +138,8 @@ public class SessionClient {
     }
 
     /**
-     * Resumes an application session. Should be called in an activity's onResume() method.
-     * This records a _session.resume event.
+     * Resumes an application session. This records a {@link SESSION_RESUME_EVENT_TYPE} event.
+     * It is recommended to call in an activity's onResume() method.
      */
     public synchronized void resumeSession() {
         if (getSessionState().equals(SessionState.PAUSED)) {
@@ -131,9 +147,7 @@ public class SessionClient {
         } else {
             final AnalyticsEvent e = this.pinpointContext.getAnalyticsClient().createEvent(SESSION_RESUME_EVENT_TYPE);
             this.pinpointContext.getAnalyticsClient().recordEvent(e);
-
-            // log failure
-            log.info("Session Resume Failed: No session is paused.");
+            log.warn("Session Resume Failed: No session is paused.");
         }
     }
 
@@ -149,7 +163,10 @@ public class SessionClient {
                ((this.session != null && this.session.isPaused()) ? ": paused" : "");
     }
 
-    // - Implementations --------------------------------=
+    /**
+     * Start a new Session. Set the Session ID and start time and record
+     * an event of type {@link SESSION_START_EVENT_TYPE}.
+     */
     protected void executeStart() {
         if (this.pinpointContext.getTargetingClient() != null) {
             this.pinpointContext.getTargetingClient().updateEndpointProfile();
@@ -168,13 +185,18 @@ public class SessionClient {
         this.pinpointContext.getAnalyticsClient().recordEvent(e);
     }
 
+    /**
+     * Stop the current Session. First, pause the session if it's not paused
+     * already. Record the stop time and record an event of type
+     * {@link SESSION_STOP_EVENT_TYPE}. Additionally, stopping a session
+     * clears the campaign attributes.
+     */
     protected void executeStop() {
         // No session to stop
         if (session == null) {
             log.info("Session Stop Failed: No session exists.");
             return;
         }
-        // Fire Session Stop Event
 
         // pause the session if it's not already
         if (!session.isPaused()) {
@@ -196,8 +218,9 @@ public class SessionClient {
     }
 
     /**
-     * - Pause the current session object - Fire a Session Pause Event - Persist
-     * Session to the file system. (prepares for quiet death)
+     * Pause the current session object - Fire a Session Pause Event - Persist
+     * Session to the file system. (prepares for quiet death).
+     * Record an event of type {@link SESSION_PAUSE_EVENT_TYPE}
      */
     protected void executePause() {
         // No session to pause
@@ -209,7 +232,6 @@ public class SessionClient {
         session.pause();
         log.debug("Session Paused: " + session.getSessionID());
 
-        // - Fire Session Pause Event ----------------------------=
         log.info("Firing Session Event: " + SESSION_PAUSE_EVENT_TYPE);
         final AnalyticsEvent e = this.pinpointContext.getAnalyticsClient().createEvent(SESSION_PAUSE_EVENT_TYPE, session.getStartTime(),
                                                                                        null, session.getSessionDuration());
@@ -220,7 +242,8 @@ public class SessionClient {
     }
 
     /**
-     * - Re-Activate the session - Fire Session Resume Event
+     * Re-Activate the session - Fire Session Resume Event/
+     * Record an event of type {@link SESSION_RESUME_EVENT_TYPE}
      */
     protected void executeResume() {
         // No session to resume
@@ -241,13 +264,15 @@ public class SessionClient {
 
     /**
      * Getters
+     *
+     * @return the current session object
      */
     protected Session getSession() {
         return this.session;
     }
 
     /**
-     * Returns the Application Session's state
+     * @return the current Session's state
      */
     protected SessionState getSessionState() {
         if (this.session != null) {
