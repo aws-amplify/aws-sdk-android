@@ -9,12 +9,11 @@ The [AWS SDK for Android](https://aws.amazon.com/mobile/resources/) provides a l
 
 ## Resources
 
-* **[Code Samples](https://github.com/awslabs/aws-sdk-android-samples)** - Repository of example projects using the SDK.
-* **[AWS Mobile Forum](https://forums.aws.amazon.com/forum.jspa?forumID=88)** – Ask questions, get help, and give feedback
 * **[Developer Guide](https://docs.aws.amazon.com/aws-mobile/latest/developerguide/getting-started.html)** - For in-depth getting started and usage information.
+* **[Code Samples](https://github.com/awslabs/aws-sdk-android-samples)** - Repository of example projects using the SDK.
 * **[Javadoc](http://docs.aws.amazon.com/AWSAndroidSDK/latest/javadoc/)** - For operations, parameters, responses, and examples
 * **[AWS Mobile Developer Blog](http://mobile.awsblog.com/)** - For updates and guidance on using the AWS SDK for Android
-* **[Release Notes](https://aws.amazon.com/releasenotes/Android)** - To see the latest features, bug fixes, and changes in the SDK
+* **[Changelog](https://github.com/aws/aws-sdk-android/blob/master/CHANGELOG.md)** - To see the latest features, bug fixes, and changes in the SDK
 * **[Issues](https://github.com/aws/aws-sdk-android/issues)** - Report issues and submit pull requests (see [Apache 2.0 License](http://aws.amazon.com/apache-2-0/))
 * **[@awsformobile](https://twitter.com/awsformobile)** - Follow us on Twitter
 
