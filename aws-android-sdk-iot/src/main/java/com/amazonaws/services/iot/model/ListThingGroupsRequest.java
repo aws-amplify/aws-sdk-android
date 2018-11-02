@@ -27,8 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ListThingGroupsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The token used to get the next set of results, or <b>null</b> if there
-     * are no additional results.
+     * The token to retrieve the next set of results.
      * </p>
      */
     private String nextToken;
@@ -75,13 +74,11 @@ public class ListThingGroupsRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The token used to get the next set of results, or <b>null</b> if there
-     * are no additional results.
+     * The token to retrieve the next set of results.
      * </p>
      *
      * @return <p>
-     *         The token used to get the next set of results, or <b>null</b> if
-     *         there are no additional results.
+     *         The token to retrieve the next set of results.
      *         </p>
      */
     public String getNextToken() {
@@ -90,13 +87,11 @@ public class ListThingGroupsRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The token used to get the next set of results, or <b>null</b> if there
-     * are no additional results.
+     * The token to retrieve the next set of results.
      * </p>
      *
      * @param nextToken <p>
-     *            The token used to get the next set of results, or <b>null</b>
-     *            if there are no additional results.
+     *            The token to retrieve the next set of results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -105,16 +100,14 @@ public class ListThingGroupsRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The token used to get the next set of results, or <b>null</b> if there
-     * are no additional results.
+     * The token to retrieve the next set of results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nextToken <p>
-     *            The token used to get the next set of results, or <b>null</b>
-     *            if there are no additional results.
+     *            The token to retrieve the next set of results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

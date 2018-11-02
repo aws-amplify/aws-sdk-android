@@ -72,6 +72,10 @@ class CertificateDescriptionJsonUnmarshaller implements
             } else if (name.equals("generationId")) {
                 certificateDescription.setGenerationId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("validity")) {
+                certificateDescription.setValidity(CertificateValidityJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

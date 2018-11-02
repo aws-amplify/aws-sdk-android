@@ -38,6 +38,22 @@ public class DeleteOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
+     * Specifies if the stream associated with an OTA update should be deleted
+     * when the OTA update is deleted.
+     * </p>
+     */
+    private Boolean deleteStream;
+
+    /**
+     * <p>
+     * Specifies if the AWS Job associated with the OTA update should be deleted
+     * with the OTA update is deleted.
+     * </p>
+     */
+    private Boolean forceDeleteAWSJob;
+
+    /**
+     * <p>
      * The OTA update ID to delete.
      * </p>
      * <p>
@@ -94,6 +110,138 @@ public class DeleteOTAUpdateRequest extends AmazonWebServiceRequest implements S
     }
 
     /**
+     * <p>
+     * Specifies if the stream associated with an OTA update should be deleted
+     * when the OTA update is deleted.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies if the stream associated with an OTA update should be
+     *         deleted when the OTA update is deleted.
+     *         </p>
+     */
+    public Boolean isDeleteStream() {
+        return deleteStream;
+    }
+
+    /**
+     * <p>
+     * Specifies if the stream associated with an OTA update should be deleted
+     * when the OTA update is deleted.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies if the stream associated with an OTA update should be
+     *         deleted when the OTA update is deleted.
+     *         </p>
+     */
+    public Boolean getDeleteStream() {
+        return deleteStream;
+    }
+
+    /**
+     * <p>
+     * Specifies if the stream associated with an OTA update should be deleted
+     * when the OTA update is deleted.
+     * </p>
+     *
+     * @param deleteStream <p>
+     *            Specifies if the stream associated with an OTA update should
+     *            be deleted when the OTA update is deleted.
+     *            </p>
+     */
+    public void setDeleteStream(Boolean deleteStream) {
+        this.deleteStream = deleteStream;
+    }
+
+    /**
+     * <p>
+     * Specifies if the stream associated with an OTA update should be deleted
+     * when the OTA update is deleted.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param deleteStream <p>
+     *            Specifies if the stream associated with an OTA update should
+     *            be deleted when the OTA update is deleted.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DeleteOTAUpdateRequest withDeleteStream(Boolean deleteStream) {
+        this.deleteStream = deleteStream;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies if the AWS Job associated with the OTA update should be deleted
+     * with the OTA update is deleted.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies if the AWS Job associated with the OTA update should be
+     *         deleted with the OTA update is deleted.
+     *         </p>
+     */
+    public Boolean isForceDeleteAWSJob() {
+        return forceDeleteAWSJob;
+    }
+
+    /**
+     * <p>
+     * Specifies if the AWS Job associated with the OTA update should be deleted
+     * with the OTA update is deleted.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies if the AWS Job associated with the OTA update should be
+     *         deleted with the OTA update is deleted.
+     *         </p>
+     */
+    public Boolean getForceDeleteAWSJob() {
+        return forceDeleteAWSJob;
+    }
+
+    /**
+     * <p>
+     * Specifies if the AWS Job associated with the OTA update should be deleted
+     * with the OTA update is deleted.
+     * </p>
+     *
+     * @param forceDeleteAWSJob <p>
+     *            Specifies if the AWS Job associated with the OTA update should
+     *            be deleted with the OTA update is deleted.
+     *            </p>
+     */
+    public void setForceDeleteAWSJob(Boolean forceDeleteAWSJob) {
+        this.forceDeleteAWSJob = forceDeleteAWSJob;
+    }
+
+    /**
+     * <p>
+     * Specifies if the AWS Job associated with the OTA update should be deleted
+     * with the OTA update is deleted.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param forceDeleteAWSJob <p>
+     *            Specifies if the AWS Job associated with the OTA update should
+     *            be deleted with the OTA update is deleted.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DeleteOTAUpdateRequest withForceDeleteAWSJob(Boolean forceDeleteAWSJob) {
+        this.forceDeleteAWSJob = forceDeleteAWSJob;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -105,7 +253,11 @@ public class DeleteOTAUpdateRequest extends AmazonWebServiceRequest implements S
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getOtaUpdateId() != null)
-            sb.append("otaUpdateId: " + getOtaUpdateId());
+            sb.append("otaUpdateId: " + getOtaUpdateId() + ",");
+        if (getDeleteStream() != null)
+            sb.append("deleteStream: " + getDeleteStream() + ",");
+        if (getForceDeleteAWSJob() != null)
+            sb.append("forceDeleteAWSJob: " + getForceDeleteAWSJob());
         sb.append("}");
         return sb.toString();
     }
@@ -117,6 +269,10 @@ public class DeleteOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
         hashCode = prime * hashCode
                 + ((getOtaUpdateId() == null) ? 0 : getOtaUpdateId().hashCode());
+        hashCode = prime * hashCode
+                + ((getDeleteStream() == null) ? 0 : getDeleteStream().hashCode());
+        hashCode = prime * hashCode
+                + ((getForceDeleteAWSJob() == null) ? 0 : getForceDeleteAWSJob().hashCode());
         return hashCode;
     }
 
@@ -135,6 +291,16 @@ public class DeleteOTAUpdateRequest extends AmazonWebServiceRequest implements S
             return false;
         if (other.getOtaUpdateId() != null
                 && other.getOtaUpdateId().equals(this.getOtaUpdateId()) == false)
+            return false;
+        if (other.getDeleteStream() == null ^ this.getDeleteStream() == null)
+            return false;
+        if (other.getDeleteStream() != null
+                && other.getDeleteStream().equals(this.getDeleteStream()) == false)
+            return false;
+        if (other.getForceDeleteAWSJob() == null ^ this.getForceDeleteAWSJob() == null)
+            return false;
+        if (other.getForceDeleteAWSJob() != null
+                && other.getForceDeleteAWSJob().equals(this.getForceDeleteAWSJob()) == false)
             return false;
         return true;
     }

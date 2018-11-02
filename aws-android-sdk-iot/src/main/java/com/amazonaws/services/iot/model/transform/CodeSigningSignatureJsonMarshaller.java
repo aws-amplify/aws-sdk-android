@@ -26,11 +26,6 @@ class CodeSigningSignatureJsonMarshaller {
     public void marshall(CodeSigningSignature codeSigningSignature, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
-        if (codeSigningSignature.getStream() != null) {
-            Stream stream = codeSigningSignature.getStream();
-            jsonWriter.name("stream");
-            StreamJsonMarshaller.getInstance().marshall(stream, jsonWriter);
-        }
         if (codeSigningSignature.getInlineDocument() != null) {
             java.nio.ByteBuffer inlineDocument = codeSigningSignature.getInlineDocument();
             jsonWriter.name("inlineDocument");

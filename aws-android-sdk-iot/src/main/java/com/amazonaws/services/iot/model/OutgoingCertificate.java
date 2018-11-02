@@ -47,7 +47,8 @@ public class OutgoingCertificate implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>[0-9]{12}<br/>
+     * <b>Length: </b>12 - 12<br/>
+     * <b>Pattern: </b>[0-9]+<br/>
      */
     private String transferredTo;
 
@@ -183,7 +184,8 @@ public class OutgoingCertificate implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>[0-9]{12}<br/>
+     * <b>Length: </b>12 - 12<br/>
+     * <b>Pattern: </b>[0-9]+<br/>
      *
      * @return <p>
      *         The AWS account to which the transfer was made.
@@ -199,7 +201,8 @@ public class OutgoingCertificate implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>[0-9]{12}<br/>
+     * <b>Length: </b>12 - 12<br/>
+     * <b>Pattern: </b>[0-9]+<br/>
      *
      * @param transferredTo <p>
      *            The AWS account to which the transfer was made.
@@ -218,7 +221,8 @@ public class OutgoingCertificate implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>[0-9]{12}<br/>
+     * <b>Length: </b>12 - 12<br/>
+     * <b>Pattern: </b>[0-9]+<br/>
      *
      * @param transferredTo <p>
      *            The AWS account to which the transfer was made.

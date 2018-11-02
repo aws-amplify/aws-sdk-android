@@ -1,5 +1,18 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.7.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.7.7)
+
+### Bug Fixes
+
+* **AWS IoT**
+  * Handle exception during `AWSIotMqttManager.connect` call and pass it through the status callback. See [issue #556](https://github.com/aws/aws-sdk-android/issues/556)
+
+### Misc. Updates
+
+* Generate Javadoc for Amazon Kinesis and Amazon Kinesis Firehose clients. See [issue #560](https://github.com/aws/aws-sdk-android/issues/560)
+* Model updates for the following services
+  * AWS IoT
+
 ## [Release 2.7.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.7.6)
 
 ### Bug Fixes

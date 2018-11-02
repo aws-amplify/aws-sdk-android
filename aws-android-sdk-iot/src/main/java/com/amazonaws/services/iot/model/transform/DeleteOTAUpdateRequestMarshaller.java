@@ -55,6 +55,14 @@ public class DeleteOTAUpdateRequestMarshaller implements
                 "{otaUpdateId}",
                 (deleteOTAUpdateRequest.getOtaUpdateId() == null) ? "" : StringUtils
                         .fromString(deleteOTAUpdateRequest.getOtaUpdateId()));
+        if (deleteOTAUpdateRequest.getDeleteStream() != null) {
+            request.addParameter("deleteStream",
+                    StringUtils.fromBoolean(deleteOTAUpdateRequest.getDeleteStream()));
+        }
+        if (deleteOTAUpdateRequest.getForceDeleteAWSJob() != null) {
+            request.addParameter("forceDeleteAWSJob",
+                    StringUtils.fromBoolean(deleteOTAUpdateRequest.getForceDeleteAWSJob()));
+        }
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.0");

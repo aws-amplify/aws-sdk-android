@@ -75,6 +75,13 @@ public class OTAUpdateInfo implements Serializable {
 
     /**
      * <p>
+     * Configuration for the rollout of OTA updates.
+     * </p>
+     */
+    private AwsJobExecutionsRolloutConfig awsJobExecutionsRolloutConfig;
+
+    /**
+     * <p>
      * Specifies whether the OTA update will continue to run (CONTINUOUS), or
      * will be complete after all those things specified as targets have
      * completed the OTA update (SNAPSHOT). If continuous, the OTA update may
@@ -455,6 +462,53 @@ public class OTAUpdateInfo implements Serializable {
      */
     public OTAUpdateInfo withTargets(java.util.Collection<String> targets) {
         setTargets(targets);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Configuration for the rollout of OTA updates.
+     * </p>
+     *
+     * @return <p>
+     *         Configuration for the rollout of OTA updates.
+     *         </p>
+     */
+    public AwsJobExecutionsRolloutConfig getAwsJobExecutionsRolloutConfig() {
+        return awsJobExecutionsRolloutConfig;
+    }
+
+    /**
+     * <p>
+     * Configuration for the rollout of OTA updates.
+     * </p>
+     *
+     * @param awsJobExecutionsRolloutConfig <p>
+     *            Configuration for the rollout of OTA updates.
+     *            </p>
+     */
+    public void setAwsJobExecutionsRolloutConfig(
+            AwsJobExecutionsRolloutConfig awsJobExecutionsRolloutConfig) {
+        this.awsJobExecutionsRolloutConfig = awsJobExecutionsRolloutConfig;
+    }
+
+    /**
+     * <p>
+     * Configuration for the rollout of OTA updates.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param awsJobExecutionsRolloutConfig <p>
+     *            Configuration for the rollout of OTA updates.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public OTAUpdateInfo withAwsJobExecutionsRolloutConfig(
+            AwsJobExecutionsRolloutConfig awsJobExecutionsRolloutConfig) {
+        this.awsJobExecutionsRolloutConfig = awsJobExecutionsRolloutConfig;
         return this;
     }
 
@@ -1036,6 +1090,8 @@ public class OTAUpdateInfo implements Serializable {
             sb.append("description: " + getDescription() + ",");
         if (getTargets() != null)
             sb.append("targets: " + getTargets() + ",");
+        if (getAwsJobExecutionsRolloutConfig() != null)
+            sb.append("awsJobExecutionsRolloutConfig: " + getAwsJobExecutionsRolloutConfig() + ",");
         if (getTargetSelection() != null)
             sb.append("targetSelection: " + getTargetSelection() + ",");
         if (getOtaUpdateFiles() != null)
@@ -1070,6 +1126,10 @@ public class OTAUpdateInfo implements Serializable {
         hashCode = prime * hashCode
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode + ((getTargets() == null) ? 0 : getTargets().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAwsJobExecutionsRolloutConfig() == null) ? 0
+                        : getAwsJobExecutionsRolloutConfig().hashCode());
         hashCode = prime * hashCode
                 + ((getTargetSelection() == null) ? 0 : getTargetSelection().hashCode());
         hashCode = prime * hashCode
@@ -1125,6 +1185,13 @@ public class OTAUpdateInfo implements Serializable {
         if (other.getTargets() == null ^ this.getTargets() == null)
             return false;
         if (other.getTargets() != null && other.getTargets().equals(this.getTargets()) == false)
+            return false;
+        if (other.getAwsJobExecutionsRolloutConfig() == null
+                ^ this.getAwsJobExecutionsRolloutConfig() == null)
+            return false;
+        if (other.getAwsJobExecutionsRolloutConfig() != null
+                && other.getAwsJobExecutionsRolloutConfig().equals(
+                        this.getAwsJobExecutionsRolloutConfig()) == false)
             return false;
         if (other.getTargetSelection() == null ^ this.getTargetSelection() == null)
             return false;

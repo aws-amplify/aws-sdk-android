@@ -41,6 +41,11 @@ public class SearchIndexResultJsonUnmarshaller implements
                         ThingDocumentJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("thingGroups")) {
+                searchIndexResult.setThingGroups(new ListUnmarshaller<ThingGroupDocument>(
+                        ThingGroupDocumentJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

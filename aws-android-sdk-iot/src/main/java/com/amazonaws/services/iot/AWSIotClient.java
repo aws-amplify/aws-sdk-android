@@ -49,6 +49,12 @@ import com.amazonaws.services.iot.model.transform.*;
  * "http://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html"
  * >Developer Guide</a>.
  * </p>
+ * <p>
+ * For information about how to use the credentials provider for AWS IoT, see <a
+ * href=
+ * "http://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html"
+ * >Authorizing Direct Calls to AWS Services</a>.
+ * </p>
  */
 public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
     /** Provider for AWS credentials. */
@@ -591,6 +597,61 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Associates a Device Defender security profile with a thing group or with
+     * this account. Each thing group or account can have up to five security
+     * profiles associated with it.
+     * </p>
+     * 
+     * @param attachSecurityProfileRequest
+     * @return attachSecurityProfileResult The response from the
+     *         AttachSecurityProfile service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws VersionConflictException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public AttachSecurityProfileResult attachSecurityProfile(
+            AttachSecurityProfileRequest attachSecurityProfileRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(attachSecurityProfileRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AttachSecurityProfileRequest> request = null;
+        Response<AttachSecurityProfileResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AttachSecurityProfileRequestMarshaller()
+                        .marshall(attachSecurityProfileRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AttachSecurityProfileResult, JsonUnmarshallerContext> unmarshaller = new AttachSecurityProfileResultJsonUnmarshaller();
+            JsonResponseHandler<AttachSecurityProfileResult> responseHandler = new JsonResponseHandler<AttachSecurityProfileResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Attaches the specified principal to the specified thing.
      * </p>
      * 
@@ -633,6 +694,57 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<AttachThingPrincipalResult, JsonUnmarshallerContext> unmarshaller = new AttachThingPrincipalResultJsonUnmarshaller();
             JsonResponseHandler<AttachThingPrincipalResult> responseHandler = new JsonResponseHandler<AttachThingPrincipalResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Cancels an audit that is in progress. The audit can be either scheduled
+     * or on-demand. If the audit is not in progress, an
+     * "InvalidRequestException" occurs.
+     * </p>
+     * 
+     * @param cancelAuditTaskRequest
+     * @return cancelAuditTaskResult The response from the CancelAuditTask
+     *         service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public CancelAuditTaskResult cancelAuditTask(CancelAuditTaskRequest cancelAuditTaskRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(cancelAuditTaskRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CancelAuditTaskRequest> request = null;
+        Response<CancelAuditTaskResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CancelAuditTaskRequestMarshaller().marshall(cancelAuditTaskRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CancelAuditTaskResult, JsonUnmarshallerContext> unmarshaller = new CancelAuditTaskResultJsonUnmarshaller();
+            JsonResponseHandler<CancelAuditTaskResult> responseHandler = new JsonResponseHandler<CancelAuditTaskResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1134,6 +1246,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * @return createOTAUpdateResult The response from the CreateOTAUpdate
      *         service method, as returned by AWS IoT.
      * @throws InvalidRequestException
+     * @throws LimitExceededException
      * @throws ResourceNotFoundException
      * @throws ResourceAlreadyExistsException
      * @throws ThrottlingException
@@ -1356,6 +1469,108 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Creates a scheduled audit that is run at a specified time interval.
+     * </p>
+     * 
+     * @param createScheduledAuditRequest
+     * @return createScheduledAuditResult The response from the
+     *         CreateScheduledAudit service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public CreateScheduledAuditResult createScheduledAudit(
+            CreateScheduledAuditRequest createScheduledAuditRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createScheduledAuditRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateScheduledAuditRequest> request = null;
+        Response<CreateScheduledAuditResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateScheduledAuditRequestMarshaller()
+                        .marshall(createScheduledAuditRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateScheduledAuditResult, JsonUnmarshallerContext> unmarshaller = new CreateScheduledAuditResultJsonUnmarshaller();
+            JsonResponseHandler<CreateScheduledAuditResult> responseHandler = new JsonResponseHandler<CreateScheduledAuditResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a Device Defender security profile.
+     * </p>
+     * 
+     * @param createSecurityProfileRequest
+     * @return createSecurityProfileResult The response from the
+     *         CreateSecurityProfile service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceAlreadyExistsException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public CreateSecurityProfileResult createSecurityProfile(
+            CreateSecurityProfileRequest createSecurityProfileRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createSecurityProfileRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateSecurityProfileRequest> request = null;
+        Response<CreateSecurityProfileResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateSecurityProfileRequestMarshaller()
+                        .marshall(createSecurityProfileRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateSecurityProfileResult, JsonUnmarshallerContext> unmarshaller = new CreateSecurityProfileResultJsonUnmarshaller();
+            JsonResponseHandler<CreateSecurityProfileResult> responseHandler = new JsonResponseHandler<CreateSecurityProfileResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Creates a stream for delivering one or more large files in chunks over
      * MQTT. A stream transports data bytes in chunks or blocks packaged as MQTT
      * messages from a source like S3. You can have one or more files associated
@@ -1370,6 +1585,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * @return createStreamResult The response from the CreateStream service
      *         method, as returned by AWS IoT.
      * @throws InvalidRequestException
+     * @throws LimitExceededException
      * @throws ResourceNotFoundException
      * @throws ResourceAlreadyExistsException
      * @throws ThrottlingException
@@ -1417,6 +1633,14 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * <p>
      * Creates a thing record in the registry.
      * </p>
+     * <note>
+     * <p>
+     * This is a control plane operation. See <a href=
+     * "http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html"
+     * >Authorization</a> for information about authorizing control plane
+     * actions.
+     * </p>
+     * </note>
      * 
      * @param createThingRequest <p>
      *            The input for the CreateThing operation.
@@ -1471,6 +1695,14 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * <p>
      * Create a thing group.
      * </p>
+     * <note>
+     * <p>
+     * This is a control plane operation. See <a href=
+     * "http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html"
+     * >Authorization</a> for information about authorizing control plane
+     * actions.
+     * </p>
+     * </note>
      * 
      * @param createThingGroupRequest
      * @return createThingGroupResult The response from the CreateThingGroup
@@ -1610,6 +1842,60 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
             invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Restores the default settings for Device Defender audits for this
+     * account. Any configuration data you entered is deleted and all audit
+     * checks are reset to disabled.
+     * </p>
+     * 
+     * @param deleteAccountAuditConfigurationRequest
+     * @return deleteAccountAuditConfigurationResult The response from the
+     *         DeleteAccountAuditConfiguration service method, as returned by
+     *         AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DeleteAccountAuditConfigurationResult deleteAccountAuditConfiguration(
+            DeleteAccountAuditConfigurationRequest deleteAccountAuditConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteAccountAuditConfigurationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteAccountAuditConfigurationRequest> request = null;
+        Response<DeleteAccountAuditConfigurationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteAccountAuditConfigurationRequestMarshaller()
+                        .marshall(deleteAccountAuditConfigurationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteAccountAuditConfigurationResult, JsonUnmarshallerContext> unmarshaller = new DeleteAccountAuditConfigurationResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteAccountAuditConfigurationResult> responseHandler = new JsonResponseHandler<DeleteAccountAuditConfigurationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
@@ -1893,6 +2179,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * @throws UnauthorizedException
      * @throws InternalFailureException
      * @throws ServiceUnavailableException
+     * @throws VersionConflictException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2137,6 +2424,108 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<DeleteRoleAliasResult, JsonUnmarshallerContext> unmarshaller = new DeleteRoleAliasResultJsonUnmarshaller();
             JsonResponseHandler<DeleteRoleAliasResult> responseHandler = new JsonResponseHandler<DeleteRoleAliasResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes a scheduled audit.
+     * </p>
+     * 
+     * @param deleteScheduledAuditRequest
+     * @return deleteScheduledAuditResult The response from the
+     *         DeleteScheduledAudit service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DeleteScheduledAuditResult deleteScheduledAudit(
+            DeleteScheduledAuditRequest deleteScheduledAuditRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteScheduledAuditRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteScheduledAuditRequest> request = null;
+        Response<DeleteScheduledAuditResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteScheduledAuditRequestMarshaller()
+                        .marshall(deleteScheduledAuditRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteScheduledAuditResult, JsonUnmarshallerContext> unmarshaller = new DeleteScheduledAuditResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteScheduledAuditResult> responseHandler = new JsonResponseHandler<DeleteScheduledAuditResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes a Device Defender security profile.
+     * </p>
+     * 
+     * @param deleteSecurityProfileRequest
+     * @return deleteSecurityProfileResult The response from the
+     *         DeleteSecurityProfile service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws VersionConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DeleteSecurityProfileResult deleteSecurityProfile(
+            DeleteSecurityProfileRequest deleteSecurityProfileRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteSecurityProfileRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteSecurityProfileRequest> request = null;
+        Response<DeleteSecurityProfileResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteSecurityProfileRequestMarshaller()
+                        .marshall(deleteSecurityProfileRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteSecurityProfileResult, JsonUnmarshallerContext> unmarshaller = new DeleteSecurityProfileResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteSecurityProfileResult> responseHandler = new JsonResponseHandler<DeleteSecurityProfileResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -2492,6 +2881,109 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<DeprecateThingTypeResult, JsonUnmarshallerContext> unmarshaller = new DeprecateThingTypeResultJsonUnmarshaller();
             JsonResponseHandler<DeprecateThingTypeResult> responseHandler = new JsonResponseHandler<DeprecateThingTypeResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets information about the Device Defender audit settings for this
+     * account. Settings include how audit notifications are sent and which
+     * audit checks are enabled or disabled.
+     * </p>
+     * 
+     * @param describeAccountAuditConfigurationRequest
+     * @return describeAccountAuditConfigurationResult The response from the
+     *         DescribeAccountAuditConfiguration service method, as returned by
+     *         AWS IoT.
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DescribeAccountAuditConfigurationResult describeAccountAuditConfiguration(
+            DescribeAccountAuditConfigurationRequest describeAccountAuditConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeAccountAuditConfigurationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeAccountAuditConfigurationRequest> request = null;
+        Response<DescribeAccountAuditConfigurationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeAccountAuditConfigurationRequestMarshaller()
+                        .marshall(describeAccountAuditConfigurationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeAccountAuditConfigurationResult, JsonUnmarshallerContext> unmarshaller = new DescribeAccountAuditConfigurationResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeAccountAuditConfigurationResult> responseHandler = new JsonResponseHandler<DescribeAccountAuditConfigurationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets information about a Device Defender audit.
+     * </p>
+     * 
+     * @param describeAuditTaskRequest
+     * @return describeAuditTaskResult The response from the DescribeAuditTask
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DescribeAuditTaskResult describeAuditTask(
+            DescribeAuditTaskRequest describeAuditTaskRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeAuditTaskRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeAuditTaskRequest> request = null;
+        Response<DescribeAuditTaskResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeAuditTaskRequestMarshaller()
+                        .marshall(describeAuditTaskRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeAuditTaskResult, JsonUnmarshallerContext> unmarshaller = new DescribeAuditTaskResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeAuditTaskResult> responseHandler = new JsonResponseHandler<DescribeAuditTaskResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -3026,6 +3518,108 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Gets information about a scheduled audit.
+     * </p>
+     * 
+     * @param describeScheduledAuditRequest
+     * @return describeScheduledAuditResult The response from the
+     *         DescribeScheduledAudit service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DescribeScheduledAuditResult describeScheduledAudit(
+            DescribeScheduledAuditRequest describeScheduledAuditRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeScheduledAuditRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeScheduledAuditRequest> request = null;
+        Response<DescribeScheduledAuditResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeScheduledAuditRequestMarshaller()
+                        .marshall(describeScheduledAuditRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeScheduledAuditResult, JsonUnmarshallerContext> unmarshaller = new DescribeScheduledAuditResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeScheduledAuditResult> responseHandler = new JsonResponseHandler<DescribeScheduledAuditResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets information about a Device Defender security profile.
+     * </p>
+     * 
+     * @param describeSecurityProfileRequest
+     * @return describeSecurityProfileResult The response from the
+     *         DescribeSecurityProfile service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DescribeSecurityProfileResult describeSecurityProfile(
+            DescribeSecurityProfileRequest describeSecurityProfileRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeSecurityProfileRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeSecurityProfileRequest> request = null;
+        Response<DescribeSecurityProfileResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeSecurityProfileRequestMarshaller()
+                        .marshall(describeSecurityProfileRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeSecurityProfileResult, JsonUnmarshallerContext> unmarshaller = new DescribeSecurityProfileResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeSecurityProfileResult> responseHandler = new JsonResponseHandler<DescribeSecurityProfileResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets information about a stream.
      * </p>
      * 
@@ -3385,6 +3979,58 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Disassociates a Device Defender security profile from a thing group or
+     * from this account.
+     * </p>
+     * 
+     * @param detachSecurityProfileRequest
+     * @return detachSecurityProfileResult The response from the
+     *         DetachSecurityProfile service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DetachSecurityProfileResult detachSecurityProfile(
+            DetachSecurityProfileRequest detachSecurityProfileRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(detachSecurityProfileRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DetachSecurityProfileRequest> request = null;
+        Response<DetachSecurityProfileResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DetachSecurityProfileRequestMarshaller()
+                        .marshall(detachSecurityProfileRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DetachSecurityProfileResult, JsonUnmarshallerContext> unmarshaller = new DetachSecurityProfileResultJsonUnmarshaller();
+            JsonResponseHandler<DetachSecurityProfileResult> responseHandler = new JsonResponseHandler<DetachSecurityProfileResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Detaches the specified principal from the specified thing.
      * </p>
      * 
@@ -3686,6 +4332,10 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
     /**
      * <p>
      * Gets the logging options.
+     * </p>
+     * <p>
+     * NOTE: use of this command is not recommended. Use
+     * <code>GetV2LoggingOptions</code> instead.
      * </p>
      * 
      * @param getLoggingOptionsRequest <p>
@@ -4007,7 +4657,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * @return getV2LoggingOptionsResult The response from the
      *         GetV2LoggingOptions service method, as returned by AWS IoT.
      * @throws InternalException
-     * @throws InvalidRequestException
+     * @throws NotConfiguredException
      * @throws ServiceUnavailableException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -4037,6 +4687,57 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<GetV2LoggingOptionsResult, JsonUnmarshallerContext> unmarshaller = new GetV2LoggingOptionsResultJsonUnmarshaller();
             JsonResponseHandler<GetV2LoggingOptionsResult> responseHandler = new JsonResponseHandler<GetV2LoggingOptionsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists the active violations for a given Device Defender security profile.
+     * </p>
+     * 
+     * @param listActiveViolationsRequest
+     * @return listActiveViolationsResult The response from the
+     *         ListActiveViolations service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListActiveViolationsResult listActiveViolations(
+            ListActiveViolationsRequest listActiveViolationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listActiveViolationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListActiveViolationsRequest> request = null;
+        Response<ListActiveViolationsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListActiveViolationsRequestMarshaller()
+                        .marshall(listActiveViolationsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListActiveViolationsResult, JsonUnmarshallerContext> unmarshaller = new ListActiveViolationsResultJsonUnmarshaller();
+            JsonResponseHandler<ListActiveViolationsResult> responseHandler = new JsonResponseHandler<ListActiveViolationsResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -4091,6 +4792,107 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<ListAttachedPoliciesResult, JsonUnmarshallerContext> unmarshaller = new ListAttachedPoliciesResultJsonUnmarshaller();
             JsonResponseHandler<ListAttachedPoliciesResult> responseHandler = new JsonResponseHandler<ListAttachedPoliciesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists the findings (results) of a Device Defender audit or of the audits
+     * performed during a specified time period. (Findings are retained for 180
+     * days.)
+     * </p>
+     * 
+     * @param listAuditFindingsRequest
+     * @return listAuditFindingsResult The response from the ListAuditFindings
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListAuditFindingsResult listAuditFindings(
+            ListAuditFindingsRequest listAuditFindingsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listAuditFindingsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListAuditFindingsRequest> request = null;
+        Response<ListAuditFindingsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListAuditFindingsRequestMarshaller()
+                        .marshall(listAuditFindingsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListAuditFindingsResult, JsonUnmarshallerContext> unmarshaller = new ListAuditFindingsResultJsonUnmarshaller();
+            JsonResponseHandler<ListAuditFindingsResult> responseHandler = new JsonResponseHandler<ListAuditFindingsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists the Device Defender audits that have been performed during a given
+     * time period.
+     * </p>
+     * 
+     * @param listAuditTasksRequest
+     * @return listAuditTasksResult The response from the ListAuditTasks service
+     *         method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListAuditTasksResult listAuditTasks(ListAuditTasksRequest listAuditTasksRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listAuditTasksRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListAuditTasksRequest> request = null;
+        Response<ListAuditTasksResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListAuditTasksRequestMarshaller().marshall(listAuditTasksRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListAuditTasksResult, JsonUnmarshallerContext> unmarshaller = new ListAuditTasksResultJsonUnmarshaller();
+            JsonResponseHandler<ListAuditTasksResult> responseHandler = new JsonResponseHandler<ListAuditTasksResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -4963,6 +5765,161 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Lists all of your scheduled audits.
+     * </p>
+     * 
+     * @param listScheduledAuditsRequest
+     * @return listScheduledAuditsResult The response from the
+     *         ListScheduledAudits service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListScheduledAuditsResult listScheduledAudits(
+            ListScheduledAuditsRequest listScheduledAuditsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listScheduledAuditsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListScheduledAuditsRequest> request = null;
+        Response<ListScheduledAuditsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListScheduledAuditsRequestMarshaller()
+                        .marshall(listScheduledAuditsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListScheduledAuditsResult, JsonUnmarshallerContext> unmarshaller = new ListScheduledAuditsResultJsonUnmarshaller();
+            JsonResponseHandler<ListScheduledAuditsResult> responseHandler = new JsonResponseHandler<ListScheduledAuditsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists the Device Defender security profiles you have created. You can use
+     * filters to list only those security profiles associated with a thing
+     * group or only those associated with your account.
+     * </p>
+     * 
+     * @param listSecurityProfilesRequest
+     * @return listSecurityProfilesResult The response from the
+     *         ListSecurityProfiles service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListSecurityProfilesResult listSecurityProfiles(
+            ListSecurityProfilesRequest listSecurityProfilesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listSecurityProfilesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListSecurityProfilesRequest> request = null;
+        Response<ListSecurityProfilesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListSecurityProfilesRequestMarshaller()
+                        .marshall(listSecurityProfilesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListSecurityProfilesResult, JsonUnmarshallerContext> unmarshaller = new ListSecurityProfilesResultJsonUnmarshaller();
+            JsonResponseHandler<ListSecurityProfilesResult> responseHandler = new JsonResponseHandler<ListSecurityProfilesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists the Device Defender security profiles attached to a target (thing
+     * group).
+     * </p>
+     * 
+     * @param listSecurityProfilesForTargetRequest
+     * @return listSecurityProfilesForTargetResult The response from the
+     *         ListSecurityProfilesForTarget service method, as returned by AWS
+     *         IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListSecurityProfilesForTargetResult listSecurityProfilesForTarget(
+            ListSecurityProfilesForTargetRequest listSecurityProfilesForTargetRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listSecurityProfilesForTargetRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListSecurityProfilesForTargetRequest> request = null;
+        Response<ListSecurityProfilesForTargetResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListSecurityProfilesForTargetRequestMarshaller()
+                        .marshall(listSecurityProfilesForTargetRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListSecurityProfilesForTargetResult, JsonUnmarshallerContext> unmarshaller = new ListSecurityProfilesForTargetResultJsonUnmarshaller();
+            JsonResponseHandler<ListSecurityProfilesForTargetResult> responseHandler = new JsonResponseHandler<ListSecurityProfilesForTargetResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Lists all of the streams in your AWS account.
      * </p>
      * 
@@ -5054,6 +6011,59 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<ListTargetsForPolicyResult, JsonUnmarshallerContext> unmarshaller = new ListTargetsForPolicyResultJsonUnmarshaller();
             JsonResponseHandler<ListTargetsForPolicyResult> responseHandler = new JsonResponseHandler<ListTargetsForPolicyResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists the targets (thing groups) associated with a given Device Defender
+     * security profile.
+     * </p>
+     * 
+     * @param listTargetsForSecurityProfileRequest
+     * @return listTargetsForSecurityProfileResult The response from the
+     *         ListTargetsForSecurityProfile service method, as returned by AWS
+     *         IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListTargetsForSecurityProfileResult listTargetsForSecurityProfile(
+            ListTargetsForSecurityProfileRequest listTargetsForSecurityProfileRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listTargetsForSecurityProfileRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListTargetsForSecurityProfileRequest> request = null;
+        Response<ListTargetsForSecurityProfileResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListTargetsForSecurityProfileRequestMarshaller()
+                        .marshall(listTargetsForSecurityProfileRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListTargetsForSecurityProfileResult, JsonUnmarshallerContext> unmarshaller = new ListTargetsForSecurityProfileResultJsonUnmarshaller();
+            JsonResponseHandler<ListTargetsForSecurityProfileResult> responseHandler = new JsonResponseHandler<ListTargetsForSecurityProfileResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -5583,6 +6593,59 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Lists the Device Defender security profile violations discovered during
+     * the given time period. You can use filters to limit the results to those
+     * alerts issued for a particular security profile, behavior or thing
+     * (device).
+     * </p>
+     * 
+     * @param listViolationEventsRequest
+     * @return listViolationEventsResult The response from the
+     *         ListViolationEvents service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListViolationEventsResult listViolationEvents(
+            ListViolationEventsRequest listViolationEventsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listViolationEventsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListViolationEventsRequest> request = null;
+        Response<ListViolationEventsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListViolationEventsRequestMarshaller()
+                        .marshall(listViolationEventsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListViolationEventsResult, JsonUnmarshallerContext> unmarshaller = new ListViolationEventsResultJsonUnmarshaller();
+            JsonResponseHandler<ListViolationEventsResult> responseHandler = new JsonResponseHandler<ListViolationEventsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Registers a CA certificate with AWS IoT. This CA certificate can then be
      * used to sign device certificates, which can be then registered with AWS
      * IoT. You can register up to 10 CA certificates per AWS account that have
@@ -6080,6 +7143,10 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * <p>
      * Sets the logging options.
      * </p>
+     * <p>
+     * NOTE: use of this command is not recommended. Use
+     * <code>SetV2LoggingOptions</code> instead.
+     * </p>
      * 
      * @param setLoggingOptionsRequest <p>
      *            The input for the SetLoggingOptions operation.
@@ -6199,6 +7266,57 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
             invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Starts an on-demand Device Defender audit.
+     * </p>
+     * 
+     * @param startOnDemandAuditTaskRequest
+     * @return startOnDemandAuditTaskResult The response from the
+     *         StartOnDemandAuditTask service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public StartOnDemandAuditTaskResult startOnDemandAuditTask(
+            StartOnDemandAuditTaskRequest startOnDemandAuditTaskRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(startOnDemandAuditTaskRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<StartOnDemandAuditTaskRequest> request = null;
+        Response<StartOnDemandAuditTaskResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new StartOnDemandAuditTaskRequestMarshaller()
+                        .marshall(startOnDemandAuditTaskRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<StartOnDemandAuditTaskResult, JsonUnmarshallerContext> unmarshaller = new StartOnDemandAuditTaskResultJsonUnmarshaller();
+            JsonResponseHandler<StartOnDemandAuditTaskResult> responseHandler = new JsonResponseHandler<StartOnDemandAuditTaskResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
@@ -6482,6 +7600,59 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<TransferCertificateResult, JsonUnmarshallerContext> unmarshaller = new TransferCertificateResultJsonUnmarshaller();
             JsonResponseHandler<TransferCertificateResult> responseHandler = new JsonResponseHandler<TransferCertificateResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Configures or reconfigures the Device Defender audit settings for this
+     * account. Settings include how audit notifications are sent and which
+     * audit checks are enabled or disabled.
+     * </p>
+     * 
+     * @param updateAccountAuditConfigurationRequest
+     * @return updateAccountAuditConfigurationResult The response from the
+     *         UpdateAccountAuditConfiguration service method, as returned by
+     *         AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public UpdateAccountAuditConfigurationResult updateAccountAuditConfiguration(
+            UpdateAccountAuditConfigurationRequest updateAccountAuditConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateAccountAuditConfigurationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateAccountAuditConfigurationRequest> request = null;
+        Response<UpdateAccountAuditConfigurationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateAccountAuditConfigurationRequestMarshaller()
+                        .marshall(updateAccountAuditConfigurationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateAccountAuditConfigurationResult, JsonUnmarshallerContext> unmarshaller = new UpdateAccountAuditConfigurationResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateAccountAuditConfigurationResult> responseHandler = new JsonResponseHandler<UpdateAccountAuditConfigurationResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -6806,6 +7977,110 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Updates a scheduled audit, including what checks are performed and how
+     * often the audit takes place.
+     * </p>
+     * 
+     * @param updateScheduledAuditRequest
+     * @return updateScheduledAuditResult The response from the
+     *         UpdateScheduledAudit service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public UpdateScheduledAuditResult updateScheduledAudit(
+            UpdateScheduledAuditRequest updateScheduledAuditRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateScheduledAuditRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateScheduledAuditRequest> request = null;
+        Response<UpdateScheduledAuditResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateScheduledAuditRequestMarshaller()
+                        .marshall(updateScheduledAuditRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateScheduledAuditResult, JsonUnmarshallerContext> unmarshaller = new UpdateScheduledAuditResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateScheduledAuditResult> responseHandler = new JsonResponseHandler<UpdateScheduledAuditResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates a Device Defender security profile.
+     * </p>
+     * 
+     * @param updateSecurityProfileRequest
+     * @return updateSecurityProfileResult The response from the
+     *         UpdateSecurityProfile service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws VersionConflictException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public UpdateSecurityProfileResult updateSecurityProfile(
+            UpdateSecurityProfileRequest updateSecurityProfileRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateSecurityProfileRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateSecurityProfileRequest> request = null;
+        Response<UpdateSecurityProfileResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateSecurityProfileRequestMarshaller()
+                        .marshall(updateSecurityProfileRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateSecurityProfileResult, JsonUnmarshallerContext> unmarshaller = new UpdateSecurityProfileResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateSecurityProfileResult> responseHandler = new JsonResponseHandler<UpdateSecurityProfileResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Updates an existing stream. The stream version will be incremented by
      * one.
      * </p>
@@ -7000,6 +8275,57 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<UpdateThingGroupsForThingResult, JsonUnmarshallerContext> unmarshaller = new UpdateThingGroupsForThingResultJsonUnmarshaller();
             JsonResponseHandler<UpdateThingGroupsForThingResult> responseHandler = new JsonResponseHandler<UpdateThingGroupsForThingResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Validates a Device Defender security profile behaviors specification.
+     * </p>
+     * 
+     * @param validateSecurityProfileBehaviorsRequest
+     * @return validateSecurityProfileBehaviorsResult The response from the
+     *         ValidateSecurityProfileBehaviors service method, as returned by
+     *         AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ValidateSecurityProfileBehaviorsResult validateSecurityProfileBehaviors(
+            ValidateSecurityProfileBehaviorsRequest validateSecurityProfileBehaviorsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(validateSecurityProfileBehaviorsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ValidateSecurityProfileBehaviorsRequest> request = null;
+        Response<ValidateSecurityProfileBehaviorsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ValidateSecurityProfileBehaviorsRequestMarshaller()
+                        .marshall(validateSecurityProfileBehaviorsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ValidateSecurityProfileBehaviorsResult, JsonUnmarshallerContext> unmarshaller = new ValidateSecurityProfileBehaviorsResultJsonUnmarshaller();
+            JsonResponseHandler<ValidateSecurityProfileBehaviorsResult> responseHandler = new JsonResponseHandler<ValidateSecurityProfileBehaviorsResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

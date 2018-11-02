@@ -35,10 +35,10 @@ class OTAUpdateFileJsonMarshaller {
             jsonWriter.name("fileVersion");
             jsonWriter.value(fileVersion);
         }
-        if (oTAUpdateFile.getFileSource() != null) {
-            Stream fileSource = oTAUpdateFile.getFileSource();
-            jsonWriter.name("fileSource");
-            StreamJsonMarshaller.getInstance().marshall(fileSource, jsonWriter);
+        if (oTAUpdateFile.getFileLocation() != null) {
+            FileLocation fileLocation = oTAUpdateFile.getFileLocation();
+            jsonWriter.name("fileLocation");
+            FileLocationJsonMarshaller.getInstance().marshall(fileLocation, jsonWriter);
         }
         if (oTAUpdateFile.getCodeSigning() != null) {
             CodeSigning codeSigning = oTAUpdateFile.getCodeSigning();

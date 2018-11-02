@@ -85,6 +85,14 @@ public class JobProcessDetails implements Serializable {
 
     /**
      * <p>
+     * The number of things whose job execution status is <code>TIMED_OUT</code>
+     * .
+     * </p>
+     */
+    private Integer numberOfTimedOutThings;
+
+    /**
+     * <p>
      * The target devices to which the job execution is being rolled out. This
      * value will be null after the job execution has finished rolling out to
      * all the target devices.
@@ -501,6 +509,57 @@ public class JobProcessDetails implements Serializable {
     }
 
     /**
+     * <p>
+     * The number of things whose job execution status is <code>TIMED_OUT</code>
+     * .
+     * </p>
+     *
+     * @return <p>
+     *         The number of things whose job execution status is
+     *         <code>TIMED_OUT</code>.
+     *         </p>
+     */
+    public Integer getNumberOfTimedOutThings() {
+        return numberOfTimedOutThings;
+    }
+
+    /**
+     * <p>
+     * The number of things whose job execution status is <code>TIMED_OUT</code>
+     * .
+     * </p>
+     *
+     * @param numberOfTimedOutThings <p>
+     *            The number of things whose job execution status is
+     *            <code>TIMED_OUT</code>.
+     *            </p>
+     */
+    public void setNumberOfTimedOutThings(Integer numberOfTimedOutThings) {
+        this.numberOfTimedOutThings = numberOfTimedOutThings;
+    }
+
+    /**
+     * <p>
+     * The number of things whose job execution status is <code>TIMED_OUT</code>
+     * .
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param numberOfTimedOutThings <p>
+     *            The number of things whose job execution status is
+     *            <code>TIMED_OUT</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public JobProcessDetails withNumberOfTimedOutThings(Integer numberOfTimedOutThings) {
+        this.numberOfTimedOutThings = numberOfTimedOutThings;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -526,7 +585,9 @@ public class JobProcessDetails implements Serializable {
         if (getNumberOfInProgressThings() != null)
             sb.append("numberOfInProgressThings: " + getNumberOfInProgressThings() + ",");
         if (getNumberOfRemovedThings() != null)
-            sb.append("numberOfRemovedThings: " + getNumberOfRemovedThings());
+            sb.append("numberOfRemovedThings: " + getNumberOfRemovedThings() + ",");
+        if (getNumberOfTimedOutThings() != null)
+            sb.append("numberOfTimedOutThings: " + getNumberOfTimedOutThings());
         sb.append("}");
         return sb.toString();
     }
@@ -561,6 +622,10 @@ public class JobProcessDetails implements Serializable {
         hashCode = prime
                 * hashCode
                 + ((getNumberOfRemovedThings() == null) ? 0 : getNumberOfRemovedThings().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getNumberOfTimedOutThings() == null) ? 0 : getNumberOfTimedOutThings()
+                        .hashCode());
         return hashCode;
     }
 
@@ -615,6 +680,11 @@ public class JobProcessDetails implements Serializable {
             return false;
         if (other.getNumberOfRemovedThings() != null
                 && other.getNumberOfRemovedThings().equals(this.getNumberOfRemovedThings()) == false)
+            return false;
+        if (other.getNumberOfTimedOutThings() == null ^ this.getNumberOfTimedOutThings() == null)
+            return false;
+        if (other.getNumberOfTimedOutThings() != null
+                && other.getNumberOfTimedOutThings().equals(this.getNumberOfTimedOutThings()) == false)
             return false;
         return true;
     }

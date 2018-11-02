@@ -36,10 +36,7 @@ class CodeSigningCertificateChainJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("stream")) {
-                codeSigningCertificateChain.setStream(StreamJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("certificateName")) {
+            if (name.equals("certificateName")) {
                 codeSigningCertificateChain.setCertificateName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("inlineDocument")) {

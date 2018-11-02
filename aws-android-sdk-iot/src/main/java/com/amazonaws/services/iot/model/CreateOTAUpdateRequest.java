@@ -72,6 +72,13 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
+     * Configuration for the rollout of OTA updates.
+     * </p>
+     */
+    private AwsJobExecutionsRolloutConfig awsJobExecutionsRolloutConfig;
+
+    /**
+     * <p>
      * The files to be streamed by the OTA update.
      * </p>
      */
@@ -446,6 +453,53 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
+     * Configuration for the rollout of OTA updates.
+     * </p>
+     *
+     * @return <p>
+     *         Configuration for the rollout of OTA updates.
+     *         </p>
+     */
+    public AwsJobExecutionsRolloutConfig getAwsJobExecutionsRolloutConfig() {
+        return awsJobExecutionsRolloutConfig;
+    }
+
+    /**
+     * <p>
+     * Configuration for the rollout of OTA updates.
+     * </p>
+     *
+     * @param awsJobExecutionsRolloutConfig <p>
+     *            Configuration for the rollout of OTA updates.
+     *            </p>
+     */
+    public void setAwsJobExecutionsRolloutConfig(
+            AwsJobExecutionsRolloutConfig awsJobExecutionsRolloutConfig) {
+        this.awsJobExecutionsRolloutConfig = awsJobExecutionsRolloutConfig;
+    }
+
+    /**
+     * <p>
+     * Configuration for the rollout of OTA updates.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param awsJobExecutionsRolloutConfig <p>
+     *            Configuration for the rollout of OTA updates.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateOTAUpdateRequest withAwsJobExecutionsRolloutConfig(
+            AwsJobExecutionsRolloutConfig awsJobExecutionsRolloutConfig) {
+        this.awsJobExecutionsRolloutConfig = awsJobExecutionsRolloutConfig;
+        return this;
+    }
+
+    /**
+     * <p>
      * The files to be streamed by the OTA update.
      * </p>
      *
@@ -677,6 +731,8 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
             sb.append("targets: " + getTargets() + ",");
         if (getTargetSelection() != null)
             sb.append("targetSelection: " + getTargetSelection() + ",");
+        if (getAwsJobExecutionsRolloutConfig() != null)
+            sb.append("awsJobExecutionsRolloutConfig: " + getAwsJobExecutionsRolloutConfig() + ",");
         if (getFiles() != null)
             sb.append("files: " + getFiles() + ",");
         if (getRoleArn() != null)
@@ -699,6 +755,10 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
         hashCode = prime * hashCode + ((getTargets() == null) ? 0 : getTargets().hashCode());
         hashCode = prime * hashCode
                 + ((getTargetSelection() == null) ? 0 : getTargetSelection().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAwsJobExecutionsRolloutConfig() == null) ? 0
+                        : getAwsJobExecutionsRolloutConfig().hashCode());
         hashCode = prime * hashCode + ((getFiles() == null) ? 0 : getFiles().hashCode());
         hashCode = prime * hashCode + ((getRoleArn() == null) ? 0 : getRoleArn().hashCode());
         hashCode = prime * hashCode
@@ -735,6 +795,13 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
             return false;
         if (other.getTargetSelection() != null
                 && other.getTargetSelection().equals(this.getTargetSelection()) == false)
+            return false;
+        if (other.getAwsJobExecutionsRolloutConfig() == null
+                ^ this.getAwsJobExecutionsRolloutConfig() == null)
+            return false;
+        if (other.getAwsJobExecutionsRolloutConfig() != null
+                && other.getAwsJobExecutionsRolloutConfig().equals(
+                        this.getAwsJobExecutionsRolloutConfig()) == false)
             return false;
         if (other.getFiles() == null ^ this.getFiles() == null)
             return false;

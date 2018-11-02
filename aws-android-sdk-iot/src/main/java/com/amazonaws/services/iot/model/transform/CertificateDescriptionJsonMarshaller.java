@@ -86,6 +86,11 @@ class CertificateDescriptionJsonMarshaller {
             jsonWriter.name("generationId");
             jsonWriter.value(generationId);
         }
+        if (certificateDescription.getValidity() != null) {
+            CertificateValidity validity = certificateDescription.getValidity();
+            jsonWriter.name("validity");
+            CertificateValidityJsonMarshaller.getInstance().marshall(validity, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

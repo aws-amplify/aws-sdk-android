@@ -39,6 +39,11 @@ public class GetIndexingConfigurationResultJsonUnmarshaller implements
                         .setThingIndexingConfiguration(ThingIndexingConfigurationJsonUnmarshaller
                                 .getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("thingGroupIndexingConfiguration")) {
+                getIndexingConfigurationResult
+                        .setThingGroupIndexingConfiguration(ThingGroupIndexingConfigurationJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

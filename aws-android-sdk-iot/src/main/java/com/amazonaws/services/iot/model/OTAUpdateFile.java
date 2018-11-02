@@ -39,10 +39,10 @@ public class OTAUpdateFile implements Serializable {
 
     /**
      * <p>
-     * The source of the file.
+     * The location of the updated firmware.
      * </p>
      */
-    private Stream fileSource;
+    private FileLocation fileLocation;
 
     /**
      * <p>
@@ -150,46 +150,46 @@ public class OTAUpdateFile implements Serializable {
 
     /**
      * <p>
-     * The source of the file.
+     * The location of the updated firmware.
      * </p>
      *
      * @return <p>
-     *         The source of the file.
+     *         The location of the updated firmware.
      *         </p>
      */
-    public Stream getFileSource() {
-        return fileSource;
+    public FileLocation getFileLocation() {
+        return fileLocation;
     }
 
     /**
      * <p>
-     * The source of the file.
+     * The location of the updated firmware.
      * </p>
      *
-     * @param fileSource <p>
-     *            The source of the file.
+     * @param fileLocation <p>
+     *            The location of the updated firmware.
      *            </p>
      */
-    public void setFileSource(Stream fileSource) {
-        this.fileSource = fileSource;
+    public void setFileLocation(FileLocation fileLocation) {
+        this.fileLocation = fileLocation;
     }
 
     /**
      * <p>
-     * The source of the file.
+     * The location of the updated firmware.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param fileSource <p>
-     *            The source of the file.
+     * @param fileLocation <p>
+     *            The location of the updated firmware.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public OTAUpdateFile withFileSource(Stream fileSource) {
-        this.fileSource = fileSource;
+    public OTAUpdateFile withFileLocation(FileLocation fileLocation) {
+        this.fileLocation = fileLocation;
         return this;
     }
 
@@ -335,8 +335,8 @@ public class OTAUpdateFile implements Serializable {
             sb.append("fileName: " + getFileName() + ",");
         if (getFileVersion() != null)
             sb.append("fileVersion: " + getFileVersion() + ",");
-        if (getFileSource() != null)
-            sb.append("fileSource: " + getFileSource() + ",");
+        if (getFileLocation() != null)
+            sb.append("fileLocation: " + getFileLocation() + ",");
         if (getCodeSigning() != null)
             sb.append("codeSigning: " + getCodeSigning() + ",");
         if (getAttributes() != null)
@@ -353,7 +353,8 @@ public class OTAUpdateFile implements Serializable {
         hashCode = prime * hashCode + ((getFileName() == null) ? 0 : getFileName().hashCode());
         hashCode = prime * hashCode
                 + ((getFileVersion() == null) ? 0 : getFileVersion().hashCode());
-        hashCode = prime * hashCode + ((getFileSource() == null) ? 0 : getFileSource().hashCode());
+        hashCode = prime * hashCode
+                + ((getFileLocation() == null) ? 0 : getFileLocation().hashCode());
         hashCode = prime * hashCode
                 + ((getCodeSigning() == null) ? 0 : getCodeSigning().hashCode());
         hashCode = prime * hashCode + ((getAttributes() == null) ? 0 : getAttributes().hashCode());
@@ -380,10 +381,10 @@ public class OTAUpdateFile implements Serializable {
         if (other.getFileVersion() != null
                 && other.getFileVersion().equals(this.getFileVersion()) == false)
             return false;
-        if (other.getFileSource() == null ^ this.getFileSource() == null)
+        if (other.getFileLocation() == null ^ this.getFileLocation() == null)
             return false;
-        if (other.getFileSource() != null
-                && other.getFileSource().equals(this.getFileSource()) == false)
+        if (other.getFileLocation() != null
+                && other.getFileLocation().equals(this.getFileLocation()) == false)
             return false;
         if (other.getCodeSigning() == null ^ this.getCodeSigning() == null)
             return false;

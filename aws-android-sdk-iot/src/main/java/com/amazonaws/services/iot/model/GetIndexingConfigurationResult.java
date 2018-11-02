@@ -27,6 +27,13 @@ public class GetIndexingConfigurationResult implements Serializable {
 
     /**
      * <p>
+     * The index configuration.
+     * </p>
+     */
+    private ThingGroupIndexingConfiguration thingGroupIndexingConfiguration;
+
+    /**
+     * <p>
      * Thing indexing configuration.
      * </p>
      *
@@ -72,6 +79,53 @@ public class GetIndexingConfigurationResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The index configuration.
+     * </p>
+     *
+     * @return <p>
+     *         The index configuration.
+     *         </p>
+     */
+    public ThingGroupIndexingConfiguration getThingGroupIndexingConfiguration() {
+        return thingGroupIndexingConfiguration;
+    }
+
+    /**
+     * <p>
+     * The index configuration.
+     * </p>
+     *
+     * @param thingGroupIndexingConfiguration <p>
+     *            The index configuration.
+     *            </p>
+     */
+    public void setThingGroupIndexingConfiguration(
+            ThingGroupIndexingConfiguration thingGroupIndexingConfiguration) {
+        this.thingGroupIndexingConfiguration = thingGroupIndexingConfiguration;
+    }
+
+    /**
+     * <p>
+     * The index configuration.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param thingGroupIndexingConfiguration <p>
+     *            The index configuration.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetIndexingConfigurationResult withThingGroupIndexingConfiguration(
+            ThingGroupIndexingConfiguration thingGroupIndexingConfiguration) {
+        this.thingGroupIndexingConfiguration = thingGroupIndexingConfiguration;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -83,7 +137,9 @@ public class GetIndexingConfigurationResult implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getThingIndexingConfiguration() != null)
-            sb.append("thingIndexingConfiguration: " + getThingIndexingConfiguration());
+            sb.append("thingIndexingConfiguration: " + getThingIndexingConfiguration() + ",");
+        if (getThingGroupIndexingConfiguration() != null)
+            sb.append("thingGroupIndexingConfiguration: " + getThingGroupIndexingConfiguration());
         sb.append("}");
         return sb.toString();
     }
@@ -97,6 +153,10 @@ public class GetIndexingConfigurationResult implements Serializable {
                 * hashCode
                 + ((getThingIndexingConfiguration() == null) ? 0 : getThingIndexingConfiguration()
                         .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getThingGroupIndexingConfiguration() == null) ? 0
+                        : getThingGroupIndexingConfiguration().hashCode());
         return hashCode;
     }
 
@@ -117,6 +177,13 @@ public class GetIndexingConfigurationResult implements Serializable {
         if (other.getThingIndexingConfiguration() != null
                 && other.getThingIndexingConfiguration().equals(
                         this.getThingIndexingConfiguration()) == false)
+            return false;
+        if (other.getThingGroupIndexingConfiguration() == null
+                ^ this.getThingGroupIndexingConfiguration() == null)
+            return false;
+        if (other.getThingGroupIndexingConfiguration() != null
+                && other.getThingGroupIndexingConfiguration().equals(
+                        this.getThingGroupIndexingConfiguration()) == false)
             return false;
         return true;
     }

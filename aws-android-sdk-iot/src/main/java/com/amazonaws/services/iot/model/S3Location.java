@@ -19,13 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The location in S3 the contains the files to stream.
+ * The S3 location.
  * </p>
  */
 public class S3Location implements Serializable {
     /**
      * <p>
-     * The S3 bucket that contains the file to stream.
+     * The S3 bucket.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -35,7 +35,7 @@ public class S3Location implements Serializable {
 
     /**
      * <p>
-     * The name of the file within the S3 bucket to stream.
+     * The S3 key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,21 +45,21 @@ public class S3Location implements Serializable {
 
     /**
      * <p>
-     * The file version.
+     * The S3 bucket version.
      * </p>
      */
     private String version;
 
     /**
      * <p>
-     * The S3 bucket that contains the file to stream.
+     * The S3 bucket.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         The S3 bucket that contains the file to stream.
+     *         The S3 bucket.
      *         </p>
      */
     public String getBucket() {
@@ -68,14 +68,14 @@ public class S3Location implements Serializable {
 
     /**
      * <p>
-     * The S3 bucket that contains the file to stream.
+     * The S3 bucket.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param bucket <p>
-     *            The S3 bucket that contains the file to stream.
+     *            The S3 bucket.
      *            </p>
      */
     public void setBucket(String bucket) {
@@ -84,7 +84,7 @@ public class S3Location implements Serializable {
 
     /**
      * <p>
-     * The S3 bucket that contains the file to stream.
+     * The S3 bucket.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -94,7 +94,7 @@ public class S3Location implements Serializable {
      * <b>Length: </b>1 - <br/>
      *
      * @param bucket <p>
-     *            The S3 bucket that contains the file to stream.
+     *            The S3 bucket.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -106,14 +106,14 @@ public class S3Location implements Serializable {
 
     /**
      * <p>
-     * The name of the file within the S3 bucket to stream.
+     * The S3 key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         The name of the file within the S3 bucket to stream.
+     *         The S3 key.
      *         </p>
      */
     public String getKey() {
@@ -122,14 +122,14 @@ public class S3Location implements Serializable {
 
     /**
      * <p>
-     * The name of the file within the S3 bucket to stream.
+     * The S3 key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param key <p>
-     *            The name of the file within the S3 bucket to stream.
+     *            The S3 key.
      *            </p>
      */
     public void setKey(String key) {
@@ -138,7 +138,7 @@ public class S3Location implements Serializable {
 
     /**
      * <p>
-     * The name of the file within the S3 bucket to stream.
+     * The S3 key.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -148,7 +148,7 @@ public class S3Location implements Serializable {
      * <b>Length: </b>1 - <br/>
      *
      * @param key <p>
-     *            The name of the file within the S3 bucket to stream.
+     *            The S3 key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -160,11 +160,11 @@ public class S3Location implements Serializable {
 
     /**
      * <p>
-     * The file version.
+     * The S3 bucket version.
      * </p>
      *
      * @return <p>
-     *         The file version.
+     *         The S3 bucket version.
      *         </p>
      */
     public String getVersion() {
@@ -173,11 +173,11 @@ public class S3Location implements Serializable {
 
     /**
      * <p>
-     * The file version.
+     * The S3 bucket version.
      * </p>
      *
      * @param version <p>
-     *            The file version.
+     *            The S3 bucket version.
      *            </p>
      */
     public void setVersion(String version) {
@@ -186,14 +186,14 @@ public class S3Location implements Serializable {
 
     /**
      * <p>
-     * The file version.
+     * The S3 bucket version.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param version <p>
-     *            The file version.
+     *            The S3 bucket version.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

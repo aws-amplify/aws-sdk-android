@@ -41,8 +41,8 @@ class OTAUpdateFileJsonUnmarshaller implements Unmarshaller<OTAUpdateFile, JsonU
             } else if (name.equals("fileVersion")) {
                 oTAUpdateFile.setFileVersion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("fileSource")) {
-                oTAUpdateFile.setFileSource(StreamJsonUnmarshaller.getInstance()
+            } else if (name.equals("fileLocation")) {
+                oTAUpdateFile.setFileLocation(FileLocationJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("codeSigning")) {
                 oTAUpdateFile.setCodeSigning(CodeSigningJsonUnmarshaller.getInstance()

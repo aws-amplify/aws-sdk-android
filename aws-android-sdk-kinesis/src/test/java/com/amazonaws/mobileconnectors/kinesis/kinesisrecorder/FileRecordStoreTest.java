@@ -35,8 +35,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.security.SecureRandom;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -279,21 +280,17 @@ public class FileRecordStoreTest {
         final FileRecordStore recordStore = new FileRecordStore(TEST_DIRECTORY,
                 RECORDER_FILE_NAME, MAX_STORAGE_SIZE);
 
-        final Map<Long, Long> threadWrites = new HashMap<Long, Long>();
-
         final CountDownLatch latch = new CountDownLatch(10000);
 
         long start = System.currentTimeMillis();
         ExecutorService threadPool = Executors.newFixedThreadPool(10);
         for (int i = 0; i < 10000; i++) {
+            final String recordStr = "" + i;
             threadPool.execute(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                        Long eventsWritten = threadWrites.get(Thread.currentThread().getId());
-                        eventsWritten = (eventsWritten == null) ? 0L : eventsWritten;
-                        threadWrites.put(Thread.currentThread().getId(), ++eventsWritten);
-                        recordStore.put(String.valueOf(Thread.currentThread().getId()));
+                        recordStore.put(recordStr);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     } finally {
@@ -311,21 +308,17 @@ public class FileRecordStoreTest {
         long end = System.currentTimeMillis();
         assertFalse(end - start > 10000);
 
-        final Map<Long, Long> actualThreadWrites = new HashMap<Long, Long>();
+        final List<Long> recordList = new LinkedList<Long>();
         RecordIterator iter = recordStore.iterator();
         while (iter.hasNext()) {
             String next = iter.next();
-            Long id = Long.valueOf(next);
-            Long eventsWritten = actualThreadWrites.get(id);
-            eventsWritten = (eventsWritten == null) ? 0L : eventsWritten;
-            actualThreadWrites.put(id, ++eventsWritten);
+            recordList.add(Long.valueOf(next));
         }
 
-        for (Map.Entry<Long, Long> entry : threadWrites.entrySet()) {
-            assertTrue(actualThreadWrites.containsKey(entry.getKey()));
-            assertEquals(entry.getValue(), actualThreadWrites.get(entry.getKey()));
+        Collections.sort(recordList);
+        for (int i = 0; i < 10000; ++i) {
+            assertEquals(Long.valueOf(i), recordList.get(i));
         }
-
     }
 
     private int getNumberOfLinesInFile(final FileManager fileManager) throws NumberFormatException,

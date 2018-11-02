@@ -79,11 +79,9 @@ class JobJsonUnmarshaller implements Unmarshaller<Job, JsonUnmarshallerContext> 
             } else if (name.equals("jobProcessDetails")) {
                 job.setJobProcessDetails(JobProcessDetailsJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("documentParameters")) {
-                job.setDocumentParameters(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+            } else if (name.equals("timeoutConfig")) {
+                job.setTimeoutConfig(TimeoutConfigJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

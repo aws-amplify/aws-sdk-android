@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class RegisterThingResult implements Serializable {
     /**
      * <p>
-     * The PEM of a certificate.
+     * .
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -37,14 +37,14 @@ public class RegisterThingResult implements Serializable {
 
     /**
      * <p>
-     * The PEM of a certificate.
+     * .
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65536<br/>
      *
      * @return <p>
-     *         The PEM of a certificate.
+     *         .
      *         </p>
      */
     public String getCertificatePem() {
@@ -53,14 +53,14 @@ public class RegisterThingResult implements Serializable {
 
     /**
      * <p>
-     * The PEM of a certificate.
+     * .
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65536<br/>
      *
      * @param certificatePem <p>
-     *            The PEM of a certificate.
+     *            .
      *            </p>
      */
     public void setCertificatePem(String certificatePem) {
@@ -69,7 +69,7 @@ public class RegisterThingResult implements Serializable {
 
     /**
      * <p>
-     * The PEM of a certificate.
+     * .
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -79,7 +79,7 @@ public class RegisterThingResult implements Serializable {
      * <b>Length: </b>1 - 65536<br/>
      *
      * @param certificatePem <p>
-     *            The PEM of a certificate.
+     *            .
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

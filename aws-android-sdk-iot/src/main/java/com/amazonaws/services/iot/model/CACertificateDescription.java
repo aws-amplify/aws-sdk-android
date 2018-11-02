@@ -67,7 +67,8 @@ public class CACertificateDescription implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>[0-9]{12}<br/>
+     * <b>Length: </b>12 - 12<br/>
+     * <b>Pattern: </b>[0-9]+<br/>
      */
     private String ownedBy;
 
@@ -112,6 +113,13 @@ public class CACertificateDescription implements Serializable {
      * </p>
      */
     private String generationId;
+
+    /**
+     * <p>
+     * When the CA certificate is valid.
+     * </p>
+     */
+    private CertificateValidity validity;
 
     /**
      * <p>
@@ -372,7 +380,8 @@ public class CACertificateDescription implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>[0-9]{12}<br/>
+     * <b>Length: </b>12 - 12<br/>
+     * <b>Pattern: </b>[0-9]+<br/>
      *
      * @return <p>
      *         The owner of the CA certificate.
@@ -388,7 +397,8 @@ public class CACertificateDescription implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>[0-9]{12}<br/>
+     * <b>Length: </b>12 - 12<br/>
+     * <b>Pattern: </b>[0-9]+<br/>
      *
      * @param ownedBy <p>
      *            The owner of the CA certificate.
@@ -407,7 +417,8 @@ public class CACertificateDescription implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>[0-9]{12}<br/>
+     * <b>Length: </b>12 - 12<br/>
+     * <b>Pattern: </b>[0-9]+<br/>
      *
      * @param ownedBy <p>
      *            The owner of the CA certificate.
@@ -718,6 +729,51 @@ public class CACertificateDescription implements Serializable {
     }
 
     /**
+     * <p>
+     * When the CA certificate is valid.
+     * </p>
+     *
+     * @return <p>
+     *         When the CA certificate is valid.
+     *         </p>
+     */
+    public CertificateValidity getValidity() {
+        return validity;
+    }
+
+    /**
+     * <p>
+     * When the CA certificate is valid.
+     * </p>
+     *
+     * @param validity <p>
+     *            When the CA certificate is valid.
+     *            </p>
+     */
+    public void setValidity(CertificateValidity validity) {
+        this.validity = validity;
+    }
+
+    /**
+     * <p>
+     * When the CA certificate is valid.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param validity <p>
+     *            When the CA certificate is valid.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CACertificateDescription withValidity(CertificateValidity validity) {
+        this.validity = validity;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -747,7 +803,9 @@ public class CACertificateDescription implements Serializable {
         if (getCustomerVersion() != null)
             sb.append("customerVersion: " + getCustomerVersion() + ",");
         if (getGenerationId() != null)
-            sb.append("generationId: " + getGenerationId());
+            sb.append("generationId: " + getGenerationId() + ",");
+        if (getValidity() != null)
+            sb.append("validity: " + getValidity());
         sb.append("}");
         return sb.toString();
     }
@@ -777,6 +835,7 @@ public class CACertificateDescription implements Serializable {
                 + ((getCustomerVersion() == null) ? 0 : getCustomerVersion().hashCode());
         hashCode = prime * hashCode
                 + ((getGenerationId() == null) ? 0 : getGenerationId().hashCode());
+        hashCode = prime * hashCode + ((getValidity() == null) ? 0 : getValidity().hashCode());
         return hashCode;
     }
 
@@ -838,6 +897,10 @@ public class CACertificateDescription implements Serializable {
             return false;
         if (other.getGenerationId() != null
                 && other.getGenerationId().equals(this.getGenerationId()) == false)
+            return false;
+        if (other.getValidity() == null ^ this.getValidity() == null)
+            return false;
+        if (other.getValidity() != null && other.getValidity().equals(this.getValidity()) == false)
             return false;
         return true;
     }

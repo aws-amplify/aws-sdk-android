@@ -36,10 +36,7 @@ class CodeSigningSignatureJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("stream")) {
-                codeSigningSignature.setStream(StreamJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("inlineDocument")) {
+            if (name.equals("inlineDocument")) {
                 codeSigningSignature.setInlineDocument(ByteBufferJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {

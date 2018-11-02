@@ -35,6 +35,12 @@ import com.amazonaws.services.iot.model.*;
  * "http://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html"
  * >Developer Guide</a>.
  * </p>
+ * <p>
+ * For information about how to use the credentials provider for AWS IoT, see <a
+ * href=
+ * "http://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html"
+ * >Authorizing Direct Calls to AWS Services</a>.
+ * </p>
  **/
 public interface AWSIot {
 
@@ -253,6 +259,34 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Associates a Device Defender security profile with a thing group or with
+     * this account. Each thing group or account can have up to five security
+     * profiles associated with it.
+     * </p>
+     * 
+     * @param attachSecurityProfileRequest
+     * @return attachSecurityProfileResult The response from the
+     *         AttachSecurityProfile service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws VersionConflictException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    AttachSecurityProfileResult attachSecurityProfile(
+            AttachSecurityProfileRequest attachSecurityProfileRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Attaches the specified principal to the specified thing.
      * </p>
      * 
@@ -278,6 +312,31 @@ public interface AWSIot {
     AttachThingPrincipalResult attachThingPrincipal(
             AttachThingPrincipalRequest attachThingPrincipalRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Cancels an audit that is in progress. The audit can be either scheduled
+     * or on-demand. If the audit is not in progress, an
+     * "InvalidRequestException" occurs.
+     * </p>
+     * 
+     * @param cancelAuditTaskRequest
+     * @return cancelAuditTaskResult The response from the CancelAuditTask
+     *         service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CancelAuditTaskResult cancelAuditTask(CancelAuditTaskRequest cancelAuditTaskRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -565,6 +624,7 @@ public interface AWSIot {
      * @return createOTAUpdateResult The response from the CreateOTAUpdate
      *         service method, as returned by AWS IoT.
      * @throws InvalidRequestException
+     * @throws LimitExceededException
      * @throws ResourceNotFoundException
      * @throws ResourceAlreadyExistsException
      * @throws ThrottlingException
@@ -682,6 +742,54 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Creates a scheduled audit that is run at a specified time interval.
+     * </p>
+     * 
+     * @param createScheduledAuditRequest
+     * @return createScheduledAuditResult The response from the
+     *         CreateScheduledAudit service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateScheduledAuditResult createScheduledAudit(
+            CreateScheduledAuditRequest createScheduledAuditRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a Device Defender security profile.
+     * </p>
+     * 
+     * @param createSecurityProfileRequest
+     * @return createSecurityProfileResult The response from the
+     *         CreateSecurityProfile service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceAlreadyExistsException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateSecurityProfileResult createSecurityProfile(
+            CreateSecurityProfileRequest createSecurityProfileRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Creates a stream for delivering one or more large files in chunks over
      * MQTT. A stream transports data bytes in chunks or blocks packaged as MQTT
      * messages from a source like S3. You can have one or more files associated
@@ -696,6 +804,7 @@ public interface AWSIot {
      * @return createStreamResult The response from the CreateStream service
      *         method, as returned by AWS IoT.
      * @throws InvalidRequestException
+     * @throws LimitExceededException
      * @throws ResourceNotFoundException
      * @throws ResourceAlreadyExistsException
      * @throws ThrottlingException
@@ -717,6 +826,14 @@ public interface AWSIot {
      * <p>
      * Creates a thing record in the registry.
      * </p>
+     * <note>
+     * <p>
+     * This is a control plane operation. See <a href=
+     * "http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html"
+     * >Authorization</a> for information about authorizing control plane
+     * actions.
+     * </p>
+     * </note>
      * 
      * @param createThingRequest <p>
      *            The input for the CreateThing operation.
@@ -745,6 +862,14 @@ public interface AWSIot {
      * <p>
      * Create a thing group.
      * </p>
+     * <note>
+     * <p>
+     * This is a control plane operation. See <a href=
+     * "http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html"
+     * >Authorization</a> for information about authorizing control plane
+     * actions.
+     * </p>
+     * </note>
      * 
      * @param createThingGroupRequest
      * @return createThingGroupResult The response from the CreateThingGroup
@@ -815,6 +940,33 @@ public interface AWSIot {
      *             or a server side issue.
      */
     void createTopicRule(CreateTopicRuleRequest createTopicRuleRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Restores the default settings for Device Defender audits for this
+     * account. Any configuration data you entered is deleted and all audit
+     * checks are reset to disabled.
+     * </p>
+     * 
+     * @param deleteAccountAuditConfigurationRequest
+     * @return deleteAccountAuditConfigurationResult The response from the
+     *         DeleteAccountAuditConfiguration service method, as returned by
+     *         AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteAccountAuditConfigurationResult deleteAccountAuditConfiguration(
+            DeleteAccountAuditConfigurationRequest deleteAccountAuditConfigurationRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -976,6 +1128,7 @@ public interface AWSIot {
      * @throws UnauthorizedException
      * @throws InternalFailureException
      * @throws ServiceUnavailableException
+     * @throws VersionConflictException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1107,6 +1260,54 @@ public interface AWSIot {
      *             or a server side issue.
      */
     DeleteRoleAliasResult deleteRoleAlias(DeleteRoleAliasRequest deleteRoleAliasRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a scheduled audit.
+     * </p>
+     * 
+     * @param deleteScheduledAuditRequest
+     * @return deleteScheduledAuditResult The response from the
+     *         DeleteScheduledAudit service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteScheduledAuditResult deleteScheduledAudit(
+            DeleteScheduledAuditRequest deleteScheduledAuditRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a Device Defender security profile.
+     * </p>
+     * 
+     * @param deleteSecurityProfileRequest
+     * @return deleteSecurityProfileResult The response from the
+     *         DeleteSecurityProfile service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws VersionConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteSecurityProfileResult deleteSecurityProfile(
+            DeleteSecurityProfileRequest deleteSecurityProfileRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1287,6 +1488,54 @@ public interface AWSIot {
      *             or a server side issue.
      */
     DeprecateThingTypeResult deprecateThingType(DeprecateThingTypeRequest deprecateThingTypeRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets information about the Device Defender audit settings for this
+     * account. Settings include how audit notifications are sent and which
+     * audit checks are enabled or disabled.
+     * </p>
+     * 
+     * @param describeAccountAuditConfigurationRequest
+     * @return describeAccountAuditConfigurationResult The response from the
+     *         DescribeAccountAuditConfiguration service method, as returned by
+     *         AWS IoT.
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeAccountAuditConfigurationResult describeAccountAuditConfiguration(
+            DescribeAccountAuditConfigurationRequest describeAccountAuditConfigurationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets information about a Device Defender audit.
+     * </p>
+     * 
+     * @param describeAuditTaskRequest
+     * @return describeAuditTaskResult The response from the DescribeAuditTask
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeAuditTaskResult describeAuditTask(DescribeAuditTaskRequest describeAuditTaskRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1543,6 +1792,54 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Gets information about a scheduled audit.
+     * </p>
+     * 
+     * @param describeScheduledAuditRequest
+     * @return describeScheduledAuditResult The response from the
+     *         DescribeScheduledAudit service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeScheduledAuditResult describeScheduledAudit(
+            DescribeScheduledAuditRequest describeScheduledAuditRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets information about a Device Defender security profile.
+     * </p>
+     * 
+     * @param describeSecurityProfileRequest
+     * @return describeSecurityProfileResult The response from the
+     *         DescribeSecurityProfile service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeSecurityProfileResult describeSecurityProfile(
+            DescribeSecurityProfileRequest describeSecurityProfileRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets information about a stream.
      * </p>
      * 
@@ -1724,6 +2021,31 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Disassociates a Device Defender security profile from a thing group or
+     * from this account.
+     * </p>
+     * 
+     * @param detachSecurityProfileRequest
+     * @return detachSecurityProfileResult The response from the
+     *         DetachSecurityProfile service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DetachSecurityProfileResult detachSecurityProfile(
+            DetachSecurityProfileRequest detachSecurityProfileRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Detaches the specified principal from the specified thing.
      * </p>
      * 
@@ -1876,6 +2198,10 @@ public interface AWSIot {
     /**
      * <p>
      * Gets the logging options.
+     * </p>
+     * <p>
+     * NOTE: use of this command is not recommended. Use
+     * <code>GetV2LoggingOptions</code> instead.
      * </p>
      * 
      * @param getLoggingOptionsRequest <p>
@@ -2038,7 +2364,7 @@ public interface AWSIot {
      * @return getV2LoggingOptionsResult The response from the
      *         GetV2LoggingOptions service method, as returned by AWS IoT.
      * @throws InternalException
-     * @throws InvalidRequestException
+     * @throws NotConfiguredException
      * @throws ServiceUnavailableException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2050,6 +2376,30 @@ public interface AWSIot {
      */
     GetV2LoggingOptionsResult getV2LoggingOptions(
             GetV2LoggingOptionsRequest getV2LoggingOptionsRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists the active violations for a given Device Defender security profile.
+     * </p>
+     * 
+     * @param listActiveViolationsRequest
+     * @return listActiveViolationsResult The response from the
+     *         ListActiveViolations service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListActiveViolationsResult listActiveViolations(
+            ListActiveViolationsRequest listActiveViolationsRequest) throws AmazonClientException,
             AmazonServiceException;
 
     /**
@@ -2078,6 +2428,53 @@ public interface AWSIot {
     ListAttachedPoliciesResult listAttachedPolicies(
             ListAttachedPoliciesRequest listAttachedPoliciesRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists the findings (results) of a Device Defender audit or of the audits
+     * performed during a specified time period. (Findings are retained for 180
+     * days.)
+     * </p>
+     * 
+     * @param listAuditFindingsRequest
+     * @return listAuditFindingsResult The response from the ListAuditFindings
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListAuditFindingsResult listAuditFindings(ListAuditFindingsRequest listAuditFindingsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists the Device Defender audits that have been performed during a given
+     * time period.
+     * </p>
+     * 
+     * @param listAuditTasksRequest
+     * @return listAuditTasksResult The response from the ListAuditTasks service
+     *         method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListAuditTasksResult listAuditTasks(ListAuditTasksRequest listAuditTasksRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -2513,6 +2910,80 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Lists all of your scheduled audits.
+     * </p>
+     * 
+     * @param listScheduledAuditsRequest
+     * @return listScheduledAuditsResult The response from the
+     *         ListScheduledAudits service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListScheduledAuditsResult listScheduledAudits(
+            ListScheduledAuditsRequest listScheduledAuditsRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists the Device Defender security profiles you have created. You can use
+     * filters to list only those security profiles associated with a thing
+     * group or only those associated with your account.
+     * </p>
+     * 
+     * @param listSecurityProfilesRequest
+     * @return listSecurityProfilesResult The response from the
+     *         ListSecurityProfiles service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListSecurityProfilesResult listSecurityProfiles(
+            ListSecurityProfilesRequest listSecurityProfilesRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists the Device Defender security profiles attached to a target (thing
+     * group).
+     * </p>
+     * 
+     * @param listSecurityProfilesForTargetRequest
+     * @return listSecurityProfilesForTargetResult The response from the
+     *         ListSecurityProfilesForTarget service method, as returned by AWS
+     *         IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListSecurityProfilesForTargetResult listSecurityProfilesForTarget(
+            ListSecurityProfilesForTargetRequest listSecurityProfilesForTargetRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Lists all of the streams in your AWS account.
      * </p>
      * 
@@ -2561,6 +3032,32 @@ public interface AWSIot {
     ListTargetsForPolicyResult listTargetsForPolicy(
             ListTargetsForPolicyRequest listTargetsForPolicyRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists the targets (thing groups) associated with a given Device Defender
+     * security profile.
+     * </p>
+     * 
+     * @param listTargetsForSecurityProfileRequest
+     * @return listTargetsForSecurityProfileResult The response from the
+     *         ListTargetsForSecurityProfile service method, as returned by AWS
+     *         IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListTargetsForSecurityProfileResult listTargetsForSecurityProfile(
+            ListTargetsForSecurityProfileRequest listTargetsForSecurityProfileRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -2810,6 +3307,32 @@ public interface AWSIot {
      */
     ListV2LoggingLevelsResult listV2LoggingLevels(
             ListV2LoggingLevelsRequest listV2LoggingLevelsRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists the Device Defender security profile violations discovered during
+     * the given time period. You can use filters to limit the results to those
+     * alerts issued for a particular security profile, behavior or thing
+     * (device).
+     * </p>
+     * 
+     * @param listViolationEventsRequest
+     * @return listViolationEventsResult The response from the
+     *         ListViolationEvents service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListViolationEventsResult listViolationEvents(
+            ListViolationEventsRequest listViolationEventsRequest) throws AmazonClientException,
             AmazonServiceException;
 
     /**
@@ -3084,6 +3607,10 @@ public interface AWSIot {
      * <p>
      * Sets the logging options.
      * </p>
+     * <p>
+     * NOTE: use of this command is not recommended. Use
+     * <code>SetV2LoggingOptions</code> instead.
+     * </p>
      * 
      * @param setLoggingOptionsRequest <p>
      *            The input for the SetLoggingOptions operation.
@@ -3141,6 +3668,30 @@ public interface AWSIot {
      *             or a server side issue.
      */
     void setV2LoggingOptions(SetV2LoggingOptionsRequest setV2LoggingOptionsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Starts an on-demand Device Defender audit.
+     * </p>
+     * 
+     * @param startOnDemandAuditTaskRequest
+     * @return startOnDemandAuditTaskResult The response from the
+     *         StartOnDemandAuditTask service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    StartOnDemandAuditTaskResult startOnDemandAuditTask(
+            StartOnDemandAuditTaskRequest startOnDemandAuditTaskRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -3294,6 +3845,32 @@ public interface AWSIot {
     TransferCertificateResult transferCertificate(
             TransferCertificateRequest transferCertificateRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Configures or reconfigures the Device Defender audit settings for this
+     * account. Settings include how audit notifications are sent and which
+     * audit checks are enabled or disabled.
+     * </p>
+     * 
+     * @param updateAccountAuditConfigurationRequest
+     * @return updateAccountAuditConfigurationResult The response from the
+     *         UpdateAccountAuditConfiguration service method, as returned by
+     *         AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateAccountAuditConfigurationResult updateAccountAuditConfiguration(
+            UpdateAccountAuditConfigurationRequest updateAccountAuditConfigurationRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -3458,6 +4035,56 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Updates a scheduled audit, including what checks are performed and how
+     * often the audit takes place.
+     * </p>
+     * 
+     * @param updateScheduledAuditRequest
+     * @return updateScheduledAuditResult The response from the
+     *         UpdateScheduledAudit service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateScheduledAuditResult updateScheduledAudit(
+            UpdateScheduledAuditRequest updateScheduledAuditRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates a Device Defender security profile.
+     * </p>
+     * 
+     * @param updateSecurityProfileRequest
+     * @return updateSecurityProfileResult The response from the
+     *         UpdateSecurityProfile service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws VersionConflictException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateSecurityProfileResult updateSecurityProfile(
+            UpdateSecurityProfileRequest updateSecurityProfileRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Updates an existing stream. The stream version will be incremented by
      * one.
      * </p>
@@ -3556,6 +4183,30 @@ public interface AWSIot {
      */
     UpdateThingGroupsForThingResult updateThingGroupsForThing(
             UpdateThingGroupsForThingRequest updateThingGroupsForThingRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Validates a Device Defender security profile behaviors specification.
+     * </p>
+     * 
+     * @param validateSecurityProfileBehaviorsRequest
+     * @return validateSecurityProfileBehaviorsResult The response from the
+     *         ValidateSecurityProfileBehaviors service method, as returned by
+     *         AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ValidateSecurityProfileBehaviorsResult validateSecurityProfileBehaviors(
+            ValidateSecurityProfileBehaviorsRequest validateSecurityProfileBehaviorsRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

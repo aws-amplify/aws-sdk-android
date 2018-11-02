@@ -25,62 +25,10 @@ import java.io.Serializable;
 public class CodeSigningSignature implements Serializable {
     /**
      * <p>
-     * A stream of the code signing signature.
-     * </p>
-     */
-    private Stream stream;
-
-    /**
-     * <p>
      * A base64 encoded binary representation of the code signing signature.
      * </p>
      */
     private java.nio.ByteBuffer inlineDocument;
-
-    /**
-     * <p>
-     * A stream of the code signing signature.
-     * </p>
-     *
-     * @return <p>
-     *         A stream of the code signing signature.
-     *         </p>
-     */
-    public Stream getStream() {
-        return stream;
-    }
-
-    /**
-     * <p>
-     * A stream of the code signing signature.
-     * </p>
-     *
-     * @param stream <p>
-     *            A stream of the code signing signature.
-     *            </p>
-     */
-    public void setStream(Stream stream) {
-        this.stream = stream;
-    }
-
-    /**
-     * <p>
-     * A stream of the code signing signature.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param stream <p>
-     *            A stream of the code signing signature.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CodeSigningSignature withStream(Stream stream) {
-        this.stream = stream;
-        return this;
-    }
 
     /**
      * <p>
@@ -141,8 +89,6 @@ public class CodeSigningSignature implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getStream() != null)
-            sb.append("stream: " + getStream() + ",");
         if (getInlineDocument() != null)
             sb.append("inlineDocument: " + getInlineDocument());
         sb.append("}");
@@ -154,7 +100,6 @@ public class CodeSigningSignature implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getStream() == null) ? 0 : getStream().hashCode());
         hashCode = prime * hashCode
                 + ((getInlineDocument() == null) ? 0 : getInlineDocument().hashCode());
         return hashCode;
@@ -171,10 +116,6 @@ public class CodeSigningSignature implements Serializable {
             return false;
         CodeSigningSignature other = (CodeSigningSignature) obj;
 
-        if (other.getStream() == null ^ this.getStream() == null)
-            return false;
-        if (other.getStream() != null && other.getStream().equals(this.getStream()) == false)
-            return false;
         if (other.getInlineDocument() == null ^ this.getInlineDocument() == null)
             return false;
         if (other.getInlineDocument() != null

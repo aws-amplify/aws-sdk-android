@@ -38,6 +38,10 @@ class CodeSigningJsonUnmarshaller implements Unmarshaller<CodeSigning, JsonUnmar
             if (name.equals("awsSignerJobId")) {
                 codeSigning.setAwsSignerJobId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("startSigningJobParameter")) {
+                codeSigning.setStartSigningJobParameter(StartSigningJobParameterJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("customCodeSigning")) {
                 codeSigning.setCustomCodeSigning(CustomCodeSigningJsonUnmarshaller.getInstance()
                         .unmarshall(context));

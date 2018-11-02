@@ -25,13 +25,6 @@ import java.io.Serializable;
 public class CodeSigningCertificateChain implements Serializable {
     /**
      * <p>
-     * A stream of the certificate chain files.
-     * </p>
-     */
-    private Stream stream;
-
-    /**
-     * <p>
      * The name of the certificate.
      * </p>
      */
@@ -44,51 +37,6 @@ public class CodeSigningCertificateChain implements Serializable {
      * </p>
      */
     private String inlineDocument;
-
-    /**
-     * <p>
-     * A stream of the certificate chain files.
-     * </p>
-     *
-     * @return <p>
-     *         A stream of the certificate chain files.
-     *         </p>
-     */
-    public Stream getStream() {
-        return stream;
-    }
-
-    /**
-     * <p>
-     * A stream of the certificate chain files.
-     * </p>
-     *
-     * @param stream <p>
-     *            A stream of the certificate chain files.
-     *            </p>
-     */
-    public void setStream(Stream stream) {
-        this.stream = stream;
-    }
-
-    /**
-     * <p>
-     * A stream of the certificate chain files.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param stream <p>
-     *            A stream of the certificate chain files.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CodeSigningCertificateChain withStream(Stream stream) {
-        this.stream = stream;
-        return this;
-    }
 
     /**
      * <p>
@@ -197,8 +145,6 @@ public class CodeSigningCertificateChain implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getStream() != null)
-            sb.append("stream: " + getStream() + ",");
         if (getCertificateName() != null)
             sb.append("certificateName: " + getCertificateName() + ",");
         if (getInlineDocument() != null)
@@ -212,7 +158,6 @@ public class CodeSigningCertificateChain implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getStream() == null) ? 0 : getStream().hashCode());
         hashCode = prime * hashCode
                 + ((getCertificateName() == null) ? 0 : getCertificateName().hashCode());
         hashCode = prime * hashCode
@@ -231,10 +176,6 @@ public class CodeSigningCertificateChain implements Serializable {
             return false;
         CodeSigningCertificateChain other = (CodeSigningCertificateChain) obj;
 
-        if (other.getStream() == null ^ this.getStream() == null)
-            return false;
-        if (other.getStream() != null && other.getStream().equals(this.getStream()) == false)
-            return false;
         if (other.getCertificateName() == null ^ this.getCertificateName() == null)
             return false;
         if (other.getCertificateName() != null

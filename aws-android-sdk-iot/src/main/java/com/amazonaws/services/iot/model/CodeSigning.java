@@ -32,6 +32,13 @@ public class CodeSigning implements Serializable {
 
     /**
      * <p>
+     * Describes the code-signing job.
+     * </p>
+     */
+    private StartSigningJobParameter startSigningJobParameter;
+
+    /**
+     * <p>
      * A custom method for code signing a file.
      * </p>
      */
@@ -79,6 +86,52 @@ public class CodeSigning implements Serializable {
      */
     public CodeSigning withAwsSignerJobId(String awsSignerJobId) {
         this.awsSignerJobId = awsSignerJobId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Describes the code-signing job.
+     * </p>
+     *
+     * @return <p>
+     *         Describes the code-signing job.
+     *         </p>
+     */
+    public StartSigningJobParameter getStartSigningJobParameter() {
+        return startSigningJobParameter;
+    }
+
+    /**
+     * <p>
+     * Describes the code-signing job.
+     * </p>
+     *
+     * @param startSigningJobParameter <p>
+     *            Describes the code-signing job.
+     *            </p>
+     */
+    public void setStartSigningJobParameter(StartSigningJobParameter startSigningJobParameter) {
+        this.startSigningJobParameter = startSigningJobParameter;
+    }
+
+    /**
+     * <p>
+     * Describes the code-signing job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param startSigningJobParameter <p>
+     *            Describes the code-signing job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CodeSigning withStartSigningJobParameter(
+            StartSigningJobParameter startSigningJobParameter) {
+        this.startSigningJobParameter = startSigningJobParameter;
         return this;
     }
 
@@ -140,6 +193,8 @@ public class CodeSigning implements Serializable {
         sb.append("{");
         if (getAwsSignerJobId() != null)
             sb.append("awsSignerJobId: " + getAwsSignerJobId() + ",");
+        if (getStartSigningJobParameter() != null)
+            sb.append("startSigningJobParameter: " + getStartSigningJobParameter() + ",");
         if (getCustomCodeSigning() != null)
             sb.append("customCodeSigning: " + getCustomCodeSigning());
         sb.append("}");
@@ -153,6 +208,10 @@ public class CodeSigning implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getAwsSignerJobId() == null) ? 0 : getAwsSignerJobId().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getStartSigningJobParameter() == null) ? 0 : getStartSigningJobParameter()
+                        .hashCode());
         hashCode = prime * hashCode
                 + ((getCustomCodeSigning() == null) ? 0 : getCustomCodeSigning().hashCode());
         return hashCode;
@@ -173,6 +232,12 @@ public class CodeSigning implements Serializable {
             return false;
         if (other.getAwsSignerJobId() != null
                 && other.getAwsSignerJobId().equals(this.getAwsSignerJobId()) == false)
+            return false;
+        if (other.getStartSigningJobParameter() == null
+                ^ this.getStartSigningJobParameter() == null)
+            return false;
+        if (other.getStartSigningJobParameter() != null
+                && other.getStartSigningJobParameter().equals(this.getStartSigningJobParameter()) == false)
             return false;
         if (other.getCustomCodeSigning() == null ^ this.getCustomCodeSigning() == null)
             return false;

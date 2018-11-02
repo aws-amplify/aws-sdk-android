@@ -79,10 +79,6 @@ public final class KinesisVideoApacheHttpClient implements HttpClient {
         try {
             final HttpEntity entity = new StringEntity(mBuilder.mContentInJson, mBuilder.mContentType.getCharset().toString());
             request.setEntity(entity);
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("Content type specified " + mBuilder.mContentType, e);
-        }
-        try {
             return this.mHttpClient.execute(request);
         } catch (final IOException e) {
             throw new RuntimeException("Exception while doing a POST on the URI " + mBuilder.mUri, e);
