@@ -70,6 +70,13 @@ com.amazonaws.mobileconnectors.kinesisvideo.service
 com.amazonaws.mobileconnectors.kinesisvideo.signing
 com.amazonaws.mobileconnectors.kinesisvideo.util
 com.amazonaws.mobileconnectors.lambdainvoker
+com.amazonaws.mobileconnectors.lex.interactionkit
+com.amazonaws.mobileconnectors.lex.interactionkit.config
+com.amazonaws.mobileconnectors.lex.interactionkit.continuations
+com.amazonaws.mobileconnectors.lex.interactionkit.exceptions
+com.amazonaws.mobileconnectors.lex.interactionkit.listeners
+com.amazonaws.mobileconnectors.lex.interactionkit.ui
+com.amazonaws.mobileconnectors.lex.interactionkit.utils
 com.amazonaws.mobileconnectors.pinpoint
 com.amazonaws.mobileconnectors.pinpoint.analytics
 com.amazonaws.mobileconnectors.pinpoint.analytics.monetization
@@ -101,6 +108,10 @@ com.amazonaws.services.iot
 com.amazonaws.services.iot.model
 com.amazonaws.services.iotdata
 com.amazonaws.services.iotdata.model
+com.amazonaws.services.kinesis
+com.amazonaws.services.kinesis.model
+com.amazonaws.services.kinesisfirehose
+com.amazonaws.services.kinesisfirehose.model
 com.amazonaws.services.kinesisvideo
 com.amazonaws.services.kinesisvideo.model
 com.amazonaws.services.kinesisvideoarchivedmedia
@@ -109,6 +120,8 @@ com.amazonaws.services.kms
 com.amazonaws.services.kms.model
 com.amazonaws.services.lambda
 com.amazonaws.services.lambda.model
+com.amazonaws.services.lexrts
+com.amazonaws.services.lexrts.model
 com.amazonaws.services.logs
 com.amazonaws.services.logs.model
 com.amazonaws.services.machinelearning
