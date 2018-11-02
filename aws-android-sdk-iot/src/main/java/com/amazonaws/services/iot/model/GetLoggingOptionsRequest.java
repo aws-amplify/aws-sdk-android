@@ -23,6 +23,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Gets the logging options.
  * </p>
+ * <p>
+ * NOTE: use of this command is not recommended. Use
+ * <code>GetV2LoggingOptions</code> instead.
+ * </p>
  */
 public class GetLoggingOptionsRequest extends AmazonWebServiceRequest implements Serializable {
     /**

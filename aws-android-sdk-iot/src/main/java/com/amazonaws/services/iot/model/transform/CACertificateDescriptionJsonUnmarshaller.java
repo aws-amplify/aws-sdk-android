@@ -67,6 +67,10 @@ class CACertificateDescriptionJsonUnmarshaller implements
             } else if (name.equals("generationId")) {
                 cACertificateDescription.setGenerationId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("validity")) {
+                cACertificateDescription.setValidity(CertificateValidityJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

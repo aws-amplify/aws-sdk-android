@@ -66,6 +66,9 @@ class JobExecutionJsonUnmarshaller implements Unmarshaller<JobExecution, JsonUnm
             } else if (name.equals("versionNumber")) {
                 jobExecution.setVersionNumber(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("approximateSecondsBeforeTimedOut")) {
+                jobExecution.setApproximateSecondsBeforeTimedOut(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

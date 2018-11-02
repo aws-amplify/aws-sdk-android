@@ -42,7 +42,7 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1000<br/>
+     * <b>Length: </b>1 - <br/>
      */
     private String queryString;
 
@@ -134,7 +134,7 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1000<br/>
+     * <b>Length: </b>1 - <br/>
      *
      * @return <p>
      *         The search query string.
@@ -150,7 +150,7 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1000<br/>
+     * <b>Length: </b>1 - <br/>
      *
      * @param queryString <p>
      *            The search query string.
@@ -169,7 +169,7 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1000<br/>
+     * <b>Length: </b>1 - <br/>
      *
      * @param queryString <p>
      *            The search query string.

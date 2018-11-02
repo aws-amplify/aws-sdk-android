@@ -72,6 +72,11 @@ class JobProcessDetailsJsonMarshaller {
             jsonWriter.name("numberOfRemovedThings");
             jsonWriter.value(numberOfRemovedThings);
         }
+        if (jobProcessDetails.getNumberOfTimedOutThings() != null) {
+            Integer numberOfTimedOutThings = jobProcessDetails.getNumberOfTimedOutThings();
+            jsonWriter.name("numberOfTimedOutThings");
+            jsonWriter.value(numberOfTimedOutThings);
+        }
         jsonWriter.endObject();
     }
 

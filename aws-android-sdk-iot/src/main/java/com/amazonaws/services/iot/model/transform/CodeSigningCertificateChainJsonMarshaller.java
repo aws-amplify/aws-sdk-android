@@ -26,11 +26,6 @@ class CodeSigningCertificateChainJsonMarshaller {
     public void marshall(CodeSigningCertificateChain codeSigningCertificateChain,
             AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
-        if (codeSigningCertificateChain.getStream() != null) {
-            Stream stream = codeSigningCertificateChain.getStream();
-            jsonWriter.name("stream");
-            StreamJsonMarshaller.getInstance().marshall(stream, jsonWriter);
-        }
         if (codeSigningCertificateChain.getCertificateName() != null) {
             String certificateName = codeSigningCertificateChain.getCertificateName();
             jsonWriter.name("certificateName");

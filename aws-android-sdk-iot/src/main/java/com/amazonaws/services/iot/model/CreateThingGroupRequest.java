@@ -23,6 +23,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Create a thing group.
  * </p>
+ * <note>
+ * <p>
+ * This is a control plane operation. See <a href=
+ * "http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html"
+ * >Authorization</a> for information about authorizing control plane actions.
+ * </p>
+ * </note>
  */
 public class CreateThingGroupRequest extends AmazonWebServiceRequest implements Serializable {
     /**

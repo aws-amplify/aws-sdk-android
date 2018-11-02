@@ -60,7 +60,8 @@ public class Job implements Serializable {
     /**
      * <p>
      * The status of the job, one of <code>IN_PROGRESS</code>,
-     * <code>CANCELED</code>, or <code>COMPLETED</code>.
+     * <code>CANCELED</code>, <code>DELETION_IN_PROGRESS</code> or
+     * <code>COMPLETED</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -150,10 +151,14 @@ public class Job implements Serializable {
 
     /**
      * <p>
-     * The parameters specified for the job document.
+     * Specifies the amount of time each device has to finish its execution of
+     * the job. A timer is started when the job execution status is set to
+     * <code>IN_PROGRESS</code>. If the job execution status is not set to
+     * another terminal state before the timer expires, it will be automatically
+     * set to <code>TIMED_OUT</code>.
      * </p>
      */
-    private java.util.Map<String, String> documentParameters;
+    private TimeoutConfig timeoutConfig;
 
     /**
      * <p>
@@ -421,7 +426,8 @@ public class Job implements Serializable {
     /**
      * <p>
      * The status of the job, one of <code>IN_PROGRESS</code>,
-     * <code>CANCELED</code>, or <code>COMPLETED</code>.
+     * <code>CANCELED</code>, <code>DELETION_IN_PROGRESS</code> or
+     * <code>COMPLETED</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -430,7 +436,8 @@ public class Job implements Serializable {
      *
      * @return <p>
      *         The status of the job, one of <code>IN_PROGRESS</code>,
-     *         <code>CANCELED</code>, or <code>COMPLETED</code>.
+     *         <code>CANCELED</code>, <code>DELETION_IN_PROGRESS</code> or
+     *         <code>COMPLETED</code>.
      *         </p>
      * @see JobStatus
      */
@@ -441,7 +448,8 @@ public class Job implements Serializable {
     /**
      * <p>
      * The status of the job, one of <code>IN_PROGRESS</code>,
-     * <code>CANCELED</code>, or <code>COMPLETED</code>.
+     * <code>CANCELED</code>, <code>DELETION_IN_PROGRESS</code> or
+     * <code>COMPLETED</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -450,7 +458,8 @@ public class Job implements Serializable {
      *
      * @param status <p>
      *            The status of the job, one of <code>IN_PROGRESS</code>,
-     *            <code>CANCELED</code>, or <code>COMPLETED</code>.
+     *            <code>CANCELED</code>, <code>DELETION_IN_PROGRESS</code> or
+     *            <code>COMPLETED</code>.
      *            </p>
      * @see JobStatus
      */
@@ -461,7 +470,8 @@ public class Job implements Serializable {
     /**
      * <p>
      * The status of the job, one of <code>IN_PROGRESS</code>,
-     * <code>CANCELED</code>, or <code>COMPLETED</code>.
+     * <code>CANCELED</code>, <code>DELETION_IN_PROGRESS</code> or
+     * <code>COMPLETED</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -473,7 +483,8 @@ public class Job implements Serializable {
      *
      * @param status <p>
      *            The status of the job, one of <code>IN_PROGRESS</code>,
-     *            <code>CANCELED</code>, or <code>COMPLETED</code>.
+     *            <code>CANCELED</code>, <code>DELETION_IN_PROGRESS</code> or
+     *            <code>COMPLETED</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -487,7 +498,8 @@ public class Job implements Serializable {
     /**
      * <p>
      * The status of the job, one of <code>IN_PROGRESS</code>,
-     * <code>CANCELED</code>, or <code>COMPLETED</code>.
+     * <code>CANCELED</code>, <code>DELETION_IN_PROGRESS</code> or
+     * <code>COMPLETED</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -496,7 +508,8 @@ public class Job implements Serializable {
      *
      * @param status <p>
      *            The status of the job, one of <code>IN_PROGRESS</code>,
-     *            <code>CANCELED</code>, or <code>COMPLETED</code>.
+     *            <code>CANCELED</code>, <code>DELETION_IN_PROGRESS</code> or
+     *            <code>COMPLETED</code>.
      *            </p>
      * @see JobStatus
      */
@@ -507,7 +520,8 @@ public class Job implements Serializable {
     /**
      * <p>
      * The status of the job, one of <code>IN_PROGRESS</code>,
-     * <code>CANCELED</code>, or <code>COMPLETED</code>.
+     * <code>CANCELED</code>, <code>DELETION_IN_PROGRESS</code> or
+     * <code>COMPLETED</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -519,7 +533,8 @@ public class Job implements Serializable {
      *
      * @param status <p>
      *            The status of the job, one of <code>IN_PROGRESS</code>,
-     *            <code>CANCELED</code>, or <code>COMPLETED</code>.
+     *            <code>CANCELED</code>, <code>DELETION_IN_PROGRESS</code> or
+     *            <code>COMPLETED</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1071,83 +1086,72 @@ public class Job implements Serializable {
 
     /**
      * <p>
-     * The parameters specified for the job document.
+     * Specifies the amount of time each device has to finish its execution of
+     * the job. A timer is started when the job execution status is set to
+     * <code>IN_PROGRESS</code>. If the job execution status is not set to
+     * another terminal state before the timer expires, it will be automatically
+     * set to <code>TIMED_OUT</code>.
      * </p>
      *
      * @return <p>
-     *         The parameters specified for the job document.
+     *         Specifies the amount of time each device has to finish its
+     *         execution of the job. A timer is started when the job execution
+     *         status is set to <code>IN_PROGRESS</code>. If the job execution
+     *         status is not set to another terminal state before the timer
+     *         expires, it will be automatically set to <code>TIMED_OUT</code>.
      *         </p>
      */
-    public java.util.Map<String, String> getDocumentParameters() {
-        return documentParameters;
+    public TimeoutConfig getTimeoutConfig() {
+        return timeoutConfig;
     }
 
     /**
      * <p>
-     * The parameters specified for the job document.
+     * Specifies the amount of time each device has to finish its execution of
+     * the job. A timer is started when the job execution status is set to
+     * <code>IN_PROGRESS</code>. If the job execution status is not set to
+     * another terminal state before the timer expires, it will be automatically
+     * set to <code>TIMED_OUT</code>.
      * </p>
      *
-     * @param documentParameters <p>
-     *            The parameters specified for the job document.
+     * @param timeoutConfig <p>
+     *            Specifies the amount of time each device has to finish its
+     *            execution of the job. A timer is started when the job
+     *            execution status is set to <code>IN_PROGRESS</code>. If the
+     *            job execution status is not set to another terminal state
+     *            before the timer expires, it will be automatically set to
+     *            <code>TIMED_OUT</code>.
      *            </p>
      */
-    public void setDocumentParameters(java.util.Map<String, String> documentParameters) {
-        this.documentParameters = documentParameters;
+    public void setTimeoutConfig(TimeoutConfig timeoutConfig) {
+        this.timeoutConfig = timeoutConfig;
     }
 
     /**
      * <p>
-     * The parameters specified for the job document.
+     * Specifies the amount of time each device has to finish its execution of
+     * the job. A timer is started when the job execution status is set to
+     * <code>IN_PROGRESS</code>. If the job execution status is not set to
+     * another terminal state before the timer expires, it will be automatically
+     * set to <code>TIMED_OUT</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param documentParameters <p>
-     *            The parameters specified for the job document.
+     * @param timeoutConfig <p>
+     *            Specifies the amount of time each device has to finish its
+     *            execution of the job. A timer is started when the job
+     *            execution status is set to <code>IN_PROGRESS</code>. If the
+     *            job execution status is not set to another terminal state
+     *            before the timer expires, it will be automatically set to
+     *            <code>TIMED_OUT</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public Job withDocumentParameters(java.util.Map<String, String> documentParameters) {
-        this.documentParameters = documentParameters;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The parameters specified for the job document.
-     * </p>
-     * <p>
-     * The method adds a new key-value pair into documentParameters parameter,
-     * and returns a reference to this object so that method calls can be
-     * chained together.
-     *
-     * @param key The key of the entry to be added into documentParameters.
-     * @param value The corresponding value of the entry to be added into
-     *            documentParameters.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public Job adddocumentParametersEntry(String key, String value) {
-        if (null == this.documentParameters) {
-            this.documentParameters = new java.util.HashMap<String, String>();
-        }
-        if (this.documentParameters.containsKey(key))
-            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
-                    + ") are provided.");
-        this.documentParameters.put(key, value);
-        return this;
-    }
-
-    /**
-     * Removes all the entries added into documentParameters.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     */
-    public Job cleardocumentParametersEntries() {
-        this.documentParameters = null;
+    public Job withTimeoutConfig(TimeoutConfig timeoutConfig) {
+        this.timeoutConfig = timeoutConfig;
         return this;
     }
 
@@ -1190,8 +1194,8 @@ public class Job implements Serializable {
             sb.append("completedAt: " + getCompletedAt() + ",");
         if (getJobProcessDetails() != null)
             sb.append("jobProcessDetails: " + getJobProcessDetails() + ",");
-        if (getDocumentParameters() != null)
-            sb.append("documentParameters: " + getDocumentParameters());
+        if (getTimeoutConfig() != null)
+            sb.append("timeoutConfig: " + getTimeoutConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -1226,7 +1230,7 @@ public class Job implements Serializable {
         hashCode = prime * hashCode
                 + ((getJobProcessDetails() == null) ? 0 : getJobProcessDetails().hashCode());
         hashCode = prime * hashCode
-                + ((getDocumentParameters() == null) ? 0 : getDocumentParameters().hashCode());
+                + ((getTimeoutConfig() == null) ? 0 : getTimeoutConfig().hashCode());
         return hashCode;
     }
 
@@ -1308,10 +1312,10 @@ public class Job implements Serializable {
         if (other.getJobProcessDetails() != null
                 && other.getJobProcessDetails().equals(this.getJobProcessDetails()) == false)
             return false;
-        if (other.getDocumentParameters() == null ^ this.getDocumentParameters() == null)
+        if (other.getTimeoutConfig() == null ^ this.getTimeoutConfig() == null)
             return false;
-        if (other.getDocumentParameters() != null
-                && other.getDocumentParameters().equals(this.getDocumentParameters()) == false)
+        if (other.getTimeoutConfig() != null
+                && other.getTimeoutConfig().equals(this.getTimeoutConfig()) == false)
             return false;
         return true;
     }

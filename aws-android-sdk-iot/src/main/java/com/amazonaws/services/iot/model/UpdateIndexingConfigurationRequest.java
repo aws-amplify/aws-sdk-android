@@ -35,6 +35,13 @@ public class UpdateIndexingConfigurationRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
+     * Thing group indexing configuration.
+     * </p>
+     */
+    private ThingGroupIndexingConfiguration thingGroupIndexingConfiguration;
+
+    /**
+     * <p>
      * Thing indexing configuration.
      * </p>
      *
@@ -80,6 +87,53 @@ public class UpdateIndexingConfigurationRequest extends AmazonWebServiceRequest 
     }
 
     /**
+     * <p>
+     * Thing group indexing configuration.
+     * </p>
+     *
+     * @return <p>
+     *         Thing group indexing configuration.
+     *         </p>
+     */
+    public ThingGroupIndexingConfiguration getThingGroupIndexingConfiguration() {
+        return thingGroupIndexingConfiguration;
+    }
+
+    /**
+     * <p>
+     * Thing group indexing configuration.
+     * </p>
+     *
+     * @param thingGroupIndexingConfiguration <p>
+     *            Thing group indexing configuration.
+     *            </p>
+     */
+    public void setThingGroupIndexingConfiguration(
+            ThingGroupIndexingConfiguration thingGroupIndexingConfiguration) {
+        this.thingGroupIndexingConfiguration = thingGroupIndexingConfiguration;
+    }
+
+    /**
+     * <p>
+     * Thing group indexing configuration.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param thingGroupIndexingConfiguration <p>
+     *            Thing group indexing configuration.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateIndexingConfigurationRequest withThingGroupIndexingConfiguration(
+            ThingGroupIndexingConfiguration thingGroupIndexingConfiguration) {
+        this.thingGroupIndexingConfiguration = thingGroupIndexingConfiguration;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -91,7 +145,9 @@ public class UpdateIndexingConfigurationRequest extends AmazonWebServiceRequest 
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getThingIndexingConfiguration() != null)
-            sb.append("thingIndexingConfiguration: " + getThingIndexingConfiguration());
+            sb.append("thingIndexingConfiguration: " + getThingIndexingConfiguration() + ",");
+        if (getThingGroupIndexingConfiguration() != null)
+            sb.append("thingGroupIndexingConfiguration: " + getThingGroupIndexingConfiguration());
         sb.append("}");
         return sb.toString();
     }
@@ -105,6 +161,10 @@ public class UpdateIndexingConfigurationRequest extends AmazonWebServiceRequest 
                 * hashCode
                 + ((getThingIndexingConfiguration() == null) ? 0 : getThingIndexingConfiguration()
                         .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getThingGroupIndexingConfiguration() == null) ? 0
+                        : getThingGroupIndexingConfiguration().hashCode());
         return hashCode;
     }
 
@@ -125,6 +185,13 @@ public class UpdateIndexingConfigurationRequest extends AmazonWebServiceRequest 
         if (other.getThingIndexingConfiguration() != null
                 && other.getThingIndexingConfiguration().equals(
                         this.getThingIndexingConfiguration()) == false)
+            return false;
+        if (other.getThingGroupIndexingConfiguration() == null
+                ^ this.getThingGroupIndexingConfiguration() == null)
+            return false;
+        if (other.getThingGroupIndexingConfiguration() != null
+                && other.getThingGroupIndexingConfiguration().equals(
+                        this.getThingGroupIndexingConfiguration()) == false)
             return false;
         return true;
     }

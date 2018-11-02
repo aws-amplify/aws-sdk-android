@@ -65,6 +65,13 @@ public class UpdateIndexingConfigurationRequestMarshaller implements
                 ThingIndexingConfigurationJsonMarshaller.getInstance().marshall(
                         thingIndexingConfiguration, jsonWriter);
             }
+            if (updateIndexingConfigurationRequest.getThingGroupIndexingConfiguration() != null) {
+                ThingGroupIndexingConfiguration thingGroupIndexingConfiguration = updateIndexingConfigurationRequest
+                        .getThingGroupIndexingConfiguration();
+                jsonWriter.name("thingGroupIndexingConfiguration");
+                ThingGroupIndexingConfigurationJsonMarshaller.getInstance().marshall(
+                        thingGroupIndexingConfiguration, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

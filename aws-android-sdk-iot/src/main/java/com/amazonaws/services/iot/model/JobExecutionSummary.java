@@ -29,8 +29,8 @@ public class JobExecutionSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, REJECTED,
-     * REMOVED, CANCELED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, TIMED_OUT,
+     * REJECTED, REMOVED, CANCELED
      */
     private String status;
 
@@ -73,8 +73,8 @@ public class JobExecutionSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, REJECTED,
-     * REMOVED, CANCELED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, TIMED_OUT,
+     * REJECTED, REMOVED, CANCELED
      *
      * @return <p>
      *         The status of the job execution.
@@ -91,8 +91,8 @@ public class JobExecutionSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, REJECTED,
-     * REMOVED, CANCELED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, TIMED_OUT,
+     * REJECTED, REMOVED, CANCELED
      *
      * @param status <p>
      *            The status of the job execution.
@@ -112,8 +112,8 @@ public class JobExecutionSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, REJECTED,
-     * REMOVED, CANCELED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, TIMED_OUT,
+     * REJECTED, REMOVED, CANCELED
      *
      * @param status <p>
      *            The status of the job execution.
@@ -133,8 +133,8 @@ public class JobExecutionSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, REJECTED,
-     * REMOVED, CANCELED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, TIMED_OUT,
+     * REJECTED, REMOVED, CANCELED
      *
      * @param status <p>
      *            The status of the job execution.
@@ -154,8 +154,8 @@ public class JobExecutionSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, REJECTED,
-     * REMOVED, CANCELED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, TIMED_OUT,
+     * REJECTED, REMOVED, CANCELED
      *
      * @param status <p>
      *            The status of the job execution.

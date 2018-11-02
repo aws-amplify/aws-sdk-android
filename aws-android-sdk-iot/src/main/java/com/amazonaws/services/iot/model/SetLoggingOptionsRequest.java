@@ -23,6 +23,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Sets the logging options.
  * </p>
+ * <p>
+ * NOTE: use of this command is not recommended. Use
+ * <code>SetV2LoggingOptions</code> instead.
+ * </p>
  */
 public class SetLoggingOptionsRequest extends AmazonWebServiceRequest implements Serializable {
     /**

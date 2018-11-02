@@ -37,13 +37,13 @@ public class JobExecution implements Serializable {
 
     /**
      * <p>
-     * The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCESS,
-     * CANCELED, or REJECTED).
+     * The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCEEDED,
+     * TIMED_OUT, CANCELED, or REJECTED).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, REJECTED,
-     * REMOVED, CANCELED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, TIMED_OUT,
+     * REJECTED, REMOVED, CANCELED
      */
     private String status;
 
@@ -113,6 +113,14 @@ public class JobExecution implements Serializable {
 
     /**
      * <p>
+     * The estimated number of seconds that remain before the job execution
+     * status will be changed to <code>TIMED_OUT</code>.
+     * </p>
+     */
+    private Long approximateSecondsBeforeTimedOut;
+
+    /**
+     * <p>
      * The unique identifier you assigned to the job when it was created.
      * </p>
      * <p>
@@ -173,17 +181,17 @@ public class JobExecution implements Serializable {
 
     /**
      * <p>
-     * The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCESS,
-     * CANCELED, or REJECTED).
+     * The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCEEDED,
+     * TIMED_OUT, CANCELED, or REJECTED).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, REJECTED,
-     * REMOVED, CANCELED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, TIMED_OUT,
+     * REJECTED, REMOVED, CANCELED
      *
      * @return <p>
      *         The status of the job execution (IN_PROGRESS, QUEUED, FAILED,
-     *         SUCCESS, CANCELED, or REJECTED).
+     *         SUCCEEDED, TIMED_OUT, CANCELED, or REJECTED).
      *         </p>
      * @see JobExecutionStatus
      */
@@ -193,17 +201,17 @@ public class JobExecution implements Serializable {
 
     /**
      * <p>
-     * The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCESS,
-     * CANCELED, or REJECTED).
+     * The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCEEDED,
+     * TIMED_OUT, CANCELED, or REJECTED).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, REJECTED,
-     * REMOVED, CANCELED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, TIMED_OUT,
+     * REJECTED, REMOVED, CANCELED
      *
      * @param status <p>
      *            The status of the job execution (IN_PROGRESS, QUEUED, FAILED,
-     *            SUCCESS, CANCELED, or REJECTED).
+     *            SUCCEEDED, TIMED_OUT, CANCELED, or REJECTED).
      *            </p>
      * @see JobExecutionStatus
      */
@@ -213,20 +221,20 @@ public class JobExecution implements Serializable {
 
     /**
      * <p>
-     * The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCESS,
-     * CANCELED, or REJECTED).
+     * The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCEEDED,
+     * TIMED_OUT, CANCELED, or REJECTED).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, REJECTED,
-     * REMOVED, CANCELED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, TIMED_OUT,
+     * REJECTED, REMOVED, CANCELED
      *
      * @param status <p>
      *            The status of the job execution (IN_PROGRESS, QUEUED, FAILED,
-     *            SUCCESS, CANCELED, or REJECTED).
+     *            SUCCEEDED, TIMED_OUT, CANCELED, or REJECTED).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -239,17 +247,17 @@ public class JobExecution implements Serializable {
 
     /**
      * <p>
-     * The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCESS,
-     * CANCELED, or REJECTED).
+     * The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCEEDED,
+     * TIMED_OUT, CANCELED, or REJECTED).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, REJECTED,
-     * REMOVED, CANCELED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, TIMED_OUT,
+     * REJECTED, REMOVED, CANCELED
      *
      * @param status <p>
      *            The status of the job execution (IN_PROGRESS, QUEUED, FAILED,
-     *            SUCCESS, CANCELED, or REJECTED).
+     *            SUCCEEDED, TIMED_OUT, CANCELED, or REJECTED).
      *            </p>
      * @see JobExecutionStatus
      */
@@ -259,20 +267,20 @@ public class JobExecution implements Serializable {
 
     /**
      * <p>
-     * The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCESS,
-     * CANCELED, or REJECTED).
+     * The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCEEDED,
+     * TIMED_OUT, CANCELED, or REJECTED).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, REJECTED,
-     * REMOVED, CANCELED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, TIMED_OUT,
+     * REJECTED, REMOVED, CANCELED
      *
      * @param status <p>
      *            The status of the job execution (IN_PROGRESS, QUEUED, FAILED,
-     *            SUCCESS, CANCELED, or REJECTED).
+     *            SUCCEEDED, TIMED_OUT, CANCELED, or REJECTED).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -714,6 +722,57 @@ public class JobExecution implements Serializable {
     }
 
     /**
+     * <p>
+     * The estimated number of seconds that remain before the job execution
+     * status will be changed to <code>TIMED_OUT</code>.
+     * </p>
+     *
+     * @return <p>
+     *         The estimated number of seconds that remain before the job
+     *         execution status will be changed to <code>TIMED_OUT</code>.
+     *         </p>
+     */
+    public Long getApproximateSecondsBeforeTimedOut() {
+        return approximateSecondsBeforeTimedOut;
+    }
+
+    /**
+     * <p>
+     * The estimated number of seconds that remain before the job execution
+     * status will be changed to <code>TIMED_OUT</code>.
+     * </p>
+     *
+     * @param approximateSecondsBeforeTimedOut <p>
+     *            The estimated number of seconds that remain before the job
+     *            execution status will be changed to <code>TIMED_OUT</code>.
+     *            </p>
+     */
+    public void setApproximateSecondsBeforeTimedOut(Long approximateSecondsBeforeTimedOut) {
+        this.approximateSecondsBeforeTimedOut = approximateSecondsBeforeTimedOut;
+    }
+
+    /**
+     * <p>
+     * The estimated number of seconds that remain before the job execution
+     * status will be changed to <code>TIMED_OUT</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param approximateSecondsBeforeTimedOut <p>
+     *            The estimated number of seconds that remain before the job
+     *            execution status will be changed to <code>TIMED_OUT</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public JobExecution withApproximateSecondsBeforeTimedOut(Long approximateSecondsBeforeTimedOut) {
+        this.approximateSecondsBeforeTimedOut = approximateSecondsBeforeTimedOut;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -743,7 +802,9 @@ public class JobExecution implements Serializable {
         if (getExecutionNumber() != null)
             sb.append("executionNumber: " + getExecutionNumber() + ",");
         if (getVersionNumber() != null)
-            sb.append("versionNumber: " + getVersionNumber());
+            sb.append("versionNumber: " + getVersionNumber() + ",");
+        if (getApproximateSecondsBeforeTimedOut() != null)
+            sb.append("approximateSecondsBeforeTimedOut: " + getApproximateSecondsBeforeTimedOut());
         sb.append("}");
         return sb.toString();
     }
@@ -768,6 +829,10 @@ public class JobExecution implements Serializable {
                 + ((getExecutionNumber() == null) ? 0 : getExecutionNumber().hashCode());
         hashCode = prime * hashCode
                 + ((getVersionNumber() == null) ? 0 : getVersionNumber().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getApproximateSecondsBeforeTimedOut() == null) ? 0
+                        : getApproximateSecondsBeforeTimedOut().hashCode());
         return hashCode;
     }
 
@@ -827,6 +892,13 @@ public class JobExecution implements Serializable {
             return false;
         if (other.getVersionNumber() != null
                 && other.getVersionNumber().equals(this.getVersionNumber()) == false)
+            return false;
+        if (other.getApproximateSecondsBeforeTimedOut() == null
+                ^ this.getApproximateSecondsBeforeTimedOut() == null)
+            return false;
+        if (other.getApproximateSecondsBeforeTimedOut() != null
+                && other.getApproximateSecondsBeforeTimedOut().equals(
+                        this.getApproximateSecondsBeforeTimedOut()) == false)
             return false;
         return true;
     }

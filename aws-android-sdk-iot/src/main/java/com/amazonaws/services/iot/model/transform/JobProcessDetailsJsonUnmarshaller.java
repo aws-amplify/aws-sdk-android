@@ -62,6 +62,9 @@ class JobProcessDetailsJsonUnmarshaller implements
             } else if (name.equals("numberOfRemovedThings")) {
                 jobProcessDetails.setNumberOfRemovedThings(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("numberOfTimedOutThings")) {
+                jobProcessDetails.setNumberOfTimedOutThings(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

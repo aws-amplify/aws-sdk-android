@@ -27,6 +27,7 @@ public enum JobExecutionStatus {
     IN_PROGRESS("IN_PROGRESS"),
     SUCCEEDED("SUCCEEDED"),
     FAILED("FAILED"),
+    TIMED_OUT("TIMED_OUT"),
     REJECTED("REJECTED"),
     REMOVED("REMOVED"),
     CANCELED("CANCELED");
@@ -49,6 +50,7 @@ public enum JobExecutionStatus {
         enumMap.put("IN_PROGRESS", IN_PROGRESS);
         enumMap.put("SUCCEEDED", SUCCEEDED);
         enumMap.put("FAILED", FAILED);
+        enumMap.put("TIMED_OUT", TIMED_OUT);
         enumMap.put("REJECTED", REJECTED);
         enumMap.put("REMOVED", REMOVED);
         enumMap.put("CANCELED", CANCELED);

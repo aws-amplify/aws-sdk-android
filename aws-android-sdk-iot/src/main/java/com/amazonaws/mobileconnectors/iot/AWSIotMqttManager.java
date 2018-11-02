@@ -744,6 +744,11 @@ public class AWSIotMqttManager {
                         AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.ConnectionLost,
                         new AmazonClientException("An error occurred in the MQTT client.", e)
                     );
+                } catch (final Exception e) {
+                    AWSIotMqttManager.this.userStatusCallback.onStatusChanged(
+                            AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.ConnectionLost,
+                            e
+                    );
                 }
             }
         }, "Mqtt Connect Thread").start();
@@ -766,7 +771,9 @@ public class AWSIotMqttManager {
         if (isMetricsEnabled()) {
             options.setUserName("?SDK=Android&Version=" + SDK_VERSION);
         }
-        LOGGER.info("metrics collection is " + (isMetricsEnabled() ? "enabled" : "disabled") + ", username: " + options.getUserName());
+        LOGGER.info("metrics collection is " + 
+            (isMetricsEnabled() ? "enabled" : "disabled") + 
+            ", username: " + options.getUserName());
 
         topicListeners.clear();
         mqttMessageQueue.clear();
@@ -830,6 +837,9 @@ public class AWSIotMqttManager {
                     userConnectionCallback(e);
                     break;
             }
+        } catch (final Exception exception) {
+            connectionState = MqttManagerConnectionState.Disconnected;
+            userConnectionCallback(exception);
         }
     }
 

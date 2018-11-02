@@ -104,20 +104,10 @@ public class CreateJobRequestMarshaller implements
                 JobExecutionsRolloutConfigJsonMarshaller.getInstance().marshall(
                         jobExecutionsRolloutConfig, jsonWriter);
             }
-            if (createJobRequest.getDocumentParameters() != null) {
-                java.util.Map<String, String> documentParameters = createJobRequest
-                        .getDocumentParameters();
-                jsonWriter.name("documentParameters");
-                jsonWriter.beginObject();
-                for (java.util.Map.Entry<String, String> documentParametersEntry : documentParameters
-                        .entrySet()) {
-                    String documentParametersValue = documentParametersEntry.getValue();
-                    if (documentParametersValue != null) {
-                        jsonWriter.name(documentParametersEntry.getKey());
-                        jsonWriter.value(documentParametersValue);
-                    }
-                }
-                jsonWriter.endObject();
+            if (createJobRequest.getTimeoutConfig() != null) {
+                TimeoutConfig timeoutConfig = createJobRequest.getTimeoutConfig();
+                jsonWriter.name("timeoutConfig");
+                TimeoutConfigJsonMarshaller.getInstance().marshall(timeoutConfig, jsonWriter);
             }
 
             jsonWriter.endObject();

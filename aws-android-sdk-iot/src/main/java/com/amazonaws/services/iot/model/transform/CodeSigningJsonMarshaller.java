@@ -30,6 +30,13 @@ class CodeSigningJsonMarshaller {
             jsonWriter.name("awsSignerJobId");
             jsonWriter.value(awsSignerJobId);
         }
+        if (codeSigning.getStartSigningJobParameter() != null) {
+            StartSigningJobParameter startSigningJobParameter = codeSigning
+                    .getStartSigningJobParameter();
+            jsonWriter.name("startSigningJobParameter");
+            StartSigningJobParameterJsonMarshaller.getInstance().marshall(startSigningJobParameter,
+                    jsonWriter);
+        }
         if (codeSigning.getCustomCodeSigning() != null) {
             CustomCodeSigning customCodeSigning = codeSigning.getCustomCodeSigning();
             jsonWriter.name("customCodeSigning");

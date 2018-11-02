@@ -76,6 +76,12 @@ class JobExecutionJsonMarshaller {
             jsonWriter.name("versionNumber");
             jsonWriter.value(versionNumber);
         }
+        if (jobExecution.getApproximateSecondsBeforeTimedOut() != null) {
+            Long approximateSecondsBeforeTimedOut = jobExecution
+                    .getApproximateSecondsBeforeTimedOut();
+            jsonWriter.name("approximateSecondsBeforeTimedOut");
+            jsonWriter.value(approximateSecondsBeforeTimedOut);
+        }
         jsonWriter.endObject();
     }
 

@@ -44,8 +44,8 @@ public class ListJobExecutionsForThingRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, REJECTED,
-     * REMOVED, CANCELED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, TIMED_OUT,
+     * REJECTED, REMOVED, CANCELED
      */
     private String status;
 
@@ -130,8 +130,8 @@ public class ListJobExecutionsForThingRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, REJECTED,
-     * REMOVED, CANCELED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, TIMED_OUT,
+     * REJECTED, REMOVED, CANCELED
      *
      * @return <p>
      *         An optional filter that lets you search for jobs that have the
@@ -150,8 +150,8 @@ public class ListJobExecutionsForThingRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, REJECTED,
-     * REMOVED, CANCELED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, TIMED_OUT,
+     * REJECTED, REMOVED, CANCELED
      *
      * @param status <p>
      *            An optional filter that lets you search for jobs that have the
@@ -173,8 +173,8 @@ public class ListJobExecutionsForThingRequest extends AmazonWebServiceRequest im
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, REJECTED,
-     * REMOVED, CANCELED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, TIMED_OUT,
+     * REJECTED, REMOVED, CANCELED
      *
      * @param status <p>
      *            An optional filter that lets you search for jobs that have the
@@ -196,8 +196,8 @@ public class ListJobExecutionsForThingRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, REJECTED,
-     * REMOVED, CANCELED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, TIMED_OUT,
+     * REJECTED, REMOVED, CANCELED
      *
      * @param status <p>
      *            An optional filter that lets you search for jobs that have the
@@ -219,8 +219,8 @@ public class ListJobExecutionsForThingRequest extends AmazonWebServiceRequest im
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, REJECTED,
-     * REMOVED, CANCELED
+     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, SUCCEEDED, FAILED, TIMED_OUT,
+     * REJECTED, REMOVED, CANCELED
      *
      * @param status <p>
      *            An optional filter that lets you search for jobs that have the

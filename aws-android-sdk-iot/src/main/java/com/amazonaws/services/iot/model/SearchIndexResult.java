@@ -35,6 +35,13 @@ public class SearchIndexResult implements Serializable {
 
     /**
      * <p>
+     * The thing groups that match the search query.
+     * </p>
+     */
+    private java.util.List<ThingGroupDocument> thingGroups;
+
+    /**
+     * <p>
      * The token used to get the next set of results, or <b>null</b> if there
      * are no additional results.
      * </p>
@@ -159,6 +166,80 @@ public class SearchIndexResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The thing groups that match the search query.
+     * </p>
+     *
+     * @return <p>
+     *         The thing groups that match the search query.
+     *         </p>
+     */
+    public java.util.List<ThingGroupDocument> getThingGroups() {
+        return thingGroups;
+    }
+
+    /**
+     * <p>
+     * The thing groups that match the search query.
+     * </p>
+     *
+     * @param thingGroups <p>
+     *            The thing groups that match the search query.
+     *            </p>
+     */
+    public void setThingGroups(java.util.Collection<ThingGroupDocument> thingGroups) {
+        if (thingGroups == null) {
+            this.thingGroups = null;
+            return;
+        }
+
+        this.thingGroups = new java.util.ArrayList<ThingGroupDocument>(thingGroups);
+    }
+
+    /**
+     * <p>
+     * The thing groups that match the search query.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param thingGroups <p>
+     *            The thing groups that match the search query.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchIndexResult withThingGroups(ThingGroupDocument... thingGroups) {
+        if (getThingGroups() == null) {
+            this.thingGroups = new java.util.ArrayList<ThingGroupDocument>(thingGroups.length);
+        }
+        for (ThingGroupDocument value : thingGroups) {
+            this.thingGroups.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The thing groups that match the search query.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param thingGroups <p>
+     *            The thing groups that match the search query.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchIndexResult withThingGroups(java.util.Collection<ThingGroupDocument> thingGroups) {
+        setThingGroups(thingGroups);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -172,7 +253,9 @@ public class SearchIndexResult implements Serializable {
         if (getNextToken() != null)
             sb.append("nextToken: " + getNextToken() + ",");
         if (getThings() != null)
-            sb.append("things: " + getThings());
+            sb.append("things: " + getThings() + ",");
+        if (getThingGroups() != null)
+            sb.append("thingGroups: " + getThingGroups());
         sb.append("}");
         return sb.toString();
     }
@@ -184,6 +267,8 @@ public class SearchIndexResult implements Serializable {
 
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode + ((getThings() == null) ? 0 : getThings().hashCode());
+        hashCode = prime * hashCode
+                + ((getThingGroups() == null) ? 0 : getThingGroups().hashCode());
         return hashCode;
     }
 
@@ -206,6 +291,11 @@ public class SearchIndexResult implements Serializable {
         if (other.getThings() == null ^ this.getThings() == null)
             return false;
         if (other.getThings() != null && other.getThings().equals(this.getThings()) == false)
+            return false;
+        if (other.getThingGroups() == null ^ this.getThingGroups() == null)
+            return false;
+        if (other.getThingGroups() != null
+                && other.getThingGroups().equals(this.getThingGroups()) == false)
             return false;
         return true;
     }

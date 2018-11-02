@@ -61,6 +61,13 @@ class OTAUpdateInfoJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (oTAUpdateInfo.getAwsJobExecutionsRolloutConfig() != null) {
+            AwsJobExecutionsRolloutConfig awsJobExecutionsRolloutConfig = oTAUpdateInfo
+                    .getAwsJobExecutionsRolloutConfig();
+            jsonWriter.name("awsJobExecutionsRolloutConfig");
+            AwsJobExecutionsRolloutConfigJsonMarshaller.getInstance().marshall(
+                    awsJobExecutionsRolloutConfig, jsonWriter);
+        }
         if (oTAUpdateInfo.getTargetSelection() != null) {
             String targetSelection = oTAUpdateInfo.getTargetSelection();
             jsonWriter.name("targetSelection");

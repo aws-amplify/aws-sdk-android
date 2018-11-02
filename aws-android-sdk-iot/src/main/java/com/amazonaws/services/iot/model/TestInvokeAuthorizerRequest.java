@@ -44,7 +44,7 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 6144<br/>
      */
     private String token;
 
@@ -123,7 +123,7 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 6144<br/>
      *
      * @return <p>
      *         The token returned by your custom authentication service.
@@ -139,7 +139,7 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 6144<br/>
      *
      * @param token <p>
      *            The token returned by your custom authentication service.
@@ -158,7 +158,7 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 6144<br/>
      *
      * @param token <p>
      *            The token returned by your custom authentication service.

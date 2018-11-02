@@ -55,6 +55,11 @@ class OTAUpdateInfoJsonUnmarshaller implements Unmarshaller<OTAUpdateInfo, JsonU
                         .getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("awsJobExecutionsRolloutConfig")) {
+                oTAUpdateInfo
+                        .setAwsJobExecutionsRolloutConfig(AwsJobExecutionsRolloutConfigJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("targetSelection")) {
                 oTAUpdateInfo.setTargetSelection(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

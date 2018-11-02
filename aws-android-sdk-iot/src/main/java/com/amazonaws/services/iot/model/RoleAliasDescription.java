@@ -57,7 +57,8 @@ public class RoleAliasDescription implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>[0-9]{12}<br/>
+     * <b>Length: </b>12 - 12<br/>
+     * <b>Pattern: </b>[0-9]+<br/>
      */
     private String owner;
 
@@ -247,7 +248,8 @@ public class RoleAliasDescription implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>[0-9]{12}<br/>
+     * <b>Length: </b>12 - 12<br/>
+     * <b>Pattern: </b>[0-9]+<br/>
      *
      * @return <p>
      *         The role alias owner.
@@ -263,7 +265,8 @@ public class RoleAliasDescription implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>[0-9]{12}<br/>
+     * <b>Length: </b>12 - 12<br/>
+     * <b>Pattern: </b>[0-9]+<br/>
      *
      * @param owner <p>
      *            The role alias owner.
@@ -282,7 +285,8 @@ public class RoleAliasDescription implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>[0-9]{12}<br/>
+     * <b>Length: </b>12 - 12<br/>
+     * <b>Pattern: </b>[0-9]+<br/>
      *
      * @param owner <p>
      *            The role alias owner.

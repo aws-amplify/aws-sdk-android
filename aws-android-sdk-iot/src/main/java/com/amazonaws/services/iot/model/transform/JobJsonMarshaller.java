@@ -103,19 +103,10 @@ class JobJsonMarshaller {
             jsonWriter.name("jobProcessDetails");
             JobProcessDetailsJsonMarshaller.getInstance().marshall(jobProcessDetails, jsonWriter);
         }
-        if (job.getDocumentParameters() != null) {
-            java.util.Map<String, String> documentParameters = job.getDocumentParameters();
-            jsonWriter.name("documentParameters");
-            jsonWriter.beginObject();
-            for (java.util.Map.Entry<String, String> documentParametersEntry : documentParameters
-                    .entrySet()) {
-                String documentParametersValue = documentParametersEntry.getValue();
-                if (documentParametersValue != null) {
-                    jsonWriter.name(documentParametersEntry.getKey());
-                    jsonWriter.value(documentParametersValue);
-                }
-            }
-            jsonWriter.endObject();
+        if (job.getTimeoutConfig() != null) {
+            TimeoutConfig timeoutConfig = job.getTimeoutConfig();
+            jsonWriter.name("timeoutConfig");
+            TimeoutConfigJsonMarshaller.getInstance().marshall(timeoutConfig, jsonWriter);
         }
         jsonWriter.endObject();
     }

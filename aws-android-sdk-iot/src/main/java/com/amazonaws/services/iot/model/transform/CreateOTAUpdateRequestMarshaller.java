@@ -82,6 +82,13 @@ public class CreateOTAUpdateRequestMarshaller implements
                 jsonWriter.name("targetSelection");
                 jsonWriter.value(targetSelection);
             }
+            if (createOTAUpdateRequest.getAwsJobExecutionsRolloutConfig() != null) {
+                AwsJobExecutionsRolloutConfig awsJobExecutionsRolloutConfig = createOTAUpdateRequest
+                        .getAwsJobExecutionsRolloutConfig();
+                jsonWriter.name("awsJobExecutionsRolloutConfig");
+                AwsJobExecutionsRolloutConfigJsonMarshaller.getInstance().marshall(
+                        awsJobExecutionsRolloutConfig, jsonWriter);
+            }
             if (createOTAUpdateRequest.getFiles() != null) {
                 java.util.List<OTAUpdateFile> files = createOTAUpdateRequest.getFiles();
                 jsonWriter.name("files");

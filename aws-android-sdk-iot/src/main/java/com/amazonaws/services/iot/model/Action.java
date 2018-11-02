@@ -125,6 +125,13 @@ public class Action implements Serializable {
 
     /**
      * <p>
+     * Starts execution of a Step Functions state machine.
+     * </p>
+     */
+    private StepFunctionsAction stepFunctions;
+
+    /**
+     * <p>
      * Write to a DynamoDB table.
      * </p>
      *
@@ -766,6 +773,51 @@ public class Action implements Serializable {
     }
 
     /**
+     * <p>
+     * Starts execution of a Step Functions state machine.
+     * </p>
+     *
+     * @return <p>
+     *         Starts execution of a Step Functions state machine.
+     *         </p>
+     */
+    public StepFunctionsAction getStepFunctions() {
+        return stepFunctions;
+    }
+
+    /**
+     * <p>
+     * Starts execution of a Step Functions state machine.
+     * </p>
+     *
+     * @param stepFunctions <p>
+     *            Starts execution of a Step Functions state machine.
+     *            </p>
+     */
+    public void setStepFunctions(StepFunctionsAction stepFunctions) {
+        this.stepFunctions = stepFunctions;
+    }
+
+    /**
+     * <p>
+     * Starts execution of a Step Functions state machine.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param stepFunctions <p>
+     *            Starts execution of a Step Functions state machine.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Action withStepFunctions(StepFunctionsAction stepFunctions) {
+        this.stepFunctions = stepFunctions;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -803,7 +855,9 @@ public class Action implements Serializable {
         if (getSalesforce() != null)
             sb.append("salesforce: " + getSalesforce() + ",");
         if (getIotAnalytics() != null)
-            sb.append("iotAnalytics: " + getIotAnalytics());
+            sb.append("iotAnalytics: " + getIotAnalytics() + ",");
+        if (getStepFunctions() != null)
+            sb.append("stepFunctions: " + getStepFunctions());
         sb.append("}");
         return sb.toString();
     }
@@ -831,6 +885,8 @@ public class Action implements Serializable {
         hashCode = prime * hashCode + ((getSalesforce() == null) ? 0 : getSalesforce().hashCode());
         hashCode = prime * hashCode
                 + ((getIotAnalytics() == null) ? 0 : getIotAnalytics().hashCode());
+        hashCode = prime * hashCode
+                + ((getStepFunctions() == null) ? 0 : getStepFunctions().hashCode());
         return hashCode;
     }
 
@@ -907,6 +963,11 @@ public class Action implements Serializable {
             return false;
         if (other.getIotAnalytics() != null
                 && other.getIotAnalytics().equals(this.getIotAnalytics()) == false)
+            return false;
+        if (other.getStepFunctions() == null ^ this.getStepFunctions() == null)
+            return false;
+        if (other.getStepFunctions() != null
+                && other.getStepFunctions().equals(this.getStepFunctions()) == false)
             return false;
         return true;
     }

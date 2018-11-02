@@ -76,6 +76,11 @@ class CACertificateDescriptionJsonMarshaller {
             jsonWriter.name("generationId");
             jsonWriter.value(generationId);
         }
+        if (cACertificateDescription.getValidity() != null) {
+            CertificateValidity validity = cACertificateDescription.getValidity();
+            jsonWriter.name("validity");
+            CertificateValidityJsonMarshaller.getInstance().marshall(validity, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 
