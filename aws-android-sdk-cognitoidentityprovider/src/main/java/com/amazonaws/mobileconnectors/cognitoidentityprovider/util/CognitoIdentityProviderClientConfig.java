@@ -50,7 +50,7 @@ public final class CognitoIdentityProviderClientConfig {
     public static void setRefreshThreshold(long threshold) {
         if (threshold > REFRESH_THRESHOLD_MAX || threshold < REFRESH_THRESHOLD_MIN) {
             throw new CognitoParameterInvalidException(
-                    String.format("The value of refreshThreshold must between %d and %d seconds",
+                    String.format("The value of refreshThreshold must between %d and %d milli seconds",
                     REFRESH_THRESHOLD_MIN, REFRESH_THRESHOLD_MAX));
         }
         refreshThreshold = threshold;
