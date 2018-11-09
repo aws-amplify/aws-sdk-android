@@ -17,10 +17,10 @@
 
 package com.amazonaws.kinesisvideo.client;
 
-import com.amazonaws.kinesisvideo.client.mediasource.MediaSource;
-import com.amazonaws.kinesisvideo.client.mediasource.MediaSourceConfiguration;
 import com.amazonaws.kinesisvideo.client.mediasource.UnknownMediaSourceException;
 import com.amazonaws.kinesisvideo.client.mediasource.UnsupportedConfigurationException;
+import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSource;
+import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSourceConfiguration;
 import com.amazonaws.kinesisvideo.common.exception.KinesisVideoException;
 import com.amazonaws.kinesisvideo.producer.DeviceInfo;
 
@@ -55,9 +55,22 @@ public interface KinesisVideoClient {
     List<MediaSourceConfiguration.Builder<? extends MediaSourceConfiguration>> listSupportedConfigurations();
 
     /**
-     * Register a media source
+     * Register a media source. The media source will be binding to kinesis video producer stream
+     * to send out data from media source.
+     *
+     * @param mediaSource media source binding to kinesis video producer stream
+     * @throws KinesisVideoException
      */
-    void registerMediaSource(final String streamName, final MediaSource mediaSource) throws KinesisVideoException;
+    void registerMediaSource(final MediaSource mediaSource) throws KinesisVideoException;
+
+    /**
+     * Un-Register a media source. The media source will stop binding to kinesis video producer stream
+     * and it cannot send data via producer stream afterwards until register again.
+     *
+     * @param mediaSource media source to stop binding to kinesis video producer stream
+     * @throws KinesisVideoException
+     */
+    void unregisterMediaSource(final MediaSource mediaSource) throws KinesisVideoException;
 
     /**
      * Start all registered media sources

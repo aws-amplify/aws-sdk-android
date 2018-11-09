@@ -20,30 +20,31 @@ package com.amazonaws.mobileconnectors.kinesisvideo.mediasource.android;
 import android.content.Context;
 
 import com.amazonaws.kinesisvideo.client.mediasource.CameraMediaSourceConfiguration;
-import com.amazonaws.kinesisvideo.client.mediasource.MediaSource;
-import com.amazonaws.kinesisvideo.client.mediasource.MediaSourceConfiguration;
+import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSource;
+import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSourceConfiguration;
 import com.amazonaws.kinesisvideo.client.mediasource.UnknownMediaSourceException;
 
 public final class AndroidMediaSourceFactory {
 
     public static MediaSource createMediaSource(
+            final String streamName,
             final Context context,
             final MediaSourceConfiguration configuration) {
 
         if (CameraMediaSourceConfiguration.MEDIA_SOURCE_TYPE
             .equals(configuration.getMediaSourceType())) {
-            return createAndroidCameraMediaSource(
-                    context, (CameraMediaSourceConfiguration) configuration);
+            return createAndroidCameraMediaSource(streamName, context, (CameraMediaSourceConfiguration) configuration);
         } else {
             throw new UnknownMediaSourceException(configuration.getMediaSourceType());
         }
     }
 
     private static AndroidCameraMediaSource createAndroidCameraMediaSource(
+            final String streamName,
             final Context context,
             final CameraMediaSourceConfiguration configuration) {
 
-        final AndroidCameraMediaSource mediaSource = new AndroidCameraMediaSource(context);
+        final AndroidCameraMediaSource mediaSource = new AndroidCameraMediaSource(streamName, context);
         mediaSource.configure(configuration);
         return mediaSource;
     }

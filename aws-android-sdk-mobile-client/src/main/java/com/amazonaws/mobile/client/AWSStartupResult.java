@@ -1,5 +1,5 @@
 /*
- * Copyright 2017-2017 Amazon.com, Inc. or its affiliates.
+ * Copyright 2017-2018 Amazon.com, Inc. or its affiliates.
  * All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,11 @@ import com.amazonaws.mobile.auth.core.IdentityManager;
  * by the {@link AWSStartupResultHandler} callback
  * function of the 
  * {@link com.amazonaws.mobile.client.AWSMobileClient#initialize(Context)}.
+ * @deprecated Since 2.8.0 This method will be removed in the next minor version.
+ * Please update to use AWSMobileClient using `initialize`.
+ * Please visit https://aws-amplify.github.io for the latest Android documentation.
  */
+@Deprecated
 public class AWSStartupResult {
 
     private IdentityManager identityManager;

@@ -24,12 +24,12 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.amazonaws.kinesisvideo.client.KinesisVideoClientConfiguration;
-import com.amazonaws.kinesisvideo.client.NativeKinesisVideoClient;
-import com.amazonaws.kinesisvideo.client.mediasource.MediaSource;
-import com.amazonaws.kinesisvideo.client.mediasource.MediaSourceConfiguration;
+import com.amazonaws.kinesisvideo.internal.client.NativeKinesisVideoClient;
+import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSource;
+import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSourceConfiguration;
 import com.amazonaws.kinesisvideo.common.exception.KinesisVideoException;
 import com.amazonaws.kinesisvideo.common.logging.Log;
-import com.amazonaws.kinesisvideo.producer.client.KinesisVideoServiceClient;
+import com.amazonaws.kinesisvideo.internal.producer.client.KinesisVideoServiceClient;
 import com.amazonaws.mobileconnectors.kinesisvideo.mediasource.android.AndroidMediaSourceFactory;
 import com.amazonaws.mobileconnectors.kinesisvideo.util.CameraUtils;
 
@@ -71,9 +71,10 @@ public final class AndroidKinesisVideoClient extends NativeKinesisVideoClient {
     public MediaSource createMediaSource(final String streamName,
                                          final MediaSourceConfiguration mediaSourceConfiguration) throws KinesisVideoException {
         final MediaSource mediaSource = AndroidMediaSourceFactory.createMediaSource(
+                streamName,
                 mContext,
                 mediaSourceConfiguration);
-        registerMediaSource(streamName, mediaSource);
+        registerMediaSource(mediaSource);
         return mediaSource;
     }
 

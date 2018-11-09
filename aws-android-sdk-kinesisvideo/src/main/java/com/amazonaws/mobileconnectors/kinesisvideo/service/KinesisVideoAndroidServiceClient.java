@@ -50,7 +50,7 @@ import com.amazonaws.kinesisvideo.encoding.ChunkDecoder;
 import com.amazonaws.kinesisvideo.model.ResponseStatus;
 import com.amazonaws.kinesisvideo.producer.StreamDescription;
 import com.amazonaws.kinesisvideo.producer.StreamStatus;
-import com.amazonaws.kinesisvideo.producer.client.KinesisVideoServiceClient;
+import com.amazonaws.kinesisvideo.internal.producer.client.KinesisVideoServiceClient;
 import com.amazonaws.mobileconnectors.kinesisvideo.signing.KinesisVideoAndroidAWS4Signer;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;

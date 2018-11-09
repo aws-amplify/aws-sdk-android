@@ -22,10 +22,12 @@ import static com.amazonaws.kinesisvideo.common.preconditions.Preconditions.chec
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.amazonaws.kinesisvideo.client.mediasource.MediaSourceSink;
+import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSourceSink;
 import com.amazonaws.kinesisvideo.common.exception.KinesisVideoException;
 import com.amazonaws.kinesisvideo.producer.KinesisVideoFrame;
-import com.amazonaws.kinesisvideo.producer.KinesisVideoProducerStream;
+import com.amazonaws.kinesisvideo.internal.producer.KinesisVideoProducerStream;
+
+import android.support.annotation.NonNull;
 
 /**
  * Implementation of the MediaSourceSink interface that pushes frames and stream configuration
@@ -55,5 +57,16 @@ public class ProducerStreamSink implements MediaSourceSink {
     @Override
     public void onCodecPrivateData(@Nullable final byte[] bytes) throws KinesisVideoException {
         mProducerStream.streamFormatChanged(bytes);
+    }
+
+    @Override
+    public void onFragmentMetadata(@NonNull String metadataName, @NonNull String metadataValue, boolean persistent)
+            throws KinesisVideoException {
+        mProducerStream.putFragmentMetadata(metadataName, metadataValue, persistent);
+    }
+
+    @Override
+    public KinesisVideoProducerStream getProducerStream() {
+        return mProducerStream;
     }
 }

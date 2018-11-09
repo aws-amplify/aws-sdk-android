@@ -19,6 +19,7 @@ package com.amazonaws.kinesisvideo.client;
 
 import com.amazonaws.kinesisvideo.common.function.Consumer;
 import com.amazonaws.kinesisvideo.common.logging.Log;
+import com.amazonaws.kinesisvideo.common.preconditions.Preconditions;
 import com.amazonaws.kinesisvideo.encoding.ChunkEncoder;
 import com.amazonaws.kinesisvideo.http.ParallelSimpleHttpClient;
 import com.amazonaws.kinesisvideo.signing.KinesisVideoSigner;
@@ -27,9 +28,10 @@ import com.amazonaws.kinesisvideo.stream.throttling.BandwidthThrottledOutputStre
 import com.amazonaws.kinesisvideo.stream.throttling.BandwidthThrottler;
 import com.amazonaws.kinesisvideo.stream.throttling.BandwidthThrottlerImpl;
 import com.amazonaws.kinesisvideo.stream.throttling.OpsPerSecondMeasurer;
+import com.amazonaws.kinesisvideo.util.VersionUtil;
 
-import android.support.annotation.NonNull;
-
+import static com.amazonaws.kinesisvideo.common.preconditions.Preconditions.checkNotNull;
+import static com.amazonaws.kinesisvideo.http.HttpMethodName.POST;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -37,10 +39,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
-
-import static com.amazonaws.kinesisvideo.common.preconditions.Preconditions.checkNotNull;
-import static com.amazonaws.kinesisvideo.http.HttpMethodName.POST;
 
 /**
  * Client for making a PutMedia API call on Kinesis Video Streams.
@@ -55,12 +55,13 @@ public final class PutMediaClient {
     private static final String CHUNKED = "chunked";
     private static final String CONNECTION = "connection";
     private static final String KEEP_ALIVE = "keep-alive";
-    private static final int BUFFER_SIZE = 128 * 128; //16kb
+    private static final String USER_AGENT = "user-agent";
+    private static final int BUFFER_SIZE = 1024 * 1024; // 1MB
     private static final double MILLI_TO_SEC = 1000;
     private static final int LOGGING_INTERVAL = 250; // Rougly every 10 seconds in 25 fps
     private final Builder mBuilder;
-    private ParallelSimpleHttpClient httpClient;
     private final Log log;
+    private ParallelSimpleHttpClient httpClient;
 
     private PutMediaClient(final Builder builder) {
         mBuilder = builder;
@@ -72,38 +73,38 @@ public final class PutMediaClient {
     }
 
     public void putMediaInBackground() {
-        final ParallelSimpleHttpClient.Builder clientBuilder =
-                ParallelSimpleHttpClient.builder()
-                        .uri(mBuilder.mUri)
-                        .method(POST)
-                        .log(log)
-                        .header(STREAM_NAME_HEADER, mBuilder.mStreamName)
-                        .header(TRANSFER_ENCODING, CHUNKED)
-                        .header(CONNECTION, KEEP_ALIVE);
+        putMediaWithSender(sendChunkEncodedMvkStream(0));
+    }
 
+    public void putMediaInBackgroundWithSleep(final int sleepTime) {
+        putMediaWithSender(sendChunkEncodedMvkStream(sleepTime));
+    }
+
+    private void putMediaWithSender(final Consumer<OutputStream> sender) {
+        final ParallelSimpleHttpClient.Builder clientBuilder = ParallelSimpleHttpClient.builder()
+            .uri(mBuilder.mUri).method(POST)
+            .log(log)
+            .header(STREAM_NAME_HEADER, mBuilder.mStreamName)
+            .header(TRANSFER_ENCODING, CHUNKED)
+            .header(CONNECTION, KEEP_ALIVE)
+            .header(USER_AGENT, VersionUtil.getUserAgent());
         clientBuilder.setReceiverCallback(mBuilder.mAcksReceiver);
         clientBuilder.header(PRODUCER_START_TIMESTAMP_HEADER,
-                String.format("%.3f", mBuilder.mTimestamp / MILLI_TO_SEC));
+                             String.format(Locale.US, "%.3f", mBuilder.mTimestamp / MILLI_TO_SEC));
         clientBuilder.header(FRAGMENT_TIME_CODE_TYPE_HEADER, mBuilder.mFragmentTimecodeType);
-
         clientBuilder.completionCallback(mBuilder.mCompletion);
-
-        clientBuilder.setSenderCallback(sendChunkEncodedMvkStream());
+        clientBuilder.setSenderCallback(sender);
         // Timeout if no response is received from the server for put(i.e., acks)
         // Socket will/should be closed by the consumer by throwing the SocketTimeoutException
         clientBuilder.setTimeout(mBuilder.mReceiveTimeout);
-
         httpClient = clientBuilder.build();
-
         sign(httpClient);
-
         // add additional unsigned headers
         if (mBuilder.unsignedHeaders != null) {
             for (final String headerName : mBuilder.unsignedHeaders.keySet()) {
                 clientBuilder.header(headerName, mBuilder.unsignedHeaders.get(headerName));
             }
         }
-
         httpClient.connectAndProcessInBackground();
     }
 
@@ -117,7 +118,7 @@ public final class PutMediaClient {
         }
     }
 
-    private Consumer<OutputStream> sendChunkEncodedMvkStream() {
+    private Consumer<OutputStream> sendChunkEncodedMvkStream(final int fragmentThrottle) {
         return new Consumer<OutputStream>() {
             @Override
             public void accept(final OutputStream rawOutputStream) {
@@ -125,7 +126,6 @@ public final class PutMediaClient {
                 try {
                     final OutputStream throttledOutputStream = throttleAndMeasureOutput(rawOutputStream);
                     outputFileStream = createOutputFileStream();
-
                     final byte[] buffer = new byte[BUFFER_SIZE];
                     int mkvBytesRead;
                     long counter = 0;
@@ -136,20 +136,21 @@ public final class PutMediaClient {
                         if (counter % LOGGING_INTERVAL == 0) {
                             log.debug("Sending data, counter : " + counter);
                         }
-
                         if (mkvBytesRead == -1) {
                             log.info("End-of-stream is reported. Terminating...");
                             continueLoop = false;
                         } else {
                             throttledOutputStream.write(ChunkEncoder.encode(buffer, mkvBytesRead));
                             tryWriteToFile(outputFileStream, buffer, mkvBytesRead);
+                            if (fragmentThrottle > 0) {
+                                Thread.sleep(fragmentThrottle);
+                            }
                         }
                     }
-
                     throttledOutputStream.write(ChunkEncoder.encode(buffer, 0));
                     rawOutputStream.flush();
                     log.debug("Data sent. counter : " + counter);
-                } catch (final IOException e) {
+                } catch (final Exception e) {
                     log.debug("Exception while sending data.", e);
                     throw new RuntimeException("Exception while sending encoded chunk in MKV stream ! ", e);
                 } finally {
@@ -161,9 +162,7 @@ public final class PutMediaClient {
 
     private OutputStream throttleAndMeasureOutput(final OutputStream rawOutputStream) {
         final OutputStream throttledOutputStream = throttleStream(rawOutputStream);
-        return mBuilder.mLogUsedBandwidth
-                ? logBytesPerSecond(throttledOutputStream)
-                : throttledOutputStream;
+        return mBuilder.mLogUsedBandwidth ? logBytesPerSecond(throttledOutputStream) : throttledOutputStream;
     }
 
     private OutputStream throttleStream(final OutputStream rawOutputStream) {
@@ -171,7 +170,6 @@ public final class PutMediaClient {
             final BandwidthThrottler throttler = new BandwidthThrottlerImpl(mBuilder.upstreamKbps * BITS_IN_A_KILOBIT);
             return new BandwidthThrottledOutputStream(rawOutputStream, throttler);
         }
-
         return rawOutputStream;
     }
 
@@ -192,24 +190,16 @@ public final class PutMediaClient {
 
     private FileOutputStream createOutputFileStream() {
         try {
-            return mBuilder.mFileOutputPath == null
-                    ? null
-                    : new FileOutputStream(mBuilder.mFileOutputPath);
+            return mBuilder.mFileOutputPath == null ? null : new FileOutputStream(mBuilder.mFileOutputPath);
         } catch (final FileNotFoundException e) {
-            throw new RuntimeException("Unable to open the file "
-                    + mBuilder.mFileOutputPath, e);
+            throw new RuntimeException("Unable to open the file " + mBuilder.mFileOutputPath, e);
         }
     }
 
-    private void tryWriteToFile(
-            final FileOutputStream fileOutputStream,
-            final byte[] buffer,
-            final int bytesToWrite) {
-
+    private void tryWriteToFile(final FileOutputStream fileOutputStream, final byte[] buffer, final int bytesToWrite) {
         if (fileOutputStream == null) {
             return;
         }
-
         try {
             fileOutputStream.write(buffer, 0, bytesToWrite);
             fileOutputStream.flush();
@@ -222,17 +212,17 @@ public final class PutMediaClient {
         if (outputFileStream == null) {
             return;
         }
-
         try {
             outputFileStream.close();
         } catch (final IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
     }
 
     private double mbitPerSecond(final long bps) {
         return bps * Byte.SIZE / BYTES_IN_MB;
     }
+
 
     public static class Builder {
         private URI mUri;
@@ -316,8 +306,8 @@ public final class PutMediaClient {
             return this;
         }
 
-        public Builder log(@NonNull final Log log) {
-            mLog = log;
+        public Builder log(final Log log) {
+            mLog = Preconditions.checkNotNull(log);
             return this;
         }
 
@@ -332,7 +322,6 @@ public final class PutMediaClient {
             if (unsignedHeaders == null) {
                 unsignedHeaders = new HashMap<String, String>();
             }
-
             unsignedHeaders.put(name, value);
             return this;
         }
@@ -346,4 +335,3 @@ public final class PutMediaClient {
         }
     }
 }
-

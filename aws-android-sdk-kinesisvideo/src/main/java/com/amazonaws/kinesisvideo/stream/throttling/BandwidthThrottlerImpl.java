@@ -33,9 +33,9 @@ public class BandwidthThrottlerImpl implements BandwidthThrottler {
     private static final long BITS_IN_A_KILOBIT = 1024L;
     private static final long BITS_IN_A_BYTE = 8L;
     private static final long ONE_SECOND_IN_MILLIS = 1000L;
-    private static final double ACTUAL_PAYLOAD_PERCENTAGE = 0.95; // 5% overhead
-    private static final int MAX_RANDOM_VALUE = 11;
-    private static final int DEFAULT_RESET_SUBINTERVAL = 2;
+    private static final double ACTUAL_PAYLOAD_PERCENTAGE = 1;
+    private static final int MAX_RANDOM_VALUE = 1;
+    private static final int DEFAULT_RESET_SUBINTERVAL = 20;
 
     private final Random randomGenerator = new Random();
     private final ThrottlingParams upstream = new ThrottlingParams();

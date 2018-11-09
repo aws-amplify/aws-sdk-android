@@ -82,6 +82,9 @@ public class CameraAdapter {
         } catch (final InterruptedException e) {
             Log.e(TAG, "failed to open camera" + threadId(), e);
             cameraOpenCameraCallback.onError(new KinesisVideoException(e));
+        } catch (final SecurityException e) {
+            Log.e(TAG, "Permission issue " + threadId(), e);
+            cameraOpenCameraCallback.onError(new KinesisVideoException(e));
         }
     }
 

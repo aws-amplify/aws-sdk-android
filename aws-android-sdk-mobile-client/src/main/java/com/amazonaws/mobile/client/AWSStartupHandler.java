@@ -1,5 +1,5 @@
 /*
- * Copyright 2017-2017 Amazon.com, Inc. or its affiliates.
+ * Copyright 2017-2018 Amazon.com, Inc. or its affiliates.
  * All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,7 +20,11 @@ package com.amazonaws.mobile.client;
 /**
  * Callback function for calling 
  * {@link AWSMobileClient#initialize(Context, AWSStartupHandler)}.
+ * @deprecated Since 2.8.0 This method will be removed in the next minor version.
+ * Please update to use AWSMobileClient using `initialize`.
+ * Please visit https://aws-amplify.github.io for the latest Android documentation.
  */
+@Deprecated
 public interface AWSStartupHandler {
     /**
      * Called when the startup flow is complete.

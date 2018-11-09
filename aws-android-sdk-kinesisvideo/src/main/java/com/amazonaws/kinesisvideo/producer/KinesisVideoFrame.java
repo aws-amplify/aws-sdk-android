@@ -17,11 +17,11 @@
 
 package com.amazonaws.kinesisvideo.producer;
 
-import android.support.annotation.NonNull;
-
-import com.amazonaws.kinesisvideo.common.preconditions.Preconditions;
+import static java.util.Objects.requireNonNull;
 
 import java.nio.ByteBuffer;
+
+import android.support.annotation.NonNull;
 
 /**
  * Kinesis Video frame representation.
@@ -63,12 +63,12 @@ public class KinesisVideoFrame {
 
     public KinesisVideoFrame(int index, int flags, long decodingTs, long presentationTs, long duration,
             @NonNull ByteBuffer data) {
-        mData = Preconditions.checkNotNull(data);
         mIndex = index;
         mFlags = flags;
         mDecodingTs = decodingTs;
         mPresentationTs = presentationTs;
         mDuration = duration;
+        mData = requireNonNull(data);
     }
 
     public int getIndex() {
@@ -108,5 +108,12 @@ public class KinesisVideoFrame {
         }
 
         return byteBuffer;
+    }
+
+    @Override public String toString() {
+        return new StringBuilder().append(getClass().getSimpleName()).append("{").append("mIndex=").append(mIndex)
+                .append(", mFlags=").append(mFlags).append(", mDecodingTs=").append(mDecodingTs)
+                .append(", mPresentationTs=").append(mPresentationTs).append(", mDuration=").append(mDuration)
+                .append(", mData=").append(mData).append("}").toString();
     }
 }

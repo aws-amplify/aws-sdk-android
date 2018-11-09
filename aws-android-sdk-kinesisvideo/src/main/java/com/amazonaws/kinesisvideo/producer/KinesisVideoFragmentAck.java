@@ -17,6 +17,8 @@
 
 package com.amazonaws.kinesisvideo.producer;
 
+import com.amazonaws.kinesisvideo.producer.FragmentAckType;
+
 import android.support.annotation.NonNull;
 
 /**

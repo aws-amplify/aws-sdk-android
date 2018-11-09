@@ -29,6 +29,7 @@ import android.support.annotation.Nullable;
  * Stream information class.
  *
  * NOTE: This should follow the structure defined in /client/Include.h
+ * StreamCaps in https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-pic/src/client/include/com/amazonaws/kinesis/video/client/Include.h
  *
  *
  * NOTE: Suppressing Findbug to eliminate unnecessary mem copy.
@@ -62,7 +63,7 @@ public class StreamInfo {
 
         private int value;
 
-        private StreamingType(int i) {
+        private StreamingType(final int i) {
             value = i;
         }
 
@@ -96,7 +97,7 @@ public class StreamInfo {
         NAL_ADAPTATION_ANNEXB_CPD_NALS(1 << 5),
 
         /**
-         * Whether to adapt Annex-B NALUs for the codec and frame private data 
+         * Whether to adapt Annex-B NALUs for the codec and frame private data
          * to Avcc format NALUs
          */
         NAL_ADAPTATION_ANNEXB_CPD_AND_FRAME_NALS(
@@ -105,12 +106,12 @@ public class StreamInfo {
 
         private int value;
 
-        private NalAdaptationFlags(int i) {
+        private NalAdaptationFlags(final int i) {
             value = i;
         }
 
         public static NalAdaptationFlags getFlag(final int i) {
-            for (NalAdaptationFlags eachValue : values()) {
+            for (final NalAdaptationFlags eachValue : values()) {
                 if (eachValue.getIntValue() == i) {
                     return eachValue;
                 }
@@ -209,13 +210,13 @@ public class StreamInfo {
         throw new KinesisVideoException("Unknown content type to convert.");
     }
 
-    public StreamInfo(int version, @Nullable final String name, @NonNull final StreamingType streamingType,
-                      @NonNull final String contentType, @Nullable final String kmsKeyId, long retentionPeriod,
-                      boolean adaptive, long maxLatency, long fragmentDuration, boolean keyFrameFragmentation,
-                      boolean frameTimecodes, boolean absoluteFragmentTimes, boolean fragmentAcks,
-                      boolean recoverOnError, @Nullable final String codecId, @Nullable final String trackName,
-                      int avgBandwidthBps, int frameRate, long bufferDuration, long replayDuration,
-                      long connectionStalenessDuration, long timecodeScale, boolean recalculateMetrics,
+    public StreamInfo(final int version, @Nullable final String name, @NonNull final StreamingType streamingType,
+                      @NonNull final String contentType, @Nullable final String kmsKeyId, final long retentionPeriod,
+                      final boolean adaptive, final long maxLatency, final long fragmentDuration, final boolean keyFrameFragmentation,
+                      final boolean frameTimecodes, final boolean absoluteFragmentTimes, final boolean fragmentAcks,
+                      final boolean recoverOnError, @Nullable final String codecId, @Nullable final String trackName,
+                      final int avgBandwidthBps, final int frameRate, final long bufferDuration, final long replayDuration,
+                      final long connectionStalenessDuration, final long timecodeScale, final boolean recalculateMetrics,
                       @Nullable final byte[] codecPrivateData,
                       @Nullable final Tag[] tags,
                       @NonNull final NalAdaptationFlags nalAdaptationFlags) {

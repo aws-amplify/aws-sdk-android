@@ -1,11 +1,12 @@
 apply plugin: 'com.android.library'
+apply plugin: 'devicefarm'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
 
@@ -25,20 +26,52 @@ android {
         abortOnError false
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_6
+    }
+}
+
+devicefarm {
+
+    // Required. The Project must already exist. You can create a project in the AWS console.
+    projectName "mobile-client"
+
+    // Required. You must specify either accessKey and secretKey OR roleArn. roleArn takes precedence.
+    authentication {
+        accessKey "$System.env.DEVICEFARM_ACCESS_KEY"
+        secretKey "$System.env.DEVICEFARM_SECRET_KEY"
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
+    //noinspection GradleCompatible
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    api project(":aws-android-sdk-auth-core")
+    implementation 'com.android.support:support-compat:27.1.1'
+
+    /*
+     * These should ideally depend on the project version,
+     * but need to convert everything to Android libraries
+     */
+//    api(project(":aws-android-sdk-auth-core")) {
+//        exclude group: "com.google.android", module: "android"
+//    }
+//    api(project(":aws-android-sdk-cognitoidentityprovider")) {
+//        exclude group: "com.google.android", module: "android"
+//    }
+//    androidTestImplementation(project(':aws-android-sdk-auth-userpools')) {
+//        exclude group: "com.google.android", module: "android"
+//    }
+    api "com.amazonaws:aws-android-sdk-auth-core:2.7.7"
+    api "com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.7.7"
+    androidTestImplementation "com.amazonaws:aws-android-sdk-auth-userpools:2.7.7"
 
     // Optional dependencies
-    compileOnly project(":aws-android-sdk-auth-ui")
-    compileOnly project(":aws-android-sdk-auth-facebook")
-    compileOnly project(":aws-android-sdk-auth-google")
-    compileOnly project(":aws-android-sdk-auth-userpools")
+    compileOnly project(':aws-android-sdk-auth-ui')
+    compileOnly project(':aws-android-sdk-auth-facebook')
+    compileOnly project(':aws-android-sdk-auth-google')
+    compileOnly project(':aws-android-sdk-auth-userpools')
 }

@@ -255,7 +255,9 @@ public final class ParallelSimpleHttpClient implements HttpClient {
                                 log.exception(e, "Exception thrown on sending thread");
                                 storedException = e;
                             } finally {
-                                mBuilder.mCompletion.accept(storedException);
+                                if (storedException != null) {
+                                    mBuilder.mCompletion.accept(storedException);
+                                }
                                 payloadSender.shutdownNow();
                             }
                         }
