@@ -49,7 +49,7 @@ public final class KinesisVideoAndroidClientFactory {
     private static final int TEN_STREAMS = 10;
     private static final int SPILL_RATIO_90_PERCENT = 90;
     private static final long MIN_STORAGE_SIZE_64_MEGS = 64 * 1024 * 1024;
-    private static final long MAX_STORAGE_SIZE_768_MEGS = 768 * 1024 * 1024;
+    private static final long MAX_STORAGE_SIZE_384_MEGS = 384 * 1024 * 1024;
     private static final double TOTAL_MEMORY_RATIO = 0.9;
     private static final String DEVICE_NAME = "android-client-library";
     private static final String STORAGE_PATH = Environment.getExternalStorageDirectory().getPath();
@@ -175,7 +175,7 @@ public final class KinesisVideoAndroidClientFactory {
 
         activityManager.getMemoryInfo(memoryInfo);
         final long available =  (long) (memoryInfo.availMem * TOTAL_MEMORY_RATIO);
-        return Math.min(MAX_STORAGE_SIZE_768_MEGS, available);
+        return Math.min(MAX_STORAGE_SIZE_384_MEGS, available);
     }
 
     private static Tag[] defaultDeviceTags() {

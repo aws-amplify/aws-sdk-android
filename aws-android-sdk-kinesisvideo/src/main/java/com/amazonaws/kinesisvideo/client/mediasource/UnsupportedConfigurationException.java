@@ -17,6 +17,8 @@
 
 package com.amazonaws.kinesisvideo.client.mediasource;
 
+import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSourceConfiguration;
+
 /**
  * Thrown when MediaSourceService determines that the media source configuration is not supported
  */

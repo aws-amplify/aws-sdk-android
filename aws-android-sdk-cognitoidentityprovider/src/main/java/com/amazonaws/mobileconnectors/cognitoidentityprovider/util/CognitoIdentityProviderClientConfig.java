@@ -1,5 +1,5 @@
 /*
- *  Copyright 2013-2016 Amazon.com,
+ *  Copyright 2013-2018 Amazon.com,
  *  Inc. or its affiliates. All Rights Reserved.
  *
  *  Licensed under the Amazon Software License (the "License").
@@ -25,19 +25,19 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.Cognito
  */
 public final class CognitoIdentityProviderClientConfig {
     /**
-     * Maximum threshold for refresh tokens, in milli seconds.
+     * Maximum threshold for refresh tokens, in milliseconds.
      */
     private static final long REFRESH_THRESHOLD_MAX = 1800 * 1000;
 
     /**
-     * Minimum threshold for refresh tokens, in milli seconds.
+     * Minimum threshold for refresh tokens, in milliseconds.
      */
     private static final long REFRESH_THRESHOLD_MIN = 0;
 
     private static final long REFRESH_THRESHOLD_DEFAULT = 300 * 1000;
 
     /**
-     * Threshold for refresh tokens, in milli seconds.
+     * Threshold for refresh tokens, in milliseconds.
      * Tokens are refreshed if the session is valid for less than this value.
      */
     private static long refreshThreshold = REFRESH_THRESHOLD_DEFAULT;
@@ -45,12 +45,12 @@ public final class CognitoIdentityProviderClientConfig {
     /**
      * Set the threshold for token refresh.
      *
-     * @param threshold         REQUIRED: Threshold for token refresh in milli seconds.
+     * @param threshold         REQUIRED: Threshold for token refresh in milliseconds.
      */
     public static void setRefreshThreshold(long threshold) {
         if (threshold > REFRESH_THRESHOLD_MAX || threshold < REFRESH_THRESHOLD_MIN) {
             throw new CognitoParameterInvalidException(
-                    String.format("The value of refreshThreshold must between %d and %d milli seconds",
+                    String.format("The value of refreshThreshold must between %d and %d milliseconds",
                     REFRESH_THRESHOLD_MIN, REFRESH_THRESHOLD_MAX));
         }
         refreshThreshold = threshold;

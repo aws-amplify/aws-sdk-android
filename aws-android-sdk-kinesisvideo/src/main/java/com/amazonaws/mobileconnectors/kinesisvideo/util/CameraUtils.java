@@ -30,7 +30,7 @@ import android.util.Size;
 
 import com.amazonaws.kinesisvideo.client.KinesisVideoClient;
 import com.amazonaws.kinesisvideo.client.mediasource.CameraMediaSourceConfiguration;
-import com.amazonaws.kinesisvideo.client.mediasource.MediaSourceConfiguration;
+import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSourceConfiguration;
 
 /**
  * Utility class to get information about cameras, like supported resolutions,

@@ -18,6 +18,8 @@
 package com.amazonaws.kinesisvideo.producer;
 
 //import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import com.amazonaws.kinesisvideo.producer.StorageInfo;
+import com.amazonaws.kinesisvideo.producer.Tag;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
