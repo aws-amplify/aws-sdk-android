@@ -18,14 +18,8 @@ com.amazonaws.kinesisvideo.common.preconditions
 com.amazonaws.kinesisvideo.config
 com.amazonaws.kinesisvideo.encoding
 com.amazonaws.kinesisvideo.http
-com.amazonaws.kinesisvideo.mediasource
-com.amazonaws.kinesisvideo.mediasource.bytes
 com.amazonaws.kinesisvideo.model
 com.amazonaws.kinesisvideo.producer
-com.amazonaws.kinesisvideo.producer.client
-com.amazonaws.kinesisvideo.producer.jni
-com.amazonaws.kinesisvideo.service
-com.amazonaws.kinesisvideo.service.exception
 com.amazonaws.kinesisvideo.signing
 com.amazonaws.kinesisvideo.socket
 com.amazonaws.kinesisvideo.storage
@@ -40,6 +34,7 @@ com.amazonaws.mobile.auth.facebook
 com.amazonaws.mobile.auth.google
 com.amazonaws.mobile.auth.userpools
 com.amazonaws.mobile.client
+com.amazonaws.mobile.client.results
 com.amazonaws.mobile.config
 com.amazonaws.mobileconnectors.amazonmobileanalytics
 com.amazonaws.mobileconnectors.amazonmobileanalytics.monetization

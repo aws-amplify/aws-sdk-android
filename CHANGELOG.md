@@ -1,5 +1,58 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.8.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.8.0)
+
+### New Features
+
+* ** AWS Mobile Client**
+  * The `AWSMobileClient` provides client APIs and building blocks for developers who want to create user authentication experiences.  It supports the following new features:
+    - User state tracking: `AWSMobileClient` offers on-demand querying for the “login state” of a user in the application.
+    - Credentials management: Automatic refreshing of `Cognito User Pools` `JWT Token` and `AWS Credentials` from `Cognito Identity`.
+    - Offline support: `AWSMobileClient` is optimized to account for applications transitioning from offline to online connectivity, and refreshing credentials at the appropriate time so that errors do not occur when actions are taken and connectivity is not available.
+    - Drop-in Auth UI: `AWSMobileClient` client supports easy “drop-in” UI for your application.
+    - Simple, declarative APIs `signUp`, `signIn`, `confirmSignIn`, etc.
+
+> Note: The existing methods of `AWSMobileClient` are deprecated and will be removed in a future minor version. `AWSMobileClient` now takes a dependency on `AWSCognitoIdentityProvider`(Cognito User Pools SDK) package to offer integration with `CognitoUserPools`. When using the new drop-in UI, `AWSAuthUI` and `Social sign-in` features continue to be pluggable dependencies for `AWSMobileClient`.
+
+All documentation is now centralized at https://aws-amplify.github.io/
+
+### Enhancements
+
+* **Amazon Kinesis Video Streams**
+  * Improve exception handling.
+  * Lower default memory allocation to 385MB to reduce crashes from over-allocation.
+  * **Breaking API Changes**
+    * Remove `streamName` parameter from `KinesisVideoClient.registerMediaSource()` as `MediaSource` already has the stream name in `StreamInfo`.
+    * Add `KinesisVideoClient.unregisterMediaSource()` to remove `MediaSource` to `KinesisVideoProducerStream` binding from `KinesisVideoClient`. Customers can use `unregisterMediaSource()` after they stop streaming, so `MediaSource` data will not to be sent to Kinesis Video Streams.
+    * Add `getStreamInfo()` to `MediaSource` instead of `MediaSourceConfiguration`. If customers have implemented their own `MediaSource` and `MediaSourceConfiguration`, they would need to provide stream information via `MediaSource.getStreamInfo()`. The `MediaSourceConfiguration.getStreamInfo()` will not work.
+    * The following classes are no longer publicly available.
+      * `MediaSource`
+      * `MediaSourceConfiguration`
+      * `MediaSourceSink`
+      * `AbstractKinesisVideoClient`
+      * `NativeKinesisVideoClient`
+      * `BytesGenerator`
+      * `BytesMediaSource`
+      * `BytesMediaSourceConfiguration`
+      * `ProducerStreamSink`
+      * `KinesisVideoServiceClient`
+      * `NativeKinesisVideoProducerJni`
+      * `NativeKinesisVideoProducerStream`
+      * `NativeLibraryLoader`
+      * `KinesisVideoMetrics`
+      * `KinesisVideoProducer`
+      * `KinesisVideoProducerStream`
+      * `KinesisVideoStreamMetrics`
+      * `ReadResult`
+      * `ServiceCallbacks`
+      * `com.amazonaws.kinesisvideo.service.exception.AccessDeniedException`
+      * `com.amazonaws.kinesisvideo.service.exception.AmazonServiceException`
+      * `com.amazonaws.kinesisvideo.service.exception.ResourceInUseException`
+      * `com.amazonaws.kinesisvideo.service.exception.ResourceNotFoundException`
+      * `AckConsumer`
+      * `BlockingAckConsumer`
+      * `DefaultServiceCallbacksImpl`
+
 ## [Release 2.7.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.7.7)
 
 ### Bug Fixes
