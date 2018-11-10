@@ -4,7 +4,7 @@
 
 ### New Features
 
-* ** AWS Mobile Client**
+* **AWS Mobile Client**
   * The `AWSMobileClient` provides client APIs and building blocks for developers who want to create user authentication experiences.  It supports the following new features:
     - User state tracking: `AWSMobileClient` offers on-demand querying for the “login state” of a user in the application.
     - Credentials management: Automatic refreshing of `Cognito User Pools` `JWT Token` and `AWS Credentials` from `Cognito Identity`.
