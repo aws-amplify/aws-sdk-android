@@ -15,7 +15,7 @@ The AWS SDK for Android provides a library and documentation for developers to b
 - [__PubSub__](https://aws-amplify.github.io/docs/android/pubsub): Provides connectivity with cloud-based message-oriented middleware.  
 - [__Generated AWS Service Interfaces__](https://aws-amplify.github.io/docs/android/manualsetup): Provides direct interaction with any AWS service. 
 
-#### Visit our [Web Site](https://aws-amplify.github.io) to learn more about AWS Amplify.
+#### Visit our [Web Site](https://aws-amplify.github.io) to learn more about Amplify Framework.
 
 * [Documentation](https://aws-amplify.github.io/docs)
 * [Setup](#setup)
