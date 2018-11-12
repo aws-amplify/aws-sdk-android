@@ -182,7 +182,7 @@ For more information on Android development, see the Android developer site at: 
 
 ## Talk to Us
 
-Visit our GitHub [Issues](https://github.com/aws-amplify/aws-sdk-ios/issues) to leave feedback and to connect with other users of the SDK.
+Visit our GitHub [Issues](https://github.com/aws-amplify/aws-sdk-android/issues) to leave feedback and to connect with other users of the SDK.
 
 ## Author
 
