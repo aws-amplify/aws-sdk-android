@@ -23,6 +23,9 @@ public enum Regions {
     /** us-gov-west-1. */
     GovCloud("us-gov-west-1"),
 
+    /** us-gov-east-1. */
+    US_GOV_EAST_1("us-gov-east-1"),
+
     /** us-east-1. */
     US_EAST_1("us-east-1"),
 

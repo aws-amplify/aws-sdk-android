@@ -65,9 +65,9 @@ dependencies {
 //    androidTestImplementation(project(':aws-android-sdk-auth-userpools')) {
 //        exclude group: "com.google.android", module: "android"
 //    }
-    api "com.amazonaws:aws-android-sdk-auth-core:2.7.7"
-    api "com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.7.7"
-    androidTestImplementation "com.amazonaws:aws-android-sdk-auth-userpools:2.7.7"
+    api "com.amazonaws:aws-android-sdk-auth-core:2.8.0"
+    api "com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.8.0"
+    androidTestImplementation "com.amazonaws:aws-android-sdk-auth-userpools:2.8.0"
 
     // Optional dependencies
     compileOnly project(':aws-android-sdk-auth-ui')

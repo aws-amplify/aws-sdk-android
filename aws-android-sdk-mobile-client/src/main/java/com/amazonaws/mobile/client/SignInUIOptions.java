@@ -40,8 +40,7 @@ public class SignInUIOptions {
         private boolean canCancel;
         private Class<? extends Activity> nextActivityClass;
 
-        public Builder() {
-        }
+        public Builder() { }
 
         public Builder logo(final Integer logoResourceId) {
             logo = logoResourceId;
