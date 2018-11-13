@@ -19,7 +19,7 @@ The AWS SDK for Android provides a library and documentation for developers to b
 
 * [Documentation](https://aws-amplify.github.io/docs)
 * [Setup](#setup)
-* [Examples](https://github.com/awslabs/aws-sdk-android-samples)
+* [Samples](https://github.com/awslabs/aws-sdk-android-samples)
 
 ## Setup
 
