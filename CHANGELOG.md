@@ -1,10 +1,22 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.8.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.8.1)
+
+### New Features
+
+* **AWS Core Runtime**
+  * Added support for GovCloud US East region `us-gov-east-1`.
+
+### Enhancements
+
+* **AWS Mobile Client**
+  * General improvements to synchronization, null checking, and state management.
+
 ## [Release 2.8.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.8.0)
 
 ### New Features
 
-* ** AWS Mobile Client**
+* **AWS Mobile Client**
   * The `AWSMobileClient` provides client APIs and building blocks for developers who want to create user authentication experiences.  It supports the following new features:
     - User state tracking: `AWSMobileClient` offers on-demand querying for the “login state” of a user in the application.
     - Credentials management: Automatic refreshing of `Cognito User Pools` `JWT Token` and `AWS Credentials` from `Cognito Identity`.
