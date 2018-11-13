@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.8.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.8.2)
+
+### Bug Fixes
+
+* **AWS Core Runtime**
+  * Fix logging detection to prevent crash during initialization on Android Oreo and above. [issue #562](https://github.com/aws-amplify/aws-sdk-android/issues/562)
+
 ## [Release 2.8.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.8.1)
 
 ### New Features
