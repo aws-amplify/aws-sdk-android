@@ -94,7 +94,16 @@ public class InternalCallback<R> implements Callback<R> {
         }
         mode = Mode.Async;
         lock = null;
-        new Thread(runnable).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    runnable.run();
+                } catch (Exception e) {
+                    call(null, e);
+                }
+            }
+        }).start();
     }
 
     public R await(final Runnable runnable) throws Exception {

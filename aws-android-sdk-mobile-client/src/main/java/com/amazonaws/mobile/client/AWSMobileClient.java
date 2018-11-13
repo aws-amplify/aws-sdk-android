@@ -394,7 +394,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             try {
                                 cognitoIdentity = new CognitoCachingCredentialsProvider(mContext, awsConfiguration);
                             } catch (Exception e) {
-                                throw new RuntimeException("Failed to initialize Cognito Identity; please check your awsconfiguration.json", e);
+                                callback.onError(new RuntimeException("Failed to initialize Cognito Identity; please check your awsconfiguration.json", e));
+                                return;
                             }
                         }
 
@@ -404,13 +405,15 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                 userpoolsLoginKey = String.format("cognito-idp.%s.amazonaws.com/%s", userPoolJSON.getString("Region"), userPoolJSON.getString("PoolId"));
                                 userpool = new CognitoUserPool(mContext, awsConfiguration);
                             } catch (Exception e) {
-                                throw new RuntimeException("Failed to initialize Cognito Userpool; please check your awsconfiguration.json", e);
+                                callback.onError(new RuntimeException("Failed to initialize Cognito Userpool; please check your awsconfiguration.json", e));
+                                return;
                             }
                         }
 
                         if (cognitoIdentity == null && userpool == null) {
-                            throw new RuntimeException("Neither Cognito Identity or Cognito UserPool was used." +
-                                    " At least one must be present to use AWSMobileClient.");
+                            callback.onError(new RuntimeException("Neither Cognito Identity or Cognito UserPool was used." +
+                                    " At least one must be present to use AWSMobileClient."));
+                            return;
                         }
 
                         final UserStateDetails userStateDetails = getUserStateDetails(true);
@@ -1466,8 +1469,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             Log.d(TAG, "confirmSignIn called after signIn has succeeded");
                             break;
                         default:
-                            throw new IllegalStateException("confirmSignIn called on unsupported operation, " +
-                                    "please file a feature request");
+                            callback.onError(new IllegalStateException("confirmSignIn called on unsupported operation, " +
+                                    "please file a feature request"));
+                            return;
                     }
 
                     if (detectedContinuation != null) {
@@ -1955,7 +1959,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 synchronized (showSignInLockObject) {
                     UserState userState = getUserStateDetails(false).getUserState();
                     if (UserState.SIGNED_IN.equals(userState)) {
-                        throw new RuntimeException("Called showSignIn while user is already signed-in");
+                        callback.onError(new RuntimeException("Called showSignIn while user is already signed-in"));
+                        return;
                     }
 
                     final AuthUIConfiguration.Builder authUIConfigBuilder = new AuthUIConfiguration.Builder()
