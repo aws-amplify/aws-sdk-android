@@ -1,40 +1,31 @@
 # AWS SDK for Android 
 
-[![Build Status](https://travis-ci.org/aws/aws-sdk-android.png?branch=master)](https://travis-ci.org/aws/aws-sdk-android)
-[![GitHub release](https://img.shields.io/github/release/aws/aws-sdk-android.svg)](https://github.com/aws/aws-sdk-android/releases)
-[![Maven Central](https://img.shields.io/maven-central/v/com.amazonaws/aws-android-sdk-pom.svg)]()
-[![Twitter Follow](https://img.shields.io/twitter/follow/awsformobile.svg?style=social&label=Follow)]()
+[![GitHub release](https://img.shields.io/github/release/aws-amplify/aws-sdk-android.svg)](https://github.com/aws-amplify/aws-sdk-android/releases)
+[![Maven Central](https://img.shields.io/maven-central/v/com.amazonaws/aws-android-sdk-pom.svg)](https://search.maven.org/search?q=a:aws-android-sdk-pom)
 
-The [AWS SDK for Android](https://aws.amazon.com/mobile/resources/) provides a library and documentation for developers to build connected mobile applications using AWS.
+The AWS SDK for Android provides a library and documentation for developers to build connected mobile applications using AWS.
 
-## Resources
+### Features / APIs
 
-* **[Developer Guide](https://docs.aws.amazon.com/aws-mobile/latest/developerguide/getting-started.html)** - For in-depth getting started and usage information.
-* **[Code Samples](https://github.com/awslabs/aws-sdk-android-samples)** - Repository of example projects using the SDK.
-* **[Javadoc](http://docs.aws.amazon.com/AWSAndroidSDK/latest/javadoc/)** - For operations, parameters, responses, and examples
-* **[AWS Mobile Developer Blog](http://mobile.awsblog.com/)** - For updates and guidance on using the AWS SDK for Android
-* **[Changelog](https://github.com/aws/aws-sdk-android/blob/master/CHANGELOG.md)** - To see the latest features, bug fixes, and changes in the SDK
-* **[Issues](https://github.com/aws/aws-sdk-android/issues)** - Report issues and submit pull requests (see [Apache 2.0 License](http://aws.amazon.com/apache-2-0/))
-* **[@awsformobile](https://twitter.com/awsformobile)** - Follow us on Twitter
+- [__Authentication__](https://aws-amplify.github.io/docs/android/authentication): APIs and building blocks for developers who want to create user authentication experiences.  
+- [__Analytics__](https://aws-amplify.github.io/docs/android/analytics): Easily collect analytics data for your app. Analytics data includes user sessions and other custom events that you want to track in your app.  
+- [__API__](https://aws-amplify.github.io/docs/android/api): Provides a simple solution when making HTTP requests. It provides an automatic, lightweight signing process which complies with AWS Signature Version 4.
+- [__Storage__](https://aws-amplify.github.io/docs/android/storage): Provides a simple mechanism for managing user content for your app in public, protected or private storage buckets.  
+- [__Push Notifications__](https://aws-amplify.github.io/docs/android/push-notifications): Allows you to integrate push notifications in your app with Amazon Pinpoint targeting and campaign management support.
+- [__PubSub__](https://aws-amplify.github.io/docs/android/pubsub): Provides connectivity with cloud-based message-oriented middleware.  
+- [__Generated AWS Service Interfaces__](https://aws-amplify.github.io/docs/android/manualsetup): Provides direct interaction with any AWS service. 
 
-## Getting Started using the SDK
+#### Visit our [Web Site](https://aws-amplify.github.io) to learn more about Amplify Framework.
+
+* [Documentation](https://aws-amplify.github.io/docs)
+* [Setup](#setup)
+* [Examples](https://github.com/awslabs/aws-sdk-android-samples)
+
+## Setup
 
 Please note the AWS SDK for Android supports Android API level 10+ and newer libraries may require higher API level 21+ and 23+.
 
-### Sign up for AWS
-Before you begin, you need to sign up for an AWS account [here](http://aws.amazon.com/), click 'Sign In to the Console', and select new user.
-
-### Create an Amazon Cognito Identity pool 
-Amazon Cognito Identity allows you to authenticate users to access your AWS resources without having to place your credentials within the applicaiton itself (which is *very* insecure).
-
-To create an Identity Pool
-
-1.  Log into the [Cognito Console](https://console.aws.amazon.com/cognito/home) and click the Get Started button (or the **Manage Federated Identities** button if your account already has an identity pool).
-2.  Give your Identity Pool a unique name and either enable access to unauthenticated identities or follow the guides presented in the console to setup an authentication provider (Such as Amazon, Facebook, Google, Twitter, or be your own authentication provider).  Then click create pool.
-3.  You will need to create a role associated with your Identity Pool.  This role specifies the actions that users in the identity pool are allowed to make.  By default the console provides you with a role that allows the synchronization of user data from Cognito Sync and recording user events using Amazon Mobile Analytics.  For some example ways to allow other services, or to revoke the permission for these default services see the [Getting Started Guide](http://docs.aws.amazon.com/mobile/sdkforandroid/developerguide/getting-started-android.html) and navigate to the service you are interested in to see an example of how to create an appropriate role.
-4.  The Cognito console will then present you with a code snippet for getting AWS Credentials to your application.  Keep this open as you may find it useful once you are ready to start coding with the SDK.
-
-### Depend on the AWS SDK for Android in your application
+### Include the SDK for Android in an Existing Application
 
 The following 3 sections describe how you can depend on the SDK in your application using Gradle with Android Studio, Maven, or by downloading the Jar files from our website.
 If you use Maven or Gradle you can automatically get new versions of the SDK when they are released.
@@ -113,7 +104,7 @@ Here's an example pom.xml showing how you can add Amazon Cognito Identity, Amazo
 
 #### Including the Jars
 
-You can also download the .zip file containing the jars files of the SDK [here](http://aws.amazon.com/mobile/sdk/).
+You can also download the .zip file containing the jars files of the SDK [here](https://sdk-for-android.amazonwebservices.com/latest/aws-android-sdk.zip).
 How you include these in your project will depend on the editor you are using.
 
 For an Eclipse project, add the jar files to a folder in your project called 'libs' (create one if it doesn't already exist).  The Eclipse Android plug-in will usually add this to your classpath by default. If it does not right click your project --> properties --> Java build path (Libraries tab), add Jar and select the Jars you want to add
@@ -165,69 +156,11 @@ private class S3Example extends AsyncTask<Void,Void,Void>{
 ### SDK Fundamentals
 There are only a few fundamentals that are helpful to know when developing against the AWS SDK for Android.
 
-* Never embed credentrials in an Android application.  It is trivially easy to decompile applications and steal embedded credentials.  Always use temporarily vended credentials from services such as [Amazon Cognito Identity](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-identity.html).
+* Never embed credentrials in an Android application.  It is trivially easy to decompile applications and steal embedded credentials.  Always use temporarily vended credentials from services such as Amazon Cognito Identity.
 * Unless explicitly stated, calls are synchronous and must be taken off of the main thread.
 * Unless explicitly stated, calls can always throw an AmazonServiceException or an AmazonClientException (depending on if the exception is generated by the client or the service).
 * The SDK will handle re-trying requests automatically, but unless explicitly stated will throw an exception if it cannot contact AWS.
-* We are always looking to help, please feel free to open an [issue](https://github.com/aws/aws-sdk-android/issues).
-
-### Basic Service API Calls
-
-The SDK provides access to many AWS Services.  At the most basic level the SDK provides a request/response model for many of the various service methods.  At this level, for a given service, you will have a client that accepts request objects and will pass back a response object, or throw an error.  This basic model is shown in the above example.  Looking at the [Javadoc](http://docs.aws.amazon.com/AWSAndroidSDK/latest/javadoc/) you will notice that services typically have a com.amazonaws.services.*servicename* package and com.amazonaws.services.*servicename*.model package .  This *servicename* package contains the client that you will pass request/response objects to in order to make service calls.  The *servicename*.model package contains classes that model the request and response parameters of calls to and from AWS services.
-
-### Mobile Connectors  
-
-The SDK also provides a higher level experience for many services.
-
-### S3 Transfer Utility
-
-The TransferUtility adds convenience and reliability on top of using the standard `AmazonS3Client` when uploading and downloading data to S3:
-
-* Enhances performance by automatically converting  upload transfers > 5MB to multi-part uploads, using multiple threads.
-* Provides the ability to pause/resume/cancel upload/download transfers, which is useful if the app is being killed or loses internet connectivity.
-* Automatically pauses/resumes upload/download transfers when network connectivity changes.
-
-### S3 Transfer Manager (Deprecated)
-
-Please use S3 Transfer Utility
-
-### DynamoDB Object Mapper
-
-DynamoDB Object Mapper lets you map client-side classes to DynamoDB tables similar to standard ORM techniques.  With it you can:
-
-* Perform various create, read, update, and delete (CRUD) operations, as well as execute queries which automatically return the classes you specify.  
-* Use S3 link if the class you are mapping contains large blob data.  With S3 Links you can store large chunks of bytes, such as avatar images, in S3 while storing the rest of the class data, such as primitives and strings in DynamoDB.
-
-Note:  The DynamoDB Mapper is in a separate jar (and Maven package), but requires the DynamoDB jar to be on the classpath.  If you want to use S3 Links, you will also need the Amazon S3 jar on the classpath.
-
-### Lambda Invoker
-The Lambda Invoker helps calling code in the cloud via AWS Lambda by:
-
-* Automatically providing your Lambda functions with data about the device, app, and end user identity for personalized responses.
-* Allowing you to annotate Java interfaces, denoting them as proxies to Lambda fuctions, letting you stay in the Java paradigm.
-
-### Amazon Cognito
-
-The Amazon Cognito mobile connector provides the ability to:
-
-* Authenticate users from login providers such Amazon, Facebook, Google, Twitter, or your own custom identity provider.
-* Synchronize user profile data, app preferences or game state across devices and across login providers.
-* Record and update user data while offline.
-
-**Note**: The Amazon Cognito Federated Identities classes are part of `AWS SDK for Android - Core` (`aws-android-sdk-core` Maven package) and can be found [here](https://github.com/aws/aws-sdk-android/tree/master/aws-android-sdk-core). The Amazon Cognito Sync code can be found [here](https://github.com/aws/aws-sdk-android/tree/master/aws-android-sdk-cognito).
-
-### Amazon Pinpoint
-Using Amazon Pinpoint, you can:
-
-* Record custom events
-* Automatically track customer behaviors, aggregate metrics, and generate data visualizations.
-* Record events to disk, and select when to send batches of recorded events to AWS.  (This allows saving of events while offline, and saves battery life by infrequently waking up the network.)
-* Specify the maximum amount of storage space you want to dedicate to event storage.
-
-### Kinesis Recorder
-Amazon Kinesis allows for real-time processing of streaming data at massive scale.  Unlike Amazon Mobile Analytics, using Amazon Kinesis developers write server side code to process data sent to Kinesis.  An example would be recording click stream data.  
-
-* The Kinesis Recorder allows developers to save PutRecordRequests to disk and send them in batches.  (This allows saving of records while offline, and saves battery life by infrequently waking up the network.)
+* We are always looking to help, please feel free to open an [issue](https://github.com/aws-amplify/aws-sdk-android/issues).
 
 ## Building the SDK
 This section describes how you can compile the SDK source code on your own.
@@ -239,10 +172,6 @@ After installing Gradle, clone this repository and run
 
 Otherwise, use Android Studio to open the project and build the sub-project(s) of your choice and check the `build` folder for `libs` or `output/aar`.
 
-#### Developing
-
-The recommended IDE is Android Studio, but you should be able to use your favorite IDE as long as it supports Gradle.
-
 #### Issues with unit tests on Windows
 
 If you are using a Windows machine, unit tests that involve file deletion can fail because the filesystem does not respond well to `file.delete()`.
@@ -251,36 +180,14 @@ If you are using a Windows machine, unit tests that involve file deletion can fa
 
 For more information on Android development, see the Android developer site at: [developer.android.com](http://developer.android.com/index.html)
 
-### Supported AWS Services
+## Talk to Us
 
-The AWS SDK for Android supports the following AWS services:
+Visit our GitHub [Issues](https://github.com/aws-amplify/aws-sdk-android/issues) to leave feedback and to connect with other users of the SDK.
 
-* [Amazon API Gateway](https://aws.amazon.com/api-gateway/)
-* [Amazon Auto Scaling](https://aws.amazon.com/autoscaling/)
-* [Amazon CloudWatch](https://aws.amazon.com/cloudwatch/)
-* [Amazon CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_GettingStarted.html)
-* [Amazon Cognito](https://aws.amazon.com/cognito/)
-* [Amazon Cognito Auth](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-userpools-server-contract-reference.html)
-* [Amazon DynamoDB](https://aws.amazon.com/dynamodb/)
-* [Amazon Elastic Compute Cloud (EC2)](https://aws.amazon.com/ec2/)
-* [Amazon Elastic Load Balancing (ELB)](https://aws.amazon.com/elasticloadbalancing/)
-* [AWS IoT](https://aws.amazon.com/iot/)
-* [AWS Key Management Service (KMS)](https://aws.amazon.com/kms/)
-* [Amazon Kinesis Firehose](https://aws.amazon.com/kinesis/firehose/)
-* [Amazon Kinesis Streams](https://aws.amazon.com/kinesis/streams/)
-* [Amazon Kinesis Video Streams](https://aws.amazon.com/kinesis/video-streams/)
-* [AWS Lambda](https://aws.amazon.com/lambda/)
-* [Amazon Lex](https://aws.amazon.com/lex)
-* [Amazon Machine Learning](https://aws.amazon.com/machine-learning/)
-* [Amazon Mobile Analytics](https://aws.amazon.com/mobileanalytics/)
-* [Amazon Pinpoint](https://aws.amazon.com/pinpoint/)
-* [Amazon Polly](https://aws.amazon.com/polly/)
-* [Amazon Rekoginiton](https://aws.amazon.com/rekognition/)
-* [Amazon S3](https://aws.amazon.com/s3/)
-* [Amazon Security Token Service (STS)](https://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html)
-* [Amazon Simple Email Service (SES)](https://aws.amazon.com/ses/)
-* [Amazon Simple Notification Service (SNS)](https://aws.amazon.com/sns/)
-* [Amazon Simple Queue Service (SQS)](https://aws.amazon.com/sqs/)
-* [Amazon SimpleDB](https://aws.amazon.com/simpledb/)
-* [Amazon Transcribe](https://aws.amazon.com/transcribe/)
-* [Amazon Comprehend](https://aws.amazon.com/comprehend)
+## Author
+
+Amazon Web Services
+
+## License
+
+See the **LICENSE** file for more info.
