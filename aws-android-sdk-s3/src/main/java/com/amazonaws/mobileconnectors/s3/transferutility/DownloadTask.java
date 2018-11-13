@@ -67,7 +67,7 @@ class DownloadTask implements Callable<Boolean> {
     @Override
     public Boolean call() {
         if (TransferService.networkInfoReceiver != null &&
-            !TransferService.networkInfoReceiver.isNetworkConnected()) {
+            !TransferService.networkInfoReceiver.isNetworkConnected(download.connectionType)) {
             LOGGER.info("Network disconnected. Updating the transfer state to WAITING_FOR_NETWORK.");
             updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
             return false;
@@ -113,7 +113,7 @@ class DownloadTask implements Callable<Boolean> {
                  */
                 LOGGER.debug("Transfer " + download.id + " is interrupted by user");
             } else if (TransferService.networkInfoReceiver != null &&
-                       !TransferService.networkInfoReceiver.isNetworkConnected()) {
+                       !TransferService.networkInfoReceiver.isNetworkConnected(download.connectionType)) {
                 LOGGER.debug("Transfer " + download.id + " waits for network");
                 updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
             } else {

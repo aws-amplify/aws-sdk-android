@@ -85,13 +85,15 @@ class TransferDBUtil {
      * @param uploadId The multipart upload id of the upload.
      * @param bytesTotal The Total bytes of the file.
      * @param isLastPart Whether this part is the last part of the upload.
+     * @param connectionType Connection type to use for the transfer
      * @return An Uri of the record inserted.
      */
     public Uri insertMultipartUploadRecord(String bucket, String key, File file,
-            long fileOffset, int partNumber, String uploadId, long bytesTotal, int isLastPart) {
+            long fileOffset, int partNumber, String uploadId, long bytesTotal, int isLastPart,
+            TransferConnectionType connectionType) {
         final ContentValues values = generateContentValuesForMultiPartUpload(bucket, key, file,
                 fileOffset, partNumber, uploadId, bytesTotal, isLastPart, new ObjectMetadata(),
-                null);
+                null, connectionType);
         return transferDBBase.insert(transferDBBase.getContentUri(), values);
     }
 
@@ -104,11 +106,12 @@ class TransferDBUtil {
      *            object.
      * @param file The file to upload.
      * @param metadata The S3 Object metadata associated with this object
+     * @param connectionType Connection type to use for the transfer
      * @return An Uri of the record inserted.
      */
     public Uri insertSingleTransferRecord(TransferType type, String bucket, String key, File file,
-            ObjectMetadata metadata) {
-        return insertSingleTransferRecord(type, bucket, key, file, metadata, null);
+            ObjectMetadata metadata, TransferConnectionType connectionType) {
+        return insertSingleTransferRecord(type, bucket, key, file, metadata, null, connectionType);
     }
 
     /**
@@ -121,12 +124,13 @@ class TransferDBUtil {
      * @param file The file to upload.
      * @param metadata The S3 Object metadata associated with this object
      * @param cannedAcl The canned Acl of this S3 object
+     * @param connectionType Connection type to use for the transfer
      * @return An Uri of the record inserted.
      */
     public Uri insertSingleTransferRecord(TransferType type, String bucket, String key, File file,
-            ObjectMetadata metadata, CannedAccessControlList cannedAcl) {
+            ObjectMetadata metadata, CannedAccessControlList cannedAcl, TransferConnectionType connectionType) {
         final ContentValues values = generateContentValuesForSinglePartTransfer(type, bucket, key, file,
-                metadata, cannedAcl);
+                metadata, cannedAcl, connectionType);
         return transferDBBase.insert(transferDBBase.getContentUri(), values);
     }
 
@@ -140,9 +144,10 @@ class TransferDBUtil {
      * @param file The file to upload.
      * @return An Uri of the record inserted.
      */
-    public Uri insertSingleTransferRecord(TransferType type, String bucket, String key, File file) {
+    public Uri insertSingleTransferRecord(TransferType type, String bucket, String key, File file,
+           TransferConnectionType connectionType) {
         return insertSingleTransferRecord(type, bucket, key, file,
-                new ObjectMetadata());
+                new ObjectMetadata(), connectionType);
     }
 
     /**
@@ -662,12 +667,13 @@ class TransferDBUtil {
      * @param isLastPart Whether this part is the last part of the upload.
      * @param metadata The S3 ObjectMetadata to send along with the object
      * @param cannedAcl The canned ACL associated with the object
+     * @param connectionType The connection type to use for the transfer
      * @return The ContentValues object generated.
      */
     public ContentValues generateContentValuesForMultiPartUpload(String bucket,
             String key, File file, long fileOffset, int partNumber, String uploadId,
             long bytesTotal, int isLastPart, ObjectMetadata metadata,
-            CannedAccessControlList cannedAcl) {
+            CannedAccessControlList cannedAcl, TransferConnectionType connectionType) {
         final ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_TYPE, TransferType.UPLOAD.toString());
         values.put(TransferTable.COLUMN_STATE, TransferState.WAITING.toString());
@@ -686,6 +692,7 @@ class TransferDBUtil {
         if (cannedAcl != null) {
             values.put(TransferTable.COLUMN_CANNED_ACL, cannedAcl.toString());
         }
+        values.put(TransferTable.COLUMN_CONNECTION_TYPE, connectionType.toString());
         return values;
     }
 
@@ -733,11 +740,12 @@ class TransferDBUtil {
      * @param file The file to upload.
      * @param metadata The S3 ObjectMetadata to send along with the object
      * @param cannedAcl The canned ACL associated with the object
+     * @param connectionType The connection type to use for the transfer
      * @return The ContentValues object generated.
      */
     private ContentValues generateContentValuesForSinglePartTransfer(TransferType type,
             String bucket, String key, File file, ObjectMetadata metadata,
-            CannedAccessControlList cannedAcl) {
+            CannedAccessControlList cannedAcl, TransferConnectionType connectionType) {
         final ContentValues values = new ContentValues();
         values.put(TransferTable.COLUMN_TYPE, type.toString());
         values.put(TransferTable.COLUMN_STATE, TransferState.WAITING.toString());
@@ -755,6 +763,7 @@ class TransferDBUtil {
         if (cannedAcl != null) {
             values.put(TransferTable.COLUMN_CANNED_ACL, cannedAcl.toString());
         }
+        values.put(TransferTable.COLUMN_CONNECTION_TYPE, connectionType.toString());
         return values;
     }
 

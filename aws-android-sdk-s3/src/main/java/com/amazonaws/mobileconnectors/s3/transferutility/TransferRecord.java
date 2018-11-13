@@ -81,6 +81,8 @@ class TransferRecord {
     public String md5;
     public String cannedAcl;
 
+    public TransferConnectionType connectionType;
+
     private Future<?> submittedTask;
 
     /**
@@ -149,6 +151,8 @@ class TransferRecord {
         this.cannedAcl = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_CANNED_ACL));
         this.headerStorageClass = c
                 .getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_HEADER_STORAGE_CLASS));
+        this.connectionType = TransferConnectionType.getConnectionType(c.getString(c
+                .getColumnIndexOrThrow(TransferTable.COLUMN_CONNECTION_TYPE)));
     }
 
     /**
@@ -290,6 +294,7 @@ class TransferRecord {
                 .append("eTag:").append(eTag).append(",")
                 .append("storageClass:").append(headerStorageClass).append(",")
                 .append("userMetadata:").append(userMetadata.toString()).append(",")
+                .append("connectionType:").append(connectionType).append(",")
                 .append("]");
         return sb.toString();
     }

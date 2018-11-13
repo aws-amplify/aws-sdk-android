@@ -138,7 +138,7 @@ public class TransferService extends Service {
             if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
                 LOGGER.info("Network connectivity changed detected.");
 
-                final boolean networkConnected = isNetworkConnected();
+                final boolean networkConnected = isNetworkConnected(TransferConnectionType.ANY);
                 LOGGER.info("Network connected: " + networkConnected);
 
                 /**
@@ -149,11 +149,8 @@ public class TransferService extends Service {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        if (networkConnected) {
-                            checkTransfersOnNetworkReconnect();
-                        } else {
-                            pauseAllForNetwork();
-                        }
+                        pauseAllForNetwork();
+                        checkTransfersOnNetworkReconnect();
                     }
                 }).start();
             }
@@ -162,11 +159,11 @@ public class TransferService extends Service {
         /**
          * Gets the status of network connectivity.
          *
+         * @param connectionType {@link TransferConnectionType}
          * @return true if network is connected, false otherwise.
          */
-        boolean isNetworkConnected() {
-            final NetworkInfo info = connManager.getActiveNetworkInfo();
-            return info != null && info.isConnected();
+        boolean isNetworkConnected(TransferConnectionType connectionType) {
+            return connectionType.isConnected(connManager);
         }
     }
 
@@ -215,7 +212,7 @@ public class TransferService extends Service {
      * and resume them to execution.
      */
     void checkTransfersOnNetworkReconnect() {
-        if (networkInfoReceiver.isNetworkConnected()) {
+        if (networkInfoReceiver.isNetworkConnected(TransferConnectionType.ANY)) {
             loadAndResumeTransfersFromDB(new TransferState[] {TransferState.WAITING_FOR_NETWORK});
         } else {
             LOGGER.error("Network Connect message received but not connected to network.");
@@ -248,6 +245,12 @@ public class TransferService extends Service {
                 c = dbUtil.queryTransfersWithTypeAndStates(TransferType.ANY,
                         transferStates);
                 while (c.moveToNext()) {
+                    final TransferConnectionType connectionType = TransferConnectionType.getConnectionType(c
+                            .getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_CONNECTION_TYPE)));
+                    // If the transfer connection type is not active ignore it
+                    if(networkInfoReceiver.isNetworkConnected(connectionType)) {
+                        continue;
+                    }
                     final int id = c.getInt(c.getColumnIndexOrThrow(TransferTable.COLUMN_ID));
                     // If the transfer status updater doesn't track it, load the transfer record
                     // from the database and add it to the updater to track
@@ -295,6 +298,7 @@ public class TransferService extends Service {
                 final AmazonS3 s3 = S3ClientReference.get(transferRecord.id);
                 if (s3 != null &&
                         transferRecord != null &&
+                        !networkInfoReceiver.isNetworkConnected(transferRecord.connectionType) &&
                         transferRecord.pause(s3, updater)) {
                     updater.updateState(transferRecord.id, TransferState.WAITING_FOR_NETWORK);
                 }
@@ -309,7 +313,7 @@ public class TransferService extends Service {
             return;
         }
 
-        writer.printf("network status: %s\n", networkInfoReceiver.isNetworkConnected());
+        writer.printf("network status: %s\n", networkInfoReceiver.isNetworkConnected(TransferConnectionType.ANY));
         final Map<Integer, TransferRecord> transfers = updater.getTransfers();
         writer.printf("# of active transfers: %d\n", transfers.size());
         for (final TransferRecord transfer : transfers.values()) {

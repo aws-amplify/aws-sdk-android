@@ -33,13 +33,16 @@ class UploadPartTask implements Callable<Boolean> {
     private final UploadPartRequest request;
     private final AmazonS3 s3;
     private final TransferDBUtil dbUtil;
+    private final TransferConnectionType connectionType;
 
     public UploadPartTask(UploadPartRequest request,
                           AmazonS3 s3,
-                          TransferDBUtil dbUtil) {
+                          TransferDBUtil dbUtil,
+                          TransferConnectionType connectionType) {
         this.request = request;
         this.s3 = s3;
         this.dbUtil = dbUtil;
+        this.connectionType = connectionType;
     }
 
     /*
@@ -59,7 +62,7 @@ class UploadPartTask implements Callable<Boolean> {
                 return false;
             }
             if (TransferService.networkInfoReceiver != null &&
-                !TransferService.networkInfoReceiver.isNetworkConnected()) {
+                !TransferService.networkInfoReceiver.isNetworkConnected(connectionType)) {
                 /*
                  * Network connection is being interrupted. Moving the TransferState
                  * to WAITING_FOR_NETWORK till the network availability resumes.

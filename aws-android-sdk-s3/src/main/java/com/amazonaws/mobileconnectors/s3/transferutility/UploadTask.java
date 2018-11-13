@@ -78,7 +78,7 @@ class UploadTask implements Callable<Boolean> {
     @Override
     public Boolean call() throws Exception {
         if (TransferService.networkInfoReceiver != null &&
-            !TransferService.networkInfoReceiver.isNetworkConnected()) {
+            !TransferService.networkInfoReceiver.isNetworkConnected(upload.connectionType)) {
             LOGGER.info("Network not connected. Setting the state to WAITING_FOR_NETWORK.");
             updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
             return false;
@@ -140,7 +140,7 @@ class UploadTask implements Callable<Boolean> {
         for (final UploadPartRequest request : requestList) {
             TransferUtility.appendMultipartTransferServiceUserAgentString(request);
             request.setGeneralProgressListener(updater.newProgressListener(upload.id));
-            futures.add(TransferThreadPool.submitTask(new UploadPartTask(request, s3, dbUtil)));
+            futures.add(TransferThreadPool.submitTask(new UploadPartTask(request, s3, dbUtil, upload.connectionType)));
         }
 
         try {
