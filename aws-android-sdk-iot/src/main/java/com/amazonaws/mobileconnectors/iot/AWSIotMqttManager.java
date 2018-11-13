@@ -547,7 +547,7 @@ public class AWSIotMqttManager {
     /**
      * Set to true if the connection should be established with a clean session, false otherwise.
      * By default, this is set to true.
-     * @param cleanSession
+     * @param cleanSession flag to establish a clean session
      */
     public void setCleanSession(boolean cleanSession) {
         this.cleanSession = cleanSession;

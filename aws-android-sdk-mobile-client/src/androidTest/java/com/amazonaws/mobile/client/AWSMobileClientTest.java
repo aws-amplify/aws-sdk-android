@@ -2,6 +2,7 @@ package com.amazonaws.mobile.client;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
+import android.util.Log;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.mobile.client.results.SignInResult;
@@ -18,12 +19,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -37,6 +41,8 @@ import static org.junit.Assert.fail;
  * Userpool and identity pool were create with Amplify CLI 0.1.23 Default configuration
  */
 public class AWSMobileClientTest extends AWSMobileClientTestBase {
+    private static final String TAG = AWSMobileClientTest.class.getSimpleName();
+
     public static final String EMAIL = "somebody@email.com";
     public static final String BLURRED_EMAIL = "b***@a***.com";
     public static final String USERNAME = "somebody";
@@ -283,7 +289,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         // Check credentials need to be fetched
         try {
             AWSCredentials credentials = auth.getCredentials();
-            fail("Unauthenticated access is not supported for this identity pool in this test\n" + credentials.getAWSAccessKeyId() + "n" + credentials1.getAWSAccessKeyId());
+            fail("Unauthenticated access is not supported for this identity pool in this test\n" + credentials.getAWSAccessKeyId() + "\n" + credentials1.getAWSAccessKeyId());
         } catch (RuntimeException e) {
             assertTrue(e.getCause() instanceof com.amazonaws.services.cognitoidentity.model.NotAuthorizedException);
         }
@@ -292,7 +298,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         try {
             assertNull(auth.getTokens());
         } catch (Exception e) {
-            assertEquals("getTokens does not support retrieving tokens for federated sign-in", e.getMessage());
+            assertEquals("getTokens does not support retrieving tokens while signed-out", e.getMessage());
         }
     }
 
@@ -346,6 +352,109 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         auth.signIn(USERNAME, PASSWORD, null);
         countDownLatch.await(5, TimeUnit.SECONDS);
         assertFalse(triggered.get());
+    }
+
+    @Test
+    public void testGetTokensStress() throws Exception {
+        final SignInResult signInResult = auth.signIn(USERNAME, PASSWORD, null);
+        if (signInResult.getSignInState() == SignInState.DONE) {
+            // Done
+        } else {
+            fail("Cannot support MFA in tests");
+        }
+        auth.addUserStateListener(new UserStateListener() {
+            @Override
+            public void onUserStateChanged(UserStateDetails details) {
+                Log.d(TAG, "onUserStateChanged: " + details.getUserState());
+            }
+        });
+
+        ArrayList<Thread> threads = new ArrayList<Thread>(10);
+        final AtomicReference<Boolean> stop = new AtomicReference<Boolean>(false);
+        for (int i = 0; i < 10; ++i) {
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String lastMessage = "";
+                    while (!stop.get()) {
+                        try {
+                            auth.getTokens();
+                        } catch (Exception e) {
+                            if (!lastMessage.equals(e.getMessage())) {
+                                lastMessage = e.getMessage();
+
+                                if (!lastMessage.equals("No cached session.")
+                                        && !lastMessage.equals("getTokens does not support retrieving tokens while signed-out")) {
+                                    fail("Unexpected error message: " + lastMessage);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            thread.start();
+            threads.add(thread);
+        }
+
+        Thread.sleep(2 * 1000);
+        Log.d(TAG, "testStress: signOut");
+        auth.signOut();
+        Thread.sleep(1 * 1000);
+        stop.set(true);
+        for (Thread t : threads) {
+            t.join();
+        }
+    }
+
+    @Test
+    public void testGetCredentialsStress() throws Exception {
+        final SignInResult signInResult = auth.signIn(USERNAME, PASSWORD, null);
+        if (signInResult.getSignInState() == SignInState.DONE) {
+            // Done
+        } else {
+            fail("Cannot support MFA in tests");
+        }
+        auth.addUserStateListener(new UserStateListener() {
+            @Override
+            public void onUserStateChanged(UserStateDetails details) {
+                Log.d(TAG, "onUserStateChanged: " + details.getUserState());
+            }
+        });
+
+        ArrayList<Thread> threads = new ArrayList<Thread>(10);
+        final AtomicReference<Boolean> stop = new AtomicReference<Boolean>(false);
+        for (int i = 0; i < 10; ++i) {
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String lastMessage = "";
+                    while (!stop.get()) {
+                        try {
+                            auth.getCredentials();
+                        } catch (Exception e) {
+                            if (!lastMessage.equals(e.getMessage())) {
+                                lastMessage = e.getMessage();
+
+                                if (!lastMessage.equals("Failed to get credentials from Cognito Identity")) {
+                                    fail("Unexpected error message: " + lastMessage);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            thread.start();
+            threads.add(thread);
+        }
+
+        Thread.sleep(2 * 1000);
+        Log.d(TAG, "testStress: signOut");
+        auth.signOut();
+        Thread.sleep(1 * 1000);
+        stop.set(true);
+        for (Thread t : threads) {
+            t.join();
+        }
     }
 
 }
