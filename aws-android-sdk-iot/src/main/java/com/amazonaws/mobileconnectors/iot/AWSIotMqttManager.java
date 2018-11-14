@@ -18,7 +18,6 @@ package com.amazonaws.mobileconnectors.iot;
 import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.os.Looper;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentialsProvider;
@@ -160,6 +159,10 @@ public class AWSIotMqttManager {
     private boolean userDisconnect;
     /** Do we need to resubscribe upon reconnecting? */
     private boolean needResubscribe;
+    /** HandlerThread for reconnecting and publishing messages from queue */
+    private HandlerThread mReconnectHandlerThread;
+    /** Handler for mReconnectHandlerThread */
+    private Handler mReconnectHandler;
 
     /** Is this a clean Session with no state being persisted from a prior session */
     private boolean cleanSession = true;
@@ -663,6 +666,8 @@ public class AWSIotMqttManager {
         isWebSocketClient = false;
         LOGGER.debug("MQTT broker: " + mqttBrokerURL);
 
+        createReconnectHandlerThread();
+
         try {
             if (mqttClient == null) {
                 mqttClient = new MqttAsyncClient(mqttBrokerURL, mqttClientId, new MemoryPersistence());
@@ -729,6 +734,9 @@ public class AWSIotMqttManager {
                         region.getDomain());
                 isWebSocketClient = true;
                 LOGGER.debug("MQTT broker: " + endpoint);
+
+                createReconnectHandlerThread();
+
                 try {
                     final String mqttWebSocketURL = signer.getSignedUrl(endpoint, clientCredentialsProvider.getCredentials(),
                             System.currentTimeMillis());
@@ -830,6 +838,7 @@ public class AWSIotMqttManager {
                         scheduleReconnect();
                     } else {
                         connectionState = MqttManagerConnectionState.Disconnected;
+                        clearReconnectHandlerThread();
                         userConnectionCallback(e);
                     }
                 }
@@ -846,11 +855,13 @@ public class AWSIotMqttManager {
                     break;
                 default:
                     connectionState = MqttManagerConnectionState.Disconnected;
+                    clearReconnectHandlerThread();
                     userConnectionCallback(e);
                     break;
             }
         } catch (final Exception exception) {
             connectionState = MqttManagerConnectionState.Disconnected;
+            clearReconnectHandlerThread();
             userConnectionCallback(exception);
         }
     }
@@ -865,8 +876,35 @@ public class AWSIotMqttManager {
         reset();
         topicListeners.clear();
         connectionState = MqttManagerConnectionState.Disconnected;
+        clearReconnectHandlerThread();
         userConnectionCallback();
         return true;
+    }
+
+    /**
+     * Creates and starts the reconnect handler thread
+     */
+    private void createReconnectHandlerThread() {
+
+        //Create reconnect handler thread
+        if (mReconnectHandlerThread == null && mReconnectHandler == null) {
+            mReconnectHandlerThread = new HandlerThread("Reconnect thread");
+            mReconnectHandlerThread.start();
+            mReconnectHandler = new Handler(mReconnectHandlerThread.getLooper());
+        }
+    }
+
+    /**
+     * Stops and cleans up the reconnect handler thread
+     */
+    private void clearReconnectHandlerThread() {
+
+        //Stop reconnect handler thread
+        if (mReconnectHandlerThread != null) {
+            mReconnectHandlerThread.quit();
+        }
+        mReconnectHandlerThread = null;
+        mReconnectHandler = null;
     }
 
     /**
@@ -925,6 +963,7 @@ public class AWSIotMqttManager {
                     if (scheduleReconnect()) {
                         connectionState = MqttManagerConnectionState.Reconnecting;
                     } else {
+                        //TODO: how to terminate the reconnect handler thread here?
                         connectionState = MqttManagerConnectionState.Disconnected;
                     }
                     userConnectionCallback();
@@ -962,6 +1001,7 @@ public class AWSIotMqttManager {
                             connectionState = MqttManagerConnectionState.Reconnecting;
                             userConnectionCallback();
                         } else {
+                            //TODO: how to terminate the reconnect handler thread here?
                             connectionState = MqttManagerConnectionState.Disconnected;
                             userConnectionCallback();
                         }
@@ -973,6 +1013,7 @@ public class AWSIotMqttManager {
                     connectionState = MqttManagerConnectionState.Reconnecting;
                     userConnectionCallback();
                 } else {
+                    //TODO: how to terminate the reconnect handler thread here?
                     connectionState = MqttManagerConnectionState.Disconnected;
                     userConnectionCallback(e);
                 }
@@ -991,22 +1032,23 @@ public class AWSIotMqttManager {
         // schedule a reconnect if unlimited or if we haven't yet hit the limit
 
         if (maxAutoReconnectAttempts == -1 || autoReconnectsAttempted < maxAutoReconnectAttempts) {
-            //Start a separate thread to do reconnect, because connection must not occur on the main thread.
-            final HandlerThread ht = new HandlerThread("Reconnect thread");
-            ht.start();
-            Looper looper = ht.getLooper();
-            Handler handler = new Handler(looper);
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    LOGGER.debug("TID: " + ht.getThreadId() + " trying to reconnect to session");
-                    if (mqttClient != null && !mqttClient.isConnected()) {
-                        reconnectToSession();
+
+            if (mReconnectHandlerThread != null && mReconnectHandler != null) {
+                mReconnectHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        LOGGER.debug("TID: " + mReconnectHandlerThread.getThreadId() + " trying to reconnect to session");
+                        if (mqttClient != null && !mqttClient.isConnected()) {
+                            reconnectToSession();
+                        }
                     }
-                }
-            }, MILLIS_IN_ONE_SECOND * currentReconnectRetryTime);
-            currentReconnectRetryTime = Math.min(currentReconnectRetryTime * 2, maxReconnectRetryTime);
-            return true;
+                }, MILLIS_IN_ONE_SECOND * currentReconnectRetryTime);
+                currentReconnectRetryTime = Math.min(currentReconnectRetryTime * 2, maxReconnectRetryTime);
+                return true;
+            } else {
+                LOGGER.warn("failed to schedule reconnect, handler thread is missing");
+                return false;
+            }
         } else {
             LOGGER.warn("schedule reconnect returns false");
             return false;
@@ -1254,8 +1296,7 @@ public class AWSIotMqttManager {
      */
     void publishMessagesFromQueue() {
         if (connectionState == MqttManagerConnectionState.Connected &&
-            mqttMessageQueue != null &&
-            !mqttMessageQueue.isEmpty()) {
+                mqttMessageQueue != null) {
             final AWSIotMqttQueueMessage message = mqttMessageQueue.poll();
             if (message != null) {
                 try {
@@ -1281,23 +1322,23 @@ public class AWSIotMqttManager {
                             AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus.Fail,
                             message.getUserData().getUserData());
                 }
-            }
 
-            (new Handler(Looper.getMainLooper())).postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (!mqttMessageQueue.isEmpty()) {
-                        if (connectionState == MqttManagerConnectionState.Connected) {
+                if (mReconnectHandlerThread != null && mReconnectHandler != null) {
+                    mReconnectHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
                             publishMessagesFromQueue();
                         }
-                    }
+                    }, drainingInterval);
+                } else {
+                    LOGGER.warn("failed to schedule publish from queue, handler thread is missing");
                 }
-            }, drainingInterval);
+            }
         }
     }
 
     /**
-     * Setup the MQTT client calbacks. The Paho MQTT client exposes callbacks
+     * Setup the MQTT client callbacks. The Paho MQTT client exposes callbacks
      * for connection status, publish status and incoming messages. The Android
      * MQTT client uses the single incoming message callback to map to per-topic
      * callbacks.
@@ -1320,6 +1361,7 @@ public class AWSIotMqttManager {
                     scheduleReconnect();
                 } else {
                     connectionState = MqttManagerConnectionState.Disconnected;
+                    clearReconnectHandlerThread();
                     userConnectionCallback(cause);
                 }
             }
@@ -1423,7 +1465,7 @@ public class AWSIotMqttManager {
      *
      * @param topicFilter MQTT topic filter (subscriptions, including
      *            wildcards).
-     * @param topic - the aboslute topic (no wildcards) on which a message was
+     * @param topic - the absolute topic (no wildcards) on which a message was
      *            published.
      * @return true if the topic matches the filter, false otherwise.
      */
