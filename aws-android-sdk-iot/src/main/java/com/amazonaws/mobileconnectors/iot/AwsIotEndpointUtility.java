@@ -91,7 +91,7 @@ public final class AwsIotEndpointUtility {
         String endpointWithoutPort = stripPort(endpoint);
         validateIotEndpoint(endpointWithoutPort);
         String[] splits = splitEndpoint(endpointWithoutPort);
-
+        int offset = splits.length == ENDPOINT_CN_ATS_SPLIT_SIZE?(ENDPOINT_REGION_OFFSET+1):ENDPOINT_REGION_OFFSET;
         return Region.getRegion(Regions.fromName(splits[ENDPOINT_REGION_OFFSET]));
     }
 
