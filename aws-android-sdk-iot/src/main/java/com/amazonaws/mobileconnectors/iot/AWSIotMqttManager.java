@@ -963,8 +963,8 @@ public class AWSIotMqttManager {
                     if (scheduleReconnect()) {
                         connectionState = MqttManagerConnectionState.Reconnecting;
                     } else {
-                        //TODO: how to terminate the reconnect handler thread here?
                         connectionState = MqttManagerConnectionState.Disconnected;
+                        clearReconnectHandlerThread();
                     }
                     userConnectionCallback();
                 }
@@ -1001,8 +1001,8 @@ public class AWSIotMqttManager {
                             connectionState = MqttManagerConnectionState.Reconnecting;
                             userConnectionCallback();
                         } else {
-                            //TODO: how to terminate the reconnect handler thread here?
                             connectionState = MqttManagerConnectionState.Disconnected;
+                            clearReconnectHandlerThread();
                             userConnectionCallback();
                         }
                     }
@@ -1013,8 +1013,8 @@ public class AWSIotMqttManager {
                     connectionState = MqttManagerConnectionState.Reconnecting;
                     userConnectionCallback();
                 } else {
-                    //TODO: how to terminate the reconnect handler thread here?
                     connectionState = MqttManagerConnectionState.Disconnected;
+                    clearReconnectHandlerThread();
                     userConnectionCallback(e);
                 }
             }
