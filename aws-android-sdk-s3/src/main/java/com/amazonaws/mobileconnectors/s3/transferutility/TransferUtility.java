@@ -359,7 +359,7 @@ public class TransferUtility {
      * @return A TransferObserver used to track download progress and state
      */
     public TransferObserver download(String bucket, String key, File file) {
-        return download(bucket, key, file, null, TransferConnectionType.ANY);
+        return download(bucket, key, file, null);
     }
     
     /**
@@ -373,7 +373,7 @@ public class TransferUtility {
      * @return A TransferObserver used to track download progress and state
      */
     public TransferObserver download(String key, File file) {
-        return download(getDefaultBucketOrThrow(), key, file, null, TransferConnectionType.ANY);
+        return download(getDefaultBucketOrThrow(), key, file, null);
     }
 
     /**
@@ -385,16 +385,15 @@ public class TransferUtility {
      * @param key The key under which the object to download is stored.
      * @param file The file to download the object's data to.
      * @param listener a listener to attach to transfer observer.
-     * @param connectionType The connection type to use for the transfer.
      * @return A TransferObserver used to track download progress and state
      */
     public TransferObserver download(String bucket, String key, File file,
-            TransferListener listener, TransferConnectionType connectionType) {
+            TransferListener listener) {
         if (file == null || file.isDirectory()) {
             throw new IllegalArgumentException("Invalid file: " + file);
         }
         final Uri uri = dbUtil.insertSingleTransferRecord(TransferType.DOWNLOAD,
-                bucket, key, file, connectionType);
+                bucket, key, file, transferUtilityOptions.getTransferConnectionType());
         final int recordId = Integer.parseInt(uri.getLastPathSegment());
         if (file.isFile()) {
             LOGGER.warn("Overwrite existing file: " + file);
@@ -418,7 +417,7 @@ public class TransferUtility {
      */
     public TransferObserver download(String key, File file,
             TransferListener listener) {
-        return download(getDefaultBucketOrThrow(), key, file, listener, TransferConnectionType.ANY);
+        return download(getDefaultBucketOrThrow(), key, file, listener);
     }
 
     /**
@@ -522,7 +521,7 @@ public class TransferUtility {
      */
     public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata,
             CannedAccessControlList cannedAcl) {
-        return upload(bucket, key, file, metadata, cannedAcl, null, TransferConnectionType.ANY);
+        return upload(bucket, key, file, metadata, cannedAcl, null);
     }
 
     /**
@@ -538,8 +537,7 @@ public class TransferUtility {
      */
     public TransferObserver upload(String key, File file, ObjectMetadata metadata,
             CannedAccessControlList cannedAcl) {
-        return upload(getDefaultBucketOrThrow(), key, file, metadata, cannedAcl, null,
-                TransferConnectionType.ANY);
+        return upload(getDefaultBucketOrThrow(), key, file, metadata, cannedAcl, null);
     }
 
     /**
@@ -553,21 +551,20 @@ public class TransferUtility {
      * @param metadata The S3 metadata to associate with this object
      * @param cannedAcl The canned ACL to associate with this object
      * @param listener a listener to attach to transfer observer.
-     * @param connectionType The connection type to use for the transfer.
      * @return A TransferObserver used to track upload progress and state
      */
     public TransferObserver upload(String bucket, String key, File file, ObjectMetadata metadata,
-            CannedAccessControlList cannedAcl, TransferListener listener, TransferConnectionType connectionType) {
+            CannedAccessControlList cannedAcl, TransferListener listener) {
         if (file == null || file.isDirectory() || !file.exists()) {
             throw new IllegalArgumentException("Invalid file: " + file);
         }
         int recordId;
         if (shouldUploadInMultipart(file)) {
-            recordId = createMultipartUploadRecords(bucket, key, file, metadata, cannedAcl, connectionType);
+            recordId = createMultipartUploadRecords(bucket, key, file, metadata, cannedAcl);
         } else {
 
             final Uri uri = dbUtil.insertSingleTransferRecord(TransferType.UPLOAD,
-                    bucket, key, file, metadata, cannedAcl, connectionType);
+                    bucket, key, file, metadata, cannedAcl, transferUtilityOptions.getTransferConnectionType());
             recordId = Integer.parseInt(uri.getLastPathSegment());
         }
 
@@ -589,7 +586,7 @@ public class TransferUtility {
      */
     public TransferObserver upload(String key, File file, ObjectMetadata metadata,
             CannedAccessControlList cannedAcl, TransferListener listener) {
-        return upload(getDefaultBucketOrThrow(), key, file, metadata, cannedAcl, listener, TransferConnectionType.ANY);
+        return upload(getDefaultBucketOrThrow(), key, file, metadata, cannedAcl, listener);
     }
 
 
@@ -731,11 +728,10 @@ public class TransferUtility {
      * @param key The key in the specified bucket by which to store the new
      *            object.
      * @param file The file to upload.
-     * @param connectionType The connection type to use for the transfer.
      * @return Number of records created in database
      */
     private int createMultipartUploadRecords(String bucket, String key, File file,
-            ObjectMetadata metadata, CannedAccessControlList cannedAcl, TransferConnectionType connectionType) {
+            ObjectMetadata metadata, CannedAccessControlList cannedAcl) {
         long remainingLenth = file.length();
         double partSize = (double) remainingLenth / (double) MAXIMUM_UPLOAD_PARTS;
         partSize = Math.ceil(partSize);
@@ -753,13 +749,13 @@ public class TransferUtility {
         final ContentValues[] valuesArray = new ContentValues[partCount + 1];
         valuesArray[0] = dbUtil.generateContentValuesForMultiPartUpload(bucket, key,
                 file, fileOffset, 0, "", file.length(), 0, metadata, cannedAcl,
-                connectionType);
+                transferUtilityOptions.getTransferConnectionType());
         for (int i = 1; i < partCount + 1; i++) {
             final long bytesForPart = Math.min(optimalPartSize, remainingLenth);
             valuesArray[i] = dbUtil.generateContentValuesForMultiPartUpload(bucket, key,
                     file, fileOffset, partNumber, "", bytesForPart, remainingLenth
                             - optimalPartSize <= 0 ? 1 : 0,
-                    metadata, cannedAcl, connectionType);
+                    metadata, cannedAcl, transferUtilityOptions.getTransferConnectionType());
             fileOffset += optimalPartSize;
             remainingLenth -= optimalPartSize;
             partNumber++;

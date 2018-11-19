@@ -64,6 +64,11 @@ public class TransferUtilityOptions implements Serializable {
      * Number of threads in the pool for the all the transfers.
      */
     private int transferThreadPoolSize;
+
+    /**
+     * Type of connection to use for transfers.
+     */
+    private TransferConnectionType transferConnectionType;
     
     /**
      * Constructor that sets the options to the
@@ -73,6 +78,8 @@ public class TransferUtilityOptions implements Serializable {
         super();
         this.transferServiceCheckTimeInterval = getDefaultCheckTimeInterval();
         this.transferThreadPoolSize = getDefaultThreadPoolSize();
+        this.transferConnectionType = getDefaultConnectionType();
+
     }
 
     /**
@@ -123,7 +130,25 @@ public class TransferUtilityOptions implements Serializable {
             this.transferThreadPoolSize = transferThreadPoolSize;
         }
     }
-    
+
+    /**
+     * Retrieve the transfer connection type.
+     *
+     * @return the transferConnectionType
+     */
+    public TransferConnectionType getTransferConnectionType() {
+        return transferConnectionType;
+    }
+
+    /**
+     * Set the transfer connection type.
+     *
+     * @param transferConnectionType the transferConnectionType to set.
+     */
+    public void setTransferConnectionType(TransferConnectionType transferConnectionType) {
+        this.transferConnectionType = transferConnectionType;
+    }
+
     /**
      * Return the default thread pool size.
      * 
@@ -144,5 +169,14 @@ public class TransferUtilityOptions implements Serializable {
     @Deprecated
     static long getDefaultCheckTimeInterval() {
         return 1 * MILLIS_IN_MINUTE;
+    }
+
+    /**
+     * Return the default connection type.
+     *
+     * @return The default connection type.
+     */
+    static TransferConnectionType getDefaultConnectionType() {
+        return TransferConnectionType.ANY;
     }
 }
