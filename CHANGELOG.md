@@ -1,5 +1,30 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.8.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.8.3)
+
+### Enhancements
+
+* **Amazon Polly**
+  * Add support for new voices `Bianca`, `Lucia` and `Mia`.
+
+### Bug Fixes
+
+* **Amazon DynamoDB Document Model**
+  * Fixed the typo (`defination` -> `definition`) in the following `IllegalStateException` messages.
+      * `hash key type does not match the one in table definition`
+      * `range key type does not match that of table definition`
+
+* **Amazon Pinpoint**
+  *  Fix an issue where the consecutive direct send messages / send user messages (excluding campaign) replaces the previous notifications. Now the request identifier for the notification is changed from the hashcode of `<campaign_id>:<campaign_activity_id>` to the hashcode of a unique identifier for Direct send messages / send user messages (excluding campaign), so that the notifications are unique within the application. See [AWS Forums Post](https://forums.aws.amazon.com/thread.jspa?threadID=291743)
+
+### Misc. Updates
+
+* Model updates for the following services
+  * Amazon Auto Scaling
+  * Amazon Comprehend
+  * Amazon Kinesis Firehose
+  * Amazon Polly
+
 ## [Release 2.8.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.8.2)
 
 ### Bug Fixes
