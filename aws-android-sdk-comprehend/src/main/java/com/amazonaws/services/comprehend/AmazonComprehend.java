@@ -227,6 +227,193 @@ public interface AmazonComprehend {
 
     /**
      * <p>
+     * Creates a new document classifier that you can use to categorize
+     * documents. To create a classifier you provide a set of training documents
+     * that labeled with the categories that you want to use. After the
+     * classifier is trained you can use it to categorize a set of labeled
+     * documents into the categories.
+     * </p>
+     * 
+     * @param createDocumentClassifierRequest
+     * @return createDocumentClassifierResult The response from the
+     *         CreateDocumentClassifier service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceInUseException
+     * @throws TooManyRequestsException
+     * @throws ResourceLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateDocumentClassifierResult createDocumentClassifier(
+            CreateDocumentClassifierRequest createDocumentClassifierRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates an entity recognizer using submitted files. After your
+     * <code>CreateEntityRecognizer</code> request is submitted, you can check
+     * job status using the API.
+     * </p>
+     * 
+     * @param createEntityRecognizerRequest
+     * @return createEntityRecognizerResult The response from the
+     *         CreateEntityRecognizer service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceInUseException
+     * @throws TooManyRequestsException
+     * @throws ResourceLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateEntityRecognizerResult createEntityRecognizer(
+            CreateEntityRecognizerRequest createEntityRecognizerRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a previously created document classifier
+     * </p>
+     * <p>
+     * Only those classifiers that are in terminated states (IN_ERROR, TRAINED)
+     * will be deleted. If an active inference job is using the model, a
+     * <code>ResourceInUseException</code> will be returned.
+     * </p>
+     * <p>
+     * This is an asynchronous action that puts the classifier into a DELETING
+     * state, and it is then removed by a background job. Once removed, the
+     * classifier disappears from your account and is no longer available for
+     * use.
+     * </p>
+     * 
+     * @param deleteDocumentClassifierRequest
+     * @return deleteDocumentClassifierResult The response from the
+     *         DeleteDocumentClassifier service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws ResourceInUseException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DeleteDocumentClassifierResult deleteDocumentClassifier(
+            DeleteDocumentClassifierRequest deleteDocumentClassifierRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes an entity recognizer.
+     * </p>
+     * <p>
+     * Only those recognizers that are in terminated states (IN_ERROR, TRAINED)
+     * will be deleted. If an active inference job is using the model, a
+     * <code>ResourceInUseException</code> will be returned.
+     * </p>
+     * <p>
+     * This is an asynchronous action that puts the recognizer into a DELETING
+     * state, and it is then removed by a background job. Once removed, the
+     * recognizer disappears from your account and is no longer available for
+     * use.
+     * </p>
+     * 
+     * @param deleteEntityRecognizerRequest
+     * @return deleteEntityRecognizerResult The response from the
+     *         DeleteEntityRecognizer service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws ResourceInUseException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DeleteEntityRecognizerResult deleteEntityRecognizer(
+            DeleteEntityRecognizerRequest deleteEntityRecognizerRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets the properties associated with a document classification job. Use
+     * this operation to get the status of a classification job.
+     * </p>
+     * 
+     * @param describeDocumentClassificationJobRequest
+     * @return describeDocumentClassificationJobResult The response from the
+     *         DescribeDocumentClassificationJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeDocumentClassificationJobResult describeDocumentClassificationJob(
+            DescribeDocumentClassificationJobRequest describeDocumentClassificationJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets the properties associated with a document classifier.
+     * </p>
+     * 
+     * @param describeDocumentClassifierRequest
+     * @return describeDocumentClassifierResult The response from the
+     *         DescribeDocumentClassifier service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeDocumentClassifierResult describeDocumentClassifier(
+            DescribeDocumentClassifierRequest describeDocumentClassifierRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets the properties associated with a dominant language detection job.
      * Use this operation to get the status of a detection job.
      * </p>
@@ -275,6 +462,32 @@ public interface AmazonComprehend {
      */
     DescribeEntitiesDetectionJobResult describeEntitiesDetectionJob(
             DescribeEntitiesDetectionJobRequest describeEntitiesDetectionJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Provides details about an entity recognizer including status, S3 buckets
+     * containing training data, recognizer metadata, metrics, and so on.
+     * </p>
+     * 
+     * @param describeEntityRecognizerRequest
+     * @return describeEntityRecognizerResult The response from the
+     *         DescribeEntityRecognizer service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeEntityRecognizerResult describeEntityRecognizer(
+            DescribeEntityRecognizerRequest describeEntityRecognizerRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -480,6 +693,57 @@ public interface AmazonComprehend {
 
     /**
      * <p>
+     * Gets a list of the documentation classification jobs that you have
+     * submitted.
+     * </p>
+     * 
+     * @param listDocumentClassificationJobsRequest
+     * @return listDocumentClassificationJobsResult The response from the
+     *         ListDocumentClassificationJobs service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListDocumentClassificationJobsResult listDocumentClassificationJobs(
+            ListDocumentClassificationJobsRequest listDocumentClassificationJobsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets a list of the document classifiers that you have created.
+     * </p>
+     * 
+     * @param listDocumentClassifiersRequest
+     * @return listDocumentClassifiersResult The response from the
+     *         ListDocumentClassifiers service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListDocumentClassifiersResult listDocumentClassifiers(
+            ListDocumentClassifiersRequest listDocumentClassifiersRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets a list of the dominant language detection jobs that you have
      * submitted.
      * </p>
@@ -527,6 +791,39 @@ public interface AmazonComprehend {
      */
     ListEntitiesDetectionJobsResult listEntitiesDetectionJobs(
             ListEntitiesDetectionJobsRequest listEntitiesDetectionJobsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets a list of the properties of all entity recognizers that you created,
+     * including recognizers currently in training. Allows you to filter the
+     * list of recognizers based on criteria such as status and submission time.
+     * This call returns up to 500 entity recognizers in the list, with a
+     * default number of 100 recognizers in the list.
+     * </p>
+     * <p>
+     * The results of this list are not in any particular order. Please get the
+     * list and sort locally if needed.
+     * </p>
+     * 
+     * @param listEntityRecognizersRequest
+     * @return listEntityRecognizersResult The response from the
+     *         ListEntityRecognizers service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListEntityRecognizersResult listEntityRecognizers(
+            ListEntityRecognizersRequest listEntityRecognizersRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -606,6 +903,33 @@ public interface AmazonComprehend {
 
     /**
      * <p>
+     * Starts an asynchronous document classification job. Use the operation to
+     * track the progress of the job.
+     * </p>
+     * 
+     * @param startDocumentClassificationJobRequest
+     * @return startDocumentClassificationJobResult The response from the
+     *         StartDocumentClassificationJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StartDocumentClassificationJobResult startDocumentClassificationJob(
+            StartDocumentClassificationJobRequest startDocumentClassificationJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Starts an asynchronous dominant language detection job for a collection
      * of documents. Use the operation to track the status of a job.
      * </p>
@@ -634,6 +958,12 @@ public interface AmazonComprehend {
      * Starts an asynchronous entity detection job for a collection of
      * documents. Use the operation to track the status of a job.
      * </p>
+     * <p>
+     * This API can be used for either standard entity detection or custom
+     * entity recognition. In order to be used for custom entity recognition,
+     * the optional <code>EntityRecognizerArn</code> must be used in order to
+     * provide access to the recognizer being used to detect the custom entity.
+     * </p>
      * 
      * @param startEntitiesDetectionJobRequest
      * @return startEntitiesDetectionJobResult The response from the
@@ -641,6 +971,8 @@ public interface AmazonComprehend {
      *         Comprehend.
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or

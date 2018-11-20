@@ -130,22 +130,24 @@ public interface AmazonKinesisFirehose {
      * <p>
      * The <a>PutRecordBatch</a> response includes a count of failed records,
      * <b>FailedPutCount</b>, and an array of responses,
-     * <b>RequestResponses</b>. Each entry in the <b>RequestResponses</b> array
-     * provides additional information about the processed record. It directly
-     * correlates with a record in the request array using the same ordering,
-     * from the top to the bottom. The response array always includes the same
-     * number of records as the request array. <b>RequestResponses</b> includes
-     * both successfully and unsuccessfully processed records. Kinesis Data
-     * Firehose tries to process all records in each <a>PutRecordBatch</a>
-     * request. A single record failure does not stop the processing of
-     * subsequent records.
+     * <b>RequestResponses</b>. Even if the <a>PutRecordBatch</a> call succeeds,
+     * the value of <b>FailedPutCount</b> may be greater than 0, indicating that
+     * there are records for which the operation didn't succeed. Each entry in
+     * the <b>RequestResponses</b> array provides additional information about
+     * the processed record. It directly correlates with a record in the request
+     * array using the same ordering, from the top to the bottom. The response
+     * array always includes the same number of records as the request array.
+     * <b>RequestResponses</b> includes both successfully and unsuccessfully
+     * processed records. Kinesis Data Firehose tries to process all records in
+     * each <a>PutRecordBatch</a> request. A single record failure does not stop
+     * the processing of subsequent records.
      * </p>
      * <p>
      * A successfully processed record includes a <b>RecordId</b> value, which
      * is unique for the record. An unsuccessfully processed record includes
      * <b>ErrorCode</b> and <b>ErrorMessage</b> values. <b>ErrorCode</b>
      * reflects the type of error, and is one of the following values:
-     * <code>ServiceUnavailable</code> or <code>InternalFailure</code>.
+     * <code>ServiceUnavailableException</code> or <code>InternalFailure</code>.
      * <b>ErrorMessage</b> provides more detailed information about the error.
      * </p>
      * <p>
@@ -167,6 +169,13 @@ public interface AmazonKinesisFirehose {
      * records to the destination. If the destination is unreachable for more
      * than 24 hours, the data is no longer available.
      * </p>
+     * <important>
+     * <p>
+     * Don't concatenate two or more base64 strings to form the data fields of
+     * your records. Instead, concatenate the raw data, then perform base64
+     * encoding.
+     * </p>
+     * </important>
      * 
      * @param putRecordBatchRequest
      * @return putRecordBatchResult The response from the PutRecordBatch service

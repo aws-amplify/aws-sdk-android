@@ -95,8 +95,8 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * If your instances are launched in EC2-Classic, you can either specify
-     * security group names or the security group IDs. For more information
-     * about security groups for EC2-Classic, see <a href=
+     * security group names or the security group IDs. For more information, see
+     * <a href=
      * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"
      * >Amazon EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud
      * User Guide</i>.
@@ -158,8 +158,8 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The ID of the instance to use to create the launch configuration. The new
-     * launch configuration derives attributes from the instance, with the
-     * exception of the block device mapping.
+     * launch configuration derives attributes from the instance, except for the
+     * block device mapping.
      * </p>
      * <p>
      * If you do not specify <code>InstanceId</code>, you must specify both
@@ -271,11 +271,10 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * associated with the IAM role for the instance.
      * </p>
      * <p>
-     * EC2 instances launched with an IAM role will automatically have AWS
-     * security credentials available. You can use IAM roles with Amazon EC2
-     * Auto Scaling to automatically enable applications running on your EC2
-     * instances to securely access other AWS resources. For more information,
-     * see <a href=
+     * EC2 instances launched with an IAM role automatically have AWS security
+     * credentials available. You can use IAM roles with Amazon EC2 Auto Scaling
+     * to automatically enable applications running on your EC2 instances to
+     * securely access other AWS resources. For more information, see <a href=
      * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
      * >Launch Auto Scaling Instances with an IAM Role</a> in the <i>Amazon EC2
      * Auto Scaling User Guide</i>.
@@ -331,9 +330,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * launched into a VPC.
      * </p>
      * <p>
-     * You must set the value of this parameter to <code>dedicated</code> if
-     * want to launch Dedicated Instances into a shared tenancy VPC (VPC with
-     * instance placement tenancy attribute set to <code>default</code>).
+     * To launch Dedicated Instances into a shared tenancy VPC (a VPC with the
+     * instance placement tenancy attribute set to <code>default</code>), you
+     * must set the value of this parameter to <code>dedicated</code>.
      * </p>
      * <p>
      * If you specify this parameter, be sure to specify at least one subnet
@@ -633,8 +632,8 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * If your instances are launched in EC2-Classic, you can either specify
-     * security group names or the security group IDs. For more information
-     * about security groups for EC2-Classic, see <a href=
+     * security group names or the security group IDs. For more information, see
+     * <a href=
      * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"
      * >Amazon EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud
      * User Guide</i>.
@@ -654,7 +653,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *         <p>
      *         If your instances are launched in EC2-Classic, you can either
      *         specify security group names or the security group IDs. For more
-     *         information about security groups for EC2-Classic, see <a href=
+     *         information, see <a href=
      *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"
      *         >Amazon EC2 Security Groups</a> in the <i>Amazon Elastic Compute
      *         Cloud User Guide</i>.
@@ -677,8 +676,8 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * If your instances are launched in EC2-Classic, you can either specify
-     * security group names or the security group IDs. For more information
-     * about security groups for EC2-Classic, see <a href=
+     * security group names or the security group IDs. For more information, see
+     * <a href=
      * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"
      * >Amazon EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud
      * User Guide</i>.
@@ -698,8 +697,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            <p>
      *            If your instances are launched in EC2-Classic, you can either
      *            specify security group names or the security group IDs. For
-     *            more information about security groups for EC2-Classic, see <a
-     *            href=
+     *            more information, see <a href=
      *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"
      *            >Amazon EC2 Security Groups</a> in the <i>Amazon Elastic
      *            Compute Cloud User Guide</i>.
@@ -727,8 +725,8 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * If your instances are launched in EC2-Classic, you can either specify
-     * security group names or the security group IDs. For more information
-     * about security groups for EC2-Classic, see <a href=
+     * security group names or the security group IDs. For more information, see
+     * <a href=
      * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"
      * >Amazon EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud
      * User Guide</i>.
@@ -751,8 +749,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            <p>
      *            If your instances are launched in EC2-Classic, you can either
      *            specify security group names or the security group IDs. For
-     *            more information about security groups for EC2-Classic, see <a
-     *            href=
+     *            more information, see <a href=
      *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"
      *            >Amazon EC2 Security Groups</a> in the <i>Amazon Elastic
      *            Compute Cloud User Guide</i>.
@@ -783,8 +780,8 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * If your instances are launched in EC2-Classic, you can either specify
-     * security group names or the security group IDs. For more information
-     * about security groups for EC2-Classic, see <a href=
+     * security group names or the security group IDs. For more information, see
+     * <a href=
      * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"
      * >Amazon EC2 Security Groups</a> in the <i>Amazon Elastic Compute Cloud
      * User Guide</i>.
@@ -807,8 +804,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            <p>
      *            If your instances are launched in EC2-Classic, you can either
      *            specify security group names or the security group IDs. For
-     *            more information about security groups for EC2-Classic, see <a
-     *            href=
+     *            more information, see <a href=
      *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html"
      *            >Amazon EC2 Security Groups</a> in the <i>Amazon Elastic
      *            Compute Cloud User Guide</i>.
@@ -1129,8 +1125,8 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The ID of the instance to use to create the launch configuration. The new
-     * launch configuration derives attributes from the instance, with the
-     * exception of the block device mapping.
+     * launch configuration derives attributes from the instance, except for the
+     * block device mapping.
      * </p>
      * <p>
      * If you do not specify <code>InstanceId</code>, you must specify both
@@ -1155,7 +1151,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * @return <p>
      *         The ID of the instance to use to create the launch configuration.
      *         The new launch configuration derives attributes from the
-     *         instance, with the exception of the block device mapping.
+     *         instance, except for the block device mapping.
      *         </p>
      *         <p>
      *         If you do not specify <code>InstanceId</code>, you must specify
@@ -1180,8 +1176,8 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The ID of the instance to use to create the launch configuration. The new
-     * launch configuration derives attributes from the instance, with the
-     * exception of the block device mapping.
+     * launch configuration derives attributes from the instance, except for the
+     * block device mapping.
      * </p>
      * <p>
      * If you do not specify <code>InstanceId</code>, you must specify both
@@ -1206,8 +1202,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * @param instanceId <p>
      *            The ID of the instance to use to create the launch
      *            configuration. The new launch configuration derives attributes
-     *            from the instance, with the exception of the block device
-     *            mapping.
+     *            from the instance, except for the block device mapping.
      *            </p>
      *            <p>
      *            If you do not specify <code>InstanceId</code>, you must
@@ -1233,8 +1228,8 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The ID of the instance to use to create the launch configuration. The new
-     * launch configuration derives attributes from the instance, with the
-     * exception of the block device mapping.
+     * launch configuration derives attributes from the instance, except for the
+     * block device mapping.
      * </p>
      * <p>
      * If you do not specify <code>InstanceId</code>, you must specify both
@@ -1262,8 +1257,7 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * @param instanceId <p>
      *            The ID of the instance to use to create the launch
      *            configuration. The new launch configuration derives attributes
-     *            from the instance, with the exception of the block device
-     *            mapping.
+     *            from the instance, except for the block device mapping.
      *            </p>
      *            <p>
      *            If you do not specify <code>InstanceId</code>, you must
@@ -1792,11 +1786,10 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * associated with the IAM role for the instance.
      * </p>
      * <p>
-     * EC2 instances launched with an IAM role will automatically have AWS
-     * security credentials available. You can use IAM roles with Amazon EC2
-     * Auto Scaling to automatically enable applications running on your EC2
-     * instances to securely access other AWS resources. For more information,
-     * see <a href=
+     * EC2 instances launched with an IAM role automatically have AWS security
+     * credentials available. You can use IAM roles with Amazon EC2 Auto Scaling
+     * to automatically enable applications running on your EC2 instances to
+     * securely access other AWS resources. For more information, see <a href=
      * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
      * >Launch Auto Scaling Instances with an IAM Role</a> in the <i>Amazon EC2
      * Auto Scaling User Guide</i>.
@@ -1812,11 +1805,11 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *         profile associated with the IAM role for the instance.
      *         </p>
      *         <p>
-     *         EC2 instances launched with an IAM role will automatically have
-     *         AWS security credentials available. You can use IAM roles with
-     *         Amazon EC2 Auto Scaling to automatically enable applications
-     *         running on your EC2 instances to securely access other AWS
-     *         resources. For more information, see <a href=
+     *         EC2 instances launched with an IAM role automatically have AWS
+     *         security credentials available. You can use IAM roles with Amazon
+     *         EC2 Auto Scaling to automatically enable applications running on
+     *         your EC2 instances to securely access other AWS resources. For
+     *         more information, see <a href=
      *         "http://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
      *         >Launch Auto Scaling Instances with an IAM Role</a> in the
      *         <i>Amazon EC2 Auto Scaling User Guide</i>.
@@ -1832,11 +1825,10 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * associated with the IAM role for the instance.
      * </p>
      * <p>
-     * EC2 instances launched with an IAM role will automatically have AWS
-     * security credentials available. You can use IAM roles with Amazon EC2
-     * Auto Scaling to automatically enable applications running on your EC2
-     * instances to securely access other AWS resources. For more information,
-     * see <a href=
+     * EC2 instances launched with an IAM role automatically have AWS security
+     * credentials available. You can use IAM roles with Amazon EC2 Auto Scaling
+     * to automatically enable applications running on your EC2 instances to
+     * securely access other AWS resources. For more information, see <a href=
      * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
      * >Launch Auto Scaling Instances with an IAM Role</a> in the <i>Amazon EC2
      * Auto Scaling User Guide</i>.
@@ -1852,11 +1844,11 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            profile associated with the IAM role for the instance.
      *            </p>
      *            <p>
-     *            EC2 instances launched with an IAM role will automatically
-     *            have AWS security credentials available. You can use IAM roles
-     *            with Amazon EC2 Auto Scaling to automatically enable
-     *            applications running on your EC2 instances to securely access
-     *            other AWS resources. For more information, see <a href=
+     *            EC2 instances launched with an IAM role automatically have AWS
+     *            security credentials available. You can use IAM roles with
+     *            Amazon EC2 Auto Scaling to automatically enable applications
+     *            running on your EC2 instances to securely access other AWS
+     *            resources. For more information, see <a href=
      *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
      *            >Launch Auto Scaling Instances with an IAM Role</a> in the
      *            <i>Amazon EC2 Auto Scaling User Guide</i>.
@@ -1872,11 +1864,10 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * associated with the IAM role for the instance.
      * </p>
      * <p>
-     * EC2 instances launched with an IAM role will automatically have AWS
-     * security credentials available. You can use IAM roles with Amazon EC2
-     * Auto Scaling to automatically enable applications running on your EC2
-     * instances to securely access other AWS resources. For more information,
-     * see <a href=
+     * EC2 instances launched with an IAM role automatically have AWS security
+     * credentials available. You can use IAM roles with Amazon EC2 Auto Scaling
+     * to automatically enable applications running on your EC2 instances to
+     * securely access other AWS resources. For more information, see <a href=
      * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
      * >Launch Auto Scaling Instances with an IAM Role</a> in the <i>Amazon EC2
      * Auto Scaling User Guide</i>.
@@ -1895,11 +1886,11 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            profile associated with the IAM role for the instance.
      *            </p>
      *            <p>
-     *            EC2 instances launched with an IAM role will automatically
-     *            have AWS security credentials available. You can use IAM roles
-     *            with Amazon EC2 Auto Scaling to automatically enable
-     *            applications running on your EC2 instances to securely access
-     *            other AWS resources. For more information, see <a href=
+     *            EC2 instances launched with an IAM role automatically have AWS
+     *            security credentials available. You can use IAM roles with
+     *            Amazon EC2 Auto Scaling to automatically enable applications
+     *            running on your EC2 instances to securely access other AWS
+     *            resources. For more information, see <a href=
      *            "http://docs.aws.amazon.com/autoscaling/ec2/userguide/us-iam-role.html"
      *            >Launch Auto Scaling Instances with an IAM Role</a> in the
      *            <i>Amazon EC2 Auto Scaling User Guide</i>.
@@ -2220,9 +2211,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * launched into a VPC.
      * </p>
      * <p>
-     * You must set the value of this parameter to <code>dedicated</code> if
-     * want to launch Dedicated Instances into a shared tenancy VPC (VPC with
-     * instance placement tenancy attribute set to <code>default</code>).
+     * To launch Dedicated Instances into a shared tenancy VPC (a VPC with the
+     * instance placement tenancy attribute set to <code>default</code>), you
+     * must set the value of this parameter to <code>dedicated</code>.
      * </p>
      * <p>
      * If you specify this parameter, be sure to specify at least one subnet
@@ -2249,10 +2240,10 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *         only be launched into a VPC.
      *         </p>
      *         <p>
-     *         You must set the value of this parameter to
-     *         <code>dedicated</code> if want to launch Dedicated Instances into
-     *         a shared tenancy VPC (VPC with instance placement tenancy
-     *         attribute set to <code>default</code>).
+     *         To launch Dedicated Instances into a shared tenancy VPC (a VPC
+     *         with the instance placement tenancy attribute set to
+     *         <code>default</code>), you must set the value of this parameter
+     *         to <code>dedicated</code>.
      *         </p>
      *         <p>
      *         If you specify this parameter, be sure to specify at least one
@@ -2279,9 +2270,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * launched into a VPC.
      * </p>
      * <p>
-     * You must set the value of this parameter to <code>dedicated</code> if
-     * want to launch Dedicated Instances into a shared tenancy VPC (VPC with
-     * instance placement tenancy attribute set to <code>default</code>).
+     * To launch Dedicated Instances into a shared tenancy VPC (a VPC with the
+     * instance placement tenancy attribute set to <code>default</code>), you
+     * must set the value of this parameter to <code>dedicated</code>.
      * </p>
      * <p>
      * If you specify this parameter, be sure to specify at least one subnet
@@ -2308,10 +2299,10 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            only be launched into a VPC.
      *            </p>
      *            <p>
-     *            You must set the value of this parameter to
-     *            <code>dedicated</code> if want to launch Dedicated Instances
-     *            into a shared tenancy VPC (VPC with instance placement tenancy
-     *            attribute set to <code>default</code>).
+     *            To launch Dedicated Instances into a shared tenancy VPC (a VPC
+     *            with the instance placement tenancy attribute set to
+     *            <code>default</code>), you must set the value of this
+     *            parameter to <code>dedicated</code>.
      *            </p>
      *            <p>
      *            If you specify this parameter, be sure to specify at least one
@@ -2338,9 +2329,9 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      * launched into a VPC.
      * </p>
      * <p>
-     * You must set the value of this parameter to <code>dedicated</code> if
-     * want to launch Dedicated Instances into a shared tenancy VPC (VPC with
-     * instance placement tenancy attribute set to <code>default</code>).
+     * To launch Dedicated Instances into a shared tenancy VPC (a VPC with the
+     * instance placement tenancy attribute set to <code>default</code>), you
+     * must set the value of this parameter to <code>dedicated</code>.
      * </p>
      * <p>
      * If you specify this parameter, be sure to specify at least one subnet
@@ -2370,10 +2361,10 @@ public class CreateLaunchConfigurationRequest extends AmazonWebServiceRequest im
      *            only be launched into a VPC.
      *            </p>
      *            <p>
-     *            You must set the value of this parameter to
-     *            <code>dedicated</code> if want to launch Dedicated Instances
-     *            into a shared tenancy VPC (VPC with instance placement tenancy
-     *            attribute set to <code>default</code>).
+     *            To launch Dedicated Instances into a shared tenancy VPC (a VPC
+     *            with the instance placement tenancy attribute set to
+     *            <code>default</code>), you must set the value of this
+     *            parameter to <code>dedicated</code>.
      *            </p>
      *            <p>
      *            If you specify this parameter, be sure to specify at least one

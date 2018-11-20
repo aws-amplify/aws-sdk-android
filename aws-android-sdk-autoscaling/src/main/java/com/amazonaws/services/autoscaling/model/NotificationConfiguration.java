@@ -38,7 +38,7 @@ public class NotificationConfiguration implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
-     * (SNS) topic.
+     * (Amazon SNS) topic.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -150,7 +150,7 @@ public class NotificationConfiguration implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
-     * (SNS) topic.
+     * (Amazon SNS) topic.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -160,7 +160,7 @@ public class NotificationConfiguration implements Serializable {
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the Amazon Simple Notification
-     *         Service (SNS) topic.
+     *         Service (Amazon SNS) topic.
      *         </p>
      */
     public String getTopicARN() {
@@ -170,7 +170,7 @@ public class NotificationConfiguration implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
-     * (SNS) topic.
+     * (Amazon SNS) topic.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -180,7 +180,7 @@ public class NotificationConfiguration implements Serializable {
      *
      * @param topicARN <p>
      *            The Amazon Resource Name (ARN) of the Amazon Simple
-     *            Notification Service (SNS) topic.
+     *            Notification Service (Amazon SNS) topic.
      *            </p>
      */
     public void setTopicARN(String topicARN) {
@@ -190,7 +190,7 @@ public class NotificationConfiguration implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
-     * (SNS) topic.
+     * (Amazon SNS) topic.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -203,7 +203,7 @@ public class NotificationConfiguration implements Serializable {
      *
      * @param topicARN <p>
      *            The Amazon Resource Name (ARN) of the Amazon Simple
-     *            Notification Service (SNS) topic.
+     *            Notification Service (Amazon SNS) topic.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -266,6 +266,10 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
         jsonErrorUnmarshallers.add(new InvalidFilterExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidRequestExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new JobNotFoundExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ResourceInUseExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ResourceLimitExceededExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ResourceUnavailableExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TextSizeLimitExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TooManyRequestsExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UnsupportedLanguageExceptionUnmarshaller());
@@ -563,6 +567,355 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
+     * Creates a new document classifier that you can use to categorize
+     * documents. To create a classifier you provide a set of training documents
+     * that labeled with the categories that you want to use. After the
+     * classifier is trained you can use it to categorize a set of labeled
+     * documents into the categories.
+     * </p>
+     * 
+     * @param createDocumentClassifierRequest
+     * @return createDocumentClassifierResult The response from the
+     *         CreateDocumentClassifier service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceInUseException
+     * @throws TooManyRequestsException
+     * @throws ResourceLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateDocumentClassifierResult createDocumentClassifier(
+            CreateDocumentClassifierRequest createDocumentClassifierRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createDocumentClassifierRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateDocumentClassifierRequest> request = null;
+        Response<CreateDocumentClassifierResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateDocumentClassifierRequestMarshaller()
+                        .marshall(createDocumentClassifierRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateDocumentClassifierResult, JsonUnmarshallerContext> unmarshaller = new CreateDocumentClassifierResultJsonUnmarshaller();
+            JsonResponseHandler<CreateDocumentClassifierResult> responseHandler = new JsonResponseHandler<CreateDocumentClassifierResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates an entity recognizer using submitted files. After your
+     * <code>CreateEntityRecognizer</code> request is submitted, you can check
+     * job status using the API.
+     * </p>
+     * 
+     * @param createEntityRecognizerRequest
+     * @return createEntityRecognizerResult The response from the
+     *         CreateEntityRecognizer service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceInUseException
+     * @throws TooManyRequestsException
+     * @throws ResourceLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateEntityRecognizerResult createEntityRecognizer(
+            CreateEntityRecognizerRequest createEntityRecognizerRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createEntityRecognizerRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateEntityRecognizerRequest> request = null;
+        Response<CreateEntityRecognizerResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateEntityRecognizerRequestMarshaller()
+                        .marshall(createEntityRecognizerRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateEntityRecognizerResult, JsonUnmarshallerContext> unmarshaller = new CreateEntityRecognizerResultJsonUnmarshaller();
+            JsonResponseHandler<CreateEntityRecognizerResult> responseHandler = new JsonResponseHandler<CreateEntityRecognizerResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes a previously created document classifier
+     * </p>
+     * <p>
+     * Only those classifiers that are in terminated states (IN_ERROR, TRAINED)
+     * will be deleted. If an active inference job is using the model, a
+     * <code>ResourceInUseException</code> will be returned.
+     * </p>
+     * <p>
+     * This is an asynchronous action that puts the classifier into a DELETING
+     * state, and it is then removed by a background job. Once removed, the
+     * classifier disappears from your account and is no longer available for
+     * use.
+     * </p>
+     * 
+     * @param deleteDocumentClassifierRequest
+     * @return deleteDocumentClassifierResult The response from the
+     *         DeleteDocumentClassifier service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws ResourceInUseException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DeleteDocumentClassifierResult deleteDocumentClassifier(
+            DeleteDocumentClassifierRequest deleteDocumentClassifierRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteDocumentClassifierRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteDocumentClassifierRequest> request = null;
+        Response<DeleteDocumentClassifierResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteDocumentClassifierRequestMarshaller()
+                        .marshall(deleteDocumentClassifierRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteDocumentClassifierResult, JsonUnmarshallerContext> unmarshaller = new DeleteDocumentClassifierResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteDocumentClassifierResult> responseHandler = new JsonResponseHandler<DeleteDocumentClassifierResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes an entity recognizer.
+     * </p>
+     * <p>
+     * Only those recognizers that are in terminated states (IN_ERROR, TRAINED)
+     * will be deleted. If an active inference job is using the model, a
+     * <code>ResourceInUseException</code> will be returned.
+     * </p>
+     * <p>
+     * This is an asynchronous action that puts the recognizer into a DELETING
+     * state, and it is then removed by a background job. Once removed, the
+     * recognizer disappears from your account and is no longer available for
+     * use.
+     * </p>
+     * 
+     * @param deleteEntityRecognizerRequest
+     * @return deleteEntityRecognizerResult The response from the
+     *         DeleteEntityRecognizer service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws ResourceInUseException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DeleteEntityRecognizerResult deleteEntityRecognizer(
+            DeleteEntityRecognizerRequest deleteEntityRecognizerRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteEntityRecognizerRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteEntityRecognizerRequest> request = null;
+        Response<DeleteEntityRecognizerResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteEntityRecognizerRequestMarshaller()
+                        .marshall(deleteEntityRecognizerRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteEntityRecognizerResult, JsonUnmarshallerContext> unmarshaller = new DeleteEntityRecognizerResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteEntityRecognizerResult> responseHandler = new JsonResponseHandler<DeleteEntityRecognizerResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets the properties associated with a document classification job. Use
+     * this operation to get the status of a classification job.
+     * </p>
+     * 
+     * @param describeDocumentClassificationJobRequest
+     * @return describeDocumentClassificationJobResult The response from the
+     *         DescribeDocumentClassificationJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeDocumentClassificationJobResult describeDocumentClassificationJob(
+            DescribeDocumentClassificationJobRequest describeDocumentClassificationJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeDocumentClassificationJobRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeDocumentClassificationJobRequest> request = null;
+        Response<DescribeDocumentClassificationJobResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeDocumentClassificationJobRequestMarshaller()
+                        .marshall(describeDocumentClassificationJobRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeDocumentClassificationJobResult, JsonUnmarshallerContext> unmarshaller = new DescribeDocumentClassificationJobResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeDocumentClassificationJobResult> responseHandler = new JsonResponseHandler<DescribeDocumentClassificationJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets the properties associated with a document classifier.
+     * </p>
+     * 
+     * @param describeDocumentClassifierRequest
+     * @return describeDocumentClassifierResult The response from the
+     *         DescribeDocumentClassifier service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeDocumentClassifierResult describeDocumentClassifier(
+            DescribeDocumentClassifierRequest describeDocumentClassifierRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeDocumentClassifierRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeDocumentClassifierRequest> request = null;
+        Response<DescribeDocumentClassifierResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeDocumentClassifierRequestMarshaller()
+                        .marshall(describeDocumentClassifierRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeDocumentClassifierResult, JsonUnmarshallerContext> unmarshaller = new DescribeDocumentClassifierResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeDocumentClassifierResult> responseHandler = new JsonResponseHandler<DescribeDocumentClassifierResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets the properties associated with a dominant language detection job.
      * Use this operation to get the status of a detection job.
      * </p>
@@ -656,6 +1009,59 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<DescribeEntitiesDetectionJobResult, JsonUnmarshallerContext> unmarshaller = new DescribeEntitiesDetectionJobResultJsonUnmarshaller();
             JsonResponseHandler<DescribeEntitiesDetectionJobResult> responseHandler = new JsonResponseHandler<DescribeEntitiesDetectionJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Provides details about an entity recognizer including status, S3 buckets
+     * containing training data, recognizer metadata, metrics, and so on.
+     * </p>
+     * 
+     * @param describeEntityRecognizerRequest
+     * @return describeEntityRecognizerResult The response from the
+     *         DescribeEntityRecognizer service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeEntityRecognizerResult describeEntityRecognizer(
+            DescribeEntityRecognizerRequest describeEntityRecognizerRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeEntityRecognizerRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeEntityRecognizerRequest> request = null;
+        Response<DescribeEntityRecognizerResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeEntityRecognizerRequestMarshaller()
+                        .marshall(describeEntityRecognizerRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeEntityRecognizerResult, JsonUnmarshallerContext> unmarshaller = new DescribeEntityRecognizerResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeEntityRecognizerResult> responseHandler = new JsonResponseHandler<DescribeEntityRecognizerResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1082,6 +1488,111 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
+     * Gets a list of the documentation classification jobs that you have
+     * submitted.
+     * </p>
+     * 
+     * @param listDocumentClassificationJobsRequest
+     * @return listDocumentClassificationJobsResult The response from the
+     *         ListDocumentClassificationJobs service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListDocumentClassificationJobsResult listDocumentClassificationJobs(
+            ListDocumentClassificationJobsRequest listDocumentClassificationJobsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listDocumentClassificationJobsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListDocumentClassificationJobsRequest> request = null;
+        Response<ListDocumentClassificationJobsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListDocumentClassificationJobsRequestMarshaller()
+                        .marshall(listDocumentClassificationJobsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListDocumentClassificationJobsResult, JsonUnmarshallerContext> unmarshaller = new ListDocumentClassificationJobsResultJsonUnmarshaller();
+            JsonResponseHandler<ListDocumentClassificationJobsResult> responseHandler = new JsonResponseHandler<ListDocumentClassificationJobsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets a list of the document classifiers that you have created.
+     * </p>
+     * 
+     * @param listDocumentClassifiersRequest
+     * @return listDocumentClassifiersResult The response from the
+     *         ListDocumentClassifiers service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListDocumentClassifiersResult listDocumentClassifiers(
+            ListDocumentClassifiersRequest listDocumentClassifiersRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listDocumentClassifiersRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListDocumentClassifiersRequest> request = null;
+        Response<ListDocumentClassifiersResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListDocumentClassifiersRequestMarshaller()
+                        .marshall(listDocumentClassifiersRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListDocumentClassifiersResult, JsonUnmarshallerContext> unmarshaller = new ListDocumentClassifiersResultJsonUnmarshaller();
+            JsonResponseHandler<ListDocumentClassifiersResult> responseHandler = new JsonResponseHandler<ListDocumentClassifiersResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets a list of the dominant language detection jobs that you have
      * submitted.
      * </p>
@@ -1174,6 +1685,66 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<ListEntitiesDetectionJobsResult, JsonUnmarshallerContext> unmarshaller = new ListEntitiesDetectionJobsResultJsonUnmarshaller();
             JsonResponseHandler<ListEntitiesDetectionJobsResult> responseHandler = new JsonResponseHandler<ListEntitiesDetectionJobsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets a list of the properties of all entity recognizers that you created,
+     * including recognizers currently in training. Allows you to filter the
+     * list of recognizers based on criteria such as status and submission time.
+     * This call returns up to 500 entity recognizers in the list, with a
+     * default number of 100 recognizers in the list.
+     * </p>
+     * <p>
+     * The results of this list are not in any particular order. Please get the
+     * list and sort locally if needed.
+     * </p>
+     * 
+     * @param listEntityRecognizersRequest
+     * @return listEntityRecognizersResult The response from the
+     *         ListEntityRecognizers service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListEntityRecognizersResult listEntityRecognizers(
+            ListEntityRecognizersRequest listEntityRecognizersRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listEntityRecognizersRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListEntityRecognizersRequest> request = null;
+        Response<ListEntityRecognizersResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListEntityRecognizersRequestMarshaller()
+                        .marshall(listEntityRecognizersRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListEntityRecognizersResult, JsonUnmarshallerContext> unmarshaller = new ListEntityRecognizersResultJsonUnmarshaller();
+            JsonResponseHandler<ListEntityRecognizersResult> responseHandler = new JsonResponseHandler<ListEntityRecognizersResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1343,6 +1914,60 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
+     * Starts an asynchronous document classification job. Use the operation to
+     * track the progress of the job.
+     * </p>
+     * 
+     * @param startDocumentClassificationJobRequest
+     * @return startDocumentClassificationJobResult The response from the
+     *         StartDocumentClassificationJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public StartDocumentClassificationJobResult startDocumentClassificationJob(
+            StartDocumentClassificationJobRequest startDocumentClassificationJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(startDocumentClassificationJobRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<StartDocumentClassificationJobRequest> request = null;
+        Response<StartDocumentClassificationJobResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new StartDocumentClassificationJobRequestMarshaller()
+                        .marshall(startDocumentClassificationJobRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<StartDocumentClassificationJobResult, JsonUnmarshallerContext> unmarshaller = new StartDocumentClassificationJobResultJsonUnmarshaller();
+            JsonResponseHandler<StartDocumentClassificationJobResult> responseHandler = new JsonResponseHandler<StartDocumentClassificationJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Starts an asynchronous dominant language detection job for a collection
      * of documents. Use the operation to track the status of a job.
      * </p>
@@ -1398,6 +2023,12 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
      * Starts an asynchronous entity detection job for a collection of
      * documents. Use the operation to track the status of a job.
      * </p>
+     * <p>
+     * This API can be used for either standard entity detection or custom
+     * entity recognition. In order to be used for custom entity recognition,
+     * the optional <code>EntityRecognizerArn</code> must be used in order to
+     * provide access to the recognizer being used to detect the custom entity.
+     * </p>
      * 
      * @param startEntitiesDetectionJobRequest
      * @return startEntitiesDetectionJobResult The response from the
@@ -1405,6 +2036,8 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
      *         Comprehend.
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or

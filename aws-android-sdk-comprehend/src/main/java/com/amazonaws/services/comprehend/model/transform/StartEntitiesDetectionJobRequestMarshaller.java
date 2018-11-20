@@ -82,6 +82,12 @@ public class StartEntitiesDetectionJobRequestMarshaller implements
                 jsonWriter.name("JobName");
                 jsonWriter.value(jobName);
             }
+            if (startEntitiesDetectionJobRequest.getEntityRecognizerArn() != null) {
+                String entityRecognizerArn = startEntitiesDetectionJobRequest
+                        .getEntityRecognizerArn();
+                jsonWriter.name("EntityRecognizerArn");
+                jsonWriter.value(entityRecognizerArn);
+            }
             if (startEntitiesDetectionJobRequest.getLanguageCode() != null) {
                 String languageCode = startEntitiesDetectionJobRequest.getLanguageCode();
                 jsonWriter.name("LanguageCode");

@@ -36,6 +36,9 @@ public class PutRecordBatchResultJsonUnmarshaller implements
             if (name.equals("FailedPutCount")) {
                 putRecordBatchResult.setFailedPutCount(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Encrypted")) {
+                putRecordBatchResult.setEncrypted(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("RequestResponses")) {
                 putRecordBatchResult
                         .setRequestResponses(new ListUnmarshaller<PutRecordBatchResponseEntry>(

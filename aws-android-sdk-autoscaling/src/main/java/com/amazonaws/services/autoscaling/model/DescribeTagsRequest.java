@@ -38,7 +38,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DescribeTagsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * A filter used to scope the tags to return.
+     * One or more filters to scope the tags to return. The maximum number of
+     * filters per filter type (for example, <code>auto-scaling-group</code>) is
+     * 1000.
      * </p>
      */
     private java.util.List<Filter> filters = new java.util.ArrayList<Filter>();
@@ -65,11 +67,15 @@ public class DescribeTagsRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * A filter used to scope the tags to return.
+     * One or more filters to scope the tags to return. The maximum number of
+     * filters per filter type (for example, <code>auto-scaling-group</code>) is
+     * 1000.
      * </p>
      *
      * @return <p>
-     *         A filter used to scope the tags to return.
+     *         One or more filters to scope the tags to return. The maximum
+     *         number of filters per filter type (for example,
+     *         <code>auto-scaling-group</code>) is 1000.
      *         </p>
      */
     public java.util.List<Filter> getFilters() {
@@ -78,11 +84,15 @@ public class DescribeTagsRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * A filter used to scope the tags to return.
+     * One or more filters to scope the tags to return. The maximum number of
+     * filters per filter type (for example, <code>auto-scaling-group</code>) is
+     * 1000.
      * </p>
      *
      * @param filters <p>
-     *            A filter used to scope the tags to return.
+     *            One or more filters to scope the tags to return. The maximum
+     *            number of filters per filter type (for example,
+     *            <code>auto-scaling-group</code>) is 1000.
      *            </p>
      */
     public void setFilters(java.util.Collection<Filter> filters) {
@@ -96,14 +106,18 @@ public class DescribeTagsRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * A filter used to scope the tags to return.
+     * One or more filters to scope the tags to return. The maximum number of
+     * filters per filter type (for example, <code>auto-scaling-group</code>) is
+     * 1000.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param filters <p>
-     *            A filter used to scope the tags to return.
+     *            One or more filters to scope the tags to return. The maximum
+     *            number of filters per filter type (for example,
+     *            <code>auto-scaling-group</code>) is 1000.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -120,14 +134,18 @@ public class DescribeTagsRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * A filter used to scope the tags to return.
+     * One or more filters to scope the tags to return. The maximum number of
+     * filters per filter type (for example, <code>auto-scaling-group</code>) is
+     * 1000.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param filters <p>
-     *            A filter used to scope the tags to return.
+     *            One or more filters to scope the tags to return. The maximum
+     *            number of filters per filter type (for example,
+     *            <code>auto-scaling-group</code>) is 1000.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

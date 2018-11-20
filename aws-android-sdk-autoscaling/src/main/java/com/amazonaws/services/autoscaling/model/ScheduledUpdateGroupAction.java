@@ -75,7 +75,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
      * <p>
      * When <code>StartTime</code> and <code>EndTime</code> are specified with
      * <code>Recurrence</code>, they form the boundaries of when the recurring
-     * action will start and stop.
+     * action starts and stops.
      * </p>
      */
     private java.util.Date startTime;
@@ -354,7 +354,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
      * <p>
      * When <code>StartTime</code> and <code>EndTime</code> are specified with
      * <code>Recurrence</code>, they form the boundaries of when the recurring
-     * action will start and stop.
+     * action starts and stops.
      * </p>
      *
      * @return <p>
@@ -364,7 +364,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
      *         <p>
      *         When <code>StartTime</code> and <code>EndTime</code> are
      *         specified with <code>Recurrence</code>, they form the boundaries
-     *         of when the recurring action will start and stop.
+     *         of when the recurring action starts and stops.
      *         </p>
      */
     public java.util.Date getStartTime() {
@@ -379,7 +379,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
      * <p>
      * When <code>StartTime</code> and <code>EndTime</code> are specified with
      * <code>Recurrence</code>, they form the boundaries of when the recurring
-     * action will start and stop.
+     * action starts and stops.
      * </p>
      *
      * @param startTime <p>
@@ -389,7 +389,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
      *            <p>
      *            When <code>StartTime</code> and <code>EndTime</code> are
      *            specified with <code>Recurrence</code>, they form the
-     *            boundaries of when the recurring action will start and stop.
+     *            boundaries of when the recurring action starts and stops.
      *            </p>
      */
     public void setStartTime(java.util.Date startTime) {
@@ -404,7 +404,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
      * <p>
      * When <code>StartTime</code> and <code>EndTime</code> are specified with
      * <code>Recurrence</code>, they form the boundaries of when the recurring
-     * action will start and stop.
+     * action starts and stops.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -417,7 +417,7 @@ public class ScheduledUpdateGroupAction implements Serializable {
      *            <p>
      *            When <code>StartTime</code> and <code>EndTime</code> are
      *            specified with <code>Recurrence</code>, they form the
-     *            boundaries of when the recurring action will start and stop.
+     *            boundaries of when the recurring action starts and stops.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

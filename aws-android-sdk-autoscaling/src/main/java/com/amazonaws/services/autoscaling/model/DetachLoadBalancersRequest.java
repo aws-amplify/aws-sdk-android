@@ -25,15 +25,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * group.
  * </p>
  * <p>
- * Note that this operation detaches only Classic Load Balancers. If you have
- * Application Load Balancers, use <a>DetachLoadBalancerTargetGroups</a>
- * instead.
+ * This operation detaches only Classic Load Balancers. If you have Application
+ * Load Balancers, use <a>DetachLoadBalancerTargetGroups</a> instead.
  * </p>
  * <p>
  * When you detach a load balancer, it enters the <code>Removing</code> state
  * while deregistering the instances in the group. When all instances are
  * deregistered, then you can no longer describe the load balancer using
- * <a>DescribeLoadBalancers</a>. Note that the instances remain running.
+ * <a>DescribeLoadBalancers</a>. The instances remain running.
  * </p>
  */
 public class DetachLoadBalancersRequest extends AmazonWebServiceRequest implements Serializable {
