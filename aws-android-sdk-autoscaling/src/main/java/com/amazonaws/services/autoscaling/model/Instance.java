@@ -49,7 +49,7 @@ public class Instance implements Serializable {
 
     /**
      * <p>
-     * A description of the current lifecycle state. Note that the
+     * A description of the current lifecycle state. The
      * <code>Quarantined</code> state is not used.
      * </p>
      * <p>
@@ -65,8 +65,8 @@ public class Instance implements Serializable {
      * <p>
      * The last reported health status of the instance. "Healthy" means that the
      * instance is healthy and should remain in service. "Unhealthy" means that
-     * the instance is unhealthy and Amazon EC2 Auto Scaling should terminate
-     * and replace it.
+     * the instance is unhealthy and that Amazon EC2 Auto Scaling should
+     * terminate and replace it.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -225,7 +225,7 @@ public class Instance implements Serializable {
 
     /**
      * <p>
-     * A description of the current lifecycle state. Note that the
+     * A description of the current lifecycle state. The
      * <code>Quarantined</code> state is not used.
      * </p>
      * <p>
@@ -236,7 +236,7 @@ public class Instance implements Serializable {
      * Standby
      *
      * @return <p>
-     *         A description of the current lifecycle state. Note that the
+     *         A description of the current lifecycle state. The
      *         <code>Quarantined</code> state is not used.
      *         </p>
      * @see LifecycleState
@@ -247,7 +247,7 @@ public class Instance implements Serializable {
 
     /**
      * <p>
-     * A description of the current lifecycle state. Note that the
+     * A description of the current lifecycle state. The
      * <code>Quarantined</code> state is not used.
      * </p>
      * <p>
@@ -258,7 +258,7 @@ public class Instance implements Serializable {
      * Standby
      *
      * @param lifecycleState <p>
-     *            A description of the current lifecycle state. Note that the
+     *            A description of the current lifecycle state. The
      *            <code>Quarantined</code> state is not used.
      *            </p>
      * @see LifecycleState
@@ -269,7 +269,7 @@ public class Instance implements Serializable {
 
     /**
      * <p>
-     * A description of the current lifecycle state. Note that the
+     * A description of the current lifecycle state. The
      * <code>Quarantined</code> state is not used.
      * </p>
      * <p>
@@ -283,7 +283,7 @@ public class Instance implements Serializable {
      * Standby
      *
      * @param lifecycleState <p>
-     *            A description of the current lifecycle state. Note that the
+     *            A description of the current lifecycle state. The
      *            <code>Quarantined</code> state is not used.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -297,7 +297,7 @@ public class Instance implements Serializable {
 
     /**
      * <p>
-     * A description of the current lifecycle state. Note that the
+     * A description of the current lifecycle state. The
      * <code>Quarantined</code> state is not used.
      * </p>
      * <p>
@@ -308,7 +308,7 @@ public class Instance implements Serializable {
      * Standby
      *
      * @param lifecycleState <p>
-     *            A description of the current lifecycle state. Note that the
+     *            A description of the current lifecycle state. The
      *            <code>Quarantined</code> state is not used.
      *            </p>
      * @see LifecycleState
@@ -319,7 +319,7 @@ public class Instance implements Serializable {
 
     /**
      * <p>
-     * A description of the current lifecycle state. Note that the
+     * A description of the current lifecycle state. The
      * <code>Quarantined</code> state is not used.
      * </p>
      * <p>
@@ -333,7 +333,7 @@ public class Instance implements Serializable {
      * Standby
      *
      * @param lifecycleState <p>
-     *            A description of the current lifecycle state. Note that the
+     *            A description of the current lifecycle state. The
      *            <code>Quarantined</code> state is not used.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -349,8 +349,8 @@ public class Instance implements Serializable {
      * <p>
      * The last reported health status of the instance. "Healthy" means that the
      * instance is healthy and should remain in service. "Unhealthy" means that
-     * the instance is unhealthy and Amazon EC2 Auto Scaling should terminate
-     * and replace it.
+     * the instance is unhealthy and that Amazon EC2 Auto Scaling should
+     * terminate and replace it.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -361,8 +361,8 @@ public class Instance implements Serializable {
      * @return <p>
      *         The last reported health status of the instance. "Healthy" means
      *         that the instance is healthy and should remain in service.
-     *         "Unhealthy" means that the instance is unhealthy and Amazon EC2
-     *         Auto Scaling should terminate and replace it.
+     *         "Unhealthy" means that the instance is unhealthy and that Amazon
+     *         EC2 Auto Scaling should terminate and replace it.
      *         </p>
      */
     public String getHealthStatus() {
@@ -373,8 +373,8 @@ public class Instance implements Serializable {
      * <p>
      * The last reported health status of the instance. "Healthy" means that the
      * instance is healthy and should remain in service. "Unhealthy" means that
-     * the instance is unhealthy and Amazon EC2 Auto Scaling should terminate
-     * and replace it.
+     * the instance is unhealthy and that Amazon EC2 Auto Scaling should
+     * terminate and replace it.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -386,7 +386,7 @@ public class Instance implements Serializable {
      *            The last reported health status of the instance. "Healthy"
      *            means that the instance is healthy and should remain in
      *            service. "Unhealthy" means that the instance is unhealthy and
-     *            Amazon EC2 Auto Scaling should terminate and replace it.
+     *            that Amazon EC2 Auto Scaling should terminate and replace it.
      *            </p>
      */
     public void setHealthStatus(String healthStatus) {
@@ -397,8 +397,8 @@ public class Instance implements Serializable {
      * <p>
      * The last reported health status of the instance. "Healthy" means that the
      * instance is healthy and should remain in service. "Unhealthy" means that
-     * the instance is unhealthy and Amazon EC2 Auto Scaling should terminate
-     * and replace it.
+     * the instance is unhealthy and that Amazon EC2 Auto Scaling should
+     * terminate and replace it.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -413,7 +413,7 @@ public class Instance implements Serializable {
      *            The last reported health status of the instance. "Healthy"
      *            means that the instance is healthy and should remain in
      *            service. "Unhealthy" means that the instance is unhealthy and
-     *            Amazon EC2 Auto Scaling should terminate and replace it.
+     *            that Amazon EC2 Auto Scaling should terminate and replace it.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

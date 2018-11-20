@@ -55,6 +55,10 @@ class EntitiesDetectionJobPropertiesJsonUnmarshaller implements
             } else if (name.equals("EndTime")) {
                 entitiesDetectionJobProperties.setEndTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("EntityRecognizerArn")) {
+                entitiesDetectionJobProperties.setEntityRecognizerArn(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("InputDataConfig")) {
                 entitiesDetectionJobProperties.setInputDataConfig(InputDataConfigJsonUnmarshaller
                         .getInstance()

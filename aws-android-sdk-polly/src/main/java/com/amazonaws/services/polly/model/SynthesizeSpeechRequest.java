@@ -116,7 +116,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Chantal, Celine, Lea, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv,
      * Lotte, Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines,
      * Carmen, Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi,
-     * Zhiyu
+     * Zhiyu, Bianca, Lucia, Mia
      */
     private String voiceId;
 
@@ -138,9 +138,9 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
-     * en-GB-WLS, en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP,
-     * hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE,
-     * tr-TR
+     * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
+     * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
+     * sv-SE, tr-TR
      */
     private String languageCode;
 
@@ -786,7 +786,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Chantal, Celine, Lea, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv,
      * Lotte, Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines,
      * Carmen, Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi,
-     * Zhiyu
+     * Zhiyu, Bianca, Lucia, Mia
      *
      * @return <p>
      *         Voice ID to use for the synthesis. You can get a list of
@@ -815,7 +815,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Chantal, Celine, Lea, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv,
      * Lotte, Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines,
      * Carmen, Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi,
-     * Zhiyu
+     * Zhiyu, Bianca, Lucia, Mia
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -847,7 +847,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Chantal, Celine, Lea, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv,
      * Lotte, Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines,
      * Carmen, Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi,
-     * Zhiyu
+     * Zhiyu, Bianca, Lucia, Mia
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -879,7 +879,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Chantal, Celine, Lea, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv,
      * Lotte, Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines,
      * Carmen, Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi,
-     * Zhiyu
+     * Zhiyu, Bianca, Lucia, Mia
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -911,7 +911,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Chantal, Celine, Lea, Mathieu, Dora, Karl, Carla, Giorgio, Mizuki, Liv,
      * Lotte, Ruben, Ewa, Jacek, Jan, Maja, Ricardo, Vitoria, Cristiano, Ines,
      * Carmen, Maxim, Tatyana, Astrid, Filiz, Vicki, Takumi, Seoyeon, Aditi,
-     * Zhiyu
+     * Zhiyu, Bianca, Lucia, Mia
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -946,9 +946,9 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
-     * en-GB-WLS, en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP,
-     * hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE,
-     * tr-TR
+     * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
+     * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
+     * sv-SE, tr-TR
      *
      * @return <p>
      *         Optional language code for the Synthesize Speech request. This is
@@ -989,9 +989,9 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
-     * en-GB-WLS, en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP,
-     * hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE,
-     * tr-TR
+     * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
+     * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
+     * sv-SE, tr-TR
      *
      * @param languageCode <p>
      *            Optional language code for the Synthesize Speech request. This
@@ -1037,9 +1037,9 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
-     * en-GB-WLS, en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP,
-     * hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE,
-     * tr-TR
+     * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
+     * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
+     * sv-SE, tr-TR
      *
      * @param languageCode <p>
      *            Optional language code for the Synthesize Speech request. This
@@ -1085,9 +1085,9 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
-     * en-GB-WLS, en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP,
-     * hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE,
-     * tr-TR
+     * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
+     * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
+     * sv-SE, tr-TR
      *
      * @param languageCode <p>
      *            Optional language code for the Synthesize Speech request. This
@@ -1133,9 +1133,9 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
-     * en-GB-WLS, en-IN, en-US, es-ES, es-US, fr-CA, fr-FR, is-IS, it-IT, ja-JP,
-     * hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sv-SE,
-     * tr-TR
+     * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
+     * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
+     * sv-SE, tr-TR
      *
      * @param languageCode <p>
      *            Optional language code for the Synthesize Speech request. This

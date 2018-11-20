@@ -36,8 +36,13 @@ import com.amazonaws.services.autoscaling.model.*;
  * <p>
  * Amazon EC2 Auto Scaling is designed to automatically launch or terminate EC2
  * instances based on user-defined policies, schedules, and health checks. Use
- * this service in conjunction with the AWS Auto Scaling, Amazon CloudWatch, and
- * Elastic Load Balancing services.
+ * this service with AWS Auto Scaling, Amazon CloudWatch, and Elastic Load
+ * Balancing.
+ * </p>
+ * <p>
+ * For more information, see the <a href=
+ * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html"
+ * >Amazon EC2 Auto Scaling User Guide</a>.
  * </p>
  **/
 public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implements
@@ -621,8 +626,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
     /**
      * <p>
      * Creates or updates one or more scheduled scaling actions for an Auto
-     * Scaling group. When updating a scheduled scaling action, if you leave a
-     * parameter unspecified, the corresponding value remains unchanged.
+     * Scaling group. If you leave a parameter unspecified when updating a
+     * scheduled scaling action, the corresponding value remains unchanged.
      * </p>
      * 
      * @param batchPutScheduledUpdateGroupActionRequest
@@ -653,8 +658,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
     /**
      * <p>
      * Creates or updates one or more scheduled scaling actions for an Auto
-     * Scaling group. When updating a scheduled scaling action, if you leave a
-     * parameter unspecified, the corresponding value remains unchanged.
+     * Scaling group. If you leave a parameter unspecified when updating a
+     * scheduled scaling action, the corresponding value remains unchanged.
      * </p>
      * 
      * @param batchPutScheduledUpdateGroupActionRequest
@@ -1158,8 +1163,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <p>
      * To remove instances from the Auto Scaling group before deleting it, call
      * <a>DetachInstances</a> with the list of instances and the option to
-     * decrement the desired capacity so that Amazon EC2 Auto Scaling does not
-     * launch replacement instances.
+     * decrement the desired capacity. This ensures that Amazon EC2 Auto Scaling
+     * does not launch replacement instances.
      * </p>
      * <p>
      * To terminate all instances before deleting the Auto Scaling group, call
@@ -1209,8 +1214,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <p>
      * To remove instances from the Auto Scaling group before deleting it, call
      * <a>DetachInstances</a> with the list of instances and the option to
-     * decrement the desired capacity so that Amazon EC2 Auto Scaling does not
-     * launch replacement instances.
+     * decrement the desired capacity. This ensures that Amazon EC2 Auto Scaling
+     * does not launch replacement instances.
      * </p>
      * <p>
      * To terminate all instances before deleting the Auto Scaling group, call
@@ -2317,9 +2322,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * Describes the load balancers for the specified Auto Scaling group.
      * </p>
      * <p>
-     * Note that this operation describes only Classic Load Balancers. If you
-     * have Application Load Balancers, use
-     * <a>DescribeLoadBalancerTargetGroups</a> instead.
+     * This operation describes only Classic Load Balancers. If you have
+     * Application Load Balancers, use <a>DescribeLoadBalancerTargetGroups</a>
+     * instead.
      * </p>
      * 
      * @param describeLoadBalancersRequest
@@ -2350,9 +2355,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * Describes the load balancers for the specified Auto Scaling group.
      * </p>
      * <p>
-     * Note that this operation describes only Classic Load Balancers. If you
-     * have Application Load Balancers, use
-     * <a>DescribeLoadBalancerTargetGroups</a> instead.
+     * This operation describes only Classic Load Balancers. If you have
+     * Application Load Balancers, use <a>DescribeLoadBalancerTargetGroups</a>
+     * instead.
      * </p>
      * 
      * @param describeLoadBalancersRequest
@@ -2392,8 +2397,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * Describes the available CloudWatch metrics for Amazon EC2 Auto Scaling.
      * </p>
      * <p>
-     * Note that the <code>GroupStandbyInstances</code> metric is not returned
-     * by default. You must explicitly request this metric when calling
+     * The <code>GroupStandbyInstances</code> metric is not returned by default.
+     * You must explicitly request this metric when calling
      * <a>EnableMetricsCollection</a>.
      * </p>
      * 
@@ -2425,8 +2430,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * Describes the available CloudWatch metrics for Amazon EC2 Auto Scaling.
      * </p>
      * <p>
-     * Note that the <code>GroupStandbyInstances</code> metric is not returned
-     * by default. You must explicitly request this metric when calling
+     * The <code>GroupStandbyInstances</code> metric is not returned by default.
+     * You must explicitly request this metric when calling
      * <a>EnableMetricsCollection</a>.
      * </p>
      * 
@@ -2898,6 +2903,12 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <p>
      * Describes the termination policies supported by Amazon EC2 Auto Scaling.
      * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html"
+     * >Controlling Which Auto Scaling Instances Terminate During Scale In</a>
+     * in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * </p>
      * 
      * @param describeTerminationPolicyTypesRequest
      * @return A Java Future object containing the response from the
@@ -2925,6 +2936,12 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
     /**
      * <p>
      * Describes the termination policies supported by Amazon EC2 Auto Scaling.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html"
+     * >Controlling Which Auto Scaling Instances Terminate During Scale In</a>
+     * in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * 
      * @param describeTerminationPolicyTypesRequest
@@ -3137,15 +3154,15 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * Scaling group.
      * </p>
      * <p>
-     * Note that this operation detaches only Classic Load Balancers. If you
-     * have Application Load Balancers, use
-     * <a>DetachLoadBalancerTargetGroups</a> instead.
+     * This operation detaches only Classic Load Balancers. If you have
+     * Application Load Balancers, use <a>DetachLoadBalancerTargetGroups</a>
+     * instead.
      * </p>
      * <p>
      * When you detach a load balancer, it enters the <code>Removing</code>
      * state while deregistering the instances in the group. When all instances
      * are deregistered, then you can no longer describe the load balancer using
-     * <a>DescribeLoadBalancers</a>. Note that the instances remain running.
+     * <a>DescribeLoadBalancers</a>. The instances remain running.
      * </p>
      * 
      * @param detachLoadBalancersRequest
@@ -3177,15 +3194,15 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * Scaling group.
      * </p>
      * <p>
-     * Note that this operation detaches only Classic Load Balancers. If you
-     * have Application Load Balancers, use
-     * <a>DetachLoadBalancerTargetGroups</a> instead.
+     * This operation detaches only Classic Load Balancers. If you have
+     * Application Load Balancers, use <a>DetachLoadBalancerTargetGroups</a>
+     * instead.
      * </p>
      * <p>
      * When you detach a load balancer, it enters the <code>Removing</code>
      * state while deregistering the instances in the group. When all instances
      * are deregistered, then you can no longer describe the load balancer using
-     * <a>DescribeLoadBalancers</a>. Note that the instances remain running.
+     * <a>DescribeLoadBalancers</a>. The instances remain running.
      * </p>
      * 
      * @param detachLoadBalancersRequest
@@ -3574,12 +3591,12 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
 
     /**
      * <p>
-     * Creates or updates a lifecycle hook for the specified Auto Scaling Group.
+     * Creates or updates a lifecycle hook for the specified Auto Scaling group.
      * </p>
      * <p>
-     * A lifecycle hook tells Amazon EC2 Auto Scaling that you want to perform
-     * an action on an instance that is not actively in service; for example,
-     * either when the instance launches or before the instance terminates.
+     * A lifecycle hook tells Amazon EC2 Auto Scaling to perform an action on an
+     * instance that is not actively in service; for example, either when the
+     * instance launches or before the instance terminates.
      * </p>
      * <p>
      * This step is a part of the procedure for adding a lifecycle hook to an
@@ -3660,12 +3677,12 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
 
     /**
      * <p>
-     * Creates or updates a lifecycle hook for the specified Auto Scaling Group.
+     * Creates or updates a lifecycle hook for the specified Auto Scaling group.
      * </p>
      * <p>
-     * A lifecycle hook tells Amazon EC2 Auto Scaling that you want to perform
-     * an action on an instance that is not actively in service; for example,
-     * either when the instance launches or before the instance terminates.
+     * A lifecycle hook tells Amazon EC2 Auto Scaling to perform an action on an
+     * instance that is not actively in service; for example, either when the
+     * instance launches or before the instance terminates.
      * </p>
      * <p>
      * This step is a part of the procedure for adding a lifecycle hook to an
@@ -3763,7 +3780,7 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * This configuration overwrites any existing configuration.
      * </p>
      * <p>
-     * For more information see <a href=
+     * For more information, see <a href=
      * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/ASGettingNotifications.html"
      * >Getting SNS Notifications When Your Auto Scaling Group Scales</a> in the
      * <i>Auto Scaling User Guide</i>.
@@ -3805,7 +3822,7 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * This configuration overwrites any existing configuration.
      * </p>
      * <p>
-     * For more information see <a href=
+     * For more information, see <a href=
      * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/ASGettingNotifications.html"
      * >Getting SNS Notifications When Your Auto Scaling Group Scales</a> in the
      * <i>Auto Scaling User Guide</i>.
@@ -3848,9 +3865,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
     /**
      * <p>
      * Creates or updates a policy for an Auto Scaling group. To update an
-     * existing policy, use the existing policy name and set the parameters you
-     * want to change. Any existing parameter not changed in an update to an
-     * existing policy is not changed in this update request.
+     * existing policy, use the existing policy name and set the parameters to
+     * change. Any existing parameter not changed in an update to an existing
+     * policy is not changed in this update request.
      * </p>
      * <p>
      * If you exceed your maximum limit of step adjustments, which by default is
@@ -3889,9 +3906,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
     /**
      * <p>
      * Creates or updates a policy for an Auto Scaling group. To update an
-     * existing policy, use the existing policy name and set the parameters you
-     * want to change. Any existing parameter not changed in an update to an
-     * existing policy is not changed in this update request.
+     * existing policy, use the existing policy name and set the parameters to
+     * change. Any existing parameter not changed in an update to an existing
+     * policy is not changed in this update request.
      * </p>
      * <p>
      * If you exceed your maximum limit of step adjustments, which by default is
@@ -3939,8 +3956,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
     /**
      * <p>
      * Creates or updates a scheduled scaling action for an Auto Scaling group.
-     * When updating a scheduled scaling action, if you leave a parameter
-     * unspecified, the corresponding value remains unchanged.
+     * If you leave a parameter unspecified when updating a scheduled scaling
+     * action, the corresponding value remains unchanged.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -3977,8 +3994,8 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
     /**
      * <p>
      * Creates or updates a scheduled scaling action for an Auto Scaling group.
-     * When updating a scheduled scaling action, if you leave a parameter
-     * unspecified, the corresponding value remains unchanged.
+     * If you leave a parameter unspecified when updating a scheduled scaling
+     * action, the corresponding value remains unchanged.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -4498,9 +4515,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * the specified Auto Scaling group.
      * </p>
      * <p>
-     * Note that if you suspend either the <code>Launch</code> or
-     * <code>Terminate</code> process types, it can prevent other process types
-     * from functioning properly.
+     * If you suspend either the <code>Launch</code> or <code>Terminate</code>
+     * process types, it can prevent other process types from functioning
+     * properly.
      * </p>
      * <p>
      * To resume processes that have been suspended, use <a>ResumeProcesses</a>.
@@ -4542,9 +4559,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * the specified Auto Scaling group.
      * </p>
      * <p>
-     * Note that if you suspend either the <code>Launch</code> or
-     * <code>Terminate</code> process types, it can prevent other process types
-     * from functioning properly.
+     * If you suspend either the <code>Launch</code> or <code>Terminate</code>
+     * process types, it can prevent other process types from functioning
+     * properly.
      * </p>
      * <p>
      * To resume processes that have been suspended, use <a>ResumeProcesses</a>.
@@ -4678,9 +4695,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <p>
      * To update an Auto Scaling group with a launch configuration with
      * <code>InstanceMonitoring</code> set to <code>false</code>, you must first
-     * disable the collection of group metrics. Otherwise, you will get an
-     * error. If you have previously enabled the collection of group metrics,
-     * you can disable it using <a>DisableMetricsCollection</a>.
+     * disable the collection of group metrics. Otherwise, you get an error. If
+     * you have previously enabled the collection of group metrics, you can
+     * disable it using <a>DisableMetricsCollection</a>.
      * </p>
      * <p>
      * Note the following:
@@ -4749,9 +4766,9 @@ public class AmazonAutoScalingAsyncClient extends AmazonAutoScalingClient implem
      * <p>
      * To update an Auto Scaling group with a launch configuration with
      * <code>InstanceMonitoring</code> set to <code>false</code>, you must first
-     * disable the collection of group metrics. Otherwise, you will get an
-     * error. If you have previously enabled the collection of group metrics,
-     * you can disable it using <a>DisableMetricsCollection</a>.
+     * disable the collection of group metrics. Otherwise, you get an error. If
+     * you have previously enabled the collection of group metrics, you can
+     * disable it using <a>DisableMetricsCollection</a>.
      * </p>
      * <p>
      * Note the following:

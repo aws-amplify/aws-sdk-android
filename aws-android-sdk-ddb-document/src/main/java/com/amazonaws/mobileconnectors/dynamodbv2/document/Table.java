@@ -718,7 +718,7 @@ public class Table {
 
         if (keyDescription.getType() != hashKey.getType()) {
             throw new IllegalStateException(
-                    "hash key type does not match the one in table defination");
+                    "hash key type does not match the one in table definition");
         }
 
         final AttributeValue av = hashKey.convertToAttributeValue();
@@ -731,7 +731,7 @@ public class Table {
             final KeyDescription kd = this.keys.get(rangeKeyName);
             if (kd.getType() != rangeKey.getType()) {
                 throw new IllegalStateException(
-                        "range key type does not match that of table defination");
+                        "range key type does not match that of table definition");
             }
             final AttributeValue rangeKeyAttributeValue = rangeKey.convertToAttributeValue();
             key.put(rangeKeyName, rangeKeyAttributeValue);

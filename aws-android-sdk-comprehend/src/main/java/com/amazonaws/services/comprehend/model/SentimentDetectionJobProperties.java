@@ -30,6 +30,7 @@ public class SentimentDetectionJobProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      */
     private String jobId;
 
@@ -111,6 +112,7 @@ public class SentimentDetectionJobProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      */
     private String dataAccessRoleArn;
@@ -122,6 +124,7 @@ public class SentimentDetectionJobProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @return <p>
      *         The identifier assigned to the sentiment detection job.
@@ -138,6 +141,7 @@ public class SentimentDetectionJobProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @param jobId <p>
      *            The identifier assigned to the sentiment detection job.
@@ -157,6 +161,7 @@ public class SentimentDetectionJobProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @param jobId <p>
      *            The identifier assigned to the sentiment detection job.
@@ -692,6 +697,7 @@ public class SentimentDetectionJobProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @return <p>
@@ -710,6 +716,7 @@ public class SentimentDetectionJobProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
@@ -731,6 +738,7 @@ public class SentimentDetectionJobProperties implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>

@@ -55,6 +55,7 @@ public class StartTopicsDetectionJobRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      */
     private String dataAccessRoleArn;
@@ -216,6 +217,7 @@ public class StartTopicsDetectionJobRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @return <p>
@@ -242,6 +244,7 @@ public class StartTopicsDetectionJobRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
@@ -271,6 +274,7 @@ public class StartTopicsDetectionJobRequest extends AmazonWebServiceRequest impl
      * together.
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>

@@ -52,8 +52,8 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the launch configuration. You must specify one of the
-     * following: a launch configuration, a launch template, or an EC2 instance.
+     * The name of the launch configuration. This parameter, a launch template,
+     * a mixed instances policy, or an EC2 instance must be specified.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -65,24 +65,33 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The launch template to use to launch instances. You must specify one of
-     * the following: a launch template, a launch configuration, or an EC2
-     * instance.
+     * The launch template to use to launch instances. This parameter, a launch
+     * configuration, a mixed instances policy, or an EC2 instance must be
+     * specified.
      * </p>
      */
     private LaunchTemplateSpecification launchTemplate;
 
     /**
      * <p>
+     * The mixed instances policy to use to launch instances. This parameter, a
+     * launch template, a launch configuration, or an EC2 instance must be
+     * specified.
+     * </p>
+     */
+    private MixedInstancesPolicy mixedInstancesPolicy;
+
+    /**
+     * <p>
      * The ID of the instance used to create a launch configuration for the
-     * group. You must specify one of the following: an EC2 instance, a launch
-     * configuration, or a launch template.
+     * group. This parameter, a launch configuration, a launch template, or a
+     * mixed instances policy must be specified.
      * </p>
      * <p>
      * When you specify an ID of an instance, Amazon EC2 Auto Scaling creates a
      * new launch configuration and associates it with the group. This launch
-     * configuration derives its attributes from the specified instance, with
-     * the exception of the block device mapping.
+     * configuration derives its attributes from the specified instance, except
+     * for the block device mapping.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -204,8 +213,8 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the placement group into which you'll launch your instances,
-     * if any. For more information, see <a href=
+     * The name of the placement group into which to launch your instances, if
+     * any. For more information, see <a href=
      * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
      * >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide</i>.
@@ -366,8 +375,8 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the launch configuration. You must specify one of the
-     * following: a launch configuration, a launch template, or an EC2 instance.
+     * The name of the launch configuration. This parameter, a launch template,
+     * a mixed instances policy, or an EC2 instance must be specified.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -376,9 +385,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @return <p>
-     *         The name of the launch configuration. You must specify one of the
-     *         following: a launch configuration, a launch template, or an EC2
-     *         instance.
+     *         The name of the launch configuration. This parameter, a launch
+     *         template, a mixed instances policy, or an EC2 instance must be
+     *         specified.
      *         </p>
      */
     public String getLaunchConfigurationName() {
@@ -387,8 +396,8 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the launch configuration. You must specify one of the
-     * following: a launch configuration, a launch template, or an EC2 instance.
+     * The name of the launch configuration. This parameter, a launch template,
+     * a mixed instances policy, or an EC2 instance must be specified.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -397,9 +406,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @param launchConfigurationName <p>
-     *            The name of the launch configuration. You must specify one of
-     *            the following: a launch configuration, a launch template, or
-     *            an EC2 instance.
+     *            The name of the launch configuration. This parameter, a launch
+     *            template, a mixed instances policy, or an EC2 instance must be
+     *            specified.
      *            </p>
      */
     public void setLaunchConfigurationName(String launchConfigurationName) {
@@ -408,8 +417,8 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the launch configuration. You must specify one of the
-     * following: a launch configuration, a launch template, or an EC2 instance.
+     * The name of the launch configuration. This parameter, a launch template,
+     * a mixed instances policy, or an EC2 instance must be specified.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -421,9 +430,9 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @param launchConfigurationName <p>
-     *            The name of the launch configuration. You must specify one of
-     *            the following: a launch configuration, a launch template, or
-     *            an EC2 instance.
+     *            The name of the launch configuration. This parameter, a launch
+     *            template, a mixed instances policy, or an EC2 instance must be
+     *            specified.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -435,15 +444,15 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The launch template to use to launch instances. You must specify one of
-     * the following: a launch template, a launch configuration, or an EC2
-     * instance.
+     * The launch template to use to launch instances. This parameter, a launch
+     * configuration, a mixed instances policy, or an EC2 instance must be
+     * specified.
      * </p>
      *
      * @return <p>
-     *         The launch template to use to launch instances. You must specify
-     *         one of the following: a launch template, a launch configuration,
-     *         or an EC2 instance.
+     *         The launch template to use to launch instances. This parameter, a
+     *         launch configuration, a mixed instances policy, or an EC2
+     *         instance must be specified.
      *         </p>
      */
     public LaunchTemplateSpecification getLaunchTemplate() {
@@ -452,15 +461,15 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The launch template to use to launch instances. You must specify one of
-     * the following: a launch template, a launch configuration, or an EC2
-     * instance.
+     * The launch template to use to launch instances. This parameter, a launch
+     * configuration, a mixed instances policy, or an EC2 instance must be
+     * specified.
      * </p>
      *
      * @param launchTemplate <p>
-     *            The launch template to use to launch instances. You must
-     *            specify one of the following: a launch template, a launch
-     *            configuration, or an EC2 instance.
+     *            The launch template to use to launch instances. This
+     *            parameter, a launch configuration, a mixed instances policy,
+     *            or an EC2 instance must be specified.
      *            </p>
      */
     public void setLaunchTemplate(LaunchTemplateSpecification launchTemplate) {
@@ -469,18 +478,18 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The launch template to use to launch instances. You must specify one of
-     * the following: a launch template, a launch configuration, or an EC2
-     * instance.
+     * The launch template to use to launch instances. This parameter, a launch
+     * configuration, a mixed instances policy, or an EC2 instance must be
+     * specified.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param launchTemplate <p>
-     *            The launch template to use to launch instances. You must
-     *            specify one of the following: a launch template, a launch
-     *            configuration, or an EC2 instance.
+     *            The launch template to use to launch instances. This
+     *            parameter, a launch configuration, a mixed instances policy,
+     *            or an EC2 instance must be specified.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -493,15 +502,73 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
+     * The mixed instances policy to use to launch instances. This parameter, a
+     * launch template, a launch configuration, or an EC2 instance must be
+     * specified.
+     * </p>
+     *
+     * @return <p>
+     *         The mixed instances policy to use to launch instances. This
+     *         parameter, a launch template, a launch configuration, or an EC2
+     *         instance must be specified.
+     *         </p>
+     */
+    public MixedInstancesPolicy getMixedInstancesPolicy() {
+        return mixedInstancesPolicy;
+    }
+
+    /**
+     * <p>
+     * The mixed instances policy to use to launch instances. This parameter, a
+     * launch template, a launch configuration, or an EC2 instance must be
+     * specified.
+     * </p>
+     *
+     * @param mixedInstancesPolicy <p>
+     *            The mixed instances policy to use to launch instances. This
+     *            parameter, a launch template, a launch configuration, or an
+     *            EC2 instance must be specified.
+     *            </p>
+     */
+    public void setMixedInstancesPolicy(MixedInstancesPolicy mixedInstancesPolicy) {
+        this.mixedInstancesPolicy = mixedInstancesPolicy;
+    }
+
+    /**
+     * <p>
+     * The mixed instances policy to use to launch instances. This parameter, a
+     * launch template, a launch configuration, or an EC2 instance must be
+     * specified.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param mixedInstancesPolicy <p>
+     *            The mixed instances policy to use to launch instances. This
+     *            parameter, a launch template, a launch configuration, or an
+     *            EC2 instance must be specified.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateAutoScalingGroupRequest withMixedInstancesPolicy(
+            MixedInstancesPolicy mixedInstancesPolicy) {
+        this.mixedInstancesPolicy = mixedInstancesPolicy;
+        return this;
+    }
+
+    /**
+     * <p>
      * The ID of the instance used to create a launch configuration for the
-     * group. You must specify one of the following: an EC2 instance, a launch
-     * configuration, or a launch template.
+     * group. This parameter, a launch configuration, a launch template, or a
+     * mixed instances policy must be specified.
      * </p>
      * <p>
      * When you specify an ID of an instance, Amazon EC2 Auto Scaling creates a
      * new launch configuration and associates it with the group. This launch
-     * configuration derives its attributes from the specified instance, with
-     * the exception of the block device mapping.
+     * configuration derives its attributes from the specified instance, except
+     * for the block device mapping.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -517,15 +584,14 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *
      * @return <p>
      *         The ID of the instance used to create a launch configuration for
-     *         the group. You must specify one of the following: an EC2
-     *         instance, a launch configuration, or a launch template.
+     *         the group. This parameter, a launch configuration, a launch
+     *         template, or a mixed instances policy must be specified.
      *         </p>
      *         <p>
      *         When you specify an ID of an instance, Amazon EC2 Auto Scaling
      *         creates a new launch configuration and associates it with the
      *         group. This launch configuration derives its attributes from the
-     *         specified instance, with the exception of the block device
-     *         mapping.
+     *         specified instance, except for the block device mapping.
      *         </p>
      *         <p>
      *         For more information, see <a href=
@@ -541,14 +607,14 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The ID of the instance used to create a launch configuration for the
-     * group. You must specify one of the following: an EC2 instance, a launch
-     * configuration, or a launch template.
+     * group. This parameter, a launch configuration, a launch template, or a
+     * mixed instances policy must be specified.
      * </p>
      * <p>
      * When you specify an ID of an instance, Amazon EC2 Auto Scaling creates a
      * new launch configuration and associates it with the group. This launch
-     * configuration derives its attributes from the specified instance, with
-     * the exception of the block device mapping.
+     * configuration derives its attributes from the specified instance, except
+     * for the block device mapping.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -564,15 +630,15 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *
      * @param instanceId <p>
      *            The ID of the instance used to create a launch configuration
-     *            for the group. You must specify one of the following: an EC2
-     *            instance, a launch configuration, or a launch template.
+     *            for the group. This parameter, a launch configuration, a
+     *            launch template, or a mixed instances policy must be
+     *            specified.
      *            </p>
      *            <p>
      *            When you specify an ID of an instance, Amazon EC2 Auto Scaling
      *            creates a new launch configuration and associates it with the
      *            group. This launch configuration derives its attributes from
-     *            the specified instance, with the exception of the block device
-     *            mapping.
+     *            the specified instance, except for the block device mapping.
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -588,14 +654,14 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The ID of the instance used to create a launch configuration for the
-     * group. You must specify one of the following: an EC2 instance, a launch
-     * configuration, or a launch template.
+     * group. This parameter, a launch configuration, a launch template, or a
+     * mixed instances policy must be specified.
      * </p>
      * <p>
      * When you specify an ID of an instance, Amazon EC2 Auto Scaling creates a
      * new launch configuration and associates it with the group. This launch
-     * configuration derives its attributes from the specified instance, with
-     * the exception of the block device mapping.
+     * configuration derives its attributes from the specified instance, except
+     * for the block device mapping.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -614,15 +680,15 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *
      * @param instanceId <p>
      *            The ID of the instance used to create a launch configuration
-     *            for the group. You must specify one of the following: an EC2
-     *            instance, a launch configuration, or a launch template.
+     *            for the group. This parameter, a launch configuration, a
+     *            launch template, or a mixed instances policy must be
+     *            specified.
      *            </p>
      *            <p>
      *            When you specify an ID of an instance, Amazon EC2 Auto Scaling
      *            creates a new launch configuration and associates it with the
      *            group. This launch configuration derives its attributes from
-     *            the specified instance, with the exception of the block device
-     *            mapping.
+     *            the specified instance, except for the block device mapping.
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -1400,8 +1466,8 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the placement group into which you'll launch your instances,
-     * if any. For more information, see <a href=
+     * The name of the placement group into which to launch your instances, if
+     * any. For more information, see <a href=
      * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
      * >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide</i>.
@@ -1413,7 +1479,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @return <p>
-     *         The name of the placement group into which you'll launch your
+     *         The name of the placement group into which to launch your
      *         instances, if any. For more information, see <a href=
      *         "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
      *         >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User
@@ -1426,8 +1492,8 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the placement group into which you'll launch your instances,
-     * if any. For more information, see <a href=
+     * The name of the placement group into which to launch your instances, if
+     * any. For more information, see <a href=
      * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
      * >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide</i>.
@@ -1439,7 +1505,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @param placementGroup <p>
-     *            The name of the placement group into which you'll launch your
+     *            The name of the placement group into which to launch your
      *            instances, if any. For more information, see <a href=
      *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
      *            >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud
@@ -1452,8 +1518,8 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the placement group into which you'll launch your instances,
-     * if any. For more information, see <a href=
+     * The name of the placement group into which to launch your instances, if
+     * any. For more information, see <a href=
      * "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
      * >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User
      * Guide</i>.
@@ -1468,7 +1534,7 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @param placementGroup <p>
-     *            The name of the placement group into which you'll launch your
+     *            The name of the placement group into which to launch your
      *            instances, if any. For more information, see <a href=
      *            "http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
      *            >Placement Groups</a> in the <i>Amazon Elastic Compute Cloud
@@ -2112,6 +2178,8 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
             sb.append("LaunchConfigurationName: " + getLaunchConfigurationName() + ",");
         if (getLaunchTemplate() != null)
             sb.append("LaunchTemplate: " + getLaunchTemplate() + ",");
+        if (getMixedInstancesPolicy() != null)
+            sb.append("MixedInstancesPolicy: " + getMixedInstancesPolicy() + ",");
         if (getInstanceId() != null)
             sb.append("InstanceId: " + getInstanceId() + ",");
         if (getMinSize() != null)
@@ -2165,6 +2233,8 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
                         .hashCode());
         hashCode = prime * hashCode
                 + ((getLaunchTemplate() == null) ? 0 : getLaunchTemplate().hashCode());
+        hashCode = prime * hashCode
+                + ((getMixedInstancesPolicy() == null) ? 0 : getMixedInstancesPolicy().hashCode());
         hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
         hashCode = prime * hashCode + ((getMinSize() == null) ? 0 : getMinSize().hashCode());
         hashCode = prime * hashCode + ((getMaxSize() == null) ? 0 : getMaxSize().hashCode());
@@ -2229,6 +2299,11 @@ public class CreateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
             return false;
         if (other.getLaunchTemplate() != null
                 && other.getLaunchTemplate().equals(this.getLaunchTemplate()) == false)
+            return false;
+        if (other.getMixedInstancesPolicy() == null ^ this.getMixedInstancesPolicy() == null)
+            return false;
+        if (other.getMixedInstancesPolicy() != null
+                && other.getMixedInstancesPolicy().equals(this.getMixedInstancesPolicy()) == false)
             return false;
         if (other.getInstanceId() == null ^ this.getInstanceId() == null)
             return false;

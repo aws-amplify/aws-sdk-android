@@ -22,9 +22,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Creates or updates a policy for an Auto Scaling group. To update an existing
- * policy, use the existing policy name and set the parameters you want to
- * change. Any existing parameter not changed in an update to an existing policy
- * is not changed in this update request.
+ * policy, use the existing policy name and set the parameters to change. Any
+ * existing parameter not changed in an update to an existing policy is not
+ * changed in this update request.
  * </p>
  * <p>
  * If you exceed your maximum limit of step adjustments, which by default is 20

@@ -20,13 +20,24 @@ import java.io.Serializable;
 public class PutRecordBatchResult implements Serializable {
     /**
      * <p>
-     * The number of records that might have failed processing.
+     * The number of records that might have failed processing. This number
+     * might be greater than 0 even if the <a>PutRecordBatch</a> call succeeds.
+     * Check <code>FailedPutCount</code> to determine whether there are records
+     * that you need to resend.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      */
     private Integer failedPutCount;
+
+    /**
+     * <p>
+     * Indicates whether server-side encryption (SSE) was enabled during this
+     * operation.
+     * </p>
+     */
+    private Boolean encrypted;
 
     /**
      * <p>
@@ -38,14 +49,20 @@ public class PutRecordBatchResult implements Serializable {
 
     /**
      * <p>
-     * The number of records that might have failed processing.
+     * The number of records that might have failed processing. This number
+     * might be greater than 0 even if the <a>PutRecordBatch</a> call succeeds.
+     * Check <code>FailedPutCount</code> to determine whether there are records
+     * that you need to resend.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The number of records that might have failed processing.
+     *         The number of records that might have failed processing. This
+     *         number might be greater than 0 even if the <a>PutRecordBatch</a>
+     *         call succeeds. Check <code>FailedPutCount</code> to determine
+     *         whether there are records that you need to resend.
      *         </p>
      */
     public Integer getFailedPutCount() {
@@ -54,14 +71,21 @@ public class PutRecordBatchResult implements Serializable {
 
     /**
      * <p>
-     * The number of records that might have failed processing.
+     * The number of records that might have failed processing. This number
+     * might be greater than 0 even if the <a>PutRecordBatch</a> call succeeds.
+     * Check <code>FailedPutCount</code> to determine whether there are records
+     * that you need to resend.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @param failedPutCount <p>
-     *            The number of records that might have failed processing.
+     *            The number of records that might have failed processing. This
+     *            number might be greater than 0 even if the
+     *            <a>PutRecordBatch</a> call succeeds. Check
+     *            <code>FailedPutCount</code> to determine whether there are
+     *            records that you need to resend.
      *            </p>
      */
     public void setFailedPutCount(Integer failedPutCount) {
@@ -70,7 +94,10 @@ public class PutRecordBatchResult implements Serializable {
 
     /**
      * <p>
-     * The number of records that might have failed processing.
+     * The number of records that might have failed processing. This number
+     * might be greater than 0 even if the <a>PutRecordBatch</a> call succeeds.
+     * Check <code>FailedPutCount</code> to determine whether there are records
+     * that you need to resend.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -80,13 +107,83 @@ public class PutRecordBatchResult implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param failedPutCount <p>
-     *            The number of records that might have failed processing.
+     *            The number of records that might have failed processing. This
+     *            number might be greater than 0 even if the
+     *            <a>PutRecordBatch</a> call succeeds. Check
+     *            <code>FailedPutCount</code> to determine whether there are
+     *            records that you need to resend.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public PutRecordBatchResult withFailedPutCount(Integer failedPutCount) {
         this.failedPutCount = failedPutCount;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Indicates whether server-side encryption (SSE) was enabled during this
+     * operation.
+     * </p>
+     *
+     * @return <p>
+     *         Indicates whether server-side encryption (SSE) was enabled during
+     *         this operation.
+     *         </p>
+     */
+    public Boolean isEncrypted() {
+        return encrypted;
+    }
+
+    /**
+     * <p>
+     * Indicates whether server-side encryption (SSE) was enabled during this
+     * operation.
+     * </p>
+     *
+     * @return <p>
+     *         Indicates whether server-side encryption (SSE) was enabled during
+     *         this operation.
+     *         </p>
+     */
+    public Boolean getEncrypted() {
+        return encrypted;
+    }
+
+    /**
+     * <p>
+     * Indicates whether server-side encryption (SSE) was enabled during this
+     * operation.
+     * </p>
+     *
+     * @param encrypted <p>
+     *            Indicates whether server-side encryption (SSE) was enabled
+     *            during this operation.
+     *            </p>
+     */
+    public void setEncrypted(Boolean encrypted) {
+        this.encrypted = encrypted;
+    }
+
+    /**
+     * <p>
+     * Indicates whether server-side encryption (SSE) was enabled during this
+     * operation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param encrypted <p>
+     *            Indicates whether server-side encryption (SSE) was enabled
+     *            during this operation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PutRecordBatchResult withEncrypted(Boolean encrypted) {
+        this.encrypted = encrypted;
         return this;
     }
 
@@ -190,6 +287,8 @@ public class PutRecordBatchResult implements Serializable {
         sb.append("{");
         if (getFailedPutCount() != null)
             sb.append("FailedPutCount: " + getFailedPutCount() + ",");
+        if (getEncrypted() != null)
+            sb.append("Encrypted: " + getEncrypted() + ",");
         if (getRequestResponses() != null)
             sb.append("RequestResponses: " + getRequestResponses());
         sb.append("}");
@@ -203,6 +302,7 @@ public class PutRecordBatchResult implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getFailedPutCount() == null) ? 0 : getFailedPutCount().hashCode());
+        hashCode = prime * hashCode + ((getEncrypted() == null) ? 0 : getEncrypted().hashCode());
         hashCode = prime * hashCode
                 + ((getRequestResponses() == null) ? 0 : getRequestResponses().hashCode());
         return hashCode;
@@ -223,6 +323,11 @@ public class PutRecordBatchResult implements Serializable {
             return false;
         if (other.getFailedPutCount() != null
                 && other.getFailedPutCount().equals(this.getFailedPutCount()) == false)
+            return false;
+        if (other.getEncrypted() == null ^ this.getEncrypted() == null)
+            return false;
+        if (other.getEncrypted() != null
+                && other.getEncrypted().equals(this.getEncrypted()) == false)
             return false;
         if (other.getRequestResponses() == null ^ this.getRequestResponses() == null)
             return false;

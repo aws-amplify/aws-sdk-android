@@ -49,6 +49,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -114,6 +115,7 @@ abstract class NotificationClientBase {
     private static final String APP_OPS_SERVICE = "APP_OPS_SERVICE";
     private static final String DEFAULT_NOTIFICATION_CHANNEL_ID = "PINPOINT.NOTIFICATION";
     private static final CharSequence DEFAULT_NOTIFICATION_CHANNEL_NAME = "Notifications";
+    static final String DIRECT_CAMPAIGN_SEND = "_DIRECT";
     protected final PinpointContext pinpointContext;
     private final AppUtil appUtil;
     private final List<DeviceTokenRegisteredHandler> deviceRegisteredHandlers;
@@ -145,6 +147,8 @@ abstract class NotificationClientBase {
     private Field opPostNotificationField = null;
     private Field modeAllowedField = null;
     private String notificationChannelId = null;
+
+    private static Random random = new Random();
 
     /**
      * Constructor.
@@ -671,8 +675,22 @@ abstract class NotificationClientBase {
         return notificationIntent;
     }
 
-    /* package */ int getNotificationRequestId(final String campaignId, final String activityId) {
-        return (campaignId + ":" + activityId).hashCode();
+    /**
+     * @return a unique notification request ID that is given to the
+     *         NotificationManager for the notification. A random identifier
+     *         is generated in order to uniquely identify the notification
+     *         within the application.
+     */
+    int getNotificationRequestId(final String campaignId,
+                                 final String activityId) {
+        // Adding a random unique identifier for direct sends. For a campaign,
+        // use the campaingId and the activityId in order to prevent displaying
+        // duplicate notifications from a campaign activity.
+        if (DIRECT_CAMPAIGN_SEND.equals(campaignId) && activityId == null) {
+            return random.nextInt();
+        } else {
+            return (campaignId + ":" + activityId).hashCode();
+        }
     }
 
     private boolean displayNotification(final Bundle pushBundle, final Class<?> targetClass, final String imageUrl,
@@ -690,8 +708,11 @@ abstract class NotificationClientBase {
 
         final String campaignId = campaignAttributes.get(CAMPAIGN_ID_ATTRIBUTE_KEY);
         final String activityId = campaignAttributes.get(CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY);
-
         final int requestID = getNotificationRequestId(campaignId, activityId);
+
+        log.debug("Displaying Notification for campaign: " + campaignId + 
+            " ; activity: " + activityId + 
+            " ; notification requestId: " + requestID);
 
         new Thread(new Runnable() {
             @Override

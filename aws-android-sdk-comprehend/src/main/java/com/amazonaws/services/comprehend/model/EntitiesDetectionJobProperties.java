@@ -30,6 +30,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      */
     private String jobId;
 
@@ -80,6 +81,19 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
+     * The Amazon Resource Name (ARN) that identifies the entity recognizer.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity-recognizer
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     */
+    private String entityRecognizerArn;
+
+    /**
+     * <p>
      * The input data configuration that you supplied when you created the
      * entities detection job.
      * </p>
@@ -111,6 +125,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      */
     private String dataAccessRoleArn;
@@ -122,6 +137,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @return <p>
      *         The identifier assigned to the entities detection job.
@@ -138,6 +154,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @param jobId <p>
      *            The identifier assigned to the entities detection job.
@@ -157,6 +174,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @param jobId <p>
      *            The identifier assigned to the entities detection job.
@@ -488,6 +506,72 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
+     * The Amazon Resource Name (ARN) that identifies the entity recognizer.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity-recognizer
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) that identifies the entity
+     *         recognizer.
+     *         </p>
+     */
+    public String getEntityRecognizerArn() {
+        return entityRecognizerArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) that identifies the entity recognizer.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity-recognizer
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     *
+     * @param entityRecognizerArn <p>
+     *            The Amazon Resource Name (ARN) that identifies the entity
+     *            recognizer.
+     *            </p>
+     */
+    public void setEntityRecognizerArn(String entityRecognizerArn) {
+        this.entityRecognizerArn = entityRecognizerArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) that identifies the entity recognizer.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity-recognizer
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     *
+     * @param entityRecognizerArn <p>
+     *            The Amazon Resource Name (ARN) that identifies the entity
+     *            recognizer.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public EntitiesDetectionJobProperties withEntityRecognizerArn(String entityRecognizerArn) {
+        this.entityRecognizerArn = entityRecognizerArn;
+        return this;
+    }
+
+    /**
+     * <p>
      * The input data configuration that you supplied when you created the
      * entities detection job.
      * </p>
@@ -692,6 +776,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @return <p>
@@ -710,6 +795,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
@@ -731,6 +817,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
@@ -768,6 +855,8 @@ public class EntitiesDetectionJobProperties implements Serializable {
             sb.append("SubmitTime: " + getSubmitTime() + ",");
         if (getEndTime() != null)
             sb.append("EndTime: " + getEndTime() + ",");
+        if (getEntityRecognizerArn() != null)
+            sb.append("EntityRecognizerArn: " + getEntityRecognizerArn() + ",");
         if (getInputDataConfig() != null)
             sb.append("InputDataConfig: " + getInputDataConfig() + ",");
         if (getOutputDataConfig() != null)
@@ -791,6 +880,8 @@ public class EntitiesDetectionJobProperties implements Serializable {
         hashCode = prime * hashCode + ((getMessage() == null) ? 0 : getMessage().hashCode());
         hashCode = prime * hashCode + ((getSubmitTime() == null) ? 0 : getSubmitTime().hashCode());
         hashCode = prime * hashCode + ((getEndTime() == null) ? 0 : getEndTime().hashCode());
+        hashCode = prime * hashCode
+                + ((getEntityRecognizerArn() == null) ? 0 : getEntityRecognizerArn().hashCode());
         hashCode = prime * hashCode
                 + ((getInputDataConfig() == null) ? 0 : getInputDataConfig().hashCode());
         hashCode = prime * hashCode
@@ -838,6 +929,11 @@ public class EntitiesDetectionJobProperties implements Serializable {
         if (other.getEndTime() == null ^ this.getEndTime() == null)
             return false;
         if (other.getEndTime() != null && other.getEndTime().equals(this.getEndTime()) == false)
+            return false;
+        if (other.getEntityRecognizerArn() == null ^ this.getEntityRecognizerArn() == null)
+            return false;
+        if (other.getEntityRecognizerArn() != null
+                && other.getEntityRecognizerArn().equals(this.getEntityRecognizerArn()) == false)
             return false;
         if (other.getInputDataConfig() == null ^ this.getInputDataConfig() == null)
             return false;

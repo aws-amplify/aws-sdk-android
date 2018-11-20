@@ -333,6 +333,12 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
     }
 
     @Test
+    public void verifyNotificationRequestIdIsUniqueForDirectSend() {
+        assertNotEquals(target.getNotificationRequestId(NotificationClientBase.DIRECT_CAMPAIGN_SEND, null),
+            target.getNotificationRequestId(NotificationClientBase.DIRECT_CAMPAIGN_SEND, null));
+    }
+
+    @Test
     public void testAreAppNotificationsEnabled_returnsFalse_whenOptOutProviderReturnsTrue() {
         mockAppLevelOptOutProvider(true);
         assertEquals(false, target.areAppNotificationsEnabled());

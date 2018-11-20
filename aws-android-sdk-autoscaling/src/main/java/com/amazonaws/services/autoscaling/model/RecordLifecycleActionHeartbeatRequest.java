@@ -97,7 +97,8 @@ public class RecordLifecycleActionHeartbeatRequest extends AmazonWebServiceReque
      * <p>
      * A token that uniquely identifies a specific lifecycle action associated
      * with an instance. Amazon EC2 Auto Scaling sends this token to the
-     * notification target you specified when you created the lifecycle hook.
+     * notification target that you specified when you created the lifecycle
+     * hook.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -239,7 +240,8 @@ public class RecordLifecycleActionHeartbeatRequest extends AmazonWebServiceReque
      * <p>
      * A token that uniquely identifies a specific lifecycle action associated
      * with an instance. Amazon EC2 Auto Scaling sends this token to the
-     * notification target you specified when you created the lifecycle hook.
+     * notification target that you specified when you created the lifecycle
+     * hook.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -248,8 +250,8 @@ public class RecordLifecycleActionHeartbeatRequest extends AmazonWebServiceReque
      * @return <p>
      *         A token that uniquely identifies a specific lifecycle action
      *         associated with an instance. Amazon EC2 Auto Scaling sends this
-     *         token to the notification target you specified when you created
-     *         the lifecycle hook.
+     *         token to the notification target that you specified when you
+     *         created the lifecycle hook.
      *         </p>
      */
     public String getLifecycleActionToken() {
@@ -260,7 +262,8 @@ public class RecordLifecycleActionHeartbeatRequest extends AmazonWebServiceReque
      * <p>
      * A token that uniquely identifies a specific lifecycle action associated
      * with an instance. Amazon EC2 Auto Scaling sends this token to the
-     * notification target you specified when you created the lifecycle hook.
+     * notification target that you specified when you created the lifecycle
+     * hook.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -269,8 +272,8 @@ public class RecordLifecycleActionHeartbeatRequest extends AmazonWebServiceReque
      * @param lifecycleActionToken <p>
      *            A token that uniquely identifies a specific lifecycle action
      *            associated with an instance. Amazon EC2 Auto Scaling sends
-     *            this token to the notification target you specified when you
-     *            created the lifecycle hook.
+     *            this token to the notification target that you specified when
+     *            you created the lifecycle hook.
      *            </p>
      */
     public void setLifecycleActionToken(String lifecycleActionToken) {
@@ -281,7 +284,8 @@ public class RecordLifecycleActionHeartbeatRequest extends AmazonWebServiceReque
      * <p>
      * A token that uniquely identifies a specific lifecycle action associated
      * with an instance. Amazon EC2 Auto Scaling sends this token to the
-     * notification target you specified when you created the lifecycle hook.
+     * notification target that you specified when you created the lifecycle
+     * hook.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -293,8 +297,8 @@ public class RecordLifecycleActionHeartbeatRequest extends AmazonWebServiceReque
      * @param lifecycleActionToken <p>
      *            A token that uniquely identifies a specific lifecycle action
      *            associated with an instance. Amazon EC2 Auto Scaling sends
-     *            this token to the notification target you specified when you
-     *            created the lifecycle hook.
+     *            this token to the notification target that you specified when
+     *            you created the lifecycle hook.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -29,7 +29,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * This configuration overwrites any existing configuration.
  * </p>
  * <p>
- * For more information see <a href=
+ * For more information, see <a href=
  * "http://docs.aws.amazon.com/autoscaling/ec2/userguide/ASGettingNotifications.html"
  * >Getting SNS Notifications When Your Auto Scaling Group Scales</a> in the
  * <i>Auto Scaling User Guide</i>.
@@ -52,7 +52,7 @@ public class PutNotificationConfigurationRequest extends AmazonWebServiceRequest
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
-     * (SNS) topic.
+     * (Amazon SNS) topic.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -64,9 +64,9 @@ public class PutNotificationConfigurationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The type of event that will cause the notification to be sent. For
-     * details about notification types supported by Amazon EC2 Auto Scaling,
-     * see <a>DescribeAutoScalingNotificationTypes</a>.
+     * The type of event that causes the notification to be sent. For more
+     * information about notification types supported by Amazon EC2 Auto
+     * Scaling, see <a>DescribeAutoScalingNotificationTypes</a>.
      * </p>
      */
     private java.util.List<String> notificationTypes = new java.util.ArrayList<String>();
@@ -134,7 +134,7 @@ public class PutNotificationConfigurationRequest extends AmazonWebServiceRequest
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
-     * (SNS) topic.
+     * (Amazon SNS) topic.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -144,7 +144,7 @@ public class PutNotificationConfigurationRequest extends AmazonWebServiceRequest
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the Amazon Simple Notification
-     *         Service (SNS) topic.
+     *         Service (Amazon SNS) topic.
      *         </p>
      */
     public String getTopicARN() {
@@ -154,7 +154,7 @@ public class PutNotificationConfigurationRequest extends AmazonWebServiceRequest
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
-     * (SNS) topic.
+     * (Amazon SNS) topic.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -164,7 +164,7 @@ public class PutNotificationConfigurationRequest extends AmazonWebServiceRequest
      *
      * @param topicARN <p>
      *            The Amazon Resource Name (ARN) of the Amazon Simple
-     *            Notification Service (SNS) topic.
+     *            Notification Service (Amazon SNS) topic.
      *            </p>
      */
     public void setTopicARN(String topicARN) {
@@ -174,7 +174,7 @@ public class PutNotificationConfigurationRequest extends AmazonWebServiceRequest
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
-     * (SNS) topic.
+     * (Amazon SNS) topic.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -187,7 +187,7 @@ public class PutNotificationConfigurationRequest extends AmazonWebServiceRequest
      *
      * @param topicARN <p>
      *            The Amazon Resource Name (ARN) of the Amazon Simple
-     *            Notification Service (SNS) topic.
+     *            Notification Service (Amazon SNS) topic.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -199,15 +199,15 @@ public class PutNotificationConfigurationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The type of event that will cause the notification to be sent. For
-     * details about notification types supported by Amazon EC2 Auto Scaling,
-     * see <a>DescribeAutoScalingNotificationTypes</a>.
+     * The type of event that causes the notification to be sent. For more
+     * information about notification types supported by Amazon EC2 Auto
+     * Scaling, see <a>DescribeAutoScalingNotificationTypes</a>.
      * </p>
      *
      * @return <p>
-     *         The type of event that will cause the notification to be sent.
-     *         For details about notification types supported by Amazon EC2 Auto
-     *         Scaling, see <a>DescribeAutoScalingNotificationTypes</a>.
+     *         The type of event that causes the notification to be sent. For
+     *         more information about notification types supported by Amazon EC2
+     *         Auto Scaling, see <a>DescribeAutoScalingNotificationTypes</a>.
      *         </p>
      */
     public java.util.List<String> getNotificationTypes() {
@@ -216,15 +216,16 @@ public class PutNotificationConfigurationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The type of event that will cause the notification to be sent. For
-     * details about notification types supported by Amazon EC2 Auto Scaling,
-     * see <a>DescribeAutoScalingNotificationTypes</a>.
+     * The type of event that causes the notification to be sent. For more
+     * information about notification types supported by Amazon EC2 Auto
+     * Scaling, see <a>DescribeAutoScalingNotificationTypes</a>.
      * </p>
      *
      * @param notificationTypes <p>
-     *            The type of event that will cause the notification to be sent.
-     *            For details about notification types supported by Amazon EC2
-     *            Auto Scaling, see <a>DescribeAutoScalingNotificationTypes</a>.
+     *            The type of event that causes the notification to be sent. For
+     *            more information about notification types supported by Amazon
+     *            EC2 Auto Scaling, see
+     *            <a>DescribeAutoScalingNotificationTypes</a>.
      *            </p>
      */
     public void setNotificationTypes(java.util.Collection<String> notificationTypes) {
@@ -238,18 +239,19 @@ public class PutNotificationConfigurationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The type of event that will cause the notification to be sent. For
-     * details about notification types supported by Amazon EC2 Auto Scaling,
-     * see <a>DescribeAutoScalingNotificationTypes</a>.
+     * The type of event that causes the notification to be sent. For more
+     * information about notification types supported by Amazon EC2 Auto
+     * Scaling, see <a>DescribeAutoScalingNotificationTypes</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param notificationTypes <p>
-     *            The type of event that will cause the notification to be sent.
-     *            For details about notification types supported by Amazon EC2
-     *            Auto Scaling, see <a>DescribeAutoScalingNotificationTypes</a>.
+     *            The type of event that causes the notification to be sent. For
+     *            more information about notification types supported by Amazon
+     *            EC2 Auto Scaling, see
+     *            <a>DescribeAutoScalingNotificationTypes</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -266,18 +268,19 @@ public class PutNotificationConfigurationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The type of event that will cause the notification to be sent. For
-     * details about notification types supported by Amazon EC2 Auto Scaling,
-     * see <a>DescribeAutoScalingNotificationTypes</a>.
+     * The type of event that causes the notification to be sent. For more
+     * information about notification types supported by Amazon EC2 Auto
+     * Scaling, see <a>DescribeAutoScalingNotificationTypes</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param notificationTypes <p>
-     *            The type of event that will cause the notification to be sent.
-     *            For details about notification types supported by Amazon EC2
-     *            Auto Scaling, see <a>DescribeAutoScalingNotificationTypes</a>.
+     *            The type of event that causes the notification to be sent. For
+     *            more information about notification types supported by Amazon
+     *            EC2 Auto Scaling, see
+     *            <a>DescribeAutoScalingNotificationTypes</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

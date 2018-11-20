@@ -47,6 +47,12 @@ class AutoScalingGroupStaxMarshaller {
             LaunchTemplateSpecificationStaxMarshaller.getInstance().marshall(launchTemplate,
                     request, prefix + ".");
         }
+        if (_autoScalingGroup.getMixedInstancesPolicy() != null) {
+            prefix = _prefix + "MixedInstancesPolicy";
+            MixedInstancesPolicy mixedInstancesPolicy = _autoScalingGroup.getMixedInstancesPolicy();
+            MixedInstancesPolicyStaxMarshaller.getInstance().marshall(mixedInstancesPolicy,
+                    request, prefix + ".");
+        }
         if (_autoScalingGroup.getMinSize() != null) {
             prefix = _prefix + "MinSize";
             Integer minSize = _autoScalingGroup.getMinSize();

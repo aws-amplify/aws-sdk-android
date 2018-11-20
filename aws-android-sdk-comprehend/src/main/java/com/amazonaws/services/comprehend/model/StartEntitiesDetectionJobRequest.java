@@ -24,6 +24,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Starts an asynchronous entity detection job for a collection of documents.
  * Use the operation to track the status of a job.
  * </p>
+ * <p>
+ * This API can be used for either standard entity detection or custom entity
+ * recognition. In order to be used for custom entity recognition, the optional
+ * <code>EntityRecognizerArn</code> must be used in order to provide access to
+ * the recognizer being used to detect the custom entity.
+ * </p>
  */
 public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest implements
         Serializable {
@@ -52,6 +58,7 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      */
     private String dataAccessRoleArn;
@@ -69,8 +76,27 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The language of the input documents. You can specify English ("en") or
-     * Spanish ("es"). All documents must be in the same language.
+     * The Amazon Resource Name (ARN) that identifies the specific entity
+     * recognizer to be used by the <code>StartEntitiesDetectionJob</code>. This
+     * ARN is optional and is only used for a custom entity recognition job.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity-recognizer
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     */
+    private String entityRecognizerArn;
+
+    /**
+     * <p>
+     * The language of the input documents. All documents must be in the same
+     * language. You can specify any of the languages supported by Amazon
+     * Comprehend: English ("en"), Spanish ("es"), French ("fr"), German ("de"),
+     * Italian ("it"), or Portuguese ("pt"). If custom entities recognition is
+     * used, this parameter is ignored and the language used for training the
+     * model is used instead.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -193,6 +219,7 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @return <p>
@@ -219,6 +246,7 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
@@ -248,6 +276,7 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * together.
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
@@ -325,17 +354,102 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The language of the input documents. You can specify English ("en") or
-     * Spanish ("es"). All documents must be in the same language.
+     * The Amazon Resource Name (ARN) that identifies the specific entity
+     * recognizer to be used by the <code>StartEntitiesDetectionJob</code>. This
+     * ARN is optional and is only used for a custom entity recognition job.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity-recognizer
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) that identifies the specific
+     *         entity recognizer to be used by the
+     *         <code>StartEntitiesDetectionJob</code>. This ARN is optional and
+     *         is only used for a custom entity recognition job.
+     *         </p>
+     */
+    public String getEntityRecognizerArn() {
+        return entityRecognizerArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) that identifies the specific entity
+     * recognizer to be used by the <code>StartEntitiesDetectionJob</code>. This
+     * ARN is optional and is only used for a custom entity recognition job.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity-recognizer
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     *
+     * @param entityRecognizerArn <p>
+     *            The Amazon Resource Name (ARN) that identifies the specific
+     *            entity recognizer to be used by the
+     *            <code>StartEntitiesDetectionJob</code>. This ARN is optional
+     *            and is only used for a custom entity recognition job.
+     *            </p>
+     */
+    public void setEntityRecognizerArn(String entityRecognizerArn) {
+        this.entityRecognizerArn = entityRecognizerArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) that identifies the specific entity
+     * recognizer to be used by the <code>StartEntitiesDetectionJob</code>. This
+     * ARN is optional and is only used for a custom entity recognition job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity-recognizer
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     *
+     * @param entityRecognizerArn <p>
+     *            The Amazon Resource Name (ARN) that identifies the specific
+     *            entity recognizer to be used by the
+     *            <code>StartEntitiesDetectionJob</code>. This ARN is optional
+     *            and is only used for a custom entity recognition job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartEntitiesDetectionJobRequest withEntityRecognizerArn(String entityRecognizerArn) {
+        this.entityRecognizerArn = entityRecognizerArn;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The language of the input documents. All documents must be in the same
+     * language. You can specify any of the languages supported by Amazon
+     * Comprehend: English ("en"), Spanish ("es"), French ("fr"), German ("de"),
+     * Italian ("it"), or Portuguese ("pt"). If custom entities recognition is
+     * used, this parameter is ignored and the language used for training the
+     * model is used instead.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @return <p>
-     *         The language of the input documents. You can specify English
-     *         ("en") or Spanish ("es"). All documents must be in the same
-     *         language.
+     *         The language of the input documents. All documents must be in the
+     *         same language. You can specify any of the languages supported by
+     *         Amazon Comprehend: English ("en"), Spanish ("es"), French ("fr"),
+     *         German ("de"), Italian ("it"), or Portuguese ("pt"). If custom
+     *         entities recognition is used, this parameter is ignored and the
+     *         language used for training the model is used instead.
      *         </p>
      * @see LanguageCode
      */
@@ -345,17 +459,25 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The language of the input documents. You can specify English ("en") or
-     * Spanish ("es"). All documents must be in the same language.
+     * The language of the input documents. All documents must be in the same
+     * language. You can specify any of the languages supported by Amazon
+     * Comprehend: English ("en"), Spanish ("es"), French ("fr"), German ("de"),
+     * Italian ("it"), or Portuguese ("pt"). If custom entities recognition is
+     * used, this parameter is ignored and the language used for training the
+     * model is used instead.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify English
-     *            ("en") or Spanish ("es"). All documents must be in the same
-     *            language.
+     *            The language of the input documents. All documents must be in
+     *            the same language. You can specify any of the languages
+     *            supported by Amazon Comprehend: English ("en"), Spanish
+     *            ("es"), French ("fr"), German ("de"), Italian ("it"), or
+     *            Portuguese ("pt"). If custom entities recognition is used,
+     *            this parameter is ignored and the language used for training
+     *            the model is used instead.
      *            </p>
      * @see LanguageCode
      */
@@ -365,8 +487,12 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The language of the input documents. You can specify English ("en") or
-     * Spanish ("es"). All documents must be in the same language.
+     * The language of the input documents. All documents must be in the same
+     * language. You can specify any of the languages supported by Amazon
+     * Comprehend: English ("en"), Spanish ("es"), French ("fr"), German ("de"),
+     * Italian ("it"), or Portuguese ("pt"). If custom entities recognition is
+     * used, this parameter is ignored and the language used for training the
+     * model is used instead.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -376,9 +502,13 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify English
-     *            ("en") or Spanish ("es"). All documents must be in the same
-     *            language.
+     *            The language of the input documents. All documents must be in
+     *            the same language. You can specify any of the languages
+     *            supported by Amazon Comprehend: English ("en"), Spanish
+     *            ("es"), French ("fr"), German ("de"), Italian ("it"), or
+     *            Portuguese ("pt"). If custom entities recognition is used,
+     *            this parameter is ignored and the language used for training
+     *            the model is used instead.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -391,17 +521,25 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The language of the input documents. You can specify English ("en") or
-     * Spanish ("es"). All documents must be in the same language.
+     * The language of the input documents. All documents must be in the same
+     * language. You can specify any of the languages supported by Amazon
+     * Comprehend: English ("en"), Spanish ("es"), French ("fr"), German ("de"),
+     * Italian ("it"), or Portuguese ("pt"). If custom entities recognition is
+     * used, this parameter is ignored and the language used for training the
+     * model is used instead.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify English
-     *            ("en") or Spanish ("es"). All documents must be in the same
-     *            language.
+     *            The language of the input documents. All documents must be in
+     *            the same language. You can specify any of the languages
+     *            supported by Amazon Comprehend: English ("en"), Spanish
+     *            ("es"), French ("fr"), German ("de"), Italian ("it"), or
+     *            Portuguese ("pt"). If custom entities recognition is used,
+     *            this parameter is ignored and the language used for training
+     *            the model is used instead.
      *            </p>
      * @see LanguageCode
      */
@@ -411,8 +549,12 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The language of the input documents. You can specify English ("en") or
-     * Spanish ("es"). All documents must be in the same language.
+     * The language of the input documents. All documents must be in the same
+     * language. You can specify any of the languages supported by Amazon
+     * Comprehend: English ("en"), Spanish ("es"), French ("fr"), German ("de"),
+     * Italian ("it"), or Portuguese ("pt"). If custom entities recognition is
+     * used, this parameter is ignored and the language used for training the
+     * model is used instead.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -422,9 +564,13 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * <b>Allowed Values: </b>en, es, fr, de, it, pt
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify English
-     *            ("en") or Spanish ("es"). All documents must be in the same
-     *            language.
+     *            The language of the input documents. All documents must be in
+     *            the same language. You can specify any of the languages
+     *            supported by Amazon Comprehend: English ("en"), Spanish
+     *            ("es"), French ("fr"), German ("de"), Italian ("it"), or
+     *            Portuguese ("pt"). If custom entities recognition is used,
+     *            this parameter is ignored and the language used for training
+     *            the model is used instead.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -517,6 +663,8 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
             sb.append("DataAccessRoleArn: " + getDataAccessRoleArn() + ",");
         if (getJobName() != null)
             sb.append("JobName: " + getJobName() + ",");
+        if (getEntityRecognizerArn() != null)
+            sb.append("EntityRecognizerArn: " + getEntityRecognizerArn() + ",");
         if (getLanguageCode() != null)
             sb.append("LanguageCode: " + getLanguageCode() + ",");
         if (getClientRequestToken() != null)
@@ -537,6 +685,8 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
         hashCode = prime * hashCode
                 + ((getDataAccessRoleArn() == null) ? 0 : getDataAccessRoleArn().hashCode());
         hashCode = prime * hashCode + ((getJobName() == null) ? 0 : getJobName().hashCode());
+        hashCode = prime * hashCode
+                + ((getEntityRecognizerArn() == null) ? 0 : getEntityRecognizerArn().hashCode());
         hashCode = prime * hashCode
                 + ((getLanguageCode() == null) ? 0 : getLanguageCode().hashCode());
         hashCode = prime * hashCode
@@ -573,6 +723,11 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
         if (other.getJobName() == null ^ this.getJobName() == null)
             return false;
         if (other.getJobName() != null && other.getJobName().equals(this.getJobName()) == false)
+            return false;
+        if (other.getEntityRecognizerArn() == null ^ this.getEntityRecognizerArn() == null)
+            return false;
+        if (other.getEntityRecognizerArn() != null
+                && other.getEntityRecognizerArn().equals(this.getEntityRecognizerArn()) == false)
             return false;
         if (other.getLanguageCode() == null ^ this.getLanguageCode() == null)
             return false;
