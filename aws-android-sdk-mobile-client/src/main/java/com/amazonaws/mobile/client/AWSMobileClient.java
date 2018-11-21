@@ -31,7 +31,6 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSSessionCredentials;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
-import com.amazonaws.mobile.client.internal.InternalCallback;
 import com.amazonaws.mobile.auth.core.IdentityManager;
 import com.amazonaws.mobile.auth.core.SignInStateChangeListener;
 import com.amazonaws.mobile.auth.core.StartupAuthResult;
@@ -42,6 +41,9 @@ import com.amazonaws.mobile.auth.facebook.FacebookSignInProvider;
 import com.amazonaws.mobile.auth.google.GoogleButton;
 import com.amazonaws.mobile.auth.google.GoogleSignInProvider;
 import com.amazonaws.mobile.auth.ui.AuthUIConfiguration;
+import com.amazonaws.mobile.auth.ui.SignInUI;
+import com.amazonaws.mobile.auth.userpools.CognitoUserPoolsSignInProvider;
+import com.amazonaws.mobile.client.internal.InternalCallback;
 import com.amazonaws.mobile.client.results.ForgotPasswordResult;
 import com.amazonaws.mobile.client.results.ForgotPasswordState;
 import com.amazonaws.mobile.client.results.SignInResult;
@@ -49,8 +51,6 @@ import com.amazonaws.mobile.client.results.SignInState;
 import com.amazonaws.mobile.client.results.SignUpResult;
 import com.amazonaws.mobile.client.results.Tokens;
 import com.amazonaws.mobile.client.results.UserCodeDeliveryDetails;
-import com.amazonaws.mobile.auth.ui.SignInUI;
-import com.amazonaws.mobile.auth.userpools.CognitoUserPoolsSignInProvider;
 import com.amazonaws.mobile.config.AWSConfigurable;
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoDevice;
@@ -499,7 +499,10 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      */
     public String getUsername() {
         try {
-            return mCognitoUserSession.getUsername();
+            if (userpoolsLoginKey.equals(mStore.get(PROVIDER_KEY))) {
+                return userpool.getCurrentUser().getUserId();
+            }
+            return null;
         } catch (Exception e) {
             return null;
         }
@@ -993,6 +996,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         @Override
                         public void onSuccess(CognitoUserSession userSession, CognitoDevice newDevice) {
                             try {
+                                mCognitoUserSession = userSession;
                                 callback.onResult(new Tokens(
                                         userSession.getAccessToken().getJWTToken(),
                                         userSession.getIdToken().getJWTToken(),
