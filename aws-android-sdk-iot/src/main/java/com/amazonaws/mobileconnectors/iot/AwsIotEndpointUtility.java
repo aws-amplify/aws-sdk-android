@@ -51,58 +51,20 @@ public final class AwsIotEndpointUtility {
     }
 
     /**
-     * Validates endpoint as a valid AWS IoT endpoint.
-     * Throws an IllegalArgumentException if invalid.
-     * @param endpoint endpoint to be validated.
-     */
-    private static void validateIotEndpoint(String endpoint) {
-        String[] splits = splitEndpoint(endpoint);
-        if ((splits.length != ENDPOINT_SPLIT_SIZE) && (splits.length != ENDPOINT_CN_SPLIT_SIZE)
-                && (splits.length != ENDPOINT_CN_ATS_SPLIT_SIZE)) {
-            throw new IllegalArgumentException(
-                "Bad endpoint format.  Expected XXXXXX.iot.[region].amazonaws.com[.cn]" +
-                        " or XXXXXX.ats.iot.[region].amazonaws.com.cn");
-        }
-        if (splits.length != ENDPOINT_CN_ATS_SPLIT_SIZE &&
-                (((splits.length == ENDPOINT_CN_SPLIT_SIZE) && (!("cn").equalsIgnoreCase(splits[ENDPOINT_CN_TLD_OFFSET])))
-                || !("iot").equalsIgnoreCase(splits[ENDPOINT_IOT_OFFSET])
-                || !("amazonaws").equalsIgnoreCase(splits[ENDPOINT_DOMAIN_OFFSET])
-                || !("com").equalsIgnoreCase(splits[ENDPOINT_TLD_OFFSET]))) {
-            throw new IllegalArgumentException(
-                    "Bad endpoint format.  Expected XXXXXX.iot.[region].amazonaws.com[.cn]");
-        } else if ((splits.length == ENDPOINT_CN_ATS_SPLIT_SIZE) &&
-                !(("ats").equalsIgnoreCase(splits[ENDPOINT_IOT_OFFSET])
-                        && ("iot").equalsIgnoreCase(splits[ENDPOINT_IOT_OFFSET + 1])
-                        && ("amazonaws").equalsIgnoreCase(splits[ENDPOINT_DOMAIN_OFFSET + 1])
-                        && ("com").equalsIgnoreCase(splits[ENDPOINT_TLD_OFFSET + 1])
-                        && ("cn").equalsIgnoreCase(splits[ENDPOINT_CN_TLD_OFFSET + 1])
-                )) {
-            throw new IllegalArgumentException(
-                    "Bad endpoint format.  Expected XXXXXX.ats.iot.[region].amazonaws.com.cn");
-        }
-    }
-
-    /**
      * Parse AWS region from endpoint.
      * @param endpoint endpoint to parse.
      * @return Region contained in endpoint.
      */
     static Region getRegionFromIotEndpoint(String endpoint) {
-        String endpointWithoutPort = stripPort(endpoint);
-        validateIotEndpoint(endpointWithoutPort);
-        String[] splits = splitEndpoint(endpointWithoutPort);
-        int offset = splits.length == ENDPOINT_CN_ATS_SPLIT_SIZE?(ENDPOINT_REGION_OFFSET+1):ENDPOINT_REGION_OFFSET;
-        return Region.getRegion(Regions.fromName(splits[offset]));
-    }
-
-    /**
-     * Parse custom endpoint prefix from endpoint.
-     * @param endpoint endpoint to parse.
-     * @return custom endpoint prefix.
-     */
-    static String getAccountPrefixFromEndpont(String endpoint) {
-        String endpointWithoutPort = stripPort(endpoint);
-        validateIotEndpoint(endpointWithoutPort);
-        return splitEndpoint(endpointWithoutPort)[ENDPOINT_PREFIX_OFFSET];
+        try {
+            String endpointWithoutPort = stripPort(endpoint);
+            String[] splits = splitEndpoint(endpointWithoutPort);
+            final int offset = (splits.length == ENDPOINT_CN_ATS_SPLIT_SIZE) 
+                ? (ENDPOINT_REGION_OFFSET + 1) 
+                : ENDPOINT_REGION_OFFSET;
+            return Region.getRegion(Regions.fromName(splits[offset]));
+        } catch (Exception ex) {
+            throw new IllegalArgumentException("Cannot parse region from endpoint.", ex);
+        }
     }
 }

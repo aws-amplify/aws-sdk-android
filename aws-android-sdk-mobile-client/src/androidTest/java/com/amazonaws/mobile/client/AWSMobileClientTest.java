@@ -286,6 +286,9 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         // Test identity id has been cleared
         assertNull(auth.getIdentityId());
 
+        // Test username has been cleared
+        assertNull(auth.getUsername());
+
         // Check credentials need to be fetched
         try {
             AWSCredentials credentials = auth.getCredentials();
