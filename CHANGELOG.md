@@ -1,5 +1,16 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.8.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.8.4)
+
+### Bug Fixes
+
+* **AWS Mobile Client**
+  * Fix an issue persisting the username between launches. The method `getUsername()` should retain the username while signed-in.
+
+* **AWS IoT**
+  * Removed validation for IoT endpoint.
+  * Fix an issue in parsing the region from ATS enabled endpoint. See [PR #580](https://github.com/aws-amplify/aws-sdk-android/pull/580)
+
 ## [Release 2.8.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.8.3)
 
 ### Enhancements
