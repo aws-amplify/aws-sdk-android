@@ -17,6 +17,8 @@
 
 package com.amazonaws.mobileconnectors.cognitoidentityprovider.util;
 
+import android.text.TextUtils;
+
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoInternalErrorException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoParameterInvalidException;
 import com.amazonaws.util.Base64;
@@ -50,7 +52,7 @@ public final class CognitoSecretHash {
         }
 
         // Return null as secret hash if clientSecret is null or "".
-        // We receive clientSecret as "" if we create cognitoUserPool from awsConfiguration file with "AppClientSecret": "
+        // We receive clientSecret as "" if we create cognitoUserPool from awsConfiguration file with "AppClientSecret": ""
         if (TextUtils.isEmpty(clientSecret)) {
             return null;
         }
