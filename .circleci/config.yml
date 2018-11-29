@@ -1,0 +1,180 @@
+# iOS CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/ios-migrating-from-1-2/ for more details
+#
+version: 2
+jobs:
+
+  build:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - run:
+          name: build the whole project
+          command: bash gradlew build -x test
+
+  unittest:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-27-alpha
+    resource_class: large
+    environment:
+      JVM_OPTS: -Xmx3200m
+
+    steps:
+      - checkout
+
+      - run:
+          name: run unit tests
+          command: |
+            python3 CircleciScripts/run_unittest.py test_results
+      - run:
+          name : check unit test result 
+          command : bash CircleciScripts/check_test_result.sh test_results
+          
+      - store_artifacts:
+          path: test_results
+
+
+  release_tag:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    stpes:
+      - checkout
+      - run:
+          name: install github-release
+          command: brew install github-release
+
+      - run:
+          name: release the tag
+          command: |
+            tagdescription=$(sed -n '/## '${CIRCLE_TAG}'/,/## [0-9]*\.[0-9]*\.[0-9]/p'  CHANGELOG.md | sed '1d' | sed '$d')
+            tagname="AWS SDK for Android "${CIRCLE_TAG}
+            github-release release -s ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME}  -t ${CIRCLE_TAG} -d "$tagdescription" -n "$tagname"         
+ 
+  release_javadoc:
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m     
+    steps:
+      - checkout   
+
+      - run:
+          name: generate documents
+          command: bash gradlew generateJavadocs
+
+      - run:
+          name: copy documents
+          command: |
+            git config --local user.name "${GITHUB_USER}"
+            git checkout  gh-pages
+            cp -R build/docs/javadoc/*   docs/reference/
+
+      - run:
+          name: checkin documents
+          command: |
+            git add docs/reference
+            git commit -m "Update document via CircleCI"
+            git push -q https://${GITHUB_TOKEN}@github.com/aws-amplify/aws-sdk-android.git  
+
+  release_maven:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-27-alpha
+    environment:
+      JVM_OPTS: -Xmx3200m
+    resource_class: large
+ 
+    steps:
+      - checkout
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "build.gradle" }}
+
+      - run:
+          name: install aws cli
+          command: |
+            sudo pip install awscli
+      - run:
+          name: install android build tools
+          command: |
+            echo "${HOME}"
+            echo "$JAVA_HOME"
+            echo "$ANDROID_HOME"
+            echo "$PATH"          
+            ls  "$ANDROID_HOME"
+            ls  "$ANDROID_HOME/platforms/android-27"            
+            echo 'export ANDROID_PLATFORM="27"' >> $BASH_ENV
+            echo 'export ANDROID_BUILDTOOL_VERSION="27.0.1"' >> $BASH_ENV
+
+            echo "build-tools;$ANDROID_BUILDTOOL_VERSION" 
+
+            sdkmanager "platforms;android-21" "build-tools;27.0.1"  "extras;google;m2repository" "extras;android;m2repository"          
+                
+      - run:
+          name: download gpghome
+          command: |
+            aws s3 cp s3://gpghome-csun/gpghome.zip gpghome.zip
+            unzip -a gpghome.zip
+            echo "gpghome contents:"
+            ls gpghome
+
+      - run:
+         name: install maven
+         command: |
+          sudo apt-get install maven
+      - run:
+          name: Download Dependencies
+          command: bash gradlew androidDependencies
+
+      - run:
+          name: publish to maven
+          command: |
+            echo "${HOME}"
+            echo "$JAVA_HOME"
+            echo "$ANDROID_HOME"
+            echo "$M2_HOME"
+            bash CircleciScripts/maven-release.sh
+
+
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs: 
+      - build:
+          filters:
+            branches:
+              ignore: /gh-.*/
+  #     - unittest:
+  #         requires:
+  #           - build
+  #         filters:
+  #           branches:
+  #             ignore: /.*/
+
+  # release_sdk:
+  #   jobs: 
+  #     - build:
+  #         filters:
+  #           branches:
+  #             ignore: /.*/
+  #           tags:
+  #             only: /^[0-9]+.[0-9]+.[0-9]+$/
+  #     - unittest:
+  #         requires:
+  #           - build            
+  #     - release_tag:
+  #         requires:
+  #           - unittest
+  #     - release_maven:    
+  #         requires:
+  #           - release_tag  
+        

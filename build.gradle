@@ -24,6 +24,62 @@ allprojects {
     }
 }
 
+
+task generateJavadocs(type: Javadoc, description: 'Generate javadocs from all child projects as if it was a single project', group: 'Documentation') {
+    destinationDir = file("$buildDir/docs/javadoc")
+    title = "AWS SDK for Android Reference - $VERSION_NAME"
+    options.author true
+    options.links 'http://docs.spring.io/spring/docs/4.3.x/javadoc-api/', 'http://docs.oracle.com/javase/8/docs/api/', 'http://docs.spring.io/spring-ws/docs/2.3.0.RELEASE/api/', 'http://docs.spring.io/spring-security/site/docs/4.0.4.RELEASE/apidocs/'
+    options.addStringOption 'Xdoclint:none', '-quiet'
+
+
+
+
+    subprojects.each { proj ->
+        proj.evaluate()
+        proj.tasks.withType(Javadoc).each { javadocTask ->
+            source += javadocTask.source
+            classpath += javadocTask.classpath
+            excludes += javadocTask.excludes
+            includes += javadocTask.includes
+            println proj.name
+            println javadocTask.source.isEmpty()
+        }
+    }
+    options.group("Amazon S3", ["com.amazonaws.services.s3*", "com.amazonaws.mobileconnectors.s3*"]).
+            group("Amazon DynamoDB", ["com.amazonaws.services.dynamodb*", "com.amazonaws.mobileconnectors.dynamodbv2*"]).
+            group("Amazon Kinesis", ["com.amazonaws.mobileconnectors.kinesis*", "com.amazonaws.services.kinesis*", "com.amazonaws.services.kinesisfirehose*"]).
+            group("Amazon Pinpoint", ["com.amazonaws.mobileconnectors.pinpoint*", "com.amazonaws.services.pinpoint*"]).
+            group("AWS IoT", ["com.amazonaws.services.iot*", "com.amazonaws.mobileconnectors.iot*"]).
+            group("Amazon Cognito Auth", ["com.amazonaws.mobileconnectors.cognitoauth*"]).
+            group("Amazon Cognito Identity Provider", ["com.amazonaws.mobileconnectors.cognitoidentityprovider*"]).
+            group("AWS Lambda", ["com.amazonaws.services.lambda*", "com.amazonaws.mobileconnectors.lambdainvoker*", "com.amazonaws.mobileconnectors.util*"]).
+            group("Amazon API Gateway", ["com.amazonaws.mobileconnectors.apigateway*"]).
+            group("Amazon Kinesis Video", ["com.amazonaws.services.kinesisvideo*", "com.amazonaws.mobileconnectors.kinesisvideo*", "com.amazonaws.kinesisvideo*"]).
+            group("Amazon Kinesis Video Archived Media", ["com.amazonaws.services.kinesisvideoarchivedmedia*"]).
+            group("Amazon Lex", ["com.amazonaws.services.lex*", "com.amazonaws.mobileconnectors.lex*"]).
+            group("Amazon Polly", ["com.amazonaws.services.polly*"]).
+            group("AWS Key Management Service", ["com.amazonaws.services.kms*"]).
+            group("Amazon AutoScaling", ["com.amazonaws.services.autoscaling*"]).
+            group("Amazon CloudWatch", ["com.amazonaws.services.cloudwatch*"]).
+            group("Amazon Comprehend", ["com.amazonaws.services.comprehend*"]).
+            group("Amazon EC2", ["com.amazonaws.services.ec2*"]).
+            group("Amazon Elastic Load Balancing", ["com.amazonaws.services.elasticloadbalancing*"]).
+            group("Amazon Elastic Machine Learning Service", ["com.amazonaws.services.machinelearning*"]).
+            group("Amazon Rekognition", ["com.amazonaws.services.rekognition*"]).
+            group("Amazon SNS", ["com.amazonaws.services.sns*"]).
+            group("Amazon SQS", ["com.amazonaws.services.sqs*"]).
+            group("Amazon Simple Email Service", ["com.amazonaws.services.simpleemail*"]).
+            group("Amazon Cloud Watch Logs", ["com.amazonaws.services.logs*"]).
+            group("Amazon SimpleDB", ["com.amazonaws.services.simpledb*"]).
+            group("Amazon Transcribe", ["com.amazonaws.services.transcribe*"]).
+            group("Amazon Translate", ["com.amazonaws.services.translate*"]).
+            group("Common Runtime", ["com.amazonaws*"])
+
+}
+
+
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
