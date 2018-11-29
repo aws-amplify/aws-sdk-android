@@ -57,7 +57,7 @@
        <artifactId>android</artifactId>
        <version>5.0</version>
        <scope>system</scope>
-       <systemPath>${basedir}/../android-21-linux.jar</systemPath>
+       <systemPath>${env.ANDROID_HOME}/platforms/android-${env.ANDROID_PLATFORM}/android.jar</systemPath>
      </dependency>
 
     <dependency>
@@ -76,7 +76,8 @@
          <extensions>true</extensions>
          <configuration>
            <sdk>
-             <platform>21</platform>
+              <platform>${env.ANDROID_PLATFORM}</platform>
+              <buildTools>${env.ANDROID_BUILDTOOL_VERSION}</buildTools>
            </sdk>
            <nativeLibrariesDirectory>${project.basedir}/src/main/jni</nativeLibrariesDirectory>
          </configuration>
