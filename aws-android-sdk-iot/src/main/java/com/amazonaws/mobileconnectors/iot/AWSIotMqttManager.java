@@ -1053,6 +1053,7 @@ public class AWSIotMqttManager {
                     if (mqttClient != null && !mqttClient.isConnected()) {
                         reconnectToSession();
                     }
+                    ht.quit();
                 }
             }, MILLIS_IN_ONE_SECOND * currentReconnectRetryTime);
             currentReconnectRetryTime = Math.min(currentReconnectRetryTime * 2, maxReconnectRetryTime);
