@@ -46,6 +46,7 @@ public abstract class ClientConstants {
     public static final String DOMAIN_QUERY_PARAM_STATE = "state";
     public static final String DOMAIN_QUERY_PARAM_USERCONTEXTDATA = "userContextData";
     public static final String DOMAIN_QUERY_PARAM_IDENTITY_PROVIDER = "identity_provider";
+    public static final String DOMAIN_QUERY_PARAM_IDP_IDENTIFIER = "idp_identifier";
     public static final String DOMAIN_SCHEME = "https";
     public static final String SESSION_TYPE_JWT = "JWT";
     public static final String TOKEN_AUTH_TYPE_CODE = "code";

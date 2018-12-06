@@ -483,6 +483,10 @@ public class AuthClient {
         if (!TextUtils.isEmpty(pool.getIdentityProvider())) {
             builder.appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_IDENTITY_PROVIDER, pool.getIdentityProvider());
         }
+        //check if idp identifier set as param.
+        if (!TextUtils.isEmpty(pool.getIdpIdentifier())) {
+            builder.appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_IDP_IDENTIFIER, pool.getIdpIdentifier());
+        }
 
         // Convert scopes into a string of comma separated values.
         final int noOfScopes = tokenScopes.size();
