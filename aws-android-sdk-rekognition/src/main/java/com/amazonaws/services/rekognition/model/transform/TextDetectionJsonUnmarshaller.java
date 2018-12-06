@@ -36,20 +36,18 @@ class TextDetectionJsonUnmarshaller implements Unmarshaller<TextDetection, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("DetectedText")) {
-                textDetection.setDetectedText(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                textDetection.setDetectedText(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Type")) {
-                textDetection.setType(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                textDetection.setType(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Id")) {
-                textDetection.setId(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                textDetection.setId(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("ParentId")) {
-                textDetection.setParentId(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                textDetection
+                        .setParentId(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Confidence")) {
-                textDetection.setConfidence(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                textDetection
+                        .setConfidence(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Geometry")) {
                 textDetection.setGeometry(GeometryJsonUnmarshaller.getInstance()
                         .unmarshall(context));

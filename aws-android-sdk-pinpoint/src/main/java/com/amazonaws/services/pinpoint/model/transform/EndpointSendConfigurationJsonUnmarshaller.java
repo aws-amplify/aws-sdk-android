@@ -41,18 +41,14 @@ class EndpointSendConfigurationJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("Context")) {
                 endpointSendConfiguration.setContext(new MapUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("RawContent")) {
                 endpointSendConfiguration.setRawContent(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Substitutions")) {
                 endpointSendConfiguration
                         .setSubstitutions(new MapUnmarshaller<java.util.List<String>>(
-                                new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
-                                )
-                        )
+                                new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()))
                                 .unmarshall(context));
             } else if (name.equals("TitleOverride")) {
                 endpointSendConfiguration.setTitleOverride(StringJsonUnmarshaller.getInstance()

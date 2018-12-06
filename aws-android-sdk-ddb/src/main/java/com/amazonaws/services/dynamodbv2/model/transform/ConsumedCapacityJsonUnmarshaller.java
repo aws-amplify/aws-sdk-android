@@ -37,24 +37,20 @@ class ConsumedCapacityJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("TableName")) {
-                consumedCapacity.setTableName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                consumedCapacity.setTableName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("CapacityUnits")) {
-                consumedCapacity.setCapacityUnits(DoubleJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                consumedCapacity.setCapacityUnits(DoubleJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Table")) {
                 consumedCapacity.setTable(CapacityJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("LocalSecondaryIndexes")) {
                 consumedCapacity.setLocalSecondaryIndexes(new MapUnmarshaller<Capacity>(
-                        CapacityJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        CapacityJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("GlobalSecondaryIndexes")) {
                 consumedCapacity.setGlobalSecondaryIndexes(new MapUnmarshaller<Capacity>(
-                        CapacityJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        CapacityJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

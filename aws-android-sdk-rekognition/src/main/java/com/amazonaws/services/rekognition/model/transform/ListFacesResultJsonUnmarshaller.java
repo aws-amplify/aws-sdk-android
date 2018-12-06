@@ -35,12 +35,10 @@ public class ListFacesResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Faces")) {
                 listFacesResult.setFaces(new ListUnmarshaller<Face>(FaceJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("NextToken")) {
-                listFacesResult.setNextToken(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                listFacesResult.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("FaceModelVersion")) {
                 listFacesResult.setFaceModelVersion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

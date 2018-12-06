@@ -59,6 +59,22 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * The job document.
      * </p>
+     * <note>
+     * <p>
+     * If the job document resides in an S3 bucket, you must use a placeholder
+     * link when specifying the document.
+     * </p>
+     * <p>
+     * The placeholder link is of the following form:
+     * </p>
+     * <p>
+     * <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code>
+     * </p>
+     * <p>
+     * where <i>bucket</i> is your bucket name and <i>key</i> is the object in
+     * the bucket to which you are linking.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 32768<br/>
@@ -107,6 +123,13 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
+     * Allows you to create criteria to abort a job.
+     * </p>
+     */
+    private AbortConfig abortConfig;
+
+    /**
+     * <p>
      * Specifies the amount of time each device has to finish its execution of
      * the job. The timer is started when the job execution status is set to
      * <code>IN_PROGRESS</code>. If the job execution status is not set to
@@ -115,6 +138,13 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      */
     private TimeoutConfig timeoutConfig;
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the job.
+     * </p>
+     */
+    private java.util.List<Tag> tags;
 
     /**
      * <p>
@@ -321,6 +351,22 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * The job document.
      * </p>
+     * <note>
+     * <p>
+     * If the job document resides in an S3 bucket, you must use a placeholder
+     * link when specifying the document.
+     * </p>
+     * <p>
+     * The placeholder link is of the following form:
+     * </p>
+     * <p>
+     * <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code>
+     * </p>
+     * <p>
+     * where <i>bucket</i> is your bucket name and <i>key</i> is the object in
+     * the bucket to which you are linking.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 32768<br/>
@@ -328,6 +374,22 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * @return <p>
      *         The job document.
      *         </p>
+     *         <note>
+     *         <p>
+     *         If the job document resides in an S3 bucket, you must use a
+     *         placeholder link when specifying the document.
+     *         </p>
+     *         <p>
+     *         The placeholder link is of the following form:
+     *         </p>
+     *         <p>
+     *         <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code>
+     *         </p>
+     *         <p>
+     *         where <i>bucket</i> is your bucket name and <i>key</i> is the
+     *         object in the bucket to which you are linking.
+     *         </p>
+     *         </note>
      */
     public String getDocument() {
         return document;
@@ -337,6 +399,22 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * The job document.
      * </p>
+     * <note>
+     * <p>
+     * If the job document resides in an S3 bucket, you must use a placeholder
+     * link when specifying the document.
+     * </p>
+     * <p>
+     * The placeholder link is of the following form:
+     * </p>
+     * <p>
+     * <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code>
+     * </p>
+     * <p>
+     * where <i>bucket</i> is your bucket name and <i>key</i> is the object in
+     * the bucket to which you are linking.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 32768<br/>
@@ -344,6 +422,22 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * @param document <p>
      *            The job document.
      *            </p>
+     *            <note>
+     *            <p>
+     *            If the job document resides in an S3 bucket, you must use a
+     *            placeholder link when specifying the document.
+     *            </p>
+     *            <p>
+     *            The placeholder link is of the following form:
+     *            </p>
+     *            <p>
+     *            <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code>
+     *            </p>
+     *            <p>
+     *            where <i>bucket</i> is your bucket name and <i>key</i> is the
+     *            object in the bucket to which you are linking.
+     *            </p>
+     *            </note>
      */
     public void setDocument(String document) {
         this.document = document;
@@ -353,6 +447,22 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * The job document.
      * </p>
+     * <note>
+     * <p>
+     * If the job document resides in an S3 bucket, you must use a placeholder
+     * link when specifying the document.
+     * </p>
+     * <p>
+     * The placeholder link is of the following form:
+     * </p>
+     * <p>
+     * <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code>
+     * </p>
+     * <p>
+     * where <i>bucket</i> is your bucket name and <i>key</i> is the object in
+     * the bucket to which you are linking.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -363,6 +473,22 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * @param document <p>
      *            The job document.
      *            </p>
+     *            <note>
+     *            <p>
+     *            If the job document resides in an S3 bucket, you must use a
+     *            placeholder link when specifying the document.
+     *            </p>
+     *            <p>
+     *            The placeholder link is of the following form:
+     *            </p>
+     *            <p>
+     *            <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code>
+     *            </p>
+     *            <p>
+     *            where <i>bucket</i> is your bucket name and <i>key</i> is the
+     *            object in the bucket to which you are linking.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -673,6 +799,51 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
+     * Allows you to create criteria to abort a job.
+     * </p>
+     *
+     * @return <p>
+     *         Allows you to create criteria to abort a job.
+     *         </p>
+     */
+    public AbortConfig getAbortConfig() {
+        return abortConfig;
+    }
+
+    /**
+     * <p>
+     * Allows you to create criteria to abort a job.
+     * </p>
+     *
+     * @param abortConfig <p>
+     *            Allows you to create criteria to abort a job.
+     *            </p>
+     */
+    public void setAbortConfig(AbortConfig abortConfig) {
+        this.abortConfig = abortConfig;
+    }
+
+    /**
+     * <p>
+     * Allows you to create criteria to abort a job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param abortConfig <p>
+     *            Allows you to create criteria to abort a job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateJobRequest withAbortConfig(AbortConfig abortConfig) {
+        this.abortConfig = abortConfig;
+        return this;
+    }
+
+    /**
+     * <p>
      * Specifies the amount of time each device has to finish its execution of
      * the job. The timer is started when the job execution status is set to
      * <code>IN_PROGRESS</code>. If the job execution status is not set to
@@ -743,6 +914,80 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
     }
 
     /**
+     * <p>
+     * Metadata which can be used to manage the job.
+     * </p>
+     *
+     * @return <p>
+     *         Metadata which can be used to manage the job.
+     *         </p>
+     */
+    public java.util.List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the job.
+     * </p>
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage the job.
+     *            </p>
+     */
+    public void setTags(java.util.Collection<Tag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<Tag>(tags);
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage the job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateJobRequest withTags(Tag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<Tag>(tags.length);
+        }
+        for (Tag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage the job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateJobRequest withTags(java.util.Collection<Tag> tags) {
+        setTags(tags);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -769,8 +1014,12 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
             sb.append("targetSelection: " + getTargetSelection() + ",");
         if (getJobExecutionsRolloutConfig() != null)
             sb.append("jobExecutionsRolloutConfig: " + getJobExecutionsRolloutConfig() + ",");
+        if (getAbortConfig() != null)
+            sb.append("abortConfig: " + getAbortConfig() + ",");
         if (getTimeoutConfig() != null)
-            sb.append("timeoutConfig: " + getTimeoutConfig());
+            sb.append("timeoutConfig: " + getTimeoutConfig() + ",");
+        if (getTags() != null)
+            sb.append("tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -796,7 +1045,10 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
                 + ((getJobExecutionsRolloutConfig() == null) ? 0 : getJobExecutionsRolloutConfig()
                         .hashCode());
         hashCode = prime * hashCode
+                + ((getAbortConfig() == null) ? 0 : getAbortConfig().hashCode());
+        hashCode = prime * hashCode
                 + ((getTimeoutConfig() == null) ? 0 : getTimeoutConfig().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -850,10 +1102,19 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
                 && other.getJobExecutionsRolloutConfig().equals(
                         this.getJobExecutionsRolloutConfig()) == false)
             return false;
+        if (other.getAbortConfig() == null ^ this.getAbortConfig() == null)
+            return false;
+        if (other.getAbortConfig() != null
+                && other.getAbortConfig().equals(this.getAbortConfig()) == false)
+            return false;
         if (other.getTimeoutConfig() == null ^ this.getTimeoutConfig() == null)
             return false;
         if (other.getTimeoutConfig() != null
                 && other.getTimeoutConfig().equals(this.getTimeoutConfig()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

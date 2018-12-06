@@ -43,18 +43,14 @@ class CreateGlobalSecondaryIndexActionJsonUnmarshaller implements
             } else if (name.equals("KeySchema")) {
                 createGlobalSecondaryIndexAction
                         .setKeySchema(new ListUnmarshaller<KeySchemaElement>(
-                                KeySchemaElementJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                                KeySchemaElementJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("Projection")) {
                 createGlobalSecondaryIndexAction.setProjection(ProjectionJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("ProvisionedThroughput")) {
                 createGlobalSecondaryIndexAction
                         .setProvisionedThroughput(ProvisionedThroughputJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
+                                .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

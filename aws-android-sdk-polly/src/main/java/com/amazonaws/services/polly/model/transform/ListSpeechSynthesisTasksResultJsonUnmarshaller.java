@@ -40,9 +40,7 @@ public class ListSpeechSynthesisTasksResultJsonUnmarshaller implements
             } else if (name.equals("SynthesisTasks")) {
                 listSpeechSynthesisTasksResult
                         .setSynthesisTasks(new ListUnmarshaller<SynthesisTask>(
-                                SynthesisTaskJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                                SynthesisTaskJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

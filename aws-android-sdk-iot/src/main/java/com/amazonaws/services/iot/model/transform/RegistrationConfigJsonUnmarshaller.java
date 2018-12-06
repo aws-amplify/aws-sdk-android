@@ -37,11 +37,11 @@ class RegistrationConfigJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("templateBody")) {
-                registrationConfig.setTemplateBody(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                registrationConfig.setTemplateBody(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("roleArn")) {
-                registrationConfig.setRoleArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                registrationConfig.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

@@ -36,22 +36,20 @@ class MetricFilterJsonUnmarshaller implements Unmarshaller<MetricFilter, JsonUnm
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("filterName")) {
-                metricFilter.setFilterName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                metricFilter
+                        .setFilterName(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("filterPattern")) {
-                metricFilter.setFilterPattern(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                metricFilter.setFilterPattern(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("metricTransformations")) {
                 metricFilter.setMetricTransformations(new ListUnmarshaller<MetricTransformation>(
-                        MetricTransformationJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        MetricTransformationJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("creationTime")) {
-                metricFilter.setCreationTime(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                metricFilter
+                        .setCreationTime(LongJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("logGroupName")) {
-                metricFilter.setLogGroupName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                metricFilter.setLogGroupName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

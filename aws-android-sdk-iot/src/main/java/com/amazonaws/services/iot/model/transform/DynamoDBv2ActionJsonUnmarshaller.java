@@ -40,8 +40,8 @@ class DynamoDBv2ActionJsonUnmarshaller implements
                 dynamoDBv2Action.setRoleArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("putItem")) {
-                dynamoDBv2Action.setPutItem(PutItemInputJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                dynamoDBv2Action.setPutItem(PutItemInputJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

@@ -37,8 +37,7 @@ class ExportTaskStatusJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("code")) {
-                exportTaskStatus.setCode(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                exportTaskStatus.setCode(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("message")) {
                 exportTaskStatus.setMessage(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

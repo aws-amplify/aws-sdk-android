@@ -36,8 +36,7 @@ public class CreateEntityRecognizerResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("EntityRecognizerArn")) {
                 createEntityRecognizerResult.setEntityRecognizerArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

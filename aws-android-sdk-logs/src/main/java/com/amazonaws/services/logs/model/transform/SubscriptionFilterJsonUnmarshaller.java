@@ -37,11 +37,11 @@ class SubscriptionFilterJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("filterName")) {
-                subscriptionFilter.setFilterName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                subscriptionFilter.setFilterName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("logGroupName")) {
-                subscriptionFilter.setLogGroupName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                subscriptionFilter.setLogGroupName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("filterPattern")) {
                 subscriptionFilter.setFilterPattern(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -49,14 +49,14 @@ class SubscriptionFilterJsonUnmarshaller implements
                 subscriptionFilter.setDestinationArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("roleArn")) {
-                subscriptionFilter.setRoleArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                subscriptionFilter.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("distribution")) {
-                subscriptionFilter.setDistribution(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                subscriptionFilter.setDistribution(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("creationTime")) {
-                subscriptionFilter.setCreationTime(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                subscriptionFilter.setCreationTime(LongJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

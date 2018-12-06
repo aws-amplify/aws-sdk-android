@@ -37,17 +37,14 @@ class RelatedResourceJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("resourceType")) {
-                relatedResource.setResourceType(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                relatedResource.setResourceType(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("resourceIdentifier")) {
                 relatedResource.setResourceIdentifier(ResourceIdentifierJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("additionalInfo")) {
                 relatedResource.setAdditionalInfo(new MapUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

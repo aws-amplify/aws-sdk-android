@@ -36,11 +36,9 @@ class FaceMatchJsonUnmarshaller implements Unmarshaller<FaceMatch, JsonUnmarshal
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Similarity")) {
-                faceMatch.setSimilarity(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                faceMatch.setSimilarity(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Face")) {
-                faceMatch.setFace(FaceJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                faceMatch.setFace(FaceJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

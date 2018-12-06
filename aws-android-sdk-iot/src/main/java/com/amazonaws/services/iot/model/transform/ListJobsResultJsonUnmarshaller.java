@@ -35,9 +35,7 @@ public class ListJobsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("jobs")) {
                 listJobsResult.setJobs(new ListUnmarshaller<JobSummary>(JobSummaryJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("nextToken")) {
                 listJobsResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

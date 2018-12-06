@@ -35,9 +35,7 @@ public class PutEventsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Results")) {
                 putEventsResult.setResults(new MapUnmarshaller<ItemResponse>(
-                        ItemResponseJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        ItemResponseJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

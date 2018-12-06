@@ -37,11 +37,11 @@ class LoggingOptionsPayloadJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("roleArn")) {
-                loggingOptionsPayload.setRoleArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                loggingOptionsPayload.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("logLevel")) {
-                loggingOptionsPayload.setLogLevel(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                loggingOptionsPayload.setLogLevel(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

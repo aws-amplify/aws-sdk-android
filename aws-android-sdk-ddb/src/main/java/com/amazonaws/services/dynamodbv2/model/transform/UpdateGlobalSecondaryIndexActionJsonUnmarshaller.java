@@ -43,8 +43,7 @@ class UpdateGlobalSecondaryIndexActionJsonUnmarshaller implements
             } else if (name.equals("ProvisionedThroughput")) {
                 updateGlobalSecondaryIndexAction
                         .setProvisionedThroughput(ProvisionedThroughputJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
+                                .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

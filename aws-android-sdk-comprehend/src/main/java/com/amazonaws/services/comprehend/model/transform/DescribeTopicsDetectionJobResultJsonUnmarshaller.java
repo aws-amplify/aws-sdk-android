@@ -37,8 +37,7 @@ public class DescribeTopicsDetectionJobResultJsonUnmarshaller implements
             if (name.equals("TopicsDetectionJobProperties")) {
                 describeTopicsDetectionJobResult
                         .setTopicsDetectionJobProperties(TopicsDetectionJobPropertiesJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
+                                .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

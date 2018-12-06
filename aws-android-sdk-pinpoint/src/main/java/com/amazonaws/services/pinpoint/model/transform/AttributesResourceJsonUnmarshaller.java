@@ -44,9 +44,7 @@ class AttributesResourceJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("Attributes")) {
                 attributesResource.setAttributes(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

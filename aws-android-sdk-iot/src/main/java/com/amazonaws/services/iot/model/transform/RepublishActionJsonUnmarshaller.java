@@ -37,11 +37,10 @@ class RepublishActionJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("roleArn")) {
-                republishAction.setRoleArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                republishAction
+                        .setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("topic")) {
-                republishAction.setTopic(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                republishAction.setTopic(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

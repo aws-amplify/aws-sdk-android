@@ -37,8 +37,8 @@ class KeySchemaElementJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("AttributeName")) {
-                keySchemaElement.setAttributeName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keySchemaElement.setAttributeName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("KeyType")) {
                 keySchemaElement.setKeyType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

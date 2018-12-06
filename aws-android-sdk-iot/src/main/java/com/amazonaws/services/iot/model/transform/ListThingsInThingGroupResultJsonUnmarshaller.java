@@ -36,9 +36,7 @@ public class ListThingsInThingGroupResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("things")) {
                 listThingsInThingGroupResult.setThings(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("nextToken")) {
                 listThingsInThingGroupResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

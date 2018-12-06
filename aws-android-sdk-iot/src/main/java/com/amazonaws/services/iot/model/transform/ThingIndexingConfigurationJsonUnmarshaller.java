@@ -38,8 +38,10 @@ class ThingIndexingConfigurationJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("thingIndexingMode")) {
                 thingIndexingConfiguration.setThingIndexingMode(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
+            } else if (name.equals("thingConnectivityIndexingMode")) {
+                thingIndexingConfiguration.setThingConnectivityIndexingMode(StringJsonUnmarshaller
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

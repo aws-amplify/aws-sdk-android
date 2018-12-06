@@ -35,9 +35,7 @@ public class ListRetirableGrantsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Grants")) {
                 listRetirableGrantsResult.setGrants(new ListUnmarshaller<GrantListEntry>(
-                        GrantListEntryJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        GrantListEntryJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("NextMarker")) {
                 listRetirableGrantsResult.setNextMarker(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

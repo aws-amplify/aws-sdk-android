@@ -37,8 +37,8 @@ class GPSCoordinatesJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Latitude")) {
-                gPSCoordinates.setLatitude(DoubleJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                gPSCoordinates
+                        .setLatitude(DoubleJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Longitude")) {
                 gPSCoordinates.setLongitude(DoubleJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -36,17 +36,15 @@ class CertificateJsonUnmarshaller implements Unmarshaller<Certificate, JsonUnmar
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("certificateArn")) {
-                certificate.setCertificateArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                certificate.setCertificateArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("certificateId")) {
-                certificate.setCertificateId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                certificate.setCertificateId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("status")) {
-                certificate.setStatus(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                certificate.setStatus(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("creationDate")) {
-                certificate.setCreationDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                certificate.setCreationDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

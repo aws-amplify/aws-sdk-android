@@ -37,27 +37,25 @@ class TreatmentResourceJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Id")) {
-                treatmentResource.setId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                treatmentResource.setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("MessageConfiguration")) {
                 treatmentResource.setMessageConfiguration(MessageConfigurationJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("Schedule")) {
-                treatmentResource.setSchedule(ScheduleJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                treatmentResource.setSchedule(ScheduleJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("SizePercent")) {
-                treatmentResource.setSizePercent(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                treatmentResource.setSizePercent(IntegerJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("State")) {
-                treatmentResource.setState(CampaignStateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                treatmentResource.setState(CampaignStateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("TreatmentDescription")) {
                 treatmentResource.setTreatmentDescription(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("TreatmentName")) {
-                treatmentResource.setTreatmentName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                treatmentResource.setTreatmentName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

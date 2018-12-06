@@ -35,8 +35,7 @@ public class CreateStreamProcessorResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("StreamProcessorArn")) {
                 createStreamProcessorResult.setStreamProcessorArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

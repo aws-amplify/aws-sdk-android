@@ -41,8 +41,7 @@ class ContentModerationDetectionJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("ModerationLabel")) {
                 contentModerationDetection.setModerationLabel(ModerationLabelJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

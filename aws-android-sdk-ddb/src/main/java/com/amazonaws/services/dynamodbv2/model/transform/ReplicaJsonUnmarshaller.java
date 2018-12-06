@@ -36,8 +36,7 @@ class ReplicaJsonUnmarshaller implements Unmarshaller<Replica, JsonUnmarshallerC
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("RegionName")) {
-                replica.setRegionName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                replica.setRegionName(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

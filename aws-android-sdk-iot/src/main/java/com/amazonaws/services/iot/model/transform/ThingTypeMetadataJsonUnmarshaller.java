@@ -37,14 +37,14 @@ class ThingTypeMetadataJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("deprecated")) {
-                thingTypeMetadata.setDeprecated(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                thingTypeMetadata.setDeprecated(BooleanJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("deprecationDate")) {
-                thingTypeMetadata.setDeprecationDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                thingTypeMetadata.setDeprecationDate(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("creationDate")) {
-                thingTypeMetadata.setCreationDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                thingTypeMetadata.setCreationDate(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

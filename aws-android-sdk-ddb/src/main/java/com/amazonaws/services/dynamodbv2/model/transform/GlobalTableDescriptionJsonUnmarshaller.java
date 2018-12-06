@@ -39,8 +39,7 @@ class GlobalTableDescriptionJsonUnmarshaller implements
             if (name.equals("ReplicationGroup")) {
                 globalTableDescription
                         .setReplicationGroup(new ListUnmarshaller<ReplicaDescription>(
-                                ReplicaDescriptionJsonUnmarshaller.getInstance()
-                        )
+                                ReplicaDescriptionJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else if (name.equals("GlobalTableArn")) {
                 globalTableDescription.setGlobalTableArn(StringJsonUnmarshaller.getInstance()

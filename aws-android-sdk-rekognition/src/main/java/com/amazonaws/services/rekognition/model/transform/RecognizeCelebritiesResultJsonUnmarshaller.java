@@ -35,18 +35,13 @@ public class RecognizeCelebritiesResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("CelebrityFaces")) {
                 recognizeCelebritiesResult.setCelebrityFaces(new ListUnmarshaller<Celebrity>(
-                        CelebrityJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        CelebrityJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("UnrecognizedFaces")) {
                 recognizeCelebritiesResult.setUnrecognizedFaces(new ListUnmarshaller<ComparedFace>(
-                        ComparedFaceJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        ComparedFaceJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("OrientationCorrection")) {
                 recognizeCelebritiesResult.setOrientationCorrection(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

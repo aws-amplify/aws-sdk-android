@@ -37,14 +37,14 @@ class OTAUpdateSummaryJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("otaUpdateId")) {
-                oTAUpdateSummary.setOtaUpdateId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                oTAUpdateSummary.setOtaUpdateId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("otaUpdateArn")) {
-                oTAUpdateSummary.setOtaUpdateArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                oTAUpdateSummary.setOtaUpdateArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("creationDate")) {
-                oTAUpdateSummary.setCreationDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                oTAUpdateSummary.setCreationDate(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

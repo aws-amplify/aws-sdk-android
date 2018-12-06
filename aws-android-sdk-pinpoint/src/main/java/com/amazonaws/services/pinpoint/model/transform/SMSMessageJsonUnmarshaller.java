@@ -36,26 +36,20 @@ class SMSMessageJsonUnmarshaller implements Unmarshaller<SMSMessage, JsonUnmarsh
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Body")) {
-                sMSMessage.setBody(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                sMSMessage.setBody(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Keyword")) {
-                sMSMessage.setKeyword(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                sMSMessage.setKeyword(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("MessageType")) {
-                sMSMessage.setMessageType(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                sMSMessage.setMessageType(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("OriginationNumber")) {
-                sMSMessage.setOriginationNumber(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                sMSMessage.setOriginationNumber(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("SenderId")) {
-                sMSMessage.setSenderId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                sMSMessage.setSenderId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Substitutions")) {
                 sMSMessage.setSubstitutions(new MapUnmarshaller<java.util.List<String>>(
-                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
-                        )
-                        )
-                                .unmarshall(context));
+                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()))
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

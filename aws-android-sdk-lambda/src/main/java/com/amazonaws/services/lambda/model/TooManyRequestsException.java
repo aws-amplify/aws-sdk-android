@@ -19,6 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
+ * Request throughput limit exceeded
  * </p>
  */
 public class TooManyRequestsException extends AmazonServiceException {

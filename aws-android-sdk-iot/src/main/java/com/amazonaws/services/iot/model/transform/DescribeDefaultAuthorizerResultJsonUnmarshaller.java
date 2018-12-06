@@ -37,8 +37,7 @@ public class DescribeDefaultAuthorizerResultJsonUnmarshaller implements
             if (name.equals("authorizerDescription")) {
                 describeDefaultAuthorizerResult
                         .setAuthorizerDescription(AuthorizerDescriptionJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
+                                .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

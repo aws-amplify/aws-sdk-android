@@ -40,8 +40,8 @@ class AttributeValueUpdateJsonUnmarshaller implements
                 attributeValueUpdate.setValue(AttributeValueJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Action")) {
-                attributeValueUpdate.setAction(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                attributeValueUpdate.setAction(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

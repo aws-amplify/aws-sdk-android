@@ -36,11 +36,9 @@ class ImageQualityJsonUnmarshaller implements Unmarshaller<ImageQuality, JsonUnm
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Brightness")) {
-                imageQuality.setBrightness(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                imageQuality.setBrightness(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Sharpness")) {
-                imageQuality.setSharpness(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                imageQuality.setSharpness(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -36,19 +36,16 @@ public class DescribeAccountAuditConfigurationResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("roleArn")) {
                 describeAccountAuditConfigurationResult.setRoleArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("auditNotificationTargetConfigurations")) {
                 describeAccountAuditConfigurationResult
                         .setAuditNotificationTargetConfigurations(new MapUnmarshaller<AuditNotificationTarget>(
-                                AuditNotificationTargetJsonUnmarshaller.getInstance()
-                        )
+                                AuditNotificationTargetJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else if (name.equals("auditCheckConfigurations")) {
                 describeAccountAuditConfigurationResult
                         .setAuditCheckConfigurations(new MapUnmarshaller<AuditCheckConfiguration>(
-                                AuditCheckConfigurationJsonUnmarshaller.getInstance()
-                        )
+                                AuditCheckConfigurationJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else {
                 reader.skipValue();

@@ -57,21 +57,23 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * The identity manager keeps track of the current sign-in provider and is responsible
  * for caching credentials.
- * 
+ *
  * <pre>
  * // Create IdentityManager and set it as the default instance.
- * IdentityManager idm = new IdentityManager(getApplicationContext(), 
+ * IdentityManager idm = new IdentityManager(getApplicationContext(),
  *                                           new AWSConfiguration(getApplicationContext()));
  * IdentityManager.setDefaultIdentityManager(idm);
- * 
+ *
  * // Use IdentityManager to retrieve the {@link com.amazonaws.auth.CognitoCachingCredentialsProvider}
  * // object.
  * IdentityManager.getDefaultIdentityManager().getUnderlyingProvider();
- * 
+ *
  * </pre>
  */
 public class IdentityManager {
@@ -127,7 +129,7 @@ public class IdentityManager {
     private final CountDownLatch startupAuthTimeoutLatch = new CountDownLatch(1);
 
     /** Keep track of the registered sign-in providers. */
-    private final List<Class<? extends SignInProvider>> signInProviderClasses 
+    private final List<Class<? extends SignInProvider>> signInProviderClasses
         = new LinkedList<Class<? extends SignInProvider>>();
 
     /** Current provider beingIdentityProviderType used to obtain a Cognito access token. */
@@ -137,23 +139,25 @@ public class IdentityManager {
     private SignInProviderResultAdapter resultsAdapter;
 
     /** Keep track of the currently registered SignInStateChangeListeners. */
-    private final HashSet<SignInStateChangeListener> signInStateChangeListeners 
+    private final HashSet<SignInStateChangeListener> signInStateChangeListeners
         = new HashSet<SignInStateChangeListener>();
 
     /** Reference to the default identity manager */
     private static IdentityManager defaultIdentityManager = null;
 
-    /** 
+    /**
      * SharedPreferences key name used to store the short-lived AWS Credentials
      * by the CognitoCachingCredentialsProvider.
      */
     private static final String SHARED_PREF_NAME = "com.amazonaws.android.auth";
-    
-    /** 
-     * SharedPreferences key name used to store the expiration date for the 
+
+    /**
+     * SharedPreferences key name used to store the expiration date for the
      * short-lived AWS Credentials.
      */
     private static final String EXPIRATION_KEY = "expirationDate";
+
+    boolean shouldFederate = true;
 
     /**
      * Custom Amazon Cognito Identity Provider to handle refreshing the sign-in provider's token.
@@ -168,7 +172,7 @@ public class IdentityManager {
                                                     final ClientConfiguration clientConfiguration,
                                                     final Regions regions) {
             super(accountId, identityPoolId, clientConfiguration);
-            // Force refreshing Identity provider to use same region as 
+            // Force refreshing Identity provider to use same region as
             // CognitoCachingCredentialsProvider
             this.cib.setRegion(Region.getRegion(regions));
         }
@@ -187,7 +191,7 @@ public class IdentityManager {
 
     /**
      * Constructor that takes in the application context.
-     * 
+     *
      * @param context the application context.
      */
     public IdentityManager(final Context context) {
@@ -198,7 +202,7 @@ public class IdentityManager {
     }
 
     /**
-     * Constructor. 
+     * Constructor.
      * Initializes with the application context and the AWSConfiguration passed in.
      * Creates a default ClientConfiguration with the user agent from AWSConfiguration.
      *
@@ -234,7 +238,7 @@ public class IdentityManager {
         final String userAgent = this.awsConfiguration.getUserAgent();
         String currentUserAgent = this.clientConfiguration.getUserAgent();
         currentUserAgent = currentUserAgent != null ? currentUserAgent : "";
- 
+
         if (userAgent != null && userAgent != currentUserAgent) {
             this.clientConfiguration.setUserAgent(currentUserAgent.trim() + " " + userAgent);
         }
@@ -245,12 +249,9 @@ public class IdentityManager {
 
     /**
      * Constructor.
-     * Initializes with the activity context, application's credentials provider
-     * that provides the identity and the client configuration.
-     *
-     * @param context the application context.
-     * @param awsConfiguration the aws configuration.
-     * @param clientConfiguration the client configuration options such as retries and timeouts.
+     * @param context application context
+     * @param credentialsProvider credentials provider to talk with Cognito Identity
+     * @param clientConfiguration the client configuration options such as retries and timeouts
      */
     public IdentityManager(final Context context,
                            final CognitoCachingCredentialsProvider credentialsProvider,
@@ -261,6 +262,9 @@ public class IdentityManager {
         credentialsProviderHolder.setUnderlyingProvider(credentialsProvider);
     }
 
+    public void enableFederation(final boolean enabled) {
+        shouldFederate = enabled;
+    }
 
     /**
      * Return the default instance of the IdentityManager
@@ -305,6 +309,10 @@ public class IdentityManager {
      */
     public boolean areCredentialsExpired() {
 
+        if (!shouldFederate) {
+            throw new IllegalStateException("Federation is not enabled and does not support credentials");
+        }
+
         final Date credentialsExpirationDate =
             credentialsProviderHolder.getUnderlyingProvider().getSessionCredentitalsExpiration();
 
@@ -348,6 +356,9 @@ public class IdentityManager {
      * @return the cached unique identifier for the user.
      */
     public String getCachedUserID() {
+        if (!shouldFederate) {
+            throw new IllegalStateException("Federation is not enabled and does not support user id");
+        }
         return credentialsProviderHolder.getUnderlyingProvider().getCachedIdentityId();
     }
 
@@ -358,6 +369,9 @@ public class IdentityManager {
      * @param handler handles the unique identifier for the user
      */
     public void getUserID(final IdentityHandler handler) {
+        if (!shouldFederate) {
+            throw new IllegalStateException("Federation is not enabled and does not support user id");
+        }
 
         executorService.submit(new Runnable() {
             Exception exception = null;
@@ -489,7 +503,9 @@ public class IdentityManager {
                 @Override
                 public void run() {
                     currentIdentityProvider.signOut();
-                    credentialsProviderHolder.getUnderlyingProvider().clear();
+                    if (shouldFederate) {
+                        credentialsProviderHolder.getUnderlyingProvider().clear();
+                    }
                     currentIdentityProvider = null;
 
                     // Notify state change listeners of sign out.
@@ -507,17 +523,22 @@ public class IdentityManager {
      * Set the loginMap of the CognitoCachingCredentialsProvider
      * and invoke refresh. This retrieves the AWS Identity and the
      * short-lived AWS Credentials to access other AWS resources.
-     * 
-     * @param loginMap the map with a key-value pair of 
-     *                 sign-in provider key and the token 
+     *
+     * @param loginMap the map with a key-value pair of
+     *                 sign-in provider key and the token
      */
     private void refreshCredentialWithLogins(final Map<String, String> loginMap) {
-      
+
         final CognitoCachingCredentialsProvider credentialsProvider =
             credentialsProviderHolder.getUnderlyingProvider();
+
+        if (!shouldFederate) {
+            return;
+        }
+
         credentialsProvider.clear();
         credentialsProvider.withLogins(loginMap);
-      
+
         // Calling refresh is equivalent to calling getIdentityId() + getCredentials().
         Log.d(LOG_TAG, "refresh credentials");
         credentialsProvider.refresh();
@@ -545,7 +566,7 @@ public class IdentityManager {
     /**
      * Fetch the token from the SignIn provider and insert into the loginMap
      * and then invoke {@link #refreshCredentialWithLogins(Map)} to set the
-     * loginsMap with the CredentialsProvider object in-order to federate 
+     * loginsMap with the CredentialsProvider object in-order to federate
      * the token with Amazon Cognito Federated Identities.
      *
      * @param provider A sign-in provider.
@@ -560,7 +581,9 @@ public class IdentityManager {
             @Override
             public void run() {
                 try {
-                    refreshCredentialWithLogins(loginMap);
+                    if (shouldFederate) {
+                        refreshCredentialWithLogins(loginMap);
+                    }
                 } catch (Exception ex) {
                     resultsAdapter.onCognitoError(ex);
                     return;
@@ -588,7 +611,7 @@ public class IdentityManager {
     }
 
     /**
-     * Add a supported identity provider to your app. 
+     * Add a supported identity provider to your app.
      * The provider will be presented as option to sign in to your app.
      *
      * @param providerClass the provider class for the identity provider.
@@ -621,7 +644,7 @@ public class IdentityManager {
     /**
      * Invoke the onComplete method on the {@link StartupAuthResultHandler}
      * callback object.
-     * 
+     *
      * @param callingActivity the activity context
      * @param startupAuthResultHandler the callback object
      * @param ex the exception if raised during the resume session
@@ -640,7 +663,7 @@ public class IdentityManager {
 
     /**
      * Invoke the completeHandler after the resume session timeout
-     * by running the Runnable on th UI thread. This method is 
+     * by running the Runnable on th UI thread. This method is
      * currently being called from a background thread.
      *
      * @param runnable runnable to run after the splash timeout expires.
@@ -677,14 +700,14 @@ public class IdentityManager {
                               final long minimumDelay) {
 
         Log.d(LOG_TAG, "Resume Session called.");
-        
+
         executorService.submit(new Runnable() {
             public void run() {
                 Log.d(LOG_TAG, "Looking for a previously signed-in session.");
-                final SignInManager signInManager = 
+                final SignInManager signInManager =
                         SignInManager.getInstance(callingActivity.getApplicationContext());
-                
-                final SignInProvider signInProvider = 
+
+                final SignInProvider signInProvider =
                         signInManager.getPreviouslySignedInProvider();
 
                 // if the user was previously signed-in with an sign-in provider and
@@ -692,12 +715,12 @@ public class IdentityManager {
                 if (signInProvider != null) {
                     Log.d(LOG_TAG, "Refreshing credentials with sign-in provider "
                         + signInProvider.getDisplayName());
-                    
+
                     // Use the token from the previously signed-in session to
                     // get a AWS Identity using Cognito Federated Identities
                     // The AWS Identity will be wrapped into the CredentialsProvider
                     // which will contain short-lived AWS Credentials to access
-                    // AWS resources.             
+                    // AWS resources.
                     signInManager.refreshCredentialsWithProvider(callingActivity,
                             signInProvider,
                             new SignInProviderResultHandler() {
@@ -705,7 +728,7 @@ public class IdentityManager {
                                 @Override
                                 public void onSuccess(final IdentityProvider provider) {
                                     Log.d(LOG_TAG, "Successfully got AWS Credentials.");
-        
+
                                     runAfterStartupAuthDelay(callingActivity, new Runnable() {
                                         @Override
                                         public void run() {
@@ -713,18 +736,18 @@ public class IdentityManager {
                                         }
                                     });
                                 }
-        
+
                                 @Override
                                 public void onCancel(final IdentityProvider provider) {
                                     Log.wtf(LOG_TAG, "Cancel can't happen when handling a previously signed-in user.");
                                 }
-        
+
                                 @Override
                                 public void onError(final IdentityProvider provider, final Exception ex) {
                                     Log.e(LOG_TAG,
                                             String.format("Federate with Cognito with %s Sign-in provider failed. Error: %s",
                                                     provider.getDisplayName(), ex.getMessage()), ex);
-        
+
                                     if (ex instanceof AuthException) {
                                         completeHandler(callingActivity, startupAuthResultHandler,
                                                 (AuthException) ex);
@@ -837,7 +860,7 @@ public class IdentityManager {
      */
     public void login(final Context context,
                       final SignInResultHandler signInResultHandler) {
-        // Start the sign-in activity. 
+        // Start the sign-in activity.
         // We do not finish the calling activity allowing the user to navigate back.
         try {
             SignInManager
@@ -861,11 +884,24 @@ public class IdentityManager {
         Log.d(LOG_TAG, "Creating the Cognito Caching Credentials Provider "
                 + "with a refreshing Cognito Identity Provider.");
 
-        final String region = getCognitoIdentityRegion();
+        if (!shouldFederate) {
+            return;
+        }
+
+        final JSONObject cognitoIdentityConfig = getCognitoIdentityPoolConfig();
+        final String region;
+        final String poolId;
+        try {
+            region = cognitoIdentityConfig.getString("Region");
+            poolId = cognitoIdentityConfig.getString("PoolId");
+        } catch (JSONException e) {
+            throw new IllegalArgumentException("Failed to read configuration for CognitoIdentity", e);
+        }
+
         final Regions cognitoIdentityRegion = Regions.fromName(region);
 
         final AWSRefreshingCognitoIdentityProvider refreshingCredentialsProvider =
-            new AWSRefreshingCognitoIdentityProvider(null, getCognitoIdentityPoolId(),
+            new AWSRefreshingCognitoIdentityProvider(null, poolId,
                 clientConfiguration, cognitoIdentityRegion);
 
         credentialsProviderHolder.setUnderlyingProvider(
@@ -874,39 +910,19 @@ public class IdentityManager {
     }
 
     /**
-     * Retrieve the Cognito IdentityPooldId from CognitoIdentity -> PoolId key
+     * Retrieve the Cognito IdentityPoold configuration
      *
      * @return PoolId
      * @throws IllegalArgumentException
      */
-    private String getCognitoIdentityPoolId() throws IllegalArgumentException {
+    private JSONObject getCognitoIdentityPoolConfig() throws IllegalArgumentException {
         try {
             return this.awsConfiguration
                 .optJsonObject("CredentialsProvider")
                 .getJSONObject("CognitoIdentity")
-                .getJSONObject(this.awsConfiguration.getConfiguration())
-                .getString("PoolId");
+                .getJSONObject(this.awsConfiguration.getConfiguration());
         } catch (Exception exception) {
             throw new IllegalArgumentException("Cannot access Cognito IdentityPoolId from the "
-                    + AWS_CONFIGURATION_FILE + " file.", exception);
-        }
-    }
-
-    /**
-     * Retrieve the Cognito Region from CognitoIdentity -> Region key
-     *
-     * @return CognitoIdentity Region
-     * @throws IllegalArgumentException
-     */
-    private String getCognitoIdentityRegion() throws IllegalArgumentException {
-        try {
-            return this.awsConfiguration
-                  .optJsonObject("CredentialsProvider")
-                  .getJSONObject("CognitoIdentity")
-                  .getJSONObject(this.awsConfiguration.getConfiguration())
-                  .getString("Region");
-        } catch (Exception exception) {
-            throw new IllegalArgumentException("Cannot find the Cognito Region from the "
                     + AWS_CONFIGURATION_FILE + " file.", exception);
         }
     }

@@ -36,23 +36,18 @@ class RecordJsonUnmarshaller implements Unmarshaller<Record, JsonUnmarshallerCon
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Key")) {
-                record.setKey(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                record.setKey(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Value")) {
-                record.setValue(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                record.setValue(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("SyncCount")) {
-                record.setSyncCount(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                record.setSyncCount(LongJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("LastModifiedDate")) {
-                record.setLastModifiedDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                record.setLastModifiedDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("LastModifiedBy")) {
-                record.setLastModifiedBy(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                record.setLastModifiedBy(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("DeviceLastModifiedDate")) {
-                record.setDeviceLastModifiedDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                record.setDeviceLastModifiedDate(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

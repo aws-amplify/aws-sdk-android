@@ -35,9 +35,7 @@ public class UpdateRecordsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Records")) {
                 updateRecordsResult.setRecords(new ListUnmarshaller<Record>(RecordJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

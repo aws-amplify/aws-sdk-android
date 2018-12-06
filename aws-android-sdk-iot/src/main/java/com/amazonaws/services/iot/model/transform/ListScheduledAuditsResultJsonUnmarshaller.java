@@ -36,8 +36,7 @@ public class ListScheduledAuditsResultJsonUnmarshaller implements
             if (name.equals("scheduledAudits")) {
                 listScheduledAuditsResult
                         .setScheduledAudits(new ListUnmarshaller<ScheduledAuditMetadata>(
-                                ScheduledAuditMetadataJsonUnmarshaller.getInstance()
-                        )
+                                ScheduledAuditMetadataJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else if (name.equals("nextToken")) {
                 listScheduledAuditsResult.setNextToken(StringJsonUnmarshaller.getInstance()

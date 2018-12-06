@@ -37,14 +37,14 @@ class SSESpecificationJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Enabled")) {
-                sSESpecification.setEnabled(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                sSESpecification.setEnabled(BooleanJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("SSEType")) {
                 sSESpecification.setSSEType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("KMSMasterKeyId")) {
-                sSESpecification.setKMSMasterKeyId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                sSESpecification.setKMSMasterKeyId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

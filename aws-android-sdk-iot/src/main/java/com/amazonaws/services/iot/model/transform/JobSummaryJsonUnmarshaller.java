@@ -36,29 +36,23 @@ class JobSummaryJsonUnmarshaller implements Unmarshaller<JobSummary, JsonUnmarsh
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("jobArn")) {
-                jobSummary.setJobArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                jobSummary.setJobArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("jobId")) {
-                jobSummary.setJobId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                jobSummary.setJobId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("thingGroupId")) {
-                jobSummary.setThingGroupId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                jobSummary
+                        .setThingGroupId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("targetSelection")) {
-                jobSummary.setTargetSelection(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                jobSummary.setTargetSelection(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("status")) {
-                jobSummary.setStatus(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                jobSummary.setStatus(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("createdAt")) {
-                jobSummary.setCreatedAt(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                jobSummary.setCreatedAt(DateJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("lastUpdatedAt")) {
-                jobSummary.setLastUpdatedAt(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                jobSummary.setLastUpdatedAt(DateJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("completedAt")) {
-                jobSummary.setCompletedAt(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                jobSummary.setCompletedAt(DateJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

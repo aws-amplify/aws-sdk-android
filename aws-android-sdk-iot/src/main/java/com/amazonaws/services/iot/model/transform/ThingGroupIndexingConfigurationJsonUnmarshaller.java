@@ -39,8 +39,7 @@ class ThingGroupIndexingConfigurationJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("thingGroupIndexingMode")) {
                 thingGroupIndexingConfiguration.setThingGroupIndexingMode(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

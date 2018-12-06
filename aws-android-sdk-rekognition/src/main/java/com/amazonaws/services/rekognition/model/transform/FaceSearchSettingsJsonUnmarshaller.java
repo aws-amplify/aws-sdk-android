@@ -37,8 +37,8 @@ class FaceSearchSettingsJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("CollectionId")) {
-                faceSearchSettings.setCollectionId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                faceSearchSettings.setCollectionId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("FaceMatchThreshold")) {
                 faceSearchSettings.setFaceMatchThreshold(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));

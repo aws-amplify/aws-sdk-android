@@ -36,9 +36,7 @@ public class GetEffectivePoliciesResultJsonUnmarshaller implements
             if (name.equals("effectivePolicies")) {
                 getEffectivePoliciesResult
                         .setEffectivePolicies(new ListUnmarshaller<EffectivePolicy>(
-                                EffectivePolicyJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                                EffectivePolicyJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

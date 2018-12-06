@@ -104,10 +104,26 @@ public class CreateJobRequestMarshaller implements
                 JobExecutionsRolloutConfigJsonMarshaller.getInstance().marshall(
                         jobExecutionsRolloutConfig, jsonWriter);
             }
+            if (createJobRequest.getAbortConfig() != null) {
+                AbortConfig abortConfig = createJobRequest.getAbortConfig();
+                jsonWriter.name("abortConfig");
+                AbortConfigJsonMarshaller.getInstance().marshall(abortConfig, jsonWriter);
+            }
             if (createJobRequest.getTimeoutConfig() != null) {
                 TimeoutConfig timeoutConfig = createJobRequest.getTimeoutConfig();
                 jsonWriter.name("timeoutConfig");
                 TimeoutConfigJsonMarshaller.getInstance().marshall(timeoutConfig, jsonWriter);
+            }
+            if (createJobRequest.getTags() != null) {
+                java.util.List<Tag> tags = createJobRequest.getTags();
+                jsonWriter.name("tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
             }
 
             jsonWriter.endObject();

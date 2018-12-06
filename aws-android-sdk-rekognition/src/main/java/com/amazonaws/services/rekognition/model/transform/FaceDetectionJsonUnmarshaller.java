@@ -36,11 +36,9 @@ class FaceDetectionJsonUnmarshaller implements Unmarshaller<FaceDetection, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Timestamp")) {
-                faceDetection.setTimestamp(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                faceDetection.setTimestamp(LongJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Face")) {
-                faceDetection.setFace(FaceDetailJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                faceDetection.setFace(FaceDetailJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

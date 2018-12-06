@@ -40,8 +40,7 @@ class MetricDimensionJsonUnmarshaller implements
                 metricDimension.setComparisonOperator(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Value")) {
-                metricDimension.setValue(DoubleJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                metricDimension.setValue(DoubleJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

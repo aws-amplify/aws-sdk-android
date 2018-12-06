@@ -37,8 +37,7 @@ public class DescribeEntitiesDetectionJobResultJsonUnmarshaller implements
             if (name.equals("EntitiesDetectionJobProperties")) {
                 describeEntitiesDetectionJobResult
                         .setEntitiesDetectionJobProperties(EntitiesDetectionJobPropertiesJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
+                                .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

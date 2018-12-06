@@ -34,8 +34,8 @@ public class GetMLModelResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("MLModelId")) {
-                getMLModelResult.setMLModelId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getMLModelResult.setMLModelId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("TrainingDataSourceId")) {
                 getMLModelResult.setTrainingDataSourceId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -46,58 +46,55 @@ public class GetMLModelResultJsonUnmarshaller implements
                 getMLModelResult.setCreatedAt(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("LastUpdatedAt")) {
-                getMLModelResult.setLastUpdatedAt(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getMLModelResult.setLastUpdatedAt(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Name")) {
-                getMLModelResult.setName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getMLModelResult.setName(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Status")) {
-                getMLModelResult.setStatus(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getMLModelResult
+                        .setStatus(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("SizeInBytes")) {
-                getMLModelResult.setSizeInBytes(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getMLModelResult.setSizeInBytes(LongJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("EndpointInfo")) {
                 getMLModelResult.setEndpointInfo(RealtimeEndpointInfoJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("TrainingParameters")) {
                 getMLModelResult.setTrainingParameters(new MapUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("InputDataLocationS3")) {
                 getMLModelResult.setInputDataLocationS3(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("MLModelType")) {
-                getMLModelResult.setMLModelType(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getMLModelResult.setMLModelType(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("ScoreThreshold")) {
-                getMLModelResult.setScoreThreshold(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getMLModelResult.setScoreThreshold(FloatJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("ScoreThresholdLastUpdatedAt")) {
                 getMLModelResult.setScoreThresholdLastUpdatedAt(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("LogUri")) {
-                getMLModelResult.setLogUri(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getMLModelResult
+                        .setLogUri(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Message")) {
                 getMLModelResult.setMessage(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("ComputeTime")) {
-                getMLModelResult.setComputeTime(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getMLModelResult.setComputeTime(LongJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("FinishedAt")) {
-                getMLModelResult.setFinishedAt(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getMLModelResult.setFinishedAt(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("StartedAt")) {
                 getMLModelResult.setStartedAt(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Recipe")) {
-                getMLModelResult.setRecipe(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getMLModelResult
+                        .setRecipe(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Schema")) {
-                getMLModelResult.setSchema(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getMLModelResult
+                        .setSchema(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

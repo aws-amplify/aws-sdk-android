@@ -36,17 +36,16 @@ class SynthesisTaskJsonUnmarshaller implements Unmarshaller<SynthesisTask, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("TaskId")) {
-                synthesisTask.setTaskId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                synthesisTask.setTaskId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("TaskStatus")) {
                 synthesisTask.setTaskStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("TaskStatusReason")) {
-                synthesisTask.setTaskStatusReason(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                synthesisTask.setTaskStatusReason(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("OutputUri")) {
-                synthesisTask.setOutputUri(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                synthesisTask
+                        .setOutputUri(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("CreationTime")) {
                 synthesisTask.setCreationTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -54,33 +53,27 @@ class SynthesisTaskJsonUnmarshaller implements Unmarshaller<SynthesisTask, JsonU
                 synthesisTask.setRequestCharacters(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("SnsTopicArn")) {
-                synthesisTask.setSnsTopicArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                synthesisTask.setSnsTopicArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("LexiconNames")) {
                 synthesisTask.setLexiconNames(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("OutputFormat")) {
-                synthesisTask.setOutputFormat(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                synthesisTask.setOutputFormat(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("SampleRate")) {
                 synthesisTask.setSampleRate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("SpeechMarkTypes")) {
                 synthesisTask.setSpeechMarkTypes(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("TextType")) {
-                synthesisTask.setTextType(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                synthesisTask.setTextType(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("VoiceId")) {
-                synthesisTask.setVoiceId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                synthesisTask.setVoiceId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("LanguageCode")) {
-                synthesisTask.setLanguageCode(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                synthesisTask.setLanguageCode(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

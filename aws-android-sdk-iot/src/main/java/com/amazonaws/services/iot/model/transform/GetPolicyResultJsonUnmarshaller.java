@@ -34,26 +34,26 @@ public class GetPolicyResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("policyName")) {
-                getPolicyResult.setPolicyName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getPolicyResult.setPolicyName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("policyArn")) {
-                getPolicyResult.setPolicyArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getPolicyResult.setPolicyArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("policyDocument")) {
-                getPolicyResult.setPolicyDocument(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getPolicyResult.setPolicyDocument(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("defaultVersionId")) {
                 getPolicyResult.setDefaultVersionId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("creationDate")) {
-                getPolicyResult.setCreationDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getPolicyResult.setCreationDate(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("lastModifiedDate")) {
-                getPolicyResult.setLastModifiedDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getPolicyResult.setLastModifiedDate(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("generationId")) {
-                getPolicyResult.setGenerationId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getPolicyResult.setGenerationId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

@@ -34,11 +34,11 @@ public class CreateGrantResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("GrantToken")) {
-                createGrantResult.setGrantToken(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                createGrantResult.setGrantToken(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("GrantId")) {
-                createGrantResult.setGrantId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                createGrantResult.setGrantId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

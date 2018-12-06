@@ -34,8 +34,8 @@ public class GetJobDocumentResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("document")) {
-                getJobDocumentResult.setDocument(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getJobDocumentResult.setDocument(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

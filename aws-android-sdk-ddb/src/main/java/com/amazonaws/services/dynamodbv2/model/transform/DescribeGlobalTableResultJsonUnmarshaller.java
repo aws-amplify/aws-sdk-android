@@ -36,8 +36,7 @@ public class DescribeGlobalTableResultJsonUnmarshaller implements
             if (name.equals("GlobalTableDescription")) {
                 describeGlobalTableResult
                         .setGlobalTableDescription(GlobalTableDescriptionJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
+                                .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

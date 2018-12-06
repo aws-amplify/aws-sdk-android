@@ -36,11 +36,10 @@ class AlertTargetJsonUnmarshaller implements Unmarshaller<AlertTarget, JsonUnmar
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("alertTargetArn")) {
-                alertTarget.setAlertTargetArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                alertTarget.setAlertTargetArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("roleArn")) {
-                alertTarget.setRoleArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                alertTarget.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

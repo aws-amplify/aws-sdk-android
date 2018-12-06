@@ -37,21 +37,17 @@ class MessageResponseJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("ApplicationId")) {
-                messageResponse.setApplicationId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                messageResponse.setApplicationId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("EndpointResult")) {
                 messageResponse.setEndpointResult(new MapUnmarshaller<EndpointMessageResult>(
-                        EndpointMessageResultJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        EndpointMessageResultJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("RequestId")) {
-                messageResponse.setRequestId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                messageResponse.setRequestId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Result")) {
                 messageResponse.setResult(new MapUnmarshaller<MessageResult>(
-                        MessageResultJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        MessageResultJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

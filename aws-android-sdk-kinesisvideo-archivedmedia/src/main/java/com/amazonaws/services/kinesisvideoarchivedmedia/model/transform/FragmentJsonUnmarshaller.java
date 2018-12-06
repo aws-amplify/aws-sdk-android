@@ -36,17 +36,15 @@ class FragmentJsonUnmarshaller implements Unmarshaller<Fragment, JsonUnmarshalle
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("FragmentNumber")) {
-                fragment.setFragmentNumber(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                fragment.setFragmentNumber(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("FragmentSizeInBytes")) {
-                fragment.setFragmentSizeInBytes(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                fragment.setFragmentSizeInBytes(LongJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("ProducerTimestamp")) {
                 fragment.setProducerTimestamp(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("ServerTimestamp")) {
-                fragment.setServerTimestamp(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                fragment.setServerTimestamp(DateJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("FragmentLengthInMilliseconds")) {
                 fragment.setFragmentLengthInMilliseconds(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));

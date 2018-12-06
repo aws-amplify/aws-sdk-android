@@ -37,11 +37,11 @@ class RecencyDimensionJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Duration")) {
-                recencyDimension.setDuration(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                recencyDimension.setDuration(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("RecencyType")) {
-                recencyDimension.setRecencyType(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                recencyDimension.setRecencyType(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

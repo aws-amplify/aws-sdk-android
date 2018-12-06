@@ -45,16 +45,15 @@ class AutoScalingTargetTrackingScalingPolicyConfigurationUpdateJsonUnmarshaller
                                 .unmarshall(context));
             } else if (name.equals("ScaleInCooldown")) {
                 autoScalingTargetTrackingScalingPolicyConfigurationUpdate
-                        .setScaleInCooldown(IntegerJsonUnmarshaller.getInstance()
-                                .unmarshall(context));
+                        .setScaleInCooldown(IntegerJsonUnmarshaller.getInstance().unmarshall(
+                                context));
             } else if (name.equals("ScaleOutCooldown")) {
                 autoScalingTargetTrackingScalingPolicyConfigurationUpdate
-                        .setScaleOutCooldown(IntegerJsonUnmarshaller.getInstance()
-                                .unmarshall(context));
+                        .setScaleOutCooldown(IntegerJsonUnmarshaller.getInstance().unmarshall(
+                                context));
             } else if (name.equals("TargetValue")) {
                 autoScalingTargetTrackingScalingPolicyConfigurationUpdate
-                        .setTargetValue(DoubleJsonUnmarshaller.getInstance()
-                                .unmarshall(context));
+                        .setTargetValue(DoubleJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

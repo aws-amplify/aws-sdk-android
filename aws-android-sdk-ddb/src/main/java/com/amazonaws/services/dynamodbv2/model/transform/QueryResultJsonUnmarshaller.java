@@ -36,21 +36,15 @@ public class QueryResultJsonUnmarshaller implements
             if (name.equals("Items")) {
                 queryResult.setItems(new ListUnmarshaller<java.util.Map<String, AttributeValue>>(
                         new MapUnmarshaller<AttributeValue>(AttributeValueJsonUnmarshaller
-                                .getInstance()
-                        )
-                        )
-                                .unmarshall(context));
+                                .getInstance())).unmarshall(context));
             } else if (name.equals("Count")) {
-                queryResult.setCount(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                queryResult.setCount(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("ScannedCount")) {
-                queryResult.setScannedCount(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                queryResult.setScannedCount(IntegerJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("LastEvaluatedKey")) {
                 queryResult.setLastEvaluatedKey(new MapUnmarshaller<AttributeValue>(
-                        AttributeValueJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        AttributeValueJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("ConsumedCapacity")) {
                 queryResult.setConsumedCapacity(ConsumedCapacityJsonUnmarshaller.getInstance()
                         .unmarshall(context));

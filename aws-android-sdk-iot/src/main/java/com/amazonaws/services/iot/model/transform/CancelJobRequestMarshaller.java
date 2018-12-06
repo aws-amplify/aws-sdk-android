@@ -63,6 +63,11 @@ public class CancelJobRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
+            if (cancelJobRequest.getReasonCode() != null) {
+                String reasonCode = cancelJobRequest.getReasonCode();
+                jsonWriter.name("reasonCode");
+                jsonWriter.value(reasonCode);
+            }
             if (cancelJobRequest.getComment() != null) {
                 String comment = cancelJobRequest.getComment();
                 jsonWriter.name("comment");

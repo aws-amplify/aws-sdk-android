@@ -37,11 +37,11 @@ class CertificateValidityJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("notBefore")) {
-                certificateValidity.setNotBefore(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                certificateValidity.setNotBefore(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("notAfter")) {
-                certificateValidity.setNotAfter(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                certificateValidity.setNotAfter(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

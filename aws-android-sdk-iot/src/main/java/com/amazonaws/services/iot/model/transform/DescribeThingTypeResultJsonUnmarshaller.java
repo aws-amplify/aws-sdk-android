@@ -44,12 +44,10 @@ public class DescribeThingTypeResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("thingTypeProperties")) {
                 describeThingTypeResult.setThingTypeProperties(ThingTypePropertiesJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("thingTypeMetadata")) {
                 describeThingTypeResult.setThingTypeMetadata(ThingTypeMetadataJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

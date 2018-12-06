@@ -36,46 +36,38 @@ class JobJsonUnmarshaller implements Unmarshaller<Job, JsonUnmarshallerContext> 
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("jobArn")) {
-                job.setJobArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                job.setJobArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("jobId")) {
-                job.setJobId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                job.setJobId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("targetSelection")) {
-                job.setTargetSelection(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                job.setTargetSelection(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("status")) {
-                job.setStatus(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                job.setStatus(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("forceCanceled")) {
-                job.setForceCanceled(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                job.setForceCanceled(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
+            } else if (name.equals("reasonCode")) {
+                job.setReasonCode(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("comment")) {
-                job.setComment(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                job.setComment(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("targets")) {
-                job.setTargets(new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
-            } else if (name.equals("description")) {
-                job.setDescription(StringJsonUnmarshaller.getInstance()
+                job.setTargets(new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance())
                         .unmarshall(context));
+            } else if (name.equals("description")) {
+                job.setDescription(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("presignedUrlConfig")) {
                 job.setPresignedUrlConfig(PresignedUrlConfigJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("jobExecutionsRolloutConfig")) {
                 job.setJobExecutionsRolloutConfig(JobExecutionsRolloutConfigJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
+            } else if (name.equals("abortConfig")) {
+                job.setAbortConfig(AbortConfigJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("createdAt")) {
-                job.setCreatedAt(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                job.setCreatedAt(DateJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("lastUpdatedAt")) {
-                job.setLastUpdatedAt(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                job.setLastUpdatedAt(DateJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("completedAt")) {
-                job.setCompletedAt(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                job.setCompletedAt(DateJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("jobProcessDetails")) {
                 job.setJobProcessDetails(JobProcessDetailsJsonUnmarshaller.getInstance()
                         .unmarshall(context));

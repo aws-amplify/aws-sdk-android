@@ -47,24 +47,20 @@ class StreamDescriptionSummaryJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("RetentionPeriodHours")) {
                 streamDescriptionSummary.setRetentionPeriodHours(IntegerJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("StreamCreationTimestamp")) {
                 streamDescriptionSummary.setStreamCreationTimestamp(DateJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("EnhancedMonitoring")) {
                 streamDescriptionSummary
                         .setEnhancedMonitoring(new ListUnmarshaller<EnhancedMetrics>(
-                                EnhancedMetricsJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                                EnhancedMetricsJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("EncryptionType")) {
                 streamDescriptionSummary.setEncryptionType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("KeyId")) {
-                streamDescriptionSummary.setKeyId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                streamDescriptionSummary.setKeyId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("OpenShardCount")) {
                 streamDescriptionSummary.setOpenShardCount(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));

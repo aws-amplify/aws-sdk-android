@@ -36,13 +36,11 @@ public class DescribeGlobalTableSettingsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("GlobalTableName")) {
                 describeGlobalTableSettingsResult.setGlobalTableName(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("ReplicaSettings")) {
                 describeGlobalTableSettingsResult
                         .setReplicaSettings(new ListUnmarshaller<ReplicaSettingsDescription>(
-                                ReplicaSettingsDescriptionJsonUnmarshaller.getInstance()
-                        )
+                                ReplicaSettingsDescriptionJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else {
                 reader.skipValue();

@@ -47,21 +47,16 @@ public class GetFaceDetectionResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("Faces")) {
                 getFaceDetectionResult.setFaces(new ListUnmarshaller<FaceDetection>(
-                        FaceDetectionJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        FaceDetectionJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("BillableDurationSeconds")) {
                 getFaceDetectionResult.setBillableDurationSeconds(IntegerJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("ErrorCode")) {
                 getFaceDetectionResult.setErrorCode(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Warnings")) {
                 getFaceDetectionResult.setWarnings(new ListUnmarshaller<Warning>(
-                        WarningJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        WarningJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

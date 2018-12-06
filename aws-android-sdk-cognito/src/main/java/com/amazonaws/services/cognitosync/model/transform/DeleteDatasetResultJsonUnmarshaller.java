@@ -34,8 +34,8 @@ public class DeleteDatasetResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Dataset")) {
-                deleteDatasetResult.setDataset(DatasetJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                deleteDatasetResult.setDataset(DatasetJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

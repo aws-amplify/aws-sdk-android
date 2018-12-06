@@ -45,17 +45,14 @@ class AutoScalingSettingsDescriptionJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("AutoScalingDisabled")) {
                 autoScalingSettingsDescription.setAutoScalingDisabled(BooleanJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("AutoScalingRoleArn")) {
                 autoScalingSettingsDescription.setAutoScalingRoleArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("ScalingPolicies")) {
                 autoScalingSettingsDescription
                         .setScalingPolicies(new ListUnmarshaller<AutoScalingPolicyDescription>(
-                                AutoScalingPolicyDescriptionJsonUnmarshaller.getInstance()
-                        )
+                                AutoScalingPolicyDescriptionJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else {
                 reader.skipValue();

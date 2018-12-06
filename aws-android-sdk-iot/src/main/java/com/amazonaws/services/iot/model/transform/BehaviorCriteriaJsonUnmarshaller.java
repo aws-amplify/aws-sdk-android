@@ -40,8 +40,8 @@ class BehaviorCriteriaJsonUnmarshaller implements
                 behaviorCriteria.setComparisonOperator(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("value")) {
-                behaviorCriteria.setValue(MetricValueJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                behaviorCriteria.setValue(MetricValueJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("durationSeconds")) {
                 behaviorCriteria.setDurationSeconds(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));

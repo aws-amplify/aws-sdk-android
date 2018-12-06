@@ -36,14 +36,11 @@ class LandmarkJsonUnmarshaller implements Unmarshaller<Landmark, JsonUnmarshalle
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Type")) {
-                landmark.setType(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                landmark.setType(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("X")) {
-                landmark.setX(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                landmark.setX(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Y")) {
-                landmark.setY(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                landmark.setY(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

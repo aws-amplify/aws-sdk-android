@@ -36,11 +36,9 @@ class EyeOpenJsonUnmarshaller implements Unmarshaller<EyeOpen, JsonUnmarshallerC
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Value")) {
-                eyeOpen.setValue(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                eyeOpen.setValue(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Confidence")) {
-                eyeOpen.setConfidence(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                eyeOpen.setConfidence(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

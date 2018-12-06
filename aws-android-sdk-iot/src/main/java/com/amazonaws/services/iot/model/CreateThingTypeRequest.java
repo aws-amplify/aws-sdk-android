@@ -47,6 +47,13 @@ public class CreateThingTypeRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
+     * Metadata which can be used to manage the thing type.
+     * </p>
+     */
+    private java.util.List<Tag> tags;
+
+    /**
+     * <p>
      * The name of the thing type.
      * </p>
      * <p>
@@ -160,6 +167,80 @@ public class CreateThingTypeRequest extends AmazonWebServiceRequest implements S
     }
 
     /**
+     * <p>
+     * Metadata which can be used to manage the thing type.
+     * </p>
+     *
+     * @return <p>
+     *         Metadata which can be used to manage the thing type.
+     *         </p>
+     */
+    public java.util.List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the thing type.
+     * </p>
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage the thing type.
+     *            </p>
+     */
+    public void setTags(java.util.Collection<Tag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<Tag>(tags);
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the thing type.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage the thing type.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateThingTypeRequest withTags(Tag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<Tag>(tags.length);
+        }
+        for (Tag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the thing type.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage the thing type.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateThingTypeRequest withTags(java.util.Collection<Tag> tags) {
+        setTags(tags);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -173,7 +254,9 @@ public class CreateThingTypeRequest extends AmazonWebServiceRequest implements S
         if (getThingTypeName() != null)
             sb.append("thingTypeName: " + getThingTypeName() + ",");
         if (getThingTypeProperties() != null)
-            sb.append("thingTypeProperties: " + getThingTypeProperties());
+            sb.append("thingTypeProperties: " + getThingTypeProperties() + ",");
+        if (getTags() != null)
+            sb.append("tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -187,6 +270,7 @@ public class CreateThingTypeRequest extends AmazonWebServiceRequest implements S
                 + ((getThingTypeName() == null) ? 0 : getThingTypeName().hashCode());
         hashCode = prime * hashCode
                 + ((getThingTypeProperties() == null) ? 0 : getThingTypeProperties().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -210,6 +294,10 @@ public class CreateThingTypeRequest extends AmazonWebServiceRequest implements S
             return false;
         if (other.getThingTypeProperties() != null
                 && other.getThingTypeProperties().equals(this.getThingTypeProperties()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

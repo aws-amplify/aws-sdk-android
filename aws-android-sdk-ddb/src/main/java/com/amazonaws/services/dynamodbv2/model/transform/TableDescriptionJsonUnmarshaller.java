@@ -38,56 +38,48 @@ class TableDescriptionJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("AttributeDefinitions")) {
                 tableDescription.setAttributeDefinitions(new ListUnmarshaller<AttributeDefinition>(
-                        AttributeDefinitionJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        AttributeDefinitionJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("TableName")) {
-                tableDescription.setTableName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                tableDescription.setTableName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("KeySchema")) {
                 tableDescription.setKeySchema(new ListUnmarshaller<KeySchemaElement>(
-                        KeySchemaElementJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        KeySchemaElementJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("TableStatus")) {
-                tableDescription.setTableStatus(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                tableDescription.setTableStatus(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("CreationDateTime")) {
-                tableDescription.setCreationDateTime(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                tableDescription.setCreationDateTime(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("ProvisionedThroughput")) {
                 tableDescription
                         .setProvisionedThroughput(ProvisionedThroughputDescriptionJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
+                                .getInstance().unmarshall(context));
             } else if (name.equals("TableSizeBytes")) {
-                tableDescription.setTableSizeBytes(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                tableDescription.setTableSizeBytes(LongJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("ItemCount")) {
                 tableDescription.setItemCount(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("TableArn")) {
-                tableDescription.setTableArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                tableDescription.setTableArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("TableId")) {
                 tableDescription.setTableId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("LocalSecondaryIndexes")) {
                 tableDescription
                         .setLocalSecondaryIndexes(new ListUnmarshaller<LocalSecondaryIndexDescription>(
-                                LocalSecondaryIndexDescriptionJsonUnmarshaller.getInstance()
-                        )
+                                LocalSecondaryIndexDescriptionJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else if (name.equals("GlobalSecondaryIndexes")) {
                 tableDescription
                         .setGlobalSecondaryIndexes(new ListUnmarshaller<GlobalSecondaryIndexDescription>(
-                                GlobalSecondaryIndexDescriptionJsonUnmarshaller.getInstance()
-                        )
+                                GlobalSecondaryIndexDescriptionJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else if (name.equals("StreamSpecification")) {
                 tableDescription.setStreamSpecification(StreamSpecificationJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("LatestStreamLabel")) {
                 tableDescription.setLatestStreamLabel(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

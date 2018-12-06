@@ -39,8 +39,7 @@ public class StartDocumentClassificationJobResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("JobStatus")) {
                 startDocumentClassificationJobResult.setJobStatus(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

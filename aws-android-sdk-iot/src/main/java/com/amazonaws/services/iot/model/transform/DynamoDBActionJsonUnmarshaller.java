@@ -40,32 +40,31 @@ class DynamoDBActionJsonUnmarshaller implements
                 dynamoDBAction.setTableName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("roleArn")) {
-                dynamoDBAction.setRoleArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                dynamoDBAction.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("operation")) {
                 dynamoDBAction.setOperation(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("hashKeyField")) {
-                dynamoDBAction.setHashKeyField(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                dynamoDBAction.setHashKeyField(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("hashKeyValue")) {
-                dynamoDBAction.setHashKeyValue(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                dynamoDBAction.setHashKeyValue(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("hashKeyType")) {
-                dynamoDBAction.setHashKeyType(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                dynamoDBAction.setHashKeyType(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("rangeKeyField")) {
-                dynamoDBAction.setRangeKeyField(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                dynamoDBAction.setRangeKeyField(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("rangeKeyValue")) {
-                dynamoDBAction.setRangeKeyValue(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                dynamoDBAction.setRangeKeyValue(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("rangeKeyType")) {
-                dynamoDBAction.setRangeKeyType(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                dynamoDBAction.setRangeKeyType(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("payloadField")) {
-                dynamoDBAction.setPayloadField(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                dynamoDBAction.setPayloadField(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

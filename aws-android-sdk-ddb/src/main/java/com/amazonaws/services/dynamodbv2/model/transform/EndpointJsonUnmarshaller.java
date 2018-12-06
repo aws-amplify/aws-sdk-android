@@ -36,11 +36,10 @@ class EndpointJsonUnmarshaller implements Unmarshaller<Endpoint, JsonUnmarshalle
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Address")) {
-                endpoint.setAddress(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                endpoint.setAddress(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("CachePeriodInMinutes")) {
-                endpoint.setCachePeriodInMinutes(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                endpoint.setCachePeriodInMinutes(LongJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

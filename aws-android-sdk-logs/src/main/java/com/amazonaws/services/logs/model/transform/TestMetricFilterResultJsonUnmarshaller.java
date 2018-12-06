@@ -35,9 +35,7 @@ public class TestMetricFilterResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("matches")) {
                 testMetricFilterResult.setMatches(new ListUnmarshaller<MetricFilterMatchRecord>(
-                        MetricFilterMatchRecordJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        MetricFilterMatchRecordJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

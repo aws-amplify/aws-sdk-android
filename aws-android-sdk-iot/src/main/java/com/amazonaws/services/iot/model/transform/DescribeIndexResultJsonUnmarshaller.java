@@ -34,14 +34,14 @@ public class DescribeIndexResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("indexName")) {
-                describeIndexResult.setIndexName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                describeIndexResult.setIndexName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("indexStatus")) {
-                describeIndexResult.setIndexStatus(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                describeIndexResult.setIndexStatus(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("schema")) {
-                describeIndexResult.setSchema(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                describeIndexResult.setSchema(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

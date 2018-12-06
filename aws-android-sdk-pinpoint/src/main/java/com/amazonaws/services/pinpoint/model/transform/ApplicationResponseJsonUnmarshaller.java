@@ -37,8 +37,7 @@ class ApplicationResponseJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Id")) {
-                applicationResponse.setId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                applicationResponse.setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Name")) {
                 applicationResponse.setName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -35,12 +35,10 @@ public class DescribeVoicesResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Voices")) {
                 describeVoicesResult.setVoices(new ListUnmarshaller<Voice>(VoiceJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("NextToken")) {
-                describeVoicesResult.setNextToken(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                describeVoicesResult.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

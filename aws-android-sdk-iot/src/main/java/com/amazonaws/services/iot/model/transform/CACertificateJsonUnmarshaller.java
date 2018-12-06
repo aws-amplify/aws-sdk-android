@@ -36,14 +36,13 @@ class CACertificateJsonUnmarshaller implements Unmarshaller<CACertificate, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("certificateArn")) {
-                cACertificate.setCertificateArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                cACertificate.setCertificateArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("certificateId")) {
-                cACertificate.setCertificateId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                cACertificate.setCertificateId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("status")) {
-                cACertificate.setStatus(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                cACertificate.setStatus(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("creationDate")) {
                 cACertificate.setCreationDate(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));

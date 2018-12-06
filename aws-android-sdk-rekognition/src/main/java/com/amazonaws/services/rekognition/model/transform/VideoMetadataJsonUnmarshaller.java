@@ -36,26 +36,22 @@ class VideoMetadataJsonUnmarshaller implements Unmarshaller<VideoMetadata, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Codec")) {
-                videoMetadata.setCodec(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                videoMetadata.setCodec(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("DurationMillis")) {
-                videoMetadata.setDurationMillis(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                videoMetadata.setDurationMillis(LongJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Format")) {
-                videoMetadata.setFormat(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                videoMetadata.setFormat(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("FrameRate")) {
-                videoMetadata.setFrameRate(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                videoMetadata.setFrameRate(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("FrameHeight")) {
-                videoMetadata.setFrameHeight(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                videoMetadata
+                        .setFrameHeight(LongJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("FrameWidth")) {
-                videoMetadata.setFrameWidth(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                videoMetadata.setFrameWidth(LongJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Rotation")) {
-                videoMetadata.setRotation(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                videoMetadata
+                        .setRotation(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

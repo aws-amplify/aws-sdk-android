@@ -36,13 +36,11 @@ class EventsBatchJsonUnmarshaller implements Unmarshaller<EventsBatch, JsonUnmar
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Endpoint")) {
-                eventsBatch.setEndpoint(EndpointRequestJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                eventsBatch.setEndpoint(EndpointRequestJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Events")) {
                 eventsBatch.setEvents(new MapUnmarshaller<Event>(EventJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

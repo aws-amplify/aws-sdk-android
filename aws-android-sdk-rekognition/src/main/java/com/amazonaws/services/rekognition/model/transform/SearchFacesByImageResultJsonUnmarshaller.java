@@ -35,17 +35,13 @@ public class SearchFacesByImageResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("SearchedFaceBoundingBox")) {
                 searchFacesByImageResult.setSearchedFaceBoundingBox(BoundingBoxJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("SearchedFaceConfidence")) {
                 searchFacesByImageResult.setSearchedFaceConfidence(FloatJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("FaceMatches")) {
                 searchFacesByImageResult.setFaceMatches(new ListUnmarshaller<FaceMatch>(
-                        FaceMatchJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        FaceMatchJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("FaceModelVersion")) {
                 searchFacesByImageResult.setFaceModelVersion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

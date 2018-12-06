@@ -36,8 +36,7 @@ public class ListEntityRecognizersResultJsonUnmarshaller implements
             if (name.equals("EntityRecognizerPropertiesList")) {
                 listEntityRecognizersResult
                         .setEntityRecognizerPropertiesList(new ListUnmarshaller<EntityRecognizerProperties>(
-                                EntityRecognizerPropertiesJsonUnmarshaller.getInstance()
-                        )
+                                EntityRecognizerPropertiesJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else if (name.equals("NextToken")) {
                 listEntityRecognizersResult.setNextToken(StringJsonUnmarshaller.getInstance()

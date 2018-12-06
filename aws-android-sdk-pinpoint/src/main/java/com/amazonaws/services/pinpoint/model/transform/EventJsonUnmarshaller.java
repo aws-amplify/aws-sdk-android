@@ -37,25 +37,18 @@ class EventJsonUnmarshaller implements Unmarshaller<Event, JsonUnmarshallerConte
             String name = reader.nextName();
             if (name.equals("Attributes")) {
                 event.setAttributes(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("ClientSdkVersion")) {
-                event.setClientSdkVersion(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                event.setClientSdkVersion(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("EventType")) {
-                event.setEventType(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                event.setEventType(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Metrics")) {
-                event.setMetrics(new MapUnmarshaller<Double>(DoubleJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                event.setMetrics(new MapUnmarshaller<Double>(DoubleJsonUnmarshaller.getInstance())
+                        .unmarshall(context));
             } else if (name.equals("Session")) {
-                event.setSession(SessionJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                event.setSession(SessionJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Timestamp")) {
-                event.setTimestamp(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                event.setTimestamp(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

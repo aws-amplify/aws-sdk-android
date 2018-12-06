@@ -39,8 +39,7 @@ class DocumentClassifierPropertiesJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("DocumentClassifierArn")) {
                 documentClassifierProperties.setDocumentClassifierArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("LanguageCode")) {
                 documentClassifierProperties.setLanguageCode(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -58,24 +57,21 @@ class DocumentClassifierPropertiesJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("TrainingStartTime")) {
                 documentClassifierProperties.setTrainingStartTime(DateJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("TrainingEndTime")) {
                 documentClassifierProperties.setTrainingEndTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("InputDataConfig")) {
                 documentClassifierProperties
                         .setInputDataConfig(DocumentClassifierInputDataConfigJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
+                                .getInstance().unmarshall(context));
             } else if (name.equals("ClassifierMetadata")) {
                 documentClassifierProperties
                         .setClassifierMetadata(ClassifierMetadataJsonUnmarshaller.getInstance()
                                 .unmarshall(context));
             } else if (name.equals("DataAccessRoleArn")) {
                 documentClassifierProperties.setDataAccessRoleArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -44,8 +44,7 @@ class APNSSandboxChannelRequestJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("DefaultAuthenticationMethod")) {
                 aPNSSandboxChannelRequest.setDefaultAuthenticationMethod(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("Enabled")) {
                 aPNSSandboxChannelRequest.setEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));

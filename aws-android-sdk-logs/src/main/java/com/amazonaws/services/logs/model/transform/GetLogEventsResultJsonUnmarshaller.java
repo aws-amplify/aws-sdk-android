@@ -35,9 +35,7 @@ public class GetLogEventsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("events")) {
                 getLogEventsResult.setEvents(new ListUnmarshaller<OutputLogEvent>(
-                        OutputLogEventJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        OutputLogEventJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("nextForwardToken")) {
                 getLogEventsResult.setNextForwardToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -38,9 +38,7 @@ class EndpointBatchRequestJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Item")) {
                 endpointBatchRequest.setItem(new ListUnmarshaller<EndpointBatchItem>(
-                        EndpointBatchItemJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        EndpointBatchItemJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

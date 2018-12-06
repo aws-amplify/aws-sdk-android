@@ -37,9 +37,7 @@ class ImplicitDenyJsonUnmarshaller implements Unmarshaller<ImplicitDeny, JsonUnm
             String name = reader.nextName();
             if (name.equals("policies")) {
                 implicitDeny.setPolicies(new ListUnmarshaller<Policy>(PolicyJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

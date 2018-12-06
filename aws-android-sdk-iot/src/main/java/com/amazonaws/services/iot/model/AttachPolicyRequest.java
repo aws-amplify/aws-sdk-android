@@ -38,7 +38,9 @@ public class AttachPolicyRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The identity to which the policy is attached.
+     * The <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html"
+     * >identity</a> to which the policy is attached.
      * </p>
      */
     private String target;
@@ -102,11 +104,15 @@ public class AttachPolicyRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The identity to which the policy is attached.
+     * The <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html"
+     * >identity</a> to which the policy is attached.
      * </p>
      *
      * @return <p>
-     *         The identity to which the policy is attached.
+     *         The <a href=
+     *         "https://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html"
+     *         >identity</a> to which the policy is attached.
      *         </p>
      */
     public String getTarget() {
@@ -115,11 +121,15 @@ public class AttachPolicyRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The identity to which the policy is attached.
+     * The <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html"
+     * >identity</a> to which the policy is attached.
      * </p>
      *
      * @param target <p>
-     *            The identity to which the policy is attached.
+     *            The <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html"
+     *            >identity</a> to which the policy is attached.
      *            </p>
      */
     public void setTarget(String target) {
@@ -128,14 +138,18 @@ public class AttachPolicyRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The identity to which the policy is attached.
+     * The <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html"
+     * >identity</a> to which the policy is attached.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param target <p>
-     *            The identity to which the policy is attached.
+     *            The <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html"
+     *            >identity</a> to which the policy is attached.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

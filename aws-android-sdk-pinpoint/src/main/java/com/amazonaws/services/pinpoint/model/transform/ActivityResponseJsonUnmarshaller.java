@@ -37,29 +37,25 @@ class ActivityResponseJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("ApplicationId")) {
-                activityResponse.setApplicationId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                activityResponse.setApplicationId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("CampaignId")) {
-                activityResponse.setCampaignId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                activityResponse.setCampaignId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("End")) {
-                activityResponse.setEnd(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                activityResponse.setEnd(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Id")) {
-                activityResponse.setId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                activityResponse.setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Result")) {
-                activityResponse.setResult(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                activityResponse
+                        .setResult(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("ScheduledStart")) {
-                activityResponse.setScheduledStart(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                activityResponse.setScheduledStart(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Start")) {
-                activityResponse.setStart(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                activityResponse.setStart(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("State")) {
-                activityResponse.setState(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                activityResponse.setState(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("SuccessfulEndpointCount")) {
                 activityResponse.setSuccessfulEndpointCount(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -73,8 +69,8 @@ class ActivityResponseJsonUnmarshaller implements
                 activityResponse.setTotalEndpointCount(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("TreatmentId")) {
-                activityResponse.setTreatmentId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                activityResponse.setTreatmentId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

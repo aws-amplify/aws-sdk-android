@@ -44,17 +44,14 @@ class AutoScalingSettingsUpdateJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("AutoScalingDisabled")) {
                 autoScalingSettingsUpdate.setAutoScalingDisabled(BooleanJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("AutoScalingRoleArn")) {
                 autoScalingSettingsUpdate.setAutoScalingRoleArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("ScalingPolicyUpdate")) {
                 autoScalingSettingsUpdate
                         .setScalingPolicyUpdate(AutoScalingPolicyUpdateJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
+                                .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

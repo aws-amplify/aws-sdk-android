@@ -37,20 +37,19 @@ class ElasticsearchActionJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("roleArn")) {
-                elasticsearchAction.setRoleArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                elasticsearchAction.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("endpoint")) {
-                elasticsearchAction.setEndpoint(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                elasticsearchAction.setEndpoint(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("index")) {
-                elasticsearchAction.setIndex(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                elasticsearchAction.setIndex(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("type")) {
                 elasticsearchAction.setType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("id")) {
-                elasticsearchAction.setId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                elasticsearchAction.setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

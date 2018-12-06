@@ -35,12 +35,10 @@ public class ListShardsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Shards")) {
                 listShardsResult.setShards(new ListUnmarshaller<Shard>(ShardJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("NextToken")) {
-                listShardsResult.setNextToken(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                listShardsResult.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

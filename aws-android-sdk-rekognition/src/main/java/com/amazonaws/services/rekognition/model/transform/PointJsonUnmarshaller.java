@@ -36,11 +36,9 @@ class PointJsonUnmarshaller implements Unmarshaller<Point, JsonUnmarshallerConte
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("X")) {
-                point.setX(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                point.setX(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Y")) {
-                point.setY(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                point.setY(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

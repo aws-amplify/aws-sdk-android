@@ -40,8 +40,8 @@ class LogTargetConfigurationJsonUnmarshaller implements
                 logTargetConfiguration.setLogTarget(LogTargetJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("logLevel")) {
-                logTargetConfiguration.setLogLevel(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                logTargetConfiguration.setLogLevel(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

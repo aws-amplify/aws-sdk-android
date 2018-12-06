@@ -34,8 +34,8 @@ public class StartFaceSearchResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("JobId")) {
-                startFaceSearchResult.setJobId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                startFaceSearchResult.setJobId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

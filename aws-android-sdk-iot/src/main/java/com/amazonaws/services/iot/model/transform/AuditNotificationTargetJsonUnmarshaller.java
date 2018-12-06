@@ -40,8 +40,8 @@ class AuditNotificationTargetJsonUnmarshaller implements
                 auditNotificationTarget.setTargetArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("roleArn")) {
-                auditNotificationTarget.setRoleArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                auditNotificationTarget.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("enabled")) {
                 auditNotificationTarget.setEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));

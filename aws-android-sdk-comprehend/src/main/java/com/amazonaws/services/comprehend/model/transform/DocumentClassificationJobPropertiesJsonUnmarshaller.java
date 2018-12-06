@@ -45,22 +45,19 @@ class DocumentClassificationJobPropertiesJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("JobStatus")) {
                 documentClassificationJobProperties.setJobStatus(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("Message")) {
                 documentClassificationJobProperties.setMessage(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("SubmitTime")) {
                 documentClassificationJobProperties.setSubmitTime(DateJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("EndTime")) {
                 documentClassificationJobProperties.setEndTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("DocumentClassifierArn")) {
                 documentClassificationJobProperties.setDocumentClassifierArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("InputDataConfig")) {
                 documentClassificationJobProperties
                         .setInputDataConfig(InputDataConfigJsonUnmarshaller.getInstance()
@@ -71,8 +68,7 @@ class DocumentClassificationJobPropertiesJsonUnmarshaller implements
                                 .unmarshall(context));
             } else if (name.equals("DataAccessRoleArn")) {
                 documentClassificationJobProperties.setDataAccessRoleArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

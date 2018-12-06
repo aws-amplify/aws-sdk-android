@@ -36,26 +36,23 @@ class ThingDocumentJsonUnmarshaller implements Unmarshaller<ThingDocument, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("thingName")) {
-                thingDocument.setThingName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                thingDocument
+                        .setThingName(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("thingId")) {
-                thingDocument.setThingId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                thingDocument.setThingId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("thingTypeName")) {
-                thingDocument.setThingTypeName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                thingDocument.setThingTypeName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("thingGroupNames")) {
                 thingDocument.setThingGroupNames(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("attributes")) {
                 thingDocument.setAttributes(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("shadow")) {
-                thingDocument.setShadow(StringJsonUnmarshaller.getInstance()
+                thingDocument.setShadow(StringJsonUnmarshaller.getInstance().unmarshall(context));
+            } else if (name.equals("connectivity")) {
+                thingDocument.setConnectivity(ThingConnectivityJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

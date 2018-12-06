@@ -36,11 +36,9 @@ class AgeRangeJsonUnmarshaller implements Unmarshaller<AgeRange, JsonUnmarshalle
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Low")) {
-                ageRange.setLow(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                ageRange.setLow(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("High")) {
-                ageRange.setHigh(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                ageRange.setHigh(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

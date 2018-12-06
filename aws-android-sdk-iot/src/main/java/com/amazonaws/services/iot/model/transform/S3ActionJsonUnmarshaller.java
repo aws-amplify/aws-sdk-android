@@ -36,17 +36,13 @@ class S3ActionJsonUnmarshaller implements Unmarshaller<S3Action, JsonUnmarshalle
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("roleArn")) {
-                s3Action.setRoleArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                s3Action.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("bucketName")) {
-                s3Action.setBucketName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                s3Action.setBucketName(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("key")) {
-                s3Action.setKey(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                s3Action.setKey(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("cannedAcl")) {
-                s3Action.setCannedAcl(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                s3Action.setCannedAcl(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

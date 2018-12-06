@@ -39,20 +39,16 @@ class WriteApplicationSettingsRequestJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("CampaignHook")) {
                 writeApplicationSettingsRequest.setCampaignHook(CampaignHookJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("CloudWatchMetricsEnabled")) {
                 writeApplicationSettingsRequest.setCloudWatchMetricsEnabled(BooleanJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("Limits")) {
                 writeApplicationSettingsRequest.setLimits(CampaignLimitsJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("QuietTime")) {
                 writeApplicationSettingsRequest.setQuietTime(QuietTimeJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

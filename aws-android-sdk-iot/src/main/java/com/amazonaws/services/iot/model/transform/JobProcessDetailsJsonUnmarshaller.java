@@ -38,9 +38,7 @@ class JobProcessDetailsJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("processingTargets")) {
                 jobProcessDetails.setProcessingTargets(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("numberOfCanceledThings")) {
                 jobProcessDetails.setNumberOfCanceledThings(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));

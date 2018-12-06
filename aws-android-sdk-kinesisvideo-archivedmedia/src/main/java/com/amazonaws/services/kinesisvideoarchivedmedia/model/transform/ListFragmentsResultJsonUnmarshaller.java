@@ -35,12 +35,10 @@ public class ListFragmentsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Fragments")) {
                 listFragmentsResult.setFragments(new ListUnmarshaller<Fragment>(
-                        FragmentJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        FragmentJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("NextToken")) {
-                listFragmentsResult.setNextToken(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                listFragmentsResult.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

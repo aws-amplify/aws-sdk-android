@@ -34,14 +34,14 @@ public class CreateStreamResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("streamId")) {
-                createStreamResult.setStreamId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                createStreamResult.setStreamId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("streamArn")) {
-                createStreamResult.setStreamArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                createStreamResult.setStreamArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("description")) {
-                createStreamResult.setDescription(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                createStreamResult.setDescription(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("streamVersion")) {
                 createStreamResult.setStreamVersion(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -37,8 +37,7 @@ public class UpdateContinuousBackupsResultJsonUnmarshaller implements
             if (name.equals("ContinuousBackupsDescription")) {
                 updateContinuousBackupsResult
                         .setContinuousBackupsDescription(ContinuousBackupsDescriptionJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
+                                .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

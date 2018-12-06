@@ -35,8 +35,7 @@ public class TransferCertificateResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("transferredCertificateArn")) {
                 transferCertificateResult.setTransferredCertificateArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

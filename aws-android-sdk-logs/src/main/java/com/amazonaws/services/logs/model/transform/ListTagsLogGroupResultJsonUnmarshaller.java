@@ -35,9 +35,7 @@ public class ListTagsLogGroupResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("tags")) {
                 listTagsLogGroupResult.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

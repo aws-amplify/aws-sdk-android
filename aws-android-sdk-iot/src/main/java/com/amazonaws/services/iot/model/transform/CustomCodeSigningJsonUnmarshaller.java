@@ -41,11 +41,10 @@ class CustomCodeSigningJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("certificateChain")) {
                 customCodeSigning.setCertificateChain(CodeSigningCertificateChainJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("hashAlgorithm")) {
-                customCodeSigning.setHashAlgorithm(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                customCodeSigning.setHashAlgorithm(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("signatureAlgorithm")) {
                 customCodeSigning.setSignatureAlgorithm(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

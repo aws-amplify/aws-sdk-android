@@ -37,14 +37,14 @@ class ADMChannelRequestJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("ClientId")) {
-                aDMChannelRequest.setClientId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aDMChannelRequest.setClientId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("ClientSecret")) {
-                aDMChannelRequest.setClientSecret(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aDMChannelRequest.setClientSecret(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Enabled")) {
-                aDMChannelRequest.setEnabled(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aDMChannelRequest.setEnabled(BooleanJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

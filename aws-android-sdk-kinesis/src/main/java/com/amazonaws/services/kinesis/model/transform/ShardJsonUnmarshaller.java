@@ -36,14 +36,12 @@ class ShardJsonUnmarshaller implements Unmarshaller<Shard, JsonUnmarshallerConte
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("ShardId")) {
-                shard.setShardId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                shard.setShardId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("ParentShardId")) {
-                shard.setParentShardId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                shard.setParentShardId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("AdjacentParentShardId")) {
-                shard.setAdjacentParentShardId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                shard.setAdjacentParentShardId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("HashKeyRange")) {
                 shard.setHashKeyRange(HashKeyRangeJsonUnmarshaller.getInstance()
                         .unmarshall(context));

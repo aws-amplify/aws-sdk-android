@@ -36,26 +36,19 @@ class DatasetJsonUnmarshaller implements Unmarshaller<Dataset, JsonUnmarshallerC
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("IdentityId")) {
-                dataset.setIdentityId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                dataset.setIdentityId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("DatasetName")) {
-                dataset.setDatasetName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                dataset.setDatasetName(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("CreationDate")) {
-                dataset.setCreationDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                dataset.setCreationDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("LastModifiedDate")) {
-                dataset.setLastModifiedDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                dataset.setLastModifiedDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("LastModifiedBy")) {
-                dataset.setLastModifiedBy(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                dataset.setLastModifiedBy(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("DataStorage")) {
-                dataset.setDataStorage(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                dataset.setDataStorage(LongJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("NumRecords")) {
-                dataset.setNumRecords(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                dataset.setNumRecords(LongJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

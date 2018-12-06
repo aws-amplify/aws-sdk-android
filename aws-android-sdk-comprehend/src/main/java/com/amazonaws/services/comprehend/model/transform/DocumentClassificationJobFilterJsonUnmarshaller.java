@@ -45,12 +45,10 @@ class DocumentClassificationJobFilterJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("SubmitTimeBefore")) {
                 documentClassificationJobFilter.setSubmitTimeBefore(DateJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("SubmitTimeAfter")) {
                 documentClassificationJobFilter.setSubmitTimeAfter(DateJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

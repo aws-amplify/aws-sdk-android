@@ -37,8 +37,7 @@ public class DescribeJobResultJsonUnmarshaller implements
                 describeJobResult.setDocumentSource(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("job")) {
-                describeJobResult.setJob(JobJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                describeJobResult.setJob(JobJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

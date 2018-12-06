@@ -17,7 +17,10 @@ package com.amazonaws.services.rekognition.model.transform;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
-import com.amazonaws.transform.JsonErrorUnmarshaller;
+import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
+import com.amazonaws.transform.*;
+import com.amazonaws.util.json.AwsJsonReader;
+
 import com.amazonaws.services.rekognition.model.AccessDeniedException;
 
 public class AccessDeniedExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -38,5 +41,32 @@ public class AccessDeniedExceptionUnmarshaller extends JsonErrorUnmarshaller {
         e.setErrorCode("AccessDeniedException");
 
         return e;
+    }
+
+    public AccessDeniedException unmarshall(JsonUnmarshallerContext context) throws Exception {
+        AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+
+        // The `getMessage` method of AWSServiceException derives its value from
+        // `errorMessage`. The incoming context
+        // has the value in `message`, so we'll have a special case to handle
+        // that.
+        AccessDeniedException accessDeniedException = new AccessDeniedException(
+                "No message provided.");
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if ("message".equals(name)) {
+                accessDeniedException.setErrorMessage(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+        return accessDeniedException;
     }
 }

@@ -39,14 +39,11 @@ class BatchDetectDominantLanguageItemResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Index")) {
                 batchDetectDominantLanguageItemResult.setIndex(IntegerJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("Languages")) {
                 batchDetectDominantLanguageItemResult
                         .setLanguages(new ListUnmarshaller<DominantLanguage>(
-                                DominantLanguageJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                                DominantLanguageJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

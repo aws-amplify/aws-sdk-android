@@ -37,11 +37,11 @@ class HLSTimestampRangeJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("StartTimestamp")) {
-                hLSTimestampRange.setStartTimestamp(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                hLSTimestampRange.setStartTimestamp(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("EndTimestamp")) {
-                hLSTimestampRange.setEndTimestamp(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                hLSTimestampRange.setEndTimestamp(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

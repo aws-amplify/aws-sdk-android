@@ -34,8 +34,8 @@ public class CreateExportTaskResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("taskId")) {
-                createExportTaskResult.setTaskId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                createExportTaskResult.setTaskId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

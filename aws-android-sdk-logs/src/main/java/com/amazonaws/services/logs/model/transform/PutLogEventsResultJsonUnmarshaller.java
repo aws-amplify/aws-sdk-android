@@ -38,8 +38,7 @@ public class PutLogEventsResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("rejectedLogEventsInfo")) {
                 putLogEventsResult.setRejectedLogEventsInfo(RejectedLogEventsInfoJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -36,8 +36,7 @@ public class DescribeStreamSummaryResultJsonUnmarshaller implements
             if (name.equals("StreamDescriptionSummary")) {
                 describeStreamSummaryResult
                         .setStreamDescriptionSummary(StreamDescriptionSummaryJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
+                                .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

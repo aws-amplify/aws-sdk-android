@@ -38,9 +38,7 @@ class SegmentDimensionsJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Attributes")) {
                 segmentDimensions.setAttributes(new MapUnmarshaller<AttributeDimension>(
-                        AttributeDimensionJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        AttributeDimensionJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("Behavior")) {
                 segmentDimensions.setBehavior(SegmentBehaviorsJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -52,14 +50,10 @@ class SegmentDimensionsJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("Metrics")) {
                 segmentDimensions.setMetrics(new MapUnmarshaller<MetricDimension>(
-                        MetricDimensionJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        MetricDimensionJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("UserAttributes")) {
                 segmentDimensions.setUserAttributes(new MapUnmarshaller<AttributeDimension>(
-                        AttributeDimensionJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        AttributeDimensionJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

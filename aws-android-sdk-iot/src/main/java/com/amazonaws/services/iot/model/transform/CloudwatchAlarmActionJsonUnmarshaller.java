@@ -37,11 +37,11 @@ class CloudwatchAlarmActionJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("roleArn")) {
-                cloudwatchAlarmAction.setRoleArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                cloudwatchAlarmAction.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("alarmName")) {
-                cloudwatchAlarmAction.setAlarmName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                cloudwatchAlarmAction.setAlarmName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("stateReason")) {
                 cloudwatchAlarmAction.setStateReason(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

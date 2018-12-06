@@ -38,9 +38,7 @@ class SegmentGroupListJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Groups")) {
                 segmentGroupList.setGroups(new ListUnmarshaller<SegmentGroup>(
-                        SegmentGroupJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        SegmentGroupJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("Include")) {
                 segmentGroupList.setInclude(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

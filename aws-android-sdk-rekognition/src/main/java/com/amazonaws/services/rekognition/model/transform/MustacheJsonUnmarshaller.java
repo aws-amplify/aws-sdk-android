@@ -36,11 +36,9 @@ class MustacheJsonUnmarshaller implements Unmarshaller<Mustache, JsonUnmarshalle
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Value")) {
-                mustache.setValue(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                mustache.setValue(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Confidence")) {
-                mustache.setConfidence(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                mustache.setConfidence(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

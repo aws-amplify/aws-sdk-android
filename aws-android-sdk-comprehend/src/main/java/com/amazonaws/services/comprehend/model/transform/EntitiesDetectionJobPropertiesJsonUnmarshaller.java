@@ -57,23 +57,19 @@ class EntitiesDetectionJobPropertiesJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("EntityRecognizerArn")) {
                 entitiesDetectionJobProperties.setEntityRecognizerArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("InputDataConfig")) {
                 entitiesDetectionJobProperties.setInputDataConfig(InputDataConfigJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("OutputDataConfig")) {
                 entitiesDetectionJobProperties.setOutputDataConfig(OutputDataConfigJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("LanguageCode")) {
                 entitiesDetectionJobProperties.setLanguageCode(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("DataAccessRoleArn")) {
                 entitiesDetectionJobProperties.setDataAccessRoleArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

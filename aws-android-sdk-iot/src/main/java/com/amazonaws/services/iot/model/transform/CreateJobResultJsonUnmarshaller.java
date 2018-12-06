@@ -34,14 +34,12 @@ public class CreateJobResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("jobArn")) {
-                createJobResult.setJobArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                createJobResult.setJobArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("jobId")) {
-                createJobResult.setJobId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                createJobResult.setJobId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("description")) {
-                createJobResult.setDescription(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                createJobResult.setDescription(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

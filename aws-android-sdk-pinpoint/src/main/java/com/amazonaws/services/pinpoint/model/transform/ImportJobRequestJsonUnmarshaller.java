@@ -37,14 +37,14 @@ class ImportJobRequestJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("DefineSegment")) {
-                importJobRequest.setDefineSegment(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                importJobRequest.setDefineSegment(BooleanJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("ExternalId")) {
-                importJobRequest.setExternalId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                importJobRequest.setExternalId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Format")) {
-                importJobRequest.setFormat(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                importJobRequest
+                        .setFormat(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("RegisterEndpoints")) {
                 importJobRequest.setRegisterEndpoints(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -52,14 +52,13 @@ class ImportJobRequestJsonUnmarshaller implements
                 importJobRequest.setRoleArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("S3Url")) {
-                importJobRequest.setS3Url(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                importJobRequest.setS3Url(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("SegmentId")) {
-                importJobRequest.setSegmentId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                importJobRequest.setSegmentId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("SegmentName")) {
-                importJobRequest.setSegmentName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                importJobRequest.setSegmentName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

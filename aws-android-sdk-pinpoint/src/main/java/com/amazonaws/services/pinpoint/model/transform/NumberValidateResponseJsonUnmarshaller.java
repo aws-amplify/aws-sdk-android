@@ -37,22 +37,20 @@ class NumberValidateResponseJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Carrier")) {
-                numberValidateResponse.setCarrier(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                numberValidateResponse.setCarrier(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("City")) {
-                numberValidateResponse.setCity(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                numberValidateResponse.setCity(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("CleansedPhoneNumberE164")) {
                 numberValidateResponse.setCleansedPhoneNumberE164(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("CleansedPhoneNumberNational")) {
                 numberValidateResponse.setCleansedPhoneNumberNational(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("Country")) {
-                numberValidateResponse.setCountry(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                numberValidateResponse.setCountry(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("CountryCodeIso2")) {
                 numberValidateResponse.setCountryCodeIso2(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -60,12 +58,11 @@ class NumberValidateResponseJsonUnmarshaller implements
                 numberValidateResponse.setCountryCodeNumeric(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("County")) {
-                numberValidateResponse.setCounty(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                numberValidateResponse.setCounty(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("OriginalCountryCodeIso2")) {
                 numberValidateResponse.setOriginalCountryCodeIso2(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("OriginalPhoneNumber")) {
                 numberValidateResponse.setOriginalPhoneNumber(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -76,11 +73,11 @@ class NumberValidateResponseJsonUnmarshaller implements
                 numberValidateResponse.setPhoneTypeCode(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Timezone")) {
-                numberValidateResponse.setTimezone(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                numberValidateResponse.setTimezone(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("ZipCode")) {
-                numberValidateResponse.setZipCode(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                numberValidateResponse.setZipCode(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

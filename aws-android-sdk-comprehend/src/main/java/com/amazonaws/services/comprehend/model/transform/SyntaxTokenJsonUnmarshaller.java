@@ -36,17 +36,14 @@ class SyntaxTokenJsonUnmarshaller implements Unmarshaller<SyntaxToken, JsonUnmar
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("TokenId")) {
-                syntaxToken.setTokenId(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                syntaxToken.setTokenId(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Text")) {
-                syntaxToken.setText(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                syntaxToken.setText(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("BeginOffset")) {
                 syntaxToken.setBeginOffset(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("EndOffset")) {
-                syntaxToken.setEndOffset(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                syntaxToken.setEndOffset(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("PartOfSpeech")) {
                 syntaxToken.setPartOfSpeech(PartOfSpeechTagJsonUnmarshaller.getInstance()
                         .unmarshall(context));

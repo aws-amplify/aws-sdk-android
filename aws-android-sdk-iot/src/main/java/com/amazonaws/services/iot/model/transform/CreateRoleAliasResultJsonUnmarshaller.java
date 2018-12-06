@@ -34,8 +34,8 @@ public class CreateRoleAliasResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("roleAlias")) {
-                createRoleAliasResult.setRoleAlias(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                createRoleAliasResult.setRoleAlias(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("roleAliasArn")) {
                 createRoleAliasResult.setRoleAliasArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

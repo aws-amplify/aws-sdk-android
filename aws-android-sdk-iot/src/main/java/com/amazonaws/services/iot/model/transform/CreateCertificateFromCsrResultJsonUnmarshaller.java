@@ -36,16 +36,13 @@ public class CreateCertificateFromCsrResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("certificateArn")) {
                 createCertificateFromCsrResult.setCertificateArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("certificateId")) {
                 createCertificateFromCsrResult.setCertificateId(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("certificatePem")) {
                 createCertificateFromCsrResult.setCertificatePem(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

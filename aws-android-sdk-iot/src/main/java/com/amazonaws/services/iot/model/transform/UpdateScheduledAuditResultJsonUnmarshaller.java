@@ -35,8 +35,7 @@ public class UpdateScheduledAuditResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("scheduledAuditArn")) {
                 updateScheduledAuditResult.setScheduledAuditArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

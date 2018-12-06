@@ -36,8 +36,7 @@ public class RestoreTableFromBackupResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("TableDescription")) {
                 restoreTableFromBackupResult.setTableDescription(TableDescriptionJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

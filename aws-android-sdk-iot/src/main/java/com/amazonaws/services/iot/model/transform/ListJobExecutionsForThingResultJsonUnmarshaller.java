@@ -37,8 +37,7 @@ public class ListJobExecutionsForThingResultJsonUnmarshaller implements
             if (name.equals("executionSummaries")) {
                 listJobExecutionsForThingResult
                         .setExecutionSummaries(new ListUnmarshaller<JobExecutionSummaryForThing>(
-                                JobExecutionSummaryForThingJsonUnmarshaller.getInstance()
-                        )
+                                JobExecutionSummaryForThingJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else if (name.equals("nextToken")) {
                 listJobExecutionsForThingResult.setNextToken(StringJsonUnmarshaller.getInstance()
