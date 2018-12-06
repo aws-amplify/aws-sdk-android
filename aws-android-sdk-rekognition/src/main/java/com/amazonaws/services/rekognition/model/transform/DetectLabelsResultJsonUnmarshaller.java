@@ -35,9 +35,7 @@ public class DetectLabelsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Labels")) {
                 detectLabelsResult.setLabels(new ListUnmarshaller<Label>(LabelJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("OrientationCorrection")) {
                 detectLabelsResult.setOrientationCorrection(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

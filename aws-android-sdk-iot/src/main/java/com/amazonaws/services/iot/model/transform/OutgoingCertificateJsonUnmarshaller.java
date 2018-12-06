@@ -46,14 +46,14 @@ class OutgoingCertificateJsonUnmarshaller implements
                 outgoingCertificate.setTransferredTo(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("transferDate")) {
-                outgoingCertificate.setTransferDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                outgoingCertificate.setTransferDate(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("transferMessage")) {
                 outgoingCertificate.setTransferMessage(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("creationDate")) {
-                outgoingCertificate.setCreationDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                outgoingCertificate.setCreationDate(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

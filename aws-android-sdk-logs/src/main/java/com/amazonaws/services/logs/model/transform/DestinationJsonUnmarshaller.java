@@ -36,23 +36,19 @@ class DestinationJsonUnmarshaller implements Unmarshaller<Destination, JsonUnmar
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("destinationName")) {
-                destination.setDestinationName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                destination.setDestinationName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("targetArn")) {
-                destination.setTargetArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                destination.setTargetArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("roleArn")) {
-                destination.setRoleArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                destination.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("accessPolicy")) {
                 destination.setAccessPolicy(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("arn")) {
-                destination.setArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                destination.setArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("creationTime")) {
-                destination.setCreationTime(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                destination.setCreationTime(LongJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

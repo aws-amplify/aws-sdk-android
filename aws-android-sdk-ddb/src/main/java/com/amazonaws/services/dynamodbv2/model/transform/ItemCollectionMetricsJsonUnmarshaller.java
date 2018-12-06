@@ -38,14 +38,10 @@ class ItemCollectionMetricsJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("ItemCollectionKey")) {
                 itemCollectionMetrics.setItemCollectionKey(new MapUnmarshaller<AttributeValue>(
-                        AttributeValueJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        AttributeValueJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("SizeEstimateRangeGB")) {
                 itemCollectionMetrics.setSizeEstimateRangeGB(new ListUnmarshaller<Double>(
-                        DoubleJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        DoubleJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

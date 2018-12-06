@@ -37,14 +37,14 @@ class SMSChannelRequestJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Enabled")) {
-                sMSChannelRequest.setEnabled(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                sMSChannelRequest.setEnabled(BooleanJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("SenderId")) {
-                sMSChannelRequest.setSenderId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                sMSChannelRequest.setSenderId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("ShortCode")) {
-                sMSChannelRequest.setShortCode(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                sMSChannelRequest.setShortCode(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

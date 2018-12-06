@@ -36,8 +36,7 @@ class RecordJsonUnmarshaller implements Unmarshaller<Record, JsonUnmarshallerCon
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Data")) {
-                record.setData(ByteBufferJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                record.setData(ByteBufferJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -44,11 +44,10 @@ class APNSChannelResponseJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("DefaultAuthenticationMethod")) {
                 aPNSChannelResponse.setDefaultAuthenticationMethod(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("Enabled")) {
-                aPNSChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("HasCredential")) {
                 aPNSChannelResponse.setHasCredential(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -56,11 +55,10 @@ class APNSChannelResponseJsonUnmarshaller implements
                 aPNSChannelResponse.setHasTokenKey(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Id")) {
-                aPNSChannelResponse.setId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSChannelResponse.setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("IsArchived")) {
-                aPNSChannelResponse.setIsArchived(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSChannelResponse.setIsArchived(BooleanJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("LastModifiedBy")) {
                 aPNSChannelResponse.setLastModifiedBy(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -68,11 +66,11 @@ class APNSChannelResponseJsonUnmarshaller implements
                 aPNSChannelResponse.setLastModifiedDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Platform")) {
-                aPNSChannelResponse.setPlatform(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSChannelResponse.setPlatform(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Version")) {
-                aPNSChannelResponse.setVersion(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSChannelResponse.setVersion(IntegerJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

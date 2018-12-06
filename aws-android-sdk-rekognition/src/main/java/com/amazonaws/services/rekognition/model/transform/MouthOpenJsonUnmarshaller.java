@@ -36,11 +36,9 @@ class MouthOpenJsonUnmarshaller implements Unmarshaller<MouthOpen, JsonUnmarshal
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Value")) {
-                mouthOpen.setValue(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                mouthOpen.setValue(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Confidence")) {
-                mouthOpen.setConfidence(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                mouthOpen.setConfidence(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

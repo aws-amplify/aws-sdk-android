@@ -42,8 +42,7 @@ public class ListTranscriptionJobsResultJsonUnmarshaller implements
             } else if (name.equals("TranscriptionJobSummaries")) {
                 listTranscriptionJobsResult
                         .setTranscriptionJobSummaries(new ListUnmarshaller<TranscriptionJobSummary>(
-                                TranscriptionJobSummaryJsonUnmarshaller.getInstance()
-                        )
+                                TranscriptionJobSummaryJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else {
                 reader.skipValue();

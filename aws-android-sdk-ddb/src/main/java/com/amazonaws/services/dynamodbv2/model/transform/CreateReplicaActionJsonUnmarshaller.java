@@ -37,8 +37,8 @@ class CreateReplicaActionJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("RegionName")) {
-                createReplicaAction.setRegionName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                createReplicaAction.setRegionName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

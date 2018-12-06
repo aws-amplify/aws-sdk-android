@@ -38,24 +38,22 @@ class SegmentImportResourceJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("ChannelCounts")) {
                 segmentImportResource.setChannelCounts(new MapUnmarshaller<Integer>(
-                        IntegerJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        IntegerJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("ExternalId")) {
                 segmentImportResource.setExternalId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Format")) {
-                segmentImportResource.setFormat(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                segmentImportResource.setFormat(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("RoleArn")) {
-                segmentImportResource.setRoleArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                segmentImportResource.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("S3Url")) {
-                segmentImportResource.setS3Url(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                segmentImportResource.setS3Url(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Size")) {
-                segmentImportResource.setSize(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                segmentImportResource.setSize(IntegerJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

@@ -57,20 +57,17 @@ class SentimentDetectionJobPropertiesJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("InputDataConfig")) {
                 sentimentDetectionJobProperties.setInputDataConfig(InputDataConfigJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("OutputDataConfig")) {
                 sentimentDetectionJobProperties
                         .setOutputDataConfig(OutputDataConfigJsonUnmarshaller.getInstance()
                                 .unmarshall(context));
             } else if (name.equals("LanguageCode")) {
                 sentimentDetectionJobProperties.setLanguageCode(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("DataAccessRoleArn")) {
                 sentimentDetectionJobProperties.setDataAccessRoleArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

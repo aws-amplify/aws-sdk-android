@@ -36,11 +36,9 @@ class QuietTimeJsonUnmarshaller implements Unmarshaller<QuietTime, JsonUnmarshal
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("End")) {
-                quietTime.setEnd(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                quietTime.setEnd(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Start")) {
-                quietTime.setStart(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                quietTime.setStart(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

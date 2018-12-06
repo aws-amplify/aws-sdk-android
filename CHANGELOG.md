@@ -1,5 +1,35 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.8.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.8.5)
+
+### New Features
+
+* **AWS Mobile Client**
+  * Support `showSignIn` without Cognito Identity Pool configured. See [issue #592](https://github.com/aws-amplify/aws-sdk-android/issues/592)
+
+* **Amazon Cognito Auth**
+  * Support identity provider identifier setting. See [PR #602](https://github.com/aws-amplify/aws-sdk-android/pull/602)
+
+### Bug Fixes
+
+* **AWS Mobile Client**
+  * Fix state change to `GUEST` mode which was not being triggered previously and would stay in `SIGNED_OUT` mode. This state is triggered by calling `getCredentials` or `getIdentityId` while signed-out and unauthenticated access is enabled in Cognito Identity Pools.
+
+* **AWS Auth SDK**
+  * Fix forced change password view's IDs to prevent crash. See [issue #586](https://github.com/aws-amplify/aws-sdk-android/issues/586)
+
+* **Amazon Cognito Identity Provider**
+  * Fix secret hash generation for empty value of client secret. Allows for operations such as sign-up to occur without client secret. See [issue #587](https://github.com/aws-amplify/aws-sdk-android/issues/587) [PR #593](https://github.com/aws-amplify/aws-sdk-android/pull/593)
+
+* **Amazon Lex**
+  * Fix race condition for microphone access when no speech is detected during interaction.
+
+### Misc. Updates
+
+* Model updates for the following services
+  * AWS IoT
+  * AWS Lambda
+
 ## [Release 2.8.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.8.4)
 
 ### Bug Fixes

@@ -34,8 +34,8 @@ public class CancelKeyDeletionResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("KeyId")) {
-                cancelKeyDeletionResult.setKeyId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                cancelKeyDeletionResult.setKeyId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

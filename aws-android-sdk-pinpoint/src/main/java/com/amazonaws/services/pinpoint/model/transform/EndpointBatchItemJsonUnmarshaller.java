@@ -37,46 +37,41 @@ class EndpointBatchItemJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Address")) {
-                endpointBatchItem.setAddress(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                endpointBatchItem.setAddress(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Attributes")) {
                 endpointBatchItem.setAttributes(new MapUnmarshaller<java.util.List<String>>(
-                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
-                        )
-                        )
-                                .unmarshall(context));
-            } else if (name.equals("ChannelType")) {
-                endpointBatchItem.setChannelType(StringJsonUnmarshaller.getInstance()
+                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()))
                         .unmarshall(context));
+            } else if (name.equals("ChannelType")) {
+                endpointBatchItem.setChannelType(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Demographic")) {
                 endpointBatchItem.setDemographic(EndpointDemographicJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("EffectiveDate")) {
-                endpointBatchItem.setEffectiveDate(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                endpointBatchItem.setEffectiveDate(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("EndpointStatus")) {
                 endpointBatchItem.setEndpointStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Id")) {
-                endpointBatchItem.setId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                endpointBatchItem.setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Location")) {
                 endpointBatchItem.setLocation(EndpointLocationJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Metrics")) {
                 endpointBatchItem.setMetrics(new MapUnmarshaller<Double>(DoubleJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("OptOut")) {
                 endpointBatchItem.setOptOut(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("RequestId")) {
-                endpointBatchItem.setRequestId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                endpointBatchItem.setRequestId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("User")) {
-                endpointBatchItem.setUser(EndpointUserJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                endpointBatchItem.setUser(EndpointUserJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

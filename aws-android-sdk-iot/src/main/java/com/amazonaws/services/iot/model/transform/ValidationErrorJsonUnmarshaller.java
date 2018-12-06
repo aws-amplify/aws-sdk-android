@@ -37,8 +37,8 @@ class ValidationErrorJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("errorMessage")) {
-                validationError.setErrorMessage(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                validationError.setErrorMessage(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

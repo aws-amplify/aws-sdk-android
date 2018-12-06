@@ -37,13 +37,10 @@ class ItemResponseJsonUnmarshaller implements Unmarshaller<ItemResponse, JsonUnm
             String name = reader.nextName();
             if (name.equals("EndpointItemResponse")) {
                 itemResponse.setEndpointItemResponse(EndpointItemResponseJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("EventsItemResponse")) {
                 itemResponse.setEventsItemResponse(new MapUnmarshaller<EventItemResponse>(
-                        EventItemResponseJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        EventItemResponseJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

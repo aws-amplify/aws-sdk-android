@@ -26,7 +26,9 @@ public class InvalidRequestContentException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * <p/>
+     * <p>
+     * The exception type.
+     * </p>
      */
     private String type;
 
@@ -41,18 +43,26 @@ public class InvalidRequestContentException extends AmazonServiceException {
     }
 
     /**
-     * <p/>
+     * <p>
+     * The exception type.
+     * </p>
      *
-     * @return <p/>
+     * @return <p>
+     *         The exception type.
+     *         </p>
      */
     public String getType() {
         return type;
     }
 
     /**
-     * <p/>
+     * <p>
+     * The exception type.
+     * </p>
      *
-     * @param type <p/>
+     * @param type <p>
+     *            The exception type.
+     *            </p>
      */
     public void setType(String type) {
         this.type = type;

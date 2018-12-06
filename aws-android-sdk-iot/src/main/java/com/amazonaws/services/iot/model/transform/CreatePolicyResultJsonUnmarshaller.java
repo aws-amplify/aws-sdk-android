@@ -34,11 +34,11 @@ public class CreatePolicyResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("policyName")) {
-                createPolicyResult.setPolicyName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                createPolicyResult.setPolicyName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("policyArn")) {
-                createPolicyResult.setPolicyArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                createPolicyResult.setPolicyArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("policyDocument")) {
                 createPolicyResult.setPolicyDocument(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

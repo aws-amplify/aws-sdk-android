@@ -37,8 +37,8 @@ class MetricTransformationJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("metricName")) {
-                metricTransformation.setMetricName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                metricTransformation.setMetricName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("metricNamespace")) {
                 metricTransformation.setMetricNamespace(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

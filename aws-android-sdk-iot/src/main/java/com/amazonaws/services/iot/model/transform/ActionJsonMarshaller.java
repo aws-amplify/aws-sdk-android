@@ -96,6 +96,11 @@ class ActionJsonMarshaller {
             jsonWriter.name("iotAnalytics");
             IotAnalyticsActionJsonMarshaller.getInstance().marshall(iotAnalytics, jsonWriter);
         }
+        if (action.getIotEvents() != null) {
+            IotEventsAction iotEvents = action.getIotEvents();
+            jsonWriter.name("iotEvents");
+            IotEventsActionJsonMarshaller.getInstance().marshall(iotEvents, jsonWriter);
+        }
         if (action.getStepFunctions() != null) {
             StepFunctionsAction stepFunctions = action.getStepFunctions();
             jsonWriter.name("stepFunctions");

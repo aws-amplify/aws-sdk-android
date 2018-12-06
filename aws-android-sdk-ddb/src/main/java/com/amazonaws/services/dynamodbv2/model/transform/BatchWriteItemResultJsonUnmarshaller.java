@@ -37,23 +37,16 @@ public class BatchWriteItemResultJsonUnmarshaller implements
                 batchWriteItemResult
                         .setUnprocessedItems(new MapUnmarshaller<java.util.List<WriteRequest>>(
                                 new ListUnmarshaller<WriteRequest>(WriteRequestJsonUnmarshaller
-                                        .getInstance()
-                                )
-                        )
-                                .unmarshall(context));
+                                        .getInstance())).unmarshall(context));
             } else if (name.equals("ItemCollectionMetrics")) {
                 batchWriteItemResult
                         .setItemCollectionMetrics(new MapUnmarshaller<java.util.List<ItemCollectionMetrics>>(
                                 new ListUnmarshaller<ItemCollectionMetrics>(
-                                        ItemCollectionMetricsJsonUnmarshaller.getInstance()
-                                )
-                        )
+                                        ItemCollectionMetricsJsonUnmarshaller.getInstance()))
                                 .unmarshall(context));
             } else if (name.equals("ConsumedCapacity")) {
                 batchWriteItemResult.setConsumedCapacity(new ListUnmarshaller<ConsumedCapacity>(
-                        ConsumedCapacityJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        ConsumedCapacityJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

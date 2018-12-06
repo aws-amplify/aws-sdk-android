@@ -37,24 +37,23 @@ class RoleAliasDescriptionJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("roleAlias")) {
-                roleAliasDescription.setRoleAlias(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                roleAliasDescription.setRoleAlias(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("roleAliasArn")) {
                 roleAliasDescription.setRoleAliasArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("roleArn")) {
-                roleAliasDescription.setRoleArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                roleAliasDescription.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("owner")) {
-                roleAliasDescription.setOwner(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                roleAliasDescription.setOwner(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("credentialDurationSeconds")) {
                 roleAliasDescription.setCredentialDurationSeconds(IntegerJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("creationDate")) {
-                roleAliasDescription.setCreationDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                roleAliasDescription.setCreationDate(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("lastModifiedDate")) {
                 roleAliasDescription.setLastModifiedDate(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));

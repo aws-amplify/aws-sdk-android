@@ -37,8 +37,7 @@ public class DescribeKeyPhrasesDetectionJobResultJsonUnmarshaller implements
             if (name.equals("KeyPhrasesDetectionJobProperties")) {
                 describeKeyPhrasesDetectionJobResult
                         .setKeyPhrasesDetectionJobProperties(KeyPhrasesDetectionJobPropertiesJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
+                                .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

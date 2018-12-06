@@ -36,61 +36,45 @@ class APNSMessageJsonUnmarshaller implements Unmarshaller<APNSMessage, JsonUnmar
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Action")) {
-                aPNSMessage.setAction(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSMessage.setAction(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Badge")) {
-                aPNSMessage.setBadge(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSMessage.setBadge(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Body")) {
-                aPNSMessage.setBody(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSMessage.setBody(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Category")) {
-                aPNSMessage.setCategory(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSMessage.setCategory(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("CollapseId")) {
-                aPNSMessage.setCollapseId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSMessage.setCollapseId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Data")) {
                 aPNSMessage.setData(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("MediaUrl")) {
-                aPNSMessage.setMediaUrl(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSMessage.setMediaUrl(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("PreferredAuthenticationMethod")) {
                 aPNSMessage.setPreferredAuthenticationMethod(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Priority")) {
-                aPNSMessage.setPriority(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSMessage.setPriority(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("RawContent")) {
-                aPNSMessage.setRawContent(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSMessage.setRawContent(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("SilentPush")) {
-                aPNSMessage.setSilentPush(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSMessage
+                        .setSilentPush(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Sound")) {
-                aPNSMessage.setSound(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSMessage.setSound(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Substitutions")) {
                 aPNSMessage.setSubstitutions(new MapUnmarshaller<java.util.List<String>>(
-                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
-                        )
-                        )
-                                .unmarshall(context));
+                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()))
+                        .unmarshall(context));
             } else if (name.equals("ThreadId")) {
-                aPNSMessage.setThreadId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSMessage.setThreadId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("TimeToLive")) {
-                aPNSMessage.setTimeToLive(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSMessage
+                        .setTimeToLive(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Title")) {
-                aPNSMessage.setTitle(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSMessage.setTitle(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Url")) {
-                aPNSMessage.setUrl(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSMessage.setUrl(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -41,15 +41,13 @@ class ClassifierMetadataJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("NumberOfTrainedDocuments")) {
                 classifierMetadata.setNumberOfTrainedDocuments(IntegerJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("NumberOfTestDocuments")) {
                 classifierMetadata.setNumberOfTestDocuments(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("EvaluationMetrics")) {
                 classifierMetadata.setEvaluationMetrics(ClassifierEvaluationMetricsJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -37,8 +37,8 @@ class LexiconDescriptionJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Name")) {
-                lexiconDescription.setName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                lexiconDescription
+                        .setName(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Attributes")) {
                 lexiconDescription.setAttributes(LexiconAttributesJsonUnmarshaller.getInstance()
                         .unmarshall(context));

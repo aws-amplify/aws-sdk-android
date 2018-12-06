@@ -36,11 +36,9 @@ class S3DestinationJsonUnmarshaller implements Unmarshaller<S3Destination, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("bucket")) {
-                s3Destination.setBucket(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                s3Destination.setBucket(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("prefix")) {
-                s3Destination.setPrefix(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                s3Destination.setPrefix(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

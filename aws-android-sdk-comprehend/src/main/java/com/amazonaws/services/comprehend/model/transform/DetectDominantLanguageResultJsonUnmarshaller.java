@@ -36,9 +36,7 @@ public class DetectDominantLanguageResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Languages")) {
                 detectDominantLanguageResult.setLanguages(new ListUnmarshaller<DominantLanguage>(
-                        DominantLanguageJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        DominantLanguageJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

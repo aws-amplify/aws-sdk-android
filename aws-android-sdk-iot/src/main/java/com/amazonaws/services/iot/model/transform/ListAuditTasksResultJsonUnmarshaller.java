@@ -35,12 +35,10 @@ public class ListAuditTasksResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("tasks")) {
                 listAuditTasksResult.setTasks(new ListUnmarshaller<AuditTaskMetadata>(
-                        AuditTaskMetadataJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        AuditTaskMetadataJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("nextToken")) {
-                listAuditTasksResult.setNextToken(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                listAuditTasksResult.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

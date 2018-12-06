@@ -40,19 +40,16 @@ class ThingAttributeJsonUnmarshaller implements
                 thingAttribute.setThingName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("thingTypeName")) {
-                thingAttribute.setThingTypeName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                thingAttribute.setThingTypeName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("thingArn")) {
-                thingAttribute.setThingArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                thingAttribute
+                        .setThingArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("attributes")) {
                 thingAttribute.setAttributes(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("version")) {
-                thingAttribute.setVersion(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                thingAttribute.setVersion(LongJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

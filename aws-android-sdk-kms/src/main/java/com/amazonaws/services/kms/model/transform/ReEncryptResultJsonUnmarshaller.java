@@ -37,11 +37,10 @@ public class ReEncryptResultJsonUnmarshaller implements
                 reEncryptResult.setCiphertextBlob(ByteBufferJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("SourceKeyId")) {
-                reEncryptResult.setSourceKeyId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                reEncryptResult.setSourceKeyId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("KeyId")) {
-                reEncryptResult.setKeyId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                reEncryptResult.setKeyId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

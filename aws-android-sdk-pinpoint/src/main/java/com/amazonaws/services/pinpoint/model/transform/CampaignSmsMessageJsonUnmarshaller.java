@@ -37,14 +37,14 @@ class CampaignSmsMessageJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Body")) {
-                campaignSmsMessage.setBody(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                campaignSmsMessage
+                        .setBody(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("MessageType")) {
-                campaignSmsMessage.setMessageType(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                campaignSmsMessage.setMessageType(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("SenderId")) {
-                campaignSmsMessage.setSenderId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                campaignSmsMessage.setSenderId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

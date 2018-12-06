@@ -36,11 +36,9 @@ class KeyPairJsonUnmarshaller implements Unmarshaller<KeyPair, JsonUnmarshallerC
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("PublicKey")) {
-                keyPair.setPublicKey(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyPair.setPublicKey(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("PrivateKey")) {
-                keyPair.setPrivateKey(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyPair.setPrivateKey(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

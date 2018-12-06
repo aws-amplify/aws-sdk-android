@@ -40,8 +40,8 @@ public class GenerateDataKeyResultJsonUnmarshaller implements
                 generateDataKeyResult.setPlaintext(ByteBufferJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("KeyId")) {
-                generateDataKeyResult.setKeyId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                generateDataKeyResult.setKeyId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

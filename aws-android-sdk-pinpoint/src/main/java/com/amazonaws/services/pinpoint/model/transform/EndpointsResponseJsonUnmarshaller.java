@@ -38,9 +38,7 @@ class EndpointsResponseJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Item")) {
                 endpointsResponse.setItem(new ListUnmarshaller<EndpointResponse>(
-                        EndpointResponseJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        EndpointResponseJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

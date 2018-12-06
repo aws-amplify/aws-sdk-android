@@ -43,8 +43,8 @@ class EmailChannelResponseJsonUnmarshaller implements
                 emailChannelResponse.setCreationDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Enabled")) {
-                emailChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                emailChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("FromAddress")) {
                 emailChannelResponse.setFromAddress(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -52,11 +52,11 @@ class EmailChannelResponseJsonUnmarshaller implements
                 emailChannelResponse.setHasCredential(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Id")) {
-                emailChannelResponse.setId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                emailChannelResponse
+                        .setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Identity")) {
-                emailChannelResponse.setIdentity(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                emailChannelResponse.setIdentity(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("IsArchived")) {
                 emailChannelResponse.setIsArchived(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -70,14 +70,14 @@ class EmailChannelResponseJsonUnmarshaller implements
                 emailChannelResponse.setMessagesPerSecond(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Platform")) {
-                emailChannelResponse.setPlatform(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                emailChannelResponse.setPlatform(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("RoleArn")) {
-                emailChannelResponse.setRoleArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                emailChannelResponse.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Version")) {
-                emailChannelResponse.setVersion(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                emailChannelResponse.setVersion(IntegerJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

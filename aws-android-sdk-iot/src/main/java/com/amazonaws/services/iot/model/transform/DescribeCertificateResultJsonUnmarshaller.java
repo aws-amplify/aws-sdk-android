@@ -36,8 +36,7 @@ public class DescribeCertificateResultJsonUnmarshaller implements
             if (name.equals("certificateDescription")) {
                 describeCertificateResult
                         .setCertificateDescription(CertificateDescriptionJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
+                                .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

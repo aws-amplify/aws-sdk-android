@@ -41,17 +41,13 @@ public class TestInvokeAuthorizerResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("policyDocuments")) {
                 testInvokeAuthorizerResult.setPolicyDocuments(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("refreshAfterInSeconds")) {
                 testInvokeAuthorizerResult.setRefreshAfterInSeconds(IntegerJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("disconnectAfterInSeconds")) {
                 testInvokeAuthorizerResult.setDisconnectAfterInSeconds(IntegerJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

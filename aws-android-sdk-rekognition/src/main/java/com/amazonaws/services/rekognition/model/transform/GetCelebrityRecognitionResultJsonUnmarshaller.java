@@ -42,29 +42,24 @@ public class GetCelebrityRecognitionResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("VideoMetadata")) {
                 getCelebrityRecognitionResult.setVideoMetadata(VideoMetadataJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("NextToken")) {
                 getCelebrityRecognitionResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Celebrities")) {
                 getCelebrityRecognitionResult
                         .setCelebrities(new ListUnmarshaller<CelebrityRecognition>(
-                                CelebrityRecognitionJsonUnmarshaller.getInstance()
-                        )
+                                CelebrityRecognitionJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else if (name.equals("BillableDurationSeconds")) {
                 getCelebrityRecognitionResult.setBillableDurationSeconds(IntegerJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("ErrorCode")) {
                 getCelebrityRecognitionResult.setErrorCode(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Warnings")) {
                 getCelebrityRecognitionResult.setWarnings(new ListUnmarshaller<Warning>(
-                        WarningJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        WarningJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -45,17 +45,13 @@ public class DescribeScheduledAuditResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("targetCheckNames")) {
                 describeScheduledAuditResult.setTargetCheckNames(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("scheduledAuditName")) {
                 describeScheduledAuditResult.setScheduledAuditName(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("scheduledAuditArn")) {
                 describeScheduledAuditResult.setScheduledAuditArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

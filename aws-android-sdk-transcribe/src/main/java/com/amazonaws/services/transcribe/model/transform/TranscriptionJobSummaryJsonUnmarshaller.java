@@ -38,8 +38,7 @@ class TranscriptionJobSummaryJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("TranscriptionJobName")) {
                 transcriptionJobSummary.setTranscriptionJobName(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("CreationTime")) {
                 transcriptionJobSummary.setCreationTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -51,8 +50,7 @@ class TranscriptionJobSummaryJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("TranscriptionJobStatus")) {
                 transcriptionJobSummary.setTranscriptionJobStatus(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("FailureReason")) {
                 transcriptionJobSummary.setFailureReason(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -36,18 +36,13 @@ class MetricValueJsonUnmarshaller implements Unmarshaller<MetricValue, JsonUnmar
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("count")) {
-                metricValue.setCount(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                metricValue.setCount(LongJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("cidrs")) {
                 metricValue.setCidrs(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("ports")) {
                 metricValue.setPorts(new ListUnmarshaller<Integer>(IntegerJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

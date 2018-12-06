@@ -37,13 +37,12 @@ public class PutRecordBatchResultJsonUnmarshaller implements
                 putRecordBatchResult.setFailedPutCount(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Encrypted")) {
-                putRecordBatchResult.setEncrypted(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                putRecordBatchResult.setEncrypted(BooleanJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("RequestResponses")) {
                 putRecordBatchResult
                         .setRequestResponses(new ListUnmarshaller<PutRecordBatchResponseEntry>(
-                                PutRecordBatchResponseEntryJsonUnmarshaller.getInstance()
-                        )
+                                PutRecordBatchResponseEntryJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else {
                 reader.skipValue();

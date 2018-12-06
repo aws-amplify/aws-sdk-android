@@ -36,8 +36,8 @@ class WriteRequestJsonUnmarshaller implements Unmarshaller<WriteRequest, JsonUnm
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("PutRequest")) {
-                writeRequest.setPutRequest(PutRequestJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                writeRequest.setPutRequest(PutRequestJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("DeleteRequest")) {
                 writeRequest.setDeleteRequest(DeleteRequestJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -35,26 +35,19 @@ public class CompareFacesResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("SourceImageFace")) {
                 compareFacesResult.setSourceImageFace(ComparedSourceImageFaceJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("FaceMatches")) {
                 compareFacesResult.setFaceMatches(new ListUnmarshaller<CompareFacesMatch>(
-                        CompareFacesMatchJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        CompareFacesMatchJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("UnmatchedFaces")) {
                 compareFacesResult.setUnmatchedFaces(new ListUnmarshaller<ComparedFace>(
-                        ComparedFaceJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        ComparedFaceJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("SourceImageOrientationCorrection")) {
                 compareFacesResult.setSourceImageOrientationCorrection(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("TargetImageOrientationCorrection")) {
                 compareFacesResult.setTargetImageOrientationCorrection(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

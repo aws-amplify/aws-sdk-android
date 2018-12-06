@@ -35,9 +35,7 @@ public class ListCertificatesByCAResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("certificates")) {
                 listCertificatesByCAResult.setCertificates(new ListUnmarshaller<Certificate>(
-                        CertificateJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        CertificateJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("nextMarker")) {
                 listCertificatesByCAResult.setNextMarker(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

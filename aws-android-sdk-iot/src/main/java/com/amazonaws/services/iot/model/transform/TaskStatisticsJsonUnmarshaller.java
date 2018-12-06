@@ -37,27 +37,26 @@ class TaskStatisticsJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("totalChecks")) {
-                taskStatistics.setTotalChecks(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                taskStatistics.setTotalChecks(IntegerJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("inProgressChecks")) {
                 taskStatistics.setInProgressChecks(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("waitingForDataCollectionChecks")) {
                 taskStatistics.setWaitingForDataCollectionChecks(IntegerJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("compliantChecks")) {
-                taskStatistics.setCompliantChecks(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                taskStatistics.setCompliantChecks(IntegerJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("nonCompliantChecks")) {
                 taskStatistics.setNonCompliantChecks(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("failedChecks")) {
-                taskStatistics.setFailedChecks(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                taskStatistics.setFailedChecks(IntegerJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("canceledChecks")) {
-                taskStatistics.setCanceledChecks(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                taskStatistics.setCanceledChecks(IntegerJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

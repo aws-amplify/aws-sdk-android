@@ -37,8 +37,8 @@ class GroupNameAndArnJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("groupName")) {
-                groupNameAndArn.setGroupName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                groupNameAndArn.setGroupName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("groupArn")) {
                 groupNameAndArn.setGroupArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

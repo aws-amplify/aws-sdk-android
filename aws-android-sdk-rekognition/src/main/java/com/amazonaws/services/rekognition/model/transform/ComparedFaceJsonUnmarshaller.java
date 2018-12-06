@@ -36,22 +36,18 @@ class ComparedFaceJsonUnmarshaller implements Unmarshaller<ComparedFace, JsonUnm
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("BoundingBox")) {
-                comparedFace.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                comparedFace.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Confidence")) {
-                comparedFace.setConfidence(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                comparedFace.setConfidence(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Landmarks")) {
                 comparedFace.setLandmarks(new ListUnmarshaller<Landmark>(LandmarkJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("Pose")) {
-                comparedFace.setPose(PoseJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                comparedFace.setPose(PoseJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Quality")) {
-                comparedFace.setQuality(ImageQualityJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                comparedFace.setQuality(ImageQualityJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

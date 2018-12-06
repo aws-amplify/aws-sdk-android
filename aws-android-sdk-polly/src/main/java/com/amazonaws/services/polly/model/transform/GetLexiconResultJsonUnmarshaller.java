@@ -34,12 +34,11 @@ public class GetLexiconResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Lexicon")) {
-                getLexiconResult.setLexicon(LexiconJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getLexiconResult.setLexicon(LexiconJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("LexiconAttributes")) {
                 getLexiconResult.setLexiconAttributes(LexiconAttributesJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -37,14 +37,14 @@ class EffectivePolicyJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("policyName")) {
-                effectivePolicy.setPolicyName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                effectivePolicy.setPolicyName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("policyArn")) {
-                effectivePolicy.setPolicyArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                effectivePolicy.setPolicyArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("policyDocument")) {
-                effectivePolicy.setPolicyDocument(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                effectivePolicy.setPolicyDocument(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

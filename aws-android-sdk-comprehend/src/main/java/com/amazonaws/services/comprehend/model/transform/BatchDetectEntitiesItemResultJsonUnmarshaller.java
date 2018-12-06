@@ -42,9 +42,7 @@ class BatchDetectEntitiesItemResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("Entities")) {
                 batchDetectEntitiesItemResult.setEntities(new ListUnmarshaller<Entity>(
-                        EntityJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        EntityJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

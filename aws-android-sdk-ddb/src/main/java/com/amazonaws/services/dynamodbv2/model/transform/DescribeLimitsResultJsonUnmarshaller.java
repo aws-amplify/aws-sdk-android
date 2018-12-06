@@ -35,20 +35,16 @@ public class DescribeLimitsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("AccountMaxReadCapacityUnits")) {
                 describeLimitsResult.setAccountMaxReadCapacityUnits(LongJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("AccountMaxWriteCapacityUnits")) {
                 describeLimitsResult.setAccountMaxWriteCapacityUnits(LongJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("TableMaxReadCapacityUnits")) {
                 describeLimitsResult.setTableMaxReadCapacityUnits(LongJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("TableMaxWriteCapacityUnits")) {
                 describeLimitsResult.setTableMaxWriteCapacityUnits(LongJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

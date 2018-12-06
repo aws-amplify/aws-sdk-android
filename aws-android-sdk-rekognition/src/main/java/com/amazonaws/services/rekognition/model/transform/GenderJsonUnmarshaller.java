@@ -36,11 +36,9 @@ class GenderJsonUnmarshaller implements Unmarshaller<Gender, JsonUnmarshallerCon
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Value")) {
-                gender.setValue(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                gender.setValue(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Confidence")) {
-                gender.setConfidence(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                gender.setConfidence(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -37,8 +37,8 @@ class SearchedLogStreamJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("logStreamName")) {
-                searchedLogStream.setLogStreamName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                searchedLogStream.setLogStreamName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("searchedCompletely")) {
                 searchedLogStream.setSearchedCompletely(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));

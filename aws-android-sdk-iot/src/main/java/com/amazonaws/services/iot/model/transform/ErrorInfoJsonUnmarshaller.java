@@ -36,11 +36,9 @@ class ErrorInfoJsonUnmarshaller implements Unmarshaller<ErrorInfo, JsonUnmarshal
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("code")) {
-                errorInfo.setCode(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                errorInfo.setCode(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("message")) {
-                errorInfo.setMessage(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                errorInfo.setMessage(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

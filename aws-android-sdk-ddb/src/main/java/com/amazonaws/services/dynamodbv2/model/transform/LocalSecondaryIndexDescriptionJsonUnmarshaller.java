@@ -42,13 +42,10 @@ class LocalSecondaryIndexDescriptionJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("KeySchema")) {
                 localSecondaryIndexDescription.setKeySchema(new ListUnmarshaller<KeySchemaElement>(
-                        KeySchemaElementJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        KeySchemaElementJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("Projection")) {
                 localSecondaryIndexDescription.setProjection(ProjectionJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("IndexSizeBytes")) {
                 localSecondaryIndexDescription.setIndexSizeBytes(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));

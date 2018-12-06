@@ -37,11 +37,9 @@ class PartOfSpeechTagJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Tag")) {
-                partOfSpeechTag.setTag(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                partOfSpeechTag.setTag(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Score")) {
-                partOfSpeechTag.setScore(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                partOfSpeechTag.setScore(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

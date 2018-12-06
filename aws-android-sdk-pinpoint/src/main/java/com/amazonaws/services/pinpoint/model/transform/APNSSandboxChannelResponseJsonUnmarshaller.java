@@ -44,8 +44,7 @@ class APNSSandboxChannelResponseJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("DefaultAuthenticationMethod")) {
                 aPNSSandboxChannelResponse.setDefaultAuthenticationMethod(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("Enabled")) {
                 aPNSSandboxChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -56,8 +55,8 @@ class APNSSandboxChannelResponseJsonUnmarshaller implements
                 aPNSSandboxChannelResponse.setHasTokenKey(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Id")) {
-                aPNSSandboxChannelResponse.setId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                aPNSSandboxChannelResponse.setId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("IsArchived")) {
                 aPNSSandboxChannelResponse.setIsArchived(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));

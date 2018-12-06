@@ -36,11 +36,9 @@ class EmotionJsonUnmarshaller implements Unmarshaller<Emotion, JsonUnmarshallerC
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Type")) {
-                emotion.setType(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                emotion.setType(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Confidence")) {
-                emotion.setConfidence(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                emotion.setConfidence(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

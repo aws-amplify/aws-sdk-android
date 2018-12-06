@@ -39,9 +39,7 @@ public class ListStreamProcessorsResultJsonUnmarshaller implements
             } else if (name.equals("StreamProcessors")) {
                 listStreamProcessorsResult
                         .setStreamProcessors(new ListUnmarshaller<StreamProcessor>(
-                                StreamProcessorJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                                StreamProcessorJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

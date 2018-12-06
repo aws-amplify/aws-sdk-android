@@ -36,17 +36,13 @@ class BoundingBoxJsonUnmarshaller implements Unmarshaller<BoundingBox, JsonUnmar
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Width")) {
-                boundingBox.setWidth(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                boundingBox.setWidth(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Height")) {
-                boundingBox.setHeight(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                boundingBox.setHeight(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Left")) {
-                boundingBox.setLeft(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                boundingBox.setLeft(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Top")) {
-                boundingBox.setTop(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                boundingBox.setTop(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

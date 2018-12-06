@@ -36,11 +36,9 @@ class LexiconJsonUnmarshaller implements Unmarshaller<Lexicon, JsonUnmarshallerC
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Content")) {
-                lexicon.setContent(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                lexicon.setContent(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Name")) {
-                lexicon.setName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                lexicon.setName(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

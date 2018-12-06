@@ -36,12 +36,11 @@ class GeometryJsonUnmarshaller implements Unmarshaller<Geometry, JsonUnmarshalle
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("BoundingBox")) {
-                geometry.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                geometry.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Polygon")) {
-                geometry.setPolygon(new ListUnmarshaller<Point>(PointJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                geometry.setPolygon(new ListUnmarshaller<Point>(PointJsonUnmarshaller.getInstance())
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

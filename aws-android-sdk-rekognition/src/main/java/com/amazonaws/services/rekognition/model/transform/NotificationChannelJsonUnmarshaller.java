@@ -37,11 +37,11 @@ class NotificationChannelJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("SNSTopicArn")) {
-                notificationChannel.setSNSTopicArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                notificationChannel.setSNSTopicArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("RoleArn")) {
-                notificationChannel.setRoleArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                notificationChannel.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

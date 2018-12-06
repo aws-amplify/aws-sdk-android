@@ -37,8 +37,8 @@ class ExportJobResponseJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("ApplicationId")) {
-                exportJobResponse.setApplicationId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                exportJobResponse.setApplicationId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("CompletedPieces")) {
                 exportJobResponse.setCompletedPieces(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -46,37 +46,33 @@ class ExportJobResponseJsonUnmarshaller implements
                 exportJobResponse.setCompletionDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("CreationDate")) {
-                exportJobResponse.setCreationDate(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                exportJobResponse.setCreationDate(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Definition")) {
                 exportJobResponse.setDefinition(ExportJobResourceJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("FailedPieces")) {
-                exportJobResponse.setFailedPieces(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                exportJobResponse.setFailedPieces(IntegerJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Failures")) {
                 exportJobResponse.setFailures(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("Id")) {
-                exportJobResponse.setId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                exportJobResponse.setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("JobStatus")) {
-                exportJobResponse.setJobStatus(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                exportJobResponse.setJobStatus(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("TotalFailures")) {
                 exportJobResponse.setTotalFailures(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("TotalPieces")) {
-                exportJobResponse.setTotalPieces(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                exportJobResponse.setTotalPieces(IntegerJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("TotalProcessed")) {
                 exportJobResponse.setTotalProcessed(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Type")) {
-                exportJobResponse.setType(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                exportJobResponse.setType(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

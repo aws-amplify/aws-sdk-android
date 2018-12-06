@@ -36,14 +36,12 @@ class SnsActionJsonUnmarshaller implements Unmarshaller<SnsAction, JsonUnmarshal
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("targetArn")) {
-                snsAction.setTargetArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                snsAction.setTargetArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("roleArn")) {
-                snsAction.setRoleArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                snsAction.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("messageFormat")) {
-                snsAction.setMessageFormat(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                snsAction
+                        .setMessageFormat(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

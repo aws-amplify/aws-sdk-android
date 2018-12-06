@@ -43,32 +43,31 @@ class TranscriptionJobJsonUnmarshaller implements
                 transcriptionJob.setTranscriptionJobStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("LanguageCode")) {
-                transcriptionJob.setLanguageCode(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                transcriptionJob.setLanguageCode(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("MediaSampleRateHertz")) {
                 transcriptionJob.setMediaSampleRateHertz(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("MediaFormat")) {
-                transcriptionJob.setMediaFormat(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                transcriptionJob.setMediaFormat(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Media")) {
-                transcriptionJob.setMedia(MediaJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                transcriptionJob.setMedia(MediaJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Transcript")) {
-                transcriptionJob.setTranscript(TranscriptJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                transcriptionJob.setTranscript(TranscriptJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("CreationTime")) {
-                transcriptionJob.setCreationTime(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                transcriptionJob.setCreationTime(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("CompletionTime")) {
-                transcriptionJob.setCompletionTime(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                transcriptionJob.setCompletionTime(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("FailureReason")) {
-                transcriptionJob.setFailureReason(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                transcriptionJob.setFailureReason(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Settings")) {
-                transcriptionJob.setSettings(SettingsJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                transcriptionJob.setSettings(SettingsJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

@@ -37,8 +37,8 @@ class DocumentClassifierFilterJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Status")) {
-                documentClassifierFilter.setStatus(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                documentClassifierFilter.setStatus(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("SubmitTimeBefore")) {
                 documentClassifierFilter.setSubmitTimeBefore(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));

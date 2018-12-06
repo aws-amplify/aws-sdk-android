@@ -35,12 +35,10 @@ public class ListTopicRulesResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("rules")) {
                 listTopicRulesResult.setRules(new ListUnmarshaller<TopicRuleListItem>(
-                        TopicRuleListItemJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        TopicRuleListItemJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("nextToken")) {
-                listTopicRulesResult.setNextToken(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                listTopicRulesResult.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

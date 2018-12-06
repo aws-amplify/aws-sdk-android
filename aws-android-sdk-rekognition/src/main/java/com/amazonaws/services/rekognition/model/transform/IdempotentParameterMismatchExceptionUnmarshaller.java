@@ -17,7 +17,10 @@ package com.amazonaws.services.rekognition.model.transform;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
-import com.amazonaws.transform.JsonErrorUnmarshaller;
+import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
+import com.amazonaws.transform.*;
+import com.amazonaws.util.json.AwsJsonReader;
+
 import com.amazonaws.services.rekognition.model.IdempotentParameterMismatchException;
 
 public class IdempotentParameterMismatchExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -39,5 +42,33 @@ public class IdempotentParameterMismatchExceptionUnmarshaller extends JsonErrorU
         e.setErrorCode("IdempotentParameterMismatchException");
 
         return e;
+    }
+
+    public IdempotentParameterMismatchException unmarshall(JsonUnmarshallerContext context)
+            throws Exception {
+        AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+
+        // The `getMessage` method of AWSServiceException derives its value from
+        // `errorMessage`. The incoming context
+        // has the value in `message`, so we'll have a special case to handle
+        // that.
+        IdempotentParameterMismatchException idempotentParameterMismatchException = new IdempotentParameterMismatchException(
+                "No message provided.");
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if ("message".equals(name)) {
+                idempotentParameterMismatchException.setErrorMessage(StringJsonUnmarshaller
+                        .getInstance().unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+        return idempotentParameterMismatchException;
     }
 }

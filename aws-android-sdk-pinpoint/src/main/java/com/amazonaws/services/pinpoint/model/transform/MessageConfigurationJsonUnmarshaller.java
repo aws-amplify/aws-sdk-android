@@ -50,8 +50,7 @@ class MessageConfigurationJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("EmailMessage")) {
                 messageConfiguration.setEmailMessage(CampaignEmailMessageJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("GCMMessage")) {
                 messageConfiguration.setGCMMessage(MessageJsonUnmarshaller.getInstance()
                         .unmarshall(context));

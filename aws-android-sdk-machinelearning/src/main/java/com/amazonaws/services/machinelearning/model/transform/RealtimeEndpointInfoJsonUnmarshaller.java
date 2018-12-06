@@ -40,8 +40,8 @@ class RealtimeEndpointInfoJsonUnmarshaller implements
                 realtimeEndpointInfo.setPeakRequestsPerSecond(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("CreatedAt")) {
-                realtimeEndpointInfo.setCreatedAt(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                realtimeEndpointInfo.setCreatedAt(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("EndpointUrl")) {
                 realtimeEndpointInfo.setEndpointUrl(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

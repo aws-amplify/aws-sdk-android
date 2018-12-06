@@ -36,17 +36,13 @@ class KeyPhraseJsonUnmarshaller implements Unmarshaller<KeyPhrase, JsonUnmarshal
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Score")) {
-                keyPhrase.setScore(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyPhrase.setScore(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Text")) {
-                keyPhrase.setText(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyPhrase.setText(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("BeginOffset")) {
-                keyPhrase.setBeginOffset(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyPhrase.setBeginOffset(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("EndOffset")) {
-                keyPhrase.setEndOffset(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyPhrase.setEndOffset(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

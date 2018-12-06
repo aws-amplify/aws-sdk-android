@@ -114,7 +114,11 @@ public class JobExecution implements Serializable {
     /**
      * <p>
      * The estimated number of seconds that remain before the job execution
-     * status will be changed to <code>TIMED_OUT</code>.
+     * status will be changed to <code>TIMED_OUT</code>. The timeout interval
+     * can be anywhere between 1 minute and 7 days (1 to 10080 minutes). The
+     * actual job execution timeout can occur up to 60 seconds later than the
+     * estimated duration. This value will not be included if the job execution
+     * has reached a terminal status.
      * </p>
      */
     private Long approximateSecondsBeforeTimedOut;
@@ -724,12 +728,21 @@ public class JobExecution implements Serializable {
     /**
      * <p>
      * The estimated number of seconds that remain before the job execution
-     * status will be changed to <code>TIMED_OUT</code>.
+     * status will be changed to <code>TIMED_OUT</code>. The timeout interval
+     * can be anywhere between 1 minute and 7 days (1 to 10080 minutes). The
+     * actual job execution timeout can occur up to 60 seconds later than the
+     * estimated duration. This value will not be included if the job execution
+     * has reached a terminal status.
      * </p>
      *
      * @return <p>
      *         The estimated number of seconds that remain before the job
-     *         execution status will be changed to <code>TIMED_OUT</code>.
+     *         execution status will be changed to <code>TIMED_OUT</code>. The
+     *         timeout interval can be anywhere between 1 minute and 7 days (1
+     *         to 10080 minutes). The actual job execution timeout can occur up
+     *         to 60 seconds later than the estimated duration. This value will
+     *         not be included if the job execution has reached a terminal
+     *         status.
      *         </p>
      */
     public Long getApproximateSecondsBeforeTimedOut() {
@@ -739,12 +752,21 @@ public class JobExecution implements Serializable {
     /**
      * <p>
      * The estimated number of seconds that remain before the job execution
-     * status will be changed to <code>TIMED_OUT</code>.
+     * status will be changed to <code>TIMED_OUT</code>. The timeout interval
+     * can be anywhere between 1 minute and 7 days (1 to 10080 minutes). The
+     * actual job execution timeout can occur up to 60 seconds later than the
+     * estimated duration. This value will not be included if the job execution
+     * has reached a terminal status.
      * </p>
      *
      * @param approximateSecondsBeforeTimedOut <p>
      *            The estimated number of seconds that remain before the job
      *            execution status will be changed to <code>TIMED_OUT</code>.
+     *            The timeout interval can be anywhere between 1 minute and 7
+     *            days (1 to 10080 minutes). The actual job execution timeout
+     *            can occur up to 60 seconds later than the estimated duration.
+     *            This value will not be included if the job execution has
+     *            reached a terminal status.
      *            </p>
      */
     public void setApproximateSecondsBeforeTimedOut(Long approximateSecondsBeforeTimedOut) {
@@ -754,7 +776,11 @@ public class JobExecution implements Serializable {
     /**
      * <p>
      * The estimated number of seconds that remain before the job execution
-     * status will be changed to <code>TIMED_OUT</code>.
+     * status will be changed to <code>TIMED_OUT</code>. The timeout interval
+     * can be anywhere between 1 minute and 7 days (1 to 10080 minutes). The
+     * actual job execution timeout can occur up to 60 seconds later than the
+     * estimated duration. This value will not be included if the job execution
+     * has reached a terminal status.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -763,6 +789,11 @@ public class JobExecution implements Serializable {
      * @param approximateSecondsBeforeTimedOut <p>
      *            The estimated number of seconds that remain before the job
      *            execution status will be changed to <code>TIMED_OUT</code>.
+     *            The timeout interval can be anywhere between 1 minute and 7
+     *            days (1 to 10080 minutes). The actual job execution timeout
+     *            can occur up to 60 seconds later than the estimated duration.
+     *            This value will not be included if the job execution has
+     *            reached a terminal status.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

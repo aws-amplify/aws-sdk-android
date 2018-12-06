@@ -36,23 +36,17 @@ class ScheduleJsonUnmarshaller implements Unmarshaller<Schedule, JsonUnmarshalle
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("EndTime")) {
-                schedule.setEndTime(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                schedule.setEndTime(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Frequency")) {
-                schedule.setFrequency(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                schedule.setFrequency(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("IsLocalTime")) {
-                schedule.setIsLocalTime(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                schedule.setIsLocalTime(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("QuietTime")) {
-                schedule.setQuietTime(QuietTimeJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                schedule.setQuietTime(QuietTimeJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("StartTime")) {
-                schedule.setStartTime(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                schedule.setStartTime(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Timezone")) {
-                schedule.setTimezone(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                schedule.setTimezone(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -37,17 +37,13 @@ public class DescribeEventConfigurationsResultJsonUnmarshaller implements
             if (name.equals("eventConfigurations")) {
                 describeEventConfigurationsResult
                         .setEventConfigurations(new MapUnmarshaller<Configuration>(
-                                ConfigurationJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                                ConfigurationJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("creationDate")) {
                 describeEventConfigurationsResult.setCreationDate(DateJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("lastModifiedDate")) {
                 describeEventConfigurationsResult.setLastModifiedDate(DateJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

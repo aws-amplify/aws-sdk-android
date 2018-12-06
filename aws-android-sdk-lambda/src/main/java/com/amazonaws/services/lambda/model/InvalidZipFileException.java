@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * AWS Lambda could not unzip the function zip file.
+ * AWS Lambda could not unzip the deployment package.
  * </p>
  */
 public class InvalidZipFileException extends AmazonServiceException {

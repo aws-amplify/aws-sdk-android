@@ -36,11 +36,9 @@ class InputLogEventJsonUnmarshaller implements Unmarshaller<InputLogEvent, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("timestamp")) {
-                inputLogEvent.setTimestamp(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                inputLogEvent.setTimestamp(LongJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("message")) {
-                inputLogEvent.setMessage(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                inputLogEvent.setMessage(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

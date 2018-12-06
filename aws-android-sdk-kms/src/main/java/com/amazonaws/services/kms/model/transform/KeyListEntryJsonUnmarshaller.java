@@ -36,11 +36,9 @@ class KeyListEntryJsonUnmarshaller implements Unmarshaller<KeyListEntry, JsonUnm
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("KeyId")) {
-                keyListEntry.setKeyId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyListEntry.setKeyId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("KeyArn")) {
-                keyListEntry.setKeyArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyListEntry.setKeyArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

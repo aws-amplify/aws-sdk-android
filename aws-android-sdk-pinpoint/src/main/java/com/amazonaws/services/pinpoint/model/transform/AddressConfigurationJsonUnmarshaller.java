@@ -44,18 +44,14 @@ class AddressConfigurationJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("Context")) {
                 addressConfiguration.setContext(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("RawContent")) {
-                addressConfiguration.setRawContent(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                addressConfiguration.setRawContent(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Substitutions")) {
                 addressConfiguration.setSubstitutions(new MapUnmarshaller<java.util.List<String>>(
-                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
-                        )
-                        )
-                                .unmarshall(context));
+                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()))
+                        .unmarshall(context));
             } else if (name.equals("TitleOverride")) {
                 addressConfiguration.setTitleOverride(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -37,25 +37,22 @@ class TopicRulePayloadJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("sql")) {
-                topicRulePayload.setSql(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                topicRulePayload.setSql(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("description")) {
-                topicRulePayload.setDescription(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                topicRulePayload.setDescription(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("actions")) {
                 topicRulePayload.setActions(new ListUnmarshaller<Action>(ActionJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("ruleDisabled")) {
-                topicRulePayload.setRuleDisabled(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                topicRulePayload.setRuleDisabled(BooleanJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("awsIotSqlVersion")) {
                 topicRulePayload.setAwsIotSqlVersion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("errorAction")) {
-                topicRulePayload.setErrorAction(ActionJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                topicRulePayload.setErrorAction(ActionJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

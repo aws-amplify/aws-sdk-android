@@ -53,6 +53,16 @@ public class UpdateThingGroupsForThingRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
+     * Override dynamic thing groups with static thing groups when 10-group
+     * limit is reached. If a thing belongs to 10 thing groups, and one or more
+     * of those groups are dynamic thing groups, adding a thing to a static
+     * group removes the thing from the last dynamic group.
+     * </p>
+     */
+    private Boolean overrideDynamicGroups;
+
+    /**
+     * <p>
      * The thing whose group memberships will be updated.
      * </p>
      * <p>
@@ -259,6 +269,92 @@ public class UpdateThingGroupsForThingRequest extends AmazonWebServiceRequest im
     }
 
     /**
+     * <p>
+     * Override dynamic thing groups with static thing groups when 10-group
+     * limit is reached. If a thing belongs to 10 thing groups, and one or more
+     * of those groups are dynamic thing groups, adding a thing to a static
+     * group removes the thing from the last dynamic group.
+     * </p>
+     *
+     * @return <p>
+     *         Override dynamic thing groups with static thing groups when
+     *         10-group limit is reached. If a thing belongs to 10 thing groups,
+     *         and one or more of those groups are dynamic thing groups, adding
+     *         a thing to a static group removes the thing from the last dynamic
+     *         group.
+     *         </p>
+     */
+    public Boolean isOverrideDynamicGroups() {
+        return overrideDynamicGroups;
+    }
+
+    /**
+     * <p>
+     * Override dynamic thing groups with static thing groups when 10-group
+     * limit is reached. If a thing belongs to 10 thing groups, and one or more
+     * of those groups are dynamic thing groups, adding a thing to a static
+     * group removes the thing from the last dynamic group.
+     * </p>
+     *
+     * @return <p>
+     *         Override dynamic thing groups with static thing groups when
+     *         10-group limit is reached. If a thing belongs to 10 thing groups,
+     *         and one or more of those groups are dynamic thing groups, adding
+     *         a thing to a static group removes the thing from the last dynamic
+     *         group.
+     *         </p>
+     */
+    public Boolean getOverrideDynamicGroups() {
+        return overrideDynamicGroups;
+    }
+
+    /**
+     * <p>
+     * Override dynamic thing groups with static thing groups when 10-group
+     * limit is reached. If a thing belongs to 10 thing groups, and one or more
+     * of those groups are dynamic thing groups, adding a thing to a static
+     * group removes the thing from the last dynamic group.
+     * </p>
+     *
+     * @param overrideDynamicGroups <p>
+     *            Override dynamic thing groups with static thing groups when
+     *            10-group limit is reached. If a thing belongs to 10 thing
+     *            groups, and one or more of those groups are dynamic thing
+     *            groups, adding a thing to a static group removes the thing
+     *            from the last dynamic group.
+     *            </p>
+     */
+    public void setOverrideDynamicGroups(Boolean overrideDynamicGroups) {
+        this.overrideDynamicGroups = overrideDynamicGroups;
+    }
+
+    /**
+     * <p>
+     * Override dynamic thing groups with static thing groups when 10-group
+     * limit is reached. If a thing belongs to 10 thing groups, and one or more
+     * of those groups are dynamic thing groups, adding a thing to a static
+     * group removes the thing from the last dynamic group.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param overrideDynamicGroups <p>
+     *            Override dynamic thing groups with static thing groups when
+     *            10-group limit is reached. If a thing belongs to 10 thing
+     *            groups, and one or more of those groups are dynamic thing
+     *            groups, adding a thing to a static group removes the thing
+     *            from the last dynamic group.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateThingGroupsForThingRequest withOverrideDynamicGroups(Boolean overrideDynamicGroups) {
+        this.overrideDynamicGroups = overrideDynamicGroups;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -274,7 +370,9 @@ public class UpdateThingGroupsForThingRequest extends AmazonWebServiceRequest im
         if (getThingGroupsToAdd() != null)
             sb.append("thingGroupsToAdd: " + getThingGroupsToAdd() + ",");
         if (getThingGroupsToRemove() != null)
-            sb.append("thingGroupsToRemove: " + getThingGroupsToRemove());
+            sb.append("thingGroupsToRemove: " + getThingGroupsToRemove() + ",");
+        if (getOverrideDynamicGroups() != null)
+            sb.append("overrideDynamicGroups: " + getOverrideDynamicGroups());
         sb.append("}");
         return sb.toString();
     }
@@ -289,6 +387,9 @@ public class UpdateThingGroupsForThingRequest extends AmazonWebServiceRequest im
                 + ((getThingGroupsToAdd() == null) ? 0 : getThingGroupsToAdd().hashCode());
         hashCode = prime * hashCode
                 + ((getThingGroupsToRemove() == null) ? 0 : getThingGroupsToRemove().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getOverrideDynamicGroups() == null) ? 0 : getOverrideDynamicGroups().hashCode());
         return hashCode;
     }
 
@@ -317,6 +418,11 @@ public class UpdateThingGroupsForThingRequest extends AmazonWebServiceRequest im
             return false;
         if (other.getThingGroupsToRemove() != null
                 && other.getThingGroupsToRemove().equals(this.getThingGroupsToRemove()) == false)
+            return false;
+        if (other.getOverrideDynamicGroups() == null ^ this.getOverrideDynamicGroups() == null)
+            return false;
+        if (other.getOverrideDynamicGroups() != null
+                && other.getOverrideDynamicGroups().equals(this.getOverrideDynamicGroups()) == false)
             return false;
         return true;
     }

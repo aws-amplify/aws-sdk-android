@@ -40,11 +40,11 @@ class PutRecordsResultEntryJsonUnmarshaller implements
                 putRecordsResultEntry.setSequenceNumber(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("ShardId")) {
-                putRecordsResultEntry.setShardId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                putRecordsResultEntry.setShardId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("ErrorCode")) {
-                putRecordsResultEntry.setErrorCode(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                putRecordsResultEntry.setErrorCode(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("ErrorMessage")) {
                 putRecordsResultEntry.setErrorMessage(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

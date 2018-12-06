@@ -36,9 +36,7 @@ public class ListThingRegistrationTasksResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("taskIds")) {
                 listThingRegistrationTasksResult.setTaskIds(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("nextToken")) {
                 listThingRegistrationTasksResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

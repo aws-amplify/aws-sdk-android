@@ -35,9 +35,7 @@ public class ListCACertificatesResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("certificates")) {
                 listCACertificatesResult.setCertificates(new ListUnmarshaller<CACertificate>(
-                        CACertificateJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        CACertificateJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("nextMarker")) {
                 listCACertificatesResult.setNextMarker(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

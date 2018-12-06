@@ -37,33 +37,30 @@ class SegmentResponseJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("ApplicationId")) {
-                segmentResponse.setApplicationId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                segmentResponse.setApplicationId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("CreationDate")) {
-                segmentResponse.setCreationDate(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                segmentResponse.setCreationDate(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Dimensions")) {
                 segmentResponse.setDimensions(SegmentDimensionsJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Id")) {
-                segmentResponse.setId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                segmentResponse.setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("ImportDefinition")) {
                 segmentResponse.setImportDefinition(SegmentImportResourceJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("LastModifiedDate")) {
                 segmentResponse.setLastModifiedDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Name")) {
-                segmentResponse.setName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                segmentResponse.setName(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("SegmentGroups")) {
                 segmentResponse.setSegmentGroups(SegmentGroupListJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("SegmentType")) {
-                segmentResponse.setSegmentType(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                segmentResponse.setSegmentType(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Version")) {
                 segmentResponse.setVersion(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));

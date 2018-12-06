@@ -37,17 +37,13 @@ class SentimentScoreJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Positive")) {
-                sentimentScore.setPositive(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                sentimentScore.setPositive(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Negative")) {
-                sentimentScore.setNegative(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                sentimentScore.setNegative(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Neutral")) {
-                sentimentScore.setNeutral(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                sentimentScore.setNeutral(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Mixed")) {
-                sentimentScore.setMixed(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                sentimentScore.setMixed(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

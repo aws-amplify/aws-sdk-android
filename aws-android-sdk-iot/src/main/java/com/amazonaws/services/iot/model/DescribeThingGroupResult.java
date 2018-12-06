@@ -70,6 +70,44 @@ public class DescribeThingGroupResult implements Serializable {
 
     /**
      * <p>
+     * The dynamic thing group index name.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     */
+    private String indexName;
+
+    /**
+     * <p>
+     * The dynamic thing group search query string.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
+     */
+    private String queryString;
+
+    /**
+     * <p>
+     * The dynamic thing group query version.
+     * </p>
+     */
+    private String queryVersion;
+
+    /**
+     * <p>
+     * The dynamic thing group status.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, BUILDING, REBUILDING
+     */
+    private String status;
+
+    /**
+     * <p>
      * The name of the thing group.
      * </p>
      * <p>
@@ -364,6 +402,259 @@ public class DescribeThingGroupResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The dynamic thing group index name.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @return <p>
+     *         The dynamic thing group index name.
+     *         </p>
+     */
+    public String getIndexName() {
+        return indexName;
+    }
+
+    /**
+     * <p>
+     * The dynamic thing group index name.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @param indexName <p>
+     *            The dynamic thing group index name.
+     *            </p>
+     */
+    public void setIndexName(String indexName) {
+        this.indexName = indexName;
+    }
+
+    /**
+     * <p>
+     * The dynamic thing group index name.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @param indexName <p>
+     *            The dynamic thing group index name.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeThingGroupResult withIndexName(String indexName) {
+        this.indexName = indexName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The dynamic thing group search query string.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
+     *
+     * @return <p>
+     *         The dynamic thing group search query string.
+     *         </p>
+     */
+    public String getQueryString() {
+        return queryString;
+    }
+
+    /**
+     * <p>
+     * The dynamic thing group search query string.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
+     *
+     * @param queryString <p>
+     *            The dynamic thing group search query string.
+     *            </p>
+     */
+    public void setQueryString(String queryString) {
+        this.queryString = queryString;
+    }
+
+    /**
+     * <p>
+     * The dynamic thing group search query string.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
+     *
+     * @param queryString <p>
+     *            The dynamic thing group search query string.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeThingGroupResult withQueryString(String queryString) {
+        this.queryString = queryString;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The dynamic thing group query version.
+     * </p>
+     *
+     * @return <p>
+     *         The dynamic thing group query version.
+     *         </p>
+     */
+    public String getQueryVersion() {
+        return queryVersion;
+    }
+
+    /**
+     * <p>
+     * The dynamic thing group query version.
+     * </p>
+     *
+     * @param queryVersion <p>
+     *            The dynamic thing group query version.
+     *            </p>
+     */
+    public void setQueryVersion(String queryVersion) {
+        this.queryVersion = queryVersion;
+    }
+
+    /**
+     * <p>
+     * The dynamic thing group query version.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param queryVersion <p>
+     *            The dynamic thing group query version.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeThingGroupResult withQueryVersion(String queryVersion) {
+        this.queryVersion = queryVersion;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The dynamic thing group status.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, BUILDING, REBUILDING
+     *
+     * @return <p>
+     *         The dynamic thing group status.
+     *         </p>
+     * @see DynamicGroupStatus
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * <p>
+     * The dynamic thing group status.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, BUILDING, REBUILDING
+     *
+     * @param status <p>
+     *            The dynamic thing group status.
+     *            </p>
+     * @see DynamicGroupStatus
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    /**
+     * <p>
+     * The dynamic thing group status.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, BUILDING, REBUILDING
+     *
+     * @param status <p>
+     *            The dynamic thing group status.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see DynamicGroupStatus
+     */
+    public DescribeThingGroupResult withStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The dynamic thing group status.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, BUILDING, REBUILDING
+     *
+     * @param status <p>
+     *            The dynamic thing group status.
+     *            </p>
+     * @see DynamicGroupStatus
+     */
+    public void setStatus(DynamicGroupStatus status) {
+        this.status = status.toString();
+    }
+
+    /**
+     * <p>
+     * The dynamic thing group status.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, BUILDING, REBUILDING
+     *
+     * @param status <p>
+     *            The dynamic thing group status.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see DynamicGroupStatus
+     */
+    public DescribeThingGroupResult withStatus(DynamicGroupStatus status) {
+        this.status = status.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -385,7 +676,15 @@ public class DescribeThingGroupResult implements Serializable {
         if (getThingGroupProperties() != null)
             sb.append("thingGroupProperties: " + getThingGroupProperties() + ",");
         if (getThingGroupMetadata() != null)
-            sb.append("thingGroupMetadata: " + getThingGroupMetadata());
+            sb.append("thingGroupMetadata: " + getThingGroupMetadata() + ",");
+        if (getIndexName() != null)
+            sb.append("indexName: " + getIndexName() + ",");
+        if (getQueryString() != null)
+            sb.append("queryString: " + getQueryString() + ",");
+        if (getQueryVersion() != null)
+            sb.append("queryVersion: " + getQueryVersion() + ",");
+        if (getStatus() != null)
+            sb.append("status: " + getStatus());
         sb.append("}");
         return sb.toString();
     }
@@ -406,6 +705,12 @@ public class DescribeThingGroupResult implements Serializable {
                 + ((getThingGroupProperties() == null) ? 0 : getThingGroupProperties().hashCode());
         hashCode = prime * hashCode
                 + ((getThingGroupMetadata() == null) ? 0 : getThingGroupMetadata().hashCode());
+        hashCode = prime * hashCode + ((getIndexName() == null) ? 0 : getIndexName().hashCode());
+        hashCode = prime * hashCode
+                + ((getQueryString() == null) ? 0 : getQueryString().hashCode());
+        hashCode = prime * hashCode
+                + ((getQueryVersion() == null) ? 0 : getQueryVersion().hashCode());
+        hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return hashCode;
     }
 
@@ -448,6 +753,25 @@ public class DescribeThingGroupResult implements Serializable {
             return false;
         if (other.getThingGroupMetadata() != null
                 && other.getThingGroupMetadata().equals(this.getThingGroupMetadata()) == false)
+            return false;
+        if (other.getIndexName() == null ^ this.getIndexName() == null)
+            return false;
+        if (other.getIndexName() != null
+                && other.getIndexName().equals(this.getIndexName()) == false)
+            return false;
+        if (other.getQueryString() == null ^ this.getQueryString() == null)
+            return false;
+        if (other.getQueryString() != null
+                && other.getQueryString().equals(this.getQueryString()) == false)
+            return false;
+        if (other.getQueryVersion() == null ^ this.getQueryVersion() == null)
+            return false;
+        if (other.getQueryVersion() != null
+                && other.getQueryVersion().equals(this.getQueryVersion()) == false)
+            return false;
+        if (other.getStatus() == null ^ this.getStatus() == null)
+            return false;
+        if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
             return false;
         return true;
     }

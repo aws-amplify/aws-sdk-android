@@ -37,14 +37,14 @@ class BaiduChannelRequestJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("ApiKey")) {
-                baiduChannelRequest.setApiKey(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                baiduChannelRequest.setApiKey(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Enabled")) {
-                baiduChannelRequest.setEnabled(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                baiduChannelRequest.setEnabled(BooleanJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("SecretKey")) {
-                baiduChannelRequest.setSecretKey(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                baiduChannelRequest.setSecretKey(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

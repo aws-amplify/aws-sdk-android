@@ -18,7 +18,9 @@ package com.amazonaws.services.lambda.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * <p/>
+ * <p>
+ * Need additional permissions to configure VPC settings.
+ * </p>
  */
 public class EC2AccessDeniedException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

@@ -36,8 +36,8 @@ class TranscriptJsonUnmarshaller implements Unmarshaller<Transcript, JsonUnmarsh
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("TranscriptFileUri")) {
-                transcript.setTranscriptFileUri(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                transcript.setTranscriptFileUri(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

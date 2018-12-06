@@ -37,11 +37,10 @@ class InputDataConfigJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("S3Uri")) {
-                inputDataConfig.setS3Uri(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                inputDataConfig.setS3Uri(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("InputFormat")) {
-                inputDataConfig.setInputFormat(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                inputDataConfig.setInputFormat(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

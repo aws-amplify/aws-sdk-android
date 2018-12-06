@@ -36,8 +36,7 @@ public class UpdateTimeToLiveResultJsonUnmarshaller implements
             if (name.equals("TimeToLiveSpecification")) {
                 updateTimeToLiveResult
                         .setTimeToLiveSpecification(TimeToLiveSpecificationJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
+                                .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

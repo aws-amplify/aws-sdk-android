@@ -39,8 +39,7 @@ class EntityRecognizerMetadataEntityTypesListItemJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Type")) {
                 entityRecognizerMetadataEntityTypesListItem.setType(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

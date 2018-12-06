@@ -36,20 +36,15 @@ class EntityJsonUnmarshaller implements Unmarshaller<Entity, JsonUnmarshallerCon
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Score")) {
-                entity.setScore(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                entity.setScore(FloatJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Type")) {
-                entity.setType(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                entity.setType(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Text")) {
-                entity.setText(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                entity.setText(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("BeginOffset")) {
-                entity.setBeginOffset(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                entity.setBeginOffset(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("EndOffset")) {
-                entity.setEndOffset(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                entity.setEndOffset(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

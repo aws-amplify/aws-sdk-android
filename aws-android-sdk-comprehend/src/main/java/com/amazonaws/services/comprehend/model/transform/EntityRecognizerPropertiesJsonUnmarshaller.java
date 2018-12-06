@@ -38,8 +38,7 @@ class EntityRecognizerPropertiesJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("EntityRecognizerArn")) {
                 entityRecognizerProperties.setEntityRecognizerArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("LanguageCode")) {
                 entityRecognizerProperties.setLanguageCode(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -64,17 +63,14 @@ class EntityRecognizerPropertiesJsonUnmarshaller implements
             } else if (name.equals("InputDataConfig")) {
                 entityRecognizerProperties
                         .setInputDataConfig(EntityRecognizerInputDataConfigJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
+                                .getInstance().unmarshall(context));
             } else if (name.equals("RecognizerMetadata")) {
                 entityRecognizerProperties
                         .setRecognizerMetadata(EntityRecognizerMetadataJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
+                                .getInstance().unmarshall(context));
             } else if (name.equals("DataAccessRoleArn")) {
                 entityRecognizerProperties.setDataAccessRoleArn(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

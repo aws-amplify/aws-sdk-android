@@ -34,11 +34,10 @@ public class DecryptResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("KeyId")) {
-                decryptResult.setKeyId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                decryptResult.setKeyId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Plaintext")) {
-                decryptResult.setPlaintext(ByteBufferJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                decryptResult.setPlaintext(ByteBufferJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

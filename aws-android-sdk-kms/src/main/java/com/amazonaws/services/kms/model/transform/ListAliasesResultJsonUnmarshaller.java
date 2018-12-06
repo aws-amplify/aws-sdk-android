@@ -35,15 +35,13 @@ public class ListAliasesResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Aliases")) {
                 listAliasesResult.setAliases(new ListUnmarshaller<AliasListEntry>(
-                        AliasListEntryJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        AliasListEntryJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("NextMarker")) {
-                listAliasesResult.setNextMarker(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                listAliasesResult.setNextMarker(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Truncated")) {
-                listAliasesResult.setTruncated(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                listAliasesResult.setTruncated(BooleanJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

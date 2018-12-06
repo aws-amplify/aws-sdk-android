@@ -36,16 +36,12 @@ class WarningJsonUnmarshaller implements Unmarshaller<Warning, JsonUnmarshallerC
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("ErrorCode")) {
-                warning.setErrorCode(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                warning.setErrorCode(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Message")) {
-                warning.setMessage(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                warning.setMessage(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Sections")) {
                 warning.setSections(new ListUnmarshaller<Section>(SectionJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

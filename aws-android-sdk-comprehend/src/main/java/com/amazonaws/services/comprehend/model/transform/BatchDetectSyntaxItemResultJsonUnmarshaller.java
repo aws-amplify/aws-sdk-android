@@ -41,9 +41,7 @@ class BatchDetectSyntaxItemResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("SyntaxTokens")) {
                 batchDetectSyntaxItemResult.setSyntaxTokens(new ListUnmarshaller<SyntaxToken>(
-                        SyntaxTokenJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        SyntaxTokenJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

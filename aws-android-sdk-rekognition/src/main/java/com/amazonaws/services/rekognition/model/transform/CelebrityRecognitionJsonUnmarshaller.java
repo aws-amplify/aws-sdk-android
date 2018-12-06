@@ -37,8 +37,8 @@ class CelebrityRecognitionJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Timestamp")) {
-                celebrityRecognition.setTimestamp(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                celebrityRecognition.setTimestamp(LongJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Celebrity")) {
                 celebrityRecognition.setCelebrity(CelebrityDetailJsonUnmarshaller.getInstance()
                         .unmarshall(context));

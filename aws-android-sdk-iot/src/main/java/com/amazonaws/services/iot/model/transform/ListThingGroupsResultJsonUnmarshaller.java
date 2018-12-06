@@ -35,12 +35,10 @@ public class ListThingGroupsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("thingGroups")) {
                 listThingGroupsResult.setThingGroups(new ListUnmarshaller<GroupNameAndArn>(
-                        GroupNameAndArnJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        GroupNameAndArnJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("nextToken")) {
-                listThingGroupsResult.setNextToken(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                listThingGroupsResult.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

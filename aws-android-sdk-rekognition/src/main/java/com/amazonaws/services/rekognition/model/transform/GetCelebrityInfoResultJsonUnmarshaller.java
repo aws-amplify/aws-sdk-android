@@ -35,12 +35,10 @@ public class GetCelebrityInfoResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Urls")) {
                 getCelebrityInfoResult.setUrls(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("Name")) {
-                getCelebrityInfoResult.setName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getCelebrityInfoResult.setName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

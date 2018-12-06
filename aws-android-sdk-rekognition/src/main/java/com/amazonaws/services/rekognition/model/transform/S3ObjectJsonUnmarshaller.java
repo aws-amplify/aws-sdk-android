@@ -36,14 +36,11 @@ class S3ObjectJsonUnmarshaller implements Unmarshaller<S3Object, JsonUnmarshalle
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Bucket")) {
-                s3Object.setBucket(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                s3Object.setBucket(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Name")) {
-                s3Object.setName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                s3Object.setName(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Version")) {
-                s3Object.setVersion(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                s3Object.setVersion(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

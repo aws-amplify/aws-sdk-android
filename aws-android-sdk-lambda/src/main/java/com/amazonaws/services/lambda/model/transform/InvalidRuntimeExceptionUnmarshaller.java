@@ -17,7 +17,10 @@ package com.amazonaws.services.lambda.model.transform;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
-import com.amazonaws.transform.JsonErrorUnmarshaller;
+import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
+import com.amazonaws.transform.*;
+import com.amazonaws.util.json.AwsJsonReader;
+
 import com.amazonaws.services.lambda.model.InvalidRuntimeException;
 
 public class InvalidRuntimeExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -39,5 +42,35 @@ public class InvalidRuntimeExceptionUnmarshaller extends JsonErrorUnmarshaller {
         e.setType(String.valueOf(error.get("Type")));
 
         return e;
+    }
+
+    public InvalidRuntimeException unmarshall(JsonUnmarshallerContext context) throws Exception {
+        AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+
+        // The `getMessage` method of AWSServiceException derives its value from
+        // `errorMessage`. The incoming context
+        // has the value in `message`, so we'll have a special case to handle
+        // that.
+        InvalidRuntimeException invalidRuntimeException = new InvalidRuntimeException(
+                "No message provided.");
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if ("message".equals(name)) {
+                invalidRuntimeException.setErrorMessage(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Type")) {
+                invalidRuntimeException.setType(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+        return invalidRuntimeException;
     }
 }

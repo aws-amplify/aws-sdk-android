@@ -41,28 +41,22 @@ public class GetPersonTrackingResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("VideoMetadata")) {
                 getPersonTrackingResult.setVideoMetadata(VideoMetadataJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("NextToken")) {
                 getPersonTrackingResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Persons")) {
                 getPersonTrackingResult.setPersons(new ListUnmarshaller<PersonDetection>(
-                        PersonDetectionJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        PersonDetectionJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("BillableDurationSeconds")) {
                 getPersonTrackingResult.setBillableDurationSeconds(IntegerJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("ErrorCode")) {
                 getPersonTrackingResult.setErrorCode(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Warnings")) {
                 getPersonTrackingResult.setWarnings(new ListUnmarshaller<Warning>(
-                        WarningJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        WarningJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

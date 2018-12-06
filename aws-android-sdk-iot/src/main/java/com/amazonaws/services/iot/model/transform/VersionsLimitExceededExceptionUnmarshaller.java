@@ -17,7 +17,10 @@ package com.amazonaws.services.iot.model.transform;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
-import com.amazonaws.transform.JsonErrorUnmarshaller;
+import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
+import com.amazonaws.transform.*;
+import com.amazonaws.util.json.AwsJsonReader;
+
 import com.amazonaws.services.iot.model.VersionsLimitExceededException;
 
 public class VersionsLimitExceededExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -38,5 +41,33 @@ public class VersionsLimitExceededExceptionUnmarshaller extends JsonErrorUnmarsh
         e.setErrorCode("VersionsLimitExceededException");
 
         return e;
+    }
+
+    public VersionsLimitExceededException unmarshall(JsonUnmarshallerContext context)
+            throws Exception {
+        AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+
+        // The `getMessage` method of AWSServiceException derives its value from
+        // `errorMessage`. The incoming context
+        // has the value in `message`, so we'll have a special case to handle
+        // that.
+        VersionsLimitExceededException versionsLimitExceededException = new VersionsLimitExceededException(
+                "No message provided.");
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if ("message".equals(name)) {
+                versionsLimitExceededException.setErrorMessage(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+        return versionsLimitExceededException;
     }
 }

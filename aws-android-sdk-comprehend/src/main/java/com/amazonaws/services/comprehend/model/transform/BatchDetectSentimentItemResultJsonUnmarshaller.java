@@ -45,8 +45,7 @@ class BatchDetectSentimentItemResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("SentimentScore")) {
                 batchDetectSentimentItemResult.setSentimentScore(SentimentScoreJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

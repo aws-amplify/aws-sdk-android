@@ -34,8 +34,8 @@ public class GetKeyPolicyResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Policy")) {
-                getKeyPolicyResult.setPolicy(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                getKeyPolicyResult.setPolicy(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

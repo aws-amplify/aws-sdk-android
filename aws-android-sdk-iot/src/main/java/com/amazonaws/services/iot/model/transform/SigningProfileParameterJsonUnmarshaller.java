@@ -44,8 +44,7 @@ class SigningProfileParameterJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("certificatePathOnDevice")) {
                 signingProfileParameter.setCertificatePathOnDevice(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

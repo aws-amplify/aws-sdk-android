@@ -257,6 +257,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             }
 
             AWSSessionCredentials credentials = cognitoIdentity.getCredentials();
+            mStore.set(IDENTITY_ID_KEY, cognitoIdentity.getIdentityId());
             return credentials;
         } catch (NotAuthorizedException e) {
             Log.w(TAG, "getCredentials: Failed to getCredentials from Cognito Identity", e);
@@ -278,6 +279,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         }
 
         cognitoIdentity.refresh();
+        mStore.set(IDENTITY_ID_KEY, cognitoIdentity.getIdentityId());
     }
 
     /**
@@ -354,7 +356,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         mStore = new AWSMobileClientStore(AWSMobileClient.this);
                         awsConfiguration = awsConfig;
 
-                        final IdentityManager identityManager = new IdentityManager(mContext, awsConfiguration);
+                        final IdentityManager identityManager = new IdentityManager(mContext);
+                        identityManager.enableFederation(false);
+                        identityManager.setConfiguration(awsConfiguration);
                         IdentityManager.setDefaultIdentityManager(identityManager);
                         registerConfigSignInProviders();
                         identityManager.addSignInStateChangeListener(new SignInStateChangeListener() {
@@ -2001,11 +2005,13 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     SignInUI signin = (SignInUI) getClient(mContext, SignInUI.class);
                     signin.login(callingActivity, nextActivityClass)
                             .authUIConfiguration(authUIConfigBuilder.build())
+                            .enableFederation(false)
                             .execute();
 
                     showSignInWaitLatch = new CountDownLatch(1);
                     try {
                         showSignInWaitLatch.await();
+                        Log.d(TAG, "run: showSignIn completed");
                     } catch (InterruptedException e) {
                         callback.onError(e);
                     }

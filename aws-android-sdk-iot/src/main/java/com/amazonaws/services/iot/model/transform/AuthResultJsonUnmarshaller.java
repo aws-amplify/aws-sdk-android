@@ -36,22 +36,17 @@ class AuthResultJsonUnmarshaller implements Unmarshaller<AuthResult, JsonUnmarsh
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("authInfo")) {
-                authResult.setAuthInfo(AuthInfoJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                authResult.setAuthInfo(AuthInfoJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("allowed")) {
-                authResult.setAllowed(AllowedJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                authResult.setAllowed(AllowedJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("denied")) {
-                authResult.setDenied(DeniedJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                authResult.setDenied(DeniedJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("authDecision")) {
-                authResult.setAuthDecision(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                authResult
+                        .setAuthDecision(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("missingContextValues")) {
                 authResult.setMissingContextValues(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

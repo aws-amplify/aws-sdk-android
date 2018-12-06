@@ -75,6 +75,13 @@ public class ThingDocument implements Serializable {
 
     /**
      * <p>
+     * Indicates whether or not the thing is connected to the AWS IoT service.
+     * </p>
+     */
+    private ThingConnectivity connectivity;
+
+    /**
+     * <p>
      * The thing name.
      * </p>
      * <p>
@@ -434,6 +441,54 @@ public class ThingDocument implements Serializable {
     }
 
     /**
+     * <p>
+     * Indicates whether or not the thing is connected to the AWS IoT service.
+     * </p>
+     *
+     * @return <p>
+     *         Indicates whether or not the thing is connected to the AWS IoT
+     *         service.
+     *         </p>
+     */
+    public ThingConnectivity getConnectivity() {
+        return connectivity;
+    }
+
+    /**
+     * <p>
+     * Indicates whether or not the thing is connected to the AWS IoT service.
+     * </p>
+     *
+     * @param connectivity <p>
+     *            Indicates whether or not the thing is connected to the AWS IoT
+     *            service.
+     *            </p>
+     */
+    public void setConnectivity(ThingConnectivity connectivity) {
+        this.connectivity = connectivity;
+    }
+
+    /**
+     * <p>
+     * Indicates whether or not the thing is connected to the AWS IoT service.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param connectivity <p>
+     *            Indicates whether or not the thing is connected to the AWS IoT
+     *            service.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ThingDocument withConnectivity(ThingConnectivity connectivity) {
+        this.connectivity = connectivity;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -455,7 +510,9 @@ public class ThingDocument implements Serializable {
         if (getAttributes() != null)
             sb.append("attributes: " + getAttributes() + ",");
         if (getShadow() != null)
-            sb.append("shadow: " + getShadow());
+            sb.append("shadow: " + getShadow() + ",");
+        if (getConnectivity() != null)
+            sb.append("connectivity: " + getConnectivity());
         sb.append("}");
         return sb.toString();
     }
@@ -473,6 +530,8 @@ public class ThingDocument implements Serializable {
                 + ((getThingGroupNames() == null) ? 0 : getThingGroupNames().hashCode());
         hashCode = prime * hashCode + ((getAttributes() == null) ? 0 : getAttributes().hashCode());
         hashCode = prime * hashCode + ((getShadow() == null) ? 0 : getShadow().hashCode());
+        hashCode = prime * hashCode
+                + ((getConnectivity() == null) ? 0 : getConnectivity().hashCode());
         return hashCode;
     }
 
@@ -514,6 +573,11 @@ public class ThingDocument implements Serializable {
         if (other.getShadow() == null ^ this.getShadow() == null)
             return false;
         if (other.getShadow() != null && other.getShadow().equals(this.getShadow()) == false)
+            return false;
+        if (other.getConnectivity() == null ^ this.getConnectivity() == null)
+            return false;
+        if (other.getConnectivity() != null
+                && other.getConnectivity().equals(this.getConnectivity()) == false)
             return false;
         return true;
     }

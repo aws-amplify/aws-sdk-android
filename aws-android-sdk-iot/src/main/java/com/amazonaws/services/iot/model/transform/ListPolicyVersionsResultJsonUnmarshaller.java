@@ -35,9 +35,7 @@ public class ListPolicyVersionsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("policyVersions")) {
                 listPolicyVersionsResult.setPolicyVersions(new ListUnmarshaller<PolicyVersion>(
-                        PolicyVersionJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        PolicyVersionJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

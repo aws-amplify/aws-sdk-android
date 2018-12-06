@@ -36,11 +36,11 @@ class HashKeyRangeJsonUnmarshaller implements Unmarshaller<HashKeyRange, JsonUnm
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("StartingHashKey")) {
-                hashKeyRange.setStartingHashKey(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                hashKeyRange.setStartingHashKey(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("EndingHashKey")) {
-                hashKeyRange.setEndingHashKey(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                hashKeyRange.setEndingHashKey(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

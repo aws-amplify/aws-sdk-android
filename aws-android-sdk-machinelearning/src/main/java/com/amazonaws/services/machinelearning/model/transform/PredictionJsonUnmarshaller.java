@@ -36,21 +36,17 @@ class PredictionJsonUnmarshaller implements Unmarshaller<Prediction, JsonUnmarsh
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("predictedLabel")) {
-                prediction.setPredictedLabel(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                prediction.setPredictedLabel(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("predictedValue")) {
                 prediction.setPredictedValue(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("predictedScores")) {
                 prediction.setPredictedScores(new MapUnmarshaller<Float>(FloatJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("details")) {
                 prediction.setDetails(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

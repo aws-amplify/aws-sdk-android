@@ -36,14 +36,12 @@ class BehaviorJsonUnmarshaller implements Unmarshaller<Behavior, JsonUnmarshalle
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("name")) {
-                behavior.setName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                behavior.setName(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("metric")) {
-                behavior.setMetric(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                behavior.setMetric(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("criteria")) {
-                behavior.setCriteria(BehaviorCriteriaJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                behavior.setCriteria(BehaviorCriteriaJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

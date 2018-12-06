@@ -39,28 +39,23 @@ class SourceTableFeatureDetailsJsonUnmarshaller implements
             if (name.equals("LocalSecondaryIndexes")) {
                 sourceTableFeatureDetails
                         .setLocalSecondaryIndexes(new ListUnmarshaller<LocalSecondaryIndexInfo>(
-                                LocalSecondaryIndexInfoJsonUnmarshaller.getInstance()
-                        )
+                                LocalSecondaryIndexInfoJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else if (name.equals("GlobalSecondaryIndexes")) {
                 sourceTableFeatureDetails
                         .setGlobalSecondaryIndexes(new ListUnmarshaller<GlobalSecondaryIndexInfo>(
-                                GlobalSecondaryIndexInfoJsonUnmarshaller.getInstance()
-                        )
+                                GlobalSecondaryIndexInfoJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else if (name.equals("StreamDescription")) {
                 sourceTableFeatureDetails.setStreamDescription(StreamSpecificationJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("TimeToLiveDescription")) {
                 sourceTableFeatureDetails
                         .setTimeToLiveDescription(TimeToLiveDescriptionJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
+                                .getInstance().unmarshall(context));
             } else if (name.equals("SSEDescription")) {
                 sourceTableFeatureDetails.setSSEDescription(SSEDescriptionJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

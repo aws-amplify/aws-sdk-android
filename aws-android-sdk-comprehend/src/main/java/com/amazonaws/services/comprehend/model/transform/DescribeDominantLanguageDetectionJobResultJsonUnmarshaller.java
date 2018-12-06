@@ -37,8 +37,7 @@ public class DescribeDominantLanguageDetectionJobResultJsonUnmarshaller implemen
             if (name.equals("DominantLanguageDetectionJobProperties")) {
                 describeDominantLanguageDetectionJobResult
                         .setDominantLanguageDetectionJobProperties(DominantLanguageDetectionJobPropertiesJsonUnmarshaller
-                                .getInstance()
-                                .unmarshall(context));
+                                .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

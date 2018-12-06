@@ -39,8 +39,7 @@ class WriteCampaignRequestJsonUnmarshaller implements
             if (name.equals("AdditionalTreatments")) {
                 writeCampaignRequest
                         .setAdditionalTreatments(new ListUnmarshaller<WriteTreatmentResource>(
-                                WriteTreatmentResourceJsonUnmarshaller.getInstance()
-                        )
+                                WriteTreatmentResourceJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else if (name.equals("Description")) {
                 writeCampaignRequest.setDescription(StringJsonUnmarshaller.getInstance()
@@ -49,27 +48,26 @@ class WriteCampaignRequestJsonUnmarshaller implements
                 writeCampaignRequest.setHoldoutPercent(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Hook")) {
-                writeCampaignRequest.setHook(CampaignHookJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                writeCampaignRequest.setHook(CampaignHookJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("IsPaused")) {
-                writeCampaignRequest.setIsPaused(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                writeCampaignRequest.setIsPaused(BooleanJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Limits")) {
                 writeCampaignRequest.setLimits(CampaignLimitsJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("MessageConfiguration")) {
                 writeCampaignRequest.setMessageConfiguration(MessageConfigurationJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else if (name.equals("Name")) {
-                writeCampaignRequest.setName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                writeCampaignRequest.setName(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Schedule")) {
-                writeCampaignRequest.setSchedule(ScheduleJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                writeCampaignRequest.setSchedule(ScheduleJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("SegmentId")) {
-                writeCampaignRequest.setSegmentId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                writeCampaignRequest.setSegmentId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("SegmentVersion")) {
                 writeCampaignRequest.setSegmentVersion(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));

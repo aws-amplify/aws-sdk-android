@@ -38,12 +38,10 @@ class AttributePayloadJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("attributes")) {
                 attributePayload.setAttributes(new MapUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("merge")) {
-                attributePayload.setMerge(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                attributePayload
+                        .setMerge(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

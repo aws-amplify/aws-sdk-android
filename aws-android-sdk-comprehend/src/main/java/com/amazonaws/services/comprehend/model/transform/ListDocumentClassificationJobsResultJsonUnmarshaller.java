@@ -37,13 +37,11 @@ public class ListDocumentClassificationJobsResultJsonUnmarshaller implements
             if (name.equals("DocumentClassificationJobPropertiesList")) {
                 listDocumentClassificationJobsResult
                         .setDocumentClassificationJobPropertiesList(new ListUnmarshaller<DocumentClassificationJobProperties>(
-                                DocumentClassificationJobPropertiesJsonUnmarshaller.getInstance()
-                        )
+                                DocumentClassificationJobPropertiesJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else if (name.equals("NextToken")) {
                 listDocumentClassificationJobsResult.setNextToken(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

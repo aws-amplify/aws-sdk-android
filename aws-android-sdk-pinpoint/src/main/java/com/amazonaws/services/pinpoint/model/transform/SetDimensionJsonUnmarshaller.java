@@ -36,13 +36,11 @@ class SetDimensionJsonUnmarshaller implements Unmarshaller<SetDimension, JsonUnm
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("DimensionType")) {
-                setDimension.setDimensionType(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                setDimension.setDimensionType(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Values")) {
                 setDimension.setValues(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

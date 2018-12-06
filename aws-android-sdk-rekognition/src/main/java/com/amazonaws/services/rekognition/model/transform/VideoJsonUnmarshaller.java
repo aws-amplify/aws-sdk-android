@@ -36,8 +36,7 @@ class VideoJsonUnmarshaller implements Unmarshaller<Video, JsonUnmarshallerConte
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("S3Object")) {
-                video.setS3Object(S3ObjectJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                video.setS3Object(S3ObjectJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

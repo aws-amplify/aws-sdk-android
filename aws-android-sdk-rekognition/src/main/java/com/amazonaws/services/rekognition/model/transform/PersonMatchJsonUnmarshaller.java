@@ -36,16 +36,13 @@ class PersonMatchJsonUnmarshaller implements Unmarshaller<PersonMatch, JsonUnmar
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Timestamp")) {
-                personMatch.setTimestamp(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                personMatch.setTimestamp(LongJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Person")) {
                 personMatch.setPerson(PersonDetailJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("FaceMatches")) {
                 personMatch.setFaceMatches(new ListUnmarshaller<FaceMatch>(
-                        FaceMatchJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        FaceMatchJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

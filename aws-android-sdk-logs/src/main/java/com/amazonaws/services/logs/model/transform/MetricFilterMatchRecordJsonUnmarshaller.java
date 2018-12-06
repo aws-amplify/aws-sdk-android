@@ -44,9 +44,7 @@ class MetricFilterMatchRecordJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("extractedValues")) {
                 metricFilterMatchRecord.setExtractedValues(new MapUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -35,9 +35,7 @@ public class DescribeLogGroupsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("logGroups")) {
                 describeLogGroupsResult.setLogGroups(new ListUnmarshaller<LogGroup>(
-                        LogGroupJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        LogGroupJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("nextToken")) {
                 describeLogGroupsResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

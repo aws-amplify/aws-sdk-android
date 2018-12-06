@@ -37,11 +37,11 @@ class TimestampRangeJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("StartTimestamp")) {
-                timestampRange.setStartTimestamp(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                timestampRange.setStartTimestamp(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("EndTimestamp")) {
-                timestampRange.setEndTimestamp(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                timestampRange.setEndTimestamp(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

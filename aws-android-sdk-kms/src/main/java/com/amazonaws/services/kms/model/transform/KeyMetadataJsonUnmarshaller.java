@@ -39,41 +39,31 @@ class KeyMetadataJsonUnmarshaller implements Unmarshaller<KeyMetadata, JsonUnmar
                 keyMetadata.setAWSAccountId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("KeyId")) {
-                keyMetadata.setKeyId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyMetadata.setKeyId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Arn")) {
-                keyMetadata.setArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyMetadata.setArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("CreationDate")) {
-                keyMetadata.setCreationDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyMetadata.setCreationDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Enabled")) {
-                keyMetadata.setEnabled(BooleanJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyMetadata.setEnabled(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Description")) {
-                keyMetadata.setDescription(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyMetadata
+                        .setDescription(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("KeyUsage")) {
-                keyMetadata.setKeyUsage(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyMetadata.setKeyUsage(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("KeyState")) {
-                keyMetadata.setKeyState(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyMetadata.setKeyState(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("DeletionDate")) {
-                keyMetadata.setDeletionDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyMetadata.setDeletionDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("ValidTo")) {
-                keyMetadata.setValidTo(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyMetadata.setValidTo(DateJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Origin")) {
-                keyMetadata.setOrigin(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyMetadata.setOrigin(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("ExpirationModel")) {
-                keyMetadata.setExpirationModel(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyMetadata.setExpirationModel(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("KeyManager")) {
-                keyMetadata.setKeyManager(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                keyMetadata.setKeyManager(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

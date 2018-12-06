@@ -38,12 +38,10 @@ class SegmentsResponseJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Item")) {
                 segmentsResponse.setItem(new ListUnmarshaller<SegmentResponse>(
-                        SegmentResponseJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        SegmentResponseJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("NextToken")) {
-                segmentsResponse.setNextToken(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                segmentsResponse.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

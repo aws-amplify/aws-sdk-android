@@ -35,9 +35,7 @@ public class ListRoleAliasesResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("roleAliases")) {
                 listRoleAliasesResult.setRoleAliases(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("nextMarker")) {
                 listRoleAliasesResult.setNextMarker(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

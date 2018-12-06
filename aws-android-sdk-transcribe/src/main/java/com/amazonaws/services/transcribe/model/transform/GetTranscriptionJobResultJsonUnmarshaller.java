@@ -35,8 +35,7 @@ public class GetTranscriptionJobResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("TranscriptionJob")) {
                 getTranscriptionJobResult.setTranscriptionJob(TranscriptionJobJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

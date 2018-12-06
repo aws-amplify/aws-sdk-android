@@ -37,11 +37,9 @@ class SalesforceActionJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("token")) {
-                salesforceAction.setToken(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                salesforceAction.setToken(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("url")) {
-                salesforceAction.setUrl(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                salesforceAction.setUrl(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

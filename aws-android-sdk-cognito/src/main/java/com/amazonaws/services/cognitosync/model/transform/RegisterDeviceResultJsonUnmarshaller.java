@@ -34,8 +34,8 @@ public class RegisterDeviceResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("DeviceId")) {
-                registerDeviceResult.setDeviceId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                registerDeviceResult.setDeviceId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

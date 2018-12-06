@@ -35,9 +35,7 @@ public class ListTablesResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("TableNames")) {
                 listTablesResult.setTableNames(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("LastEvaluatedTableName")) {
                 listTablesResult.setLastEvaluatedTableName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

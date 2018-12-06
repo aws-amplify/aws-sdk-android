@@ -34,12 +34,11 @@ public class DetectSentimentResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Sentiment")) {
-                detectSentimentResult.setSentiment(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                detectSentimentResult.setSentiment(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("SentimentScore")) {
                 detectSentimentResult.setSentimentScore(SentimentScoreJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

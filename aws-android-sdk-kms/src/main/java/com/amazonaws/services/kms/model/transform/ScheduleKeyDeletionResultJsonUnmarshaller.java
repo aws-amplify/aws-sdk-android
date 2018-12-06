@@ -34,8 +34,8 @@ public class ScheduleKeyDeletionResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("KeyId")) {
-                scheduleKeyDeletionResult.setKeyId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                scheduleKeyDeletionResult.setKeyId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("DeletionDate")) {
                 scheduleKeyDeletionResult.setDeletionDate(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));

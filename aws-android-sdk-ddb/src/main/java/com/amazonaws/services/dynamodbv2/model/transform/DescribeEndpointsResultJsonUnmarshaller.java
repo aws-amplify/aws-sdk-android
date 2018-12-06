@@ -35,9 +35,7 @@ public class DescribeEndpointsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Endpoints")) {
                 describeEndpointsResult.setEndpoints(new ListUnmarshaller<Endpoint>(
-                        EndpointJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        EndpointJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

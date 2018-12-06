@@ -63,6 +63,13 @@ public class CreateThingGroupRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
+     * Metadata which can be used to manage the thing group.
+     * </p>
+     */
+    private java.util.List<Tag> tags;
+
+    /**
+     * <p>
      * The thing group name to create.
      * </p>
      * <p>
@@ -222,6 +229,80 @@ public class CreateThingGroupRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
+     * <p>
+     * Metadata which can be used to manage the thing group.
+     * </p>
+     *
+     * @return <p>
+     *         Metadata which can be used to manage the thing group.
+     *         </p>
+     */
+    public java.util.List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the thing group.
+     * </p>
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage the thing group.
+     *            </p>
+     */
+    public void setTags(java.util.Collection<Tag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<Tag>(tags);
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the thing group.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage the thing group.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateThingGroupRequest withTags(Tag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<Tag>(tags.length);
+        }
+        for (Tag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the thing group.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage the thing group.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateThingGroupRequest withTags(java.util.Collection<Tag> tags) {
+        setTags(tags);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -237,7 +318,9 @@ public class CreateThingGroupRequest extends AmazonWebServiceRequest implements 
         if (getParentGroupName() != null)
             sb.append("parentGroupName: " + getParentGroupName() + ",");
         if (getThingGroupProperties() != null)
-            sb.append("thingGroupProperties: " + getThingGroupProperties());
+            sb.append("thingGroupProperties: " + getThingGroupProperties() + ",");
+        if (getTags() != null)
+            sb.append("tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -253,6 +336,7 @@ public class CreateThingGroupRequest extends AmazonWebServiceRequest implements 
                 + ((getParentGroupName() == null) ? 0 : getParentGroupName().hashCode());
         hashCode = prime * hashCode
                 + ((getThingGroupProperties() == null) ? 0 : getThingGroupProperties().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -281,6 +365,10 @@ public class CreateThingGroupRequest extends AmazonWebServiceRequest implements 
             return false;
         if (other.getThingGroupProperties() != null
                 && other.getThingGroupProperties().equals(this.getThingGroupProperties()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

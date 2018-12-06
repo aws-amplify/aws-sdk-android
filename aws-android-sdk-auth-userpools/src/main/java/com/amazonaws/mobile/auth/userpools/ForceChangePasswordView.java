@@ -18,13 +18,10 @@
 package com.amazonaws.mobile.auth.userpools;
 
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.text.InputType;
 import android.util.AttributeSet;
@@ -34,15 +31,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.amazonaws.mobile.config.AWSConfiguration;
-
-import com.amazonaws.mobile.auth.core.IdentityManager;
-import com.amazonaws.mobile.auth.core.signin.SignInManager;
 import com.amazonaws.mobile.auth.core.signin.ui.BackgroundDrawable;
 import com.amazonaws.mobile.auth.core.signin.ui.DisplayUtils;
 import com.amazonaws.mobile.auth.core.signin.ui.SplitBackgroundDrawable;
-
-import com.amazonaws.mobile.auth.userpools.R;
 
 import static com.amazonaws.mobile.auth.userpools.UserPoolFormConstants.FORM_BUTTON_COLOR;
 import static com.amazonaws.mobile.auth.userpools.UserPoolFormConstants.FORM_BUTTON_CORNER_RADIUS;
@@ -58,7 +49,7 @@ public class ForceChangePasswordView extends LinearLayout {
     /** Log tag. */
     private static final String LOG_TAG = ForgotPasswordView.class.getSimpleName();
 
-    private FormView forgotPassForm;
+    private FormView forceChangePassForm;
     private EditText passwordEditText;
     private Button confirmButton;
 
@@ -120,7 +111,7 @@ public class ForceChangePasswordView extends LinearLayout {
 
     private void setupFontFamily() {
         if (this.typeFace != null) {
-            Log.d(LOG_TAG, "Setup font in ForgotPasswordView: " + this.fontFamily);
+            Log.d(LOG_TAG, "Setup font in ForceChangePasswordView: " + this.fontFamily);
             passwordEditText.setTypeface(this.typeFace);
         }
     }
@@ -128,9 +119,9 @@ public class ForceChangePasswordView extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        forgotPassForm = (FormView) findViewById(R.id.forgot_password_form);
+        forceChangePassForm = (FormView) findViewById(R.id.force_change_password_form);
 
-        passwordEditText = forgotPassForm.addFormField(getContext(),
+        passwordEditText = forceChangePassForm.addFormField(getContext(),
                 InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD,
                 getContext().getString(R.string.sign_in_password));
 
@@ -139,14 +130,14 @@ public class ForceChangePasswordView extends LinearLayout {
     }
 
     private void setupConfirmButtonColor() {
-        confirmButton = (Button) findViewById(R.id.forgot_password_button);
+        confirmButton = (Button) findViewById(R.id.force_change_password_button);
         confirmButton.setBackgroundDrawable(DisplayUtils.getRoundedRectangleBackground(
                 FORM_BUTTON_CORNER_RADIUS, FORM_BUTTON_COLOR));
         LayoutParams signUpButtonLayoutParams = (LayoutParams) confirmButton.getLayoutParams();
         signUpButtonLayoutParams.setMargins(
-                forgotPassForm.getFormShadowMargin(),
+                forceChangePassForm.getFormShadowMargin(),
                 signUpButtonLayoutParams.topMargin,
-                forgotPassForm.getFormShadowMargin(),
+                forceChangePassForm.getFormShadowMargin(),
                 signUpButtonLayoutParams.bottomMargin);
     }
 
@@ -165,8 +156,8 @@ public class ForceChangePasswordView extends LinearLayout {
 
     private void setupBackground() {
         if (!this.fullScreenBackgroundColor) {
-            splitBackgroundDrawable.setSplitPointDistanceFromTop(forgotPassForm.getTop()
-                    + (forgotPassForm.getMeasuredHeight()/2));
+            splitBackgroundDrawable.setSplitPointDistanceFromTop(forceChangePassForm.getTop()
+                    + (forceChangePassForm.getMeasuredHeight()/2));
             ((ViewGroup) getParent()).setBackgroundDrawable(splitBackgroundDrawable);
         } else {
             ((ViewGroup) getParent()).setBackgroundDrawable(backgroundDrawable);

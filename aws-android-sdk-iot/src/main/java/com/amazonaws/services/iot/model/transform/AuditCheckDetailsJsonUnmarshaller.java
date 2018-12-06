@@ -49,11 +49,11 @@ class AuditCheckDetailsJsonUnmarshaller implements
                 auditCheckDetails.setNonCompliantResourcesCount(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("errorCode")) {
-                auditCheckDetails.setErrorCode(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                auditCheckDetails.setErrorCode(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("message")) {
-                auditCheckDetails.setMessage(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                auditCheckDetails.setMessage(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

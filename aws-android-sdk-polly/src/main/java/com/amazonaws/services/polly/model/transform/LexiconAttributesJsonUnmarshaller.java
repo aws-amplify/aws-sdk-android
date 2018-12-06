@@ -37,23 +37,23 @@ class LexiconAttributesJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Alphabet")) {
-                lexiconAttributes.setAlphabet(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                lexiconAttributes.setAlphabet(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("LanguageCode")) {
-                lexiconAttributes.setLanguageCode(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                lexiconAttributes.setLanguageCode(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("LastModified")) {
-                lexiconAttributes.setLastModified(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                lexiconAttributes.setLastModified(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("LexiconArn")) {
-                lexiconAttributes.setLexiconArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                lexiconAttributes.setLexiconArn(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("LexemesCount")) {
-                lexiconAttributes.setLexemesCount(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                lexiconAttributes.setLexemesCount(IntegerJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Size")) {
-                lexiconAttributes.setSize(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                lexiconAttributes
+                        .setSize(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

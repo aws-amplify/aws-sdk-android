@@ -37,8 +37,7 @@ public class ListDocumentClassifiersResultJsonUnmarshaller implements
             if (name.equals("DocumentClassifierPropertiesList")) {
                 listDocumentClassifiersResult
                         .setDocumentClassifierPropertiesList(new ListUnmarshaller<DocumentClassifierProperties>(
-                                DocumentClassifierPropertiesJsonUnmarshaller.getInstance()
-                        )
+                                DocumentClassifierPropertiesJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else if (name.equals("NextToken")) {
                 listDocumentClassifiersResult.setNextToken(StringJsonUnmarshaller.getInstance()

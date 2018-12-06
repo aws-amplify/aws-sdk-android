@@ -184,8 +184,7 @@ public class Session implements JSONSerializable {
 
     /**
      * Generates Session ID by concatenating present AppKey, UniqueID, and
-     * Timestamp more detail:
-     * https://w.amazon.com/index.php/GameLab:SessionEvents#Session_ID
+     * Timestamp
      *
      * @return [String] SessionID
      */

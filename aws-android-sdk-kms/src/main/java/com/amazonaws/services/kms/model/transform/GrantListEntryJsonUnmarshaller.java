@@ -37,31 +37,26 @@ class GrantListEntryJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("KeyId")) {
-                grantListEntry.setKeyId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                grantListEntry.setKeyId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("GrantId")) {
-                grantListEntry.setGrantId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                grantListEntry.setGrantId(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Name")) {
-                grantListEntry.setName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                grantListEntry.setName(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("CreationDate")) {
-                grantListEntry.setCreationDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                grantListEntry.setCreationDate(DateJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("GranteePrincipal")) {
-                grantListEntry.setGranteePrincipal(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                grantListEntry.setGranteePrincipal(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("RetiringPrincipal")) {
                 grantListEntry.setRetiringPrincipal(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("IssuingAccount")) {
-                grantListEntry.setIssuingAccount(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                grantListEntry.setIssuingAccount(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Operations")) {
                 grantListEntry.setOperations(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("Constraints")) {
                 grantListEntry.setConstraints(GrantConstraintsJsonUnmarshaller.getInstance()
                         .unmarshall(context));

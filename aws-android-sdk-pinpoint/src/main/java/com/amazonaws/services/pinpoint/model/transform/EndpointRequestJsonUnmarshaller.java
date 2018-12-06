@@ -37,43 +37,38 @@ class EndpointRequestJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Address")) {
-                endpointRequest.setAddress(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                endpointRequest
+                        .setAddress(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("Attributes")) {
                 endpointRequest.setAttributes(new MapUnmarshaller<java.util.List<String>>(
-                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
-                        )
-                        )
-                                .unmarshall(context));
-            } else if (name.equals("ChannelType")) {
-                endpointRequest.setChannelType(StringJsonUnmarshaller.getInstance()
+                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()))
                         .unmarshall(context));
+            } else if (name.equals("ChannelType")) {
+                endpointRequest.setChannelType(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Demographic")) {
                 endpointRequest.setDemographic(EndpointDemographicJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("EffectiveDate")) {
-                endpointRequest.setEffectiveDate(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                endpointRequest.setEffectiveDate(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("EndpointStatus")) {
-                endpointRequest.setEndpointStatus(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                endpointRequest.setEndpointStatus(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("Location")) {
                 endpointRequest.setLocation(EndpointLocationJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Metrics")) {
                 endpointRequest.setMetrics(new MapUnmarshaller<Double>(DoubleJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+                        .getInstance()).unmarshall(context));
             } else if (name.equals("OptOut")) {
-                endpointRequest.setOptOut(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                endpointRequest.setOptOut(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("RequestId")) {
-                endpointRequest.setRequestId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                endpointRequest.setRequestId(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("User")) {
-                endpointRequest.setUser(EndpointUserJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                endpointRequest.setUser(EndpointUserJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

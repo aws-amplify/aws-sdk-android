@@ -36,17 +36,17 @@ class BackupDetailsJsonUnmarshaller implements Unmarshaller<BackupDetails, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("BackupArn")) {
-                backupDetails.setBackupArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                backupDetails
+                        .setBackupArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("BackupName")) {
                 backupDetails.setBackupName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("BackupSizeBytes")) {
-                backupDetails.setBackupSizeBytes(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                backupDetails.setBackupSizeBytes(LongJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("BackupStatus")) {
-                backupDetails.setBackupStatus(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                backupDetails.setBackupStatus(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("BackupType")) {
                 backupDetails.setBackupType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

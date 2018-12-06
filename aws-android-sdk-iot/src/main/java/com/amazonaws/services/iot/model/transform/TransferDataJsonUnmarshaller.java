@@ -36,20 +36,18 @@ class TransferDataJsonUnmarshaller implements Unmarshaller<TransferData, JsonUnm
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("transferMessage")) {
-                transferData.setTransferMessage(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                transferData.setTransferMessage(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("rejectReason")) {
-                transferData.setRejectReason(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                transferData.setRejectReason(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("transferDate")) {
-                transferData.setTransferDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                transferData
+                        .setTransferDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("acceptDate")) {
-                transferData.setAcceptDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                transferData.setAcceptDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("rejectDate")) {
-                transferData.setRejectDate(DateJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                transferData.setRejectDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

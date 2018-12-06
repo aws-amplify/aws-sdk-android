@@ -36,11 +36,11 @@ class DeniedJsonUnmarshaller implements Unmarshaller<Denied, JsonUnmarshallerCon
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("implicitDeny")) {
-                denied.setImplicitDeny(ImplicitDenyJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                denied.setImplicitDeny(ImplicitDenyJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("explicitDeny")) {
-                denied.setExplicitDeny(ExplicitDenyJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                denied.setExplicitDeny(ExplicitDenyJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

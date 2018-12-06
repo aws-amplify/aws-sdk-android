@@ -36,29 +36,26 @@ class LogStreamJsonUnmarshaller implements Unmarshaller<LogStream, JsonUnmarshal
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("logStreamName")) {
-                logStream.setLogStreamName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                logStream
+                        .setLogStreamName(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("creationTime")) {
-                logStream.setCreationTime(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                logStream.setCreationTime(LongJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("firstEventTimestamp")) {
-                logStream.setFirstEventTimestamp(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                logStream.setFirstEventTimestamp(LongJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("lastEventTimestamp")) {
-                logStream.setLastEventTimestamp(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                logStream.setLastEventTimestamp(LongJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("lastIngestionTime")) {
-                logStream.setLastIngestionTime(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                logStream.setLastIngestionTime(LongJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("uploadSequenceToken")) {
-                logStream.setUploadSequenceToken(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                logStream.setUploadSequenceToken(StringJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else if (name.equals("arn")) {
-                logStream.setArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                logStream.setArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("storedBytes")) {
-                logStream.setStoredBytes(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                logStream.setStoredBytes(LongJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

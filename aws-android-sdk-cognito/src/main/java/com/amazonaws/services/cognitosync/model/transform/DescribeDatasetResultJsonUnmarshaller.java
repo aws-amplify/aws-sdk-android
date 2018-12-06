@@ -34,8 +34,8 @@ public class DescribeDatasetResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Dataset")) {
-                describeDatasetResult.setDataset(DatasetJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                describeDatasetResult.setDataset(DatasetJsonUnmarshaller.getInstance().unmarshall(
+                        context));
             } else {
                 reader.skipValue();
             }

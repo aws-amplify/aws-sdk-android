@@ -35,9 +35,7 @@ public class DescribeDestinationsResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("destinations")) {
                 describeDestinationsResult.setDestinations(new ListUnmarshaller<Destination>(
-                        DestinationJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        DestinationJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("nextToken")) {
                 describeDestinationsResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

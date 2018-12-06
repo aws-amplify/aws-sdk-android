@@ -36,11 +36,9 @@ class SectionJsonUnmarshaller implements Unmarshaller<Section, JsonUnmarshallerC
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("StartTimestamp")) {
-                section.setStartTimestamp(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                section.setStartTimestamp(LongJsonUnmarshaller.getInstance().unmarshall(context));
             } else if (name.equals("EndTimestamp")) {
-                section.setEndTimestamp(LongJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                section.setEndTimestamp(LongJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

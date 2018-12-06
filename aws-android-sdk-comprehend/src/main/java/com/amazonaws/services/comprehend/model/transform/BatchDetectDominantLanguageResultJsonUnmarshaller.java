@@ -37,15 +37,12 @@ public class BatchDetectDominantLanguageResultJsonUnmarshaller implements
             if (name.equals("ResultList")) {
                 batchDetectDominantLanguageResult
                         .setResultList(new ListUnmarshaller<BatchDetectDominantLanguageItemResult>(
-                                BatchDetectDominantLanguageItemResultJsonUnmarshaller.getInstance()
-                        )
+                                BatchDetectDominantLanguageItemResultJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else if (name.equals("ErrorList")) {
                 batchDetectDominantLanguageResult
                         .setErrorList(new ListUnmarshaller<BatchItemError>(
-                                BatchItemErrorJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                                BatchItemErrorJsonUnmarshaller.getInstance()).unmarshall(context));
             } else {
                 reader.skipValue();
             }

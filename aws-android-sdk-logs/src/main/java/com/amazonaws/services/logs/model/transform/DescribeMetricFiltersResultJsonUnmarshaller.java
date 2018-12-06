@@ -35,9 +35,7 @@ public class DescribeMetricFiltersResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("metricFilters")) {
                 describeMetricFiltersResult.setMetricFilters(new ListUnmarshaller<MetricFilter>(
-                        MetricFilterJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        MetricFilterJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("nextToken")) {
                 describeMetricFiltersResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

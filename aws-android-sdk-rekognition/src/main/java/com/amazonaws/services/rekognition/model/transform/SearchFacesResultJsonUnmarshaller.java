@@ -38,9 +38,7 @@ public class SearchFacesResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("FaceMatches")) {
                 searchFacesResult.setFaceMatches(new ListUnmarshaller<FaceMatch>(
-                        FaceMatchJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+                        FaceMatchJsonUnmarshaller.getInstance()).unmarshall(context));
             } else if (name.equals("FaceModelVersion")) {
                 searchFacesResult.setFaceModelVersion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

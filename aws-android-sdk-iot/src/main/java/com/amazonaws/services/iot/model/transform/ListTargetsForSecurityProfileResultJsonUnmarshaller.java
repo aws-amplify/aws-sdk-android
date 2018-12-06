@@ -37,13 +37,11 @@ public class ListTargetsForSecurityProfileResultJsonUnmarshaller implements
             if (name.equals("securityProfileTargets")) {
                 listTargetsForSecurityProfileResult
                         .setSecurityProfileTargets(new ListUnmarshaller<SecurityProfileTarget>(
-                                SecurityProfileTargetJsonUnmarshaller.getInstance()
-                        )
+                                SecurityProfileTargetJsonUnmarshaller.getInstance())
                                 .unmarshall(context));
             } else if (name.equals("nextToken")) {
                 listTargetsForSecurityProfileResult.setNextToken(StringJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+                        .getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }

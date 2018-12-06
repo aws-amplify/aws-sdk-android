@@ -37,8 +37,7 @@ class KinesisDataStreamJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Arn")) {
-                kinesisDataStream.setArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+                kinesisDataStream.setArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
             } else {
                 reader.skipValue();
             }
