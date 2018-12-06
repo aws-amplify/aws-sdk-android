@@ -55,7 +55,7 @@ public final class Auth {
     private final String identityProvider;
 
     /**
-     * Idp indentifier for provider mapping
+     * Identity provider (idp) identifier, works as an alias to the real idp
      */
     private final String idpIdentifier;
 
@@ -376,7 +376,7 @@ public final class Auth {
          * <p>
          *     Optional. Set identity provider for social sign in.
          * </p>
-         * @param mIdentityProvider Required: Scopes as a {@link Set<String>}.
+         * @param mIdentityProvider Optional: Will change the hosted UI behavior to go directly to the specified social provider
          * @return A reference to this builder.
          */
         @SuppressWarnings("checkstyle:hiddenfield")
@@ -386,11 +386,12 @@ public final class Auth {
         }
 
         /**
-         * Sets the idp identifier. This will change the hosted UI behavior to go directly to the corresponding provider
+         * Sets the identity provider (idp) identifier. This will change the hosted UI behavior to go directly to the corresponding provider
+         * Used by the developer to map to a identity provider name without exposing the provider name.
          * <p>
          *     Optional. Set idp identifier for provider mapping.
          * </p>
-         * @param mIdpIdentifier Required: Scopes as a {@link Set<String>}.
+         * @param mIdpIdentifier Optional: Will change the hosted UI behavior to go directly to the corresponding provider
          * @return A reference to this builder.
          */
         @SuppressWarnings("checkstyle:hiddenfield")
@@ -552,7 +553,7 @@ public final class Auth {
     }
 
     /**
-     * @return Identity Provider set for this {@link Auth} instance.
+     * @return Identity Provider identifier set for this {@link Auth} instance.
      */
     public String getIdpIdentifier() {
         return idpIdentifier;
