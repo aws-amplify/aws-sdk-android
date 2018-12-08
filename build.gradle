@@ -46,7 +46,9 @@ task generateJavadocs(type: Javadoc, description: 'Generate javadocs from all ch
             println javadocTask.source.isEmpty()
         }
     }
-    options.group("Amazon S3", ["com.amazonaws.services.s3*", "com.amazonaws.mobileconnectors.s3*"]).
+    options.bottom = "Copyright &#169; 2018 Amazon Web Services, Inc. All Rights Reserved."
+    options.group("AWS Auth SDKs", ["com.amazonaws.mobile.auth.core*", "com.amazonaws.mobile.auth.google*","com.amazonaws.mobile.auth.facebook*" ,"com.amazonaws.mobile.auth.userpools*","com.amazonaws.mobile.auth.ui*" ,"com.amazonaws.mobile.client*"]).
+            group("Amazon S3", ["com.amazonaws.services.s3*", "com.amazonaws.mobileconnectors.s3*"]).
             group("Amazon DynamoDB", ["com.amazonaws.services.dynamodb*", "com.amazonaws.mobileconnectors.dynamodbv2*"]).
             group("Amazon Kinesis", ["com.amazonaws.mobileconnectors.kinesis*", "com.amazonaws.services.kinesis*", "com.amazonaws.services.kinesisfirehose*"]).
             group("Amazon Pinpoint", ["com.amazonaws.mobileconnectors.pinpoint*", "com.amazonaws.services.pinpoint*"]).
@@ -77,7 +79,6 @@ task generateJavadocs(type: Javadoc, description: 'Generate javadocs from all ch
             group("Common Runtime", ["com.amazonaws*"])
 
 }
-
 
 
 task clean(type: Delete) {
