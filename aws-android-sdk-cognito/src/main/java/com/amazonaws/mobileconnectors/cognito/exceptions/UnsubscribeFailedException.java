@@ -21,7 +21,9 @@ import com.amazonaws.AmazonClientException;
 
 /**
  * An exception thrown when silent sync dataset unsubscription fails
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class UnsubscribeFailedException extends AmazonClientException {
 
     private static final long serialVersionUID = 5706724903415180392L;

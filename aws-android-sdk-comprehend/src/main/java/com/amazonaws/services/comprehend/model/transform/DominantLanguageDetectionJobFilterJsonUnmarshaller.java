@@ -42,13 +42,16 @@ class DominantLanguageDetectionJobFilterJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("JobStatus")) {
                 dominantLanguageDetectionJobFilter.setJobStatus(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SubmitTimeBefore")) {
                 dominantLanguageDetectionJobFilter.setSubmitTimeBefore(DateJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SubmitTimeAfter")) {
                 dominantLanguageDetectionJobFilter.setSubmitTimeAfter(DateJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

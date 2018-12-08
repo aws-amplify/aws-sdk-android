@@ -21,7 +21,7 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
     /**
      * <p>
      * The encrypted data encryption key. When you use the HTTP API or the AWS
-     * CLI, the value is Base64-encoded. Otherwise, it is not encoded.
+     * CLI, the value is Base64-encdoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -43,7 +43,7 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
     /**
      * <p>
      * The encrypted data encryption key. When you use the HTTP API or the AWS
-     * CLI, the value is Base64-encoded. Otherwise, it is not encoded.
+     * CLI, the value is Base64-encdoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -51,7 +51,7 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
      *
      * @return <p>
      *         The encrypted data encryption key. When you use the HTTP API or
-     *         the AWS CLI, the value is Base64-encoded. Otherwise, it is not
+     *         the AWS CLI, the value is Base64-encdoded. Otherwise, it is not
      *         encoded.
      *         </p>
      */
@@ -62,7 +62,7 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
     /**
      * <p>
      * The encrypted data encryption key. When you use the HTTP API or the AWS
-     * CLI, the value is Base64-encoded. Otherwise, it is not encoded.
+     * CLI, the value is Base64-encdoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -70,7 +70,7 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
      *
      * @param ciphertextBlob <p>
      *            The encrypted data encryption key. When you use the HTTP API
-     *            or the AWS CLI, the value is Base64-encoded. Otherwise, it is
+     *            or the AWS CLI, the value is Base64-encdoded. Otherwise, it is
      *            not encoded.
      *            </p>
      */
@@ -81,7 +81,7 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
     /**
      * <p>
      * The encrypted data encryption key. When you use the HTTP API or the AWS
-     * CLI, the value is Base64-encoded. Otherwise, it is not encoded.
+     * CLI, the value is Base64-encdoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -92,7 +92,7 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
      *
      * @param ciphertextBlob <p>
      *            The encrypted data encryption key. When you use the HTTP API
-     *            or the AWS CLI, the value is Base64-encoded. Otherwise, it is
+     *            or the AWS CLI, the value is Base64-encdoded. Otherwise, it is
      *            not encoded.
      *            </p>
      * @return A reference to this updated object so that method calls can be

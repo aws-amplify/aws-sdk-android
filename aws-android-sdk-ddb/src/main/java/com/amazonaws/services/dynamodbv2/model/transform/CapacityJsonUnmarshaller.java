@@ -36,7 +36,8 @@ class CapacityJsonUnmarshaller implements Unmarshaller<Capacity, JsonUnmarshalle
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("CapacityUnits")) {
-                capacity.setCapacityUnits(DoubleJsonUnmarshaller.getInstance().unmarshall(context));
+                capacity.setCapacityUnits(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

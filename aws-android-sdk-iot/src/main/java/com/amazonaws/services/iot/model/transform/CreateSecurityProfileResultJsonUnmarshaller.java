@@ -35,10 +35,12 @@ public class CreateSecurityProfileResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("securityProfileName")) {
                 createSecurityProfileResult.setSecurityProfileName(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("securityProfileArn")) {
                 createSecurityProfileResult.setSecurityProfileArn(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -20,7 +20,9 @@ package com.amazonaws.mobileconnectors.cognito.exceptions;
 /**
  * This exception is thrown when the dataset that is attempted to access does
  * not exist.
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class DatasetNotFoundException extends DataStorageException {
 
     private static final long serialVersionUID = -5043074429464815354L;

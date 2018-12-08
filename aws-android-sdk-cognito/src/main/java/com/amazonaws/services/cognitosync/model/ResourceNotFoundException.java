@@ -19,7 +19,9 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * Thrown if the resource doesn't exist.
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class ResourceNotFoundException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 

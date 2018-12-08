@@ -35,7 +35,9 @@ public class DetectFacesResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("FaceDetails")) {
                 detectFacesResult.setFaceDetails(new ListUnmarshaller<FaceDetail>(
-                        FaceDetailJsonUnmarshaller.getInstance()).unmarshall(context));
+                        FaceDetailJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("OrientationCorrection")) {
                 detectFacesResult.setOrientationCorrection(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

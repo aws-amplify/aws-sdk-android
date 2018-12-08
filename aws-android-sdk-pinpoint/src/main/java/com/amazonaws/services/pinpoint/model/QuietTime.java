@@ -22,40 +22,67 @@ import java.io.Serializable;
  */
 public class QuietTime implements Serializable {
     /**
-     * The default end time for quiet time in ISO 8601 format.
+     * The time at which quiet time should end. The value that you specify has
+     * to be in HH:mm format, where HH is the hour in 24-hour format (with a
+     * leading zero, if applicable), and mm is the minutes. For example, use
+     * 02:30 to represent 2:30 AM, or 14:30 to represent 2:30 PM.
      */
     private String end;
 
     /**
-     * The default start time for quiet time in ISO 8601 format.
+     * The time at which quiet time should begin. The value that you specify has
+     * to be in HH:mm format, where HH is the hour in 24-hour format (with a
+     * leading zero, if applicable), and mm is the minutes. For example, use
+     * 02:30 to represent 2:30 AM, or 14:30 to represent 2:30 PM.
      */
     private String start;
 
     /**
-     * The default end time for quiet time in ISO 8601 format.
+     * The time at which quiet time should end. The value that you specify has
+     * to be in HH:mm format, where HH is the hour in 24-hour format (with a
+     * leading zero, if applicable), and mm is the minutes. For example, use
+     * 02:30 to represent 2:30 AM, or 14:30 to represent 2:30 PM.
      *
-     * @return The default end time for quiet time in ISO 8601 format.
+     * @return The time at which quiet time should end. The value that you
+     *         specify has to be in HH:mm format, where HH is the hour in
+     *         24-hour format (with a leading zero, if applicable), and mm is
+     *         the minutes. For example, use 02:30 to represent 2:30 AM, or
+     *         14:30 to represent 2:30 PM.
      */
     public String getEnd() {
         return end;
     }
 
     /**
-     * The default end time for quiet time in ISO 8601 format.
+     * The time at which quiet time should end. The value that you specify has
+     * to be in HH:mm format, where HH is the hour in 24-hour format (with a
+     * leading zero, if applicable), and mm is the minutes. For example, use
+     * 02:30 to represent 2:30 AM, or 14:30 to represent 2:30 PM.
      *
-     * @param end The default end time for quiet time in ISO 8601 format.
+     * @param end The time at which quiet time should end. The value that you
+     *            specify has to be in HH:mm format, where HH is the hour in
+     *            24-hour format (with a leading zero, if applicable), and mm is
+     *            the minutes. For example, use 02:30 to represent 2:30 AM, or
+     *            14:30 to represent 2:30 PM.
      */
     public void setEnd(String end) {
         this.end = end;
     }
 
     /**
-     * The default end time for quiet time in ISO 8601 format.
+     * The time at which quiet time should end. The value that you specify has
+     * to be in HH:mm format, where HH is the hour in 24-hour format (with a
+     * leading zero, if applicable), and mm is the minutes. For example, use
+     * 02:30 to represent 2:30 AM, or 14:30 to represent 2:30 PM.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param end The default end time for quiet time in ISO 8601 format.
+     * @param end The time at which quiet time should end. The value that you
+     *            specify has to be in HH:mm format, where HH is the hour in
+     *            24-hour format (with a leading zero, if applicable), and mm is
+     *            the minutes. For example, use 02:30 to represent 2:30 AM, or
+     *            14:30 to represent 2:30 PM.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -65,30 +92,51 @@ public class QuietTime implements Serializable {
     }
 
     /**
-     * The default start time for quiet time in ISO 8601 format.
+     * The time at which quiet time should begin. The value that you specify has
+     * to be in HH:mm format, where HH is the hour in 24-hour format (with a
+     * leading zero, if applicable), and mm is the minutes. For example, use
+     * 02:30 to represent 2:30 AM, or 14:30 to represent 2:30 PM.
      *
-     * @return The default start time for quiet time in ISO 8601 format.
+     * @return The time at which quiet time should begin. The value that you
+     *         specify has to be in HH:mm format, where HH is the hour in
+     *         24-hour format (with a leading zero, if applicable), and mm is
+     *         the minutes. For example, use 02:30 to represent 2:30 AM, or
+     *         14:30 to represent 2:30 PM.
      */
     public String getStart() {
         return start;
     }
 
     /**
-     * The default start time for quiet time in ISO 8601 format.
+     * The time at which quiet time should begin. The value that you specify has
+     * to be in HH:mm format, where HH is the hour in 24-hour format (with a
+     * leading zero, if applicable), and mm is the minutes. For example, use
+     * 02:30 to represent 2:30 AM, or 14:30 to represent 2:30 PM.
      *
-     * @param start The default start time for quiet time in ISO 8601 format.
+     * @param start The time at which quiet time should begin. The value that
+     *            you specify has to be in HH:mm format, where HH is the hour in
+     *            24-hour format (with a leading zero, if applicable), and mm is
+     *            the minutes. For example, use 02:30 to represent 2:30 AM, or
+     *            14:30 to represent 2:30 PM.
      */
     public void setStart(String start) {
         this.start = start;
     }
 
     /**
-     * The default start time for quiet time in ISO 8601 format.
+     * The time at which quiet time should begin. The value that you specify has
+     * to be in HH:mm format, where HH is the hour in 24-hour format (with a
+     * leading zero, if applicable), and mm is the minutes. For example, use
+     * 02:30 to represent 2:30 AM, or 14:30 to represent 2:30 PM.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param start The default start time for quiet time in ISO 8601 format.
+     * @param start The time at which quiet time should begin. The value that
+     *            you specify has to be in HH:mm format, where HH is the hour in
+     *            24-hour format (with a leading zero, if applicable), and mm is
+     *            the minutes. For example, use 02:30 to represent 2:30 AM, or
+     *            14:30 to represent 2:30 PM.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

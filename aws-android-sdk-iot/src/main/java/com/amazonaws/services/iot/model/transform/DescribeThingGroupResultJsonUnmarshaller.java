@@ -43,15 +43,16 @@ public class DescribeThingGroupResultJsonUnmarshaller implements
                 describeThingGroupResult.setThingGroupArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("version")) {
-                describeThingGroupResult.setVersion(LongJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                describeThingGroupResult.setVersion(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("thingGroupProperties")) {
                 describeThingGroupResult
                         .setThingGroupProperties(ThingGroupPropertiesJsonUnmarshaller.getInstance()
                                 .unmarshall(context));
             } else if (name.equals("thingGroupMetadata")) {
                 describeThingGroupResult.setThingGroupMetadata(ThingGroupMetadataJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("indexName")) {
                 describeThingGroupResult.setIndexName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -62,8 +63,8 @@ public class DescribeThingGroupResultJsonUnmarshaller implements
                 describeThingGroupResult.setQueryVersion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("status")) {
-                describeThingGroupResult.setStatus(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                describeThingGroupResult.setStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

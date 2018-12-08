@@ -45,14 +45,18 @@ class DefaultPushNotificationMessageJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("Data")) {
                 defaultPushNotificationMessage.setData(new MapUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("SilentPush")) {
                 defaultPushNotificationMessage.setSilentPush(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Substitutions")) {
                 defaultPushNotificationMessage
                         .setSubstitutions(new MapUnmarshaller<java.util.List<String>>(
-                                new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()))
+                                new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
+                                )
+                        )
                                 .unmarshall(context));
             } else if (name.equals("Title")) {
                 defaultPushNotificationMessage.setTitle(StringJsonUnmarshaller.getInstance()

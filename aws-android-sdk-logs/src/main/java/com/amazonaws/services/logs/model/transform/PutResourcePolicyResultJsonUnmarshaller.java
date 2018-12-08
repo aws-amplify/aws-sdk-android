@@ -35,7 +35,8 @@ public class PutResourcePolicyResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("resourcePolicy")) {
                 putResourcePolicyResult.setResourcePolicy(ResourcePolicyJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

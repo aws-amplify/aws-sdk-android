@@ -37,10 +37,12 @@ class ConditionJsonUnmarshaller implements Unmarshaller<Condition, JsonUnmarshal
             String name = reader.nextName();
             if (name.equals("AttributeValueList")) {
                 condition.setAttributeValueList(new ListUnmarshaller<AttributeValue>(
-                        AttributeValueJsonUnmarshaller.getInstance()).unmarshall(context));
+                        AttributeValueJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("ComparisonOperator")) {
-                condition.setComparisonOperator(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                condition.setComparisonOperator(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

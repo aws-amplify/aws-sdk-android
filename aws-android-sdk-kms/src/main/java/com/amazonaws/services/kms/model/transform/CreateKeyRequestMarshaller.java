@@ -78,6 +78,11 @@ public class CreateKeyRequestMarshaller implements
                 jsonWriter.name("Origin");
                 jsonWriter.value(origin);
             }
+            if (createKeyRequest.getCustomKeyStoreId() != null) {
+                String customKeyStoreId = createKeyRequest.getCustomKeyStoreId();
+                jsonWriter.name("CustomKeyStoreId");
+                jsonWriter.value(customKeyStoreId);
+            }
             if (createKeyRequest.getBypassPolicyLockoutSafetyCheck() != null) {
                 Boolean bypassPolicyLockoutSafetyCheck = createKeyRequest
                         .getBypassPolicyLockoutSafetyCheck();

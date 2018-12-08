@@ -36,16 +36,17 @@ class StreamSummaryJsonUnmarshaller implements Unmarshaller<StreamSummary, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("streamId")) {
-                streamSummary.setStreamId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                streamSummary.setStreamId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("streamArn")) {
-                streamSummary
-                        .setStreamArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                streamSummary.setStreamArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("streamVersion")) {
-                streamSummary.setStreamVersion(IntegerJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                streamSummary.setStreamVersion(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("description")) {
-                streamSummary.setDescription(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                streamSummary.setDescription(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

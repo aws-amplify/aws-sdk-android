@@ -31,7 +31,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Identity or with developer credentials. You should use Cognito Identity
  * credentials to make this API call.
  * </p>
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class DescribeDatasetRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * A name-spaced GUID (for example,

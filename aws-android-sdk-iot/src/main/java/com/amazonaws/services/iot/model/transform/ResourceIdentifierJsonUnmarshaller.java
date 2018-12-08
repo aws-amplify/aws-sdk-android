@@ -46,15 +46,16 @@ class ResourceIdentifierJsonUnmarshaller implements
                 resourceIdentifier.setCognitoIdentityPoolId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("clientId")) {
-                resourceIdentifier.setClientId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                resourceIdentifier.setClientId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("policyVersionIdentifier")) {
                 resourceIdentifier
                         .setPolicyVersionIdentifier(PolicyVersionIdentifierJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("account")) {
-                resourceIdentifier.setAccount(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                resourceIdentifier.setAccount(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

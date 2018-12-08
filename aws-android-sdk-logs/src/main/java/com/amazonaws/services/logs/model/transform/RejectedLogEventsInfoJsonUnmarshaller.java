@@ -38,13 +38,16 @@ class RejectedLogEventsInfoJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("tooNewLogEventStartIndex")) {
                 rejectedLogEventsInfo.setTooNewLogEventStartIndex(IntegerJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("tooOldLogEventEndIndex")) {
                 rejectedLogEventsInfo.setTooOldLogEventEndIndex(IntegerJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("expiredLogEventEndIndex")) {
                 rejectedLogEventsInfo.setExpiredLogEventEndIndex(IntegerJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

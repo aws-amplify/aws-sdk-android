@@ -37,7 +37,8 @@ public class DescribeDocumentClassificationJobResultJsonUnmarshaller implements
             if (name.equals("DocumentClassificationJobProperties")) {
                 describeDocumentClassificationJobResult
                         .setDocumentClassificationJobProperties(DocumentClassificationJobPropertiesJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

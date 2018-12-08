@@ -36,9 +36,11 @@ class ImageJsonUnmarshaller implements Unmarshaller<Image, JsonUnmarshallerConte
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Bytes")) {
-                image.setBytes(ByteBufferJsonUnmarshaller.getInstance().unmarshall(context));
+                image.setBytes(ByteBufferJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("S3Object")) {
-                image.setS3Object(S3ObjectJsonUnmarshaller.getInstance().unmarshall(context));
+                image.setS3Object(S3ObjectJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

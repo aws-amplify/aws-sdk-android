@@ -39,10 +39,12 @@ class ReplicaGlobalSecondaryIndexSettingsDescriptionJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("IndexName")) {
                 replicaGlobalSecondaryIndexSettingsDescription.setIndexName(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("IndexStatus")) {
                 replicaGlobalSecondaryIndexSettingsDescription
-                        .setIndexStatus(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                        .setIndexStatus(StringJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
             } else if (name.equals("ProvisionedReadCapacityUnits")) {
                 replicaGlobalSecondaryIndexSettingsDescription
                         .setProvisionedReadCapacityUnits(LongJsonUnmarshaller.getInstance()
@@ -50,7 +52,8 @@ class ReplicaGlobalSecondaryIndexSettingsDescriptionJsonUnmarshaller implements
             } else if (name.equals("ProvisionedReadCapacityAutoScalingSettings")) {
                 replicaGlobalSecondaryIndexSettingsDescription
                         .setProvisionedReadCapacityAutoScalingSettings(AutoScalingSettingsDescriptionJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("ProvisionedWriteCapacityUnits")) {
                 replicaGlobalSecondaryIndexSettingsDescription
                         .setProvisionedWriteCapacityUnits(LongJsonUnmarshaller.getInstance()
@@ -58,7 +61,8 @@ class ReplicaGlobalSecondaryIndexSettingsDescriptionJsonUnmarshaller implements
             } else if (name.equals("ProvisionedWriteCapacityAutoScalingSettings")) {
                 replicaGlobalSecondaryIndexSettingsDescription
                         .setProvisionedWriteCapacityAutoScalingSettings(AutoScalingSettingsDescriptionJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

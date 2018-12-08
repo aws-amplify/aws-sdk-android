@@ -37,20 +37,20 @@ class TopicRuleListItemJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("ruleArn")) {
-                topicRuleListItem.setRuleArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                topicRuleListItem.setRuleArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ruleName")) {
-                topicRuleListItem.setRuleName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                topicRuleListItem.setRuleName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("topicPattern")) {
-                topicRuleListItem.setTopicPattern(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                topicRuleListItem.setTopicPattern(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("createdAt")) {
-                topicRuleListItem.setCreatedAt(DateJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                topicRuleListItem.setCreatedAt(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ruleDisabled")) {
-                topicRuleListItem.setRuleDisabled(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                topicRuleListItem.setRuleDisabled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

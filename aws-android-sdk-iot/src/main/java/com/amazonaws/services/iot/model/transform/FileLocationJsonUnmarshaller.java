@@ -36,10 +36,11 @@ class FileLocationJsonUnmarshaller implements Unmarshaller<FileLocation, JsonUnm
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("stream")) {
-                fileLocation.setStream(StreamJsonUnmarshaller.getInstance().unmarshall(context));
+                fileLocation.setStream(StreamJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("s3Location")) {
-                fileLocation.setS3Location(S3LocationJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                fileLocation.setS3Location(S3LocationJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

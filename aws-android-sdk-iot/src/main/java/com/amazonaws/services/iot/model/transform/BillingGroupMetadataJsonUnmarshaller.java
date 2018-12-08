@@ -37,8 +37,8 @@ class BillingGroupMetadataJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("creationDate")) {
-                billingGroupMetadata.setCreationDate(DateJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                billingGroupMetadata.setCreationDate(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

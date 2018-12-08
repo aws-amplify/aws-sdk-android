@@ -36,15 +36,18 @@ class CelebrityJsonUnmarshaller implements Unmarshaller<Celebrity, JsonUnmarshal
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Urls")) {
-                celebrity
-                        .setUrls(new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance())
+                celebrity.setUrls(new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
+                        )
                                 .unmarshall(context));
             } else if (name.equals("Name")) {
-                celebrity.setName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                celebrity.setName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Id")) {
-                celebrity.setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                celebrity.setId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Face")) {
-                celebrity.setFace(ComparedFaceJsonUnmarshaller.getInstance().unmarshall(context));
+                celebrity.setFace(ComparedFaceJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("MatchConfidence")) {
                 celebrity.setMatchConfidence(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -36,16 +36,17 @@ class SettingsJsonUnmarshaller implements Unmarshaller<Settings, JsonUnmarshalle
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("VocabularyName")) {
-                settings.setVocabularyName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                settings.setVocabularyName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ShowSpeakerLabels")) {
-                settings.setShowSpeakerLabels(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                settings.setShowSpeakerLabels(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("MaxSpeakerLabels")) {
-                settings.setMaxSpeakerLabels(IntegerJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                settings.setMaxSpeakerLabels(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ChannelIdentification")) {
-                settings.setChannelIdentification(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                settings.setChannelIdentification(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

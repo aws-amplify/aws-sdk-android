@@ -34,14 +34,14 @@ public class CreateThingResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("thingName")) {
-                createThingResult.setThingName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                createThingResult.setThingName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("thingArn")) {
-                createThingResult.setThingArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                createThingResult.setThingArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("thingId")) {
-                createThingResult.setThingId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                createThingResult.setThingId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

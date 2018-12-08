@@ -24,23 +24,32 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Schedules the deletion of a customer master key (CMK). You may provide a
  * waiting period, specified in days, before deletion occurs. If you do not
  * provide a waiting period, the default period of 30 days is used. When this
- * operation is successful, the state of the CMK changes to
+ * operation is successful, the key state of the CMK changes to
  * <code>PendingDeletion</code>. Before the waiting period ends, you can use
  * <a>CancelKeyDeletion</a> to cancel the deletion of the CMK. After the waiting
  * period ends, AWS KMS deletes the CMK and all AWS KMS data associated with it,
  * including all aliases that refer to it.
  * </p>
- * <p>
- * You cannot perform this operation on a CMK in a different AWS account.
- * </p>
  * <important>
  * <p>
  * Deleting a CMK is a destructive and potentially dangerous operation. When a
- * CMK is deleted, all data that was encrypted under the CMK is rendered
- * unrecoverable. To restrict the use of a CMK without deleting it, use
- * <a>DisableKey</a>.
+ * CMK is deleted, all data that was encrypted under the CMK is unrecoverable.
+ * To prevent the use of a CMK without deleting it, use <a>DisableKey</a>.
  * </p>
  * </important>
+ * <p>
+ * If you schedule deletion of a CMK from a <a href=
+ * "http://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html"
+ * >custom key store</a>, when the waiting period expires,
+ * <code>ScheduleKeyDeletion</code> deletes the CMK from AWS KMS. Then AWS KMS
+ * makes a best effort to delete the key material from the associated AWS
+ * CloudHSM cluster. However, you might need to manually <a href=
+ * "http://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html#fix-keystore-orphaned-key"
+ * >delete the orphaned key material</a> from the cluster and its backups.
+ * </p>
+ * <p>
+ * You cannot perform this operation on a CMK in a different AWS account.
+ * </p>
  * <p>
  * For more information about scheduling a CMK for deletion, see <a href=
  * "http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html"

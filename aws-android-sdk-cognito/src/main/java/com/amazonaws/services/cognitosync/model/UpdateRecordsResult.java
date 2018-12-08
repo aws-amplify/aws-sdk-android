@@ -19,7 +19,9 @@ import java.io.Serializable;
 
 /**
  * Returned for a successful UpdateRecordsRequest.
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class UpdateRecordsResult implements Serializable {
     /**
      * A list of records that have been updated.

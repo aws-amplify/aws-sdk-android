@@ -19,11 +19,12 @@ import java.io.Serializable;
 
 /**
  * Campaign Limits are used to limit the number of messages that can be sent to
- * a user.
+ * a single endpoint.
  */
 public class CampaignLimits implements Serializable {
     /**
-     * The maximum number of messages that the campaign can send daily.
+     * The maximum number of messages that each campaign can send to a single
+     * endpoint in a 24-hour period.
      */
     private Integer daily;
 
@@ -41,37 +42,42 @@ public class CampaignLimits implements Serializable {
     private Integer messagesPerSecond;
 
     /**
-     * The maximum total number of messages that the campaign can send.
+     * The maximum number of messages that an individual campaign can send to a
+     * single endpoint over the course of the campaign.
      */
     private Integer total;
 
     /**
-     * The maximum number of messages that the campaign can send daily.
+     * The maximum number of messages that each campaign can send to a single
+     * endpoint in a 24-hour period.
      *
-     * @return The maximum number of messages that the campaign can send daily.
+     * @return The maximum number of messages that each campaign can send to a
+     *         single endpoint in a 24-hour period.
      */
     public Integer getDaily() {
         return daily;
     }
 
     /**
-     * The maximum number of messages that the campaign can send daily.
+     * The maximum number of messages that each campaign can send to a single
+     * endpoint in a 24-hour period.
      *
-     * @param daily The maximum number of messages that the campaign can send
-     *            daily.
+     * @param daily The maximum number of messages that each campaign can send
+     *            to a single endpoint in a 24-hour period.
      */
     public void setDaily(Integer daily) {
         this.daily = daily;
     }
 
     /**
-     * The maximum number of messages that the campaign can send daily.
+     * The maximum number of messages that each campaign can send to a single
+     * endpoint in a 24-hour period.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param daily The maximum number of messages that the campaign can send
-     *            daily.
+     * @param daily The maximum number of messages that each campaign can send
+     *            to a single endpoint in a 24-hour period.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -169,32 +175,36 @@ public class CampaignLimits implements Serializable {
     }
 
     /**
-     * The maximum total number of messages that the campaign can send.
+     * The maximum number of messages that an individual campaign can send to a
+     * single endpoint over the course of the campaign.
      *
-     * @return The maximum total number of messages that the campaign can send.
+     * @return The maximum number of messages that an individual campaign can
+     *         send to a single endpoint over the course of the campaign.
      */
     public Integer getTotal() {
         return total;
     }
 
     /**
-     * The maximum total number of messages that the campaign can send.
+     * The maximum number of messages that an individual campaign can send to a
+     * single endpoint over the course of the campaign.
      *
-     * @param total The maximum total number of messages that the campaign can
-     *            send.
+     * @param total The maximum number of messages that an individual campaign
+     *            can send to a single endpoint over the course of the campaign.
      */
     public void setTotal(Integer total) {
         this.total = total;
     }
 
     /**
-     * The maximum total number of messages that the campaign can send.
+     * The maximum number of messages that an individual campaign can send to a
+     * single endpoint over the course of the campaign.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param total The maximum total number of messages that the campaign can
-     *            send.
+     * @param total The maximum number of messages that an individual campaign
+     *            can send to a single endpoint over the course of the campaign.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

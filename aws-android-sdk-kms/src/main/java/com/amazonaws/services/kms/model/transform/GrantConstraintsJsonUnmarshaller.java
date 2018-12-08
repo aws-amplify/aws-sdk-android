@@ -38,10 +38,14 @@ class GrantConstraintsJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("EncryptionContextSubset")) {
                 grantConstraints.setEncryptionContextSubset(new MapUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("EncryptionContextEquals")) {
                 grantConstraints.setEncryptionContextEquals(new MapUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

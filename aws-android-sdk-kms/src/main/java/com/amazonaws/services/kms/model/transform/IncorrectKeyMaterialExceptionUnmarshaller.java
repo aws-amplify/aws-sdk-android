@@ -17,10 +17,7 @@ package com.amazonaws.services.kms.model.transform;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
-import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
-import com.amazonaws.transform.*;
-import com.amazonaws.util.json.AwsJsonReader;
-
+import com.amazonaws.transform.JsonErrorUnmarshaller;
 import com.amazonaws.services.kms.model.IncorrectKeyMaterialException;
 
 public class IncorrectKeyMaterialExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -41,33 +38,5 @@ public class IncorrectKeyMaterialExceptionUnmarshaller extends JsonErrorUnmarsha
         e.setErrorCode("IncorrectKeyMaterialException");
 
         return e;
-    }
-
-    public IncorrectKeyMaterialException unmarshall(JsonUnmarshallerContext context)
-            throws Exception {
-        AwsJsonReader reader = context.getReader();
-        if (!reader.isContainer()) {
-            reader.skipValue();
-            return null;
-        }
-
-        // The `getMessage` method of AWSServiceException derives its value from
-        // `errorMessage`. The incoming context
-        // has the value in `message`, so we'll have a special case to handle
-        // that.
-        IncorrectKeyMaterialException incorrectKeyMaterialException = new IncorrectKeyMaterialException(
-                "No message provided.");
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if ("message".equals(name)) {
-                incorrectKeyMaterialException.setErrorMessage(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-        return incorrectKeyMaterialException;
     }
 }

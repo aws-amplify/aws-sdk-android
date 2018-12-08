@@ -34,8 +34,8 @@ public class UpdateBillingGroupResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("version")) {
-                updateBillingGroupResult.setVersion(LongJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                updateBillingGroupResult.setVersion(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

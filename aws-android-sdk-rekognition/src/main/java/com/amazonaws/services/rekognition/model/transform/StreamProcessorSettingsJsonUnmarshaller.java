@@ -38,7 +38,8 @@ class StreamProcessorSettingsJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("FaceSearch")) {
                 streamProcessorSettings.setFaceSearch(FaceSearchSettingsJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

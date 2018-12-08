@@ -8,8 +8,3 @@ dependencies {
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
-
-task myJavadocs11(type: Javadoc) {
-    source = sourceSets.main.allJava
-
-}

@@ -36,21 +36,26 @@ class LogGroupJsonUnmarshaller implements Unmarshaller<LogGroup, JsonUnmarshalle
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("logGroupName")) {
-                logGroup.setLogGroupName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                logGroup.setLogGroupName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("creationTime")) {
-                logGroup.setCreationTime(LongJsonUnmarshaller.getInstance().unmarshall(context));
+                logGroup.setCreationTime(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("retentionInDays")) {
-                logGroup.setRetentionInDays(IntegerJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                logGroup.setRetentionInDays(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("metricFilterCount")) {
-                logGroup.setMetricFilterCount(IntegerJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                logGroup.setMetricFilterCount(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("arn")) {
-                logGroup.setArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                logGroup.setArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("storedBytes")) {
-                logGroup.setStoredBytes(LongJsonUnmarshaller.getInstance().unmarshall(context));
+                logGroup.setStoredBytes(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("kmsKeyId")) {
-                logGroup.setKmsKeyId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                logGroup.setKmsKeyId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

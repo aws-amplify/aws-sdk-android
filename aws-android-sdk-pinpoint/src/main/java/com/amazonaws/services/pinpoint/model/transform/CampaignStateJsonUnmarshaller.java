@@ -36,8 +36,8 @@ class CampaignStateJsonUnmarshaller implements Unmarshaller<CampaignState, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("CampaignStatus")) {
-                campaignState.setCampaignStatus(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                campaignState.setCampaignStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

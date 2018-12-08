@@ -35,7 +35,9 @@ public class TestAuthorizationResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("authResults")) {
                 testAuthorizationResult.setAuthResults(new ListUnmarshaller<AuthResult>(
-                        AuthResultJsonUnmarshaller.getInstance()).unmarshall(context));
+                        AuthResultJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

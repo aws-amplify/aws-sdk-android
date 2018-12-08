@@ -36,7 +36,8 @@ public class GetSpeechSynthesisTaskResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("SynthesisTask")) {
                 getSpeechSynthesisTaskResult.setSynthesisTask(SynthesisTaskJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

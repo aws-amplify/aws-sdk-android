@@ -19,7 +19,9 @@ package com.amazonaws.mobileconnectors.cognito.exceptions;
 
 /**
  * This exception is thrown when an update fails due to conflicting states.
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class DataConflictException extends DataStorageException {
 
     private static final long serialVersionUID = 4937963535057299466L;

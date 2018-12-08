@@ -94,7 +94,7 @@ public interface AmazonTranscribeAsync extends AmazonTranscribe {
 
     /**
      * <p>
-     * Deletes a previously submitted transcription job as well as any other
+     * Deletes a previously submitted transcription job along with any other
      * generated results such as the transcription, models, and so on.
      * </p>
      * 
@@ -119,7 +119,7 @@ public interface AmazonTranscribeAsync extends AmazonTranscribe {
 
     /**
      * <p>
-     * Deletes a previously submitted transcription job as well as any other
+     * Deletes a previously submitted transcription job along with any other
      * generated results such as the transcription, models, and so on.
      * </p>
      * 

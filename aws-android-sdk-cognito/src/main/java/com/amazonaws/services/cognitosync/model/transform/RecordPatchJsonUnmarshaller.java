@@ -22,7 +22,9 @@ import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * JSON unmarshaller for POJO RecordPatch
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 class RecordPatchJsonUnmarshaller implements Unmarshaller<RecordPatch, JsonUnmarshallerContext> {
 
     public RecordPatch unmarshall(JsonUnmarshallerContext context) throws Exception {
@@ -36,13 +38,17 @@ class RecordPatchJsonUnmarshaller implements Unmarshaller<RecordPatch, JsonUnmar
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Op")) {
-                recordPatch.setOp(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                recordPatch.setOp(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Key")) {
-                recordPatch.setKey(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                recordPatch.setKey(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Value")) {
-                recordPatch.setValue(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                recordPatch.setValue(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SyncCount")) {
-                recordPatch.setSyncCount(LongJsonUnmarshaller.getInstance().unmarshall(context));
+                recordPatch.setSyncCount(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("DeviceLastModifiedDate")) {
                 recordPatch.setDeviceLastModifiedDate(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));

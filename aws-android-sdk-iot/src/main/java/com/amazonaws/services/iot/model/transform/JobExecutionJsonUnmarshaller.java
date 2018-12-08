@@ -36,27 +36,33 @@ class JobExecutionJsonUnmarshaller implements Unmarshaller<JobExecution, JsonUnm
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("jobId")) {
-                jobExecution.setJobId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                jobExecution.setJobId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("status")) {
-                jobExecution.setStatus(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                jobExecution.setStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("forceCanceled")) {
-                jobExecution.setForceCanceled(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                jobExecution.setForceCanceled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("statusDetails")) {
                 jobExecution.setStatusDetails(JobExecutionStatusDetailsJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("thingArn")) {
-                jobExecution.setThingArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                jobExecution.setThingArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("queuedAt")) {
-                jobExecution.setQueuedAt(DateJsonUnmarshaller.getInstance().unmarshall(context));
+                jobExecution.setQueuedAt(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("startedAt")) {
-                jobExecution.setStartedAt(DateJsonUnmarshaller.getInstance().unmarshall(context));
+                jobExecution.setStartedAt(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("lastUpdatedAt")) {
                 jobExecution.setLastUpdatedAt(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("executionNumber")) {
-                jobExecution.setExecutionNumber(LongJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                jobExecution.setExecutionNumber(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("versionNumber")) {
                 jobExecution.setVersionNumber(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));

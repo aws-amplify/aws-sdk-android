@@ -49,7 +49,9 @@ import com.amazonaws.services.cognitosync.model.*;
  * "http://docs.aws.amazon.com/mobile/sdkforios/developerguide/cognito-sync.html"
  * >Developer Guide for iOS</a>.
  * </p>
- **/
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
+ */
+@Deprecated
 public interface AmazonCognitoSync {
 
     /**

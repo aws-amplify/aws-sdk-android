@@ -37,7 +37,8 @@ class FirehoseActionJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("roleArn")) {
-                firehoseAction.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                firehoseAction.setRoleArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("deliveryStreamName")) {
                 firehoseAction.setDeliveryStreamName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

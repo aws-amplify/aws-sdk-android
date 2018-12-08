@@ -61,7 +61,9 @@ import java.util.List;
 
 /**
  * Cognito remote storage powered by AWS Cognito Sync service
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class CognitoSyncStorage implements RemoteDataStorage {
 
     private static final String TAG = "CognitoSyncStorage";

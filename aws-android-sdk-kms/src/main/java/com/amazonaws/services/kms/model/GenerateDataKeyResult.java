@@ -21,7 +21,7 @@ public class GenerateDataKeyResult implements Serializable {
     /**
      * <p>
      * The encrypted data encryption key. When you use the HTTP API or the AWS
-     * CLI, the value is Base64-encoded. Otherwise, it is not encoded.
+     * CLI, the value is Base64-encdoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -32,7 +32,7 @@ public class GenerateDataKeyResult implements Serializable {
     /**
      * <p>
      * The data encryption key. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded. Use this data key
+     * value is Base64-encdoded. Otherwise, it is not encoded. Use this data key
      * for local encryption and decryption, then remove it from memory as soon
      * as possible.
      * </p>
@@ -56,7 +56,7 @@ public class GenerateDataKeyResult implements Serializable {
     /**
      * <p>
      * The encrypted data encryption key. When you use the HTTP API or the AWS
-     * CLI, the value is Base64-encoded. Otherwise, it is not encoded.
+     * CLI, the value is Base64-encdoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -64,7 +64,7 @@ public class GenerateDataKeyResult implements Serializable {
      *
      * @return <p>
      *         The encrypted data encryption key. When you use the HTTP API or
-     *         the AWS CLI, the value is Base64-encoded. Otherwise, it is not
+     *         the AWS CLI, the value is Base64-encdoded. Otherwise, it is not
      *         encoded.
      *         </p>
      */
@@ -75,7 +75,7 @@ public class GenerateDataKeyResult implements Serializable {
     /**
      * <p>
      * The encrypted data encryption key. When you use the HTTP API or the AWS
-     * CLI, the value is Base64-encoded. Otherwise, it is not encoded.
+     * CLI, the value is Base64-encdoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -83,7 +83,7 @@ public class GenerateDataKeyResult implements Serializable {
      *
      * @param ciphertextBlob <p>
      *            The encrypted data encryption key. When you use the HTTP API
-     *            or the AWS CLI, the value is Base64-encoded. Otherwise, it is
+     *            or the AWS CLI, the value is Base64-encdoded. Otherwise, it is
      *            not encoded.
      *            </p>
      */
@@ -94,7 +94,7 @@ public class GenerateDataKeyResult implements Serializable {
     /**
      * <p>
      * The encrypted data encryption key. When you use the HTTP API or the AWS
-     * CLI, the value is Base64-encoded. Otherwise, it is not encoded.
+     * CLI, the value is Base64-encdoded. Otherwise, it is not encoded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -105,7 +105,7 @@ public class GenerateDataKeyResult implements Serializable {
      *
      * @param ciphertextBlob <p>
      *            The encrypted data encryption key. When you use the HTTP API
-     *            or the AWS CLI, the value is Base64-encoded. Otherwise, it is
+     *            or the AWS CLI, the value is Base64-encdoded. Otherwise, it is
      *            not encoded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -119,7 +119,7 @@ public class GenerateDataKeyResult implements Serializable {
     /**
      * <p>
      * The data encryption key. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded. Use this data key
+     * value is Base64-encdoded. Otherwise, it is not encoded. Use this data key
      * for local encryption and decryption, then remove it from memory as soon
      * as possible.
      * </p>
@@ -129,7 +129,7 @@ public class GenerateDataKeyResult implements Serializable {
      *
      * @return <p>
      *         The data encryption key. When you use the HTTP API or the AWS
-     *         CLI, the value is Base64-encoded. Otherwise, it is not encoded.
+     *         CLI, the value is Base64-encdoded. Otherwise, it is not encoded.
      *         Use this data key for local encryption and decryption, then
      *         remove it from memory as soon as possible.
      *         </p>
@@ -141,7 +141,7 @@ public class GenerateDataKeyResult implements Serializable {
     /**
      * <p>
      * The data encryption key. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded. Use this data key
+     * value is Base64-encdoded. Otherwise, it is not encoded. Use this data key
      * for local encryption and decryption, then remove it from memory as soon
      * as possible.
      * </p>
@@ -151,7 +151,7 @@ public class GenerateDataKeyResult implements Serializable {
      *
      * @param plaintext <p>
      *            The data encryption key. When you use the HTTP API or the AWS
-     *            CLI, the value is Base64-encoded. Otherwise, it is not
+     *            CLI, the value is Base64-encdoded. Otherwise, it is not
      *            encoded. Use this data key for local encryption and
      *            decryption, then remove it from memory as soon as possible.
      *            </p>
@@ -163,7 +163,7 @@ public class GenerateDataKeyResult implements Serializable {
     /**
      * <p>
      * The data encryption key. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not encoded. Use this data key
+     * value is Base64-encdoded. Otherwise, it is not encoded. Use this data key
      * for local encryption and decryption, then remove it from memory as soon
      * as possible.
      * </p>
@@ -176,7 +176,7 @@ public class GenerateDataKeyResult implements Serializable {
      *
      * @param plaintext <p>
      *            The data encryption key. When you use the HTTP API or the AWS
-     *            CLI, the value is Base64-encoded. Otherwise, it is not
+     *            CLI, the value is Base64-encdoded. Otherwise, it is not
      *            encoded. Use this data key for local encryption and
      *            decryption, then remove it from memory as soon as possible.
      *            </p>

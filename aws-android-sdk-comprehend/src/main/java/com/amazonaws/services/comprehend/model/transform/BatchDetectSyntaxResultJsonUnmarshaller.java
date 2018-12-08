@@ -36,11 +36,14 @@ public class BatchDetectSyntaxResultJsonUnmarshaller implements
             if (name.equals("ResultList")) {
                 batchDetectSyntaxResult
                         .setResultList(new ListUnmarshaller<BatchDetectSyntaxItemResult>(
-                                BatchDetectSyntaxItemResultJsonUnmarshaller.getInstance())
+                                BatchDetectSyntaxItemResultJsonUnmarshaller.getInstance()
+                        )
                                 .unmarshall(context));
             } else if (name.equals("ErrorList")) {
                 batchDetectSyntaxResult.setErrorList(new ListUnmarshaller<BatchItemError>(
-                        BatchItemErrorJsonUnmarshaller.getInstance()).unmarshall(context));
+                        BatchItemErrorJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

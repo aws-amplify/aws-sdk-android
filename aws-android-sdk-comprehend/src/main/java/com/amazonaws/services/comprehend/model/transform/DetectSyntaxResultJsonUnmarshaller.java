@@ -35,7 +35,9 @@ public class DetectSyntaxResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("SyntaxTokens")) {
                 detectSyntaxResult.setSyntaxTokens(new ListUnmarshaller<SyntaxToken>(
-                        SyntaxTokenJsonUnmarshaller.getInstance()).unmarshall(context));
+                        SyntaxTokenJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

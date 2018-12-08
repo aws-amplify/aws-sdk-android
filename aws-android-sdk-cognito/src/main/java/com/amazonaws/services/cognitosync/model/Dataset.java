@@ -23,7 +23,9 @@ import java.io.Serializable;
  * particular entity in an application (like a saved game). Datasets are
  * automatically created if they don't exist. Data is synced by dataset, and a
  * dataset can hold up to 1MB of key-value pairs.
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class Dataset implements Serializable {
     /**
      * A name-spaced GUID (for example,

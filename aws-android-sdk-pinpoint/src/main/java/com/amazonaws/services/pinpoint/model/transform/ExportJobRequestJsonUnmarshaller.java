@@ -40,11 +40,11 @@ class ExportJobRequestJsonUnmarshaller implements
                 exportJobRequest.setRoleArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("S3UrlPrefix")) {
-                exportJobRequest.setS3UrlPrefix(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                exportJobRequest.setS3UrlPrefix(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SegmentId")) {
-                exportJobRequest.setSegmentId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                exportJobRequest.setSegmentId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SegmentVersion")) {
                 exportJobRequest.setSegmentVersion(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));

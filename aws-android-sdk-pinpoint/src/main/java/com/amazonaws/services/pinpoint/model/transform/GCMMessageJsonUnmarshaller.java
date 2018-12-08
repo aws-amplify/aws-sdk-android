@@ -36,47 +36,60 @@ class GCMMessageJsonUnmarshaller implements Unmarshaller<GCMMessage, JsonUnmarsh
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Action")) {
-                gCMMessage.setAction(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                gCMMessage.setAction(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Body")) {
-                gCMMessage.setBody(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                gCMMessage.setBody(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("CollapseKey")) {
-                gCMMessage.setCollapseKey(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                gCMMessage.setCollapseKey(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Data")) {
-                gCMMessage
-                        .setData(new MapUnmarshaller<String>(StringJsonUnmarshaller.getInstance())
+                gCMMessage.setData(new MapUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
+                        )
                                 .unmarshall(context));
             } else if (name.equals("IconReference")) {
                 gCMMessage.setIconReference(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("ImageIconUrl")) {
-                gCMMessage
-                        .setImageIconUrl(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                gCMMessage.setImageIconUrl(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ImageUrl")) {
-                gCMMessage.setImageUrl(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                gCMMessage.setImageUrl(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Priority")) {
-                gCMMessage.setPriority(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                gCMMessage.setPriority(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("RawContent")) {
-                gCMMessage.setRawContent(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                gCMMessage.setRawContent(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("RestrictedPackageName")) {
                 gCMMessage.setRestrictedPackageName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("SilentPush")) {
-                gCMMessage.setSilentPush(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
+                gCMMessage.setSilentPush(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SmallImageIconUrl")) {
-                gCMMessage.setSmallImageIconUrl(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                gCMMessage.setSmallImageIconUrl(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Sound")) {
-                gCMMessage.setSound(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                gCMMessage.setSound(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Substitutions")) {
                 gCMMessage.setSubstitutions(new MapUnmarshaller<java.util.List<String>>(
-                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()))
-                        .unmarshall(context));
+                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
+                        )
+                        )
+                                .unmarshall(context));
             } else if (name.equals("TimeToLive")) {
-                gCMMessage.setTimeToLive(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
+                gCMMessage.setTimeToLive(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Title")) {
-                gCMMessage.setTitle(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                gCMMessage.setTitle(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Url")) {
-                gCMMessage.setUrl(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                gCMMessage.setUrl(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -36,9 +36,11 @@ class TagJsonUnmarshaller implements Unmarshaller<Tag, JsonUnmarshallerContext> 
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Key")) {
-                tag.setKey(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                tag.setKey(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Value")) {
-                tag.setValue(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                tag.setValue(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

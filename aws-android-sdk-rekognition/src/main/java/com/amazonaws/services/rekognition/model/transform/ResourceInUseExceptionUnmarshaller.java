@@ -17,10 +17,7 @@ package com.amazonaws.services.rekognition.model.transform;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
-import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
-import com.amazonaws.transform.*;
-import com.amazonaws.util.json.AwsJsonReader;
-
+import com.amazonaws.transform.JsonErrorUnmarshaller;
 import com.amazonaws.services.rekognition.model.ResourceInUseException;
 
 public class ResourceInUseExceptionUnmarshaller extends JsonErrorUnmarshaller {
@@ -41,32 +38,5 @@ public class ResourceInUseExceptionUnmarshaller extends JsonErrorUnmarshaller {
         e.setErrorCode("ResourceInUseException");
 
         return e;
-    }
-
-    public ResourceInUseException unmarshall(JsonUnmarshallerContext context) throws Exception {
-        AwsJsonReader reader = context.getReader();
-        if (!reader.isContainer()) {
-            reader.skipValue();
-            return null;
-        }
-
-        // The `getMessage` method of AWSServiceException derives its value from
-        // `errorMessage`. The incoming context
-        // has the value in `message`, so we'll have a special case to handle
-        // that.
-        ResourceInUseException resourceInUseException = new ResourceInUseException(
-                "No message provided.");
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if ("message".equals(name)) {
-                resourceInUseException.setErrorMessage(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-        return resourceInUseException;
     }
 }

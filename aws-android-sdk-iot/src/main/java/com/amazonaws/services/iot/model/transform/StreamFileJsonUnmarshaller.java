@@ -36,10 +36,11 @@ class StreamFileJsonUnmarshaller implements Unmarshaller<StreamFile, JsonUnmarsh
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("fileId")) {
-                streamFile.setFileId(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
+                streamFile.setFileId(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("s3Location")) {
-                streamFile.setS3Location(S3LocationJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                streamFile.setS3Location(S3LocationJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

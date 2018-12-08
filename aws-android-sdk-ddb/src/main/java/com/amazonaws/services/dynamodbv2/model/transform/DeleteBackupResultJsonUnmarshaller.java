@@ -35,7 +35,8 @@ public class DeleteBackupResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("BackupDescription")) {
                 deleteBackupResult.setBackupDescription(BackupDescriptionJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -1,5 +1,5 @@
 /**
- * <p>Provides translation between English and one of six languages, or between one of the six languages and English.</p>
+ * <p>Provides translation between one source language and another of the same set of languages.</p>
  */
 
 package com.amazonaws.services.translate;

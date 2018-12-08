@@ -30,6 +30,7 @@ public enum ChannelType {
     APNS_VOIP_SANDBOX("APNS_VOIP_SANDBOX"),
     ADM("ADM"),
     SMS("SMS"),
+    VOICE("VOICE"),
     EMAIL("EMAIL"),
     BAIDU("BAIDU"),
     CUSTOM("CUSTOM");
@@ -55,6 +56,7 @@ public enum ChannelType {
         enumMap.put("APNS_VOIP_SANDBOX", APNS_VOIP_SANDBOX);
         enumMap.put("ADM", ADM);
         enumMap.put("SMS", SMS);
+        enumMap.put("VOICE", VOICE);
         enumMap.put("EMAIL", EMAIL);
         enumMap.put("BAIDU", BAIDU);
         enumMap.put("CUSTOM", CUSTOM);

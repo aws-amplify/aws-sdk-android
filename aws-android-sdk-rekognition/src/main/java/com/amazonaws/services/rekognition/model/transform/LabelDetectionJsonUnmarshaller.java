@@ -37,9 +37,11 @@ class LabelDetectionJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Timestamp")) {
-                labelDetection.setTimestamp(LongJsonUnmarshaller.getInstance().unmarshall(context));
+                labelDetection.setTimestamp(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Label")) {
-                labelDetection.setLabel(LabelJsonUnmarshaller.getInstance().unmarshall(context));
+                labelDetection.setLabel(LabelJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

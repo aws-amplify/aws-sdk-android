@@ -37,10 +37,13 @@ class EndpointUserJsonUnmarshaller implements Unmarshaller<EndpointUser, JsonUnm
             String name = reader.nextName();
             if (name.equals("UserAttributes")) {
                 endpointUser.setUserAttributes(new MapUnmarshaller<java.util.List<String>>(
-                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()))
-                        .unmarshall(context));
+                        new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
+                        )
+                        )
+                                .unmarshall(context));
             } else if (name.equals("UserId")) {
-                endpointUser.setUserId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                endpointUser.setUserId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

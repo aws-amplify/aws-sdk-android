@@ -37,22 +37,23 @@ class EndpointLocationJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("City")) {
-                endpointLocation.setCity(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                endpointLocation.setCity(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Country")) {
                 endpointLocation.setCountry(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Latitude")) {
-                endpointLocation.setLatitude(DoubleJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointLocation.setLatitude(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Longitude")) {
-                endpointLocation.setLongitude(DoubleJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointLocation.setLongitude(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("PostalCode")) {
-                endpointLocation.setPostalCode(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointLocation.setPostalCode(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Region")) {
-                endpointLocation
-                        .setRegion(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                endpointLocation.setRegion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

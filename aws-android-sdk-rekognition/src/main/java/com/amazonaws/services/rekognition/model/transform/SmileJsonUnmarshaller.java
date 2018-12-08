@@ -36,9 +36,11 @@ class SmileJsonUnmarshaller implements Unmarshaller<Smile, JsonUnmarshallerConte
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Value")) {
-                smile.setValue(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
+                smile.setValue(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Confidence")) {
-                smile.setConfidence(FloatJsonUnmarshaller.getInstance().unmarshall(context));
+                smile.setConfidence(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

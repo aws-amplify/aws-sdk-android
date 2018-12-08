@@ -38,19 +38,24 @@ class EntityRecognizerMetadataJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("NumberOfTrainedDocuments")) {
                 entityRecognizerMetadata.setNumberOfTrainedDocuments(IntegerJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("NumberOfTestDocuments")) {
                 entityRecognizerMetadata.setNumberOfTestDocuments(IntegerJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("EvaluationMetrics")) {
                 entityRecognizerMetadata
                         .setEvaluationMetrics(EntityRecognizerEvaluationMetricsJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("EntityTypes")) {
                 entityRecognizerMetadata
                         .setEntityTypes(new ListUnmarshaller<EntityRecognizerMetadataEntityTypesListItem>(
                                 EntityRecognizerMetadataEntityTypesListItemJsonUnmarshaller
-                                        .getInstance()).unmarshall(context));
+                                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

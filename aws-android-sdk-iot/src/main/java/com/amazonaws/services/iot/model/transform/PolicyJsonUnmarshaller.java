@@ -36,9 +36,11 @@ class PolicyJsonUnmarshaller implements Unmarshaller<Policy, JsonUnmarshallerCon
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("policyName")) {
-                policy.setPolicyName(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                policy.setPolicyName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("policyArn")) {
-                policy.setPolicyArn(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                policy.setPolicyArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

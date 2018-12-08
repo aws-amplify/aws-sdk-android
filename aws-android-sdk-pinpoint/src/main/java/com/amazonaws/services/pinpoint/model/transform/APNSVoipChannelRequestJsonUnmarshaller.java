@@ -37,26 +37,27 @@ class APNSVoipChannelRequestJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("BundleId")) {
-                aPNSVoipChannelRequest.setBundleId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                aPNSVoipChannelRequest.setBundleId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Certificate")) {
                 aPNSVoipChannelRequest.setCertificate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("DefaultAuthenticationMethod")) {
                 aPNSVoipChannelRequest.setDefaultAuthenticationMethod(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Enabled")) {
-                aPNSVoipChannelRequest.setEnabled(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                aPNSVoipChannelRequest.setEnabled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("PrivateKey")) {
                 aPNSVoipChannelRequest.setPrivateKey(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("TeamId")) {
-                aPNSVoipChannelRequest.setTeamId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                aPNSVoipChannelRequest.setTeamId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("TokenKey")) {
-                aPNSVoipChannelRequest.setTokenKey(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                aPNSVoipChannelRequest.setTokenKey(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("TokenKeyId")) {
                 aPNSVoipChannelRequest.setTokenKeyId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

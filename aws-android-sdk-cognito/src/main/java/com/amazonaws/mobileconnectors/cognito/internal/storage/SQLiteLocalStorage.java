@@ -43,7 +43,9 @@ import java.util.HashSet;
  * An SQLite implementation of {@link LocalStorage}. Datasets are stored in a
  * SQLite database. There are two tables: 'datasets' table stores metadata of a
  * dataset; 'records' stores records of a dataset.
+ * @deprecated The Amazon Cognito Sync SDK for Android is deprecated as of release 2.9.0. Please use the AWS AppSync SDK for Android along with AWS AppSync service instead.
  */
+@Deprecated
 public class SQLiteLocalStorage implements LocalStorage {
 
     private static final String TAG = "SQLiteLocalStorage";

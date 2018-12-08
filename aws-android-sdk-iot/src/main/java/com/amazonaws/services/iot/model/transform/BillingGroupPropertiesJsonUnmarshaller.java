@@ -38,7 +38,8 @@ class BillingGroupPropertiesJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("billingGroupDescription")) {
                 billingGroupProperties.setBillingGroupDescription(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

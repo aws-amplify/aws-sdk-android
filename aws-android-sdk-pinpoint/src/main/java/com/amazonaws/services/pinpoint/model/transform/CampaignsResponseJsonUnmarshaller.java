@@ -38,10 +38,12 @@ class CampaignsResponseJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Item")) {
                 campaignsResponse.setItem(new ListUnmarshaller<CampaignResponse>(
-                        CampaignResponseJsonUnmarshaller.getInstance()).unmarshall(context));
+                        CampaignResponseJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("NextToken")) {
-                campaignsResponse.setNextToken(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                campaignsResponse.setNextToken(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

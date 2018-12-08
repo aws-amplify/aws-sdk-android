@@ -36,7 +36,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
-
+/**
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
+ */
+@Deprecated
 public class DefaultEventClient implements InternalEventClient, JSONSerializable {
     private static String TAG = "DefaultEventClient";
     private static final String ANALYTICS_ENABLED = "isAnalyticsEnabled";

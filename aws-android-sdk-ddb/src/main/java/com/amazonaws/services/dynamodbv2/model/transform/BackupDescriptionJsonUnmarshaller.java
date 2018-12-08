@@ -41,11 +41,13 @@ class BackupDescriptionJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("SourceTableDetails")) {
                 backupDescription.setSourceTableDetails(SourceTableDetailsJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SourceTableFeatureDetails")) {
                 backupDescription
                         .setSourceTableFeatureDetails(SourceTableFeatureDetailsJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

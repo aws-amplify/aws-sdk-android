@@ -20,7 +20,7 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * Request validation failed, there is no usable message in the context, or the
- * bot build failed.
+ * bot build failed, is still in progress, or contains unbuilt changes.
  * </p>
  */
 public class BadRequestException extends AmazonServiceException {

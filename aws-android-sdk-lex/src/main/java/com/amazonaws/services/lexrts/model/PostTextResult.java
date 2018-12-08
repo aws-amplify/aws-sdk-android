@@ -27,8 +27,21 @@ public class PostTextResult implements Serializable {
 
     /**
      * <p>
-     * The intent slots (name/value pairs) that Amazon Lex detected so far from
-     * the user input in the conversation.
+     * The intent slots that Amazon Lex detected from the user input in the
+     * conversation.
+     * </p>
+     * <p>
+     * Amazon Lex creates a resolution list containing likely values for a slot.
+     * The value that it returns is determined by the
+     * <code>valueSelectionStrategy</code> selected when the slot type was
+     * created or updated. If <code>valueSelectionStrategy</code> is set to
+     * <code>ORIGINAL_VALUE</code>, the value provided by the user is returned,
+     * if the user value is similar to the slot values. If
+     * <code>valueSelectionStrategy</code> is set to <code>TOP_RESOLUTION</code>
+     * Amazon Lex returns the first value in the resolution list or, if there is
+     * no resolution list, null. If you don't specify a
+     * <code>valueSelectionStrategy</code>, the default is
+     * <code>ORIGINAL_VALUE</code>.
      * </p>
      */
     private java.util.Map<String, String> slots;
@@ -43,25 +56,69 @@ public class PostTextResult implements Serializable {
 
     /**
      * <p>
-     * A message to convey to the user. It can come from the bot's configuration
-     * or a code hook (Lambda function). If the current intent is not configured
-     * with a code hook or the code hook returned <code>Delegate</code> as the
-     * <code>dialogAction.type</code> in its response, then Amazon Lex decides
-     * the next course of action and selects an appropriate message from the bot
-     * configuration based on the current user interaction context. For example,
-     * if Amazon Lex is not able to understand the user input, it uses a
-     * clarification prompt message (for more information, see the Error
-     * Handling section in the Amazon Lex console). Another example: if the
-     * intent requires confirmation before fulfillment, then Amazon Lex uses the
-     * confirmation prompt message in the intent configuration. If the code hook
-     * returns a message, Amazon Lex passes it as-is in its response to the
-     * client.
+     * The message to convey to the user. The message can come from the bot's
+     * configuration or from a Lambda function.
+     * </p>
+     * <p>
+     * If the intent is not configured with a Lambda function, or if the Lambda
+     * function returned <code>Delegate</code> as the
+     * <code>dialogAction.type</code> its response, Amazon Lex decides on the
+     * next course of action and selects an appropriate message from the bot's
+     * configuration based on the current interaction context. For example, if
+     * Amazon Lex isn't able to understand user input, it uses a clarification
+     * prompt message.
+     * </p>
+     * <p>
+     * When you create an intent you can assign messages to groups. When
+     * messages are assigned to groups Amazon Lex returns one message from each
+     * group in the response. The message field is an escaped JSON string
+     * containing the messages. For more information about the structure of the
+     * JSON string returned, see <a>msg-prompts-formats</a>.
+     * </p>
+     * <p>
+     * If the Lambda function returns a message, Amazon Lex passes it to the
+     * client in its response.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      */
     private String message;
+
+    /**
+     * <p>
+     * The format of the response message. One of the following values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>PlainText</code> - The message contains plain UTF-8 text.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>CustomPayload</code> - The message is a custom format defined by
+     * the Lambda function.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SSML</code> - The message contains text formatted for voice output.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Composite</code> - The message contains an escaped JSON object
+     * containing one or more messages from the groups that messages were
+     * assigned to when the intent was created.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PlainText, CustomPayload, SSML, Composite
+     */
+    private String messageFormat;
 
     /**
      * <p>
@@ -72,7 +129,7 @@ public class PostTextResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>ElicitIntent</code> – Amazon Lex wants to elicit user intent.
+     * <code>ElicitIntent</code> - Amazon Lex wants to elicit user intent.
      * </p>
      * <p>
      * For example, a user might utter an intent ("I want to order a pizza"). If
@@ -82,7 +139,7 @@ public class PostTextResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes" or "no"
+     * <code>ConfirmIntent</code> - Amazon Lex is expecting a "yes" or "no"
      * response.
      * </p>
      * <p>
@@ -99,7 +156,7 @@ public class PostTextResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>ElicitSlot</code> – Amazon Lex is expecting a slot value for the
+     * <code>ElicitSlot</code> - Amazon Lex is expecting a slot value for the
      * current intent.
      * </p>
      * <p>
@@ -112,19 +169,19 @@ public class PostTextResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Fulfilled</code> – Conveys that the Lambda function configured for
+     * <code>Fulfilled</code> - Conveys that the Lambda function configured for
      * the intent has successfully fulfilled the intent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReadyForFulfillment</code> – Conveys that the client has to fulfill
+     * <code>ReadyForFulfillment</code> - Conveys that the client has to fulfill
      * the intent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Failed</code> – Conveys that the conversation with the user failed.
+     * <code>Failed</code> - Conveys that the conversation with the user failed.
      * </p>
      * <p>
      * This can happen for various reasons including that the user did not
@@ -206,13 +263,39 @@ public class PostTextResult implements Serializable {
 
     /**
      * <p>
-     * The intent slots (name/value pairs) that Amazon Lex detected so far from
-     * the user input in the conversation.
+     * The intent slots that Amazon Lex detected from the user input in the
+     * conversation.
+     * </p>
+     * <p>
+     * Amazon Lex creates a resolution list containing likely values for a slot.
+     * The value that it returns is determined by the
+     * <code>valueSelectionStrategy</code> selected when the slot type was
+     * created or updated. If <code>valueSelectionStrategy</code> is set to
+     * <code>ORIGINAL_VALUE</code>, the value provided by the user is returned,
+     * if the user value is similar to the slot values. If
+     * <code>valueSelectionStrategy</code> is set to <code>TOP_RESOLUTION</code>
+     * Amazon Lex returns the first value in the resolution list or, if there is
+     * no resolution list, null. If you don't specify a
+     * <code>valueSelectionStrategy</code>, the default is
+     * <code>ORIGINAL_VALUE</code>.
      * </p>
      *
      * @return <p>
-     *         The intent slots (name/value pairs) that Amazon Lex detected so
-     *         far from the user input in the conversation.
+     *         The intent slots that Amazon Lex detected from the user input in
+     *         the conversation.
+     *         </p>
+     *         <p>
+     *         Amazon Lex creates a resolution list containing likely values for
+     *         a slot. The value that it returns is determined by the
+     *         <code>valueSelectionStrategy</code> selected when the slot type
+     *         was created or updated. If <code>valueSelectionStrategy</code> is
+     *         set to <code>ORIGINAL_VALUE</code>, the value provided by the
+     *         user is returned, if the user value is similar to the slot
+     *         values. If <code>valueSelectionStrategy</code> is set to
+     *         <code>TOP_RESOLUTION</code> Amazon Lex returns the first value in
+     *         the resolution list or, if there is no resolution list, null. If
+     *         you don't specify a <code>valueSelectionStrategy</code>, the
+     *         default is <code>ORIGINAL_VALUE</code>.
      *         </p>
      */
     public java.util.Map<String, String> getSlots() {
@@ -221,13 +304,41 @@ public class PostTextResult implements Serializable {
 
     /**
      * <p>
-     * The intent slots (name/value pairs) that Amazon Lex detected so far from
-     * the user input in the conversation.
+     * The intent slots that Amazon Lex detected from the user input in the
+     * conversation.
+     * </p>
+     * <p>
+     * Amazon Lex creates a resolution list containing likely values for a slot.
+     * The value that it returns is determined by the
+     * <code>valueSelectionStrategy</code> selected when the slot type was
+     * created or updated. If <code>valueSelectionStrategy</code> is set to
+     * <code>ORIGINAL_VALUE</code>, the value provided by the user is returned,
+     * if the user value is similar to the slot values. If
+     * <code>valueSelectionStrategy</code> is set to <code>TOP_RESOLUTION</code>
+     * Amazon Lex returns the first value in the resolution list or, if there is
+     * no resolution list, null. If you don't specify a
+     * <code>valueSelectionStrategy</code>, the default is
+     * <code>ORIGINAL_VALUE</code>.
      * </p>
      *
      * @param slots <p>
-     *            The intent slots (name/value pairs) that Amazon Lex detected
-     *            so far from the user input in the conversation.
+     *            The intent slots that Amazon Lex detected from the user input
+     *            in the conversation.
+     *            </p>
+     *            <p>
+     *            Amazon Lex creates a resolution list containing likely values
+     *            for a slot. The value that it returns is determined by the
+     *            <code>valueSelectionStrategy</code> selected when the slot
+     *            type was created or updated. If
+     *            <code>valueSelectionStrategy</code> is set to
+     *            <code>ORIGINAL_VALUE</code>, the value provided by the user is
+     *            returned, if the user value is similar to the slot values. If
+     *            <code>valueSelectionStrategy</code> is set to
+     *            <code>TOP_RESOLUTION</code> Amazon Lex returns the first value
+     *            in the resolution list or, if there is no resolution list,
+     *            null. If you don't specify a
+     *            <code>valueSelectionStrategy</code>, the default is
+     *            <code>ORIGINAL_VALUE</code>.
      *            </p>
      */
     public void setSlots(java.util.Map<String, String> slots) {
@@ -236,16 +347,44 @@ public class PostTextResult implements Serializable {
 
     /**
      * <p>
-     * The intent slots (name/value pairs) that Amazon Lex detected so far from
-     * the user input in the conversation.
+     * The intent slots that Amazon Lex detected from the user input in the
+     * conversation.
+     * </p>
+     * <p>
+     * Amazon Lex creates a resolution list containing likely values for a slot.
+     * The value that it returns is determined by the
+     * <code>valueSelectionStrategy</code> selected when the slot type was
+     * created or updated. If <code>valueSelectionStrategy</code> is set to
+     * <code>ORIGINAL_VALUE</code>, the value provided by the user is returned,
+     * if the user value is similar to the slot values. If
+     * <code>valueSelectionStrategy</code> is set to <code>TOP_RESOLUTION</code>
+     * Amazon Lex returns the first value in the resolution list or, if there is
+     * no resolution list, null. If you don't specify a
+     * <code>valueSelectionStrategy</code>, the default is
+     * <code>ORIGINAL_VALUE</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param slots <p>
-     *            The intent slots (name/value pairs) that Amazon Lex detected
-     *            so far from the user input in the conversation.
+     *            The intent slots that Amazon Lex detected from the user input
+     *            in the conversation.
+     *            </p>
+     *            <p>
+     *            Amazon Lex creates a resolution list containing likely values
+     *            for a slot. The value that it returns is determined by the
+     *            <code>valueSelectionStrategy</code> selected when the slot
+     *            type was created or updated. If
+     *            <code>valueSelectionStrategy</code> is set to
+     *            <code>ORIGINAL_VALUE</code>, the value provided by the user is
+     *            returned, if the user value is similar to the slot values. If
+     *            <code>valueSelectionStrategy</code> is set to
+     *            <code>TOP_RESOLUTION</code> Amazon Lex returns the first value
+     *            in the resolution list or, if there is no resolution list,
+     *            null. If you don't specify a
+     *            <code>valueSelectionStrategy</code>, the default is
+     *            <code>ORIGINAL_VALUE</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -257,8 +396,21 @@ public class PostTextResult implements Serializable {
 
     /**
      * <p>
-     * The intent slots (name/value pairs) that Amazon Lex detected so far from
-     * the user input in the conversation.
+     * The intent slots that Amazon Lex detected from the user input in the
+     * conversation.
+     * </p>
+     * <p>
+     * Amazon Lex creates a resolution list containing likely values for a slot.
+     * The value that it returns is determined by the
+     * <code>valueSelectionStrategy</code> selected when the slot type was
+     * created or updated. If <code>valueSelectionStrategy</code> is set to
+     * <code>ORIGINAL_VALUE</code>, the value provided by the user is returned,
+     * if the user value is similar to the slot values. If
+     * <code>valueSelectionStrategy</code> is set to <code>TOP_RESOLUTION</code>
+     * Amazon Lex returns the first value in the resolution list or, if there is
+     * no resolution list, null. If you don't specify a
+     * <code>valueSelectionStrategy</code>, the default is
+     * <code>ORIGINAL_VALUE</code>.
      * </p>
      * <p>
      * The method adds a new key-value pair into slots parameter, and returns a
@@ -382,40 +534,57 @@ public class PostTextResult implements Serializable {
 
     /**
      * <p>
-     * A message to convey to the user. It can come from the bot's configuration
-     * or a code hook (Lambda function). If the current intent is not configured
-     * with a code hook or the code hook returned <code>Delegate</code> as the
-     * <code>dialogAction.type</code> in its response, then Amazon Lex decides
-     * the next course of action and selects an appropriate message from the bot
-     * configuration based on the current user interaction context. For example,
-     * if Amazon Lex is not able to understand the user input, it uses a
-     * clarification prompt message (for more information, see the Error
-     * Handling section in the Amazon Lex console). Another example: if the
-     * intent requires confirmation before fulfillment, then Amazon Lex uses the
-     * confirmation prompt message in the intent configuration. If the code hook
-     * returns a message, Amazon Lex passes it as-is in its response to the
-     * client.
+     * The message to convey to the user. The message can come from the bot's
+     * configuration or from a Lambda function.
+     * </p>
+     * <p>
+     * If the intent is not configured with a Lambda function, or if the Lambda
+     * function returned <code>Delegate</code> as the
+     * <code>dialogAction.type</code> its response, Amazon Lex decides on the
+     * next course of action and selects an appropriate message from the bot's
+     * configuration based on the current interaction context. For example, if
+     * Amazon Lex isn't able to understand user input, it uses a clarification
+     * prompt message.
+     * </p>
+     * <p>
+     * When you create an intent you can assign messages to groups. When
+     * messages are assigned to groups Amazon Lex returns one message from each
+     * group in the response. The message field is an escaped JSON string
+     * containing the messages. For more information about the structure of the
+     * JSON string returned, see <a>msg-prompts-formats</a>.
+     * </p>
+     * <p>
+     * If the Lambda function returns a message, Amazon Lex passes it to the
+     * client in its response.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      *
      * @return <p>
-     *         A message to convey to the user. It can come from the bot's
-     *         configuration or a code hook (Lambda function). If the current
-     *         intent is not configured with a code hook or the code hook
-     *         returned <code>Delegate</code> as the
-     *         <code>dialogAction.type</code> in its response, then Amazon Lex
-     *         decides the next course of action and selects an appropriate
-     *         message from the bot configuration based on the current user
-     *         interaction context. For example, if Amazon Lex is not able to
-     *         understand the user input, it uses a clarification prompt message
-     *         (for more information, see the Error Handling section in the
-     *         Amazon Lex console). Another example: if the intent requires
-     *         confirmation before fulfillment, then Amazon Lex uses the
-     *         confirmation prompt message in the intent configuration. If the
-     *         code hook returns a message, Amazon Lex passes it as-is in its
-     *         response to the client.
+     *         The message to convey to the user. The message can come from the
+     *         bot's configuration or from a Lambda function.
+     *         </p>
+     *         <p>
+     *         If the intent is not configured with a Lambda function, or if the
+     *         Lambda function returned <code>Delegate</code> as the
+     *         <code>dialogAction.type</code> its response, Amazon Lex decides
+     *         on the next course of action and selects an appropriate message
+     *         from the bot's configuration based on the current interaction
+     *         context. For example, if Amazon Lex isn't able to understand user
+     *         input, it uses a clarification prompt message.
+     *         </p>
+     *         <p>
+     *         When you create an intent you can assign messages to groups. When
+     *         messages are assigned to groups Amazon Lex returns one message
+     *         from each group in the response. The message field is an escaped
+     *         JSON string containing the messages. For more information about
+     *         the structure of the JSON string returned, see
+     *         <a>msg-prompts-formats</a>.
+     *         </p>
+     *         <p>
+     *         If the Lambda function returns a message, Amazon Lex passes it to
+     *         the client in its response.
      *         </p>
      */
     public String getMessage() {
@@ -424,41 +593,58 @@ public class PostTextResult implements Serializable {
 
     /**
      * <p>
-     * A message to convey to the user. It can come from the bot's configuration
-     * or a code hook (Lambda function). If the current intent is not configured
-     * with a code hook or the code hook returned <code>Delegate</code> as the
-     * <code>dialogAction.type</code> in its response, then Amazon Lex decides
-     * the next course of action and selects an appropriate message from the bot
-     * configuration based on the current user interaction context. For example,
-     * if Amazon Lex is not able to understand the user input, it uses a
-     * clarification prompt message (for more information, see the Error
-     * Handling section in the Amazon Lex console). Another example: if the
-     * intent requires confirmation before fulfillment, then Amazon Lex uses the
-     * confirmation prompt message in the intent configuration. If the code hook
-     * returns a message, Amazon Lex passes it as-is in its response to the
-     * client.
+     * The message to convey to the user. The message can come from the bot's
+     * configuration or from a Lambda function.
+     * </p>
+     * <p>
+     * If the intent is not configured with a Lambda function, or if the Lambda
+     * function returned <code>Delegate</code> as the
+     * <code>dialogAction.type</code> its response, Amazon Lex decides on the
+     * next course of action and selects an appropriate message from the bot's
+     * configuration based on the current interaction context. For example, if
+     * Amazon Lex isn't able to understand user input, it uses a clarification
+     * prompt message.
+     * </p>
+     * <p>
+     * When you create an intent you can assign messages to groups. When
+     * messages are assigned to groups Amazon Lex returns one message from each
+     * group in the response. The message field is an escaped JSON string
+     * containing the messages. For more information about the structure of the
+     * JSON string returned, see <a>msg-prompts-formats</a>.
+     * </p>
+     * <p>
+     * If the Lambda function returns a message, Amazon Lex passes it to the
+     * client in its response.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      *
      * @param message <p>
-     *            A message to convey to the user. It can come from the bot's
-     *            configuration or a code hook (Lambda function). If the current
-     *            intent is not configured with a code hook or the code hook
-     *            returned <code>Delegate</code> as the
-     *            <code>dialogAction.type</code> in its response, then Amazon
-     *            Lex decides the next course of action and selects an
-     *            appropriate message from the bot configuration based on the
-     *            current user interaction context. For example, if Amazon Lex
-     *            is not able to understand the user input, it uses a
-     *            clarification prompt message (for more information, see the
-     *            Error Handling section in the Amazon Lex console). Another
-     *            example: if the intent requires confirmation before
-     *            fulfillment, then Amazon Lex uses the confirmation prompt
-     *            message in the intent configuration. If the code hook returns
-     *            a message, Amazon Lex passes it as-is in its response to the
-     *            client.
+     *            The message to convey to the user. The message can come from
+     *            the bot's configuration or from a Lambda function.
+     *            </p>
+     *            <p>
+     *            If the intent is not configured with a Lambda function, or if
+     *            the Lambda function returned <code>Delegate</code> as the
+     *            <code>dialogAction.type</code> its response, Amazon Lex
+     *            decides on the next course of action and selects an
+     *            appropriate message from the bot's configuration based on the
+     *            current interaction context. For example, if Amazon Lex isn't
+     *            able to understand user input, it uses a clarification prompt
+     *            message.
+     *            </p>
+     *            <p>
+     *            When you create an intent you can assign messages to groups.
+     *            When messages are assigned to groups Amazon Lex returns one
+     *            message from each group in the response. The message field is
+     *            an escaped JSON string containing the messages. For more
+     *            information about the structure of the JSON string returned,
+     *            see <a>msg-prompts-formats</a>.
+     *            </p>
+     *            <p>
+     *            If the Lambda function returns a message, Amazon Lex passes it
+     *            to the client in its response.
      *            </p>
      */
     public void setMessage(String message) {
@@ -467,19 +653,28 @@ public class PostTextResult implements Serializable {
 
     /**
      * <p>
-     * A message to convey to the user. It can come from the bot's configuration
-     * or a code hook (Lambda function). If the current intent is not configured
-     * with a code hook or the code hook returned <code>Delegate</code> as the
-     * <code>dialogAction.type</code> in its response, then Amazon Lex decides
-     * the next course of action and selects an appropriate message from the bot
-     * configuration based on the current user interaction context. For example,
-     * if Amazon Lex is not able to understand the user input, it uses a
-     * clarification prompt message (for more information, see the Error
-     * Handling section in the Amazon Lex console). Another example: if the
-     * intent requires confirmation before fulfillment, then Amazon Lex uses the
-     * confirmation prompt message in the intent configuration. If the code hook
-     * returns a message, Amazon Lex passes it as-is in its response to the
-     * client.
+     * The message to convey to the user. The message can come from the bot's
+     * configuration or from a Lambda function.
+     * </p>
+     * <p>
+     * If the intent is not configured with a Lambda function, or if the Lambda
+     * function returned <code>Delegate</code> as the
+     * <code>dialogAction.type</code> its response, Amazon Lex decides on the
+     * next course of action and selects an appropriate message from the bot's
+     * configuration based on the current interaction context. For example, if
+     * Amazon Lex isn't able to understand user input, it uses a clarification
+     * prompt message.
+     * </p>
+     * <p>
+     * When you create an intent you can assign messages to groups. When
+     * messages are assigned to groups Amazon Lex returns one message from each
+     * group in the response. The message field is an escaped JSON string
+     * containing the messages. For more information about the structure of the
+     * JSON string returned, see <a>msg-prompts-formats</a>.
+     * </p>
+     * <p>
+     * If the Lambda function returns a message, Amazon Lex passes it to the
+     * client in its response.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -489,28 +684,396 @@ public class PostTextResult implements Serializable {
      * <b>Length: </b>1 - 1024<br/>
      *
      * @param message <p>
-     *            A message to convey to the user. It can come from the bot's
-     *            configuration or a code hook (Lambda function). If the current
-     *            intent is not configured with a code hook or the code hook
-     *            returned <code>Delegate</code> as the
-     *            <code>dialogAction.type</code> in its response, then Amazon
-     *            Lex decides the next course of action and selects an
-     *            appropriate message from the bot configuration based on the
-     *            current user interaction context. For example, if Amazon Lex
-     *            is not able to understand the user input, it uses a
-     *            clarification prompt message (for more information, see the
-     *            Error Handling section in the Amazon Lex console). Another
-     *            example: if the intent requires confirmation before
-     *            fulfillment, then Amazon Lex uses the confirmation prompt
-     *            message in the intent configuration. If the code hook returns
-     *            a message, Amazon Lex passes it as-is in its response to the
-     *            client.
+     *            The message to convey to the user. The message can come from
+     *            the bot's configuration or from a Lambda function.
+     *            </p>
+     *            <p>
+     *            If the intent is not configured with a Lambda function, or if
+     *            the Lambda function returned <code>Delegate</code> as the
+     *            <code>dialogAction.type</code> its response, Amazon Lex
+     *            decides on the next course of action and selects an
+     *            appropriate message from the bot's configuration based on the
+     *            current interaction context. For example, if Amazon Lex isn't
+     *            able to understand user input, it uses a clarification prompt
+     *            message.
+     *            </p>
+     *            <p>
+     *            When you create an intent you can assign messages to groups.
+     *            When messages are assigned to groups Amazon Lex returns one
+     *            message from each group in the response. The message field is
+     *            an escaped JSON string containing the messages. For more
+     *            information about the structure of the JSON string returned,
+     *            see <a>msg-prompts-formats</a>.
+     *            </p>
+     *            <p>
+     *            If the Lambda function returns a message, Amazon Lex passes it
+     *            to the client in its response.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public PostTextResult withMessage(String message) {
         this.message = message;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The format of the response message. One of the following values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>PlainText</code> - The message contains plain UTF-8 text.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>CustomPayload</code> - The message is a custom format defined by
+     * the Lambda function.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SSML</code> - The message contains text formatted for voice output.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Composite</code> - The message contains an escaped JSON object
+     * containing one or more messages from the groups that messages were
+     * assigned to when the intent was created.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PlainText, CustomPayload, SSML, Composite
+     *
+     * @return <p>
+     *         The format of the response message. One of the following values:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>PlainText</code> - The message contains plain UTF-8 text.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>CustomPayload</code> - The message is a custom format
+     *         defined by the Lambda function.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>SSML</code> - The message contains text formatted for voice
+     *         output.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>Composite</code> - The message contains an escaped JSON
+     *         object containing one or more messages from the groups that
+     *         messages were assigned to when the intent was created.
+     *         </p>
+     *         </li>
+     *         </ul>
+     * @see MessageFormatType
+     */
+    public String getMessageFormat() {
+        return messageFormat;
+    }
+
+    /**
+     * <p>
+     * The format of the response message. One of the following values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>PlainText</code> - The message contains plain UTF-8 text.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>CustomPayload</code> - The message is a custom format defined by
+     * the Lambda function.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SSML</code> - The message contains text formatted for voice output.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Composite</code> - The message contains an escaped JSON object
+     * containing one or more messages from the groups that messages were
+     * assigned to when the intent was created.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PlainText, CustomPayload, SSML, Composite
+     *
+     * @param messageFormat <p>
+     *            The format of the response message. One of the following
+     *            values:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>PlainText</code> - The message contains plain UTF-8
+     *            text.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>CustomPayload</code> - The message is a custom format
+     *            defined by the Lambda function.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SSML</code> - The message contains text formatted for
+     *            voice output.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Composite</code> - The message contains an escaped JSON
+     *            object containing one or more messages from the groups that
+     *            messages were assigned to when the intent was created.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @see MessageFormatType
+     */
+    public void setMessageFormat(String messageFormat) {
+        this.messageFormat = messageFormat;
+    }
+
+    /**
+     * <p>
+     * The format of the response message. One of the following values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>PlainText</code> - The message contains plain UTF-8 text.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>CustomPayload</code> - The message is a custom format defined by
+     * the Lambda function.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SSML</code> - The message contains text formatted for voice output.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Composite</code> - The message contains an escaped JSON object
+     * containing one or more messages from the groups that messages were
+     * assigned to when the intent was created.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PlainText, CustomPayload, SSML, Composite
+     *
+     * @param messageFormat <p>
+     *            The format of the response message. One of the following
+     *            values:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>PlainText</code> - The message contains plain UTF-8
+     *            text.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>CustomPayload</code> - The message is a custom format
+     *            defined by the Lambda function.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SSML</code> - The message contains text formatted for
+     *            voice output.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Composite</code> - The message contains an escaped JSON
+     *            object containing one or more messages from the groups that
+     *            messages were assigned to when the intent was created.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see MessageFormatType
+     */
+    public PostTextResult withMessageFormat(String messageFormat) {
+        this.messageFormat = messageFormat;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The format of the response message. One of the following values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>PlainText</code> - The message contains plain UTF-8 text.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>CustomPayload</code> - The message is a custom format defined by
+     * the Lambda function.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SSML</code> - The message contains text formatted for voice output.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Composite</code> - The message contains an escaped JSON object
+     * containing one or more messages from the groups that messages were
+     * assigned to when the intent was created.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PlainText, CustomPayload, SSML, Composite
+     *
+     * @param messageFormat <p>
+     *            The format of the response message. One of the following
+     *            values:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>PlainText</code> - The message contains plain UTF-8
+     *            text.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>CustomPayload</code> - The message is a custom format
+     *            defined by the Lambda function.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SSML</code> - The message contains text formatted for
+     *            voice output.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Composite</code> - The message contains an escaped JSON
+     *            object containing one or more messages from the groups that
+     *            messages were assigned to when the intent was created.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @see MessageFormatType
+     */
+    public void setMessageFormat(MessageFormatType messageFormat) {
+        this.messageFormat = messageFormat.toString();
+    }
+
+    /**
+     * <p>
+     * The format of the response message. One of the following values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>PlainText</code> - The message contains plain UTF-8 text.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>CustomPayload</code> - The message is a custom format defined by
+     * the Lambda function.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SSML</code> - The message contains text formatted for voice output.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Composite</code> - The message contains an escaped JSON object
+     * containing one or more messages from the groups that messages were
+     * assigned to when the intent was created.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PlainText, CustomPayload, SSML, Composite
+     *
+     * @param messageFormat <p>
+     *            The format of the response message. One of the following
+     *            values:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>PlainText</code> - The message contains plain UTF-8
+     *            text.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>CustomPayload</code> - The message is a custom format
+     *            defined by the Lambda function.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SSML</code> - The message contains text formatted for
+     *            voice output.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Composite</code> - The message contains an escaped JSON
+     *            object containing one or more messages from the groups that
+     *            messages were assigned to when the intent was created.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see MessageFormatType
+     */
+    public PostTextResult withMessageFormat(MessageFormatType messageFormat) {
+        this.messageFormat = messageFormat.toString();
         return this;
     }
 
@@ -523,7 +1086,7 @@ public class PostTextResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>ElicitIntent</code> – Amazon Lex wants to elicit user intent.
+     * <code>ElicitIntent</code> - Amazon Lex wants to elicit user intent.
      * </p>
      * <p>
      * For example, a user might utter an intent ("I want to order a pizza"). If
@@ -533,7 +1096,7 @@ public class PostTextResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes" or "no"
+     * <code>ConfirmIntent</code> - Amazon Lex is expecting a "yes" or "no"
      * response.
      * </p>
      * <p>
@@ -550,7 +1113,7 @@ public class PostTextResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>ElicitSlot</code> – Amazon Lex is expecting a slot value for the
+     * <code>ElicitSlot</code> - Amazon Lex is expecting a slot value for the
      * current intent.
      * </p>
      * <p>
@@ -563,19 +1126,19 @@ public class PostTextResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Fulfilled</code> – Conveys that the Lambda function configured for
+     * <code>Fulfilled</code> - Conveys that the Lambda function configured for
      * the intent has successfully fulfilled the intent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReadyForFulfillment</code> – Conveys that the client has to fulfill
+     * <code>ReadyForFulfillment</code> - Conveys that the client has to fulfill
      * the intent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Failed</code> – Conveys that the conversation with the user failed.
+     * <code>Failed</code> - Conveys that the conversation with the user failed.
      * </p>
      * <p>
      * This can happen for various reasons including that the user did not
@@ -599,7 +1162,7 @@ public class PostTextResult implements Serializable {
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>ElicitIntent</code> – Amazon Lex wants to elicit user
+     *         <code>ElicitIntent</code> - Amazon Lex wants to elicit user
      *         intent.
      *         </p>
      *         <p>
@@ -610,7 +1173,7 @@ public class PostTextResult implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes" or
+     *         <code>ConfirmIntent</code> - Amazon Lex is expecting a "yes" or
      *         "no" response.
      *         </p>
      *         <p>
@@ -628,7 +1191,7 @@ public class PostTextResult implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         <code>ElicitSlot</code> – Amazon Lex is expecting a slot value
+     *         <code>ElicitSlot</code> - Amazon Lex is expecting a slot value
      *         for the current intent.
      *         </p>
      *         <p>
@@ -642,19 +1205,19 @@ public class PostTextResult implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         <code>Fulfilled</code> – Conveys that the Lambda function
+     *         <code>Fulfilled</code> - Conveys that the Lambda function
      *         configured for the intent has successfully fulfilled the intent.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>ReadyForFulfillment</code> – Conveys that the client has to
+     *         <code>ReadyForFulfillment</code> - Conveys that the client has to
      *         fulfill the intent.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>Failed</code> – Conveys that the conversation with the user
+     *         <code>Failed</code> - Conveys that the conversation with the user
      *         failed.
      *         </p>
      *         <p>
@@ -681,7 +1244,7 @@ public class PostTextResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>ElicitIntent</code> – Amazon Lex wants to elicit user intent.
+     * <code>ElicitIntent</code> - Amazon Lex wants to elicit user intent.
      * </p>
      * <p>
      * For example, a user might utter an intent ("I want to order a pizza"). If
@@ -691,7 +1254,7 @@ public class PostTextResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes" or "no"
+     * <code>ConfirmIntent</code> - Amazon Lex is expecting a "yes" or "no"
      * response.
      * </p>
      * <p>
@@ -708,7 +1271,7 @@ public class PostTextResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>ElicitSlot</code> – Amazon Lex is expecting a slot value for the
+     * <code>ElicitSlot</code> - Amazon Lex is expecting a slot value for the
      * current intent.
      * </p>
      * <p>
@@ -721,19 +1284,19 @@ public class PostTextResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Fulfilled</code> – Conveys that the Lambda function configured for
+     * <code>Fulfilled</code> - Conveys that the Lambda function configured for
      * the intent has successfully fulfilled the intent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReadyForFulfillment</code> – Conveys that the client has to fulfill
+     * <code>ReadyForFulfillment</code> - Conveys that the client has to fulfill
      * the intent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Failed</code> – Conveys that the conversation with the user failed.
+     * <code>Failed</code> - Conveys that the conversation with the user failed.
      * </p>
      * <p>
      * This can happen for various reasons including that the user did not
@@ -757,7 +1320,7 @@ public class PostTextResult implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>ElicitIntent</code> – Amazon Lex wants to elicit user
+     *            <code>ElicitIntent</code> - Amazon Lex wants to elicit user
      *            intent.
      *            </p>
      *            <p>
@@ -769,7 +1332,7 @@ public class PostTextResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes"
+     *            <code>ConfirmIntent</code> - Amazon Lex is expecting a "yes"
      *            or "no" response.
      *            </p>
      *            <p>
@@ -788,7 +1351,7 @@ public class PostTextResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ElicitSlot</code> – Amazon Lex is expecting a slot value
+     *            <code>ElicitSlot</code> - Amazon Lex is expecting a slot value
      *            for the current intent.
      *            </p>
      *            <p>
@@ -802,20 +1365,20 @@ public class PostTextResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Fulfilled</code> – Conveys that the Lambda function
+     *            <code>Fulfilled</code> - Conveys that the Lambda function
      *            configured for the intent has successfully fulfilled the
      *            intent.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ReadyForFulfillment</code> – Conveys that the client has
+     *            <code>ReadyForFulfillment</code> - Conveys that the client has
      *            to fulfill the intent.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Failed</code> – Conveys that the conversation with the
+     *            <code>Failed</code> - Conveys that the conversation with the
      *            user failed.
      *            </p>
      *            <p>
@@ -842,7 +1405,7 @@ public class PostTextResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>ElicitIntent</code> – Amazon Lex wants to elicit user intent.
+     * <code>ElicitIntent</code> - Amazon Lex wants to elicit user intent.
      * </p>
      * <p>
      * For example, a user might utter an intent ("I want to order a pizza"). If
@@ -852,7 +1415,7 @@ public class PostTextResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes" or "no"
+     * <code>ConfirmIntent</code> - Amazon Lex is expecting a "yes" or "no"
      * response.
      * </p>
      * <p>
@@ -869,7 +1432,7 @@ public class PostTextResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>ElicitSlot</code> – Amazon Lex is expecting a slot value for the
+     * <code>ElicitSlot</code> - Amazon Lex is expecting a slot value for the
      * current intent.
      * </p>
      * <p>
@@ -882,19 +1445,19 @@ public class PostTextResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Fulfilled</code> – Conveys that the Lambda function configured for
+     * <code>Fulfilled</code> - Conveys that the Lambda function configured for
      * the intent has successfully fulfilled the intent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReadyForFulfillment</code> – Conveys that the client has to fulfill
+     * <code>ReadyForFulfillment</code> - Conveys that the client has to fulfill
      * the intent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Failed</code> – Conveys that the conversation with the user failed.
+     * <code>Failed</code> - Conveys that the conversation with the user failed.
      * </p>
      * <p>
      * This can happen for various reasons including that the user did not
@@ -921,7 +1484,7 @@ public class PostTextResult implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>ElicitIntent</code> – Amazon Lex wants to elicit user
+     *            <code>ElicitIntent</code> - Amazon Lex wants to elicit user
      *            intent.
      *            </p>
      *            <p>
@@ -933,7 +1496,7 @@ public class PostTextResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes"
+     *            <code>ConfirmIntent</code> - Amazon Lex is expecting a "yes"
      *            or "no" response.
      *            </p>
      *            <p>
@@ -952,7 +1515,7 @@ public class PostTextResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ElicitSlot</code> – Amazon Lex is expecting a slot value
+     *            <code>ElicitSlot</code> - Amazon Lex is expecting a slot value
      *            for the current intent.
      *            </p>
      *            <p>
@@ -966,20 +1529,20 @@ public class PostTextResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Fulfilled</code> – Conveys that the Lambda function
+     *            <code>Fulfilled</code> - Conveys that the Lambda function
      *            configured for the intent has successfully fulfilled the
      *            intent.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ReadyForFulfillment</code> – Conveys that the client has
+     *            <code>ReadyForFulfillment</code> - Conveys that the client has
      *            to fulfill the intent.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Failed</code> – Conveys that the conversation with the
+     *            <code>Failed</code> - Conveys that the conversation with the
      *            user failed.
      *            </p>
      *            <p>
@@ -1009,7 +1572,7 @@ public class PostTextResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>ElicitIntent</code> – Amazon Lex wants to elicit user intent.
+     * <code>ElicitIntent</code> - Amazon Lex wants to elicit user intent.
      * </p>
      * <p>
      * For example, a user might utter an intent ("I want to order a pizza"). If
@@ -1019,7 +1582,7 @@ public class PostTextResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes" or "no"
+     * <code>ConfirmIntent</code> - Amazon Lex is expecting a "yes" or "no"
      * response.
      * </p>
      * <p>
@@ -1036,7 +1599,7 @@ public class PostTextResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>ElicitSlot</code> – Amazon Lex is expecting a slot value for the
+     * <code>ElicitSlot</code> - Amazon Lex is expecting a slot value for the
      * current intent.
      * </p>
      * <p>
@@ -1049,19 +1612,19 @@ public class PostTextResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Fulfilled</code> – Conveys that the Lambda function configured for
+     * <code>Fulfilled</code> - Conveys that the Lambda function configured for
      * the intent has successfully fulfilled the intent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReadyForFulfillment</code> – Conveys that the client has to fulfill
+     * <code>ReadyForFulfillment</code> - Conveys that the client has to fulfill
      * the intent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Failed</code> – Conveys that the conversation with the user failed.
+     * <code>Failed</code> - Conveys that the conversation with the user failed.
      * </p>
      * <p>
      * This can happen for various reasons including that the user did not
@@ -1085,7 +1648,7 @@ public class PostTextResult implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>ElicitIntent</code> – Amazon Lex wants to elicit user
+     *            <code>ElicitIntent</code> - Amazon Lex wants to elicit user
      *            intent.
      *            </p>
      *            <p>
@@ -1097,7 +1660,7 @@ public class PostTextResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes"
+     *            <code>ConfirmIntent</code> - Amazon Lex is expecting a "yes"
      *            or "no" response.
      *            </p>
      *            <p>
@@ -1116,7 +1679,7 @@ public class PostTextResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ElicitSlot</code> – Amazon Lex is expecting a slot value
+     *            <code>ElicitSlot</code> - Amazon Lex is expecting a slot value
      *            for the current intent.
      *            </p>
      *            <p>
@@ -1130,20 +1693,20 @@ public class PostTextResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Fulfilled</code> – Conveys that the Lambda function
+     *            <code>Fulfilled</code> - Conveys that the Lambda function
      *            configured for the intent has successfully fulfilled the
      *            intent.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ReadyForFulfillment</code> – Conveys that the client has
+     *            <code>ReadyForFulfillment</code> - Conveys that the client has
      *            to fulfill the intent.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Failed</code> – Conveys that the conversation with the
+     *            <code>Failed</code> - Conveys that the conversation with the
      *            user failed.
      *            </p>
      *            <p>
@@ -1170,7 +1733,7 @@ public class PostTextResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>ElicitIntent</code> – Amazon Lex wants to elicit user intent.
+     * <code>ElicitIntent</code> - Amazon Lex wants to elicit user intent.
      * </p>
      * <p>
      * For example, a user might utter an intent ("I want to order a pizza"). If
@@ -1180,7 +1743,7 @@ public class PostTextResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes" or "no"
+     * <code>ConfirmIntent</code> - Amazon Lex is expecting a "yes" or "no"
      * response.
      * </p>
      * <p>
@@ -1197,7 +1760,7 @@ public class PostTextResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>ElicitSlot</code> – Amazon Lex is expecting a slot value for the
+     * <code>ElicitSlot</code> - Amazon Lex is expecting a slot value for the
      * current intent.
      * </p>
      * <p>
@@ -1210,19 +1773,19 @@ public class PostTextResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Fulfilled</code> – Conveys that the Lambda function configured for
+     * <code>Fulfilled</code> - Conveys that the Lambda function configured for
      * the intent has successfully fulfilled the intent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReadyForFulfillment</code> – Conveys that the client has to fulfill
+     * <code>ReadyForFulfillment</code> - Conveys that the client has to fulfill
      * the intent.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Failed</code> – Conveys that the conversation with the user failed.
+     * <code>Failed</code> - Conveys that the conversation with the user failed.
      * </p>
      * <p>
      * This can happen for various reasons including that the user did not
@@ -1249,7 +1812,7 @@ public class PostTextResult implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>ElicitIntent</code> – Amazon Lex wants to elicit user
+     *            <code>ElicitIntent</code> - Amazon Lex wants to elicit user
      *            intent.
      *            </p>
      *            <p>
@@ -1261,7 +1824,7 @@ public class PostTextResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ConfirmIntent</code> – Amazon Lex is expecting a "yes"
+     *            <code>ConfirmIntent</code> - Amazon Lex is expecting a "yes"
      *            or "no" response.
      *            </p>
      *            <p>
@@ -1280,7 +1843,7 @@ public class PostTextResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ElicitSlot</code> – Amazon Lex is expecting a slot value
+     *            <code>ElicitSlot</code> - Amazon Lex is expecting a slot value
      *            for the current intent.
      *            </p>
      *            <p>
@@ -1294,20 +1857,20 @@ public class PostTextResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Fulfilled</code> – Conveys that the Lambda function
+     *            <code>Fulfilled</code> - Conveys that the Lambda function
      *            configured for the intent has successfully fulfilled the
      *            intent.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ReadyForFulfillment</code> – Conveys that the client has
+     *            <code>ReadyForFulfillment</code> - Conveys that the client has
      *            to fulfill the intent.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Failed</code> – Conveys that the conversation with the
+     *            <code>Failed</code> - Conveys that the conversation with the
      *            user failed.
      *            </p>
      *            <p>
@@ -1464,6 +2027,8 @@ public class PostTextResult implements Serializable {
             sb.append("sessionAttributes: " + getSessionAttributes() + ",");
         if (getMessage() != null)
             sb.append("message: " + getMessage() + ",");
+        if (getMessageFormat() != null)
+            sb.append("messageFormat: " + getMessageFormat() + ",");
         if (getDialogState() != null)
             sb.append("dialogState: " + getDialogState() + ",");
         if (getSlotToElicit() != null)
@@ -1484,6 +2049,8 @@ public class PostTextResult implements Serializable {
         hashCode = prime * hashCode
                 + ((getSessionAttributes() == null) ? 0 : getSessionAttributes().hashCode());
         hashCode = prime * hashCode + ((getMessage() == null) ? 0 : getMessage().hashCode());
+        hashCode = prime * hashCode
+                + ((getMessageFormat() == null) ? 0 : getMessageFormat().hashCode());
         hashCode = prime * hashCode
                 + ((getDialogState() == null) ? 0 : getDialogState().hashCode());
         hashCode = prime * hashCode
@@ -1521,6 +2088,11 @@ public class PostTextResult implements Serializable {
         if (other.getMessage() == null ^ this.getMessage() == null)
             return false;
         if (other.getMessage() != null && other.getMessage().equals(this.getMessage()) == false)
+            return false;
+        if (other.getMessageFormat() == null ^ this.getMessageFormat() == null)
+            return false;
+        if (other.getMessageFormat() != null
+                && other.getMessageFormat().equals(this.getMessageFormat()) == false)
             return false;
         if (other.getDialogState() == null ^ this.getDialogState() == null)
             return false;

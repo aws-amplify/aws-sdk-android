@@ -37,11 +37,11 @@ class PresignedUrlConfigJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("roleArn")) {
-                presignedUrlConfig.setRoleArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                presignedUrlConfig.setRoleArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("expiresInSec")) {
-                presignedUrlConfig.setExpiresInSec(LongJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                presignedUrlConfig.setExpiresInSec(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

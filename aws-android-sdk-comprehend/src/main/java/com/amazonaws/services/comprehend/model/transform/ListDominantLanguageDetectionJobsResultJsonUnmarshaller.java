@@ -38,10 +38,13 @@ public class ListDominantLanguageDetectionJobsResultJsonUnmarshaller implements
                 listDominantLanguageDetectionJobsResult
                         .setDominantLanguageDetectionJobPropertiesList(new ListUnmarshaller<DominantLanguageDetectionJobProperties>(
                                 DominantLanguageDetectionJobPropertiesJsonUnmarshaller
-                                        .getInstance()).unmarshall(context));
+                                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("NextToken")) {
                 listDominantLanguageDetectionJobsResult.setNextToken(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

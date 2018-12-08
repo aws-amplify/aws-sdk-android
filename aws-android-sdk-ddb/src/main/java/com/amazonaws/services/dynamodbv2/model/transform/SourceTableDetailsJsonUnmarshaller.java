@@ -37,29 +37,32 @@ class SourceTableDetailsJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("TableName")) {
-                sourceTableDetails.setTableName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                sourceTableDetails.setTableName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("TableId")) {
-                sourceTableDetails.setTableId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                sourceTableDetails.setTableId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("TableArn")) {
-                sourceTableDetails.setTableArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                sourceTableDetails.setTableArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("TableSizeBytes")) {
-                sourceTableDetails.setTableSizeBytes(LongJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                sourceTableDetails.setTableSizeBytes(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("KeySchema")) {
                 sourceTableDetails.setKeySchema(new ListUnmarshaller<KeySchemaElement>(
-                        KeySchemaElementJsonUnmarshaller.getInstance()).unmarshall(context));
+                        KeySchemaElementJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("TableCreationDateTime")) {
                 sourceTableDetails.setTableCreationDateTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("ProvisionedThroughput")) {
                 sourceTableDetails.setProvisionedThroughput(ProvisionedThroughputJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ItemCount")) {
-                sourceTableDetails.setItemCount(LongJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                sourceTableDetails.setItemCount(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

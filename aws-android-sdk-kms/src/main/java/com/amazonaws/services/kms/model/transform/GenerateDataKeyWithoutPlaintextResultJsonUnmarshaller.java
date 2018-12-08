@@ -36,7 +36,8 @@ public class GenerateDataKeyWithoutPlaintextResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("CiphertextBlob")) {
                 generateDataKeyWithoutPlaintextResult.setCiphertextBlob(ByteBufferJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("KeyId")) {
                 generateDataKeyWithoutPlaintextResult.setKeyId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

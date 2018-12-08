@@ -36,13 +36,14 @@ class PolicyVersionJsonUnmarshaller implements Unmarshaller<PolicyVersion, JsonU
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("versionId")) {
-                policyVersion
-                        .setVersionId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                policyVersion.setVersionId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("isDefaultVersion")) {
-                policyVersion.setIsDefaultVersion(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                policyVersion.setIsDefaultVersion(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("createDate")) {
-                policyVersion.setCreateDate(DateJsonUnmarshaller.getInstance().unmarshall(context));
+                policyVersion.setCreateDate(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

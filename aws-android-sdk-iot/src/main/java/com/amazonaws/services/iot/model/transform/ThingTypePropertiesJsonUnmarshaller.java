@@ -41,7 +41,9 @@ class ThingTypePropertiesJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("searchableAttributes")) {
                 thingTypeProperties.setSearchableAttributes(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()).unmarshall(context));
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

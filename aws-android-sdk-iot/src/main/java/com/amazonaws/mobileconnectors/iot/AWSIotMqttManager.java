@@ -1053,6 +1053,7 @@ public class AWSIotMqttManager {
                     if (mqttClient != null && !mqttClient.isConnected()) {
                         reconnectToSession();
                     }
+                    ht.quit();
                 }
             }, MILLIS_IN_ONE_SECOND * currentReconnectRetryTime);
             currentReconnectRetryTime = Math.min(currentReconnectRetryTime * 2, maxReconnectRetryTime);
@@ -1261,6 +1262,8 @@ public class AWSIotMqttManager {
                             AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus.Fail,
                             userData);
                 }
+            } else {
+            	throw new AmazonClientException("Client is reconnecting and publishing from offline queue is disabled.");
             }
         } else {
             throw new AmazonClientException("Client is disconnected or not yet connected.");

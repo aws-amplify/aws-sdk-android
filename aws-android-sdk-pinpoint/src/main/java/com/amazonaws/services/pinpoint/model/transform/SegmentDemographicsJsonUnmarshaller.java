@@ -46,11 +46,11 @@ class SegmentDemographicsJsonUnmarshaller implements
                 segmentDemographics.setDeviceType(SetDimensionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Make")) {
-                segmentDemographics.setMake(SetDimensionJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                segmentDemographics.setMake(SetDimensionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Model")) {
-                segmentDemographics.setModel(SetDimensionJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                segmentDemographics.setModel(SetDimensionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Platform")) {
                 segmentDemographics.setPlatform(SetDimensionJsonUnmarshaller.getInstance()
                         .unmarshall(context));

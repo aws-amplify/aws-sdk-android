@@ -74,7 +74,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * </ul>
  * <p>
- * When this operation is successful, the CMK's key state changes from
+ * When this operation is successful, the key state of the CMK changes from
  * <code>PendingImport</code> to <code>Enabled</code>, and you can use the CMK.
  * After you successfully import key material into a CMK, you can reimport the
  * same key material into that CMK, but you cannot import different key

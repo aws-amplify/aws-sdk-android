@@ -38,7 +38,9 @@ class ChannelsResponseJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Channels")) {
                 channelsResponse.setChannels(new MapUnmarshaller<ChannelResponse>(
-                        ChannelResponseJsonUnmarshaller.getInstance()).unmarshall(context));
+                        ChannelResponseJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

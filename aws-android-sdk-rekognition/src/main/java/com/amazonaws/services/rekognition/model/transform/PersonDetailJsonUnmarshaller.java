@@ -36,12 +36,14 @@ class PersonDetailJsonUnmarshaller implements Unmarshaller<PersonDetail, JsonUnm
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Index")) {
-                personDetail.setIndex(LongJsonUnmarshaller.getInstance().unmarshall(context));
+                personDetail.setIndex(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("BoundingBox")) {
-                personDetail.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                personDetail.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Face")) {
-                personDetail.setFace(FaceDetailJsonUnmarshaller.getInstance().unmarshall(context));
+                personDetail.setFace(FaceDetailJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

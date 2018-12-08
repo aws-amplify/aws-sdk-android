@@ -298,9 +298,9 @@ abstract class NotificationClientBase {
 
     private Notification createLegacyNotification(final int iconResId, final String title, final String contentText,
                                                   final PendingIntent contentIntent) {
-            final Notification notification = new Notification();
-            notification.icon = iconResId;
-            notification.setLatestEventInfo(this.pinpointContext.getApplicationContext(), title, contentText, contentIntent);
+        final Notification notification = new Notification();
+        notification.icon = iconResId;
+        notification.setLatestEventInfo(this.pinpointContext.getApplicationContext(), title, contentText, contentIntent);
         notification.contentIntent = contentIntent;
         return notification;
     }

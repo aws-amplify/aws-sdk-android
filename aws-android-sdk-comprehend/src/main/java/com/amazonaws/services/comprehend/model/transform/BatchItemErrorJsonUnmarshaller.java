@@ -37,13 +37,14 @@ class BatchItemErrorJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Index")) {
-                batchItemError.setIndex(IntegerJsonUnmarshaller.getInstance().unmarshall(context));
+                batchItemError.setIndex(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ErrorCode")) {
                 batchItemError.setErrorCode(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("ErrorMessage")) {
-                batchItemError.setErrorMessage(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                batchItemError.setErrorMessage(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

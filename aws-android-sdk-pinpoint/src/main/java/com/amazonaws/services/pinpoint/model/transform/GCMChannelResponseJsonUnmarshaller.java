@@ -40,22 +40,23 @@ class GCMChannelResponseJsonUnmarshaller implements
                 gCMChannelResponse.setApplicationId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("CreationDate")) {
-                gCMChannelResponse.setCreationDate(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                gCMChannelResponse.setCreationDate(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Credential")) {
-                gCMChannelResponse.setCredential(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                gCMChannelResponse.setCredential(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Enabled")) {
-                gCMChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                gCMChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("HasCredential")) {
                 gCMChannelResponse.setHasCredential(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Id")) {
-                gCMChannelResponse.setId(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                gCMChannelResponse.setId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("IsArchived")) {
-                gCMChannelResponse.setIsArchived(BooleanJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                gCMChannelResponse.setIsArchived(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LastModifiedBy")) {
                 gCMChannelResponse.setLastModifiedBy(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -63,11 +64,11 @@ class GCMChannelResponseJsonUnmarshaller implements
                 gCMChannelResponse.setLastModifiedDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Platform")) {
-                gCMChannelResponse.setPlatform(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                gCMChannelResponse.setPlatform(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Version")) {
-                gCMChannelResponse.setVersion(IntegerJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                gCMChannelResponse.setVersion(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

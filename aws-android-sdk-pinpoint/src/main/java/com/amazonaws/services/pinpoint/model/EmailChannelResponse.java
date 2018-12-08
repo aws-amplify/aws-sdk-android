@@ -27,6 +27,12 @@ public class EmailChannelResponse implements Serializable {
     private String applicationId;
 
     /**
+     * The configuration set that you want to use when you send email using the
+     * Pinpoint Email API.
+     */
+    private String configurationSet;
+
+    /**
      * The date that the settings were last updated in ISO 8601 format.
      */
     private String creationDate;
@@ -125,6 +131,45 @@ public class EmailChannelResponse implements Serializable {
      */
     public EmailChannelResponse withApplicationId(String applicationId) {
         this.applicationId = applicationId;
+        return this;
+    }
+
+    /**
+     * The configuration set that you want to use when you send email using the
+     * Pinpoint Email API.
+     *
+     * @return The configuration set that you want to use when you send email
+     *         using the Pinpoint Email API.
+     */
+    public String getConfigurationSet() {
+        return configurationSet;
+    }
+
+    /**
+     * The configuration set that you want to use when you send email using the
+     * Pinpoint Email API.
+     *
+     * @param configurationSet The configuration set that you want to use when
+     *            you send email using the Pinpoint Email API.
+     */
+    public void setConfigurationSet(String configurationSet) {
+        this.configurationSet = configurationSet;
+    }
+
+    /**
+     * The configuration set that you want to use when you send email using the
+     * Pinpoint Email API.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param configurationSet The configuration set that you want to use when
+     *            you send email using the Pinpoint Email API.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public EmailChannelResponse withConfigurationSet(String configurationSet) {
+        this.configurationSet = configurationSet;
         return this;
     }
 
@@ -605,6 +650,8 @@ public class EmailChannelResponse implements Serializable {
         sb.append("{");
         if (getApplicationId() != null)
             sb.append("ApplicationId: " + getApplicationId() + ",");
+        if (getConfigurationSet() != null)
+            sb.append("ConfigurationSet: " + getConfigurationSet() + ",");
         if (getCreationDate() != null)
             sb.append("CreationDate: " + getCreationDate() + ",");
         if (getEnabled() != null)
@@ -643,6 +690,8 @@ public class EmailChannelResponse implements Serializable {
         hashCode = prime * hashCode
                 + ((getApplicationId() == null) ? 0 : getApplicationId().hashCode());
         hashCode = prime * hashCode
+                + ((getConfigurationSet() == null) ? 0 : getConfigurationSet().hashCode());
+        hashCode = prime * hashCode
                 + ((getCreationDate() == null) ? 0 : getCreationDate().hashCode());
         hashCode = prime * hashCode + ((getEnabled() == null) ? 0 : getEnabled().hashCode());
         hashCode = prime * hashCode
@@ -679,6 +728,11 @@ public class EmailChannelResponse implements Serializable {
             return false;
         if (other.getApplicationId() != null
                 && other.getApplicationId().equals(this.getApplicationId()) == false)
+            return false;
+        if (other.getConfigurationSet() == null ^ this.getConfigurationSet() == null)
+            return false;
+        if (other.getConfigurationSet() != null
+                && other.getConfigurationSet().equals(this.getConfigurationSet()) == false)
             return false;
         if (other.getCreationDate() == null ^ this.getCreationDate() == null)
             return false;

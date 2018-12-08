@@ -22,7 +22,9 @@ import com.amazonaws.util.json.AwsJsonReader;
 
 /**
  * JSON unmarshaller for POJO Session
+ * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
  */
+@Deprecated
 class SessionJsonUnmarshaller implements Unmarshaller<Session, JsonUnmarshallerContext> {
 
     public Session unmarshall(JsonUnmarshallerContext context) throws Exception {

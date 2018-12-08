@@ -37,12 +37,14 @@ class OutputLogEventJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("timestamp")) {
-                outputLogEvent.setTimestamp(LongJsonUnmarshaller.getInstance().unmarshall(context));
+                outputLogEvent.setTimestamp(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("message")) {
-                outputLogEvent.setMessage(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                outputLogEvent.setMessage(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ingestionTime")) {
-                outputLogEvent.setIngestionTime(LongJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                outputLogEvent.setIngestionTime(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

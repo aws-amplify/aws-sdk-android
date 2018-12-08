@@ -1,5 +1,33 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.9.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.9.0)
+
+### New Features
+
+* **AWS Core Runtime**
+  * Added support for EU (Stockholm) region - `eu-north-1`.
+
+### Bug Fixes
+
+* **Amazon Pinpoint**
+    * `AppPackageName`, `AppTitle`, `AppVersionCode`, `SdkName` fields will now be accepted as part of the `Event` when submitting events from your app to Amazon Pinpoint. This fixes the issue where the event when exported by Amazon Kinesis Streams was missing these fields in the exported event.
+
+### Misc. Updates
+
+* Model updates for the following services
+    * Amazon Pinpoint
+        * **Breaking API Changes:** The following APIs have been changed:
+            * `PutEventsRequest`
+                * The type of `Endpoint` field is now changed back from `EndpointRequest` to `PublicEndpoint`.
+            * `PutEventsResponse`
+                * `PutEventsResponse` will have an `EventsResponse` field. The `Results` object in the `PutEventsResponse` is now nested under `EventsResponse`.
+
+* **Amazon Cognito Sync**
+  * This library is deprecated. Please use [AWS AppSync](https://aws-amplify.github.io/docs/android/api#graphql-realtime-and-offline) for synchronizing data across devices.
+
+* **Amazon Mobile Analytics**
+  * This library is deprecated. Please use [Amazon Pinpoint](https://aws-amplify.github.io/docs/android/analytics#using-amazon-pinpoint) for analytics.
+
 ## [Release 2.8.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.8.5)
 
 ### New Features

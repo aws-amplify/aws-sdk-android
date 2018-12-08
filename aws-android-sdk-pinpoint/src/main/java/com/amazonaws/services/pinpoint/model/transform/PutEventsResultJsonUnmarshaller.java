@@ -29,19 +29,6 @@ public class PutEventsResultJsonUnmarshaller implements
     public PutEventsResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         PutEventsResult putEventsResult = new PutEventsResult();
 
-        AwsJsonReader reader = context.getReader();
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            if (name.equals("Results")) {
-                putEventsResult.setResults(new MapUnmarshaller<ItemResponse>(
-                        ItemResponseJsonUnmarshaller.getInstance()).unmarshall(context));
-            } else {
-                reader.skipValue();
-            }
-        }
-        reader.endObject();
-
         return putEventsResult;
     }
 

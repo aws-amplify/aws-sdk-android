@@ -40,10 +40,12 @@ class SecurityProfileTargetMappingJsonUnmarshaller implements
             if (name.equals("securityProfileIdentifier")) {
                 securityProfileTargetMapping
                         .setSecurityProfileIdentifier(SecurityProfileIdentifierJsonUnmarshaller
-                                .getInstance().unmarshall(context));
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("target")) {
                 securityProfileTargetMapping.setTarget(SecurityProfileTargetJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

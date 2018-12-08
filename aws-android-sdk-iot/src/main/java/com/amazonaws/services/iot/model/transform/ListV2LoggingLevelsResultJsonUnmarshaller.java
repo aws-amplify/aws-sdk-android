@@ -36,7 +36,8 @@ public class ListV2LoggingLevelsResultJsonUnmarshaller implements
             if (name.equals("logTargetConfigurations")) {
                 listV2LoggingLevelsResult
                         .setLogTargetConfigurations(new ListUnmarshaller<LogTargetConfiguration>(
-                                LogTargetConfigurationJsonUnmarshaller.getInstance())
+                                LogTargetConfigurationJsonUnmarshaller.getInstance()
+                        )
                                 .unmarshall(context));
             } else if (name.equals("nextToken")) {
                 listV2LoggingLevelsResult.setNextToken(StringJsonUnmarshaller.getInstance()

@@ -37,8 +37,8 @@ class DeleteReplicaActionJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("RegionName")) {
-                deleteReplicaAction.setRegionName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                deleteReplicaAction.setRegionName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

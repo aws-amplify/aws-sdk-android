@@ -39,13 +39,15 @@ public class GetParametersForImportResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("ImportToken")) {
                 getParametersForImportResult.setImportToken(ByteBufferJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("PublicKey")) {
                 getParametersForImportResult.setPublicKey(ByteBufferJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("ParametersValidTo")) {
                 getParametersForImportResult.setParametersValidTo(DateJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

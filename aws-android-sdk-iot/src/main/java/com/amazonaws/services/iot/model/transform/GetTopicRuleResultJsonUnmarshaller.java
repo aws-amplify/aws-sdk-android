@@ -34,11 +34,11 @@ public class GetTopicRuleResultJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("ruleArn")) {
-                getTopicRuleResult.setRuleArn(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                getTopicRuleResult.setRuleArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("rule")) {
-                getTopicRuleResult.setRule(TopicRuleJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                getTopicRuleResult.setRule(TopicRuleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

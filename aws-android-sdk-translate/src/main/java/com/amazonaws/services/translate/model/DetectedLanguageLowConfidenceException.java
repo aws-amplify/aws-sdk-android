@@ -33,7 +33,7 @@ public class DetectedLanguageLowConfidenceException extends AmazonServiceExcepti
 
     /**
      * <p>
-     * Auto detected language code from Comprehend.
+     * The language code of the auto-detected language from Amazon Comprehend.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,14 +53,15 @@ public class DetectedLanguageLowConfidenceException extends AmazonServiceExcepti
 
     /**
      * <p>
-     * Auto detected language code from Comprehend.
+     * The language code of the auto-detected language from Amazon Comprehend.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>2 - 5<br/>
      *
      * @return <p>
-     *         Auto detected language code from Comprehend.
+     *         The language code of the auto-detected language from Amazon
+     *         Comprehend.
      *         </p>
      */
     public String getDetectedLanguageCode() {
@@ -69,14 +70,15 @@ public class DetectedLanguageLowConfidenceException extends AmazonServiceExcepti
 
     /**
      * <p>
-     * Auto detected language code from Comprehend.
+     * The language code of the auto-detected language from Amazon Comprehend.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>2 - 5<br/>
      *
      * @param detectedLanguageCode <p>
-     *            Auto detected language code from Comprehend.
+     *            The language code of the auto-detected language from Amazon
+     *            Comprehend.
      *            </p>
      */
     public void setDetectedLanguageCode(String detectedLanguageCode) {

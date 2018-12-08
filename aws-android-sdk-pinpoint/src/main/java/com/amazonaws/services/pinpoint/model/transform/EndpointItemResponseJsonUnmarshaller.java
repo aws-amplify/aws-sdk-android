@@ -37,8 +37,8 @@ class EndpointItemResponseJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("Message")) {
-                endpointItemResponse.setMessage(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                endpointItemResponse.setMessage(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("StatusCode")) {
                 endpointItemResponse.setStatusCode(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));

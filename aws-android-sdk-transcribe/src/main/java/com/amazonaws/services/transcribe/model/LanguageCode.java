@@ -27,7 +27,10 @@ public enum LanguageCode {
     EsUS("es-US"),
     EnAU("en-AU"),
     FrCA("fr-CA"),
-    EnUK("en-UK");
+    EnGB("en-GB"),
+    DeDE("de-DE"),
+    PtBR("pt-BR"),
+    FrFR("fr-FR");
 
     private String value;
 
@@ -47,7 +50,10 @@ public enum LanguageCode {
         enumMap.put("es-US", EsUS);
         enumMap.put("en-AU", EnAU);
         enumMap.put("fr-CA", FrCA);
-        enumMap.put("en-UK", EnUK);
+        enumMap.put("en-GB", EnGB);
+        enumMap.put("de-DE", DeDE);
+        enumMap.put("pt-BR", PtBR);
+        enumMap.put("fr-FR", FrFR);
     }
 
     /**

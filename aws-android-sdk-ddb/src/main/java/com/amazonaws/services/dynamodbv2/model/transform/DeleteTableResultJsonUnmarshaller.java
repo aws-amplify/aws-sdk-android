@@ -35,7 +35,8 @@ public class DeleteTableResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("TableDescription")) {
                 deleteTableResult.setTableDescription(TableDescriptionJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

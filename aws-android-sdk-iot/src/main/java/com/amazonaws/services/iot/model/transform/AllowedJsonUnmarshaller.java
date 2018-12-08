@@ -37,7 +37,9 @@ class AllowedJsonUnmarshaller implements Unmarshaller<Allowed, JsonUnmarshallerC
             String name = reader.nextName();
             if (name.equals("policies")) {
                 allowed.setPolicies(new ListUnmarshaller<Policy>(PolicyJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

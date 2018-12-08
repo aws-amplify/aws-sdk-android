@@ -36,11 +36,13 @@ class GlobalTableJsonUnmarshaller implements Unmarshaller<GlobalTable, JsonUnmar
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("GlobalTableName")) {
-                globalTable.setGlobalTableName(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                globalTable.setGlobalTableName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ReplicationGroup")) {
                 globalTable.setReplicationGroup(new ListUnmarshaller<Replica>(
-                        ReplicaJsonUnmarshaller.getInstance()).unmarshall(context));
+                        ReplicaJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

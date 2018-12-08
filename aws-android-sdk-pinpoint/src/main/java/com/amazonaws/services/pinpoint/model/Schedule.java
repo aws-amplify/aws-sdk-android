@@ -27,11 +27,17 @@ public class Schedule implements Serializable {
     private String endTime;
 
     /**
-     * How often the campaign delivers messages. Valid values: ONCE, HOURLY,
-     * DAILY, WEEKLY, MONTHLY
+     * Defines the type of events that can trigger the campaign. Used when the
+     * Frequency is set to EVENT.
+     */
+    private CampaignEventFilter eventFilter;
+
+    /**
+     * How often the campaign delivers messages. Valid values: ONCE HOURLY DAILY
+     * WEEKLY MONTHLY EVENT
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ONCE, HOURLY, DAILY, WEEKLY, MONTHLY
+     * <b>Allowed Values: </b>ONCE, HOURLY, DAILY, WEEKLY, MONTHLY, EVENT
      */
     private String frequency;
 
@@ -42,7 +48,19 @@ public class Schedule implements Serializable {
     private Boolean isLocalTime;
 
     /**
-     * The time during which the campaign sends no messages.
+     * The default quiet time for the campaign. The campaign doesn't send
+     * messages to endpoints during the quiet time. Note: Make sure that your
+     * endpoints include the Demographics.Timezone attribute if you plan to
+     * enable a quiet time for your campaign. If your endpoints don't include
+     * this attribute, they'll receive the messages that you send them, even if
+     * quiet time is enabled. When you set up a campaign to use quiet time, the
+     * campaign doesn't send messages during the time range you specified, as
+     * long as all of the following are true: - The endpoint includes a valid
+     * Demographic.Timezone attribute. - The current time in the endpoint's time
+     * zone is later than or equal to the time specified in the QuietTime.Start
+     * attribute for the campaign. - The current time in the endpoint's time
+     * zone is earlier than or equal to the time specified in the QuietTime.End
+     * attribute for the campaign.
      */
     private QuietTime quietTime;
 
@@ -96,14 +114,53 @@ public class Schedule implements Serializable {
     }
 
     /**
-     * How often the campaign delivers messages. Valid values: ONCE, HOURLY,
-     * DAILY, WEEKLY, MONTHLY
+     * Defines the type of events that can trigger the campaign. Used when the
+     * Frequency is set to EVENT.
+     *
+     * @return Defines the type of events that can trigger the campaign. Used
+     *         when the Frequency is set to EVENT.
+     */
+    public CampaignEventFilter getEventFilter() {
+        return eventFilter;
+    }
+
+    /**
+     * Defines the type of events that can trigger the campaign. Used when the
+     * Frequency is set to EVENT.
+     *
+     * @param eventFilter Defines the type of events that can trigger the
+     *            campaign. Used when the Frequency is set to EVENT.
+     */
+    public void setEventFilter(CampaignEventFilter eventFilter) {
+        this.eventFilter = eventFilter;
+    }
+
+    /**
+     * Defines the type of events that can trigger the campaign. Used when the
+     * Frequency is set to EVENT.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param eventFilter Defines the type of events that can trigger the
+     *            campaign. Used when the Frequency is set to EVENT.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Schedule withEventFilter(CampaignEventFilter eventFilter) {
+        this.eventFilter = eventFilter;
+        return this;
+    }
+
+    /**
+     * How often the campaign delivers messages. Valid values: ONCE HOURLY DAILY
+     * WEEKLY MONTHLY EVENT
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ONCE, HOURLY, DAILY, WEEKLY, MONTHLY
+     * <b>Allowed Values: </b>ONCE, HOURLY, DAILY, WEEKLY, MONTHLY, EVENT
      *
-     * @return How often the campaign delivers messages. Valid values: ONCE,
-     *         HOURLY, DAILY, WEEKLY, MONTHLY
+     * @return How often the campaign delivers messages. Valid values: ONCE
+     *         HOURLY DAILY WEEKLY MONTHLY EVENT
      * @see Frequency
      */
     public String getFrequency() {
@@ -111,14 +168,14 @@ public class Schedule implements Serializable {
     }
 
     /**
-     * How often the campaign delivers messages. Valid values: ONCE, HOURLY,
-     * DAILY, WEEKLY, MONTHLY
+     * How often the campaign delivers messages. Valid values: ONCE HOURLY DAILY
+     * WEEKLY MONTHLY EVENT
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ONCE, HOURLY, DAILY, WEEKLY, MONTHLY
+     * <b>Allowed Values: </b>ONCE, HOURLY, DAILY, WEEKLY, MONTHLY, EVENT
      *
      * @param frequency How often the campaign delivers messages. Valid values:
-     *            ONCE, HOURLY, DAILY, WEEKLY, MONTHLY
+     *            ONCE HOURLY DAILY WEEKLY MONTHLY EVENT
      * @see Frequency
      */
     public void setFrequency(String frequency) {
@@ -126,17 +183,17 @@ public class Schedule implements Serializable {
     }
 
     /**
-     * How often the campaign delivers messages. Valid values: ONCE, HOURLY,
-     * DAILY, WEEKLY, MONTHLY
+     * How often the campaign delivers messages. Valid values: ONCE HOURLY DAILY
+     * WEEKLY MONTHLY EVENT
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ONCE, HOURLY, DAILY, WEEKLY, MONTHLY
+     * <b>Allowed Values: </b>ONCE, HOURLY, DAILY, WEEKLY, MONTHLY, EVENT
      *
      * @param frequency How often the campaign delivers messages. Valid values:
-     *            ONCE, HOURLY, DAILY, WEEKLY, MONTHLY
+     *            ONCE HOURLY DAILY WEEKLY MONTHLY EVENT
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Frequency
@@ -147,14 +204,14 @@ public class Schedule implements Serializable {
     }
 
     /**
-     * How often the campaign delivers messages. Valid values: ONCE, HOURLY,
-     * DAILY, WEEKLY, MONTHLY
+     * How often the campaign delivers messages. Valid values: ONCE HOURLY DAILY
+     * WEEKLY MONTHLY EVENT
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ONCE, HOURLY, DAILY, WEEKLY, MONTHLY
+     * <b>Allowed Values: </b>ONCE, HOURLY, DAILY, WEEKLY, MONTHLY, EVENT
      *
      * @param frequency How often the campaign delivers messages. Valid values:
-     *            ONCE, HOURLY, DAILY, WEEKLY, MONTHLY
+     *            ONCE HOURLY DAILY WEEKLY MONTHLY EVENT
      * @see Frequency
      */
     public void setFrequency(Frequency frequency) {
@@ -162,17 +219,17 @@ public class Schedule implements Serializable {
     }
 
     /**
-     * How often the campaign delivers messages. Valid values: ONCE, HOURLY,
-     * DAILY, WEEKLY, MONTHLY
+     * How often the campaign delivers messages. Valid values: ONCE HOURLY DAILY
+     * WEEKLY MONTHLY EVENT
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ONCE, HOURLY, DAILY, WEEKLY, MONTHLY
+     * <b>Allowed Values: </b>ONCE, HOURLY, DAILY, WEEKLY, MONTHLY, EVENT
      *
      * @param frequency How often the campaign delivers messages. Valid values:
-     *            ONCE, HOURLY, DAILY, WEEKLY, MONTHLY
+     *            ONCE HOURLY DAILY WEEKLY MONTHLY EVENT
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see Frequency
@@ -233,30 +290,109 @@ public class Schedule implements Serializable {
     }
 
     /**
-     * The time during which the campaign sends no messages.
+     * The default quiet time for the campaign. The campaign doesn't send
+     * messages to endpoints during the quiet time. Note: Make sure that your
+     * endpoints include the Demographics.Timezone attribute if you plan to
+     * enable a quiet time for your campaign. If your endpoints don't include
+     * this attribute, they'll receive the messages that you send them, even if
+     * quiet time is enabled. When you set up a campaign to use quiet time, the
+     * campaign doesn't send messages during the time range you specified, as
+     * long as all of the following are true: - The endpoint includes a valid
+     * Demographic.Timezone attribute. - The current time in the endpoint's time
+     * zone is later than or equal to the time specified in the QuietTime.Start
+     * attribute for the campaign. - The current time in the endpoint's time
+     * zone is earlier than or equal to the time specified in the QuietTime.End
+     * attribute for the campaign.
      *
-     * @return The time during which the campaign sends no messages.
+     * @return The default quiet time for the campaign. The campaign doesn't
+     *         send messages to endpoints during the quiet time. Note: Make sure
+     *         that your endpoints include the Demographics.Timezone attribute
+     *         if you plan to enable a quiet time for your campaign. If your
+     *         endpoints don't include this attribute, they'll receive the
+     *         messages that you send them, even if quiet time is enabled. When
+     *         you set up a campaign to use quiet time, the campaign doesn't
+     *         send messages during the time range you specified, as long as all
+     *         of the following are true: - The endpoint includes a valid
+     *         Demographic.Timezone attribute. - The current time in the
+     *         endpoint's time zone is later than or equal to the time specified
+     *         in the QuietTime.Start attribute for the campaign. - The current
+     *         time in the endpoint's time zone is earlier than or equal to the
+     *         time specified in the QuietTime.End attribute for the campaign.
      */
     public QuietTime getQuietTime() {
         return quietTime;
     }
 
     /**
-     * The time during which the campaign sends no messages.
+     * The default quiet time for the campaign. The campaign doesn't send
+     * messages to endpoints during the quiet time. Note: Make sure that your
+     * endpoints include the Demographics.Timezone attribute if you plan to
+     * enable a quiet time for your campaign. If your endpoints don't include
+     * this attribute, they'll receive the messages that you send them, even if
+     * quiet time is enabled. When you set up a campaign to use quiet time, the
+     * campaign doesn't send messages during the time range you specified, as
+     * long as all of the following are true: - The endpoint includes a valid
+     * Demographic.Timezone attribute. - The current time in the endpoint's time
+     * zone is later than or equal to the time specified in the QuietTime.Start
+     * attribute for the campaign. - The current time in the endpoint's time
+     * zone is earlier than or equal to the time specified in the QuietTime.End
+     * attribute for the campaign.
      *
-     * @param quietTime The time during which the campaign sends no messages.
+     * @param quietTime The default quiet time for the campaign. The campaign
+     *            doesn't send messages to endpoints during the quiet time.
+     *            Note: Make sure that your endpoints include the
+     *            Demographics.Timezone attribute if you plan to enable a quiet
+     *            time for your campaign. If your endpoints don't include this
+     *            attribute, they'll receive the messages that you send them,
+     *            even if quiet time is enabled. When you set up a campaign to
+     *            use quiet time, the campaign doesn't send messages during the
+     *            time range you specified, as long as all of the following are
+     *            true: - The endpoint includes a valid Demographic.Timezone
+     *            attribute. - The current time in the endpoint's time zone is
+     *            later than or equal to the time specified in the
+     *            QuietTime.Start attribute for the campaign. - The current time
+     *            in the endpoint's time zone is earlier than or equal to the
+     *            time specified in the QuietTime.End attribute for the
+     *            campaign.
      */
     public void setQuietTime(QuietTime quietTime) {
         this.quietTime = quietTime;
     }
 
     /**
-     * The time during which the campaign sends no messages.
+     * The default quiet time for the campaign. The campaign doesn't send
+     * messages to endpoints during the quiet time. Note: Make sure that your
+     * endpoints include the Demographics.Timezone attribute if you plan to
+     * enable a quiet time for your campaign. If your endpoints don't include
+     * this attribute, they'll receive the messages that you send them, even if
+     * quiet time is enabled. When you set up a campaign to use quiet time, the
+     * campaign doesn't send messages during the time range you specified, as
+     * long as all of the following are true: - The endpoint includes a valid
+     * Demographic.Timezone attribute. - The current time in the endpoint's time
+     * zone is later than or equal to the time specified in the QuietTime.Start
+     * attribute for the campaign. - The current time in the endpoint's time
+     * zone is earlier than or equal to the time specified in the QuietTime.End
+     * attribute for the campaign.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param quietTime The time during which the campaign sends no messages.
+     * @param quietTime The default quiet time for the campaign. The campaign
+     *            doesn't send messages to endpoints during the quiet time.
+     *            Note: Make sure that your endpoints include the
+     *            Demographics.Timezone attribute if you plan to enable a quiet
+     *            time for your campaign. If your endpoints don't include this
+     *            attribute, they'll receive the messages that you send them,
+     *            even if quiet time is enabled. When you set up a campaign to
+     *            use quiet time, the campaign doesn't send messages during the
+     *            time range you specified, as long as all of the following are
+     *            true: - The endpoint includes a valid Demographic.Timezone
+     *            attribute. - The current time in the endpoint's time zone is
+     *            later than or equal to the time specified in the
+     *            QuietTime.Start attribute for the campaign. - The current time
+     *            in the endpoint's time zone is earlier than or equal to the
+     *            time specified in the QuietTime.End attribute for the
+     *            campaign.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -373,6 +509,8 @@ public class Schedule implements Serializable {
         sb.append("{");
         if (getEndTime() != null)
             sb.append("EndTime: " + getEndTime() + ",");
+        if (getEventFilter() != null)
+            sb.append("EventFilter: " + getEventFilter() + ",");
         if (getFrequency() != null)
             sb.append("Frequency: " + getFrequency() + ",");
         if (getIsLocalTime() != null)
@@ -393,6 +531,8 @@ public class Schedule implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getEndTime() == null) ? 0 : getEndTime().hashCode());
+        hashCode = prime * hashCode
+                + ((getEventFilter() == null) ? 0 : getEventFilter().hashCode());
         hashCode = prime * hashCode + ((getFrequency() == null) ? 0 : getFrequency().hashCode());
         hashCode = prime * hashCode
                 + ((getIsLocalTime() == null) ? 0 : getIsLocalTime().hashCode());
@@ -416,6 +556,11 @@ public class Schedule implements Serializable {
         if (other.getEndTime() == null ^ this.getEndTime() == null)
             return false;
         if (other.getEndTime() != null && other.getEndTime().equals(this.getEndTime()) == false)
+            return false;
+        if (other.getEventFilter() == null ^ this.getEventFilter() == null)
+            return false;
+        if (other.getEventFilter() != null
+                && other.getEventFilter().equals(this.getEventFilter()) == false)
             return false;
         if (other.getFrequency() == null ^ this.getFrequency() == null)
             return false;

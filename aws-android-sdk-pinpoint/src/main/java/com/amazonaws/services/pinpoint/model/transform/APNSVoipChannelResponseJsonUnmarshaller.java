@@ -44,7 +44,8 @@ class APNSVoipChannelResponseJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("DefaultAuthenticationMethod")) {
                 aPNSVoipChannelResponse.setDefaultAuthenticationMethod(StringJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Enabled")) {
                 aPNSVoipChannelResponse.setEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -55,8 +56,8 @@ class APNSVoipChannelResponseJsonUnmarshaller implements
                 aPNSVoipChannelResponse.setHasTokenKey(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Id")) {
-                aPNSVoipChannelResponse.setId(StringJsonUnmarshaller.getInstance().unmarshall(
-                        context));
+                aPNSVoipChannelResponse.setId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("IsArchived")) {
                 aPNSVoipChannelResponse.setIsArchived(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -39,7 +39,8 @@ class AwsJobExecutionsRolloutConfigJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("maximumPerMinute")) {
                 awsJobExecutionsRolloutConfig.setMaximumPerMinute(IntegerJsonUnmarshaller
-                        .getInstance().unmarshall(context));
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

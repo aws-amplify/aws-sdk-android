@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates the description of a customer master key (CMK). To see the
- * description of a CMK, use <a>DescribeKey</a>.
+ * Updates the description of a customer master key (CMK). To see the decription
+ * of a CMK, use <a>DescribeKey</a>.
  * </p>
  * <p>
  * You cannot perform this operation on a CMK in a different AWS account.

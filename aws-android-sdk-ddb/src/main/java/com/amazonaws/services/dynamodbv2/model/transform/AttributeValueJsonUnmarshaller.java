@@ -37,30 +37,45 @@ class AttributeValueJsonUnmarshaller implements
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("S")) {
-                attributeValue.setS(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                attributeValue.setS(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("N")) {
-                attributeValue.setN(StringJsonUnmarshaller.getInstance().unmarshall(context));
+                attributeValue.setN(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("B")) {
-                attributeValue.setB(ByteBufferJsonUnmarshaller.getInstance().unmarshall(context));
+                attributeValue.setB(ByteBufferJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SS")) {
                 attributeValue.setSS(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("NS")) {
                 attributeValue.setNS(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()).unmarshall(context));
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("BS")) {
                 attributeValue.setBS(new ListUnmarshaller<java.nio.ByteBuffer>(
-                        ByteBufferJsonUnmarshaller.getInstance()).unmarshall(context));
+                        ByteBufferJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("M")) {
                 attributeValue.setM(new MapUnmarshaller<AttributeValue>(
-                        AttributeValueJsonUnmarshaller.getInstance()).unmarshall(context));
+                        AttributeValueJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("L")) {
                 attributeValue.setL(new ListUnmarshaller<AttributeValue>(
-                        AttributeValueJsonUnmarshaller.getInstance()).unmarshall(context));
+                        AttributeValueJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("NULL")) {
-                attributeValue.setNULL(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
+                attributeValue.setNULL(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("BOOL")) {
-                attributeValue.setBOOL(BooleanJsonUnmarshaller.getInstance().unmarshall(context));
+                attributeValue.setBOOL(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
