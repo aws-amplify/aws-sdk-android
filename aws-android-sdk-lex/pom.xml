@@ -69,7 +69,8 @@
                 <extensions>true</extensions>
                 <configuration>
                     <sdk>
-                        <platform>11</platform>
+                        <platform>${env.ANDROID_PLATFORM}</platform>
+                        <buildTools>${env.ANDROID_BUILDTOOL_VERSION}</buildTools>
                     </sdk>
                     <nativeLibrariesDirectory>${project.basedir}/src/main/jni</nativeLibrariesDirectory>
                 </configuration>

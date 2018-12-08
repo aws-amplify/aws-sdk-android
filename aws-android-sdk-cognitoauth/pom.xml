@@ -60,15 +60,16 @@
   <build>
     <plugins>
       <plugin>
-                <groupId>com.simpligility.maven.plugins</groupId>
-                <artifactId>android-maven-plugin</artifactId>
-                <version>4.5.0</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <sdk>
-                        <platform>15</platform>
-                    </sdk>
-                </configuration>
+          <groupId>com.simpligility.maven.plugins</groupId>
+          <artifactId>android-maven-plugin</artifactId>
+          <version>4.5.0</version>
+          <extensions>true</extensions>
+          <configuration>
+            <sdk>
+              <platform>${env.ANDROID_PLATFORM}</platform>
+              <buildTools>${env.ANDROID_BUILDTOOL_VERSION}</buildTools>
+            </sdk>
+          </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
